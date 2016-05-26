@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15F31a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="Proxima Nova Semibold.otf">
+            <string>ProximaNova-Semibold</string>
+        </mutableArray>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LWCurrencyDepositPresenter">
+            <connections>
+                <outlet property="container" destination="gF6-pH-XQq" id="J1U-fJ-wC0"/>
+                <outlet property="emailButton" destination="WqU-tb-oi1" id="h6j-ZS-7r3"/>
+                <outlet property="infoView" destination="nj4-R1-fo9" id="1Fj-ey-YcK"/>
+                <outlet property="scrollView" destination="Msi-Dx-aC5" id="JbP-3B-qfF"/>
+                <outlet property="view" destination="iN0-l3-epB" id="U18-86-rrF"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Msi-Dx-aC5">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="483"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gF6-pH-XQq">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="483"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nj4-R1-fo9">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="135"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="135" id="3ge-Il-bCv"/>
+                                    </constraints>
+                                </view>
+                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WqU-tb-oi1">
+                                    <rect key="frame" x="100" y="430" width="120" height="45"/>
+                                    <fontDescription key="fontDescription" name="ProximaNova-Semibold" family="Proxima Nova" pointSize="15"/>
+                                    <state key="normal" title="EMAIL ME" backgroundImage="ButtonOK_square.png"/>
+                                    <connections>
+                                        <action selector="emailButtonPressed:" destination="-2" eventType="touchUpInside" id="cLl-YS-79e"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstItem="nj4-R1-fo9" firstAttribute="top" secondItem="gF6-pH-XQq" secondAttribute="top" id="ZEM-1S-uru"/>
+                                <constraint firstItem="nj4-R1-fo9" firstAttribute="leading" secondItem="gF6-pH-XQq" secondAttribute="leading" id="bpV-C6-0dv"/>
+                                <constraint firstAttribute="trailing" secondItem="nj4-R1-fo9" secondAttribute="trailing" id="kBg-5F-guD"/>
+                                <constraint firstItem="nj4-R1-fo9" firstAttribute="centerX" secondItem="gF6-pH-XQq" secondAttribute="centerX" id="qzj-Ct-HVD"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="gF6-pH-XQq" firstAttribute="centerX" secondItem="Msi-Dx-aC5" secondAttribute="centerX" id="Bij-Xw-XFn"/>
+                        <constraint firstItem="gF6-pH-XQq" firstAttribute="leading" secondItem="Msi-Dx-aC5" secondAttribute="leading" id="Ckl-tg-CHE"/>
+                        <constraint firstItem="gF6-pH-XQq" firstAttribute="centerY" secondItem="Msi-Dx-aC5" secondAttribute="centerY" id="WDh-3s-TmN"/>
+                        <constraint firstAttribute="trailing" secondItem="gF6-pH-XQq" secondAttribute="trailing" id="aaO-kH-Ozt"/>
+                        <constraint firstItem="gF6-pH-XQq" firstAttribute="top" secondItem="Msi-Dx-aC5" secondAttribute="top" id="s5T-Hu-vHc"/>
+                        <constraint firstAttribute="bottom" secondItem="gF6-pH-XQq" secondAttribute="bottom" id="vkJ-fO-tcx"/>
+                    </constraints>
+                </scrollView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="Msi-Dx-aC5" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="1Kn-xj-RTH"/>
+                <constraint firstItem="Msi-Dx-aC5" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="6Kc-Ef-bh6"/>
+                <constraint firstItem="Msi-Dx-aC5" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" id="E67-dC-1cn"/>
+                <constraint firstAttribute="trailing" secondItem="Msi-Dx-aC5" secondAttribute="trailing" id="ZIm-dL-xKb"/>
+                <constraint firstItem="Msi-Dx-aC5" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="izu-Ww-Acc"/>
+                <constraint firstItem="Msi-Dx-aC5" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="xeX-QU-hmo"/>
+            </constraints>
+            <point key="canvasLocation" x="343" y="286"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="ButtonOK_square.png" width="1800" height="200"/>
+    </resources>
+</document>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="LWWalletsLoadingTableViewCellIdentifier" id="uhX-So-bbh" customClass="LWWalletsLoadingTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uhX-So-bbh" id="O27-RL-eVu">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="WQu-3v-KGI">
+                        <rect key="frame" x="150" y="11" width="20" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="20" id="fyV-qj-PnU"/>
+                            <constraint firstAttribute="height" constant="20" id="jbF-Ia-msQ"/>
+                        </constraints>
+                        <color key="color" red="0.074509803921568626" green="0.26666666666666666" blue="0.45882352941176469" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </activityIndicatorView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="WQu-3v-KGI" firstAttribute="centerY" secondItem="O27-RL-eVu" secondAttribute="centerY" id="2yc-ea-hGo"/>
+                    <constraint firstItem="WQu-3v-KGI" firstAttribute="centerX" secondItem="O27-RL-eVu" secondAttribute="centerX" id="e8n-gQ-UPo"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <point key="canvasLocation" x="253" y="136"/>
+        </tableViewCell>
+    </objects>
+</document>

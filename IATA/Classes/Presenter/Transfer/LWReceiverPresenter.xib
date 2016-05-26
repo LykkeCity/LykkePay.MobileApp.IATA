@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="GothaProReg.otf">
+            <string>GothamPro</string>
+        </mutableArray>
+        <mutableArray key="Proxima Nova Semibold.otf">
+            <string>ProximaNova-Semibold</string>
+        </mutableArray>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LWReceiverPresenter">
+            <connections>
+                <outlet property="bottomConstraint" destination="Y4g-il-jHe" id="Jpa-b0-wWY"/>
+                <outlet property="bottomHeightConstraint" destination="rum-Kk-rvs" id="M5Q-I2-Wf2"/>
+                <outlet property="buyButton" destination="pHg-Sd-p7q" id="3V2-oe-7wi"/>
+                <outlet property="recepientImageView" destination="zZW-Iv-uUR" id="dJh-zr-Lxx"/>
+                <outlet property="recepientNameLabel" destination="PtP-hE-KeH" id="mWF-IA-qug"/>
+                <outlet property="tableView" destination="6iU-ST-rS0" id="KY2-90-87A"/>
+                <outlet property="view" destination="ewi-0W-6YW" id="NTN-NW-opL"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="ewi-0W-6YW">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="6iU-ST-rS0">
+                    <rect key="frame" x="0.0" y="90" width="320" height="433"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KDT-WZ-6Sx">
+                    <rect key="frame" x="0.0" y="523" width="320" height="45"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pHg-Sd-p7q" customClass="TKButton">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="45"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="45" id="fqY-VB-Wxo"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="ProximaNova-Semibold" family="Proxima Nova" pointSize="15"/>
+                            <state key="normal" title="CONTINUE" backgroundImage="ButtonOK">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="purchaseClicked:" destination="-1" eventType="touchUpInside" id="DGt-6j-MeK"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="pHg-Sd-p7q" secondAttribute="trailing" id="AWt-kf-lIS"/>
+                        <constraint firstAttribute="bottom" secondItem="pHg-Sd-p7q" secondAttribute="bottom" id="cvj-fa-a0C"/>
+                        <constraint firstAttribute="height" constant="45" id="rum-Kk-rvs"/>
+                        <constraint firstItem="pHg-Sd-p7q" firstAttribute="leading" secondItem="KDT-WZ-6Sx" secondAttribute="leading" id="v2l-CV-7M0"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BfO-QX-ci2">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="90"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AeroflotIcon" translatesAutoresizingMaskIntoConstraints="NO" id="zZW-Iv-uUR">
+                            <rect key="frame" x="140" y="8" width="40" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="ZBz-Qc-OoK"/>
+                                <constraint firstAttribute="width" constant="40" id="yiW-Zu-kzF"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AEROFLOT" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PtP-hE-KeH">
+                            <rect key="frame" x="42" y="56" width="236" height="18"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="236" id="MRC-iG-nC7"/>
+                                <constraint firstAttribute="height" constant="18" id="cVr-ul-Odz"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="GothamPro" family="Gotham Pro" pointSize="14"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="zZW-Iv-uUR" firstAttribute="centerX" secondItem="BfO-QX-ci2" secondAttribute="centerX" id="5k6-ma-kjg"/>
+                        <constraint firstAttribute="height" constant="90" id="7iP-fT-kwV"/>
+                        <constraint firstItem="PtP-hE-KeH" firstAttribute="top" secondItem="zZW-Iv-uUR" secondAttribute="bottom" constant="8" id="7qp-hL-W94"/>
+                        <constraint firstItem="PtP-hE-KeH" firstAttribute="centerX" secondItem="BfO-QX-ci2" secondAttribute="centerX" id="C8f-jp-hao"/>
+                        <constraint firstItem="zZW-Iv-uUR" firstAttribute="top" secondItem="BfO-QX-ci2" secondAttribute="top" constant="8" id="Img-jr-0zq"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="KDT-WZ-6Sx" firstAttribute="top" secondItem="6iU-ST-rS0" secondAttribute="bottom" id="34n-Yt-VdW"/>
+                <constraint firstItem="KDT-WZ-6Sx" firstAttribute="leading" secondItem="ewi-0W-6YW" secondAttribute="leading" id="5lN-dH-rez"/>
+                <constraint firstItem="BfO-QX-ci2" firstAttribute="top" secondItem="ewi-0W-6YW" secondAttribute="top" id="AnN-8e-xpi"/>
+                <constraint firstItem="BfO-QX-ci2" firstAttribute="leading" secondItem="ewi-0W-6YW" secondAttribute="leading" id="AsP-N2-ZtD"/>
+                <constraint firstAttribute="trailing" secondItem="BfO-QX-ci2" secondAttribute="trailing" id="FCe-kP-l27"/>
+                <constraint firstItem="6iU-ST-rS0" firstAttribute="top" secondItem="BfO-QX-ci2" secondAttribute="bottom" id="Vl0-TJ-5cR"/>
+                <constraint firstAttribute="bottom" secondItem="KDT-WZ-6Sx" secondAttribute="bottom" id="Y4g-il-jHe"/>
+                <constraint firstItem="6iU-ST-rS0" firstAttribute="leading" secondItem="ewi-0W-6YW" secondAttribute="leading" id="eyY-cD-004"/>
+                <constraint firstAttribute="trailing" secondItem="KDT-WZ-6Sx" secondAttribute="trailing" id="lMI-Ec-gg7"/>
+                <constraint firstAttribute="trailing" secondItem="6iU-ST-rS0" secondAttribute="trailing" id="omV-kG-sRS"/>
+            </constraints>
+            <point key="canvasLocation" x="147" y="233"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="AeroflotIcon" width="40" height="40"/>
+        <image name="ButtonOK" width="320" height="51"/>
+    </resources>
+</document>

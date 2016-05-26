@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15F31a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="GothaProMed.otf">
+            <string>GothamPro-Medium</string>
+            <string>GothamPro-Medium</string>
+        </mutableArray>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LWAuthEntryPointPresenter">
+            <connections>
+                <outlet property="activityView" destination="fCi-6H-WP0" id="R5u-5j-TLr"/>
+                <outlet property="chooseServerButton" destination="hQ0-W1-g4x" id="xIl-1N-fvB"/>
+                <outlet property="emailTextFieldContainer" destination="jTR-ra-Fsm" id="f0R-5h-rt2"/>
+                <outlet property="proceedButton" destination="ZD9-eO-6FP" id="QMh-G4-fRH"/>
+                <outlet property="tipsBottomConstraint" destination="e0I-6C-Pvp" id="cX4-WT-cIg"/>
+                <outlet property="tipsContainer" destination="Glz-RF-sGK" id="E2S-zZ-tGf"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IconLogo" translatesAutoresizingMaskIntoConstraints="NO" id="nEs-eH-7Sv">
+                    <rect key="frame" x="113" y="57" width="95" height="60"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="60" id="6jA-SS-RmP"/>
+                        <constraint firstAttribute="width" constant="95" id="kOd-Lj-3vU"/>
+                    </constraints>
+                </imageView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jTR-ra-Fsm" customClass="TKContainer">
+                    <rect key="frame" x="0.0" y="150" width="320" height="64"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="64" id="dcK-Ic-585"/>
+                        <constraint firstAttribute="width" constant="320" id="xZr-av-feG"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZD9-eO-6FP" customClass="TKButton">
+                    <rect key="frame" x="0.0" y="225" width="320" height="51"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="51" id="9R3-NG-MuV"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="GothamPro-Medium" family="Gotham Pro" pointSize="16"/>
+                    <state key="normal" title="SIGN UP" backgroundImage="ButtonOKInactive">
+                        <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="proceedButtonClick:" destination="-1" eventType="touchUpInside" id="ePu-3q-JOk"/>
+                    </connections>
+                </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Glz-RF-sGK" customClass="TKContainer">
+                    <rect key="frame" x="0.0" y="503" width="320" height="65"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="65" id="qKm-3S-pLj"/>
+                    </constraints>
+                </view>
+                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="fCi-6H-WP0">
+                    <rect key="frame" x="150" y="284" width="20" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="20" id="beq-gd-hId"/>
+                        <constraint firstAttribute="height" constant="20" id="iFs-FE-Xw2"/>
+                    </constraints>
+                </activityIndicatorView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hQ0-W1-g4x" customClass="TKButton">
+                    <rect key="frame" x="0.0" y="326" width="320" height="51"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="51" id="MIT-4I-0Kf"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="GothamPro-Medium" family="Gotham Pro" pointSize="16"/>
+                    <state key="normal" title="CHOOSE SERVER" backgroundImage="ButtonOKInactive">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="proceedChooseServerClick:" destination="-1" eventType="touchUpInside" id="hS0-h7-Hdm"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="ZD9-eO-6FP" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="2j5-rL-6zh"/>
+                <constraint firstItem="hQ0-W1-g4x" firstAttribute="top" secondItem="fCi-6H-WP0" secondAttribute="bottom" constant="22" id="CtY-ns-MrS"/>
+                <constraint firstItem="jTR-ra-Fsm" firstAttribute="top" secondItem="nEs-eH-7Sv" secondAttribute="bottom" constant="33" id="DOJ-Tg-bEy"/>
+                <constraint firstItem="hQ0-W1-g4x" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="DcO-2j-kE9"/>
+                <constraint firstItem="fCi-6H-WP0" firstAttribute="top" secondItem="ZD9-eO-6FP" secondAttribute="bottom" constant="8" id="EhA-nF-9TB"/>
+                <constraint firstItem="nEs-eH-7Sv" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="57" id="I2t-g5-4Qu"/>
+                <constraint firstItem="hQ0-W1-g4x" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="JMv-8f-7H8"/>
+                <constraint firstItem="Glz-RF-sGK" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="K8A-ux-U2c"/>
+                <constraint firstAttribute="trailing" secondItem="hQ0-W1-g4x" secondAttribute="trailing" id="Xyd-Fs-tcm"/>
+                <constraint firstItem="ZD9-eO-6FP" firstAttribute="top" secondItem="jTR-ra-Fsm" secondAttribute="bottom" constant="11" id="d3j-jO-c0L"/>
+                <constraint firstAttribute="bottom" secondItem="Glz-RF-sGK" secondAttribute="bottom" id="e0I-6C-Pvp"/>
+                <constraint firstItem="nEs-eH-7Sv" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="gG0-2R-Mro"/>
+                <constraint firstItem="fCi-6H-WP0" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="h4I-mJ-i4w"/>
+                <constraint firstAttribute="trailing" secondItem="ZD9-eO-6FP" secondAttribute="trailing" id="hdX-dc-JwA"/>
+                <constraint firstItem="jTR-ra-Fsm" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="jqD-MP-xhV"/>
+                <constraint firstAttribute="trailing" secondItem="Glz-RF-sGK" secondAttribute="trailing" id="pkS-3Y-jXA"/>
+                <constraint firstItem="ZD9-eO-6FP" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="zfM-hP-mlM"/>
+            </constraints>
+            <point key="canvasLocation" x="320" y="260"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="ButtonOKInactive" width="320" height="51"/>
+        <image name="IconLogo" width="95" height="60"/>
+    </resources>
+</document>

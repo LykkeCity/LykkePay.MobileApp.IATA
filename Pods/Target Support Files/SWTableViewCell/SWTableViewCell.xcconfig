@@ -1,0 +1,4 @@
+GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
+HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers/Private" "${PODS_ROOT}/Headers/Private/SWTableViewCell" "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/AFNetworking" "${PODS_ROOT}/Headers/Public/Crashlytics" "${PODS_ROOT}/Headers/Public/Fabric" "${PODS_ROOT}/Headers/Public/GDXNet" "${PODS_ROOT}/Headers/Public/GDXObserver" "${PODS_ROOT}/Headers/Public/MBProgressHUD" "${PODS_ROOT}/Headers/Public/SWTableViewCell" "${PODS_ROOT}/Headers/Public/Toast" "${PODS_ROOT}/Headers/Public/UIDeviceIdentifier" "${PODS_ROOT}/Headers/Public/Valet"
+PODS_ROOT = ${SRCROOT}
+SKIP_INSTALL = YES

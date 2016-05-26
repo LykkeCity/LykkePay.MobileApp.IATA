@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="GothaProReg.otf">
+            <string>GothamPro</string>
+            <string>GothamPro</string>
+        </mutableArray>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="LWPersonalItemTableViewCellIdentifier" rowHeight="50" id="5m4-7J-RLc" customClass="LWPersonalItemTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5m4-7J-RLc" id="BqU-dV-VfG">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Full Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Pi-OM-aJ2">
+                        <rect key="frame" x="20" y="8" width="100" height="33"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="100" id="3LP-oy-3J0"/>
+                            <constraint firstAttribute="height" constant="33" id="Lap-Rc-7FL"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="GothamPro" family="Gotham Pro" pointSize="14"/>
+                        <color key="textColor" red="0.2470588235" green="0.30196078430000001" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Some name" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S6n-Dr-aN0">
+                        <rect key="frame" x="132" y="0.0" width="176" height="49"/>
+                        <fontDescription key="fontDescription" name="GothamPro" family="Gotham Pro" pointSize="14"/>
+                        <color key="textColor" red="0.2470588235" green="0.30196078430000001" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="0Pi-OM-aJ2" firstAttribute="leading" secondItem="BqU-dV-VfG" secondAttribute="leadingMargin" constant="12" id="3ml-Ap-9Ga"/>
+                    <constraint firstItem="0Pi-OM-aJ2" firstAttribute="top" secondItem="BqU-dV-VfG" secondAttribute="topMargin" id="K3G-Kk-ivc"/>
+                    <constraint firstAttribute="bottom" secondItem="S6n-Dr-aN0" secondAttribute="bottom" id="V0S-ip-VNe"/>
+                    <constraint firstAttribute="trailing" secondItem="S6n-Dr-aN0" secondAttribute="trailing" constant="12" id="hlT-Tp-epJ"/>
+                    <constraint firstItem="S6n-Dr-aN0" firstAttribute="top" secondItem="BqU-dV-VfG" secondAttribute="top" id="nGx-Cp-u1i"/>
+                    <constraint firstItem="S6n-Dr-aN0" firstAttribute="leading" secondItem="0Pi-OM-aJ2" secondAttribute="trailing" constant="12" id="p7C-8r-akx"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="detailLabel" destination="S6n-Dr-aN0" id="5xC-WK-aTF"/>
+                <outlet property="titleLabel" destination="0Pi-OM-aJ2" id="Ghv-7D-Qub"/>
+            </connections>
+            <point key="canvasLocation" x="156" y="136"/>
+        </tableViewCell>
+    </objects>
+</document>

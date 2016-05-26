@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="Proxima Nova Regular.otf">
+            <string>ProximaNova-Regular</string>
+            <string>ProximaNova-Regular</string>
+        </mutableArray>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="LWLykkeTableViewCellIdentifier" rowHeight="353" id="UlG-dd-2Ok" customClass="LWLykkeTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="856" height="353"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UlG-dd-2Ok" id="uqr-Sn-gXo">
+                <rect key="frame" x="0.0" y="0.0" width="856" height="352.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="h55-rk-RIM">
+                        <rect key="frame" x="39" y="181" width="667" height="128"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="ccEUR" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d4w-q4-Lxs">
+                                <rect key="frame" x="8" y="47" width="120" height="33"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="34" id="DqS-Ek-gdn"/>
+                                    <constraint firstAttribute="width" constant="120" id="fVh-hm-Ql2"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="17"/>
+                                <color key="textColor" red="0.2470588235" green="0.30196078430000001" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="DqS-Ek-gdn"/>
+                                    </mask>
+                                </variation>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="$ 0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g8y-cH-1pm">
+                                <rect key="frame" x="205" y="46" width="110" height="33"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="110" id="fN2-cT-yKq"/>
+                                    <constraint firstAttribute="height" constant="33" id="iK8-j0-T3O"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="14"/>
+                                <color key="textColor" red="0.2470588235" green="0.30196078430000001" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sPd-7L-1A7">
+                                <rect key="frame" x="401" y="45" width="34" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="34" id="2ZR-6C-0S0"/>
+                                    <constraint firstAttribute="height" constant="34" id="cMD-2b-xb8"/>
+                                </constraints>
+                                <state key="normal" image="AddWalletIcon"/>
+                                <connections>
+                                    <action selector="addItemClicked:" destination="UlG-dd-2Ok" eventType="touchUpInside" id="bcd-we-Ocb"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="d4w-q4-Lxs" firstAttribute="centerY" secondItem="h55-rk-RIM" secondAttribute="centerY" id="A3h-aV-Pxq"/>
+                            <constraint firstItem="g8y-cH-1pm" firstAttribute="centerY" secondItem="h55-rk-RIM" secondAttribute="centerY" id="Mvs-1H-XKa"/>
+                            <constraint firstItem="sPd-7L-1A7" firstAttribute="centerY" secondItem="h55-rk-RIM" secondAttribute="centerY" id="VhH-sv-p03"/>
+                            <constraint firstItem="d4w-q4-Lxs" firstAttribute="leading" secondItem="h55-rk-RIM" secondAttribute="leading" constant="18" id="m6B-sR-WQM"/>
+                            <constraint firstAttribute="trailing" secondItem="sPd-7L-1A7" secondAttribute="trailing" constant="10" id="pU5-7n-1vd"/>
+                            <constraint firstItem="sPd-7L-1A7" firstAttribute="leading" secondItem="g8y-cH-1pm" secondAttribute="trailing" constant="10" id="sn8-PL-wCw"/>
+                            <constraint firstAttribute="width" constant="704" id="tr5-mx-XNG"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" red="0.92549019610000005" green="0.93333333330000001" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
+                <constraints>
+                    <constraint firstItem="h55-rk-RIM" firstAttribute="height" secondItem="uqr-Sn-gXo" secondAttribute="height" id="93Z-jT-NwB"/>
+                    <constraint firstItem="h55-rk-RIM" firstAttribute="centerY" secondItem="uqr-Sn-gXo" secondAttribute="centerY" id="XrM-zp-eC9"/>
+                    <constraint firstItem="h55-rk-RIM" firstAttribute="centerX" secondItem="uqr-Sn-gXo" secondAttribute="centerX" id="tTX-sh-vwb"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" red="0.91764705882352937" green="0.92941176470588238" blue="0.93725490196078431" alpha="1" colorSpace="calibratedRGB"/>
+            <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+            <connections>
+                <outlet property="addWalletButton" destination="sPd-7L-1A7" id="Uig-Hu-cBU"/>
+                <outlet property="containerView" destination="h55-rk-RIM" id="JIE-oT-ajD"/>
+                <outlet property="walletBalanceLabel" destination="g8y-cH-1pm" id="mc2-RP-r84"/>
+                <outlet property="walletNameLabel" destination="d4w-q4-Lxs" id="fWg-lW-fGG"/>
+            </connections>
+            <point key="canvasLocation" x="470" y="341.5"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="AddWalletIcon" width="34" height="34"/>
+    </resources>
+</document>

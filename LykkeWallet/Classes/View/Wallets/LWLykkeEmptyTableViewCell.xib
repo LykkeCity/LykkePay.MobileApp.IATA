@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="Proxima Nova Regular.otf">
+            <string>ProximaNova-Regular</string>
+        </mutableArray>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="LWLykkeEmptyTableViewCellIdentifier" rowHeight="50" id="oQP-mS-YFf" customClass="LWLykkeEmptyTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oQP-mS-YFf" id="gnR-Ua-7FG">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Coins not added" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5l4-1A-UO4">
+                        <rect key="frame" x="20" y="8" width="240" height="33"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="170" id="3Ey-bB-LND"/>
+                            <constraint firstAttribute="width" constant="120" id="pHb-Pv-4xh"/>
+                            <constraint firstAttribute="height" constant="34" id="squ-6V-NHj"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="14"/>
+                        <color key="textColor" red="0.2470588235" green="0.30196078430000001" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="3Ey-bB-LND"/>
+                                <exclude reference="pHb-Pv-4xh"/>
+                                <exclude reference="squ-6V-NHj"/>
+                            </mask>
+                        </variation>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QLN-9I-2ba">
+                        <rect key="frame" x="268" y="8" width="34" height="34"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="34" id="f7z-uJ-viX"/>
+                            <constraint firstAttribute="width" constant="34" id="gqN-aV-PNV"/>
+                        </constraints>
+                        <state key="normal" image="AddWalletIcon"/>
+                        <connections>
+                            <action selector="plusClicked:" destination="oQP-mS-YFf" eventType="touchUpInside" id="8JG-8b-aMF"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="5l4-1A-UO4" firstAttribute="leading" secondItem="gnR-Ua-7FG" secondAttribute="leadingMargin" constant="12" id="2H2-PJ-m5Q"/>
+                    <constraint firstItem="5l4-1A-UO4" firstAttribute="top" secondItem="gnR-Ua-7FG" secondAttribute="topMargin" id="AD3-er-34c"/>
+                    <constraint firstItem="QLN-9I-2ba" firstAttribute="centerY" secondItem="gnR-Ua-7FG" secondAttribute="centerY" id="FNR-fX-WKp"/>
+                    <constraint firstItem="5l4-1A-UO4" firstAttribute="bottom" secondItem="gnR-Ua-7FG" secondAttribute="bottomMargin" id="H13-jh-xpR"/>
+                    <constraint firstItem="5l4-1A-UO4" firstAttribute="bottom" secondItem="gnR-Ua-7FG" secondAttribute="bottomMargin" id="IB9-qV-zhn"/>
+                    <constraint firstItem="QLN-9I-2ba" firstAttribute="leading" secondItem="5l4-1A-UO4" secondAttribute="trailing" constant="8" id="e8I-VS-016"/>
+                    <constraint firstItem="5l4-1A-UO4" firstAttribute="top" secondItem="gnR-Ua-7FG" secondAttribute="topMargin" id="h8q-uP-SQc"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="QLN-9I-2ba" secondAttribute="trailing" constant="10" id="j40-G3-VZV"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" red="0.91764705879999997" green="0.92941176469999998" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
+            <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+            <connections>
+                <outlet property="addWalletButton" destination="QLN-9I-2ba" id="sBu-TA-9eL"/>
+                <outlet property="titleLabel" destination="5l4-1A-UO4" id="Vi5-QQ-Kdi"/>
+            </connections>
+            <point key="canvasLocation" x="202" y="190"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="AddWalletIcon" width="34" height="34"/>
+    </resources>
+</document>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="Proxima Nova Semibold.otf">
+            <string>ProximaNova-Semibold</string>
+        </mutableArray>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="LWAssetTableViewCellIdentifier" rowHeight="53" id="1pH-Jq-tEj" customClass="LWAssetTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="768" height="53"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1pH-Jq-tEj" id="uVn-5I-2PA">
+                <rect key="frame" x="0.0" y="0.0" width="768" height="52.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bd9-0z-yle">
+                        <rect key="frame" x="32" y="0.0" width="704" height="52.5"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="ASSETS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V9I-1g-CZi">
+                                <rect key="frame" x="634.5" y="9" width="61.5" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="34" id="P2b-e1-uBy"/>
+                                    <constraint firstAttribute="height" constant="34" id="Wwz-9h-sGm"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="ProximaNova-Semibold" family="Proxima Nova" pointSize="17"/>
+                                <color key="textColor" red="0.2470588235" green="0.30196078430000001" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8FZ-Vq-3ph">
+                                <rect key="frame" x="0.0" y="9.5" width="34" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="34" id="IYh-aF-adL"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="34" id="o2z-t3-Fjk"/>
+                                    <constraint firstAttribute="height" constant="34" id="w5S-qr-8xo"/>
+                                    <constraint firstAttribute="width" constant="34" id="xSg-eC-IOa"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="V9I-1g-CZi" secondAttribute="trailing" priority="500" constant="8" id="E22-Ma-RGp"/>
+                            <constraint firstAttribute="width" constant="704" id="OxM-pp-wfJ"/>
+                            <constraint firstItem="8FZ-Vq-3ph" firstAttribute="centerY" secondItem="bd9-0z-yle" secondAttribute="centerY" id="P7Y-L9-6ai"/>
+                            <constraint firstItem="8FZ-Vq-3ph" firstAttribute="leading" secondItem="bd9-0z-yle" secondAttribute="leading" id="UPW-xp-I6Z"/>
+                            <constraint firstItem="V9I-1g-CZi" firstAttribute="leading" secondItem="8FZ-Vq-3ph" secondAttribute="trailing" constant="12" id="nUT-o9-aQ0"/>
+                            <constraint firstItem="V9I-1g-CZi" firstAttribute="centerY" secondItem="bd9-0z-yle" secondAttribute="centerY" id="yAO-tU-C6m"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                <constraints>
+                    <constraint firstItem="bd9-0z-yle" firstAttribute="centerY" secondItem="uVn-5I-2PA" secondAttribute="centerY" id="0V0-ET-Xwt"/>
+                    <constraint firstItem="bd9-0z-yle" firstAttribute="centerX" secondItem="uVn-5I-2PA" secondAttribute="centerX" id="Xb2-0w-ZnN"/>
+                    <constraint firstItem="bd9-0z-yle" firstAttribute="height" secondItem="uVn-5I-2PA" secondAttribute="height" id="tnW-9c-2bN"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="assetImageView" destination="8FZ-Vq-3ph" id="hLF-X4-h0l"/>
+                <outlet property="assetLabel" destination="V9I-1g-CZi" id="n4u-TO-Yg3"/>
+            </connections>
+            <point key="canvasLocation" x="290" y="231.5"/>
+        </tableViewCell>
+    </objects>
+</document>

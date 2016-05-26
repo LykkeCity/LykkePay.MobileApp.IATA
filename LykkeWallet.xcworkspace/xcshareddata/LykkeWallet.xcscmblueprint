@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "CEDF9ADADD3FD9567B16C22A628861E1FA04EDA2",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "CEDF9ADADD3FD9567B16C22A628861E1FA04EDA2" : 0,
+    "BF7925B6080B87D476F5FBA959316F884F7121DA" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "55A04EF9-B8C8-422C-B21B-878D7E261222",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "CEDF9ADADD3FD9567B16C22A628861E1FA04EDA2" : "Lykke\/",
+    "BF7925B6080B87D476F5FBA959316F884F7121DA" : ""
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "LykkeWallet",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "LykkeWallet.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/LykkeCity\/LykkeIOS",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "BF7925B6080B87D476F5FBA959316F884F7121DA"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/bitbucket.org\/Sandr1977\/lykke.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "CEDF9ADADD3FD9567B16C22A628861E1FA04EDA2"
+    }
+  ]
+}

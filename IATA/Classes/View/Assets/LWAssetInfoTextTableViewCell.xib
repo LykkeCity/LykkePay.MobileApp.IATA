@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="GothaProReg.otf">
+            <string>GothamPro</string>
+            <string>GothamPro</string>
+        </mutableArray>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="LWAssetInfoTextTableViewCellIdentifier" id="uAr-Rt-Qet" customClass="LWAssetInfoTextTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uAr-Rt-Qet" id="C0M-63-cPs">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Asset class" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5iE-2n-de6">
+                        <rect key="frame" x="26" y="0.0" width="100" height="49"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="100" id="lyj-xI-eNx"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="GothamPro" family="Gotham Pro" pointSize="14"/>
+                        <color key="textColor" red="0.2470588235" green="0.30196078430000001" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EUR/USD currency pair; ccEUR, ccUSD are backed with collateral locked at Credit Swiss bank" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5sz-2s-4GZ">
+                        <rect key="frame" x="142" y="0.0" width="152" height="49"/>
+                        <fontDescription key="fontDescription" name="GothamPro" family="Gotham Pro" pointSize="14"/>
+                        <color key="textColor" red="0.2470588235" green="0.30196078430000001" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="5iE-2n-de6" firstAttribute="top" secondItem="C0M-63-cPs" secondAttribute="topMargin" constant="-8" id="2yv-np-73T"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="5iE-2n-de6" secondAttribute="bottom" constant="-8" id="3L5-3V-QNC"/>
+                    <constraint firstItem="5iE-2n-de6" firstAttribute="leading" secondItem="C0M-63-cPs" secondAttribute="leadingMargin" constant="18" id="Gxo-oP-gqH"/>
+                    <constraint firstItem="5sz-2s-4GZ" firstAttribute="top" secondItem="C0M-63-cPs" secondAttribute="top" id="O6v-0x-j9R"/>
+                    <constraint firstAttribute="bottom" secondItem="5sz-2s-4GZ" secondAttribute="bottom" id="P6i-J3-asz"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="5sz-2s-4GZ" secondAttribute="trailing" constant="18" id="f0X-I9-SbX"/>
+                    <constraint firstItem="5sz-2s-4GZ" firstAttribute="leading" secondItem="5iE-2n-de6" secondAttribute="trailing" constant="16" id="x0b-5S-Mfo"/>
+                </constraints>
+            </tableViewCellContentView>
+            <inset key="separatorInset" minX="25" minY="0.0" maxX="25" maxY="0.0"/>
+            <connections>
+                <outlet property="descriptionLabel" destination="5sz-2s-4GZ" id="ejZ-AH-ymm"/>
+                <outlet property="titleLabel" destination="5iE-2n-de6" id="xOe-Yy-b3r"/>
+            </connections>
+            <point key="canvasLocation" x="175" y="192"/>
+        </tableViewCell>
+    </objects>
+</document>
