@@ -18,9 +18,13 @@
 @implementation UIViewController (Loading)
 
 
+
 - (void)setLoading:(BOOL)loading {
     if (loading) {
         [self.view endEditing:YES];
+        
+//        activity=[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+//        activity.center
         
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
         hud.dimBackground = YES;
@@ -33,6 +37,7 @@
         }
     }
 }
+
 
 - (MBProgressHUD *)hud {
     return [MBProgressHUD HUDForView:self.navigationController.view];

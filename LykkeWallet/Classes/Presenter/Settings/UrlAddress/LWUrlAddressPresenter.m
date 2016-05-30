@@ -28,7 +28,7 @@ static NSInteger const kAddressesCount = 2;
 
 static NSString *const addresses[kAddressesCount] = {
     kDevelopTestServer,
-    kDemoTestServer
+    kStagingTestServer
     
 };
 

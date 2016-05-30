@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15G7a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -54,7 +54,7 @@
                                 <constraint firstAttribute="width" constant="304" id="mrd-QG-nNS"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                            <state key="normal" title="NOT GOOD, RESHOOT" backgroundImage="ButtonOKInactive">
+                            <state key="normal" title="NOT GOOD, RESHOOT">
                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
@@ -68,7 +68,7 @@
                                 <constraint firstAttribute="width" constant="304" id="kK7-5g-xul"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                            <state key="normal" title="NICE, SUBMIT" backgroundImage="ButtonOK">
+                            <state key="normal" title="NICE, SUBMIT">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
@@ -107,8 +107,6 @@
         </view>
     </objects>
     <resources>
-        <image name="ButtonOK" width="320" height="51"/>
-        <image name="ButtonOKInactive" width="320" height="51"/>
         <image name="RegisterLineStep2" width="303" height="36"/>
     </resources>
 </document>
