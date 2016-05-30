@@ -78,8 +78,7 @@
                              @"CHF":@"LI71 0880 1200 9711 0000 1",
                              @"EUR":@"LI08 0880 1200 9711 0181 4",
                              @"USD":@"LI60 0880 1200 9711 0233 3",
-                             @"GBP":@"LI06 0880 1200 9711 0340 2",
-                             
+                             @"GBP":@"LI06 0880 1200 9711 0340 2"
                              };
     
     lineTitles=@[@"BIC (SWIFT)",
@@ -89,10 +88,15 @@
                  
                   ];
     
+    NSString *acc=accounts[self.assetID];
+    if(!acc)
+        acc=@"";
+    
+    NSString *email=[[LWKeychainManager instance].login stringByReplacingOccurrencesOfString:@"@" withString:@"(at)"];
     lineValues=@[@"BALPLI22",
-                 accounts[self.assetID],
+                 acc,
                  @"Lykke Corp.",
-                 [NSString stringWithFormat:@"Lykke shares (coins) purchase %@ [ %@ ]",self.assetName, [LWKeychainManager instance].login]
+                 [NSString stringWithFormat:@"Lykke shares (coins) purchase %@ [ %@ ]",self.assetName, email]
                  ];
     
     [self.infoView addSubview:infoLabel];

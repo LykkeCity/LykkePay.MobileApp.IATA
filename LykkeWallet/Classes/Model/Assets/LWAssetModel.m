@@ -35,7 +35,8 @@
         _name     = [json objectForKey:@"Name"];
         _accuracy = [json objectForKey:@"Accuracy"];
         _symbol   = [json objectForKey:@"Symbol"];
-        
+        _hideDeposit=[[json objectForKey:@"HideDeposit"] boolValue];
+        _hideWithdraw=[[json objectForKey:@"HideWithdraw"] boolValue];
     }
     return self;
 }

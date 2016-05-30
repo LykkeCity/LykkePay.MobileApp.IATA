@@ -20,6 +20,8 @@
 @property (readonly, nonatomic) NSString *name;
 @property (readonly, nonatomic) NSString *symbol;
 @property (readonly, nonatomic) NSNumber *accuracy;
+@property (readonly) BOOL hideDeposit;
+@property (readonly) BOOL hideWithdraw;
 
 
 #pragma mark - Root

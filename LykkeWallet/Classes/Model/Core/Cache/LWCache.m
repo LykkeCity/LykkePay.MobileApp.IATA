@@ -7,6 +7,7 @@
 //
 
 #import "LWCache.h"
+#import "LWAssetModel.h"
 
 
 @implementation LWCache
@@ -30,10 +31,38 @@ SINGLETON_INIT {
             && ![self.multiSig isEqualToString:@""]);
 }
 
-+(BOOL) isAssetDepositAvailableForAssetID:(NSString *)assetID
++(BOOL) shouldHideDepositForAssetId:(NSString *)assetID
 {
-    NSArray *arr=@[@"USD",@"EUR", @"CHF", @"GBP", @"BTC", @"LKK"];
-    return [arr containsObject:assetID];
+    BOOL shouldHide=NO;
+    for(LWAssetModel *asset in [LWCache instance].baseAssets)
+    {
+        if([asset.identity isEqualToString:assetID])
+        {
+            shouldHide=asset.hideDeposit;
+            break;
+        }
+    }
+    
+    return shouldHide;
+
+}
+
++(BOOL) shouldHideWithdrawForAssetId:(NSString *)assetID
+{
+    BOOL shouldHide=NO;
+    for(LWAssetModel *asset in [LWCache instance].baseAssets)
+    {
+        if([asset.identity isEqualToString:assetID])
+        {
+            shouldHide=asset.hideWithdraw;
+            break;
+        }
+    }
+    
+    return shouldHide;
+
+//    NSArray *arr=@[@"USD",@"EUR", @"CHF", @"GBP", @"BTC", @"LKK"];
+//    return [arr containsObject:assetID];
 }
 
 +(NSString *) currentAppVersion

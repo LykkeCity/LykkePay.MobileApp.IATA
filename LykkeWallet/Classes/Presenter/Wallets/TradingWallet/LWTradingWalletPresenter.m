@@ -36,11 +36,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    NSDictionary *attributesWithdraw = @{NSKernAttributeName:@(1), NSFontAttributeName:self.withdrawButton.titleLabel.font, NSForegroundColorAttributeName:self.withdrawButton.currentTitleColor};
-    NSDictionary *attributesDeposit = @{NSKernAttributeName:@(1), NSFontAttributeName:self.depositButton.titleLabel.font, NSForegroundColorAttributeName:self.depositButton.currentTitleColor};
-    
-    [self.withdrawButton setAttributedTitle:[[NSAttributedString alloc] initWithString:Localize(@"wallets.trading.withdraw") attributes:attributesWithdraw] forState:UIControlStateNormal];
-    [self.depositButton setAttributedTitle:[[NSAttributedString alloc] initWithString:Localize(@"wallets.trading.deposit") attributes:attributesDeposit] forState:UIControlStateNormal];
 //    [self.withdrawButton setTitle:Localize(@"wallets.trading.withdraw") forState:UIControlStateNormal];
 //    [self.depositButton setTitle:Localize(@"wallets.trading.deposit") forState:UIControlStateNormal];
     
@@ -61,16 +56,26 @@
         [[LWAuthManager instance] requestTransactions:self.assetId];
     }
     
-    [LWValidator setButton:self.depositButton enabled:YES];
-    [LWValidator setButton:self.withdrawButton enabled:NO];
-    self.withdrawButton.enabled=YES;
-
+//    [LWValidator setButton:self.depositButton enabled:YES];
+//    [LWValidator setButton:self.withdrawButton enabled:NO];
+//    self.withdrawButton.enabled=YES;
+//
+//    
+//    if([LWCache isAssetDepositAvailableForAssetID:self.assetId]==NO)
+//    {
+//        self.depositButton.hidden=YES;
+//        self.withdrawButton.hidden=YES;
+//    }
     
-    if([LWCache isAssetDepositAvailableForAssetID:self.assetId]==NO)
-    {
-        self.depositButton.hidden=YES;
-        self.withdrawButton.hidden=YES;
-    }
+    [LWValidator setButton:self.depositButton enabled:![LWCache shouldHideDepositForAssetId:self.assetId]];
+    [LWValidator setButton:self.withdrawButton enabled:![LWCache shouldHideWithdrawForAssetId:self.assetId]];
+
+    NSDictionary *attributesWithdraw = @{NSKernAttributeName:@(1), NSFontAttributeName:self.withdrawButton.titleLabel.font, NSForegroundColorAttributeName:self.withdrawButton.currentTitleColor};
+    NSDictionary *attributesDeposit = @{NSKernAttributeName:@(1), NSFontAttributeName:self.depositButton.titleLabel.font, NSForegroundColorAttributeName:self.depositButton.currentTitleColor};
+    
+    [self.withdrawButton setAttributedTitle:[[NSAttributedString alloc] initWithString:Localize(@"wallets.trading.withdraw") attributes:attributesWithdraw] forState:UIControlStateNormal];
+    [self.depositButton setAttributedTitle:[[NSAttributedString alloc] initWithString:Localize(@"wallets.trading.deposit") attributes:attributesDeposit] forState:UIControlStateNormal];
+
 }
 
 -(void) viewDidAppear:(BOOL)animated
@@ -95,7 +100,7 @@
     }
     else
     {
-        presenter=[LWWithdrawInputPresenter new];
+        presenter=(LWWithdrawFundsPresenter *)[LWWithdrawInputPresenter new];
         presenter.assetId=self.assetId;
         presenter.assetSymbol=self.currencySymbol;
     }

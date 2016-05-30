@@ -19,7 +19,7 @@
 @property (copy,   nonatomic) NSString *assetName;
 @property (copy,   nonatomic) NSString *issuerId;
 @property (copy, nonatomic) NSString *currencySymbol;
-@property (copy, nonatomic) NSString *assetID;
+
 
 
 @end

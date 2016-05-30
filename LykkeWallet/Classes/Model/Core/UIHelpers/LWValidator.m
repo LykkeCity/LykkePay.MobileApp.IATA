@@ -104,9 +104,8 @@ static int const PasswordLength = 6;
                   activeImage:nil
                 inactiveImage:nil
               backgroundColor:nil
-                      enabled:YES];
-    if(enabled==NO)
-        button.enabled=NO;
+                      enabled:NO];
+    button.enabled=enabled;
     
 }
 

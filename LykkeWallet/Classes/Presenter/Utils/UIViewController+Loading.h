@@ -12,7 +12,6 @@
 
 @interface UIViewController (Loading)
 
-@property (strong, nonatomic) UIActivityIndicatorView *activity;
 - (void)setLoading:(BOOL)loading;
 - (MBProgressHUD *)hud;
 - (void)showReject:(NSDictionary *)reject response:(NSURLResponse *)response;

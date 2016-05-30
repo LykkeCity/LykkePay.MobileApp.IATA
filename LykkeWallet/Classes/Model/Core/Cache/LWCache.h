@@ -33,7 +33,8 @@ SINGLETON_DECLARE
 
 - (BOOL)isMultisigAvailable;
 
-+(BOOL) isAssetDepositAvailableForAssetID:(NSString *) assetID;
++(BOOL) shouldHideDepositForAssetId:(NSString *)assetID;
++(BOOL) shouldHideWithdrawForAssetId:(NSString *)assetID;
 
 +(NSString *) currentAppVersion;
 

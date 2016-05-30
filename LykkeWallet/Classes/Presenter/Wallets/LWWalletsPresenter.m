@@ -198,8 +198,19 @@ static NSString *const WalletIcons[kNumberOfSections] = {
     if (self.tabBarController && self.navigationItem) {
         self.tabBarController.title = [self.navigationItem.title uppercaseString];
     }
+    [self requestWallets];
     
-    [[LWAuthManager instance] requestLykkeWallets];
+}
+
+-(void) requestWallets
+{
+    if(![LWCache instance].baseAssets)
+        [self performSelector:@selector(requestWallets) withObject:nil afterDelay:1];
+    else
+    {
+        [[LWAuthManager instance] requestLykkeWallets];
+    }
+    
 }
 
 
@@ -387,7 +398,7 @@ static NSString *const WalletIcons[kNumberOfSections] = {
                                                      asset.symbol, balance];
 //                    lykke.addWalletButton.hidden = ![[LWCache instance] isMultisigAvailable];
                     
-                    lykke.addWalletButton.hidden=![LWCache isAssetDepositAvailableForAssetID:asset.identity];
+                    lykke.addWalletButton.hidden=[LWCache shouldHideDepositForAssetId:asset.identity];
                     
                     // validate for base asset and balance
                     if ((![asset.identity isEqualToString:[LWCache instance].baseAssetId] && asset.balance.doubleValue > 0.0)) {
@@ -432,6 +443,9 @@ static NSString *const WalletIcons[kNumberOfSections] = {
                     bitcoin.bitcoinBalance.text = [NSString stringWithFormat:@"%@ %@",
                                                    asset.symbol, balance];
                     bitcoin.bitcoinAddButton.hidden = ![[LWCache instance] isMultisigAvailable];
+                    
+                    bitcoin.bitcoinAddButton.hidden=[LWCache shouldHideDepositForAssetId:asset.identity];
+
                     
                     // validate for base asset and balance
                     if ((![asset.identity isEqualToString:[LWCache instance].baseAssetId] && asset.balance.doubleValue > 0.0)) {
@@ -905,7 +919,7 @@ static NSString *const WalletIcons[kNumberOfSections] = {
     LWTradingWalletPresenter *presenter = [LWTradingWalletPresenter new];
     LWLykkeAssetsData *data = [self assetDataForIndexPath:indexPath];
     if (data) {
-        presenter.assetId = data.identity;
+        presenter.assetId = [NSString stringWithString:data.identity];
         presenter.assetName = data.name;
         presenter.issuerId = data.issuerId;
         presenter.currencySymbol=data.symbol;

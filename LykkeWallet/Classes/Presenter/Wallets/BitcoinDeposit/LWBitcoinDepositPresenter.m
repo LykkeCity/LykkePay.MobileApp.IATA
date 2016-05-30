@@ -15,6 +15,7 @@
 #import "UIViewController+Loading.h"
 #import "UIView+Toast.h"
 #import "UIImage+Resize.h"
+#import "LWValidator.h"
 
 
 @interface LWBitcoinDepositPresenter () {
@@ -58,6 +59,9 @@
 #endif
     
     [self updateView];
+    
+    [LWValidator setButtonWithClearBackground:self.copyingButton enabled:YES];
+    
 }
 
 - (void)colorize {
