@@ -20,5 +20,6 @@
 
 @property (strong, nonatomic) NSArray *graphValues;
 @property (strong, nonatomic) NSNumber *percentChange;
+@property (strong, nonatomic) NSString *assetId;
 
 @end

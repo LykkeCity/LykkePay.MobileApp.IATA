@@ -22,6 +22,10 @@
 		A1165D331CF5E9EF0017A725 /* LWSettingsAssetTableViewCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1165D321CF5E9EF0017A725 /* LWSettingsAssetTableViewCell~ipad.xib */; };
 		A1165D401CF6CF940017A725 /* DisclosureIndicator.png in Resources */ = {isa = PBXBuildFile; fileRef = A1165D3F1CF6CF940017A725 /* DisclosureIndicator.png */; };
 		A1165D421CF6D22C0017A725 /* LWSettingsLogOutTableViewCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1165D411CF6D22C0017A725 /* LWSettingsLogOutTableViewCell~ipad.xib */; };
+		A1165D471CF70CED0017A725 /* LWRegisterHintPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A1165D441CF70CED0017A725 /* LWRegisterHintPresenter.m */; };
+		A1165D481CF70CED0017A725 /* LWRegisterHintPresenter~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1165D451CF70CED0017A725 /* LWRegisterHintPresenter~ipad.xib */; };
+		A1165D491CF70CED0017A725 /* LWRegisterHintPresenter~iphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1165D461CF70CED0017A725 /* LWRegisterHintPresenter~iphone.xib */; };
+		A1165D4E1CF9838F0017A725 /* UINavigationItem+Kerning.m in Sources */ = {isa = PBXBuildFile; fileRef = A1165D4D1CF9838F0017A725 /* UINavigationItem+Kerning.m */; };
 		A124D5C21CEB14400074A1A8 /* LWAuthenticationPresenter~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A124D5C11CEB14400074A1A8 /* LWAuthenticationPresenter~ipad.xib */; };
 		A124D5C31CEB144F0074A1A8 /* LWAuthenticationPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = CDCE884D1C26F6630039798B /* LWAuthenticationPresenter.m */; };
 		A124D5C51CEB19880074A1A8 /* LWKYCCheckDocumentsPresenter~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A124D5C41CEB19880074A1A8 /* LWKYCCheckDocumentsPresenter~ipad.xib */; };
@@ -52,7 +56,6 @@
 		A1AA589D1CEED16700D24E68 /* CustomKeyboardPointer.png in Resources */ = {isa = PBXBuildFile; fileRef = A1AA589C1CEED16700D24E68 /* CustomKeyboardPointer.png */; };
 		A1AA58A01CEED1CC00D24E68 /* LWMathKeyboardCursorView.m in Sources */ = {isa = PBXBuildFile; fileRef = A1AA589F1CEED1CC00D24E68 /* LWMathKeyboardCursorView.m */; };
 		A1AB30681CE4BAE3009AF37B /* LWPacketCurrencyDeposit.m in Sources */ = {isa = PBXBuildFile; fileRef = A1AB30671CE4BAE3009AF37B /* LWPacketCurrencyDeposit.m */; };
-		A1AB306A1CE586ED009AF37B /* CopyInDepositIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = A1AB30691CE586ED009AF37B /* CopyInDepositIcon.png */; };
 		A1AB306C1CE59632009AF37B /* CopiedCheckMarkSign.png in Resources */ = {isa = PBXBuildFile; fileRef = A1AB306B1CE59632009AF37B /* CopiedCheckMarkSign.png */; };
 		A1AB306F1CE5ADFE009AF37B /* LWTradingLinearGraphPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A1AB306E1CE5ADFE009AF37B /* LWTradingLinearGraphPresenter.m */; };
 		A1AB30751CE5C03E009AF37B /* LWSendImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A1AB30741CE5C03E009AF37B /* LWSendImageManager.m */; };
@@ -704,6 +707,12 @@
 		A1165D321CF5E9EF0017A725 /* LWSettingsAssetTableViewCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "LWSettingsAssetTableViewCell~ipad.xib"; path = "Settings/LWSettingsAssetTableViewCell~ipad.xib"; sourceTree = "<group>"; };
 		A1165D3F1CF6CF940017A725 /* DisclosureIndicator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DisclosureIndicator.png; sourceTree = "<group>"; };
 		A1165D411CF6D22C0017A725 /* LWSettingsLogOutTableViewCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "LWSettingsLogOutTableViewCell~ipad.xib"; path = "Settings/LWSettingsLogOutTableViewCell~ipad.xib"; sourceTree = "<group>"; };
+		A1165D431CF70CED0017A725 /* LWRegisterHintPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LWRegisterHintPresenter.h; path = FirstRegistrationStep/LWRegisterHintPresenter.h; sourceTree = "<group>"; };
+		A1165D441CF70CED0017A725 /* LWRegisterHintPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LWRegisterHintPresenter.m; path = FirstRegistrationStep/LWRegisterHintPresenter.m; sourceTree = "<group>"; };
+		A1165D451CF70CED0017A725 /* LWRegisterHintPresenter~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "LWRegisterHintPresenter~ipad.xib"; path = "FirstRegistrationStep/LWRegisterHintPresenter~ipad.xib"; sourceTree = "<group>"; };
+		A1165D461CF70CED0017A725 /* LWRegisterHintPresenter~iphone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "LWRegisterHintPresenter~iphone.xib"; path = "FirstRegistrationStep/LWRegisterHintPresenter~iphone.xib"; sourceTree = "<group>"; };
+		A1165D4C1CF9838F0017A725 /* UINavigationItem+Kerning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationItem+Kerning.h"; sourceTree = "<group>"; };
+		A1165D4D1CF9838F0017A725 /* UINavigationItem+Kerning.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationItem+Kerning.m"; sourceTree = "<group>"; };
 		A124D5C11CEB14400074A1A8 /* LWAuthenticationPresenter~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "LWAuthenticationPresenter~ipad.xib"; path = "Authentication/LWAuthenticationPresenter~ipad.xib"; sourceTree = "<group>"; };
 		A124D5C41CEB19880074A1A8 /* LWKYCCheckDocumentsPresenter~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "LWKYCCheckDocumentsPresenter~ipad.xib"; sourceTree = "<group>"; };
 		A124D5C61CEB1B550074A1A8 /* LWAuthValidationPresenter~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "LWAuthValidationPresenter~ipad.xib"; sourceTree = "<group>"; };
@@ -736,7 +745,6 @@
 		A1AA589F1CEED1CC00D24E68 /* LWMathKeyboardCursorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LWMathKeyboardCursorView.m; path = Trading/LWMathKeyboardCursorView.m; sourceTree = "<group>"; };
 		A1AB30661CE4BAE3009AF37B /* LWPacketCurrencyDeposit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWPacketCurrencyDeposit.h; sourceTree = "<group>"; };
 		A1AB30671CE4BAE3009AF37B /* LWPacketCurrencyDeposit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWPacketCurrencyDeposit.m; sourceTree = "<group>"; };
-		A1AB30691CE586ED009AF37B /* CopyInDepositIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CopyInDepositIcon.png; sourceTree = "<group>"; };
 		A1AB306B1CE59632009AF37B /* CopiedCheckMarkSign.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CopiedCheckMarkSign.png; sourceTree = "<group>"; };
 		A1AB306D1CE5ADFE009AF37B /* LWTradingLinearGraphPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LWTradingLinearGraphPresenter.h; path = TradingGraph/LWTradingLinearGraphPresenter.h; sourceTree = "<group>"; };
 		A1AB306E1CE5ADFE009AF37B /* LWTradingLinearGraphPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LWTradingLinearGraphPresenter.m; path = TradingGraph/LWTradingLinearGraphPresenter.m; sourceTree = "<group>"; };
@@ -1388,7 +1396,6 @@
 			isa = PBXGroup;
 			children = (
 				A14B7D2D1CE3233D00820084 /* ButtonOK_square.png */,
-				A1AB30691CE586ED009AF37B /* CopyInDepositIcon.png */,
 				A1AB306B1CE59632009AF37B /* CopiedCheckMarkSign.png */,
 				A1743CAF1CE8A6B100176F59 /* WithdrawSuccessFlag.png */,
 				A1AA589C1CEED16700D24E68 /* CustomKeyboardPointer.png */,
@@ -1464,6 +1471,10 @@
 				CDCD5B1B1C26CC73007BAD78 /* LWRegisterConfirmPasswordPresenter.m */,
 				CDCD5B1C1C26CC73007BAD78 /* LWRegisterConfirmPasswordPresenter~iphone.xib */,
 				A1743CBD1CEAF5F200176F59 /* LWRegisterConfirmPasswordPresenter~ipad.xib */,
+				A1165D431CF70CED0017A725 /* LWRegisterHintPresenter.h */,
+				A1165D441CF70CED0017A725 /* LWRegisterHintPresenter.m */,
+				A1165D451CF70CED0017A725 /* LWRegisterHintPresenter~ipad.xib */,
+				A1165D461CF70CED0017A725 /* LWRegisterHintPresenter~iphone.xib */,
 				ECD114601CDDD7E2002B36C0 /* LWCountrySelectorPresenter.h */,
 				ECD114611CDDD7E2002B36C0 /* LWCountrySelectorPresenter.m */,
 				ECD114621CDDD7E2002B36C0 /* LWCountrySelectorPresenter.xib */,
@@ -1611,6 +1622,8 @@
 				EC57F4571C3C41E600E31746 /* UIViewController+Navigation.m */,
 				ECD1147E1CDF1809002B36C0 /* UIView+Navigation.h */,
 				ECD1147F1CDF1809002B36C0 /* UIView+Navigation.m */,
+				A1165D4C1CF9838F0017A725 /* UINavigationItem+Kerning.h */,
+				A1165D4D1CF9838F0017A725 /* UINavigationItem+Kerning.m */,
 				CF66325F1C175DE5004353F5 /* TKNavigationPresenter.h */,
 				CF6632601C175DE5004353F5 /* TKNavigationPresenter.m */,
 				CF6632611C175DE5004353F5 /* TKPresenter.h */,
@@ -3057,6 +3070,7 @@
 				ECECAB531C98ACF30020E050 /* LWBitcoinDepositPresenter.xib in Resources */,
 				CFF758421C202C7D00BC7658 /* LWKYCInvalidDocumentsPresenter.xib in Resources */,
 				EC57F47C1C3D52A800E31746 /* LWAssetBuyTotalTableViewCell.xib in Resources */,
+				A1165D491CF70CED0017A725 /* LWRegisterHintPresenter~iphone.xib in Resources */,
 				A1AA588F1CED730F00D24E68 /* LWWalletsPresenter~ipad.xib in Resources */,
 				EC9AE0541CAC5F440047DF0D /* LWWithdrawFundsPresenter.xib in Resources */,
 				A19E08D51CEB5275004D286A /* LWRegisterCameraPresenter~ipad.xib in Resources */,
@@ -3074,7 +3088,6 @@
 				EC9C94981C89C89E006FD46B /* LWTextField.xib in Resources */,
 				EC9AE0751CAD1A070047DF0D /* LWWithdrawConfirmationView.xib in Resources */,
 				CF66327B1C1768B0004353F5 /* Localizable.strings in Resources */,
-				A1AB306A1CE586ED009AF37B /* CopyInDepositIcon.png in Resources */,
 				ECECAB4C1C98A1200020E050 /* LWBitcoinTableViewCell~iphone.xib in Resources */,
 				A1165D291CF5CC420017A725 /* LWSettingsPresenter~ipad.xib in Resources */,
 				EC7A45D81C309A6200926BB4 /* LWLykkeTableViewCell~iphone.xib in Resources */,
@@ -3086,6 +3099,7 @@
 				A1AA589D1CEED16700D24E68 /* CustomKeyboardPointer.png in Resources */,
 				A1165D1E1CF5703F0017A725 /* LWTradingWalletPresenter~ipad.xib in Resources */,
 				EC7519B41C3733FD00CDDF5B /* LWSettingsAssetTableViewCell~iphone.xib in Resources */,
+				A1165D481CF70CED0017A725 /* LWRegisterHintPresenter~ipad.xib in Resources */,
 				EC57F46A1C3D400600E31746 /* LWExchangeDealFormPresenter.xib in Resources */,
 				EC7519B91C37351C00CDDF5B /* LWAssetsTablePresenter.xib in Resources */,
 				EC3CE8BD1C4028F400CAC3FE /* LWAssetBlockchainTableViewCell.xib in Resources */,
@@ -3373,6 +3387,7 @@
 				ECA23FA21CBD754500B4D58D /* LWTransactionTransferModel.m in Sources */,
 				EC51D1931C30514200550EF2 /* LWLykkeWalletsData.m in Sources */,
 				CDCD5B111C26C92A007BAD78 /* LWRegisterFullNamePresenter.m in Sources */,
+				A1165D471CF70CED0017A725 /* LWRegisterHintPresenter.m in Sources */,
 				ECECAB511C98ACF30020E050 /* LWBitcoinDepositPresenter.m in Sources */,
 				ECD76BCD1C2EC50700E1D3DA /* LWPacketWallets.m in Sources */,
 				CF6632861C176A63004353F5 /* LWWalletsPresenter.m in Sources */,
@@ -3389,6 +3404,7 @@
 				A1E4EA971CE4283100293282 /* LWGraphPeriodModel.m in Sources */,
 				ECD1E8EB1C3B0E670064AAB3 /* LWPacketAssetPairs.m in Sources */,
 				CF8252B51C1CE2C700D6A4BD /* LWPacketKYCStatusSet.m in Sources */,
+				A1165D4E1CF9838F0017A725 /* UINavigationItem+Kerning.m in Sources */,
 				EC57F4501C3C377300E31746 /* LWAssetDescriptionModel.m in Sources */,
 				CF6632631C175DE5004353F5 /* TKNavigationPresenter.m in Sources */,
 				EC7A45DC1C309A9F00926BB4 /* LWWalletEmptyTableViewCell.m in Sources */,
@@ -3983,7 +3999,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.lykkex.Lykke-Wallet";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "9f7b4b3c-d5e5-4741-b4c4-1f2c8303a9d4";
+				PROVISIONING_PROFILE = "75517172-5905-4fe1-990a-d1d6e04060bc";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -4127,7 +4143,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.lykkex.Lykke-Wallet";
 				PRODUCT_NAME = "$(TARGET_NAME).Test";
-				PROVISIONING_PROFILE = "9f7b4b3c-d5e5-4741-b4c4-1f2c8303a9d4";
+				PROVISIONING_PROFILE = "75517172-5905-4fe1-990a-d1d6e04060bc";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release.Test;

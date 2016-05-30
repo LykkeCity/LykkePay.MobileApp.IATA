@@ -222,7 +222,7 @@ static int const kNumberOfRows = 4;
     }
     button.selected=YES;
     selectedPeriod=graphPeriods.periods[[periodButtons indexOfObject:button]];
-    [[LWAuthManager instance] requestGraphDataForPeriod:selectedPeriod];
+    [[LWAuthManager instance] requestGraphDataForPeriod:selectedPeriod assetPairId:self.assetPair.identity];
 
 }
 
@@ -338,7 +338,7 @@ static int const kNumberOfRows = 4;
     graphPeriods=_graphPeriods;
     if(!selectedPeriod)
         selectedPeriod=graphPeriods.lastSelectedPeriod;
-    [[LWAuthManager instance] requestGraphDataForPeriod:selectedPeriod];
+    [[LWAuthManager instance] requestGraphDataForPeriod:selectedPeriod assetPairId:self.assetPair.identity];
     [self updatePeriodButtons];
 }
 

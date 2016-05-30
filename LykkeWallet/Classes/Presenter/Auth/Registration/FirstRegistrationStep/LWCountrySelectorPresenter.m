@@ -41,7 +41,7 @@
     
     
     
-    self.navigationItem.title = Localize(@"register.phone.country.title");
+    self.title = Localize(@"register.phone.country.title");
     
     UIButton *cancelButton=[UIButton buttonWithType:UIButtonTypeCustom];
     cancelButton.titleLabel.font=[UIFont systemFontOfSize:15];

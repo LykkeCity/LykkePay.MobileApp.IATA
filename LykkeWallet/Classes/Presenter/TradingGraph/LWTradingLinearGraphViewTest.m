@@ -40,13 +40,13 @@
     NSNumber *lastPoint = self.changes[self.changes.count - 1];
 
     
-    CGContextSetRGBStrokeColor(context, 127.0/255, 183.0/255, 43.0/255, 1.0);
-    CGContextSetRGBFillColor(context, 127.0/255, 183.0/255, 43.0/255, 1.0);
+    CGContextSetRGBStrokeColor(context, 18.0/255, 183.0/255, 42.0/255, 1.0);
+    CGContextSetRGBFillColor(context, 18.0/255, 183.0/255, 42.0/255, 1.0);
     
     if(firstPoint.floatValue>lastPoint.floatValue)
     {
-        CGContextSetRGBStrokeColor(context, 187.0/255, 5.0/255, 54.0/255, 1.0);
-        CGContextSetRGBFillColor(context, 187.0/255, 5.0/255, 54.0/255, 1.0);
+        CGContextSetRGBStrokeColor(context, 255.0/255, 62.0/255, 45.0/255, 1.0);
+        CGContextSetRGBFillColor(context, 255.0/255, 62.0/255,45.0/255, 1.0);
     }
     
     CGContextSetLineJoin(context, kCGLineJoinRound);

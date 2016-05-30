@@ -15,7 +15,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.navigationItem.title = Localize(@"tab.history");
+    self.title = Localize(@"tab.history");
 }
 
 - (void)viewWillAppear:(BOOL)animated {

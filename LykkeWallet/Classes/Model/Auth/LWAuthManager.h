@@ -155,7 +155,7 @@ SINGLETON_DECLARE
 - (void)requestCountyCodes;
 
 -(void) requestGraphPeriods;
--(void) requestGraphDataForPeriod:(LWGraphPeriodModel *) period;
+-(void) requestGraphDataForPeriod:(LWGraphPeriodModel *) period assetPairId:(NSString *) assetPairId;
 -(void) requestCurrencyDepositForAsset:(NSString *) assetId changeValue:(NSNumber *) changeValue;
 -(void) requestCurrencyWithdraw:(LWPacketCurrencyWithdraw *) withdraw;
 

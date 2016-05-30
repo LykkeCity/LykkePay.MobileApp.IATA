@@ -43,7 +43,7 @@ static NSString *const RecipientCodes[kNumberOfRows] = {
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.navigationItem.title = Localize(@"tab.transfer");
+    self.title = Localize(@"tab.transfer");
     
     [self registerCellWithIdentifier:kTransferTableViewCellIdentifier
                                 name:kTransferTableViewCell];

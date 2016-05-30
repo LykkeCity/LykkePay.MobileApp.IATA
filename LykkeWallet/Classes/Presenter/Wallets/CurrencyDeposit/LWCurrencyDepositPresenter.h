@@ -6,9 +6,9 @@
 //  Copyright © 2016 Lykkex. All rights reserved.
 //
 
-#import "LWAuthPresenter.h"
+#import "LWAuthComplexPresenter.h"
 
-@interface LWCurrencyDepositPresenter : LWAuthPresenter
+@interface LWCurrencyDepositPresenter : LWAuthComplexPresenter
 
 
 @property (strong, nonatomic) NSString *assetName;

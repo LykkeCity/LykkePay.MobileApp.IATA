@@ -8,14 +8,25 @@
 
 #import "UIViewController+Navigation.h"
 #import "LWConstants.h"
+#import "LWAuthManager.h"
+
+
 
 
 @implementation UIViewController (Navigation)
 
 - (void)setBackButton {
     if (self.navigationController && self.navigationItem) {
-        UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"BackIcon"] style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(popViewControllerAnimated:)];
-        self.navigationItem.leftBarButtonItem = button;
+        if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone || ([self.navigationController.viewControllers indexOfObject:self]>0))
+        {
+            UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"BackIcon"] style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(popViewControllerAnimated:)];
+            self.navigationItem.leftBarButtonItem = button;
+        }
+        else
+        {
+            [self setCancelButtonWithTitle:Localize(@"register.phone.cancel") target:self.navigationController selector:@selector(popViewControllerAnimated:)];
+ 
+        }
     }
 }
 

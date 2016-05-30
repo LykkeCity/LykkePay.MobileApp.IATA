@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15G7a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -38,7 +38,7 @@
                                     </mask>
                                 </variation>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="$ 0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g8y-cH-1pm">
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.59999999999999998" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="$ 0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g8y-cH-1pm">
                                 <rect key="frame" x="205" y="46" width="110" height="33"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="110" id="fN2-cT-yKq"/>
@@ -65,7 +65,7 @@
                             <constraint firstItem="d4w-q4-Lxs" firstAttribute="centerY" secondItem="h55-rk-RIM" secondAttribute="centerY" id="A3h-aV-Pxq"/>
                             <constraint firstItem="g8y-cH-1pm" firstAttribute="centerY" secondItem="h55-rk-RIM" secondAttribute="centerY" id="Mvs-1H-XKa"/>
                             <constraint firstItem="sPd-7L-1A7" firstAttribute="centerY" secondItem="h55-rk-RIM" secondAttribute="centerY" id="VhH-sv-p03"/>
-                            <constraint firstItem="d4w-q4-Lxs" firstAttribute="leading" secondItem="h55-rk-RIM" secondAttribute="leading" constant="18" id="m6B-sR-WQM"/>
+                            <constraint firstItem="d4w-q4-Lxs" firstAttribute="leading" secondItem="h55-rk-RIM" secondAttribute="leading" id="m6B-sR-WQM"/>
                             <constraint firstAttribute="trailing" secondItem="sPd-7L-1A7" secondAttribute="trailing" constant="10" id="pU5-7n-1vd"/>
                             <constraint firstItem="sPd-7L-1A7" firstAttribute="leading" secondItem="g8y-cH-1pm" secondAttribute="trailing" constant="10" id="sn8-PL-wCw"/>
                             <constraint firstAttribute="width" constant="704" id="tr5-mx-XNG"/>

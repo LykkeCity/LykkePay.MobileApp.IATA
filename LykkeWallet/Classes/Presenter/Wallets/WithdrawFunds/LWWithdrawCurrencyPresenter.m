@@ -58,7 +58,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = Localize(@"wallets.currency.withdraw");
     [self setBackButton];
     self.withdrawButton.hidden=YES;
     
@@ -156,7 +155,8 @@
 -(void) viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    
+    self.title = Localize(@"wallets.currency.withdraw");
+
     if(!textCells)
     {
         

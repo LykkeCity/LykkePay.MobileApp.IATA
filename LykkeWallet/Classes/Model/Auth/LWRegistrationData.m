@@ -19,6 +19,7 @@
     data.phone = [self.phone copy];
     data.password = [self.password copy];
     data.clientInfo = [self.clientInfo copy];
+    data.passwordHint=[self.passwordHint copy];
     return data;
 }
 

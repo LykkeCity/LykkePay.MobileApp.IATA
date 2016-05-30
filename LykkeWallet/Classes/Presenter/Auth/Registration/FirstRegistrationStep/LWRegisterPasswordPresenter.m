@@ -8,14 +8,19 @@
 
 #import "LWRegisterPasswordPresenter.h"
 #import "LWAuthNavigationController.h"
+#import "LWRegisterCameraPresenter.h"
+#import "LWPersonalDataModel.h"
 #import "LWTextField.h"
 #import "LWValidator.h"
+#import "UIViewController+Loading.h"
+
 
 
 
 @interface LWRegisterPasswordPresenter () {
     
     LWTextField *passwordConfirmTextField;
+    LWTextField *passwordTextField;
     
 }
 
@@ -29,11 +34,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
     passwordConfirmTextField = [LWTextField createTextFieldForContainer:self.passwordConfirm
                                          withPlaceholder:@"Confirm your password"];
     passwordConfirmTextField.keyboardType = UIKeyboardTypeDefault;
     passwordConfirmTextField.delegate = self;
+    passwordConfirmTextField.secure=YES;
+
 
 }
 
@@ -44,6 +51,13 @@
     
     
 }
+
+//- (void)proceedToNextStep {
+//    [self setLoading:YES];
+//    self.registrationInfo.password=passwordTextField.text;
+//    
+//}
+
 
 
 - (void)observeKeyboardWillShowNotification:(NSNotification *)notification {
@@ -74,7 +88,7 @@
 #pragma mark - LWRegisterBasePresenter
 
 - (LWAuthStep)nextStep {
-    return LWAuthStepRegisterConfirmPassword;
+    return LWAuthStepRegisterHint;
 }
 
 - (void)prepareNextStepData:(NSString *)input {
@@ -87,14 +101,18 @@
 
 - (BOOL)validateInput:(NSString *)input {
     
-    BOOL flag1=[LWValidator validatePassword:input];
-    BOOL flag2=[lw]
+    BOOL flag1=[LWValidator validatePassword:passwordTextField.text];
+    passwordTextField.valid=flag1;
+    BOOL flag2=[passwordTextField.text isEqualToString:passwordConfirmTextField.text] && flag1;
+    passwordConfirmTextField.valid=flag2;
     
-    return [LWValidator validatePassword:input];
+    
+    return flag1 && flag2;
 }
 
 - (void)configureTextField:(LWTextField *)textField {
     textField.secure = YES;
+    passwordTextField=textField;
 }
 
 
@@ -103,5 +121,6 @@
 - (LWAuthStep)stepId {
     return LWAuthStepRegisterPassword;
 }
+
 
 @end

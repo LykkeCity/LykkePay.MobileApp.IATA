@@ -102,7 +102,7 @@ static int const PasswordLength = 6;
     [LWValidator updateButton:button
                   activeImage:nil
                 inactiveImage:nil
-              backgroundColor:[UIColor colorWithRed:125.0/255 green:181.0/255 blue:40.0/255 alpha:1]
+              backgroundColor:[UIColor colorWithRed:18.0/255 green:183.0/255 blue:42.0/255 alpha:1]
                       enabled:enabled];
 }
 
@@ -110,7 +110,7 @@ static int const PasswordLength = 6;
     [LWValidator updateButton:button
                   activeImage:nil
                 inactiveImage:nil
-              backgroundColor:[UIColor colorWithRed:1 green:48.0/255 blue:48.0/255 alpha:1]
+              backgroundColor:[UIColor colorWithRed:1 green:62.0/255 blue:45.0/255 alpha:1]
                       enabled:enabled];
 }
 
@@ -118,7 +118,7 @@ static int const PasswordLength = 6;
     [LWValidator updateButton:button
                   activeImage:nil
                 inactiveImage:nil
-              backgroundColor:[UIColor colorWithRed:125.0/255 green:181.0/255 blue:40.0/255 alpha:1]
+              backgroundColor:[UIColor colorWithRed:18.0/255 green:183.0/255 blue:42.0/255 alpha:1]
                       enabled:enabled];
 }
 
@@ -138,8 +138,8 @@ static int const PasswordLength = 6;
     
     if(button.enabled==NO)
     {
-        button.layer.borderWidth=2;
-        button.layer.borderColor=[UIColor colorWithWhite:0.95 alpha:1].CGColor;
+        button.layer.borderWidth=1;
+        button.layer.borderColor=[UIColor colorWithWhite:0.80 alpha:1].CGColor;
         button.backgroundColor=nil;
     }
     else

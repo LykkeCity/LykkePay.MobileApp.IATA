@@ -34,7 +34,7 @@ static NSString *const addresses[kAddressesCount] = {
 
 static NSString *const titles[kAddressesCount] = {
     @"DEV",
-    @"DEMO"
+    @"STAGING"
     
 };
 
@@ -51,7 +51,7 @@ static NSString *const titles[kAddressesCount] = {
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.navigationItem.title = @"Server addresses";
+    self.title = @"Server addresses";
     [self setBackButton];
     
     [self registerCellWithIdentifier:kDetailTableViewCellIdentifier

@@ -75,7 +75,6 @@ float const kMathHeightKeyboard = 239.0;
     self.tableView.scrollEnabled=NO;
     
     accuracy=-1;
-    self.title = Localize(@"withdraw.funds.title");
     
     [self setHideKeyboardOnTap:NO]; // gesture recognizer deletion
     
@@ -98,7 +97,8 @@ float const kMathHeightKeyboard = 239.0;
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    
+    self.title = Localize(@"withdraw.funds.title");
+
     if (sumTextField) {
         [sumTextField becomeFirstResponder];
     }
@@ -258,7 +258,7 @@ float const kMathHeightKeyboard = 239.0;
         {
             accountBalance=d.balance;
             accuracy=d.accuracy.intValue;
-//            accountBalance=@(0.2);
+//            accountBalance=@(0.2);//Testing
             symbol=d.symbol;
         }
     }

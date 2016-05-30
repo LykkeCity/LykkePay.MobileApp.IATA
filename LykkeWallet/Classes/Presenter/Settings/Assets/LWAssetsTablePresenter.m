@@ -42,7 +42,7 @@
     [super viewDidLoad];
     
     
-    self.navigationItem.title = Localize(@"settings.assets.title");
+    self.title = Localize(@"settings.assets.title");
     
     [self setBackButton];
     

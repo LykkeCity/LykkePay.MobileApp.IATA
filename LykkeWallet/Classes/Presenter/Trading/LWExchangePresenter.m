@@ -20,6 +20,8 @@
 
 #import "LWIPadModalNavigationControllerViewController.h"
 
+#import "UINavigationItem+Kerning.h"
+
 
 #define emptyCellIdentifier @"LWAssetEmptyTableViewCellIdentifier"
 
@@ -92,7 +94,9 @@ static NSString *const AssetIcons[kNumberOfSections] = {
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.navigationItem.title = Localize(@"tab.trading");
+    self.title = Localize(@"tab.trading");
+    
+    
     
     expandedSections = [NSMutableIndexSet new];
     pairRates = [NSMutableDictionary new];
@@ -160,6 +164,12 @@ static NSString *const AssetIcons[kNumberOfSections] = {
     return 1;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    CGFloat const kStandardHeight = 50.0;
+    return kStandardHeight;
+}
+
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = nil;
@@ -174,7 +184,9 @@ static NSString *const AssetIcons[kNumberOfSections] = {
                                              reuseIdentifier:cellIdentifier];
         }
         
-        asset.assetLabel.text = AssetNames[indexPath.section];
+        NSDictionary *attributes = @{NSKernAttributeName:@(1.9)};
+
+        asset.assetLabel.attributedText = [[NSAttributedString alloc] initWithString:AssetNames[indexPath.section] attributes:attributes];
         asset.assetImageView.image = [UIImage imageNamed:AssetIcons[indexPath.section]];
     }
     // Show wallets for category

@@ -21,7 +21,7 @@
 
 #define kProductionServer  @"api.lykkex.com"
 
-#define kStagingTestServer @"lykke-api-test.azurewebsites.net"
+#define kStagingTestServer @"lykke-api-staging.azurewebsites.net"
 #define kDevelopTestServer @"lykke-api-dev.azurewebsites.net"
 #define kDemoTestServer    @"lykke-api-demo.azurewebsites.net"
 

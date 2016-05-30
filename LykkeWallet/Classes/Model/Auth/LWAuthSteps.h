@@ -19,7 +19,8 @@ typedef NS_ENUM(NSInteger, LWAuthStep) {
     
     LWAuthStepSMSCode,
     LWAuthStepRegisterPassword,
-    LWAuthStepRegisterConfirmPassword,
+//    LWAuthStepRegisterConfirmPassword,
+    LWAuthStepRegisterHint,
     LWAuthStepRegisterFullName,
     LWAuthStepRegisterPhone,
     LWAuthStepRegisterPhoneConfirm,

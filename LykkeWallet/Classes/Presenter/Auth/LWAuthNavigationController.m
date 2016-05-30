@@ -29,6 +29,7 @@
 #import "LWKYCSuccessPresenter.h"
 #import "LWRegisterPINSetupPresenter.h"
 #import "LWRegisterCameraPresenter.h"
+#import "LWRegisterHintPresenter.h"
 
 // tab presenters
 #import "LWTabController.h"
@@ -87,7 +88,8 @@
 
                     LWSMSCodeStepPresenter.class,
                     LWRegisterPasswordPresenter.class,
-                    LWRegisterConfirmPasswordPresenter.class,
+//                    LWRegisterConfirmPasswordPresenter.class,
+                    LWRegisterHintPresenter.class,
                     LWRegisterFullNamePresenter.class,
                     LWRegisterPhonePresenter.class,
                     LWRegisterPhoneConfirmPresenter.class,

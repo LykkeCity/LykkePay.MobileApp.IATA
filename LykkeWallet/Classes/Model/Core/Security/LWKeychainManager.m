@@ -88,7 +88,7 @@ SINGLETON_INIT {
     
 //    return @"http://testtestest.me";//Andrey
     
-//    return kProductionServer;
+    return kStagingTestServer;
 
 #ifdef PROJECT_IATA
     return kDevelopTestServer;

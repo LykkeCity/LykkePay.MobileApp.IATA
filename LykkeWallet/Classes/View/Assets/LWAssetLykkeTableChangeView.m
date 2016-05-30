@@ -31,7 +31,7 @@
         NSNumber *lastPoint = self.changes[self.changes.count - 1];
         
         UIBezierPath *path = [UIBezierPath bezierPath];
-        path.lineWidth = 0.5;
+        path.lineWidth = 1;
         [path moveToPoint:CGPointMake(xPosition, [self point:firstPoint forSize:size])];
         
         // prepare drawing data
@@ -44,10 +44,10 @@
         UIColor *color = nil;
         // set negative or positive color
         if (firstPoint.doubleValue >= lastPoint.doubleValue) {
-            color = [UIColor colorWithHexString:kAssetChangeMinusColor];
+            color = [UIColor colorWithRed:1 green:62.0/255 blue:45.0/255 alpha:1];
         }
         else {
-            color = [UIColor colorWithHexString:kAssetChangePlusColor];
+            color = [UIColor colorWithRed:18.0/255 green:183.0/255 blue:42.0/255 alpha:1];
         }
         // draw
         [color setStroke];

@@ -36,7 +36,8 @@
              //@"FullName" : self.registrationData.fullName,
              //@"ContactPhone" : self.registrationData.phone,
              @"Password" : self.registrationData.password,
-             @"ClientInfo" : self.registrationData.clientInfo};
+             @"ClientInfo" : self.registrationData.clientInfo,
+             @"Hint":self.registrationData.passwordHint};
 }
 
 @end

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="10116" systemVersion="15F34" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="10116" systemVersion="15G7a" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -56,7 +56,7 @@
                             <constraint firstAttribute="trailing" secondItem="MJG-g7-jr5" secondAttribute="trailing" constant="30" id="7iJ-tK-Bsx"/>
                             <constraint firstItem="MJG-g7-jr5" firstAttribute="centerY" secondItem="9qf-gP-Pe0" secondAttribute="centerY" id="Ji7-wk-ZOG"/>
                             <constraint firstItem="QcT-ZZ-34n" firstAttribute="leading" secondItem="jmG-fB-2ha" secondAttribute="trailing" constant="12" id="OOn-cf-Wo8"/>
-                            <constraint firstItem="jmG-fB-2ha" firstAttribute="leading" secondItem="9qf-gP-Pe0" secondAttribute="leading" constant="15" id="c5v-SV-jEg"/>
+                            <constraint firstItem="jmG-fB-2ha" firstAttribute="leading" secondItem="9qf-gP-Pe0" secondAttribute="leading" id="c5v-SV-jEg"/>
                             <constraint firstAttribute="width" constant="704" id="fBt-UD-vdw"/>
                             <constraint firstItem="MJG-g7-jr5" firstAttribute="leading" secondItem="QcT-ZZ-34n" secondAttribute="trailing" constant="12" id="lBB-JF-3rj"/>
                             <constraint firstItem="jmG-fB-2ha" firstAttribute="centerY" secondItem="9qf-gP-Pe0" secondAttribute="centerY" id="p9N-Da-YXv"/>

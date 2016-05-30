@@ -21,6 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (copy, nonatomic) NSString *password;
 @property (copy, nonatomic) NSString *clientInfo;
 
+@property (copy, nonatomic) NSString *passwordHint;
+
 @end
 
 NS_ASSUME_NONNULL_END

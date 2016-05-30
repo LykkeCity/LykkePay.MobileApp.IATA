@@ -15,6 +15,10 @@
 #import "TKContainer.h"
 #import "TKButton.h"
 
+#import "UIViewController+Navigation.h"
+#import "UIViewController+Loading.h"
+
+
 
 @interface LWWithdrawFundsPresenter () <LWTextFieldDelegate, AMScanViewControllerDelegate> {
     LWTextField *bitcoinTextField;
@@ -45,7 +49,8 @@
     [super viewDidLoad];
     
     self.title = Localize(@"withdraw.funds.title");
-    
+    [self setBackButton];
+
     
     // init email field
     bitcoinTextField = [LWTextField new];

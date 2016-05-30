@@ -44,6 +44,9 @@
     
     [self setupQRCode];
     [self setBackButton];
+    
+    self.emailButton.layer.cornerRadius=self.emailButton.bounds.size.height/2;
+    self.emailButton.clipsToBounds=YES;
 }
 
 - (void)viewWillAppear:(BOOL)animated {

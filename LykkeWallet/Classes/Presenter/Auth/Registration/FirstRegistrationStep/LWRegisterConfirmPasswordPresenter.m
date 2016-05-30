@@ -74,9 +74,9 @@
 
 #pragma mark - LWAuthStepPresenter
 
-- (LWAuthStep)stepId {
-    return LWAuthStepRegisterConfirmPassword;
-}
+//- (LWAuthStep)stepId {
+//    return LWAuthStepRegisterConfirmPassword;
+//}
 
 
 #pragma mark - LWAuthManagerDelegate

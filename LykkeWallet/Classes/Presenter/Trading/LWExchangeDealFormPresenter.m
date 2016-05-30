@@ -100,7 +100,7 @@ static NSString *const FormIdentifiers[kFormRows] = {
     
     NSAssert(self.assetDealType != LWAssetDealTypeUnknown, @"Incorrect deal type!");
     
-    [self updateTitle];
+//    [self updateTitle];
     [self updateDescription];
     
     [self setHideKeyboardOnTap:NO]; // gesture recognizer deletion
@@ -144,6 +144,7 @@ static NSString *const FormIdentifiers[kFormRows] = {
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
+    [self updateTitle];
 //    predefinedSumsView=[self predefinedSumsEnterView];
 //    [self.view addSubview:predefinedSumsView];
 //    

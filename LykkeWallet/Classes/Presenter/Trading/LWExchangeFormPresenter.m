@@ -63,7 +63,6 @@ static NSString *const DescriptionIdentifiers[kDescriptionRows] = {
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = self.assetPair.name;
     
     [self setBackButton];
     
@@ -72,6 +71,14 @@ static NSString *const DescriptionIdentifiers[kDescriptionRows] = {
     
     [self registerCellWithIdentifier:@"LWAssetInfoIconTableViewCellIdentifier"
                                 name:@"LWAssetInfoIconTableViewCell"];
+    
+}
+
+-(void) viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    self.title = self.assetPair.name;
+
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -125,6 +132,7 @@ static NSString *const DescriptionIdentifiers[kDescriptionRows] = {
         LWAssetInfoTextTableViewCell *textCell = (LWAssetInfoTextTableViewCell *)cell;
         textCell.titleLabel.text = DescriptionNames[indexPath.row];
         textCell.descriptionLabel.text = [self description:assetDetails forRow:indexPath.row];
+//        textCell.titleLabel.textColor=[UIColor yellowColor];
     }
 
     return cell;
@@ -221,8 +229,19 @@ static NSString *const DescriptionIdentifiers[kDescriptionRows] = {
         priceBuyRateString = [LWUtils priceForAsset:self.assetPair forValue:rate.ask withFormat:Localize(@"graph.button.buy")];
     }
     
-    [self.sellButton setTitle:priceSellRateString forState:UIControlStateNormal];
-    [self.buyButton setTitle:priceBuyRateString forState:UIControlStateNormal];
+    
+//    NSDictionary *attributes = @{NSKernAttributeName:@(1), NSFontAttributeName:self.buyButton.titleLabel.font, NSForegroundColorAttributeName:rate==nil?self.buyButton.currentTitleColor:[UIColor whiteColor]};
+
+    NSDictionary *attributesBuy = @{NSKernAttributeName:@(1), NSFontAttributeName:self.buyButton.titleLabel.font, NSForegroundColorAttributeName:rate==nil?self.buyButton.currentTitleColor:[UIColor whiteColor]};
+
+    NSDictionary *attributesSell=@{NSKernAttributeName:@(1), NSFontAttributeName:self.sellButton.titleLabel.font, NSForegroundColorAttributeName:rate==nil?self.sellButton.currentTitleColor:[UIColor whiteColor]};
+    
+    [self.buyButton setAttributedTitle:[[NSAttributedString alloc] initWithString:priceBuyRateString attributes:attributesBuy] forState:UIControlStateNormal];
+    [self.sellButton setAttributedTitle:[[NSAttributedString alloc] initWithString:priceSellRateString attributes:attributesSell] forState:UIControlStateNormal];
+    
+    
+//    [self.sellButton setTitle:priceSellRateString forState:UIControlStateNormal];
+//    [self.buyButton setTitle:priceBuyRateString forState:UIControlStateNormal];
 }
 
 - (NSString *)description:(LWAssetDescriptionModel *)model forRow:(NSInteger)row {

@@ -16,6 +16,8 @@
 #import "UIView+Toast.h"
 #import "UIImage+Resize.h"
 #import "LWKeychainManager.h"
+#import "LWMathKeyboardView.h"
+#import "LWUtils.h"
 
 #define BAR_GRAY_COLOR [UIColor colorWithRed:245.0/255 green:246.0/255 blue:248.0/255 alpha:1]
 
@@ -25,7 +27,6 @@
     NSArray *lineTitles;
     NSArray *lineValues;
     UITextField *amountTextField;
-    CGRect originalScrollViewFrame;
     
     UIButton *termsOfUseButton;
     UIButton *prospectusButton;
@@ -41,6 +42,7 @@
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIButton *emailButton;
 @property (weak, nonatomic) IBOutlet UIView *container;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *scrollViewHeight;
 
 @end
 
@@ -49,7 +51,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = Localize(@"wallets.currency.deposit");
     [self setBackButton];
     self.emailButton.hidden=YES;
 
@@ -101,9 +102,9 @@
     self.emailButton.clipsToBounds=YES;
     
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShowNotification:) name:UIKeyboardWillShowNotification object:nil];
-
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHideNotification:) name:UIKeyboardWillHideNotification object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShowNotification:) name:UIKeyboardWillShowNotification object:nil];
+//
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHideNotification:) name:UIKeyboardWillHideNotification object:nil];
     
     buttonsContainer=[[UIView alloc] initWithFrame:CGRectMake(0, 0, 260, 20)];
     termsOfUseButton=[UIButton buttonWithType:UIButtonTypeCustom];
@@ -148,7 +149,8 @@
 {
     [super viewDidAppear:animated];
     
-    
+    self.title = Localize(@"wallets.currency.deposit");
+
     
     NSDictionary *currencySymbols=@{@"USD":@"$",
                                @"EUR":@"€",
@@ -158,7 +160,6 @@
     if(!currencySymbol)
         currencySymbol=@"";
     
-    originalScrollViewFrame=self.scrollView.frame;
     
     CGFloat offset=self.infoView.bounds.size.height;
     for(int i=0;i<lineTitles.count;i++)
@@ -187,11 +188,12 @@
 
     offset+=30;
     
-    self.emailButton.frame=CGRectMake(30, offset, _scrollView.bounds.size.width-60, 45);
+//    self.emailButton.frame=CGRectMake(30, offset, _scrollView.bounds.size.width-60, 45);
     self.emailButton.hidden=NO;
     offset+=(_emailButton.bounds.size.height+20);
     
     _scrollView.contentSize=CGSizeMake(_scrollView.bounds.size.width, offset);
+    self.scrollViewHeight.constant=offset;
 
     
 }
@@ -202,8 +204,11 @@
 
 -(void)viewDidLayoutSubviews
 {
-    infoLabel.center=CGPointMake(self.infoView.bounds.size.width/2, self.infoView.bounds.size.height/2-20);
-    buttonsContainer.center=CGPointMake(self.infoView.bounds.size.width/2, self.infoView.bounds.size.height/2+infoLabel.bounds.size.height/2+10);
+    [super viewDidLayoutSubviews];
+    CGRect rrr=self.infoView.bounds;
+    infoLabel.center=CGPointMake(self.view.bounds.size.width/2, self.infoView.bounds.size.height/2-20);
+    buttonsContainer.center=CGPointMake(self.view.bounds.size.width/2, self.infoView.bounds.size.height/2+infoLabel.bounds.size.height/2+10);
+//    self.emailButton.center=CGPointMake(self.view.bounds.size.width/2, self.emailButton.center.y);
 }
 
 -(UIView *) viewForRowAtIndex:(int) index
@@ -243,7 +248,9 @@
     
     copyButton=[UIButton buttonWithType:UIButtonTypeCustom];
     copyButton.frame=CGRectMake(0, 0, copyIconWidth, copyIconWidth);
-    [copyButton setBackgroundImage:[UIImage imageNamed:@"CopyInDepositIcon.png"] forState:UIControlStateNormal];
+    
+    
+    [copyButton setBackgroundImage:[UIImage imageNamed:@"CopyInDepositIcon"] forState:UIControlStateNormal];
     copyButton.tag=index;
     [copyButton addTarget:self action:@selector(copyPressed:) forControlEvents:UIControlEventTouchUpInside];
     
@@ -323,32 +330,36 @@
     [self showCopied];
 }
 
--(void) keyboardWillShowNotification:(NSNotification *)notification
-{
-    NSDictionary *info = [notification userInfo];
-    CGRect keyboardRect = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
-    keyboardRect = [self.view convertRect:keyboardRect fromView:nil];
-    
-    UIEdgeInsets contentInset = self.scrollView.contentInset;
-    contentInset.bottom = keyboardRect.size.height;
-    self.scrollView.contentInset = contentInset;
-
-    self.scrollView.contentOffset=CGPointMake(0, _scrollView.contentSize.height-(_scrollView.bounds.size.height-contentInset.bottom));
-}
-
--(void) keyboardWillHideNotification:(NSNotification *)notification
-{
-    UIEdgeInsets contentInset = self.scrollView.contentInset;
-    contentInset.bottom = 0;
-    self.scrollView.contentInset = contentInset;
-}
+//-(void) keyboardWillShowNotification:(NSNotification *)notification
+//{
+//    NSDictionary *info = [notification userInfo];
+//    CGRect keyboardRect = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
+//    keyboardRect = [self.view convertRect:keyboardRect fromView:nil];
+//    
+//    UIEdgeInsets contentInset = self.scrollView.contentInset;
+//    contentInset.bottom = keyboardRect.size.height;
+//    self.scrollView.contentInset = contentInset;
+//
+//    self.scrollView.contentOffset=CGPointMake(0, _scrollView.contentSize.height-(_scrollView.bounds.size.height-contentInset.bottom));
+//}
+//
+//-(void) keyboardWillHideNotification:(NSNotification *)notification
+//{
+//    UIEdgeInsets contentInset = self.scrollView.contentInset;
+//    contentInset.bottom = 0;
+//    self.scrollView.contentInset = contentInset;
+//}
 
 -(IBAction)emailButtonPressed:(id)sender
 {
     if([amountTextField.text length]==0)
         return;
+    [self hideCustomKeyboard];
     [self setLoading:YES];
-    [[LWAuthManager instance] requestCurrencyDepositForAsset:self.assetID changeValue:@([amountTextField.text intValue])];
+    
+    NSString *string=[amountTextField.text stringByReplacingOccurrencesOfString:@" " withString:@""];
+    
+    [[LWAuthManager instance] requestCurrencyDepositForAsset:self.assetID changeValue:@([string floatValue])];
 }
 
 -(void) termsOfUsePressed
@@ -381,6 +392,16 @@
 }
 
 #pragma mark - UITextFieldDelegate
+
+-(BOOL) textFieldShouldBeginEditing:(UITextField *)textField
+{
+    if(self.keyboardView.inputView==NO)
+        [self showCustomKeyboard];
+    self.keyboardView.targetTextField=textField;
+    [self.keyboardView setText:[textField.text stringByReplacingOccurrencesOfString:@" " withString:@""]];
+    self.keyboardView.accuracy=@(2);
+    return NO;
+}
 
 -(BOOL) textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
@@ -468,6 +489,49 @@
         
     });
     
+    
+}
+
+
+-(void) mathKeyboardDonePressed:(LWMathKeyboardView *)keyboardView
+{
+    [self hideCustomKeyboard];
+}
+
+
+
+-(void) showCustomKeyboard
+{
+    [super showCustomKeyboard];
+    
+    UIEdgeInsets contentInset = self.scrollView.contentInset;
+    contentInset.bottom = self.keyboardView.bounds.size.height-(self.view.bounds.size.height-self.scrollView.bounds.size.height);
+    [UIView animateWithDuration:0.5 animations:^{
+    self.scrollView.contentInset = contentInset;
+    self.scrollView.contentOffset=CGPointMake(0, self.keyboardView.bounds.size.height-(self.view.bounds.size.height-self.scrollView.bounds.size.height));
+//    self.scrollView.contentOffset=CGPointMake(0, _scrollView.contentSize.height-(_scrollView.bounds.size.height-contentInset.bottom));
+    }];
+}
+
+
+-(void) hideCustomKeyboard
+{
+    [super hideCustomKeyboard];
+    
+    [UIView animateWithDuration:0.5 animations:^{
+        UIEdgeInsets contentInset = self.scrollView.contentInset;
+        contentInset.bottom = 0;
+        self.scrollView.contentInset = contentInset;
+    }];
+    
+    amountTextField.text=[LWUtils formatVolumeString:amountTextField.text currencySign:@"" accuracy:2 removeExtraZeroes:YES];
+    [self positionCurrencySymbol];
+}
+
+- (void)mathKeyboardView:(LWMathKeyboardView *) view volumeStringChangedTo:(NSString *) string
+{
+    amountTextField.text=[LWUtils formatVolumeString:string currencySign:@"" accuracy:2 removeExtraZeroes:NO];
+    [self positionCurrencySymbol];
     
 }
 

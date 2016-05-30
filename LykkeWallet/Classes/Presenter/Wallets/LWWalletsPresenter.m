@@ -137,12 +137,14 @@ static NSString *const WalletIcons[kNumberOfSections] = {
 -(void) viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    self.title = Localize(@"tab.wallets");
+
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.navigationItem.title = Localize(@"tab.wallets");
+    self.title = Localize(@"tab.wallets");
     
 #ifdef PROJECT_IATA
     _iataWallets = [NSMutableArray array];
@@ -277,8 +279,14 @@ static NSString *const WalletIcons[kNumberOfSections] = {
         }
         
         wallet.delegate = self;
-        wallet.walletLabel.text = WalletNames[indexPath.section];
         
+
+        NSDictionary *attributes = @{NSKernAttributeName:@(1.9)};
+
+        
+//        wallet.walletLabel.text = WalletNames[indexPath.section];
+        wallet.walletLabel.attributedText = [[NSAttributedString alloc] initWithString:WalletNames[indexPath.section] attributes:attributes];
+       
         wallet.walletImageView.image = [UIImage imageNamed:WalletIcons[indexPath.section]];
         
 #ifdef PROJECT_IATA
@@ -583,6 +591,9 @@ static NSString *const WalletIcons[kNumberOfSections] = {
 #ifdef PROJECT_IATA
         [_iataWallets addObject:asset];
 #else
+        
+        if([asset.issuerId isKindOfClass:[NSString class]]==NO)
+            continue;
         if ([asset.issuerId isEqualToString:@"BTC"]) {
             [_btcWallets addObject:asset];
         }
@@ -677,7 +688,19 @@ static NSString *const WalletIcons[kNumberOfSections] = {
         ((LWCurrencyDepositPresenter *)presenter).assetName=data.name;
         ((LWCurrencyDepositPresenter *)presenter).assetID=data.identity;
     
-        [self.navigationController pushViewController:presenter animated:YES];
+        
+        if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
+            [self.navigationController pushViewController:presenter animated:YES];
+        else
+        {
+            LWIPadModalNavigationControllerViewController *navigationController =
+            [[LWIPadModalNavigationControllerViewController alloc] initWithRootViewController:presenter];
+            
+            navigationController.modalPresentationStyle=UIModalPresentationCustom;
+            navigationController.transitioningDelegate=navigationController;
+            [self.navigationController presentViewController:navigationController animated:YES completion:nil];
+        }
+
 
     }
 }
@@ -721,7 +744,19 @@ static NSString *const WalletIcons[kNumberOfSections] = {
         presenter.assetName = data.name;
         presenter.issuerId = data.issuerId;
         presenter.assetID=@"BTC";
-        [self.navigationController pushViewController:presenter animated:YES];
+        
+        if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
+            [self.navigationController pushViewController:presenter animated:YES];
+        else
+        {
+            LWIPadModalNavigationControllerViewController *navigationController =
+            [[LWIPadModalNavigationControllerViewController alloc] initWithRootViewController:presenter];
+            
+            navigationController.modalPresentationStyle=UIModalPresentationCustom;
+            navigationController.transitioningDelegate=navigationController;
+            [self.navigationController presentViewController:navigationController animated:YES completion:nil];
+        }
+
     }
 }
 

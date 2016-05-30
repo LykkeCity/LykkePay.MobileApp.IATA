@@ -39,7 +39,7 @@ static NSString *const SettingsIdentifiers[kNumberOfRows] = {
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.navigationItem.title = Localize(@"settings.push.title");
+    self.title = Localize(@"settings.push.title");
     
     [self setBackButton];
     

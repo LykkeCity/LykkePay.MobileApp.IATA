@@ -45,7 +45,7 @@
 
 -(NSDictionary *) params
 {
-    return @{@"period":self.period.value, @"assetId":@"GBP/USD", @"points":@(20)};
+    return @{@"period":self.period.value, @"assetId":self.assetId, @"points":@(20)};
 }
 
 - (GDXRESTPacketType)type {

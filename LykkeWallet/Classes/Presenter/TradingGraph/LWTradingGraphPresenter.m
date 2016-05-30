@@ -273,7 +273,7 @@ static int const kNumberOfRows = 3;
 
 -(void) authManager:(LWAuthManager *)manager didGetGraphPeriods:(LWPacketGraphPeriods *)graphPeriods
 {
-    [[LWAuthManager instance] requestGraphDataForPeriod:graphPeriods.lastSelectedPeriod];
+    [[LWAuthManager instance] requestGraphDataForPeriod:graphPeriods.lastSelectedPeriod assetPairId:self.assetPair.identity];
 }
 
 

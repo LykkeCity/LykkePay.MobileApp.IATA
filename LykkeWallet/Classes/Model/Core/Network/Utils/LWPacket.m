@@ -48,18 +48,63 @@
     }
     else
     {
-        NSMutableDictionary *checkedResult=[result mutableCopy];
-        NSArray *keys=[result allKeys];
         
-        for(NSString *key in keys)
-        {
-            if([checkedResult[key] isKindOfClass:[NSNull class]])
-                [checkedResult removeObjectForKey:key];
-        }
+        
+        NSMutableDictionary *checkedResult=[result mutableCopy];
+        [self checkResult:checkedResult];
         result=checkedResult;
+//        NSArray *keys=[result allKeys];
+//        
+//        for(NSString *key in keys)
+//        {
+//            if([checkedResult[key] isKindOfClass:[NSNull class]])
+//                [checkedResult removeObjectForKey:key];
+//        }
+//        result=checkedResult;
     }
     
     _isRejected = (self.reject != nil) && ![self.reject isKindOfClass:NSNull.class];
+}
+
+-(void) checkResult:(NSMutableDictionary *) resultDict
+{
+    NSArray *keys=[resultDict allKeys];
+    for(NSString *k in keys)
+    {
+        id object=resultDict[k];
+        if([object isKindOfClass:[NSNull class]])
+        {
+            [resultDict removeObjectForKey:k];
+        }
+        if([object isKindOfClass:[NSDictionary class]])
+        {
+            NSMutableDictionary *newDict=[object mutableCopy];
+            [self checkResult:newDict];
+            resultDict[k]=newDict;
+        }
+        if([object isKindOfClass:[NSArray class]])
+        {
+            NSMutableArray *newArr=[object mutableCopy];
+            for(int i=0;i<[newArr count];i++)
+            {
+                id arrElement=newArr[i];
+                if([arrElement isKindOfClass:[NSNull class]])
+                {
+                    [newArr removeObjectAtIndex:i];
+                    i--;
+                }
+                else if([arrElement isKindOfClass:[NSDictionary class]])
+                {
+                    NSMutableDictionary *newDict=[arrElement mutableCopy];
+                    [self checkResult:newDict];
+                    [newArr replaceObjectAtIndex:i withObject:newDict];
+
+                }
+                    
+            }
+            resultDict[k]=newArr;
+        }
+    }
 }
 
 

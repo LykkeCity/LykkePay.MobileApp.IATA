@@ -67,7 +67,7 @@ static NSString *const SettingsIdentifiers[kNumberOfRows] = {
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.navigationItem.title = Localize(@"tab.settings");
+    self.title = Localize(@"tab.settings");
     
     [self registerCellWithIdentifier:SettingsIdentifiers[0]
                                 name:SettingsCells[0]];

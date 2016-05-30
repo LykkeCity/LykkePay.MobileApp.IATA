@@ -21,4 +21,5 @@
 @property (copy, nonatomic) NSString *currencySymbol;
 @property (copy, nonatomic) NSString *assetID;
 
+
 @end

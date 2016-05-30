@@ -63,6 +63,10 @@
 }
 
 - (void)graphClicked {
+    
+    CGRect rrr=self.assetPriceImageView.frame;
+    CGRect rr1=self.frame;
+    
     if (self.rate) {
         [self.delegate graphClicked:self];
     }

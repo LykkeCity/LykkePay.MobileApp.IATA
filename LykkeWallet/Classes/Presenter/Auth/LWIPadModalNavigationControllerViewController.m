@@ -32,6 +32,11 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void) shadowPressed
+{
+    [self dismiss];
+}
+
 #pragma mark - TransitioningForIpad
 
 - (NSTimeInterval)transitionDuration:(id <UIViewControllerContextTransitioning>)transitionContext {
@@ -49,18 +54,22 @@
         
         toViewController.view.alpha=0;
         shadow=[[UIView alloc] initWithFrame:CGRectMake(0, 0, 1024, 1024)];
-        shadow.backgroundColor=[UIColor colorWithWhite:0 alpha:0.5];
+        shadow.backgroundColor=[UIColor colorWithRed:53.0/255 green:76.0/255 blue:97.0/255 alpha:0.5];
         shadow.alpha=0;
+        UITapGestureRecognizer *gesture=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(shadowPressed)];
+        [shadow addGestureRecognizer:gesture];
         
         toViewController.view.frame=CGRectMake(0, 0, 475, 650);
-        toViewController.view.center=CGPointMake(fromViewController.view.bounds.size.width/2, fromViewController.view.bounds.size.height/2);
+        toViewController.view.center=CGPointMake(fromViewController.view.bounds.size.width/2, fromViewController.view.bounds.size.height*1.5);
+//        toViewController.view.center=CGPointMake(fromViewController.view.bounds.size.width/2, fromViewController.view.bounds.size.height/2);
         
         [transitionContext.containerView addSubview:shadow];
         
         [transitionContext.containerView addSubview:toViewController.view];
         
         [UIView animateWithDuration:0.5 animations:^{
-            
+            toViewController.view.center=CGPointMake(fromViewController.view.bounds.size.width/2, fromViewController.view.bounds.size.height*0.5);
+
             toViewController.view.alpha=1;
             shadow.alpha=1;
         }completion:^(BOOL finished) {
@@ -71,8 +80,10 @@
     {
         
         [UIView animateWithDuration:0.5 animations:^{
+            fromViewController.view.center=CGPointMake(toViewController.view.bounds.size.width/2, toViewController.view.bounds.size.height*1.5);
+
+//            fromViewController.view.alpha=0;
             
-            fromViewController.view.alpha=0;
             shadow.alpha=0;
         }completion:^(BOOL finished) {
             [shadow removeFromSuperview];
@@ -93,27 +104,31 @@
     UIViewController *result = [super popViewControllerAnimated:animated];
     if(!result)
     {
-//        UINavigationController *nnn=self.navigationController;
-//        id ddd=self.presentedViewController;
-        UINavigationController *parent=(UINavigationController *)self.presentingViewController;
-        [parent dismissViewControllerAnimated:YES completion:^{
-            
-            UITabBarController *vvv=(UITabBarController *)parent.visibleViewController;
-            
-            if([vvv isKindOfClass:[UITabBarController class]])
-            {
-                [vvv.selectedViewController viewWillAppear:YES];
-                [vvv.selectedViewController viewDidAppear:YES];
-            }
-            else
-            {
-                [vvv viewWillAppear:YES];
-                [vvv viewDidAppear:YES];
-            }
-        
-        }];
+        [self dismiss];
     }
     return result;
+}
+
+-(void) dismiss
+{
+    UINavigationController *parent=(UINavigationController *)self.presentingViewController;
+    [parent dismissViewControllerAnimated:YES completion:^{
+        
+        UITabBarController *vvv=(UITabBarController *)parent.visibleViewController;
+        
+        if([vvv isKindOfClass:[UITabBarController class]])
+        {
+            [vvv.selectedViewController viewWillAppear:YES];
+            [vvv.selectedViewController viewDidAppear:YES];
+        }
+        else
+        {
+            [vvv viewWillAppear:YES];
+            [vvv viewDidAppear:YES];
+        }
+        
+    }];
+
 }
 
 

@@ -16,6 +16,7 @@
 #import "LWCache.h"
 #import "LWWithdrawInputPresenter.h"
 #import "LWIPadModalNavigationControllerViewController.h"
+#import "LWValidator.h"
 
 
 @interface LWTradingWalletPresenter () {
@@ -35,9 +36,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.navigationItem.title = Localize(@"wallets.trading.title");
-    [self.withdrawButton setTitle:Localize(@"wallets.trading.withdraw") forState:UIControlStateNormal];
-    [self.depositButton setTitle:Localize(@"wallets.trading.deposit") forState:UIControlStateNormal];
+    NSDictionary *attributesWithdraw = @{NSKernAttributeName:@(1), NSFontAttributeName:self.withdrawButton.titleLabel.font, NSForegroundColorAttributeName:self.withdrawButton.currentTitleColor};
+    NSDictionary *attributesDeposit = @{NSKernAttributeName:@(1), NSFontAttributeName:self.depositButton.titleLabel.font, NSForegroundColorAttributeName:self.depositButton.currentTitleColor};
+    
+    [self.withdrawButton setAttributedTitle:[[NSAttributedString alloc] initWithString:Localize(@"wallets.trading.withdraw") attributes:attributesWithdraw] forState:UIControlStateNormal];
+    [self.depositButton setAttributedTitle:[[NSAttributedString alloc] initWithString:Localize(@"wallets.trading.deposit") attributes:attributesDeposit] forState:UIControlStateNormal];
+//    [self.withdrawButton setTitle:Localize(@"wallets.trading.withdraw") forState:UIControlStateNormal];
+//    [self.depositButton setTitle:Localize(@"wallets.trading.deposit") forState:UIControlStateNormal];
     
 #ifdef PROJECT_IATA
 #else
@@ -47,7 +52,8 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
+    self.title = Localize(@"wallets.trading.title");
+
     [self setBackButton];
     
     if ([self isMovingToParentViewController]) {
@@ -55,11 +61,23 @@
         [[LWAuthManager instance] requestTransactions:self.assetId];
     }
     
+    [LWValidator setButton:self.depositButton enabled:YES];
+    [LWValidator setButton:self.withdrawButton enabled:NO];
+    self.withdrawButton.enabled=YES;
+
+    
     if([LWCache isAssetDepositAvailableForAssetID:self.assetId]==NO)
     {
         self.depositButton.hidden=YES;
         self.withdrawButton.hidden=YES;
     }
+}
+
+-(void) viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    self.title = Localize(@"wallets.trading.title");
+
 }
 
 #pragma mark - Actions

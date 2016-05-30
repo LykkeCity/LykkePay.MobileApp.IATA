@@ -419,13 +419,15 @@ SINGLETON_INIT {
 -(void) requestGraphPeriods
 {
     LWPacketGraphPeriods *pack=[LWPacketGraphPeriods new];
+    
     [self sendPacket:pack];
 }
 
--(void) requestGraphDataForPeriod:(LWGraphPeriodModel *)period
+-(void) requestGraphDataForPeriod:(LWGraphPeriodModel *)period  assetPairId:(NSString *)assetPairId
 {
     LWPacketGraphData *pack=[LWPacketGraphData new];
     pack.period=period;
+    pack.assetId=assetPairId;
     [self sendPacket:pack];
     
 }
