@@ -12,6 +12,7 @@
 #import "LWPacketPinSecurityGet.h"
 #import "LWFingerprintHelper.h"
 #import "UIViewController+Loading.h"
+#import "LWCache.h"
 
 #import <AFNetworking/AFNetworking.h>
 
@@ -19,7 +20,9 @@ static int const kAllowedAttempts = 3;
 
 @interface LWAuthPINEnterPresenter () <ABPadLockScreenViewControllerDelegate> {
     ABPadLockScreenViewController *pinController;
+    UILabel *versionLabel;
 }
+
 
 
 #pragma mark - Utils
@@ -30,6 +33,16 @@ static int const kAllowedAttempts = 3;
 
 
 @implementation LWAuthPINEnterPresenter
+
+-(void) viewDidLoad
+{
+    [super viewDidLoad];
+    versionLabel=[[UILabel alloc] init];
+    versionLabel.font=[UIFont systemFontOfSize:12];
+    versionLabel.textAlignment=NSTextAlignmentCenter;
+    versionLabel.text=[LWCache currentAppVersion];
+    
+}
 
 
 #pragma mark - LWAuthStepPresenter
@@ -103,9 +116,13 @@ static int const kAllowedAttempts = 3;
         };
     }
     
+    
     // run fingerprint validation
     [self.navigationController presentViewController:pinController animated:NO completion:^{
         [self validateUser];
+        [pinController.view addSubview:versionLabel];
+        versionLabel.frame=CGRectMake(0, pinController.view.bounds.size.height-20, pinController.view.bounds.size.width, 20);
+
     }];
 }
 

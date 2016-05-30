@@ -3999,7 +3999,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.lykkex.Lykke-Wallet";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "75517172-5905-4fe1-990a-d1d6e04060bc";
+				PROVISIONING_PROFILE = "9f7b4b3c-d5e5-4741-b4c4-1f2c8303a9d4";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -4143,7 +4143,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.lykkex.Lykke-Wallet";
 				PRODUCT_NAME = "$(TARGET_NAME).Test";
-				PROVISIONING_PROFILE = "75517172-5905-4fe1-990a-d1d6e04060bc";
+				PROVISIONING_PROFILE = "9f7b4b3c-d5e5-4741-b4c4-1f2c8303a9d4";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release.Test;

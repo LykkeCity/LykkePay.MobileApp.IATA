@@ -15,6 +15,8 @@
 #import "LWDeviceInfo.h"
 #import "UIViewController+Loading.h"
 
+#import "LWCache.h"
+
 
 @interface LWAuthenticationPresenter () <LWTextFieldDelegate, LWAuthManagerDelegate> {
     LWTextField *emailField;
@@ -50,6 +52,8 @@
                                              withPlaceholder:Localize(@"auth.password")];
     passwordField.secure = YES;
     passwordField.delegate = self;
+    
+
 }
 
 - (void)viewWillAppear:(BOOL)animated {

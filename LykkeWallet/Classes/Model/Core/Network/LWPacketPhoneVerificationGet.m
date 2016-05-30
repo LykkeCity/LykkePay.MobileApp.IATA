@@ -22,7 +22,7 @@
     }
     _isPassed = [result[@"Passed"] boolValue];
     
-//    _isPassed=YES;//Andrey
+//    _isPassed=YES;//Testing
 }
 
 - (NSString *)urlRelative {

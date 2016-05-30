@@ -386,12 +386,11 @@ static NSString *const FormIdentifiers[kFormRows] = {
         {
             balanceOfAccount=d.balance;
             balanceAccuracy=d.accuracy.intValue;
-//            balanceOfAccount=@(0.02);
             balanceCurrencySymbol=d.symbol;
         }
     }
     
-//    balanceOfAccount=@(0.2);
+//    balanceOfAccount=@(1.2);//Testing
     
     NSString *str=[NSString stringWithFormat:@"%f",balanceOfAccount.floatValue];
     balance.text=[NSString stringWithFormat:@"%@ available", [LWUtils formatVolumeString:str currencySign:balanceCurrencySymbol accuracy:balanceAccuracy removeExtraZeroes:YES]];

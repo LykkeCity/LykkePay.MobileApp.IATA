@@ -12,6 +12,7 @@
 #import "LWAuthManager.h"
 #import "LWPersonalData.h"
 #import "UIViewController+Loading.h"
+#import "LWCache.h"
 
 
 @interface LWAuthValidationPresenter () {
@@ -19,6 +20,8 @@
 }
 
 @property (weak, nonatomic) IBOutlet UILabel *textLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *versionLabel;
 
 @end
 
@@ -34,7 +37,11 @@
     [self.navigationController setNavigationBarHidden:YES animated:NO];
     
     [[LWAuthManager instance] requestRegistrationGet];
+    
+    self.versionLabel.text=[LWCache currentAppVersion];
 }
+
+
 
 - (LWAuthStep)stepId {
     return LWAuthStepValidation;
@@ -50,6 +57,7 @@
 - (void)localize {
     self.textLabel.text = [NSString stringWithFormat:Localize(@"register.validation.label")];
 }
+
 
 
 #pragma mark - LWAuthManagerDelegate

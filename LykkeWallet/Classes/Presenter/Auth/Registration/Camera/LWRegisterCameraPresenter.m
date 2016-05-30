@@ -18,6 +18,7 @@
 #import <MBProgressHUD/MBProgressHUD.h>
 
 #import "LWSendImageManager.h"
+#import "LWValidator.h"
 
 
 @interface LWRegisterCameraPresenter ()<LWAuthManagerDelegate, LWCameraOverlayDelegate, LWSendImageManagerDelegate> {
@@ -57,12 +58,17 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [LWValidator setButtonWithClearBackground:self.cancelButton enabled:YES];
+    [LWValidator setButton:self.okButton enabled:YES];
+
     
     self.title = Localize(@"register.title");
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    
+    
     
     [self checkButtonsState];
     

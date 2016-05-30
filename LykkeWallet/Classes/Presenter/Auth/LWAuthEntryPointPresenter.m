@@ -18,6 +18,7 @@
 #import "LWUrlAddressPresenter.h"
 #import "TKButton.h"
 #import "ABPadLockScreen.h"
+#import "LWCache.h"
 
 typedef NS_ENUM(NSInteger, LWAuthEntryPointNextStep) {
     LWAuthEntryPointNextStepNone,
@@ -49,6 +50,9 @@ typedef NS_ENUM(NSInteger, LWAuthEntryPointNextStep) {
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *viewTopConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *loginBottomConstraint;
 
+@property (weak, nonatomic) IBOutlet UILabel *versionLabel;
+
+
 #pragma mark - Actions
 
 - (IBAction)proceedButtonClick:(id)sender;
@@ -75,6 +79,8 @@ typedef NS_ENUM(NSInteger, LWAuthEntryPointNextStep) {
     {
         self.observeKeyboardEvents=YES;
     }
+    
+    self.versionLabel.text=[LWCache currentAppVersion];
     
 #ifdef PROJECT_IATA
 #else

@@ -35,4 +35,6 @@ SINGLETON_DECLARE
 
 +(BOOL) isAssetDepositAvailableForAssetID:(NSString *) assetID;
 
++(NSString *) currentAppVersion;
+
 @end

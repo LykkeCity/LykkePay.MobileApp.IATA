@@ -31,5 +31,6 @@
 + (void)setPriceButton:(UIButton *)button enabled:(BOOL)isValid;
 + (void)setSellButton:(UIButton *)button enabled:(BOOL)enabled;
 + (void)setBuyButton:(UIButton *)button enabled:(BOOL)enabled;
++(void) setButtonWithClearBackground:(UIButton *) button enabled:(BOOL) enabled;
 
 @end

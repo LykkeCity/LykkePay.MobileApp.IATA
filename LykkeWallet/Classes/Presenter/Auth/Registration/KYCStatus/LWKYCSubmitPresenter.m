@@ -10,6 +10,7 @@
 #import "LWAuthNavigationController.h"
 #import "LWKeychainManager.h"
 #import "UIViewController+Loading.h"
+#import "LWValidator.h"
 
 
 @interface LWKYCSubmitPresenter () {
@@ -32,6 +33,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [LWValidator setButton:self.submitButton enabled:YES];
     
     self.title = Localize(@"register.kyc.submit.title");
 }

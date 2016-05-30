@@ -204,6 +204,7 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 		[self updateIndicators];
 		[self registerForKVO];
 		[self registerForNotifications];
+        
 	}
 	return self;
 }

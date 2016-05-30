@@ -98,6 +98,18 @@ static int const PasswordLength = 6;
                       enabled:enabled];
 }
 
++(void) setButtonWithClearBackground:(UIButton *) button enabled:(BOOL) enabled
+{
+    [LWValidator updateButton:button
+                  activeImage:nil
+                inactiveImage:nil
+              backgroundColor:nil
+                      enabled:YES];
+    if(enabled==NO)
+        button.enabled=NO;
+    
+}
+
 + (void)setPriceButton:(UIButton *)button enabled:(BOOL)enabled {
     [LWValidator updateButton:button
                   activeImage:nil

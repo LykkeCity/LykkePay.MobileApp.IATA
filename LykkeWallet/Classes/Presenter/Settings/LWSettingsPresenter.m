@@ -20,6 +20,7 @@
 #import "LWCache.h"
 #import "LWFingerprintHelper.h"
 #import "UIViewController+Loading.h"
+#import "LWCache.h"
 
 
 @interface LWSettingsPresenter () <LWRadioTableViewCellDelegate, LWSettingsConfirmationPresenter> {
@@ -30,6 +31,8 @@
 #pragma mark - Utils
 
 - (void)updateSignStatus;
+
+@property (weak, nonatomic) IBOutlet UILabel *versionLabel;
 
 @end
 
@@ -66,6 +69,7 @@ static NSString *const SettingsIdentifiers[kNumberOfRows] = {
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.versionLabel.text=[LWCache currentAppVersion];
     
     self.title = Localize(@"tab.settings");
     

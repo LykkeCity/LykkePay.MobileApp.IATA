@@ -23,12 +23,11 @@
     if (loading) {
         [self.view endEditing:YES];
         
-//        activity=[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-//        activity.center
-        
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
-        hud.dimBackground = YES;
-        hud.mode = MBProgressHUDModeIndeterminate;
+//        hud.dimBackground = YES;
+//        hud.mode = MBProgressHUDModeIndeterminate;
+        
+        
     }
     else {
         MBProgressHUD *hud = [self hud];
@@ -99,7 +98,7 @@
         code = [NSNumber numberWithInteger:urlResponse.statusCode];
     }
     
-    NSString *error = [NSString stringWithFormat:@"Error: %@. Code: %@. Login: %@. DateTime: %@", message, code, email, time];
+    NSString *error = [NSString stringWithFormat:@"Error: %@. Code: %@. Login: %@. DateTime: %@. %@", message, code, email, time, [LWCache currentAppVersion]];
     
     UIAlertController *ctrl = [UIAlertController
                                alertControllerWithTitle:Localize(@"utils.error")

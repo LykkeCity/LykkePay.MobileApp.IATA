@@ -36,4 +36,16 @@ SINGLETON_INIT {
     return [arr containsObject:assetID];
 }
 
++(NSString *) currentAppVersion
+{
+    
+    NSString *version= [[NSBundle mainBundle] objectForInfoDictionaryKey:(NSString *)kCFBundleVersionKey];
+    NSString *buildNum=[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
+    if(version && buildNum)
+    {
+        return [NSString stringWithFormat:@"Version %@ (%@)", buildNum, version];
+    }
+    return nil;
+}
+
 @end
