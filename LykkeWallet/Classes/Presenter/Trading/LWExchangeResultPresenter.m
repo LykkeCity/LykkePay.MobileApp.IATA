@@ -17,6 +17,7 @@
 #import "LWAuthManager.h"
 #import "TKButton.h"
 #import "UIViewController+Loading.h"
+#import "LWValidator.h"
 
 
 @interface LWExchangeResultPresenter () {
@@ -70,6 +71,9 @@ static int const kBlockchainRow = 4;
     [self.shareButton setTitle:Localize(@"exchange.assets.result.share")
                       forState:UIControlStateNormal];
     
+    [LWValidator setButtonWithClearBackground:self.closeButton enabled:YES];
+    [LWValidator setButton:self.shareButton enabled:YES];
+    
 #ifdef PROJECT_IATA
 #else
     [self.closeButton setGrayPalette];
@@ -78,6 +82,16 @@ static int const kBlockchainRow = 4;
     [self setHideKeyboardOnTap:NO]; // gesture recognizer deletion
 
     [self.navigationController setNavigationBarHidden:YES animated:NO];
+}
+
+-(void) viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+//    [self setTitle:[NSString stringWithFormat:@"%@%@",
+//                    self.purchase.assetPair,
+//                    Localize(@"exchange.assets.result.title")]];
+    
 }
 
 #ifdef PROJECT_IATA

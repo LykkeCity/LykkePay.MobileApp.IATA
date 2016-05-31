@@ -9,6 +9,7 @@
 #import "LWRegisterPINSetupPresenter.h"
 #import "LWAuthNavigationController.h"
 #import "ABPadLockScreen.h"
+#import "LWValidator.h"
 
 
 @interface LWRegisterPINSetupPresenter ()<ABPadLockScreenSetupViewControllerDelegate> {
@@ -55,6 +56,7 @@
     if (!pin) {
         [self presentViewController:pinController animated:YES completion:nil];
     }
+    
 }
 
 -(void) viewDidAppear:(BOOL)animated
@@ -62,6 +64,7 @@
     [super viewDidAppear:animated];
     progressView.center=CGPointMake(self.view.bounds.size.width/2, 40);
     progressView.hidden=NO;
+    [LWValidator setButton:self.okButton enabled:YES];
 
 }
 

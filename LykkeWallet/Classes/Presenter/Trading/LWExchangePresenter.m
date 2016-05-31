@@ -94,9 +94,9 @@ static NSString *const AssetIcons[kNumberOfSections] = {
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.title = Localize(@"tab.trading");
+//    self.title = Localize(@"tab.trading");
     
-    
+    [self setTitle:Localize(@"tab.trading")];
     
     expandedSections = [NSMutableIndexSet new];
     pairRates = [NSMutableDictionary new];
@@ -120,7 +120,8 @@ static NSString *const AssetIcons[kNumberOfSections] = {
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
+    [self setTitle:Localize(@"tab.trading")];
+
     if (self.tabBarController && self.navigationItem) {
         self.tabBarController.title = [self.navigationItem.title uppercaseString];
     }
@@ -130,6 +131,12 @@ static NSString *const AssetIcons[kNumberOfSections] = {
 #endif
     
     [[LWAuthManager instance] requestAssetPairs];
+}
+
+-(void) viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self setTitle:Localize(@"tab.trading")];
 }
 
 

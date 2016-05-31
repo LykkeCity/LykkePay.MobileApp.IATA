@@ -26,9 +26,9 @@
         _poaCompression = 1.0;
         
         // check which documents already uploaded
-        _isSelfieUploaded = _selfie;
-        _isIdCardUploaded = _idCard;
-        _isPOAUploaded = _proofOfAddress;
+        _isSelfieUploaded = !_selfie;
+        _isIdCardUploaded = !_idCard;
+        _isPOAUploaded = !_proofOfAddress;
     }
     return self;
 }

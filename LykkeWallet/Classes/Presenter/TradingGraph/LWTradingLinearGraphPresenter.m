@@ -104,13 +104,15 @@ static int const kNumberOfRows = 4;
     
     [[LWAuthManager instance] requestAssetPairRate:self.assetPair.identity];
     [[LWAuthManager instance] requestGraphPeriods];
+    self.title = self.assetPair.name;
 
 }
 
 -(void) viewDidAppear:(BOOL)animated
 {
     [self setupChart];
-   
+    self.title = self.assetPair.name;
+
 }
 
 - (void)viewWillLayoutSubviews {

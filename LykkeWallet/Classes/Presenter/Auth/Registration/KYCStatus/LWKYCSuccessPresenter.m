@@ -9,6 +9,7 @@
 #import "LWKYCSuccessPresenter.h"
 #import "LWRegistrationData.h"
 #import "LWKeychainManager.h"
+#import "LWValidator.h"
 
 
 @interface LWKYCSuccessPresenter () {
@@ -28,6 +29,12 @@
 
 
 @implementation LWKYCSuccessPresenter
+
+-(void) viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [LWValidator setButton:self.okButton enabled:YES];
+}
 
 
 #pragma mark - LWAuthStepPresenter
