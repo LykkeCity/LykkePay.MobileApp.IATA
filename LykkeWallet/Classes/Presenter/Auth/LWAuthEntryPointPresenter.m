@@ -19,6 +19,7 @@
 #import "TKButton.h"
 #import "ABPadLockScreen.h"
 #import "LWCache.h"
+#import "LWAnimatedView.h"
 
 typedef NS_ENUM(NSInteger, LWAuthEntryPointNextStep) {
     LWAuthEntryPointNextStepNone,
@@ -151,8 +152,10 @@ typedef NS_ENUM(NSInteger, LWAuthEntryPointNextStep) {
     [self.proceedButton setTitle:[Localize(@"auth.login") uppercaseString]
                         forState:UIControlStateNormal];
 #else
-
-    [self.proceedButton setTitle:[Localize(@"auth.signup") uppercaseString]
+//auth.login_signup
+//    [self.proceedButton setTitle:[Localize(@"auth.signup") uppercaseString]
+//                        forState:UIControlStateNormal];
+    [self.proceedButton setTitle:[Localize(@"auth.login_signup") uppercaseString]
                         forState:UIControlStateNormal];
 #endif
 }
@@ -302,8 +305,27 @@ typedef NS_ENUM(NSInteger, LWAuthEntryPointNextStep) {
 #pragma mark - LWTipsViewDelegate
 
 - (void)tipsViewDidPress:(LWTipsView *)view {
+    
+    
+    [self showAnimatedView];
+    
     // ...
 }
+
+-(void) showAnimatedView
+{
+    
+    UIWindow *window=[UIApplication sharedApplication].windows[0];
+    LWAnimatedView *view=[[LWAnimatedView alloc] initWithFrame:CGRectMake(0, 0, 320, 320) gifName:@"1-deposit"];
+    view.center=CGPointMake(window.bounds.size.width/2, window.bounds.size.height/2);
+    
+    UIView *whiteView=[[UIView alloc] initWithFrame:window.bounds];
+    whiteView.backgroundColor=[UIColor whiteColor];
+    
+    [window addSubview:whiteView];
+    [window addSubview:view];
+}
+
 
 
 #pragma mark - LWAuthManagerDelegate

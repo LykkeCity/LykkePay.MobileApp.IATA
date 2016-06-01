@@ -6,7 +6,7 @@
   Copyright © 2015 Lykkex. All rights reserved.
 */
 
-"tab.wallets" = "Кошельки";
+"tab.wallets" = "Кошелек";
 "tab.trading" = "Обмен";
 "tab.transfer" = "Перевод";
 "tab.history" = "История";
@@ -17,12 +17,13 @@
 
 "auth.login" = "Войти";
 "auth.signup" = "Зарегистрироваться";
+"auth.login_signup"="Войти/Регистрация";
 "auth.email" = "Email";
 "auth.password" = "Пароль (мин 6 символов)";
 "auth.validation.fingerpring" = "Пожалуйста, выполните сканирование отпечатка пальца для подтверждения Вашей учетной записи.";
 
 "register.title" = "Регистрация";
-"register.sms.title" = "We've sent the code to your email %@";
+"register.sms.title" = "We've sent the code to your email address %@";
 "register.sms.error" = "Invalid code. Please try again.";
 "register.sms.code.placeholder" = "Code";
 "register.sms.code.paste" = "Paste";

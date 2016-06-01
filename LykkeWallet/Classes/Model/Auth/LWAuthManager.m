@@ -54,6 +54,7 @@
 #import "LWPacketGraphData.h"
 #import "LWPacketCurrencyDeposit.h"
 #import "LWPacketCurrencyWithdraw.h"
+#import "LWPacketAPIVersion.h"
 
 #import "LWLykkeWalletsData.h"
 #import "LWBankCardsAdd.h"
@@ -445,6 +446,12 @@ SINGLETON_INIT {
     [self sendPacket:(LWPacket *)withdraw];
 }
 
+-(void) requestAPIVersion
+{
+    LWPacketAPIVersion *pack=[LWPacketAPIVersion new];
+    [self sendPacket:(LWPacket *) pack];
+}
+
 -(void) setDelegate:(id<LWAuthManagerDelegate>)delegate //Andrey
 {
     _delegate=delegate;
@@ -742,8 +749,11 @@ SINGLETON_INIT {
 }
 
 - (void)observeGDXNetAdapterDidFailRequestNotification:(NSNotification *)notification {
+    
     GDXRESTContext *ctx = notification.userInfo[kNotificationKeyGDXNetContext];
     LWPacket *pack = (LWPacket *)ctx.packet;
+    
+    
     
     // check if user not authorized - kick them
     if ([LWAuthManager isAuthneticationFailed:ctx.task.response]) {
@@ -751,6 +761,7 @@ SINGLETON_INIT {
     }
     else {
         if ([self.delegate respondsToSelector:@selector(authManager:didFailWithReject:context:)]) {
+            
             [self.delegate authManager:self
                      didFailWithReject:pack.reject
                                context:ctx];

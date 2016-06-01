@@ -45,6 +45,12 @@
 - (void)showReject:(NSDictionary *)reject response:(NSURLResponse *)response {
     [self setLoading:NO];
     
+    if([reject[@"Code"] intValue]==6)
+    {
+        [self showNeedUpdateError:reject[@"Message"]];
+        return;
+    }
+    
     if ([LWCache instance].debugMode) {
         [self showDebugError:reject response:response];
     }
@@ -135,5 +141,18 @@
     // showing modal view
     [self.navigationController.view addSubview:errorView];
 }
+
+-(void) showNeedUpdateError:(NSString *) message
+{
+    UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"LYKKE" message:message delegate:self cancelButtonTitle:nil otherButtonTitles:@"Update", nil];
+    [alert show];
+}
+
+-(void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"itms://itunes.apple.com/us/app/lykke-wallet/id1112839581"]];
+    
+}
+
 
 @end

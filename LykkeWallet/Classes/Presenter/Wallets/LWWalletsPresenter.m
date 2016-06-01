@@ -701,6 +701,7 @@ static NSString *const WalletIcons[kNumberOfSections] = {
         
         ((LWCurrencyDepositPresenter *)presenter).assetName=data.name;
         ((LWCurrencyDepositPresenter *)presenter).assetID=data.identity;
+        ((LWCurrencyDepositPresenter *)presenter).issuerId=data.issuerId;
     
         
         if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)

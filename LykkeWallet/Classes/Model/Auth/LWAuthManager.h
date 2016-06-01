@@ -159,6 +159,8 @@ SINGLETON_DECLARE
 -(void) requestCurrencyDepositForAsset:(NSString *) assetId changeValue:(NSNumber *) changeValue;
 -(void) requestCurrencyWithdraw:(LWPacketCurrencyWithdraw *) withdraw;
 
+-(void) requestAPIVersion;
+
 #pragma mark - Static methods
 
 + (BOOL)isAuthneticationFailed:(NSURLResponse *)response;

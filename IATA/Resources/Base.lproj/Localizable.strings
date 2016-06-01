@@ -6,7 +6,7 @@
   Copyright © 2015 Lykkex. All rights reserved.
 */
 
-"tab.wallets" = "Wallets";
+"tab.wallets" = "Wallet";
 "tab.trading" = "Exchange";
 "tab.transfer" = "Transfer";
 "tab.history" = "History";
@@ -15,14 +15,15 @@
 "title.register" = "Register";
 "title.authentication" = "Log in";
 
-"auth.login" = "Log In";
+"auth.login" = "Sign In";
 "auth.signup" = "Sign Up";
 "auth.email" = "Email";
+"auth.login_signup"="Sign In/Sign Up";
 "auth.password" = "Password (min 6 symbols)";
 "auth.validation.fingerpring" = "Please scan your fingerprint to validate your identity.";
 
 "register.title" = "Register";
-"register.sms.title" = "We've sent the code to your email %@";
+"register.sms.title" = "We've sent the code to your email address %@";
 "register.sms.error" = "Invalid code. Please try again.";
 "register.sms.code.placeholder" = "Code";
 "register.sms.code.paste" = "Paste";
@@ -75,7 +76,7 @@
 "register.validation.label" = "Connection to server.\nPlease wait...";
 "register.check.documents.label" = "Documents validation.\nPlease wait...";
 
-"utils.tip" = "What I should know?";
+"utils.tip" = "What I should know";
 "utils.ok" = "OK";
 "utils.error" = "Error";
 
@@ -152,7 +153,7 @@
 "exchange.assets.result.placeholder" = "Input result";
 "exchange.assets.buy.price" = "Price";
 "exchange.assets.buy.total" = "Total cost";
-"exchange.assets.buy.checkout" = "CHECKOUT";
+"exchange.assets.buy.checkout" = "SUBMIT";
 "exchange.assets.modal.title" = "ORDER SUMMARY";
 "exchange.assets.modal.button" = "PLACE AN ORDER";
 "exchange.assets.modal.cancel" = "CANCEL";

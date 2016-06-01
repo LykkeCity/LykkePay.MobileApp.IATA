@@ -24,12 +24,6 @@
     result = [response objectForKey:@"Result"];
     _reject = response[@"Error"];
     
-    if(_reject && [_reject isKindOfClass:[NSDictionary class]] && [_reject[@"Code"] intValue]==6)
-    {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"AppVersionIsTooOld" object:_reject[@"Message"]];
-            });
-    }
     
     if ([LWCache instance].debugMode) {
         if (_reject && ![_reject isKindOfClass:[NSNull class]]) {
@@ -122,8 +116,12 @@
 }
 
 - (NSDictionary *)headers {
-    
-    NSString *userAgent=[NSString stringWithFormat:@"DeviceType=iPhone;AppVersion=%@", [[NSBundle mainBundle] objectForInfoDictionaryKey:(NSString *)kCFBundleVersionKey]];
+    NSString *device;
+    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
+        device=@"iPhone";
+    else
+        device=@"iPad";
+    NSString *userAgent=[NSString stringWithFormat:@"DeviceType=%@;AppVersion=%@", device, [[NSBundle mainBundle] objectForInfoDictionaryKey:(NSString *)kCFBundleVersionKey]];
     return @{@"User-Agent":userAgent}; // no headers by default
 }
 

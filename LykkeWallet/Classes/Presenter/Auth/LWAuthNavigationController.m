@@ -46,7 +46,8 @@
 #import "LWConstants.h"
 #import "UIImage+Resize.h"
 
-#import "LWVersionRequest.h"
+
+#import "LWAnimatedView.h"
 
 
 @interface LWAuthNavigationController () <UIAlertViewDelegate>{
@@ -107,12 +108,20 @@
         activeSteps[@(self.currentStep)] = self.viewControllers.firstObject;
         
         
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showNeedNewVersion:) name:@"AppVersionIsTooOld" object:nil];
         
     }
+    
 
     return self;
 }
+
+-(void) viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+
+}
+
 
 
 #pragma mark - Common
@@ -299,19 +308,7 @@
     return result;
 }
 
--(void) showNeedNewVersion:(NSNotification *) notification
-{
-    
-    NSString *message=notification.object;
-    UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"LYKKE" message:message delegate:self cancelButtonTitle:nil otherButtonTitles:@"Update", nil];
-    [alert show];
-}
 
--(void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"itms://itunes.apple.com/us/app/lykke-wallet/id1112839581"]];
-
-}
 
 -(void) dealloc
 {
