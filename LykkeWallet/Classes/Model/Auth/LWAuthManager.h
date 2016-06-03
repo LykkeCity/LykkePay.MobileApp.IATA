@@ -35,6 +35,8 @@
 @class LWGraphPeriodModel;
 @class LWPacketCurrencyDeposit;
 @class LWPacketCurrencyWithdraw;
+@class LWPacketAPIVersion;
+@class LWPacketBitcoinAddressValidation;
 
 
 @protocol LWAuthManagerDelegate<NSObject>
@@ -89,6 +91,8 @@
 
 -(void) authManager:(LWAuthManager *) manager didSendWithdraw:(LWPacketCurrencyWithdraw *) withdraw;
 
+-(void) authManager:(LWAuthManager *)manager didGetAPIVersion:(LWPacketAPIVersion *) apiVersion;
+-(void) authManager:(LWAuthManager *) manager didValidateBitcoinAddress:(LWPacketBitcoinAddressValidation *) bitconAddress;
 
 @end
 
@@ -160,6 +164,10 @@ SINGLETON_DECLARE
 -(void) requestCurrencyWithdraw:(LWPacketCurrencyWithdraw *) withdraw;
 
 -(void) requestAPIVersion;
+-(void) validateBitcoinAddress:(NSString *) address;
+
+
+//PubkeyAddressValidation
 
 #pragma mark - Static methods
 

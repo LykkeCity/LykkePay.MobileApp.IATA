@@ -21,6 +21,7 @@
 #import "LWFingerprintHelper.h"
 #import "UIViewController+Loading.h"
 #import "LWCache.h"
+#import "LWPacketAPIVersion.h"
 
 
 @interface LWSettingsPresenter () <LWRadioTableViewCellDelegate, LWSettingsConfirmationPresenter> {
@@ -95,6 +96,7 @@ static NSString *const SettingsIdentifiers[kNumberOfRows] = {
     }
     
     [[LWAuthManager instance] requestBaseAssetGet];
+    [[LWAuthManager instance] requestAPIVersion];
 }
 
 
@@ -145,6 +147,13 @@ static NSString *const SettingsIdentifiers[kNumberOfRows] = {
     NSIndexPath *path = [NSIndexPath indexPathForRow:kAssetCellId inSection:0];
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:path];
     [self configureCell:cell indexPath:path];
+}
+
+-(void) authManager:(LWAuthManager *) manager didGetAPIVersion:(LWPacketAPIVersion *)apiVersion
+{
+    if(apiVersion.apiVersion)
+        self.versionLabel.text=[NSString stringWithFormat:@"%@, API %@",[LWCache currentAppVersion], apiVersion.apiVersion];
+
 }
 
 - (void)authManager:(LWAuthManager *)manager didFailWithReject:(NSDictionary *)reject context:(GDXRESTContext *)context {

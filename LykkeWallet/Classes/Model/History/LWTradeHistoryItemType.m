@@ -20,6 +20,7 @@
     result.iconId      = model.iconId;
     result.asset       = model.asset;
     result.historyType = LWHistoryItemTypeTrade;
+    result.blockchainHash=model.blockchainHash;
     
     return result;
 }

@@ -55,6 +55,7 @@
 #import "LWPacketCurrencyDeposit.h"
 #import "LWPacketCurrencyWithdraw.h"
 #import "LWPacketAPIVersion.h"
+#import "LWPacketBitcoinAddressValidation.h"
 
 #import "LWLykkeWalletsData.h"
 #import "LWBankCardsAdd.h"
@@ -452,6 +453,13 @@ SINGLETON_INIT {
     [self sendPacket:(LWPacket *) pack];
 }
 
+-(void) validateBitcoinAddress:(NSString *) address
+{
+    LWPacketBitcoinAddressValidation *pack=[LWPacketBitcoinAddressValidation new];
+    pack.bitcoinAddress=address;
+    [self sendPacket:pack];
+}
+
 -(void) setDelegate:(id<LWAuthManagerDelegate>)delegate //Andrey
 {
     _delegate=delegate;
@@ -741,6 +749,17 @@ SINGLETON_INIT {
     else if (pack.class == LWPacketCurrencyWithdraw.class) {
         if ([self.delegate respondsToSelector:@selector(authManager:didSendWithdraw:)]) {
             [self.delegate authManager:self didSendWithdraw:(LWPacketCurrencyWithdraw *) pack];
+        }
+    }
+    else if (pack.class == LWPacketAPIVersion.class) {
+        if ([self.delegate respondsToSelector:@selector(authManager:didGetAPIVersion:)]) {
+            [self.delegate authManager:self didGetAPIVersion:(LWPacketAPIVersion *) pack];
+        }
+    }
+    //LWBitcoinAddressValidation
+    else if (pack.class == LWPacketBitcoinAddressValidation.class) {
+        if ([self.delegate respondsToSelector:@selector(authManager:didValidateBitcoinAddress:)]) {
+            [self.delegate authManager:self didValidateBitcoinAddress:(LWPacketBitcoinAddressValidation *) pack];
         }
     }
 

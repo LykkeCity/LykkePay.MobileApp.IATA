@@ -16,19 +16,20 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="65"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WHAT I SHOULD KNOW" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ovz-Ng-TlI">
+                <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WHAT I SHOULD KNOW" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ovz-Ng-TlI">
                     <rect key="frame" x="8" y="8" width="304" height="21"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="Q5b-TZ-Me5"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="15"/>
+                    <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="13"/>
                     <color key="textColor" red="0.24705882352941178" green="0.30196078431372547" blue="0.37647058823529411" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="bottom" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ArrowDown" translatesAutoresizingMaskIntoConstraints="NO" id="gbD-NA-6MX">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="tips_about.png" translatesAutoresizingMaskIntoConstraints="NO" id="gbD-NA-6MX">
                     <rect key="frame" x="0.0" y="30" width="320" height="20"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="20" id="rB0-1t-lV9"/>
+                        <constraint firstAttribute="width" constant="24" id="Yuz-fe-dkN"/>
+                        <constraint firstAttribute="height" constant="7" id="rB0-1t-lV9"/>
                     </constraints>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M1A-NM-qoa">
@@ -41,14 +42,13 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="M1A-NM-qoa" secondAttribute="bottom" id="00p-RG-dbg"/>
-                <constraint firstItem="gbD-NA-6MX" firstAttribute="leading" secondItem="NCs-XM-IkL" secondAttribute="leading" id="4iK-r8-aYy"/>
                 <constraint firstItem="M1A-NM-qoa" firstAttribute="leading" secondItem="NCs-XM-IkL" secondAttribute="leading" id="CmE-of-cpy"/>
+                <constraint firstItem="gbD-NA-6MX" firstAttribute="centerX" secondItem="NCs-XM-IkL" secondAttribute="centerX" id="Rjb-Ct-Lhy"/>
                 <constraint firstItem="M1A-NM-qoa" firstAttribute="top" secondItem="NCs-XM-IkL" secondAttribute="top" id="WuB-6P-vCg"/>
-                <constraint firstAttribute="trailing" secondItem="gbD-NA-6MX" secondAttribute="trailing" id="cRQ-QI-iws"/>
+                <constraint firstItem="gbD-NA-6MX" firstAttribute="top" secondItem="Ovz-Ng-TlI" secondAttribute="bottom" constant="15" id="dSb-GF-Dg7"/>
                 <constraint firstItem="Ovz-Ng-TlI" firstAttribute="top" secondItem="NCs-XM-IkL" secondAttribute="top" constant="8" id="dvZ-yp-AMm"/>
                 <constraint firstItem="Ovz-Ng-TlI" firstAttribute="leading" secondItem="NCs-XM-IkL" secondAttribute="leading" constant="8" id="p0t-26-7Mq"/>
                 <constraint firstAttribute="trailing" secondItem="M1A-NM-qoa" secondAttribute="trailing" id="r7B-p8-Od8"/>
-                <constraint firstAttribute="bottom" secondItem="gbD-NA-6MX" secondAttribute="bottom" constant="15" id="yPm-kj-0CE"/>
                 <constraint firstAttribute="trailing" secondItem="Ovz-Ng-TlI" secondAttribute="trailing" constant="8" id="zSp-i5-xWq"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
@@ -60,6 +60,6 @@
         </view>
     </objects>
     <resources>
-        <image name="ArrowDown" width="10" height="10"/>
+        <image name="tips_about.png" width="72" height="21"/>
     </resources>
 </document>

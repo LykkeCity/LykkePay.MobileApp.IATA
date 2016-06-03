@@ -72,14 +72,14 @@
                         </constraints>
                     </view>
                 </subviews>
-                <color key="backgroundColor" red="0.92549019610000005" green="0.93333333330000001" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
+                <color key="backgroundColor" red="0.96078431372549022" green="0.96470588235294119" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
                     <constraint firstItem="h55-rk-RIM" firstAttribute="height" secondItem="uqr-Sn-gXo" secondAttribute="height" id="93Z-jT-NwB"/>
                     <constraint firstItem="h55-rk-RIM" firstAttribute="centerY" secondItem="uqr-Sn-gXo" secondAttribute="centerY" id="XrM-zp-eC9"/>
                     <constraint firstItem="h55-rk-RIM" firstAttribute="centerX" secondItem="uqr-Sn-gXo" secondAttribute="centerX" id="tTX-sh-vwb"/>
                 </constraints>
             </tableViewCellContentView>
-            <color key="backgroundColor" red="0.91764705882352937" green="0.92941176470588238" blue="0.93725490196078431" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" red="0.96078431372549022" green="0.96470588235294119" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
             <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
             <connections>
                 <outlet property="bitcoinAddButton" destination="sPd-7L-1A7" id="Tlr-fP-8BF"/>

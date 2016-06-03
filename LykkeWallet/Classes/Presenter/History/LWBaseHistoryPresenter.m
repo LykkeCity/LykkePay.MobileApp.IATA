@@ -284,6 +284,26 @@
     cell.typeLabel.text = operation;
     cell.dateLabel.text = [item.dateTime toShortFormat];
     
+    
+    cell.contentView.alpha=1;
+    if([item respondsToSelector:@selector(blockchainHash)])
+    {
+        LWTradeHistoryItemType *trade = (LWTradeHistoryItemType *)item;
+        if(!trade.blockchainHash.length)
+        {
+            
+            
+            cell.contentView.alpha=0.20;
+            cell.valueLabel.textColor=[UIColor blackColor];
+//            cell.valueLabel.textColor=[UIColor colorWithHexString:@"D3D6DB"];
+//            cell.typeLabel.textColor=[UIColor colorWithHexString:@"D3D6DB"];
+//            cell.dateLabel.textColor=[UIColor colorWithHexString:@"D3D6DB"];
+        }
+        
+    }
+    
+//    cell.valueLabel.textColor=[UIColor colorWithHe] //Andrey
+    
 #ifdef PROJECT_IATA
     cell.separatorInset = UIEdgeInsetsMake(0, 38, 0, 38);
 #endif

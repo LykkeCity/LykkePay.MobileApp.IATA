@@ -17,10 +17,14 @@
     if (self.isRejected) {
         return;
     }
+    self.apiVersion=response[@"Result"][@"AppVersion"];
     
     
 }
 
+- (GDXRESTPacketType)type {
+    return GDXRESTPacketTypeGET;
+}
 
 - (NSString *)urlRelative {
     return @"ApplicationInfo";

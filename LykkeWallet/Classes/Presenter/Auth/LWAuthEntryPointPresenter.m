@@ -20,6 +20,7 @@
 #import "ABPadLockScreen.h"
 #import "LWCache.h"
 #import "LWAnimatedView.h"
+#import "LWIntroductionPresenter.h"
 
 typedef NS_ENUM(NSInteger, LWAuthEntryPointNextStep) {
     LWAuthEntryPointNextStepNone,
@@ -31,7 +32,8 @@ typedef NS_ENUM(NSInteger, LWAuthEntryPointNextStep) {
 @interface LWAuthEntryPointPresenter ()<
     LWTextFieldDelegate,
     LWTipsViewDelegate,
-    ABPadLockScreenSetupViewControllerDelegate
+    ABPadLockScreenSetupViewControllerDelegate,
+    LWIntroductionPresenterDelegate
 > {
     LWTextField *emailTextField;
     LWTipsView  *tipsView;
@@ -120,6 +122,16 @@ typedef NS_ENUM(NSInteger, LWAuthEntryPointNextStep) {
     
     
     
+    if([[NSUserDefaults standardUserDefaults] boolForKey:@"IntroductionShown"]==NO)
+    {
+        [self showAnimatedView:NO];
+    }
+    else
+    {
+        [self textFieldDidChangeValue:emailTextField];
+    }
+
+    
 #ifdef PROJECT_IATA
     self.chooseServerButton.hidden = YES;
 #else
@@ -142,9 +154,18 @@ typedef NS_ENUM(NSInteger, LWAuthEntryPointNextStep) {
 }
 #endif
 
+
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    [self textFieldDidChangeValue:emailTextField];
+    
+    if([[NSUserDefaults standardUserDefaults] boolForKey:@"IntroductionShown"]==NO)
+    {
+//        [self showAnimatedView];
+    }
+    else
+    {
+        [self textFieldDidChangeValue:emailTextField];
+    }
 }
 
 - (void)localize {
@@ -307,24 +328,65 @@ typedef NS_ENUM(NSInteger, LWAuthEntryPointNextStep) {
 - (void)tipsViewDidPress:(LWTipsView *)view {
     
     
-    [self showAnimatedView];
+    [self showAnimatedView:YES];
     
     // ...
 }
 
--(void) showAnimatedView
+-(void) showAnimatedView:(BOOL) animated
 {
-    
+    LWIntroductionPresenter *intro=[[LWIntroductionPresenter alloc] init];
+    intro.delegate=self;
+    intro.view.frame=self.view.bounds;
     UIWindow *window=[UIApplication sharedApplication].windows[0];
-    LWAnimatedView *view=[[LWAnimatedView alloc] initWithFrame:CGRectMake(0, 0, 320, 320) gifName:@"1-deposit"];
-    view.center=CGPointMake(window.bounds.size.width/2, window.bounds.size.height/2);
     
-    UIView *whiteView=[[UIView alloc] initWithFrame:window.bounds];
-    whiteView.backgroundColor=[UIColor whiteColor];
-    
-    [window addSubview:whiteView];
-    [window addSubview:view];
+    if(animated)
+    {
+        [window addSubview:intro.view];
+
+        intro.view.center=CGPointMake(intro.view.center.x, intro.view.center.y+self.view.bounds.size.height);
+        
+        [UIView animateWithDuration:0.5 animations:^{
+            self.view.center=CGPointMake(self.view.center.x, self.view.center.y-self.view.bounds.size.height);
+            intro.view.frame=window.bounds;;
+
+        } completion:^(BOOL finished){
+            [intro.view removeFromSuperview];
+            window.rootViewController=intro;
+            
+        }];
+    }
+    else
+    {
+        self.view.center=CGPointMake(self.view.center.x, self.view.center.y-self.view.bounds.size.height);
+        window.rootViewController=intro;
+    }
+
+    return;
 }
+
+
+-(void) introductionPresenterShouldDismiss:(LWIntroductionPresenter *) intro
+{
+    UIWindow *window=[UIApplication sharedApplication].windows[0];
+    [window addSubview:self.view];
+    self.view.center=CGPointMake(window.bounds.size.width/2, window.bounds.size.height/2-window.bounds.size.height);
+    [UIView animateWithDuration:0.5 animations:^{
+
+        self.view.center=CGPointMake(self.view.bounds.size.width/2, self.view.bounds.size.height/2);
+        intro.view.center=CGPointMake(intro.view.center.x, intro.view.center.y+intro.view.bounds.size.height);
+    } completion:^(BOOL finished){
+        [intro.view removeFromSuperview];
+        [self.view removeFromSuperview];
+        
+        window.rootViewController=self.navigationController;
+
+        intro.delegate=nil;
+        
+    }];
+
+}
+
 
 
 

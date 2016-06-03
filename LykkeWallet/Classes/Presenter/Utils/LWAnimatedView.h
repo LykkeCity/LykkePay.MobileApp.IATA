@@ -10,6 +10,8 @@
 
 @interface LWAnimatedView : UIView
 
--(id) initWithFrame:(CGRect)frame gifName:(NSString *) gif_name;
+-(id) initWithFrame:(CGRect)frame name:(NSString *) name;
+
+-(void) startAnimationIfNeeded;
 
 @end

@@ -18,6 +18,7 @@
 
 @property (copy, nonatomic) NSNumber *volume;
 @property (copy, nonatomic) NSString *iconId;
+@property (copy, nonatomic) NSString *blockchainHash;
 
 + (LWTradeHistoryItemType *)convertFromNetworkModel:(LWTransactionTradeModel *)model;
 

@@ -14,6 +14,7 @@
 #import "LWConstants.h"
 #import "TKContainer.h"
 #import "TKButton.h"
+#import "LWPacketBitcoinAddressValidation.h"
 
 #import "UIViewController+Navigation.h"
 #import "UIViewController+Loading.h"
@@ -56,6 +57,8 @@
     bitcoinTextField = [LWTextField new];
     bitcoinTextField.delegate = self;
     bitcoinTextField.keyboardType = UIKeyboardTypeEmailAddress;
+    [bitcoinTextField setRightOffset:70];
+
 #ifdef PROJECT_IATA
     bitcoinTextField.placeholder = Localize(@"withdraw.funds.wallet.iata");
 #else
@@ -118,6 +121,8 @@
     if (!self.isVisible) {
         return;
     }
+    
+    
 
     [self updatePasteButtonStatus];
 }
@@ -159,14 +164,54 @@
 #pragma mark - Utils
 
 - (BOOL)canProceed {
-    BOOL canProceed = bitcoinTextField.text.length > 0;
-    return canProceed;
+    if(bitcoinTextField.text.length<26 || bitcoinTextField.text.length>35)
+        return NO;
+    NSString *sss=[[bitcoinTextField.text componentsSeparatedByCharactersInSet:[NSCharacterSet alphanumericCharacterSet]] componentsJoinedByString:@""];
+    if(sss.length)
+        return NO;
+    NSString *firstSymbol=[bitcoinTextField.text substringToIndex:1];
+    if([firstSymbol isEqualToString:@"1"]==NO && [firstSymbol isEqualToString:@"3"]==NO)
+        return NO;
+    return YES;
 }
 
 - (void)updatePasteButtonStatus {
-    // check button state
-    [LWValidator setButton:self.proceedButton enabled:[self canProceed]];
-    self.pasteButton.hidden = [self canProceed];
+    
+    if([self canProceed]==NO)
+    {
+        [LWValidator setButton:self.proceedButton enabled:NO];
+        [self hideShowPasteButton:NO];
+
+    }
+    else
+    {
+        [[LWAuthManager instance] validateBitcoinAddress:bitcoinTextField.text];
+    }
+        
+//    // check button state
+//    [LWValidator setButton:self.proceedButton enabled:[self canProceed]];
+//    self.pasteButton.hidden = [self canProceed];
+}
+
+#pragma mark - LWAuthManager
+
+-(void) authManager:(LWAuthManager *)manager didValidateBitcoinAddress:(LWPacketBitcoinAddressValidation *)bitconAddress
+{
+    BOOL isValid=bitconAddress.isValid && [self canProceed] && [bitconAddress.bitcoinAddress isEqualToString:bitcoinTextField.text];
+    [LWValidator setButton:self.proceedButton enabled:isValid];
+    [self hideShowPasteButton:isValid];
+    
+}
+
+-(void) hideShowPasteButton:(BOOL) shouldHide
+{
+    self.pasteButton.hidden=shouldHide;
+    if(shouldHide)
+        [bitcoinTextField setRightOffset:10];
+    else
+        [bitcoinTextField setRightOffset:70];
+
+    
 }
 
 @end
