@@ -96,6 +96,8 @@
     currentSlide=0;
     [self.progressView setActiveDot:currentSlide];
     self.view.userInteractionEnabled=YES;
+    
+    self.getStartedButton.adjustsImageWhenHighlighted=NO;
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -237,6 +239,14 @@
     UIGraphicsEndImageContext();
     
     return img;
+}
+
+-(UIInterfaceOrientationMask) supportedInterfaceOrientations
+{
+    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
+        return UIInterfaceOrientationMaskPortrait;
+    else
+        return UIInterfaceOrientationMaskAll;
 }
 
 - (void)didReceiveMemoryWarning {

@@ -96,6 +96,7 @@
 -(void) removeFromSuperview
 {
     [timer invalidate];
+    [super removeFromSuperview];
 }
 
 -(void) dealloc

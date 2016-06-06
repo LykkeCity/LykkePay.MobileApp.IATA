@@ -13,6 +13,7 @@
 #import "LWErrorView.h"
 #import "Macro.h"
 #import "UIView+Toast.h"
+#import "LWProgressView.h"
 
 
 @implementation UIViewController (Loading)
@@ -23,17 +24,20 @@
     if (loading) {
         [self.view endEditing:YES];
         
-        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+//        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
 //        hud.dimBackground = YES;
 //        hud.mode = MBProgressHUDModeIndeterminate;
         
+        [LWProgressView showInView:self.navigationController.view];
         
     }
     else {
-        MBProgressHUD *hud = [self hud];
-        if (hud) {
-            [hud hide:YES];
-        }
+        
+        [LWProgressView hide];
+//        MBProgressHUD *hud = [self hud];
+//        if (hud) {
+//            [hud hide:YES];
+//        }
     }
 }
 

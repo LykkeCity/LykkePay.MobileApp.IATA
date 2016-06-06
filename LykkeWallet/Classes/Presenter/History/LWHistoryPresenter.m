@@ -21,6 +21,8 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 
+    self.title = Localize(@"tab.history");
+
     if (self.shouldGoBack) {
         [self setBackButton];
     }

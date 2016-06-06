@@ -61,9 +61,17 @@ static int const kBlockchainRow = 4;
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    self.titleLabel.text = [NSString stringWithFormat:@"%@%@",
-                            self.purchase.assetPair,
-                            Localize(@"exchange.assets.result.title")];
+    NSString *oper;
+
+    if([self.purchase.orderType isEqualToString:@"Buy"])
+        oper=Localize(@"exchange.assets.result.boughtfor");
+    else
+        oper=Localize(@"exchange.assets.result.soldfor");
+    self.titleLabel.text=[NSString stringWithFormat:@"%@ %@ %@", [self.purchase.assetPair stringByReplacingOccurrencesOfString:self.purchase.baseAsset withString:@""], oper, self.purchase.baseAsset];
+    
+//    self.titleLabel.text = [NSString stringWithFormat:@"%@%@",
+//                            self.purchase.assetPair,
+//                            Localize(@"exchange.assets.result.title")];
     
     [self.closeButton setTitle:Localize(@"exchange.assets.result.close")
                       forState:UIControlStateNormal];
@@ -88,9 +96,6 @@ static int const kBlockchainRow = 4;
 {
     [super viewDidAppear:animated];
     
-//    [self setTitle:[NSString stringWithFormat:@"%@%@",
-//                    self.purchase.assetPair,
-//                    Localize(@"exchange.assets.result.title")]];
     
 }
 
@@ -175,7 +180,7 @@ static int const kBlockchainRow = 4;
         [LWMath makeStringByNumber:self.purchase.volume withPrecision:self.purchase.accuracy.integerValue],
         [LWMath makeStringByNumber:self.purchase.price withPrecision:self.purchase.accuracy.integerValue],
         //[LWMath makeStringByNumber:self.purchase.commission withPrecision:2],
-        [LWMath makeStringByNumber:self.purchase.totalCost withPrecision:2],
+        [LWMath makeStringByNumber:self.purchase.totalCost withPrecision:self.purchase.accuracy.integerValue],
         self.purchase.blockchainSettled ? self.purchase.blockchainId : Localize(@"exchange.assets.result.blockchain.progress")
         //[LWMath makeStringByNumber:self.purchase.position withPrecision:0]
     };

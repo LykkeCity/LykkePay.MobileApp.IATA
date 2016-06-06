@@ -77,6 +77,8 @@
     UIImagePickerController *picker = [[UIImagePickerController alloc] init];
     picker.delegate = self;
     picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    picker.navigationBar.translucent=NO;
+
     
     [self presentViewController:picker animated:YES completion:nil];
     

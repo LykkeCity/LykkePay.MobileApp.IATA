@@ -21,9 +21,9 @@
 
 #define kProductionServer  @"api.lykkex.com"
 
-#define kStagingTestServer @"lykke-api-test.azurewebsites.net"
+#define kDemoTestServer @"lykke-api-test.azurewebsites.net"
 #define kDevelopTestServer @"lykke-api-dev.azurewebsites.net"
-#define kDemoTestServer    @"lykke-api-staging.azurewebsites.net"
+#define kStagingTestServer    @"lykke-api-staging.azurewebsites.net"
 
 
 #pragma mark - General Constants

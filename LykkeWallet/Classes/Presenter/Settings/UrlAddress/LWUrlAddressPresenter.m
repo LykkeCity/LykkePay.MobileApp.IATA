@@ -24,17 +24,19 @@
 
 @implementation LWUrlAddressPresenter
 
-static NSInteger const kAddressesCount = 2;
+static NSInteger const kAddressesCount = 3;
 
 static NSString *const addresses[kAddressesCount] = {
     kDevelopTestServer,
-    kStagingTestServer
+    kStagingTestServer,
+    kTestingTestServer
     
 };
 
 static NSString *const titles[kAddressesCount] = {
     @"DEV",
-    @"STAGING"
+    @"STAGING",
+    @"TEST"
     
 };
 

@@ -15,6 +15,7 @@
 #import "LWAssetPairModel.h"
 #import "LWAssetPairRateModel.h"
 #import "LWCache.h"
+#import "UIViewController+Loading.h"
 
 #import "LWTradingLinearGraphPresenter.h"
 
@@ -130,6 +131,8 @@ static NSString *const AssetIcons[kNumberOfSections] = {
     self.headerView.backgroundColor = self.navigationController.navigationBar.barTintColor;
 #endif
     
+    if(!self.assetPairs)
+        [self setLoading:YES];
     [[LWAuthManager instance] requestAssetPairs];
 }
 
@@ -328,6 +331,14 @@ static NSString *const AssetIcons[kNumberOfSections] = {
     [[LWAuthManager instance] requestAssetPairRates];
     
     [self.tableView reloadData];
+    [self setLoading:NO];
+}
+
+-(void) authManager:(LWAuthManager *)manager didFailWithReject:(NSDictionary *)reject context:(GDXRESTContext *)context
+{
+    [self setLoading:NO];
+    [super authManager:manager didFailWithReject:reject context:context];
+
 }
 
 - (void)authManager:(LWAuthManager *)manager didGetAssetPairRates:(NSArray *)assetPairRates {

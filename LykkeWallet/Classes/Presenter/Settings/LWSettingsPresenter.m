@@ -90,7 +90,8 @@ static NSString *const SettingsIdentifiers[kNumberOfRows] = {
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
+    self.title = Localize(@"tab.settings");
+
     if (self.tabBarController && self.navigationItem) {
         self.tabBarController.title = [self.navigationItem.title uppercaseString];
     }

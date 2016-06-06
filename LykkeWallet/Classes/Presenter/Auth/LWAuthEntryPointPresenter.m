@@ -21,6 +21,8 @@
 #import "LWCache.h"
 #import "LWAnimatedView.h"
 #import "LWIntroductionPresenter.h"
+#import "UIViewController+Loading.h"
+#import "UIView+Toast.h"
 
 typedef NS_ENUM(NSInteger, LWAuthEntryPointNextStep) {
     LWAuthEntryPointNextStepNone,
@@ -39,6 +41,8 @@ typedef NS_ENUM(NSInteger, LWAuthEntryPointNextStep) {
     LWTipsView  *tipsView;
     
     LWAuthEntryPointNextStep step;
+    
+    CGFloat keyboardHeight;
 }
 
 @property (weak, nonatomic) IBOutlet UIImageView *logoView;
@@ -71,6 +75,7 @@ typedef NS_ENUM(NSInteger, LWAuthEntryPointNextStep) {
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    keyboardHeight=0;
     // init email field
     emailTextField = [LWTextField new];
     emailTextField.delegate = self;
@@ -184,6 +189,7 @@ typedef NS_ENUM(NSInteger, LWAuthEntryPointNextStep) {
 - (void)observeKeyboardWillShowNotification:(NSNotification *)notification {
     CGRect const frame = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
 
+    keyboardHeight=frame.size.height;
     
     
     
@@ -228,7 +234,7 @@ typedef NS_ENUM(NSInteger, LWAuthEntryPointNextStep) {
 //#else
 //    [self.tipsBottomConstraint setConstant:0];
 //#endif
-    
+    keyboardHeight=0;
     if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad)
     {
         CGRect rect=self.view.frame;
@@ -416,6 +422,14 @@ typedef NS_ENUM(NSInteger, LWAuthEntryPointNextStep) {
 
 - (void)authManager:(LWAuthManager *)manager didFailWithReject:(NSDictionary *)reject context:(GDXRESTContext *)context {
     [self.activityView stopAnimating];
+    
+    if(reject==nil)
+    {
+        [self.view makeToast:Localize(@"errors.network.connection") duration:1 position:[NSValue valueWithCGPoint:CGPointMake(self.view.bounds.size.width/2, self.view.bounds.size.height-keyboardHeight-30)]];
+        return;
+        
+    }
+    
     
     step = LWAuthEntryPointNextStepRegister;
     // check button state

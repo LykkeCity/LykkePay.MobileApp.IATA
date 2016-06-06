@@ -57,9 +57,9 @@
 //    countries = [NSArray array];
     sections = [NSArray arrayWithObjects:@"A", @"B", @"C", @"D", @"E", @"F", @"G", @"H", @"I", @"J", @"K", @"L", @"M", @"N", @"O", @"P", @"Q", @"R", @"S", @"T", @"U", @"V", @"W", @"X", @"Y", @"Z", nil];
     
-    [self setCancelButtonWithTitle:Localize(@"register.phone.cancel")
-                            target:self
-                          selector:@selector(cancelClicked)];
+//    [self setCancelButtonWithTitle:Localize(@"register.phone.cancel")
+//                            target:self
+//                          selector:@selector(cancelClicked)];
     
     self.searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
     self.searchController.searchResultsUpdater = self;
@@ -67,11 +67,16 @@
     self.searchController.searchBar.delegate = self;
     self.searchController.dimsBackgroundDuringPresentation = NO;
     
+    self.searchController.hidesNavigationBarDuringPresentation = NO;
+    self.definesPresentationContext = NO;
+    self.navigationController.navigationBar.translucent=NO;
+    
     NSString *searchText = Localize(@"register.phone.country.placeholder");
     [self.searchController.searchBar setKeyboardType:UIKeyboardTypeDefault];
     [self.searchController.searchBar setPlaceholder:searchText];
     [self.searchController.searchBar setBarStyle:UIBarStyleDefault];
     [self.searchController.searchBar setAutocorrectionType:UITextAutocorrectionTypeNo];
+    
     
     [self.searchController.searchBar setBackgroundImage:[UIImage new]];
     [self.searchController.searchBar sizeToFit];
@@ -81,7 +86,7 @@
     
     self.tableView.sectionIndexColor = [UIColor colorWithHexString:kMainElementsColor];
     self.tableView.tableHeaderView = self.searchController.searchBar;
-    
+    self.searchController.searchBar.backgroundColor=[UIColor whiteColor];
     
 }
 
@@ -117,7 +122,7 @@
 }
 
 - (void)willPresentSearchController:(UISearchController *)searchController {
-    self.navigationController.navigationBar.translucent = YES;
+//    self.navigationController.navigationBar.translucent = YES;
 }
 
 - (void)didDismissSearchController:(UISearchController *)searchController {
@@ -126,6 +131,8 @@
 
 -(void) cancelButtonPressed
 {
+    if(self.searchController.isActive)
+        [self dismissViewControllerAnimated:NO completion:nil];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

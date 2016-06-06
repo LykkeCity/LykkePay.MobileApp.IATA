@@ -390,7 +390,7 @@ static NSString *const FormIdentifiers[kFormRows] = {
         }
     }
     
-    balanceOfAccount=@(10.2);//Testing
+//    balanceOfAccount=@(10.2);//Testing
     
     NSString *str=[NSString stringWithFormat:@"%f",balanceOfAccount.floatValue];
     balance.text=[NSString stringWithFormat:@"%@ available", [LWUtils formatVolumeString:str currencySign:balanceCurrencySymbol accuracy:balanceAccuracy removeExtraZeroes:YES]];

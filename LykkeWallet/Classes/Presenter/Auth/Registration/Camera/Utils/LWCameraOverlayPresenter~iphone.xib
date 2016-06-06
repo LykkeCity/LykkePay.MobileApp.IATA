@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15G7a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -33,7 +33,7 @@
                     </constraints>
                     <items>
                         <navigationItem title="REGISTER" id="HhN-xZ-aQE">
-                            <barButtonItem key="leftBarButtonItem" image="C25BC554-74D5-4AEE-AC80-91B25BCB0EC5" id="TTA-aa-W3x">
+                            <barButtonItem key="leftBarButtonItem" image="2A1A8875-96E1-49CA-B1E3-D9154090A062" id="TTA-aa-W3x">
                                 <color key="tintColor" red="0.58431372549019611" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <action selector="closeButtonClick:" destination="-1" id="bm4-Hj-WIV"/>
@@ -137,10 +137,7 @@
         </view>
     </objects>
     <resources>
-        <image name="ButtonCameraSelectGallery" width="36" height="36"/>
-        <image name="ButtonCameraSwitch" width="36" height="36"/>
-        <image name="ButtonCameraTakePicture" width="75" height="75"/>
-        <image name="C25BC554-74D5-4AEE-AC80-91B25BCB0EC5" width="22" height="22">
+        <image name="2A1A8875-96E1-49CA-B1E3-D9154090A062" width="22" height="22">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw
@@ -223,6 +220,9 @@ AKsArQCyALUAtwC5ALsAvQDCANkA2wDdEQ8RFBEfESgROxE/EUoRUxFYEWARYxFoEXcRexGCEYoRlxGc
 EZ4RoBGlEa0RsBG1Eb0RwBHSEdUR2gAAAAAAAAIBAAAAAAAAAEEAAAAAAAAAAAAAAAAAABHcA
 </mutableData>
         </image>
+        <image name="ButtonCameraSelectGallery" width="36" height="36"/>
+        <image name="ButtonCameraSwitch" width="36" height="36"/>
+        <image name="ButtonCameraTakePicture" width="75" height="75"/>
         <image name="RegisterLineStep2" width="303" height="36"/>
     </resources>
 </document>

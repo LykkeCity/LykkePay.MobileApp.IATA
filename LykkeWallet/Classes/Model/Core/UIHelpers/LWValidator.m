@@ -141,6 +141,7 @@ static int const PasswordLength = 6;
     UIColor *proceedColor = (enabled) ? [UIColor whiteColor] : [UIColor lightGrayColor];
     
     [button setBackgroundImage:[UIImage imageNamed:proceedImage] forState:UIControlStateNormal];
+    
     [button setTitleColor:proceedColor forState:UIControlStateNormal];
     button.enabled = enabled;
     button.layer.cornerRadius=button.bounds.size.height/2;
