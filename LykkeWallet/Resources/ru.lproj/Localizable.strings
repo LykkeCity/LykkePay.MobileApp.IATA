@@ -122,9 +122,9 @@
 "withdraw.funds.wallet" = "Bitcoin Wallet";
 "withdraw.funds.wallet.iata" = "Bank Account";
 "withdraw.funds.paste" = "Paste";
-"withdraw.funds.scan" = "Scan QR-code";
+"withdraw.funds.scan" = "Scan QR code";
 "withdraw.funds.proceed" = "PROCEED";
-"withdraw.funds.info" = "The funds from this wallet will be charged only for the transaction";
+"withdraw.funds.info" = "Your wallet will not be charged until you authorize this transaction.";
 "withdraw.funds.amount" = "Amount";
 "withdraw.funds.placeholder" = "Input amount";
 "withdraw.funds.validatepin" = "PIN validation ...";
@@ -192,7 +192,7 @@
 "exchange.blockchain.title" = "ОБОЗРЕВАТЕЛЬ BLOCKCHAIN";
 "exchange.blockchain.hash" = "Hash";
 "exchange.blockchain.date" = "Дата";
-"exchange.blockchain.confirm" = "Confirm.";
+"exchange.blockchain.confirm" = "Confirm";
 "exchange.blockchain.block" = "Block";
 "exchange.blockchain.height" = "Height";
 "exchange.blockchain.sender" = "Sender ID";

@@ -43,14 +43,12 @@
                     <color key="textColor" red="0.2470588235" green="0.30196078430000001" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RAM-2w-nE5">
-                    <rect key="frame" x="23" y="271" width="275" height="51"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Dear [First Name] [Last Name], please submit your information for review." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RAM-2w-nE5">
+                    <rect key="frame" x="-62" y="271" width="445" height="51"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="51" id="7OL-bh-m1c"/>
                         <constraint firstAttribute="width" constant="275" id="soe-3f-3Bx"/>
                     </constraints>
-                    <string key="text">Dear [First Name] [Last Name] you are about being reviewed by our KYC team.
-As soon as process is completed we will inform you by email.</string>
                     <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="14"/>
                     <color key="textColor" red="0.56470588239999997" green="0.58431372550000005" blue="0.61176470589999998" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>

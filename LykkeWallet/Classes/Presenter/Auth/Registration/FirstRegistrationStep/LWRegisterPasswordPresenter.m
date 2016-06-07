@@ -76,7 +76,7 @@
 - (void)observeKeyboardWillHideNotification:(NSNotification *)notification {
     if([UIDevice currentDevice].userInterfaceIdiom!=UIUserInterfaceIdiomPad)
     {
-        [super observeKeyboardWillShowNotification:notification];
+//        [super observeKeyboardWillShowNotification:notification];
         return;
     }
     self.scrollView.contentOffset=CGPointMake(0, 0);

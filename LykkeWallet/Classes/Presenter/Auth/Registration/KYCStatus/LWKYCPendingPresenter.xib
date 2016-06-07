@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15F31a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15G7a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LWKYCPendingPresenter">
             <connections>
+                <outlet property="activity" destination="N3J-OU-MWD" id="d1c-zJ-01Y"/>
                 <outlet property="textLabel" destination="Ne1-q5-5YQ" id="mrt-ZV-fMZ"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -39,9 +40,6 @@
                     <color key="textColor" red="0.56470588239999997" green="0.58431372550000005" blue="0.61176470589999998" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="npx-Aj-5hI">
-                    <rect key="frame" x="150" y="416" width="20" height="20"/>
-                </activityIndicatorView>
                 <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="RegisterLineStep3" translatesAutoresizingMaskIntoConstraints="NO" id="hS7-CU-abr">
                     <rect key="frame" x="0.0" y="30" width="320" height="37"/>
                     <constraints>
@@ -49,17 +47,25 @@
                         <constraint firstAttribute="width" constant="320" id="juH-5h-vSk"/>
                     </constraints>
                 </imageView>
+                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="N3J-OU-MWD" customClass="LWProgressView">
+                    <rect key="frame" x="145" y="416" width="30" height="31"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="30" id="WZX-1Q-Clh"/>
+                        <constraint firstAttribute="height" constant="30" id="cQE-F4-X6R"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="npx-Aj-5hI" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="0eD-LX-hSu"/>
                 <constraint firstItem="hS7-CU-abr" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="30" id="3B1-Rw-VvX"/>
                 <constraint firstItem="Ne1-q5-5YQ" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="74Z-Eu-a9Z"/>
                 <constraint firstItem="AAh-rJ-UAw" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="OJJ-c5-qcM"/>
+                <constraint firstItem="N3J-OU-MWD" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="ZJs-6h-Sfr"/>
                 <constraint firstItem="Ne1-q5-5YQ" firstAttribute="top" secondItem="AAh-rJ-UAw" secondAttribute="bottom" constant="45" id="fN4-7n-2DA"/>
+                <constraint firstItem="N3J-OU-MWD" firstAttribute="top" secondItem="Ne1-q5-5YQ" secondAttribute="bottom" constant="15" id="gsV-Cb-nAC"/>
                 <constraint firstItem="AAh-rJ-UAw" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="80" id="mtB-ps-WhO"/>
                 <constraint firstItem="hS7-CU-abr" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="sdg-so-Rqf"/>
-                <constraint firstItem="npx-Aj-5hI" firstAttribute="top" secondItem="Ne1-q5-5YQ" secondAttribute="bottom" constant="8" id="wN1-Ec-nmu"/>
             </constraints>
             <point key="canvasLocation" x="351" y="276"/>
         </view>

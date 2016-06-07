@@ -13,6 +13,7 @@
 #import "LWPersonalData.h"
 #import "UIViewController+Loading.h"
 #import "LWCache.h"
+#import "LWProgressView.h"
 
 
 @interface LWAuthValidationPresenter () {
@@ -22,6 +23,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *textLabel;
 
 @property (weak, nonatomic) IBOutlet UILabel *versionLabel;
+
+@property (weak, nonatomic) IBOutlet LWProgressView *activity;
 
 @end
 
@@ -34,6 +37,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
+    [self.activity startAnimating];
     [self.navigationController setNavigationBarHidden:YES animated:NO];
     
     [[LWAuthManager instance] requestRegistrationGet];

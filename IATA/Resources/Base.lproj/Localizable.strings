@@ -53,16 +53,16 @@
 "register.camera.photo.cancel" = "Not good, reshoot";
 "register.camera.photo.ok" = "Nice, submit";
 "register.camera.hud.title" = "Tap to cancel the upload operation";
-"register.kyc.pending" = "Dear %@, your information is being reviewed by our KYC team.\nAs soon as process is completed we will inform you by email.";
+"register.kyc.pending" = "Dear %@, your information is being reviewed by our KYC team.\nAs soon as this process is complete, we'll inform you by email.";
 
 "register.kyc.restricted.header" = "OOPS!";
 "register.kyc.restricted" = "Dear %@, we're terribly sorry, but Lykke Wallet can't be created based on the KYC information that you have provided.";
 
 "register.kyc.invalidDocuments.header" = "OOPS!";
 "register.kyc.invalidDocuments" = "Dear %@, we're terribly sorry, but our compliance department have not accepted some of your documents. Please upload them one more time.";
-"register.kyc.invalidDocuments.okButton" = "Okay, I understood";
-"register.kyc.success.header" = "LYKKE WALLET WAS SUCCESSFULLY CREATED!";
-"register.kyc.success" = "Dear %@, thank you for your patience. Your documents are in order. Lets set up our security.";
+"register.kyc.invalidDocuments.okButton" = "Okay, I understand";
+"register.kyc.success.header" = "YOUR LYKKE WALLET WAS SUCCESSFULLY CREATED!";
+"register.kyc.success" = "Dear %@, thank you for your patience. Your documents are in order. Let's set up your security.";
 "register.kyc.success.okButton" = "Continue";
 "register.pin.setup.ok.title" = "Congratulations!";
 "register.pin.setup.ok.okButton" = "OK";
@@ -70,7 +70,7 @@
 
 "register.kyc.submit.title" = "Submit documents";
 "register.kyc.submit.header" = "KYC PROCEDURE";
-"register.kyc.submit" = "Dear %@ you are about being reviewed by our KYC team.\nAs soon as process is completed we will inform you by email.";
+"register.kyc.submit" = "Dear %@, please submit your information for review.";
 "register.kyc.submit.submitButton" = "Submit";
 
 "register.validation.label" = "Connection to server.\nPlease wait...";
@@ -87,7 +87,7 @@
 "wallets.cardform.card.owner.placeholder" = "Name on card";
 "wallets.cardform.card.code.placeholder" = "CVC";
 "wallets.cardform.card.submitButton" = "SUBMIT";
-"wallets.cardform.card.description" = "The funds from this card will be charged only for the transaction";
+"wallets.cardform.card.description" = "Your wallet will not be charged until you authorize this transaction.";
 
 "wallets.confirm.title" = "CARD SUCCESSFULLY LINKED";
 "wallets.confirm.description" = "You can change your credit card information at any time";
@@ -112,9 +112,9 @@
 "withdraw.funds.wallet" = "Bitcoin Wallet";
 "withdraw.funds.wallet.iata" = "Bank Account";
 "withdraw.funds.paste" = "Paste";
-"withdraw.funds.scan" = "Scan QR-code";
+"withdraw.funds.scan" = "Scan QR code";
 "withdraw.funds.proceed" = "PROCEED";
-"withdraw.funds.info" = "The funds from this wallet will be charged only for the transaction";
+"withdraw.funds.info" = "Your wallet will not be charged until you authorize this transaction.";
 "withdraw.funds.amount" = "Amount";
 "withdraw.funds.placeholder" = "Input amount";
 "withdraw.funds.validatepin" = "PIN validation ...";
@@ -178,7 +178,7 @@
 "exchange.blockchain.title" = "BLOCKCHAIN EXPLORER";
 "exchange.blockchain.hash" = "Hash";
 "exchange.blockchain.date" = "Date";
-"exchange.blockchain.confirm" = "Confirm.";
+"exchange.blockchain.confirm" = "Confirm";
 "exchange.blockchain.block" = "Block";
 "exchange.blockchain.height" = "Height";
 "exchange.blockchain.sender" = "Sender ID";
@@ -216,7 +216,7 @@
 "settings.assets.title" = "BASE ASSET";
 "settings.cell.pin.title" = "Sign orders with PIN/Touch ID";
 "settings.cell.pin.change.title" = "Please scan your fingerprint to validate your identity to complete request.";
-"settings.cell.kyc.title" = "View Personal Data";
+"settings.cell.kyc.title" = "View personal data";
 "settings.cell.logout.title" = "Log out from";
 "settings.cell.asset.title" = "Base asset";
 
@@ -243,7 +243,7 @@
 "errors.server.problems"    = "Technical problems.";
 
 "ABPadLockScreen.pin.enter" = "Enter PIN";
-"ABPadLockScreen.pin.setup" = "Setup your new PIN";
+"ABPadLockScreen.pin.setup" = "Set up your PIN";
 "ABPadLockScreen.pin.setup.confirm" = "Re-enter PIN";
 "ABPadLockScreen.pin.matchError" = "PINs do not match!";
 "ABPadLockScreen.pin.attempts.left.none" = "No attempts left. Application is locked.";

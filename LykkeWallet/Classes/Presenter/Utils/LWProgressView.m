@@ -21,19 +21,30 @@
 
 }
 
+@property CGFloat diameter;
+
 @property (strong, nonatomic) LWProgressView *sharedInstance;
 @end
 
 
 @implementation LWProgressView
 
+-(void) awakeFromNib
+{
+    [self loadFrames];
+    self.diameter=self.bounds.size.width;
+    if(self.diameter>30)
+        self.diameter=30;
+    
+}
+
 + (instancetype)sharedInstance
 {
     static LWProgressView *sharedInstance = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        sharedInstance = [[LWProgressView alloc] init];
-        // Do any other initialisation stuff here
+        sharedInstance = [[LWProgressView alloc] initWithFrame:CGRectMake(0, 0, 1024, 1024)];
+        sharedInstance.diameter=55;
     });
     return sharedInstance;
 }
@@ -45,7 +56,7 @@
     [[LWProgressView sharedInstance] removeFromSuperview];
     [view addSubview:[LWProgressView sharedInstance]];
     [LWProgressView sharedInstance].center=CGPointMake(view.bounds.size.width/2, view.bounds.size.height/2);
-    [[LWProgressView sharedInstance] startAnimation];
+    [[LWProgressView sharedInstance] startAnimating];
         });
 }
 
@@ -59,42 +70,64 @@
 
 -(id) init
 {
-    self=[super initWithFrame:CGRectMake(0, 0, 1024, 1024)];
+    self=[super initWithFrame:CGRectMake(0, 0, 30, 30)];
+    self.diameter=30;
+    [self loadFrames];
+    return self;
+}
+
+-(void) loadFrames
+{
     self.backgroundColor=nil;
     self.opaque=NO;
-        total=0;
-        for(int i=0;i<=80; i++)
-        {
-            NSString *num=[NSString stringWithFormat:@"%d", i];
-            while (num.length<5) {
-                num=[@"0" stringByAppendingString:num];
-            }
-            NSString *filename=[NSString stringWithFormat:@"loader-color@2x_%@.png", num];
-            NSString *path=[[NSBundle mainBundle] pathForResource:filename ofType:nil];
-            if(!path)
-                break;
-            NSData *data=[NSData dataWithContentsOfFile:path];
-            total++;
-            CGDataProviderRef imgDataProvider = CGDataProviderCreateWithCFData((CFDataRef)data);
-            CGImageRef image = CGImageCreateWithPNGDataProvider(imgDataProvider, NULL, true, kCGRenderingIntentDefault); // Or JPEGDataProvider
-            images[i]=image;
+    total=0;
+    for(int i=0;i<=80; i++)
+    {
+        NSString *num=[NSString stringWithFormat:@"%d", i];
+        while (num.length<5) {
+            num=[@"0" stringByAppendingString:num];
         }
+        NSString *filename=[NSString stringWithFormat:@"loader-color@2x_%@.png", num];
+        NSString *path=[[NSBundle mainBundle] pathForResource:filename ofType:nil];
+        if(!path)
+            break;
+        NSData *data=[NSData dataWithContentsOfFile:path];
+        total++;
+        CGDataProviderRef imgDataProvider = CGDataProviderCreateWithCFData((CFDataRef)data);
+        CGImageRef image = CGImageCreateWithPNGDataProvider(imgDataProvider, NULL, true, kCGRenderingIntentDefault); // Or JPEGDataProvider
+        images[i]=image;
+    }
     
-    
+    self.hidden=YES;
+    self.clipsToBounds=NO;
     
     count=0;
-    
+ 
+}
+
+-(id) initWithFrame:(CGRect)frame
+{
+    self=[super initWithFrame:frame];
+    [self loadFrames];
     return self;
 }
 
 
 
--(void) startAnimation
+-(void) startAnimating
 {
+    self.hidden=NO;
+    [timer invalidate];
 //    dispatch_async(dispatch_get_main_queue(), ^{
     timer=[NSTimer timerWithTimeInterval:0.017 target:self selector:@selector(repeatAnimation) userInfo:nil repeats:YES];
     [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
 //        });
+}
+
+-(void) stopAnimating
+{
+    self.hidden=YES;
+    [timer invalidate];
 }
 
 
@@ -115,7 +148,8 @@
     CGContextTranslateCTM(context, 0, self.bounds.size.height);
     CGContextScaleCTM(context, 1.0, -1.0);
     
-    CGContextDrawImage(context, CGRectMake(self.bounds.size.width/2-55.0/2, self.bounds.size.height/2-55.0/2, 55, 55), images[count]);
+    
+    CGContextDrawImage(context, CGRectMake(self.bounds.size.width/2-_diameter/2, self.bounds.size.height/2-_diameter/2, _diameter, _diameter), images[count]);
 }
 
 -(void) removeFromSuperview

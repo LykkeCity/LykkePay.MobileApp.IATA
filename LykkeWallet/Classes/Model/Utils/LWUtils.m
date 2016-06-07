@@ -135,7 +135,7 @@
             if(toAdd.length>accuracy+1)
                 toAdd=[toAdd substringToIndex:accuracy+1];
             
-            while (toAdd.length>1)
+            while (toAdd.length>1 )
             {
                 if([[toAdd substringFromIndex:toAdd.length-1] isEqualToString:@"0"])
                 {
@@ -145,7 +145,8 @@
                     break;
             }
         }
-        [finalString appendString:toAdd];
+        if(toAdd.length>1)
+            [finalString appendString:toAdd];
     }
     else if(rightPartString && flagRemoveZeroes==NO)
     {

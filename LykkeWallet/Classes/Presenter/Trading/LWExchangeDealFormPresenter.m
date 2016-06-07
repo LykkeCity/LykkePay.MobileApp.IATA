@@ -55,6 +55,12 @@ typedef enum {
     NSNumber *balanceOfAccount;
     NSString *balanceCurrencySymbol;
     int balanceAccuracy;
+    
+    
+    LWAssetPairRateModel *rateToSend;
+    NSNumber *volumeToSend;
+    NSString *volumeStringToSend;
+    NSString *resultStringToSend;
 }
 
 
@@ -442,6 +448,12 @@ static NSString *const FormIdentifiers[kFormRows] = {
     
     [self.view endEditing:YES];
     
+    rateToSend=self.assetRate;
+    volumeToSend=[self volumeFromField];
+    resultStringToSend=resultString;
+    volumeStringToSend=volumeString;
+    
+    
     // if fingerprint available - show confirmation view
     BOOL const shouldSignOrder = [LWCache instance].shouldSignOrder;
     if (shouldSignOrder) {
@@ -483,14 +495,14 @@ static NSString *const FormIdentifiers[kFormRows] = {
     if (self.assetDealType == LWAssetDealTypeBuy) {
         [[LWAuthManager instance] requestPurchaseAsset:[LWCache instance].baseAssetId
                                              assetPair:self.assetPair.identity
-                                                volume:[self volumeFromField]
-                                                  rate:self.assetRate.ask];
+                                                volume:volumeToSend
+                                                  rate:rateToSend.ask];
     }
     else {
         [[LWAuthManager instance] requestSellAsset:[LWCache instance].baseAssetId
                                          assetPair:self.assetPair.identity
-                                            volume:[self volumeFromField]
-                                              rate:self.assetRate.bid];
+                                            volume:volumeToSend
+                                              rate:rateToSend.bid];
     }
 }
 
@@ -621,27 +633,27 @@ static NSString *const FormIdentifiers[kFormRows] = {
         totalCell.totalTextField.text=[LWUtils formatVolumeString:total currencySign:@"" accuracy:[self accuracyForBaseAsset].intValue removeExtraZeroes:NO];
     }
     
-    volumeString=volume;
-    resultString=total;
+    volumeString=[volume stringByReplacingOccurrencesOfString:@" " withString:@""];
+    resultString=[total stringByReplacingOccurrencesOfString:@" " withString:@""];
 
 
-    if (confirmationView) {
-        confirmationView.rateString = priceText;
-        confirmationView.volumeString = volume;
-        confirmationView.totalString = total;
-    }
+//    if (confirmationView) {
+//        confirmationView.rateString = priceText;
+//        confirmationView.volumeString = volumeString;
+//        confirmationView.totalString = resultString;
+//    }
     if(self.assetDealType==LWAssetDealTypeBuy)
     {
-        if(total.floatValue>balanceOfAccount.floatValue || (total.floatValue==0 || volume.floatValue==0))
+        if(resultString.floatValue>balanceOfAccount.floatValue || (resultString.floatValue==0 || volumeString.floatValue==0))
             [LWValidator setButton:self.buyButton enabled:NO];
-        else if(volume.floatValue>0)
+        else if(volumeString.floatValue>0)
             [LWValidator setButton:self.buyButton enabled:YES];
     }
     else
     {
-        if(volume.floatValue>balanceOfAccount.floatValue || (total.floatValue==0 || volume.floatValue==0))
+        if(volumeString.floatValue>balanceOfAccount.floatValue || (resultString.floatValue==0 || volumeString.floatValue==0))
             [LWValidator setButton:self.buyButton enabled:NO];
-        else if(volume.floatValue>0)
+        else if(volumeString.floatValue>0)
             [LWValidator setButton:self.buyButton enabled:YES];
 
     }
@@ -651,6 +663,7 @@ static NSString *const FormIdentifiers[kFormRows] = {
 
 - (NSNumber *)volumeFromField {
 //    NSDecimalNumber *volume = [volumeString isEmpty] ? [NSDecimalNumber zero] : [LWMath numberWithString:volumeString];
+    
     
     double volume=volumeString.doubleValue;
     
@@ -691,6 +704,29 @@ static NSString *const FormIdentifiers[kFormRows] = {
     // showing modal view
     [self.navigationController.view addSubview:confirmationView];
     [self updatePrice];
+    NSString *priceText;
+    
+//    if (self.assetDealType == LWAssetDealTypeBuy) {
+//        priceText = [LWUtils priceForAsset:self.assetPair forValue:self.assetRate.ask];
+//    }
+//    else {
+//        priceText = [LWUtils priceForAsset:self.assetPair forValue:self.assetRate.bid];
+//    }
+
+    if (self.assetDealType == LWAssetDealTypeBuy) {
+        priceText = [LWUtils priceForAsset:self.assetPair forValue:rateToSend.ask];
+    }
+    else {
+        priceText = [LWUtils priceForAsset:self.assetPair forValue:rateToSend.bid];
+    }
+
+    
+    priceText=[priceText stringByReplacingOccurrencesOfString:@"," withString:@"."];
+
+    confirmationView.rateString = priceText;
+    confirmationView.volumeString = volumeStringToSend;
+    confirmationView.totalString = resultStringToSend;
+
 }
 
 // if (invert): total = volume / price
@@ -726,7 +762,7 @@ static NSString *const FormIdentifiers[kFormRows] = {
 //        result = [volume decimalNumberByMultiplyingBy:decimalPrice];
     }
     
-    NSString *vvv=[LWUtils formatVolumeString:[NSString stringWithFormat:@"%.8g", result] currencySign:@"" accuracy:[self accuracyForBaseAsset].intValue removeExtraZeroes:YES];
+    NSString *vvv=[LWUtils formatVolumeString:[NSString stringWithFormat:@"%.20f", result] currencySign:@"" accuracy:[self accuracyForBaseAsset].intValue removeExtraZeroes:YES];
     if([vvv isEqualToString:@"0"])
         vvv=@"";
     return vvv;
@@ -794,7 +830,7 @@ static NSString *const FormIdentifiers[kFormRows] = {
         }
     }
     
-    NSString *rrr=[LWUtils formatVolumeString:[NSString stringWithFormat:@"%.8g", volume] currencySign:@"" accuracy:[self accuracyForQuotingAsset].intValue removeExtraZeroes:YES];
+    NSString *rrr=[LWUtils formatVolumeString:[NSString stringWithFormat:@"%.20f", volume] currencySign:@"" accuracy:[self accuracyForQuotingAsset].intValue removeExtraZeroes:YES];
     if([rrr isEqualToString:@"0"])
         rrr=@"";
     return rrr;

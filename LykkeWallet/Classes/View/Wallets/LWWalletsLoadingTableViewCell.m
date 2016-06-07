@@ -7,8 +7,22 @@
 //
 
 #import "LWWalletsLoadingTableViewCell.h"
+#import "LWProgressView.h"
 
+@interface LWWalletsLoadingTableViewCell()
+
+@property (weak, nonatomic) IBOutlet LWProgressView *activity;
+
+@end
 
 @implementation LWWalletsLoadingTableViewCell
+
+
+
+-(void) layoutSubviews
+{
+    [super layoutSubviews];
+    [self.activity startAnimating];
+}
 
 @end

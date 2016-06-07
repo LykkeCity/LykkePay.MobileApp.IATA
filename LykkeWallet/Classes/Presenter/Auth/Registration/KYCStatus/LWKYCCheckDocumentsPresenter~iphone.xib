@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LWKYCCheckDocumentsPresenter">
             <connections>
+                <outlet property="activity" destination="GRj-WI-cO6" id="nqz-ky-vGO"/>
                 <outlet property="textLabel" destination="1T5-HG-aft" id="O8Y-07-uvf"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -40,22 +41,23 @@ Please wait…</string>
                     <color key="textColor" red="0.56470588239999997" green="0.58431372550000005" blue="0.61176470589999998" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Xjf-dn-xpr">
-                    <rect key="frame" x="150" y="341" width="20" height="20"/>
+                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GRj-WI-cO6" customClass="LWProgressView">
+                    <rect key="frame" x="144" y="341" width="32" height="32"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="20" id="Ita-7F-Cfj"/>
-                        <constraint firstAttribute="width" constant="20" id="uoU-bg-sej"/>
+                        <constraint firstAttribute="width" constant="30" id="BJR-S5-VqI"/>
+                        <constraint firstAttribute="height" constant="30" id="eTZ-Lu-Gry"/>
                     </constraints>
-                </activityIndicatorView>
+                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="1T5-HG-aft" firstAttribute="top" secondItem="0Gd-pi-F0b" secondAttribute="bottom" constant="27" id="1ns-dW-F69"/>
-                <constraint firstItem="Xjf-dn-xpr" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="4Hz-fF-30U"/>
                 <constraint firstItem="0Gd-pi-F0b" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="60" id="4O5-yZ-Jzq"/>
+                <constraint firstItem="GRj-WI-cO6" firstAttribute="top" secondItem="1T5-HG-aft" secondAttribute="bottom" constant="8" id="Gh9-C2-lhE"/>
                 <constraint firstItem="1T5-HG-aft" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="XoB-4J-0rm"/>
-                <constraint firstItem="Xjf-dn-xpr" firstAttribute="top" secondItem="1T5-HG-aft" secondAttribute="bottom" constant="8" id="ZWo-SE-Lh2"/>
                 <constraint firstItem="0Gd-pi-F0b" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="oX0-5q-dkt"/>
+                <constraint firstItem="GRj-WI-cO6" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="sws-k4-PCk"/>
             </constraints>
             <point key="canvasLocation" x="159" y="188"/>
         </view>

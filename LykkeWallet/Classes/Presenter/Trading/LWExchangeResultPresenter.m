@@ -18,6 +18,9 @@
 #import "TKButton.h"
 #import "UIViewController+Loading.h"
 #import "LWValidator.h"
+#import "LWUtils.h"
+#import "LWCache.h"
+#import "LWAssetModel.h"
 
 
 @interface LWExchangeResultPresenter () {
@@ -175,17 +178,79 @@ static int const kBlockchainRow = 4;
 }
 
 - (NSString *)dataByCellRow:(NSInteger)row {
+    
+//    NSString *volumeString;
+//    NSString *totalCostString;
+//    if([self.purchase.orderType isEqualToString:@"Buy"])
+//    {
+//        volumeString=[LWUtils formatVolumeString:[NSString stringWithFormat:@"%.20f", self.purchase.volume.floatValue] currencySign:@"" accuracy:[self accuracyForQuotingAsset].intValue removeExtraZeroes:NO];
+//        totalCostString=[LWUtils formatVolumeString:[NSString stringWithFormat:@"%.20f", self.purchase.totalCost.floatValue] currencySign:@"" accuracy:[self accuracyForBaseAsset].intValue removeExtraZeroes:NO];
+//
+//    }
+//    else
+//    {
+//        volumeString=[LWUtils formatVolumeString:[NSString stringWithFormat:@"%.20f", self.purchase.volume.floatValue] currencySign:@"" accuracy:[self accuracyForBaseAsset].intValue removeExtraZeroes:NO];
+//        totalCostString=[LWUtils formatVolumeString:[NSString stringWithFormat:@"%.20f", self.purchase.totalCost.floatValue] currencySign:@"" accuracy:[self accuracyForQuotingAsset].intValue removeExtraZeroes:NO];
+//    }
+    
     NSString *const values[kNumberOfRows] = {
         self.purchase.assetPair,
-        [LWMath makeStringByNumber:self.purchase.volume withPrecision:self.purchase.accuracy.integerValue],
-        [LWMath makeStringByNumber:self.purchase.price withPrecision:self.purchase.accuracy.integerValue],
+//        [LWMath makeStringByNumber:self.purchase.volume withPrecision:self.purchase.accuracy.integerValue],
+        self.purchase.volume.stringValue,
+        self.purchase.price.stringValue,
+        self.purchase.totalCost.stringValue,
+
+//        [LWMath makeStringByNumber:self.purchase.price withPrecision:self.purchase.accuracy.integerValue],
+//        [LWUtils formatVolumeString:[NSString stringWithFormat:@"%.20f", self.purchase.price.floatValue] currencySign:@"" accuracy:self.purchase.accuracy.intValue removeExtraZeroes:NO],
         //[LWMath makeStringByNumber:self.purchase.commission withPrecision:2],
-        [LWMath makeStringByNumber:self.purchase.totalCost withPrecision:self.purchase.accuracy.integerValue],
+//        [LWMath makeStringByNumber:self.purchase.totalCost withPrecision:self.purchase.accuracy.integerValue],
+//        totalCostString,
         self.purchase.blockchainSettled ? self.purchase.blockchainId : Localize(@"exchange.assets.result.blockchain.progress")
         //[LWMath makeStringByNumber:self.purchase.position withPrecision:0]
     };
     
     return values[row];
+}
+
+#pragma mark - Need to refactor (copied from LWExchangeDealFormPresenter
+
+-(NSNumber *) accuracyForBaseAsset
+{
+    NSArray *assets=[LWCache instance].baseAssets;
+    NSString *identity=[LWCache instance].baseAssetId;
+    NSNumber *accuracy=@(0);
+    for(LWAssetModel *m in assets)
+    {
+        if([m.identity isEqualToString:identity])
+        {
+            accuracy=m.accuracy;
+            break;
+        }
+    }
+    
+    return accuracy;
+}
+
+-(NSNumber *) accuracyForQuotingAsset
+{
+    NSArray *assets=[LWCache instance].baseAssets;
+    NSString *identity=[LWCache instance].baseAssetId;
+    if([self.purchase.baseAsset isEqualToString:identity]==NO)
+    {
+        identity=self.purchase.baseAsset;
+    }
+    NSNumber *accuracy=@(0);
+    for(LWAssetModel *m in assets)
+    {
+        if([m.identity isEqualToString:identity])
+        {
+            accuracy=m.accuracy;
+            break;
+        }
+    }
+    
+    return accuracy;
+    
 }
 
 - (void)startRefreshControl {

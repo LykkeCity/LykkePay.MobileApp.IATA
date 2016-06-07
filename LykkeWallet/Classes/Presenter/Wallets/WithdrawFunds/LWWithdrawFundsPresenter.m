@@ -170,9 +170,18 @@
     if(sss.length)
         return NO;
     NSString *firstSymbol=[bitcoinTextField.text substringToIndex:1];
-    if([firstSymbol isEqualToString:@"1"]==NO && [firstSymbol isEqualToString:@"3"]==NO)
-        return NO;
-    return YES;
+    NSArray *possibleFirstSymbols=@[@"1", @"3", @"2", @"m", @"n"];
+    BOOL flag=false;
+    for(NSString *s in possibleFirstSymbols)
+    {
+        if([s isEqualToString:firstSymbol])
+        {
+            flag=true;
+            break;
+        }
+    }
+    
+    return flag;
 }
 
 - (void)updatePasteButtonStatus {

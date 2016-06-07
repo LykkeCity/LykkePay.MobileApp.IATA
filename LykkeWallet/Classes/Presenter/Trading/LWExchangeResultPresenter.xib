@@ -50,9 +50,10 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XYe-eP-zU8">
                     <rect key="frame" x="0.0" y="463" width="320" height="105"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HW4-kP-Mu2" customClass="TKButton">
+                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HW4-kP-Mu2" customClass="TKButton">
                             <rect key="frame" x="20" y="30" width="130" height="45"/>
                             <constraints>
+                                <constraint firstAttribute="width" constant="130" id="Ozv-gi-rrf"/>
                                 <constraint firstAttribute="height" constant="45" id="dcj-UH-TcF"/>
                             </constraints>
                             <fontDescription key="fontDescription" name="ProximaNova-Semibold" family="Proxima Nova" pointSize="15"/>
@@ -63,7 +64,7 @@
                                 <action selector="closeClicked:" destination="-1" eventType="touchUpInside" id="oBT-a7-pUF"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lyi-cW-qh7" customClass="TKButton">
+                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lyi-cW-qh7" customClass="TKButton">
                             <rect key="frame" x="170" y="30" width="130" height="45"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="45" id="Jce-1D-lNS"/>
@@ -76,12 +77,10 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstItem="Lyi-cW-qh7" firstAttribute="width" secondItem="HW4-kP-Mu2" secondAttribute="width" id="3jf-0o-0e9"/>
+                        <constraint firstItem="HW4-kP-Mu2" firstAttribute="centerX" secondItem="XYe-eP-zU8" secondAttribute="centerX" id="0Rc-fV-Vuo"/>
                         <constraint firstItem="Lyi-cW-qh7" firstAttribute="centerY" secondItem="XYe-eP-zU8" secondAttribute="centerY" id="9yc-GZ-Cc9"/>
-                        <constraint firstItem="Lyi-cW-qh7" firstAttribute="leading" secondItem="HW4-kP-Mu2" secondAttribute="trailing" constant="20" id="Evi-kI-qtF"/>
                         <constraint firstAttribute="height" constant="105" id="OLd-pX-4V2"/>
                         <constraint firstAttribute="trailing" secondItem="Lyi-cW-qh7" secondAttribute="trailing" constant="20" id="Oza-SF-LuN"/>
-                        <constraint firstItem="HW4-kP-Mu2" firstAttribute="leading" secondItem="XYe-eP-zU8" secondAttribute="leading" constant="20" id="t8g-xA-GPl"/>
                         <constraint firstItem="HW4-kP-Mu2" firstAttribute="centerY" secondItem="XYe-eP-zU8" secondAttribute="centerY" id="t8x-rm-NWz"/>
                     </constraints>
                 </view>

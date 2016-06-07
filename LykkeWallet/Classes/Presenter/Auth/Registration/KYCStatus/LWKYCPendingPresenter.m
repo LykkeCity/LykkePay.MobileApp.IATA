@@ -14,6 +14,7 @@
 #import "LWPacketKYCStatusGet.h"
 #import "LWAuthNavigationController.h"
 #import "UIViewController+Loading.h"
+#import "LWProgressView.h"
 
 
 @interface LWKYCPendingPresenter () {
@@ -21,6 +22,7 @@
 }
 
 @property (weak, nonatomic) IBOutlet UILabel *textLabel;
+@property (weak, nonatomic) IBOutlet LWProgressView *activity;
 
 @end
 
@@ -34,6 +36,7 @@
     [super viewWillAppear:animated];
     
     [[LWAuthManager instance] requestKYCStatusGet];
+    [self.activity startAnimating];
 }
 
 - (void)localize {

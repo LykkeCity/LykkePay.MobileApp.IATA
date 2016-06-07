@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LWAuthValidationPresenter">
             <connections>
+                <outlet property="activity" destination="KYL-Bf-E8I" id="j2L-Dd-qzW"/>
                 <outlet property="textLabel" destination="ENx-xO-nxh" id="nyA-MI-U2t"/>
                 <outlet property="versionLabel" destination="39I-KW-soC" id="RJa-nC-Ymz"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -41,13 +42,6 @@ Please wait…</string>
                     <color key="textColor" red="0.56470588239999997" green="0.58431372550000005" blue="0.61176470589999998" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="AAF-a4-aCv">
-                    <rect key="frame" x="150" y="341" width="20" height="20"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="20" id="632-vx-HHO"/>
-                        <constraint firstAttribute="width" constant="20" id="oWc-3a-RhO"/>
-                    </constraints>
-                </activityIndicatorView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="39I-KW-soC">
                     <rect key="frame" x="0.0" y="547" width="320" height="21"/>
                     <constraints>
@@ -57,6 +51,14 @@ Please wait…</string>
                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KYL-Bf-E8I" customClass="LWProgressView">
+                    <rect key="frame" x="145" y="341" width="30" height="30"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="Q9l-V5-a0x"/>
+                        <constraint firstAttribute="width" constant="30" id="zGu-UX-ZaZ"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
@@ -64,10 +66,10 @@ Please wait…</string>
                 <constraint firstItem="ENx-xO-nxh" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="2LL-17-x6h"/>
                 <constraint firstAttribute="trailing" secondItem="39I-KW-soC" secondAttribute="trailing" id="Bs8-AG-AVJ"/>
                 <constraint firstItem="r7G-lt-G6s" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="60" id="HH6-HX-WVR"/>
-                <constraint firstItem="AAF-a4-aCv" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="HjL-bh-2me"/>
+                <constraint firstItem="KYL-Bf-E8I" firstAttribute="top" secondItem="ENx-xO-nxh" secondAttribute="bottom" constant="8" id="Jx4-Ej-ogf"/>
                 <constraint firstItem="ENx-xO-nxh" firstAttribute="top" secondItem="r7G-lt-G6s" secondAttribute="bottom" constant="27" id="Odl-Zt-NGt"/>
                 <constraint firstAttribute="bottom" secondItem="39I-KW-soC" secondAttribute="bottom" id="QHt-tc-D1D"/>
-                <constraint firstItem="AAF-a4-aCv" firstAttribute="top" secondItem="ENx-xO-nxh" secondAttribute="bottom" constant="8" id="nuG-gF-s4u"/>
+                <constraint firstItem="KYL-Bf-E8I" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="h9o-MY-lTV"/>
                 <constraint firstItem="39I-KW-soC" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="o8w-Kl-cnM"/>
             </constraints>
             <point key="canvasLocation" x="198" y="193"/>

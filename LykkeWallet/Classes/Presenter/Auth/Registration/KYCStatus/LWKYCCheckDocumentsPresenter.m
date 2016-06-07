@@ -9,6 +9,7 @@
 #import "LWKYCCheckDocumentsPresenter.h"
 #import "LWRegisterCameraPresenter.h"
 #import "LWPersonalDataModel.h"
+#import "LWProgressView.h"
 
 
 @interface LWKYCCheckDocumentsPresenter () {
@@ -16,6 +17,7 @@
 }
 
 @property (weak, nonatomic) IBOutlet UILabel *textLabel;
+@property (weak, nonatomic) IBOutlet LWProgressView *activity;
 
 @end
 
@@ -27,6 +29,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    [self.activity startAnimating];
     
     [self.navigationController setNavigationBarHidden:YES animated:NO];
     

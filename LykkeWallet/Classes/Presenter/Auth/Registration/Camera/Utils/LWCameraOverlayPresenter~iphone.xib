@@ -33,7 +33,7 @@
                     </constraints>
                     <items>
                         <navigationItem title="REGISTER" id="HhN-xZ-aQE">
-                            <barButtonItem key="leftBarButtonItem" image="2A1A8875-96E1-49CA-B1E3-D9154090A062" id="TTA-aa-W3x">
+                            <barButtonItem key="leftBarButtonItem" image="4DEA3B4E-736A-494A-A601-9842F93D8272" id="TTA-aa-W3x">
                                 <color key="tintColor" red="0.58431372549019611" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <action selector="closeButtonClick:" destination="-1" id="bm4-Hj-WIV"/>
@@ -93,11 +93,11 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4pS-f8-3zl">
                     <rect key="frame" x="0.0" y="64" width="320" height="77"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Take a selfie" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gda-Md-fwi">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Take a selfie" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gda-Md-fwi">
                             <rect key="frame" x="8" y="0.0" width="304" height="21"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="304" id="1du-Sf-IxV"/>
-                                <constraint firstAttribute="height" constant="21" id="dwp-QV-dVW"/>
+                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="dwp-QV-dVW"/>
                             </constraints>
                             <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="16"/>
                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -115,8 +115,9 @@
                     <constraints>
                         <constraint firstItem="b6l-bG-cYA" firstAttribute="top" secondItem="gda-Md-fwi" secondAttribute="bottom" constant="8" id="5Xp-E9-Gnc"/>
                         <constraint firstItem="gda-Md-fwi" firstAttribute="top" secondItem="4pS-f8-3zl" secondAttribute="top" id="8OS-EI-mMn"/>
+                        <constraint firstAttribute="bottom" secondItem="b6l-bG-cYA" secondAttribute="bottom" constant="8" id="Fqa-M2-XyX"/>
                         <constraint firstItem="b6l-bG-cYA" firstAttribute="centerX" secondItem="4pS-f8-3zl" secondAttribute="centerX" id="Kss-G1-S6V"/>
-                        <constraint firstAttribute="height" constant="77" id="MNB-Kj-VUj"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="77" id="MNB-Kj-VUj"/>
                         <constraint firstItem="gda-Md-fwi" firstAttribute="centerX" secondItem="4pS-f8-3zl" secondAttribute="centerX" id="yYu-u2-kcm"/>
                     </constraints>
                 </view>
@@ -137,7 +138,7 @@
         </view>
     </objects>
     <resources>
-        <image name="2A1A8875-96E1-49CA-B1E3-D9154090A062" width="22" height="22">
+        <image name="4DEA3B4E-736A-494A-A601-9842F93D8272" width="22" height="22">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw

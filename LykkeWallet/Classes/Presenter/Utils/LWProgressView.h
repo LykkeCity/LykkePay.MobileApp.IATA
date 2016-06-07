@@ -13,4 +13,7 @@
 +(void) showInView:(UIView *) view;
 +(void) hide;
 
+-(void) startAnimating;
+-(void) stopAnimating;
+
 @end

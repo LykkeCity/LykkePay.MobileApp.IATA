@@ -102,6 +102,8 @@ static int const kNumberOfRows = 4;
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
+    [self setLoading:YES];
+
     [[LWAuthManager instance] requestAssetPairRate:self.assetPair.identity];
     [[LWAuthManager instance] requestGraphPeriods];
     self.title = self.assetPair.name;
@@ -330,6 +332,7 @@ static int const kNumberOfRows = 4;
 
 - (void)authManager:(LWAuthManager *)manager didFailWithReject:(NSDictionary *)reject context:(GDXRESTContext *)context {
     self.isValid = NO;
+    [self setLoading:NO];
     
     [self invalidPrices];
     [self requestPrices];
@@ -386,6 +389,7 @@ static int const kNumberOfRows = 4;
     graphStartDateLabel.text=[[formatter stringFromDate:graphData.startDate] uppercaseString];
     graphEndDateLabel.text=[[formatter stringFromDate:graphData.endDate] uppercaseString];
 
+    [self setLoading:NO];
 }
 
 

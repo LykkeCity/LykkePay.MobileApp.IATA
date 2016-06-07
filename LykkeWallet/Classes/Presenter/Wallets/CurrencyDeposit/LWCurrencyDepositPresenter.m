@@ -82,8 +82,8 @@
                              };
     
     lineTitles=@[@"BIC (SWIFT)",
-                 @"Account Number",
-                 @"Account Name",
+                 @"Account number",
+                 @"Account name",
                  @"Purpose of payment"
                  
                   ];
@@ -120,7 +120,7 @@
     [termsOfUseButton sizeToFit];
     
     prospectusButton=[UIButton buttonWithType:UIButtonTypeCustom];
-    [prospectusButton setTitle:@"Lykke shares prospectus" forState:UIControlStateNormal];
+    [prospectusButton setTitle:@"Lykke Shares Prospectus" forState:UIControlStateNormal];
     prospectusButton.titleLabel.font=[UIFont systemFontOfSize:12];
     [prospectusButton setTitleColor:[UIColor colorWithRed:180.0/255 green:105.0/255 blue:211.0/255 alpha:1] forState:UIControlStateNormal];
 
@@ -145,7 +145,7 @@
 {
     [super viewWillAppear:animated];
     
-    infoLabel.text=[NSString stringWithFormat:@"To deposit %@ to your trading\n vallet please use the following bank\n account details", self.assetName];
+    infoLabel.text=[NSString stringWithFormat:@"To deposit %@ to your trading\n vallet, please use the following bank\n account details", self.assetName];
     [infoLabel sizeToFit];
 }
 

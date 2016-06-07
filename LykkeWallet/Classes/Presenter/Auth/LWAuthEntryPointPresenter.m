@@ -23,6 +23,7 @@
 #import "LWIntroductionPresenter.h"
 #import "UIViewController+Loading.h"
 #import "UIView+Toast.h"
+#import "LWProgressView.h"
 
 typedef NS_ENUM(NSInteger, LWAuthEntryPointNextStep) {
     LWAuthEntryPointNextStepNone,
@@ -51,7 +52,7 @@ typedef NS_ENUM(NSInteger, LWAuthEntryPointNextStep) {
 @property (weak, nonatomic) IBOutlet TKButton    *chooseServerButton;
 @property (weak, nonatomic) IBOutlet TKContainer *tipsContainer;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *tipsBottomConstraint;
-@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityView;
+@property (weak, nonatomic) IBOutlet LWProgressView *activityView;
 
 // for IATA iPad
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *viewTopConstraint;
