@@ -157,6 +157,10 @@
 }
 
 + (NSString *)baseAssetTitle:(LWAssetPairModel *)assetPair {
+    
+    return [LWAssetModel assetByIdentity:assetPair.baseAssetId fromList:[LWCache instance].baseAssets]; //Andrey
+
+    
     NSString *baseAssetId = [LWCache instance].baseAssetId;
     NSString *assetTitleId = assetPair.baseAssetId;
     if ([baseAssetId isEqualToString:assetPair.baseAssetId]) {
@@ -169,6 +173,11 @@
 }
 
 + (NSString *)quotedAssetTitle:(LWAssetPairModel *)assetPair {
+    
+    return [LWAssetModel assetByIdentity:assetPair.quotingAssetId fromList:[LWCache instance].baseAssets]; //Andrey
+
+    
+    
     NSString *baseAssetId = [LWCache instance].baseAssetId;
     NSString *assetTitleId = assetPair.quotingAssetId;
     if (![baseAssetId isEqualToString:assetPair.quotingAssetId]) {

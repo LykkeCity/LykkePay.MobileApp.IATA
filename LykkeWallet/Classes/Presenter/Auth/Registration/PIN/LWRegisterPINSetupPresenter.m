@@ -10,6 +10,7 @@
 #import "LWAuthNavigationController.h"
 #import "ABPadLockScreen.h"
 #import "LWValidator.h"
+#import "UIViewController+Loading.h"
 
 
 @interface LWRegisterPINSetupPresenter ()<ABPadLockScreenSetupViewControllerDelegate> {
@@ -39,6 +40,8 @@
     [self.navigationController setNavigationBarHidden:YES animated:NO];
     // set masking view visibility
     self.maskingView.hidden = pinDidSendToServer;
+    [self setLoading:!pinDidSendToServer];
+
     // adjust pin controller frame
     if (!pinController) {
         pinController = [[ABPadLockScreenSetupViewController alloc] initWithDelegate:self
@@ -56,6 +59,7 @@
     if (!pin) {
         [self presentViewController:pinController animated:YES completion:nil];
     }
+    
     
 }
 
@@ -111,6 +115,7 @@
     pinDidSendToServer = YES;
     // hide masking view
     self.maskingView.hidden = YES;
+    [self setLoading:NO];
 }
 
 @end

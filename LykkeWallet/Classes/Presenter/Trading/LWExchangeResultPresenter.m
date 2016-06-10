@@ -70,7 +70,7 @@ static int const kBlockchainRow = 4;
         oper=Localize(@"exchange.assets.result.boughtfor");
     else
         oper=Localize(@"exchange.assets.result.soldfor");
-    self.titleLabel.text=[NSString stringWithFormat:@"%@ %@ %@", [self.purchase.assetPair stringByReplacingOccurrencesOfString:self.purchase.baseAsset withString:@""], oper, self.purchase.baseAsset];
+    self.titleLabel.text=[NSString stringWithFormat:@"%@ %@ %@", self.purchase.baseAsset, oper, [self.purchase.assetPair stringByReplacingOccurrencesOfString:self.purchase.baseAsset withString:@""]];
     
 //    self.titleLabel.text = [NSString stringWithFormat:@"%@%@",
 //                            self.purchase.assetPair,
@@ -197,7 +197,8 @@ static int const kBlockchainRow = 4;
         self.purchase.assetPair,
 //        [LWMath makeStringByNumber:self.purchase.volume withPrecision:self.purchase.accuracy.integerValue],
         self.purchase.volume.stringValue,
-        self.purchase.price.stringValue,
+        [NSString stringWithFormat:@"%f", self.purchase.price.floatValue],
+//        self.purchase.price.stringValue,
         self.purchase.totalCost.stringValue,
 
 //        [LWMath makeStringByNumber:self.purchase.price withPrecision:self.purchase.accuracy.integerValue],

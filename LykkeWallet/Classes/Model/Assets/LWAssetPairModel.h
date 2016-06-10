@@ -22,5 +22,9 @@
 @property (readonly, nonatomic) NSNumber *accuracy;
 @property (readonly, nonatomic) NSString *baseAssetId;
 @property (readonly, nonatomic) NSString *quotingAssetId;
+@property (readonly, nonatomic) NSNumber *invertedAccuracy;
+@property (readonly, nonatomic) NSNumber *normalAccuracy;
+
+@property BOOL inverted;
 
 @end

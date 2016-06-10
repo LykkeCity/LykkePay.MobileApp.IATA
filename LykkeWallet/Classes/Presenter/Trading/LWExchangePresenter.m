@@ -1,3 +1,4 @@
+
 //
 //  LWExchangePresenter.m
 //  LykkeWallet
@@ -22,14 +23,17 @@
 #import "LWIPadModalNavigationControllerViewController.h"
 
 #import "UINavigationItem+Kerning.h"
+#import "LWExchangeBaseAssetsView.h"
 
 
 #define emptyCellIdentifier @"LWAssetEmptyTableViewCellIdentifier"
 
 
-@interface LWExchangePresenter () <LWAssetLykkeTableViewCellDelegate> {
+@interface LWExchangePresenter () <LWAssetLykkeTableViewCellDelegate, LWExchangeBaseAssetsViewDelegate> {
     NSMutableIndexSet   *expandedSections;
     NSMutableDictionary *pairRates;
+    NSTimer *timer;
+    BOOL isLoadingRatesNow;
 }
 
 
@@ -47,6 +51,7 @@
 @property (weak, nonatomic) IBOutlet UILabel     *assetHeaderPriceLabel;
 @property (weak, nonatomic) IBOutlet UILabel     *assetHeaderChangeLabel;
 
+@property (weak, nonatomic) IBOutlet LWExchangeBaseAssetsView *baseAssetsView;
 
 @end
 
@@ -94,6 +99,8 @@ static NSString *const AssetIcons[kNumberOfSections] = {
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    isLoadingRatesNow=NO;
 
 //    self.title = Localize(@"tab.trading");
     
@@ -117,6 +124,14 @@ static NSString *const AssetIcons[kNumberOfSections] = {
     if (![expandedSections containsIndex:0]) {
         [self tableView:self.tableView didSelectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
     }
+    
+    self.baseAssetsView.delegate=self;
+    
+//    NSNumber *nnn=[LWCache instance].refreshTimer;
+    
+    timer=[NSTimer timerWithTimeInterval:[LWCache instance].refreshTimer.integerValue/1000 target:self selector:@selector(loadRates) userInfo:nil repeats:YES];
+    [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -328,7 +343,7 @@ static NSString *const AssetIcons[kNumberOfSections] = {
 - (void)authManager:(LWAuthManager *)manager didGetAssetPairs:(NSArray *)assetPairs {
     _assetPairs = assetPairs;
     
-    [[LWAuthManager instance] requestAssetPairRates];
+    [self loadRates];
     
     [self.tableView reloadData];
     [self setLoading:NO];
@@ -337,21 +352,49 @@ static NSString *const AssetIcons[kNumberOfSections] = {
 -(void) authManager:(LWAuthManager *)manager didFailWithReject:(NSDictionary *)reject context:(GDXRESTContext *)context
 {
     [self setLoading:NO];
-    [super authManager:manager didFailWithReject:reject context:context];
+    
+    isLoadingRatesNow=NO;
+    [self showReject:reject response:context.task.response code:context.error.code willNotify:NO];
+
 
 }
 
 - (void)authManager:(LWAuthManager *)manager didGetAssetPairRates:(NSArray *)assetPairRates {
     for (LWAssetPairRateModel *rate in assetPairRates) {
-        pairRates[rate.identity] = rate;
+        if((pairRates[rate.identity] && [pairRates[rate.identity] inverted]==rate.inverted) || !pairRates[rate.identity])
+            pairRates[rate.identity] = rate;
+        else
+        {
+            NSLog(@"Tried to change reverse back");
+        }
     }
+    
+    isLoadingRatesNow=NO;
 
     [self.tableView reloadData];
 
-    const NSInteger repeatSeconds = [LWCache instance].refreshTimer.integerValue / 1000;
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(repeatSeconds * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//    NSInteger repeatSeconds = [LWCache instance].refreshTimer.integerValue / 1000;
+//    
+//    repeatSeconds=1000;//Testing
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(repeatSeconds * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//    });
+}
+
+
+-(void) loadRates
+{
+    if(self.isVisible && isLoadingRatesNow==NO)
+    {
+        isLoadingRatesNow=YES;
         [[LWAuthManager instance] requestAssetPairRates];
-    });
+    }
+}
+
+
+
+-(void) authManagerDidSetAsset:(LWAuthManager *)manager
+{
+    [[LWAuthManager instance] requestAssetPairs];
 }
 
 
@@ -363,6 +406,8 @@ static NSString *const AssetIcons[kNumberOfSections] = {
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
     LWAssetPairModel *assetPair = (LWAssetPairModel *)self.assetPairs[indexPath.row - 1];
     if (assetPair) {
+        
+        assetPair.inverted=[pairRates[assetPair.identity] inverted];
         presenter.assetPair = assetPair;
         if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
             [self.navigationController pushViewController:presenter animated:YES];
@@ -386,6 +431,21 @@ static NSString *const AssetIcons[kNumberOfSections] = {
 //        presenter.assetPair = assetPair;
 //        [self.navigationController pushViewController:presenter animated:YES];
 //    }
+}
+
+
+#pragma mark - LWExchangeBaseAssetsViewDelegate
+
+-(void) baseAssetsViewChangedBaseAsset:(NSString *)assetId
+{
+    [self setLoading:YES];
+    [[LWAuthManager instance] requestBaseAssetSet:assetId];
+    
+}
+
+-(void) dealloc
+{
+    [timer invalidate];
 }
 
 @end

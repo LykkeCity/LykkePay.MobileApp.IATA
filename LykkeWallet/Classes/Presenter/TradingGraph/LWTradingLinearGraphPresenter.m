@@ -106,14 +106,39 @@ static int const kNumberOfRows = 4;
 
     [[LWAuthManager instance] requestAssetPairRate:self.assetPair.identity];
     [[LWAuthManager instance] requestGraphPeriods];
-    self.title = self.assetPair.name;
+    if(self.assetPair.inverted)
+    {
+        NSArray *arr=[self.assetPair.name componentsSeparatedByString:@"/"];
+        if(arr.count==2)
+        {
+            self.title=[NSString stringWithFormat:@"%@/%@", arr[1], arr[0]];
+        }
+        else
+            self.title = self.assetPair.name;
+
+    }
+    else
+        self.title = self.assetPair.name;
 
 }
 
 -(void) viewDidAppear:(BOOL)animated
 {
     [self setupChart];
-    self.title = self.assetPair.name;
+    if(self.assetPair.inverted)
+    {
+        NSArray *arr=[self.assetPair.name componentsSeparatedByString:@"/"];
+        if(arr.count==2)
+        {
+            self.title=[NSString stringWithFormat:@"%@/%@", arr[1], arr[0]];
+        }
+        else
+            self.title = self.assetPair.name;
+        
+    }
+    else
+        self.title = self.assetPair.name;
+
 
 }
 
@@ -358,7 +383,11 @@ static int const kNumberOfRows = 4;
     {
         changeString=[changeString stringByAppendingString:@"+"];
     }
-    changeString=[changeString stringByAppendingFormat:@"%.2f (", absChange];
+    else
+        changeString=[changeString stringByAppendingString:@"-"];
+    
+    NSString *changeFormatted=[LWUtils formatVolumeString:[NSString stringWithFormat:@"%.10f", fabs(absChange)] currencySign:@"" accuracy:self.assetPair.accuracy.intValue removeExtraZeroes:YES];
+    changeString=[changeString stringByAppendingFormat:@"%@ (", changeFormatted];
     if(absChange>0)
     {
         changeString=[changeString stringByAppendingString:@"+"];

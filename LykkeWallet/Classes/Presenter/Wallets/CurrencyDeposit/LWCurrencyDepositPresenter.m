@@ -145,7 +145,7 @@
 {
     [super viewWillAppear:animated];
     
-    infoLabel.text=[NSString stringWithFormat:@"To deposit %@ to your trading\n vallet, please use the following bank\n account details", self.assetName];
+    infoLabel.text=[NSString stringWithFormat:@"To deposit %@ to your trading\nwallet, please use the following bank\n account details", self.assetName];
     [infoLabel sizeToFit];
 }
 
@@ -356,7 +356,7 @@
 
 -(IBAction)emailButtonPressed:(id)sender
 {
-    if([amountTextField.text length]==0)
+    if([self checkAmountIsEmpty])
         return;
     [self hideCustomKeyboard];
     [self setLoading:YES];
@@ -364,6 +364,16 @@
     NSString *string=[amountTextField.text stringByReplacingOccurrencesOfString:@" " withString:@""];
     
     [[LWAuthManager instance] requestCurrencyDepositForAsset:self.assetID changeValue:@([string floatValue])];
+}
+
+-(BOOL) checkAmountIsEmpty
+{
+    if([amountTextField.text floatValue]==0)
+    {
+        [self.view makeToast:@"Amount should be greater then zero." duration:2 position:nil];
+    }
+    
+    return YES;
 }
 
 -(void) termsOfUsePressed

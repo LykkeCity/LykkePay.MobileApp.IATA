@@ -137,8 +137,8 @@ SINGLETON_DECLARE
 - (void)requestAssetPairRates;
 - (void)requestAssetDescription:(NSString *)assetId;
 - (void)requestAppSettings;
-- (void)requestPurchaseAsset:(NSString *)asset assetPair:(NSString *)assetPair volume:(NSNumber *)volume rate:(NSNumber *)rate;
-- (void)requestSellAsset:(NSString *)asset assetPair:(NSString *)assetPair volume:(NSNumber *)volume rate:(NSNumber *)rate;
+- (void)requestPurchaseAsset:(NSString *)asset assetPair:(NSString *)assetPair volume:(NSNumber *)volume rate:(NSString *)rate;
+- (void)requestSellAsset:(NSString *)asset assetPair:(NSString *)assetPair volume:(NSNumber *)volume rate:(NSString *)rate;
 - (void)requestSignOrders:(BOOL)shouldSignOrders;
 - (void)requestBlockchainOrderTransaction:(NSString *)orderId;
 - (void)requestBlockchainCashTransaction:(NSString *)cashOperationId;
@@ -165,6 +165,8 @@ SINGLETON_DECLARE
 
 -(void) requestAPIVersion;
 -(void) validateBitcoinAddress:(NSString *) address;
+
+-(void) requestSetReverted:(BOOL) reverted  assetPairId:(NSString *) assetPairId;
 
 
 //PubkeyAddressValidation

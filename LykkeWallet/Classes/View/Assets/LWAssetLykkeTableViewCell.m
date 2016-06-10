@@ -13,13 +13,55 @@
 #import "LWColorizer.h"
 #import "LWMath.h"
 
+#import "LWAuthManager.h"
+
 
 @implementation LWAssetLykkeTableViewCell {
     UITapGestureRecognizer *tapGestureRecognizer;
 }
 
+-(void) awakeFromNib
+{
+    self.assetReverseImageView.userInteractionEnabled=YES;
+    self.leftAssetNameLabel.userInteractionEnabled=YES;
+    self.rightAssetNameLabel.userInteractionEnabled=YES;
+    
+    UITapGestureRecognizer *gesture=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(reverse)];
+    [self.assetReverseImageView addGestureRecognizer:gesture];
+    gesture=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(reverse)];
+    [self.leftAssetNameLabel addGestureRecognizer:gesture];
+    gesture=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(reverse)];
+    [self.rightAssetNameLabel addGestureRecognizer:gesture];
+    
+    
+    self.leftAssetNameLabel.text=nil;
+    self.rightAssetNameLabel.text=nil;
+}
+
+-(void) reverse
+{
+    [_rate invert];
+    
+    [[LWAuthManager instance] requestSetReverted:_rate.inverted assetPairId:_rate.identity];
+    
+    [self setRate:_rate];
+}
+
 - (void)setRate:(LWAssetPairRateModel *)rate {
     _rate = rate;
+    
+    if(_pair && _rate)
+        [self setAssetNames];
+    else
+    {
+        self.assetPriceLabel.text = @". . .";
+        self.assetPriceLabel.textColor = [UIColor colorWithHexString:kAssetDisabledItemColor];
+        self.assetChangeLabel.text = @". . .";
+        self.assetChangeLabel.textColor = [UIColor colorWithHexString:kMainDarkElementsColor];
+        self.assetPriceImageView.image = [UIImage imageNamed:@"AssetPriceDisabledArea"];
+
+    }
+
     
     [self.assetChangeView setChanges:rate.lastChanges];
     [self.assetChangeView setNeedsDisplay];
@@ -42,23 +84,41 @@
         
         self.assetPriceImageView.image = [UIImage imageNamed:@"AssetPriceArea"];
     }
-    else {
-        self.assetPriceLabel.text = @". . .";
-        self.assetPriceLabel.textColor = [UIColor colorWithHexString:kAssetDisabledItemColor];
-        self.assetChangeLabel.text = @". . .";
-        self.assetChangeLabel.textColor = [UIColor colorWithHexString:kMainDarkElementsColor];
-        self.assetPriceImageView.image = [UIImage imageNamed:@"AssetPriceDisabledArea"];
-    }
 }
 
 - (void)setPair:(LWAssetPairModel *)pair {
     _pair = pair;
     
-    self.assetNameLabel.text = pair.name;
+    if(_pair && _rate)
+        [self setAssetNames];
+    
+//    self.assetNameLabel.text = pair.name;
+    
     
     if (!tapGestureRecognizer) {
         tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(graphClicked)];
         [self.assetChangeView addGestureRecognizer:tapGestureRecognizer];
+    }
+}
+
+-(void) setAssetNames
+{
+    if(_pair.inverted != _rate.inverted)
+        _pair.inverted=_rate.inverted;
+    NSArray *arr=[_pair.name componentsSeparatedByString:@"/"];
+    if(arr.count==2)
+    {
+        if(_rate.inverted==NO)
+        {
+            self.leftAssetNameLabel.text=arr[0];
+            self.rightAssetNameLabel.text=arr[1];
+        }
+        else
+        {
+            self.leftAssetNameLabel.text=arr[1];
+            self.rightAssetNameLabel.text=arr[0];
+            
+        }
     }
 }
 

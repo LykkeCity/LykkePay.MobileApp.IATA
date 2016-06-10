@@ -667,6 +667,12 @@
 		A1BCD2DC1D012D3C00CF42E4 /* 5-onboard-2x_00118.png in Resources */ = {isa = PBXBuildFile; fileRef = A1BCD0861D012D3C00CF42E4 /* 5-onboard-2x_00118.png */; };
 		A1BCD2DD1D012D3C00CF42E4 /* 5-onboard-2x_00119.png in Resources */ = {isa = PBXBuildFile; fileRef = A1BCD0871D012D3C00CF42E4 /* 5-onboard-2x_00119.png */; };
 		A1BCD2DF1D01651D00CF42E4 /* tips_about.png in Resources */ = {isa = PBXBuildFile; fileRef = A1BCD2DE1D01651D00CF42E4 /* tips_about.png */; };
+		A1C5AF491D08035E0056DC53 /* LWExchangeBaseAssetsView.m in Sources */ = {isa = PBXBuildFile; fileRef = A1C5AF481D08035E0056DC53 /* LWExchangeBaseAssetsView.m */; };
+		A1C5AF4B1D081EC50056DC53 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC9C94751C898F9F006FD46B /* Assets.xcassets */; };
+		A1C5AF4E1D0941090056DC53 /* LWPacketSetRevertedPair.m in Sources */ = {isa = PBXBuildFile; fileRef = A1C5AF4D1D0941090056DC53 /* LWPacketSetRevertedPair.m */; };
+		A1C5AF511D0A85CB0056DC53 /* LWSettingsTermsTableViewCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1C5AF4F1D0A85CB0056DC53 /* LWSettingsTermsTableViewCell~ipad.xib */; };
+		A1C5AF521D0A85CB0056DC53 /* LWSettingsTermsTableViewCell~iphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1C5AF501D0A85CB0056DC53 /* LWSettingsTermsTableViewCell~iphone.xib */; };
+		A1C5AF551D0A867D0056DC53 /* LWSettingsTermsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A1C5AF541D0A867D0056DC53 /* LWSettingsTermsTableViewCell.m */; };
 		A1D476DD1D0506F900438846 /* LWProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = A1D476DC1D0506F900438846 /* LWProgressView.m */; };
 		A1D477301D050B9900438846 /* loader-color@2x_00000.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D476DF1D050B9900438846 /* loader-color@2x_00000.png */; };
 		A1D477311D050B9900438846 /* loader-color@2x_00001.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D476E01D050B9900438846 /* loader-color@2x_00001.png */; };
@@ -1210,7 +1216,6 @@
 		EC9AE0791CAD69AF0047DF0D /* LWPacketCashOut.m in Sources */ = {isa = PBXBuildFile; fileRef = EC9AE0781CAD69AF0047DF0D /* LWPacketCashOut.m */; };
 		EC9AE07A1CAD69AF0047DF0D /* LWPacketCashOut.m in Sources */ = {isa = PBXBuildFile; fileRef = EC9AE0781CAD69AF0047DF0D /* LWPacketCashOut.m */; };
 		EC9C947A1C899003006FD46B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF6632431C175B54004353F5 /* Assets.xcassets */; };
-		EC9C947B1C899006006FD46B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC9C94751C898F9F006FD46B /* Assets.xcassets */; };
 		EC9C947D1C899019006FD46B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC9C947C1C899019006FD46B /* LaunchScreen.storyboard */; };
 		EC9C94851C89A71F006FD46B /* LWAuthEntryPointPresenter~iphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC9C94831C89A6EC006FD46B /* LWAuthEntryPointPresenter~iphone.xib */; };
 		EC9C94921C89C82E006FD46B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = EC9C948E1C89C815006FD46B /* Localizable.strings */; };
@@ -2054,6 +2059,14 @@
 		A1BCD0861D012D3C00CF42E4 /* 5-onboard-2x_00118.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "5-onboard-2x_00118.png"; sourceTree = "<group>"; };
 		A1BCD0871D012D3C00CF42E4 /* 5-onboard-2x_00119.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "5-onboard-2x_00119.png"; sourceTree = "<group>"; };
 		A1BCD2DE1D01651D00CF42E4 /* tips_about.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tips_about.png; sourceTree = "<group>"; };
+		A1C5AF471D08035E0056DC53 /* LWExchangeBaseAssetsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWExchangeBaseAssetsView.h; sourceTree = "<group>"; };
+		A1C5AF481D08035E0056DC53 /* LWExchangeBaseAssetsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWExchangeBaseAssetsView.m; sourceTree = "<group>"; };
+		A1C5AF4C1D0941090056DC53 /* LWPacketSetRevertedPair.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWPacketSetRevertedPair.h; sourceTree = "<group>"; };
+		A1C5AF4D1D0941090056DC53 /* LWPacketSetRevertedPair.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWPacketSetRevertedPair.m; sourceTree = "<group>"; };
+		A1C5AF4F1D0A85CB0056DC53 /* LWSettingsTermsTableViewCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "LWSettingsTermsTableViewCell~ipad.xib"; path = "Settings/LWSettingsTermsTableViewCell~ipad.xib"; sourceTree = "<group>"; };
+		A1C5AF501D0A85CB0056DC53 /* LWSettingsTermsTableViewCell~iphone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "LWSettingsTermsTableViewCell~iphone.xib"; path = "Settings/LWSettingsTermsTableViewCell~iphone.xib"; sourceTree = "<group>"; };
+		A1C5AF531D0A867D0056DC53 /* LWSettingsTermsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LWSettingsTermsTableViewCell.h; path = Settings/LWSettingsTermsTableViewCell.h; sourceTree = "<group>"; };
+		A1C5AF541D0A867D0056DC53 /* LWSettingsTermsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LWSettingsTermsTableViewCell.m; path = Settings/LWSettingsTermsTableViewCell.m; sourceTree = "<group>"; };
 		A1D476DB1D0506F900438846 /* LWProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWProgressView.h; sourceTree = "<group>"; };
 		A1D476DC1D0506F900438846 /* LWProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWProgressView.m; sourceTree = "<group>"; };
 		A1D476DF1D050B9900438846 /* loader-color@2x_00000.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loader-color@2x_00000.png"; sourceTree = "<group>"; };
@@ -3857,6 +3870,8 @@
 				EC9EC2431C8EE57B00C986DD /* Lykke */,
 				ECD1E9031C3BCAE30064AAB3 /* LWExchangePresenter.h */,
 				ECD1E9041C3BCAE30064AAB3 /* LWExchangePresenter.m */,
+				A1C5AF471D08035E0056DC53 /* LWExchangeBaseAssetsView.h */,
+				A1C5AF481D08035E0056DC53 /* LWExchangeBaseAssetsView.m */,
 				EC57F4511C3C3DD900E31746 /* LWExchangeFormPresenter.h */,
 				EC57F4521C3C3DD900E31746 /* LWExchangeFormPresenter.m */,
 				EC57F4661C3D3FF900E31746 /* LWExchangeDealFormPresenter.h */,
@@ -4124,6 +4139,8 @@
 				A1BCCD2A1CFEC9C900CF42E4 /* LWPacketAPIVersion.m */,
 				A1BCCE1D1D0009A500CF42E4 /* LWPacketBitcoinAddressValidation.h */,
 				A1BCCE1E1D0009A500CF42E4 /* LWPacketBitcoinAddressValidation.m */,
+				A1C5AF4C1D0941090056DC53 /* LWPacketSetRevertedPair.h */,
+				A1C5AF4D1D0941090056DC53 /* LWPacketSetRevertedPair.m */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -4437,6 +4454,8 @@
 				A1165D321CF5E9EF0017A725 /* LWSettingsAssetTableViewCell~ipad.xib */,
 				EC7519BE1C3735E000CDDF5B /* LWSettingsLogOutTableViewCell~iphone.xib */,
 				A1165D411CF6D22C0017A725 /* LWSettingsLogOutTableViewCell~ipad.xib */,
+				A1C5AF4F1D0A85CB0056DC53 /* LWSettingsTermsTableViewCell~ipad.xib */,
+				A1C5AF501D0A85CB0056DC53 /* LWSettingsTermsTableViewCell~iphone.xib */,
 			);
 			name = Lykke;
 			sourceTree = "<group>";
@@ -4497,6 +4516,8 @@
 				EC7519AF1C37338000CDDF5B /* LWSettingsAssetTableViewCell.m */,
 				EC7519BB1C3735CA00CDDF5B /* LWSettingsLogOutTableViewCell.h */,
 				EC7519BC1C3735CA00CDDF5B /* LWSettingsLogOutTableViewCell.m */,
+				A1C5AF531D0A867D0056DC53 /* LWSettingsTermsTableViewCell.h */,
+				A1C5AF541D0A867D0056DC53 /* LWSettingsTermsTableViewCell.m */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -5467,6 +5488,7 @@
 				A1BCD0A41D012D3C00CF42E4 /* 1-deposit-2x_00028.png in Resources */,
 				A14B7D2E1CE3233D00820084 /* ButtonOK_square.png in Resources */,
 				A1BCD1801D012D3C00CF42E4 /* 3-settle-2x_00009.png in Resources */,
+				A1C5AF511D0A85CB0056DC53 /* LWSettingsTermsTableViewCell~ipad.xib in Resources */,
 				A1BCD1071D012D3C00CF42E4 /* 2-trade-2x_00007.png in Resources */,
 				A1D477571D050B9900438846 /* loader-color@2x_00039.png in Resources */,
 				A1BCD2711D012D3C00CF42E4 /* 5-onboard-2x_00011.png in Resources */,
@@ -5770,6 +5792,7 @@
 				A1BCD2561D012D3C00CF42E4 /* 4-withdraw-2x_00103.png in Resources */,
 				A1D477321D050B9900438846 /* loader-color@2x_00002.png in Resources */,
 				A1BCD0EB1D012D3C00CF42E4 /* 1-deposit-2x_00099.png in Resources */,
+				A1C5AF521D0A85CB0056DC53 /* LWSettingsTermsTableViewCell~iphone.xib in Resources */,
 				A1BCD17D1D012D3C00CF42E4 /* 3-settle-2x_00006.png in Resources */,
 				ECECAB451C9897300020E050 /* LWCashEmptyBlockchainPresenter.xib in Resources */,
 				CF6877511C234A7200E7A7D9 /* LWRegisterPINSetupPresenter.xib in Resources */,
@@ -5991,7 +6014,6 @@
 				EC4D92281C8778DF006EE7C8 /* LWKeyboardToolbar.xib in Resources */,
 				EC89230C1CC3C02200201BE7 /* LWAuthenticationPresenter~ipad.xib in Resources */,
 				EC8923241CC3DCAB00201BE7 /* LWSettingsPresenter~ipad.xib in Resources */,
-				EC9C947B1C899006006FD46B /* Assets.xcassets in Resources */,
 				EC9C949C1C89CCD6006FD46B /* LWTipsView.xib in Resources */,
 				ECD114661CDDD7E2002B36C0 /* LWCountrySelectorPresenter.xib in Resources */,
 				EC9EC2551C8EE67300C986DD /* LWExchangeResultPresenter.xib in Resources */,
@@ -6005,6 +6027,7 @@
 				EC8923121CC3CAF400201BE7 /* LWLykkeTableViewCell~ipad.xib in Resources */,
 				EC4D92381C8778DF006EE7C8 /* LWUrlAddressPresenter.xib in Resources */,
 				EC4D92391C8778DF006EE7C8 /* LWWalletDepositPresenter.xib in Resources */,
+				A1C5AF4B1D081EC50056DC53 /* Assets.xcassets in Resources */,
 				EC4D923B1C8778DF006EE7C8 /* LWPersonalDataPresenter.xib in Resources */,
 				EC4D923D1C8778DF006EE7C8 /* LWNotificationSettingsPresenter.xib in Resources */,
 				EC9C94B51C89F58B006FD46B /* GothaProMed.otf in Resources */,
@@ -6256,6 +6279,7 @@
 				ECAB1BC71C99F70C00A64A20 /* LWExchangeEmptyBlockchainPresenter.m in Sources */,
 				ECEC40CE1C42CB5800B22BEE /* LWBaseHistoryItemType.m in Sources */,
 				EC9C94971C89C89E006FD46B /* LWTextField.m in Sources */,
+				A1C5AF551D0A867D0056DC53 /* LWSettingsTermsTableViewCell.m in Sources */,
 				ECEC40CB1C42CA7B00B22BEE /* LWHistoryManager.m in Sources */,
 				CD10AAA61C1E0C560086634B /* LWAuthenticationData.m in Sources */,
 				CDA69FDB1C281A5500BE4DCA /* LWPacketRegistrationGet.m in Sources */,
@@ -6353,6 +6377,7 @@
 				ECF9D1191C5BEC060025FC36 /* LWUrlAddressPresenter.m in Sources */,
 				CFC9FE1D1C1CE87C001F1974 /* LWNetAccessor.m in Sources */,
 				A18F892A1CE85A6600399850 /* LWWithdrawCurrencyPresenter.m in Sources */,
+				A1C5AF491D08035E0056DC53 /* LWExchangeBaseAssetsView.m in Sources */,
 				EC9AE0791CAD69AF0047DF0D /* LWPacketCashOut.m in Sources */,
 				ECEC40BB1C42B06700B22BEE /* LWPacketTransactions.m in Sources */,
 				ECA80B5B1C2DE1A8001C4E8F /* TKButton.m in Sources */,
@@ -6370,6 +6395,7 @@
 				A1743CB61CE9D8F500176F59 /* LWWithdrawCurrencyCell.m in Sources */,
 				EC2813EF1C344ED2009BE680 /* LWPacketKYCSendDocumentBin.m in Sources */,
 				ECECAB431C9897300020E050 /* LWCashEmptyBlockchainPresenter.m in Sources */,
+				A1C5AF4E1D0941090056DC53 /* LWPacketSetRevertedPair.m in Sources */,
 				EC35B0C21CC6CB50001C6F96 /* LWPacketBlockchainTransferTransaction.m in Sources */,
 				ECECAB5B1C998C530020E050 /* LWLykkeEmptyTableViewCell.m in Sources */,
 				ECE435BE1CC049B200BA8485 /* LWTransferEmptyBlockchainPresenter.m in Sources */,

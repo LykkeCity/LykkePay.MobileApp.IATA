@@ -40,14 +40,6 @@ static int const kBlockchainRow = 4;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    NSString *base = [LWAssetModel
-                      assetByIdentity:self.asset
-                      fromList:[LWCache instance].baseAssets];
-    
-    NSString *type = (self.model.volume.doubleValue >= 0
-                      ? Localize(@"history.market.buy")
-                      : Localize(@"history.market.sell"));
-    self.title = [NSString stringWithFormat:@"%@ %@", base, type];
     
 
     [self registerCellWithIdentifier:kLeftDetailTableViewCellIdentifier
@@ -59,8 +51,22 @@ static int const kBlockchainRow = 4;
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
+
+
     [self setHideKeyboardOnTap:NO]; // gesture recognizer deletion
+}
+-(void) viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    NSString *base = [LWAssetModel
+                      assetByIdentity:self.asset
+                      fromList:[LWCache instance].baseAssets];
+    
+    NSString *type = (self.model.volume.doubleValue >= 0
+                      ? Localize(@"history.market.buy")
+                      : Localize(@"history.market.sell"));
+    self.title = [NSString stringWithFormat:@"%@ %@", base, type];
+
 }
 
 

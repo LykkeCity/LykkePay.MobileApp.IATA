@@ -22,6 +22,8 @@
 #import "UIViewController+Loading.h"
 #import "LWCache.h"
 #import "LWPacketAPIVersion.h"
+#import "LWSettingsTermsTableViewCell.h"
+#import "LWValidator.h"
 
 
 @interface LWSettingsPresenter () <LWRadioTableViewCellDelegate, LWSettingsConfirmationPresenter> {
@@ -34,6 +36,7 @@
 - (void)updateSignStatus;
 
 @property (weak, nonatomic) IBOutlet UILabel *versionLabel;
+@property (weak, nonatomic) IBOutlet UIButton *callSupportButton;
 
 @end
 
@@ -45,24 +48,27 @@ static NSInteger const kNumberOfRows = 5;
 // cell identifiers
 static NSInteger const kKYCCellId    = 0;
 static NSInteger const kPINCellId    = 1;
-static NSInteger const kPushCellId   = 2;
-static NSInteger const kAssetCellId  = 3;
-static NSInteger const kLogoutCellId = 4;
+//static NSInteger const kPushCellId   = 2;
+static NSInteger const kAssetCellId  = 2;
+static NSInteger const kLogoutCellId = 3;
+static NSInteger const kTermsOfUseCellId   = 4;
 
 static NSString *const SettingsCells[kNumberOfRows] = {
     kSettingsAssetTableViewCell,
     kRadioTableViewCell,
+//    kSettingsAssetTableViewCell,
     kSettingsAssetTableViewCell,
-    kSettingsAssetTableViewCell,
-    @"LWSettingsLogOutTableViewCell"
+    @"LWSettingsLogOutTableViewCell",
+    kSettingsTermsTableViewCell
 };
 
 static NSString *const SettingsIdentifiers[kNumberOfRows] = {
     kSettingsAssetTableViewCellIdentifier,
     kRadioTableViewCellIdentifier,
+//    kSettingsAssetTableViewCellIdentifier,
     kSettingsAssetTableViewCellIdentifier,
-    kSettingsAssetTableViewCellIdentifier,
-    @"LWSettingsLogOutTableViewCellIdentifier"
+    @"LWSettingsLogOutTableViewCellIdentifier",
+    kSettingsTermsTableViewCellIdentifier
 };
 
 
@@ -80,12 +86,22 @@ static NSString *const SettingsIdentifiers[kNumberOfRows] = {
     [self registerCellWithIdentifier:SettingsIdentifiers[1]
                                 name:SettingsCells[1]];
     
-    [self registerCellWithIdentifier:SettingsIdentifiers[4]
-                                name:SettingsCells[4]];
+    [self registerCellWithIdentifier:SettingsIdentifiers[kLogoutCellId]
+                                name:SettingsCells[kLogoutCellId]];
+    
+    [self registerCellWithIdentifier:SettingsIdentifiers[kTermsOfUseCellId]
+                                name:SettingsCells[kTermsOfUseCellId]];
+
     
     [self setHideKeyboardOnTap:NO]; // gesture recognizer deletion
  
     baseAsset = nil;
+    
+    
+    NSDictionary *attributesCallSupport=@{NSKernAttributeName:@(1), NSFontAttributeName:self.callSupportButton.titleLabel.font, NSForegroundColorAttributeName:[UIColor whiteColor]};
+    
+    [self.callSupportButton setAttributedTitle:[[NSAttributedString alloc] initWithString:Localize(@"settings.callbutton.title") attributes:attributesCallSupport] forState:UIControlStateNormal];
+    [LWValidator setButton:self.callSupportButton enabled:YES];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -98,6 +114,11 @@ static NSString *const SettingsIdentifiers[kNumberOfRows] = {
     
     [[LWAuthManager instance] requestBaseAssetGet];
     [[LWAuthManager instance] requestAPIVersion];
+}
+
+-(IBAction) callSupportPressed:(id)sender
+{
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"tel://+41615880402"]];
 }
 
 
@@ -124,10 +145,10 @@ static NSString *const SettingsIdentifiers[kNumberOfRows] = {
         LWPersonalDataPresenter *push = [LWPersonalDataPresenter new];
         [self.navigationController pushViewController:push animated:YES];
     }
-    else if (indexPath.row == kPushCellId) {
-        LWNotificationSettingsPresenter *push = [LWNotificationSettingsPresenter new];
-        [self.navigationController pushViewController:push animated:YES];
-    }
+//    else if (indexPath.row == kPushCellId) {
+//        LWNotificationSettingsPresenter *push = [LWNotificationSettingsPresenter new];
+//        [self.navigationController pushViewController:push animated:YES];
+//    }
     else if (indexPath.row == kAssetCellId && baseAsset) {
         LWAssetsTablePresenter *assets = [LWAssetsTablePresenter new];
         assets.baseAssetId = baseAsset.identity;
@@ -136,6 +157,8 @@ static NSString *const SettingsIdentifiers[kNumberOfRows] = {
     else if (indexPath.row == kLogoutCellId) {
         [(LWAuthNavigationController *)self.navigationController logout];
     }
+    else if(indexPath.row == kTermsOfUseCellId)
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:kTermsOfUseURL]];
 }
 
 
@@ -183,11 +206,11 @@ static NSString *const SettingsIdentifiers[kNumberOfRows] = {
         radioCell.titleLabel.text = Localize(@"settings.cell.pin.title");
         [radioCell setSwitcherOn:[LWCache instance].shouldSignOrder];
     }
-    else if (indexPath.row == kPushCellId) {
-        LWSettingsAssetTableViewCell *assetCell = (LWSettingsAssetTableViewCell *)cell;
-        assetCell.titleLabel.text = Localize(@"settings.cell.push.title");
-        assetCell.assetLabel.text = @"";
-    }
+//    else if (indexPath.row == kPushCellId) {
+//        LWSettingsAssetTableViewCell *assetCell = (LWSettingsAssetTableViewCell *)cell;
+//        assetCell.titleLabel.text = Localize(@"settings.cell.push.title");
+//        assetCell.assetLabel.text = @"";
+//    }
     else if (indexPath.row == kAssetCellId) {
         LWSettingsAssetTableViewCell *assetCell = (LWSettingsAssetTableViewCell *)cell;
         assetCell.titleLabel.text = Localize(@"settings.cell.asset.title");

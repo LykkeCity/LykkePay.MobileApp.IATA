@@ -48,12 +48,12 @@
 "register.submit" = "Отправить";
 "register.camera.title.selfie" = "Сделайте селфи";
 "register.camera.title.idCard" = "Сделайте фото паспорта";
-"register.camera.title.proofOfAddress" = "Сделайте фото вида на жительство";
+"register.camera.title.proofOfAddress" = "Сделайте фото документа, подтверждающего адрес вашего места жительства";
 "register.camera.photo.take" = "Отлично, продолжить";
 "register.camera.photo.cancel" = "Нет, переснять";
 "register.camera.photo.ok" = "ОК, отправить";
 "register.camera.hud.title" = "Кликните здесь для отмены операции";
-"register.kyc.pending" = "Уважаемый %@, ваша информация проверяется нашей службой безопасности. Это может занять 15-20 минут.";
+"register.kyc.pending" = "%@, ваши документы проверяются нашей службой безопасности. Мы сообщим вам по электронной почте, когда проверка будет завершена.";
 
 "register.kyc.restricted.header" = "Упс!";
 "register.kyc.restricted" = "Уважаемый %@, мы очень сожалеем, но Lykke Wallet не может быть создан на основе KYC-информации, которую Вы предоставили.";
@@ -62,15 +62,15 @@
 "register.kyc.invalidDocuments" = "Уважаемый %@, приносим свои извинения, но мы не смогли принять часть Ваших докмуентов. Пожалуйста, загрузите их снова.";
 "register.kyc.invalidDocuments.okButton" = "Ок, я понимаю";
 "register.kyc.success.header" = "Lykke Wallet был успешно создан!";
-"register.kyc.success" = "Уважаемый %@, спасибо за ожидание. С документами все в порядке. Переходим к вопросам безопасности.";
+"register.kyc.success" = "%@, благодарим за ожидание! Ваши документы успешно прошли проверку. Установите, пожалуйста, настройки безопасности.";
 "register.kyc.success.okButton" = "Продолжить";
 "register.pin.setup.ok.title" = "Поздравляем!";
 "register.pin.setup.ok.okButton" = "OK";
-"register.pin.setup.ok.text" = "Ваш приватный ключ сгенерирован.\nВы почти готовы к торговле, мы лишь зададим несколько дополнительных вопросов.\n\nЭто займет 1-2 минуты. Пожалуйста, держите рядом Ваши паспорт и вид на жительство.";
+"register.pin.setup.ok.text" = "Ваш приватный ключ создан.";
 
 "register.kyc.submit.title" = "Отправить документы";
-"register.kyc.submit.header" = "Процедура утверждения.";
-"register.kyc.submit" = "Уважаемый %@, ваша информация будет проверяется нашей службой безопасности.\nЭто может занять до 15-20 минут.";
+"register.kyc.submit.header" = "Процедура утверждения";
+"register.kyc.submit" = "%@, пожалуйста, отправьте ваши документы для проверки нашей службой безопасности";
 "register.kyc.submit.submitButton" = "Начать проверку";
 
 "register.validation.label" = "Устанавливаем соединение.\nПожалуйста, подождите ...";
@@ -144,15 +144,15 @@
 "withdraw.funds.qr.title" = "SCAN CODE";
 
 "exchange.assets.selection" = "Выберите ассет";
-"exchange.assets.header.issuer" = "Издатель/Ассет";
+"exchange.assets.header.issuer" = "Эмитент/Актив";
 "exchange.assets.header.price" = "Цена";
 "exchange.assets.header.change" = "Изменение";
-"exchange.assets.form.assetclass" = "Класс ассета";
+"exchange.assets.form.assetclass" = "Класс актива";
 "exchange.assets.form.popularity" = "Индекс популярности";
 "exchange.assets.form.description" = "Описание";
-"exchange.assets.form.issuername" = "Издатель";
+"exchange.assets.form.issuername" = "Эмитент";
 "exchange.assets.form.coinsnumber" = "Валюты выпущено";
-"exchange.assets.form.capitalization" = "Капитализация рынка";
+"exchange.assets.form.capitalization" = "Капитализа-\nция рынка";
 "exchange.assets.form.button" = "КУПИТЬ ПО ЦЕНЕ $ ";
 "exchange.assets.buy.title" = "КУПИТЬ ";
 "exchange.assets.sell.title" = "ПРОДАТЬ ";
@@ -220,12 +220,16 @@
 "settings.cell.kyc.title" = "Персональные данные";
 "settings.cell.logout.title" = "Выйти из-под";
 "settings.cell.asset.title" = "Базовая валюта";
+"settings.cell.terms.title" = "Terms of Use";
+"settings.callbutton.title" = "CALL SUPPORT";
+
 
 "history.title" = "История операций";
 "history.market.buy" = "покупка";
 "history.market.sell" = "продажа";
 "history.cash.in" = "Пополнение";
 "history.cash.out" = "Снятие";
+"history.cash.refund"="Refund";
 "history.cash.asset" = "Asset";
 "history.cash.amount" = "Amount";
 "history.cash.blockchain" = "Blockchain settlement";
@@ -244,12 +248,12 @@
 "errors.server.problems"    = "Technical problems.";
 
 "ABPadLockScreen.pin.enter" = "Введите PIN";
-"ABPadLockScreen.pin.setup" = "Задайте новый PIN";
+"ABPadLockScreen.pin.setup" = "Задайте PIN";
 "ABPadLockScreen.pin.setup.confirm" = "Повторно введите PIN";
 "ABPadLockScreen.pin.matchError" = "PIN-коды не совпадают!";
 "ABPadLockScreen.pin.attempts.left.none" = "Попытки закончились. Приложение заблокировано.";
 "ABPadLockScreen.pin.attempts.left.one" = "попытка осталась";
-"ABPadLockScreen.pin.attempts.left.several" = "попыток осталось";
+"ABPadLockScreen.pin.attempts.left.several" = "попытки осталось";
 "ABPadLockScreen.cancel" = "Отмена";
 "ABPadLockScreen.delete" = "Стереть";
 "ABPadLockScreen.ok" = "ОК";

@@ -56,6 +56,7 @@
 #import "LWPacketCurrencyWithdraw.h"
 #import "LWPacketAPIVersion.h"
 #import "LWPacketBitcoinAddressValidation.h"
+#import "LWPacketSetRevertedPair.h"
 
 #import "LWLykkeWalletsData.h"
 #import "LWBankCardsAdd.h"
@@ -65,6 +66,7 @@
 #import "LWPersonalDataModel.h"
 #import "LWAssetBlockchainModel.h"
 #import "LWExchangeInfoModel.h"
+
 
 
 @interface LWAuthManager () {
@@ -269,7 +271,7 @@ SINGLETON_INIT {
     [self sendPacket:pack];
 }
 
-- (void)requestPurchaseAsset:(NSString *)asset assetPair:(NSString *)assetPair volume:(NSNumber *)volume rate:(NSNumber *)rate {
+- (void)requestPurchaseAsset:(NSString *)asset assetPair:(NSString *)assetPair volume:(NSString *)volume rate:(NSString *)rate {
     LWPacketBuySellAsset *pack = [LWPacketBuySellAsset new];
     pack.baseAsset = asset;
     pack.assetPair = assetPair;
@@ -279,7 +281,7 @@ SINGLETON_INIT {
     [self sendPacket:pack];
 }
 
-- (void)requestSellAsset:(NSString *)asset assetPair:(NSString *)assetPair volume:(NSNumber *)volume rate:(NSNumber *)rate {
+- (void)requestSellAsset:(NSString *)asset assetPair:(NSString *)assetPair volume:(NSNumber *)volume rate:(NSString *)rate {
     LWPacketBuySellAsset *pack = [LWPacketBuySellAsset new];
     pack.baseAsset = asset;
     pack.assetPair = assetPair;
@@ -457,6 +459,14 @@ SINGLETON_INIT {
 {
     LWPacketBitcoinAddressValidation *pack=[LWPacketBitcoinAddressValidation new];
     pack.bitcoinAddress=address;
+    [self sendPacket:pack];
+}
+
+-(void) requestSetReverted:(BOOL)reverted assetPairId:(NSString *)assetPairId
+{
+    LWPacketSetRevertedPair *pack=[LWPacketSetRevertedPair new];
+    pack.inverted=reverted;
+    pack.assetPairId=assetPairId;
     [self sendPacket:pack];
 }
 

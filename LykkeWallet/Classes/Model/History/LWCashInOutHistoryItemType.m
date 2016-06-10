@@ -21,6 +21,8 @@
     result.asset       = model.asset;
     result.iconId      = model.iconId;
     result.historyType = LWHistoryItemTypeCashInOut;
+    result.blockchainHash=model.blockchainHash;
+    result.isRefund=model.isRefund;
     
     return result;
 }
@@ -30,6 +32,8 @@
     LWCashInOutHistoryItemType* data = [super copyWithZone:zone];
     data.amount = [self.amount copy];
     data.asset = [self.iconId copy];
+    data.blockchainHash=[self.blockchainHash copy];
+    data.isRefund=self.isRefund;
     return data;
 }
 

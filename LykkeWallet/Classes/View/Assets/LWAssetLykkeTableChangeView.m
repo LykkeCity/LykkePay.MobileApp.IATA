@@ -23,6 +23,10 @@
     
     if (self.changes && self.changes.count >= 2) {
         // calculation preparation
+        
+        
+        
+        
         CGFloat xPosition = 0.0;
         CGFloat xMargin = 5.0;
         CGSize const size = self.frame.size;
@@ -63,6 +67,8 @@
 }
 
 - (CGFloat)point:(NSNumber *)point forSize:(CGSize)size {
+    
+//    NSLog(@"%@", point);
     CGFloat const yMargin = 4.0;
     CGFloat const yMarginPercantage = 1.0 + yMargin * 0.01;
     CGFloat result = (size.height - yMargin) * (yMarginPercantage - point.doubleValue);

@@ -20,6 +20,8 @@
         return;
     }
     
+    BOOL flagReverted=[response[@"Result"][@"Rate"][@"Inverted"] boolValue];
+    
     self.startDate=[self dateFromString:response[@"Result"][@"StartTime"]];
     
     self.endDate=[self dateFromString:response[@"Result"][@"EndTime"]];
@@ -27,10 +29,23 @@
     
     self.percentChange=[NSNumber numberWithDouble:[response[@"Result"][@"Rate"][@"PChange"] doubleValue]];
     
+    if(flagReverted)
+    {
+        self.percentChange=[NSNumber numberWithDouble:-[response[@"Result"][@"Rate"][@"PChange"] doubleValue]];
+
+    }
+    
+    
     NSMutableArray *arr=[[NSMutableArray alloc] init];
+    
+    
     for(NSString *s in response[@"Result"][@"Rate"][@"ChngGrph"])
     {
-        [arr addObject:[NSNumber numberWithDouble:[s doubleValue]]];
+        if(flagReverted)
+            [arr addObject:[NSNumber numberWithDouble:1/[s doubleValue]]];
+        else
+            [arr addObject:[NSNumber numberWithDouble:[s doubleValue]]];
+        
     }
     
     self.graphValues=arr;

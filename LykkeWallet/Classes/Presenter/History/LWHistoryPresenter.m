@@ -35,4 +35,11 @@
     [[LWAuthManager instance] requestTransactions:self.assetId];
 }
 
+-(void) viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    self.title = Localize(@"tab.history");
+
+}
+
 @end

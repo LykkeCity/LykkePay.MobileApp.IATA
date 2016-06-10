@@ -18,6 +18,8 @@
 
 @property (copy, nonatomic) NSNumber *amount;
 @property (copy, nonatomic) NSString *iconId;
+@property (copy, nonatomic) NSString *blockchainHash;
+@property BOOL isRefund;
 
 + (LWCashInOutHistoryItemType *)convertFromNetworkModel:(LWTransactionCashInOutModel *)model;
 

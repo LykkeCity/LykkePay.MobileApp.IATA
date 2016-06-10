@@ -249,7 +249,8 @@
         NSString *type = (volume.doubleValue >= 0
                           ? Localize(@"history.cash.in")
                           : Localize(@"history.cash.out"));
-        
+        if(cash.isRefund)
+            type=Localize(@"history.cash.refund");
         operation = [NSString stringWithFormat:@"%@ %@", base, type];
     }
 #ifdef PROJECT_IATA
@@ -298,6 +299,10 @@
 //            cell.valueLabel.textColor=[UIColor colorWithHexString:@"D3D6DB"];
 //            cell.typeLabel.textColor=[UIColor colorWithHexString:@"D3D6DB"];
 //            cell.dateLabel.textColor=[UIColor colorWithHexString:@"D3D6DB"];
+        }
+        else
+        {
+            NSLog(@"BlockchainHash is not empty");
         }
         
     }

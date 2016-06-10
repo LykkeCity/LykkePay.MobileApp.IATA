@@ -18,5 +18,7 @@
 @property (readonly, nonatomic) NSDate   *dateTime;
 @property (readonly, nonatomic) NSString *asset;
 @property (readonly, nonatomic) NSString *iconId;
+@property (readonly, nonatomic) NSString *blockchainHash;
+@property BOOL isRefund;
 
 @end
