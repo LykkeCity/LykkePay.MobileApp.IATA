@@ -422,6 +422,8 @@ static NSString *const FormIdentifiers[kFormRows] = {
 
     LWExchangeResultPresenter *controller = [LWExchangeResultPresenter new];
     controller.purchase = purchase;
+    controller.assetPair=self.assetPair;
+    
     [self.navigationController pushViewController:controller animated:YES];
 }
 

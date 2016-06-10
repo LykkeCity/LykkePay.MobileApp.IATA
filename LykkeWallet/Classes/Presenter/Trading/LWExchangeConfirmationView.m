@@ -146,6 +146,7 @@ static float const kNoPinProtectionHeight = 300;
                           selector:@selector(cancelClicked:)];
     
     self.placeOrderButton.hidden = NO;
+    [LWValidator setButton:self.placeOrderButton enabled:YES];
     
     [self registerCellWithIdentifier:kDetailTableViewCellIdentifier
                                 name:kDetailTableViewCell];

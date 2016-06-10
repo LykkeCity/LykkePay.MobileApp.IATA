@@ -45,6 +45,31 @@ static int const kNumberOfRows = 3;
     [self registerCellWithIdentifier:kLeftDetailTableViewCellIdentifier
                                 name:kLeftDetailTableViewCell];
     
+//    NSString *type = (self.model.amount.doubleValue >= 0
+//                      ? Localize(@"history.cash.in")
+//                      : Localize(@"history.cash.out"));
+//    
+//    NSString *base = [LWAssetModel
+//                      assetByIdentity:self.model.asset
+//                      fromList:[LWCache instance].baseAssets];
+//    
+//    self.title = [NSString stringWithFormat:@"%@ %@", base, type];
+    
+    [self setBackButton];
+    [self setRefreshControl];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+
+
+    [self setHideKeyboardOnTap:NO]; // gesture recognizer deletion
+}
+
+-(void) viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
     NSString *type = (self.model.amount.doubleValue >= 0
                       ? Localize(@"history.cash.in")
                       : Localize(@"history.cash.out"));
@@ -54,15 +79,7 @@ static int const kNumberOfRows = 3;
                       fromList:[LWCache instance].baseAssets];
     
     self.title = [NSString stringWithFormat:@"%@ %@", base, type];
-    
-    [self setBackButton];
-    [self setRefreshControl];
-}
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-
-    [self setHideKeyboardOnTap:NO]; // gesture recognizer deletion
 }
 
 

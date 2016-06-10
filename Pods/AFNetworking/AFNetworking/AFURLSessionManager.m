@@ -325,8 +325,8 @@ didCompleteWithError:(NSError *)error
 {
     [self.mutableData appendData:data];
     
-    NSString *string=[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];//Testing
-    NSLog(@"%@", string);
+//    NSString *string=[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];//Testing
+//    NSLog(@"%@", string);
 }
 
 #pragma mark - NSURLSessionDownloadTaskDelegate

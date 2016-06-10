@@ -193,13 +193,24 @@ static int const kBlockchainRow = 4;
 //        totalCostString=[LWUtils formatVolumeString:[NSString stringWithFormat:@"%.20f", self.purchase.totalCost.floatValue] currencySign:@"" accuracy:[self accuracyForQuotingAsset].intValue removeExtraZeroes:NO];
 //    }
     
+    NSString *assetName=self.assetPair.name;
+    if(self.assetPair.inverted)
+    {
+        NSArray *arr=[assetName componentsSeparatedByString:@"/"];
+        if(arr.count==2)
+            assetName=[NSString stringWithFormat:@"%@/%@", arr[1], arr[0]];
+    }
+        
+    
     NSString *const values[kNumberOfRows] = {
-        self.purchase.assetPair,
+        assetName,
 //        [LWMath makeStringByNumber:self.purchase.volume withPrecision:self.purchase.accuracy.integerValue],
-        self.purchase.volume.stringValue,
-        [NSString stringWithFormat:@"%f", self.purchase.price.floatValue],
+        [NSString stringWithFormat:@"%g", self.purchase.volume.floatValue],
+//        self.purchase.volume.stringValue,
+        [NSString stringWithFormat:@"%g", self.purchase.price.floatValue],
 //        self.purchase.price.stringValue,
-        self.purchase.totalCost.stringValue,
+//        self.purchase.totalCost.stringValue,
+        [NSString stringWithFormat:@"%g", self.purchase.totalCost.floatValue],
 
 //        [LWMath makeStringByNumber:self.purchase.price withPrecision:self.purchase.accuracy.integerValue],
 //        [LWUtils formatVolumeString:[NSString stringWithFormat:@"%.20f", self.purchase.price.floatValue] currencySign:@"" accuracy:self.purchase.accuracy.intValue removeExtraZeroes:NO],

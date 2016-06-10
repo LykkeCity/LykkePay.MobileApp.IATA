@@ -45,15 +45,15 @@ static int const kNumberOfRows = 3;
     [self registerCellWithIdentifier:kLeftDetailTableViewCellIdentifier
                                 name:kLeftDetailTableViewCell];
     
-    NSString *type = (self.model.volume.doubleValue >= 0
-                      ? Localize(@"history.transfer.in")
-                      : Localize(@"history.transfer.out"));
-    
-    NSString *base = [LWAssetModel
-                      assetByIdentity:self.model.asset
-                      fromList:[LWCache instance].baseAssets];
-    
-    self.title = [NSString stringWithFormat:@"%@ %@", base, type];
+//    NSString *type = (self.model.volume.doubleValue >= 0
+//                      ? Localize(@"history.transfer.in")
+//                      : Localize(@"history.transfer.out"));
+//    
+//    NSString *base = [LWAssetModel
+//                      assetByIdentity:self.model.asset
+//                      fromList:[LWCache instance].baseAssets];
+//    
+//    self.title = [NSString stringWithFormat:@"%@ %@", base, type];
     
     [self setBackButton];
     [self setRefreshControl];
@@ -63,6 +63,21 @@ static int const kNumberOfRows = 3;
     [super viewWillAppear:animated];
     
     [self setHideKeyboardOnTap:NO]; // gesture recognizer deletion
+}
+
+-(void) viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    NSString *type = (self.model.volume.doubleValue >= 0
+                      ? Localize(@"history.transfer.in")
+                      : Localize(@"history.transfer.out"));
+    
+    NSString *base = [LWAssetModel
+                      assetByIdentity:self.model.asset
+                      fromList:[LWCache instance].baseAssets];
+    
+    self.title = [NSString stringWithFormat:@"%@ %@", base, type];
+
 }
 
 

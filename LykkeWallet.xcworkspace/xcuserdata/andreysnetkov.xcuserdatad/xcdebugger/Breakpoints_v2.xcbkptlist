@@ -504,11 +504,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LykkeWallet/Classes/Presenter/Trading/LWExchangeDealFormPresenter.m"
-            timestampString = "487247536.553603"
+            timestampString = "487261232.684514"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "687"
-            endingLineNumber = "687"
+            startingLineNumber = "689"
+            endingLineNumber = "689"
             landmarkName = "-volumeFromField"
             landmarkType = "5">
          </BreakpointContent>
@@ -551,22 +551,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "LykkeWallet/Classes/Presenter/Trading/LWExchangePresenter.m"
-            timestampString = "487150698.072412"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "368"
-            endingLineNumber = "368"
-            landmarkName = "-authManager:didGetAssetPairRates:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "LykkeWallet/Classes/Presenter/Wallets/CurrencyDeposit/LWCurrencyDepositPresenter.m"
             timestampString = "487237003.783096"
             startingColumnNumber = "9223372036854775807"
@@ -584,11 +568,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LykkeWallet/Classes/Presenter/Trading/LWExchangeDealFormPresenter.m"
-            timestampString = "487247536.553603"
+            timestampString = "487261232.684514"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "510"
-            endingLineNumber = "510"
+            startingLineNumber = "512"
+            endingLineNumber = "512"
             landmarkName = "-requestOperationWithHud:"
             landmarkType = "5">
          </BreakpointContent>
@@ -600,11 +584,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LykkeWallet/Classes/Presenter/Trading/LWExchangeDealFormPresenter.m"
-            timestampString = "487247536.553603"
+            timestampString = "487261232.684514"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "519"
-            endingLineNumber = "519"
+            startingLineNumber = "521"
+            endingLineNumber = "521"
             landmarkName = "-requestOperationWithHud:"
             landmarkType = "5">
          </BreakpointContent>
@@ -647,13 +631,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "LykkeWallet/Classes/Model/Core/Network/LWPacketTransactions.m"
-            timestampString = "487251349.650738"
+            filePath = "LykkeWallet/Classes/Presenter/Trading/LWExchangeConfirmationView.m"
+            timestampString = "487264186.16456"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "19"
-            endingLineNumber = "19"
-            landmarkName = "-parseResponse:error:"
+            startingLineNumber = "116"
+            endingLineNumber = "116"
+            landmarkName = "-updateView"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

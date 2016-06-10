@@ -12,6 +12,8 @@
 
 @property id delegate;
 
+-(void) checkCurrentBaseAsset;
+
 @end
 
 @protocol LWExchangeBaseAssetsViewDelegate

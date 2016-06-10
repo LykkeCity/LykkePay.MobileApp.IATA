@@ -41,10 +41,12 @@
 -(void) reverse
 {
     [_rate invert];
-    
+    if(_rate)
+    {
     [[LWAuthManager instance] requestSetReverted:_rate.inverted assetPairId:_rate.identity];
     
     [self setRate:_rate];
+    }
 }
 
 - (void)setRate:(LWAssetPairRateModel *)rate {

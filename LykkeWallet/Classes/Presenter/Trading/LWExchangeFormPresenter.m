@@ -78,6 +78,14 @@ static NSString *const DescriptionIdentifiers[kDescriptionRows] = {
 {
     [super viewDidAppear:animated];
     self.title = self.assetPair.name;
+    if(self.assetPair.inverted)
+    {
+        NSArray *arr=[self.assetPair.name componentsSeparatedByString:@"/"];
+        if(arr.count==2)
+        {
+            self.title=[NSString stringWithFormat:@"%@/%@", arr[1], arr[0]];
+        }
+    }
 
 }
 

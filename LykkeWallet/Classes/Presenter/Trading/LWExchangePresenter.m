@@ -129,8 +129,6 @@ static NSString *const AssetIcons[kNumberOfSections] = {
     
 //    NSNumber *nnn=[LWCache instance].refreshTimer;
     
-    timer=[NSTimer timerWithTimeInterval:[LWCache instance].refreshTimer.integerValue/1000 target:self selector:@selector(loadRates) userInfo:nil repeats:YES];
-    [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
     
 }
 
@@ -155,6 +153,17 @@ static NSString *const AssetIcons[kNumberOfSections] = {
 {
     [super viewDidAppear:animated];
     [self setTitle:Localize(@"tab.trading")];
+    [self.baseAssetsView checkCurrentBaseAsset];
+    
+    isLoadingRatesNow=NO;
+    timer=[NSTimer timerWithTimeInterval:[LWCache instance].refreshTimer.integerValue/1000 target:self selector:@selector(loadRates) userInfo:nil repeats:YES];
+    [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
+
+}
+
+-(void) viewWillDisappear:(BOOL)animated
+{
+    [timer invalidate];
 }
 
 

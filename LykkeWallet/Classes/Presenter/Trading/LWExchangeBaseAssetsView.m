@@ -60,8 +60,22 @@
 
 }
 
+-(void) checkCurrentBaseAsset
+{
+        for(UIButton *b in buttons)
+        {
+            b.selected=NO;
+            int index=(int)[buttons indexOfObject:b];
+            LWAssetModel *asset=assets[index];
+            if([asset.identity isEqualToString:[LWCache instance].baseAssetId])
+                b.selected=YES;
+        }
+}
+
 -(void) assetPressed:(UIButton *) button
 {
+    if(button.selected)
+        return;
     NSInteger index=[buttons indexOfObject:button];
     LWAssetModel *asset=assets[index];
     if([self.delegate respondsToSelector:@selector(baseAssetsViewChangedBaseAsset:)])
