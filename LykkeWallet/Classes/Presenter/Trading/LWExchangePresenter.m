@@ -144,9 +144,6 @@ static NSString *const AssetIcons[kNumberOfSections] = {
     self.headerView.backgroundColor = self.navigationController.navigationBar.barTintColor;
 #endif
     
-    if(!self.assetPairs)
-        [self setLoading:YES];
-    [[LWAuthManager instance] requestAssetPairs];
 }
 
 -(void) viewDidAppear:(BOOL)animated
@@ -158,6 +155,11 @@ static NSString *const AssetIcons[kNumberOfSections] = {
     isLoadingRatesNow=NO;
     timer=[NSTimer timerWithTimeInterval:[LWCache instance].refreshTimer.integerValue/1000 target:self selector:@selector(loadRates) userInfo:nil repeats:YES];
     [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
+    
+    if(!self.assetPairs)
+        [self setLoading:YES];
+    [[LWAuthManager instance] requestAssetPairs];
+
 
 }
 

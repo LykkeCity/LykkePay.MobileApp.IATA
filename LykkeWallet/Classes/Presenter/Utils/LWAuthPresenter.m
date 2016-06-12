@@ -35,6 +35,12 @@
     [LWAuthManager instance].delegate = self;
 }
 
+-(void) viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [self setLoading:NO];
+}
+
 -(void) userSwipedBack
 {
     UIBarButtonItem *item=self.navigationItem.leftBarButtonItem;

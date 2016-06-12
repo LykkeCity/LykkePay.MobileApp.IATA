@@ -134,6 +134,7 @@ static NSString *const SettingsIdentifiers[kNumberOfRows] = {
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSLog(@"%d", indexPath.row);
     NSString *identifier = SettingsIdentifiers[indexPath.row];
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     [self configureCell:cell indexPath:indexPath];

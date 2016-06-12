@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A10A94F41D0D33AA00557C87 /* ThreeDots.png in Resources */ = {isa = PBXBuildFile; fileRef = A10A94F31D0D33AA00557C87 /* ThreeDots.png */; };
+		A10A94F71D0D351000557C87 /* LWExchangeAssetsPopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = A10A94F61D0D351000557C87 /* LWExchangeAssetsPopupView.m */; };
 		A1165D1C1CF55B530017A725 /* LWIPadModalNavigationControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A1165D1B1CF55B530017A725 /* LWIPadModalNavigationControllerViewController.m */; };
 		A1165D1E1CF5703F0017A725 /* LWTradingWalletPresenter~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1165D1D1CF5703F0017A725 /* LWTradingWalletPresenter~ipad.xib */; };
 		A1165D221CF577CB0017A725 /* LWAssetLykkeTableViewCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1165D211CF577CB0017A725 /* LWAssetLykkeTableViewCell~ipad.xib */; };
@@ -1387,6 +1389,9 @@
 /* Begin PBXFileReference section */
 		68CD54781D3AB2AD7AAA8023 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		7F99B9580B48B839D9C768D4 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		A10A94F31D0D33AA00557C87 /* ThreeDots.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ThreeDots.png; sourceTree = "<group>"; };
+		A10A94F51D0D351000557C87 /* LWExchangeAssetsPopupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWExchangeAssetsPopupView.h; sourceTree = "<group>"; };
+		A10A94F61D0D351000557C87 /* LWExchangeAssetsPopupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWExchangeAssetsPopupView.m; sourceTree = "<group>"; };
 		A1165D1A1CF55B530017A725 /* LWIPadModalNavigationControllerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWIPadModalNavigationControllerViewController.h; sourceTree = "<group>"; };
 		A1165D1B1CF55B530017A725 /* LWIPadModalNavigationControllerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWIPadModalNavigationControllerViewController.m; sourceTree = "<group>"; };
 		A1165D1D1CF5703F0017A725 /* LWTradingWalletPresenter~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "LWTradingWalletPresenter~ipad.xib"; path = "TradingWallet/LWTradingWalletPresenter~ipad.xib"; sourceTree = "<group>"; };
@@ -2814,6 +2819,7 @@
 				A1165D2E1CF5E4DA0017A725 /* CheckMark.png */,
 				A1165D3F1CF6CF940017A725 /* DisclosureIndicator.png */,
 				A1BCD2DE1D01651D00CF42E4 /* tips_about.png */,
+				A10A94F31D0D33AA00557C87 /* ThreeDots.png */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -3872,6 +3878,8 @@
 				ECD1E9041C3BCAE30064AAB3 /* LWExchangePresenter.m */,
 				A1C5AF471D08035E0056DC53 /* LWExchangeBaseAssetsView.h */,
 				A1C5AF481D08035E0056DC53 /* LWExchangeBaseAssetsView.m */,
+				A10A94F51D0D351000557C87 /* LWExchangeAssetsPopupView.h */,
+				A10A94F61D0D351000557C87 /* LWExchangeAssetsPopupView.m */,
 				EC57F4511C3C3DD900E31746 /* LWExchangeFormPresenter.h */,
 				EC57F4521C3C3DD900E31746 /* LWExchangeFormPresenter.m */,
 				EC57F4661C3D3FF900E31746 /* LWExchangeDealFormPresenter.h */,
@@ -5996,6 +6004,7 @@
 				A1BCD2D41D012D3C00CF42E4 /* 5-onboard-2x_00110.png in Resources */,
 				A1AB306C1CE59632009AF37B /* CopiedCheckMarkSign.png in Resources */,
 				A1743CB01CE8A6B100176F59 /* WithdrawSuccessFlag.png in Resources */,
+				A10A94F41D0D33AA00557C87 /* ThreeDots.png in Resources */,
 				A1BCD10B1D012D3C00CF42E4 /* 2-trade-2x_00011.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -6282,6 +6291,7 @@
 				A1C5AF551D0A867D0056DC53 /* LWSettingsTermsTableViewCell.m in Sources */,
 				ECEC40CB1C42CA7B00B22BEE /* LWHistoryManager.m in Sources */,
 				CD10AAA61C1E0C560086634B /* LWAuthenticationData.m in Sources */,
+				A10A94F71D0D351000557C87 /* LWExchangeAssetsPopupView.m in Sources */,
 				CDA69FDB1C281A5500BE4DCA /* LWPacketRegistrationGet.m in Sources */,
 				EC9AE0671CAC7A370047DF0D /* QRCodeReaderView.m in Sources */,
 				EC7519C91C3742B800CDDF5B /* LWPacketBaseAssetSet.m in Sources */,
