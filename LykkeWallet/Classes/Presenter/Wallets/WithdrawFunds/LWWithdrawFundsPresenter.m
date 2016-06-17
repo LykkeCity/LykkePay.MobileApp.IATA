@@ -15,13 +15,14 @@
 #import "TKContainer.h"
 #import "TKButton.h"
 #import "LWPacketBitcoinAddressValidation.h"
+#import "ZBarReaderViewController.h"
 
 #import "UIViewController+Navigation.h"
 #import "UIViewController+Loading.h"
 
 
 
-@interface LWWithdrawFundsPresenter () <LWTextFieldDelegate, AMScanViewControllerDelegate> {
+@interface LWWithdrawFundsPresenter () <LWTextFieldDelegate, AMScanViewControllerDelegate, ZBarReaderDelegate> {
     LWTextField *bitcoinTextField;
 }
 
@@ -145,10 +146,102 @@
 }
 
 - (void)scanClicked:(id)sender {
-    LWQrCodeScannerPresenter *presenter = [LWQrCodeScannerPresenter new];
-    presenter.delegate = self;
-    [self.navigationController pushViewController:presenter animated:YES];
+//    LWQrCodeScannerPresenter *presenter = [LWQrCodeScannerPresenter new];
+//    presenter.delegate = self;
+//    [self.navigationController pushViewController:presenter animated:YES];
+    
+    
+    
+#if TARGET_IPHONE_SIMULATOR
+    // Simulator
+#else
+    
+    void (^block)(void)=^{
+        
+        ZBarReaderViewController *codeReader = [ZBarReaderViewController new];
+        codeReader.readerDelegate=self;
+        codeReader.supportedOrientationsMask = ZBarOrientationMaskAll;
+        codeReader.showsZBarControls=NO;
+        codeReader.showsHelpOnFail=NO;
+        codeReader.tracksSymbols=YES;
+        
+        ZBarImageScanner *scanner = codeReader.scanner;
+        [scanner setSymbology: ZBAR_I25 config: ZBAR_CFG_ENABLE to: 0];
+        
+        [self.navigationController pushViewController:codeReader animated:YES];
+        
+        [codeReader setTitle:@"SCAN QR-CODE"];
+    };
+    
+    void (^messageBlock)(void)=^{
+        
+        UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"ATTENTION" message:@"You have to grant access to your device camera for scanning QR-codes. Please do it in your device Settings." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+    };
+    
+    
+    
+    AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
+    if(authStatus == AVAuthorizationStatusAuthorized) {
+        block();
+    } else if(authStatus == AVAuthorizationStatusDenied){
+        messageBlock();
+        
+    } else if(authStatus == AVAuthorizationStatusRestricted){
+        // restricted, normally won't happen
+    } else if(authStatus == AVAuthorizationStatusNotDetermined){
+        // not determined?!
+        [AVCaptureDevice requestAccessForMediaType:AVMediaTypeVideo completionHandler:^(BOOL granted) {
+            if(granted){
+                block();
+            } else {
+                messageBlock();
+            }
+        }];
+    } else {
+        // impossible, unknown authorization status
+    }
+    
+    
+    
+#endif
+
+    
+    
+    
 }
+
+
+#pragma mark - ZBar's Delegate method
+
+- (void) imagePickerController: (UIImagePickerController*) reader didFinishPickingMediaWithInfo: (NSDictionary*) info
+{
+#if TARGET_IPHONE_SIMULATOR
+    // Simulator
+#else
+    //  get the decode results
+    id<NSFastEnumeration> results = [info objectForKey: ZBarReaderControllerResults];
+    
+    ZBarSymbol *symbol = nil;
+    for(symbol in results)
+        // just grab the first barcode
+        break;
+    
+    // showing the result on textview
+    
+    bitcoinTextField.text = symbol.data;
+    [self updatePasteButtonStatus];
+    
+    
+    
+    // dismiss the controller
+    //    [reader dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController popViewControllerAnimated:YES];
+    
+#endif
+    
+}
+
 
 
 #pragma mark - test

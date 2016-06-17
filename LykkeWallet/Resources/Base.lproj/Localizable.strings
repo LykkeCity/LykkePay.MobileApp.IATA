@@ -6,11 +6,11 @@
   Copyright © 2015 Lykkex. All rights reserved.
 */
 
-"tab.wallets" = "Wallet";
-"tab.trading" = "Exchange";
-"tab.transfer" = "Transfer";
-"tab.history" = "History";
-"tab.settings" = "Settings";
+"tab.wallets" = "WALLET";
+"tab.trading" = "EXCHANGE";
+"tab.transfer" = "TRANSFER";
+"tab.history" = "HISTORY";
+"tab.settings" = "SETTINGS";
 
 "title.register" = "Register";
 "title.authentication" = "Log in";
@@ -46,10 +46,11 @@
 "register.password" = "Password (min 6 symbols)";
 "register.passwordConfirm" = "Confirm Password (min 6 symbols)";
 "register.submit" = "Submit";
+"register.camera.requestaccess"="Selfie photo should be provided to get access to the Lykke Wallet. Provide access to camera?";
 "register.camera.title.selfie" = "Take a selfie";
 "register.camera.title.idCard" = "Take a photo of your passport or other ID";
 "register.camera.title.proofOfAddress" = "Take a photo of your utility bill or other proof of address";
-"register.camera.photo.take" = "Nice, Submit";
+"register.camera.photo.take" = "Take a picture";
 "register.camera.photo.cancel" = "Not good, reshoot";
 "register.camera.photo.ok" = "Nice, submit";
 "register.camera.hud.title" = "Tap to cancel the upload operation";
@@ -158,11 +159,11 @@
 "exchange.assets.sell.title" = "SELL ";
 "exchange.assets.description.buy" = "I want to buy %@ %@ for %@ %@";
 "exchange.assets.description.sell" = "I want to sell %@ %@ for %@ %@";
-"exchange.assets.buy.sum" = "Volume";
-"exchange.assets.buy.placeholder" = "Input amount";
-"exchange.assets.result.placeholder" = "Input result";
+"exchange.assets.buy.sum" = "Buy";
+"exchange.assets.buy.placeholder" = "Input";
+"exchange.assets.result.placeholder" = "Input";
 "exchange.assets.buy.price" = "Price";
-"exchange.assets.buy.total" = "Total cost";
+"exchange.assets.buy.total" = "Sell";
 "exchange.assets.buy.checkout" = "SUBMIT";
 "exchange.assets.modal.title" = "ORDER SUMMARY";
 "exchange.assets.modal.button" = "PLACE AN ORDER";
@@ -175,10 +176,10 @@
 "exchange.assets.modal.error.ok" = "OK";
 "exchange.assets.result.title" = " PURCHASED!";
 "exchange.assets.result.assetname" = "Asset name";
-"exchange.assets.result.units" = "Units purchased";
+"exchange.assets.result.units" = "Buy";
 "exchange.assets.result.price" = "Execution price";
 "exchange.assets.result.commission" = "Commission paid";
-"exchange.assets.result.cost" = "Total cost";
+"exchange.assets.result.cost" = "Sell";
 "exchange.assets.result.blockchain" = "Blockchain settlement";
 "exchange.assets.result.blockchain.progress" = "In progress";
 "exchange.assets.result.position" = "Position";
@@ -186,6 +187,7 @@
 "exchange.assets.result.share" = "SHARE";
 "exchange.assets.result.boughtfor"="bought for";
 "exchange.assets.result.soldfor"="sold for";
+"exchange.popup.basecurrency"="BASE CURRENCY";
 
 
 "exchange.blockchain.close" = "CLOSE";
@@ -271,4 +273,7 @@
 
 "introduction.buttons.getstarted"="GET STARTED";
 "introduction.buttons.whydoineedit"="Why do I need it?";
+
+"general.yes"="Yes";
+"general.no"="No";
 

@@ -46,12 +46,13 @@
 
     [cancelButton setAttributedTitle:[[NSAttributedString alloc] initWithString:Localize(@"exchange.assets.modal.cancel") attributes:attributes] forState:UIControlStateNormal];
     [cancelButton sizeToFit];
+    [cancelButton addTarget:self action:@selector(hide) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:cancelButton];
     
     titleLabel=[[UILabel alloc] init];
     
     attributes = @{NSKernAttributeName:@(1.5), NSFontAttributeName:[UIFont fontWithName:@"ProximaNova-Semibold" size:17], NSForegroundColorAttributeName:[UIColor colorWithRed:63.0/255 green:77.0/255 blue:96.0/255 alpha:1]};
-    titleLabel.attributedText=[[NSAttributedString alloc] initWithString:@"BASE CURRENCY" attributes:attributes];
+    titleLabel.attributedText=[[NSAttributedString alloc] initWithString:Localize(@"exchange.popup.basecurrency") attributes:attributes];
     
     [titleLabel sizeToFit];
     [self addSubview:titleLabel];
@@ -117,7 +118,7 @@
     
     self.center=CGPointMake(self.center.x, self.center.y+self.bounds.size.height);
     
-    [UIView animateWithDuration:3 animations:^{
+    [UIView animateWithDuration:0.5 animations:^{
     
         shadow.alpha=1;
         self.center=CGPointMake(self.center.x, self.center.y-self.bounds.size.height);
@@ -129,7 +130,18 @@
 
 -(void) hide
 {
+    [UIView animateWithDuration:0.5 animations:^{
+        
+        shadow.alpha=0;
+        self.center=CGPointMake(self.center.x, self.center.y+self.bounds.size.height);
+        
+        
+    } completion:^(BOOL finished){
+        [shadow removeFromSuperview];
+        [self removeFromSuperview];
     
+    }];
+
 }
 
 -(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -186,12 +198,18 @@
     
 }
 
-//- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
-//{
-//    return [UIView new];
-//}
-//
+-(void) tableView:(UITableView *)_tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if(activeAssetNum==indexPath.row)
+        return;
 
+    LWAssetModel *asset=assets[indexPath.row];
+    activeAssetNum=(int) indexPath.row;
+    [tableView reloadData];
+    if([self.delegate respondsToSelector:@selector(popupView:didSelectAssetWithId:)])
+        [self.delegate popupView:self didSelectAssetWithId:asset.identity];
+    [self hide];
+}
 
 
 -(void) dealloc

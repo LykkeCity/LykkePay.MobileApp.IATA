@@ -14,6 +14,7 @@
 #import "LWPacketKYCStatusGet.h"
 #import "LWAuthNavigationController.h"
 #import "UIViewController+Loading.h"
+#import "UIViewController+Navigation.h"
 #import "LWProgressView.h"
 
 
@@ -35,8 +36,12 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
+    [self setBackButton];
     [[LWAuthManager instance] requestKYCStatusGet];
     [self.activity startAnimating];
+    
+    [self.navigationController setNavigationBarHidden:NO animated:NO];
+
 }
 
 - (void)localize {
@@ -80,8 +85,27 @@
                 [[LWAuthManager instance] requestKYCStatusGet];
         });
     }
-    else {
-        [navController navigateKYCStatus:status isPinEntered:NO isAuthentication:NO];
+    else if([status isEqualToString:@"NeedToFillData"])
+    {
+        
+        if([self.delegate respondsToSelector:@selector(pendingPresenterDidReceiveNeedToFillData:)])
+            [self.delegate pendingPresenterDidReceiveNeedToFillData:self];
+        
+    }
+    else if([status isEqualToString:@"RestrictedArea"])
+    {
+        
+        if([self.delegate respondsToSelector:@selector(pendingPresenterDidReceiveRestrictedArea:)])
+            [self.delegate pendingPresenterDidReceiveRestrictedArea:self];
+        
+    }
+
+    else if([status isEqualToString:@"Ok"])
+    {
+        
+        if([self.delegate respondsToSelector:@selector(pendingPresenterDidReceiveConfirm:)])
+            [self.delegate pendingPresenterDidReceiveConfirm:self];
+//        [navController navigateKYCStatus:status isPinEntered:NO isAuthentication:NO];
     }
 }
 

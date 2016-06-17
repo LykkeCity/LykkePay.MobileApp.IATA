@@ -13,4 +13,13 @@
     
 }
 
+@property id delegate;
+
+@end
+
+
+@protocol LWKYCSubmitPresenterDelegate
+
+-(void) submitPresenterUserSubmitted:(LWKYCSubmitPresenter *) presenter;
+
 @end

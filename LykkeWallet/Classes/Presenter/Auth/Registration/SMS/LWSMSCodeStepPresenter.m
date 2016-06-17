@@ -15,10 +15,12 @@
 #import "LWConstants.h"
 #import "TKButton.h"
 #import "UIViewController+Loading.h"
+#import "UIView+Toast.h"
 
 
 @interface LWSMSCodeStepPresenter ()<LWTextFieldDelegate> {
     LWTextField *codeTextField;
+    CGFloat keyboardHeight;
 }
 
 #pragma mark - Outlets
@@ -36,7 +38,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    keyboardHeight=0;
     self.title = Localize(@"register.title");
     
     // init email field
@@ -80,7 +82,7 @@
 
     [self setLoading:YES];
     [[LWAuthManager instance] requestVerificationEmail:self.email];
-    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad)
+//    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad)
         self.observeKeyboardEvents=YES;
     
 }
@@ -135,6 +137,11 @@
 }
 
 - (void)infoClicked:(id)sender {
+    [self setLoading:YES];
+    [[LWAuthManager instance] requestVerificationEmail:self.email];
+
+
+
 }
 
 
@@ -164,7 +171,7 @@
 
 - (void)observeKeyboardWillShowNotification:(NSNotification *)notification {
     CGRect const frame = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
-    
+    keyboardHeight=frame.size.height;
     
     if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad && ([UIApplication sharedApplication].statusBarOrientation==UIInterfaceOrientationLandscapeLeft || [UIApplication sharedApplication].statusBarOrientation==UIInterfaceOrientationLandscapeRight))
     {
@@ -177,7 +184,8 @@
 }
 
 - (void)observeKeyboardWillHideNotification:(NSNotification *)notification {
-     
+    
+    keyboardHeight=0;
     if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad)
     {
         CGRect rect=self.view.frame;
@@ -197,6 +205,8 @@
 - (void)authManagerDidSendValidationEmail:(LWAuthManager *)manager {
     [self setLoading:NO];
     self.titleLabel.text = [NSString stringWithFormat:Localize(@"register.sms.title"), self.email];
+    [self.view makeToast:@"Code sent" duration:2 position:[NSValue valueWithCGPoint:CGPointMake(self.view.bounds.size.width/2, self.view.bounds.size.height-keyboardHeight-30)]];
+
 }
 
 - (void)authManagerDidCheckValidationEmail:(LWAuthManager *)manager passed:(BOOL)passed {

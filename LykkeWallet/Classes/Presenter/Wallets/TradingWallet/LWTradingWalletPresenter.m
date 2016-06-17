@@ -17,6 +17,7 @@
 #import "LWWithdrawInputPresenter.h"
 #import "LWIPadModalNavigationControllerViewController.h"
 #import "LWValidator.h"
+#import "LWKYCManager.h"
 
 
 @interface LWTradingWalletPresenter () {
@@ -47,7 +48,6 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    self.title = Localize(@"wallets.trading.title");
 
     [self setBackButton];
     
@@ -92,8 +92,13 @@
 
 - (IBAction)withdrawClicked:(id)sender {
     
-    LWWithdrawFundsPresenter *presenter;
     
+    [LWKYCManager sharedInstance].viewController=self;;
+    
+    [[LWKYCManager sharedInstance] manageKYCStatusForAsset:self.assetId successBlock:^{
+
+    LWWithdrawFundsPresenter *presenter;
+
     if([self.assetId isEqualToString:@"BTC"] || [self.assetId isEqualToString:@"LKK"])
     {
         presenter = [LWWithdrawFundsPresenter new];
@@ -119,6 +124,7 @@
         [self.navigationController presentViewController:navigationController animated:YES completion:nil];
         
     }
+    }];
 
     
     
@@ -133,6 +139,11 @@
                                  @"GBP":@"currency",
                                  @"BTC":@"bitcoin",
                                  @"LKK":@"bitcoin"};
+    
+    [LWKYCManager sharedInstance].viewController=self;;
+    
+    [[LWKYCManager sharedInstance] manageKYCStatusForAsset:self.assetId successBlock:^{
+
     
     
     UIViewController *presenter;
@@ -161,6 +172,7 @@
         [self.navigationController presentViewController:navigationController animated:YES completion:nil];
     }
 
+    }];
     
 }
 

@@ -60,7 +60,7 @@
 
 -(NSDictionary *) params
 {
-    return @{@"period":self.period.value, @"assetId":self.assetId, @"points":@(20)};
+    return @{@"period":self.period.value, @"assetId":self.assetId, @"points":@(100)};
 }
 
 - (GDXRESTPacketType)type {

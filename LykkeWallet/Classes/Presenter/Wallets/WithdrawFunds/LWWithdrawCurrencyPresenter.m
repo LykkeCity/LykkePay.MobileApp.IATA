@@ -162,12 +162,7 @@
         
         textCells=[[NSMutableArray alloc] init];
         
-        NSDictionary *currencySymbols=@{@"USD":@"$",
-                                        @"EUR":@"€",
-                                        @"CHF":@"₣"};
-        currencySymbol=currencySymbols[self.assetID];
-        if(!currencySymbol)
-            currencySymbol=@"";
+        currencySymbol=[[LWCache instance] currencySymbolForAssetId:self.assetID];
         
         originalScrollViewFrame=self.scrollView.frame;
         

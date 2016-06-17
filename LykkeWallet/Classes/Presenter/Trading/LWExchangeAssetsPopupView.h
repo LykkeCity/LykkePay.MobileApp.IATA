@@ -13,4 +13,13 @@
 
 -(void) show;
 
+@property id delegate;
+
+@end
+
+
+@protocol LWExchangeAssetsPopupViewDelegate
+
+-(void) popupView:(LWExchangeAssetsPopupView *) view didSelectAssetWithId:(NSString *) assetId;
+
 @end

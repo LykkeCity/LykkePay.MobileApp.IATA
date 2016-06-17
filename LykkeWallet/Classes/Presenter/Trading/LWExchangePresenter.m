@@ -15,6 +15,7 @@
 #import "LWAssetEmptyTableViewCell.h"
 #import "LWAssetPairModel.h"
 #import "LWAssetPairRateModel.h"
+#import "LWPacketLastBaseAssets.h"
 #import "LWCache.h"
 #import "UIViewController+Loading.h"
 
@@ -159,6 +160,7 @@ static NSString *const AssetIcons[kNumberOfSections] = {
     if(!self.assetPairs)
         [self setLoading:YES];
     [[LWAuthManager instance] requestAssetPairs];
+    [[LWAuthManager instance] requestLastBaseAssets];
 
 
 }
@@ -391,6 +393,11 @@ static NSString *const AssetIcons[kNumberOfSections] = {
 //    });
 }
 
+-(void) authManager:(LWAuthManager *)manager didGetLastBaseAssets:(LWPacketLastBaseAssets *)lastAssets
+{
+    [_baseAssetsView createButtonsWithAssets:lastAssets.lastAssets];
+}
+
 
 -(void) loadRates
 {
@@ -405,7 +412,9 @@ static NSString *const AssetIcons[kNumberOfSections] = {
 
 -(void) authManagerDidSetAsset:(LWAuthManager *)manager
 {
+    
     [[LWAuthManager instance] requestAssetPairs];
+    [[LWAuthManager instance] requestLastBaseAssets];
 }
 
 
@@ -451,7 +460,7 @@ static NSString *const AssetIcons[kNumberOfSections] = {
 {
     [self setLoading:YES];
     [[LWAuthManager instance] requestBaseAssetSet:assetId];
-    
+    [LWCache instance].baseAssetId=assetId;
 }
 
 -(void) dealloc

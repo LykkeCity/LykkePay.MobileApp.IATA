@@ -156,13 +156,7 @@
     self.title = Localize(@"wallets.currency.deposit");
 
     
-    NSDictionary *currencySymbols=@{@"USD":@"$",
-                               @"EUR":@"€",
-                               @"CHF":@"₣",
-                               @"GBP":@"£"};
-    currencySymbol=currencySymbols[self.assetID];
-    if(!currencySymbol)
-        currencySymbol=@"";
+    currencySymbol=[[LWCache instance] currencySymbolForAssetId:self.assetID];
     
     
     CGFloat offset=self.infoView.bounds.size.height;

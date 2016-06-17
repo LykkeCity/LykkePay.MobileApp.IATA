@@ -70,7 +70,7 @@
 
     LWAuthNavigationController *navController = (LWAuthNavigationController *)self.navigationController;
     
-    if ([status isEqualToString:@"NeedToFillData"]) {
+    if ([status isEqualToString:@"NeedToFillData"] && isPinEntered==NO) {
         // request documents to upload
         self.textLabel.text = [NSString stringWithFormat:Localize(@"register.check.documents.label")];
         
@@ -96,7 +96,7 @@
         }
     }
     else {
-        [navController navigateKYCStatus:status
+        [navController navigateKYCStatus:@"Ok"
                             isPinEntered:isPinEntered
                         isAuthentication:YES];
     }

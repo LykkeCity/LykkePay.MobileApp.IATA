@@ -14,6 +14,7 @@
 #import "UIViewController+Loading.h"
 #import "TKButton.h"
 #import "LWConstants.h"
+#import "LWValidator.h"
 
 
 @interface LWKYCInvalidDocumentsPresenter () {
@@ -43,6 +44,8 @@
     [self.okButton setTitleFont:[UIFont fontWithName:kFontSemibold size:kButtonFontSize]];
     [self.okButton setTitleColor:[UIColor colorWithHexString:kMainDarkElementsColor] forState:UIControlStateNormal];
     
+    [LWValidator setButtonWithClearBackground:self.okButton enabled:YES];
+
     [self setLoading:YES];
 
     [[LWAuthManager instance] requestPersonalData];
@@ -54,6 +57,7 @@
                            [LWKeychainManager instance].fullName];
     [self.okButton setTitle:[Localize(@"register.kyc.invalidDocuments.okButton") uppercaseString]
                    forState:UIControlStateNormal];
+    
 }
 
 - (LWAuthStep)stepId {

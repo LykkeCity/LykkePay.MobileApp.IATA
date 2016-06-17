@@ -37,6 +37,10 @@
 @class LWPacketCurrencyWithdraw;
 @class LWPacketAPIVersion;
 @class LWPacketBitcoinAddressValidation;
+@class LWPacketLastBaseAssets;
+@class LWPacketKYCForAsset;
+@class LWPacketGetRefundAddress;
+@class LWPacketSetRefundAddress;
 
 
 @protocol LWAuthManagerDelegate<NSObject>
@@ -94,6 +98,14 @@
 -(void) authManager:(LWAuthManager *)manager didGetAPIVersion:(LWPacketAPIVersion *) apiVersion;
 -(void) authManager:(LWAuthManager *) manager didValidateBitcoinAddress:(LWPacketBitcoinAddressValidation *) bitconAddress;
 
+-(void) authManager:(LWAuthManager *) manager didGetLastBaseAssets:(LWPacketLastBaseAssets *) lastAssets;
+
+-(void) authManager:(LWAuthManager *) manager didGetAssetKYCStatusForAsset:(LWPacketKYCForAsset *) status;
+
+-(void) authManager:(LWAuthManager *) manager didGetRefundAddress:(LWPacketGetRefundAddress *) address;
+-(void) authManagerDidSetRefundAddress:(LWAuthManager *) manager;
+
+
 @end
 
 
@@ -129,8 +141,10 @@ SINGLETON_DECLARE
 - (void)requestSendLog:(NSString *)log;
 - (void)requestAddBankCard:(LWBankCardsAdd *)card;
 - (void)requestBaseAssets;
+-(void) requestAllAssets;
 - (void)requestBaseAssetGet;
 - (void)requestBaseAssetSet:(NSString *)assetId;
+-(void) requestLastBaseAssets;
 - (void)requestAssetPair:(NSString *)pairId;
 - (void)requestAssetPairs;
 - (void)requestAssetPairRate:(NSString *)pairId;
@@ -167,6 +181,11 @@ SINGLETON_DECLARE
 -(void) validateBitcoinAddress:(NSString *) address;
 
 -(void) requestSetReverted:(BOOL) reverted  assetPairId:(NSString *) assetPairId;
+
+-(void) requestKYCStatusForAsset:(NSString *)assetId;
+
+-(void) requestGetRefundAddress;
+-(void) requestSetRefundAddress:(NSString *) address;
 
 
 //PubkeyAddressValidation

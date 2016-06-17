@@ -47,6 +47,7 @@ SINGLETON_INIT {
 
 }
 
+
 +(BOOL) shouldHideWithdrawForAssetId:(NSString *)assetID
 {
     BOOL shouldHide=NO;
@@ -75,6 +76,45 @@ SINGLETON_INIT {
         return [NSString stringWithFormat:@"Version %@ (%@)", buildNum, version];
     }
     return nil;
+}
+
+-(NSString *) currencySymbolForAssetId:(NSString *)assetId
+{
+//    NSDictionary *currencySymbols=@{@"USD":@"$",
+//                                    @"EUR":@"€",
+//                                    @"CHF":@"₣",
+//                                    @"GBP":@"£",
+//                                    @"JPY":@"¥",
+//                                    @"BTC":@"BTC"};
+    
+    NSString *symbol;
+    
+    for(LWAssetModel *asset in self.baseAssets)
+    {
+        if([asset.identity isEqualToString:assetId])
+        {
+            symbol=asset.symbol;
+            break;
+        }
+    }
+
+    if(!symbol)
+        symbol=@"";
+    return symbol;
+}
+
++(BOOL) isBaseAsset:(NSString *) assetId
+{
+    BOOL flag=NO;
+    for(LWAssetModel *asset in [LWCache instance].baseAssets)
+    {
+        if([asset.identity isEqualToString:assetId])
+        {
+            flag=YES;
+            break;
+        }
+    }
+    return flag;
 }
 
 @end

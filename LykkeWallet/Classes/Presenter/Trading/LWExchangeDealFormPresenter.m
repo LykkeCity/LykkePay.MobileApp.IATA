@@ -224,7 +224,12 @@ static NSString *const FormIdentifiers[kFormRows] = {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     if (indexPath.row == 1) {
         LWAssetBuySumTableViewCell *sumCell = (LWAssetBuySumTableViewCell *)cell;
-        sumCell.titleLabel.text = Localize(@"exchange.assets.buy.sum");
+        
+        sumCell.titleLabel.text = (self.assetDealType == LWAssetDealTypeBuy)
+        ? Localize(@"exchange.assets.buy.sum")
+        : Localize(@"exchange.assets.buy.total");
+
+//        sumCell.titleLabel.text = Localize(@"exchange.assets.buy.sum");
         sumCell.assetLabel.text = [LWUtils baseAssetTitle:self.assetPair];
 
         sumTextField = sumCell.sumTextField;
@@ -243,7 +248,10 @@ static NSString *const FormIdentifiers[kFormRows] = {
     }
     else if (indexPath.row == 3) {
         LWAssetBuyTotalTableViewCell *totalCell = (LWAssetBuyTotalTableViewCell *)cell;
-        totalCell.titleLabel.text = Localize(@"exchange.assets.buy.total");
+        totalCell.titleLabel.text = (self.assetDealType == LWAssetDealTypeBuy)
+        ? Localize(@"exchange.assets.buy.total")
+        : Localize(@"exchange.assets.buy.sum");
+//        totalCell.titleLabel.text = Localize(@"exchange.assets.buy.total");
         totalCell.assetLabel.text = [LWUtils quotedAssetTitle:self.assetPair];
         
         resultTextField = totalCell.totalTextField;
@@ -448,6 +456,10 @@ static NSString *const FormIdentifiers[kFormRows] = {
         
         [confirmationView removeFromSuperview];
     }
+    else
+    {
+        [self showReject:reject response:context.task.response code:context.error.code willNotify:YES];
+    }
 }
 
 
@@ -508,6 +520,7 @@ static NSString *const FormIdentifiers[kFormRows] = {
     if (self.assetDealType == LWAssetDealTypeBuy) {
         
         NSString *rate=[LWUtils formatVolumeString:[NSString stringWithFormat:@"%.10f", rateToSend.ask.floatValue] currencySign:@"" accuracy:self.assetPair.accuracy.intValue removeExtraZeroes:YES];
+        rate=[rate stringByReplacingOccurrencesOfString:@" " withString:@""];
         
         [[LWAuthManager instance] requestPurchaseAsset: baseAssetId
                                              assetPair:self.assetPair.identity
@@ -517,7 +530,7 @@ static NSString *const FormIdentifiers[kFormRows] = {
     else {
         
         NSString *rate=[LWUtils formatVolumeString:[NSString stringWithFormat:@"%.10f", rateToSend.bid.floatValue] currencySign:@"" accuracy:self.assetPair.accuracy.intValue removeExtraZeroes:YES];
-
+        rate=[rate stringByReplacingOccurrencesOfString:@" " withString:@""];
         [[LWAuthManager instance] requestSellAsset:baseAssetId
                                          assetPair:self.assetPair.identity
                                             volume:volumeToSend
@@ -684,11 +697,11 @@ static NSString *const FormIdentifiers[kFormRows] = {
 //    NSDecimalNumber *volume = [volumeString isEmpty] ? [NSDecimalNumber zero] : [LWMath numberWithString:volumeString];
     
     
-    double volume=volumeString.doubleValue;
+    float volume=volumeString.floatValue;
     
-    double const result = self.assetDealType == LWAssetDealTypeBuy ? volume : -volume;
+    float const result = self.assetDealType == LWAssetDealTypeBuy ? volume : -volume;
     
-    return [NSNumber numberWithDouble:result];
+    return [NSNumber numberWithFloat:result];
 }
 
 - (void)validateUser {

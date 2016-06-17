@@ -25,6 +25,7 @@
 + (NSString *)priceForAsset:(LWAssetPairModel *)assetPair forValue:(NSNumber *)value withFormat:(NSString *)format;
 
 +(NSString *) formatVolumeString:(NSString *) volume currencySign:(NSString *) currency accuracy:(int) accuracy removeExtraZeroes:(BOOL) flagRemoveZeroes;
++(NSString *) stringFromFloat:(float) number;
 +(NSNumber *) accuracyForAssetId:(NSString *) assetID;
 
 @end

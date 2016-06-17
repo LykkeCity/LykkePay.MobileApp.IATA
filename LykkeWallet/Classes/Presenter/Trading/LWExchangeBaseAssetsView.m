@@ -13,12 +13,12 @@
 
 //#define DISTANCE 64.0
 
-@interface LWExchangeBaseAssetsView()
+@interface LWExchangeBaseAssetsView() <LWExchangeAssetsPopupViewDelegate>
 {
     NSMutableArray *buttons;
 //    UIScrollView *scrollView;
     NSArray *assets;
-    LWExchangeAssetsPopupView *popup;
+    
 }
 
 @end
@@ -30,18 +30,17 @@
 {
 //    scrollView=[[UIScrollView alloc] init];
 //    [self addSubview:scrollView];
-    buttons=[[NSMutableArray alloc] init];
-    [self createButtons];
+ //    [self createButtons];
 }
 
--(void) createButtons
+-(void) createButtonsWithAssets:(NSArray *) lastBaseAssets
 {
-    if(![LWCache instance].baseAssets)
-    {
-        [self performSelector:@selector(createButtons) withObject:nil afterDelay:0.5];
-        return;
-    }
-    assets=[[LWCache instance].baseAssets copy];
+    buttons=[[NSMutableArray alloc] init];
+
+    for(UIView *v in self.subviews)
+        [v removeFromSuperview];
+    
+    assets=lastBaseAssets;
     for(int i=0;i<[assets count]+1 && i<6; i++)
     {
         
@@ -50,7 +49,6 @@
         [button setTitleColor:[UIColor colorWithRed:63.0/255 green:77.0/255 blue:96.0/255 alpha:1] forState:UIControlStateNormal];
         button.titleLabel.font=[UIFont fontWithName:@"ProximaNova-Regular" size:14];
         [button addTarget:self action:@selector(assetPressed:) forControlEvents:UIControlEventTouchUpInside];
-        [button sizeToFit];
         
         if(i<5 && i<assets.count)
         {
@@ -59,6 +57,9 @@
             
             if([asset.identity isEqualToString:[LWCache instance].baseAssetId])
                 button.selected=YES;
+            button.tag=i;
+            [button sizeToFit];
+
         }
         else
         {
@@ -74,10 +75,14 @@
 
 }
 
+
+
 -(void) checkCurrentBaseAsset
 {
         for(UIButton *b in buttons)
         {
+            if(b.tag==100)
+                continue;
             b.selected=NO;
             int index=(int)[buttons indexOfObject:b];
             LWAssetModel *asset=assets[index];
@@ -92,21 +97,51 @@
         return;
     if(button.tag==100)
     {
-        popup=[[LWExchangeAssetsPopupView alloc] init];
+        LWExchangeAssetsPopupView *popup=[[LWExchangeAssetsPopupView alloc] init];
+        popup.delegate=self;
         [popup show];
         return;
     }
     NSInteger index=[buttons indexOfObject:button];
     LWAssetModel *asset=assets[index];
-    if([self.delegate respondsToSelector:@selector(baseAssetsViewChangedBaseAsset:)])
-    {
-        for(UIButton *b in buttons)
-            b.selected=NO;
-        button.selected=YES;
-        [self.delegate baseAssetsViewChangedBaseAsset:asset.identity];
-    }
+    [self changeBaseAsset:asset.identity];
     
 }
+
+-(void) popupView:(LWExchangeAssetsPopupView *)view didSelectAssetWithId:(NSString *)assetId
+{
+    [self changeBaseAsset:assetId];
+}
+
+-(void) changeBaseAsset:(NSString *) assetId
+{
+    LWAssetModel *asset;
+    for(LWAssetModel *a in assets)
+    {
+        if([a.identity isEqualToString:assetId])
+        {
+            asset=a;
+            break;
+        }
+    }
+    
+    if([self.delegate respondsToSelector:@selector(baseAssetsViewChangedBaseAsset:)])
+    {
+        if(asset)
+        {
+            for(UIButton *b in buttons)
+            {
+                b.selected=NO;
+                if(b.tag==[assets indexOfObject:asset])
+                    b.selected=YES;
+            }
+        }
+        
+        [self.delegate baseAssetsViewChangedBaseAsset:assetId];
+    }
+
+}
+
 
 -(void) layoutSubviews
 {

@@ -62,7 +62,7 @@ static int const kBlockchainRow = 4;
                       assetByIdentity:self.asset
                       fromList:[LWCache instance].baseAssets];
     
-    NSString *type = (self.model.volume.doubleValue >= 0
+    NSString *type = (self.model.position.doubleValue >= 0
                       ? Localize(@"history.market.buy")
                       : Localize(@"history.market.sell"));
     self.title = [NSString stringWithFormat:@"%@ %@", base, type];

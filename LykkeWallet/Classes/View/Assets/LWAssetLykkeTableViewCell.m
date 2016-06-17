@@ -12,26 +12,30 @@
 #import "LWConstants.h"
 #import "LWColorizer.h"
 #import "LWMath.h"
+#import "LWCache.h"
+#import "LWUtils.h"
 
 #import "LWAuthManager.h"
 
+@interface LWAssetLykkeTableViewCell()
+
+@property (weak, nonatomic) IBOutlet UIView *touchCatchView;
+
+@end
+
 
 @implementation LWAssetLykkeTableViewCell {
+    
     UITapGestureRecognizer *tapGestureRecognizer;
 }
 
+
+
 -(void) awakeFromNib
 {
-    self.assetReverseImageView.userInteractionEnabled=YES;
-    self.leftAssetNameLabel.userInteractionEnabled=YES;
-    self.rightAssetNameLabel.userInteractionEnabled=YES;
     
     UITapGestureRecognizer *gesture=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(reverse)];
-    [self.assetReverseImageView addGestureRecognizer:gesture];
-    gesture=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(reverse)];
-    [self.leftAssetNameLabel addGestureRecognizer:gesture];
-    gesture=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(reverse)];
-    [self.rightAssetNameLabel addGestureRecognizer:gesture];
+    [_touchCatchView addGestureRecognizer:gesture];
     
     
     self.leftAssetNameLabel.text=nil;
@@ -40,6 +44,8 @@
 
 -(void) reverse
 {
+    if(!_pair)
+        return;
     [_rate invert];
     if(_rate)
     {
@@ -70,8 +76,12 @@
     
     if (self.rate && self.pair) {
         // price section
-        NSString *priceString = [LWMath priceString:rate.ask precision:self.pair.accuracy withPrefix:@""];
-        self.assetPriceLabel.text = priceString;
+//        NSString *priceString = [LWMath priceString:rate.ask precision:self.pair.accuracy withPrefix:@""];
+        
+        NSString *priceString=[LWUtils formatVolumeString:[NSString stringWithFormat:@"%f", rate.ask.floatValue] currencySign:@"" accuracy:self.pair.accuracy.intValue removeExtraZeroes:YES];
+        priceString=[priceString stringByReplacingOccurrencesOfString:@"." withString:@","];
+        
+        self.assetPriceLabel.text = [NSString stringWithFormat:@"%@%@", [[LWCache instance] currencySymbolForAssetId:self.pair.quotingAssetId],priceString];
         self.assetPriceLabel.textColor = [UIColor colorWithHexString:kAssetEnabledItemColor];
 
         // change section
@@ -99,8 +109,18 @@
     
     if (!tapGestureRecognizer) {
         tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(graphClicked)];
-        [self.assetChangeView addGestureRecognizer:tapGestureRecognizer];
+        [self addGestureRecognizer:tapGestureRecognizer];
+        tapGestureRecognizer.delegate=self;
     }
+}
+
+
+-(BOOL) gestureRecognizer:(UIGestureRecognizer *)sender shouldReceiveTouch:(UITouch *)touch
+{
+    CGPoint location = [touch locationInView:self];
+    if (sender!=tapGestureRecognizer || CGRectContainsPoint(CGRectMake(self.assetChangeView.frame.origin.x, 0, self.assetChangeView.bounds.size.width, self.bounds.size.height), location)==NO)
+        return NO;
+    return YES;
 }
 
 -(void) setAssetNames
@@ -122,6 +142,13 @@
             
         }
     }
+    [self setNeedsLayout];
+}
+
+-(void) layoutSubviews
+{
+    [super layoutSubviews];
+    
 }
 
 - (void)graphClicked {

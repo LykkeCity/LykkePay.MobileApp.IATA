@@ -154,6 +154,12 @@
 - (void)navigateKYCStatus:(NSString *)status isPinEntered:(BOOL)isPinEntered isAuthentication:(BOOL)isAuthentication {
     NSLog(@"KYC GetStatus: %@", status);
     
+    if (isPinEntered && isAuthentication) {
+        [self navigateToStep:LWAuthStepValidatePIN preparationBlock:nil];
+        return;
+    }
+
+    
     if ([status isEqualToString:@"NeedToFillData"]) {
         if (isAuthentication) {
             [self navigateToStep:LWAuthStepCheckDocuments preparationBlock:nil];
@@ -204,7 +210,9 @@
         }
     }
     else {
-        [self navigateToStep:LWAuthStepRegisterKYCSubmit preparationBlock:nil];
+        
+        [self navigateToStep:step preparationBlock:nil];
+ //       [self navigateToStep:LWAuthStepRegisterKYCSubmit preparationBlock:nil];//Andrey
     }
 }
 

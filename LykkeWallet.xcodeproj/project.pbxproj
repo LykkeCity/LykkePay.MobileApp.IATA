@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		A10A94F41D0D33AA00557C87 /* ThreeDots.png in Resources */ = {isa = PBXBuildFile; fileRef = A10A94F31D0D33AA00557C87 /* ThreeDots.png */; };
 		A10A94F71D0D351000557C87 /* LWExchangeAssetsPopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = A10A94F61D0D351000557C87 /* LWExchangeAssetsPopupView.m */; };
+		A10A95021D0E7E2100557C87 /* LWRefundPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A10A95001D0E7E2100557C87 /* LWRefundPresenter.m */; };
+		A10A95031D0E7E2100557C87 /* LWRefundPresenter.xib in Resources */ = {isa = PBXBuildFile; fileRef = A10A95011D0E7E2100557C87 /* LWRefundPresenter.xib */; };
+		A10A95061D0E8F5F00557C87 /* SlashSign@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A10A95041D0E8F5F00557C87 /* SlashSign@2x.png */; };
+		A10A95071D0E8F5F00557C87 /* SlashSign@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = A10A95051D0E8F5F00557C87 /* SlashSign@3x.png */; };
+		A10A950A1D0E9F3B00557C87 /* LWPacketAllAssets.m in Sources */ = {isa = PBXBuildFile; fileRef = A10A95091D0E9F3B00557C87 /* LWPacketAllAssets.m */; };
+		A10A950D1D0EA07B00557C87 /* LWPacketLastBaseAssets.m in Sources */ = {isa = PBXBuildFile; fileRef = A10A950C1D0EA07B00557C87 /* LWPacketLastBaseAssets.m */; };
 		A1165D1C1CF55B530017A725 /* LWIPadModalNavigationControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A1165D1B1CF55B530017A725 /* LWIPadModalNavigationControllerViewController.m */; };
 		A1165D1E1CF5703F0017A725 /* LWTradingWalletPresenter~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1165D1D1CF5703F0017A725 /* LWTradingWalletPresenter~ipad.xib */; };
 		A1165D221CF577CB0017A725 /* LWAssetLykkeTableViewCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1165D211CF577CB0017A725 /* LWAssetLykkeTableViewCell~ipad.xib */; };
@@ -36,6 +42,20 @@
 		A124D5C51CEB19880074A1A8 /* LWKYCCheckDocumentsPresenter~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A124D5C41CEB19880074A1A8 /* LWKYCCheckDocumentsPresenter~ipad.xib */; };
 		A124D5C71CEB1B550074A1A8 /* LWAuthValidationPresenter~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A124D5C61CEB1B550074A1A8 /* LWAuthValidationPresenter~ipad.xib */; };
 		A14B7D2E1CE3233D00820084 /* ButtonOK_square.png in Resources */ = {isa = PBXBuildFile; fileRef = A14B7D2D1CE3233D00820084 /* ButtonOK_square.png */; };
+		A15B3EAF1D12626B00A6B506 /* LWRefundInformationPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A15B3EAD1D12626B00A6B506 /* LWRefundInformationPresenter.m */; };
+		A15B3EB01D12626B00A6B506 /* LWRefundInformationPresenter.xib in Resources */ = {isa = PBXBuildFile; fileRef = A15B3EAE1D12626B00A6B506 /* LWRefundInformationPresenter.xib */; };
+		A15B3EB61D12CA1500A6B506 /* LWKYCManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A15B3EB51D12CA1500A6B506 /* LWKYCManager.m */; };
+		A15B3EB91D12E21B00A6B506 /* LWPacketKYCForAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = A15B3EB81D12E21B00A6B506 /* LWPacketKYCForAsset.m */; };
+		A15B3EE21D13A4A500A6B506 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A15B3EE11D13A4A500A6B506 /* AVFoundation.framework */; };
+		A15B3F011D13A55D00A6B506 /* libzbar.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A15B3EFB1D13A55D00A6B506 /* libzbar.a */; };
+		A15B3F021D13A55D00A6B506 /* zbar-back.png in Resources */ = {isa = PBXBuildFile; fileRef = A15B3EFD1D13A55D00A6B506 /* zbar-back.png */; };
+		A15B3F031D13A55D00A6B506 /* zbar-help.html in Resources */ = {isa = PBXBuildFile; fileRef = A15B3EFE1D13A55D00A6B506 /* zbar-help.html */; };
+		A15B3F041D13A55D00A6B506 /* zbar-helpicons.png in Resources */ = {isa = PBXBuildFile; fileRef = A15B3EFF1D13A55D00A6B506 /* zbar-helpicons.png */; };
+		A15B3F051D13A55D00A6B506 /* zbar-samples.png in Resources */ = {isa = PBXBuildFile; fileRef = A15B3F001D13A55D00A6B506 /* zbar-samples.png */; };
+		A15B3F071D13AAFE00A6B506 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A15B3F061D13AAFE00A6B506 /* libiconv.tbd */; };
+		A15B3F0A1D13FD0700A6B506 /* LWPacketGetRefundAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = A15B3F091D13FD0700A6B506 /* LWPacketGetRefundAddress.m */; };
+		A15B3F0D1D13FE5B00A6B506 /* LWPacketSetRefundAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = A15B3F0C1D13FE5B00A6B506 /* LWPacketSetRefundAddress.m */; };
+		A15B3F101D141F5400A6B506 /* UIAlertView+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = A15B3F0F1D141F5400A6B506 /* UIAlertView+Blocks.m */; };
 		A1743CAE1CE8A59400176F59 /* LWWithdrawSuccessPresenterView.m in Sources */ = {isa = PBXBuildFile; fileRef = A1743CAD1CE8A59400176F59 /* LWWithdrawSuccessPresenterView.m */; };
 		A1743CB01CE8A6B100176F59 /* WithdrawSuccessFlag.png in Resources */ = {isa = PBXBuildFile; fileRef = A1743CAF1CE8A6B100176F59 /* WithdrawSuccessFlag.png */; };
 		A1743CB31CE9CBB400176F59 /* LWPacketCurrencyWithdraw.m in Sources */ = {isa = PBXBuildFile; fileRef = A1743CB21CE9CBB400176F59 /* LWPacketCurrencyWithdraw.m */; };
@@ -675,6 +695,9 @@
 		A1C5AF511D0A85CB0056DC53 /* LWSettingsTermsTableViewCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1C5AF4F1D0A85CB0056DC53 /* LWSettingsTermsTableViewCell~ipad.xib */; };
 		A1C5AF521D0A85CB0056DC53 /* LWSettingsTermsTableViewCell~iphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1C5AF501D0A85CB0056DC53 /* LWSettingsTermsTableViewCell~iphone.xib */; };
 		A1C5AF551D0A867D0056DC53 /* LWSettingsTermsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A1C5AF541D0A867D0056DC53 /* LWSettingsTermsTableViewCell.m */; };
+		A1D432281D0FFCCC0060866F /* LWRefundTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A1D432271D0FFCCC0060866F /* LWRefundTableViewCell.m */; };
+		A1D4322B1D1001AA0060866F /* LWRefundAfterView.m in Sources */ = {isa = PBXBuildFile; fileRef = A1D4322A1D1001AA0060866F /* LWRefundAfterView.m */; };
+		A1D4322E1D1019F80060866F /* LWRefundAddressView.m in Sources */ = {isa = PBXBuildFile; fileRef = A1D4322D1D1019F80060866F /* LWRefundAddressView.m */; };
 		A1D476DD1D0506F900438846 /* LWProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = A1D476DC1D0506F900438846 /* LWProgressView.m */; };
 		A1D477301D050B9900438846 /* loader-color@2x_00000.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D476DF1D050B9900438846 /* loader-color@2x_00000.png */; };
 		A1D477311D050B9900438846 /* loader-color@2x_00001.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D476E01D050B9900438846 /* loader-color@2x_00001.png */; };
@@ -1392,6 +1415,15 @@
 		A10A94F31D0D33AA00557C87 /* ThreeDots.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ThreeDots.png; sourceTree = "<group>"; };
 		A10A94F51D0D351000557C87 /* LWExchangeAssetsPopupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWExchangeAssetsPopupView.h; sourceTree = "<group>"; };
 		A10A94F61D0D351000557C87 /* LWExchangeAssetsPopupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWExchangeAssetsPopupView.m; sourceTree = "<group>"; };
+		A10A94FF1D0E7E2100557C87 /* LWRefundPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWRefundPresenter.h; sourceTree = "<group>"; };
+		A10A95001D0E7E2100557C87 /* LWRefundPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWRefundPresenter.m; sourceTree = "<group>"; };
+		A10A95011D0E7E2100557C87 /* LWRefundPresenter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LWRefundPresenter.xib; sourceTree = "<group>"; };
+		A10A95041D0E8F5F00557C87 /* SlashSign@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SlashSign@2x.png"; sourceTree = "<group>"; };
+		A10A95051D0E8F5F00557C87 /* SlashSign@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SlashSign@3x.png"; sourceTree = "<group>"; };
+		A10A95081D0E9F3B00557C87 /* LWPacketAllAssets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWPacketAllAssets.h; sourceTree = "<group>"; };
+		A10A95091D0E9F3B00557C87 /* LWPacketAllAssets.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWPacketAllAssets.m; sourceTree = "<group>"; };
+		A10A950B1D0EA07B00557C87 /* LWPacketLastBaseAssets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWPacketLastBaseAssets.h; sourceTree = "<group>"; };
+		A10A950C1D0EA07B00557C87 /* LWPacketLastBaseAssets.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWPacketLastBaseAssets.m; sourceTree = "<group>"; };
 		A1165D1A1CF55B530017A725 /* LWIPadModalNavigationControllerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWIPadModalNavigationControllerViewController.h; sourceTree = "<group>"; };
 		A1165D1B1CF55B530017A725 /* LWIPadModalNavigationControllerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWIPadModalNavigationControllerViewController.m; sourceTree = "<group>"; };
 		A1165D1D1CF5703F0017A725 /* LWTradingWalletPresenter~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "LWTradingWalletPresenter~ipad.xib"; path = "TradingWallet/LWTradingWalletPresenter~ipad.xib"; sourceTree = "<group>"; };
@@ -1421,6 +1453,46 @@
 		A124D5C41CEB19880074A1A8 /* LWKYCCheckDocumentsPresenter~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "LWKYCCheckDocumentsPresenter~ipad.xib"; sourceTree = "<group>"; };
 		A124D5C61CEB1B550074A1A8 /* LWAuthValidationPresenter~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "LWAuthValidationPresenter~ipad.xib"; sourceTree = "<group>"; };
 		A14B7D2D1CE3233D00820084 /* ButtonOK_square.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ButtonOK_square.png; sourceTree = "<group>"; };
+		A15B3EAC1D12626B00A6B506 /* LWRefundInformationPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWRefundInformationPresenter.h; sourceTree = "<group>"; };
+		A15B3EAD1D12626B00A6B506 /* LWRefundInformationPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWRefundInformationPresenter.m; sourceTree = "<group>"; };
+		A15B3EAE1D12626B00A6B506 /* LWRefundInformationPresenter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LWRefundInformationPresenter.xib; sourceTree = "<group>"; };
+		A15B3EB41D12CA1500A6B506 /* LWKYCManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWKYCManager.h; sourceTree = "<group>"; };
+		A15B3EB51D12CA1500A6B506 /* LWKYCManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWKYCManager.m; sourceTree = "<group>"; };
+		A15B3EB71D12E21B00A6B506 /* LWPacketKYCForAsset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWPacketKYCForAsset.h; sourceTree = "<group>"; };
+		A15B3EB81D12E21B00A6B506 /* LWPacketKYCForAsset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWPacketKYCForAsset.m; sourceTree = "<group>"; };
+		A15B3EE11D13A4A500A6B506 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		A15B3EE71D13A55D00A6B506 /* Decoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Decoder.h; sourceTree = "<group>"; };
+		A15B3EE81D13A55D00A6B506 /* Exception.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Exception.h; sourceTree = "<group>"; };
+		A15B3EE91D13A55D00A6B506 /* Image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Image.h; sourceTree = "<group>"; };
+		A15B3EEA1D13A55D00A6B506 /* ImageScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageScanner.h; sourceTree = "<group>"; };
+		A15B3EEB1D13A55D00A6B506 /* Processor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Processor.h; sourceTree = "<group>"; };
+		A15B3EEC1D13A55D00A6B506 /* Scanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Scanner.h; sourceTree = "<group>"; };
+		A15B3EED1D13A55D00A6B506 /* Symbol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Symbol.h; sourceTree = "<group>"; };
+		A15B3EEE1D13A55D00A6B506 /* Video.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Video.h; sourceTree = "<group>"; };
+		A15B3EEF1D13A55D00A6B506 /* Window.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Window.h; sourceTree = "<group>"; };
+		A15B3EF01D13A55D00A6B506 /* zbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zbar.h; sourceTree = "<group>"; };
+		A15B3EF11D13A55D00A6B506 /* ZBarCameraSimulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZBarCameraSimulator.h; sourceTree = "<group>"; };
+		A15B3EF21D13A55D00A6B506 /* ZBarCaptureReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZBarCaptureReader.h; sourceTree = "<group>"; };
+		A15B3EF31D13A55D00A6B506 /* ZBarHelpController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZBarHelpController.h; sourceTree = "<group>"; };
+		A15B3EF41D13A55D00A6B506 /* ZBarImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZBarImage.h; sourceTree = "<group>"; };
+		A15B3EF51D13A55D00A6B506 /* ZBarImageScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZBarImageScanner.h; sourceTree = "<group>"; };
+		A15B3EF61D13A55D00A6B506 /* ZBarReaderController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZBarReaderController.h; sourceTree = "<group>"; };
+		A15B3EF71D13A55D00A6B506 /* ZBarReaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZBarReaderView.h; sourceTree = "<group>"; };
+		A15B3EF81D13A55D00A6B506 /* ZBarReaderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZBarReaderViewController.h; sourceTree = "<group>"; };
+		A15B3EF91D13A55D00A6B506 /* ZBarSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZBarSDK.h; sourceTree = "<group>"; };
+		A15B3EFA1D13A55D00A6B506 /* ZBarSymbol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZBarSymbol.h; sourceTree = "<group>"; };
+		A15B3EFB1D13A55D00A6B506 /* libzbar.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libzbar.a; sourceTree = "<group>"; };
+		A15B3EFD1D13A55D00A6B506 /* zbar-back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zbar-back.png"; sourceTree = "<group>"; };
+		A15B3EFE1D13A55D00A6B506 /* zbar-help.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "zbar-help.html"; sourceTree = "<group>"; };
+		A15B3EFF1D13A55D00A6B506 /* zbar-helpicons.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zbar-helpicons.png"; sourceTree = "<group>"; };
+		A15B3F001D13A55D00A6B506 /* zbar-samples.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zbar-samples.png"; sourceTree = "<group>"; };
+		A15B3F061D13AAFE00A6B506 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
+		A15B3F081D13FD0700A6B506 /* LWPacketGetRefundAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWPacketGetRefundAddress.h; sourceTree = "<group>"; };
+		A15B3F091D13FD0700A6B506 /* LWPacketGetRefundAddress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWPacketGetRefundAddress.m; sourceTree = "<group>"; };
+		A15B3F0B1D13FE5B00A6B506 /* LWPacketSetRefundAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWPacketSetRefundAddress.h; sourceTree = "<group>"; };
+		A15B3F0C1D13FE5B00A6B506 /* LWPacketSetRefundAddress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWPacketSetRefundAddress.m; sourceTree = "<group>"; };
+		A15B3F0E1D141F5400A6B506 /* UIAlertView+Blocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+Blocks.h"; sourceTree = "<group>"; };
+		A15B3F0F1D141F5400A6B506 /* UIAlertView+Blocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+Blocks.m"; sourceTree = "<group>"; };
 		A1743CAC1CE8A59400176F59 /* LWWithdrawSuccessPresenterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LWWithdrawSuccessPresenterView.h; path = WithdrawFunds/LWWithdrawSuccessPresenterView.h; sourceTree = "<group>"; };
 		A1743CAD1CE8A59400176F59 /* LWWithdrawSuccessPresenterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LWWithdrawSuccessPresenterView.m; path = WithdrawFunds/LWWithdrawSuccessPresenterView.m; sourceTree = "<group>"; };
 		A1743CAF1CE8A6B100176F59 /* WithdrawSuccessFlag.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WithdrawSuccessFlag.png; sourceTree = "<group>"; };
@@ -2072,6 +2144,12 @@
 		A1C5AF501D0A85CB0056DC53 /* LWSettingsTermsTableViewCell~iphone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "LWSettingsTermsTableViewCell~iphone.xib"; path = "Settings/LWSettingsTermsTableViewCell~iphone.xib"; sourceTree = "<group>"; };
 		A1C5AF531D0A867D0056DC53 /* LWSettingsTermsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LWSettingsTermsTableViewCell.h; path = Settings/LWSettingsTermsTableViewCell.h; sourceTree = "<group>"; };
 		A1C5AF541D0A867D0056DC53 /* LWSettingsTermsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LWSettingsTermsTableViewCell.m; path = Settings/LWSettingsTermsTableViewCell.m; sourceTree = "<group>"; };
+		A1D432261D0FFCCC0060866F /* LWRefundTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWRefundTableViewCell.h; sourceTree = "<group>"; };
+		A1D432271D0FFCCC0060866F /* LWRefundTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWRefundTableViewCell.m; sourceTree = "<group>"; };
+		A1D432291D1001AA0060866F /* LWRefundAfterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWRefundAfterView.h; sourceTree = "<group>"; };
+		A1D4322A1D1001AA0060866F /* LWRefundAfterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWRefundAfterView.m; sourceTree = "<group>"; };
+		A1D4322C1D1019F80060866F /* LWRefundAddressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWRefundAddressView.h; sourceTree = "<group>"; };
+		A1D4322D1D1019F80060866F /* LWRefundAddressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWRefundAddressView.m; sourceTree = "<group>"; };
 		A1D476DB1D0506F900438846 /* LWProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWProgressView.h; sourceTree = "<group>"; };
 		A1D476DC1D0506F900438846 /* LWProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWProgressView.m; sourceTree = "<group>"; };
 		A1D476DF1D050B9900438846 /* loader-color@2x_00000.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loader-color@2x_00000.png"; sourceTree = "<group>"; };
@@ -2767,7 +2845,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A15B3F071D13AAFE00A6B506 /* libiconv.tbd in Frameworks */,
+				A15B3EE21D13A4A500A6B506 /* AVFoundation.framework in Frameworks */,
 				EC25A6921C331F0B00F223FF /* LocalAuthentication.framework in Frameworks */,
+				A15B3F011D13A55D00A6B506 /* libzbar.a in Frameworks */,
 				ECC526FA1C9C1EC800022382 /* stockchart.framework in Frameworks */,
 				A87C81BA1C7356E1D9BA3A28 /* libPods.a in Frameworks */,
 			);
@@ -2795,6 +2876,25 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		A10A94F81D0E7DA300557C87 /* Refund */ = {
+			isa = PBXGroup;
+			children = (
+				A10A94FF1D0E7E2100557C87 /* LWRefundPresenter.h */,
+				A10A95001D0E7E2100557C87 /* LWRefundPresenter.m */,
+				A10A95011D0E7E2100557C87 /* LWRefundPresenter.xib */,
+				A1D432261D0FFCCC0060866F /* LWRefundTableViewCell.h */,
+				A1D432271D0FFCCC0060866F /* LWRefundTableViewCell.m */,
+				A1D432291D1001AA0060866F /* LWRefundAfterView.h */,
+				A1D4322A1D1001AA0060866F /* LWRefundAfterView.m */,
+				A1D4322C1D1019F80060866F /* LWRefundAddressView.h */,
+				A1D4322D1D1019F80060866F /* LWRefundAddressView.m */,
+				A15B3EAC1D12626B00A6B506 /* LWRefundInformationPresenter.h */,
+				A15B3EAD1D12626B00A6B506 /* LWRefundInformationPresenter.m */,
+				A15B3EAE1D12626B00A6B506 /* LWRefundInformationPresenter.xib */,
+			);
+			path = Refund;
+			sourceTree = "<group>";
+		};
 		A122B97B1CFEB2E4009DC795 /* FLAnimatedImage */ = {
 			isa = PBXGroup;
 			children = (
@@ -2820,8 +2920,82 @@
 				A1165D3F1CF6CF940017A725 /* DisclosureIndicator.png */,
 				A1BCD2DE1D01651D00CF42E4 /* tips_about.png */,
 				A10A94F31D0D33AA00557C87 /* ThreeDots.png */,
+				A10A95041D0E8F5F00557C87 /* SlashSign@2x.png */,
+				A10A95051D0E8F5F00557C87 /* SlashSign@3x.png */,
 			);
 			path = Images;
+			sourceTree = "<group>";
+		};
+		A15B3EBC1D13A31F00A6B506 /* ZBarQRReader */ = {
+			isa = PBXGroup;
+			children = (
+				A15B3EE31D13A55D00A6B506 /* ZBarSDK */,
+			);
+			path = ZBarQRReader;
+			sourceTree = "<group>";
+		};
+		A15B3EE31D13A55D00A6B506 /* ZBarSDK */ = {
+			isa = PBXGroup;
+			children = (
+				A15B3EE41D13A55D00A6B506 /* Headers */,
+				A15B3EFB1D13A55D00A6B506 /* libzbar.a */,
+				A15B3EFC1D13A55D00A6B506 /* Resources */,
+			);
+			path = ZBarSDK;
+			sourceTree = "<group>";
+		};
+		A15B3EE41D13A55D00A6B506 /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				A15B3EE51D13A55D00A6B506 /* ZBarSDK */,
+			);
+			path = Headers;
+			sourceTree = "<group>";
+		};
+		A15B3EE51D13A55D00A6B506 /* ZBarSDK */ = {
+			isa = PBXGroup;
+			children = (
+				A15B3EE61D13A55D00A6B506 /* zbar */,
+				A15B3EF01D13A55D00A6B506 /* zbar.h */,
+				A15B3EF11D13A55D00A6B506 /* ZBarCameraSimulator.h */,
+				A15B3EF21D13A55D00A6B506 /* ZBarCaptureReader.h */,
+				A15B3EF31D13A55D00A6B506 /* ZBarHelpController.h */,
+				A15B3EF41D13A55D00A6B506 /* ZBarImage.h */,
+				A15B3EF51D13A55D00A6B506 /* ZBarImageScanner.h */,
+				A15B3EF61D13A55D00A6B506 /* ZBarReaderController.h */,
+				A15B3EF71D13A55D00A6B506 /* ZBarReaderView.h */,
+				A15B3EF81D13A55D00A6B506 /* ZBarReaderViewController.h */,
+				A15B3EF91D13A55D00A6B506 /* ZBarSDK.h */,
+				A15B3EFA1D13A55D00A6B506 /* ZBarSymbol.h */,
+			);
+			path = ZBarSDK;
+			sourceTree = "<group>";
+		};
+		A15B3EE61D13A55D00A6B506 /* zbar */ = {
+			isa = PBXGroup;
+			children = (
+				A15B3EE71D13A55D00A6B506 /* Decoder.h */,
+				A15B3EE81D13A55D00A6B506 /* Exception.h */,
+				A15B3EE91D13A55D00A6B506 /* Image.h */,
+				A15B3EEA1D13A55D00A6B506 /* ImageScanner.h */,
+				A15B3EEB1D13A55D00A6B506 /* Processor.h */,
+				A15B3EEC1D13A55D00A6B506 /* Scanner.h */,
+				A15B3EED1D13A55D00A6B506 /* Symbol.h */,
+				A15B3EEE1D13A55D00A6B506 /* Video.h */,
+				A15B3EEF1D13A55D00A6B506 /* Window.h */,
+			);
+			path = zbar;
+			sourceTree = "<group>";
+		};
+		A15B3EFC1D13A55D00A6B506 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A15B3EFD1D13A55D00A6B506 /* zbar-back.png */,
+				A15B3EFE1D13A55D00A6B506 /* zbar-help.html */,
+				A15B3EFF1D13A55D00A6B506 /* zbar-helpicons.png */,
+				A15B3F001D13A55D00A6B506 /* zbar-samples.png */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		A1BCCE201D011B2700CF42E4 /* Introduction */ = {
@@ -3702,6 +3876,7 @@
 		CF66323F1C175B54004353F5 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A15B3EBC1D13A31F00A6B506 /* ZBarQRReader */,
 				A1E4EA941CE427C200293282 /* Graphs */,
 				ECD114571CDDCC11002B36C0 /* Countries */,
 				ECFAC5B01CB1111C009B1CC9 /* Utils */,
@@ -3776,6 +3951,8 @@
 			children = (
 				EC2813EA1C343CE9009BE680 /* UIImage+Resize.h */,
 				EC2813EB1C343CE9009BE680 /* UIImage+Resize.m */,
+				A15B3F0E1D141F5400A6B506 /* UIAlertView+Blocks.h */,
+				A15B3F0F1D141F5400A6B506 /* UIAlertView+Blocks.m */,
 				EC57F47D1C3D8A6400E31746 /* UITextField+Validation.h */,
 				EC57F47E1C3D8A6400E31746 /* UITextField+Validation.m */,
 				EC57F4631C3D197800E31746 /* NSString+Utils.h */,
@@ -3856,6 +4033,7 @@
 		CF6632801C176A63004353F5 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				A10A94F81D0E7DA300557C87 /* Refund */,
 				ECF9D1151C5BEBC00025FC36 /* UrlAddress */,
 				EC168F071C5135BA00AF8DD5 /* PersonalData */,
 				EC8F48341C4D8A350087DF1F /* Notifications */,
@@ -4081,6 +4259,8 @@
 				ECE902C31C354FA500F52971 /* LWPacketBankCards.m */,
 				EC7519CA1C37430900CDDF5B /* LWPacketBaseAssets.h */,
 				EC7519CB1C37430900CDDF5B /* LWPacketBaseAssets.m */,
+				A10A95081D0E9F3B00557C87 /* LWPacketAllAssets.h */,
+				A10A95091D0E9F3B00557C87 /* LWPacketAllAssets.m */,
 				EC7519C01C3739D300CDDF5B /* LWPacketBaseAssetGet.h */,
 				EC7519C11C3739D300CDDF5B /* LWPacketBaseAssetGet.m */,
 				EC7519C71C3742B700CDDF5B /* LWPacketBaseAssetSet.h */,
@@ -4149,6 +4329,14 @@
 				A1BCCE1E1D0009A500CF42E4 /* LWPacketBitcoinAddressValidation.m */,
 				A1C5AF4C1D0941090056DC53 /* LWPacketSetRevertedPair.h */,
 				A1C5AF4D1D0941090056DC53 /* LWPacketSetRevertedPair.m */,
+				A10A950B1D0EA07B00557C87 /* LWPacketLastBaseAssets.h */,
+				A10A950C1D0EA07B00557C87 /* LWPacketLastBaseAssets.m */,
+				A15B3EB71D12E21B00A6B506 /* LWPacketKYCForAsset.h */,
+				A15B3EB81D12E21B00A6B506 /* LWPacketKYCForAsset.m */,
+				A15B3F081D13FD0700A6B506 /* LWPacketGetRefundAddress.h */,
+				A15B3F091D13FD0700A6B506 /* LWPacketGetRefundAddress.m */,
+				A15B3F0B1D13FE5B00A6B506 /* LWPacketSetRefundAddress.h */,
+				A15B3F0C1D13FE5B00A6B506 /* LWPacketSetRefundAddress.m */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -4238,6 +4426,8 @@
 				EC59526A1C31ED6C0036240C /* LWKYCCheckDocumentsPresenter.m */,
 				EC59526B1C31ED6C0036240C /* LWKYCCheckDocumentsPresenter~iphone.xib */,
 				A124D5C41CEB19880074A1A8 /* LWKYCCheckDocumentsPresenter~ipad.xib */,
+				A15B3EB41D12CA1500A6B506 /* LWKYCManager.h */,
+				A15B3EB51D12CA1500A6B506 /* LWKYCManager.m */,
 			);
 			path = KYCStatus;
 			sourceTree = "<group>";
@@ -4245,6 +4435,8 @@
 		D19F0116617E74EB428F44A8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A15B3F061D13AAFE00A6B506 /* libiconv.tbd */,
+				A15B3EE11D13A4A500A6B506 /* AVFoundation.framework */,
 				ECC526F91C9C1EC800022382 /* stockchart.framework */,
 				EC25A6911C331F0B00F223FF /* LocalAuthentication.framework */,
 				B1A20FEBD41AE93CA79087B5 /* libPods.a */,
@@ -5274,6 +5466,7 @@
 				A1BCD0DE1D012D3C00CF42E4 /* 1-deposit-2x_00086.png in Resources */,
 				A1BCD29E1D012D3C00CF42E4 /* 5-onboard-2x_00056.png in Resources */,
 				CD7362811C2C26FF00924077 /* Proxima Nova Light.otf in Resources */,
+				A15B3F021D13A55D00A6B506 /* zbar-back.png in Resources */,
 				A1165D2F1CF5E4DA0017A725 /* CheckMark.png in Resources */,
 				A1BCD2AD1D012D3C00CF42E4 /* 5-onboard-2x_00071.png in Resources */,
 				A1D477621D050B9900438846 /* loader-color@2x_00050.png in Resources */,
@@ -5282,6 +5475,7 @@
 				A1BCD2961D012D3C00CF42E4 /* 5-onboard-2x_00048.png in Resources */,
 				A1BCD29A1D012D3C00CF42E4 /* 5-onboard-2x_00052.png in Resources */,
 				A1D477521D050B9900438846 /* loader-color@2x_00034.png in Resources */,
+				A15B3F041D13A55D00A6B506 /* zbar-helpicons.png in Resources */,
 				A1BCD2A51D012D3C00CF42E4 /* 5-onboard-2x_00063.png in Resources */,
 				A1BCD26B1D012D3C00CF42E4 /* 5-onboard-2x_00005.png in Resources */,
 				A1BCD1231D012D3C00CF42E4 /* 2-trade-2x_00035.png in Resources */,
@@ -5292,6 +5486,7 @@
 				A1BCD26C1D012D3C00CF42E4 /* 5-onboard-2x_00006.png in Resources */,
 				A1BCD0E01D012D3C00CF42E4 /* 1-deposit-2x_00088.png in Resources */,
 				A1BCD0CF1D012D3C00CF42E4 /* 1-deposit-2x_00071.png in Resources */,
+				A15B3F031D13A55D00A6B506 /* zbar-help.html in Resources */,
 				A1BCD1FE1D012D3C00CF42E4 /* 4-withdraw-2x_00015.png in Resources */,
 				A1D477451D050B9900438846 /* loader-color@2x_00021.png in Resources */,
 				A1BCD2CC1D012D3C00CF42E4 /* 5-onboard-2x_00102.png in Resources */,
@@ -5332,6 +5527,7 @@
 				ECD1E9071C3BCAF60064AAB3 /* LWExchangePresenter~iphone.xib in Resources */,
 				A1BCD0B81D012D3C00CF42E4 /* 1-deposit-2x_00048.png in Resources */,
 				A1BCD1BF1D012D3C00CF42E4 /* 3-settle-2x_00072.png in Resources */,
+				A10A95061D0E8F5F00557C87 /* SlashSign@2x.png in Resources */,
 				A18F892C1CE85B0A00399850 /* LWWithdrawCurrencyPresenter.xib in Resources */,
 				A1BCD25A1D012D3C00CF42E4 /* 4-withdraw-2x_00107.png in Resources */,
 				A1BCD1BE1D012D3C00CF42E4 /* 3-settle-2x_00071.png in Resources */,
@@ -5570,6 +5766,7 @@
 				A1165D491CF70CED0017A725 /* LWRegisterHintPresenter~iphone.xib in Resources */,
 				A1BCD1831D012D3C00CF42E4 /* 3-settle-2x_00012.png in Resources */,
 				A1BCD2221D012D3C00CF42E4 /* 4-withdraw-2x_00051.png in Resources */,
+				A10A95031D0E7E2100557C87 /* LWRefundPresenter.xib in Resources */,
 				A1BCD26D1D012D3C00CF42E4 /* 5-onboard-2x_00007.png in Resources */,
 				A1AA588F1CED730F00D24E68 /* LWWalletsPresenter~ipad.xib in Resources */,
 				A1BCD1CF1D012D3C00CF42E4 /* 3-settle-2x_00088.png in Resources */,
@@ -5658,6 +5855,7 @@
 				A1D4774B1D050B9900438846 /* loader-color@2x_00027.png in Resources */,
 				A1BCD2B31D012D3C00CF42E4 /* 5-onboard-2x_00077.png in Resources */,
 				A1BCD0AC1D012D3C00CF42E4 /* 1-deposit-2x_00036.png in Resources */,
+				A15B3EB01D12626B00A6B506 /* LWRefundInformationPresenter.xib in Resources */,
 				A1BCD1811D012D3C00CF42E4 /* 3-settle-2x_00010.png in Resources */,
 				A1BCD2191D012D3C00CF42E4 /* 4-withdraw-2x_00042.png in Resources */,
 				A1BCD1E51D012D3C00CF42E4 /* 3-settle-2x_00110.png in Resources */,
@@ -5914,9 +6112,11 @@
 				A1BCD1AF1D012D3C00CF42E4 /* 3-settle-2x_00056.png in Resources */,
 				EC0175331CA8041800ACC675 /* LWTradingWalletPresenter~iphone.xib in Resources */,
 				A1BCD0B11D012D3C00CF42E4 /* 1-deposit-2x_00041.png in Resources */,
+				A15B3F051D13A55D00A6B506 /* zbar-samples.png in Resources */,
 				A1743CC21CEAFAD200176F59 /* LWRegisterPhonePresenter~ipad.xib in Resources */,
 				A1BCD20A1D012D3C00CF42E4 /* 4-withdraw-2x_00027.png in Resources */,
 				A1BCD1B61D012D3C00CF42E4 /* 3-settle-2x_00063.png in Resources */,
+				A10A95071D0E8F5F00557C87 /* SlashSign@3x.png in Resources */,
 				A1BCD1A41D012D3C00CF42E4 /* 3-settle-2x_00045.png in Resources */,
 				A1BCD2091D012D3C00CF42E4 /* 4-withdraw-2x_00026.png in Resources */,
 				A1BCD1331D012D3C00CF42E4 /* 2-trade-2x_00051.png in Resources */,
@@ -6255,6 +6455,7 @@
 				EC51D1931C30514200550EF2 /* LWLykkeWalletsData.m in Sources */,
 				CDCD5B111C26C92A007BAD78 /* LWRegisterFullNamePresenter.m in Sources */,
 				A1165D471CF70CED0017A725 /* LWRegisterHintPresenter.m in Sources */,
+				A15B3EB91D12E21B00A6B506 /* LWPacketKYCForAsset.m in Sources */,
 				ECECAB511C98ACF30020E050 /* LWBitcoinDepositPresenter.m in Sources */,
 				ECD76BCD1C2EC50700E1D3DA /* LWPacketWallets.m in Sources */,
 				CF6632861C176A63004353F5 /* LWWalletsPresenter.m in Sources */,
@@ -6351,11 +6552,14 @@
 				CD10AAAC1C1E10F60086634B /* LWPacketPinSecuritySet.m in Sources */,
 				A1E4EA9A1CE42D5800293282 /* LWPacketGraphData.m in Sources */,
 				ECE902BD1C3537B700F52971 /* LWWalletFormPresenter.m in Sources */,
+				A15B3EB61D12CA1500A6B506 /* LWKYCManager.m in Sources */,
 				CFF758411C202C7D00BC7658 /* LWKYCInvalidDocumentsPresenter.m in Sources */,
+				A10A950D1D0EA07B00557C87 /* LWPacketLastBaseAssets.m in Sources */,
 				EC7A45C91C3083CE00926BB4 /* LWAuthSteps.m in Sources */,
 				A1E4EAAC1CE4654200293282 /* LWCurrencyDepositPresenter.m in Sources */,
 				EC51D1991C30573200550EF2 /* LWLykkeData.m in Sources */,
 				EC7519BD1C3735CA00CDDF5B /* LWSettingsLogOutTableViewCell.m in Sources */,
+				A1D4322B1D1001AA0060866F /* LWRefundAfterView.m in Sources */,
 				EC5AE4951CD8A7000079DDFA /* LWBaseHistoryPresenter.m in Sources */,
 				A1E4EAA51CE4588C00293282 /* LWTradingLinearGraphView.m in Sources */,
 				EC57F46D1C3D452300E31746 /* LWAuthComplexPresenter.m in Sources */,
@@ -6381,8 +6585,10 @@
 				EC2813EC1C343CE9009BE680 /* UIImage+Resize.m in Sources */,
 				ECE902C71C35504200F52971 /* LWBankCardsAdd.m in Sources */,
 				EC7519C21C3739D300CDDF5B /* LWPacketBaseAssetGet.m in Sources */,
+				A1D4322E1D1019F80060866F /* LWRefundAddressView.m in Sources */,
 				CF9EC8BB1C17C02F00F742A6 /* LWAuthEntryPointPresenter.m in Sources */,
 				CFF7583C1C202C6500BC7658 /* LWKYCPendingPresenter.m in Sources */,
+				A15B3F101D141F5400A6B506 /* UIAlertView+Blocks.m in Sources */,
 				EC4754A71C614EAF0037614D /* LWWalletDepositPresenter.m in Sources */,
 				ECF9D1191C5BEC060025FC36 /* LWUrlAddressPresenter.m in Sources */,
 				CFC9FE1D1C1CE87C001F1974 /* LWNetAccessor.m in Sources */,
@@ -6400,10 +6606,13 @@
 				CDA69FCE1C275C3800BE4DCA /* LWKYCSubmitPresenter.m in Sources */,
 				ECD1E8FF1C3B21300064AAB3 /* LWMath.m in Sources */,
 				ECD114801CDF1809002B36C0 /* UIView+Navigation.m in Sources */,
+				A1D432281D0FFCCC0060866F /* LWRefundTableViewCell.m in Sources */,
 				CF86B37B1C1B693B006D5488 /* LWPacketRegistration.m in Sources */,
+				A15B3F0D1D13FE5B00A6B506 /* LWPacketSetRefundAddress.m in Sources */,
 				ECD1E8F11C3B10170064AAB3 /* LWPacketAssetPairRates.m in Sources */,
 				A1743CB61CE9D8F500176F59 /* LWWithdrawCurrencyCell.m in Sources */,
 				EC2813EF1C344ED2009BE680 /* LWPacketKYCSendDocumentBin.m in Sources */,
+				A10A95021D0E7E2100557C87 /* LWRefundPresenter.m in Sources */,
 				ECECAB431C9897300020E050 /* LWCashEmptyBlockchainPresenter.m in Sources */,
 				A1C5AF4E1D0941090056DC53 /* LWPacketSetRevertedPair.m in Sources */,
 				EC35B0C21CC6CB50001C6F96 /* LWPacketBlockchainTransferTransaction.m in Sources */,
@@ -6430,6 +6639,7 @@
 				CF6877501C234A7200E7A7D9 /* LWRegisterPINSetupPresenter.m in Sources */,
 				ECC527001C9C1F3700022382 /* LWTradingGraphPresenter.m in Sources */,
 				ECEC40BF1C42B2EB00B22BEE /* LWTransactionsModel.m in Sources */,
+				A15B3F0A1D13FD0700A6B506 /* LWPacketGetRefundAddress.m in Sources */,
 				CDCD5AEA1C259629007BAD78 /* LWHistoryPresenter.m in Sources */,
 				EC9AE0611CAC79910047DF0D /* QRCodeReader.m in Sources */,
 				A1BCCE261D011BA700CF42E4 /* LWIntroductionProgressView.m in Sources */,
@@ -6442,6 +6652,7 @@
 				CDCD5B131C26C92A007BAD78 /* LWRegisterPhonePresenter.m in Sources */,
 				EC57F4601C3C55D700E31746 /* LWAssetInfoIconTableViewCell.m in Sources */,
 				EC9AE05A1CAC70EA0047DF0D /* LWQrCodeScannerPresenter.m in Sources */,
+				A15B3EAF1D12626B00A6B506 /* LWRefundInformationPresenter.m in Sources */,
 				EC7F04FE1C3E86760079ECD0 /* LWPacketBuySellAsset.m in Sources */,
 				EC3CE89E1C3FB6CC00CAC3FE /* LWAssetDealModel.m in Sources */,
 				ECD1E8FB1C3B181F0064AAB3 /* LWPacketAppSettings.m in Sources */,
@@ -6463,6 +6674,7 @@
 				EC57F44D1C3C35B100E31746 /* LWPacketAssetDescription.m in Sources */,
 				ECA8E9D01C5736F5000F53EC /* LWTradeHistoryItemType.m in Sources */,
 				EC24CC851C399A8600C2FDAA /* LWWalletPagePresenter.m in Sources */,
+				A10A950A1D0E9F3B00557C87 /* LWPacketAllAssets.m in Sources */,
 				EC9AE06B1CAC7C6F0047DF0D /* LWWithdrawInputPresenter.m in Sources */,
 				CFD9B7061C1C945C00F717FE /* LWPacketKYCSendDocument.m in Sources */,
 				EC3144481C4C01B500DEA50B /* LWMathKeyboardView.m in Sources */,
@@ -6836,8 +7048,8 @@
 			baseConfigurationReference = 68CD54781D3AB2AD7AAA8023 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon${ICON_SUFFIX}";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Andrey Snetkov (8V2PTSRMS5)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Andrey Snetkov (8V2PTSRMS5)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Andrey Migin (9KYRE6V24Q)";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -6850,9 +7062,13 @@
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/LykkeWallet/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/LykkeWallet/Classes/Model/ZBarQRReader/ZBarSDK",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.lykkex.Lykke-Wallet-test";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "d2363598-aed6-4636-b5c1-774402698cc3";
+				PROVISIONING_PROFILE = "6dba5994-9c48-4c15-a2bd-336050b6ec15";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -6862,7 +7078,7 @@
 			baseConfigurationReference = 7F99B9580B48B839D9C768D4 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon${ICON_SUFFIX}";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Lykke Corp (MNZ5M7YPQV)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Lykke Corp (MNZ5M7YPQV)";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -6875,6 +7091,10 @@
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/LykkeWallet/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/LykkeWallet/Classes/Model/ZBarQRReader/ZBarSDK",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.lykkex.Lykke-Wallet-test";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "eac33a4f-b4d4-4ced-946c-1112dff18aa8";
@@ -6937,8 +7157,8 @@
 			baseConfigurationReference = 68CD54781D3AB2AD7AAA8023 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon${ICON_SUFFIX}";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Andrey Snetkov (8V2PTSRMS5)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Andrey Snetkov (8V2PTSRMS5)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Andrey Migin (9KYRE6V24Q)";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -6950,9 +7170,13 @@
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/LykkeWallet/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/LykkeWallet/Classes/Model/ZBarQRReader/ZBarSDK",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.lykkex.Lykke-Wallet-test";
 				PRODUCT_NAME = "$(TARGET_NAME).Test";
-				PROVISIONING_PROFILE = "d2363598-aed6-4636-b5c1-774402698cc3";
+				PROVISIONING_PROFILE = "6dba5994-9c48-4c15-a2bd-336050b6ec15";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug.Test;
@@ -7019,6 +7243,10 @@
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/LykkeWallet/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/LykkeWallet/Classes/Model/ZBarQRReader/ZBarSDK",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.lykkex.Lykke-Wallet-test";
 				PRODUCT_NAME = "$(TARGET_NAME).Test";
 				PROVISIONING_PROFILE = "eac33a4f-b4d4-4ced-946c-1112dff18aa8";

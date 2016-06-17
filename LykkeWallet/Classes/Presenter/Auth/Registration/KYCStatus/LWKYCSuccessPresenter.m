@@ -55,9 +55,15 @@
 #pragma mark - Actions
 
 - (IBAction)okButtonClick:(id)sender {
-    [((LWAuthNavigationController *)self.navigationController)
-     navigateToStep:LWAuthStepRegisterPINSetup
-     preparationBlock:nil];
+    
+    if([self.delegate respondsToSelector:@selector(successPresenterGetStarted:)])
+    {
+        [self.delegate successPresenterGetStarted:self];
+    }
+    
+//    [((LWAuthNavigationController *)self.navigationController)
+//     navigateToStep:LWAuthStepRegisterPINSetup
+//     preparationBlock:nil];
 }
 
 @end

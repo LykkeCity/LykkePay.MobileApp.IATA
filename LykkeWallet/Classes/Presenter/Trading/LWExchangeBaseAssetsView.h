@@ -13,6 +13,7 @@
 @property id delegate;
 
 -(void) checkCurrentBaseAsset;
+-(void) createButtonsWithAssets:(NSArray *) lastBaseAssets;
 
 @end
 

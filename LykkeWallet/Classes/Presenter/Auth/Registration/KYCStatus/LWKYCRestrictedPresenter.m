@@ -8,6 +8,7 @@
 
 #import "LWKYCRestrictedPresenter.h"
 #import "LWKeychainManager.h"
+#import "UIViewController+Navigation.h"
 
 
 @interface LWKYCRestrictedPresenter () {
@@ -22,6 +23,14 @@
 
 @implementation LWKYCRestrictedPresenter
 
+
+-(void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self setBackButton];
+    [self.navigationController setNavigationBarHidden:NO animated:NO];
+
+}
 
 #pragma mark - LWAuthStepPresenter
 

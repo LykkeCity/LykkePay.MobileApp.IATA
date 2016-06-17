@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15G7a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -24,10 +24,10 @@
                         <rect key="frame" x="37" y="0.0" width="704" height="49.5"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=". . ." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Ts-TG-rzO">
-                                <rect key="frame" x="623" y="8" width="81" height="33"/>
+                                <rect key="frame" x="607" y="8" width="97" height="33"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="81" id="Adp-8i-Ckv"/>
-                                    <constraint firstAttribute="width" constant="81" id="bMl-e8-YPj"/>
+                                    <constraint firstAttribute="width" constant="97" id="bMl-e8-YPj"/>
                                     <constraint firstAttribute="height" constant="33" id="vNg-LT-Fuj"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="14"/>
@@ -42,6 +42,10 @@
                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Kme-pX-a5L">
                                 <rect key="frame" x="0.0" y="0.0" width="400" height="49.5"/>
                                 <subviews>
+                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EDT-f7-3Jk">
+                                        <rect key="frame" x="80" y="-39" width="194" height="128"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zdT-gI-1Al">
                                         <rect key="frame" x="179" y="15" width="42" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -49,7 +53,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="AssetInfoIcon" translatesAutoresizingMaskIntoConstraints="NO" id="UpM-l1-XrJ">
-                                        <rect key="frame" x="300" y="17.5" width="16" height="16"/>
+                                        <rect key="frame" x="300" y="17" width="16" height="16"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="16" id="Dpo-Kl-14H"/>
                                             <constraint firstAttribute="width" constant="16" id="y1b-1F-hWK"/>
@@ -76,26 +80,30 @@
                                 <constraints>
                                     <constraint firstItem="LAC-T4-zjb" firstAttribute="centerY" secondItem="Kme-pX-a5L" secondAttribute="centerY" id="7fB-Ic-WmQ"/>
                                     <constraint firstItem="LAC-T4-zjb" firstAttribute="top" secondItem="Kme-pX-a5L" secondAttribute="top" id="882-im-dci"/>
+                                    <constraint firstItem="EDT-f7-3Jk" firstAttribute="height" secondItem="Kme-pX-a5L" secondAttribute="height" id="8yX-Ek-JBQ"/>
                                     <constraint firstItem="zdT-gI-1Al" firstAttribute="centerY" secondItem="Kme-pX-a5L" secondAttribute="centerY" id="EGs-JF-6GC"/>
                                     <constraint firstItem="VQ9-lw-nqu" firstAttribute="leading" secondItem="LAC-T4-zjb" secondAttribute="trailing" constant="7" id="R4a-bm-Adk"/>
+                                    <constraint firstItem="UpM-l1-XrJ" firstAttribute="leading" secondItem="EDT-f7-3Jk" secondAttribute="trailing" constant="5" id="a19-G5-6Eb"/>
                                     <constraint firstAttribute="width" constant="120" id="amX-FP-itz"/>
+                                    <constraint firstItem="EDT-f7-3Jk" firstAttribute="leading" secondItem="Kme-pX-a5L" secondAttribute="leading" id="feB-Xc-x79"/>
                                     <constraint firstItem="LAC-T4-zjb" firstAttribute="leading" secondItem="Kme-pX-a5L" secondAttribute="leading" id="kOS-6H-19J"/>
                                     <constraint firstAttribute="bottom" secondItem="LAC-T4-zjb" secondAttribute="bottom" id="kvn-bU-IPS"/>
                                     <constraint firstItem="zdT-gI-1Al" firstAttribute="leading" secondItem="VQ9-lw-nqu" secondAttribute="trailing" constant="7" id="mKi-iS-L51"/>
                                     <constraint firstItem="VQ9-lw-nqu" firstAttribute="centerY" secondItem="Kme-pX-a5L" secondAttribute="centerY" id="mRf-Rn-odD"/>
                                     <constraint firstItem="UpM-l1-XrJ" firstAttribute="leading" secondItem="zdT-gI-1Al" secondAttribute="trailing" constant="5" id="ocY-xz-7xj"/>
+                                    <constraint firstItem="EDT-f7-3Jk" firstAttribute="centerY" secondItem="Kme-pX-a5L" secondAttribute="centerY" id="tb5-lY-oOS"/>
                                     <constraint firstItem="UpM-l1-XrJ" firstAttribute="centerY" secondItem="Kme-pX-a5L" secondAttribute="centerY" id="xmX-Vm-fnq"/>
                                 </constraints>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AssetPriceArea" translatesAutoresizingMaskIntoConstraints="NO" id="PRu-Xk-opH">
-                                <rect key="frame" x="623" y="10" width="81" height="30"/>
+                                <rect key="frame" x="607" y="10" width="97" height="30"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="81" id="1jr-8V-Sm8"/>
+                                    <constraint firstAttribute="width" constant="97" id="1jr-8V-Sm8"/>
                                     <constraint firstAttribute="height" constant="30" id="ycl-WX-AO1"/>
                                 </constraints>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8rT-58-bqx" customClass="LWAssetLykkeTableChangeView">
-                                <rect key="frame" x="538" y="17" width="60" height="17"/>
+                                <rect key="frame" x="522" y="17" width="60" height="17"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="33" id="2Bz-nn-w2h"/>
@@ -142,6 +150,7 @@
                 <outlet property="assetReverseImageView" destination="VQ9-lw-nqu" id="pJG-qg-nht"/>
                 <outlet property="leftAssetNameLabel" destination="LAC-T4-zjb" id="8Uh-rD-x4q"/>
                 <outlet property="rightAssetNameLabel" destination="zdT-gI-1Al" id="I2e-QN-eL5"/>
+                <outlet property="touchCatchView" destination="EDT-f7-3Jk" id="OIn-iU-FoB"/>
             </connections>
             <point key="canvasLocation" x="391" y="142"/>
         </tableViewCell>

@@ -46,10 +46,11 @@
 "register.password" = "Пароль (мин 6 символов)";
 "register.passwordConfirm" = "Подтвердите пароль (мин 6 символов)";
 "register.submit" = "Отправить";
+"register.camera.requestaccess"="Для прохождения KYC понадобится сделать снимок selfie. Разрешить доступ к камере?";
 "register.camera.title.selfie" = "Сделайте селфи";
 "register.camera.title.idCard" = "Сделайте фото паспорта";
 "register.camera.title.proofOfAddress" = "Сделайте фото документа, подтверждающего адрес вашего места жительства";
-"register.camera.photo.take" = "Отлично, продолжить";
+"register.camera.photo.take" = "Сделать снимок";
 "register.camera.photo.cancel" = "Нет, переснять";
 "register.camera.photo.ok" = "ОК, отправить";
 "register.camera.hud.title" = "Кликните здесь для отмены операции";
@@ -186,6 +187,7 @@
 "exchange.assets.result.share" = "ПОДЕЛИТЬСЯ";
 "exchange.assets.result.boughtfor"="bought for";
 "exchange.assets.result.soldfor"="sold for";
+"exchange.popup.basecurrency"="БАЗОВАЯ ВАЛЮТА";
 
 
 "exchange.blockchain.close" = "ЗАКРЫТЬ";
@@ -273,3 +275,6 @@
 "introduction.buttons.getstarted"="GET STARTED";
 "introduction.buttons.whydoineedit"="Why do I need it?";
 
+
+"general.yes"="Да";
+"general.no"="Нет";

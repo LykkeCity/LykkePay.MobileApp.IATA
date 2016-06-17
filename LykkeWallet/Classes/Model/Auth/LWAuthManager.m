@@ -57,6 +57,12 @@
 #import "LWPacketAPIVersion.h"
 #import "LWPacketBitcoinAddressValidation.h"
 #import "LWPacketSetRevertedPair.h"
+#import "LWPacketAllAssets.h"
+#import "LWPacketLastBaseAssets.h"
+#import "LWPacketKYCForAsset.h"
+#import "LWPacketGetRefundAddress.h"
+#import "LWPacketSetRefundAddress.h"
+
 
 #import "LWLykkeWalletsData.h"
 #import "LWBankCardsAdd.h"
@@ -219,6 +225,14 @@ SINGLETON_INIT {
     [self sendPacket:pack];
 }
 
+-(void) requestAllAssets
+{
+    LWPacketAllAssets *pack = [LWPacketAllAssets new];
+    
+    [self sendPacket:pack];
+
+}
+
 - (void)requestBaseAssetGet {
     LWPacketBaseAssetGet *pack = [LWPacketBaseAssetGet new];
     
@@ -230,6 +244,14 @@ SINGLETON_INIT {
     pack.identity = assetId;
     
     [self sendPacket:pack];
+}
+
+-(void) requestLastBaseAssets
+{
+    LWPacketLastBaseAssets *pack = [LWPacketLastBaseAssets new];
+    
+    [self sendPacket:pack];
+
 }
 
 - (void)requestAssetPair:(NSString *)pairId {
@@ -271,7 +293,7 @@ SINGLETON_INIT {
     [self sendPacket:pack];
 }
 
-- (void)requestPurchaseAsset:(NSString *)asset assetPair:(NSString *)assetPair volume:(NSString *)volume rate:(NSString *)rate {
+- (void)requestPurchaseAsset:(NSString *)asset assetPair:(NSString *)assetPair volume:(NSNumber *)volume rate:(NSString *)rate {
     LWPacketBuySellAsset *pack = [LWPacketBuySellAsset new];
     pack.baseAsset = asset;
     pack.assetPair = assetPair;
@@ -467,6 +489,26 @@ SINGLETON_INIT {
     LWPacketSetRevertedPair *pack=[LWPacketSetRevertedPair new];
     pack.inverted=reverted;
     pack.assetPairId=assetPairId;
+    [self sendPacket:pack];
+}
+
+-(void) requestKYCStatusForAsset:(NSString *)assetId
+{
+    LWPacketKYCForAsset *pack=[LWPacketKYCForAsset new];
+    pack.assetId=assetId;
+    [self sendPacket:pack];
+}
+
+-(void) requestGetRefundAddress
+{
+    LWPacketGetRefundAddress *pack=[LWPacketGetRefundAddress new];
+    [self sendPacket:pack];
+}
+
+-(void) requestSetRefundAddress:(NSString *) address
+{
+    LWPacketSetRefundAddress *pack=[LWPacketSetRefundAddress new];
+    pack.refundAddress=address;
     [self sendPacket:pack];
 }
 
@@ -766,10 +808,29 @@ SINGLETON_INIT {
             [self.delegate authManager:self didGetAPIVersion:(LWPacketAPIVersion *) pack];
         }
     }
-    //LWBitcoinAddressValidation
     else if (pack.class == LWPacketBitcoinAddressValidation.class) {
         if ([self.delegate respondsToSelector:@selector(authManager:didValidateBitcoinAddress:)]) {
             [self.delegate authManager:self didValidateBitcoinAddress:(LWPacketBitcoinAddressValidation *) pack];
+        }
+    }
+    else if (pack.class == LWPacketLastBaseAssets.class) {
+        if ([self.delegate respondsToSelector:@selector(authManager:didGetLastBaseAssets:)]) {
+            [self.delegate authManager:self didGetLastBaseAssets:(LWPacketLastBaseAssets *)pack];
+        }
+    }
+    else if (pack.class == LWPacketKYCForAsset.class) {
+        if ([self.delegate respondsToSelector:@selector(authManager:didGetAssetKYCStatusForAsset:)]) {
+            [self.delegate authManager:self didGetAssetKYCStatusForAsset:(LWPacketKYCForAsset *)pack];
+        }
+    }
+    else if (pack.class == LWPacketGetRefundAddress.class) {
+        if ([self.delegate respondsToSelector:@selector(authManager:didGetRefundAddress:)]) {
+            [self.delegate authManager:self didGetRefundAddress:(LWPacketGetRefundAddress *)pack];
+        }
+    }
+    else if (pack.class == LWPacketSetRefundAddress.class) {
+        if ([self.delegate respondsToSelector:@selector(authManagerDidSetRefundAddress:)]) {
+            [self.delegate authManagerDidSetRefundAddress:self];
         }
     }
 

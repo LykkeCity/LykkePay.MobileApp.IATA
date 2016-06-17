@@ -34,6 +34,10 @@
 #import "UIViewController+Loading.h"
 #import "LWCurrencyDepositPresenter.h"
 #import "LWIPadModalNavigationControllerViewController.h"
+#import "LWRegisterCameraPresenter.h"
+#import "LWAuthSteps.h"
+#import "UIViewController+Navigation.h"
+#import "LWKYCManager.h"
 
 
 #ifdef PROJECT_IATA
@@ -51,6 +55,8 @@ static NSInteger const kSectionLykkeWallets   = 2;
     UIRefreshControl  *refreshControl;
     
     BOOL               shouldShowError;
+    
+    
 }
 
 
@@ -678,46 +684,69 @@ static NSString *const WalletIcons[kNumberOfSections] = {
 #pragma mark - LWLykkeTableViewCellDelegate
 
 - (void)addLykkeItemClicked:(LWLykkeTableViewCell *)cell {
+    
+    
     NSIndexPath *path = [self.tableView indexPathForCell:cell];
     LWLykkeAssetsData *data = [self assetDataForIndexPath:path];
+
+    [LWKYCManager sharedInstance].viewController=self;;
     
-    NSDictionary *depositTypes=@{@"EUR":@"currency",
-                                 @"USD":@"currency",
-                                 @"CHF":@"currency",
-                                 @"BTC":@"bitcoin",
-                                 @"LKK":@"bitcoin"};
+    [[LWKYCManager sharedInstance] manageKYCStatusForAsset:data.identity successBlock:^{
     
-    if (data) {
-        UIViewController *presenter;
-        
-        if([depositTypes[data.identity] isEqualToString:@"bitcoin"])
-        {
-            presenter = [LWBitcoinDepositPresenter new];
-        }
-        else
-        {
-            presenter=[LWCurrencyDepositPresenter new];
-         }
-        
-        ((LWCurrencyDepositPresenter *)presenter).assetName=data.name;
-        ((LWCurrencyDepositPresenter *)presenter).assetID=data.identity;
-        ((LWCurrencyDepositPresenter *)presenter).issuerId=data.issuerId;
     
+        NSDictionary *depositTypes=@{@"EUR":@"currency",
+                                     @"USD":@"currency",
+                                     @"CHF":@"currency",
+                                     @"BTC":@"bitcoin",
+                                     @"LKK":@"bitcoin"};
         
-        if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
-            [self.navigationController pushViewController:presenter animated:YES];
-        else
-        {
-            LWIPadModalNavigationControllerViewController *navigationController =
-            [[LWIPadModalNavigationControllerViewController alloc] initWithRootViewController:presenter];
+        if (data) {
+            UIViewController *presenter;
             
-            navigationController.modalPresentationStyle=UIModalPresentationCustom;
-            navigationController.transitioningDelegate=navigationController;
-            [self.navigationController presentViewController:navigationController animated:YES completion:nil];
+            if([depositTypes[data.identity] isEqualToString:@"bitcoin"])
+            {
+                presenter = [LWBitcoinDepositPresenter new];
+            }
+            else
+            {
+                presenter=[LWCurrencyDepositPresenter new];
+            }
+            
+            ((LWCurrencyDepositPresenter *)presenter).assetName=data.name;
+            ((LWCurrencyDepositPresenter *)presenter).assetID=data.identity;
+            ((LWCurrencyDepositPresenter *)presenter).issuerId=data.issuerId;
+            
+            
+            if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
+                [self.navigationController pushViewController:presenter animated:YES];
+            else
+            {
+                LWIPadModalNavigationControllerViewController *navigationController =
+                [[LWIPadModalNavigationControllerViewController alloc] initWithRootViewController:presenter];
+                
+                navigationController.modalPresentationStyle=UIModalPresentationCustom;
+                navigationController.transitioningDelegate=navigationController;
+                [self.navigationController presentViewController:navigationController animated:YES completion:nil];
+            }
+            
+            
         }
+    
+    
+    }];
+    
 
+    return;
+    
+    
+    
+    
+    
+    
+//    NSIndexPath *path = [self.tableView indexPathForCell:cell];
+//    LWLykkeAssetsData *data = [self assetDataForIndexPath:path];
+    
 
-    }
 }
 
 
@@ -755,6 +784,10 @@ static NSString *const WalletIcons[kNumberOfSections] = {
     NSIndexPath *path = [self.tableView indexPathForCell:cell];
     LWLykkeAssetsData *data = [self assetDataForIndexPath:path];
     if (data) {
+        [LWKYCManager sharedInstance].viewController=self;;
+        
+        [[LWKYCManager sharedInstance] manageKYCStatusForAsset:data.identity successBlock:^{
+
         LWBitcoinDepositPresenter *presenter = [LWBitcoinDepositPresenter new];
         presenter.assetName = data.name;
         presenter.issuerId = data.issuerId;
@@ -771,6 +804,7 @@ static NSString *const WalletIcons[kNumberOfSections] = {
             navigationController.transitioningDelegate=navigationController;
             [self.navigationController presentViewController:navigationController animated:YES completion:nil];
         }
+        }];
 
     }
 }

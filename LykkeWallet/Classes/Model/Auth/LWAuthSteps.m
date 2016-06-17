@@ -21,18 +21,23 @@
         // to selfie
         nextStep = LWAuthStepRegisterSelfie;
     }
-    else if (!status.isIdCardUploaded) {
-        // to identity card
-        nextStep = LWAuthStepRegisterIdentity;
-    }
-    else if (!status.isPOAUploaded) {
-        // to POA
-        nextStep = LWAuthStepRegisterUtilityBill;
-    }
+//    else if (!status.isIdCardUploaded) {  //Andrey
+//        // to identity card
+//        nextStep = LWAuthStepRegisterIdentity;
+//    }
+//    else if (!status.isPOAUploaded) {
+//        // to POA
+//        nextStep = LWAuthStepRegisterUtilityBill;
+//    }
+//    else {
+//        // to LWAuthStepRegisterKYCSubmit
+//        nextStep = LWAuthStepRegisterKYCSubmit;
+//    }
+    
     else {
-        // to LWAuthStepRegisterKYCSubmit
-        nextStep = LWAuthStepRegisterKYCSubmit;
+        nextStep=LWAuthStepRegisterPINSetup;
     }
+    
     return nextStep;
 }
 

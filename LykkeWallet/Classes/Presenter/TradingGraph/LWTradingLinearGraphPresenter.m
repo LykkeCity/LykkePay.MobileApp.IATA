@@ -359,8 +359,9 @@ static int const kNumberOfRows = 4;
     self.isValid = NO;
     [self setLoading:NO];
     
+    [self showReject:reject response:context.task.response];
     [self invalidPrices];
-    [self requestPrices];
+    
 }
 
 -(void) authManager:(LWAuthManager *)manager didGetGraphPeriods:(LWPacketGraphPeriods *)_graphPeriods

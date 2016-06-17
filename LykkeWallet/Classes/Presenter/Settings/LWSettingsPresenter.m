@@ -24,6 +24,8 @@
 #import "LWPacketAPIVersion.h"
 #import "LWSettingsTermsTableViewCell.h"
 #import "LWValidator.h"
+#import "LWRefundPresenter.h"
+#import "LWPacketGetRefundAddress.h"
 
 
 @interface LWSettingsPresenter () <LWRadioTableViewCellDelegate, LWSettingsConfirmationPresenter> {
@@ -44,7 +46,7 @@
 @implementation LWSettingsPresenter
 
 
-static NSInteger const kNumberOfRows = 5;
+static NSInteger const kNumberOfRows = 6;
 // cell identifiers
 static NSInteger const kKYCCellId    = 0;
 static NSInteger const kPINCellId    = 1;
@@ -52,6 +54,7 @@ static NSInteger const kPINCellId    = 1;
 static NSInteger const kAssetCellId  = 2;
 static NSInteger const kLogoutCellId = 3;
 static NSInteger const kTermsOfUseCellId   = 4;
+static NSInteger const kRefundAddress =5;
 
 static NSString *const SettingsCells[kNumberOfRows] = {
     kSettingsAssetTableViewCell,
@@ -59,7 +62,9 @@ static NSString *const SettingsCells[kNumberOfRows] = {
 //    kSettingsAssetTableViewCell,
     kSettingsAssetTableViewCell,
     @"LWSettingsLogOutTableViewCell",
-    kSettingsTermsTableViewCell
+    kSettingsTermsTableViewCell,
+    kSettingsAssetTableViewCell
+
 };
 
 static NSString *const SettingsIdentifiers[kNumberOfRows] = {
@@ -68,7 +73,8 @@ static NSString *const SettingsIdentifiers[kNumberOfRows] = {
 //    kSettingsAssetTableViewCellIdentifier,
     kSettingsAssetTableViewCellIdentifier,
     @"LWSettingsLogOutTableViewCellIdentifier",
-    kSettingsTermsTableViewCellIdentifier
+    kSettingsTermsTableViewCellIdentifier,
+    kSettingsAssetTableViewCellIdentifier
 };
 
 
@@ -78,7 +84,6 @@ static NSString *const SettingsIdentifiers[kNumberOfRows] = {
     [super viewDidLoad];
     self.versionLabel.text=[LWCache currentAppVersion];
     
-    self.title = Localize(@"tab.settings");
     
     [self registerCellWithIdentifier:SettingsIdentifiers[0]
                                 name:SettingsCells[0]];
@@ -106,7 +111,6 @@ static NSString *const SettingsIdentifiers[kNumberOfRows] = {
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    self.title = Localize(@"tab.settings");
 
     if (self.tabBarController && self.navigationItem) {
         self.tabBarController.title = [self.navigationItem.title uppercaseString];
@@ -114,6 +118,14 @@ static NSString *const SettingsIdentifiers[kNumberOfRows] = {
     
     [[LWAuthManager instance] requestBaseAssetGet];
     [[LWAuthManager instance] requestAPIVersion];
+    [[LWAuthManager instance] requestGetRefundAddress];
+}
+
+-(void) viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    self.title = Localize(@"tab.settings");
+
 }
 
 -(IBAction) callSupportPressed:(id)sender
@@ -160,6 +172,11 @@ static NSString *const SettingsIdentifiers[kNumberOfRows] = {
     }
     else if(indexPath.row == kTermsOfUseCellId)
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:kTermsOfUseURL]];
+    else if (indexPath.row == kRefundAddress) {
+        LWRefundPresenter *push = [LWRefundPresenter new];
+        [self.navigationController pushViewController:push animated:YES];
+    }
+
 }
 
 
@@ -178,6 +195,15 @@ static NSString *const SettingsIdentifiers[kNumberOfRows] = {
 {
     if(apiVersion.apiVersion)
         self.versionLabel.text=[NSString stringWithFormat:@"%@, API %@",[LWCache currentAppVersion], apiVersion.apiVersion];
+
+}
+
+-(void) authManager:(LWAuthManager *)manager didGetRefundAddress:(LWPacketGetRefundAddress *)address
+{
+    [LWCache instance].refundAddress=address.refundAddress;
+    NSIndexPath *path = [NSIndexPath indexPathForRow:kRefundAddress inSection:0];
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:path];
+    [self configureCell:cell indexPath:path];
 
 }
 
@@ -224,6 +250,13 @@ static NSString *const SettingsIdentifiers[kNumberOfRows] = {
         NSString *logout = [NSString stringWithFormat:@"%@ %@", Localize(@"settings.cell.logout.title"), [LWKeychainManager instance].login];
         logoutCell.logoutLabel.text = logout;
     }
+    else if (indexPath.row == kRefundAddress) {
+        LWSettingsAssetTableViewCell *refundCell = (LWSettingsAssetTableViewCell *)cell;
+        refundCell.titleLabel.text = @"Refund Address";
+        refundCell.assetLabel.text=[LWCache instance].refundAddress;
+    }
+
+    
 }
 
 

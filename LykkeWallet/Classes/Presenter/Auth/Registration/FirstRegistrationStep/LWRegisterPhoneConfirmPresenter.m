@@ -14,10 +14,12 @@
 #import "LWConstants.h"
 #import "TKButton.h"
 #import "UIViewController+Loading.h"
+#import "UIView+Toast.h"
 
 
 @interface LWRegisterPhoneConfirmPresenter () <LWTextFieldDelegate> {
     LWTextField *codeTextField;
+    CGFloat keyboardHeight;
 }
 
 
@@ -47,6 +49,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    keyboardHeight=0;
     
     self.title = Localize(@"register.title");
     
@@ -129,7 +133,12 @@
 
 - (void)infoClicked:(id)sender {
     
-    [self.navigationController popViewControllerAnimated:YES];
+    [self setLoading:YES];
+    [[LWAuthManager instance] requestVerificationPhone:self.phone];
+
+
+    
+//    [self.navigationController popViewControllerAnimated:YES];
 }
 
 
@@ -152,7 +161,9 @@
 }
 
 - (void)observeKeyboardWillShowNotification:(NSNotification *)notification {
-    
+    CGRect const frame = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    keyboardHeight=frame.size.height;
+
     if([UIDevice currentDevice].userInterfaceIdiom!=UIUserInterfaceIdiomPad)
     {
         [super observeKeyboardWillShowNotification:notification];
@@ -168,6 +179,8 @@
 }
 
 - (void)observeKeyboardWillHideNotification:(NSNotification *)notification {
+    keyboardHeight=0;
+    
     if([UIDevice currentDevice].userInterfaceIdiom!=UIUserInterfaceIdiomPad)
     {
         [super observeKeyboardWillShowNotification:notification];
@@ -182,6 +195,14 @@
 
 
 #pragma mark - LWAuthManagerDelegate
+
+- (void)authManagerDidSendValidationPhone:(LWAuthManager *)manager {
+    // copy data to model
+    [self setLoading:NO];
+    [self.view makeToast:@"SMS sent" duration:2 position:[NSValue valueWithCGPoint:CGPointMake(self.view.bounds.size.width/2, self.view.bounds.size.height-keyboardHeight-30)]];
+
+}
+
 
 - (void)authManagerDidCheckValidationPhone:(LWAuthManager *)manager passed:(BOOL)passed {
     if (passed) {

@@ -81,6 +81,26 @@
 
 }
 
++(NSString *) stringFromFloat:(float) number
+{
+    if(number==(int)number)
+    {
+        return [NSString stringWithFormat:@"%d", (int)number];
+    }
+    NSString *str=[NSString stringWithFormat:@"%f", number];
+    while (str.length>1 )
+    {
+        if([[str substringFromIndex:str.length-1] isEqualToString:@"0"])
+        {
+            str=[str substringToIndex:str.length-1];
+        }
+        else
+            break;
+    }
+    
+    return str;
+}
+
 +(NSString *) formatVolumeString:(NSString *) volumee currencySign:(NSString *) currency accuracy:(int) accuracy removeExtraZeroes:(BOOL) flagRemoveZeroes
 {
     NSString *volume=[volumee stringByReplacingOccurrencesOfString:@" " withString:@""];
@@ -195,12 +215,20 @@
     
 //    NSString *result=[LWUtils formatVolumeString:[NSString stringWithFormat:@"%f", value.floatValue] currencySign:assetPair. accuracy:<#(int)#>]
     
+    NSString *result;
+    if(assetPair.inverted==NO)
+    {
+        result=[LWUtils formatVolumeString:[NSString stringWithFormat:@"%f", value.floatValue] currencySign:@"" accuracy:assetPair.accuracy.intValue removeExtraZeroes:YES];
+    }
+    else
+    {
+        result=[LWUtils formatVolumeString:[NSString stringWithFormat:@"%f", value.floatValue] currencySign:@"" accuracy:assetPair.invertedAccuracy.intValue removeExtraZeroes:YES];
+    }
     
     
-    
-    NSString *result = [LWMath priceString:value
-                                 precision:assetPair.accuracy
-                                withPrefix:@""];
+//    NSString *result = [LWMath priceString:value
+//                                 precision:assetPair.accuracy
+//                                withPrefix:@""];
     return result;
 }
 
