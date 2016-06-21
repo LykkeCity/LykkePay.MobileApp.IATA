@@ -67,19 +67,19 @@
     self.navigationController.navigationBar.barTintColor = BAR_GRAY_COLOR;
     self.navigationController.navigationBar.translucent = NO;
     
+    UIView *lineView=[[UIView alloc] initWithFrame:CGRectMake(0, _infoView.bounds.size.height-1, 704, 1)];
+    lineView.backgroundColor=[UIColor colorWithRed:210.0/255 green:214.0/255 blue:219.0/255 alpha:1];
+    [_infoView addSubview:lineView];
+
     
     CGRect rrr=self.view.frame;
     self.infoView.backgroundColor=BAR_GRAY_COLOR;
-    self.infoView.layer.shadowColor=[UIColor blackColor].CGColor;
-    self.infoView.layer.shadowOpacity=0.3;
-    self.infoView.layer.shadowRadius=1;
-    self.infoView.layer.shadowOffset=CGSizeMake(0, 1);
     
     infoLabel=[[UILabel alloc] init];
     infoLabel.numberOfLines=0;
     infoLabel.textAlignment=NSTextAlignmentCenter;
-    infoLabel.font=[UIFont systemFontOfSize:14 weight:UIFontWeightLight];
-    infoLabel.textColor=[UIColor grayColor];
+    infoLabel.font=[UIFont fontWithName:@"ProximaNova-Regular" size:16];
+    infoLabel.textColor=[UIColor colorWithRed:63.0/255 green:77.0/255 blue:96.0/255 alpha:1];
     
     lineTitles=@[@"BIC (SWIFT)",
                  @"Account Number",
@@ -116,16 +116,16 @@
     buttonsContainer=[[UIView alloc] initWithFrame:CGRectMake(0, 0, 260, 20)];
     termsOfUseButton=[UIButton buttonWithType:UIButtonTypeCustom];
     [termsOfUseButton setTitle:@"Terms of Use" forState:UIControlStateNormal];
-    termsOfUseButton.titleLabel.font=[UIFont systemFontOfSize:12];
-    [termsOfUseButton setTitleColor:[UIColor colorWithRed:180.0/255 green:105.0/255 blue:211.0/255 alpha:1] forState:UIControlStateNormal];
+    termsOfUseButton.titleLabel.font=[UIFont fontWithName:@"ProximaNova-Regular" size:14];
+    [termsOfUseButton setTitleColor:[UIColor colorWithRed:171.0/255 green:0.0/255 blue:255.0/255 alpha:1] forState:UIControlStateNormal];
     [termsOfUseButton addTarget:self action:@selector(termsOfUsePressed) forControlEvents:UIControlEventTouchUpInside];
     
     [termsOfUseButton sizeToFit];
     
     prospectusButton=[UIButton buttonWithType:UIButtonTypeCustom];
-    [prospectusButton setTitle:@"Lykke shares prospectus" forState:UIControlStateNormal];
-    prospectusButton.titleLabel.font=[UIFont systemFontOfSize:12];
-    [prospectusButton setTitleColor:[UIColor colorWithRed:180.0/255 green:105.0/255 blue:211.0/255 alpha:1] forState:UIControlStateNormal];
+    [prospectusButton setTitle:@"Lykke Shares Prospectus" forState:UIControlStateNormal];
+    prospectusButton.titleLabel.font=[UIFont fontWithName:@"ProximaNova-Regular" size:14];
+    [prospectusButton setTitleColor:[UIColor colorWithRed:171.0/255 green:0.0/255 blue:255.0/255 alpha:1] forState:UIControlStateNormal];
     
     [prospectusButton sizeToFit];
     
@@ -170,7 +170,7 @@
         for(int i=0;i<lineTitles.count;i++)
         {
             BOOL needLine=NO;
-            if(i<lineTitles.count-1)
+//            if(i<lineTitles.count-1)
                 needLine=YES;
             
             LWWithdrawCurrencyCell *view=[[LWWithdrawCurrencyCell alloc] initWithWidth:self.view.bounds.size.width title:lineTitles[i] placeholder:lineValues[i] addBottomLine:needLine];
@@ -323,98 +323,6 @@
 }
 
 
-
-
-#pragma mark - UITextFieldDelegate
-
-//-(BOOL) textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
-//{
-//    NSString *str=[textField.text stringByReplacingCharactersInRange:range withString:string];
-//    
-//    if([textField.text isEqualToString:@"0"] && string.length)
-//    {
-//        textField.text=string;
-//    }
-//    else if(str.length==0)
-//    {
-//        textField.text=@"0";
-//    }
-//    else
-//    {
-//        textField.text=str;
-//    }
-//    
-//    [self positionCurrencySymbol];
-//    return NO;
-//    
-//}
-//
-//-(void) showCopied
-//{
-//    UIWindow *window=[UIApplication sharedApplication].windows[0];
-//    UIView *shadowView=[[UIView alloc] initWithFrame:window.bounds];
-//    shadowView.backgroundColor=[UIColor colorWithWhite:0 alpha:0.3];
-//    [window addSubview:shadowView];
-//    
-//    UIView *view=[[UIView alloc] init];
-//    view.backgroundColor=[UIColor whiteColor];
-//    view.clipsToBounds=YES;
-//    [window addSubview:view];
-//    
-//    UIView *labelView=[[UIView alloc] init];
-//    UILabel *label=[[UILabel alloc] init];
-//    label.font=[UIFont systemFontOfSize:18];
-//    label.textColor=[UIColor colorWithRed:36.0/255 green:182.0/255 blue:53.0/255 alpha:1];
-//    label.text=Localize(@"wallets.currency.copied");
-//    
-//    [label sizeToFit];
-//    
-//    UIImageView *signView=[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, label.bounds.size.height*1.2, label.bounds.size.height*1.2)];
-//    signView.image=[UIImage imageNamed:@"CopiedCheckMarkSign.png"];
-//    labelView.frame=CGRectMake(0, 0, label.bounds.size.width+10+signView.bounds.size.width, signView.bounds.size.width);
-//    [labelView addSubview:label];
-//    [labelView addSubview:signView];
-//    
-//    label.center=CGPointMake(labelView.bounds.size.width-label.bounds.size.width/2, labelView.bounds.size.height/2);
-//    
-//    
-//    view.frame=CGRectMake(0, 0, labelView.bounds.size.width+80, labelView.bounds.size.height+25);
-//    view.layer.cornerRadius=view.bounds.size.height/2;
-//    
-//    [view addSubview:labelView];
-//    
-//    labelView.center=CGPointMake(view.bounds.size.width/2, view.bounds.size.height/2);
-//    
-//    view.center=CGPointMake(window.bounds.size.width/2, window.bounds.size.height/2);
-//    
-//    
-//    
-//    shadowView.alpha=0;
-//    view.alpha=0;
-//    
-//    [UIView animateWithDuration:0.3 animations:^{
-//        
-//        shadowView.alpha=1;
-//        view.alpha=1;
-//    }];
-//    
-//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//        
-//        [UIView animateWithDuration:0.3 animations:^{
-//            
-//            shadowView.alpha=0;
-//            view.alpha=0;
-//        } completion:^(BOOL finished){
-//            [shadowView removeFromSuperview];
-//            [view removeFromSuperview];
-//            
-//        }];
-//        
-//        
-//    });
-//    
-//    
-//}
 
 
 @end

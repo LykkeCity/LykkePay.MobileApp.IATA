@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LWPacketBuySellAsset.h"
+
 
 
 @class LWAssetPairModel;
@@ -36,6 +38,7 @@
 @property (copy, nonatomic) NSString *rateString;
 @property (copy, nonatomic) NSString *volumeString;
 @property (copy, nonatomic) NSString *totalString;
+@property LWAssetDealType assetDealType;
 
 #pragma mark - General
 

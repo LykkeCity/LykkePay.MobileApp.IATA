@@ -150,6 +150,7 @@ static NSString *const FormIdentifiers[kFormRows] = {
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
+    
     [self updateTitle];
 //    predefinedSumsView=[self predefinedSumsEnterView];
 //    [self.view addSubview:predefinedSumsView];
@@ -210,8 +211,8 @@ static NSString *const FormIdentifiers[kFormRows] = {
             balance.text=[NSString stringWithFormat:@"%@ available", [LWUtils formatVolumeString:str currencySign:balanceCurrencySymbol accuracy:balanceAccuracy removeExtraZeroes:YES]];
 
         }
-        balance.font=[UIFont systemFontOfSize:14];
-        balance.textColor=[UIColor blackColor];
+        balance.font=[UIFont fontWithName:@"ProximaNova-Regular" size:16];
+        balance.textColor=[UIColor colorWithRed:63.0/255 green:77.0/255 blue:96.0/255 alpha:1];
         balance.textAlignment=NSTextAlignmentCenter;
         balance.center=CGPointMake(self.tableView.bounds.size.width/2, balance.center.y);
         [cell addSubview:balance];
@@ -758,6 +759,7 @@ static NSString *const FormIdentifiers[kFormRows] = {
     confirmationView.rateString = priceText;
     confirmationView.volumeString = volumeStringToSend;
     confirmationView.totalString = resultStringToSend;
+    confirmationView.assetDealType=self.assetDealType;
 
 }
 

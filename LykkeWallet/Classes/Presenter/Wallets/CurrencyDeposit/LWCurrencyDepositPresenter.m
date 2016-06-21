@@ -60,19 +60,17 @@
     self.navigationController.navigationBar.barTintColor = BAR_GRAY_COLOR;
     self.navigationController.navigationBar.translucent = NO;
 
-    
-    CGRect rrr=self.view.frame;
+    UIView *lineView=[[UIView alloc] initWithFrame:CGRectMake(0, _infoView.bounds.size.height-1, _infoView.bounds.size.width, 1)];
+    lineView.backgroundColor=[UIColor colorWithRed:210.0/255 green:214.0/255 blue:219.0/255 alpha:1];
+    [_infoView addSubview:lineView];
+
     self.infoView.backgroundColor=BAR_GRAY_COLOR;
-    self.infoView.layer.shadowColor=[UIColor blackColor].CGColor;
-    self.infoView.layer.shadowOpacity=0.3;
-    self.infoView.layer.shadowRadius=1;
-    self.infoView.layer.shadowOffset=CGSizeMake(0, 1);
     
     infoLabel=[[UILabel alloc] init];
     infoLabel.numberOfLines=0;
     infoLabel.textAlignment=NSTextAlignmentCenter;
-    infoLabel.font=[UIFont systemFontOfSize:14 weight:UIFontWeightLight];
-    infoLabel.textColor=[UIColor grayColor];
+    infoLabel.font=[UIFont fontWithName:@"ProximaNova-Regular" size:16];
+    infoLabel.textColor=[UIColor colorWithRed:63.0/255 green:77.0/255 blue:96.0/255 alpha:1];
     
     NSDictionary *accounts=@{
                              @"CHF":@"LI71 0880 1200 9711 0000 1",
@@ -113,16 +111,16 @@
     buttonsContainer=[[UIView alloc] initWithFrame:CGRectMake(0, 0, 260, 20)];
     termsOfUseButton=[UIButton buttonWithType:UIButtonTypeCustom];
     [termsOfUseButton setTitle:@"Terms of Use" forState:UIControlStateNormal];
-    termsOfUseButton.titleLabel.font=[UIFont systemFontOfSize:12];
-    [termsOfUseButton setTitleColor:[UIColor colorWithRed:180.0/255 green:105.0/255 blue:211.0/255 alpha:1] forState:UIControlStateNormal];
+    termsOfUseButton.titleLabel.font=[UIFont fontWithName:@"ProximaNova-Regular" size:14];
+    [termsOfUseButton setTitleColor:[UIColor colorWithRed:171.0/255 green:0.0/255 blue:255.0/255 alpha:1] forState:UIControlStateNormal];
     [termsOfUseButton addTarget:self action:@selector(termsOfUsePressed) forControlEvents:UIControlEventTouchUpInside];
     
     [termsOfUseButton sizeToFit];
     
     prospectusButton=[UIButton buttonWithType:UIButtonTypeCustom];
     [prospectusButton setTitle:@"Lykke Shares Prospectus" forState:UIControlStateNormal];
-    prospectusButton.titleLabel.font=[UIFont systemFontOfSize:12];
-    [prospectusButton setTitleColor:[UIColor colorWithRed:180.0/255 green:105.0/255 blue:211.0/255 alpha:1] forState:UIControlStateNormal];
+    prospectusButton.titleLabel.font=[UIFont fontWithName:@"ProximaNova-Regular" size:14];
+    [prospectusButton setTitleColor:[UIColor colorWithRed:171.0/255 green:0.0/255 blue:255.0/255 alpha:1] forState:UIControlStateNormal];
 
     [prospectusButton sizeToFit];
     
@@ -170,7 +168,7 @@
         if(i<lineTitles.count-1)
         {
             UIView *lineView=[[UIView alloc] initWithFrame:CGRectMake(30, offset-1, _scrollView.bounds.size.width-60, 1)];
-            lineView.backgroundColor=[UIColor colorWithWhite:0.92 alpha:1];
+            lineView.backgroundColor=[UIColor colorWithRed:210.0/255 green:214.0/255 blue:219.0/255 alpha:1];
             [_scrollView addSubview:lineView];
         }
         
@@ -219,8 +217,8 @@
     CGFloat copyIconWidth=25;
     
     UILabel *titleLabel=[[UILabel alloc] init];
-    titleLabel.font=[UIFont systemFontOfSize:14];
-    titleLabel.textColor=[UIColor grayColor];
+    titleLabel.font=[UIFont fontWithName:@"ProximaNova-Regular" size:14];
+    titleLabel.textColor=[UIColor colorWithRed:63.0/255 green:77.0/255 blue:96.0/255 alpha:0.6];
     titleLabel.numberOfLines=0;
     titleLabel.text=lineTitles[index];
     CGSize size=[titleLabel sizeThatFits:CGSizeMake(titleWidth, 0)];
@@ -234,8 +232,8 @@
     UIButton *copyButton;
     
     textLabel=[[UILabel alloc] init];
-    textLabel.font=[UIFont systemFontOfSize:16];
-    textLabel.textColor=[UIColor blackColor];
+    textLabel.font=[UIFont fontWithName:@"ProximaNova-Regular" size:16];
+    textLabel.textColor=[UIColor colorWithRed:63.0/255 green:77.0/255 blue:96.0/255 alpha:1];
     textLabel.numberOfLines=0;
     textLabel.text=lineValues[index];
     size=[textLabel sizeThatFits:CGSizeMake(view.bounds.size.width-titleWidth-20-(copyIconWidth+10), 0)];
@@ -280,12 +278,13 @@
     
     UIView *view=[[UIView alloc] initWithFrame:CGRectMake(-1, 0, self.scrollView.bounds.size.width+2, 50)];
     view.backgroundColor=BAR_GRAY_COLOR;
-    view.layer.borderColor=[UIColor grayColor].CGColor;
+    view.layer.borderColor=[UIColor colorWithRed:210.0/255 green:214.0/255 blue:219.0/255 alpha:1].CGColor;
     view.layer.borderWidth=0.5;
     
     UILabel *amountLabel=[[UILabel alloc] init];
-    amountLabel.font=[UIFont systemFontOfSize:16];
+    amountLabel.font=[UIFont fontWithName:@"ProximaNova-Regular" size:14];
     amountLabel.text=Localize(@"wallets.currency.amount");
+    amountLabel.textColor=[UIColor colorWithRed:63.0/255 green:77.0/255 blue:96.0/255 alpha:0.6];
     [amountLabel sizeToFit];
     amountLabel.center=CGPointMake(30+amountLabel.bounds.size.width/2, view.bounds.size.height/2);
     [view addSubview:amountLabel];
@@ -296,12 +295,14 @@
     amountTextField.keyboardType=UIKeyboardTypeNumberPad;
     amountTextField.delegate=self;
     amountTextField.textAlignment=NSTextAlignmentRight;
-    amountTextField.font=[UIFont systemFontOfSize:18];
+    amountTextField.font=[UIFont fontWithName:@"ProximaNova-Light" size:22];
+    amountTextField.textColor=[UIColor colorWithRed:63.0/255 green:77.0/255 blue:96.0/255 alpha:1];
     amountTextField.text=@"0";
     
     currencySymbolLabel=[[UILabel alloc] init];
     currencySymbolLabel.text=currencySymbol;
     currencySymbolLabel.font=amountTextField.font;
+    currencySymbolLabel.textColor=amountTextField.textColor;
     [currencySymbolLabel sizeToFit];
     [amountTextField addSubview:currencySymbolLabel];
     

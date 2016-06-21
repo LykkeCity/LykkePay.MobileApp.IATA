@@ -194,10 +194,17 @@ static float const kNoPinProtectionHeight = 300;
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    BOOL flagReverse=self.assetPair.inverted;
+    if((self.assetDealType==LWAssetDealTypeSell && flagReverse) || (self.assetDealType==LWAssetDealTypeBuy && !flagReverse))
+        flagReverse=!flagReverse;
+    
     NSString *const titles[kDescriptionRows] = {
-        Localize(@"exchange.assets.buy.sum"),
+        flagReverse?Localize(@"exchange.assets.buy.sum"):Localize(@"exchange.assets.buy.total"),
+//        Localize(@"exchange.assets.buy.sum"),
         Localize(@"exchange.assets.buy.price"),
-        Localize(@"exchange.assets.buy.total")
+        flagReverse?Localize(@"exchange.assets.buy.total"):Localize(@"exchange.assets.buy.sum"),
+
+//        Localize(@"exchange.assets.buy.total")
     };
     
     NSString *const values[kDescriptionRows] = {

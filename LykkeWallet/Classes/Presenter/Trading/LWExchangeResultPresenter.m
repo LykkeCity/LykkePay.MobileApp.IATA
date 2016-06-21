@@ -200,11 +200,18 @@ static int const kBlockchainRow = 4;
         if(arr.count==2)
         {
             assetName=[NSString stringWithFormat:@"%@/%@", arr[1], arr[0]];
-            arr=@[arr[1], arr[0]];
         }
     }
     if(arr.count!=2)
         arr=@[@"",@""];
+    
+    
+    if((self.assetPair.inverted && [self.purchase.orderType isEqualToString:@"Buy"]) || (self.assetPair.inverted==NO && [self.purchase.orderType isEqualToString:@"Sell"]))
+    {
+        arr=@[arr[1], arr[0]];
+   
+    }
+    
     
     NSString *const values[kNumberOfRows] = {
         assetName,

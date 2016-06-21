@@ -245,12 +245,15 @@ static int const kNumberOfRows = 4;
 
 -(void) periodButtonPressed:(UIButton *) button
 {
+    if(button.selected)
+        return;
     for(UIButton *b in periodButtons)
     {
         b.selected=NO;
     }
     button.selected=YES;
     selectedPeriod=graphPeriods.periods[[periodButtons indexOfObject:button]];
+    [self setLoading:YES];
     [[LWAuthManager instance] requestGraphDataForPeriod:selectedPeriod assetPairId:self.assetPair.identity];
 
 }

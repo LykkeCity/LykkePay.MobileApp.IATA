@@ -67,6 +67,7 @@
     }
     else
     {
+        flagIsOpened=YES;
         [textFieldButton setTitle:@"Paste" forState:UIControlStateNormal];
     }
 

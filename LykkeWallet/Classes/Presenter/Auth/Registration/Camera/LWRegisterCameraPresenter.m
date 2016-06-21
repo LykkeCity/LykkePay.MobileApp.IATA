@@ -23,6 +23,8 @@
 #import "LWValidator.h"
 #import "UIAlertView+Blocks.h"
 
+#import "LWCameraMessageView.h"
+
 @import AVFoundation;
 
 
@@ -89,8 +91,8 @@
     // if show camera view - reset flag for uploads
     KYCDocumentType type = [LWAuthSteps getDocumentTypeByStep:self.stepId];
     BOOL const croppedStatus = [[LWAuthManager instance].documentsStatus croppedStatus:type];
-    
-    serverImage = [[LWAuthManager instance].documentsStatus lastUploadedImageForType:type];
+    if(!serverImage)
+        serverImage = [[LWAuthManager instance].documentsStatus lastUploadedImageForType:type];
     [self setupPreviewImageFromServerImage:serverImage shouldCropImage:croppedStatus];
 
     [[LWAuthManager instance].documentsStatus resetTypeUploaded:type];
@@ -100,6 +102,13 @@
     }
     
     [self updateStep:type];
+}
+
+-(void) viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    
 }
 
 - (LWAuthStep)stepId {
@@ -212,8 +221,13 @@
     
     void (^messageBlock)(void)=^{
         
-        UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"ATTENTION" message:@"Please provide access to camera for LykkeWallet in the Settings." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [alert show];
+        LWCameraMessageView *view=[[NSBundle mainBundle] loadNibNamed:@"LWCameraMessageView" owner:self options:nil][0];
+        UIWindow *window=[[UIApplication sharedApplication] keyWindow];
+        view.center=CGPointMake(window.bounds.size.width/2, window.bounds.size.height/2);
+        
+        [window addSubview:view];
+        
+        [view show];
     };
 
     
@@ -453,8 +467,11 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
 
     UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
+    
+    [self setupImage:image shouldCropImage:YES];
+
     [picker dismissViewControllerAnimated:NO completion:^{
-        [self setupImage:image shouldCropImage:YES];
+//        [self setupImage:image shouldCropImage:YES];
     }];
     
     [self checkButtonsState];

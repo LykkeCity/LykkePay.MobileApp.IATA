@@ -69,7 +69,7 @@
         if(completionBlock)
             completionBlock();
     }
-    else if([status.userKYCStatus isEqualToString:@"Pending"])
+    else if([status.userKYCStatus isEqualToString:@"Pending"] || [status.userKYCStatus isEqualToString:@"Rejected"])
     {
         LWKYCPendingPresenter *vc=[LWKYCPendingPresenter new];
         vc.delegate=self;

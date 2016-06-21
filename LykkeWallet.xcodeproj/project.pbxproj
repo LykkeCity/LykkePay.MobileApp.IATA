@@ -41,6 +41,10 @@
 		A124D5C31CEB144F0074A1A8 /* LWAuthenticationPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = CDCE884D1C26F6630039798B /* LWAuthenticationPresenter.m */; };
 		A124D5C51CEB19880074A1A8 /* LWKYCCheckDocumentsPresenter~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A124D5C41CEB19880074A1A8 /* LWKYCCheckDocumentsPresenter~ipad.xib */; };
 		A124D5C71CEB1B550074A1A8 /* LWAuthValidationPresenter~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A124D5C61CEB1B550074A1A8 /* LWAuthValidationPresenter~ipad.xib */; };
+		A1312B1D1D17FB04009726FF /* LWPrivateKeyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A1312B1C1D17FB04009726FF /* LWPrivateKeyManager.m */; };
+		A1312B251D184047009726FF /* LWCameraMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A1312B241D184047009726FF /* LWCameraMessageView.m */; };
+		A1312B271D184062009726FF /* LWCameraMessageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1312B261D184062009726FF /* LWCameraMessageView.xib */; };
+		A1312B2A1D19027F009726FF /* NewDecodeBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = A1312B291D19027F009726FF /* NewDecodeBase64.m */; };
 		A14B7D2E1CE3233D00820084 /* ButtonOK_square.png in Resources */ = {isa = PBXBuildFile; fileRef = A14B7D2D1CE3233D00820084 /* ButtonOK_square.png */; };
 		A15B3EAF1D12626B00A6B506 /* LWRefundInformationPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A15B3EAD1D12626B00A6B506 /* LWRefundInformationPresenter.m */; };
 		A15B3EB01D12626B00A6B506 /* LWRefundInformationPresenter.xib in Resources */ = {isa = PBXBuildFile; fileRef = A15B3EAE1D12626B00A6B506 /* LWRefundInformationPresenter.xib */; };
@@ -1452,6 +1456,13 @@
 		A124D5C11CEB14400074A1A8 /* LWAuthenticationPresenter~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "LWAuthenticationPresenter~ipad.xib"; path = "Authentication/LWAuthenticationPresenter~ipad.xib"; sourceTree = "<group>"; };
 		A124D5C41CEB19880074A1A8 /* LWKYCCheckDocumentsPresenter~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "LWKYCCheckDocumentsPresenter~ipad.xib"; sourceTree = "<group>"; };
 		A124D5C61CEB1B550074A1A8 /* LWAuthValidationPresenter~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "LWAuthValidationPresenter~ipad.xib"; sourceTree = "<group>"; };
+		A1312B1B1D17FB04009726FF /* LWPrivateKeyManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWPrivateKeyManager.h; sourceTree = "<group>"; };
+		A1312B1C1D17FB04009726FF /* LWPrivateKeyManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWPrivateKeyManager.m; sourceTree = "<group>"; };
+		A1312B231D184047009726FF /* LWCameraMessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWCameraMessageView.h; sourceTree = "<group>"; };
+		A1312B241D184047009726FF /* LWCameraMessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWCameraMessageView.m; sourceTree = "<group>"; };
+		A1312B261D184062009726FF /* LWCameraMessageView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LWCameraMessageView.xib; sourceTree = "<group>"; };
+		A1312B281D19027F009726FF /* NewDecodeBase64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewDecodeBase64.h; path = Security/NewDecodeBase64.h; sourceTree = "<group>"; };
+		A1312B291D19027F009726FF /* NewDecodeBase64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewDecodeBase64.m; path = Security/NewDecodeBase64.m; sourceTree = "<group>"; };
 		A14B7D2D1CE3233D00820084 /* ButtonOK_square.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ButtonOK_square.png; sourceTree = "<group>"; };
 		A15B3EAC1D12626B00A6B506 /* LWRefundInformationPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWRefundInformationPresenter.h; sourceTree = "<group>"; };
 		A15B3EAD1D12626B00A6B506 /* LWRefundInformationPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWRefundInformationPresenter.m; sourceTree = "<group>"; };
@@ -3780,6 +3791,10 @@
 				CDCD5AE21C2576EB007BAD78 /* LWKeychainManager.m */,
 				EC3CE89F1C3FBF6F00CAC3FE /* LWFingerprintHelper.h */,
 				EC3CE8A01C3FBF6F00CAC3FE /* LWFingerprintHelper.m */,
+				A1312B1B1D17FB04009726FF /* LWPrivateKeyManager.h */,
+				A1312B1C1D17FB04009726FF /* LWPrivateKeyManager.m */,
+				A1312B281D19027F009726FF /* NewDecodeBase64.h */,
+				A1312B291D19027F009726FF /* NewDecodeBase64.m */,
 			);
 			name = Security;
 			sourceTree = "<group>";
@@ -4396,6 +4411,9 @@
 				ECA80B611C2E0E38001C4E8F /* Utils */,
 				CFF2AADF1C1F893000320FF9 /* LWRegisterCameraPresenter.h */,
 				CFF2AAE01C1F893000320FF9 /* LWRegisterCameraPresenter.m */,
+				A1312B231D184047009726FF /* LWCameraMessageView.h */,
+				A1312B241D184047009726FF /* LWCameraMessageView.m */,
+				A1312B261D184062009726FF /* LWCameraMessageView.xib */,
 				ECA80B5F1C2E0E2A001C4E8F /* LWRegisterCameraPresenter~iphone.xib */,
 				A19E08D41CEB5275004D286A /* LWRegisterCameraPresenter~ipad.xib */,
 			);
@@ -5906,6 +5924,7 @@
 				A1BCD1CB1D012D3C00CF42E4 /* 3-settle-2x_00084.png in Resources */,
 				A1D4776C1D050B9900438846 /* loader-color@2x_00060.png in Resources */,
 				A1BCD2581D012D3C00CF42E4 /* 4-withdraw-2x_00105.png in Resources */,
+				A1312B271D184062009726FF /* LWCameraMessageView.xib in Resources */,
 				A1BCD12B1D012D3C00CF42E4 /* 2-trade-2x_00043.png in Resources */,
 				A1BCD0911D012D3C00CF42E4 /* 1-deposit-2x_00009.png in Resources */,
 				A1D4774D1D050B9900438846 /* loader-color@2x_00029.png in Resources */,
@@ -6481,15 +6500,18 @@
 				CF6A9CD21C18ED2400B69F53 /* LWColorizer.m in Sources */,
 				ECD1E8F81C3B17090064AAB3 /* LWAppSettingsModel.m in Sources */,
 				ECDA15E11C31C6F0003C071C /* LWPacketLog.m in Sources */,
+				A1312B2A1D19027F009726FF /* NewDecodeBase64.m in Sources */,
 				CF6632461C175B54004353F5 /* AppDelegate.m in Sources */,
 				EC0175311CA8041800ACC675 /* LWTradingWalletPresenter.m in Sources */,
 				ECEC40D71C42D4CF00B22BEE /* LWCashInOutHistoryItemType.m in Sources */,
 				ECD1144D1CD91F9C002B36C0 /* LWPacketEmailVerificationGet.m in Sources */,
 				EC168F151C5140F000AF8DD5 /* LWPersonalItemTableViewCell.m in Sources */,
+				A1312B251D184047009726FF /* LWCameraMessageView.m in Sources */,
 				ECAB1BC71C99F70C00A64A20 /* LWExchangeEmptyBlockchainPresenter.m in Sources */,
 				ECEC40CE1C42CB5800B22BEE /* LWBaseHistoryItemType.m in Sources */,
 				EC9C94971C89C89E006FD46B /* LWTextField.m in Sources */,
 				A1C5AF551D0A867D0056DC53 /* LWSettingsTermsTableViewCell.m in Sources */,
+				A1312B1D1D17FB04009726FF /* LWPrivateKeyManager.m in Sources */,
 				ECEC40CB1C42CA7B00B22BEE /* LWHistoryManager.m in Sources */,
 				CD10AAA61C1E0C560086634B /* LWAuthenticationData.m in Sources */,
 				A10A94F71D0D351000557C87 /* LWExchangeAssetsPopupView.m in Sources */,
@@ -7097,7 +7119,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.lykkex.Lykke-Wallet-test";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "eac33a4f-b4d4-4ced-946c-1112dff18aa8";
+				PROVISIONING_PROFILE = "4930ca10-6385-41a8-bd5e-d16c92cfad5d";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -7249,7 +7271,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.lykkex.Lykke-Wallet-test";
 				PRODUCT_NAME = "$(TARGET_NAME).Test";
-				PROVISIONING_PROFILE = "eac33a4f-b4d4-4ced-946c-1112dff18aa8";
+				PROVISIONING_PROFILE = "4930ca10-6385-41a8-bd5e-d16c92cfad5d";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release.Test;

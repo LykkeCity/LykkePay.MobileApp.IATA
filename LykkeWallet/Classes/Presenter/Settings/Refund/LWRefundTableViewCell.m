@@ -124,12 +124,12 @@
 -(void) setAddressString:(NSString *)addressString
 {
     addressView.address=addressString;
-    if(addressString.length)
-    {
-        addressView.isOpened=NO;
-    }
-    else
-        addressView.isOpened=YES;
+//    if(addressString.length)
+//    {
+//        addressView.isOpened=NO;
+//    }
+//    else
+//        addressView.isOpened=YES;
 }
 
 

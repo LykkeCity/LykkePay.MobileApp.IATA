@@ -161,7 +161,8 @@ AVSessionPresetForUIVideoQuality (UIImagePickerControllerQualityType quality)
     cameraViewTransform = CGAffineTransformIdentity;
 
     cameraFlashMode = UIImagePickerControllerCameraFlashModeAuto;
-    videoQuality = UIImagePickerControllerQualityType640x480;
+//    videoQuality = UIImagePickerControllerQualityType640x480;
+    videoQuality=UIImagePickerControllerQualityTypeHigh;//Andrey
     AVCaptureDevice *device = nil;
 #if !TARGET_IPHONE_SIMULATOR
     device = [AVCaptureDevice defaultDeviceWithMediaType: AVMediaTypeVideo];

@@ -33,6 +33,9 @@
     
     shadow=[[UIView alloc] init];
     shadow.backgroundColor=[UIColor colorWithRed:63.0/255 green:77.0/255 blue:96.0/255 alpha:0.5];
+    UITapGestureRecognizer *gesture=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hide)];
+    [shadow addGestureRecognizer:gesture];
+    
     self.backgroundColor=[UIColor whiteColor];
     tableView=[[UITableView alloc] init];
     tableView.dataSource=self;

@@ -25,19 +25,21 @@
     self=[super initWithFrame:CGRectMake(0, 0, width, 0)];
     
 //    UIView *view=[[UIView alloc] initWithFrame:CGRectMake(30, 0, self.scrollView.bounds.size.width-60, 0)];
-    self.backgroundColor=nil;
+    self.backgroundColor=[UIColor clearColor];
     self.opaque=NO;
     
+    
+    
     titleLabel=[[UILabel alloc] init];
-    titleLabel.font=[UIFont systemFontOfSize:14];
-    titleLabel.textColor=[UIColor grayColor];
+    titleLabel.font=[UIFont fontWithName:@"ProximaNova-Regular" size:14];
+    titleLabel.textColor=[UIColor colorWithRed:63.0/255 green:77.0/255 blue:96.0/255 alpha:0.6];
     titleLabel.numberOfLines=0;
     titleLabel.text=title;
     [self addSubview:titleLabel];
     
     textField=[[UITextView alloc] init];
-    textField.font=[UIFont systemFontOfSize:16];
-    textField.textColor=[UIColor blackColor];
+    textField.font=[UIFont fontWithName:@"ProximaNova-Regular" size:16];
+    textField.textColor=[UIColor colorWithRed:63.0/255 green:77.0/255 blue:96.0/255 alpha:1];
     textField.delegate=self;
     //    textField.numberOfLines=0;
     textField.text=placeholder;
@@ -48,7 +50,7 @@
     if(flagLine)
     {
         lineView=[[UIView alloc] initWithFrame:CGRectMake(30, 0, self.bounds.size.width-60, 1)];
-        lineView.backgroundColor=[UIColor colorWithWhite:0.92 alpha:1];
+        lineView.backgroundColor=[UIColor colorWithRed:210.0/255 green:214.0/255 blue:219.0/255 alpha:1];
         [self addSubview:lineView];
     }
     

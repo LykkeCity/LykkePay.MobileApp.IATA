@@ -119,6 +119,12 @@ float const kMathHeightKeyboard = 239.0;
     return kFormRows;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+
+    return 50;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if(indexPath.row==0)
@@ -127,8 +133,8 @@ float const kMathHeightKeyboard = 239.0;
         cell.backgroundColor=[UIColor whiteColor];
         balance=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 300, 15)];
         balance.text=@"";
-        balance.font=[UIFont systemFontOfSize:14];
-        balance.textColor=[UIColor blackColor];
+        balance.font=[UIFont fontWithName:@"ProximaNova-Regular" size:16];
+        balance.textColor=[UIColor colorWithRed:63.0/255 green:77.0/255 blue:96.0/255 alpha:1];
         balance.textAlignment=NSTextAlignmentCenter;
         balance.center=CGPointMake(self.tableView.bounds.size.width/2, balance.center.y);
         [cell addSubview:balance];
@@ -148,6 +154,7 @@ float const kMathHeightKeyboard = 239.0;
         sumTextField.keyboardType = UIKeyboardTypeDecimalPad;
         
         [sumTextField setTintColor:[UIColor colorWithHexString:kDefaultTextFieldPlaceholder]];
+        
     }
     
     return cell;

@@ -15,6 +15,7 @@
 #import "LWConstants.h"
 #import "LWCache.h"
 #import "LWMath.h"
+#import "LWUtils.h"
 #import "LWAuthManager.h"
 #import "UIViewController+Navigation.h"
 #import "UIViewController+Loading.h"
@@ -122,22 +123,28 @@ static int const kBlockchainRow = 4;
 
 - (void)updateValueCell:(LWLeftDetailTableViewCell *)cell row:(NSInteger)row {
     cell.detailLabel.text = [self dataByCellRow:row];
-    if (kBlockchainRow == row) {
-        UIColor *blockchainColor = self.model.blockchainSettled
-        ? [UIColor colorWithHexString:kMainElementsColor]
-        : [UIColor colorWithHexString:kMainDarkElementsColor];
-        [cell.detailLabel setTextColor:blockchainColor];
-    }
+//    if (kBlockchainRow == row) {
+//        UIColor *blockchainColor = self.model.blockchainSettled
+//        ? [UIColor colorWithHexString:kMainElementsColor]
+//        : [UIColor colorWithHexString:kMainDarkElementsColor];
+//        [cell.detailLabel setTextColor:blockchainColor];
+//    }
 }
 
 - (NSString *)dataByCellRow:(NSInteger)row {
     NSString *const values[kNumberOfRows] = {
         self.model.assetPair,
-        [LWMath makeStringByNumber:self.model.volume withPrecision:0],
-        [LWMath makeStringByNumber:self.model.price withPrecision:self.model.accuracy.integerValue],
+        self.model.volume.stringValue,
+        self.model.price.stringValue,
+        self.model.totalCost.stringValue,
+//        [LWUtils formatVolumeString:[NSString stringWithFormat:@"%lf", self.model.volume.floatValue] currencySign:@"" accuracy:8 removeExtraZeroes:YES],
+//        [LWMath makeStringByNumber:self.model.volume withPrecision:0],
+//        [LWUtils formatVolumeString:[NSString stringWithFormat:@"%lf", self.model.price.floatValue] currencySign:@"" accuracy:8 removeExtraZeroes:YES],
+//        [LWMath makeStringByNumber:self.model.price withPrecision:self.model.accuracy.integerValue],
         //[LWMath makeStringByNumber:self.model.commission withPrecision:2],
-        [LWMath makeStringByNumber:self.model.totalCost withPrecision:2],
-        self.model.blockchainSettled ? self.model.blockchainId : Localize(@"exchange.assets.result.blockchain.progress")
+//        [LWUtils formatVolumeString:[NSString stringWithFormat:@"%lf", self.model.totalCost.floatValue] currencySign:@"" accuracy:8 removeExtraZeroes:YES],
+//        [LWMath makeStringByNumber:self.model.totalCost withPrecision:2],
+        self.model.blockchainId ? self.model.blockchainId : Localize(@"exchange.assets.result.blockchain.progress")
         //[LWMath makeStringByNumber:self.model.position withPrecision:0]
     };
     

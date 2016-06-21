@@ -139,7 +139,8 @@ typedef NS_ENUM(NSInteger, LWMathKeyboardViewSign) {
     const CGFloat whLine = 1; // 1px between elements
     
     CGFloat wTotal = self.frame.size.width;
-    CGFloat wSign = [self.signButtons.firstObject frame].size.width;
+//    CGFloat wSign = [self.signButtons.firstObject frame].size.width;
+    CGFloat wSign=wTotal/4-whLine*3;;
     CGFloat wNumpadArea = wTotal - wSign - whLine;
     CGFloat wNumpad = (wNumpadArea - whLine * 2) / 3;
     CGFloat wSnippet = wNumpadArea/3;//(wTotal - whLine * 2) / 3;
@@ -386,7 +387,8 @@ typedef NS_ENUM(NSInteger, LWMathKeyboardViewSign) {
     {
         b.backgroundColor=[UIColor whiteColor];
     }
-    button.backgroundColor=[UIColor yellowColor];
+    button.backgroundColor=[UIColor colorWithRed:247.0/255 green:248.0/255 blue:249.0/255 alpha:1];
+    
     highlightedSignButton=button;
 }
 

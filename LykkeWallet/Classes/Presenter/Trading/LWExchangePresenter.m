@@ -153,6 +153,7 @@ static NSString *const AssetIcons[kNumberOfSections] = {
     [self setTitle:Localize(@"tab.trading")];
     [self.baseAssetsView checkCurrentBaseAsset];
     
+
     isLoadingRatesNow=NO;
     timer=[NSTimer timerWithTimeInterval:[LWCache instance].refreshTimer.integerValue/1000 target:self selector:@selector(loadRates) userInfo:nil repeats:YES];
     [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
@@ -162,6 +163,7 @@ static NSString *const AssetIcons[kNumberOfSections] = {
     [[LWAuthManager instance] requestAssetPairs];
     [[LWAuthManager instance] requestLastBaseAssets];
 
+    
 
 }
 

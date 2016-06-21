@@ -117,8 +117,9 @@
 
 -(BOOL) gestureRecognizer:(UIGestureRecognizer *)sender shouldReceiveTouch:(UITouch *)touch
 {
-    CGPoint location = [touch locationInView:self];
-    if (sender!=tapGestureRecognizer || CGRectContainsPoint(CGRectMake(self.assetChangeView.frame.origin.x, 0, self.assetChangeView.bounds.size.width, self.bounds.size.height), location)==NO)
+    CGPoint location = [touch locationInView:self.assetChangeView];
+//    if (sender!=tapGestureRecognizer || CGRectContainsPoint(CGRectMake(self.assetChangeView.frame.origin.x, 0, self.assetChangeView.bounds.size.width, self.bounds.size.height), location)==NO)
+    if (sender!=tapGestureRecognizer || location.x<0 || location.x>self.assetChangeView.bounds.size.width)
         return NO;
     return YES;
 }

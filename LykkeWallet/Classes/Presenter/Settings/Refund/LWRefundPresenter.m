@@ -14,6 +14,7 @@
 #import "ZBarReaderViewController.h"
 #import "LWCache.h"
 #import "UIViewController+Loading.h"
+#import "LWCameraMessageView.h"
 
 @import AVFoundation;
 
@@ -199,8 +200,11 @@ static int CellTypes[kNumberOfCells] = {
         codeReader.showsHelpOnFail=NO;
         codeReader.tracksSymbols=YES;
         
+        
+        
         ZBarImageScanner *scanner = codeReader.scanner;
-        [scanner setSymbology: ZBAR_I25 config: ZBAR_CFG_ENABLE to: 0];
+        [scanner setSymbology: ZBAR_EAN8 config: ZBAR_CFG_ENABLE to: 0];
+//        [scanner setSymbology: ZBAR_I25 config: ZBAR_CFG_ENABLE to: 0];
         
         [self.navigationController pushViewController:codeReader animated:YES];
         
@@ -208,9 +212,13 @@ static int CellTypes[kNumberOfCells] = {
     };
     
     void (^messageBlock)(void)=^{
+        LWCameraMessageView *view=[[NSBundle mainBundle] loadNibNamed:@"LWCameraMessageView" owner:self options:nil][0];
+        UIWindow *window=[[UIApplication sharedApplication] keyWindow];
+        view.center=CGPointMake(window.bounds.size.width/2, window.bounds.size.height/2);
         
-        UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"ATTENTION" message:@"You have to grant access to your device camera for scanning QR-codes. Please do it in your device Settings." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [alert show];
+        [window addSubview:view];
+        
+        [view show];
     };
 
     
