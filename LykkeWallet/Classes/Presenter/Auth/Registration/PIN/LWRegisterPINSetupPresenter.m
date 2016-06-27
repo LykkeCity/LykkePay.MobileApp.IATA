@@ -11,7 +11,7 @@
 #import "ABPadLockScreen.h"
 #import "LWValidator.h"
 #import "UIViewController+Loading.h"
-#import "LWPrivateKeyManager.h"
+
 #import "LWKeychainManager.h"
 
 
@@ -107,10 +107,6 @@
     // save pin
     
     pin = [pin_ copy];
-    [[LWKeychainManager instance] savePin:pin];
-    
-    [[LWPrivateKeyManager shared] generatePrivateKey];
-    [[LWKeychainManager instance] saveEncodedPrivateKey:[LWPrivateKeyManager shared].encryptedKey];
     
     // request PIN setup
     [[LWAuthManager instance] requestPinSecuritySet:pin];

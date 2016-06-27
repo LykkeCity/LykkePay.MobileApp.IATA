@@ -50,13 +50,11 @@ SINGLETON_INIT {
 #pragma mark - Common
 
 
-- (void)saveLogin:(NSString *)login password:(NSString *)password token:(NSString *)token encodedPrivateKey:(NSString *)encodedPrivateKey
+- (void)saveLogin:(NSString *)login password:(NSString *)password token:(NSString *)token
 {
     [valet setString:token forKey:kKeychainManagerToken];
     [valet setString:login forKey:kKeychainManagerLogin];
     [valet setString:password forKey:kKeychainManagerPassword];
-    if(encodedPrivateKey)
-        [valet setString:encodedPrivateKey forKey:kKeychainManagerEncodedPrivateKey];
     
 }
 
@@ -77,10 +75,6 @@ SINGLETON_INIT {
     [valet setString:address forKey:kKeychainManagerAddress];
 }
 
--(void) savePin:(NSString *)pin
-{
-    [valet setString:pin forKey:kKeychainManagerPIN];
-}
 
 -(void) saveEncodedPrivateKey:(NSString *)key
 {
@@ -93,8 +87,6 @@ SINGLETON_INIT {
     [valet removeObjectForKey:kKeychainManagerPhone];
     [valet removeObjectForKey:kKeychainManagerFullName];
     [valet removeObjectForKey:kKeychainManagerPassword];
-    [valet removeObjectForKey:kKeychainManagerPIN];
-    [valet removeObjectForKey:kKeychainManagerEncodedPrivateKey];
 }
 
 
@@ -113,15 +105,6 @@ SINGLETON_INIT {
     return [valet stringForKey:kKeychainManagerPassword];
 }
 
--(NSString *) pin
-{
-    return [valet stringForKey:kKeychainManagerPIN];
-}
-
--(NSString *) encodedPrivateKey
-{
-    return [valet stringForKey:kKeychainManagerEncodedPrivateKey];
-}
 
 
 - (NSString *)address {

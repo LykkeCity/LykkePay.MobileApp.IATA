@@ -200,11 +200,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LykkeWallet/Classes/Model/Core/Network/LWPacketCashOut.m"
-            timestampString = "488634195.83905"
+            timestampString = "488722053.672168"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "34"
-            endingLineNumber = "34"
+            startingLineNumber = "32"
+            endingLineNumber = "32"
             landmarkName = "-params"
             landmarkType = "5">
          </BreakpointContent>
@@ -216,11 +216,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LykkeWallet/Classes/Model/Core/Network/LWPacketCashOut.m"
-            timestampString = "488634195.83905"
+            timestampString = "488722053.672168"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "28"
-            endingLineNumber = "28"
+            startingLineNumber = "27"
+            endingLineNumber = "27"
             landmarkName = "-params"
             landmarkType = "5">
          </BreakpointContent>
@@ -232,11 +232,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LykkeWallet/Classes/Model/Auth/LWAuthManager.m"
-            timestampString = "488623840.468855"
+            timestampString = "488722053.672168"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "302"
-            endingLineNumber = "302"
+            startingLineNumber = "301"
+            endingLineNumber = "301"
             landmarkName = "-requestPurchaseAsset:assetPair:volume:rate:"
             landmarkType = "5">
          </BreakpointContent>
@@ -248,11 +248,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LykkeWallet/Classes/Model/Auth/LWAuthManager.m"
-            timestampString = "488623840.468855"
+            timestampString = "488722053.672168"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "391"
-            endingLineNumber = "391"
+            startingLineNumber = "390"
+            endingLineNumber = "390"
             landmarkName = "-requestCashOut:assetId:multiSig:"
             landmarkType = "5">
          </BreakpointContent>
@@ -264,11 +264,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LykkeWallet/Classes/Model/Core/Network/LWPacketCashOut.m"
-            timestampString = "488634195.83905"
+            timestampString = "488722053.672168"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "23"
-            endingLineNumber = "23"
+            startingLineNumber = "22"
+            endingLineNumber = "22"
             landmarkName = "-urlRelative"
             landmarkType = "5">
          </BreakpointContent>
@@ -296,11 +296,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LykkeWallet/Classes/Model/Auth/LWAuthManager.m"
-            timestampString = "488623840.468855"
+            timestampString = "488722053.672168"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "467"
-            endingLineNumber = "467"
+            startingLineNumber = "466"
+            endingLineNumber = "466"
             landmarkName = "-requestCurrencyDepositForAsset:changeValue:"
             landmarkType = "5">
          </BreakpointContent>
@@ -328,11 +328,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LykkeWallet/Classes/Model/Core/Network/LWPacketCashOut.m"
-            timestampString = "488634195.83905"
+            timestampString = "488722053.672168"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "19"
-            endingLineNumber = "19"
+            startingLineNumber = "18"
+            endingLineNumber = "18"
             landmarkName = "-parseResponse:error:"
             landmarkType = "5">
          </BreakpointContent>
@@ -472,11 +472,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LykkeWallet/Classes/Presenter/Auth/LWAuthValidationPresenter.m"
-            timestampString = "488448056.339279"
+            timestampString = "488722053.672168"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "112"
-            endingLineNumber = "112"
+            startingLineNumber = "106"
+            endingLineNumber = "106"
             landmarkName = "-authManager:didCheckDocumentsStatus:"
             landmarkType = "5">
          </BreakpointContent>
@@ -632,11 +632,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LykkeWallet/Classes/Model/Core/Network/LWPacketAuthentication.m"
-            timestampString = "488443604.838311"
+            timestampString = "488722053.672168"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "46"
-            endingLineNumber = "46"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
             landmarkName = "-params"
             landmarkType = "5">
          </BreakpointContent>
@@ -648,11 +648,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LykkeWallet/Classes/Model/Core/Network/LWPacketAuthentication.m"
-            timestampString = "488443604.838311"
+            timestampString = "488722053.672168"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "42"
-            endingLineNumber = "42"
+            startingLineNumber = "41"
+            endingLineNumber = "41"
             landmarkName = "-urlRelative"
             landmarkType = "5">
          </BreakpointContent>
@@ -664,11 +664,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LykkeWallet/Classes/Model/Core/Network/LWPacketPinSecuritySet.m"
-            timestampString = "488624040.905301"
+            timestampString = "488722053.672168"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "27"
-            endingLineNumber = "27"
+            startingLineNumber = "26"
+            endingLineNumber = "26"
             landmarkName = "-params"
             landmarkType = "5">
          </BreakpointContent>
@@ -685,7 +685,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "55"
             endingLineNumber = "55"
-            landmarkName = "-saveLogin:password:token:encodedPrivateKey:"
+            landmarkName = "-saveLogin:password:token:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

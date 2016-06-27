@@ -9,7 +9,7 @@
 #import "LWRegisterConfirmPasswordPresenter.h"
 #import "LWAuthNavigationController.h"
 #import "LWRegisterCameraPresenter.h"
-#import "LWPrivateKeyManager.h"
+
 #import "LWPersonalDataModel.h"
 #import "LWTextField.h"
 #import "LWValidator.h"

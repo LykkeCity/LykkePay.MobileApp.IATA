@@ -16,7 +16,7 @@
 #import "UIColor+Generic.h"
 #import "UIView+Toast.h"
 #import "LWKeychainManager.h"
-#import "LWPrivateKeyManager.h"
+
 
 
 @interface AppDelegate () {
@@ -89,13 +89,6 @@
     self.window.backgroundColor = [UIColor whiteColor];
     self.window.rootViewController = self.mainController;
     [self.window makeKeyAndVisible];
-    
-    
-    
-    
-//    [[LWPrivateKeyManager shared] generatePrivateKey];//Testing
-    
-    
     
     return YES;
 }

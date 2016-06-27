@@ -62,7 +62,6 @@
 #import "LWPacketKYCForAsset.h"
 #import "LWPacketGetRefundAddress.h"
 #import "LWPacketSetRefundAddress.h"
-#import "LWEncodedPrivateKeyGet.h"
 
 
 #import "LWLykkeWalletsData.h"
@@ -513,11 +512,6 @@ SINGLETON_INIT {
     [self sendPacket:pack];
 }
 
--(void) requestGetEncodedPrivateKey
-{
-    LWEncodedPrivateKeyGet *pack=[LWEncodedPrivateKeyGet new];
-    [self sendPacket:pack];
-}
 
 -(void) setDelegate:(id<LWAuthManagerDelegate>)delegate //Andrey
 {

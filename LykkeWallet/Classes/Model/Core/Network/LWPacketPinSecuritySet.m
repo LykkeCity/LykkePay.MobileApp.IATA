@@ -7,7 +7,6 @@
 //
 
 #import "LWPacketPinSecuritySet.h"
-#import "LWPrivateKeyManager.h"
 
 
 @implementation LWPacketPinSecuritySet
@@ -17,12 +16,12 @@
 
 - (NSString *)urlRelative {
 //    return @"PinSecurity";
-    return @"ClientKeys";
+    return @"PinSecurity";
 }
 
 - (NSDictionary *)params {
 //    return @{@"Pin" : self.pin};
-    NSDictionary *params=@{@"Pin":self.pin, @"PubKey":[LWPrivateKeyManager shared].publicKey, @"EncodedPrivateKey":[LWPrivateKeyManager shared].encryptedKey};
+    NSDictionary *params=@{@"Pin":self.pin};
     
     return params;
 }

@@ -188,7 +188,6 @@ SINGLETON_DECLARE
 -(void) requestGetRefundAddress;
 -(void) requestSetRefundAddress:(NSDictionary *) dict;
 
--(void) requestGetEncodedPrivateKey;
 
 
 //PubkeyAddressValidation

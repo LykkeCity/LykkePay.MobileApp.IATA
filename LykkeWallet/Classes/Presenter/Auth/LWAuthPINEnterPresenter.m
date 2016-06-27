@@ -14,7 +14,6 @@
 #import "UIViewController+Loading.h"
 #import "LWCache.h"
 #import "LWKeychainManager.h"
-#import "LWPrivateKeyManager.h"
 
 #import <AFNetworking/AFNetworking.h>
 
@@ -154,18 +153,6 @@ static int const kAllowedAttempts = 3;
     // validate pin
     [self setLoading:YES];
     BOOL const result = (controller.validateBlock ? controller.validateBlock(pin) : NO);
-    if(result)
-    {
-        [[LWKeychainManager instance] savePin:pin];
-        if([LWKeychainManager instance].encodedPrivateKey==nil)
-        {
-//            [[LWPrivateKeyManager shared] generatePrivateKey];
-            
-            [[LWAuthManager instance] requestGetEncodedPrivateKey];
-        }
-        else
-            [[LWPrivateKeyManager shared] decryptKeyIfPossible];
-    }
     [self setLoading:NO];
 
     return result;
@@ -204,13 +191,11 @@ static int const kAllowedAttempts = 3;
 #pragma mark - Utils
 
 - (void)validateUser {
-    if([LWKeychainManager instance].pin==nil)
-        return;
 
     [LWFingerprintHelper
      validateFingerprintTitle:Localize(@"auth.validation.fingerpring")
      ok:^(void) {
-         [[LWPrivateKeyManager shared] decryptKeyIfPossible];
+         
          [pinController dismissViewControllerAnimated:NO completion:^{
              if(_isSuccess)
              {

@@ -31,8 +31,7 @@
     
     [[LWKeychainManager instance] saveLogin:self.authenticationData.email
                                    password:self.authenticationData.password
-                                      token:_token
-                          encodedPrivateKey:result[@"EncodedPrivateKey"]];
+                                      token:_token];
     
     
     [[LWKeychainManager instance] savePersonalData:_personalData];
