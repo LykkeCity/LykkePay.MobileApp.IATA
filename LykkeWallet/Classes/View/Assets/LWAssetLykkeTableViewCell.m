@@ -40,6 +40,11 @@
     
     self.leftAssetNameLabel.text=nil;
     self.rightAssetNameLabel.text=nil;
+    
+    self.assetPriceLabel.layer.borderColor=[UIColor colorWithRed:171.0/255 green:0 blue:1 alpha:1].CGColor;
+    self.assetPriceLabel.layer.borderWidth=1;
+    [self.assetPriceImageView removeFromSuperview];
+    
 }
 
 -(void) reverse
@@ -81,7 +86,7 @@
         NSString *priceString=[LWUtils formatVolumeString:[NSString stringWithFormat:@"%f", rate.ask.floatValue] currencySign:@"" accuracy:self.pair.accuracy.intValue removeExtraZeroes:YES];
         priceString=[priceString stringByReplacingOccurrencesOfString:@"." withString:@","];
         
-        self.assetPriceLabel.text = [NSString stringWithFormat:@"%@%@", [[LWCache instance] currencySymbolForAssetId:self.pair.quotingAssetId],priceString];
+        self.assetPriceLabel.text = [NSString stringWithFormat:@"%@ %@", [[LWCache instance] currencySymbolForAssetId:self.pair.quotingAssetId],priceString];
         self.assetPriceLabel.textColor = [UIColor colorWithHexString:kAssetEnabledItemColor];
 
         // change section
@@ -149,6 +154,8 @@
 -(void) layoutSubviews
 {
     [super layoutSubviews];
+    self.assetPriceLabel.layer.cornerRadius=self.assetPriceLabel.bounds.size.height/2;
+
     
 }
 
