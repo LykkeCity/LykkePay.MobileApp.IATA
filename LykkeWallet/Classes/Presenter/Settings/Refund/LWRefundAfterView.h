@@ -10,4 +10,7 @@
 
 @interface LWRefundAfterView : UIView
 
+@property int daysValidAfter;
+@property BOOL sendAutomatically;
+
 @end

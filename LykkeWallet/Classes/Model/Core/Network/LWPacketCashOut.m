@@ -7,6 +7,7 @@
 //
 
 #import "LWPacketCashOut.h"
+#import "LWPrivateKeyManager.h"
 
 
 @implementation LWPacketCashOut
@@ -26,7 +27,8 @@
     
     NSDictionary *dict=@{@"MultiSig" : self.multiSig,
                          @"Amount"   : self.amount,
-                         @"AssetId"  : self.assetId
+                         @"AssetId"  : self.assetId,
+                         @"PrivateKey":[LWPrivateKeyManager shared].privateKeyWif
                          };
     
     return dict;

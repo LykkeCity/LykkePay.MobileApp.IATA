@@ -15,6 +15,8 @@ typedef enum {RefundCellTypeInfo, RefundCellTypeAddress, RefundCellTypeAfter} Re
 @property (strong, nonatomic) UILabel *titleLabel;
 
 @property (strong, nonatomic) NSString *addressString;
+@property int daysValidAfter;
+@property BOOL sendAutomatically;
 
 @property id delegate;
 

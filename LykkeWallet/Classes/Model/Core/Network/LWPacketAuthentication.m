@@ -30,7 +30,10 @@
                      initWithJSON:[result objectForKey:@"PersonalData"]];
     
     [[LWKeychainManager instance] saveLogin:self.authenticationData.email
-                                      token:_token];
+                                   password:self.authenticationData.password
+                                      token:_token
+                          encodedPrivateKey:result[@"EncodedPrivateKey"]];
+    
     
     [[LWKeychainManager instance] savePersonalData:_personalData];
 }

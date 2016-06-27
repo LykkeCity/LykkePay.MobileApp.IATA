@@ -24,7 +24,9 @@
     _token = result[@"Token"];
     
     [[LWKeychainManager instance] saveLogin:self.registrationData.email
-                                      token:_token];
+                                password:self.registrationData.password
+                                      token:_token
+                          encodedPrivateKey:nil];
 }
 
 - (NSString *)urlRelative {

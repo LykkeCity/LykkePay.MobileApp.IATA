@@ -8,6 +8,7 @@
 
 #import "LWPacketBuySellAsset.h"
 #import "LWAssetDealModel.h"
+#import "LWPrivateKeyManager.h"
 
 
 @implementation LWPacketBuySellAsset
@@ -30,12 +31,13 @@
 
 - (NSDictionary *)params {
     
+    NSDictionary *params=@{@"BaseAsset" : self.baseAsset,
+                           @"AssetPair" : self.assetPair,
+                           @"Volume"    : self.volume,
+                           @"Rate"      : self.rate,
+                           @"PrivateKey": [LWPrivateKeyManager shared].privateKeyWif};
     
-    
-    return @{@"BaseAsset" : self.baseAsset,
-             @"AssetPair" : self.assetPair,
-             @"Volume"    : self.volume,
-             @"Rate"      : self.rate};
+    return params;
 }
 
 @end

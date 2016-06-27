@@ -62,6 +62,7 @@
 #import "LWPacketKYCForAsset.h"
 #import "LWPacketGetRefundAddress.h"
 #import "LWPacketSetRefundAddress.h"
+#import "LWEncodedPrivateKeyGet.h"
 
 
 #import "LWLykkeWalletsData.h"
@@ -505,10 +506,16 @@ SINGLETON_INIT {
     [self sendPacket:pack];
 }
 
--(void) requestSetRefundAddress:(NSString *) address
+-(void) requestSetRefundAddress:(NSDictionary *) dict
 {
     LWPacketSetRefundAddress *pack=[LWPacketSetRefundAddress new];
-    pack.refundAddress=address;
+    pack.refundDict=dict;;
+    [self sendPacket:pack];
+}
+
+-(void) requestGetEncodedPrivateKey
+{
+    LWEncodedPrivateKeyGet *pack=[LWEncodedPrivateKeyGet new];
     [self sendPacket:pack];
 }
 

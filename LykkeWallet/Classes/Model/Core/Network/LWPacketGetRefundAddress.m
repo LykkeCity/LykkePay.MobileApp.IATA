@@ -17,11 +17,13 @@
         return;
     }
     self.refundAddress=response[@"Result"][@"Address"];
+    self.validDays=[response[@"Result"][@"ValidDays"] intValue];
+    self.sendAutomatically=[response[@"Result"][@"SendAutomatically"] boolValue];
     
 }
 
 - (NSString *)urlRelative {
-    return @"RefundAddress";
+    return @"RefundSettings";
 }
 
 - (GDXRESTPacketType)type {

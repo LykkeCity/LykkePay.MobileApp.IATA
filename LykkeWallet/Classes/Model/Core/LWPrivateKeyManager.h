@@ -10,11 +10,18 @@
 
 @interface LWPrivateKeyManager : NSObject
 
+
 @property (strong, readonly) NSString *privateKey;
 @property (strong, readonly) NSString *encryptedKey;
+@property (strong, readonly) NSString *publicKey;
+@property (strong, readonly) NSString *privateKeyWif;
+@property (strong, readonly) NSString *bitcoinAddress;
+
 
 + (instancetype)shared;
 
 -(void) generatePrivateKey;
+-(void) decryptKeyIfPossible;
+
 
 @end

@@ -41,6 +41,7 @@
 @class LWPacketKYCForAsset;
 @class LWPacketGetRefundAddress;
 @class LWPacketSetRefundAddress;
+@class LWPacketAuthentication;
 
 
 @protocol LWAuthManagerDelegate<NSObject>
@@ -185,7 +186,9 @@ SINGLETON_DECLARE
 -(void) requestKYCStatusForAsset:(NSString *)assetId;
 
 -(void) requestGetRefundAddress;
--(void) requestSetRefundAddress:(NSString *) address;
+-(void) requestSetRefundAddress:(NSDictionary *) dict;
+
+-(void) requestGetEncodedPrivateKey;
 
 
 //PubkeyAddressValidation

@@ -14,6 +14,7 @@
 #import "UIViewController+Loading.h"
 #import "LWCache.h"
 #import "LWProgressView.h"
+#import "LWKeychainManager.h"
 
 
 @interface LWAuthValidationPresenter () {
@@ -67,7 +68,12 @@
 #pragma mark - LWAuthManagerDelegate
 
 - (void)authManagerDidRegisterGet:(LWAuthManager *)manager KYCStatus:(NSString *)status isPinEntered:(BOOL)isPinEntered personalData:(LWPersonalData *)personalData {
-
+    if(isPinEntered && [LWKeychainManager instance].encodedPrivateKey==nil)  //We have not received Encoded Private Key from server. Need to enter password and generate
+    {
+        
+        [(LWAuthNavigationController *)self.navigationController logout];
+        return;
+    }
     LWAuthNavigationController *navController = (LWAuthNavigationController *)self.navigationController;
     
     if ([status isEqualToString:@"NeedToFillData"] && isPinEntered==NO) {

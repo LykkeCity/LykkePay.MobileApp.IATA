@@ -44,6 +44,7 @@
 -(id) initWithType:(RefundCellType) type width:(CGFloat) width
 {
     self=[super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+    _addressString=@"";
     cellType=type;
     self.clipsToBounds=YES;
     self.backgroundColor=[UIColor whiteColor];
@@ -81,6 +82,26 @@
     
     
     return self;
+}
+
+-(void) setDaysValidAfter:(int)daysValidAfter
+{
+    afterView.daysValidAfter=daysValidAfter;
+}
+
+-(void) setSendAutomatically:(BOOL)sendAutomatically
+{
+    afterView.sendAutomatically=sendAutomatically;
+}
+
+-(int) daysValidAfter
+{
+    return afterView.daysValidAfter;
+}
+
+-(BOOL) sendAutomatically
+{
+    return afterView.sendAutomatically;
 }
 
 -(void) showChangeButton

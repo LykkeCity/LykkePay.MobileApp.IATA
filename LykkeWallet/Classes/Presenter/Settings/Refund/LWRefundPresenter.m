@@ -15,6 +15,7 @@
 #import "LWCache.h"
 #import "UIViewController+Loading.h"
 #import "LWCameraMessageView.h"
+#import "LWPacketGetRefundAddress.h"
 
 @import AVFoundation;
 
@@ -51,7 +52,7 @@ static int CellTypes[kNumberOfCells] = {
     
     NSString *prevAddress=[LWCache instance].refundAddress;
     
-    for(int i=0;i<kNumberOfCells && i<3;i++)
+    for(int i=0;i<kNumberOfCells;i++)
     {
         LWRefundTableViewCell *cell=[[LWRefundTableViewCell alloc] initWithType:CellTypes[i] width:self.tableView.bounds.size.width];
         if(i==0)
@@ -69,9 +70,9 @@ static int CellTypes[kNumberOfCells] = {
             cell.addressString=prevAddress;
             cell.delegate=self;
         }
-//        else if(i==2)
-//            cell.titleLabel.text=@"Refund valid after";
         else if(i==2)
+            cell.titleLabel.text=@"Refund valid after";
+        else if(i==4)
         {
             cell.titleLabel.text=@"Information";
             [cell addDisclosureImage];
@@ -83,9 +84,17 @@ static int CellTypes[kNumberOfCells] = {
     self.tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
     
     
+    [self setLoading:YES];
+    
+    [[LWAuthManager instance] requestGetRefundAddress];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(saveRefundSettings) name:@"SaveRefundSettings" object:nil];
+    
     
     // Do any additional setup after loading the view from its nib.
 }
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -101,6 +110,19 @@ static int CellTypes[kNumberOfCells] = {
 
 }
 
+-(void) viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    
+    LWRefundTableViewCell *cell=cellsDict[@(1)];
+    NSString *address=cell.addressString;
+    
+    cell=cellsDict[@(3)];
+    
+    
+    [[LWAuthManager instance] requestSetRefundAddress:@{@"Address":address,@"SendAutomatically":@(cell.sendAutomatically),@"ValidDays":@(cell.daysValidAfter)}];
+}
+
 -(void) viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
@@ -110,7 +132,7 @@ static int CellTypes[kNumberOfCells] = {
 
 -(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 3;
+    return 5;
 }
 
 -(NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
@@ -132,7 +154,7 @@ static int CellTypes[kNumberOfCells] = {
     return cell;
 }
 
--(void) addressViewPressedApplyOnCell:(LWRefundTableViewCell *)cell
+-(void) addressViewPressedApplyOnCell:(LWRefundTableViewCell *)cell_
 {
     LWRefundTableViewCell *firstCell=cellsDict[@(0)];
     [firstCell showChangeButton];
@@ -141,7 +163,12 @@ static int CellTypes[kNumberOfCells] = {
     [self.tableView endUpdates];
     
     [self setLoading:YES];
-    [[LWAuthManager instance] requestSetRefundAddress:[LWCache instance].refundAddress];
+    
+    LWRefundTableViewCell *cell=cellsDict[@(3)];
+    
+    [[LWAuthManager instance] requestSetRefundAddress:@{@"Address":[LWCache instance].refundAddress,@"SendAutomatically":@(cell.sendAutomatically),@"ValidDays":@(cell.daysValidAfter)}];
+
+//    [[LWAuthManager instance] requestSetRefundAddress:[LWCache instance].refundAddress];
     
     
 }
@@ -169,6 +196,33 @@ static int CellTypes[kNumberOfCells] = {
         [self.navigationController pushViewController:presenter animated:YES];
 
     }
+}
+
+-(void) saveRefundSettings
+{
+    LWRefundTableViewCell *cell=cellsDict[@(3)];
+    
+    [[LWAuthManager instance] requestSetRefundAddress:@{@"SendAutomatically":@(cell.sendAutomatically),@"ValidDays":@(cell.daysValidAfter)}];
+ 
+}
+
+-(void) authManager:(LWAuthManager *)manager didGetRefundAddress:(LWPacketGetRefundAddress *)address
+{
+    [self setLoading:NO];
+    LWRefundTableViewCell *cell=cellsDict[@(0)];
+    
+    if(address.refundAddress.length)
+        [cell showChangeButton];
+    else
+        [cell hideChangeButton];
+    
+    cell=cellsDict[@(1)];
+    cell.addressString=address.refundAddress;
+    
+    cell=cellsDict[@(3)];
+    cell.daysValidAfter=address.validDays;
+    cell.sendAutomatically=address.sendAutomatically;
+
 }
 
 -(void) authManagerDidSetRefundAddress:(LWAuthManager *)manager
@@ -281,6 +335,11 @@ static int CellTypes[kNumberOfCells] = {
     
 #endif
 
+}
+
+-(void) dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 

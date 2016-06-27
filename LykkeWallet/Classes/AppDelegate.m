@@ -93,7 +93,7 @@
     
     
     
-//    [[LWPrivateKeyManager shared] generatePrivateKey];
+//    [[LWPrivateKeyManager shared] generatePrivateKey];//Testing
     
     
     

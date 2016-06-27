@@ -134,9 +134,9 @@ static int const kBlockchainRow = 4;
 - (NSString *)dataByCellRow:(NSInteger)row {
     NSString *const values[kNumberOfRows] = {
         self.model.assetPair,
-        self.model.volume.stringValue,
-        self.model.price.stringValue,
-        self.model.totalCost.stringValue,
+        [LWUtils stringFromNumber:self.model.volume],
+        [LWUtils stringFromNumber:self.model.price],
+        [LWUtils stringFromNumber:self.model.totalCost],
 //        [LWUtils formatVolumeString:[NSString stringWithFormat:@"%lf", self.model.volume.floatValue] currencySign:@"" accuracy:8 removeExtraZeroes:YES],
 //        [LWMath makeStringByNumber:self.model.volume withPrecision:0],
 //        [LWUtils formatVolumeString:[NSString stringWithFormat:@"%lf", self.model.price.floatValue] currencySign:@"" accuracy:8 removeExtraZeroes:YES],

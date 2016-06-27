@@ -10,5 +10,5 @@
 
 @interface LWPacketSetRefundAddress : LWAuthorizePacket
 
-@property (strong, nonatomic) NSString *refundAddress;
+@property (strong, nonatomic) NSDictionary *refundDict;
 @end

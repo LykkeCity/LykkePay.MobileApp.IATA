@@ -26,6 +26,7 @@
 
 +(NSString *) formatVolumeString:(NSString *) volume currencySign:(NSString *) currency accuracy:(int) accuracy removeExtraZeroes:(BOOL) flagRemoveZeroes;
 +(NSString *) stringFromFloat:(float) number;
++(NSString *) stringFromNumber:(NSNumber *) number;
 +(NSNumber *) accuracyForAssetId:(NSString *) assetID;
 
 @end

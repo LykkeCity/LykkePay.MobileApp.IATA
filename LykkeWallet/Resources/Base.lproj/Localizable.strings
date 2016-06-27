@@ -63,7 +63,7 @@
 "register.kyc.invalidDocuments" = "Dear %@, we're terribly sorry, but our compliance department have not accepted some of your documents. Please upload them one more time.";
 "register.kyc.invalidDocuments.okButton" = "Okay, I understand";
 "register.kyc.success.header" = "YOUR LYKKE WALLET WAS SUCCESSFULLY CREATED!";
-"register.kyc.success" = "Dear %@, thank you for your patience. Your documents are in order. Let's set up your security.";
+"register.kyc.success" = "Dear %@, thank you for your patience. Your documents are in order.";
 "register.kyc.success.okButton" = "Continue";
 "register.pin.setup.ok.title" = "Congratulations!";
 "register.pin.setup.ok.okButton" = "OK";
@@ -224,6 +224,7 @@
 "settings.cell.asset.title" = "Base asset";
 "settings.cell.terms.title" = "Terms of use";
 "settings.callbutton.title" = "CALL SUPPORT";
+"settings.mailbutton.title" = "MAIL SUPPORT";
 
 "history.title" = "HISTORY OF TRANSACTIONS";
 "history.market.buy" = "buy";

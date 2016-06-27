@@ -101,6 +101,31 @@
     return str;
 }
 
++(NSString *) stringFromNumber:(NSNumber *) number
+{
+    NSString *string=number.stringValue;
+    string=[string stringByReplacingOccurrencesOfString:@"," withString:@"."];
+    if([string rangeOfString:@"."].location==NSNotFound)
+        return string;
+    NSArray *arr=[string componentsSeparatedByString:@"."];
+    if([arr[1] length]>8)
+    {
+        string=[NSString stringWithFormat:@"%@.%@", arr[0], [arr[1] substringToIndex:8]];
+    }
+    
+    while(string.length>1)
+    {
+        if([[string substringFromIndex:string.length-1] isEqualToString:@"0"] || [[string substringFromIndex:string.length-1] isEqualToString:@"."])
+        {
+            string=[string substringToIndex:string.length-1];
+        }
+        else
+            break;
+
+    }
+    return string;
+}
+
 +(NSString *) formatVolumeString:(NSString *) volumee currencySign:(NSString *) currency accuracy:(int) accuracy removeExtraZeroes:(BOOL) flagRemoveZeroes
 {
     NSString *volume=[volumee stringByReplacingOccurrencesOfString:@" " withString:@""];

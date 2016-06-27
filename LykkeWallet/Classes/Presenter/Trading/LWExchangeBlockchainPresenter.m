@@ -100,7 +100,13 @@ static BOOL const CellsClickable[kDescriptionRows] = {
     [self.tableView
      setBackgroundColor:[UIColor colorWithHexString:kMainGrayElementsColor]];
     
-    [self updateViewWithOffset:CGPointMake(0, 0)];
+    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
+        [self updateViewWithOffset:CGPointMake(0, 0)];
+    else
+    {
+        self.fakeView.hidden=YES;
+        self.tableView.backgroundColor=[UIColor whiteColor];
+    }
 }
 
 #ifdef PROJECT_IATA
@@ -179,6 +185,8 @@ static BOOL const CellsClickable[kDescriptionRows] = {
     if (indexPath.row == 0) {
         LWAssetBlockchainIconTableViewCell *iconCell = (LWAssetBlockchainIconTableViewCell *)cell;
         iconCell.title.text = Localize(@"exchange.blockchain.title");
+        if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad)
+            iconCell.contentView.backgroundColor=[UIColor colorWithHexString:kMainGrayElementsColor];
     }
     // show information cells
     else {
@@ -216,6 +224,7 @@ static BOOL const CellsClickable[kDescriptionRows] = {
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
+    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
     [self updateViewWithOffset:scrollView.contentOffset];
 }
 

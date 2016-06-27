@@ -11,5 +11,7 @@
 @interface LWPacketGetRefundAddress : LWAuthorizePacket
 
 @property (strong, nonatomic) NSString *refundAddress;
+@property int validDays;
+@property BOOL sendAutomatically;
 
 @end

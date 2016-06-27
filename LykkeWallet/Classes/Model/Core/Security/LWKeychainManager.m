@@ -17,6 +17,11 @@ static NSString *const kKeychainManagerLogin    = @"Login";
 static NSString *const kKeychainManagerPhone    = @"Phone";
 static NSString *const kKeychainManagerFullName = @"FullName";
 static NSString *const kKeychainManagerAddress  = @"Address";
+static NSString *const kKeychainManagerPassword  = @"Password";
+static NSString *const kKeychainManagerPIN  = @"Pin";
+static NSString *const kKeychainManagerEncodedPrivateKey  = @"EncodedPrivateKey";
+
+
 
 
 @interface LWKeychainManager () {
@@ -44,9 +49,15 @@ SINGLETON_INIT {
 
 #pragma mark - Common
 
-- (void)saveLogin:(NSString *)login token:(NSString *)token {
+
+- (void)saveLogin:(NSString *)login password:(NSString *)password token:(NSString *)token encodedPrivateKey:(NSString *)encodedPrivateKey
+{
     [valet setString:token forKey:kKeychainManagerToken];
     [valet setString:login forKey:kKeychainManagerLogin];
+    [valet setString:password forKey:kKeychainManagerPassword];
+    if(encodedPrivateKey)
+        [valet setString:encodedPrivateKey forKey:kKeychainManagerEncodedPrivateKey];
+    
 }
 
 - (void)savePersonalData:(LWPersonalData *)personalData {
@@ -66,11 +77,24 @@ SINGLETON_INIT {
     [valet setString:address forKey:kKeychainManagerAddress];
 }
 
+-(void) savePin:(NSString *)pin
+{
+    [valet setString:pin forKey:kKeychainManagerPIN];
+}
+
+-(void) saveEncodedPrivateKey:(NSString *)key
+{
+    [valet setString:key forKey:kKeychainManagerEncodedPrivateKey];
+}
+
 - (void)clear {
     [valet removeObjectForKey:kKeychainManagerToken];
     [valet removeObjectForKey:kKeychainManagerLogin];
     [valet removeObjectForKey:kKeychainManagerPhone];
     [valet removeObjectForKey:kKeychainManagerFullName];
+    [valet removeObjectForKey:kKeychainManagerPassword];
+    [valet removeObjectForKey:kKeychainManagerPIN];
+    [valet removeObjectForKey:kKeychainManagerEncodedPrivateKey];
 }
 
 
@@ -83,6 +107,22 @@ SINGLETON_INIT {
 - (NSString *)token {
     return [valet stringForKey:kKeychainManagerToken];
 }
+
+-(NSString *) password
+{
+    return [valet stringForKey:kKeychainManagerPassword];
+}
+
+-(NSString *) pin
+{
+    return [valet stringForKey:kKeychainManagerPIN];
+}
+
+-(NSString *) encodedPrivateKey
+{
+    return [valet stringForKey:kKeychainManagerEncodedPrivateKey];
+}
+
 
 - (NSString *)address {
     

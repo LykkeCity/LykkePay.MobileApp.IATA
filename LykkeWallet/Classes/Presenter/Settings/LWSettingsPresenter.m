@@ -27,8 +27,10 @@
 #import "LWRefundPresenter.h"
 #import "LWPacketGetRefundAddress.h"
 
+@import MessageUI;
 
-@interface LWSettingsPresenter () <LWRadioTableViewCellDelegate, LWSettingsConfirmationPresenter> {
+
+@interface LWSettingsPresenter () <LWRadioTableViewCellDelegate, LWSettingsConfirmationPresenter, MFMailComposeViewControllerDelegate> {
     LWAssetModel *baseAsset;
 }
 
@@ -104,8 +106,11 @@ static NSString *const SettingsIdentifiers[kNumberOfRows] = {
     
     
     NSDictionary *attributesCallSupport=@{NSKernAttributeName:@(1), NSFontAttributeName:self.callSupportButton.titleLabel.font, NSForegroundColorAttributeName:[UIColor whiteColor]};
-    
-    [self.callSupportButton setAttributedTitle:[[NSAttributedString alloc] initWithString:Localize(@"settings.callbutton.title") attributes:attributesCallSupport] forState:UIControlStateNormal];
+    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
+        [self.callSupportButton setAttributedTitle:[[NSAttributedString alloc] initWithString:Localize(@"settings.callbutton.title") attributes:attributesCallSupport] forState:UIControlStateNormal];
+    else
+        [self.callSupportButton setAttributedTitle:[[NSAttributedString alloc] initWithString:Localize(@"settings.mailbutton.title") attributes:attributesCallSupport] forState:UIControlStateNormal];
+
     [LWValidator setButton:self.callSupportButton enabled:YES];
 }
 
@@ -130,7 +135,24 @@ static NSString *const SettingsIdentifiers[kNumberOfRows] = {
 
 -(IBAction) callSupportPressed:(id)sender
 {
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"tel://+41615880402"]];
+    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"tel://+41615880402"]];
+    else
+    {
+        if ([MFMailComposeViewController canSendMail]) {
+            MFMailComposeViewController *composeViewController = [[MFMailComposeViewController alloc] initWithNibName:nil bundle:nil];
+            [composeViewController setMailComposeDelegate:self];
+            [composeViewController setToRecipients:@[@"support@lykkex.com"]];
+//            [composeViewController setSubject:@"example subject"];
+            [self presentViewController:composeViewController animated:YES completion:nil];
+        }
+    }
+}
+
+- (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error
+{
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 

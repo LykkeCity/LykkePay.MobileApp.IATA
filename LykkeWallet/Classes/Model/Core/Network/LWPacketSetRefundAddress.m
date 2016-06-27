@@ -22,13 +22,19 @@
 
 -(NSDictionary *) params
 {
-    NSDictionary *params=@{@"Address":self.refundAddress};
+    NSDictionary *params;
+    if(self.refundDict[@"Address"])
+    {
+        params=@{@"Address":self.refundDict[@"Address"], @"ValidDays":self.refundDict[@"ValidDays"], @"SendAutomatically":_refundDict[@"SendAutomatically"]};
+    }
+    else
+        params=@{@"ValidDays":self.refundDict[@"ValidDays"], @"SendAutomatically":_refundDict[@"SendAutomatically"]};
     return params;
 }
 
 
 - (NSString *)urlRelative {
-    return @"RefundAddress";
+    return @"RefundSettings";
 }
 
 - (GDXRESTPacketType)type {

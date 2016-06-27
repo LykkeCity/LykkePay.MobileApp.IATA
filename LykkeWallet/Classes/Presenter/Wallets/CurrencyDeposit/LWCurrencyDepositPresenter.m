@@ -366,9 +366,10 @@
     if([amountTextField.text floatValue]==0)
     {
         [self.view makeToast:@"Amount should be greater then zero." duration:2 position:nil];
+        return YES;
     }
     
-    return YES;
+    return NO;
 }
 
 -(void) termsOfUsePressed

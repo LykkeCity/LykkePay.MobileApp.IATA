@@ -28,6 +28,7 @@
     slider=[[UISlider alloc] init];
     slider.tintColor=[UIColor colorWithRed:171.0/255 green:0 blue:1 alpha:1];
     [slider addTarget:self action:@selector(sliderChanged) forControlEvents:UIControlEventValueChanged];
+    [slider addTarget:self action:@selector(sliderFinishedChanging) forControlEvents:UIControlEventTouchUpInside | UIControlEventTouchUpOutside];
     [self addSubview:slider];
     
     dayLabel=[self createLabel];
@@ -63,8 +64,32 @@
     slider.frame=CGRectMake(30, 10, self.frame.size.width-60-dayLabel.bounds.size.width-15, 30);
     dayLabel.center=CGPointMake(self.frame.size.width-30-dayLabel.bounds.size.width/2, self.frame.size.height/4);
 
-    
-        
+}
+
+-(void) sliderFinishedChanging
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"SaveRefundSettings" object:nil];
+}
+
+-(void) setSendAutomatically:(BOOL)sendAutomatically
+{
+    sendSwitch.on=sendAutomatically;
+}
+
+-(BOOL) sendAutomatically
+{
+    return sendSwitch.on;
+}
+
+-(void) setDaysValidAfter:(int)daysValidAfter
+{
+    slider.value=daysValidAfter/30;
+    [self sliderChanged];
+}
+-(int) daysValidAfter
+{
+    int day=slider.value*29+1;
+    return day;
 }
 
 -(void) setFrame:(CGRect)frame
