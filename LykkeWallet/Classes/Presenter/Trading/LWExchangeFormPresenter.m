@@ -104,6 +104,11 @@ static NSString *const DescriptionIdentifiers[kDescriptionRows] = {
     }
 }
 
+-(void) descriptionURLTapped
+{
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:assetDetails.assetDescriptionURL]];
+}
+
 
 #pragma mark - UITableViewDataSource
 
@@ -112,7 +117,7 @@ static NSString *const DescriptionIdentifiers[kDescriptionRows] = {
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    int const kDescriptionRows = 6;
+//    int const kDescriptionRows = 7;
     return kDescriptionRows;
 }
 
@@ -141,7 +146,15 @@ static NSString *const DescriptionIdentifiers[kDescriptionRows] = {
     else {
         LWAssetInfoTextTableViewCell *textCell = (LWAssetInfoTextTableViewCell *)cell;
         textCell.titleLabel.text = DescriptionNames[indexPath.row];
+        
         textCell.descriptionLabel.text = [self description:assetDetails forRow:indexPath.row];
+        if(indexPath.row==6 && textCell.descriptionLabel.userInteractionEnabled==NO)
+        {
+            textCell.descriptionLabel.textColor=[UIColor blueColor];
+            UITapGestureRecognizer *gesture=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(descriptionURLTapped)];
+            [textCell.descriptionLabel addGestureRecognizer:gesture];
+            textCell.descriptionLabel.userInteractionEnabled=YES;
+        }
 //        textCell.titleLabel.textColor=[UIColor yellowColor];
     }
 
@@ -169,6 +182,11 @@ static NSString *const DescriptionIdentifiers[kDescriptionRows] = {
     }
     
     return kDefaultRowHeight;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
 }
 
 
