@@ -24,6 +24,7 @@
         _issuerName           = [json objectForKey:@"IssuerName"];
         _numberOfCoins        = [json objectForKey:@"NumberOfCoins"];
         _marketCapitalization = [json objectForKey:@"MarketCapitalization"];
+        _assetDescriptionURL  = [json objectForKey:@"AssetDescriptionUrl"];
     }
     return self;
 }

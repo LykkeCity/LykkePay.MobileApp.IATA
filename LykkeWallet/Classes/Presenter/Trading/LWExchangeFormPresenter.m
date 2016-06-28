@@ -48,11 +48,12 @@
 
 
 CGFloat const kDefaultRowHeight = 50.0;
-static NSInteger const kDescriptionRows = 6;
+static NSInteger const kDescriptionRows = 7;
 
 static NSString *const DescriptionIdentifiers[kDescriptionRows] = {
     @"LWAssetInfoTextTableViewCellIdentifier",
     @"LWAssetInfoIconTableViewCellIdentifier",
+    @"LWAssetInfoTextTableViewCellIdentifier",
     @"LWAssetInfoTextTableViewCellIdentifier",
     @"LWAssetInfoTextTableViewCellIdentifier",
     @"LWAssetInfoTextTableViewCellIdentifier",
@@ -123,7 +124,8 @@ static NSString *const DescriptionIdentifiers[kDescriptionRows] = {
         Localize(@"exchange.assets.form.description"),
         Localize(@"exchange.assets.form.issuername"),
         Localize(@"exchange.assets.form.coinsnumber"),
-        Localize(@"exchange.assets.form.capitalization")
+        Localize(@"exchange.assets.form.capitalization"),
+        Localize(@"exchange.assets.form.description_url")
     };
     
     NSString *identifier = DescriptionIdentifiers[indexPath.row];
@@ -276,6 +278,9 @@ static NSString *const DescriptionIdentifiers[kDescriptionRows] = {
             break;
         case 5:
             text = model.marketCapitalization;
+            break;
+        case 6:
+            text = model.assetDescriptionURL;
             break;
     }
     return text;
