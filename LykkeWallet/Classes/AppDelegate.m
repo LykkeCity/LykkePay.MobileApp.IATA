@@ -90,7 +90,29 @@
     self.window.rootViewController = self.mainController;
     [self.window makeKeyAndVisible];
     
+    
+    UIUserNotificationType types = UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert;
+    UIUserNotificationSettings *mySettings = [UIUserNotificationSettings settingsForTypes:types categories:nil];
+    [[UIApplication sharedApplication] registerUserNotificationSettings:mySettings];
+    
+    // Register for remote notifications.
+    [[UIApplication sharedApplication] registerForRemoteNotifications];
+
+    
+    
     return YES;
+}
+
+// Handle remote notification registration.
+- (void)application:(UIApplication *)app didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)devToken {
+    const void *devTokenBytes = [devToken bytes];
+//    self.registered = YES;
+//    [self sendProviderDeviceToken:devTokenBytes]; // custom method
+}
+
+- (void)application:(UIApplication *)app
+didFailToRegisterForRemoteNotificationsWithError:(NSError *)err {
+    NSLog(@"Error in registration. Error: %@", err);
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
