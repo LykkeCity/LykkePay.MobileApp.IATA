@@ -16,5 +16,7 @@
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) LWAuthNavigationController *mainController;
 
+-(void) registerForNotificationsInAzureWithTag:(NSString *) tag;
+
 @end
 

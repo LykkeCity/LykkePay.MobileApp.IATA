@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15G7a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -18,6 +18,8 @@
                 <outlet property="assetHeaderNameLabel" destination="urs-Ae-1zI" id="QcA-ne-wx2"/>
                 <outlet property="assetHeaderPriceLabel" destination="2r6-zX-ejj" id="255-Nl-erk"/>
                 <outlet property="baseAssetsView" destination="GrK-kr-EGd" id="52j-hm-jHh"/>
+                <outlet property="headerBottomLineHeight" destination="UlH-vn-CJF" id="l3O-tt-xh0"/>
+                <outlet property="headerTopLineHeight" destination="xPQ-oi-08w" id="2D0-yp-bac"/>
                 <outlet property="headerView" destination="I8d-KY-nFJ" id="0uX-Vl-EIQ"/>
                 <outlet property="tableView" destination="PE4-aL-sKX" id="lEH-Ub-wwx"/>
                 <outlet property="view" destination="FTH-kb-LJq" id="hty-aN-95M"/>
@@ -39,10 +41,10 @@
                             <rect key="frame" x="0.0" y="55" width="320" height="39"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WaB-rx-0pC" userLabel="BottomLine">
-                                    <rect key="frame" x="0.0" y="38" width="320" height="1"/>
+                                    <rect key="frame" x="0.0" y="39" width="320" height="0.0"/>
                                     <color key="backgroundColor" red="0.84705882352941175" green="0.84705882352941175" blue="0.84705882352941175" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="1" id="UlH-vn-CJF"/>
+                                        <constraint firstAttribute="height" id="UlH-vn-CJF"/>
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y5M-Vd-U0X" userLabel="TopLine">
@@ -59,7 +61,7 @@
                                         <constraint firstAttribute="height" constant="21" id="QVO-Wb-Ci0"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="14"/>
-                                    <color key="textColor" red="0.2470588235" green="0.30196078430000001" blue="0.37647058820000001" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                                    <color key="textColor" red="0.5490196078431373" green="0.58039215686274503" blue="0.62745098039215685" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2r6-zX-ejj">
@@ -70,7 +72,7 @@
                                         <constraint firstAttribute="height" constant="21" id="oEp-wZ-sMq"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="14"/>
-                                    <color key="textColor" red="0.2470588235" green="0.30196078430000001" blue="0.37647058820000001" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                                    <color key="textColor" red="0.5490196078431373" green="0.58039215686274503" blue="0.62745098039215685" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Change" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YfJ-X6-i3k">
@@ -81,7 +83,7 @@
                                         <constraint firstAttribute="height" constant="21" id="kPw-lG-qMR"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="14"/>
-                                    <color key="textColor" red="0.2470588235" green="0.30196078430000001" blue="0.37647058820000001" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                                    <color key="textColor" red="0.5490196078431373" green="0.58039215686274503" blue="0.62745098039215685" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>

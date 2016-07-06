@@ -76,7 +76,7 @@ static int const kNumberOfRows = 3;
     
     NSString *base = [LWAssetModel
                       assetByIdentity:self.model.asset
-                      fromList:[LWCache instance].baseAssets];
+                      fromList:[LWCache instance].allAssets];
     
     self.title = [NSString stringWithFormat:@"%@ %@", base, type];
 

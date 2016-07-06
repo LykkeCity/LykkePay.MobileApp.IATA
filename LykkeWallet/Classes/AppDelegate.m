@@ -16,11 +16,12 @@
 #import "UIColor+Generic.h"
 #import "UIView+Toast.h"
 #import "LWKeychainManager.h"
+#import <WindowsAzureMessaging/WindowsAzureMessaging.h>
 
 
 
 @interface AppDelegate () {
-    
+    NSData *notificationToken;
 }
 
 
@@ -95,7 +96,7 @@
     UIUserNotificationSettings *mySettings = [UIUserNotificationSettings settingsForTypes:types categories:nil];
     [[UIApplication sharedApplication] registerUserNotificationSettings:mySettings];
     
-    // Register for remote notifications.
+//     Register for remote notifications.
     [[UIApplication sharedApplication] registerForRemoteNotifications];
 
     
@@ -104,11 +105,41 @@
 }
 
 // Handle remote notification registration.
-- (void)application:(UIApplication *)app didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)devToken {
-    const void *devTokenBytes = [devToken bytes];
-//    self.registered = YES;
-//    [self sendProviderDeviceToken:devTokenBytes]; // custom method
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *) deviceToken {
+    
+    notificationToken=deviceToken;
+ }
+
+-(void) registerForNotificationsInAzureWithTag:(NSString *) tag
+{
+    NSString *HUBLISTENACCESS=@"Endpoint=sb://lykkex-dev.servicebus.windows.net/;SharedAccessKeyName=DefaultListenSharedAccessSignature;SharedAccessKey=QOaEVg3OXq9e/l4p7MS1pOAVmtX0ZjgGIvZ6OGiGnlg=";
+    NSString *HUBNAME=@"lykke-notifications-dev";
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+    
+    SBNotificationHub* hub = [[SBNotificationHub alloc] initWithConnectionString:HUBLISTENACCESS
+                                                             notificationHubPath:HUBNAME];
+    
+    [hub registerNativeWithDeviceToken:notificationToken tags:[NSSet setWithObject:tag] completion:^(NSError* error) {
+        if (error != nil) {
+            NSLog(@"Error registering for notifications: %@", error);
+        }
+        else {
+            UIAlertView *alert=[[UIAlertView alloc] initWithTitle:nil message:@"Registered for remote notifications" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+            [alert show];
+        }
+    }];
+});
 }
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification: (NSDictionary *)userInfo {
+    NSLog(@"%@", userInfo);
+    
+    UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"Notification" message:[[userInfo objectForKey:@"aps"] valueForKey:@"alert"] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+    [alert show];
+
+}
+
 
 - (void)application:(UIApplication *)app
 didFailToRegisterForRemoteNotificationsWithError:(NSError *)err {
@@ -151,11 +182,18 @@ didFailToRegisterForRemoteNotificationsWithError:(NSError *)err {
     
     [[UINavigationBar appearance] setTitleTextAttributes:attributes];
     [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithHexString:kNavigationTintColor]];
+    
     [[UINavigationBar appearance] setTintColor:
      [UIColor colorWithHexString:kNavigationBarTintColor]];
     [[UINavigationBar appearance] setShadowImage:[[UIImage alloc] init]];
     [[UINavigationBar appearance] setBackgroundImage:[[UIImage alloc] init]
                                        forBarMetrics:UIBarMetricsDefault];
+    
+    
+
+    
+    
+    
 }
 
 - (void)customizeLabel {
@@ -193,10 +231,10 @@ didFailToRegisterForRemoteNotificationsWithError:(NSError *)err {
 }
 
 - (void)customizeTabBar {
-    [[UITabBarItem appearance] setTitleTextAttributes: @{ NSForegroundColorAttributeName : [UIColor colorWithHexString:kTabBarTintColor] } forState:UIControlStateNormal];
-    [[UITabBarItem appearance] setTitleTextAttributes: @{ NSForegroundColorAttributeName : [UIColor colorWithHexString:kTabBarSelectedTintColor] } forState:UIControlStateSelected];
+//    [[UITabBarItem appearance] setTitleTextAttributes: @{ NSForegroundColorAttributeName : [UIColor colorWithHexString:kTabBarTintColor] } forState:UIControlStateNormal];
+//    [[UITabBarItem appearance] setTitleTextAttributes: @{ NSForegroundColorAttributeName : [UIColor colorWithHexString:kTabBarSelectedTintColor] } forState:UIControlStateSelected];
     
-    [[UITabBar appearance] setTintColor:[UIColor colorWithHexString:kTabBarSelectedTintColor]];
+//    [[UITabBar appearance] setTintColor:[UIColor colorWithHexString:kTabBarSelectedTintColor]];
     
     [[UITabBar appearance] setBarTintColor:[UIColor colorWithHexString:kTabBarBackgroundColor]];
     
@@ -204,11 +242,18 @@ didFailToRegisterForRemoteNotificationsWithError:(NSError *)err {
     
     
     [[UITabBar appearance] setTintColor:[UIColor colorWithRed:63.0/255 green:77.0/255 blue:96.0/255 alpha:1]];
-    
-    [[UITabBarItem appearance] setTitleTextAttributes: @{ NSForegroundColorAttributeName : [UIColor colorWithRed:63.0/255 green:77.0/255 blue:96.0/255 alpha:1] } forState:UIControlStateSelected];
-    [[UITabBar appearance] setBarTintColor:[UIColor colorWithWhite:249.0/255 alpha:1]];
+
     
 
+    
+    [[UITabBarItem appearance] setTitleTextAttributes: @{ NSForegroundColorAttributeName : [UIColor colorWithRed:63.0/255 green:77.0/255 blue:96.0/255 alpha:1], NSFontAttributeName: [UIFont fontWithName:@"ProximaNova-Regular" size:8], NSKernAttributeName:@(3) } forState:UIControlStateSelected];
+    [[UITabBarItem appearance] setTitleTextAttributes: @{ NSForegroundColorAttributeName : [UIColor colorWithRed:156.0/255 green:163.0/255 blue:172.0/255 alpha:1], NSFontAttributeName: [UIFont fontWithName:@"ProximaNova-Regular" size:8], NSKernAttributeName:@(3)  } forState:UIControlStateNormal];
+
+    [[UITabBar appearance] setBarTintColor:[UIColor colorWithWhite:249.0/255 alpha:1]];
+    
+    [[UITabBar appearance] setBackgroundImage:[[UIImage alloc] init]];
+    [[UITabBar appearance] setShadowImage:[[UIImage alloc] init]];
+    
 
 }
 

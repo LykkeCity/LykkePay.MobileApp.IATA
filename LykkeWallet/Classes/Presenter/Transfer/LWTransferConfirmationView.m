@@ -212,7 +212,7 @@ static float const kNoPinProtectionHeight = 256;
     
     NSString *const values[kDescriptionRows] = {
         self.recepientName,
-        [NSString stringWithFormat:@"%@ %@", self.recepientAmount, [LWAssetModel assetByIdentity:self.selectedAssetId fromList:[LWCache instance].baseAssets]]
+        [NSString stringWithFormat:@"%@ %@", self.recepientAmount, [LWAssetModel assetByIdentity:self.selectedAssetId fromList:[LWCache instance].allAssets]]
     };
     
     LWDetailTableViewCell *cell = (LWDetailTableViewCell *)[tableView dequeueReusableCellWithIdentifier:kDetailTableViewCellIdentifier];

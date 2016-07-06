@@ -22,6 +22,14 @@
                 <rect key="frame" x="0.0" y="0.0" width="628" height="49.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8rT-58-bqx" customClass="LWAssetLykkeTableChangeView">
+                        <rect key="frame" x="455" y="17" width="60" height="17"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="17" id="c01-g9-7Tv"/>
+                            <constraint firstAttribute="width" constant="60" id="hQa-TU-6Gs"/>
+                        </constraints>
+                    </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kme-pX-a5L">
                         <rect key="frame" x="18" y="8" width="430" height="33.5"/>
                         <subviews>
@@ -46,16 +54,20 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WVN-Fv-hkf">
-                                <rect key="frame" x="100" y="6.5" width="41" height="21"/>
+                                <rect key="frame" x="100" y="-8" width="41" height="50"/>
+                                <color key="backgroundColor" red="0.96078431372549022" green="0.96470588235294119" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="rwp-96-4qY"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="17"/>
                                 <color key="textColor" red="0.24705882352941178" green="0.30196078431372547" blue="0.37647058823529411" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AssetInfoIcon" translatesAutoresizingMaskIntoConstraints="NO" id="UpM-l1-XrJ">
-                                <rect key="frame" x="146" y="9.5" width="16" height="16"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AssetInfoIconFade" translatesAutoresizingMaskIntoConstraints="NO" id="UpM-l1-XrJ">
+                                <rect key="frame" x="141" y="-8" width="57" height="50"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="16" id="Dpo-Kl-14H"/>
-                                    <constraint firstAttribute="width" constant="16" id="y1b-1F-hWK"/>
+                                    <constraint firstAttribute="height" constant="50" id="Dpo-Kl-14H"/>
+                                    <constraint firstAttribute="width" constant="57" id="y1b-1F-hWK"/>
                                 </constraints>
                             </imageView>
                         </subviews>
@@ -65,8 +77,8 @@
                             <constraint firstItem="LAC-T4-zjb" firstAttribute="centerY" secondItem="Kme-pX-a5L" secondAttribute="centerY" id="7fB-Ic-WmQ"/>
                             <constraint firstItem="LAC-T4-zjb" firstAttribute="top" secondItem="Kme-pX-a5L" secondAttribute="top" id="882-im-dci"/>
                             <constraint firstItem="qp2-NH-mcm" firstAttribute="centerY" secondItem="Kme-pX-a5L" secondAttribute="centerY" id="Aft-XU-L8u"/>
-                            <constraint firstItem="UpM-l1-XrJ" firstAttribute="leading" secondItem="WVN-Fv-hkf" secondAttribute="trailing" constant="5" id="Gal-dO-ZlG"/>
-                            <constraint firstItem="UpM-l1-XrJ" firstAttribute="leading" secondItem="qp2-NH-mcm" secondAttribute="trailing" constant="5" id="O0H-Eu-ZT4"/>
+                            <constraint firstItem="UpM-l1-XrJ" firstAttribute="leading" secondItem="WVN-Fv-hkf" secondAttribute="trailing" id="Gal-dO-ZlG"/>
+                            <constraint firstItem="UpM-l1-XrJ" firstAttribute="leading" secondItem="qp2-NH-mcm" secondAttribute="trailing" id="O0H-Eu-ZT4"/>
                             <constraint firstItem="qp2-NH-mcm" firstAttribute="leading" secondItem="Kme-pX-a5L" secondAttribute="leading" id="PV6-Vf-CfP"/>
                             <constraint firstItem="LAC-T4-zjb" firstAttribute="leading" secondItem="Kme-pX-a5L" secondAttribute="leading" id="kOS-6H-19J"/>
                             <constraint firstAttribute="bottom" secondItem="LAC-T4-zjb" secondAttribute="bottom" id="kvn-bU-IPS"/>
@@ -75,14 +87,6 @@
                             <constraint firstItem="qp2-NH-mcm" firstAttribute="height" secondItem="Kme-pX-a5L" secondAttribute="height" id="xAG-vg-l9t"/>
                             <constraint firstItem="WVN-Fv-hkf" firstAttribute="centerY" secondItem="Kme-pX-a5L" secondAttribute="centerY" id="xJR-oC-dip"/>
                             <constraint firstItem="UpM-l1-XrJ" firstAttribute="centerY" secondItem="Kme-pX-a5L" secondAttribute="centerY" id="xmX-Vm-fnq"/>
-                        </constraints>
-                    </view>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8rT-58-bqx" customClass="LWAssetLykkeTableChangeView">
-                        <rect key="frame" x="455" y="16.5" width="60" height="17"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="17" id="c01-g9-7Tv"/>
-                            <constraint firstAttribute="width" constant="60" id="hQa-TU-6Gs"/>
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=". . ." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Ts-TG-rzO">
@@ -121,7 +125,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="AssetInfoIcon" width="17" height="17"/>
+        <image name="AssetInfoIconFade" width="57" height="50"/>
         <image name="ExchangeSwitchAssets" width="31" height="26"/>
     </resources>
 </document>

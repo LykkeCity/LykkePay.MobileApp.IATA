@@ -8,6 +8,7 @@
 
 #import "LWPacketRegistration.h"
 #import "LWKeychainManager.h"
+#import "AppDelegate.h"
 
 
 @implementation LWPacketRegistration
@@ -26,6 +27,13 @@
     [[LWKeychainManager instance] saveLogin:self.registrationData.email
                                 password:self.registrationData.password
                                       token:_token];
+    
+    if(response[@"Result"][@"NotificationsId"])
+    {
+        AppDelegate *tmptmp=[UIApplication sharedApplication].delegate;
+        [tmptmp registerForNotificationsInAzureWithTag:response[@"Result"][@"NotificationsId"]];
+    }
+
 }
 
 - (NSString *)urlRelative {

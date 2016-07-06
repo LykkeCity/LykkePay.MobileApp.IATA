@@ -22,12 +22,35 @@
 }
 
 @property CGFloat diameter;
+@property (strong, nonatomic) UIView *squareBackground;
 
 @property (strong, nonatomic) LWProgressView *sharedInstance;
 @end
 
 
 @implementation LWProgressView
+
+-(id) initWithFrame:(CGRect)frame
+{
+    self=[super initWithFrame:frame];
+    
+    _squareBackground=[[UIView alloc] initWithFrame:CGRectMake(0, 0, 120, 110)];
+    _squareBackground.backgroundColor=[UIColor whiteColor];
+    _squareBackground.layer.cornerRadius=5;
+    _squareBackground.alpha=0.9;
+    UILabel *loading=[[UILabel alloc] initWithFrame:CGRectMake(0, 82, 120, 15)];
+    
+    NSDictionary *attributes=@{NSFontAttributeName : [UIFont fontWithName:@"ProximaNova-Regular" size:11], NSForegroundColorAttributeName:[UIColor colorWithRed:63.0/255 green:77.0/255 blue:96.0/255 alpha:1], NSKernAttributeName:@(1.1)};
+    NSAttributedString *string=[[NSAttributedString alloc] initWithString:@"LOADING" attributes:attributes];
+    loading.attributedText=string;
+    loading.textAlignment=NSTextAlignmentCenter;
+    
+    [_squareBackground addSubview:loading];
+    
+    [self loadFrames];
+    
+    return self;
+}
 
 -(void) awakeFromNib
 {
@@ -38,11 +61,13 @@
     
 }
 
+
 + (instancetype)sharedInstance
 {
     static LWProgressView *sharedInstance = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
+        
         sharedInstance = [[LWProgressView alloc] initWithFrame:CGRectMake(0, 0, 1024, 1024)];
         sharedInstance.diameter=55;
     });
@@ -54,8 +79,14 @@
     
     dispatch_async(dispatch_get_main_queue(), ^{
     [[LWProgressView sharedInstance] removeFromSuperview];
+        
+        [view addSubview:[LWProgressView sharedInstance].squareBackground];
+    
     [view addSubview:[LWProgressView sharedInstance]];
     [LWProgressView sharedInstance].center=CGPointMake(view.bounds.size.width/2, view.bounds.size.height/2);
+        
+        [LWProgressView sharedInstance].squareBackground.center=CGPointMake(view.bounds.size.width/2, view.bounds.size.height/2);
+        
     [[LWProgressView sharedInstance] startAnimating];
         });
 }
@@ -105,14 +136,6 @@
  
 }
 
--(id) initWithFrame:(CGRect)frame
-{
-    self=[super initWithFrame:frame];
-    [self loadFrames];
-    return self;
-}
-
-
 
 -(void) startAnimating
 {
@@ -155,6 +178,7 @@
 -(void) removeFromSuperview
 {
     [timer invalidate];
+    [_squareBackground removeFromSuperview];
     [super removeFromSuperview];
 }
 

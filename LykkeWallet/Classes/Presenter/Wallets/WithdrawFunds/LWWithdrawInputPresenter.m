@@ -270,8 +270,8 @@ float const kMathHeightKeyboard = 239.0;
         }
     }
     
-    NSString *str=[NSString stringWithFormat:@"%f",accountBalance.floatValue];
-    balance.text=[NSString stringWithFormat:@"%@ available", [LWUtils formatVolumeString:str currencySign:symbol accuracy:accuracy removeExtraZeroes:YES]];
+    
+    balance.text=[NSString stringWithFormat:@"%@ available", [LWUtils formatVolumeNumber:accountBalance currencySign:symbol accuracy:accuracy removeExtraZeroes:YES]];
     
 }
 
@@ -348,8 +348,6 @@ float const kMathHeightKeyboard = 239.0;
         [self setLoading:YES];
     }
     
-//    NSDecimalNumber *decimalAmount = [LWMath numberWithString:volumeString];
-//    NSNumber *amount = [NSNumber numberWithDouble:decimalAmount.doubleValue];
     
     NSNumber *amount=[NSNumber numberWithDouble:sumTextField.text.doubleValue];
     
@@ -368,7 +366,7 @@ float const kMathHeightKeyboard = 239.0;
     else
         isValid=NO;
     
-    sumTextField.text=volume;//[LWUtils formatVolumeString:volume currencySign:@"" accuracy:accuracy];
+    sumTextField.text=volume;
     [LWValidator setButton:self.operationButton enabled:isValid];
 }
 
@@ -411,7 +409,8 @@ float const kMathHeightKeyboard = 239.0;
 //    NSString *amountText = [LWMath makeStringByDecimal:amount withPrecision:2];
     
 //    NSNumber *amount=@(volumeString.floatValue);
-    NSString *amountText=[LWUtils formatVolumeString:volumeString currencySign:@"" accuracy:accuracy removeExtraZeroes:YES];
+    NSString *volume=[volumeString stringByReplacingOccurrencesOfString:@" " withString:@""];
+    NSString *amountText=[LWUtils formatVolumeNumber:@(volume.floatValue) currencySign:@"" accuracy:accuracy removeExtraZeroes:YES];
     
     confirmationView.bitcoinString = self.bitcoinString;
     confirmationView.amountString = amountText;

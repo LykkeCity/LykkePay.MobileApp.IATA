@@ -141,7 +141,7 @@ static NSString *const TransferIdentifiers[kTransferRows] = {
     if (indexPath.row == 0) {
         LWSettingsAssetTableViewCell *baseAssetCell = (LWSettingsAssetTableViewCell *)cell;
         baseAssetCell.titleLabel.text = Localize(@"transfer.receiver.currency");
-        baseAssetCell.assetLabel.text = [LWAssetModel assetByIdentity:self.selectedAssetId fromList:[LWCache instance].baseAssets];
+        baseAssetCell.assetLabel.text = [LWAssetModel assetByIdentity:self.selectedAssetId fromList:[LWCache instance].allAssets];
     }
     else if (indexPath.row == 1) {
         LWAssetBuySumTableViewCell *sumCell = (LWAssetBuySumTableViewCell *)cell;

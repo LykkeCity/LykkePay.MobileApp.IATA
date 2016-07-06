@@ -61,7 +61,7 @@ static int const kBlockchainRow = 4;
     [super viewDidAppear:animated];
     NSString *base = [LWAssetModel
                       assetByIdentity:self.asset
-                      fromList:[LWCache instance].baseAssets];
+                      fromList:[LWCache instance].allAssets];
     
     NSString *type = (self.model.position.doubleValue >= 0
                       ? Localize(@"history.market.buy")
@@ -137,15 +137,7 @@ static int const kBlockchainRow = 4;
         [LWUtils stringFromNumber:self.model.volume],
         [LWUtils stringFromNumber:self.model.price],
         [LWUtils stringFromNumber:self.model.totalCost],
-//        [LWUtils formatVolumeString:[NSString stringWithFormat:@"%lf", self.model.volume.floatValue] currencySign:@"" accuracy:8 removeExtraZeroes:YES],
-//        [LWMath makeStringByNumber:self.model.volume withPrecision:0],
-//        [LWUtils formatVolumeString:[NSString stringWithFormat:@"%lf", self.model.price.floatValue] currencySign:@"" accuracy:8 removeExtraZeroes:YES],
-//        [LWMath makeStringByNumber:self.model.price withPrecision:self.model.accuracy.integerValue],
-        //[LWMath makeStringByNumber:self.model.commission withPrecision:2],
-//        [LWUtils formatVolumeString:[NSString stringWithFormat:@"%lf", self.model.totalCost.floatValue] currencySign:@"" accuracy:8 removeExtraZeroes:YES],
-//        [LWMath makeStringByNumber:self.model.totalCost withPrecision:2],
         self.model.blockchainId ? self.model.blockchainId : Localize(@"exchange.assets.result.blockchain.progress")
-        //[LWMath makeStringByNumber:self.model.position withPrecision:0]
     };
     
     return values[row];

@@ -207,8 +207,7 @@ static NSString *const FormIdentifiers[kFormRows] = {
         balance.text=@"";
         if(balanceOfAccount)
         {
-            NSString *str=[NSString stringWithFormat:@"%f",balanceOfAccount.floatValue];
-            balance.text=[NSString stringWithFormat:@"%@ available", [LWUtils formatVolumeString:str currencySign:balanceCurrencySymbol accuracy:balanceAccuracy removeExtraZeroes:YES]];
+            balance.text=[NSString stringWithFormat:@"%@ available", [LWUtils formatVolumeNumber:balanceOfAccount currencySign:balanceCurrencySymbol accuracy:balanceAccuracy removeExtraZeroes:YES]];
 
         }
         balance.font=[UIFont fontWithName:@"ProximaNova-Regular" size:16];
@@ -308,13 +307,11 @@ static NSString *const FormIdentifiers[kFormRows] = {
     if(view.targetTextField==sumTextField)
     {
         volumeString=string;
-//        sumTextField.text=string;//[LWUtils formatVolumeString:string currencySign:@"" accuracy:balanceAccuracy];
         lastInput=LastInput_Volume;
     }
     else
     {
         resultString=string;
-//        resultTextField.text=string;//[LWUtils formatVolumeString:string currencySign:@"" accuracy:balanceAccuracy];
         lastInput=LastInput_Result;
     }
     
@@ -375,7 +372,7 @@ static NSString *const FormIdentifiers[kFormRows] = {
     const NSInteger repeatSeconds = [LWCache instance].refreshTimer.integerValue / 1000;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(repeatSeconds * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         if (self.isVisible) {
-            [[LWAuthManager instance] requestAssetPairRate:self.assetPair.identity];
+//            [[LWAuthManager instance] requestAssetPairRate:self.assetPair.identity];
         }
     });
 }
@@ -414,8 +411,8 @@ static NSString *const FormIdentifiers[kFormRows] = {
     
 //    balanceOfAccount=@(10.2);//Testing
     
-    NSString *str=[NSString stringWithFormat:@"%f",balanceOfAccount.floatValue];
-    balance.text=[NSString stringWithFormat:@"%@ available", [LWUtils formatVolumeString:str currencySign:balanceCurrencySymbol accuracy:balanceAccuracy removeExtraZeroes:YES]];
+    
+    balance.text=[NSString stringWithFormat:@"%@ available", [LWUtils formatVolumeNumber:balanceOfAccount currencySign:balanceCurrencySymbol accuracy:balanceAccuracy removeExtraZeroes:YES]];
 
 
 }
@@ -520,7 +517,7 @@ static NSString *const FormIdentifiers[kFormRows] = {
     
     if (self.assetDealType == LWAssetDealTypeBuy) {
         
-        NSString *rate=[LWUtils formatVolumeString:[NSString stringWithFormat:@"%.10f", rateToSend.ask.floatValue] currencySign:@"" accuracy:self.assetPair.accuracy.intValue removeExtraZeroes:YES];
+        NSString *rate=[LWUtils formatVolumeNumber:rateToSend.ask currencySign:@"" accuracy:self.assetPair.accuracy.intValue removeExtraZeroes:YES];
         rate=[rate stringByReplacingOccurrencesOfString:@" " withString:@""];
         
         [[LWAuthManager instance] requestPurchaseAsset: baseAssetId
@@ -530,7 +527,7 @@ static NSString *const FormIdentifiers[kFormRows] = {
     }
     else {
         
-        NSString *rate=[LWUtils formatVolumeString:[NSString stringWithFormat:@"%.10f", rateToSend.bid.floatValue] currencySign:@"" accuracy:self.assetPair.accuracy.intValue removeExtraZeroes:YES];
+        NSString *rate=[LWUtils formatVolumeNumber:rateToSend.bid currencySign:@"" accuracy:self.assetPair.accuracy.intValue removeExtraZeroes:YES];
         rate=[rate stringByReplacingOccurrencesOfString:@" " withString:@""];
         [[LWAuthManager instance] requestSellAsset:baseAssetId
                                          assetPair:self.assetPair.identity
@@ -611,6 +608,8 @@ static NSString *const FormIdentifiers[kFormRows] = {
     : Localize(@"exchange.assets.description.sell");
     
     // build description
+    volumeString=[volumeString stringByReplacingOccurrencesOfString:@" " withString:@""];
+    resultString=[resultString stringByReplacingOccurrencesOfString:@" " withString:@""];
     NSString *volume = [LWUtils formatVolumeString:volumeString currencySign:@"" accuracy:[self accuracyForBaseAsset].intValue removeExtraZeroes:YES];
     NSString *result = [LWUtils formatVolumeString:resultString currencySign:@"" accuracy:[self accuracyForQuotingAsset].intValue removeExtraZeroes:YES];
     if([volume isEqualToString:@"0"] || [result isEqualToString:@"0"])
@@ -649,8 +648,8 @@ static NSString *const FormIdentifiers[kFormRows] = {
     priceCell.priceLabel.text = priceText;
     
     // update total cell
-    NSString *volume = volumeString;
-    NSString *total = resultString;
+    NSString *volume = [volumeString stringByReplacingOccurrencesOfString:@" " withString:@""];
+    NSString *total = [resultString stringByReplacingOccurrencesOfString:@" " withString:@""];
     if (lastInput == LastInput_Volume) {
         LWAssetBuyTotalTableViewCell *totalCell = (LWAssetBuyTotalTableViewCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:0]];
         total = [self totalString];
@@ -767,7 +766,6 @@ static NSString *const FormIdentifiers[kFormRows] = {
 // else: total = volume * price
 - (NSString *)totalString {
 
-//    return [LWUtils formatVolumeString:[NSString stringWithFormat:@"%f", volumeString.floatValue*] currencySign:<#(NSString *)#> accuracy:<#(int)#>]
     
     NSString *baseAssetId = [LWCache instance].baseAssetId;
     NSDecimalNumber *decimalPrice = nil;
@@ -782,17 +780,9 @@ static NSString *const FormIdentifiers[kFormRows] = {
     float result=0;
     
     
-//    if ([baseAssetId isEqualToString:self.assetPair.baseAssetId] && price!=0) {
-//        
-//        result=volumeString.floatValue/price;
-//    }
-//    else {
-//        result=volumeString.floatValue*price;
-//    }
-    
     result=volumeString.floatValue*price;
     
-    NSString *vvv=[LWUtils formatVolumeString:[NSString stringWithFormat:@"%.20f", result] currencySign:@"" accuracy:[self accuracyForQuotingAsset].intValue removeExtraZeroes:YES];
+    NSString *vvv=[LWUtils formatVolumeNumber:@(result) currencySign:@"" accuracy:[self accuracyForQuotingAsset].intValue removeExtraZeroes:YES];
     if([vvv isEqualToString:@"0"])
         vvv=@"";
     return vvv;
@@ -809,25 +799,14 @@ static NSString *const FormIdentifiers[kFormRows] = {
     
     float price;
     if (self.assetDealType == LWAssetDealTypeBuy) {
-//        decimalPrice = [NSDecimalNumber decimalNumberWithDecimal:[self.assetRate.ask decimalValue]];
         price=self.assetRate.ask.floatValue;
     }
     else {
-//        decimalPrice = [NSDecimalNumber decimalNumberWithDecimal:[self.assetRate.bid decimalValue]];
         price=self.assetRate.bid.floatValue;
     }
     
-//    float price=decimalPrice.floatValue;
+
     float volume=0;
-    
-//    if ([baseAssetId isEqualToString:self.assetPair.baseAssetId]) {
-//        volume = resultString.floatValue*price;
-//    }
-//    else {
-//        if (price!=0) {
-//            volume = resultString.floatValue/price;
-//        }
-//    }
     
     if(price!=0)
         volume=resultString.floatValue/price;
@@ -836,7 +815,7 @@ static NSString *const FormIdentifiers[kFormRows] = {
 
     
     
-    NSString *rrr=[LWUtils formatVolumeString:[NSString stringWithFormat:@"%.20f", volume] currencySign:@"" accuracy:[self accuracyForBaseAsset].intValue removeExtraZeroes:YES];
+    NSString *rrr=[LWUtils formatVolumeNumber:@(volume) currencySign:@"" accuracy:[self accuracyForBaseAsset].intValue removeExtraZeroes:YES];
     if([rrr isEqualToString:@"0"])
         rrr=@"";
     return rrr;
@@ -846,7 +825,7 @@ static NSString *const FormIdentifiers[kFormRows] = {
 
 -(NSNumber *) accuracyForBaseAsset
 {
-    NSArray *assets=[LWCache instance].baseAssets;
+    NSArray *assets=[LWCache instance].allAssets;
     
 //    NSString *identity=[LWCache instance].baseAssetId;
     NSString *identity=self.assetPair.baseAssetId;
@@ -865,7 +844,7 @@ static NSString *const FormIdentifiers[kFormRows] = {
 
 -(NSNumber *) accuracyForQuotingAsset
 {
-    NSArray *assets=[LWCache instance].baseAssets;
+    NSArray *assets=[LWCache instance].allAssets;
 //    NSString *identity=[LWCache instance].baseAssetId;
 //    if([self.assetPair.baseAssetId isEqualToString:identity]==NO)
 //    {

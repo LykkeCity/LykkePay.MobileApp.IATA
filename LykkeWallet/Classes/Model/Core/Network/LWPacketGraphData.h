@@ -18,8 +18,10 @@
 @property (strong, nonatomic) NSDate *endDate;
 @property (strong, nonatomic) NSDate *fixingTime;
 
+
 @property (strong, nonatomic) NSArray *graphValues;
 @property (strong, nonatomic) NSNumber *percentChange;
+@property (strong, nonatomic) NSNumber *lastPrice;
 @property (strong, nonatomic) NSString *assetId;
 
 @end

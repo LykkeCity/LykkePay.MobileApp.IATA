@@ -32,7 +32,7 @@
 
 @implementation LWRefundPresenter
 
-const int kNumberOfCells=5;
+const int kNumberOfCells=3;
 
 static int CellTypes[kNumberOfCells] = {
     RefundCellTypeInfo,
@@ -70,9 +70,9 @@ static int CellTypes[kNumberOfCells] = {
             cell.addressString=prevAddress;
             cell.delegate=self;
         }
+//        else if(i==2)
+//            cell.titleLabel.text=@"Refund valid after";
         else if(i==2)
-            cell.titleLabel.text=@"Refund valid after";
-        else if(i==4)
         {
             cell.titleLabel.text=@"Information";
             [cell addDisclosureImage];
@@ -88,7 +88,7 @@ static int CellTypes[kNumberOfCells] = {
     
     [[LWAuthManager instance] requestGetRefundAddress];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(saveRefundSettings) name:@"SaveRefundSettings" object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(saveRefundSettings) name:@"SaveRefundSettings" object:nil];
     
     
     // Do any additional setup after loading the view from its nib.
@@ -120,7 +120,7 @@ static int CellTypes[kNumberOfCells] = {
     cell=cellsDict[@(3)];
     
     
-    [[LWAuthManager instance] requestSetRefundAddress:@{@"Address":address,@"SendAutomatically":@(cell.sendAutomatically),@"ValidDays":@(cell.daysValidAfter)}];
+ //   [[LWAuthManager instance] requestSetRefundAddress:@{@"Address":address,@"SendAutomatically":@(cell.sendAutomatically),@"ValidDays":@(cell.daysValidAfter)}];
 }
 
 -(void) viewDidAppear:(BOOL)animated
@@ -132,7 +132,7 @@ static int CellTypes[kNumberOfCells] = {
 
 -(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 5;
+    return kNumberOfCells;
 }
 
 -(NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
@@ -164,9 +164,10 @@ static int CellTypes[kNumberOfCells] = {
     
     [self setLoading:YES];
     
-    LWRefundTableViewCell *cell=cellsDict[@(3)];
+//    LWRefundTableViewCell *cell=cellsDict[@(3)];
     
-    [[LWAuthManager instance] requestSetRefundAddress:@{@"Address":[LWCache instance].refundAddress,@"SendAutomatically":@(cell.sendAutomatically),@"ValidDays":@(cell.daysValidAfter)}];
+//    [[LWAuthManager instance] requestSetRefundAddress:@{@"Address":[LWCache instance].refundAddress,@"SendAutomatically":@(cell.sendAutomatically),@"ValidDays":@(cell.daysValidAfter)}];
+    [[LWAuthManager instance] requestSetRefundAddress:@{@"Address":[LWCache instance].refundAddress,@"SendAutomatically":@(YES),@"ValidDays":@(1)}];
 
 //    [[LWAuthManager instance] requestSetRefundAddress:[LWCache instance].refundAddress];
     
@@ -219,9 +220,9 @@ static int CellTypes[kNumberOfCells] = {
     cell=cellsDict[@(1)];
     cell.addressString=address.refundAddress;
     
-    cell=cellsDict[@(3)];
-    cell.daysValidAfter=address.validDays;
-    cell.sendAutomatically=address.sendAutomatically;
+//    cell=cellsDict[@(3)];
+//    cell.daysValidAfter=address.validDays;
+//    cell.sendAutomatically=address.sendAutomatically;
 
 }
 

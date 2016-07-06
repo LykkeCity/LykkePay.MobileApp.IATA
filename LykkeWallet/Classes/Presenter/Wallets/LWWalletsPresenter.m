@@ -56,7 +56,7 @@ static NSInteger const kSectionLykkeWallets   = 2;
     
     BOOL               shouldShowError;
     
-    
+    UIImageView *screenshot;
 }
 
 
@@ -144,7 +144,14 @@ static NSString *const WalletIcons[kNumberOfSections] = {
 {
     [super viewDidAppear:animated];
     self.title = Localize(@"tab.wallets");
+    
 
+}
+
+-(void) viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    screenshot.frame=self.view.bounds;
 }
 
 - (void)viewDidLoad {
@@ -206,15 +213,30 @@ static NSString *const WalletIcons[kNumberOfSections] = {
     }
     [self requestWallets];
     
+    UIImage *image=[self screenshotImage];
+    if(image && self.data==nil)
+    {
+        screenshot=[[UIImageView alloc] initWithFrame:self.view.bounds];
+        screenshot.image=image;
+        [self.view addSubview:screenshot];
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            if(screenshot && self.data==nil)
+                [self setLoading:YES];
+        });
+
+    }
+    
 }
 
 -(void) requestWallets
 {
-    if(![LWCache instance].baseAssets)
+    if(![LWCache instance].allAssets)
         [self performSelector:@selector(requestWallets) withObject:nil afterDelay:1];
     else
     {
         [[LWAuthManager instance] requestLykkeWallets];
+        
     }
     
 }
@@ -300,6 +322,7 @@ static NSString *const WalletIcons[kNumberOfSections] = {
 
         NSDictionary *attributes = @{NSKernAttributeName:@(1.9)};
 
+        int sss=indexPath.section;
         
 //        wallet.walletLabel.text = WalletNames[indexPath.section];
         wallet.walletLabel.attributedText = [[NSAttributedString alloc] initWithString:WalletNames[indexPath.section] attributes:attributes];
@@ -592,6 +615,7 @@ static NSString *const WalletIcons[kNumberOfSections] = {
 
 - (void)authManager:(LWAuthManager *)manager didReceiveLykkeData:(LWLykkeWalletsData *)data {
     [refreshControl endRefreshing];
+    [self setLoading:NO];
 
     shouldShowError = NO;
 
@@ -623,6 +647,14 @@ static NSString *const WalletIcons[kNumberOfSections] = {
 #endif
     }
     [self.tableView reloadData];
+    
+    [screenshot removeFromSuperview];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self makeScreenshot];
+    });
+
+    
 }
 
 
@@ -649,6 +681,9 @@ static NSString *const WalletIcons[kNumberOfSections] = {
 
 - (void)authManager:(LWAuthManager *)manager didFailWithReject:(NSDictionary *)reject context:(GDXRESTContext *)context {
     [refreshControl endRefreshing];
+    [self setLoading:NO];
+    [screenshot removeFromSuperview];
+    screenshot=nil;
     shouldShowError = NO;
     
     [self showReject:reject response:context.task.response code:context.error.code willNotify:shouldShowError];
@@ -983,5 +1018,36 @@ static NSString *const WalletIcons[kNumberOfSections] = {
 
     return button;
 }
+
+- (void) makeScreenshot
+{
+    CGSize sss=self.view.layer.bounds.size;
+    
+    UIGraphicsBeginImageContextWithOptions(self.view.layer.bounds.size, YES, 0.0);
+    [self.view.layer renderInContext:UIGraphicsGetCurrentContext()];
+    
+    UIImage * img = UIGraphicsGetImageFromCurrentImageContext();
+    
+    UIGraphicsEndImageContext();
+    
+    NSData *data=UIImagePNGRepresentation(img);
+    
+    [data writeToFile:[NSString stringWithFormat:@"%@/Documents/wallets_screenshot.png", NSHomeDirectory()] atomically:YES];
+    
+    
+    
+    
+    
+//    [[NSFileManager defaultManager] createFileAtPath:[NSString stringWithFormat:@"%@/Documents/wallets_screenshot.png", NSHomeDirectory()] contents:data attributes:nil];
+}
+
+-(UIImage *) screenshotImage
+{
+    NSData *data=[NSData dataWithContentsOfFile:[NSString stringWithFormat:@"%@/Documents/wallets_screenshot.png", NSHomeDirectory()]];
+    if(!data)
+        return nil;
+    return [UIImage imageWithData:data];
+}
+
 
 @end

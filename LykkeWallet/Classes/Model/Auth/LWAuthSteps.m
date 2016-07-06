@@ -17,11 +17,11 @@
     
     LWAuthStep nextStep = LWAuthStepRegisterKYCInvalidDocuments;
     
-    if (!status.isSelfieUploaded) {
-        // to selfie
-        nextStep = LWAuthStepRegisterSelfie;
-    }
-//    else if (!status.isIdCardUploaded) {  //Andrey
+//    if (!status.isSelfieUploaded) {  //Andrey
+//        // to selfie
+//        nextStep = LWAuthStepRegisterSelfie;
+//    }
+//    else if (!status.isIdCardUploaded) {
 //        // to identity card
 //        nextStep = LWAuthStepRegisterIdentity;
 //    }
@@ -33,10 +33,10 @@
 //        // to LWAuthStepRegisterKYCSubmit
 //        nextStep = LWAuthStepRegisterKYCSubmit;
 //    }
-    
-    else {
+//    
+//    else {
         nextStep=LWAuthStepRegisterPINSetup;
-    }
+//    }
     
     return nextStep;
 }

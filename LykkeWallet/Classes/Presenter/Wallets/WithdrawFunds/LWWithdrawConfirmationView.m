@@ -134,6 +134,9 @@ static float const kNoPinProtectionHeight = 356;
     
     self.waitingLabel.text = Localize(@"withdraw.funds.modal.waiting");
     [self.navigationItem setTitle:Localize(@"withdraw.funds.modal.title")];
+    
+    [LWValidator setButton:self.placeOrderButton enabled:YES];
+    
     [self.placeOrderButton setTitle:Localize(@"withdraw.funds.modal.button")
                            forState:UIControlStateNormal];
 

@@ -34,7 +34,7 @@ SINGLETON_INIT {
 +(BOOL) shouldHideDepositForAssetId:(NSString *)assetID
 {
     BOOL shouldHide=NO;
-    for(LWAssetModel *asset in [LWCache instance].baseAssets)
+    for(LWAssetModel *asset in [LWCache instance].allAssets)
     {
         if([asset.identity isEqualToString:assetID])
         {
@@ -51,7 +51,7 @@ SINGLETON_INIT {
 +(BOOL) shouldHideWithdrawForAssetId:(NSString *)assetID
 {
     BOOL shouldHide=NO;
-    for(LWAssetModel *asset in [LWCache instance].baseAssets)
+    for(LWAssetModel *asset in [LWCache instance].allAssets)
     {
         if([asset.identity isEqualToString:assetID])
         {
@@ -89,7 +89,7 @@ SINGLETON_INIT {
     
     NSString *symbol;
     
-    for(LWAssetModel *asset in self.baseAssets)
+    for(LWAssetModel *asset in self.allAssets)
     {
         if([asset.identity isEqualToString:assetId])
         {

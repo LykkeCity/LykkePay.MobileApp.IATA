@@ -41,7 +41,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    self.assets = [[LWCache instance].baseAssets copy];
+    self.assets = [[LWCache instance].allAssets copy];
 }
 
 

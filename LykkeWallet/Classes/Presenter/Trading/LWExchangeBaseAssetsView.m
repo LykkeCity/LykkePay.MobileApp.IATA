@@ -63,7 +63,7 @@
         }
         else
         {
-            [button setBackgroundImage:[UIImage imageNamed:@"ThreeDots.png"] forState:UIControlStateNormal];
+            [button setImage:[UIImage imageNamed:@"ButtonMoreAssets"] forState:UIControlStateNormal];
             button.frame=CGRectMake(0, 0, 40, 20);
             button.tag=100;
         }

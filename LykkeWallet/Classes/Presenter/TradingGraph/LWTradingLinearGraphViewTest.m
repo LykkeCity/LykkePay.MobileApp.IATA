@@ -76,6 +76,9 @@
                 minValue=n.floatValue;
         }
         
+        if(maxValue==minValue)
+            maxValue=maxValue+maxValue/1000;
+        
         coeff=(maxValue-minValue)/(maxGraphY-minGraphY);
         
         

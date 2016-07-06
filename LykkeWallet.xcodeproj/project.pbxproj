@@ -41,6 +41,8 @@
 		A124D5C31CEB144F0074A1A8 /* LWAuthenticationPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = CDCE884D1C26F6630039798B /* LWAuthenticationPresenter.m */; };
 		A124D5C51CEB19880074A1A8 /* LWKYCCheckDocumentsPresenter~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A124D5C41CEB19880074A1A8 /* LWKYCCheckDocumentsPresenter~ipad.xib */; };
 		A124D5C71CEB1B550074A1A8 /* LWAuthValidationPresenter~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A124D5C61CEB1B550074A1A8 /* LWAuthValidationPresenter~ipad.xib */; };
+		A12BEE9F1D2A67C500045916 /* WindowsAzureMessaging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A12BEE9E1D2A67C500045916 /* WindowsAzureMessaging.framework */; };
+		A12BEEA11D2BBC7900045916 /* tabbara-line.png in Resources */ = {isa = PBXBuildFile; fileRef = A12BEEA01D2BBC7900045916 /* tabbara-line.png */; };
 		A1312B251D184047009726FF /* LWCameraMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A1312B241D184047009726FF /* LWCameraMessageView.m */; };
 		A1312B271D184062009726FF /* LWCameraMessageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1312B261D184062009726FF /* LWCameraMessageView.xib */; };
 		A1312B2A1D19027F009726FF /* NewDecodeBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = A1312B291D19027F009726FF /* NewDecodeBase64.m */; };
@@ -59,6 +61,10 @@
 		A15B3F0A1D13FD0700A6B506 /* LWPacketGetRefundAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = A15B3F091D13FD0700A6B506 /* LWPacketGetRefundAddress.m */; };
 		A15B3F0D1D13FE5B00A6B506 /* LWPacketSetRefundAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = A15B3F0C1D13FE5B00A6B506 /* LWPacketSetRefundAddress.m */; };
 		A15B3F101D141F5400A6B506 /* UIAlertView+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = A15B3F0F1D141F5400A6B506 /* UIAlertView+Blocks.m */; };
+		A17069891D25FBFB0044D7FA /* LWAssetURLTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A17069881D25FBFB0044D7FA /* LWAssetURLTableViewCell.xib */; };
+		A170698C1D25FC3D0044D7FA /* LWAssetURLTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A170698B1D25FC3D0044D7FA /* LWAssetURLTableViewCell.m */; };
+		A17069901D2601CC0044D7FA /* LWCameraMessageView2.m in Sources */ = {isa = PBXBuildFile; fileRef = A170698E1D2601CC0044D7FA /* LWCameraMessageView2.m */; };
+		A17069911D2601CC0044D7FA /* LWCameraMessageView2.xib in Resources */ = {isa = PBXBuildFile; fileRef = A170698F1D2601CC0044D7FA /* LWCameraMessageView2.xib */; };
 		A1743CAE1CE8A59400176F59 /* LWWithdrawSuccessPresenterView.m in Sources */ = {isa = PBXBuildFile; fileRef = A1743CAD1CE8A59400176F59 /* LWWithdrawSuccessPresenterView.m */; };
 		A1743CB01CE8A6B100176F59 /* WithdrawSuccessFlag.png in Resources */ = {isa = PBXBuildFile; fileRef = A1743CAF1CE8A6B100176F59 /* WithdrawSuccessFlag.png */; };
 		A1743CB31CE9CBB400176F59 /* LWPacketCurrencyWithdraw.m in Sources */ = {isa = PBXBuildFile; fileRef = A1743CB21CE9CBB400176F59 /* LWPacketCurrencyWithdraw.m */; };
@@ -1455,6 +1461,8 @@
 		A124D5C11CEB14400074A1A8 /* LWAuthenticationPresenter~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "LWAuthenticationPresenter~ipad.xib"; path = "Authentication/LWAuthenticationPresenter~ipad.xib"; sourceTree = "<group>"; };
 		A124D5C41CEB19880074A1A8 /* LWKYCCheckDocumentsPresenter~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "LWKYCCheckDocumentsPresenter~ipad.xib"; sourceTree = "<group>"; };
 		A124D5C61CEB1B550074A1A8 /* LWAuthValidationPresenter~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "LWAuthValidationPresenter~ipad.xib"; sourceTree = "<group>"; };
+		A12BEE9E1D2A67C500045916 /* WindowsAzureMessaging.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WindowsAzureMessaging.framework; sourceTree = "<group>"; };
+		A12BEEA01D2BBC7900045916 /* tabbara-line.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbara-line.png"; sourceTree = "<group>"; };
 		A1312B231D184047009726FF /* LWCameraMessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWCameraMessageView.h; sourceTree = "<group>"; };
 		A1312B241D184047009726FF /* LWCameraMessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWCameraMessageView.m; sourceTree = "<group>"; };
 		A1312B261D184062009726FF /* LWCameraMessageView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LWCameraMessageView.xib; sourceTree = "<group>"; };
@@ -1501,6 +1509,12 @@
 		A15B3F0C1D13FE5B00A6B506 /* LWPacketSetRefundAddress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWPacketSetRefundAddress.m; sourceTree = "<group>"; };
 		A15B3F0E1D141F5400A6B506 /* UIAlertView+Blocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+Blocks.h"; sourceTree = "<group>"; };
 		A15B3F0F1D141F5400A6B506 /* UIAlertView+Blocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+Blocks.m"; sourceTree = "<group>"; };
+		A17069881D25FBFB0044D7FA /* LWAssetURLTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LWAssetURLTableViewCell.xib; path = Assets/LWAssetURLTableViewCell.xib; sourceTree = "<group>"; };
+		A170698A1D25FC3D0044D7FA /* LWAssetURLTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LWAssetURLTableViewCell.h; path = Assets/LWAssetURLTableViewCell.h; sourceTree = "<group>"; };
+		A170698B1D25FC3D0044D7FA /* LWAssetURLTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LWAssetURLTableViewCell.m; path = Assets/LWAssetURLTableViewCell.m; sourceTree = "<group>"; };
+		A170698D1D2601CC0044D7FA /* LWCameraMessageView2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWCameraMessageView2.h; sourceTree = "<group>"; };
+		A170698E1D2601CC0044D7FA /* LWCameraMessageView2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWCameraMessageView2.m; sourceTree = "<group>"; };
+		A170698F1D2601CC0044D7FA /* LWCameraMessageView2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LWCameraMessageView2.xib; sourceTree = "<group>"; };
 		A1743CAC1CE8A59400176F59 /* LWWithdrawSuccessPresenterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LWWithdrawSuccessPresenterView.h; path = WithdrawFunds/LWWithdrawSuccessPresenterView.h; sourceTree = "<group>"; };
 		A1743CAD1CE8A59400176F59 /* LWWithdrawSuccessPresenterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LWWithdrawSuccessPresenterView.m; path = WithdrawFunds/LWWithdrawSuccessPresenterView.m; sourceTree = "<group>"; };
 		A1743CAF1CE8A6B100176F59 /* WithdrawSuccessFlag.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WithdrawSuccessFlag.png; sourceTree = "<group>"; };
@@ -2853,6 +2867,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A12BEE9F1D2A67C500045916 /* WindowsAzureMessaging.framework in Frameworks */,
 				A15B3F071D13AAFE00A6B506 /* libiconv.tbd in Frameworks */,
 				A15B3EE21D13A4A500A6B506 /* AVFoundation.framework in Frameworks */,
 				EC25A6921C331F0B00F223FF /* LocalAuthentication.framework in Frameworks */,
@@ -2930,6 +2945,7 @@
 				A10A94F31D0D33AA00557C87 /* ThreeDots.png */,
 				A10A95041D0E8F5F00557C87 /* SlashSign@2x.png */,
 				A10A95051D0E8F5F00557C87 /* SlashSign@3x.png */,
+				A12BEEA01D2BBC7900045916 /* tabbara-line.png */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -4301,8 +4317,8 @@
 				EC35B0C11CC6CB50001C6F96 /* LWPacketBlockchainTransferTransaction.m */,
 				ECEC40B91C42B06700B22BEE /* LWPacketTransactions.h */,
 				ECEC40BA1C42B06700B22BEE /* LWPacketTransactions.m */,
-				ECEC40E21C44253D00B22BEE /* LWPacketMarketOrder.h */,
 				ECEC40E31C44253D00B22BEE /* LWPacketMarketOrder.m */,
+				ECEC40E21C44253D00B22BEE /* LWPacketMarketOrder.h */,
 				ECECAB551C9972840020E050 /* LWPacketSendBlockchainEmail.h */,
 				ECECAB561C9972840020E050 /* LWPacketSendBlockchainEmail.m */,
 				ECAB1BBA1C99D45300A64A20 /* LWPacketExchangeInfoGet.h */,
@@ -4409,6 +4425,9 @@
 				A1312B231D184047009726FF /* LWCameraMessageView.h */,
 				A1312B241D184047009726FF /* LWCameraMessageView.m */,
 				A1312B261D184062009726FF /* LWCameraMessageView.xib */,
+				A170698D1D2601CC0044D7FA /* LWCameraMessageView2.h */,
+				A170698E1D2601CC0044D7FA /* LWCameraMessageView2.m */,
+				A170698F1D2601CC0044D7FA /* LWCameraMessageView2.xib */,
 				ECA80B5F1C2E0E2A001C4E8F /* LWRegisterCameraPresenter~iphone.xib */,
 				A19E08D41CEB5275004D286A /* LWRegisterCameraPresenter~ipad.xib */,
 			);
@@ -4448,6 +4467,7 @@
 		D19F0116617E74EB428F44A8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A12BEE9E1D2A67C500045916 /* WindowsAzureMessaging.framework */,
 				A15B3F061D13AAFE00A6B506 /* libiconv.tbd */,
 				A15B3EE11D13A4A500A6B506 /* AVFoundation.framework */,
 				ECC526F91C9C1EC800022382 /* stockchart.framework */,
@@ -5038,6 +5058,7 @@
 				A1165D211CF577CB0017A725 /* LWAssetLykkeTableViewCell~ipad.xib */,
 				ECD1E9161C3BE4050064AAB3 /* LWAssetEmptyTableViewCell.xib */,
 				EC57F45C1C3C557E00E31746 /* LWAssetInfoTextTableViewCell.xib */,
+				A17069881D25FBFB0044D7FA /* LWAssetURLTableViewCell.xib */,
 				EC57F4611C3C55FB00E31746 /* LWAssetInfoIconTableViewCell.xib */,
 				EC57F4711C3D520600E31746 /* LWAssetBuySumTableViewCell.xib */,
 				EC57F4761C3D528100E31746 /* LWAssetBuyPriceTableViewCell.xib */,
@@ -5211,6 +5232,8 @@
 				ECD1E9141C3BE3180064AAB3 /* LWAssetEmptyTableViewCell.m */,
 				EC57F4591C3C556B00E31746 /* LWAssetInfoTextTableViewCell.h */,
 				EC57F45A1C3C556B00E31746 /* LWAssetInfoTextTableViewCell.m */,
+				A170698A1D25FC3D0044D7FA /* LWAssetURLTableViewCell.h */,
+				A170698B1D25FC3D0044D7FA /* LWAssetURLTableViewCell.m */,
 				EC57F45E1C3C55D700E31746 /* LWAssetInfoIconTableViewCell.h */,
 				EC57F45F1C3C55D700E31746 /* LWAssetInfoIconTableViewCell.m */,
 				EC57F46E1C3D51F900E31746 /* LWAssetBuySumTableViewCell.h */,
@@ -5422,6 +5445,7 @@
 				ECE902BE1C3537B700F52971 /* LWWalletFormPresenter.xib in Resources */,
 				A1BCD27A1D012D3C00CF42E4 /* 5-onboard-2x_00020.png in Resources */,
 				A1BCD1361D012D3C00CF42E4 /* 2-trade-2x_00054.png in Resources */,
+				A17069911D2601CC0044D7FA /* LWCameraMessageView2.xib in Resources */,
 				A1D477511D050B9900438846 /* loader-color@2x_00033.png in Resources */,
 				A1BCD0F71D012D3C00CF42E4 /* 1-deposit-2x_00111.png in Resources */,
 				A1BCD1F91D012D3C00CF42E4 /* 4-withdraw-2x_00010.png in Resources */,
@@ -6000,6 +6024,7 @@
 				A1D4773E1D050B9900438846 /* loader-color@2x_00014.png in Resources */,
 				A1D4774F1D050B9900438846 /* loader-color@2x_00031.png in Resources */,
 				A1BCD2A41D012D3C00CF42E4 /* 5-onboard-2x_00062.png in Resources */,
+				A17069891D25FBFB0044D7FA /* LWAssetURLTableViewCell.xib in Resources */,
 				A1BCD1461D012D3C00CF42E4 /* 2-trade-2x_00070.png in Resources */,
 				A1BCD1FD1D012D3C00CF42E4 /* 4-withdraw-2x_00014.png in Resources */,
 				A1BCD2721D012D3C00CF42E4 /* 5-onboard-2x_00012.png in Resources */,
@@ -6016,6 +6041,7 @@
 				EC7A45E01C309ACD00926BB4 /* LWWalletEmptyTableViewCell.xib in Resources */,
 				A1BCD2561D012D3C00CF42E4 /* 4-withdraw-2x_00103.png in Resources */,
 				A1D477321D050B9900438846 /* loader-color@2x_00002.png in Resources */,
+				A12BEEA11D2BBC7900045916 /* tabbara-line.png in Resources */,
 				A1BCD0EB1D012D3C00CF42E4 /* 1-deposit-2x_00099.png in Resources */,
 				A1C5AF521D0A85CB0056DC53 /* LWSettingsTermsTableViewCell~iphone.xib in Resources */,
 				A1BCD17D1D012D3C00CF42E4 /* 3-settle-2x_00006.png in Resources */,
@@ -6544,6 +6570,7 @@
 				CF66328A1C176AB1004353F5 /* LWTabController.m in Sources */,
 				EC57F47F1C3D8A6400E31746 /* UITextField+Validation.m in Sources */,
 				A1AA58A01CEED1CC00D24E68 /* LWMathKeyboardCursorView.m in Sources */,
+				A170698C1D25FC3D0044D7FA /* LWAssetURLTableViewCell.m in Sources */,
 				ECD1E9021C3BC8B40064AAB3 /* LWAuthPresenter.m in Sources */,
 				CFF2AAE21C1F893000320FF9 /* LWRegisterCameraPresenter.m in Sources */,
 				EC8923041CC24A0D00201BE7 /* LWLoadingIndicatorView.m in Sources */,
@@ -6694,6 +6721,7 @@
 				ECECAB631C99A9360020E050 /* LWPacketBlockchainCashTransaction.m in Sources */,
 				EC57F44D1C3C35B100E31746 /* LWPacketAssetDescription.m in Sources */,
 				ECA8E9D01C5736F5000F53EC /* LWTradeHistoryItemType.m in Sources */,
+				A17069901D2601CC0044D7FA /* LWCameraMessageView2.m in Sources */,
 				EC24CC851C399A8600C2FDAA /* LWWalletPagePresenter.m in Sources */,
 				A10A950A1D0E9F3B00557C87 /* LWPacketAllAssets.m in Sources */,
 				EC9AE06B1CAC7C6F0047DF0D /* LWWithdrawInputPresenter.m in Sources */,

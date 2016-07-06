@@ -24,6 +24,7 @@
 #import "UIAlertView+Blocks.h"
 
 #import "LWCameraMessageView.h"
+#import "LWCameraMessageView2.h"
 
 @import AVFoundation;
 
@@ -65,6 +66,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.showCameraImmediately=YES;
     [LWValidator setButtonWithClearBackground:self.cancelButton enabled:YES];
     [LWValidator setButton:self.okButton enabled:YES];
 
@@ -242,24 +244,25 @@
     } else if(authStatus == AVAuthorizationStatusNotDetermined){
         // not determined?!
         
-        [UIAlertView showWithTitle:@"LYKKE" message:Localize(@"register.camera.requestaccess") cancelButtonTitle:Localize(@"general.no") otherButtonTitles:@[Localize(@"general.yes")] tapBlock:^(UIAlertView *alert, NSInteger index){
-            if(index==1)
-            {
+        LWCameraMessageView2 *view=[[NSBundle mainBundle] loadNibNamed:@"LWCameraMessageView2" owner:self options:nil][0];
+        UIWindow *window=[[UIApplication sharedApplication] keyWindow];
+        view.center=CGPointMake(window.bounds.size.width/2, window.bounds.size.height/2);
+        
+        [window addSubview:view];
+        
+        [view showWithCompletion:^(BOOL result){
+            if(result)
                 [AVCaptureDevice requestAccessForMediaType:AVMediaTypeVideo completionHandler:^(BOOL granted) {
                     dispatch_async(dispatch_get_main_queue(), ^{
-                    if(granted){
-                        block();
-                    } else {
-                        messageBlock();
-                    }
-                        });
+                        if(granted){
+                            block();
+                        } else {
+                            messageBlock();
+                        }
+                    });
                 }];
-
-            }
-        
-        
         }];
-        
+
         
         
      } else {

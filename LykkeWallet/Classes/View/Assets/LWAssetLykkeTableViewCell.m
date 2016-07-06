@@ -83,7 +83,7 @@
         // price section
 //        NSString *priceString = [LWMath priceString:rate.ask precision:self.pair.accuracy withPrefix:@""];
         
-        NSString *priceString=[LWUtils formatVolumeString:[NSString stringWithFormat:@"%f", rate.ask.floatValue] currencySign:@"" accuracy:self.pair.accuracy.intValue removeExtraZeroes:YES];
+        NSString *priceString=[LWUtils formatVolumeNumber:rate.ask currencySign:@"" accuracy:self.pair.accuracy.intValue removeExtraZeroes:YES];
         priceString=[priceString stringByReplacingOccurrencesOfString:@"." withString:@","];
         
         self.assetPriceLabel.text = [NSString stringWithFormat:@"%@ %@", [[LWCache instance] currencySymbolForAssetId:self.pair.quotingAssetId],priceString];

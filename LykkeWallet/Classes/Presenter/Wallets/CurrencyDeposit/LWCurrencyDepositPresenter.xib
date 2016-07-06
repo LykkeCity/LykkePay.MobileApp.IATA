@@ -16,7 +16,6 @@
                 <outlet property="emailButton" destination="WqU-tb-oi1" id="h6j-ZS-7r3"/>
                 <outlet property="infoView" destination="nj4-R1-fo9" id="1Fj-ey-YcK"/>
                 <outlet property="scrollView" destination="Msi-Dx-aC5" id="JbP-3B-qfF"/>
-                <outlet property="scrollViewHeight" destination="3gr-Kc-wqp" id="IjC-Mj-tdq"/>
                 <outlet property="view" destination="iN0-l3-epB" id="U18-86-rrF"/>
             </connections>
         </placeholder>
@@ -26,10 +25,10 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Msi-Dx-aC5">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="483"/>
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gF6-pH-XQq">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="483"/>
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nj4-R1-fo9">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="135"/>
@@ -38,8 +37,8 @@
                                         <constraint firstAttribute="height" constant="135" id="3ge-Il-bCv"/>
                                     </constraints>
                                 </view>
-                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WqU-tb-oi1">
-                                    <rect key="frame" x="100" y="430" width="120" height="45"/>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WqU-tb-oi1">
+                                    <rect key="frame" x="30" y="503" width="260" height="45"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="45" id="HyG-Ra-keV"/>
                                     </constraints>
@@ -63,7 +62,6 @@
                         </view>
                     </subviews>
                     <constraints>
-                        <constraint firstAttribute="height" constant="483" id="3gr-Kc-wqp"/>
                         <constraint firstItem="gF6-pH-XQq" firstAttribute="centerX" secondItem="Msi-Dx-aC5" secondAttribute="centerX" id="Bij-Xw-XFn"/>
                         <constraint firstItem="gF6-pH-XQq" firstAttribute="leading" secondItem="Msi-Dx-aC5" secondAttribute="leading" id="Ckl-tg-CHE"/>
                         <constraint firstItem="gF6-pH-XQq" firstAttribute="centerY" secondItem="Msi-Dx-aC5" secondAttribute="centerY" id="WDh-3s-TmN"/>
@@ -79,6 +77,7 @@
                 <constraint firstItem="Msi-Dx-aC5" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="6Kc-Ef-bh6"/>
                 <constraint firstItem="Msi-Dx-aC5" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="UPg-zO-3f3"/>
                 <constraint firstAttribute="trailing" secondItem="Msi-Dx-aC5" secondAttribute="trailing" id="ZIm-dL-xKb"/>
+                <constraint firstItem="Msi-Dx-aC5" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" id="hlB-N2-6cI"/>
                 <constraint firstItem="Msi-Dx-aC5" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="xeX-QU-hmo"/>
             </constraints>
             <point key="canvasLocation" x="343" y="286"/>

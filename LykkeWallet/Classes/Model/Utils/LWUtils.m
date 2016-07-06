@@ -65,7 +65,7 @@
 
 +(NSNumber *) accuracyForAssetId:(NSString *) assetID
 {
-        NSArray *assets=[LWCache instance].baseAssets;
+        NSArray *assets=[LWCache instance].allAssets;
 
         NSNumber *accuracy=@(0);
         for(LWAssetModel *m in assets)
@@ -124,6 +124,14 @@
 
     }
     return string;
+}
+
++(NSString *) formatVolumeNumber:(NSNumber *) volumee currencySign:(NSString *) currency accuracy:(int) accuracy removeExtraZeroes:(BOOL) flagRemoveZeroes
+{
+    NSString *formatString=[NSString stringWithFormat:@"%d",accuracy];
+    formatString=[[@"%." stringByAppendingString:formatString] stringByAppendingString:@"f"];
+    NSString *volume=[NSString stringWithFormat:formatString,volumee.floatValue];
+    return [LWUtils formatVolumeString:volume currencySign:currency accuracy:accuracy removeExtraZeroes:flagRemoveZeroes];
 }
 
 +(NSString *) formatVolumeString:(NSString *) volumee currencySign:(NSString *) currency accuracy:(int) accuracy removeExtraZeroes:(BOOL) flagRemoveZeroes
@@ -203,7 +211,7 @@
 
 + (NSString *)baseAssetTitle:(LWAssetPairModel *)assetPair {
     
-    return [LWAssetModel assetByIdentity:assetPair.baseAssetId fromList:[LWCache instance].baseAssets]; //Andrey
+    return [LWAssetModel assetByIdentity:assetPair.baseAssetId fromList:[LWCache instance].allAssets]; //Andrey
 
     
     NSString *baseAssetId = [LWCache instance].baseAssetId;
@@ -213,13 +221,13 @@
     }
     NSString *assetTitle = [LWAssetModel
                             assetByIdentity:assetTitleId
-                            fromList:[LWCache instance].baseAssets];
+                            fromList:[LWCache instance].allAssets];
     return assetTitle;
 }
 
 + (NSString *)quotedAssetTitle:(LWAssetPairModel *)assetPair {
     
-    return [LWAssetModel assetByIdentity:assetPair.quotingAssetId fromList:[LWCache instance].baseAssets]; //Andrey
+    return [LWAssetModel assetByIdentity:assetPair.quotingAssetId fromList:[LWCache instance].allAssets]; //Andrey
 
     
     
@@ -231,7 +239,7 @@
     
     NSString *assetTitle = [LWAssetModel
                             assetByIdentity:assetTitleId
-                            fromList:[LWCache instance].baseAssets];
+                            fromList:[LWCache instance].allAssets];
     return assetTitle;
 }
 
@@ -243,11 +251,11 @@
     NSString *result;
     if(assetPair.inverted==NO)
     {
-        result=[LWUtils formatVolumeString:[NSString stringWithFormat:@"%f", value.floatValue] currencySign:@"" accuracy:assetPair.accuracy.intValue removeExtraZeroes:YES];
+        result=[LWUtils formatVolumeNumber:value currencySign:@"" accuracy:assetPair.accuracy.intValue removeExtraZeroes:YES];
     }
     else
     {
-        result=[LWUtils formatVolumeString:[NSString stringWithFormat:@"%f", value.floatValue] currencySign:@"" accuracy:assetPair.invertedAccuracy.intValue removeExtraZeroes:YES];
+        result=[LWUtils formatVolumeNumber:value currencySign:@"" accuracy:assetPair.invertedAccuracy.intValue removeExtraZeroes:YES];
     }
     
     

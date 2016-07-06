@@ -48,20 +48,20 @@
 @implementation LWSettingsPresenter
 
 
-static NSInteger const kNumberOfRows = 6;
+static NSInteger const kNumberOfRows = 7;
 // cell identifiers
 static NSInteger const kKYCCellId    = 0;
 static NSInteger const kPINCellId    = 1;
-//static NSInteger const kPushCellId   = 2;
-static NSInteger const kAssetCellId  = 2;
-static NSInteger const kLogoutCellId = 3;
-static NSInteger const kTermsOfUseCellId   = 4;
-static NSInteger const kRefundAddress =5;
+static NSInteger const kPushCellId   = 2;
+static NSInteger const kAssetCellId  = 3;
+static NSInteger const kLogoutCellId = 4;
+static NSInteger const kTermsOfUseCellId   = 5;
+static NSInteger const kRefundAddress =6;
 
 static NSString *const SettingsCells[kNumberOfRows] = {
     kSettingsAssetTableViewCell,
     kRadioTableViewCell,
-//    kSettingsAssetTableViewCell,
+    kSettingsAssetTableViewCell,
     kSettingsAssetTableViewCell,
     @"LWSettingsLogOutTableViewCell",
     kSettingsTermsTableViewCell,
@@ -72,7 +72,7 @@ static NSString *const SettingsCells[kNumberOfRows] = {
 static NSString *const SettingsIdentifiers[kNumberOfRows] = {
     kSettingsAssetTableViewCellIdentifier,
     kRadioTableViewCellIdentifier,
-//    kSettingsAssetTableViewCellIdentifier,
+    kSettingsAssetTableViewCellIdentifier,
     kSettingsAssetTableViewCellIdentifier,
     @"LWSettingsLogOutTableViewCellIdentifier",
     kSettingsTermsTableViewCellIdentifier,
@@ -180,10 +180,10 @@ static NSString *const SettingsIdentifiers[kNumberOfRows] = {
         LWPersonalDataPresenter *push = [LWPersonalDataPresenter new];
         [self.navigationController pushViewController:push animated:YES];
     }
-//    else if (indexPath.row == kPushCellId) {
-//        LWNotificationSettingsPresenter *push = [LWNotificationSettingsPresenter new];
-//        [self.navigationController pushViewController:push animated:YES];
-//    }
+    else if (indexPath.row == kPushCellId) {
+        LWNotificationSettingsPresenter *push = [LWNotificationSettingsPresenter new];
+        [self.navigationController pushViewController:push animated:YES];
+    }
     else if (indexPath.row == kAssetCellId && baseAsset) {
         LWAssetsTablePresenter *assets = [LWAssetsTablePresenter new];
         assets.baseAssetId = baseAsset.identity;
@@ -255,11 +255,11 @@ static NSString *const SettingsIdentifiers[kNumberOfRows] = {
         radioCell.titleLabel.text = Localize(@"settings.cell.pin.title");
         [radioCell setSwitcherOn:[LWCache instance].shouldSignOrder];
     }
-//    else if (indexPath.row == kPushCellId) {
-//        LWSettingsAssetTableViewCell *assetCell = (LWSettingsAssetTableViewCell *)cell;
-//        assetCell.titleLabel.text = Localize(@"settings.cell.push.title");
-//        assetCell.assetLabel.text = @"";
-//    }
+    else if (indexPath.row == kPushCellId) {
+        LWSettingsAssetTableViewCell *assetCell = (LWSettingsAssetTableViewCell *)cell;
+        assetCell.titleLabel.text = Localize(@"settings.cell.push.title");
+        assetCell.assetLabel.text = @"";
+    }
     else if (indexPath.row == kAssetCellId) {
         LWSettingsAssetTableViewCell *assetCell = (LWSettingsAssetTableViewCell *)cell;
         assetCell.titleLabel.text = Localize(@"settings.cell.asset.title");

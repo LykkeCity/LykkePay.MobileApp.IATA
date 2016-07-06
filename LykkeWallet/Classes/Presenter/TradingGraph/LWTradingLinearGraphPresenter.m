@@ -387,10 +387,10 @@ static int const kNumberOfRows = 4;
     {
         changeString=[changeString stringByAppendingString:@"+"];
     }
-    else
+    else if(absChange<0)
         changeString=[changeString stringByAppendingString:@"-"];
     
-    NSString *changeFormatted=[LWUtils formatVolumeString:[NSString stringWithFormat:@"%.10f", fabs(absChange)] currencySign:@"" accuracy:self.assetPair.accuracy.intValue removeExtraZeroes:YES];
+    NSString *changeFormatted=[LWUtils formatVolumeNumber:@(fabs(absChange)) currencySign:@"" accuracy:self.assetPair.accuracy.intValue removeExtraZeroes:YES];
     changeString=[changeString stringByAppendingFormat:@"%@ (", changeFormatted];
     if(absChange>0)
     {
@@ -401,7 +401,7 @@ static int const kNumberOfRows = 4;
     
     
     changeLabel.text=changeString;
-    if(graphData.percentChange.floatValue>0)
+    if(graphData.percentChange.floatValue>=0)
     {
         changeLabel.textColor=GRAPH_GREEN_COLOR;
         fixedPriceOnGraphLabel.textColor=GRAPH_GREEN_COLOR;
@@ -411,9 +411,12 @@ static int const kNumberOfRows = 4;
         changeLabel.textColor=GRAPH_RED_COLOR;
         fixedPriceOnGraphLabel.textColor=GRAPH_RED_COLOR;
     }
-    lastPriceLabel.text=[NSString stringWithFormat:@"%.6f", [graphData.graphValues.lastObject floatValue]];
+    
+    lastPriceLabel.text=[LWUtils stringFromNumber:graphData.lastPrice];
+    
     fixedPriceOnGraphLabel.text=lastPriceLabel.text;
     NSDateFormatter *formatter=[[NSDateFormatter alloc] init];
+    formatter.timeZone=[NSTimeZone defaultTimeZone];
     [formatter setDateFormat:@"HH:mm a"];
     
     fixingTimeLabel.text=[formatter stringFromDate:graphData.fixingTime];

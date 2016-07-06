@@ -54,6 +54,11 @@
 
 @property (weak, nonatomic) IBOutlet LWExchangeBaseAssetsView *baseAssetsView;
 
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *headerTopLineHeight;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *headerBottomLineHeight;
+
+
 @end
 
 
@@ -101,6 +106,9 @@ static NSString *const AssetIcons[kNumberOfSections] = {
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.headerTopLineHeight.constant=0.5f;
+    self.headerBottomLineHeight.constant=0.5f;
+    
     isLoadingRatesNow=NO;
 
 //    self.title = Localize(@"tab.trading");
@@ -127,6 +135,11 @@ static NSString *const AssetIcons[kNumberOfSections] = {
     }
     
     self.baseAssetsView.delegate=self;
+    
+    UIColor *headersColor=[UIColor colorWithRed:140.0/255 green:148.0/255 blue:160.0/255 alpha:1];
+    self.assetHeaderNameLabel.textColor=headersColor;
+    self.assetHeaderPriceLabel.textColor=headersColor;
+    self.assetHeaderChangeLabel.textColor=headersColor;
     
 //    NSNumber *nnn=[LWCache instance].refreshTimer;
     
@@ -274,8 +287,6 @@ static NSString *const AssetIcons[kNumberOfSections] = {
                     LWExchangeFormPresenter *form = [LWExchangeFormPresenter new];
                     form.assetPair = model;
                     form.assetRate = rate;
-//                    [self.navigationController pushViewController:form animated:YES];
-                    
                     
                     if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
                         [self.navigationController pushViewController:form animated:YES];
@@ -388,11 +399,13 @@ static NSString *const AssetIcons[kNumberOfSections] = {
 
     [self.tableView reloadData];
 
-//    NSInteger repeatSeconds = [LWCache instance].refreshTimer.integerValue / 1000;
-//    
-//    repeatSeconds=1000;//Testing
-//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(repeatSeconds * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//    });
+    NSInteger repeatSeconds = [LWCache instance].refreshTimer.integerValue / 1000;
+    
+    repeatSeconds=1000;//Testing
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(repeatSeconds * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    
+    [self loadRates];
+   });
 }
 
 -(void) authManager:(LWAuthManager *)manager didGetLastBaseAssets:(LWPacketLastBaseAssets *)lastAssets

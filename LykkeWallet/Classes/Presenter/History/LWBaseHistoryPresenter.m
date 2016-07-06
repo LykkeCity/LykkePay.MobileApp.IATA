@@ -229,7 +229,7 @@
         
         NSString *base = [LWAssetModel
                           assetByIdentity:trade.asset
-                          fromList:[LWCache instance].baseAssets];
+                          fromList:[LWCache instance].allAssets];
         
         NSString *type = (volume.doubleValue >= 0
                           ? Localize(@"history.market.buy")
@@ -244,7 +244,7 @@
         
         NSString *base = [LWAssetModel
                           assetByIdentity:cash.asset
-                          fromList:[LWCache instance].baseAssets];
+                          fromList:[LWCache instance].allAssets];
         
         NSString *type = (volume.doubleValue >= 0
                           ? Localize(@"history.cash.in")

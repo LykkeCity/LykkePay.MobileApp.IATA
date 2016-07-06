@@ -9,6 +9,7 @@
 #import "LWPacketAuthentication.h"
 #import "LWPersonalData.h"
 #import "LWKeychainManager.h"
+#import "AppDelegate.h"
 
 
 @implementation LWPacketAuthentication
@@ -35,6 +36,12 @@
     
     
     [[LWKeychainManager instance] savePersonalData:_personalData];
+    if(response[@"Result"][@"NotificationsId"])
+    {
+        AppDelegate *tmptmp=[UIApplication sharedApplication].delegate;
+        [tmptmp registerForNotificationsInAzureWithTag:response[@"Result"][@"NotificationsId"]];
+    }
+    
 }
 
 - (NSString *)urlRelative {

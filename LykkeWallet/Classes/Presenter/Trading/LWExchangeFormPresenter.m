@@ -13,6 +13,7 @@
 #import "LWAssetDescriptionModel.h"
 #import "LWAssetInfoTextTableViewCell.h"
 #import "LWAssetInfoIconTableViewCell.h"
+#import "LWAssetURLTableViewCell.h"
 #import "LWAssetModel.h"
 #import "LWValidator.h"
 #import "LWConstants.h"
@@ -57,7 +58,7 @@ static NSString *const DescriptionIdentifiers[kDescriptionRows] = {
     @"LWAssetInfoTextTableViewCellIdentifier",
     @"LWAssetInfoTextTableViewCellIdentifier",
     @"LWAssetInfoTextTableViewCellIdentifier",
-    @"LWAssetInfoTextTableViewCellIdentifier"
+    @"LWAssetURLTableViewCellIdentifier"
 };
 
 
@@ -72,6 +73,10 @@ static NSString *const DescriptionIdentifiers[kDescriptionRows] = {
     
     [self registerCellWithIdentifier:@"LWAssetInfoIconTableViewCellIdentifier"
                                 name:@"LWAssetInfoIconTableViewCell"];
+    
+    [self registerCellWithIdentifier:@"LWAssetURLTableViewCellIdentifier"
+                                name:@"LWAssetURLTableViewCell"];
+
     
 }
 
@@ -104,10 +109,6 @@ static NSString *const DescriptionIdentifiers[kDescriptionRows] = {
     }
 }
 
--(void) descriptionURLTapped
-{
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:assetDetails.assetDescriptionURL]];
-}
 
 
 #pragma mark - UITableViewDataSource
@@ -134,6 +135,7 @@ static NSString *const DescriptionIdentifiers[kDescriptionRows] = {
     };
     
     NSString *identifier = DescriptionIdentifiers[indexPath.row];
+    
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     // show popularity row
     if (indexPath.row == 1) {
@@ -142,20 +144,19 @@ static NSString *const DescriptionIdentifiers[kDescriptionRows] = {
         NSString *imageName = [NSString stringWithFormat:@"AssetPopularity%@", assetDetails.popIndex];
         iconCell.popularityImageView.image = [UIImage imageNamed:imageName];
     }
+    else if(indexPath.row==6)
+    {
+        LWAssetURLTableViewCell *urlCell = (LWAssetURLTableViewCell *)cell;
+        urlCell.titleLabel.text = DescriptionNames[indexPath.row];
+        [urlCell.urlButton setTitle:[self description:assetDetails forRow:indexPath.row] forState:UIControlStateNormal];
+
+    }
     // show description rows
     else {
         LWAssetInfoTextTableViewCell *textCell = (LWAssetInfoTextTableViewCell *)cell;
         textCell.titleLabel.text = DescriptionNames[indexPath.row];
         
         textCell.descriptionLabel.text = [self description:assetDetails forRow:indexPath.row];
-        if(indexPath.row==6 && textCell.descriptionLabel.userInteractionEnabled==NO)
-        {
-            textCell.descriptionLabel.textColor=[UIColor blueColor];
-            UITapGestureRecognizer *gesture=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(descriptionURLTapped)];
-            [textCell.descriptionLabel addGestureRecognizer:gesture];
-            textCell.descriptionLabel.userInteractionEnabled=YES;
-        }
-//        textCell.titleLabel.textColor=[UIColor yellowColor];
     }
 
     return cell;

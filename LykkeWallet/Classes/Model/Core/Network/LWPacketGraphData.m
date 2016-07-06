@@ -28,6 +28,7 @@
     self.fixingTime=[self dateFromString:response[@"Result"][@"FixingTime"]];
     
     self.percentChange=[NSNumber numberWithDouble:[response[@"Result"][@"Rate"][@"PChange"] doubleValue]];
+    self.lastPrice=[NSNumber numberWithFloat:[response[@"Result"][@"LastPrice"] floatValue]];
     
     if(flagReverted)
     {
@@ -72,6 +73,7 @@
     string=[string stringByReplacingOccurrencesOfString:@"T" withString:@" "];
     string=[string substringWithRange:NSMakeRange(0, 19)];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.timeZone=[NSTimeZone timeZoneWithName:@"UTC"];
     [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
 //    [dateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"UTC"]];
     NSDate *date = [dateFormatter dateFromString:string];

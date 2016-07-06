@@ -90,7 +90,7 @@ static NSString *const kNavigationBarTintColor  = @"AB00FF";
 static NSString *const kNavigationBarGrayColor  = kMainGrayElementsColor;
 static NSString *const kNavigationBarWhiteColor = kMainWhiteElementsColor;
 
-static float     const kNavigationBarFontSize   = 17.0;
+static float     const kNavigationBarFontSize   = 16.0;
 static NSString *const kNavigationBarFontColor  = kMainDarkElementsColor;
 static NSString *const kNavigationBarFontName   = kFontSemibold;
 

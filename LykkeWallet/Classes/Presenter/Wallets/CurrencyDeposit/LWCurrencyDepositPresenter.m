@@ -204,6 +204,7 @@
     CGRect rrr=self.infoView.bounds;
     infoLabel.center=CGPointMake(self.view.bounds.size.width/2, self.infoView.bounds.size.height/2-20);
     buttonsContainer.center=CGPointMake(self.view.bounds.size.width/2, self.infoView.bounds.size.height/2+infoLabel.bounds.size.height/2+10);
+    self.emailButton.center=CGPointMake(_scrollView.bounds.size.width/2, _scrollView.contentSize.height-self.emailButton.bounds.size.height/2-20);
 //    self.emailButton.center=CGPointMake(self.view.bounds.size.width/2, self.emailButton.center.y);
 }
 
@@ -518,8 +519,11 @@
     contentInset.bottom = self.keyboardView.bounds.size.height-(self.view.bounds.size.height-self.scrollView.bounds.size.height);
     [UIView animateWithDuration:0.5 animations:^{
     self.scrollView.contentInset = contentInset;
-    self.scrollView.contentOffset=CGPointMake(0, self.keyboardView.bounds.size.height-(self.view.bounds.size.height-self.scrollView.bounds.size.height));
-//    self.scrollView.contentOffset=CGPointMake(0, _scrollView.contentSize.height-(_scrollView.bounds.size.height-contentInset.bottom));
+    
+        CGFloat offset=self.scrollView.contentSize.height-(self.scrollView.bounds.size.height-self.keyboardView.bounds.size.height);
+        if(offset>0)
+            self.scrollView.contentOffset=CGPointMake(0, offset);
+        
     }];
 }
 
@@ -534,12 +538,14 @@
         self.scrollView.contentInset = contentInset;
     }];
     
+    
     amountTextField.text=[LWUtils formatVolumeString:amountTextField.text currencySign:@"" accuracy:2 removeExtraZeroes:YES];
     [self positionCurrencySymbol];
 }
 
 - (void)mathKeyboardView:(LWMathKeyboardView *) view volumeStringChangedTo:(NSString *) string
 {
+
     amountTextField.text=[LWUtils formatVolumeString:string currencySign:@"" accuracy:2 removeExtraZeroes:NO];
     [self positionCurrencySymbol];
     

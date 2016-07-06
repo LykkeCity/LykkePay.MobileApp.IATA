@@ -7,6 +7,7 @@
 //
 
 #import "LWAssetPairModel.h"
+#import "LWUtils.h"
 
 @interface LWAssetPairModel()
 {
@@ -28,7 +29,7 @@
         
         _identity = [json objectForKey:@"Id"];
         _group    = [json objectForKey:@"Group"];
-        _name     = [json objectForKey:@"Name"];
+//        _name     = [json objectForKey:@"Name"];
         _accuracy = [json objectForKey:@"Accuracy"];
         _baseAssetId    = [json objectForKey:@"BaseAssetId"];
         _quotingAssetId = [json objectForKey:@"QuotingAssetId"];
@@ -36,8 +37,11 @@
         _normalAccuracy=_accuracy;
         _invertedAccuracy = [json objectForKey:@"InvertedAccuracy"];
 
+        _name=[NSString stringWithFormat:@"%@/%@", [LWUtils baseAssetTitle:self], [LWUtils quotedAssetTitle:self]];
         
         self.inverted=[[json objectForKey:@"Inverted"] boolValue];
+
+        
     }
     return self;
 }

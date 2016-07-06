@@ -41,6 +41,11 @@
         _bid=@(1.0/_bid.floatValue);
     if(_ask.floatValue!=0)
         _ask=@(1.0/_ask.floatValue);
+    
+    NSNumber *tmp=_ask;
+    _ask=_bid;
+    _bid=tmp;
+    
     NSMutableArray *newLastChanges=[[NSMutableArray alloc] init];
     for(NSNumber *n in _lastChanges)
     {

@@ -179,19 +179,6 @@ static int const kBlockchainRow = 4;
 
 - (NSString *)dataByCellRow:(NSInteger)row {
     
-//    NSString *volumeString;
-//    NSString *totalCostString;
-//    if([self.purchase.orderType isEqualToString:@"Buy"])
-//    {
-//        volumeString=[LWUtils formatVolumeString:[NSString stringWithFormat:@"%.20f", self.purchase.volume.floatValue] currencySign:@"" accuracy:[self accuracyForQuotingAsset].intValue removeExtraZeroes:NO];
-//        totalCostString=[LWUtils formatVolumeString:[NSString stringWithFormat:@"%.20f", self.purchase.totalCost.floatValue] currencySign:@"" accuracy:[self accuracyForBaseAsset].intValue removeExtraZeroes:NO];
-//
-//    }
-//    else
-//    {
-//        volumeString=[LWUtils formatVolumeString:[NSString stringWithFormat:@"%.20f", self.purchase.volume.floatValue] currencySign:@"" accuracy:[self accuracyForBaseAsset].intValue removeExtraZeroes:NO];
-//        totalCostString=[LWUtils formatVolumeString:[NSString stringWithFormat:@"%.20f", self.purchase.totalCost.floatValue] currencySign:@"" accuracy:[self accuracyForQuotingAsset].intValue removeExtraZeroes:NO];
-//    }
     
     NSString *assetName=self.assetPair.name;
     NSArray *arr=[assetName componentsSeparatedByString:@"/"];
@@ -215,30 +202,14 @@ static int const kBlockchainRow = 4;
     
     NSString *const values[kNumberOfRows] = {
         assetName,
-//        [LWMath makeStringByNumber:self.purchase.volume withPrecision:self.purchase.accuracy.integerValue],
-        
-//        [LWUtils formatVolumeString:[NSString stringWithFormat:@"%f", self.purchase.volume.floatValue] currencySign:@"" accuracy:10 removeExtraZeroes:YES],
-//        [LWUtils formatVolumeString:[NSString stringWithFormat:@"%f", self.purchase.price.floatValue] currencySign:@"" accuracy:10 removeExtraZeroes:YES],
-//        [LWUtils formatVolumeString:[NSString stringWithFormat:@"%f", self.purchase.totalCost.floatValue] currencySign:@"" accuracy:10 removeExtraZeroes:YES],
         
         
         [[LWUtils stringFromFloat:self.purchase.volume.floatValue] stringByAppendingFormat:@" %@", arr[0]],
         [LWUtils stringFromFloat:self.purchase.price.floatValue],
         [[LWUtils stringFromFloat:self.purchase.totalCost.floatValue] stringByAppendingFormat:@" %@", arr[1]],
-//        [NSString stringWithFormat:@"%f", self.purchase.volume.floatValue],
-////        self.purchase.volume.stringValue,
-//        [NSString stringWithFormat:@"%f", self.purchase.price.floatValue],
-////        self.purchase.price.stringValue,
-////        self.purchase.totalCost.stringValue,
-//        [NSString stringWithFormat:@"%f", self.purchase.totalCost.floatValue],
 
-//        [LWMath makeStringByNumber:self.purchase.price withPrecision:self.purchase.accuracy.integerValue],
-//        [LWUtils formatVolumeString:[NSString stringWithFormat:@"%.20f", self.purchase.price.floatValue] currencySign:@"" accuracy:self.purchase.accuracy.intValue removeExtraZeroes:NO],
-        //[LWMath makeStringByNumber:self.purchase.commission withPrecision:2],
-//        [LWMath makeStringByNumber:self.purchase.totalCost withPrecision:self.purchase.accuracy.integerValue],
-//        totalCostString,
         self.purchase.blockchainSettled ? self.purchase.blockchainId : Localize(@"exchange.assets.result.blockchain.progress")
-        //[LWMath makeStringByNumber:self.purchase.position withPrecision:0]
+        
     };
     
     return values[row];
@@ -248,7 +219,7 @@ static int const kBlockchainRow = 4;
 
 -(NSNumber *) accuracyForBaseAsset
 {
-    NSArray *assets=[LWCache instance].baseAssets;
+    NSArray *assets=[LWCache instance].allAssets;
     NSString *identity=[LWCache instance].baseAssetId;
     NSNumber *accuracy=@(0);
     for(LWAssetModel *m in assets)
@@ -265,7 +236,7 @@ static int const kBlockchainRow = 4;
 
 -(NSNumber *) accuracyForQuotingAsset
 {
-    NSArray *assets=[LWCache instance].baseAssets;
+    NSArray *assets=[LWCache instance].allAssets;
     NSString *identity=[LWCache instance].baseAssetId;
     if([self.purchase.baseAsset isEqualToString:identity]==NO)
     {

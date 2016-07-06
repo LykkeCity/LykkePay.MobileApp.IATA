@@ -34,7 +34,7 @@
     
     NSString *assetName = [LWAssetModel
                            assetByIdentity:self.assetId
-                           fromList:[LWCache instance].baseAssets];
+                           fromList:[LWCache instance].allAssets];
     
     NSString *title = [NSString stringWithFormat:Localize(@"wallets.funds.title"), assetName];
     self.title = title;

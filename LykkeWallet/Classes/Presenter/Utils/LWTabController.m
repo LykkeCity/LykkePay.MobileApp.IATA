@@ -12,7 +12,8 @@
 
 
 @interface LWTabController ()<LWAuthManagerDelegate> {
-    
+ 
+    UIView *lineView;
 }
 
 @end
@@ -25,6 +26,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    lineView=[[UIView alloc] initWithFrame:CGRectMake(0, 0, 1024, 0.5)];
+    lineView.backgroundColor=[UIColor colorWithRed:211.0/255 green:214.0/255 blue:219.0/255 alpha:1];
+    [self.tabBar addSubview:lineView];
     
     [LWAuthManager instance].delegate = self;
 }
@@ -36,6 +40,7 @@
     [[LWAuthManager instance] requestDictionaries];
     [[LWAuthManager instance] requestAllAssets];
     [[LWAuthManager instance] requestBaseAssets];
+    
     
     [self.navigationController setNavigationBarHidden:NO animated:NO];
 }

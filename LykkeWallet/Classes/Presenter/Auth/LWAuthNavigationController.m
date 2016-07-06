@@ -195,6 +195,11 @@
 - (void)navigateWithDocumentStatus:(LWDocumentsStatus *)status hideBackButton:(BOOL)hideBackButton {
     LWAuthStep step = [LWAuthSteps getNextDocumentByStatus:status];
 
+    
+    [self navigateToStep:step preparationBlock:nil];//Andrey
+    return;
+    
+    
     if (status.documentTypeRequired) {
         if (step != LWAuthStepRegisterKYCSubmit) {
             [self navigateToStep:step
@@ -287,6 +292,9 @@
                                                          image:selectedImage
                                                  selectedImage:selectedImage];
 #endif
+    
+    
+    result.titlePositionAdjustment = UIOffsetMake(0, -3.0);
 
     return result;
 }
