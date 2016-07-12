@@ -30,6 +30,8 @@
     
     if(response[@"Result"][@"NotificationsId"])
     {
+        [[LWKeychainManager instance] saveNotificationsTag:response[@"Result"][@"NotificationsId"]];
+
         AppDelegate *tmptmp=[UIApplication sharedApplication].delegate;
         [tmptmp registerForNotificationsInAzureWithTag:response[@"Result"][@"NotificationsId"]];
     }

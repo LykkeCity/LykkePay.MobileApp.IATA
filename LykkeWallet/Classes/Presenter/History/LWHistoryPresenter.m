@@ -31,14 +31,14 @@
         self.tabBarController.title = [self.navigationItem.title uppercaseString];
     }
     
-    [self setLoading:YES];
-    [[LWAuthManager instance] requestTransactions:self.assetId];
 }
 
 -(void) viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
     self.title = Localize(@"tab.history");
+    [self setLoading:YES];
+    [[LWAuthManager instance] requestTransactions:self.assetId];
 
 }
 

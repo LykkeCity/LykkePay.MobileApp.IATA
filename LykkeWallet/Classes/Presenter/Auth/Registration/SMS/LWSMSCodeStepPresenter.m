@@ -39,7 +39,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     keyboardHeight=0;
-    self.title = Localize(@"register.title");
+    
     
     // init email field
     codeTextField = [LWTextField new];
@@ -90,6 +90,7 @@
 -(void) viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    self.title = Localize(@"register.title");
 }
 
 - (void)localize {

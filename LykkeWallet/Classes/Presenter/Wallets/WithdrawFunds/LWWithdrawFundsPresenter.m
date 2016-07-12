@@ -16,6 +16,9 @@
 #import "TKButton.h"
 #import "LWPacketBitcoinAddressValidation.h"
 #import "ZBarReaderViewController.h"
+#import "LWProgressView.h"
+#import "LWCameraMessageView.h"
+#import "LWCameraMessageView2.h"
 
 #import "UIViewController+Navigation.h"
 #import "UIViewController+Loading.h"
@@ -24,6 +27,9 @@
 
 @interface LWWithdrawFundsPresenter () <LWTextFieldDelegate, AMScanViewControllerDelegate, ZBarReaderDelegate> {
     LWTextField *bitcoinTextField;
+    
+    LWProgressView *progressValidation;
+    int validationRequests;
 }
 
 
@@ -50,8 +56,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = Localize(@"withdraw.funds.title");
     [self setBackButton];
+    validationRequests=0;
 
     
     // init email field
@@ -78,6 +84,12 @@
     UITapGestureRecognizer* gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(scanClicked:)];
     [self.qrCodeLabel setUserInteractionEnabled:YES];
     [self.qrCodeLabel addGestureRecognizer:gesture];
+    
+    progressValidation=[[LWProgressView alloc] init];
+    [self.proceedButton addSubview:progressValidation];
+    progressValidation.center=CGPointMake(self.proceedButton.bounds.size.width-40, self.proceedButton.bounds.size.height/2);
+    
+
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -92,6 +104,10 @@
     if (bitcoinTextField) {
         [bitcoinTextField becomeFirstResponder];
     }
+    self.title = Localize(@"withdraw.funds.title");
+    
+    
+
 }
 
 - (void)localize {
@@ -174,9 +190,14 @@
     };
     
     void (^messageBlock)(void)=^{
+        [self.view endEditing:YES];
+        LWCameraMessageView *view=[[NSBundle mainBundle] loadNibNamed:@"LWCameraMessageView" owner:self options:nil][0];
+        UIWindow *window=[[UIApplication sharedApplication] keyWindow];
+        view.center=CGPointMake(window.bounds.size.width/2, window.bounds.size.height/2);
         
-        UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"ATTENTION" message:@"You have to grant access to your device camera for scanning QR-codes. Please do it in your device Settings." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [alert show];
+        [window addSubview:view];
+        
+        [view show];
     };
     
     
@@ -191,12 +212,24 @@
         // restricted, normally won't happen
     } else if(authStatus == AVAuthorizationStatusNotDetermined){
         // not determined?!
-        [AVCaptureDevice requestAccessForMediaType:AVMediaTypeVideo completionHandler:^(BOOL granted) {
-            if(granted){
-                block();
-            } else {
-                messageBlock();
-            }
+        [self.view endEditing:YES];
+       LWCameraMessageView2 *view=[[NSBundle mainBundle] loadNibNamed:@"LWCameraMessageView2" owner:self options:nil][0];
+        UIWindow *window=[[UIApplication sharedApplication] keyWindow];
+        view.center=CGPointMake(window.bounds.size.width/2, window.bounds.size.height/2);
+        
+        [window addSubview:view];
+        
+        [view showWithCompletion:^(BOOL result){
+            if(result)
+                [AVCaptureDevice requestAccessForMediaType:AVMediaTypeVideo completionHandler:^(BOOL granted) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        if(granted){
+                            block();
+                        } else {
+                            messageBlock();
+                        }
+                    });
+                }];
         }];
     } else {
         // impossible, unknown authorization status
@@ -266,19 +299,21 @@
     NSString *sss=[[bitcoinTextField.text componentsSeparatedByCharactersInSet:[NSCharacterSet alphanumericCharacterSet]] componentsJoinedByString:@""];
     if(sss.length)
         return NO;
-    NSString *firstSymbol=[bitcoinTextField.text substringToIndex:1];
-    NSArray *possibleFirstSymbols=@[@"1", @"3", @"2", @"m", @"n"];
-    BOOL flag=false;
-    for(NSString *s in possibleFirstSymbols)
-    {
-        if([s isEqualToString:firstSymbol])
-        {
-            flag=true;
-            break;
-        }
-    }
+//    NSString *firstSymbol=[bitcoinTextField.text substringToIndex:1];
+//    NSArray *possibleFirstSymbols=@[@"1", @"3", @"2", @"m", @"n"];
+//    BOOL flag=false;
+//    for(NSString *s in possibleFirstSymbols)
+//    {
+//        if([s isEqualToString:firstSymbol])
+//        {
+//            flag=true;
+//            break;
+//        }
+//    }
+//
+//    return flag;
     
-    return flag;
+    return YES;
 }
 
 - (void)updatePasteButtonStatus {
@@ -291,6 +326,9 @@
     }
     else
     {
+        validationRequests++;
+        if(validationRequests==1)
+            [progressValidation startAnimating];
         [[LWAuthManager instance] validateBitcoinAddress:bitcoinTextField.text];
     }
         
@@ -306,6 +344,10 @@
     BOOL isValid=bitconAddress.isValid && [self canProceed] && [bitconAddress.bitcoinAddress isEqualToString:bitcoinTextField.text];
     [LWValidator setButton:self.proceedButton enabled:isValid];
     [self hideShowPasteButton:isValid];
+    
+    validationRequests--;
+    if(validationRequests==0)
+        [progressValidation stopAnimating];
     
 }
 

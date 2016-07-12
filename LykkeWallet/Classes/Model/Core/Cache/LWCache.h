@@ -9,6 +9,12 @@
 #import <Foundation/Foundation.h>
 #import "Macro.h"
 
+typedef NS_ENUM(NSUInteger, PushNotificationsStatus) {
+    PushNotificationsStatusUnknown=0,
+    PushNotificationsStatusDisabled=1,
+    PushNotificationsStatusEnabled=2
+    
+};
 
 @interface LWCache : NSObject {
     
@@ -18,6 +24,8 @@ SINGLETON_DECLARE
 
 
 #pragma mark - Properties
+
+@property PushNotificationsStatus pushNotificationsStatus;
 
 @property (copy, nonatomic) NSNumber *refreshTimer;
 @property (copy, nonatomic) NSString *baseAssetId;
@@ -31,6 +39,10 @@ SINGLETON_DECLARE
 @property (copy, nonatomic) NSString *coloredMultiSig;
 
 @property (copy, nonatomic) NSString *refundAddress;
+@property BOOL refundSendAutomatically;
+@property int refundDaysValidAfter;
+
+@property (copy, nonatomic) NSString *serverAPIVersion;
 
 // Array of LWAssetsDictionaryItem items
 @property (copy, nonatomic) NSArray  *assetsDict;

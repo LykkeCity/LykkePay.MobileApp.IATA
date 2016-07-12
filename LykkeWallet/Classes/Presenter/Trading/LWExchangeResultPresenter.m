@@ -204,9 +204,9 @@ static int const kBlockchainRow = 4;
         assetName,
         
         
-        [[LWUtils stringFromFloat:self.purchase.volume.floatValue] stringByAppendingFormat:@" %@", arr[0]],
-        [LWUtils stringFromFloat:self.purchase.price.floatValue],
-        [[LWUtils stringFromFloat:self.purchase.totalCost.floatValue] stringByAppendingFormat:@" %@", arr[1]],
+        [[LWUtils stringFromDouble:self.purchase.volume.doubleValue] stringByAppendingFormat:@" %@", arr[0]],
+        [LWUtils stringFromDouble:self.purchase.price.doubleValue],
+        [[LWUtils stringFromDouble:self.purchase.totalCost.doubleValue] stringByAppendingFormat:@" %@", arr[1]],
 
         self.purchase.blockchainSettled ? self.purchase.blockchainId : Localize(@"exchange.assets.result.blockchain.progress")
         

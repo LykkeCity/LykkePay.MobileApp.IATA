@@ -223,19 +223,21 @@
     NSString *sss=[[string componentsSeparatedByCharactersInSet:[NSCharacterSet alphanumericCharacterSet]] componentsJoinedByString:@""];
     if(sss.length)
         return NO;
-    NSString *firstSymbol=[string substringToIndex:1];
-    NSArray *possibleFirstSymbols=@[@"1", @"3", @"2", @"m", @"n"];
-    BOOL flag=false;
-    for(NSString *s in possibleFirstSymbols)
-    {
-        if([s isEqualToString:firstSymbol])
-        {
-            flag=true;
-            break;
-        }
-    }
+//    NSString *firstSymbol=[string substringToIndex:1];
+//    NSArray *possibleFirstSymbols=@[@"1", @"3", @"2", @"m", @"n"];
+//    BOOL flag=false;
+//    for(NSString *s in possibleFirstSymbols)
+//    {
+//        if([s isEqualToString:firstSymbol])
+//        {
+//            flag=true;
+//            break;
+//        }
+//    }
+//    
+//    return flag;
     
-    return flag;
+    return YES;
 }
 
 

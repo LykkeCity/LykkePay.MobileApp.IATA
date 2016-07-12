@@ -7,6 +7,7 @@
 //
 
 #import "LWRefundAfterView.h"
+#import "LWCache.h"
 
 @interface LWRefundAfterView()
 {
@@ -36,6 +37,10 @@
     [self addSubview:dayLabel];
     
     sendSwitch=[[UISwitch alloc] init];
+    [sendSwitch addTarget:self action:@selector(switchChanged) forControlEvents:UIControlEventValueChanged];
+    sendSwitch.tintColor=[UIColor colorWithRed:199.0/255 green:203.0/255 blue:209.0/255 alpha:1];
+    sendSwitch.backgroundColor=[UIColor colorWithRed:199.0/255 green:203.0/255 blue:209.0/255 alpha:1];
+    sendSwitch.layer.cornerRadius = 16.0;
     [self addSubview:sendSwitch];
     
     sendLabel=[self createLabel];
@@ -51,12 +56,19 @@
     return self;
 }
 
+-(void) switchChanged
+{
+    [LWCache instance].refundSendAutomatically=sendSwitch.on;
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"SaveRefundSettings" object:nil];
+
+}
+
 -(void) sliderChanged
 {
-    int day=slider.value*29+1;
-    if(day==1)
-        dayLabel.text=[NSString stringWithFormat:@"%d DAY", day];
-    else
+    int day=[self daysValidAfter];
+//    if(day==1)
+//        dayLabel.text=[NSString stringWithFormat:@"%d DAY", day];
+//    else
         dayLabel.text=[NSString stringWithFormat:@"%d DAYS", day];
     
     [dayLabel sizeToFit];
@@ -68,6 +80,7 @@
 
 -(void) sliderFinishedChanging
 {
+    [LWCache instance].refundDaysValidAfter=self.daysValidAfter;
     [[NSNotificationCenter defaultCenter] postNotificationName:@"SaveRefundSettings" object:nil];
 }
 
@@ -83,12 +96,12 @@
 
 -(void) setDaysValidAfter:(int)daysValidAfter
 {
-    slider.value=daysValidAfter/30;
+    slider.value=(float)(daysValidAfter-14)/(60-14);
     [self sliderChanged];
 }
 -(int) daysValidAfter
 {
-    int day=slider.value*29+1;
+    int day=slider.value*(60-14)+14;
     return day;
 }
 

@@ -40,6 +40,8 @@
     [[LWAuthManager instance] requestDictionaries];
     [[LWAuthManager instance] requestAllAssets];
     [[LWAuthManager instance] requestBaseAssets];
+    [[LWAuthManager instance] requestGetPushSettings];
+    [[LWAuthManager instance] requestGetRefundAddress];
     
     
     [self.navigationController setNavigationBarHidden:NO animated:NO];

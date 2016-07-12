@@ -35,14 +35,14 @@
         }
         _cashInOut = cash;
         
-#ifdef PROJECT_IATA
+
         // transfers
         NSMutableArray *transfers = [NSMutableArray new];
         for (NSDictionary *item in json[@"Transfers"]) {
             [transfers addObject:[[LWTransactionTransferModel alloc] initWithJSON:item]];
         }
         _transfers = transfers;
-#endif
+
     }
     return self;
 }

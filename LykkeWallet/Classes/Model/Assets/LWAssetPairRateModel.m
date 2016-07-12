@@ -25,6 +25,9 @@
         _lastChanges = [json objectForKey:@"ChngGrph"];
         _inverted    = [[json objectForKey:@"Inverted"] boolValue];
         
+//        _ask=[NSNumber numberWithDouble:0.05085];//Testing
+//        _bid=[NSNumber numberWithDouble:0.05085];
+
         if(_inverted)
         {
             [self invert];
@@ -37,14 +40,15 @@
 -(void) invert
 {
     _inverted=!_inverted;
-    if(_bid.floatValue!=0)
-        _bid=@(1.0/_bid.floatValue);
-    if(_ask.floatValue!=0)
-        _ask=@(1.0/_ask.floatValue);
+    if(_bid.doubleValue!=0)
+        _bid=@((double)1.0/_bid.doubleValue);
+    if(_ask.doubleValue!=0)
+        _ask=@((double)1.0/_ask.doubleValue);
     
     NSNumber *tmp=_ask;
     _ask=_bid;
     _bid=tmp;
+    
     
     NSMutableArray *newLastChanges=[[NSMutableArray alloc] init];
     for(NSNumber *n in _lastChanges)

@@ -40,7 +40,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = Localize(@"title.authentication");
     
     // init fields
     emailField = [LWTextField createTextFieldForContainer:self.emailContainer
@@ -73,6 +72,8 @@
 {
     [super viewDidAppear:animated];
     [passwordField becomeFirstResponder];
+    self.title = Localize(@"title.authentication");
+
 
 }
 

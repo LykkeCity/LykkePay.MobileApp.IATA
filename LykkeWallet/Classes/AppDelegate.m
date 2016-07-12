@@ -17,6 +17,7 @@
 #import "UIView+Toast.h"
 #import "LWKeychainManager.h"
 #import <WindowsAzureMessaging/WindowsAzureMessaging.h>
+#import "LWPushNotificationView.h"
 
 
 
@@ -99,6 +100,16 @@
 //     Register for remote notifications.
     [[UIApplication sharedApplication] registerForRemoteNotifications];
 
+    NSDictionary *apnsBody = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
+    if (apnsBody) {
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [LWPushNotificationView showPushNotification:apnsBody clickImmediately:YES];
+        });
+    }
+    
+    
+//    [LWPushNotificationView showPushNotification:@{@"aps":@{@"alert":@"Test alert", @"type":@(1)}} clickImmediately:NO];//Testing
     
     
     return YES;
@@ -107,12 +118,27 @@
 // Handle remote notification registration.
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *) deviceToken {
     
+//    NSData *data=deviceToken;
+//    NSUInteger capacity = data.length * 2;
+//    NSMutableString *sbuf = [NSMutableString stringWithCapacity:capacity];
+//    const unsigned char *buf = data.bytes;
+//    NSInteger i;
+//    for (i=0; i<data.length; ++i) {
+//        [sbuf appendFormat:@"%02X", (NSUInteger)buf[i]];
+//    }
+//    
+//    UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"Token" message:sbuf delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+//    [alert show];
+
     notificationToken=deviceToken;
+    
+    if([LWKeychainManager instance].notificationsTag)
+        [self registerForNotificationsInAzureWithTag:[LWKeychainManager instance].notificationsTag];
  }
 
 -(void) registerForNotificationsInAzureWithTag:(NSString *) tag
 {
-    NSString *HUBLISTENACCESS=@"Endpoint=sb://lykkex-dev.servicebus.windows.net/;SharedAccessKeyName=DefaultListenSharedAccessSignature;SharedAccessKey=QOaEVg3OXq9e/l4p7MS1pOAVmtX0ZjgGIvZ6OGiGnlg=";
+    NSString *HUBLISTENACCESS=@"Endpoint=sb://lykke-dev.servicebus.windows.net/;SharedAccessKeyName=DefaultListenSharedAccessSignature;SharedAccessKey=KLvwXsxLPxY2dCgXChIp/QD5/Kg00+tgruhFom59098=";
     NSString *HUBNAME=@"lykke-notifications-dev";
     
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -123,10 +149,12 @@
     [hub registerNativeWithDeviceToken:notificationToken tags:[NSSet setWithObject:tag] completion:^(NSError* error) {
         if (error != nil) {
             NSLog(@"Error registering for notifications: %@", error);
+            UIAlertView *alert=[[UIAlertView alloc] initWithTitle:nil message:@"Error registering for notifications" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+            [alert show];
+
         }
         else {
-            UIAlertView *alert=[[UIAlertView alloc] initWithTitle:nil message:@"Registered for remote notifications" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
-            [alert show];
+            NSLog(@"Registered for notifications");
         }
     }];
 });
@@ -135,8 +163,29 @@
 - (void)application:(UIApplication *)application didReceiveRemoteNotification: (NSDictionary *)userInfo {
     NSLog(@"%@", userInfo);
     
-    UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"Notification" message:[[userInfo objectForKey:@"aps"] valueForKey:@"alert"] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
-    [alert show];
+//    public enum NotificationType
+//    {
+//        KycSucceess = 0,
+//        KycRestrictedArea = 1,
+//        KycNeedToFillDocuments = 2,
+//        
+//        TransctionFailed = 3,
+//        TransactionConfirmed = 4
+//    }
+    
+    UIApplicationState state = [application applicationState];
+    // user tapped notification while app was in background
+    if (state == UIApplicationStateInactive || state == UIApplicationStateBackground) {
+        [LWPushNotificationView showPushNotification:userInfo clickImmediately:YES];
+    } else {
+        [LWPushNotificationView showPushNotification:userInfo clickImmediately:NO];
+    }
+    
+    
+    
+    
+//    UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"Notification" message:[[userInfo objectForKey:@"aps"] valueForKey:@"alert"] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+//    [alert show];
 
 }
 
@@ -144,6 +193,9 @@
 - (void)application:(UIApplication *)app
 didFailToRegisterForRemoteNotificationsWithError:(NSError *)err {
     NSLog(@"Error in registration. Error: %@", err);
+    UIAlertView *alert=[[UIAlertView alloc] initWithTitle:nil message:@"Error getting notifications token" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+    [alert show];
+
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {

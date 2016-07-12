@@ -35,6 +35,7 @@
     NSMutableDictionary *pairRates;
     NSTimer *timer;
     BOOL isLoadingRatesNow;
+    NSString *lastBaseAsset;
 }
 
 
@@ -171,7 +172,9 @@ static NSString *const AssetIcons[kNumberOfSections] = {
     timer=[NSTimer timerWithTimeInterval:[LWCache instance].refreshTimer.integerValue/1000 target:self selector:@selector(loadRates) userInfo:nil repeats:YES];
     [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
     
-    if(!self.assetPairs)
+    if([lastBaseAsset isEqualToString:[LWCache instance].baseAssetId]==NO)
+        [pairRates removeAllObjects];
+    if(!self.assetPairs || [lastBaseAsset isEqualToString:[LWCache instance].baseAssetId]==NO)
         [self setLoading:YES];
     [[LWAuthManager instance] requestAssetPairs];
     [[LWAuthManager instance] requestLastBaseAssets];
@@ -372,7 +375,8 @@ static NSString *const AssetIcons[kNumberOfSections] = {
     [self loadRates];
     
     [self.tableView reloadData];
-    [self setLoading:NO];
+    if(pairRates.allKeys.count)
+        [self setLoading:NO];
 }
 
 -(void) authManager:(LWAuthManager *)manager didFailWithReject:(NSDictionary *)reject context:(GDXRESTContext *)context
@@ -394,6 +398,7 @@ static NSString *const AssetIcons[kNumberOfSections] = {
             NSLog(@"Tried to change reverse back");
         }
     }
+    [self setLoading:NO];
     
     isLoadingRatesNow=NO;
 
@@ -401,11 +406,13 @@ static NSString *const AssetIcons[kNumberOfSections] = {
 
     NSInteger repeatSeconds = [LWCache instance].refreshTimer.integerValue / 1000;
     
-    repeatSeconds=1000;//Testing
+//    repeatSeconds=1000;//Testing
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(repeatSeconds * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
     
     [self loadRates];
    });
+    
+    lastBaseAsset=[LWCache instance].baseAssetId;
 }
 
 -(void) authManager:(LWAuthManager *)manager didGetLastBaseAssets:(LWPacketLastBaseAssets *)lastAssets
@@ -427,7 +434,7 @@ static NSString *const AssetIcons[kNumberOfSections] = {
 
 -(void) authManagerDidSetAsset:(LWAuthManager *)manager
 {
-    
+    [pairRates removeAllObjects];
     [[LWAuthManager instance] requestAssetPairs];
     [[LWAuthManager instance] requestLastBaseAssets];
 }

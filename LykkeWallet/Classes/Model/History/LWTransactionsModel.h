@@ -16,8 +16,8 @@
 @property (readonly, nonatomic) NSArray *trades;
 @property (readonly, nonatomic) NSArray *cashInOut;
 
-#ifdef PROJECT_IATA
+
 @property (readonly, nonatomic) NSArray *transfers;
-#endif
+
 
 @end

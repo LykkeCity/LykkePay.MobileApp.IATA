@@ -46,7 +46,7 @@
         }
     }
     
-#ifdef PROJECT_IATA
+
     // mapping transfer operations
     if (model && model.transfers) {
         for (LWTransactionTransferModel *transferOperations in model.transfers) {
@@ -57,7 +57,7 @@
             [result[transferOperations.dateTime] addObject:item];
         }
     }
-#endif
+
     
     return result;
 }

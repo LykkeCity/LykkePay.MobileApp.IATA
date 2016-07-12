@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="10116" systemVersion="15G7a" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -7,9 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LWSettingsPresenter">
             <connections>
-                <outlet property="callSupportButton" destination="osH-5c-l55" id="Hgm-VP-jNH"/>
                 <outlet property="tableView" destination="Jbt-DW-KBa" id="Bko-Bn-7Ae"/>
-                <outlet property="versionLabel" destination="B9e-yZ-d6o" id="xfF-nb-O1k"/>
                 <outlet property="view" destination="R2Q-mB-5oF" id="YEd-ho-sXN"/>
             </connections>
         </placeholder>
@@ -19,39 +17,14 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Jbt-DW-KBa">
-                    <rect key="frame" x="0.0" y="0.0" width="768" height="904"/>
+                    <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </tableView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B9e-yZ-d6o">
-                    <rect key="frame" x="0.0" y="1003" width="768" height="21"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="21" id="I0e-Eh-y65"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="osH-5c-l55">
-                    <rect key="frame" x="284" y="937" width="200" height="45"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="200" id="5hG-Uw-cY8"/>
-                        <constraint firstAttribute="height" constant="45" id="SnN-Xf-9u5"/>
-                    </constraints>
-                    <state key="normal" title="Button"/>
-                    <connections>
-                        <action selector="callSupportPressed:" destination="-2" eventType="touchUpInside" id="6jb-aM-UBH"/>
-                    </connections>
-                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="Jbt-DW-KBa" secondAttribute="bottom" constant="120" id="0e2-yd-ZRT"/>
-                <constraint firstItem="B9e-yZ-d6o" firstAttribute="leading" secondItem="R2Q-mB-5oF" secondAttribute="leading" id="CIi-5e-FdX"/>
-                <constraint firstItem="osH-5c-l55" firstAttribute="centerX" secondItem="R2Q-mB-5oF" secondAttribute="centerX" id="LAW-OS-4Hl"/>
-                <constraint firstAttribute="bottom" secondItem="B9e-yZ-d6o" secondAttribute="bottom" id="TlE-c8-WgX"/>
+                <constraint firstAttribute="bottom" secondItem="Jbt-DW-KBa" secondAttribute="bottom" id="0e2-yd-ZRT"/>
                 <constraint firstItem="Jbt-DW-KBa" firstAttribute="width" secondItem="R2Q-mB-5oF" secondAttribute="width" id="YxQ-zl-Fbv"/>
-                <constraint firstItem="osH-5c-l55" firstAttribute="top" secondItem="Jbt-DW-KBa" secondAttribute="bottom" constant="33" id="cUl-Sg-8ay"/>
-                <constraint firstAttribute="trailing" secondItem="B9e-yZ-d6o" secondAttribute="trailing" id="hKr-qo-pWM"/>
                 <constraint firstItem="Jbt-DW-KBa" firstAttribute="centerX" secondItem="R2Q-mB-5oF" secondAttribute="centerX" id="rwO-aJ-sb7"/>
                 <constraint firstItem="Jbt-DW-KBa" firstAttribute="top" secondItem="R2Q-mB-5oF" secondAttribute="top" id="z1p-Cn-hEU"/>
             </constraints>

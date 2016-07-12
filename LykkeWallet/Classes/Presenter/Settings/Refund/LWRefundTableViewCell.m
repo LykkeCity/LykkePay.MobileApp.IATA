@@ -50,7 +50,7 @@
     self.backgroundColor=[UIColor whiteColor];
     if(type==RefundCellTypeInfo)
     {
-        self.backgroundColor=[UIColor colorWithRed:245.0/255 green:246.0/255 blue:247.0/255 alpha:1];
+        self.contentView.backgroundColor=[UIColor colorWithRed:246.0/255 green:247.0/255 blue:249.0/255 alpha:1];
 
         _titleLabel=[self createLabel];
         _titleLabel.frame=CGRectMake(30, 0, width-30, [self height]);

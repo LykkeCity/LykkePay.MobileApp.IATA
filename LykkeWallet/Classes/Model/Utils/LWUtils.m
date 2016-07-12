@@ -81,13 +81,13 @@
 
 }
 
-+(NSString *) stringFromFloat:(float) number
++(NSString *) stringFromDouble:(double) number
 {
     if(number==(int)number)
     {
         return [NSString stringWithFormat:@"%d", (int)number];
     }
-    NSString *str=[NSString stringWithFormat:@"%f", number];
+    NSString *str=[NSString stringWithFormat:@"%.8lf", number];
     while (str.length>1 )
     {
         if([[str substringFromIndex:str.length-1] isEqualToString:@"0"])
@@ -126,21 +126,58 @@
     return string;
 }
 
++(NSString *) formatFairVolume:(double) volume accuracy:(int) accuracy roundToHigher:(BOOL) flagRoundHigher
+{
+
+    NSString *formatString=[NSString stringWithFormat:@"%d",accuracy];
+    formatString=[[@"%." stringByAppendingString:formatString] stringByAppendingString:@"lf"];
+    NSString *tmpStr=[NSString stringWithFormat:formatString,volume];
+
+    
+    double append=1;
+    int acc=accuracy+2;
+    while(acc>0)
+    {
+        append=append/10;
+        acc--;
+    }
+    
+    if((tmpStr.doubleValue>volume-append && flagRoundHigher) || tmpStr.doubleValue==volume || (tmpStr.doubleValue<volume+append && flagRoundHigher==NO))
+        return [LWUtils formatVolumeString:tmpStr currencySign:@"" accuracy:accuracy removeExtraZeroes:YES];
+    
+   
+    append=1;
+    acc=accuracy;
+    while(acc>0)
+    {
+        append=append/10;
+        acc--;
+    }
+    if(flagRoundHigher)
+        volume=tmpStr.doubleValue+append;
+    else
+        volume=tmpStr.doubleValue-append;
+    tmpStr=[NSString stringWithFormat:formatString,volume];
+    
+    
+    return [LWUtils formatVolumeString:tmpStr currencySign:@"" accuracy:accuracy removeExtraZeroes:YES];
+}
+
 +(NSString *) formatVolumeNumber:(NSNumber *) volumee currencySign:(NSString *) currency accuracy:(int) accuracy removeExtraZeroes:(BOOL) flagRemoveZeroes
 {
     NSString *formatString=[NSString stringWithFormat:@"%d",accuracy];
-    formatString=[[@"%." stringByAppendingString:formatString] stringByAppendingString:@"f"];
-    NSString *volume=[NSString stringWithFormat:formatString,volumee.floatValue];
+    formatString=[[@"%." stringByAppendingString:formatString] stringByAppendingString:@"lf"];
+    NSString *volume=[NSString stringWithFormat:formatString,volumee.doubleValue];
     return [LWUtils formatVolumeString:volume currencySign:currency accuracy:accuracy removeExtraZeroes:flagRemoveZeroes];
 }
 
 +(NSString *) formatVolumeString:(NSString *) volumee currencySign:(NSString *) currency accuracy:(int) accuracy removeExtraZeroes:(BOOL) flagRemoveZeroes
 {
     NSString *volume=[volumee stringByReplacingOccurrencesOfString:@" " withString:@""];
-    float v=volume.floatValue;
-    int leftPart=abs((int)v);
+    double v=volume.doubleValue;
+    long leftPart=labs((long)v);
     
-    int rightPart=0;
+    long rightPart=0;
 
     NSString *rightPartString;
     
@@ -157,17 +194,17 @@
     
     while(leftPart>=1000)
     {
-        int part=leftPart%1000;
+        long part=leftPart%1000;
         if(part<10)
-            [components insertObject:[NSString stringWithFormat:@"00%d",part] atIndex:0];
+            [components insertObject:[NSString stringWithFormat:@"00%ld",part] atIndex:0];
         else if(part<100)
-            [components insertObject:[NSString stringWithFormat:@"0%d",part] atIndex:0];
+            [components insertObject:[NSString stringWithFormat:@"0%ld",part] atIndex:0];
         else
-            [components insertObject:[NSString stringWithFormat:@"%d",part] atIndex:0];
+            [components insertObject:[NSString stringWithFormat:@"%ld",part] atIndex:0];
         leftPart=leftPart/1000;
     }
     
-    [components insertObject:[NSString stringWithFormat:@"%d",leftPart] atIndex:0];
+    [components insertObject:[NSString stringWithFormat:@"%ld",leftPart] atIndex:0];
     NSMutableString *finalString=[@"" mutableCopy];
     
     if(v<0)

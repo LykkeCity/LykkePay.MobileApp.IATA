@@ -32,23 +32,6 @@
     self.tableView.separatorColor=[UIColor colorWithRed:211.0/255 green:214.0/255 blue:219.0/255 alpha:1];
 }
 
--(void) setTitle:(NSString *)title
-{
-    
-    UIFont *font = [UIFont fontWithName:kNavigationBarFontName size:kNavigationBarFontSize];
-    
-    NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:
-                                [UIColor colorWithHexString:kNavigationBarFontColor], NSForegroundColorAttributeName,
-                                font, NSFontAttributeName,
-                                @(1.5f), NSKernAttributeName,
-                                nil];
-    UILabel *titleLabel=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 120, 30)];
-    titleLabel.attributedText=[[NSAttributedString alloc] initWithString:[title uppercaseString] attributes:attributes];
-    [titleLabel sizeToFit];
-    
-    self.navigationController.navigationBar.topItem.titleView=titleLabel;
-
-}
 
 -(void) showCustomKeyboard
 {

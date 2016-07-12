@@ -13,4 +13,12 @@
     
 }
 
+@property id delegate;
+
+@end
+
+@protocol LWKYCInvalidDocumentsPresenterDelegate
+
+-(void) invalidDocumentsPresenterDismissed;
+
 @end

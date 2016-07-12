@@ -51,7 +51,7 @@
         
         UIColor *color = nil;
         // set negative or positive color
-        if (firstPoint.doubleValue >= lastPoint.doubleValue) {
+        if (firstPoint.doubleValue > lastPoint.doubleValue) {
             color = [UIColor colorWithRed:1 green:62.0/255 blue:45.0/255 alpha:1];
         }
         else {

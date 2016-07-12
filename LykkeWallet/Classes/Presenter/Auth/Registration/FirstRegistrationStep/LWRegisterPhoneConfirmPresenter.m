@@ -45,6 +45,8 @@
     self.observeKeyboardEvents=YES;
 
     [codeTextField becomeFirstResponder];
+    self.title = Localize(@"register.title");
+
 }
 
 - (void)viewDidLoad {
@@ -52,7 +54,6 @@
     
     keyboardHeight=0;
     
-    self.title = Localize(@"register.title");
     
     // init email field
     codeTextField = [LWTextField new];

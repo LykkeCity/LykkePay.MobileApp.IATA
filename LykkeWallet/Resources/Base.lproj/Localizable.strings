@@ -217,6 +217,7 @@
 "settings.cell.push.title" = "Push notifications";
 "settings.cell.push.order.title" = "Order confirmation alert";
 "settings.cell.push.asset.title" = "New asset alert";
+"settings.cell.push.sendpush"="Send Push Notifications";
 "settings.assets.title" = "BASE ASSET";
 "settings.cell.pin.title" = "Sign orders with PIN/Touch ID";
 "settings.cell.pin.change.title" = "Please scan your fingerprint to validate your identity to complete request.";
@@ -224,8 +225,8 @@
 "settings.cell.logout.title" = "Log out from";
 "settings.cell.asset.title" = "Base asset";
 "settings.cell.terms.title" = "Terms of use";
-"settings.callbutton.title" = "CALL SUPPORT";
-"settings.mailbutton.title" = "MAIL SUPPORT";
+"settings.callbutton.title" = "Call support";
+"settings.mailbutton.title" = "Mail support";
 
 "history.title" = "HISTORY OF TRANSACTIONS";
 "history.market.buy" = "buy";

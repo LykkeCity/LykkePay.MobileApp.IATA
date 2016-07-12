@@ -19,6 +19,7 @@ SINGLETON_INIT {
     self = [super init];
     if (self) {
         // initial values
+        _pushNotificationsStatus=PushNotificationsStatusUnknown;
         _refreshTimer = [NSNumber numberWithInteger:15];
         _debugMode    = NO;
     }

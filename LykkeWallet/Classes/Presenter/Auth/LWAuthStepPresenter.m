@@ -7,6 +7,7 @@
 //
 
 #import "LWAuthStepPresenter.h"
+#import "LWConstants.h"
 
 
 @implementation LWAuthStepPresenter
@@ -18,5 +19,6 @@
     NSAssert(0, @"Must be overridden.");
     return LWAuthStepValidation;
 }
+
 
 @end

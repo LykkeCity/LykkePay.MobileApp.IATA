@@ -16,6 +16,7 @@
 #import "UIViewController+Loading.h"
 #import "LWCameraMessageView.h"
 #import "LWPacketGetRefundAddress.h"
+#import "LWCameraMessageView2.h"
 
 @import AVFoundation;
 
@@ -32,7 +33,7 @@
 
 @implementation LWRefundPresenter
 
-const int kNumberOfCells=3;
+const int kNumberOfCells=5;
 
 static int CellTypes[kNumberOfCells] = {
     RefundCellTypeInfo,
@@ -70,9 +71,15 @@ static int CellTypes[kNumberOfCells] = {
             cell.addressString=prevAddress;
             cell.delegate=self;
         }
-//        else if(i==2)
-//            cell.titleLabel.text=@"Refund valid after";
         else if(i==2)
+            cell.titleLabel.text=@"Refund valid after";
+        else if(i==3)
+        {
+            cell.daysValidAfter=[LWCache instance].refundDaysValidAfter;
+            cell.sendAutomatically=[LWCache instance].refundSendAutomatically;
+
+        }
+        else if(i==4)
         {
             cell.titleLabel.text=@"Information";
             [cell addDisclosureImage];
@@ -84,11 +91,8 @@ static int CellTypes[kNumberOfCells] = {
     self.tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
     
     
-    [self setLoading:YES];
     
-    [[LWAuthManager instance] requestGetRefundAddress];
-    
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(saveRefundSettings) name:@"SaveRefundSettings" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(saveRefundSettings) name:@"SaveRefundSettings" object:nil];
     
     
     // Do any additional setup after loading the view from its nib.
@@ -127,6 +131,9 @@ static int CellTypes[kNumberOfCells] = {
 {
     [super viewDidAppear:animated];
     [self setTitle:@"REFUND"];
+    [self setLoading:YES];
+    
+    [[LWAuthManager instance] requestGetRefundAddress];
 
 }
 
@@ -164,10 +171,10 @@ static int CellTypes[kNumberOfCells] = {
     
     [self setLoading:YES];
     
-//    LWRefundTableViewCell *cell=cellsDict[@(3)];
+    LWRefundTableViewCell *cell=cellsDict[@(3)];
     
-//    [[LWAuthManager instance] requestSetRefundAddress:@{@"Address":[LWCache instance].refundAddress,@"SendAutomatically":@(cell.sendAutomatically),@"ValidDays":@(cell.daysValidAfter)}];
-    [[LWAuthManager instance] requestSetRefundAddress:@{@"Address":[LWCache instance].refundAddress,@"SendAutomatically":@(YES),@"ValidDays":@(1)}];
+    [[LWAuthManager instance] requestSetRefundAddress:@{@"Address":[LWCache instance].refundAddress,@"SendAutomatically":@(cell.sendAutomatically),@"ValidDays":@(cell.daysValidAfter)}];
+//    [[LWAuthManager instance] requestSetRefundAddress:@{@"Address":[LWCache instance].refundAddress,@"SendAutomatically":@(YES),@"ValidDays":@(1)}];
 
 //    [[LWAuthManager instance] requestSetRefundAddress:[LWCache instance].refundAddress];
     
@@ -191,7 +198,7 @@ static int CellTypes[kNumberOfCells] = {
 
 -(void) cellTapped:(LWRefundTableViewCell *)cell
 {
-    if(cell==cellsDict[@(2)])
+    if(cell==cellsDict[@(4)])
     {
         LWRefundInformationPresenter *presenter=[LWRefundInformationPresenter new];
         [self.navigationController pushViewController:presenter animated:YES];
@@ -220,9 +227,9 @@ static int CellTypes[kNumberOfCells] = {
     cell=cellsDict[@(1)];
     cell.addressString=address.refundAddress;
     
-//    cell=cellsDict[@(3)];
-//    cell.daysValidAfter=address.validDays;
-//    cell.sendAutomatically=address.sendAutomatically;
+    cell=cellsDict[@(3)];
+    cell.daysValidAfter=address.validDays;
+    cell.sendAutomatically=address.sendAutomatically;
 
 }
 
@@ -267,6 +274,7 @@ static int CellTypes[kNumberOfCells] = {
     };
     
     void (^messageBlock)(void)=^{
+        [self.view endEditing:YES];
         LWCameraMessageView *view=[[NSBundle mainBundle] loadNibNamed:@"LWCameraMessageView" owner:self options:nil][0];
         UIWindow *window=[[UIApplication sharedApplication] keyWindow];
         view.center=CGPointMake(window.bounds.size.width/2, window.bounds.size.height/2);
@@ -288,12 +296,24 @@ static int CellTypes[kNumberOfCells] = {
         // restricted, normally won't happen
     } else if(authStatus == AVAuthorizationStatusNotDetermined){
         // not determined?!
-        [AVCaptureDevice requestAccessForMediaType:AVMediaTypeVideo completionHandler:^(BOOL granted) {
-            if(granted){
-                block();
-            } else {
-                messageBlock();
-            }
+        [self.view endEditing:YES];
+        LWCameraMessageView2 *view=[[NSBundle mainBundle] loadNibNamed:@"LWCameraMessageView2" owner:self options:nil][0];
+        UIWindow *window=[[UIApplication sharedApplication] keyWindow];
+        view.center=CGPointMake(window.bounds.size.width/2, window.bounds.size.height/2);
+        
+        [window addSubview:view];
+        
+        [view showWithCompletion:^(BOOL result){
+            if(result)
+                [AVCaptureDevice requestAccessForMediaType:AVMediaTypeVideo completionHandler:^(BOOL granted) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        if(granted){
+                            block();
+                        } else {
+                            messageBlock();
+                        }
+                    });
+                }];
         }];
     } else {
         // impossible, unknown authorization status

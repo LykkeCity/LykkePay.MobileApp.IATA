@@ -34,7 +34,6 @@
     self.registrationInfo = [LWRegistrationData new];
     self.registrationInfo.clientInfo = [[LWDeviceInfo instance] clientInfo];
     
-    self.title = Localize(@"title.register");
 
     textField = [LWTextField createTextFieldForContainer:self.textContainer
                                          withPlaceholder:self.fieldPlaceholder];
@@ -58,6 +57,8 @@
     [super viewDidAppear:animated];
     
     [textField becomeFirstResponder];
+    self.title = Localize(@"title.register");
+
 }
 
 - (IBAction)nextClicked:(id)sender {

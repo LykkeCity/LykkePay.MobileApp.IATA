@@ -7,6 +7,7 @@
 //
 
 #import "LWPacketGetRefundAddress.h"
+#import "LWCache.h"
 
 @implementation LWPacketGetRefundAddress
 
@@ -19,6 +20,10 @@
     self.refundAddress=response[@"Result"][@"Address"];
     self.validDays=[response[@"Result"][@"ValidDays"] intValue];
     self.sendAutomatically=[response[@"Result"][@"SendAutomatically"] boolValue];
+    
+    [LWCache instance].refundAddress=self.refundAddress;
+    [LWCache instance].refundDaysValidAfter=self.validDays;
+    [LWCache instance].refundSendAutomatically=self.sendAutomatically;
     
 }
 

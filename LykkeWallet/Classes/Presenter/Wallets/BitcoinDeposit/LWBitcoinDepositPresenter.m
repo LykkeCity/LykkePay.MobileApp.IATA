@@ -41,7 +41,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = [NSString stringWithFormat:Localize(@"wallets.bitcoin.deposit"), self.assetName];
     
     [self setupQRCode];
     [self setBackButton];
@@ -61,7 +60,14 @@
     [self updateView];
     
     [LWValidator setButtonWithClearBackground:self.copyingButton enabled:YES];
-    
+
+}
+
+-(void) viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    self.title = [NSString stringWithFormat:Localize(@"wallets.bitcoin.deposit"), self.assetName];
+
 }
 
 - (void)colorize {

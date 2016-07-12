@@ -62,6 +62,8 @@
 #import "LWPacketKYCForAsset.h"
 #import "LWPacketGetRefundAddress.h"
 #import "LWPacketSetRefundAddress.h"
+#import "LWPacketPushSettingsGet.h"
+#import "LWPacketPushSettingsSet.h"
 
 
 #import "LWLykkeWalletsData.h"
@@ -518,6 +520,18 @@ SINGLETON_INIT {
     _delegate=delegate;
 }
 
+-(void) requestGetPushSettings
+{
+    LWPacketPushSettingsGet *pack=[[LWPacketPushSettingsGet alloc] init];
+    [self sendPacket:pack];
+}
+
+-(void) requestSetPushEnabled:(BOOL)isEnabled
+{
+    LWPacketPushSettingsSet *pack=[[LWPacketPushSettingsSet alloc] init];
+    pack.enabled=isEnabled;
+    [self sendPacket:pack];
+}
 
 #pragma mark - Observing
 
@@ -832,6 +846,16 @@ SINGLETON_INIT {
     else if (pack.class == LWPacketSetRefundAddress.class) {
         if ([self.delegate respondsToSelector:@selector(authManagerDidSetRefundAddress:)]) {
             [self.delegate authManagerDidSetRefundAddress:self];
+        }
+    }
+    else if (pack.class == LWPacketPushSettingsGet.class) {
+        if ([self.delegate respondsToSelector:@selector(authManager:didGetPushSettings:)]) {
+            [self.delegate authManager:self didGetPushSettings:(LWPacketPushSettingsGet *)pack];
+        }
+    }
+    else if (pack.class == LWPacketPushSettingsSet.class) {
+        if ([self.delegate respondsToSelector:@selector(authManagerDidSetPushSettings)]) {
+            [self.delegate authManagerDidSetPushSettings];
         }
     }
 

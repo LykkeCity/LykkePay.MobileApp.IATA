@@ -8,6 +8,7 @@
 
 #import "TKPresenter.h"
 #import "LWIPadModalNavigationControllerViewController.h"
+#import "LWConstants.h"
 
 
 @interface TKPresenter () {
@@ -39,6 +40,24 @@
 //    }
     
     return [super initWithNibName:classString bundle:[NSBundle mainBundle]];
+}
+
+-(void) setTitle:(NSString *)title
+{
+    
+    UIFont *font = [UIFont fontWithName:kNavigationBarFontName size:kNavigationBarFontSize];
+    
+    NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:
+                                [UIColor colorWithHexString:kNavigationBarFontColor], NSForegroundColorAttributeName,
+                                font, NSFontAttributeName,
+                                @(1.5f), NSKernAttributeName,
+                                nil];
+    UILabel *titleLabel=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 120, 30)];
+    titleLabel.attributedText=[[NSAttributedString alloc] initWithString:[title uppercaseString] attributes:attributes];
+    [titleLabel sizeToFit];
+    
+    self.navigationController.navigationBar.topItem.titleView=titleLabel;
+    
 }
 
 - (void)dealloc {
@@ -79,10 +98,6 @@
     [self unsubscribeAll];
 }
 
-
-- (void)setTitle:(NSString *)title {
-    [super setTitle:[title uppercaseString]];
-}
 
 
 #pragma mark - Setup

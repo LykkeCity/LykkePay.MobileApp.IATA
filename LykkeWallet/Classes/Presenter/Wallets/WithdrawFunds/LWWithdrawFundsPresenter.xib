@@ -97,8 +97,8 @@
                         <action selector="proceedClicked:" destination="-1" eventType="touchUpInside" id="nbs-7T-Vep"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Your wallet will not be charged until you authorize this transaction." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bNv-eg-p7n">
-                    <rect key="frame" x="-42" y="242" width="404" height="80"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your wallet will not be charged until you authorize this transaction." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bNv-eg-p7n">
+                    <rect key="frame" x="12" y="242" width="296" height="80"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="80" id="huF-5I-LnH"/>
                     </constraints>

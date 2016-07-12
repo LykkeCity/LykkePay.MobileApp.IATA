@@ -21,6 +21,7 @@ static NSString *const kKeychainManagerPassword  = @"Password";
 static NSString *const kKeychainManagerPIN  = @"Pin";
 static NSString *const kKeychainManagerEncodedPrivateKey  = @"EncodedPrivateKey";
 
+static NSString *const kKeychainManagerNotificationsTag  = @"NotificationsTag";
 
 
 
@@ -81,12 +82,18 @@ SINGLETON_INIT {
     [valet setString:key forKey:kKeychainManagerEncodedPrivateKey];
 }
 
+-(void) saveNotificationsTag:(NSString *)tag
+{
+    [valet setString:tag forKey:kKeychainManagerNotificationsTag];
+}
+
 - (void)clear {
     [valet removeObjectForKey:kKeychainManagerToken];
     [valet removeObjectForKey:kKeychainManagerLogin];
     [valet removeObjectForKey:kKeychainManagerPhone];
     [valet removeObjectForKey:kKeychainManagerFullName];
     [valet removeObjectForKey:kKeychainManagerPassword];
+    [valet removeObjectForKey:kKeychainManagerNotificationsTag];
 }
 
 
@@ -103,6 +110,11 @@ SINGLETON_INIT {
 -(NSString *) password
 {
     return [valet stringForKey:kKeychainManagerPassword];
+}
+
+-(NSString *) notificationsTag
+{
+    return [valet stringForKey:kKeychainManagerNotificationsTag];
 }
 
 

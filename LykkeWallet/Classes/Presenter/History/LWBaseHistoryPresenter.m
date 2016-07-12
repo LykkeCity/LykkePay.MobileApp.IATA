@@ -77,6 +77,12 @@
     [super viewWillAppear:animated];
 }
 
+-(void) viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+
+}
+
 
 #pragma mark - UITableViewDataSource
 
@@ -253,10 +259,11 @@
             type=Localize(@"history.cash.refund");
         operation = [NSString stringWithFormat:@"%@ %@", base, type];
     }
-#ifdef PROJECT_IATA
+
     else if (item.historyType == LWHistoryItemTypeTransfer) {
         LWTransferHistoryItemType *transfer = (LWTransferHistoryItemType *)item;
-        [self setImageTransfer:transfer.iconId forImageView:cell.operationImageView];
+//        [self setImageTransfer:transfer.iconId forImageView:cell.operationImageView];
+        [self setImageType:transfer.iconId forImageView:cell.operationImageView];
         volume = transfer.volume;
         
         NSString *base = [LWAssetModel
@@ -269,7 +276,7 @@
         
         operation = [NSString stringWithFormat:@"%@ %@", base, type];
     }
-#endif
+
     
     // prepare value label
     NSString *sign = (volume.doubleValue >= 0.0) ? @"+" : @"";
@@ -335,6 +342,7 @@
         NSArray *items = self.operations[key];
         if (items) {
             LWBaseHistoryItemType *item = (LWBaseHistoryItemType *)([items objectAtIndex:indexPath.row]);
+            
             return item;
         }
     }

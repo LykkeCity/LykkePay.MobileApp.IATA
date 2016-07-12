@@ -46,7 +46,6 @@
     
     
     
-    self.title = Localize(@"title.register");
 //    [self.nextButton setTitle:Localize(@"register.phone.send")
 //                     forState:UIControlStateNormal];
     
@@ -102,6 +101,7 @@
     [super viewDidAppear:animated];
     originalSrollViewFrame=self.scrollView.frame;
     [self.numberTextField becomeFirstResponder];
+    self.title = Localize(@"title.register");
 
 }
 

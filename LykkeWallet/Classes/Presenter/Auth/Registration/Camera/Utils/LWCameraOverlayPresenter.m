@@ -9,6 +9,7 @@
 #import "LWCameraOverlayPresenter.h"
 
 #import <Fabric/Fabric.h>
+#import "LWConstants.h"
 
 
 @interface LWCameraOverlayPresenter () <UIImagePickerControllerDelegate, UINavigationControllerDelegate> {
@@ -61,7 +62,21 @@
 
 - (void)localize {
     
-    self.navigationBar.topItem.title = [Localize(@"register.title") uppercaseString];
+//    self.navigationBar.topItem.title = [Localize(@"register.title") uppercaseString];
+    UIFont *font = [UIFont fontWithName:kNavigationBarFontName size:kNavigationBarFontSize];
+    
+    NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:
+                                [UIColor colorWithHexString:kNavigationBarFontColor], NSForegroundColorAttributeName,
+                                font, NSFontAttributeName,
+                                @(1.5f), NSKernAttributeName,
+                                nil];
+    UILabel *titleLabel=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 120, 30)];
+    titleLabel.attributedText=[[NSAttributedString alloc] initWithString:[Localize(@"register.title") uppercaseString] attributes:attributes];
+    [titleLabel sizeToFit];
+    
+    self.navigationBar.topItem.titleView=titleLabel;
+    
+    
     self.subtitleLabel.text = Localize([LWAuthSteps titleByStep:self.step]);
 }
 

@@ -42,6 +42,7 @@
 @class LWPacketGetRefundAddress;
 @class LWPacketSetRefundAddress;
 @class LWPacketAuthentication;
+@class LWPacketPushSettingsGet;
 
 
 @protocol LWAuthManagerDelegate<NSObject>
@@ -106,6 +107,8 @@
 -(void) authManager:(LWAuthManager *) manager didGetRefundAddress:(LWPacketGetRefundAddress *) address;
 -(void) authManagerDidSetRefundAddress:(LWAuthManager *) manager;
 
+-(void) authManager:(LWAuthManager *) manager didGetPushSettings:(LWPacketPushSettingsGet *) status;
+-(void) authManagerDidSetPushSettings;
 
 @end
 
@@ -187,6 +190,10 @@ SINGLETON_DECLARE
 
 -(void) requestGetRefundAddress;
 -(void) requestSetRefundAddress:(NSDictionary *) dict;
+
+-(void) requestGetPushSettings;
+-(void) requestSetPushEnabled:(BOOL) isEnabled;
+
 
 
 

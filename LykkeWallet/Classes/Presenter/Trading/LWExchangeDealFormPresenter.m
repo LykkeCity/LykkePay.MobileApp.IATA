@@ -304,18 +304,43 @@ static NSString *const FormIdentifiers[kFormRows] = {
 
 - (void)mathKeyboardView:(LWMathKeyboardView *) view volumeStringChangedTo:(NSString *) string
 {
+    double price;
+    if (self.assetDealType == LWAssetDealTypeBuy) {
+        price=self.assetRate.ask.doubleValue;
+    }
+    else {
+        price=self.assetRate.bid.doubleValue;
+    }
+    if(price==0)
+        return;
+
     if(view.targetTextField==sumTextField)
     {
+        
+        
+        if(string.doubleValue>=10000000000 || price*string.doubleValue>=10000000000)
+        {
+            [view setText:volumeString];
+            return;
+        }
+        
         volumeString=string;
         lastInput=LastInput_Volume;
+        
     }
     else
     {
+        if(string.doubleValue>=10000000000 || string.doubleValue/price>=10000000000)
+        {
+            [view setText:resultString];
+            return;
+        }
+
         resultString=string;
         lastInput=LastInput_Result;
     }
     
-    isInputValid=string.floatValue!=0;
+    isInputValid=string.doubleValue!=0;
     [self updatePrice];
 }
 
@@ -536,39 +561,6 @@ static NSString *const FormIdentifiers[kFormRows] = {
     }
 }
 
-//- (void)volumeChanged:(NSString *)volume withValidState:(BOOL)isValid {
-//    isInputValid = isValid;
-//    lastInput = LastInput_Volume;
-//    if (isInputValid) {
-//        volumeString = volume;
-//        [self updatePrice];
-//    }
-//    else {
-//        self.descriptionLabel.text = @"";
-//    }
-//    
-//    [LWValidator setButton:self.buyButton enabled:isValid];
-//    if(isInputValid)
-//        [self updatePrice];
-//}
-//
-//- (void)resultChanged:(NSString *)input withValidState:(BOOL)isValid {
-//    isInputValid = isValid;
-//    lastInput = LastInput_Result;
-//    if (isInputValid) {
-//        resultString = input;
-//        [self updatePrice];
-//    }
-//    else {
-//        self.descriptionLabel.text = @"";
-//    }
-//    
-//
-//    [LWValidator setButton:self.buyButton enabled:isValid];
-//    if(isInputValid)
-//        [self updatePrice];
-//
-//}
 
 
 #pragma mark - Utils
@@ -676,16 +668,16 @@ static NSString *const FormIdentifiers[kFormRows] = {
 //    }
     if(self.assetDealType==LWAssetDealTypeBuy)
     {
-        if(resultString.floatValue>balanceOfAccount.floatValue || (resultString.floatValue==0 || volumeString.floatValue==0))
+        if(resultString.doubleValue>balanceOfAccount.doubleValue || (resultString.doubleValue==0 || volumeString.doubleValue==0))
             [LWValidator setButton:self.buyButton enabled:NO];
-        else if(volumeString.floatValue>0)
+        else if(volumeString.doubleValue>0)
             [LWValidator setButton:self.buyButton enabled:YES];
     }
     else
     {
-        if(volumeString.floatValue>balanceOfAccount.floatValue || (resultString.floatValue==0 || volumeString.floatValue==0))
+        if(volumeString.doubleValue>balanceOfAccount.doubleValue || (resultString.doubleValue==0 || volumeString.doubleValue==0))
             [LWValidator setButton:self.buyButton enabled:NO];
-        else if(volumeString.floatValue>0)
+        else if(volumeString.doubleValue>0)
             [LWValidator setButton:self.buyButton enabled:YES];
 
     }
@@ -697,11 +689,11 @@ static NSString *const FormIdentifiers[kFormRows] = {
 //    NSDecimalNumber *volume = [volumeString isEmpty] ? [NSDecimalNumber zero] : [LWMath numberWithString:volumeString];
     
     
-    float volume=volumeString.floatValue;
+    double volume=volumeString.doubleValue;
     
-    float const result = self.assetDealType == LWAssetDealTypeBuy ? volume : -volume;
+    double const result = self.assetDealType == LWAssetDealTypeBuy ? volume : -volume;
     
-    return [NSNumber numberWithFloat:result];
+    return [NSNumber numberWithDouble:result];
 }
 
 - (void)validateUser {
@@ -776,16 +768,23 @@ static NSString *const FormIdentifiers[kFormRows] = {
         decimalPrice = [NSDecimalNumber decimalNumberWithDecimal:[self.assetRate.bid decimalValue]];
     }
     
-    float price=decimalPrice.floatValue;
-    float result=0;
+    double price=decimalPrice.doubleValue;
+    double result=0;
     
     
-    result=volumeString.floatValue*price;
+    result=volumeString.doubleValue*price;
     
-    NSString *vvv=[LWUtils formatVolumeNumber:@(result) currencySign:@"" accuracy:[self accuracyForQuotingAsset].intValue removeExtraZeroes:YES];
-    if([vvv isEqualToString:@"0"])
-        vvv=@"";
-    return vvv;
+    NSString *str;
+    if(self.assetDealType == LWAssetDealTypeBuy)
+        str=[LWUtils formatFairVolume:result accuracy:[self accuracyForQuotingAsset].intValue roundToHigher:YES];
+    else
+        str=[LWUtils formatFairVolume:result accuracy:[self accuracyForQuotingAsset].intValue roundToHigher:NO];
+
+    
+//    NSString *vvv=[LWUtils formatVolumeNumber:@(result) currencySign:@"" accuracy:[self accuracyForQuotingAsset].intValue removeExtraZeroes:YES];
+    if([str isEqualToString:@"0"])
+        str=@"";
+    return str;
     
 
 }
@@ -797,28 +796,35 @@ static NSString *const FormIdentifiers[kFormRows] = {
     NSString *baseAssetId = [LWCache instance].baseAssetId;
 //    NSDecimalNumber *decimalPrice = nil;
     
-    float price;
+    double price;
     if (self.assetDealType == LWAssetDealTypeBuy) {
-        price=self.assetRate.ask.floatValue;
+        price=self.assetRate.ask.doubleValue;
     }
     else {
-        price=self.assetRate.bid.floatValue;
+        price=self.assetRate.bid.doubleValue;
     }
     
 
-    float volume=0;
+    double volume=0;
     
     if(price!=0)
-        volume=resultString.floatValue/price;
+        volume=resultString.doubleValue/price;
     else
         volumeString=0;
 
+    NSString *str;
     
+    if(self.assetDealType == LWAssetDealTypeBuy)
+        str=[LWUtils formatFairVolume:volume accuracy:[self accuracyForBaseAsset].intValue roundToHigher:NO];
+    else
+        str=[LWUtils formatFairVolume:volume accuracy:[self accuracyForBaseAsset].intValue roundToHigher:YES];
+
     
-    NSString *rrr=[LWUtils formatVolumeNumber:@(volume) currencySign:@"" accuracy:[self accuracyForBaseAsset].intValue removeExtraZeroes:YES];
-    if([rrr isEqualToString:@"0"])
-        rrr=@"";
-    return rrr;
+//    NSString *rrr=[LWUtils formatVolumeNumber:@(volume) currencySign:@"" accuracy:[self accuracyForBaseAsset].intValue removeExtraZeroes:YES];
+    if([str isEqualToString:@"0"])
+        str=@"";
+    
+    return str;
 
 
 }

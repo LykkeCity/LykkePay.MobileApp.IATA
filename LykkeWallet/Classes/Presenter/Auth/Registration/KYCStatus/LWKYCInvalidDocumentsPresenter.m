@@ -15,6 +15,7 @@
 #import "TKButton.h"
 #import "LWConstants.h"
 #import "LWValidator.h"
+#import "LWKYCManager.h"
 
 
 @interface LWKYCInvalidDocumentsPresenter () {
@@ -68,7 +69,14 @@
 #pragma mark - Actions
 
 - (IBAction)okButtonClick:(id)sender {
-    [((LWAuthNavigationController *)self.navigationController) navigateWithDocumentStatus:[LWAuthManager instance].documentsStatus hideBackButton:YES];
+    [self dismissViewControllerAnimated:YES completion:^{
+        if([self.delegate respondsToSelector:@selector(invalidDocumentsPresenterDismissed)])
+            [self.delegate invalidDocumentsPresenterDismissed];
+        
+    }];
+    
+    
+//    [((LWAuthNavigationController *)self.navigationController) navigateWithDocumentStatus:[LWAuthManager instance].documentsStatus hideBackButton:YES];
 }
 
 

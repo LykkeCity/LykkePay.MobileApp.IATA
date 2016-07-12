@@ -218,6 +218,7 @@
 "settings.cell.push.title" = "Push-уведомления";
 "settings.cell.push.order.title" = "Исполнение ордера";
 "settings.cell.push.asset.title" = "Новый ассет";
+"settings.cell.push.sendpush"="Отправлять уведомления";
 "settings.assets.title" = "БАЗОВАЯ ВАЛЮТА";
 "settings.cell.pin.title" = "Проверять сделки через PIN/Touch ID";
 "settings.cell.pin.change.title" = "Пожалуйста, выполните сканирование отпечатка пальца для подтверждения выполнения операции.";
@@ -225,8 +226,8 @@
 "settings.cell.logout.title" = "Выйти из-под";
 "settings.cell.asset.title" = "Базовая валюта";
 "settings.cell.terms.title" = "Terms of use";
-"settings.callbutton.title" = "CALL SUPPORT";
-"settings.mailbutton.title" = "MAIL SUPPORT";
+"settings.callbutton.title" = "Call support";
+"settings.mailbutton.title" = "Mail support";
 
 
 "history.title" = "История операций";
