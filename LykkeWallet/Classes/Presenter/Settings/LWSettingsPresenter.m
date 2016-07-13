@@ -197,12 +197,14 @@ static NSString *const SettingsIdentifiers[kNumberOfRows] = {
         UITableViewCell *cell=[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
         if([[LWCache instance].serverAPIVersion length])
         {
-            UILabel *label=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.tableView.bounds.size.width, 50)];
+            UILabel *label=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, cell.contentView.bounds.size.width, 50)];
             label.text=[NSString stringWithFormat:@"%@, API %@",[LWCache currentAppVersion], [LWCache instance].serverAPIVersion];
             label.textAlignment=NSTextAlignmentCenter;
             label.textColor=[UIColor colorWithRed:63.0/255 green:77.0/255 blue:96.0/255 alpha:0.6];
             label.font=[UIFont fontWithName:@"ProximaNova-Regular" size:14];
-            [cell addSubview:label];
+            label.autoresizingMask=UIViewAutoresizingFlexibleWidth;
+            [cell.contentView addSubview:label];
+            
         }
         
         cell.userInteractionEnabled=NO;
