@@ -126,13 +126,12 @@
     return string;
 }
 
-+(NSString *) formatFairVolume:(double) volume accuracy:(int) accuracy roundToHigher:(BOOL) flagRoundHigher
++(double) fairVolume:(double) volume accuracy:(int) accuracy roundToHigher:(BOOL) flagRoundHigher
 {
-
     NSString *formatString=[NSString stringWithFormat:@"%d",accuracy];
     formatString=[[@"%." stringByAppendingString:formatString] stringByAppendingString:@"lf"];
     NSString *tmpStr=[NSString stringWithFormat:formatString,volume];
-
+    
     
     double append=1;
     int acc=accuracy+2;
@@ -143,9 +142,9 @@
     }
     
     if((tmpStr.doubleValue>volume-append && flagRoundHigher) || tmpStr.doubleValue==volume || (tmpStr.doubleValue<volume+append && flagRoundHigher==NO))
-        return [LWUtils formatVolumeString:tmpStr currencySign:@"" accuracy:accuracy removeExtraZeroes:YES];
+        return tmpStr.doubleValue;
     
-   
+    
     append=1;
     acc=accuracy;
     while(acc>0)
@@ -157,10 +156,20 @@
         volume=tmpStr.doubleValue+append;
     else
         volume=tmpStr.doubleValue-append;
-    tmpStr=[NSString stringWithFormat:formatString,volume];
+    return volume;
     
+}
+
++(NSString *) formatFairVolume:(double) volume accuracy:(int) accuracy roundToHigher:(BOOL) flagRoundHigher
+{
+ 
+    double fairVolume=[LWUtils fairVolume:volume accuracy:accuracy roundToHigher:flagRoundHigher];
+    NSString *formatString=[NSString stringWithFormat:@"%d",accuracy];
+    formatString=[[@"%." stringByAppendingString:formatString] stringByAppendingString:@"lf"];
+    NSString *tmpStr=[NSString stringWithFormat:formatString,fairVolume];
     
     return [LWUtils formatVolumeString:tmpStr currencySign:@"" accuracy:accuracy removeExtraZeroes:YES];
+    
 }
 
 +(NSString *) formatVolumeNumber:(NSNumber *) volumee currencySign:(NSString *) currency accuracy:(int) accuracy removeExtraZeroes:(BOOL) flagRemoveZeroes

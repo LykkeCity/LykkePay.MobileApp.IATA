@@ -16,6 +16,8 @@
     UISwitch *sendSwitch;
     UILabel *sendLabel;
     UIView *middleLine;
+    
+    double lastSentDataTime;
 }
 
 @end
@@ -26,10 +28,13 @@
 -(id) init
 {
     self=[super init];
+    lastSentDataTime=0;
     slider=[[UISlider alloc] init];
     slider.tintColor=[UIColor colorWithRed:171.0/255 green:0 blue:1 alpha:1];
     [slider addTarget:self action:@selector(sliderChanged) forControlEvents:UIControlEventValueChanged];
-    [slider addTarget:self action:@selector(sliderFinishedChanging) forControlEvents:UIControlEventTouchUpInside | UIControlEventTouchUpOutside];
+//    [slider addTarget:self action:@selector(sliderFinishedChanging) forControlEvents:UIControlEventTouchUpInside | UIControlEventTouchUpOutside];
+    [slider addTarget:self action:@selector(handleValueChanged:event:) forControlEvents:UIControlEventAllEvents];
+ 
     [self addSubview:slider];
     
     dayLabel=[self createLabel];
@@ -78,8 +83,25 @@
 
 }
 
+- (void)handleValueChanged:(id)sender event:(id)event {
+    UITouch *touchEvent = [[event allTouches] anyObject]; // there's only one touch
+    
+//    NSLog(@"%d %d %@", [event allTouches].count, touchEvent.phase, touchEvent.description);
+    if (touchEvent.phase == UITouchPhaseEnded || touchEvent.phase == UITouchPhaseCancelled) { /* place your code here */
+        NSLog(@"Finished touch");
+        double currentTime = CACurrentMediaTime();
+        if(currentTime-lastSentDataTime>0.1)
+        {
+            [self sliderFinishedChanging];
+            lastSentDataTime=currentTime;
+        }
+        
+    }
+}
+
 -(void) sliderFinishedChanging
 {
+    NSLog(@"Sent update to server");
     [LWCache instance].refundDaysValidAfter=self.daysValidAfter;
     [[NSNotificationCenter defaultCenter] postNotificationName:@"SaveRefundSettings" object:nil];
 }

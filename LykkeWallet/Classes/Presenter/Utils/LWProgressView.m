@@ -49,7 +49,23 @@
     
     [self loadFrames];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(orientationChanged) name:UIApplicationDidChangeStatusBarOrientationNotification object:nil];
+    
+
+    
     return self;
+}
+
+-(void) orientationChanged
+{
+    
+    UIWindow *window=[UIApplication sharedApplication].keyWindow;
+    CGPoint point=CGPointMake(window.bounds.size.width/2, window.bounds.size.height/2);
+    CGPoint myCenter=[window convertPoint:point toView:self.superview];
+    
+    self.center=myCenter;
+    _squareBackground.center=myCenter;
+
 }
 
 -(void) awakeFromNib
@@ -184,6 +200,7 @@
 
 -(void) dealloc
 {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     [timer invalidate];
     for(int i=0;i<total;i++)
     {

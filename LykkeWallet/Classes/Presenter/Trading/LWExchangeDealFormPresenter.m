@@ -428,13 +428,13 @@ static NSString *const FormIdentifiers[kFormRows] = {
     {
         if([d.identity isEqualToString:balanceAsset])
         {
-            balanceOfAccount=d.balance;
+            balanceOfAccount=@([LWUtils fairVolume:d.balance.doubleValue accuracy:d.accuracy.intValue roundToHigher:NO]);
             balanceAccuracy=d.accuracy.intValue;
             balanceCurrencySymbol=d.symbol;
         }
     }
     
-//    balanceOfAccount=@(10.2);//Testing
+//    balanceOfAccount=@(0.001);//Testing
     
     
     balance.text=[NSString stringWithFormat:@"%@ available", [LWUtils formatVolumeNumber:balanceOfAccount currencySign:balanceCurrencySymbol accuracy:balanceAccuracy removeExtraZeroes:YES]];
@@ -629,14 +629,18 @@ static NSString *const FormIdentifiers[kFormRows] = {
     LWAssetBuyPriceTableViewCell *priceCell = (LWAssetBuyPriceTableViewCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:0]];
 
     NSString *priceText = nil;
+    int priceAccuracy;
+    if(self.assetPair.inverted)
+        priceAccuracy=self.assetPair.invertedAccuracy.intValue;
+    else
+        priceAccuracy=self.assetPair.accuracy.intValue;
     if (self.assetDealType == LWAssetDealTypeBuy) {
-        priceText = [LWUtils priceForAsset:self.assetPair forValue:self.assetRate.ask];
+        priceText=[LWUtils formatFairVolume:self.assetRate.ask.doubleValue accuracy:priceAccuracy roundToHigher:YES];
     }
     else {
-        priceText = [LWUtils priceForAsset:self.assetPair forValue:self.assetRate.bid];
+        priceText=[LWUtils formatFairVolume:self.assetRate.bid.doubleValue accuracy:priceAccuracy roundToHigher:NO];
     }
     
-    priceText=[priceText stringByReplacingOccurrencesOfString:@"," withString:@"."];
     priceCell.priceLabel.text = priceText;
     
     // update total cell
@@ -760,19 +764,38 @@ static NSString *const FormIdentifiers[kFormRows] = {
 
     
     NSString *baseAssetId = [LWCache instance].baseAssetId;
-    NSDecimalNumber *decimalPrice = nil;
+    
+    double priceValue;
+    int priceAccuracy;
+    if(self.assetPair.inverted)
+        priceAccuracy=self.assetPair.invertedAccuracy.intValue;
+    else
+        priceAccuracy=self.assetPair.accuracy.intValue;
+    
     if (self.assetDealType == LWAssetDealTypeBuy) {
-        decimalPrice = [NSDecimalNumber decimalNumberWithDecimal:[self.assetRate.ask decimalValue]];
+        priceValue=[LWUtils fairVolume:self.assetRate.ask.doubleValue accuracy:priceAccuracy roundToHigher:YES];
     }
     else {
-        decimalPrice = [NSDecimalNumber decimalNumberWithDecimal:[self.assetRate.bid decimalValue]];
+        priceValue=[LWUtils fairVolume:self.assetRate.bid.doubleValue accuracy:priceAccuracy roundToHigher:NO];
     }
-    
-    double price=decimalPrice.doubleValue;
+
+//    
+//    
+//    
+//    
+//    NSDecimalNumber *decimalPrice = nil;
+//    if (self.assetDealType == LWAssetDealTypeBuy) {
+//        decimalPrice = [NSDecimalNumber decimalNumberWithDecimal:[self.assetRate.ask decimalValue]];
+//    }
+//    else {
+//        decimalPrice = [NSDecimalNumber decimalNumberWithDecimal:[self.assetRate.bid decimalValue]];
+//    }
+//    
+//    double price=decimalPrice.doubleValue;
     double result=0;
     
     
-    result=volumeString.doubleValue*price;
+    result=volumeString.doubleValue*priceValue;
     
     NSString *str;
     if(self.assetDealType == LWAssetDealTypeBuy)
@@ -796,19 +819,25 @@ static NSString *const FormIdentifiers[kFormRows] = {
     NSString *baseAssetId = [LWCache instance].baseAssetId;
 //    NSDecimalNumber *decimalPrice = nil;
     
-    double price;
+    double priceValue;
+    int priceAccuracy;
+    if(self.assetPair.inverted)
+        priceAccuracy=self.assetPair.invertedAccuracy.intValue;
+    else
+        priceAccuracy=self.assetPair.accuracy.intValue;
+    
     if (self.assetDealType == LWAssetDealTypeBuy) {
-        price=self.assetRate.ask.doubleValue;
+        priceValue=[LWUtils fairVolume:self.assetRate.ask.doubleValue accuracy:priceAccuracy roundToHigher:YES];
     }
     else {
-        price=self.assetRate.bid.doubleValue;
+        priceValue=[LWUtils fairVolume:self.assetRate.bid.doubleValue accuracy:priceAccuracy roundToHigher:NO];
     }
     
 
     double volume=0;
     
-    if(price!=0)
-        volume=resultString.doubleValue/price;
+    if(priceValue!=0)
+        volume=resultString.doubleValue/priceValue;
     else
         volumeString=0;
 

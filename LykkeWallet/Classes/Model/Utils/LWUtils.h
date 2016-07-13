@@ -24,6 +24,8 @@
 + (NSString *)priceForAsset:(LWAssetPairModel *)assetPair forValue:(NSNumber *)value;
 + (NSString *)priceForAsset:(LWAssetPairModel *)assetPair forValue:(NSNumber *)value withFormat:(NSString *)format;
 
++(double) fairVolume:(double) volume accuracy:(int) accuracy roundToHigher:(BOOL) flagRoundHigher;
+
 +(NSString *) formatFairVolume:(double) volume accuracy:(int) accuracy roundToHigher:(BOOL) flagRoundHigher;
 +(NSString *) formatVolumeString:(NSString *) volume currencySign:(NSString *) currency accuracy:(int) accuracy removeExtraZeroes:(BOOL) flagRemoveZeroes;
 +(NSString *) formatVolumeNumber:(NSNumber *) volumee currencySign:(NSString *) currency accuracy:(int) accuracy removeExtraZeroes:(BOOL) flagRemoveZeroes;

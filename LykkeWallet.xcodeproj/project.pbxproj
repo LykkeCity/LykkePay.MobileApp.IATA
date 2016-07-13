@@ -804,6 +804,9 @@
 		A1E4EAAC1CE4654200293282 /* LWCurrencyDepositPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A1E4EAAB1CE4654200293282 /* LWCurrencyDepositPresenter.m */; };
 		A1E4EAAE1CE4657900293282 /* LWCurrencyDepositPresenter.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1E4EAAD1CE4657900293282 /* LWCurrencyDepositPresenter.xib */; };
 		A1E4EAAF1CE4662700293282 /* LWCurrencyDepositPresenter.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1E4EAAD1CE4657900293282 /* LWCurrencyDepositPresenter.xib */; };
+		A1F78C891D365DF300BCFF03 /* LWWalletsNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = A1F78C881D365DF300BCFF03 /* LWWalletsNavigationController.m */; };
+		A1F78C8C1D3664B900BCFF03 /* LWWalletsNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = A1F78C8B1D3664B900BCFF03 /* LWWalletsNavigationBar.m */; };
+		A1F78C8F1D366CA200BCFF03 /* LWWalletsTypeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = A1F78C8E1D366CA200BCFF03 /* LWWalletsTypeButton.m */; };
 		A87C81BA1C7356E1D9BA3A28 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B1A20FEBD41AE93CA79087B5 /* libPods.a */; };
 		CD10AAA31C1E0B530086634B /* LWPacketAuthentication.m in Sources */ = {isa = PBXBuildFile; fileRef = CD10AAA21C1E0B530086634B /* LWPacketAuthentication.m */; };
 		CD10AAA61C1E0C560086634B /* LWAuthenticationData.m in Sources */ = {isa = PBXBuildFile; fileRef = CD10AAA51C1E0C560086634B /* LWAuthenticationData.m */; };
@@ -2284,6 +2287,12 @@
 		A1E4EAAA1CE4654200293282 /* LWCurrencyDepositPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWCurrencyDepositPresenter.h; sourceTree = "<group>"; };
 		A1E4EAAB1CE4654200293282 /* LWCurrencyDepositPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWCurrencyDepositPresenter.m; sourceTree = "<group>"; };
 		A1E4EAAD1CE4657900293282 /* LWCurrencyDepositPresenter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LWCurrencyDepositPresenter.xib; sourceTree = "<group>"; };
+		A1F78C871D365DF300BCFF03 /* LWWalletsNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWWalletsNavigationController.h; sourceTree = "<group>"; };
+		A1F78C881D365DF300BCFF03 /* LWWalletsNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWWalletsNavigationController.m; sourceTree = "<group>"; };
+		A1F78C8A1D3664B900BCFF03 /* LWWalletsNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWWalletsNavigationBar.h; sourceTree = "<group>"; };
+		A1F78C8B1D3664B900BCFF03 /* LWWalletsNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWWalletsNavigationBar.m; sourceTree = "<group>"; };
+		A1F78C8D1D366CA200BCFF03 /* LWWalletsTypeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWWalletsTypeButton.h; sourceTree = "<group>"; };
+		A1F78C8E1D366CA200BCFF03 /* LWWalletsTypeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWWalletsTypeButton.m; sourceTree = "<group>"; };
 		B1A20FEBD41AE93CA79087B5 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD10AAA11C1E0B530086634B /* LWPacketAuthentication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWPacketAuthentication.h; sourceTree = "<group>"; };
 		CD10AAA21C1E0B530086634B /* LWPacketAuthentication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWPacketAuthentication.m; sourceTree = "<group>"; };
@@ -3803,6 +3812,17 @@
 			path = CurrencyDeposit;
 			sourceTree = "<group>";
 		};
+		A1F78C861D365D8A00BCFF03 /* ExchangeWallet */ = {
+			isa = PBXGroup;
+			children = (
+				CF6632831C176A63004353F5 /* LWWalletsPresenter.h */,
+				CF6632841C176A63004353F5 /* LWWalletsPresenter.m */,
+				CF6632851C176A63004353F5 /* LWWalletsPresenter~iphone.xib */,
+				EC89230D1CC3C35100201BE7 /* LWWalletsPresenter~ipad.xib */,
+			);
+			name = ExchangeWallet;
+			sourceTree = "<group>";
+		};
 		CD73626B1C2C26BE00924077 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -4129,10 +4149,13 @@
 				EC24CC811C399A6C00C2FDAA /* WalletPage */,
 				EC24CC751C3977C500C2FDAA /* WalletConfirm */,
 				ECE902B91C35368800F52971 /* WalletForm */,
-				CF6632831C176A63004353F5 /* LWWalletsPresenter.h */,
-				CF6632841C176A63004353F5 /* LWWalletsPresenter.m */,
-				CF6632851C176A63004353F5 /* LWWalletsPresenter~iphone.xib */,
-				EC89230D1CC3C35100201BE7 /* LWWalletsPresenter~ipad.xib */,
+				A1F78C861D365D8A00BCFF03 /* ExchangeWallet */,
+				A1F78C871D365DF300BCFF03 /* LWWalletsNavigationController.h */,
+				A1F78C881D365DF300BCFF03 /* LWWalletsNavigationController.m */,
+				A1F78C8A1D3664B900BCFF03 /* LWWalletsNavigationBar.h */,
+				A1F78C8B1D3664B900BCFF03 /* LWWalletsNavigationBar.m */,
+				A1F78C8D1D366CA200BCFF03 /* LWWalletsTypeButton.h */,
+				A1F78C8E1D366CA200BCFF03 /* LWWalletsTypeButton.m */,
 			);
 			path = Wallets;
 			sourceTree = "<group>";
@@ -6540,6 +6563,7 @@
 				ECA8E9CD1C573618000F53EC /* LWTransactionTradeModel.m in Sources */,
 				CF6A9CDA1C18EDB900B69F53 /* LWPacketAccountExist.m in Sources */,
 				EC7519B01C37338000CDDF5B /* LWSettingsAssetTableViewCell.m in Sources */,
+				A1F78C8F1D366CA200BCFF03 /* LWWalletsTypeButton.m in Sources */,
 				EC57F4651C3D197900E31746 /* NSString+Utils.m in Sources */,
 				CDCD5AE31C2576EB007BAD78 /* LWKeychainManager.m in Sources */,
 				ECFAC5B31CB11138009B1CC9 /* LWUtils.m in Sources */,
@@ -6570,6 +6594,7 @@
 				A1C5AF551D0A867D0056DC53 /* LWSettingsTermsTableViewCell.m in Sources */,
 				ECEC40CB1C42CA7B00B22BEE /* LWHistoryManager.m in Sources */,
 				CD10AAA61C1E0C560086634B /* LWAuthenticationData.m in Sources */,
+				A1F78C891D365DF300BCFF03 /* LWWalletsNavigationController.m in Sources */,
 				A10A94F71D0D351000557C87 /* LWExchangeAssetsPopupView.m in Sources */,
 				CDA69FDB1C281A5500BE4DCA /* LWPacketRegistrationGet.m in Sources */,
 				EC9AE0671CAC7A370047DF0D /* QRCodeReaderView.m in Sources */,
@@ -6668,6 +6693,7 @@
 				A1D4322E1D1019F80060866F /* LWRefundAddressView.m in Sources */,
 				CF9EC8BB1C17C02F00F742A6 /* LWAuthEntryPointPresenter.m in Sources */,
 				CFF7583C1C202C6500BC7658 /* LWKYCPendingPresenter.m in Sources */,
+				A1F78C8C1D3664B900BCFF03 /* LWWalletsNavigationBar.m in Sources */,
 				A15B3F101D141F5400A6B506 /* UIAlertView+Blocks.m in Sources */,
 				EC4754A71C614EAF0037614D /* LWWalletDepositPresenter.m in Sources */,
 				ECF9D1191C5BEC060025FC36 /* LWUrlAddressPresenter.m in Sources */,

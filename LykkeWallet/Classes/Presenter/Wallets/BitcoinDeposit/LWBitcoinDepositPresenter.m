@@ -127,7 +127,8 @@
     
     self.bitcoinHashLabel.text = bitcoinHash;
     
-    NSString *qrCodeString = [NSString stringWithFormat:@"%@%@", @"bitcoin:", bitcoinHash];
+//    NSString *qrCodeString = [NSString stringWithFormat:@"%@%@", @"bitcoin:", bitcoinHash];
+    NSString *qrCodeString = bitcoinHash;
     NSData *data = [qrCodeString dataUsingEncoding:NSUTF8StringEncoding];
     [filter setValue:data forKey:@"inputMessage"];
     

@@ -9,6 +9,7 @@
 #import "TKPresenter.h"
 #import "LWIPadModalNavigationControllerViewController.h"
 #import "LWConstants.h"
+#import "LWWalletsNavigationController.h"
 
 
 @interface TKPresenter () {
@@ -56,7 +57,12 @@
     titleLabel.attributedText=[[NSAttributedString alloc] initWithString:[title uppercaseString] attributes:attributes];
     [titleLabel sizeToFit];
     
-    self.navigationController.navigationBar.topItem.titleView=titleLabel;
+    if([self.navigationController isKindOfClass:[LWWalletsNavigationController class]])
+    {
+        self.navigationController.navigationController.navigationBar.topItem.titleView=titleLabel;
+    }
+    else
+        self.navigationController.navigationBar.topItem.titleView=titleLabel;
     
 }
 

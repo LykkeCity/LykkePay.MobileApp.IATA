@@ -32,6 +32,8 @@
 
 - (NSString *)urlRelative {
     return [NSString stringWithFormat:@"BcnTransactionByExchange?id=%@", self.exchangeOperationId];
+//    self.exchangeOperationId=@"2d35d7dd-9dad-4dc4-8f5f-6198b8338b10";
+//    return [NSString stringWithFormat:@"BcnTransaction?id=%@", self.exchangeOperationId]; //Testing
 }
 
 - (GDXRESTPacketType)type {

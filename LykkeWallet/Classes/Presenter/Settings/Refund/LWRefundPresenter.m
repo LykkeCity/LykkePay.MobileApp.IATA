@@ -24,6 +24,7 @@
 @interface LWRefundPresenter () <UITableViewDelegate, UITableViewDataSource, LWRefundTableViewCellDelegate, ZBarReaderDelegate>
 {
     NSMutableDictionary *cellsDict;
+    BOOL shouldGetRefundSettings;
     
 }
 
@@ -46,6 +47,7 @@ static int CellTypes[kNumberOfCells] = {
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    shouldGetRefundSettings=YES;
     
     cellsDict=[[NSMutableDictionary alloc] init];
     self.tableView.delegate=self;
@@ -131,9 +133,12 @@ static int CellTypes[kNumberOfCells] = {
 {
     [super viewDidAppear:animated];
     [self setTitle:@"REFUND"];
-    [self setLoading:YES];
-    
-    [[LWAuthManager instance] requestGetRefundAddress];
+    if(shouldGetRefundSettings)
+    {
+        [self setLoading:YES];
+        
+        [[LWAuthManager instance] requestGetRefundAddress];
+    }
 
 }
 
@@ -230,13 +235,13 @@ static int CellTypes[kNumberOfCells] = {
     cell=cellsDict[@(3)];
     cell.daysValidAfter=address.validDays;
     cell.sendAutomatically=address.sendAutomatically;
-
+    shouldGetRefundSettings=NO;
 }
 
 -(void) authManagerDidSetRefundAddress:(LWAuthManager *)manager
 {
     [self setLoading:NO];
-    [[LWAuthManager instance] requestGetRefundAddress];
+//    [[LWAuthManager instance] requestGetRefundAddress];
 }
 
 -(void) authManager:(LWAuthManager *)manager didFailWithReject:(NSDictionary *)reject context:(GDXRESTContext *)context

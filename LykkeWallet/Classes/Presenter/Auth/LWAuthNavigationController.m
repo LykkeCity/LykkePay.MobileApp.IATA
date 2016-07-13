@@ -31,12 +31,16 @@
 #import "LWRegisterCameraPresenter.h"
 #import "LWRegisterHintPresenter.h"
 
+
 // tab presenters
 #import "LWTabController.h"
 #import "LWWalletsPresenter.h"
 #import "LWExchangePresenter.h"
 #import "LWHistoryPresenter.h"
 #import "LWSettingsPresenter.h"
+
+#import "LWWalletsNavigationController.h"
+#import "LWWalletsNavigationBar.h"
 
 #ifdef PROJECT_IATA
 #import "LWTransferPresenter.h"
@@ -266,7 +270,16 @@
                                                  withImage:@"TransferTab"];
     tab.viewControllers = @[pWallets, pTransfer, pTrading, pHistory, pSettings];
 #else
+    
+    
+//    LWWalletsNavigationController *nWallets=[[LWWalletsNavigationController alloc] initWithNavigationBarClass:[LWWalletsNavigationBar class] toolbarClass:nil];
+//    nWallets.tabBarItem = [self createTabBarItemWithTitle:@"tab.wallets"
+//                                                withImage:@"WalletsTab"];
+//
+//    tab.viewControllers = @[nWallets, pTrading, pHistory, pSettings];
+    
     tab.viewControllers = @[pWallets, pTrading, pHistory, pSettings];
+    
 #endif
 
     // init tab controller
