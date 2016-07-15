@@ -32,7 +32,18 @@
     
     if(flagReverted)
     {
-        self.percentChange=[NSNumber numberWithDouble:-[response[@"Result"][@"Rate"][@"PChange"] doubleValue]];
+//        a-старый курс   b-новый курс
+//        
+//        (b-a)/a=p  —>  b/a - 1 = p —>  a/b = 1 / (p+1)
+//        
+//        (1/b-1/a)*a=x —> a/b - 1 = x
+//        
+//        
+//        x = 1/(p+1) - 1
+        
+        
+        double ppp=self.percentChange.doubleValue;
+        self.percentChange=@(1.0/(ppp+1)-1);
 
     }
     

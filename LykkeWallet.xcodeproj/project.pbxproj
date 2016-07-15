@@ -33,6 +33,11 @@
 		A1165D481CF70CED0017A725 /* LWRegisterHintPresenter~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1165D451CF70CED0017A725 /* LWRegisterHintPresenter~ipad.xib */; };
 		A1165D491CF70CED0017A725 /* LWRegisterHintPresenter~iphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1165D461CF70CED0017A725 /* LWRegisterHintPresenter~iphone.xib */; };
 		A1165D4E1CF9838F0017A725 /* UINavigationItem+Kerning.m in Sources */ = {isa = PBXBuildFile; fileRef = A1165D4D1CF9838F0017A725 /* UINavigationItem+Kerning.m */; };
+		A11D0F3D1D3761A800BFDE4D /* LWPrivateWalletsPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A11D0F3C1D3761A800BFDE4D /* LWPrivateWalletsPresenter.m */; };
+		A11D0F401D3761EB00BFDE4D /* LWPrivateWalletModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A11D0F3F1D3761EB00BFDE4D /* LWPrivateWalletModel.m */; };
+		A11D0F431D3766A200BFDE4D /* LWPrivateWalletAssetModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A11D0F421D3766A200BFDE4D /* LWPrivateWalletAssetModel.m */; };
+		A11D0F461D37676E00BFDE4D /* LWPrivateWalletTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A11D0F451D37676E00BFDE4D /* LWPrivateWalletTitleCell.m */; };
+		A11D0F491D3767A400BFDE4D /* LWPrivateWalletAssetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A11D0F481D3767A400BFDE4D /* LWPrivateWalletAssetCell.m */; };
 		A122B97A1CFEB0BC009DC795 /* LWAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = A122B9791CFEB0BC009DC795 /* LWAnimatedView.m */; };
 		A122B9811CFEB2E4009DC795 /* FLAnimatedImage.m in Sources */ = {isa = PBXBuildFile; fileRef = A122B97D1CFEB2E4009DC795 /* FLAnimatedImage.m */; };
 		A122B9821CFEB2E4009DC795 /* FLAnimatedImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A122B97F1CFEB2E4009DC795 /* FLAnimatedImageView.m */; };
@@ -101,6 +106,10 @@
 		A1AB306F1CE5ADFE009AF37B /* LWTradingLinearGraphPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A1AB306E1CE5ADFE009AF37B /* LWTradingLinearGraphPresenter.m */; };
 		A1AB30751CE5C03E009AF37B /* LWSendImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A1AB30741CE5C03E009AF37B /* LWSendImageManager.m */; };
 		A1AB307E1CE5F3A3009AF37B /* LWTradingLinearGraphViewTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A1AB307D1CE5F3A3009AF37B /* LWTradingLinearGraphViewTest.m */; };
+		A1BB07BF1D378E2000924804 /* LWPrivateWalletAddView.m in Sources */ = {isa = PBXBuildFile; fileRef = A1BB07BE1D378E2000924804 /* LWPrivateWalletAddView.m */; };
+		A1BB07C21D3793F600924804 /* LWPrivateWalletsHeaderSumView.m in Sources */ = {isa = PBXBuildFile; fileRef = A1BB07C11D3793F600924804 /* LWPrivateWalletsHeaderSumView.m */; };
+		A1BB07C51D388CB100924804 /* LWAddPrivateWalletPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A1BB07C41D388CB100924804 /* LWAddPrivateWalletPresenter.m */; };
+		A1BB07D51D38BB1F00924804 /* LWWalletAddressView.m in Sources */ = {isa = PBXBuildFile; fileRef = A1BB07D41D38BB1F00924804 /* LWWalletAddressView.m */; };
 		A1BCCD2B1CFEC9C900CF42E4 /* LWPacketAPIVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = A1BCCD2A1CFEC9C900CF42E4 /* LWPacketAPIVersion.m */; };
 		A1BCCE1F1D0009A500CF42E4 /* LWPacketBitcoinAddressValidation.m in Sources */ = {isa = PBXBuildFile; fileRef = A1BCCE1E1D0009A500CF42E4 /* LWPacketBitcoinAddressValidation.m */; };
 		A1BCCE261D011BA700CF42E4 /* LWIntroductionProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = A1BCCE251D011BA700CF42E4 /* LWIntroductionProgressView.m */; };
@@ -1461,6 +1470,16 @@
 		A1165D461CF70CED0017A725 /* LWRegisterHintPresenter~iphone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "LWRegisterHintPresenter~iphone.xib"; path = "FirstRegistrationStep/LWRegisterHintPresenter~iphone.xib"; sourceTree = "<group>"; };
 		A1165D4C1CF9838F0017A725 /* UINavigationItem+Kerning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationItem+Kerning.h"; sourceTree = "<group>"; };
 		A1165D4D1CF9838F0017A725 /* UINavigationItem+Kerning.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationItem+Kerning.m"; sourceTree = "<group>"; };
+		A11D0F3B1D3761A800BFDE4D /* LWPrivateWalletsPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWPrivateWalletsPresenter.h; sourceTree = "<group>"; };
+		A11D0F3C1D3761A800BFDE4D /* LWPrivateWalletsPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWPrivateWalletsPresenter.m; sourceTree = "<group>"; };
+		A11D0F3E1D3761EB00BFDE4D /* LWPrivateWalletModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LWPrivateWalletModel.h; path = Wallets/LWPrivateWalletModel.h; sourceTree = "<group>"; };
+		A11D0F3F1D3761EB00BFDE4D /* LWPrivateWalletModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LWPrivateWalletModel.m; path = Wallets/LWPrivateWalletModel.m; sourceTree = "<group>"; };
+		A11D0F411D3766A200BFDE4D /* LWPrivateWalletAssetModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LWPrivateWalletAssetModel.h; path = Wallets/LWPrivateWalletAssetModel.h; sourceTree = "<group>"; };
+		A11D0F421D3766A200BFDE4D /* LWPrivateWalletAssetModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LWPrivateWalletAssetModel.m; path = Wallets/LWPrivateWalletAssetModel.m; sourceTree = "<group>"; };
+		A11D0F441D37676E00BFDE4D /* LWPrivateWalletTitleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWPrivateWalletTitleCell.h; sourceTree = "<group>"; };
+		A11D0F451D37676E00BFDE4D /* LWPrivateWalletTitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWPrivateWalletTitleCell.m; sourceTree = "<group>"; };
+		A11D0F471D3767A400BFDE4D /* LWPrivateWalletAssetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWPrivateWalletAssetCell.h; sourceTree = "<group>"; };
+		A11D0F481D3767A400BFDE4D /* LWPrivateWalletAssetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWPrivateWalletAssetCell.m; sourceTree = "<group>"; };
 		A122B9781CFEB0BC009DC795 /* LWAnimatedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWAnimatedView.h; sourceTree = "<group>"; };
 		A122B9791CFEB0BC009DC795 /* LWAnimatedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWAnimatedView.m; sourceTree = "<group>"; };
 		A122B97C1CFEB2E4009DC795 /* FLAnimatedImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLAnimatedImage.h; sourceTree = "<group>"; };
@@ -1570,6 +1589,14 @@
 		A1AB30741CE5C03E009AF37B /* LWSendImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWSendImageManager.m; sourceTree = "<group>"; };
 		A1AB307C1CE5F3A3009AF37B /* LWTradingLinearGraphViewTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LWTradingLinearGraphViewTest.h; path = TradingGraph/LWTradingLinearGraphViewTest.h; sourceTree = "<group>"; };
 		A1AB307D1CE5F3A3009AF37B /* LWTradingLinearGraphViewTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LWTradingLinearGraphViewTest.m; path = TradingGraph/LWTradingLinearGraphViewTest.m; sourceTree = "<group>"; };
+		A1BB07BD1D378E2000924804 /* LWPrivateWalletAddView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWPrivateWalletAddView.h; sourceTree = "<group>"; };
+		A1BB07BE1D378E2000924804 /* LWPrivateWalletAddView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWPrivateWalletAddView.m; sourceTree = "<group>"; };
+		A1BB07C01D3793F600924804 /* LWPrivateWalletsHeaderSumView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWPrivateWalletsHeaderSumView.h; sourceTree = "<group>"; };
+		A1BB07C11D3793F600924804 /* LWPrivateWalletsHeaderSumView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWPrivateWalletsHeaderSumView.m; sourceTree = "<group>"; };
+		A1BB07C31D388CB100924804 /* LWAddPrivateWalletPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LWAddPrivateWalletPresenter.h; path = AddNewPrivateWallet/LWAddPrivateWalletPresenter.h; sourceTree = "<group>"; };
+		A1BB07C41D388CB100924804 /* LWAddPrivateWalletPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LWAddPrivateWalletPresenter.m; path = AddNewPrivateWallet/LWAddPrivateWalletPresenter.m; sourceTree = "<group>"; };
+		A1BB07D31D38BB1F00924804 /* LWWalletAddressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LWWalletAddressView.h; path = AddNewPrivateWallet/LWWalletAddressView.h; sourceTree = "<group>"; };
+		A1BB07D41D38BB1F00924804 /* LWWalletAddressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LWWalletAddressView.m; path = AddNewPrivateWallet/LWWalletAddressView.m; sourceTree = "<group>"; };
 		A1BCCD291CFEC9C900CF42E4 /* LWPacketAPIVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWPacketAPIVersion.h; sourceTree = "<group>"; };
 		A1BCCD2A1CFEC9C900CF42E4 /* LWPacketAPIVersion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWPacketAPIVersion.m; sourceTree = "<group>"; };
 		A1BCCE1D1D0009A500CF42E4 /* LWPacketBitcoinAddressValidation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWPacketBitcoinAddressValidation.h; sourceTree = "<group>"; };
@@ -2944,6 +2971,24 @@
 			path = Refund;
 			sourceTree = "<group>";
 		};
+		A11D0F3A1D37616800BFDE4D /* PrivateWallets */ = {
+			isa = PBXGroup;
+			children = (
+				A11D0F3B1D3761A800BFDE4D /* LWPrivateWalletsPresenter.h */,
+				A11D0F3C1D3761A800BFDE4D /* LWPrivateWalletsPresenter.m */,
+				A11D0F441D37676E00BFDE4D /* LWPrivateWalletTitleCell.h */,
+				A11D0F451D37676E00BFDE4D /* LWPrivateWalletTitleCell.m */,
+				A11D0F471D3767A400BFDE4D /* LWPrivateWalletAssetCell.h */,
+				A11D0F481D3767A400BFDE4D /* LWPrivateWalletAssetCell.m */,
+				A1BB07BD1D378E2000924804 /* LWPrivateWalletAddView.h */,
+				A1BB07BE1D378E2000924804 /* LWPrivateWalletAddView.m */,
+				A1BB07C01D3793F600924804 /* LWPrivateWalletsHeaderSumView.h */,
+				A1BB07C11D3793F600924804 /* LWPrivateWalletsHeaderSumView.m */,
+				A1BB07C61D388CBC00924804 /* AddNewPrivateWallet */,
+			);
+			name = PrivateWallets;
+			sourceTree = "<group>";
+		};
 		A122B97B1CFEB2E4009DC795 /* FLAnimatedImage */ = {
 			isa = PBXGroup;
 			children = (
@@ -3046,6 +3091,17 @@
 				A15B3F001D13A55D00A6B506 /* zbar-samples.png */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		A1BB07C61D388CBC00924804 /* AddNewPrivateWallet */ = {
+			isa = PBXGroup;
+			children = (
+				A1BB07C31D388CB100924804 /* LWAddPrivateWalletPresenter.h */,
+				A1BB07C41D388CB100924804 /* LWAddPrivateWalletPresenter.m */,
+				A1BB07D31D38BB1F00924804 /* LWWalletAddressView.h */,
+				A1BB07D41D38BB1F00924804 /* LWWalletAddressView.m */,
+			);
+			name = AddNewPrivateWallet;
 			sourceTree = "<group>";
 		};
 		A1BCCE201D011B2700CF42E4 /* Introduction */ = {
@@ -4156,6 +4212,7 @@
 				A1F78C8B1D3664B900BCFF03 /* LWWalletsNavigationBar.m */,
 				A1F78C8D1D366CA200BCFF03 /* LWWalletsTypeButton.h */,
 				A1F78C8E1D366CA200BCFF03 /* LWWalletsTypeButton.m */,
+				A11D0F3A1D37616800BFDE4D /* PrivateWallets */,
 			);
 			path = Wallets;
 			sourceTree = "<group>";
@@ -4773,6 +4830,10 @@
 				EC51D19B1C30575600550EF2 /* LWBankCardsData.m */,
 				ECE902C51C35504200F52971 /* LWBankCardsAdd.h */,
 				ECE902C61C35504200F52971 /* LWBankCardsAdd.m */,
+				A11D0F3E1D3761EB00BFDE4D /* LWPrivateWalletModel.h */,
+				A11D0F3F1D3761EB00BFDE4D /* LWPrivateWalletModel.m */,
+				A11D0F411D3766A200BFDE4D /* LWPrivateWalletAssetModel.h */,
+				A11D0F421D3766A200BFDE4D /* LWPrivateWalletAssetModel.m */,
 			);
 			name = Wallets;
 			sourceTree = "<group>";
@@ -6565,6 +6626,7 @@
 				EC7519B01C37338000CDDF5B /* LWSettingsAssetTableViewCell.m in Sources */,
 				A1F78C8F1D366CA200BCFF03 /* LWWalletsTypeButton.m in Sources */,
 				EC57F4651C3D197900E31746 /* NSString+Utils.m in Sources */,
+				A11D0F3D1D3761A800BFDE4D /* LWPrivateWalletsPresenter.m in Sources */,
 				CDCD5AE31C2576EB007BAD78 /* LWKeychainManager.m in Sources */,
 				ECFAC5B31CB11138009B1CC9 /* LWUtils.m in Sources */,
 				ECD1E9051C3BCAE30064AAB3 /* LWExchangePresenter.m in Sources */,
@@ -6576,6 +6638,7 @@
 				A1165D4E1CF9838F0017A725 /* UINavigationItem+Kerning.m in Sources */,
 				EC57F4501C3C377300E31746 /* LWAssetDescriptionModel.m in Sources */,
 				CF6632631C175DE5004353F5 /* TKNavigationPresenter.m in Sources */,
+				A11D0F461D37676E00BFDE4D /* LWPrivateWalletTitleCell.m in Sources */,
 				EC7A45DC1C309A9F00926BB4 /* LWWalletEmptyTableViewCell.m in Sources */,
 				CFD9B7031C1C932B00F717FE /* LWPacketCheckDocumentsToUpload.m in Sources */,
 				CF6A9CD21C18ED2400B69F53 /* LWColorizer.m in Sources */,
@@ -6626,6 +6689,7 @@
 				CF66328A1C176AB1004353F5 /* LWTabController.m in Sources */,
 				EC57F47F1C3D8A6400E31746 /* UITextField+Validation.m in Sources */,
 				A1AA58A01CEED1CC00D24E68 /* LWMathKeyboardCursorView.m in Sources */,
+				A11D0F431D3766A200BFDE4D /* LWPrivateWalletAssetModel.m in Sources */,
 				A170698C1D25FC3D0044D7FA /* LWAssetURLTableViewCell.m in Sources */,
 				ECD1E9021C3BC8B40064AAB3 /* LWAuthPresenter.m in Sources */,
 				CFF2AAE21C1F893000320FF9 /* LWRegisterCameraPresenter.m in Sources */,
@@ -6659,6 +6723,7 @@
 				A15B3EB61D12CA1500A6B506 /* LWKYCManager.m in Sources */,
 				CFF758411C202C7D00BC7658 /* LWKYCInvalidDocumentsPresenter.m in Sources */,
 				A10A950D1D0EA07B00557C87 /* LWPacketLastBaseAssets.m in Sources */,
+				A1BB07C21D3793F600924804 /* LWPrivateWalletsHeaderSumView.m in Sources */,
 				EC7A45C91C3083CE00926BB4 /* LWAuthSteps.m in Sources */,
 				A1E4EAAC1CE4654200293282 /* LWCurrencyDepositPresenter.m in Sources */,
 				EC51D1991C30573200550EF2 /* LWLykkeData.m in Sources */,
@@ -6686,6 +6751,7 @@
 				ECD76BCA1C2EBE9C00E1D3DA /* LWPersonalDataPacket.m in Sources */,
 				ECD114551CDD4758002B36C0 /* LWPacketClientFullNameSet.m in Sources */,
 				EC51D19F1C30578700550EF2 /* LWLykkeAssetsData.m in Sources */,
+				A1BB07C51D388CB100924804 /* LWAddPrivateWalletPresenter.m in Sources */,
 				ECD114721CDDF726002B36C0 /* LWRegisterPhoneConfirmPresenter.m in Sources */,
 				EC2813EC1C343CE9009BE680 /* UIImage+Resize.m in Sources */,
 				ECE902C71C35504200F52971 /* LWBankCardsAdd.m in Sources */,
@@ -6758,10 +6824,12 @@
 				CD3CCDDD1C2B3DD400DDCE46 /* LWDeviceInfo.m in Sources */,
 				EC3CE8B11C4014D600CAC3FE /* LWExchangeBlockchainPresenter.m in Sources */,
 				CDCD5B131C26C92A007BAD78 /* LWRegisterPhonePresenter.m in Sources */,
+				A1BB07BF1D378E2000924804 /* LWPrivateWalletAddView.m in Sources */,
 				EC57F4601C3C55D700E31746 /* LWAssetInfoIconTableViewCell.m in Sources */,
 				EC9AE05A1CAC70EA0047DF0D /* LWQrCodeScannerPresenter.m in Sources */,
 				A15B3EAF1D12626B00A6B506 /* LWRefundInformationPresenter.m in Sources */,
 				EC7F04FE1C3E86760079ECD0 /* LWPacketBuySellAsset.m in Sources */,
+				A1BB07D51D38BB1F00924804 /* LWWalletAddressView.m in Sources */,
 				EC3CE89E1C3FB6CC00CAC3FE /* LWAssetDealModel.m in Sources */,
 				ECD1E8FB1C3B181F0064AAB3 /* LWPacketAppSettings.m in Sources */,
 				CFAD8A8D1C1D5E4B00185CD1 /* LWDocumentsStatus.m in Sources */,
@@ -6776,6 +6844,7 @@
 				EC7A45D11C309A2B00926BB4 /* LWBanksTableViewCell.m in Sources */,
 				ECD114781CDE2350002B36C0 /* LWPacketPhoneVerificationGet.m in Sources */,
 				EC57F44A1C3C18EA00E31746 /* LWCache.m in Sources */,
+				A11D0F491D3767A400BFDE4D /* LWPrivateWalletAssetCell.m in Sources */,
 				CF6632641C175DE5004353F5 /* TKPresenter.m in Sources */,
 				ECD114511CD91FB8002B36C0 /* LWPacketEmailVerificationSet.m in Sources */,
 				ECECAB631C99A9360020E050 /* LWPacketBlockchainCashTransaction.m in Sources */,
@@ -6794,6 +6863,7 @@
 				ECEC40E41C44253D00B22BEE /* LWPacketMarketOrder.m in Sources */,
 				CF66326F1C175DF0004353F5 /* TKImageView.m in Sources */,
 				ECD1E90B1C3BDEA70064AAB3 /* LWAssetTableViewCell.m in Sources */,
+				A11D0F401D3761EB00BFDE4D /* LWPrivateWalletModel.m in Sources */,
 				ECAB1BBC1C99D45300A64A20 /* LWPacketExchangeInfoGet.m in Sources */,
 				EC370B221C47BD7F00175786 /* LWKeyboardToolbar.m in Sources */,
 				CDCD5B101C26C92A007BAD78 /* LWRegisterBasePresenter.m in Sources */,
@@ -7178,7 +7248,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.lykkex.Lykke-Wallet-test";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "bae00902-12cf-4b28-8427-525638e1ae19";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -7208,7 +7278,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.lykkex.Lykke-Wallet-test";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "bae00902-12cf-4b28-8427-525638e1ae19";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -7268,8 +7338,8 @@
 			baseConfigurationReference = 68CD54781D3AB2AD7AAA8023 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon${ICON_SUFFIX}";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Andrey Migin (9KYRE6V24Q)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Andrey Migin (9KYRE6V24Q)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -7288,7 +7358,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.lykkex.Lykke-Wallet-test";
 				PRODUCT_NAME = "$(TARGET_NAME).Test";
-				PROVISIONING_PROFILE = "bae00902-12cf-4b28-8427-525638e1ae19";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug.Test;
@@ -7342,8 +7412,8 @@
 			baseConfigurationReference = 7F99B9580B48B839D9C768D4 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon${ICON_SUFFIX}";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Lykke Corp (MNZ5M7YPQV)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Lykke Corp (MNZ5M7YPQV)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -7362,7 +7432,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.lykkex.Lykke-Wallet-test";
 				PRODUCT_NAME = "$(TARGET_NAME).Test";
-				PROVISIONING_PROFILE = "e08070fd-e778-44d8-9e02-d448ce3f1596";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release.Test;

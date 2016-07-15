@@ -327,8 +327,6 @@ static int CellTypes[kNumberOfCells] = {
     
 
 #endif
-
-//    [self presentViewController:codeReader animated:YES completion:nil];
     
     
 }

@@ -111,7 +111,11 @@
 
 -(void) dismiss
 {
+    
     UINavigationController *parent=(UINavigationController *)self.presentingViewController;
+    
+    UIViewController *vc=[self.viewControllers lastObject];
+    [vc.view endEditing:YES];
     [parent dismissViewControllerAnimated:YES completion:^{
         
         UITabBarController *vvv=(UITabBarController *)parent.visibleViewController;

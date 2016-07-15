@@ -71,6 +71,11 @@
     buttonTrading.selected=NO;
     buttonPrivate.selected=NO;
     button.selected=YES;
+    if(button==buttonPrivate)
+        [self.delegate performSelector:@selector(walletsNavigationBarPressedPrivateWallets) withObject:nil];
+    else
+        [self.delegate performSelector:@selector(walletsNavigationBarPressedTradingWallets) withObject:nil];
+    
 }
 
 

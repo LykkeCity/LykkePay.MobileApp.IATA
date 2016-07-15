@@ -272,13 +272,13 @@
 #else
     
     
-//    LWWalletsNavigationController *nWallets=[[LWWalletsNavigationController alloc] initWithNavigationBarClass:[LWWalletsNavigationBar class] toolbarClass:nil];
-//    nWallets.tabBarItem = [self createTabBarItemWithTitle:@"tab.wallets"
-//                                                withImage:@"WalletsTab"];
-//
-//    tab.viewControllers = @[nWallets, pTrading, pHistory, pSettings];
+    LWWalletsNavigationController *nWallets=[[LWWalletsNavigationController alloc] initWithNavigationBarClass:[LWWalletsNavigationBar class] toolbarClass:nil];
+    nWallets.tabBarItem = [self createTabBarItemWithTitle:@"tab.wallets"
+                                                withImage:@"WalletsTab"];
+
+    tab.viewControllers = @[nWallets, pTrading, pHistory, pSettings];
     
-    tab.viewControllers = @[pWallets, pTrading, pHistory, pSettings];
+//    tab.viewControllers = @[pWallets, pTrading, pHistory, pSettings];
     
 #endif
 

@@ -702,15 +702,22 @@ static NSString *const FormIdentifiers[kFormRows] = {
 
 - (void)validateUser {
     
+    self.view.userInteractionEnabled=NO;
     [LWFingerprintHelper
      validateFingerprintTitle:Localize(@"exchange.assets.modal.fingerpring")
      ok:^(void) {
+         self.view.userInteractionEnabled=YES;
+
          [self requestOperationWithHud:YES];
      }
      bad:^(void) {
+         self.view.userInteractionEnabled=YES;
+
          [self showConfirmationView];
      }
      unavailable:^(void) {
+         self.view.userInteractionEnabled=YES;
+
          [self showConfirmationView];
      }];
 }

@@ -10,4 +10,14 @@
 
 @interface LWWalletsNavigationBar : UINavigationBar
 
+
+
+@end
+
+
+@protocol LWWalletsNavigationBarDelegate
+
+-(void) walletsNavigationBarPressedPrivateWallets;
+-(void) walletsNavigationBarPressedTradingWallets;
+
 @end

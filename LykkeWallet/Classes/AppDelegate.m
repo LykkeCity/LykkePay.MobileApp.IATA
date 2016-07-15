@@ -138,8 +138,20 @@
 
 -(void) registerForNotificationsInAzureWithTag:(NSString *) tag
 {
-    NSString *HUBLISTENACCESS=@"Endpoint=sb://lykke-dev.servicebus.windows.net/;SharedAccessKeyName=DefaultListenSharedAccessSignature;SharedAccessKey=KLvwXsxLPxY2dCgXChIp/QD5/Kg00+tgruhFom59098=";
-    NSString *HUBNAME=@"lykke-notifications-dev";
+    NSString *HUBLISTENACCESS;//=@"Endpoint=sb://lykke-dev.servicebus.windows.net/;SharedAccessKeyName=DefaultListenSharedAccessSignature;SharedAccessKey=KLvwXsxLPxY2dCgXChIp/QD5/Kg00+tgruhFom59098=";
+    NSString *HUBNAME;//=@"lykke-notifications-dev";
+    
+    if([[LWKeychainManager instance].address isEqualToString:kProductionServer] || [[LWKeychainManager instance].address isEqualToString:kStagingTestServer])
+    {
+        HUBLISTENACCESS=@"Endpoint=sb://lykkewallet.servicebus.windows.net/;SharedAccessKeyName=DefaultListenSharedAccessSignature;SharedAccessKey=XwEA5pk9uDLkZXgnZF5sdDrZYEx5eoaE7LFlLoy+wh4=";
+        HUBNAME=@"lykke-notifications";
+    }
+    else
+    {
+        HUBLISTENACCESS=@"Endpoint=sb://lykke-dev.servicebus.windows.net/;SharedAccessKeyName=DefaultListenSharedAccessSignature;SharedAccessKey=KLvwXsxLPxY2dCgXChIp/QD5/Kg00+tgruhFom59098=";
+        HUBNAME=@"lykke-notifications-dev";
+
+    }
     
     dispatch_async(dispatch_get_main_queue(), ^{
     

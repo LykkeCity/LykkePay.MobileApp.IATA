@@ -121,6 +121,8 @@ SINGLETON_INIT {
 
 - (NSString *)address {
     
+//    return kProductionServer;//Testing
+    
 //    return @"http://testtestest.me";//Andrey
     
 //    return kStagingTestServer;

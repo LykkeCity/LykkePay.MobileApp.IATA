@@ -8,10 +8,16 @@
 
 #import "LWWalletsNavigationController.h"
 #import "LWWalletsPresenter.h"
+#import "LWWalletsNavigationBar.h"
+#import "LWPrivateWalletsPresenter.h"
+#import "LWPrivateWalletAddView.h"
+#import "LWAddPrivateWalletPresenter.h"
 
-@interface LWWalletsNavigationController ()
+@interface LWWalletsNavigationController () <LWWalletsNavigationBarDelegate>
 {
     NSArray *viewControllers;
+    LWPrivateWalletAddView *plusView;
+    UIBarButtonItem *itemPlus;
 }
 
 @end
@@ -24,7 +30,12 @@
     LWWalletsPresenter *exchangeWallets=[LWWalletsPresenter new];
     [super pushViewController:exchangeWallets animated:NO];
     
+    plusView=[[LWPrivateWalletAddView alloc] init];
+    itemPlus=[[UIBarButtonItem alloc] initWithCustomView:plusView];
     
+    UITapGestureRecognizer *gesture=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(addNewWalletPressed)];
+    [plusView addGestureRecognizer:gesture];
+
 //    [self setTitle:@"WALLETS"];
     // Do any additional setup after loading the view.
 }
@@ -32,7 +43,18 @@
 -(void) viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
+    self.navigationController.visibleViewController.navigationItem.rightBarButtonItem=nil;
+
     return;
+}
+
+-(void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    if([[self.viewControllers lastObject] isKindOfClass:[LWPrivateWalletsPresenter class]])
+    {
+        self.navigationController.visibleViewController.navigationItem.rightBarButtonItem=itemPlus;
+    }
 }
 
 -(void) pushViewController:(UIViewController *)viewController animated:(BOOL)animated
@@ -44,6 +66,29 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+-(void) walletsNavigationBarPressedPrivateWallets
+{
+    LWPrivateWalletsPresenter *presenter=[[LWPrivateWalletsPresenter alloc] init];
+    [super pushViewController:presenter animated:YES];
+    
+    self.navigationController.visibleViewController.navigationItem.rightBarButtonItem=itemPlus;
+}
+
+-(void) walletsNavigationBarPressedTradingWallets
+{
+    [super popViewControllerAnimated:YES];
+    self.navigationController.visibleViewController.navigationItem.rightBarButtonItem=nil;
+
+}
+
+-(void) addNewWalletPressed
+{
+    LWAddPrivateWalletPresenter *presenter=[[LWAddPrivateWalletPresenter alloc] init];
+    [self.navigationController pushViewController:presenter animated:YES];
+}
+
+
 
 
 @end
