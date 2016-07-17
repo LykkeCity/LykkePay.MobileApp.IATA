@@ -107,14 +107,22 @@
     {
         LWPrivateWalletTitleCell *cell=[[LWPrivateWalletTitleCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
         cell.wallet=wallets[indexPath.section];
+        cell.selectionStyle=UITableViewCellSelectionStyleNone;
         return cell;
     }
     else
     {
         LWPrivateWalletAssetCell *cell=[[LWPrivateWalletAssetCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
         cell.asset=[wallets[indexPath.section] assets][indexPath.row-1];
+        if(indexPath.row==[self tableView:tableView numberOfRowsInSection:indexPath.section]-1)
+            [cell addBottomLine];
         return cell;
     }
+    
+}
+
+-(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
     
 }
 

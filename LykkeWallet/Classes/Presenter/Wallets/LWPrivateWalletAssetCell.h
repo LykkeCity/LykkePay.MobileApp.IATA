@@ -15,4 +15,6 @@
 
 +(CGFloat) height;
 
+-(void) addBottomLine;
+
 @end

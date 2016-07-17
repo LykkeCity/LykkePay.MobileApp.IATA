@@ -31,6 +31,8 @@
 #import "LWLykkeWalletsData.h"
 #import "LWLykkeAssetsData.h"
 #import "LWMathKeyboardView.h"
+#import "LWAssetDealModel.h"
+
 
 typedef enum {
     LastInput_Volume = 1,
@@ -450,7 +452,18 @@ static NSString *const FormIdentifiers[kFormRows] = {
         [confirmationView setLoading:NO withReason:@""];
         [confirmationView removeFromSuperview];
     }
-
+    
+//    if(lastInput==LastInput_Result)
+//    {
+//        if([purchase.orderType isEqualToString:@"Buy"])
+//        {
+//            purchase.orderType=@"Sell";
+//        }
+//        else
+//            purchase.orderType=@"Buy";
+//        
+//    }
+    
     LWExchangeResultPresenter *controller = [LWExchangeResultPresenter new];
     controller.purchase = purchase;
     controller.assetPair=self.assetPair;
@@ -497,6 +510,7 @@ static NSString *const FormIdentifiers[kFormRows] = {
     resultStringToSend=resultString;
     volumeStringToSend=volumeString;
     
+    NSLog(@"%f", volumeToSend.doubleValue);
     
     // if fingerprint available - show confirmation view
     BOOL const shouldSignOrder = [LWCache instance].shouldSignOrder;
@@ -539,6 +553,8 @@ static NSString *const FormIdentifiers[kFormRows] = {
     NSString *baseAssetId=[LWCache instance].baseAssetId;
     
     baseAssetId=self.assetPair.baseAssetId;
+    if(lastInput==LastInput_Result)
+        baseAssetId=self.assetPair.quotingAssetId;
     
     if (self.assetDealType == LWAssetDealTypeBuy) {
         
@@ -690,12 +706,23 @@ static NSString *const FormIdentifiers[kFormRows] = {
 }
 
 - (NSNumber *)volumeFromField {
-//    NSDecimalNumber *volume = [volumeString isEmpty] ? [NSDecimalNumber zero] : [LWMath numberWithString:volumeString];
+
     
     
-    double volume=volumeString.doubleValue;
+    double volume;//=volumeString.doubleValue;
     
-    double const result = self.assetDealType == LWAssetDealTypeBuy ? volume : -volume;
+    double result;// = self.assetDealType == LWAssetDealTypeBuy ? volume : -volume;
+    
+    if(lastInput==LastInput_Volume)
+    {
+        volume=volumeString.doubleValue;
+        result= self.assetDealType == LWAssetDealTypeBuy ? volume : -volume;
+    }
+    else
+    {
+        volume=resultString.doubleValue;
+        result= self.assetDealType == LWAssetDealTypeSell ? volume : -volume;
+    }
     
     return [NSNumber numberWithDouble:result];
 }

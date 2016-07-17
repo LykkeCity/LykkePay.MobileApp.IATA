@@ -15,6 +15,11 @@
 #import "ZBarReaderViewController.h"
 #import "LWCameraMessageView.h"
 #import "LWCameraMessageView2.h"
+#import "BTCKey.h"
+#import "BTCAddress.h"
+#import "LWKeychainManager.h"
+#import "LWConstantsLykke.h"
+#import "LWBackupMessageView.h"
 
 @import AVFoundation;
 
@@ -45,7 +50,11 @@
     NSDictionary *buttonDisabledAttributes;
     
     NSDictionary *createButtonEnabledAttributes;
+    BTCKey *privateKey;
     
+    BOOL flagTestnet;
+    
+    UIButton *pasteButton;
 }
 
 @end
@@ -54,6 +63,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    if([[LWKeychainManager instance].address isEqualToString:kProductionServer] || [[LWKeychainManager instance].address isEqualToString:kStagingTestServer])
+        flagTestnet=NO;
+    else
+        flagTestnet=YES;
     
     [self setBackButton];
     
@@ -123,7 +137,17 @@
     privateKeyTextField.delegate=self;
     [privateKeyContainer addSubview:privateKeyTextField];
     
+    pasteButton=[UIButton buttonWithType:UIButtonTypeCustom];
+    [pasteButton setTitle:@"Paste" forState:UIControlStateNormal];
+    pasteButton.titleLabel.font=[UIFont fontWithName:@"ProximaNova-Regular" size:14];
+    pasteButton.titleLabel.textColor=TextColor;
+    pasteButton.alpha=0.6;
+    [pasteButton sizeToFit];
+    [pasteButton addTarget:self action:@selector(pasteButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+    [privateKeyContainer addSubview:pasteButton];
+    
     generatePrivateKeyButton=[self createButtonWithIcon:[UIImage imageNamed:@"GeneratePrivateKey"] title:@"Generate key"];
+    [generatePrivateKeyButton addTarget:self action:@selector(generatePrivateKeyPressed) forControlEvents:UIControlEventTouchUpInside];
     [scrollView addSubview:generatePrivateKeyButton];
     
     scanQRCodeButton=[self createButtonWithIcon:[UIImage imageNamed:@"QrCodeIcon"] title:@"Scan QR-code"];
@@ -131,7 +155,6 @@
     [scrollView addSubview:scanQRCodeButton];
     
     addressView=[[LWWalletAddressView alloc] initWithWidth:scrollView.bounds.size.width-60];
-    addressView.address=@"adkjheuhLjlskjlJLkhldfkjlkjduhljn2lj3lknsldkjlskj";
     [scrollView addSubview:addressView];
     
     
@@ -206,6 +229,7 @@
             [createWalletButton setAttributedTitle:[[NSAttributedString alloc] initWithString:@"CREATE WALLET" attributes:buttonDisabledAttributes] forState:UIControlStateNormal];
             createWalletButton.titleLabel.alpha=0.2;
         }
+        pasteButton.hidden=YES;
     }
     else
     {
@@ -224,6 +248,9 @@
             createWalletButton.titleLabel.alpha=0.2;
         }
         
+        pasteButton.frame=CGRectMake(privateKeyContainer.bounds.size.width-pasteButton.bounds.size.width/2-15, 0, pasteButton.bounds.size.width, privateKeyContainer.bounds.size.height);
+        [self validatePrivateKeyField];
+        
     }
     
     scrollView.contentSize=CGSizeMake(scrollView.bounds.size.width, createWalletButton.frame.origin.y+createWalletButton.bounds.size.height+10);
@@ -241,7 +268,7 @@
     [super viewDidAppear:animated];
     self.title=@"ADD NEW WALLET";
     self.observeKeyboardEvents=YES;
-
+    [self validatePrivateKeyField];
 }
 
 -(void) viewWillDisappear:(BOOL)animated
@@ -263,6 +290,25 @@
     scrollView.frame=self.view.bounds;
 }
 
+-(void) pasteButtonPressed
+{
+    UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+    NSString *string = pasteboard.string;
+    privateKeyTextField.text=string;
+    pasteButton.hidden=YES;
+}
+
+-(void) validatePrivateKeyField
+{
+    UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+    NSString *string = pasteboard.string;
+
+    if([privateKeyTextField.text length] || !string.length || newButton.selected)
+        pasteButton.hidden=YES;
+    else
+        pasteButton.hidden=NO;
+}
+
 -(void) pressedWalletTypeButton:(UIButton *) button
 {
     if(button.selected)
@@ -272,6 +318,8 @@
     button.selected=YES;
     
     addressView.address=nil;
+    privateKeyLabel.text=@"";
+    privateKeyTextField.text=@"";
     
     [self.view setNeedsLayout];
 }
@@ -299,6 +347,29 @@
     label.center=CGPointMake(button.bounds.size.width-label.bounds.size.width/2, button.bounds.size.height/2);
     
     return button;
+}
+
+-(void) generatePrivateKeyPressed
+{
+    privateKey=[[BTCKey alloc] init];
+    privateKey.publicKeyCompressed=YES;
+    if(flagTestnet)
+    {
+        privateKeyLabel.text=privateKey.WIFTestnet;
+        BTCAddress *address=privateKey.addressTestnet;
+        
+        addressView.address=address.string;
+    }
+    else
+    {
+        privateKeyLabel.text=privateKey.WIF;
+        BTCAddress *address=privateKey.address;
+        addressView.address=address.string;
+    }
+    
+    [self.view setNeedsLayout];
+    
+//    addressView.address=privateKey.compressedPublicKeyAddress.
 }
 
 -(void) addressViewPressedScanQRCode
@@ -396,15 +467,70 @@
         // just grab the first barcode
         break;
     
+    privateKey=[[BTCKey alloc] initWithWIF:(NSString*)symbol.data];
     
+    NSString *prod=privateKey.WIF;
+    NSString *testnet=privateKey.WIFTestnet;
     
-    privateKeyTextField.text=symbol.data;
-    
-    
-    
-    // dismiss the controller
-    //    [reader dismissViewControllerAnimated:YES completion:nil];
     [self.navigationController popViewControllerAnimated:YES];
+
+
+//    flagTestnet=NO;
+    
+    if(privateKey)
+    {
+        
+        if(flagTestnet)
+        {
+            if([testnet isEqualToString:symbol.data])
+            {
+            privateKeyTextField.text=symbol.data;
+            addressView.address=privateKey.addressTestnet.string;
+            }
+            else
+            {
+                UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"ERROR" message:@"This private key is for Production environment.\nIt can not be used with Testnet!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+                [alert show];
+                return;
+            }
+        }
+        else
+        {
+            if([prod isEqualToString:symbol.data])
+            {
+                addressView.address=privateKey.address.string;
+                privateKeyTextField.text=symbol.data;
+            }
+            else
+            {
+                UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"ERROR" message:@"This private key is for Testnet environment.\nIt can not be used with Lykke!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+                [alert show];
+                
+                return;
+            }
+        }
+        [self.view setNeedsLayout];
+    }
+    else
+    {
+        UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"ERROR" message:@"Invalid private key" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alert show];
+        return;
+    }
+    
+    LWBackupMessageView *view=[[NSBundle mainBundle] loadNibNamed:@"LWBackupMessageView" owner:self options:nil][0];
+    UIWindow *window=[[UIApplication sharedApplication] keyWindow];
+    view.center=CGPointMake(window.bounds.size.width/2, window.bounds.size.height/2);
+    
+    [window addSubview:view];
+    
+    [view showWithCompletion:^(BOOL result){
+        if(result)
+        {
+            
+        }
+     }];
+    
     
 #endif
     

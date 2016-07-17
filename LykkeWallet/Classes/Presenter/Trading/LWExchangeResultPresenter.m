@@ -182,7 +182,11 @@ static int const kBlockchainRow = 4;
     
     NSString *assetName=self.assetPair.name;
     NSArray *arr=[assetName componentsSeparatedByString:@"/"];
+    
+    
+    
     if(self.assetPair.inverted)
+    if(!([self.assetPair.baseAssetId isEqualToString:_purchase.baseAsset] && self.assetPair.inverted))
     {
         if(arr.count==2)
         {
@@ -193,20 +197,41 @@ static int const kBlockchainRow = 4;
         arr=@[@"",@""];
     
     
-    if((self.assetPair.inverted && [self.purchase.orderType isEqualToString:@"Buy"]) || (self.assetPair.inverted==NO && [self.purchase.orderType isEqualToString:@"Sell"]))
+//    if((self.assetPair.inverted && [self.purchase.orderType isEqualToString:@"Buy"]) || (self.assetPair.inverted==NO && [self.purchase.orderType isEqualToString:@"Sell"]))
+//    if(!([self.assetPair.baseAssetId isEqualToString:_purchase.baseAsset] && self.assetPair.inverted))
+//    {
+//        arr=@[arr[1], arr[0]];
+//   
+//    }
+    
+    NSString *buyAssetId=self.purchase.baseAsset;
+    NSString *sellAssetId;
+    if([buyAssetId isEqualToString:self.assetPair.baseAssetId])
     {
-        arr=@[arr[1], arr[0]];
-   
+        sellAssetId=self.assetPair.quotingAssetId;
     }
+    else
+        sellAssetId=self.assetPair.baseAssetId;
+
+    
+//    if((self.assetPair.inverted && [self.purchase.orderType isEqualToString:@"Sell"]) || (self.assetPair.inverted==NO && [self.purchase.orderType isEqualToString:@"Sell"]))
+    if([self.purchase.orderType isEqualToString:@"Sell"])
+    {
+        NSString *tmp=buyAssetId;
+        buyAssetId=sellAssetId;
+        sellAssetId=tmp;
+    }
+    
+    
     
     
     NSString *const values[kNumberOfRows] = {
         assetName,
         
         
-        [[LWUtils stringFromDouble:self.purchase.volume.doubleValue] stringByAppendingFormat:@" %@", arr[0]],
+        [[LWUtils stringFromDouble:self.purchase.volume.doubleValue] stringByAppendingFormat:@" %@", [LWCache nameForAsset:buyAssetId]],
         [LWUtils stringFromDouble:self.purchase.price.doubleValue],
-        [[LWUtils stringFromDouble:self.purchase.totalCost.doubleValue] stringByAppendingFormat:@" %@", arr[1]],
+        [[LWUtils stringFromDouble:self.purchase.totalCost.doubleValue] stringByAppendingFormat:@" %@", [LWCache nameForAsset:sellAssetId]],
 
         self.purchase.blockchainSettled ? self.purchase.blockchainId : Localize(@"exchange.assets.result.blockchain.progress")
         

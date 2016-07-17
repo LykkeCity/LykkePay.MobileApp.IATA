@@ -13,6 +13,7 @@
     UILabel *titleLabel;
     UILabel *baseAssetSumLabel;
     UILabel *sumLabel;
+    UIView *lineView;
 }
 
 @end
@@ -52,7 +53,20 @@
     [sumLabel sizeToFit];
     [self addSubview:sumLabel];
     
-    UIView *lineView=[[UIView alloc] initWithFrame:CGRectMake(30, [LWPrivateWalletAssetCell height]-0.5, 1024, 0.5)];
+    if(!lineView)
+    {
+        lineView=[[UIView alloc] initWithFrame:CGRectMake(30, [LWPrivateWalletAssetCell height]-0.5, 1024, 0.5)];
+        lineView.backgroundColor=[UIColor colorWithWhite:216.0/255 alpha:1];
+        [self addSubview:lineView];
+    }
+
+}
+
+-(void) addBottomLine
+{
+    if(lineView)
+        [lineView removeFromSuperview];
+    lineView=[[UIView alloc] initWithFrame:CGRectMake(0, [LWPrivateWalletAssetCell height]-0.5, 1024, 0.5)];
     lineView.backgroundColor=[UIColor colorWithWhite:216.0/255 alpha:1];
     [self addSubview:lineView];
 

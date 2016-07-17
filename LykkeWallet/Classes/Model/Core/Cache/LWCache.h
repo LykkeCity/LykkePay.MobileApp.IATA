@@ -59,5 +59,6 @@ SINGLETON_DECLARE
 +(NSString *) currentAppVersion;
 
 -(NSString *) currencySymbolForAssetId:(NSString *) assetId;
++(NSString *) nameForAsset:(NSString *) assetId;
 
 @end

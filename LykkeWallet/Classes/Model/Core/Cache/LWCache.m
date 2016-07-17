@@ -104,6 +104,16 @@ SINGLETON_INIT {
     return symbol;
 }
 
++(NSString *) nameForAsset:(NSString *) assetId
+{
+    for(LWAssetModel *asset in [LWCache instance].allAssets)
+    {
+        if([asset.identity isEqualToString:assetId])
+            return asset.name;
+    }
+    return @"";
+}
+
 +(BOOL) isBaseAsset:(NSString *) assetId
 {
     BOOL flag=NO;

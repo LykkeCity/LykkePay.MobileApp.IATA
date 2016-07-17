@@ -37,6 +37,8 @@
                            @"Rate"      : self.rate
                            };
     
+    NSLog(@"%@", params);
+    
     return params;
 }
 
