@@ -22,7 +22,6 @@
     }
     
     _isPassed = [result[@"Passed"] boolValue];
-//    _isPassed=YES;     //Testing
 
 }
 

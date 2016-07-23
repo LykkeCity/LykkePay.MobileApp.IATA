@@ -14,6 +14,7 @@
 #import "LWValidator.h"
 #import "LWDeviceInfo.h"
 #import "UIViewController+Loading.h"
+#import "LWPrivateKeyManager.h"
 
 #import "LWCache.h"
 

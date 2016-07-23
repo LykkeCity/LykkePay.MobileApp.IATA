@@ -39,7 +39,7 @@
 "register.phone.placeholder" = "Your phone number";
 "register.phone.country.title" = "COUNTRY CODE";
 "register.phone.country.placeholder" = "Search";
-"register.phone.sent" = "Please enter the 4-digit code just sent to your mobile phone %@";
+"register.phone.sent" = "Please enter the 4-digit code that we just sent to your mobile phone %@";
 "register.phone.error" = "Invalid code. Please try again.";
 "register.phone.code.placeholder" = "Code";
 "register.phone.cancel" = "CANCEL";
@@ -106,7 +106,7 @@
 
 "wallets.currency.withdraw" = "WITHDRAW FUNDS";
 
-"wallets.currency.withdraw.success.title" = "SUCCESSFUL!";
+"wallets.currency.withdraw.success.title" = "SUCCESS!";
 "wallets.currency.withdraw.success.text" = "Your withdrawal request is now being\nprocessed by our team...";
 "wallets.trading.title" = "TRADING WALLET";
 "wallets.trading.withdraw" = "WITHDRAW";
@@ -256,7 +256,7 @@
 "ABPadLockScreen.pin.enter" = "Enter PIN";
 "ABPadLockScreen.pin.setup" = "Set up your PIN";
 "ABPadLockScreen.pin.setup.confirm" = "Re-enter PIN";
-"ABPadLockScreen.pin.matchError" = "PINs do not match!";
+"ABPadLockScreen.pin.matchError" = "Your PINs do not match!";
 "ABPadLockScreen.pin.attempts.left.none" = "No attempts left. Application is locked.";
 "ABPadLockScreen.pin.attempts.left.one" = "attempt left";
 "ABPadLockScreen.pin.attempts.left.several" = "attempts left";

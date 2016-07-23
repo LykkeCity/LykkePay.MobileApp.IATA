@@ -13,6 +13,7 @@
 #import "LWPersonalDataModel.h"
 #import "LWTextField.h"
 #import "LWValidator.h"
+#import "LWPrivateKeyManager.h"
 #import "UIViewController+Loading.h"
 
 
@@ -85,6 +86,10 @@
 
 - (void)authManagerDidRegister:(LWAuthManager *)manager {
     [[LWAuthManager instance] requestPersonalData];
+    
+    [[LWPrivateKeyManager shared] generatePrivateKey];
+    [[LWAuthManager instance] requestSaveClientKeysWithPubKey:[LWPrivateKeyManager shared].publicKeyLykke encodedPrivateKey:[LWPrivateKeyManager shared].encryptedKeyLykke];
+    
 }
 
 - (void)authManager:(LWAuthManager *)manager didReceivePersonalData:(LWPersonalDataModel *)data {

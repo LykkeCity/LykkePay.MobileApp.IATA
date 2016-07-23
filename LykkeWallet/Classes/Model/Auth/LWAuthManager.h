@@ -194,6 +194,9 @@ SINGLETON_DECLARE
 -(void) requestGetPushSettings;
 -(void) requestSetPushEnabled:(BOOL) isEnabled;
 
+-(void) requestEncodedPrivateKey;
+-(void) requestSaveClientKeysWithPubKey:(NSString *) pubKey encodedPrivateKey:(NSString *) encodedPrivateKey;
+
 
 
 

@@ -13,6 +13,7 @@
 
 @property (strong, nonatomic) NSString *name;
 @property (strong, nonatomic) NSString *privateKey;
+@property (strong, nonatomic) NSString *address;
 @property (strong, nonatomic) NSArray *assets;
 @property (strong, nonatomic) NSString *iconURL;
 

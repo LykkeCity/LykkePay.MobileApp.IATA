@@ -17,9 +17,9 @@
     if (self.isRejected) {
         return;
     }
-    self.refundAddress=response[@"Result"][@"Address"];
-    self.validDays=[response[@"Result"][@"ValidDays"] intValue];
-    self.sendAutomatically=[response[@"Result"][@"SendAutomatically"] boolValue];
+    self.refundAddress=result[@"Address"];
+    self.validDays=[result[@"ValidDays"] intValue];
+    self.sendAutomatically=[result[@"SendAutomatically"] boolValue];
     
     [LWCache instance].refundAddress=self.refundAddress;
     [LWCache instance].refundDaysValidAfter=self.validDays;

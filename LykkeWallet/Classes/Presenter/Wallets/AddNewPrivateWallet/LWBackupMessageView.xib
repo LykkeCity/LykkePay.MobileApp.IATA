@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -25,20 +25,20 @@
                     <rect key="frame" x="352" y="385" width="320" height="253"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BackupIcon" translatesAutoresizingMaskIntoConstraints="NO" id="HXQ-5S-Fhl">
-                            <rect key="frame" x="127" y="35" width="65" height="65"/>
+                            <rect key="frame" x="125" y="35" width="70" height="32"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="65" id="jOR-jD-lKm"/>
-                                <constraint firstAttribute="width" constant="65" id="wcU-m0-2E4"/>
+                                <constraint firstAttribute="height" constant="32" id="jOR-jD-lKm"/>
+                                <constraint firstAttribute="width" constant="70" id="wcU-m0-2E4"/>
                             </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DON'T FORGET TO BACKUP" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2AA-OZ-B3i">
-                            <rect key="frame" x="51" y="109" width="218" height="21"/>
+                            <rect key="frame" x="51.5" y="83" width="218" height="21"/>
                             <fontDescription key="fontDescription" name="ProximaNova-Semibold" family="Proxima Nova" pointSize="17"/>
                             <color key="textColor" red="0.1215686275" green="0.58431372550000005" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <color key="highlightedColor" red="0.24705882352941178" green="1" blue="0.37647058823529411" alpha="1" colorSpace="calibratedRGB"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Do you want to make a backup of the private key" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NWv-y9-pso">
-                            <rect key="frame" x="46" y="148" width="227" height="17.5"/>
+                            <rect key="frame" x="46" y="122" width="227" height="34.5"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="227" id="vZV-0r-Tgw"/>
                             </constraints>
@@ -103,7 +103,7 @@
                         <constraint firstAttribute="bottom" secondItem="gdh-cG-3on" secondAttribute="bottom" constant="7" id="hqC-92-OlE"/>
                         <constraint firstAttribute="bottom" secondItem="Ica-rd-xJC" secondAttribute="bottom" id="iP6-UQ-Ykh"/>
                         <constraint firstItem="NWv-y9-pso" firstAttribute="top" secondItem="2AA-OZ-B3i" secondAttribute="bottom" constant="18" id="rQ8-0i-ftx"/>
-                        <constraint firstItem="2AA-OZ-B3i" firstAttribute="top" secondItem="HXQ-5S-Fhl" secondAttribute="bottom" constant="9" id="spd-ov-ggf"/>
+                        <constraint firstItem="2AA-OZ-B3i" firstAttribute="top" secondItem="HXQ-5S-Fhl" secondAttribute="bottom" constant="16" id="spd-ov-ggf"/>
                         <constraint firstItem="Ica-rd-xJC" firstAttribute="centerX" secondItem="pRy-SD-xsX" secondAttribute="centerX" id="xiU-OK-F3r"/>
                     </constraints>
                 </view>
@@ -121,6 +121,6 @@
         </view>
     </objects>
     <resources>
-        <image name="BackupIcon" width="65" height="65"/>
+        <image name="BackupIcon" width="70" height="32"/>
     </resources>
 </document>

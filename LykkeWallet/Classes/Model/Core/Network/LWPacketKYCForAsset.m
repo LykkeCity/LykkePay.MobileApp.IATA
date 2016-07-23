@@ -16,8 +16,8 @@
         return;
     }
     
-    self.kycNeeded=[response[@"Result"][@"KycNeeded"] boolValue];
-    self.userKYCStatus=response[@"Result"][@"UserKycStatus"];
+    self.kycNeeded=[result[@"KycNeeded"] boolValue];
+    self.userKYCStatus=result[@"UserKycStatus"];
     
     
 }

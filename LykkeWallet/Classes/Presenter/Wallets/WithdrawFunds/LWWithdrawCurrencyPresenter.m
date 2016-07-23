@@ -148,7 +148,7 @@
 {
     [super viewWillAppear:animated];
     
-    infoLabel.text=[NSString stringWithFormat:@"For funds withdrawal the following\naccount details will be used"];
+    infoLabel.text=[NSString stringWithFormat:@"For the withdrawal of funds, the following\n account details will be used"];
     [infoLabel sizeToFit];
 }
 

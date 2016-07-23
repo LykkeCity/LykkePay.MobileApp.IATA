@@ -18,6 +18,7 @@
 #import "LWKeychainManager.h"
 #import <WindowsAzureMessaging/WindowsAzureMessaging.h>
 #import "LWPushNotificationView.h"
+#import "LWPrivateKeyManager.h"
 
 
 
@@ -108,9 +109,12 @@
         });
     }
     
-    
+//    [LWPrivateKeyManager shared];   //Testing
 //    [LWPushNotificationView showPushNotification:@{@"aps":@{@"alert":@"Test alert", @"type":@(1)}} clickImmediately:NO];//Testing
     
+//    NSString *sss=[LWKeychainManager instance].privateKeyLykke;//Testing
+    NSLog(@" ");
+//    [[LWKeychainManager instance] clearLykkePrivateKey];
     
     return YES;
 }

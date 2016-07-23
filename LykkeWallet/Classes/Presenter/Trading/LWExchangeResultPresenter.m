@@ -66,11 +66,28 @@ static int const kBlockchainRow = 4;
     
     NSString *oper;
 
-    if([self.purchase.orderType isEqualToString:@"Buy"])
+    if([self.purchase.orderType isEqualToString:@"Buy"] != [self.purchase.baseAsset isEqualToString:self.assetPair.baseAssetId]==NO)
         oper=Localize(@"exchange.assets.result.boughtfor");
     else
         oper=Localize(@"exchange.assets.result.soldfor");
-    self.titleLabel.text=[NSString stringWithFormat:@"%@ %@ %@", self.purchase.baseAsset, oper, [self.purchase.assetPair stringByReplacingOccurrencesOfString:self.purchase.baseAsset withString:@""]];
+    
+    
+    NSString *base=self.purchase.baseAsset;
+    NSString *quoting;
+    if([base isEqualToString:self.assetPair.baseAssetId])
+        quoting=self.assetPair.quotingAssetId;
+    else
+        quoting=self.assetPair.baseAssetId;
+    
+    if([self.purchase.baseAsset isEqualToString:self.assetPair.baseAssetId]==NO)
+    {
+        NSString *tmp=quoting;
+        quoting=base;
+        base=tmp;
+    }
+    
+    
+    self.titleLabel.text=[NSString stringWithFormat:@"%@ %@ %@", base, oper, quoting];
     
 //    self.titleLabel.text = [NSString stringWithFormat:@"%@%@",
 //                            self.purchase.assetPair,
@@ -222,7 +239,20 @@ static int const kBlockchainRow = 4;
         sellAssetId=tmp;
     }
     
+    NSNumber *price=self.purchase.price;
     
+    if([self.purchase.baseAsset isEqualToString:self.assetPair.originalBaseAsset]==NO != self.assetPair.inverted)
+    {
+        price=@((double)1/price.doubleValue);
+    }
+    
+    NSString *priceString;
+    if(self.assetPair.inverted)
+        priceString=[LWUtils formatVolumeNumber:price currencySign:@"" accuracy:self.assetPair.invertedAccuracy.intValue removeExtraZeroes:YES];
+    else
+        priceString=[LWUtils formatVolumeNumber:price currencySign:@"" accuracy:self.assetPair.accuracy.intValue removeExtraZeroes:YES];
+    
+
     
     
     NSString *const values[kNumberOfRows] = {
@@ -230,7 +260,7 @@ static int const kBlockchainRow = 4;
         
         
         [[LWUtils stringFromDouble:self.purchase.volume.doubleValue] stringByAppendingFormat:@" %@", [LWCache nameForAsset:buyAssetId]],
-        [LWUtils stringFromDouble:self.purchase.price.doubleValue],
+        priceString,
         [[LWUtils stringFromDouble:self.purchase.totalCost.doubleValue] stringByAppendingFormat:@" %@", [LWCache nameForAsset:sellAssetId]],
 
         self.purchase.blockchainSettled ? self.purchase.blockchainId : Localize(@"exchange.assets.result.blockchain.progress")

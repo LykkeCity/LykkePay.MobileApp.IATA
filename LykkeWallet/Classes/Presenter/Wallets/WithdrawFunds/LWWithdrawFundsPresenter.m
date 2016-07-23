@@ -186,7 +186,7 @@
         
         [self.navigationController pushViewController:codeReader animated:YES];
         
-        [codeReader setTitle:@"SCAN QR-CODE"];
+        [codeReader setTitle:@"SCAN QR CODE"];
     };
     
     void (^messageBlock)(void)=^{

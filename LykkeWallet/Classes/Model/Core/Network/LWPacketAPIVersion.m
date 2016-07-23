@@ -17,7 +17,7 @@
     if (self.isRejected) {
         return;
     }
-    self.apiVersion=response[@"Result"][@"AppVersion"];
+    self.apiVersion=result[@"AppVersion"];
     
     
 }

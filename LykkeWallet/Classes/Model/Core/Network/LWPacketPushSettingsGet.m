@@ -18,7 +18,7 @@
         return;
     }
     
-    self.enabled=[response[@"Result"][@"Enabled"] boolValue];
+    self.enabled=[result[@"Enabled"] boolValue];
     if(self.enabled)
         [LWCache instance].pushNotificationsStatus=PushNotificationsStatusEnabled;
     else

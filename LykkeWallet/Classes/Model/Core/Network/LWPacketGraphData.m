@@ -20,15 +20,15 @@
         return;
     }
     
-    BOOL flagReverted=[response[@"Result"][@"Rate"][@"Inverted"] boolValue];
+    BOOL flagReverted=[result[@"Rate"][@"Inverted"] boolValue];
     
-    self.startDate=[self dateFromString:response[@"Result"][@"StartTime"]];
+    self.startDate=[self dateFromString:result[@"StartTime"]];
     
-    self.endDate=[self dateFromString:response[@"Result"][@"EndTime"]];
-    self.fixingTime=[self dateFromString:response[@"Result"][@"FixingTime"]];
+    self.endDate=[self dateFromString:result[@"EndTime"]];
+    self.fixingTime=[self dateFromString:result[@"FixingTime"]];
     
-    self.percentChange=[NSNumber numberWithDouble:[response[@"Result"][@"Rate"][@"PChange"] doubleValue]];
-    self.lastPrice=[NSNumber numberWithFloat:[response[@"Result"][@"LastPrice"] floatValue]];
+    self.percentChange=[NSNumber numberWithDouble:[result[@"Rate"][@"PChange"] doubleValue]];
+    self.lastPrice=[NSNumber numberWithFloat:[result[@"LastPrice"] floatValue]];
     
     if(flagReverted)
     {
@@ -42,8 +42,8 @@
 //        x = 1/(p+1) - 1
         
         
-        double ppp=self.percentChange.doubleValue;
-        self.percentChange=@(1.0/(ppp+1)-1);
+        double ppp=self.percentChange.doubleValue/100;
+        self.percentChange=@((1.0/(ppp+1)-1)*100);
 
     }
     
@@ -51,7 +51,7 @@
     NSMutableArray *arr=[[NSMutableArray alloc] init];
     
     
-    for(NSString *s in response[@"Result"][@"Rate"][@"ChngGrph"])
+    for(NSString *s in result[@"Rate"][@"ChngGrph"])
     {
         if(flagReverted)
             [arr addObject:[NSNumber numberWithDouble:1/[s doubleValue]]];

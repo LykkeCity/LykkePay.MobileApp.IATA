@@ -8,6 +8,7 @@
 
 #import "LWPacketBuySellAsset.h"
 #import "LWAssetDealModel.h"
+#import "LWPrivateKeyManager.h"
 
 
 
@@ -31,10 +32,20 @@
 
 - (NSDictionary *)params {
     
+    if(![LWPrivateKeyManager shared].wifPrivateKeyLykke)
+    {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"ERROR" message:@"Something happened! Your private key is not found in the keychain. Operation impossible." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+            [alert show];
+        });
+        return nil;
+    }
+    
     NSDictionary *params=@{@"BaseAsset" : self.baseAsset,
                            @"AssetPair" : self.assetPair,
                            @"Volume"    : self.volume,
-                           @"Rate"      : self.rate
+                           @"Rate"      : self.rate,
+                           @"PrivateKey": [LWPrivateKeyManager shared].wifPrivateKeyLykke
                            };
     
     NSLog(@"%@", params);

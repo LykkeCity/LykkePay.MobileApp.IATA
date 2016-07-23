@@ -7,9 +7,11 @@
 //
 
 #import "LWPacketCashOut.h"
+#import "LWPrivateKeyManager.h"
 
 
 @implementation LWPacketCashOut
+
 
 
 #pragma mark - LWPacket
@@ -23,10 +25,19 @@
 }
 
 - (NSDictionary *)params {
-    
+    if(![LWPrivateKeyManager shared].wifPrivateKeyLykke)
+    {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"ERROR" message:@"Something happened! Your private key is not found in the keychain. Operation impossible." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+            [alert show];
+        });
+        return nil;
+    }
+
     NSDictionary *dict=@{@"MultiSig" : self.multiSig,
                          @"Amount"   : self.amount,
-                         @"AssetId"  : self.assetId
+                         @"AssetId"  : self.assetId,
+                         @"PrivateKey": [LWPrivateKeyManager shared].wifPrivateKeyLykke
                          };
     
     return dict;

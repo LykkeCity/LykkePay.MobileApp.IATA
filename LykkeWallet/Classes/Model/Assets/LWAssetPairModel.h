@@ -25,6 +25,8 @@
 @property (readonly, nonatomic) NSNumber *invertedAccuracy;
 @property (readonly, nonatomic) NSNumber *normalAccuracy;
 
+@property (readonly, nonatomic) NSString *originalBaseAsset;
+
 @property BOOL inverted;
 
 @end

@@ -22,7 +22,7 @@
 }
 
 @property CGFloat diameter;
-@property (strong, nonatomic) UIView *squareBackground;
+@property (strong, nonatomic) UIVisualEffectView *squareBackground;
 
 @property (strong, nonatomic) LWProgressView *sharedInstance;
 @end
@@ -34,18 +34,22 @@
 {
     self=[super initWithFrame:frame];
     
-    _squareBackground=[[UIView alloc] initWithFrame:CGRectMake(0, 0, 120, 110)];
+    UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+    _squareBackground = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
+    
+//    _squareBackground=[[UIView alloc] initWithFrame:CGRectMake(0, 0, 90, 90)];
+    _squareBackground.frame=CGRectMake(0, 0, 90, 90);
     _squareBackground.backgroundColor=[UIColor whiteColor];
     _squareBackground.layer.cornerRadius=5;
-    _squareBackground.alpha=0.9;
-    UILabel *loading=[[UILabel alloc] initWithFrame:CGRectMake(0, 82, 120, 15)];
+    _squareBackground.alpha=0.7;
+//    UILabel *loading=[[UILabel alloc] initWithFrame:CGRectMake(0, 82, 120, 15)];
+//    
+//    NSDictionary *attributes=@{NSFontAttributeName : [UIFont fontWithName:@"ProximaNova-Regular" size:11], NSForegroundColorAttributeName:[UIColor colorWithRed:63.0/255 green:77.0/255 blue:96.0/255 alpha:1], NSKernAttributeName:@(1.1)};
+//    NSAttributedString *string=[[NSAttributedString alloc] initWithString:@"LOADING" attributes:attributes];
+//    loading.attributedText=string;
+//    loading.textAlignment=NSTextAlignmentCenter;
     
-    NSDictionary *attributes=@{NSFontAttributeName : [UIFont fontWithName:@"ProximaNova-Regular" size:11], NSForegroundColorAttributeName:[UIColor colorWithRed:63.0/255 green:77.0/255 blue:96.0/255 alpha:1], NSKernAttributeName:@(1.1)};
-    NSAttributedString *string=[[NSAttributedString alloc] initWithString:@"LOADING" attributes:attributes];
-    loading.attributedText=string;
-    loading.textAlignment=NSTextAlignmentCenter;
-    
-    [_squareBackground addSubview:loading];
+//    [_squareBackground addSubview:loading];
     
     [self loadFrames];
     
@@ -85,7 +89,7 @@
     dispatch_once(&onceToken, ^{
         
         sharedInstance = [[LWProgressView alloc] initWithFrame:CGRectMake(0, 0, 1024, 1024)];
-        sharedInstance.diameter=55;
+        sharedInstance.diameter=50;
     });
     return sharedInstance;
 }

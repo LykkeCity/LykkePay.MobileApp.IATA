@@ -54,7 +54,7 @@
 #import "LWAnimatedView.h"
 
 
-@interface LWAuthNavigationController () <UIAlertViewDelegate>{
+@interface LWAuthNavigationController () <UIAlertViewDelegate, UITabBarControllerDelegate>{
     NSArray *classes;
     NSMutableDictionary<NSNumber *, LWAuthStepPresenter *> *activeSteps;
 }
@@ -249,6 +249,7 @@
 
 - (void)setRootMainTabScreen {
     LWTabController *tab = [LWTabController new];
+    tab.delegate=self;
     
     LWWalletsPresenter *pWallets = [LWWalletsPresenter new];
     pWallets.tabBarItem = [self createTabBarItemWithTitle:@"tab.wallets"
@@ -272,13 +273,13 @@
 #else
     
     
-    LWWalletsNavigationController *nWallets=[[LWWalletsNavigationController alloc] initWithNavigationBarClass:[LWWalletsNavigationBar class] toolbarClass:nil];
-    nWallets.tabBarItem = [self createTabBarItemWithTitle:@"tab.wallets"
-                                                withImage:@"WalletsTab"];
-
-    tab.viewControllers = @[nWallets, pTrading, pHistory, pSettings];
+//    LWWalletsNavigationController *nWallets=[[LWWalletsNavigationController alloc] initWithNavigationBarClass:[LWWalletsNavigationBar class] toolbarClass:nil];
+//    nWallets.tabBarItem = [self createTabBarItemWithTitle:@"tab.wallets"
+//                                                withImage:@"WalletsTab"];
+//
+//    tab.viewControllers = @[nWallets, pTrading, pHistory, pSettings];
     
-//    tab.viewControllers = @[pWallets, pTrading, pHistory, pSettings];
+    tab.viewControllers = @[pWallets, pTrading, pHistory, pSettings];
     
 #endif
 
@@ -337,6 +338,9 @@
     return result;
 }
 
+- (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController {
+    return viewController != tabBarController.selectedViewController;
+}
 
 
 -(void) dealloc

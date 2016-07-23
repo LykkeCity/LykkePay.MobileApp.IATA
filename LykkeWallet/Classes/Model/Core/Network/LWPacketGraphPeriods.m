@@ -20,14 +20,14 @@
         return;
     }
     NSMutableArray *arr=[[NSMutableArray alloc] init];
-    for(NSDictionary *d in response[@"Result"][@"AvailablePeriods"])
+    for(NSDictionary *d in result[@"AvailablePeriods"])
     {
         LWGraphPeriodModel *period=[[LWGraphPeriodModel alloc] initWithJSON:d];
         [arr addObject:period];
     }
     self.periods=arr;
     
-    LWGraphPeriodModel *last=[[LWGraphPeriodModel alloc] initWithJSON:response[@"Result"][@"LastSelectedPeriod"]];
+    LWGraphPeriodModel *last=[[LWGraphPeriodModel alloc] initWithJSON:result[@"LastSelectedPeriod"]];
     self.lastSelectedPeriod=last;
     
     

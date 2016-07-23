@@ -22,6 +22,7 @@ SINGLETON_DECLARE
 @property (readonly, nonatomic) NSString *address;
 @property (readonly, nonatomic) NSString *password;
 @property (readonly, nonatomic) NSString *notificationsTag;
+@property (readonly, nonatomic) NSString *privateKeyLykke;
 
 @property (readonly, nonatomic) BOOL     isAuthenticated;
 
@@ -34,8 +35,15 @@ SINGLETON_DECLARE
 
 -(void) saveNotificationsTag:(NSString *) tag;
 
+-(void) saveLykkePrivateKey:(NSString *) privateKey;
+-(void) savePrivateKey:(NSString *) privateKey forWalletAddress:(NSString *) address;
+
+-(NSString *) privateKeyForWalletAddress:(NSString *) address;
 
 - (void)clear;
+
+
+-(void) clearLykkePrivateKey; //Testing
 
 
 #pragma mark - Properties

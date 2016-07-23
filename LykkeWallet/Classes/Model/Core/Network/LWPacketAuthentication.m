@@ -9,7 +9,9 @@
 #import "LWPacketAuthentication.h"
 #import "LWPersonalData.h"
 #import "LWKeychainManager.h"
+#import "LWPrivateKeyManager.h"
 #import "AppDelegate.h"
+#import "LWAuthManager.h"
 
 
 @implementation LWPacketAuthentication
@@ -36,11 +38,19 @@
     
     
     [[LWKeychainManager instance] savePersonalData:_personalData];
-    if(response[@"Result"][@"NotificationsId"])
+    if(result[@"NotificationsId"])
     {
-        [[LWKeychainManager instance] saveNotificationsTag:response[@"Result"][@"NotificationsId"]];
+        [[LWKeychainManager instance] saveNotificationsTag:result[@"NotificationsId"]];
         AppDelegate *tmptmp=[UIApplication sharedApplication].delegate;
-        [tmptmp registerForNotificationsInAzureWithTag:response[@"Result"][@"NotificationsId"]];
+        [tmptmp registerForNotificationsInAzureWithTag:result[@"NotificationsId"]];
+    }
+    if(result[@"EncodedPrivateKey"] && [result[@"EncodedPrivateKey"] length])
+    {
+        [[LWPrivateKeyManager shared] decryptLykkePrivateKeyAndSave:result[@"EncodedPrivateKey"]];
+    }
+    else
+    {
+        [[LWAuthManager instance] requestEncodedPrivateKey];
     }
     
 }

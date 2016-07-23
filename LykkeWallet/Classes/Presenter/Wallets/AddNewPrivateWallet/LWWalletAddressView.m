@@ -57,6 +57,7 @@
         self.frame=CGRectMake(self.frame.origin.x, self.frame.origin.y, self.bounds.size.width, 35);
 
     }
+    _address=address;
 }
 
 

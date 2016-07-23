@@ -32,6 +32,7 @@
 //        _name     = [json objectForKey:@"Name"];
         _accuracy = [json objectForKey:@"Accuracy"];
         _baseAssetId    = [json objectForKey:@"BaseAssetId"];
+        _originalBaseAsset=_baseAssetId;
         _quotingAssetId = [json objectForKey:@"QuotingAssetId"];
         
         _normalAccuracy=_accuracy;

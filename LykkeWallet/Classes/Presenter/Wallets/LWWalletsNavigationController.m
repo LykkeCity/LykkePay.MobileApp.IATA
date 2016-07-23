@@ -57,6 +57,16 @@
     }
 }
 
+- (NSArray<UIViewController *> *)popToViewController:(UIViewController *)viewController animated:(BOOL)animated
+{
+    return [super popToViewController:viewController animated:animated];
+}
+
+-(UIViewController *) popViewControllerAnimated:(BOOL)animated
+{
+    return [super popViewControllerAnimated:animated];
+}
+
 -(void) pushViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
     [self.navigationController pushViewController:viewController animated:animated];

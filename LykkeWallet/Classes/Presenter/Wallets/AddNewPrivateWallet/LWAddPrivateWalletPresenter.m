@@ -20,6 +20,10 @@
 #import "LWKeychainManager.h"
 #import "LWConstantsLykke.h"
 #import "LWBackupMessageView.h"
+#import "LWPrivateWalletsManager.h"
+#import "LWPrivateWalletModel.h"
+#import "UIViewController+Loading.h"
+
 
 @import AVFoundation;
 
@@ -150,7 +154,7 @@
     [generatePrivateKeyButton addTarget:self action:@selector(generatePrivateKeyPressed) forControlEvents:UIControlEventTouchUpInside];
     [scrollView addSubview:generatePrivateKeyButton];
     
-    scanQRCodeButton=[self createButtonWithIcon:[UIImage imageNamed:@"QrCodeIcon"] title:@"Scan QR-code"];
+    scanQRCodeButton=[self createButtonWithIcon:[UIImage imageNamed:@"QrCodeIcon"] title:@"Scan QR code"];
     [scanQRCodeButton addTarget:self action:@selector(addressViewPressedScanQRCode) forControlEvents:UIControlEventTouchUpInside];
     [scrollView addSubview:scanQRCodeButton];
     
@@ -172,6 +176,7 @@
     
     createWalletButton=[UIButton buttonWithType:UIButtonTypeCustom];
     createWalletButton.frame=backupButton.frame;
+    [createWalletButton addTarget:self action:@selector(createWalletButtonPressed) forControlEvents:UIControlEventTouchUpInside];
     [scrollView addSubview:createWalletButton];
     
     [LWValidator setButtonWithClearBackground:backupButton enabled:NO];
@@ -212,9 +217,16 @@
     
     backupButton.center=CGPointMake(scrollView.bounds.size.width/2, addressView.frame.origin.y+addressView.bounds.size.height+10+backupButton.bounds.size.height/2);
     createWalletButton.center=CGPointMake(scrollView.bounds.size.width/2, backupButton.frame.origin.y+backupButton.bounds.size.height+10+createWalletButton.bounds.size.height/2);
+
+    NSString *sss=addressView.address;
+    NSString *eee=walletNameTextField.text;
     
+    [LWValidator setButton:createWalletButton enabled:(addressView.address.length && walletNameTextField.text.length)];
+
+
     if(newButton.selected)
     {
+
         privateKeyTextField.hidden=YES;
         privateKeyLabel.hidden=NO;
         scanQRCodeButton.hidden=YES;
@@ -233,6 +245,7 @@
     }
     else
     {
+ 
         privateKeyTextField.hidden=NO;
         privateKeyLabel.hidden=YES;
         scanQRCodeButton.hidden=NO;
@@ -252,6 +265,7 @@
         [self validatePrivateKeyField];
         
     }
+    
     
     scrollView.contentSize=CGSizeMake(scrollView.bounds.size.width, createWalletButton.frame.origin.y+createWalletButton.bounds.size.height+10);
 }
@@ -349,6 +363,25 @@
     return button;
 }
 
+-(void) createWalletButtonPressed
+{
+    [self setLoading:YES];
+    LWPrivateWalletModel *wallet=[[LWPrivateWalletModel alloc] init];
+    wallet.address=addressView.address;
+    if(newButton.selected)
+        wallet.privateKey=privateKeyLabel.text;
+    else
+        wallet.privateKey=privateKeyTextField.text;
+    wallet.name=walletNameTextField.text;
+    [[LWPrivateWalletsManager shared] addNewWallet:wallet withCompletion:^(BOOL success){
+        [self setLoading:NO];
+        if(success)
+        {
+            [[LWKeychainManager instance] savePrivateKey:wallet.privateKey forWalletAddress:wallet.address];
+        }
+    }];
+}
+
 -(void) generatePrivateKeyPressed
 {
     privateKey=[[BTCKey alloc] init];
@@ -396,7 +429,7 @@
         
         [self.navigationController pushViewController:codeReader animated:YES];
         
-        [codeReader setTitle:@"SCAN QR-CODE"];
+        [codeReader setTitle:@"SCAN QR CODE"];
     };
     
     void (^messageBlock)(void)=^{
@@ -534,6 +567,59 @@
     
 #endif
     
+}
+
+-(BOOL) textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    NSString *str=[textField.text stringByReplacingCharactersInRange:range withString:string];
+    textField.text=str;
+
+   if(textField==walletNameTextField)
+    {
+        
+        if(str.length && addressView.address && createWalletButton.enabled==NO)
+        {
+            [self.view setNeedsLayout];
+        }
+        else if(createWalletButton.enabled==YES)
+        {
+            [self.view setNeedsLayout];
+        }
+        
+            
+        
+    }
+    else if(textField==privateKeyTextField)
+    {
+        BTCKey *key;
+        if(str.length)
+        {
+            key=[[BTCKey alloc] initWithWIF:str];
+            if(key)
+            {
+                if(flagTestnet)
+                {
+                    
+                    BTCAddress *address=key.addressTestnet;
+                    addressView.address=address.string;
+                }
+                else
+                {
+                    BTCAddress *address=key.address;
+                    addressView.address=address.string;
+                }
+                privateKey=key;
+            }
+        }
+        if(key)
+            [self.view setNeedsLayout];
+        else if(addressView.address)
+        {
+            addressView.address=@"";
+            [self.view setNeedsLayout];
+        }
+    }
+    return NO;
 }
 
 -(NSString *) nibName

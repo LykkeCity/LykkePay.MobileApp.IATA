@@ -154,6 +154,8 @@ static int CellTypes[kNumberOfCells] = {
 
 -(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if(indexPath.row==2 || indexPath.row==3)
+        return 0;
     LWRefundTableViewCell *cell=cellsDict[@(indexPath.row)];
     
     return [cell height];
@@ -275,7 +277,7 @@ static int CellTypes[kNumberOfCells] = {
         
         [self.navigationController pushViewController:codeReader animated:YES];
         
-        [codeReader setTitle:@"SCAN QR-CODE"];
+        [codeReader setTitle:@"SCAN QR CODE"];
     };
     
     void (^messageBlock)(void)=^{

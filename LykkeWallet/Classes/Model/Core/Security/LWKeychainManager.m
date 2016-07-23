@@ -9,6 +9,7 @@
 #import "LWKeychainManager.h"
 #import "LWPersonalData.h"
 #import "LWConstants.h"
+#import "LWPrivateKeyManager.h"
 #import <Valet/Valet.h>
 
 static NSString *const kKeychainManagerAppId    = @"LykkeWallet";
@@ -22,6 +23,10 @@ static NSString *const kKeychainManagerPIN  = @"Pin";
 static NSString *const kKeychainManagerEncodedPrivateKey  = @"EncodedPrivateKey";
 
 static NSString *const kKeychainManagerNotificationsTag  = @"NotificationsTag";
+
+static NSString *const kKeychainManagerLykkePrivateKey =@"LykkePrivateKey";
+static NSString *const kKeychainManagerUserPrivateWalletsAddresses=@"UserWalletsAddresses";
+
 
 
 
@@ -87,6 +92,12 @@ SINGLETON_INIT {
     [valet setString:tag forKey:kKeychainManagerNotificationsTag];
 }
 
+-(void) clearLykkePrivateKey //Testing
+{
+    [valet removeObjectForKey:kKeychainManagerLykkePrivateKey];
+
+}
+
 - (void)clear {
     [valet removeObjectForKey:kKeychainManagerToken];
     [valet removeObjectForKey:kKeychainManagerLogin];
@@ -94,7 +105,39 @@ SINGLETON_INIT {
     [valet removeObjectForKey:kKeychainManagerFullName];
     [valet removeObjectForKey:kKeychainManagerPassword];
     [valet removeObjectForKey:kKeychainManagerNotificationsTag];
+    
+//    NSData *data=[valet objectForKey:kKeychainManagerUserPrivateWalletsAddresses];
+//    NSArray *wallets = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+//    for(NSString *w in wallets)
+//    {
+//        [valet removeObjectForKey:w];
+//    }
+    [valet removeObjectForKey:kKeychainManagerLykkePrivateKey];
+    
 }
+
+-(void) saveLykkePrivateKey:(NSString *)privateKey
+{
+    [valet setString:privateKey forKey:kKeychainManagerLykkePrivateKey];
+}
+
+-(void) savePrivateKey:(NSString *)privateKey forWalletAddress:(NSString *)address
+{
+    NSData *data=[valet objectForKey:kKeychainManagerUserPrivateWalletsAddresses];
+    NSMutableArray *wallets;// = [[NSKeyedUnarchiver unarchiveObjectWithData:data] mutableCopy];
+    if(data)
+        wallets=[[NSKeyedUnarchiver unarchiveObjectWithData:data] mutableCopy];
+    else
+        wallets=[[NSMutableArray alloc] init];
+    if([wallets containsObject:address]==NO)
+    {
+        [wallets addObject:address];
+        data = [NSKeyedArchiver archivedDataWithRootObject:wallets];
+        [valet setObject:data forKey:kKeychainManagerUserPrivateWalletsAddresses];
+    }
+    [valet setString:privateKey forKey:address];
+}
+
 
 
 #pragma mark - Properties
@@ -116,6 +159,17 @@ SINGLETON_INIT {
 {
     return [valet stringForKey:kKeychainManagerNotificationsTag];
 }
+
+-(NSString *) privateKeyLykke
+{
+    return [valet stringForKey:kKeychainManagerLykkePrivateKey];
+}
+
+-(NSString *) privateKeyForWalletAddress:(NSString *) address
+{
+    return [valet stringForKey:address];
+}
+
 
 
 
@@ -153,7 +207,7 @@ SINGLETON_INIT {
 }
 
 - (BOOL)isAuthenticated {
-    return (self.token && ![self.token isEqualToString:@""]);
+    return (self.token && ![self.token isEqualToString:@""] && [LWPrivateKeyManager shared].privateKeyLykke);
 }
 
 - (NSString *)fullName {

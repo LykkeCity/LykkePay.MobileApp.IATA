@@ -399,7 +399,7 @@ static NSString *const FormIdentifiers[kFormRows] = {
     const NSInteger repeatSeconds = [LWCache instance].refreshTimer.integerValue / 1000;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(repeatSeconds * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         if (self.isVisible) {
-//            [[LWAuthManager instance] requestAssetPairRate:self.assetPair.identity];
+            [[LWAuthManager instance] requestAssetPairRate:self.assetPair.identity];
         }
     });
 }
@@ -435,8 +435,6 @@ static NSString *const FormIdentifiers[kFormRows] = {
             balanceCurrencySymbol=d.symbol;
         }
     }
-    
-//    balanceOfAccount=@(0.001);//Testing
     
     
     balance.text=[NSString stringWithFormat:@"%@ available", [LWUtils formatVolumeNumber:balanceOfAccount currencySign:balanceCurrencySymbol accuracy:balanceAccuracy removeExtraZeroes:YES]];

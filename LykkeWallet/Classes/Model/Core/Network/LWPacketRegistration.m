@@ -28,12 +28,12 @@
                                 password:self.registrationData.password
                                       token:_token];
     
-    if(response[@"Result"][@"NotificationsId"])
+    if(result[@"NotificationsId"])
     {
-        [[LWKeychainManager instance] saveNotificationsTag:response[@"Result"][@"NotificationsId"]];
+        [[LWKeychainManager instance] saveNotificationsTag:result[@"NotificationsId"]];
 
         AppDelegate *tmptmp=[UIApplication sharedApplication].delegate;
-        [tmptmp registerForNotificationsInAzureWithTag:response[@"Result"][@"NotificationsId"]];
+        [tmptmp registerForNotificationsInAzureWithTag:result[@"NotificationsId"]];
     }
 
 }

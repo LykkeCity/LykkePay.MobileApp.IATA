@@ -64,6 +64,8 @@
 #import "LWPacketSetRefundAddress.h"
 #import "LWPacketPushSettingsGet.h"
 #import "LWPacketPushSettingsSet.h"
+#import "LWPacketEncodedPrivateKey.h"
+#import "LWPacketClientKeys.h"
 
 
 #import "LWLykkeWalletsData.h"
@@ -530,6 +532,20 @@ SINGLETON_INIT {
 {
     LWPacketPushSettingsSet *pack=[[LWPacketPushSettingsSet alloc] init];
     pack.enabled=isEnabled;
+    [self sendPacket:pack];
+}
+
+-(void) requestEncodedPrivateKey
+{
+    LWPacketEncodedPrivateKey *pack=[[LWPacketEncodedPrivateKey alloc] init];
+    [self sendPacket:pack];
+}
+
+-(void) requestSaveClientKeysWithPubKey:(NSString *)pubKey encodedPrivateKey:(NSString *)encodedPrivateKey
+{
+    LWPacketClientKeys *pack=[[LWPacketClientKeys alloc] init];
+    pack.pubKey=pubKey;
+    pack.encodedPrivateKey=encodedPrivateKey;
     [self sendPacket:pack];
 }
 

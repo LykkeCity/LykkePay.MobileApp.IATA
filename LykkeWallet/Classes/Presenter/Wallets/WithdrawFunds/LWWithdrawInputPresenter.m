@@ -265,7 +265,6 @@ float const kMathHeightKeyboard = 239.0;
         {
             accountBalance=d.balance;
             accuracy=d.accuracy.intValue;
-//            accountBalance=@(1.2);//Testing
             symbol=d.symbol;
         }
     }

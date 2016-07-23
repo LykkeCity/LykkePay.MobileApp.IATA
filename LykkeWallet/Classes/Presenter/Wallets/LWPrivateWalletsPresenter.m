@@ -8,9 +8,11 @@
 
 #import "LWPrivateWalletsPresenter.h"
 #import "LWPrivateWalletModel.h"
+#import "LWPrivateWalletAssetModel.h"
 #import "LWPrivateWalletTitleCell.h"
 #import "LWPrivateWalletAssetCell.h"
 #import "LWPrivateWalletsHeaderSumView.h"
+#import "LWPrivateWalletsManager.h"
 
 @interface LWPrivateWalletsPresenter () <UITableViewDelegate, UITableViewDataSource>
 {
@@ -56,6 +58,9 @@
         [www addObject:w];
     }
 
+    
+//    [[LWPrivateWalletsManager shared] deleteWallet:@"muo8D3pp9aCULe123F9YLEpriY3N5EgGWd" withCompletion:nil];
+    
     wallets=www;
     // Do any additional setup after loading the view.
 }
@@ -64,6 +69,24 @@
 {
     [super viewWillAppear:animated];
     [self.navigationItem setHidesBackButton:YES];
+    
+    [[LWPrivateWalletsManager shared] loadWalletsWithCompletion:^(NSArray *arr){
+        NSMutableArray *newWallets=[wallets mutableCopy];
+        
+        
+        for(LWPrivateWalletModel *w in arr)
+        {
+            [[LWPrivateWalletsManager shared] loadWalletBalances:w.address withCompletion:^(NSArray *assets){
+                w.assets=assets;
+                [tableView reloadData];
+            }];
+        }
+        
+        [newWallets addObjectsFromArray:arr];
+        wallets=newWallets;
+        [tableView reloadData];
+    }];
+
     
 //    UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithTitle:@"Show" style:UIBarButtonItemStylePlain target:self action:@selector(refreshPropertyList:)];
 //    self.navigationController.navigationController.navigationItem.rightBarButtonItem = anotherButton;
