@@ -10,4 +10,31 @@
 
 @implementation LWPacketGetPaymentUrl
 
+- (void)parseResponse:(id)response error:(NSError *)error {
+    
+    [super parseResponse:response error:error];
+    
+    if (self.isRejected) {
+        return;
+    }
+    
+    _urlString=result[@"Url"];
+    _successUrl=result[@"OkUrl"];
+    _failUrl=result[@"FailUrl"];
+    _reloadRegex=result[@"ReloadRegex"];
+    
+}
+
+
+- (NSString *)urlRelative {
+    return @"BankCardPaymentUrl";
+}
+
+-(NSDictionary *) params
+{
+   
+    return _parameters;
+}
+
+
 @end

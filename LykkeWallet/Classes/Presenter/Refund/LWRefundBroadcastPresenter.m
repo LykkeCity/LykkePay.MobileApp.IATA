@@ -7,8 +7,24 @@
 //
 
 #import "LWRefundBroadcastPresenter.h"
+#import "LWValidator.h"
+#import "UIViewController+Navigation.h"
+
+#define BAR_GRAY_COLOR [UIColor colorWithRed:245.0/255 green:246.0/255 blue:248.0/255 alpha:1]
+#define TextColor [UIColor colorWithRed:63.0/255 green:77.0/255 blue:96.0/255 alpha:1]
+
 
 @interface LWRefundBroadcastPresenter ()
+{
+    
+    
+    
+}
+
+@property (weak, nonatomic) IBOutlet UIButton *copypasteButton;
+@property (weak, nonatomic) IBOutlet UIButton *broadcastButton;
+@property (weak, nonatomic) IBOutlet UITextView *transactionTextView;
+
 
 @end
 
@@ -16,7 +32,29 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     // Do any additional setup after loading the view from its nib.
+}
+
+-(void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self setTitle:@"REFUND"];
+    [self.navigationController setNavigationBarHidden:NO];
+    [self setCrossCloseButton];
+    
+    self.navigationController.navigationBar.barTintColor = BAR_GRAY_COLOR;
+    
+    self.transactionTextView.text=self.transactionText;
+    
+    NSDictionary *attrDisabled = @{NSKernAttributeName:@(1), NSFontAttributeName:[UIFont fontWithName:@"ProximaNova-Semibold" size:15], NSForegroundColorAttributeName:TextColor};
+    NSDictionary *attrEnabled = @{NSKernAttributeName:@(1), NSFontAttributeName:[UIFont fontWithName:@"ProximaNova-Semibold" size:15], NSForegroundColorAttributeName:[UIColor whiteColor]};
+    
+    [self.broadcastButton setAttributedTitle:[[NSAttributedString alloc] initWithString:@"BROADCAST" attributes:attrEnabled] forState:UIControlStateNormal];
+    [self.copypasteButton setAttributedTitle:[[NSAttributedString alloc] initWithString:@"COPY" attributes:attrDisabled] forState:UIControlStateNormal];
+    [LWValidator setButton:self.broadcastButton enabled:YES];
+    [LWValidator setButtonWithClearBackground:self.copypasteButton enabled:YES];
+
 }
 
 - (void)didReceiveMemoryWarning {

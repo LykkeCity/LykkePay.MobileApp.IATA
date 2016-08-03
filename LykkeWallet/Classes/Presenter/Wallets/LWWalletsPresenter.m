@@ -38,6 +38,7 @@
 #import "LWAuthSteps.h"
 #import "UIViewController+Navigation.h"
 #import "LWKYCManager.h"
+#import "LWCreditCardDepositPresenter.h"
 
 
 #ifdef PROJECT_IATA
@@ -151,7 +152,18 @@ static NSString *const WalletIcons[kNumberOfSections] = {
 -(void) viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
-    screenshot.frame=self.view.bounds;
+    if(screenshot)
+    {
+        if(screenshot.image.size.width/screenshot.image.size.height!=self.view.bounds.size.width/self.view.bounds.size.height)
+        {
+            [screenshot removeFromSuperview];
+            screenshot=nil;
+            [self setLoading:YES];
+        }
+        else
+            screenshot.frame=self.view.bounds;
+    }
+    
 }
 
 - (void)viewDidLoad {
@@ -226,6 +238,7 @@ static NSString *const WalletIcons[kNumberOfSections] = {
         });
 
     }
+    
     
 }
 
@@ -429,6 +442,9 @@ static NSString *const WalletIcons[kNumberOfSections] = {
                     
                     lykke.addWalletButton.hidden=[LWCache shouldHideDepositForAssetId:asset.identity];
                     
+                    if([asset.identity isEqualToString:@"USD"] && [[NSUserDefaults standardUserDefaults] boolForKey:@"CanCashInViaBankCard"])
+                        lykke.addWalletButton.hidden=NO;
+                    
                     // validate for base asset and balance
                     if ((![asset.identity isEqualToString:[LWCache instance].baseAssetId] && asset.balance.doubleValue > 0.0)) {
                         CGFloat const buttonWidth = 120.0;
@@ -451,7 +467,8 @@ static NSString *const WalletIcons[kNumberOfSections] = {
             }
             else {
                 // loading indicator cell
-                cell = [tableView dequeueReusableCellWithIdentifier:kLoadingTableViewCellIdentifier];
+                             cell=[[LWWalletsLoadingTableViewCell alloc] init];
+          //      cell = [tableView dequeueReusableCellWithIdentifier:kLoadingTableViewCellIdentifier];
             }
         }
         // Bitcoin cells
@@ -498,7 +515,8 @@ static NSString *const WalletIcons[kNumberOfSections] = {
             }
             else {
                 // loading indicator cell
-                cell = [tableView dequeueReusableCellWithIdentifier:kLoadingTableViewCellIdentifier];
+                cell=[[LWWalletsLoadingTableViewCell alloc] init];
+//                cell = [tableView dequeueReusableCellWithIdentifier:kLoadingTableViewCellIdentifier];
             }
         }
         // Banks cells
@@ -616,6 +634,8 @@ static NSString *const WalletIcons[kNumberOfSections] = {
 - (void)authManager:(LWAuthManager *)manager didReceiveLykkeData:(LWLykkeWalletsData *)data {
     [refreshControl endRefreshing];
     [self setLoading:NO];
+    
+    [LWCache instance].walletsData=data.lykkeData;
 
     shouldShowError = NO;
 
@@ -649,6 +669,7 @@ static NSString *const WalletIcons[kNumberOfSections] = {
     [self.tableView reloadData];
     
     [screenshot removeFromSuperview];
+    screenshot=nil;
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self makeScreenshot];
@@ -742,10 +763,16 @@ static NSString *const WalletIcons[kNumberOfSections] = {
             {
                 presenter = [LWBitcoinDepositPresenter new];
             }
+//            else if([data.identity isEqualToString:@"USD"] && [[NSUserDefaults standardUserDefaults] boolForKey:@"CanCashInViaBankCard"])
+//            {
+//                presenter=[LWCreditCardDepositPresenter new];
+//            }
             else
             {
                 presenter=[LWCurrencyDepositPresenter new];
             }
+            
+            
             
             ((LWCurrencyDepositPresenter *)presenter).assetName=data.name;
             ((LWCurrencyDepositPresenter *)presenter).assetID=data.identity;
@@ -1044,9 +1071,13 @@ static NSString *const WalletIcons[kNumberOfSections] = {
 -(UIImage *) screenshotImage
 {
     NSData *data=[NSData dataWithContentsOfFile:[NSString stringWithFormat:@"%@/Documents/wallets_screenshot.png", NSHomeDirectory()]];
+    
     if(!data)
         return nil;
-    return [UIImage imageWithData:data];
+    
+    UIImage *image=[UIImage imageWithData:data];
+    
+    return image;
 }
 
 

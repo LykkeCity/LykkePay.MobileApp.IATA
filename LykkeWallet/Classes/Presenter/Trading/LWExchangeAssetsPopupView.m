@@ -47,10 +47,10 @@
     
     NSDictionary *attributes = @{NSKernAttributeName:@(0.5), NSFontAttributeName:[UIFont fontWithName:@"ProximaNova-Regular" size:14], NSForegroundColorAttributeName:[UIColor colorWithRed:171.0/255 green:0 blue:1 alpha:1]};
 
-    [cancelButton setAttributedTitle:[[NSAttributedString alloc] initWithString:Localize(@"exchange.assets.modal.cancel") attributes:attributes] forState:UIControlStateNormal];
-    [cancelButton sizeToFit];
-    [cancelButton addTarget:self action:@selector(hide) forControlEvents:UIControlEventTouchUpInside];
-    [self addSubview:cancelButton];
+//    [cancelButton setAttributedTitle:[[NSAttributedString alloc] initWithString:Localize(@"exchange.assets.modal.cancel") attributes:attributes] forState:UIControlStateNormal];
+//    [cancelButton sizeToFit];
+//    [cancelButton addTarget:self action:@selector(hide) forControlEvents:UIControlEventTouchUpInside];
+//    [self addSubview:cancelButton];
     
     titleLabel=[[UILabel alloc] init];
     

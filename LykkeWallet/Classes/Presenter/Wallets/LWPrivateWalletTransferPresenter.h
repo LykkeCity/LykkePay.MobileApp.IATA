@@ -7,7 +7,11 @@
 //
 
 #import "LWAuthComplexPresenter.h"
+@class LWPrivateWalletModel;
+@class LWPKTransferModel;
 
 @interface LWPrivateWalletTransferPresenter : LWAuthComplexPresenter
+
+@property (strong, nonatomic) LWPKTransferModel *transfer;
 
 @end

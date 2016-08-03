@@ -37,10 +37,11 @@
 
     passwordConfirmTextField = [LWTextField createTextFieldForContainer:self.passwordConfirm
                                          withPlaceholder:@"Confirm your password"];
-    passwordConfirmTextField.keyboardType = UIKeyboardTypeDefault;
+//    passwordConfirmTextField.keyboardType = UIKeyboardTypeDefault;
     passwordConfirmTextField.delegate = self;
     passwordConfirmTextField.secure=YES;
 
+    
 
 }
 
@@ -112,6 +113,7 @@
 
 - (void)configureTextField:(LWTextField *)textField {
     textField.secure = YES;
+    textField.keyboardType=UIKeyboardTypeASCIICapable;
     passwordTextField=textField;
 }
 

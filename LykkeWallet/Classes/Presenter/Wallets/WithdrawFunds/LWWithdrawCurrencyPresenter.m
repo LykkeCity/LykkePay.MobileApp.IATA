@@ -16,16 +16,17 @@
 #import "UIView+Toast.h"
 #import "UIImage+Resize.h"
 #import "LWAuthPINEnterPresenter.h"
-#import "LWWithdrawSuccessPresenterView.h"
+#import "LWResultPresenter.h"
 #import "LWTradingWalletPresenter.h"
 #import "LWPacketCurrencyWithdraw.h"
 #import "LWWithdrawCurrencyCell.h"
+#import "LWIPadModalNavigationControllerViewController.h"
 
 #define BAR_GRAY_COLOR [UIColor colorWithRed:245.0/255 green:246.0/255 blue:248.0/255 alpha:1]
 
 
 
-@interface LWWithdrawCurrencyPresenter() <UITextFieldDelegate, LWWithdrawSuccessPresenterViewDelegate, LWWithdrawCurrencyCellDelegate>
+@interface LWWithdrawCurrencyPresenter() <UITextFieldDelegate, LWResultPresenterDelegate, LWWithdrawCurrencyCellDelegate>
 {
     UILabel *infoLabel;
     NSArray *lineTitles;
@@ -51,12 +52,15 @@
 @property (weak, nonatomic) IBOutlet UIButton *withdrawButton;
 @property (weak, nonatomic) IBOutlet UIView *container;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *withdrawButtonTopConstraint;
+
 @end
 
 @implementation LWWithdrawCurrencyPresenter
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     
     [self setBackButton];
     self.withdrawButton.hidden=YES;
@@ -148,14 +152,18 @@
 {
     [super viewWillAppear:animated];
     
+    id vvv=self.navigationController;
+    
     infoLabel.text=[NSString stringWithFormat:@"For the withdrawal of funds, the following\n account details will be used"];
     [infoLabel sizeToFit];
+
 }
 
 -(void) viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
     self.title = Localize(@"wallets.currency.withdraw");
+    self.navigationController.navigationBar.barTintColor = BAR_GRAY_COLOR;
 
     if(!textCells)
     {
@@ -187,14 +195,26 @@
         
         offset+=30;
         
-        self.withdrawButton.frame=CGRectMake(30, offset, _scrollView.bounds.size.width-60, 45);
+//        self.withdrawButton.frame=CGRectMake(30, offset, _scrollView.bounds.size.width-60, 45);
+        
+        [self.withdrawButtonTopConstraint setConstant:offset];
         self.withdrawButton.hidden=NO;
         offset+=(_withdrawButton.bounds.size.height+20);
         
         _scrollView.contentSize=CGSizeMake(_scrollView.bounds.size.width, offset);
+        
+        
+ 
     }
     
     
+}
+
+-(void) viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
+
 }
 
 -(void) withdrawCurrencyCell:(LWWithdrawCurrencyCell *)cell changedHeightFrom:(CGFloat)prevHeight to:(CGFloat)curHeight
@@ -206,7 +226,8 @@
         LWWithdrawCurrencyCell *c=textCells[i];
         c.center=CGPointMake(c.center.x, c.center.y+(curHeight-prevHeight));
     }
-        self.withdrawButton.center=CGPointMake(self.withdrawButton.center.x, self.withdrawButton.center.y+(curHeight-prevHeight));
+        [self.withdrawButtonTopConstraint setConstant:self.withdrawButtonTopConstraint.constant+(curHeight-prevHeight)];
+//        self.withdrawButton.center=CGPointMake(self.withdrawButton.center.x, self.withdrawButton.center.y+(curHeight-prevHeight));
         self.scrollView.contentSize=CGSizeMake(self.scrollView.contentSize.width, self.scrollView.contentSize.height+(curHeight-prevHeight));
         }];
 }
@@ -215,8 +236,14 @@
 
 -(void)viewDidLayoutSubviews
 {
-    infoLabel.center=CGPointMake(self.infoView.bounds.size.width/2, self.infoView.bounds.size.height/2-20);
-    buttonsContainer.center=CGPointMake(self.infoView.bounds.size.width/2, self.infoView.bounds.size.height/2+infoLabel.bounds.size.height/2+10);
+    [super viewDidLayoutSubviews];
+    
+//    infoLabel.center=CGPointMake(self.infoView.bounds.size.width/2, self.infoView.bounds.size.height/2-20);
+//    buttonsContainer.center=CGPointMake(self.infoView.bounds.size.width/2, self.infoView.bounds.size.height/2+infoLabel.bounds.size.height/2+10);
+    [self.scrollView layoutIfNeeded];
+    infoLabel.center=CGPointMake(self.scrollView.bounds.size.width/2, self.infoView.bounds.size.height/2-20);
+    buttonsContainer.center=CGPointMake(self.scrollView.bounds.size.width/2, self.infoView.bounds.size.height/2+infoLabel.bounds.size.height/2+10);
+
 }
 
 
@@ -244,21 +271,31 @@
 -(IBAction)withdrawButtonPressed:(id)sender
 {
     [self.view endEditing:YES];
+    
+    
+//    [self authManager:nil didSendWithdraw:nil];
+//    return;
+//    
+    
+    
     LWAuthPINEnterPresenter *auth=[LWAuthPINEnterPresenter new];
     
     auth.isSuccess=^(BOOL success){
     
         if(success)
         {
-            [self setLoading:YES];
-            LWPacketCurrencyWithdraw *packet=[LWPacketCurrencyWithdraw new];
-            packet.bic=[textCells[0] text];
-            packet.accountNumber=[textCells[1] text];
-            packet.accountName=[textCells[2] text];
-            packet.postCheck=[textCells[3] text];
-            packet.amount=self.amount;
-            packet.assetId=self.assetID;
-            [[LWAuthManager instance] requestCurrencyWithdraw:packet];
+            
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                LWPacketCurrencyWithdraw *packet=[LWPacketCurrencyWithdraw new];
+                packet.bic=[textCells[0] text];
+                packet.accountNumber=[textCells[1] text];
+                packet.accountName=[textCells[2] text];
+                packet.postCheck=[textCells[3] text];
+                packet.amount=self.amount;
+                packet.assetId=self.assetID;
+                [[LWAuthManager instance] requestCurrencyWithdraw:packet];
+                [self setLoading:YES];
+            });
         }
     
     };
@@ -266,18 +303,25 @@
     [self.navigationController pushViewController:auth animated:YES];
 }
 
--(void) withdrawSuccessPresenterViewPressedReturn:(LWWithdrawSuccessPresenterView *)view
+-(void) resultPresenterWillDismiss
 {
-    [view removeFromSuperview];
-    
-    NSArray *array=self.navigationController.viewControllers;
-    for(UIViewController *v in array)
+    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
     {
-        if([v isKindOfClass:[LWTradingWalletPresenter class]])
+        NSArray *array=self.navigationController.viewControllers;
+        for(UIViewController *v in array)
         {
-            [self.navigationController popToViewController:v animated:NO];
-            break;
+            if([v isKindOfClass:[LWTradingWalletPresenter class]])
+            {
+                [self.navigationController popToViewController:v animated:NO];
+                break;
+            }
         }
+    }
+    else
+    {
+        self.navigationController.view.hidden=YES;
+//        [self.navigationController setViewControllers:@[]];
+        [(LWIPadModalNavigationControllerViewController *)self.navigationController dismissAnimated:NO];
     }
 }
 
@@ -312,12 +356,18 @@
 
 -(void) authManager:(LWAuthManager *)manager didSendWithdraw:(LWPacketCurrencyWithdraw *)withdraw
 {
+    
     dispatch_async(dispatch_get_main_queue(), ^{
         [self setLoading:NO];
-        UIWindow *window=[UIApplication sharedApplication].windows[0];
-        LWWithdrawSuccessPresenterView *successView=[[LWWithdrawSuccessPresenterView alloc] initWithFrame:window.bounds];
-        successView.delegate=self;
-        [window addSubview:successView];
+        
+        LWResultPresenter *presenter=[[LWResultPresenter alloc] init];
+        
+        presenter.delegate=self;
+        presenter.image=[UIImage imageNamed:@"WithdrawSuccessFlag.png"];
+        presenter.titleString=Localize(@"wallets.currency.withdraw.success.title");
+        presenter.textString=Localize(@"wallets.currency.withdraw.success.text");
+        [self presentViewController:presenter animated:NO completion:nil];
+        
     });
  
 }

@@ -11,7 +11,7 @@
 
 @implementation LWSuccessPresenterView
 
--(id) initWithFrame:(CGRect)frame
+-(id) initWithFrame:(CGRect)frame title:(NSString *) titleee text:(NSString *) texttt
 {
     self=[super initWithFrame: frame];
     
@@ -32,7 +32,7 @@
     UILabel *title=[[UILabel alloc] initWithFrame:CGRectMake(0, offset, self.bounds.size.width, 30)];
     
     title.font=[UIFont boldSystemFontOfSize:20];
-    title.text=Localize(@"wallets.currency.withdraw.success.title");
+    title.text=titleee;
     title.textColor=[UIColor blackColor];
     title.textAlignment=NSTextAlignmentCenter;
     [container addSubview:title];
@@ -44,7 +44,7 @@
     text.textColor=[UIColor colorWithWhite:90.0/255 alpha:1];
     text.numberOfLines=0;
     
-    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:Localize(@"wallets.currency.withdraw.success.text")];
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:texttt];
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
     paragraphStyle.lineSpacing = 1.2;
     [paragraphStyle setAlignment:NSTextAlignmentCenter];
@@ -67,7 +67,7 @@
     container.center=CGPointMake(self.bounds.size.width/2, self.bounds.size.height*0.4);
     
     UIButton *button=[UIButton buttonWithType:UIButtonTypeCustom];
-    button.frame=CGRectMake(30, self.bounds.size.height-45-40, self.bounds.size.width-60, 45);
+    button.frame=CGRectMake(30, self.bounds.size.height-45-40, self.bounds.size.width-300, 45);
     [button setBackgroundImage:[UIImage imageNamed:@"ButtonOK_square.png"] forState:UIControlStateNormal];
     [button setTitle:@"RETURN TO WALLET" forState:UIControlStateNormal];
     [button addTarget:self action:@selector(returnToWalletPressed) forControlEvents:UIControlEventTouchUpInside];
@@ -82,9 +82,9 @@
 
 -(void) returnToWalletPressed
 {
-    if([self.delegate respondsToSelector:@selector(withdrawSuccessPresenterViewPressedReturn:)])
+    if([self.delegate respondsToSelector:@selector(successPresenterViewPressedReturn:)])
     {
-        [self.delegate withdrawSuccessPresenterViewPressedReturn:self];
+        [self.delegate successPresenterViewPressedReturn:self];
     }
 }
 

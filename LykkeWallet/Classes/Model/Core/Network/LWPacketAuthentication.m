@@ -7,7 +7,7 @@
 //
 
 #import "LWPacketAuthentication.h"
-#import "LWPersonalData.h"
+#import "LWPersonalDataModel.h"
 #import "LWKeychainManager.h"
 #import "LWPrivateKeyManager.h"
 #import "AppDelegate.h"
@@ -29,12 +29,18 @@
     _token = result[@"Token"];
     _status = result[@"KycStatus"];
     _isPinEntered = [result[@"PinIsEntered"] boolValue];
-    _personalData = [[LWPersonalData alloc]
+    _personalData = [[LWPersonalDataModel alloc]
                      initWithJSON:[result objectForKey:@"PersonalData"]];
     
     [[LWKeychainManager instance] saveLogin:self.authenticationData.email
                                    password:self.authenticationData.password
                                       token:_token];
+    
+    
+    [[NSUserDefaults standardUserDefaults] setBool:[result[@"CanCashInViaBankCard"] boolValue] forKey:@"CanCashInViaBankCard"];
+    
+//    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"CanCashInViaBankCard"];//Testing
+
     
     
     [[LWKeychainManager instance] savePersonalData:_personalData];

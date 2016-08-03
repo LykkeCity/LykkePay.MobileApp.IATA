@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "Macro.h"
 
-@class LWPersonalData;
+@class LWPersonalDataModel;
 
 @interface LWKeychainManager : NSObject {
     
@@ -22,7 +22,7 @@ SINGLETON_DECLARE
 @property (readonly, nonatomic) NSString *address;
 @property (readonly, nonatomic) NSString *password;
 @property (readonly, nonatomic) NSString *notificationsTag;
-@property (readonly, nonatomic) NSString *privateKeyLykke;
+@property (readonly, nonatomic) NSString *encodedPrivateKeyLykke;
 
 @property (readonly, nonatomic) BOOL     isAuthenticated;
 
@@ -30,20 +30,21 @@ SINGLETON_DECLARE
 #pragma mark - Common
 
 - (void)saveLogin:(NSString *)login password:(NSString *) password token:(NSString *)token;
-- (void)savePersonalData:(LWPersonalData *)personalData;
+- (void)savePersonalData:(LWPersonalDataModel *)personalData;
 - (void)saveAddress:(NSString *)address;
 
 -(void) saveNotificationsTag:(NSString *) tag;
 
--(void) saveLykkePrivateKey:(NSString *) privateKey;
+-(void) saveEncodedLykkePrivateKey:(NSString *) privateKey;
 -(void) savePrivateKey:(NSString *) privateKey forWalletAddress:(NSString *) address;
 
 -(NSString *) privateKeyForWalletAddress:(NSString *) address;
 
+-(NSString *) encodedPrivateKeyForEmail:(NSString *) email;
+
+-(LWPersonalDataModel *) personalData;
+
 - (void)clear;
-
-
--(void) clearLykkePrivateKey; //Testing
 
 
 #pragma mark - Properties

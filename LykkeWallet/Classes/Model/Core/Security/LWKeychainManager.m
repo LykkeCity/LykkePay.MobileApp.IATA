@@ -7,7 +7,7 @@
 //
 
 #import "LWKeychainManager.h"
-#import "LWPersonalData.h"
+#import "LWPersonalDataModel.h"
 #import "LWConstants.h"
 #import "LWPrivateKeyManager.h"
 #import <Valet/Valet.h>
@@ -20,12 +20,12 @@ static NSString *const kKeychainManagerFullName = @"FullName";
 static NSString *const kKeychainManagerAddress  = @"Address";
 static NSString *const kKeychainManagerPassword  = @"Password";
 static NSString *const kKeychainManagerPIN  = @"Pin";
-static NSString *const kKeychainManagerEncodedPrivateKey  = @"EncodedPrivateKey";
 
 static NSString *const kKeychainManagerNotificationsTag  = @"NotificationsTag";
 
-static NSString *const kKeychainManagerLykkePrivateKey =@"LykkePrivateKey";
 static NSString *const kKeychainManagerUserPrivateWalletsAddresses=@"UserWalletsAddresses";
+
+static NSString *const kKeychainManagerPersonalData = @"PersonalData";
 
 
 
@@ -64,7 +64,7 @@ SINGLETON_INIT {
     
 }
 
-- (void)savePersonalData:(LWPersonalData *)personalData {
+- (void)savePersonalData:(LWPersonalDataModel *)personalData {
     if (personalData) {
         if (personalData.phone
             && ![personalData.phone isKindOfClass:[NSNull class]]) {
@@ -74,7 +74,23 @@ SINGLETON_INIT {
             && ![personalData.fullName isKindOfClass:[NSNull class]]) {
             [valet setString:personalData.fullName forKey:kKeychainManagerFullName];
         }
+        
+        if(personalData.jsonString)
+            [valet setString:personalData.jsonString forKey:kKeychainManagerPersonalData];
     }
+}
+
+-(LWPersonalDataModel *) personalData
+{
+    NSString *json=[valet stringForKey:kKeychainManagerPersonalData];
+    if(!json)
+        return nil;
+    
+    
+    NSDictionary *dict=[NSJSONSerialization JSONObjectWithData:[json dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingMutableContainers error:nil];
+    
+    LWPersonalDataModel *model=[[LWPersonalDataModel alloc] initWithJSON:dict];
+    return model;
 }
 
 - (void)saveAddress:(NSString *)address {
@@ -82,21 +98,12 @@ SINGLETON_INIT {
 }
 
 
--(void) saveEncodedPrivateKey:(NSString *)key
-{
-    [valet setString:key forKey:kKeychainManagerEncodedPrivateKey];
-}
 
 -(void) saveNotificationsTag:(NSString *)tag
 {
     [valet setString:tag forKey:kKeychainManagerNotificationsTag];
 }
 
--(void) clearLykkePrivateKey //Testing
-{
-    [valet removeObjectForKey:kKeychainManagerLykkePrivateKey];
-
-}
 
 - (void)clear {
     [valet removeObjectForKey:kKeychainManagerToken];
@@ -105,20 +112,20 @@ SINGLETON_INIT {
     [valet removeObjectForKey:kKeychainManagerFullName];
     [valet removeObjectForKey:kKeychainManagerPassword];
     [valet removeObjectForKey:kKeychainManagerNotificationsTag];
-    
-//    NSData *data=[valet objectForKey:kKeychainManagerUserPrivateWalletsAddresses];
-//    NSArray *wallets = [NSKeyedUnarchiver unarchiveObjectWithData:data];
-//    for(NSString *w in wallets)
-//    {
-//        [valet removeObjectForKey:w];
-//    }
-    [valet removeObjectForKey:kKeychainManagerLykkePrivateKey];
+    [valet removeObjectForKey:kKeychainManagerPersonalData];
     
 }
 
--(void) saveLykkePrivateKey:(NSString *)privateKey
+-(void) saveEncodedLykkePrivateKey:(NSString *)privateKey
 {
-    [valet setString:privateKey forKey:kKeychainManagerLykkePrivateKey];
+    if(![self login])
+        return;
+    [valet setString:privateKey forKey:[self login]];
+}
+
+-(NSString *) encodedPrivateKeyForEmail:(NSString *)email
+{
+    return [valet stringForKey:email];
 }
 
 -(void) savePrivateKey:(NSString *)privateKey forWalletAddress:(NSString *)address
@@ -160,9 +167,10 @@ SINGLETON_INIT {
     return [valet stringForKey:kKeychainManagerNotificationsTag];
 }
 
--(NSString *) privateKeyLykke
+-(NSString *) encodedPrivateKeyLykke
 {
-    return [valet stringForKey:kKeychainManagerLykkePrivateKey];
+    
+    return [valet stringForKey:[self login]];
 }
 
 -(NSString *) privateKeyForWalletAddress:(NSString *) address

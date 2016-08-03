@@ -54,7 +54,7 @@
 #import "LWPacketGraphData.h"
 #import "LWPacketCurrencyDeposit.h"
 #import "LWPacketCurrencyWithdraw.h"
-#import "LWPacketAPIVersion.h"
+#import "LWPacketApplicationInfo.h"
 #import "LWPacketBitcoinAddressValidation.h"
 #import "LWPacketSetRevertedPair.h"
 #import "LWPacketAllAssets.h"
@@ -66,6 +66,8 @@
 #import "LWPacketPushSettingsSet.h"
 #import "LWPacketEncodedPrivateKey.h"
 #import "LWPacketClientKeys.h"
+#import "LWPacketGetPaymentUrl.h"
+#import "LWPacketPrevCardPayment.h"
 
 
 #import "LWLykkeWalletsData.h"
@@ -477,7 +479,7 @@ SINGLETON_INIT {
 
 -(void) requestAPIVersion
 {
-    LWPacketAPIVersion *pack=[LWPacketAPIVersion new];
+    LWPacketApplicationInfo *pack=[LWPacketApplicationInfo new];
     [self sendPacket:(LWPacket *) pack];
 }
 
@@ -546,6 +548,19 @@ SINGLETON_INIT {
     LWPacketClientKeys *pack=[[LWPacketClientKeys alloc] init];
     pack.pubKey=pubKey;
     pack.encodedPrivateKey=encodedPrivateKey;
+    [self sendPacket:pack];
+}
+
+-(void) requestGetPaymentUrlWithParameters:(NSDictionary *)params
+{
+    LWPacketGetPaymentUrl *pack=[[LWPacketGetPaymentUrl alloc] init];
+    pack.parameters=params;
+    [self sendPacket:pack];
+}
+
+-(void) requestPrevCardPayment
+{
+    LWPacketPrevCardPayment *pack=[[LWPacketPrevCardPayment alloc] init];
     [self sendPacket:pack];
 }
 
@@ -834,9 +849,9 @@ SINGLETON_INIT {
             [self.delegate authManager:self didSendWithdraw:(LWPacketCurrencyWithdraw *) pack];
         }
     }
-    else if (pack.class == LWPacketAPIVersion.class) {
+    else if (pack.class == LWPacketApplicationInfo.class) {
         if ([self.delegate respondsToSelector:@selector(authManager:didGetAPIVersion:)]) {
-            [self.delegate authManager:self didGetAPIVersion:(LWPacketAPIVersion *) pack];
+            [self.delegate authManager:self didGetAPIVersion:(LWPacketApplicationInfo *) pack];
         }
     }
     else if (pack.class == LWPacketBitcoinAddressValidation.class) {
@@ -872,6 +887,16 @@ SINGLETON_INIT {
     else if (pack.class == LWPacketPushSettingsSet.class) {
         if ([self.delegate respondsToSelector:@selector(authManagerDidSetPushSettings)]) {
             [self.delegate authManagerDidSetPushSettings];
+        }
+    }
+    else if (pack.class == LWPacketGetPaymentUrl.class) {
+        if ([self.delegate respondsToSelector:@selector(authManager:didGetPaymentUrl:)]) {
+            [self.delegate authManager:self  didGetPaymentUrl:(LWPacketGetPaymentUrl *)pack];
+        }
+    }
+    else if (pack.class == LWPacketPrevCardPayment.class) {
+        if ([self.delegate respondsToSelector:@selector(authManager:didGetLastCardPaymentData:)]) {
+            [self.delegate authManager:self  didGetLastCardPaymentData:(LWPacketPrevCardPayment *) pack];
         }
     }
 

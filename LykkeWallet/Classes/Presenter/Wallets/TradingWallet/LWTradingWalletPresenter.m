@@ -18,6 +18,7 @@
 #import "LWIPadModalNavigationControllerViewController.h"
 #import "LWValidator.h"
 #import "LWKYCManager.h"
+#import "LWCreditCardDepositPresenter.h"
 
 
 @interface LWTradingWalletPresenter () {
@@ -28,6 +29,7 @@
 
 @property (weak, nonatomic) IBOutlet TKButton *withdrawButton;
 @property (weak, nonatomic) IBOutlet TKButton *depositButton;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewBottomConstraint;
 
 @end
 
@@ -69,7 +71,7 @@
     
     [LWValidator setButtonWithClearBackground:self.withdrawButton enabled:![LWCache shouldHideWithdrawForAssetId:self.assetId]];
 
-    [LWValidator setButton:self.depositButton enabled:![LWCache shouldHideDepositForAssetId:self.assetId]];
+    [LWValidator setButton:self.depositButton enabled:!([LWCache shouldHideDepositForAssetId:self.assetId] && ([self.assetId isEqualToString:@"USD"]==NO || [[NSUserDefaults standardUserDefaults] boolForKey:@"CanCashInViaBankCard"]==NO))];
 
     NSDictionary *attributesWithdraw = @{NSKernAttributeName:@(1), NSFontAttributeName:self.withdrawButton.titleLabel.font, NSForegroundColorAttributeName:self.withdrawButton.currentTitleColor};
     NSDictionary *attributesDeposit = @{NSKernAttributeName:@(1), NSFontAttributeName:self.depositButton.titleLabel.font, NSForegroundColorAttributeName:self.depositButton.currentTitleColor};
@@ -78,7 +80,17 @@
     [self.depositButton setAttributedTitle:[[NSAttributedString alloc] initWithString:Localize(@"wallets.trading.deposit") attributes:attributesDeposit] forState:UIControlStateNormal];
 
     self.withdrawButton.hidden=[LWCache shouldHideWithdrawForAssetId:self.assetId];
-    self.depositButton.hidden=[LWCache shouldHideDepositForAssetId:self.assetId];
+    self.depositButton.hidden=[LWCache shouldHideDepositForAssetId:self.assetId] && ([self.assetId isEqualToString:@"USD"]==NO || [[NSUserDefaults standardUserDefaults] boolForKey:@"CanCashInViaBankCard"]==NO) ;
+    if(self.withdrawButton.hidden && self.depositButton.hidden)
+        [self.tableViewBottomConstraint setConstant:0];
+    
+    if(self.withdrawButton.hidden && self.depositButton.hidden==NO)
+    {
+        
+        [self createConstraintsForButton:self.depositButton];
+    }
+    else if(self.withdrawButton.hidden==NO && self.depositButton.hidden)
+            [self createConstraintsForButton:self.withdrawButton];
 }
 
 -(void) viewDidAppear:(BOOL)animated
@@ -119,7 +131,7 @@
     {
         LWIPadModalNavigationControllerViewController *navigationController =
         [[LWIPadModalNavigationControllerViewController alloc] initWithRootViewController:presenter];
-        navigationController.modalPresentationStyle=UIModalPresentationOverCurrentContext;
+        navigationController.modalPresentationStyle=UIModalPresentationCustom;
         navigationController.transitioningDelegate=navigationController;
         [self.navigationController presentViewController:navigationController animated:YES completion:nil];
         
@@ -152,6 +164,10 @@
     {
         presenter = [LWBitcoinDepositPresenter new];
     }
+//    else if([self.assetId isEqualToString:@"USD"] && [[NSUserDefaults standardUserDefaults] boolForKey:@"CanCashInViaBankCard"])
+//    {
+//        presenter=[LWCreditCardDepositPresenter new];
+//    }
     else
     {
         presenter=[LWCurrencyDepositPresenter new];
@@ -173,6 +189,29 @@
     }
 
     }];
+    
+}
+
+-(void) createConstraintsForButton:(UIButton *) button
+{
+    NSArray *prev=button.superview.constraints;
+    for(NSLayoutConstraint *c in prev)
+    {
+        if(c.firstItem==button)
+            [button.superview removeConstraint:c];
+    }
+
+    
+    NSLayoutConstraint *left=[NSLayoutConstraint constraintWithItem:button attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:button.superview attribute:NSLayoutAttributeLeading multiplier:1 constant:30];
+    [button.superview addConstraint:left];
+    
+    NSLayoutConstraint *right=[NSLayoutConstraint constraintWithItem:button attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:button.superview attribute:NSLayoutAttributeTrailing multiplier:1 constant:30];
+    
+    [button.superview addConstraint:right];
+//    NSLayoutConstraint *height=[NSLayoutConstraint constraintWithItem:button attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:45];
+    NSLayoutConstraint *center=[NSLayoutConstraint constraintWithItem:button attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:button.superview attribute:NSLayoutAttributeCenterY multiplier:1 constant:0];
+    [button.superview addConstraint:center];
+//    [button addConstraints:@[left, right, height, center]];
     
 }
 

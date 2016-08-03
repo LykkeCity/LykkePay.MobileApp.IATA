@@ -9,7 +9,7 @@
 #import "LWPacket.h"
 #import "LWAuthenticationData.h"
 
-@class LWPersonalData;
+@class LWPersonalDataModel;
 
 
 @interface LWPacketAuthentication : LWPacket {
@@ -20,7 +20,7 @@
 // out
 @property (readonly, nonatomic) NSString       *token;
 @property (readonly, nonatomic) NSString       *status;
-@property (readonly, nonatomic) LWPersonalData *personalData;
+@property (readonly, nonatomic) LWPersonalDataModel *personalData;
 @property (readonly, nonatomic) BOOL            isPinEntered;
 
 @end

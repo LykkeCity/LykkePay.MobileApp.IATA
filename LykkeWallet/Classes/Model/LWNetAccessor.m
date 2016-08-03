@@ -19,7 +19,9 @@
 }
 
 - (void)sendPacket:(LWPacket *)packet info:(NSDictionary *)userInfo {
-    [[GDXNet instance] send:packet userInfo:userInfo method:GDXNetSendMethodREST];
+    NSDictionary *dict=[[GDXNet instance] send:packet userInfo:userInfo method:GDXNetSendMethodREST];
+    
+    NSLog(@"Send packet returned dict: %@", dict);
 }
 
 @end

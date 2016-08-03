@@ -10,4 +10,18 @@
 
 @implementation LWPrivateWalletHistoryCellModel
 
+-(id) initWithDict:(NSDictionary *) d
+{
+    self=[super init];
+    
+    self.amount=@(20);
+    self.assetId=@"BTC";
+    self.baseAssetAmount=@(1000);
+    self.type=LWPrivateWalletTransferTypeSend;
+    
+    self.date=[NSDate date];
+    
+    return self;
+}
+
 @end

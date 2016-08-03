@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class LWPrivateWalletModel;
+
 @interface LWChoosePrivateWalletView : UIView
+
++(void) showWithCurrentWallet:(LWPrivateWalletModel *)current completion:(void(^)(LWPrivateWalletModel *)) completion;
 
 @end

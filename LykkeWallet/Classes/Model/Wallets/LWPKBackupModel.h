@@ -10,4 +10,12 @@
 
 @interface LWPKBackupModel : NSObject
 
+@property (strong, nonatomic) NSString *privateKeyWif;
+@property (strong, nonatomic) NSString *walletName;
+@property (strong, nonatomic) NSString *address;
+@property (strong, nonatomic) NSString *passPhrase;
+@property (strong, nonatomic) NSString *hint;
+@property (readonly, nonatomic) NSString *encodedKey;
+
+
 @end

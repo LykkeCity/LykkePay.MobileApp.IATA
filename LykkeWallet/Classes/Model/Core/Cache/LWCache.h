@@ -9,6 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "Macro.h"
 
+@class LWLykkeData;
+@class LWPersonalDataModel;
+
 typedef NS_ENUM(NSUInteger, PushNotificationsStatus) {
     PushNotificationsStatusUnknown=0,
     PushNotificationsStatusDisabled=1,
@@ -32,6 +35,8 @@ SINGLETON_DECLARE
 @property (copy, nonatomic) NSString *baseAssetSymbol;
 @property (copy, nonatomic) NSArray  *baseAssets; // Array of LWAssetModel items
 
+@property (strong, nonatomic) LWLykkeData *walletsData;
+
 @property (copy, nonatomic) NSArray *allAssets;
 
 @property (copy, nonatomic) NSString *depositUrl;
@@ -43,6 +48,8 @@ SINGLETON_DECLARE
 @property int refundDaysValidAfter;
 
 @property (copy, nonatomic) NSString *serverAPIVersion;
+
+@property (strong, nonatomic) LWPersonalDataModel *lastCardPaymentData;
 
 // Array of LWAssetsDictionaryItem items
 @property (copy, nonatomic) NSArray  *assetsDict;
@@ -60,5 +67,7 @@ SINGLETON_DECLARE
 
 -(NSString *) currencySymbolForAssetId:(NSString *) assetId;
 +(NSString *) nameForAsset:(NSString *) assetId;
+
+
 
 @end

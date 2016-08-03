@@ -163,7 +163,8 @@ static int const kAllowedAttempts = 3;
     [pinController dismissViewControllerAnimated:NO completion:^{
         if(self.isSuccess)
         {
-            [self.navigationController popViewControllerAnimated:YES];
+            id vvv=self.navigationController;
+            [self.navigationController popViewControllerAnimated:NO];
             _isSuccess(YES);
         }
         else
@@ -199,7 +200,7 @@ static int const kAllowedAttempts = 3;
          [pinController dismissViewControllerAnimated:NO completion:^{
              if(_isSuccess)
              {
-                 [self.navigationController popViewControllerAnimated:YES];
+                 [self.navigationController popViewControllerAnimated:NO];
                  _isSuccess(YES);
              }
              else

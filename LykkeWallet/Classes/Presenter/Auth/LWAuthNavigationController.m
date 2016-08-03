@@ -328,6 +328,8 @@
 }
 
 - (NSArray<UIViewController *> *)popToViewController:(UIViewController *)viewController animated:(BOOL)animated {
+//    NSArray *arr=self.viewControllers;
+    
     NSArray *result = [super popToViewController:viewController animated:animated];
     // clean steps
     for (NSNumber *key in activeSteps.allKeys) {

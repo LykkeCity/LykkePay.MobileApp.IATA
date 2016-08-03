@@ -7,15 +7,31 @@
 //
 
 #import "LWPrivateWalletModel.h"
+#import "LWKeychainManager.h"
+#import "LWPrivateWalletAssetModel.h"
+#import "LWPrivateKeyManager.h"
 
 @implementation LWPrivateWalletModel
 
--(id) init
+-(id) initWithDict:(NSDictionary *) d
 {
     self=[super init];
     
-//    self.name=@"MY LYKKE WALLET";
-//    self.iconURL=
+    self.address=d[@"Address"];
+    self.name=d[@"Name"];
+    self.privateKey=[[LWKeychainManager instance] privateKeyForWalletAddress:self.address];
+    if(self.privateKey==nil && [self.address isEqualToString:[LWPrivateKeyManager addressFromPrivateKeyWIF:[LWPrivateKeyManager shared].wifPrivateKeyLykke]])
+    {
+        self.privateKey=[LWPrivateKeyManager shared].wifPrivateKeyLykke;
+    }
+    self.iconURL=d[@"MediumIconUrl"];
+    NSMutableArray *arr=[[NSMutableArray alloc] init];
+    for(NSDictionary *b in d[@"Balances"])
+    {
+        LWPrivateWalletAssetModel *asset=[[LWPrivateWalletAssetModel alloc] initWithDict:b];
+        [arr addObject:asset];
+    }
+    self.assets=arr;
     
     return self;
 }

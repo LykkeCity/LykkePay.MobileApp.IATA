@@ -8,6 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+@class LWPrivateWalletModel;
+
 @interface LWPWTransferInputView : UIView
+
+@property (strong, nonatomic) NSString *currencySymbol;
+@property int accuracy;
+
+@property (strong, nonatomic) NSString *amountString;
+
+@property (strong, nonatomic) UITextField *textField;
 
 @end

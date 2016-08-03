@@ -10,7 +10,7 @@
 #import "LWRegisterCameraPresenter.h"
 #import "LWAuthNavigationController.h"
 #import "LWAuthManager.h"
-#import "LWPersonalData.h"
+#import "LWPersonalDataModel.h"
 #import "UIViewController+Loading.h"
 #import "LWCache.h"
 #import "LWProgressView.h"
@@ -67,7 +67,7 @@
 
 #pragma mark - LWAuthManagerDelegate
 
-- (void)authManagerDidRegisterGet:(LWAuthManager *)manager KYCStatus:(NSString *)status isPinEntered:(BOOL)isPinEntered personalData:(LWPersonalData *)personalData {
+- (void)authManagerDidRegisterGet:(LWAuthManager *)manager KYCStatus:(NSString *)status isPinEntered:(BOOL)isPinEntered personalData:(LWPersonalDataModel *)personalData {
     LWAuthNavigationController *navController = (LWAuthNavigationController *)self.navigationController;
     
     if ([status isEqualToString:@"NeedToFillData"] && isPinEntered==NO) {

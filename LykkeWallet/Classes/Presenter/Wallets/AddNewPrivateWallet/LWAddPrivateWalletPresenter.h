@@ -8,6 +8,12 @@
 
 #import "LWAuthComplexPresenter.h"
 
+@class LWPrivateWalletModel;
+
 @interface LWAddPrivateWalletPresenter : LWAuthComplexPresenter
+
+@property BOOL editMode;
+
+@property (strong, nonatomic) LWPrivateWalletModel *wallet;
 
 @end

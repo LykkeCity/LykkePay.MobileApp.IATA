@@ -14,6 +14,7 @@
 #import "LWConstants.h"
 #import "LWMath.h"
 #import "UIViewController+Loading.h"
+#import "LWValidator.h"
 
 
 @interface LWExchangeBlockchainPresenter () {
@@ -81,6 +82,9 @@ static BOOL const CellsClickable[kDescriptionRows] = {
     
     [self registerCellWithIdentifier:kAssetBlockchainTableViewCellIdentifier
                                 name:kAssetBlockchainTableViewCell];
+    
+    
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -89,6 +93,7 @@ static BOOL const CellsClickable[kDescriptionRows] = {
     
     [self.closeButton setTitle:Localize(@"exchange.blockchain.close")
                       forState:UIControlStateNormal];
+    [LWValidator setButtonWithClearBackground:self.closeButton enabled:YES];
     
 #ifdef PROJECT_IATA
 #else
@@ -100,6 +105,8 @@ static BOOL const CellsClickable[kDescriptionRows] = {
     [self.tableView
      setBackgroundColor:[UIColor colorWithHexString:kMainGrayElementsColor]];
     
+//    self.tableView.backgroundColor=[UIColor whiteColor];
+    
     if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
         [self updateViewWithOffset:CGPointMake(0, 0)];
     else
@@ -107,6 +114,7 @@ static BOOL const CellsClickable[kDescriptionRows] = {
         self.fakeView.hidden=YES;
         self.tableView.backgroundColor=[UIColor whiteColor];
     }
+
 }
 
 #ifdef PROJECT_IATA
@@ -242,16 +250,22 @@ static BOOL const CellsClickable[kDescriptionRows] = {
 - (void)updateViewWithOffset:(CGPoint)offset {
     int const kBlockchainCellHeight = 245;
     int const kFakeViewHeight = 100;
+    
     if (offset.y >= kBlockchainCellHeight) {
         [self.fakeView setHidden:NO];
         self.extraHeightConstraint.constant = kFakeViewHeight;
-        self.tableView.backgroundColor = [UIColor whiteColor];
+//        self.tableView.backgroundColor = [UIColor whiteColor];
     }
     else {
         [self.fakeView setHidden:YES];
         self.extraHeightConstraint.constant = 0;
-        self.tableView.backgroundColor = [UIColor colorWithHexString:kMainGrayElementsColor];
+//    self.tableView.backgroundColor = [UIColor colorWithHexString:kMainGrayElementsColor];
     }
+    
+    if(offset.y>0)
+        self.tableView.backgroundColor=[UIColor whiteColor];
+    else
+        self.tableView.backgroundColor=[UIColor colorWithHexString:kMainGrayElementsColor];
 }
 
 - (CGFloat)calculateRowHeightForText:(NSString *)text {

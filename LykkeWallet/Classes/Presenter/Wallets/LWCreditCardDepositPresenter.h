@@ -10,4 +10,8 @@
 
 @interface LWCreditCardDepositPresenter : LWAuthComplexPresenter
 
+
+@property (strong, nonatomic) NSString *assetName;
+@property (strong, nonatomic) NSString *assetID;
+@property (strong, nonatomic) NSString *issuerId;
 @end

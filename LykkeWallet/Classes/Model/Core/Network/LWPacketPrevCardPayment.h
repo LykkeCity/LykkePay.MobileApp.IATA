@@ -7,7 +7,10 @@
 //
 
 #import "LWAuthorizePacket.h"
+@class LWPersonalDataModel;
 
 @interface LWPacketPrevCardPayment : LWAuthorizePacket
+
+@property (strong, nonatomic) LWPersonalDataModel *lastPaymentPersonalData;
 
 @end

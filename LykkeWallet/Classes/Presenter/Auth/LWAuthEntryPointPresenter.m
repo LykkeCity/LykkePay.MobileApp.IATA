@@ -24,6 +24,8 @@
 #import "UIViewController+Loading.h"
 #import "UIView+Toast.h"
 #import "LWProgressView.h"
+#import "LWKeychainManager.h"
+#import "LWRefundTransactionPresenter.h"
 
 typedef NS_ENUM(NSInteger, LWAuthEntryPointNextStep) {
     LWAuthEntryPointNextStepNone,
@@ -59,6 +61,8 @@ typedef NS_ENUM(NSInteger, LWAuthEntryPointNextStep) {
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *loginBottomConstraint;
 
 @property (weak, nonatomic) IBOutlet UILabel *versionLabel;
+
+@property (strong,nonatomic) UIButton *refundButton;
 
 
 #pragma mark - Actions
@@ -100,6 +104,13 @@ typedef NS_ENUM(NSInteger, LWAuthEntryPointNextStep) {
     tipsView = [LWTipsView new];
     tipsView.delegate = self;
     [self.tipsContainer attach:tipsView];
+    
+//    self.refundButton=[UIButton buttonWithType:UIButtonTypeSystem];
+    self.refundButton.frame=CGRectMake(0, 20, 100, 30);
+    [self.view addSubview:self.refundButton];
+    [self.refundButton setTitle:@"Refund" forState:UIControlStateNormal];
+    [self.refundButton addTarget:self action:@selector(refundButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+    self.refundButton.hidden=YES;
 }
 
 -(void) viewWillDisappear:(BOOL)animated
@@ -299,6 +310,12 @@ typedef NS_ENUM(NSInteger, LWAuthEntryPointNextStep) {
     [self.navigationController pushViewController:address animated:YES];
 }
 
+-(void) refundButtonPressed
+{
+    LWRefundTransactionPresenter *presenter=[[LWRefundTransactionPresenter alloc] init];
+    presenter.email=emailTextField.text;
+    [self.navigationController pushViewController:presenter animated:YES];
+}
 
 #pragma mark - LWTextFieldDelegate
 
@@ -309,6 +326,16 @@ typedef NS_ENUM(NSInteger, LWAuthEntryPointNextStep) {
     emailTextField.valid = [LWValidator validateEmail:textField.text];
     // reset next step
     step = LWAuthEntryPointNextStepNone;
+    
+    if(textField.text && self.refundButton && textField.text.length)
+    {
+        if([[LWKeychainManager instance] encodedPrivateKeyForEmail:textField.text])
+        {
+            self.refundButton.hidden=NO;
+        }
+        else
+            self.refundButton.hidden=YES;
+    }
     
 #ifdef PROJECT_IATA
     if (emailTextField.isValid) {

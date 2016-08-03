@@ -18,10 +18,12 @@
 #import "LWKeychainManager.h"
 #import "LWMathKeyboardView.h"
 #import "LWUtils.h"
+#import "LWCurrencyDepositElementView.h"
+#import "LWCreditCardDepositPresenter.h"
 
 #define BAR_GRAY_COLOR [UIColor colorWithRed:245.0/255 green:246.0/255 blue:248.0/255 alpha:1]
 
-@interface LWCurrencyDepositPresenter () <UITextFieldDelegate>
+@interface LWCurrencyDepositPresenter () <UITextFieldDelegate, LWCurrencyDepositElementViewDelegate>
 {
     UILabel *infoLabel;
     NSArray *lineTitles;
@@ -36,13 +38,20 @@
     NSString *currencySymbol;
     
     UILabel *currencySymbolLabel;
+    UIButton *swiftButton;
+    UIButton *creditCardButton;
+    
+    NSMutableArray *elementViews;
+    UIView *amountView;
 }
 
 @property (weak, nonatomic) IBOutlet UIView *infoView;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIButton *emailButton;
 @property (weak, nonatomic) IBOutlet UIView *container;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *scrollViewHeight;
+
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *infoViewHeight;
 
 @end
 
@@ -60,9 +69,6 @@
     self.navigationController.navigationBar.barTintColor = BAR_GRAY_COLOR;
     self.navigationController.navigationBar.translucent = NO;
 
-    UIView *lineView=[[UIView alloc] initWithFrame:CGRectMake(0, _infoView.bounds.size.height-1, _infoView.bounds.size.width, 1)];
-    lineView.backgroundColor=[UIColor colorWithRed:210.0/255 green:214.0/255 blue:219.0/255 alpha:1];
-    [_infoView addSubview:lineView];
 
     self.infoView.backgroundColor=BAR_GRAY_COLOR;
     
@@ -133,10 +139,74 @@
     prospectusButton.center=CGPointMake(buttonsContainer.bounds.size.width/2+(s1+s2+40)/2-s2/2, buttonsContainer.bounds.size.height/2);
     
     [self.infoView addSubview:buttonsContainer];
-
-//    CGRect rect=self.view.bounds;
     
-    // Do any additional setup after loading the view.
+    if([self.assetID isEqualToString:@"USD"] && [[NSUserDefaults standardUserDefaults] boolForKey:@"CanCashInViaBankCard"])
+    {
+        self.infoViewHeight.constant+=50;
+        
+        
+        swiftButton=[UIButton buttonWithType:UIButtonTypeCustom];
+        swiftButton.frame=CGRectMake(0, 0, 134, 30);
+        [swiftButton setAttributedTitle:[[NSAttributedString alloc] initWithString:@"SWIFT" attributes:@{NSFontAttributeName:[UIFont fontWithName:@"ProximaNova-Semibold" size:13] , NSForegroundColorAttributeName:[UIColor whiteColor], NSKernAttributeName:@(1.1)}] forState:UIControlStateNormal];
+        swiftButton.backgroundColor=[UIColor colorWithRed:171.0/255 green:0 blue:1 alpha:1];
+        swiftButton.clipsToBounds=YES;
+        swiftButton.layer.cornerRadius=15;
+        [_infoView addSubview:swiftButton];
+        
+        creditCardButton=[UIButton buttonWithType:UIButtonTypeCustom];
+        creditCardButton.frame=CGRectMake(0, 0, 134, 30);
+        [creditCardButton setAttributedTitle:[[NSAttributedString alloc] initWithString:@"CREDIT CARD" attributes:@{NSFontAttributeName:[UIFont fontWithName:@"ProximaNova-Regular" size:13] , NSForegroundColorAttributeName:[UIColor colorWithRed:63.0/255 green:77.0/255 blue:96.0/255 alpha:1], NSKernAttributeName:@(1.1)}] forState:UIControlStateNormal];
+        [creditCardButton addTarget:self action:@selector(creditCardButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+        [self.infoView addSubview:creditCardButton];
+        
+    }
+    
+    UIView *lineView=[[UIView alloc] initWithFrame:CGRectMake(0, self.infoViewHeight.constant-1, 1024, 1)];
+    lineView.backgroundColor=[UIColor colorWithRed:210.0/255 green:214.0/255 blue:219.0/255 alpha:1];
+    [_infoView addSubview:lineView];
+
+    
+    currencySymbol=[[LWCache instance] currencySymbolForAssetId:self.assetID];
+    
+    elementViews=[[NSMutableArray alloc] init];
+    
+    for(int i=0;i<lineTitles.count;i++)
+    {
+        LWCurrencyDepositElementView *view=[[LWCurrencyDepositElementView alloc] initWithTitle:lineTitles[i] text:lineValues[i]];
+        view.delegate=self;
+        [elementViews addObject:view];
+        [_scrollView addSubview:view];
+        
+        //        offset+=view.bounds.size.height;
+        //        if(i<lineTitles.count-1)
+        //        {
+        //            UIView *lineView=[[UIView alloc] initWithFrame:CGRectMake(30, offset-1, _scrollView.bounds.size.width-60, 1)];
+        //            lineView.backgroundColor=[UIColor colorWithRed:210.0/255 green:214.0/255 blue:219.0/255 alpha:1];
+        //            [_scrollView addSubview:lineView];
+        //        }
+        
+    }
+    
+    amountView=[self createAmountContainer];
+    [_scrollView addSubview:amountView];
+}
+
+-(void) creditCardButtonPressed
+{
+    LWCreditCardDepositPresenter *presenter=[LWCreditCardDepositPresenter new];
+    presenter.assetID=self.assetID;
+    presenter.assetName=self.assetName;
+    presenter.issuerId=self.issuerId;
+    
+    
+    // Get a changeable copy of the stack
+    NSMutableArray *controllerStack = [NSMutableArray arrayWithArray:self.navigationController.viewControllers];
+    // Replace the source controller with the destination controller, wherever the source may be
+    [controllerStack replaceObjectAtIndex:[controllerStack indexOfObject:self] withObject:presenter];
+    
+    // Assign the updated stack with animation
+    [self.navigationController setViewControllers:controllerStack animated:NO];
+    
 }
 
 -(void) viewWillAppear:(BOOL)animated
@@ -145,6 +215,9 @@
     
     infoLabel.text=[NSString stringWithFormat:@"To deposit %@ to your trading\nwallet, please use the following bank\n account details", self.assetName];
     [infoLabel sizeToFit];
+    [self setBackButton];
+    self.navigationController.navigationBar.barTintColor = BAR_GRAY_COLOR;
+
 }
 
 -(void) viewDidAppear:(BOOL)animated
@@ -152,44 +225,10 @@
     [super viewDidAppear:animated];
     
     self.title = Localize(@"wallets.currency.deposit");
-
-    
-    currencySymbol=[[LWCache instance] currencySymbolForAssetId:self.assetID];
-    
-    
-    CGFloat offset=self.infoView.bounds.size.height;
-    for(int i=0;i<lineTitles.count;i++)
-    {
-        UIView *view=[self viewForRowAtIndex:i];
-        view.center=CGPointMake(_scrollView.bounds.size.width/2, offset+view.bounds.size.height/2);
-        [_scrollView addSubview:view];
-        
-        offset+=view.bounds.size.height;
-        if(i<lineTitles.count-1)
-        {
-            UIView *lineView=[[UIView alloc] initWithFrame:CGRectMake(30, offset-1, _scrollView.bounds.size.width-60, 1)];
-            lineView.backgroundColor=[UIColor colorWithRed:210.0/255 green:214.0/255 blue:219.0/255 alpha:1];
-            [_scrollView addSubview:lineView];
-        }
-        
-    }
-    
-    UIView *amountView=[self createAmountContainer];
-    [_scrollView addSubview:amountView];
-    amountView.center=CGPointMake(_scrollView.bounds.size.width/2, offset+amountView.bounds.size.height/2);
-    
-    offset+=amountView.bounds.size.height;
     
     
 
-    offset+=30;
     
-//    self.emailButton.frame=CGRectMake(30, offset, _scrollView.bounds.size.width-60, 45);
-    self.emailButton.hidden=NO;
-    offset+=(_emailButton.bounds.size.height+20);
-    
-    _scrollView.contentSize=CGSizeMake(_scrollView.bounds.size.width, offset);
-    self.scrollViewHeight.constant=offset;
 
     
 }
@@ -208,77 +247,54 @@
 {
     [super viewDidLayoutSubviews];
     CGRect rrr=self.infoView.bounds;
-    infoLabel.center=CGPointMake(self.view.bounds.size.width/2, self.infoView.bounds.size.height/2-20);
-    buttonsContainer.center=CGPointMake(self.view.bounds.size.width/2, self.infoView.bounds.size.height/2+infoLabel.bounds.size.height/2+10);
-    self.emailButton.center=CGPointMake(_scrollView.bounds.size.width/2, _scrollView.contentSize.height-self.emailButton.bounds.size.height/2-20);
-//    self.emailButton.center=CGPointMake(self.view.bounds.size.width/2, self.emailButton.center.y);
+    
+    CGFloat offset=0;
+    if([self.assetID isEqualToString:@"USD"] && [[NSUserDefaults standardUserDefaults] boolForKey:@"CanCashInViaBankCard"])
+        offset=30;
+    
+    swiftButton.center=CGPointMake(self.view.bounds.size.width/2-3-swiftButton.bounds.size.width/2, 25);
+    creditCardButton.center=CGPointMake(self.view.bounds.size.width/2+3+creditCardButton.bounds.size.width/2, 25);
+    
+    infoLabel.center=CGPointMake(self.view.bounds.size.width/2, self.infoView.bounds.size.height/2-20+offset);
+    buttonsContainer.center=CGPointMake(self.view.bounds.size.width/2, self.infoView.bounds.size.height-20);
+
+    
+    
+    
+    offset=self.infoView.bounds.size.height;
+    
+    for(LWCurrencyDepositElementView *v in elementViews)
+    {
+        [v setWidth:self.view.bounds.size.width-60];
+        v.center=CGPointMake(self.view.bounds.size.width/2, offset+v.bounds.size.height/2);
+        offset+=v.bounds.size.height;
+    }
+    
+    
+    amountView.center=CGPointMake(_scrollView.bounds.size.width/2, offset+amountView.bounds.size.height/2);
+    
+    amountView.frame=CGRectMake(-1, amountView.frame.origin.y, self.view.bounds.size.width+2, amountView.bounds.size.height);
+    amountTextField.frame=CGRectMake(amountTextField.frame.origin.x, 0, amountView.bounds.size.width-amountTextField.frame.origin.x-30, amountView.bounds.size.height);
+    
+    
+    offset+=amountView.bounds.size.height;
+    
+    offset+=50;
+    
+    //    self.emailButton.frame=CGRectMake(30, offset, _scrollView.bounds.size.width-60, 45);
+    self.emailButton.hidden=NO;
+    
+    self.emailButton.center=CGPointMake(_scrollView.bounds.size.width/2,offset);
+
+    
+    offset+=(_emailButton.bounds.size.height+20);
+    
+    _scrollView.contentSize=CGSizeMake(_scrollView.bounds.size.width, offset);
+    
+    [self positionCurrencySymbol];
+    
 }
 
--(UIView *) viewForRowAtIndex:(int) index
-{
-    UIView *view=[[UIView alloc] initWithFrame:CGRectMake(30, 0, self.scrollView.bounds.size.width-60, 0)];
-    CGFloat height=0;
-    
-    CGFloat minHeight=50;
-    CGFloat titleWidth=80;
-    CGFloat copyIconWidth=25;
-    
-    UILabel *titleLabel=[[UILabel alloc] init];
-    titleLabel.font=[UIFont fontWithName:@"ProximaNova-Regular" size:14];
-    titleLabel.textColor=[UIColor colorWithRed:63.0/255 green:77.0/255 blue:96.0/255 alpha:0.6];
-    titleLabel.numberOfLines=0;
-    titleLabel.text=lineTitles[index];
-    CGSize size=[titleLabel sizeThatFits:CGSizeMake(titleWidth, 0)];
-    if(size.height>height)
-        height=size.height;
-    [view addSubview:titleLabel];
-    
-    
-    UILabel *textLabel;
-    
-    UIButton *copyButton;
-    
-    textLabel=[[UILabel alloc] init];
-    textLabel.font=[UIFont fontWithName:@"ProximaNova-Regular" size:16];
-    textLabel.textColor=[UIColor colorWithRed:63.0/255 green:77.0/255 blue:96.0/255 alpha:1];
-    textLabel.numberOfLines=0;
-    textLabel.text=lineValues[index];
-    size=[textLabel sizeThatFits:CGSizeMake(view.bounds.size.width-titleWidth-20-(copyIconWidth+10), 0)];
-    if(size.height>height)
-        height=size.height;
-    
-    [view addSubview:textLabel];
-    
-    copyButton=[UIButton buttonWithType:UIButtonTypeCustom];
-    copyButton.frame=CGRectMake(0, 0, copyIconWidth, copyIconWidth);
-    
-    
-    [copyButton setBackgroundImage:[UIImage imageNamed:@"CopyInDepositIcon"] forState:UIControlStateNormal];
-    copyButton.tag=index;
-    [copyButton addTarget:self action:@selector(copyPressed:) forControlEvents:UIControlEventTouchUpInside];
-    
-    [view addSubview:copyButton];
-    
-    height+=20;
-    
-    if(height<minHeight)
-        height=minHeight;
-    
-    titleLabel.frame=CGRectMake(0, 0, titleWidth, height);
-    textLabel.frame=CGRectMake(titleWidth+20, 0, view.bounds.size.width-titleWidth-20-(copyIconWidth+10), height);
-    
-    titleLabel.center=CGPointMake(titleLabel.center.x, height/2);
-    textLabel.center=CGPointMake(textLabel.center.x, height/2);
-    
-    copyButton.center=CGPointMake(view.bounds.size.width-copyButton.bounds.size.width/2, height/2);
-    
-    
-    view.frame=CGRectMake(view.frame.origin.x, 0, view.bounds.size.width, height);
-    
-    
-    return view;
-
-}
 
 -(UIView *) createAmountContainer
 {
@@ -329,10 +345,10 @@
     
 }
 
--(void) copyPressed:(UIButton *) button
+-(void) elementViewCopyPressed:(LWCurrencyDepositElementView *) view
 {
     UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
-    [pasteboard setString:lineValues[button.tag]];
+    [pasteboard setString:lineValues[[elementViews indexOfObject:view]]];
     [self showCopied];
 }
 

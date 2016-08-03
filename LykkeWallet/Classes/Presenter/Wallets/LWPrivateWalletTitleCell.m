@@ -7,6 +7,7 @@
 //
 
 #import "LWPrivateWalletTitleCell.h"
+#import "LWImageDownloader.h"
 
 @interface LWPrivateWalletTitleCell()
 {
@@ -30,23 +31,12 @@
 {
     iconImageView=[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
     [self addSubview:iconImageView];
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        if(wallet.iconURL)
-        {
-            NSURL *url=[NSURL URLWithString:wallet.iconURL];
-            if(url)
-            {
-                NSData *data=[NSData dataWithContentsOfURL:url];
-                if(data)
-                {
-                    UIImage *image=[[UIImage alloc] initWithData:data];
-                    if(image)
-                        iconImageView.image=image;
-                }
-            }
-        }
     
-    });
+    [[LWImageDownloader shared] downloadImageFromURLString:wallet.iconURL withCompletion:^(UIImage *image){
+    
+        iconImageView.image=image;
+    }];
+    
     
     titleLabel=[[UILabel alloc] init];
     

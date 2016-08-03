@@ -10,4 +10,7 @@
 
 @interface LWDropdownView : UIView
 
++(void) showWithElements:(NSArray *) elements title:(NSString *) title showDone:(BOOL) showDone showCancel:(BOOL) showCancel activeIndex:(int) index completion:(void(^)(NSInteger)) completion;
+
+
 @end

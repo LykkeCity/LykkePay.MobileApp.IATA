@@ -40,17 +40,17 @@
     NSNumber *lastPoint = self.changes[self.changes.count - 1];
 
     
-    CGContextSetRGBStrokeColor(context, 18.0/255, 183.0/255, 42.0/255, 1.0);
-    CGContextSetRGBFillColor(context, 18.0/255, 183.0/255, 42.0/255, 1.0);
+    CGContextSetRGBStrokeColor(context, 19.0/255, 183.0/255, 42.0/255, 1.0);
+    CGContextSetRGBFillColor(context, 19.0/255, 183.0/255, 42.0/255, 1.0);
     
     if(firstPoint.floatValue>lastPoint.floatValue)
     {
-        CGContextSetRGBStrokeColor(context, 255.0/255, 62.0/255, 45.0/255, 1.0);
-        CGContextSetRGBFillColor(context, 255.0/255, 62.0/255,45.0/255, 1.0);
+        CGContextSetRGBStrokeColor(context, 255.0/255, 62.0/255, 46.0/255, 1.0);
+        CGContextSetRGBFillColor(context, 255.0/255, 62.0/255,46.0/255, 1.0);
     }
     
     CGContextSetLineJoin(context, kCGLineJoinRound);
-    CGContextSetLineWidth(context, 2.0);
+    CGContextSetLineWidth(context, 1.5);
     
     CGMutablePathRef pathRef = CGPathCreateMutable();
     
@@ -98,15 +98,18 @@
         CGPathRelease(pathRef);
     }
     
-    float r1=244;
-    float g1=248;
-    float b1=234;
+//    float r1=244;
+//    float g1=248;
+//    float b1=234;
+    float r1=231;
+    float g1=247;
+    float b1=233;
     
     if(firstPoint.floatValue>lastPoint.floatValue)
     {
-        r1=251;
-        g1=169;
-        b1=209;
+        r1=255;
+        g1=235;
+        b1=244;
     }
     
     for(int x=0;x<width;x++)

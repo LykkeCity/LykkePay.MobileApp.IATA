@@ -7,6 +7,7 @@
 //
 
 #import "LWPacketApplicationInfo.h"
+#import "NSString+Date.h"
 
 @implementation LWPacketApplicationInfo
 
@@ -19,6 +20,18 @@
     }
     self.apiVersion=result[@"AppVersion"];
     
+    if(result[@"CountryPhoneCodesLastModified"])
+    {
+        NSString *string=[result[@"CountryPhoneCodesLastModified"] stringByReplacingOccurrencesOfString:@"T" withString:@" "];
+
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        NSTimeZone *gmt = [NSTimeZone timeZoneWithAbbreviation:@"UTC"];
+        [dateFormatter setTimeZone:gmt];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+        NSDate *dateFromString=[dateFormatter dateFromString:string];
+
+        [[NSUserDefaults standardUserDefaults] setObject:dateFromString forKey:@"CountryPhoneCodesLastModified"];
+    }
     
 }
 

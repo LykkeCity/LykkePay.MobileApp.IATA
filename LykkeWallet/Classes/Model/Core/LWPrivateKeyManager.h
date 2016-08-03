@@ -20,10 +20,16 @@
 
 + (instancetype)shared;
 
+-(BOOL) isDevServer;
+
 -(void) generatePrivateKey;
 -(void) decryptLykkePrivateKeyAndSave:(NSString *) encodedPrivateKey;
 
+-(NSString *) decryptPrivateKey:(NSString *)encryptedPrivateKeyData withPassword:(NSString *) password;
+
 +(NSString *) addressFromPrivateKeyWIF:(NSString *) wif;
 
++(NSString *) encodedPrivateKeyWif:(NSString *) key withPassPhrase:(NSString *) passPhrase;
++(NSString *) decodedPrivateKeyWif:(NSString *) encodedKey withPassPhrase:(NSString *) passPhrase;
 
 @end

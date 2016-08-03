@@ -10,10 +10,13 @@
 
 @interface LWPrivateWalletAssetModel : NSObject
 
+-(id) initWithDict:(NSDictionary *) dict;
+
 @property (strong, nonatomic) NSString *assetId;
 @property (strong, nonatomic) NSNumber *baseAssetAmount;
 @property (strong, nonatomic) NSNumber *amount;
 @property (strong, nonatomic) NSString *name;
+@property (strong, nonatomic) NSString *baseAssetId;
 
 
 @end

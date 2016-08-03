@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LWRefreshControlView : UIView
+@interface LWRefreshControlView : UIRefreshControl
+
+//@property (weak, nonatomic) UIRefreshControl *refreshControl;
 
 @end

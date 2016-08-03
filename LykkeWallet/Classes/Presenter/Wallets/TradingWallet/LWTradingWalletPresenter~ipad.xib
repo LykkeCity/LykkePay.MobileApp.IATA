@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15G7a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -15,6 +15,7 @@
             <connections>
                 <outlet property="depositButton" destination="BNm-RT-c2W" id="ToQ-ZL-jS0"/>
                 <outlet property="tableView" destination="Cax-fM-Y0r" id="GOg-6S-tWP"/>
+                <outlet property="tableViewBottomConstraint" destination="JOy-RY-6Xs" id="ioD-DB-2Ns"/>
                 <outlet property="view" destination="GMb-Nj-ATo" id="PPi-6T-TaX"/>
                 <outlet property="withdrawButton" destination="7ap-Ar-9yN" id="6cR-fG-hEg"/>
             </connections>
@@ -24,8 +25,8 @@
             <rect key="frame" x="0.0" y="0.0" width="701" height="721"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="O6u-WM-TMp">
-                    <rect key="frame" x="0.0" y="483" width="320" height="85"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O6u-WM-TMp">
+                    <rect key="frame" x="190.5" y="636" width="320" height="85"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7ap-Ar-9yN" customClass="TKButton">
                             <rect key="frame" x="20" y="20" width="130" height="45"/>
@@ -66,8 +67,8 @@
                         <constraint firstItem="BNm-RT-c2W" firstAttribute="width" secondItem="7ap-Ar-9yN" secondAttribute="width" id="n9t-su-o6l"/>
                     </constraints>
                 </view>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Cax-fM-Y0r">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="483"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Cax-fM-Y0r">
+                    <rect key="frame" x="-1.5" y="0.0" width="704" height="636"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="704" id="YOb-H6-yO6"/>
@@ -76,10 +77,10 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstAttribute="bottom" secondItem="Cax-fM-Y0r" secondAttribute="bottom" constant="85" id="JOy-RY-6Xs"/>
                 <constraint firstItem="O6u-WM-TMp" firstAttribute="centerX" secondItem="GMb-Nj-ATo" secondAttribute="centerX" id="N3Z-mS-HxV"/>
                 <constraint firstItem="Cax-fM-Y0r" firstAttribute="centerX" secondItem="GMb-Nj-ATo" secondAttribute="centerX" id="UXS-yv-55h"/>
                 <constraint firstAttribute="bottom" secondItem="O6u-WM-TMp" secondAttribute="bottom" id="oU5-tv-X1m"/>
-                <constraint firstItem="O6u-WM-TMp" firstAttribute="top" secondItem="Cax-fM-Y0r" secondAttribute="bottom" id="rZu-G8-ieA"/>
                 <constraint firstItem="Cax-fM-Y0r" firstAttribute="top" secondItem="GMb-Nj-ATo" secondAttribute="top" id="sk5-L9-nQF"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

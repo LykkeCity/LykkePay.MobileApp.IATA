@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+@class LWPrivateWalletModel;
+
 @interface LWChoosePrivateWalletCell : UITableViewCell
+
+-(id) initWithWallet:(LWPrivateWalletModel *) wallet;
+
 
 @end

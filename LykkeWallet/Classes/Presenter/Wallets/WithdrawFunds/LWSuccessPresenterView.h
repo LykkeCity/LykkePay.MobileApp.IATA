@@ -1,5 +1,5 @@
 //
-//  LWWithdrawSuccessPresenterView.h
+//  LWSuccessPresenterView.h
 //  LykkeWallet
 //
 //  Created by Andrey Snetkov on 15/05/16.
@@ -8,16 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LWWithdrawSuccessPresenterView : UIView
+@interface LWSuccessPresenterView : UIView
+
+-(id) initWithFrame:(CGRect)frame title:(NSString *) title text:(NSString *) text;
 
 @property id delegate;
 
 @end
 
 
-@protocol LWWithdrawSuccessPresenterViewDelegate
+@protocol LWSuccessPresenterViewDelegate
 
 
--(void) withdrawSuccessPresenterViewPressedReturn:(LWWithdrawSuccessPresenterView *) view;
+-(void) successPresenterViewPressedReturn:(LWSuccessPresenterView *) view;
 
 @end

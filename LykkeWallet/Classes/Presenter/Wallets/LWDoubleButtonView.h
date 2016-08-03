@@ -15,3 +15,10 @@
 -(id) initWithTitles:(NSArray *) titles;
 
 @end
+
+@protocol LWDoubleButtonViewDelegate
+
+-(void) doubleButtonPressedLeft:(LWDoubleButtonView *) button;
+-(void) doubleButtonPressedRight:(LWDoubleButtonView *)button;
+
+@end

@@ -30,7 +30,7 @@
 
 + (instancetype)shared
 {
-    static LWImageDowloader *shared = nil;
+    static LWImageDownloader *shared = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         shared = [[LWImageDownloader alloc] init];

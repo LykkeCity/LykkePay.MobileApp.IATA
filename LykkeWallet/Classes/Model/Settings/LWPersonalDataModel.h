@@ -24,6 +24,11 @@
 @property (readonly, nonatomic) NSString *city;
 @property (readonly, nonatomic) NSString *address;
 
+@property (readonly, nonatomic) NSString *firstName;
+@property (readonly, nonatomic) NSString *lastName;
+
+@property (readonly, nonatomic) NSString *jsonString;
+
 
 #pragma mark - Utils
 

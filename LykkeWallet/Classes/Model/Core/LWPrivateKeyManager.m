@@ -10,6 +10,7 @@
 #import "LWKeychainManager.h"
 #import "NewDecodeBase64.h"
 #import <CommonCrypto/CommonCryptor.h>
+#import <CommonCrypto/CommonDigest.h>
 #import "BTCAddress.h"
 
 #import "ecdsa.h"
@@ -33,6 +34,12 @@
 -(id) init
 {
     self=[super init];
+    
+    
+    
+//    NSString *kkk=[self decryptPrivateKey:@"0016e31d066dfa99294aa33ea98285696883032a86b034e49fa6f54c67dd1788df6e38d09d2a8067df2ad7d3530e429eacb7d8516581e3aabd79a2b0df59a0f8"];
+//    NSLog(@"%@", kkk);
+    
     
 //    privateKeyForLykke=[[BTCKey alloc] initWithWIF:@"cU6bPP5KN9kvM7zek2bRURr9ABeF92kRFuqX7o8B2ojCMGyCxgsv"];
 //    
@@ -84,9 +91,10 @@
 {
     if(privateKeyForLykke)
         return privateKeyForLykke;
-    if([LWKeychainManager instance].privateKeyLykke)
+    if([LWKeychainManager instance].encodedPrivateKeyLykke)
     {
-        privateKeyForLykke=[[BTCKey alloc] initWithWIF:[LWKeychainManager instance].privateKeyLykke];
+        NSString *decoded=[self decryptPrivateKey:[LWKeychainManager instance].encodedPrivateKeyLykke withPassword:[LWKeychainManager instance].password];
+        privateKeyForLykke=[[BTCKey alloc] initWithWIF:decoded];
     }
     return privateKeyForLykke;
 }
@@ -102,12 +110,12 @@
 
 -(void) decryptLykkePrivateKeyAndSave:(NSString *)encodedPrivateKey
 {
-    NSString *privateKeyWif=[self decryptPrivateKey:encodedPrivateKey];
+    NSString *privateKeyWif=[self decryptPrivateKey:encodedPrivateKey withPassword:[LWKeychainManager instance].password];
     if(privateKeyWif)
     {
         privateKeyForLykke=[[BTCKey alloc] initWithWIF:privateKeyWif];
         
-        [[LWKeychainManager instance] saveLykkePrivateKey:privateKeyWif];
+        [[LWKeychainManager instance] saveEncodedLykkePrivateKey:encodedPrivateKey];
     }
     
     
@@ -165,6 +173,84 @@
 }
 
 
++(NSString *) encodedPrivateKeyWif:(NSString *) key withPassPhrase:(NSString *) passPhrase
+{
+    NSData *dataIn = [passPhrase dataUsingEncoding:NSUTF8StringEncoding];
+    NSMutableData *macOut = [NSMutableData dataWithLength:CC_SHA256_DIGEST_LENGTH];
+    
+    CC_SHA256(dataIn.bytes, dataIn.length,  macOut.mutableBytes);
+    
+    NSMutableData *keyData=[NSMutableData dataWithData:[key dataUsingEncoding:NSASCIIStringEncoding]];
+    char byte=0x0;
+    while(keyData.length%32!=0)
+        [keyData appendBytes:&byte length:1];
+    
+    NSData *encodedKey=[[LWPrivateKeyManager shared] AES256Encrypt:keyData withDataKey:macOut];
+    
+    NSString *ddd=[LWPrivateKeyManager decodedPrivateKeyWif:[[LWPrivateKeyManager shared] hexStringFromData:encodedKey] withPassPhrase:passPhrase];
+    
+    return [[LWPrivateKeyManager shared] hexStringFromData:encodedKey];
+}
+
++(NSString *) decodedPrivateKeyWif:(NSString *) encodedKey withPassPhrase:(NSString *) passPhrase
+{
+    NSData *dataIn = [passPhrase dataUsingEncoding:NSUTF8StringEncoding];
+    NSMutableData *macOut = [NSMutableData dataWithLength:CC_SHA256_DIGEST_LENGTH];
+    
+    CC_SHA256(dataIn.bytes, dataIn.length,  macOut.mutableBytes);
+    NSData *decodedKey=[[LWPrivateKeyManager shared] AES256Decrypt:[[LWPrivateKeyManager shared] dataFromHexString:encodedKey] withDataKey:macOut];
+    
+    NSString *str=[[NSString alloc] initWithBytes:decodedKey.bytes length:strlen(decodedKey.bytes) encoding:NSASCIIStringEncoding];
+    
+    
+    return str;
+}
+
+- (NSData *)AES256Decrypt:(NSData *) data withDataKey:(NSData *)key {
+    NSUInteger dataLength = [data length];
+    size_t bufferSize = dataLength + kCCBlockSizeAES128;
+    void *buffer = malloc(bufferSize);
+    
+    size_t numBytesEncrypted = 0;
+    CCCryptorStatus cryptStatus = CCCrypt(kCCDecrypt, kCCAlgorithmAES, kCCOptionECBMode,
+                                          key.bytes, kCCKeySizeAES256,
+                                          NULL /* initialization vector (optional) */,
+                                          [data bytes], dataLength, /* input */
+                                          buffer, bufferSize, /* output */
+                                          &numBytesEncrypted);
+    
+    if (cryptStatus == kCCSuccess) {
+        //the returned NSData takes ownership of the buffer and will free it on deallocation
+        return [NSData dataWithBytesNoCopy:buffer length:numBytesEncrypted];
+    }
+    
+    free(buffer); //free the buffer;
+    return nil;
+}
+
+
+
+- (NSData *)AES256Encrypt:(NSData *) data withDataKey:(NSData *)key {
+    NSUInteger dataLength = [data length];
+    size_t bufferSize = dataLength + kCCBlockSizeAES128;
+    void *buffer = malloc(bufferSize);
+    
+    size_t numBytesEncrypted = 0;
+    CCCryptorStatus cryptStatus = CCCrypt(kCCEncrypt, kCCAlgorithmAES, kCCOptionECBMode,
+                                          key.bytes, kCCKeySizeAES256,
+                                          NULL /* initialization vector (optional) */,
+                                          [data bytes], dataLength, /* input */
+                                          buffer, bufferSize, /* output */
+                                          &numBytesEncrypted);
+    
+    if (cryptStatus == kCCSuccess) {
+        //the returned NSData takes ownership of the buffer and will free it on deallocation
+        return [NSData dataWithBytesNoCopy:buffer length:numBytesEncrypted];
+    }
+    
+    free(buffer); //free the buffer;
+    return nil;
+}
 
 
 
@@ -235,10 +321,13 @@
     return nil;
 }
 
--(NSString *) decryptPrivateKey:(NSString *)encryptedPrivateKeyData
+-(NSString *) decryptPrivateKey:(NSString *)encryptedPrivateKeyData withPassword:(NSString *) password
 {
     
-    NSString *key=[LWKeychainManager instance].password;
+    NSString *key=password;
+    
+    
+//    key=@"123456";
 //    key=[key stringByAppendingString:@"1111"];
     if(key.length>16)
     {
@@ -315,6 +404,16 @@
         wif=privateKeyForLykke.WIFTestnet;
     else
         wif=privateKeyForLykke.WIF;
+    
+    
+//    NSString *address=privateKeyForLykke.addressTestnet.string;;
+//
+//    
+//    NSLog(@"GENERATED PRIVATE KEY: %@", wif);
+//    
+//    
+//    NSLog(@"ADDRESS: %@", address);
+    
 //    [[LWKeychainManager instance] saveLykkePrivateKey:wif];
     
     

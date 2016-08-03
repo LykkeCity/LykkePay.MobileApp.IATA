@@ -10,4 +10,6 @@
 
 @interface LWIPadModalNavigationControllerViewController : UINavigationController <UIViewControllerTransitioningDelegate>
 
+-(void) dismissAnimated:(BOOL) animated;
+
 @end

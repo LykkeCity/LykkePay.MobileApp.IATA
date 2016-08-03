@@ -17,7 +17,7 @@
     int total;
     int count;
     
-    
+    BOOL isAnimating;
 
 }
 
@@ -33,6 +33,7 @@
 -(id) initWithFrame:(CGRect)frame
 {
     self=[super initWithFrame:frame];
+    isAnimating=NO;
     
     UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
     _squareBackground = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
@@ -74,6 +75,7 @@
 
 -(void) awakeFromNib
 {
+    isAnimating=NO;
     [self loadFrames];
     self.diameter=self.bounds.size.width;
     if(self.diameter>30)
@@ -113,6 +115,7 @@
 
 +(void) hide
 {
+    
     dispatch_async(dispatch_get_main_queue(), ^{
     
     [[LWProgressView sharedInstance] removeFromSuperview];
@@ -159,16 +162,35 @@
 
 -(void) startAnimating
 {
+    if(isAnimating)
+        return;
     self.hidden=NO;
     [timer invalidate];
 //    dispatch_async(dispatch_get_main_queue(), ^{
-    timer=[NSTimer timerWithTimeInterval:0.017 target:self selector:@selector(repeatAnimation) userInfo:nil repeats:YES];
-    [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
+//    timer=[NSTimer timerWithTimeInterval:0.017 target:self selector:@selector(repeatAnimation) userInfo:nil repeats:YES];
+    
+    isAnimating=YES;
+    
+//    [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
+    
 //        });
+    
+    [self performSelectorInBackground:@selector(startLoop) withObject:nil];
+}
+
+-(void) startLoop
+{
+    while(isAnimating)
+    {
+        
+    [NSThread sleepForTimeInterval:0.005];
+    [self repeatAnimation];
+    }
 }
 
 -(void) stopAnimating
 {
+    isAnimating=NO;
     self.hidden=YES;
     [timer invalidate];
 }
@@ -176,12 +198,16 @@
 
 -(void) repeatAnimation
 {
+    dispatch_async(dispatch_get_main_queue(), ^{
     [self setNeedsDisplay];
+        });
     count++;
     if(count==total)
     {
         count=0;
     }
+    
+//    NSLog(@"TIMER CALLED %d", count);
 
 }
 
@@ -193,17 +219,26 @@
     
     
     CGContextDrawImage(context, CGRectMake(self.bounds.size.width/2-_diameter/2, self.bounds.size.height/2-_diameter/2, _diameter, _diameter), images[count]);
-}
+    
+    UIView *vvv=self.superview;
+    UIView *vvv1=self.superview.superview;
+    UIView *vvv2=self.superview.superview.superview;
+//
+    NSLog(@"CALLED DRAWRECT");
+    
+ }
 
 -(void) removeFromSuperview
 {
     [timer invalidate];
+    isAnimating=NO;
     [_squareBackground removeFromSuperview];
     [super removeFromSuperview];
 }
 
 -(void) dealloc
 {
+    isAnimating=NO;
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [timer invalidate];
     for(int i=0;i<total;i++)

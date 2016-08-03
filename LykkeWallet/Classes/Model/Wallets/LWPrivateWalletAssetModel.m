@@ -7,7 +7,20 @@
 //
 
 #import "LWPrivateWalletAssetModel.h"
+#import "LWCache.h"
 
 @implementation LWPrivateWalletAssetModel
+
+
+-(id) initWithDict:(NSDictionary *) d
+{
+    self=[super init];
+    self.assetId=d[@"AssetId"];
+    self.amount=d[@"Balance"];
+    self.name=[LWCache nameForAsset:self.assetId];
+    self.baseAssetAmount=d[@"AmountInBase"];
+    self.baseAssetId=d[@"BaseAssetId"];
+    return self;
+}
 
 @end

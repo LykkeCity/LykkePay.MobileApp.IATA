@@ -104,6 +104,10 @@ float const kMathHeightKeyboard = 239.0;
     }
     
     [[LWAuthManager instance] requestLykkeWallets];
+    if([LWCache instance].walletsData)
+    {
+        [self showBalanceWithLykkeData:[LWCache instance].walletsData];
+    }
 
 }
 
@@ -137,6 +141,7 @@ float const kMathHeightKeyboard = 239.0;
         balance.textColor=[UIColor colorWithRed:63.0/255 green:77.0/255 blue:96.0/255 alpha:1];
         balance.textAlignment=NSTextAlignmentCenter;
         balance.center=CGPointMake(self.tableView.bounds.size.width/2, balance.center.y);
+        cell.userInteractionEnabled=NO;
         [cell addSubview:balance];
         return cell;
         
@@ -255,11 +260,16 @@ float const kMathHeightKeyboard = 239.0;
 
 -(void) authManager:(LWAuthManager *)manager didReceiveLykkeData:(LWLykkeWalletsData *)data
 {
+    [self showBalanceWithLykkeData:data.lykkeData];
+}
+            
+-(void) showBalanceWithLykkeData:(LWLykkeData *) data
+{
     NSString *balanceAsset=self.assetId;
     
     NSString *symbol;
     
-    for(LWLykkeAssetsData *d in data.lykkeData.assets)
+    for(LWLykkeAssetsData *d in data.assets)
     {
         if([d.identity isEqualToString:balanceAsset])
         {
@@ -269,9 +279,7 @@ float const kMathHeightKeyboard = 239.0;
         }
     }
     
-    
     balance.text=[NSString stringWithFormat:@"%@ available", [LWUtils formatVolumeNumber:accountBalance currencySign:symbol accuracy:accuracy removeExtraZeroes:YES]];
-    
 }
 
 

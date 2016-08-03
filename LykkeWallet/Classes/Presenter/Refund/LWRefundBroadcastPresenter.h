@@ -10,4 +10,6 @@
 
 @interface LWRefundBroadcastPresenter : UIViewController
 
+@property (strong, nonatomic) NSString *transactionText;
+
 @end

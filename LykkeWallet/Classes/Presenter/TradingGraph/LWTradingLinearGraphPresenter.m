@@ -33,8 +33,8 @@
 
 
 
-#define GRAPH_RED_COLOR [UIColor colorWithRed:187.0/255 green:5.0/255 blue:54.0/255 alpha:1]
-#define GRAPH_GREEN_COLOR [UIColor colorWithRed:125.0/255 green:182.0/255 blue:41.0/255 alpha:1]
+#define GRAPH_RED_COLOR [UIColor colorWithRed:255.0/255 green:62.0/255 blue:46.0/255 alpha:1]
+#define GRAPH_GREEN_COLOR [UIColor colorWithRed:19.0/255 green:183.0/255 blue:42.0/255 alpha:1]
 
 
 

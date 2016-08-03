@@ -21,7 +21,7 @@
 #import "LWFingerprintHelper.h"
 #import "UIViewController+Loading.h"
 #import "LWCache.h"
-#import "LWPacketAPIVersion.h"
+#import "LWPacketApplicationInfo.h"
 #import "LWSettingsTermsTableViewCell.h"
 #import "LWSettingsCallSupportTableViewCell.h"
 #import "LWValidator.h"
@@ -327,7 +327,7 @@ static NSString *const SettingsIdentifiers[kNumberOfRows] = {
     [self configureCell:cell indexPath:path];
 }
 
--(void) authManager:(LWAuthManager *) manager didGetAPIVersion:(LWPacketAPIVersion *)apiVersion
+-(void) authManager:(LWAuthManager *) manager didGetAPIVersion:(LWPacketApplicationInfo *)apiVersion
 {
     if(apiVersion.apiVersion)
     {
@@ -400,7 +400,7 @@ static NSString *const SettingsIdentifiers[kNumberOfRows] = {
     }
     else if (indexPath.row == kLogoutCellId) {
         LWSettingsLogOutTableViewCell *logoutCell = (LWSettingsLogOutTableViewCell *)cell;
-        NSString *logout = [NSString stringWithFormat:@"%@ %@", Localize(@"settings.cell.logout.title"), [LWKeychainManager instance].login];
+        NSString *logout = [NSString stringWithFormat:@"%@ %@", Localize(@"settings.cell.logout.title"), [LWKeychainManager instance].login.lowercaseString];
         logoutCell.logoutLabel.text = logout;
     }
     else if (indexPath.row == kRefundAddress) {

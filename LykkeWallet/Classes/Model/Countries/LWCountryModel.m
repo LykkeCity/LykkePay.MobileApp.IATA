@@ -20,6 +20,7 @@
         _identity = [json objectForKey:@"Id"];
         _name     = [json objectForKey:@"Name"];
         _prefix   = [json objectForKey:@"Prefix"];
+        _iso2=[json objectForKey:@"Iso2"];
     }
     return self;
 }
@@ -30,6 +31,7 @@
     data.identity = [self.identity copy];
     data.name     = [self.name copy];
     data.prefix   = [self.prefix copy];
+    data.iso2=self.iso2;
     
     return data;
 }

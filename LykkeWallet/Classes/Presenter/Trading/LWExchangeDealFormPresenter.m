@@ -161,6 +161,9 @@ static NSString *const FormIdentifiers[kFormRows] = {
     if (sumTextField) {
         [sumTextField becomeFirstResponder];
     }
+    
+    if([LWCache instance].walletsData)
+        [self showBalanceFromLykkeData:[LWCache instance].walletsData];
 
 }
 
@@ -406,27 +409,21 @@ static NSString *const FormIdentifiers[kFormRows] = {
 
 -(void) authManager:(LWAuthManager *)manager didReceiveLykkeData:(LWLykkeWalletsData *)data
 {
-    
-//    NSString *baseAssetID=[LWCache instance].baseAssetId;
-    
-//    NSString *balanceAsset=self.assetPair.baseAssetId;
-//    if([baseAssetID isEqualToString:balanceAsset] && self.assetDealType==LWAssetDealTypeSell)
-//        balanceAsset=self.assetPair.baseAssetId;
-//    else if(self.assetDealType==LWAssetDealTypeBuy)
-//        balanceAsset=self.assetPair.quotingAssetId;
-    
-        NSString *balanceAsset;
-        if(self.assetDealType==LWAssetDealTypeSell)
-            balanceAsset=self.assetPair.baseAssetId;
-        else if(self.assetDealType==LWAssetDealTypeBuy)
-            balanceAsset=self.assetPair.quotingAssetId;
+    [self showBalanceFromLykkeData:data.lykkeData];
+}
 
-
+-(void) showBalanceFromLykkeData:(LWLykkeData *) data
+{
+    NSString *balanceAsset;
+    if(self.assetDealType==LWAssetDealTypeSell)
+        balanceAsset=self.assetPair.baseAssetId;
+    else if(self.assetDealType==LWAssetDealTypeBuy)
+        balanceAsset=self.assetPair.quotingAssetId;
     
     balanceOfAccount=@(0);
     
     balanceAccuracy=2;
-    for(LWLykkeAssetsData *d in data.lykkeData.assets)
+    for(LWLykkeAssetsData *d in data.assets)
     {
         if([d.identity isEqualToString:balanceAsset])
         {
@@ -436,9 +433,7 @@ static NSString *const FormIdentifiers[kFormRows] = {
         }
     }
     
-    
     balance.text=[NSString stringWithFormat:@"%@ available", [LWUtils formatVolumeNumber:balanceOfAccount currencySign:balanceCurrencySymbol accuracy:balanceAccuracy removeExtraZeroes:YES]];
-
 
 }
 
@@ -459,7 +454,7 @@ static NSString *const FormIdentifiers[kFormRows] = {
 //        }
 //        else
 //            purchase.orderType=@"Buy";
-//        
+//
 //    }
     
     LWExchangeResultPresenter *controller = [LWExchangeResultPresenter new];

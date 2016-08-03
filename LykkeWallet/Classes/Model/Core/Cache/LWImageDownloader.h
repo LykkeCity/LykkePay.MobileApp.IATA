@@ -1,5 +1,5 @@
 //
-//  LWImageDowloader.h
+//  LWImageDownloader.h
 //  LykkeWallet
 //
 //  Created by Andrey Snetkov on 24/07/16.
@@ -10,7 +10,7 @@
 
 @class UIImage;
 
-@interface LWImageDowloader : NSObject
+@interface LWImageDownloader : NSObject
 
 + (instancetype)shared;
 -(void) downloadImageFromURLString:(NSString *) urlString withCompletion:(void(^)(UIImage *)) completion;

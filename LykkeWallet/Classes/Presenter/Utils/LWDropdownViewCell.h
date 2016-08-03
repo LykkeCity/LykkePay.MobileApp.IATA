@@ -10,4 +10,6 @@
 
 @interface LWDropdownViewCell : UITableViewCell
 
+-(id) initWithTitle:(NSString *) title;
+
 @end

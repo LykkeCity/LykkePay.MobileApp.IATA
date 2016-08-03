@@ -51,6 +51,7 @@
 -(void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+
     if([[self.viewControllers lastObject] isKindOfClass:[LWPrivateWalletsPresenter class]])
     {
         self.navigationController.visibleViewController.navigationItem.rightBarButtonItem=itemPlus;
@@ -59,7 +60,9 @@
 
 - (NSArray<UIViewController *> *)popToViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
-    return [super popToViewController:viewController animated:animated];
+    if([self.navigationController.viewControllers containsObject:viewController])
+        return [self.navigationController popToViewController:viewController animated:animated];
+    return nil;
 }
 
 -(UIViewController *) popViewControllerAnimated:(BOOL)animated

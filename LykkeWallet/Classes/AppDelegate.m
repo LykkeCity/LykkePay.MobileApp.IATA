@@ -113,8 +113,11 @@
 //    [LWPushNotificationView showPushNotification:@{@"aps":@{@"alert":@"Test alert", @"type":@(1)}} clickImmediately:NO];//Testing
     
 //    NSString *sss=[LWKeychainManager instance].privateKeyLykke;//Testing
-    NSLog(@" ");
+//    NSLog(@" ");
 //    [[LWKeychainManager instance] clearLykkePrivateKey];
+    
+//    [LWPrivateKeyManager encodedPrivateKeyWif:@"123456Abcdefghijklmnopq" withPassPhrase:@"The game"];//Testing
+    
     
     return YES;
 }

@@ -18,6 +18,7 @@
 #import "LWPacketKYCForAsset.h"
 #import "LWKYCRestrictedPresenter.h"
 #import "LWKYCInvalidDocumentsPresenter.h"
+#import "LWWalletsNavigationController.h"
 
 @interface LWKYCManager() <LWAuthManagerDelegate, LWRegisterCameraPresenterDelegate, LWKYCSubmitPresenterDelegate, LWKYCPendingPresenterDelegate, LWKYCSuccessPresenterDelegate, LWKYCInvalidDocumentsPresenterDelegate>
 {
@@ -48,22 +49,29 @@
 -(void) manageKYCStatusForAsset:(NSString *)assetId successBlock:(void(^)(void)) completion
 {
     navigationController=self.viewController.navigationController;
-    lastViewController=[navigationController.viewControllers lastObject];
+    if([navigationController isKindOfClass:[LWWalletsNavigationController class]])
+        lastViewController=[navigationController.navigationController.viewControllers lastObject];
+    else
+        lastViewController=[navigationController.viewControllers lastObject];
+//    navigationController=self.viewController.navigationController.navigationController;
+//    lastViewController=self.viewController.navigationController;
     completionBlock=completion;
     [self.viewController setLoading:YES];
     [LWAuthManager instance].delegate=self;
-    
-//    [[LWAuthManager instance] requestKYCStatusGet];
   
     [[LWAuthManager instance] requestKYCStatusForAsset:assetId];
-    
-//    [[LWAuthManager instance] requestDocumentsToUpload];
+
 }
 
 -(void) manageKYCStatus
 {
     navigationController=self.viewController.navigationController;
-    lastViewController=[navigationController.viewControllers lastObject];
+    if([navigationController isKindOfClass:[LWWalletsNavigationController class]])
+        lastViewController=[navigationController.navigationController.viewControllers lastObject];
+    else
+        lastViewController=[navigationController.viewControllers lastObject];
+
+//    lastViewController=[navigationController.viewControllers lastObject];
     
     [self.viewController setLoading:YES];
     [LWAuthManager instance].delegate=self;
@@ -201,7 +209,7 @@
 
 -(void) submitPresenterUserSubmitted:(LWKYCSubmitPresenter *)presenter
 {
-    [presenter.navigationController popToViewController:lastViewController animated:NO];
+    [navigationController popToViewController:lastViewController animated:NO];
     
     LWKYCPendingPresenter *vc=[LWKYCPendingPresenter new];
     vc.delegate=self;
@@ -221,13 +229,13 @@
     
 //    UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"LYKKE" message:@"Some of your documents were not accepted. Please retake." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
 //    [alert show];
-    [presenter.navigationController popToViewController:lastViewController animated:NO];
+    [navigationController popToViewController:lastViewController animated:NO];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
 
         LWKYCInvalidDocumentsPresenter *pres=[[LWKYCInvalidDocumentsPresenter alloc] init];
         pres.delegate=self;
         
-        [presenter.navigationController presentViewController:pres animated:YES completion:nil];
+        [navigationController presentViewController:pres animated:YES completion:nil];
         
         
     });
@@ -245,7 +253,7 @@
 
 -(void) pendingPresenterDidReceiveRestrictedArea:(LWKYCPendingPresenter *)presenter
 {
-    [presenter.navigationController popToViewController:lastViewController animated:NO];
+    [navigationController popToViewController:lastViewController animated:NO];
     [self showRestrictedArea];
 }
 

@@ -35,6 +35,26 @@
 
 -(void) createButtonsWithAssets:(NSArray *) lastBaseAssets
 {
+    if(buttons.count)
+    {
+        BOOL flag=NO;
+        for(LWAssetModel *model in assets)
+        {
+            if([model.identity isEqualToString:[LWCache instance].baseAssetId])
+            {
+                flag=YES;
+                break;
+            }
+        }
+        if(flag)
+        {
+            [self checkCurrentBaseAsset];
+            return;
+        }
+        
+        
+    }
+    
     buttons=[[NSMutableArray alloc] init];
 
     for(UIView *v in self.subviews)

@@ -37,9 +37,7 @@
 {
     [super viewDidAppear:animated];
     self.title = Localize(@"tab.history");
-    [self setLoading:YES];
-    [[LWAuthManager instance] requestTransactions:self.assetId];
-
+ 
 }
 
 @end

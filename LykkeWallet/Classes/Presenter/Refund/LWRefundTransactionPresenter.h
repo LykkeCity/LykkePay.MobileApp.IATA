@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LWRefundPresenter : UIViewController
+@interface LWRefundTransactionPresenter : UIViewController
+
+@property (strong, nonatomic) NSString *email;
 
 @end

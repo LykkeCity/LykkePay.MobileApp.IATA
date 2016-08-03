@@ -8,7 +8,7 @@
 
 #import "LWSendImageManager.h"
 #import "LWKeychainManager.h"
-#import "LWPersonalData.h"
+#import "LWPersonalDataModel.h"
 
 @interface LWSendImageManager() <NSURLConnectionDelegate>
 {
@@ -97,7 +97,7 @@
         NSDictionary *dict=[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
         if(dict && dict[@"Result"])
         {
-            LWPersonalData *personalData = [[LWPersonalData alloc]
+            LWPersonalDataModel *personalData = [[LWPersonalDataModel alloc]
                                             initWithJSON:[dict[@"Result"] objectForKey:@"PersonalData"]];
             [[LWKeychainManager instance] savePersonalData:personalData];
         }

@@ -11,7 +11,9 @@
 #import "LWPrivateWalletModel.h"
 #import "LWPrivateKeyManager.h"
 #import "LWPrivateWalletAssetModel.h"
+#import "LWPrivateWalletHistoryCellModel.h"
 #import "LWCache.h"
+#import "LWPKBackupModel.h"
 
 @implementation LWPrivateWalletsManager
 
@@ -25,6 +27,26 @@
     return shared;
 }
 
+-(void) backupPrivateKeyWithModel:(LWPKBackupModel *) model  withCompletion:(void (^)(BOOL))completion
+{
+    NSMutableURLRequest *request=[self createRequestWithAPI:@"PrivateWalletBackup" httpMethod:@"POST" getParameters:nil postParameters:@{@"WalletAddress":model.address, @"WalletName":model.walletName, @"SecurityQuestion":model.hint, @"PrivateKeyBackup": model.encodedKey}];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        NSDictionary *dict=[self sendRequest:request];
+        
+        NSLog(@"%@", dict);
+        if(completion)
+        {
+            
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completion(YES);
+            });
+        }
+        
+    });
+
+}
 
 -(void) loadWalletsWithCompletion:(void (^)(NSArray *))completion
 {
@@ -39,12 +61,12 @@
             NSMutableArray *array=[[NSMutableArray alloc] init];
             for(NSDictionary *d in dict[@"Wallets"])
             {
-                LWPrivateWalletModel *wallet=[[LWPrivateWalletModel alloc] init];
-                wallet.address=d[@"Address"];
-                wallet.name=d[@"Name"];
-                wallet.privateKey=[[LWKeychainManager instance] privateKeyForWalletAddress:wallet.address];
+                LWPrivateWalletModel *wallet=[[LWPrivateWalletModel alloc] initWithDict:d];
                 [array addObject:wallet];
             }
+            
+            self.wallets=array;
+            
             dispatch_async(dispatch_get_main_queue(), ^{
                 completion(array);
             
@@ -89,12 +111,7 @@
             NSMutableArray *assets=[[NSMutableArray alloc] init];
             for(NSDictionary *d in dict[@"Balances"])
             {
-                LWPrivateWalletAssetModel *model=[[LWPrivateWalletAssetModel alloc] init];
-                model.assetId=d[@"AssetId"];
-                model.amount=d[@"Balance"];
-                model.name=[LWCache nameForAsset:model.assetId];
-                model.baseAssetAmount=@(0);
-                
+                LWPrivateWalletAssetModel *model=[[LWPrivateWalletAssetModel alloc] initWithDict:d];
                 [assets addObject:model];
             }
 
@@ -122,6 +139,29 @@
             
             dispatch_async(dispatch_get_main_queue(), ^{
             completion(YES);
+            });
+        }
+        
+    });
+
+}
+
+-(void) loadHistoryForWallet:(NSString *) address withCompletion:(void(^)(NSArray *)) completion
+{
+    NSMutableURLRequest *request=[self createRequestWithAPI:@"PrivateWalletHistory" httpMethod:@"GET" getParameters:@{@"Address":address} postParameters:nil];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        NSDictionary *dict=[self sendRequest:request];
+        
+        NSLog(@"%@", dict);
+        if(completion)
+        {
+            LWPrivateWalletHistoryCellModel *cell=[[LWPrivateWalletHistoryCellModel alloc] initWithDict:nil];
+            LWPrivateWalletHistoryCellModel *cell1=[[LWPrivateWalletHistoryCellModel alloc] initWithDict:nil];
+            
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completion(@[cell,cell1]);
             });
         }
         

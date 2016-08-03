@@ -7,7 +7,23 @@
 //
 
 #import "LWTransactionManager.h"
+#import "BTCKey.h"
+#import "BTCTransaction.h"
+#import "BTCTransactionInput.h"
 
 @implementation LWTransactionManager
+
++(NSString *) signMultiSigTransaction:(NSString *)_transaction withKey:(NSString *)key
+{
+    BTCTransaction *transaction=[[BTCTransaction alloc] initWithHex:_transaction];
+    NSArray *inputs=transaction.inputs;
+    
+    
+    
+    
+    
+    
+    return nil;
+}
 
 @end

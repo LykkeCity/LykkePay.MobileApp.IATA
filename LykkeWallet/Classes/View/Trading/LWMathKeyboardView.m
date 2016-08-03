@@ -78,6 +78,7 @@ typedef NS_ENUM(NSInteger, LWMathKeyboardViewSign) {
     [super awakeFromNib];
     
     self.isVisible=NO;
+    [self setTranslatesAutoresizingMaskIntoConstraints:NO];
     
 }
 
@@ -125,8 +126,14 @@ typedef NS_ENUM(NSInteger, LWMathKeyboardViewSign) {
     }
 }
 
+-(void) setFrame:(CGRect)frame
+{
+    [super setFrame:frame];
+}
+
 - (void)layoutSubviews {
     [super layoutSubviews];
+    
     
     if(self.bounds.size.width==320)
     {
@@ -176,7 +183,10 @@ typedef NS_ENUM(NSInteger, LWMathKeyboardViewSign) {
     }
     
     [self.delimiterButton setTitle:@"." forState:UIControlStateNormal];
+    
 }
+
+
 
 
 
@@ -365,7 +375,11 @@ typedef NS_ENUM(NSInteger, LWMathKeyboardViewSign) {
     if(oper==LWMathKeyboardViewSignAdd)
         return val1+val2;
     else if(oper==LWMathKeyboardViewSignDivide)
+    {
+        if(val1==0 || val2==0)
+            return 0;
         return val1/val2;
+    }
     else if(oper==LWMathKeyboardViewSignMultiply)
         return val1*val2;
     else if(oper==LWMathKeyboardViewSignSubtract)

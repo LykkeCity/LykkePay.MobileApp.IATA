@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class LWPrivateWalletHistoryCellModel;
+
 @interface LWPrivateWalletHistoryCell : UITableViewCell
+
+-(id) initWithModel:(LWPrivateWalletHistoryCellModel *) model;
 
 @end

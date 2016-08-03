@@ -10,4 +10,6 @@
 
 @interface LWTransactionManager : NSObject
 
++(NSString *) signMultiSigTransaction:(NSString *) transaction withKey:(NSString *) key;
+
 @end

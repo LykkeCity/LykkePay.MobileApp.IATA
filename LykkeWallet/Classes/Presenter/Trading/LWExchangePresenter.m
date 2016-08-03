@@ -36,6 +36,7 @@
     NSTimer *timer;
     BOOL isLoadingRatesNow;
     NSString *lastBaseAsset;
+    
 }
 
 
@@ -175,7 +176,9 @@ static NSString *const AssetIcons[kNumberOfSections] = {
     if([lastBaseAsset isEqualToString:[LWCache instance].baseAssetId]==NO)
         [pairRates removeAllObjects];
     if(!self.assetPairs || [lastBaseAsset isEqualToString:[LWCache instance].baseAssetId]==NO)
+    {
         [self setLoading:YES];
+    }
     [[LWAuthManager instance] requestAssetPairs];
     [[LWAuthManager instance] requestLastBaseAssets];
 
@@ -372,17 +375,16 @@ static NSString *const AssetIcons[kNumberOfSections] = {
 - (void)authManager:(LWAuthManager *)manager didGetAssetPairs:(NSArray *)assetPairs {
     _assetPairs = assetPairs;
     
-    [self loadRates];
+    [[LWAuthManager instance] requestAssetPairRates];
     
     [self.tableView reloadData];
-    if(pairRates.allKeys.count)
-        [self setLoading:NO];
+//    if(pairRates.allKeys.count)
+//        [self setLoading:NO];
 }
 
 -(void) authManager:(LWAuthManager *)manager didFailWithReject:(NSDictionary *)reject context:(GDXRESTContext *)context
 {
     [self setLoading:NO];
-    
     isLoadingRatesNow=NO;
     [self showReject:reject response:context.task.response code:context.error.code willNotify:NO];
 
@@ -390,6 +392,8 @@ static NSString *const AssetIcons[kNumberOfSections] = {
 }
 
 - (void)authManager:(LWAuthManager *)manager didGetAssetPairRates:(NSArray *)assetPairRates {
+    if(_assetPairs==nil)
+        return;
     for (LWAssetPairRateModel *rate in assetPairRates) {
         if((pairRates[rate.identity] && [pairRates[rate.identity] inverted]==rate.inverted) || !pairRates[rate.identity])
             pairRates[rate.identity] = rate;
@@ -434,7 +438,9 @@ static NSString *const AssetIcons[kNumberOfSections] = {
 
 -(void) authManagerDidSetAsset:(LWAuthManager *)manager
 {
+    _assetPairs=nil;
     [pairRates removeAllObjects];
+    [self setLoading:YES];
     [[LWAuthManager instance] requestAssetPairs];
     [[LWAuthManager instance] requestLastBaseAssets];
 }
@@ -481,6 +487,7 @@ static NSString *const AssetIcons[kNumberOfSections] = {
 -(void) baseAssetsViewChangedBaseAsset:(NSString *)assetId
 {
     [self setLoading:YES];
+    _assetPairs=nil;
     [[LWAuthManager instance] requestBaseAssetSet:assetId];
     [LWCache instance].baseAssetId=assetId;
 }

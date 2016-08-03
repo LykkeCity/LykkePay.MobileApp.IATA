@@ -19,5 +19,6 @@
 @property (copy, nonatomic) NSString *identity;
 @property (copy, nonatomic) NSString *name;
 @property (copy, nonatomic) NSString *prefix;
+@property (copy, nonatomic) NSString *iso2;
 
 @end

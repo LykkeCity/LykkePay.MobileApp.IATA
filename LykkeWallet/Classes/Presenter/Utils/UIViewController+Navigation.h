@@ -13,5 +13,6 @@
 
 - (void)setBackButton;
 - (void)setCancelButtonWithTitle:(NSString *)title target:(id)target selector:(SEL)action;
+- (void)setCrossCloseButton;
 
 @end

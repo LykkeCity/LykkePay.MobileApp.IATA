@@ -23,6 +23,8 @@
 #import "LWPrivateWalletsManager.h"
 #import "LWPrivateWalletModel.h"
 #import "UIViewController+Loading.h"
+#import "LWPKBackupPresenter.h"
+#import "LWPrivateKeyManager.h"
 
 
 @import AVFoundation;
@@ -59,6 +61,10 @@
     BOOL flagTestnet;
     
     UIButton *pasteButton;
+    
+    UIButton *padlockButton;
+    UIButton *copyButton;
+    UIImageView *faderView;
 }
 
 @end
@@ -87,7 +93,10 @@
     
     headerBackground=[[UIView alloc] init];
     headerBackground.backgroundColor=[UIColor colorWithRed:245.0/255 green:246.0/255 blue:247.0/255 alpha:1];
-    headerBackground.frame=CGRectMake(0, 0, scrollView.bounds.size.width, 241);
+    if(self.editMode)
+        headerBackground.frame=CGRectMake(0, 0, scrollView.bounds.size.width, 160);
+    else
+        headerBackground.frame=CGRectMake(0, 0, scrollView.bounds.size.width, 241);
     headerBackground.autoresizingMask=UIViewAutoresizingFlexibleWidth;
     UIView *line=[[UIView alloc] initWithFrame:CGRectMake(0, headerBackground.bounds.size.height-0.5, headerBackground.bounds.size.width, 0.5)];
     line.backgroundColor=[UIColor colorWithWhite:216.0/255 alpha:1];
@@ -101,16 +110,22 @@
     subtitle.textAlignment=NSTextAlignmentCenter;
     subtitle.font=[UIFont fontWithName:@"ProximaNova-Regular" size:17];
     subtitle.textColor=TextColor;
-    subtitle.text=@"Enter details of new wallet";
+    if(self.editMode)
+        subtitle.text=@"Change wallet name";
+    else
+        subtitle.text=@"Enter details of new wallet";
     [scrollView addSubview:subtitle];
     
-    newButton=[[LWWalletsTypeButton alloc] initWithTitle:@"NEW"];
-    [newButton addTarget:self action:@selector(pressedWalletTypeButton:) forControlEvents:UIControlEventTouchUpInside];
-    existingButton=[[LWWalletsTypeButton alloc] initWithTitle:@"EXISTING"];
-    [existingButton addTarget:self action:@selector(pressedWalletTypeButton:) forControlEvents:UIControlEventTouchUpInside];
-    
-    [scrollView addSubview:newButton];
-    [scrollView addSubview:existingButton];
+    if(self.editMode==NO)
+    {
+        newButton=[[LWWalletsTypeButton alloc] initWithTitle:@"NEW"];
+        [newButton addTarget:self action:@selector(pressedWalletTypeButton:) forControlEvents:UIControlEventTouchUpInside];
+        existingButton=[[LWWalletsTypeButton alloc] initWithTitle:@"EXISTING"];
+        [existingButton addTarget:self action:@selector(pressedWalletTypeButton:) forControlEvents:UIControlEventTouchUpInside];
+        
+        [scrollView addSubview:newButton];
+        [scrollView addSubview:existingButton];
+    }
     
     walletNameContainer=[[UIView alloc] init];
     walletNameContainer.backgroundColor=[UIColor whiteColor];
@@ -141,22 +156,26 @@
     privateKeyTextField.delegate=self;
     [privateKeyContainer addSubview:privateKeyTextField];
     
-    pasteButton=[UIButton buttonWithType:UIButtonTypeCustom];
-    [pasteButton setTitle:@"Paste" forState:UIControlStateNormal];
-    pasteButton.titleLabel.font=[UIFont fontWithName:@"ProximaNova-Regular" size:14];
-    pasteButton.titleLabel.textColor=TextColor;
-    pasteButton.alpha=0.6;
-    [pasteButton sizeToFit];
-    [pasteButton addTarget:self action:@selector(pasteButtonPressed) forControlEvents:UIControlEventTouchUpInside];
-    [privateKeyContainer addSubview:pasteButton];
+    if(self.editMode==NO)
+    {
+        pasteButton=[UIButton buttonWithType:UIButtonTypeCustom];
+        [pasteButton setTitle:@"Paste" forState:UIControlStateNormal];
+        pasteButton.titleLabel.font=[UIFont fontWithName:@"ProximaNova-Regular" size:14];
+        pasteButton.titleLabel.textColor=TextColor;
+        pasteButton.alpha=0.6;
+        [pasteButton sizeToFit];
+        [pasteButton addTarget:self action:@selector(pasteButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+        [privateKeyContainer addSubview:pasteButton];
+        
+        generatePrivateKeyButton=[self createButtonWithIcon:[UIImage imageNamed:@"GeneratePrivateKey"] title:@"Generate key"];
+        [generatePrivateKeyButton addTarget:self action:@selector(generatePrivateKeyPressed) forControlEvents:UIControlEventTouchUpInside];
+        [scrollView addSubview:generatePrivateKeyButton];
+        
+        scanQRCodeButton=[self createButtonWithIcon:[UIImage imageNamed:@"QrCodeIcon"] title:@"Scan QR code"];
+        [scanQRCodeButton addTarget:self action:@selector(addressViewPressedScanQRCode) forControlEvents:UIControlEventTouchUpInside];
+        [scrollView addSubview:scanQRCodeButton];
+    }
     
-    generatePrivateKeyButton=[self createButtonWithIcon:[UIImage imageNamed:@"GeneratePrivateKey"] title:@"Generate key"];
-    [generatePrivateKeyButton addTarget:self action:@selector(generatePrivateKeyPressed) forControlEvents:UIControlEventTouchUpInside];
-    [scrollView addSubview:generatePrivateKeyButton];
-    
-    scanQRCodeButton=[self createButtonWithIcon:[UIImage imageNamed:@"QrCodeIcon"] title:@"Scan QR code"];
-    [scanQRCodeButton addTarget:self action:@selector(addressViewPressedScanQRCode) forControlEvents:UIControlEventTouchUpInside];
-    [scrollView addSubview:scanQRCodeButton];
     
     addressView=[[LWWalletAddressView alloc] initWithWidth:scrollView.bounds.size.width-60];
     [scrollView addSubview:addressView];
@@ -172,6 +191,7 @@
     [backupButton setAttributedTitle:[[NSAttributedString alloc] initWithString:@"BACKUP" attributes:buttonDisabledAttributes] forState:UIControlStateNormal];
     backupButton.titleLabel.alpha=0.2;
     backupButton.frame=CGRectMake(0, 0, self.view.bounds.size.width-60, 45);
+    [backupButton addTarget:self action:@selector(backupButtonPressed) forControlEvents:UIControlEventTouchUpInside];
     [scrollView addSubview:backupButton];
     
     createWalletButton=[UIButton buttonWithType:UIButtonTypeCustom];
@@ -185,9 +205,44 @@
     
     newButton.selected=YES;
     
+    if(self.editMode)
+    {
+        privateKeyTextField.text=self.wallet.privateKey;
+        [addressView setAddress:self.wallet.address];
+        walletNameTextField.text=self.wallet.name;
+        privateKeyTextField.userInteractionEnabled=NO;
+        [privateKeyLabel removeFromSuperview];
+    }
+    
+    padlockButton=[[UIButton alloc] initWithFrame:CGRectMake(0, 0, 45, 45)];
+    [padlockButton setBackgroundImage:[UIImage imageNamed:@"PadlockClosed"] forState:UIControlStateNormal];
+    [padlockButton setBackgroundImage:[UIImage imageNamed:@"PadlockOpen"] forState:UIControlStateSelected];
+    [padlockButton addTarget:self action:@selector(padlockButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+    
+    [privateKeyContainer addSubview:padlockButton];
+    
+    copyButton=[[UIButton alloc] initWithFrame:CGRectMake(0, 0, 61, 45)];
+    [copyButton setAttributedTitle:[[NSAttributedString alloc] initWithString:@"Copy" attributes:@{NSForegroundColorAttributeName:[UIColor colorWithRed:63.0/255 green:77.0/255 blue:96.0/255 alpha:0.6], NSFontAttributeName:[UIFont fontWithName:@"ProximaNova-Regular" size:14]}] forState:UIControlStateNormal];
+    copyButton.backgroundColor=[UIColor whiteColor];
+    [privateKeyContainer addSubview:copyButton];
+    copyButton.hidden=YES;
+    
+    faderView=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"AlphaFader"]];
+    faderView.frame=CGRectMake(0, 0, 80, 45);
+    [privateKeyContainer addSubview:faderView];
+    
+    
+    
     [self alignScrollView];
     
 }
+
+-(void) padlockButtonPressed
+{
+    padlockButton.selected=!padlockButton.selected;
+    [self.view setNeedsLayout];
+}
+
 
 -(void) viewDidLayoutSubviews
 {
@@ -203,10 +258,37 @@
     newButton.center=CGPointMake(scrollView.bounds.size.width/2-newButton.bounds.size.width/2-2.5, 51);
     existingButton.center=CGPointMake(scrollView.bounds.size.width/2+existingButton.bounds.size.width/2+2.5, 51);
     
-    walletNameContainer.frame=CGRectMake(30, 91, scrollView.bounds.size.width-60, 45);
+    padlockButton.center=CGPointMake(privateKeyContainer.bounds.size.width-padlockButton.bounds.size.width/2, privateKeyContainer.bounds.size.height/2);
+    
+    if(self.editMode)
+    {
+        walletNameContainer.frame=CGRectMake(30, 36, scrollView.bounds.size.width-60, 45);
+        privateKeyContainer.frame=CGRectMake(30, 91, scrollView.bounds.size.width-60, 45);
+        if(padlockButton.selected)
+        {
+            copyButton.center=CGPointMake(privateKeyContainer.bounds.size.width-padlockButton.bounds.size.width-copyButton.bounds.size.width/2, privateKeyContainer.bounds.size.height/2);
+            faderView.center=CGPointMake(copyButton.frame.origin.x-faderView.bounds.size.width/2, privateKeyContainer.bounds.size.height/2);
+
+            copyButton.hidden=NO;
+            privateKeyTextField.secureTextEntry=NO;
+        }
+        else
+        {
+            copyButton.hidden=YES;
+            privateKeyTextField.secureTextEntry=YES;
+            faderView.center=CGPointMake(padlockButton.frame.origin.x-faderView.bounds.size.width/2, privateKeyContainer.bounds.size.height/2);
+        }
+    }
+    else
+    {
+        walletNameContainer.frame=CGRectMake(30, 91, scrollView.bounds.size.width-60, 45);
+        privateKeyContainer.frame=CGRectMake(30, 146, scrollView.bounds.size.width-60, 45);
+    }
+    
+    
+    
     walletNameTextField.frame=CGRectMake(15, 0, walletNameContainer.bounds.size.width-30, walletNameContainer.bounds.size.height);
     
-    privateKeyContainer.frame=CGRectMake(30, 146, scrollView.bounds.size.width-60, 45);
     privateKeyLabel.frame=CGRectMake(15, 0, privateKeyContainer.bounds.size.width-20, privateKeyContainer.bounds.size.height);
     privateKeyTextField.frame=privateKeyLabel.frame;
     
@@ -222,48 +304,84 @@
     NSString *eee=walletNameTextField.text;
     
     [LWValidator setButton:createWalletButton enabled:(addressView.address.length && walletNameTextField.text.length)];
+    [LWValidator setButtonWithClearBackground:backupButton enabled:(addressView.address.length && walletNameTextField.text.length)];
+    if(backupButton.enabled)
+        backupButton.titleLabel.alpha=1;
+    else
+        backupButton.titleLabel.alpha=0.2;
 
-
-    if(newButton.selected)
+    if(self.editMode==NO)
     {
-
-        privateKeyTextField.hidden=YES;
-        privateKeyLabel.hidden=NO;
-        scanQRCodeButton.hidden=YES;
-        generatePrivateKeyButton.hidden=NO;
-        if(createWalletButton.enabled)
+ 
+        if(newButton.selected)
         {
-            [createWalletButton setAttributedTitle:[[NSAttributedString alloc] initWithString:@"CREATE WALLET" attributes:createButtonEnabledAttributes] forState:UIControlStateNormal];
-            createWalletButton.titleLabel.alpha=1;
+            
+            privateKeyTextField.hidden=YES;
+            privateKeyLabel.hidden=NO;
+            scanQRCodeButton.hidden=YES;
+            copyButton.hidden=YES;
+
+            generatePrivateKeyButton.hidden=NO;
+            if(createWalletButton.enabled)
+            {
+                [createWalletButton setAttributedTitle:[[NSAttributedString alloc] initWithString:@"CREATE WALLET" attributes:createButtonEnabledAttributes] forState:UIControlStateNormal];
+                createWalletButton.titleLabel.alpha=1;
+            }
+            else
+            {
+                [createWalletButton setAttributedTitle:[[NSAttributedString alloc] initWithString:@"CREATE WALLET" attributes:buttonDisabledAttributes] forState:UIControlStateNormal];
+                createWalletButton.titleLabel.alpha=0.2;
+            }
+            pasteButton.hidden=YES;
+            padlockButton.hidden=YES;
+            faderView.center=CGPointMake(privateKeyContainer.bounds.size.width-faderView.bounds.size.width/2, privateKeyContainer.bounds.size.height/2);
+                
         }
         else
         {
-            [createWalletButton setAttributedTitle:[[NSAttributedString alloc] initWithString:@"CREATE WALLET" attributes:buttonDisabledAttributes] forState:UIControlStateNormal];
-            createWalletButton.titleLabel.alpha=0.2;
+            
+            privateKeyTextField.hidden=NO;
+            privateKeyLabel.hidden=YES;
+            scanQRCodeButton.hidden=NO;
+            generatePrivateKeyButton.hidden=YES;
+            
+            
+            if(createWalletButton.enabled)
+            {
+                [createWalletButton setAttributedTitle:[[NSAttributedString alloc] initWithString:@"ADD WALLET" attributes:createButtonEnabledAttributes] forState:UIControlStateNormal];
+                createWalletButton.titleLabel.alpha=1;
+                padlockButton.hidden=NO;
+                padlockButton.center=CGPointMake(privateKeyContainer.bounds.size.width-padlockButton.bounds.size.width/2, privateKeyContainer.bounds.size.height/2);
+
+                if(padlockButton.selected)
+                {
+                    copyButton.hidden=NO;
+                    copyButton.center=CGPointMake(privateKeyContainer.bounds.size.width-padlockButton.bounds.size.width-copyButton.bounds.size.width/2, privateKeyContainer.bounds.size.height/2);
+                    faderView.center=CGPointMake(copyButton.frame.origin.x-faderView.bounds.size.width/2, privateKeyContainer.bounds.size.height/2);
+                    
+
+                }
+                else
+                {
+                    copyButton.hidden=YES;
+                    faderView.center=CGPointMake(padlockButton.frame.origin.x-faderView.bounds.size.width/2, privateKeyContainer.bounds.size.height/2);
+                }
+            }
+            else
+            {
+                [createWalletButton setAttributedTitle:[[NSAttributedString alloc] initWithString:@"ADD WALLET" attributes:buttonDisabledAttributes] forState:UIControlStateNormal];
+                createWalletButton.titleLabel.alpha=0.2;
+            }
+            
+            pasteButton.frame=CGRectMake(privateKeyContainer.bounds.size.width-pasteButton.bounds.size.width/2-15, 0, pasteButton.bounds.size.width, privateKeyContainer.bounds.size.height);
+            [self validatePrivateKeyField];
+            
         }
-        pasteButton.hidden=YES;
     }
     else
     {
- 
-        privateKeyTextField.hidden=NO;
-        privateKeyLabel.hidden=YES;
-        scanQRCodeButton.hidden=NO;
-        generatePrivateKeyButton.hidden=YES;
-        if(createWalletButton.enabled)
-        {
-            [createWalletButton setAttributedTitle:[[NSAttributedString alloc] initWithString:@"ADD WALLET" attributes:createButtonEnabledAttributes] forState:UIControlStateNormal];
-            createWalletButton.titleLabel.alpha=1;
-        }
-        else
-        {
-            [createWalletButton setAttributedTitle:[[NSAttributedString alloc] initWithString:@"ADD WALLET" attributes:buttonDisabledAttributes] forState:UIControlStateNormal];
-            createWalletButton.titleLabel.alpha=0.2;
-        }
-        
-        pasteButton.frame=CGRectMake(privateKeyContainer.bounds.size.width-pasteButton.bounds.size.width/2-15, 0, pasteButton.bounds.size.width, privateKeyContainer.bounds.size.height);
-        [self validatePrivateKeyField];
-        
+        [createWalletButton setAttributedTitle:[[NSAttributedString alloc] initWithString:@"UPDATE WALLET" attributes:createButtonEnabledAttributes] forState:UIControlStateNormal];
+        createWalletButton.titleLabel.alpha=1;
     }
     
     
@@ -280,7 +398,10 @@
 -(void) viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    self.title=@"ADD NEW WALLET";
+    if(self.editMode)
+        self.title=@"EDIT WALLET";
+    else
+        self.title=@"ADD NEW WALLET";
     self.observeKeyboardEvents=YES;
     [self validatePrivateKeyField];
 }
@@ -363,6 +484,32 @@
     return button;
 }
 
+-(void) backupButtonPressed
+{
+    LWPKBackupPresenter *presenter=[[LWPKBackupPresenter alloc] init];
+    presenter.type=BackupViewTypePassword;
+    
+    LWPKBackupModel *backup=[[LWPKBackupModel alloc] init];
+    if(flagTestnet)
+    {
+        backup.privateKeyWif=privateKey.WIFTestnet;
+        BTCAddress *address=privateKey.addressTestnet;
+        
+        backup.address=address.string;
+    }
+    else
+    {
+        backup.privateKeyWif=privateKey.WIF;
+        BTCAddress *address=privateKey.address;
+        backup.address=address.string;
+    }
+
+    backup.walletName=walletNameTextField.text;
+    presenter.backupModel=backup;
+    
+    [self.navigationController pushViewController:presenter animated:YES];
+}
+
 -(void) createWalletButtonPressed
 {
     [self setLoading:YES];
@@ -378,6 +525,20 @@
         if(success)
         {
             [[LWKeychainManager instance] savePrivateKey:wallet.privateKey forWalletAddress:wallet.address];
+            
+            LWBackupMessageView *view=[[NSBundle mainBundle] loadNibNamed:@"LWBackupMessageView" owner:self options:nil][0];
+            UIWindow *window=[[UIApplication sharedApplication] keyWindow];
+            view.center=CGPointMake(window.bounds.size.width/2, window.bounds.size.height/2);
+            
+            [window addSubview:view];
+            
+            [view showWithCompletion:^(BOOL result){
+                if(result)
+                {
+                    [self backupButtonPressed];
+                }
+            }];
+
         }
     }];
 }
@@ -407,7 +568,7 @@
 
 -(void) addressViewPressedScanQRCode
 {
-    
+    [self.view endEditing:YES];
 #if TARGET_IPHONE_SIMULATOR
     // Simulator
 #else
@@ -507,8 +668,6 @@
     
     [self.navigationController popViewControllerAnimated:YES];
 
-
-//    flagTestnet=NO;
     
     if(privateKey)
     {
@@ -551,18 +710,6 @@
         return;
     }
     
-    LWBackupMessageView *view=[[NSBundle mainBundle] loadNibNamed:@"LWBackupMessageView" owner:self options:nil][0];
-    UIWindow *window=[[UIApplication sharedApplication] keyWindow];
-    view.center=CGPointMake(window.bounds.size.width/2, window.bounds.size.height/2);
-    
-    [window addSubview:view];
-    
-    [view showWithCompletion:^(BOOL result){
-        if(result)
-        {
-            
-        }
-     }];
     
     
 #endif

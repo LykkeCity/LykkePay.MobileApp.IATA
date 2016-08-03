@@ -11,6 +11,7 @@
 @interface LWIPadModalNavigationControllerViewController  ()
 {
     UIView *shadow;
+    BOOL constraintsAdded;
 }
 
 @property BOOL presenting;
@@ -22,9 +23,65 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    constraintsAdded=NO;
     self.presenting=NO;
-    self.view.translatesAutoresizingMaskIntoConstraints=YES;
-    // Do any additional setup after loading the view.
+    
+    self.view.autoresizingMask = UIViewAutoresizingNone;
+    
+//    self.view.translatesAutoresizingMaskIntoConstraints=NO;
+    
+}
+
+-(void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+ 
+
+//    UIViewController *v=[self.viewControllers lastObject];
+//    
+//    if(v)
+//    {
+//        NSLayoutConstraint *width=[NSLayoutConstraint constraintWithItem:v.view attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:475];
+//        
+//        NSLayoutConstraint *height=[NSLayoutConstraint constraintWithItem:v.view attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:606];
+//        
+//        [v.view addConstraint:width];
+//        [v.view addConstraint:height];
+//    }
+//
+    
+}
+
+-(void) pushViewController:(UIViewController *)viewController animated:(BOOL)animated
+{
+    UIViewController *v=viewController;
+    
+        NSLayoutConstraint *width=[NSLayoutConstraint constraintWithItem:v.view attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:475];
+        
+        NSLayoutConstraint *height=[NSLayoutConstraint constraintWithItem:v.view attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:606];
+        
+        [v.view addConstraint:width];
+        [v.view addConstraint:height];
+    [super pushViewController:viewController animated:animated];
+}
+
+-(void) updateViewConstraints
+{
+    [super updateViewConstraints];
+    
+}
+
+-(void) logout
+{
+    
+}
+
+-(void) viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    self.view.frame=CGRectMake(0, 0, 475, 650);
+    UIWindow *window=[UIApplication sharedApplication].keyWindow;
+    self.view.center=CGPointMake(window.bounds.size.width/2, window.bounds.size.height/2);
 }
 
 - (void)didReceiveMemoryWarning {
@@ -34,8 +91,9 @@
 
 -(void) shadowPressed
 {
-    [self dismiss];
+    [self dismissAnimated:YES];
 }
+
 
 #pragma mark - TransitioningForIpad
 
@@ -104,19 +162,22 @@
     UIViewController *result = [super popViewControllerAnimated:animated];
     if(!result)
     {
-        [self dismiss];
+        [self dismissAnimated:YES];
     }
     return result;
 }
 
--(void) dismiss
+
+
+-(void) dismissAnimated:(BOOL) animated
 {
-    
+    if(animated==NO)
+        [shadow removeFromSuperview];
     UINavigationController *parent=(UINavigationController *)self.presentingViewController;
     
     UIViewController *vc=[self.viewControllers lastObject];
     [vc.view endEditing:YES];
-    [parent dismissViewControllerAnimated:YES completion:^{
+    [parent dismissViewControllerAnimated:animated completion:^{
         
         UITabBarController *vvv=(UITabBarController *)parent.visibleViewController;
         
@@ -160,6 +221,7 @@
                 
                 self.view.frame=CGRectMake(0, 0, mySize.width, mySize.height);
                 self.view.center=CGPointMake(size.width/2, size.height/2);
+                
     
             } completion:^(id <UIViewControllerTransitionCoordinatorContext> context){
             

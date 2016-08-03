@@ -40,18 +40,8 @@
     if(!_keyboardView)
     {
         _keyboardView=[[[NSBundle mainBundle] loadNibNamed:@"LWMathKeyboardView" owner:self options:nil] firstObject];
-        if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
-        {
-            if(self.view.bounds.size.width!=320)
-                _keyboardView.frame=CGRectMake(0, self.view.bounds.size.height, self.view.bounds.size.width, self.view.bounds.size.width*KEYBOARD_SIZE_COEFF);
-            else
-                _keyboardView.frame=CGRectMake(0, self.view.bounds.size.height, self.view.bounds.size.width, self.view.bounds.size.width*0.65);
-        }
-        else
-        {
-            _keyboardView.frame=CGRectMake(0, self.view.bounds.size.height, self.view.bounds.size.width, self.view.bounds.size.width*0.6);
-        }
- 
+        [self adjustCustomKeyboardFrame];
+        _keyboardView.center=CGPointMake(self.view.bounds.size.width/2, self.view.bounds.size.height+_keyboardView.bounds.size.height/2);
         _keyboardView.delegate=self;
 //        _keyboardView.targetTextField=sumTextField;
         [_keyboardView setText:@"0"];
@@ -65,6 +55,26 @@
         _keyboardView.center=CGPointMake(_keyboardView.bounds.size.width/2, _keyboardView.center.y-_keyboardView.bounds.size.height);
 //        self.operationButton.center=CGPointMake(self.operationButton.center.x, self.operationButton.center.y-_keyboardView.bounds.size.height);
     }];
+}
+
+-(void) adjustCustomKeyboardFrame
+{
+    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
+    {
+        if(self.view.bounds.size.width!=320)
+            _keyboardView.frame=CGRectMake(0, self.view.bounds.size.height, self.view.bounds.size.width, self.view.bounds.size.width*KEYBOARD_SIZE_COEFF);
+        else
+            _keyboardView.frame=CGRectMake(0, self.view.bounds.size.height, self.view.bounds.size.width, self.view.bounds.size.width*0.65);
+    }
+    else
+    {
+        _keyboardView.frame=CGRectMake(0, self.view.bounds.size.height, self.view.bounds.size.width, self.view.bounds.size.width*0.6);
+    }
+    CGRect rrr=_keyboardView.frame;
+    CGRect eee=self.view.frame;
+    _keyboardView.center=CGPointMake(_keyboardView.bounds.size.width/2, _keyboardView.center.y-_keyboardView.bounds.size.height);
+    [_keyboardView setNeedsLayout];
+    
 }
 
 
@@ -104,6 +114,7 @@
 
 - (void)viewDidLayoutSubviews
 {
+    [super viewDidLayoutSubviews];
     if ([self.tableView respondsToSelector:@selector(setSeparatorInset:)]) {
         [self.tableView setSeparatorInset:UIEdgeInsetsZero];
     }
@@ -111,6 +122,8 @@
     if ([self.tableView respondsToSelector:@selector(setLayoutMargins:)]) {
         [self.tableView setLayoutMargins:UIEdgeInsetsZero];
     }
+    if(_keyboardView)
+        [self adjustCustomKeyboardFrame];
 }
 
 

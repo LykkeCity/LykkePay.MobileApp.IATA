@@ -8,7 +8,7 @@
 
 #import "LWAuthorizePacket.h"
 
-@interface LWPacketAPIVersion : LWAuthorizePacket
+@interface LWPacketApplicationInfo : LWAuthorizePacket
 
 
 @property (copy, nonatomic) NSString *apiVersion;

@@ -13,6 +13,9 @@
 #import "LWPrivateWalletAssetCell.h"
 #import "LWPrivateWalletsHeaderSumView.h"
 #import "LWPrivateWalletsManager.h"
+#import "LWPrivateWalletHistoryPresenter.h"
+#import "LWAddPrivateWalletPresenter.h"
+#import "UIViewController+Loading.h"
 
 @interface LWPrivateWalletsPresenter () <UITableViewDelegate, UITableViewDataSource>
 {
@@ -35,28 +38,28 @@
     
     NSMutableArray *www=[[NSMutableArray alloc] init];
     
-    NSArray *arr=@[@"MY LYKKE WALLET", @"MULTI WALLET", @"WALLET #30153"];
-    for(NSString *s in arr)
-    {
-        LWPrivateWalletModel *w=[[LWPrivateWalletModel alloc] init];
-        w.name=s;
-        if([arr indexOfObject:s]==0)
-        {
-            LWPrivateWalletAssetModel *ass=[[LWPrivateWalletAssetModel alloc] init];
-            ass.name=@"BTC";
-            ass.amount=@(30.15);
-            ass.baseAssetAmount=@(201);
-            ass.assetId=@"BTC";
-            LWPrivateWalletAssetModel *ass1=[[LWPrivateWalletAssetModel alloc] init];
-            ass1.name=@"Lykke Corp";
-            ass1.amount=@(134.20);
-            ass1.baseAssetAmount=@(14);
-            ass1.assetId=@"LKK";
-            w.assets=@[ass1, ass];
-
-        }
-        [www addObject:w];
-    }
+//    NSArray *arr=@[@"MY LYKKE WALLET", @"MULTI WALLET", @"WALLET #30153"];
+//    for(NSString *s in arr)
+//    {
+//        LWPrivateWalletModel *w=[[LWPrivateWalletModel alloc] init];
+//        w.name=s;
+//        if([arr indexOfObject:s]==0)
+//        {
+//            LWPrivateWalletAssetModel *ass=[[LWPrivateWalletAssetModel alloc] init];
+//            ass.name=@"BTC";
+//            ass.amount=@(30.15);
+//            ass.baseAssetAmount=@(201);
+//            ass.assetId=@"BTC";
+//            LWPrivateWalletAssetModel *ass1=[[LWPrivateWalletAssetModel alloc] init];
+//            ass1.name=@"Lykke Corp";
+//            ass1.amount=@(134.20);
+//            ass1.baseAssetAmount=@(14);
+//            ass1.assetId=@"LKK";
+//            w.assets=@[ass1, ass];
+//
+//        }
+//        [www addObject:w];
+//    }
 
     
 //    [[LWPrivateWalletsManager shared] deleteWallet:@"muo8D3pp9aCULe123F9YLEpriY3N5EgGWd" withCompletion:nil];
@@ -69,27 +72,12 @@
 {
     [super viewWillAppear:animated];
     [self.navigationItem setHidesBackButton:YES];
-    
+    [self setLoading:YES];
     [[LWPrivateWalletsManager shared] loadWalletsWithCompletion:^(NSArray *arr){
-        NSMutableArray *newWallets=[wallets mutableCopy];
-        
-        
-        for(LWPrivateWalletModel *w in arr)
-        {
-            [[LWPrivateWalletsManager shared] loadWalletBalances:w.address withCompletion:^(NSArray *assets){
-                w.assets=assets;
-                [tableView reloadData];
-            }];
-        }
-        
-        [newWallets addObjectsFromArray:arr];
-        wallets=newWallets;
+        wallets=arr;
         [tableView reloadData];
+        [self setLoading:NO];
     }];
-
-    
-//    UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithTitle:@"Show" style:UIBarButtonItemStylePlain target:self action:@selector(refreshPropertyList:)];
-//    self.navigationController.navigationController.navigationItem.rightBarButtonItem = anotherButton;
 
 }
 
@@ -144,9 +132,26 @@
     
 }
 
--(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+-(void) tableView:(UITableView *)_tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
     
+    id presenter;
+    if(indexPath.row==0)
+    {
+        presenter=[[LWAddPrivateWalletPresenter alloc] init];
+        [(LWAddPrivateWalletPresenter *)presenter setEditMode:YES];
+        [(LWAddPrivateWalletPresenter *)presenter setWallet:wallets[indexPath.section]];
+
+    }
+    else
+    {
+        presenter=[[LWPrivateWalletHistoryPresenter alloc] init];
+        [(LWAddPrivateWalletPresenter *)presenter setWallet:wallets[indexPath.section]];
+        [(LWPrivateWalletHistoryPresenter *)presenter setAsset:[wallets[indexPath.section] assets][indexPath.row]];
+        
+    }
+    [self.navigationController pushViewController:presenter animated:YES];
 }
 
 -(CGFloat) tableView:(UITableView *) tableView heightForFooterInSection:(NSInteger)section
@@ -169,7 +174,14 @@
     if(section==0)
     {
         LWPrivateWalletsHeaderSumView *view=[[LWPrivateWalletsHeaderSumView alloc] init];
-        view.total=@(401.90);
+        
+        float total=0;
+        for(LWPrivateWalletModel *m in wallets)
+            for(LWPrivateWalletAssetModel *a in m.assets)
+                total+=a.amount.floatValue;
+        
+        
+        view.total=@(total);
         return view;
     }
     return nil;

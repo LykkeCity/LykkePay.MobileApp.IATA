@@ -7,7 +7,13 @@
 //
 
 #import "LWAuthComplexPresenter.h"
+#import "LWPKBackupModel.h"
+
+typedef enum {BackupViewTypePassword, BackupViewTypeHint} BackupViewType;
 
 @interface LWPKBackupPresenter : LWAuthComplexPresenter
+
+@property BackupViewType type;
+@property (strong, nonatomic) LWPKBackupModel *backupModel;
 
 @end

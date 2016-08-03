@@ -8,6 +8,22 @@
 
 #import <Foundation/Foundation.h>
 
+typedef NS_ENUM(NSInteger, LWPrivateWalletTransferType) {
+    LWPrivateWalletTransferTypeUnknown = 0,
+    LWPrivateWalletTransferTypeSend,
+    LWPrivateWalletTransferTypeReceive
+};
+
+
 @interface LWPrivateWalletHistoryCellModel : NSObject
+
+-(id) initWithDict:(NSDictionary *) dict;
+
+@property (strong, nonatomic) NSString *assetId;
+@property LWPrivateWalletTransferType type;
+@property (strong, nonatomic) NSDate *date;
+@property (strong, nonatomic) NSNumber *amount;
+@property (strong, nonatomic) NSNumber *baseAssetAmount;
+
 
 @end

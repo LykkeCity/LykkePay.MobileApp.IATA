@@ -1,11 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="Proxima Nova Regular.otf">
+            <string>ProximaNova-Regular</string>
+            <string>ProximaNova-Regular</string>
+        </mutableArray>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LWPKBackupPresenter">
             <connections>
+                <outlet property="proceedButton" destination="3p9-BZ-vI6" id="vnF-P2-1pF"/>
+                <outlet property="textField" destination="f4A-g1-FyQ" id="L9r-vx-jsQ"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -13,7 +22,57 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9lG-M7-pNr">
+                    <rect key="frame" x="30" y="21" width="540" height="90"/>
+                    <subviews>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="f4A-g1-FyQ">
+                            <rect key="frame" x="15" y="13" width="510" height="64"/>
+                            <color key="textColor" red="0.24705882352941178" green="0.30196078431372547" blue="0.37647058823529411" alpha="1" colorSpace="calibratedRGB"/>
+                            <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="17"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                        </textField>
+                    </subviews>
+                    <color key="backgroundColor" red="0.96078431372549022" green="0.96470588235294119" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstItem="f4A-g1-FyQ" firstAttribute="leading" secondItem="9lG-M7-pNr" secondAttribute="leading" constant="15" id="24D-vG-o6V"/>
+                        <constraint firstItem="f4A-g1-FyQ" firstAttribute="top" secondItem="9lG-M7-pNr" secondAttribute="top" constant="13" id="ShQ-9l-S7i"/>
+                        <constraint firstAttribute="bottom" secondItem="f4A-g1-FyQ" secondAttribute="bottom" constant="13" id="fW6-GG-orI"/>
+                        <constraint firstAttribute="height" constant="90" id="g1s-uR-aQ9"/>
+                        <constraint firstAttribute="trailing" secondItem="f4A-g1-FyQ" secondAttribute="trailing" constant="15" id="wGn-yi-jiF"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3p9-BZ-vI6">
+                    <rect key="frame" x="30" y="131" width="540" height="45"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="45" id="Eb7-9g-2ly"/>
+                    </constraints>
+                    <state key="normal" title="Button">
+                        <color key="titleColor" red="0.2470588235" green="0.30196078430000001" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="proceedPressed:" destination="-2" eventType="touchUpInside" id="Vg0-1k-cIT"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is necessary in order to enable you to recover your private key" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0PL-Wj-UdD">
+                    <rect key="frame" x="30" y="196" width="540" height="34.5"/>
+                    <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="14"/>
+                    <color key="textColor" red="0.24705882352941178" green="0.30196078431372547" blue="0.37647058823529411" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="0PL-Wj-UdD" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="30" id="4Be-ye-c51"/>
+                <constraint firstItem="3p9-BZ-vI6" firstAttribute="top" secondItem="9lG-M7-pNr" secondAttribute="bottom" constant="20" id="4d2-EI-3hY"/>
+                <constraint firstItem="3p9-BZ-vI6" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="30" id="OZo-e0-T8E"/>
+                <constraint firstAttribute="trailing" secondItem="9lG-M7-pNr" secondAttribute="trailing" constant="30" id="UFs-ep-aYG"/>
+                <constraint firstItem="9lG-M7-pNr" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="30" id="WmK-85-pfB"/>
+                <constraint firstItem="9lG-M7-pNr" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="21" id="XY8-0L-qwd"/>
+                <constraint firstAttribute="trailing" secondItem="3p9-BZ-vI6" secondAttribute="trailing" constant="30" id="hxb-jg-6cs"/>
+                <constraint firstAttribute="trailing" secondItem="0PL-Wj-UdD" secondAttribute="trailing" constant="30" id="nOn-rc-Fmx"/>
+                <constraint firstItem="0PL-Wj-UdD" firstAttribute="top" secondItem="3p9-BZ-vI6" secondAttribute="bottom" constant="20" id="poX-WW-V7e"/>
+            </constraints>
         </view>
     </objects>
 </document>

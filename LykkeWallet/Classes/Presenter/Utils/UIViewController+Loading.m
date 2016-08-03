@@ -28,7 +28,8 @@
 //        hud.dimBackground = YES;
 //        hud.mode = MBProgressHUDModeIndeterminate;
         
-        [LWProgressView showInView:self.navigationController.view];
+//        [LWProgressView showInView:self.navigationController.view];
+        [LWProgressView showInView:self.view];
         
     }
     else {
@@ -134,12 +135,14 @@
 - (void)showReleaseError:(NSDictionary *)reject response:(NSURLResponse *)response {
     NSString *message = [reject objectForKey:kErrorMessage];
     
+    UIWindow *window=[UIApplication sharedApplication].keyWindow;
+    
     if (response && [LWAuthManager isInternalServerError:response]) {
         message = [NSString stringWithFormat:Localize(@"errors.server.problems")];
     }
     
     LWErrorView *errorView = [LWErrorView modalViewWithDescription:message];
-    [errorView setFrame:self.navigationController.view.bounds];
+    [errorView setFrame:window.bounds];
     
     // animation
     CATransition *transition = [CATransition animation];
@@ -150,7 +153,7 @@
     [errorView.layer addAnimation:transition forKey:nil];
     
     // showing modal view
-    [self.navigationController.view addSubview:errorView];
+    [window addSubview:errorView];
 }
 
 -(void) showNeedUpdateError:(NSString *) message

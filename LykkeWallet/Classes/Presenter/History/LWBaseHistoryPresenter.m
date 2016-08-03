@@ -30,6 +30,8 @@
 #import "UIViewController+Loading.h"
 #import "UIViewController+Navigation.h"
 #import "NSDate+String.h"
+#import "LWProgressView.h"
+#import "LWRefreshControlView.h"
 
 @interface LWBaseHistoryPresenter () {
     UIRefreshControl *refreshControl;
@@ -80,7 +82,18 @@
 -(void) viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    if(refreshControl.isRefreshing==NO)
+    {
+        [self setLoading:YES];
+        [[LWAuthManager instance] requestTransactions:self.assetId];
 
+    }
+
+}
+
+-(void) viewWillDisappear:(BOOL)animated
+{
+    [refreshControl endRefreshing];
 }
 
 
@@ -198,6 +211,7 @@
     if (!item) {
         return;
     }
+    [refreshControl endRefreshing];
     
     if (item && item.historyType == LWHistoryItemTypeTrade) {
         [self setLoading:YES];
@@ -325,14 +339,23 @@
     UIView *refreshView = [[UIView alloc] initWithFrame:CGRectMake(0, 5, 0, 0)];
     [self.tableView insertSubview:refreshView atIndex:0];
     
-    refreshControl = [[UIRefreshControl alloc] init];
-    refreshControl.tintColor = [UIColor blackColor];
+    refreshControl = [[LWRefreshControlView alloc] init];
+//    refreshControl.tintColor = [UIColor blackColor];
     [refreshControl addTarget:self action:@selector(reloadHistory)
              forControlEvents:UIControlEventValueChanged];
     [refreshView addSubview:refreshControl];
+    
+
+//    LWRefreshControlView *v=[[LWRefreshControlView alloc] initWithFrame:refreshControl.bounds];
+//    refreshControl.autoresizesSubviews=YES;
+//    [refreshControl addSubview:v];
+    
+    
 }
 
 - (void)reloadHistory {
+//    [refreshControl endRefreshing];
+//    [self setLoading:YES];
     [[LWAuthManager instance] requestTransactions:self.assetId];
 }
 

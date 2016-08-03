@@ -35,7 +35,7 @@
 @class LWGraphPeriodModel;
 @class LWPacketCurrencyDeposit;
 @class LWPacketCurrencyWithdraw;
-@class LWPacketAPIVersion;
+@class LWPacketApplicationInfo;
 @class LWPacketBitcoinAddressValidation;
 @class LWPacketLastBaseAssets;
 @class LWPacketKYCForAsset;
@@ -43,6 +43,8 @@
 @class LWPacketSetRefundAddress;
 @class LWPacketAuthentication;
 @class LWPacketPushSettingsGet;
+@class LWPacketGetPaymentUrl;
+@class LWPacketPrevCardPayment;
 
 
 @protocol LWAuthManagerDelegate<NSObject>
@@ -97,7 +99,7 @@
 
 -(void) authManager:(LWAuthManager *) manager didSendWithdraw:(LWPacketCurrencyWithdraw *) withdraw;
 
--(void) authManager:(LWAuthManager *)manager didGetAPIVersion:(LWPacketAPIVersion *) apiVersion;
+-(void) authManager:(LWAuthManager *)manager didGetAPIVersion:(LWPacketApplicationInfo *) apiVersion;
 -(void) authManager:(LWAuthManager *) manager didValidateBitcoinAddress:(LWPacketBitcoinAddressValidation *) bitconAddress;
 
 -(void) authManager:(LWAuthManager *) manager didGetLastBaseAssets:(LWPacketLastBaseAssets *) lastAssets;
@@ -109,6 +111,11 @@
 
 -(void) authManager:(LWAuthManager *) manager didGetPushSettings:(LWPacketPushSettingsGet *) status;
 -(void) authManagerDidSetPushSettings;
+
+-(void) authManager:(LWAuthManager *)manager didGetPaymentUrl:(LWPacketGetPaymentUrl *) packet;
+
+-(void) authManager:(LWAuthManager *)manager didGetLastCardPaymentData:(LWPacketPrevCardPayment *) packet;
+
 
 @end
 
@@ -197,6 +204,9 @@ SINGLETON_DECLARE
 -(void) requestEncodedPrivateKey;
 -(void) requestSaveClientKeysWithPubKey:(NSString *) pubKey encodedPrivateKey:(NSString *) encodedPrivateKey;
 
+-(void) requestGetPaymentUrlWithParameters:(NSDictionary *) params;
+
+-(void) requestPrevCardPayment;
 
 
 
