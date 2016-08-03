@@ -6,9 +6,9 @@
 //  Copyright © 2016 Lykkex. All rights reserved.
 //
 
-#import "LWPacketAPIVersion.h"
+#import "LWPacketApplicationInfo.h"
 
-@implementation LWPacketAPIVersion
+@implementation LWPacketApplicationInfo
 
 
 - (void)parseResponse:(id)response error:(NSError *)error {

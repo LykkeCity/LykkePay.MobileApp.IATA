@@ -1,15 +1,15 @@
 //
-//  LWWithdrawSuccessPresenterView.m
+//  LWSuccessPresenterView.m
 //  LykkeWallet
 //
 //  Created by Andrey Snetkov on 15/05/16.
 //  Copyright © 2016 Lykkex. All rights reserved.
 //
 
-#import "LWWithdrawSuccessPresenterView.h"
+#import "LWSuccessPresenterView.h"
 #import "Macro.h"
 
-@implementation LWWithdrawSuccessPresenterView
+@implementation LWSuccessPresenterView
 
 -(id) initWithFrame:(CGRect)frame
 {
