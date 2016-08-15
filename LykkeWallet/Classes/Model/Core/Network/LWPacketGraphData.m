@@ -45,6 +45,8 @@
         double ppp=self.percentChange.doubleValue/100;
         self.percentChange=@((1.0/(ppp+1)-1)*100);
 
+        self.lastPrice=@(1/self.lastPrice.doubleValue);
+        
     }
     
     
@@ -61,6 +63,8 @@
     }
     
     self.graphValues=arr;
+    
+    
 
 }
 

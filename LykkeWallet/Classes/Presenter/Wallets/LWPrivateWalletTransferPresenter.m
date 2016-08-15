@@ -58,6 +58,7 @@
     [self.view addSubview:addressBackground];
     
     addressTextField=[[UITextField alloc] init];
+    addressTextField.delegate=self;
     [addressBackground addSubview:addressTextField];
     addressTextField.textColor=[UIColor colorWithRed:63.0/255 green:77.0/255 blue:96.0/255 alpha:1];
     addressTextField.backgroundColor=nil;

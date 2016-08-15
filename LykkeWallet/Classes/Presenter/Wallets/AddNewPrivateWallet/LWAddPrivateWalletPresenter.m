@@ -248,9 +248,9 @@
 {
     [super viewDidLayoutSubviews];
     
-    [UIView animateWithDuration:0.3 animations:^{
+//    [UIView animateWithDuration:0.3 animations:^{
         [self alignScrollView];
-        }];
+//        }];
 }
 
 -(void) alignScrollView
@@ -520,6 +520,7 @@
     else
         wallet.privateKey=privateKeyTextField.text;
     wallet.name=walletNameTextField.text;
+    wallet.encryptedKey=[[LWPrivateKeyManager shared] encryptKey:wallet.privateKey password:[LWKeychainManager instance].password];
     [[LWPrivateWalletsManager shared] addNewWallet:wallet withCompletion:^(BOOL success){
         [self setLoading:NO];
         if(success)

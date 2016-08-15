@@ -10,6 +10,7 @@
 #import "LWKeychainManager.h"
 #import "LWPrivateWalletAssetModel.h"
 #import "LWPrivateKeyManager.h"
+#import "LWKeychainManager.h"
 
 @implementation LWPrivateWalletModel
 
@@ -24,6 +25,12 @@
     {
         self.privateKey=[LWPrivateKeyManager shared].wifPrivateKeyLykke;
     }
+    self.encryptedKey=d[@"EncodedPrivateKey"];
+    if(!self.privateKey && self.encryptedKey)
+    {
+        self.privateKey=[[LWPrivateKeyManager shared] decryptPrivateKey:self.encryptedKey withPassword:[LWKeychainManager instance].password];
+
+    }
     self.iconURL=d[@"MediumIconUrl"];
     NSMutableArray *arr=[[NSMutableArray alloc] init];
     for(NSDictionary *b in d[@"Balances"])
@@ -32,6 +39,8 @@
         [arr addObject:asset];
     }
     self.assets=arr;
+    
+    
     
     return self;
 }

@@ -13,6 +13,8 @@
 #import "LWAuthComplexPresenter.h"
 
 
+
+
 @implementation UIWindow (PazLabs)
 
 - (UIViewController *)visibleViewController {
@@ -42,6 +44,10 @@
     int type;
     UILabel *label;
     UIButton *skipButton;
+    
+    UIWindow *window;
+    
+    UIWindow *keyWindow;
 }
 
 @end
@@ -54,8 +60,19 @@
     
     pushDict=_pushDict;
     
-    UIWindow *window=[UIApplication sharedApplication].keyWindow;
+    keyWindow=[UIApplication sharedApplication].keyWindow;
+    
+    window=[[UIWindow alloc] initWithFrame:CGRectMake(0, 0, keyWindow.bounds.size.width, 62)];
+    window.backgroundColor=nil;
+
+    
+    [window makeKeyAndVisible];
+    [window setWindowLevel:UIWindowLevelStatusBar+1];
+
+    
     [window addSubview:self];
+    
+    
     self.frame=CGRectMake(0, -62, window.bounds.size.width, 62);
     self.backgroundColor=[UIColor colorWithRed:63.0/255 green:77.0/255 blue:96.0/255 alpha:0.75];
     
@@ -118,7 +135,11 @@
 
 -(void) show
 {
-    UIWindow *window=[UIApplication sharedApplication].keyWindow;
+//    UIWindow *window=[UIApplication sharedApplication].keyWindow;
+    
+    
+ 
+    
     self.center=CGPointMake(window.bounds.size.width/2, -self.bounds.size.height/2);
     [UIView animateWithDuration:0.5 animations:^{
         self.center=CGPointMake(window.bounds.size.width/2, self.bounds.size.height/2);
@@ -134,13 +155,16 @@
 {
     if(self.hidden)
         return;
-    UIWindow *window=[UIApplication sharedApplication].keyWindow;
+//    UIWindow *window=[UIApplication sharedApplication].keyWindow;
     
     [UIView animateWithDuration:0.5 animations:^{
-        self.center=CGPointMake(window.bounds.size.width/2, -self.bounds.size.height/2);
+        self.center=CGPointMake(keyWindow.bounds.size.width/2, -self.bounds.size.height/2);
     } completion:^(BOOL finished){
         [self removeFromSuperview];
         self.hidden=YES;
+        window.hidden=YES;
+        window=nil;
+        keyWindow=nil;
     }];
 
 }
@@ -167,10 +191,10 @@
 
 -(void) orientationChanged
 {
-    UIWindow *window=[UIApplication sharedApplication].keyWindow;
-    self.frame=CGRectMake(0, 0, window.bounds.size.width, self.bounds.size.height);
+//    UIWindow *window=[UIApplication sharedApplication].keyWindow;
+    self.frame=CGRectMake(0, 0, keyWindow.bounds.size.width, self.bounds.size.height);
     label.frame=CGRectMake(label.frame.origin.x, 0, self.bounds.size.width-70, self.bounds.size.height);
-    skipButton.center=CGPointMake(window.bounds.size.width-skipButton.bounds.size.width/2, self.bounds.size.height/2);
+    skipButton.center=CGPointMake(keyWindow.bounds.size.width-skipButton.bounds.size.width/2, self.bounds.size.height/2);
 }
 
 -(void) dealloc

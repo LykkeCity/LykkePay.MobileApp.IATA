@@ -33,4 +33,6 @@
 - (void)startRefreshControl;
 - (void)stopRefreshControl;
 
+-(void) showCopied;
+
 @end

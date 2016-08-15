@@ -30,6 +30,7 @@
 #import "LWRegisterPINSetupPresenter.h"
 #import "LWRegisterCameraPresenter.h"
 #import "LWRegisterHintPresenter.h"
+#import "LWGenerateKeyPresenter.h"
 
 
 // tab presenters
@@ -57,6 +58,8 @@
 @interface LWAuthNavigationController () <UIAlertViewDelegate, UITabBarControllerDelegate>{
     NSArray *classes;
     NSMutableDictionary<NSNumber *, LWAuthStepPresenter *> *activeSteps;
+    
+    UITabBarController *tabBarController;
 }
 
 
@@ -111,7 +114,7 @@
         activeSteps = [NSMutableDictionary new];
         activeSteps[@(self.currentStep)] = self.viewControllers.firstObject;
         
-        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showExchangeViewController) name:@"ShowExchangeViewControllerNotification" object:nil];
         
     }
     
@@ -124,6 +127,11 @@
     [super viewDidAppear:animated];
     
 
+}
+
+-(void) showExchangeViewController
+{
+    [tabBarController setSelectedIndex:1];
 }
 
 
@@ -248,8 +256,8 @@
 }
 
 - (void)setRootMainTabScreen {
-    LWTabController *tab = [LWTabController new];
-    tab.delegate=self;
+    tabBarController = [LWTabController new];
+    tabBarController.delegate=self;
     
     LWWalletsPresenter *pWallets = [LWWalletsPresenter new];
     pWallets.tabBarItem = [self createTabBarItemWithTitle:@"tab.wallets"
@@ -277,16 +285,16 @@
 //    nWallets.tabBarItem = [self createTabBarItemWithTitle:@"tab.wallets"
 //                                                withImage:@"WalletsTab"];
 //
-//    tab.viewControllers = @[nWallets, pTrading, pHistory, pSettings];
+//    tabBarController.viewControllers = @[nWallets, pTrading, pHistory, pSettings];
     
-    tab.viewControllers = @[pWallets, pTrading, pHistory, pSettings];
+    tabBarController.viewControllers = @[pWallets, pTrading, pHistory, pSettings];
     
 #endif
 
     // init tab controller
-    tab.tabBar.translucent = NO;
+    tabBarController.tabBar.translucent = NO;
     
-    [self setViewControllers:@[tab] animated:NO];
+    [self setViewControllers:@[tabBarController] animated:NO];
 }
 
 

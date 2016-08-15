@@ -64,6 +64,11 @@
 
 #pragma mark - LWAuthManagerDelegate
 
+-(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 50;
+}
+
 - (void)authManager:(LWAuthManager *)manager didGetBaseAssets:(NSArray *)assets {
     [self setLoading:NO];
     

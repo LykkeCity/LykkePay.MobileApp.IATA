@@ -7,6 +7,7 @@
 //
 
 #import "TKTableViewCell.h"
+#import "LWBaseHistoryItemType.h"
 
 
 #define kHistoryTableViewCell           @"LWHistoryTableViewCell"
@@ -21,8 +22,18 @@
 #pragma mark - Outlets
 
 @property (weak, nonatomic) IBOutlet UIImageView *operationImageView;
-@property (weak, nonatomic) IBOutlet UILabel     *typeLabel;
+@property (weak, nonatomic) IBOutlet UILabel     *walletNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel     *dateLabel;
-@property (weak, nonatomic) IBOutlet UILabel     *valueLabel;
+@property (weak, nonatomic) IBOutlet UILabel     *volumeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *typeLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *typeImageView;
+
+@property LWHistoryItemType type;
+
+@property BOOL showBottomLine;
+
+@property (strong, nonatomic) NSNumber *volume;
+
+-(void) update;
 
 @end

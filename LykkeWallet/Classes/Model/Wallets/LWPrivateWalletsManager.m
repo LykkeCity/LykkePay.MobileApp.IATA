@@ -14,6 +14,7 @@
 #import "LWPrivateWalletHistoryCellModel.h"
 #import "LWCache.h"
 #import "LWPKBackupModel.h"
+#import "LWPKTransferModel.h"
 
 @implementation LWPrivateWalletsManager
 
@@ -127,7 +128,7 @@
 
 -(void) addNewWallet:(LWPrivateWalletModel *) wallet   withCompletion:(void (^)(BOOL))completion
 {
-    NSMutableURLRequest *request=[self createRequestWithAPI:@"PrivateWallet" httpMethod:@"POST" getParameters:nil postParameters:@{@"Address":wallet.address, @"Name":wallet.name}];
+    NSMutableURLRequest *request=[self createRequestWithAPI:@"PrivateWallet" httpMethod:@"POST" getParameters:nil postParameters:@{@"Address":wallet.address, @"Name":wallet.name, @"EncodedPrivateKey":wallet.encryptedKey}];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
         NSDictionary *dict=[self sendRequest:request];
@@ -148,7 +149,43 @@
 
 -(void) loadHistoryForWallet:(NSString *) address withCompletion:(void(^)(NSArray *)) completion
 {
-    NSMutableURLRequest *request=[self createRequestWithAPI:@"PrivateWalletHistory" httpMethod:@"GET" getParameters:@{@"Address":address} postParameters:nil];
+    NSMutableURLRequest *request=[self createRequestWithAPI:@"PrivateWalletHistory" httpMethod:@"GET" getParameters:@{@"address":address} postParameters:nil];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        NSArray *result=[self sendRequest:request];
+        
+        NSLog(@"%@", result);
+        if(completion)
+        {
+            if([result isKindOfClass:[NSArray class]]==NO)
+            {
+                completion(nil);
+                return;
+            }
+            NSMutableArray *array=[[NSMutableArray alloc] init];
+            
+            
+                for(NSDictionary *d in result)
+                {
+                    LWPrivateWalletHistoryCellModel *cell=[[LWPrivateWalletHistoryCellModel alloc] initWithDict:d];
+                    [array addObject:cell];
+                }
+            
+            
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completion(array);
+            });
+        }
+        
+    });
+
+}
+
+-(void) requestTransferTransaction:(LWPKTransferModel *) transfer withCompletion:(void(^)(NSDictionary *)) completion
+{
+    NSDictionary *params=@{@"SourceAddress":transfer.sourceWallet.address, @"DestinationAddress":transfer.destinationAddress, @"Amount":transfer.amount, @"AssetId":transfer.asset.assetId};
+    NSMutableURLRequest *request=[self createRequestWithAPI:@"GenerateTransferTransaction" httpMethod:@"POST" getParameters:nil postParameters:params];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
         NSDictionary *dict=[self sendRequest:request];
@@ -156,18 +193,42 @@
         NSLog(@"%@", dict);
         if(completion)
         {
-            LWPrivateWalletHistoryCellModel *cell=[[LWPrivateWalletHistoryCellModel alloc] initWithDict:nil];
-            LWPrivateWalletHistoryCellModel *cell1=[[LWPrivateWalletHistoryCellModel alloc] initWithDict:nil];
-            
-            
             dispatch_async(dispatch_get_main_queue(), ^{
-                completion(@[cell,cell1]);
+                completion(dict);
             });
         }
         
     });
-
 }
+
+-(void) broadcastTransaction:(NSString *) raw identity:(NSString *) identity withCompletion:(void(^)(BOOL)) completion
+{
+    NSDictionary *params=@{@"Id":identity, @"Hex":raw};
+    NSMutableURLRequest *request=[self createRequestWithAPI:@"BroadcastTransaction" httpMethod:@"POST" getParameters:nil postParameters:params];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        NSDictionary *dict=[self sendRequest:request];
+        
+        NSLog(@"%@", dict);
+        if(completion)
+        {
+            
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if([dict isKindOfClass:[NSError class]])
+                    completion(NO);
+                else
+                    completion(YES);
+            });
+        }
+        
+    });
+}
+
+
+
+#pragma mark HELPERS
+
 
 -(id) sendRequest:(NSURLRequest *) request
 {
@@ -181,14 +242,32 @@
         result=[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
         if(result && result[@"Result"] && [result[@"Result"] isKindOfClass:[NSNull class]]==NO)
         {
-            return result[@"Result"];
+            result=result[@"Result"];
+            if([result isKindOfClass:[NSDictionary class]])
+            {
+                NSMutableDictionary *checkedResult=[result mutableCopy];
+                [self checkResult:checkedResult];
+                result=checkedResult;
+            }
+            else if([result isKindOfClass:[NSArray class]])
+            {
+                result=[self checkArrayResult:result];
+            }
+
+            return result;
+        }
+        if(result[@"Error"] && [[result[@"Error"] class] isSubclassOfClass:[NSNull class]]==NO)
+        {
+            NSMutableDictionary *userInfo=[[NSMutableDictionary alloc] init];
+            if(result[@"Error"][@"Message"])
+                userInfo[@"Message"]=result[@"Error"][@"Message"];
+            error=[NSError errorWithDomain:[request.URL absoluteString]  code:[result[@"Error"][@"Code"] intValue] userInfo:userInfo];
+            
         }
         
     }
-    
-    return nil;
+    return error;
 }
-
 
 
 -(NSMutableURLRequest *) createRequestWithAPI:(NSString *) apiMethod httpMethod:(NSString *) httpMethod getParameters:(NSDictionary *) getParams postParameters:(NSDictionary *) postParams
@@ -255,5 +334,56 @@
                                                                                  kCFStringEncodingUTF8));
     return [result stringByReplacingOccurrencesOfString:@" " withString:@"+"];
 }
+
+
+-(NSArray *) checkArrayResult:(NSArray *) resArray
+{
+    NSMutableDictionary *dict=[[NSMutableDictionary alloc] init];
+    dict[@"array"]=resArray;
+    [self checkResult:dict];
+    return dict[@"array"];
+}
+
+-(void) checkResult:(NSMutableDictionary *) resultDict
+{
+    NSArray *keys=[resultDict allKeys];
+    for(NSString *k in keys)
+    {
+        id object=resultDict[k];
+        if([object isKindOfClass:[NSNull class]])
+        {
+            [resultDict removeObjectForKey:k];
+        }
+        if([object isKindOfClass:[NSDictionary class]])
+        {
+            NSMutableDictionary *newDict=[object mutableCopy];
+            [self checkResult:newDict];
+            resultDict[k]=newDict;
+        }
+        if([object isKindOfClass:[NSArray class]])
+        {
+            NSMutableArray *newArr=[object mutableCopy];
+            for(int i=0;i<[newArr count];i++)
+            {
+                id arrElement=newArr[i];
+                if([arrElement isKindOfClass:[NSNull class]])
+                {
+                    [newArr removeObjectAtIndex:i];
+                    i--;
+                }
+                else if([arrElement isKindOfClass:[NSDictionary class]])
+                {
+                    NSMutableDictionary *newDict=[arrElement mutableCopy];
+                    [self checkResult:newDict];
+                    [newArr replaceObjectAtIndex:i withObject:newDict];
+                    
+                }
+                
+            }
+            resultDict[k]=newArr;
+        }
+    }
+}
+
 
 @end

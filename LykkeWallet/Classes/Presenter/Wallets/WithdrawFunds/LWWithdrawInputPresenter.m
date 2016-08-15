@@ -221,7 +221,7 @@ float const kMathHeightKeyboard = 239.0;
     
     if (confirmationView) {
         [confirmationView setLoading:NO withReason:@""];
-        [confirmationView removeFromSuperview];
+        [confirmationView hide];
     }
     
     UIAlertController *ctrl = [UIAlertController alertControllerWithTitle:Localize(@"withdraw.funds.confirm.title") message:Localize(@"withdraw.funds.confirm.desc")
@@ -252,7 +252,7 @@ float const kMathHeightKeyboard = 239.0;
     
     if (confirmationView) {
         [confirmationView setLoading:NO withReason:@""];
-        [confirmationView removeFromSuperview];
+        [confirmationView hide];
     }
         [self showReject:reject response:context.task.response
                 code:context.error.code willNotify:YES];
@@ -432,7 +432,24 @@ float const kMathHeightKeyboard = 239.0;
     [confirmationView.layer addAnimation:transition forKey:nil];
     
     // showing modal view
-    [self.navigationController.view addSubview:confirmationView];
+    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad)
+    {
+        [self.view addSubview:confirmationView];
+        
+        
+        confirmationView.iPadNavShadowView=[[UIView alloc] initWithFrame:self.navigationController.navigationBar.bounds];
+        confirmationView.iPadNavShadowView.backgroundColor=[UIColor colorWithWhite:0 alpha:0.5];
+        confirmationView.iPadNavShadowView.alpha=0;
+        [self.navigationController.navigationBar addSubview:confirmationView.iPadNavShadowView];
+        
+    }
+    else
+    {
+        [self.navigationController.view addSubview:confirmationView];
+    }
+    
+    [confirmationView show];
+
 }
 
 @end

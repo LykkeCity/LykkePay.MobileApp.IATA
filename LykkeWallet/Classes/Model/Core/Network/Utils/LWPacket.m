@@ -40,24 +40,28 @@
     {
         result=nil;
     }
-    else
+    else if([result isKindOfClass:[NSDictionary class]])
     {
         
         
         NSMutableDictionary *checkedResult=[result mutableCopy];
         [self checkResult:checkedResult];
         result=checkedResult;
-//        NSArray *keys=[result allKeys];
-//        
-//        for(NSString *key in keys)
-//        {
-//            if([checkedResult[key] isKindOfClass:[NSNull class]])
-//                [checkedResult removeObjectForKey:key];
-//        }
-//        result=checkedResult;
+    }
+    else if([result isKindOfClass:[NSArray class]])
+    {
+        result=[self checkArrayResult:result];
     }
     
     _isRejected = (self.reject != nil) && ![self.reject isKindOfClass:NSNull.class];
+}
+
+-(NSArray *) checkArrayResult:(NSArray *) resArray
+{
+    NSMutableDictionary *dict=[[NSMutableDictionary alloc] init];
+    dict[@"array"]=resArray;
+    [self checkResult:dict];
+    return dict[@"array"];
 }
 
 -(void) checkResult:(NSMutableDictionary *) resultDict

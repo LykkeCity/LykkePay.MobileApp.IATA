@@ -111,10 +111,18 @@
                         <constraint firstItem="Wtp-Nj-2Sg" firstAttribute="leading" secondItem="trq-F9-bga" secondAttribute="leading" id="kpw-2n-iay"/>
                     </constraints>
                 </view>
+                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="adh-j4-VIs">
+                    <rect key="frame" x="28" y="88" width="240" height="128"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="adh-j4-VIs" firstAttribute="leading" secondItem="tPM-Uc-72a" secondAttribute="leading" id="6Ca-6h-KXg"/>
+                <constraint firstItem="trq-F9-bga" firstAttribute="top" secondItem="adh-j4-VIs" secondAttribute="bottom" id="FKy-pZ-gVK"/>
                 <constraint firstAttribute="trailing" secondItem="trq-F9-bga" secondAttribute="trailing" id="OS3-jb-y1v"/>
+                <constraint firstAttribute="trailing" secondItem="adh-j4-VIs" secondAttribute="trailing" id="bCW-oY-Dur"/>
+                <constraint firstItem="adh-j4-VIs" firstAttribute="top" secondItem="tPM-Uc-72a" secondAttribute="top" id="ohv-oN-wgU"/>
                 <constraint firstAttribute="bottom" secondItem="trq-F9-bga" secondAttribute="bottom" id="umh-ym-QiV"/>
                 <constraint firstItem="trq-F9-bga" firstAttribute="leading" secondItem="tPM-Uc-72a" secondAttribute="leading" id="yL1-oG-uoR"/>
             </constraints>
@@ -126,6 +134,7 @@
                 <outlet property="tableView" destination="Wtp-Nj-2Sg" id="BCa-mH-RSh"/>
                 <outlet property="topView" destination="trq-F9-bga" id="JMY-ER-AIp"/>
                 <outlet property="topViewHeightConstraint" destination="31e-3n-V8i" id="4lz-Qy-Efs"/>
+                <outlet property="touchCatchView" destination="adh-j4-VIs" id="fYc-9I-jOc"/>
                 <outlet property="waitingImageView" destination="4e4-mj-oyS" id="9nq-mB-YHx"/>
                 <outlet property="waitingLabel" destination="gfd-Al-uUv" id="cF7-lZ-3e6"/>
             </connections>

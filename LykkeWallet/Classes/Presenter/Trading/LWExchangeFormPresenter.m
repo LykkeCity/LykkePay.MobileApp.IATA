@@ -49,9 +49,10 @@
 
 
 CGFloat const kDefaultRowHeight = 50.0;
-static NSInteger const kDescriptionRows = 7;
+static NSInteger const kDescriptionRows = 8;
 
 static NSString *const DescriptionIdentifiers[kDescriptionRows] = {
+    @"LWAssetInfoTextTableViewCellIdentifier",
     @"LWAssetInfoTextTableViewCellIdentifier",
     @"LWAssetInfoIconTableViewCellIdentifier",
     @"LWAssetInfoTextTableViewCellIdentifier",
@@ -125,6 +126,7 @@ static NSString *const DescriptionIdentifiers[kDescriptionRows] = {
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *const DescriptionNames[kDescriptionRows] = {
+        @"Full name",
         Localize(@"exchange.assets.form.assetclass"),
         Localize(@"exchange.assets.form.popularity"),
         Localize(@"exchange.assets.form.description"),
@@ -138,13 +140,13 @@ static NSString *const DescriptionIdentifiers[kDescriptionRows] = {
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     // show popularity row
-    if (indexPath.row == 1) {
+    if (indexPath.row == 2) {
         LWAssetInfoIconTableViewCell *iconCell = (LWAssetInfoIconTableViewCell *)cell;
         iconCell.titleLabel.text = DescriptionNames[indexPath.row];
         NSString *imageName = [NSString stringWithFormat:@"AssetPopularity%@", assetDetails.popIndex];
         iconCell.popularityImageView.image = [UIImage imageNamed:imageName];
     }
-    else if(indexPath.row==6)
+    else if(indexPath.row==7)
     {
         LWAssetURLTableViewCell *urlCell = (LWAssetURLTableViewCell *)cell;
         urlCell.titleLabel.text = DescriptionNames[indexPath.row];
@@ -178,7 +180,7 @@ static NSString *const DescriptionIdentifiers[kDescriptionRows] = {
     }
     
     // calculate height just for text cells
-    if (indexPath.row != 1) {
+    if (indexPath.row != 2) {
         return [self calculateRowHeightForText:text];
     }
     
@@ -280,25 +282,28 @@ static NSString *const DescriptionIdentifiers[kDescriptionRows] = {
     }
     
     switch (row) {
-        case 0:
-            text = model.assetClass;
+            case 0:
+            text=model.fullName;
             break;
         case 1:
-            text = (model.popIndex == nil) ? @"" : [model.popIndex stringValue];
+            text = model.assetClass;
             break;
         case 2:
-            text = model.details;
+            text = (model.popIndex == nil) ? @"" : [model.popIndex stringValue];
             break;
         case 3:
-            text = model.issuerName;
+            text = model.details;
             break;
         case 4:
-            text = model.numberOfCoins;
+            text = model.issuerName;
             break;
         case 5:
-            text = model.marketCapitalization;
+            text = model.numberOfCoins;
             break;
         case 6:
+            text = model.marketCapitalization;
+            break;
+        case 7:
             text = model.assetDescriptionURL;
             break;
     }

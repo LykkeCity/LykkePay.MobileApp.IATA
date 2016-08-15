@@ -17,9 +17,13 @@
     result.dateTime    = model.dateTime;
     result.identity    = model.identity;
     result.volume      = model.volume;
-    result.iconId      = model.iconId;
+    
     result.asset       = model.asset;
     result.historyType = LWHistoryItemTypeTrade;
+    result.addressFrom=model.addressFrom;
+    result.addressTo=model.addressTo;
+    
+    result.iconId=model.iconId;
     result.blockchainHash=model.blockchainHash;
     
     return result;

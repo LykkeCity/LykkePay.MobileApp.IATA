@@ -38,6 +38,9 @@
                             <state key="normal" title="Button">
                                 <color key="titleColor" red="1" green="0.36136744966442952" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
+                            <connections>
+                                <action selector="copyPressed:" destination="-2" eventType="touchUpInside" id="nMu-VC-okP"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Szf-yf-jqb">
                             <rect key="frame" x="155" y="0.0" width="145" height="45"/>
@@ -48,6 +51,9 @@
                             <state key="normal" title="Button">
                                 <color key="titleColor" red="1" green="0.36136744966442952" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
+                            <connections>
+                                <action selector="broadcastPressed:" destination="-2" eventType="touchUpInside" id="u1O-jv-xUx"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

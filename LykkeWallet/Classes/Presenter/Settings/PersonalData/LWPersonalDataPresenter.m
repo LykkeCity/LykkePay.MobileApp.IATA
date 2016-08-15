@@ -32,7 +32,7 @@
 @implementation LWPersonalDataPresenter
 
 
-static NSInteger const kDescriptionRows = 7;
+static NSInteger const kDescriptionRows = 5;
 
 static NSString *const DescriptionIdentifiers[kDescriptionRows] = {
     kPersonalItemTableViewCellIdentifier,
@@ -40,8 +40,8 @@ static NSString *const DescriptionIdentifiers[kDescriptionRows] = {
     kPersonalItemTableViewCellIdentifier,
     kPersonalItemTableViewCellIdentifier,
     kPersonalItemTableViewCellIdentifier,
-    kPersonalItemTableViewCellIdentifier,
-    kPersonalItemTableViewCellIdentifier
+//    kPersonalItemTableViewCellIdentifier,
+//    kPersonalItemTableViewCellIdentifier
 };
 
 
@@ -106,9 +106,9 @@ static NSString *const DescriptionIdentifiers[kDescriptionRows] = {
         Localize(@"personal.data.email"),
         Localize(@"personal.data.phone"),
         Localize(@"personal.data.country"),
-        Localize(@"personal.data.zip"),
+//        Localize(@"personal.data.zip"),
         Localize(@"personal.data.city"),
-        Localize(@"personal.data.address")
+//        Localize(@"personal.data.address")
     };
     
     UIColor *dark = [UIColor colorWithHexString:kMainDarkElementsColor];
@@ -118,8 +118,8 @@ static NSString *const DescriptionIdentifiers[kDescriptionRows] = {
         dark,
         dark,
         dark,
-        dark,
-        dark
+//        dark,
+//        dark
     };
     
     NSString *identifier = DescriptionIdentifiers[indexPath.row];
@@ -178,7 +178,7 @@ static NSString *const DescriptionIdentifiers[kDescriptionRows] = {
 }
 
 - (CGFloat)calculateRowHeightForText:(NSString *)text {
-    if (text == nil) {
+    if (text == nil || text.length==0) {
         return 0.0;
     }
     
@@ -205,9 +205,9 @@ static NSString *const DescriptionIdentifiers[kDescriptionRows] = {
         [self stringFromData:personalData.email],
         [self stringFromData:personalData.phone],
         [self stringFromData:personalData.country],
-        [self stringFromData:personalData.zip],
+//        [self stringFromData:personalData.zip],
         [self stringFromData:personalData.city],
-        [self stringFromData:personalData.address]
+//        [self stringFromData:personalData.address]
     };
     return values[row];
 }

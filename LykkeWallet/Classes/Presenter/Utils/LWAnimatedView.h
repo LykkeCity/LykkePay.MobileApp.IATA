@@ -14,4 +14,6 @@
 
 -(void) startAnimationIfNeeded;
 
+-(void) animateUntilFrame:(int) frame;
+
 @end

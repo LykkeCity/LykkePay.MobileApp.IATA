@@ -10,4 +10,8 @@
 
 @interface LWPacketGetHistory : LWAuthorizePacket
 
+@property (strong, nonatomic) NSArray *historyArray;
+
+@property (strong, nonatomic) NSString *assetId;
+
 @end

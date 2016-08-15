@@ -78,7 +78,7 @@ typedef NS_ENUM(NSInteger, LWMathKeyboardViewSign) {
     [super awakeFromNib];
     
     self.isVisible=NO;
-    [self setTranslatesAutoresizingMaskIntoConstraints:NO];
+//    [self setTranslatesAutoresizingMaskIntoConstraints:NO];
     
 }
 

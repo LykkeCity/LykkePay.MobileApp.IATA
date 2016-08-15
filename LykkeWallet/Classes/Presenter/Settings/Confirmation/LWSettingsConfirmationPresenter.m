@@ -136,8 +136,8 @@ static int const kAllowedAttempts = 3;
 - (void)unlockWasSuccessfulForPadLockScreenViewController:(ABPadLockScreenViewController *)padLockScreenViewController {
     
     [pinController dismissViewControllerAnimated:NO completion:^{
-        [self.delegate operationConfirmed:self];
         [self.navigationController popViewControllerAnimated:NO];
+        [self.delegate operationConfirmed:self];
     }];
 }
 
@@ -147,15 +147,15 @@ static int const kAllowedAttempts = 3;
 
 - (void)unlockWasCancelledForPadLockScreenViewController:(ABPadLockScreenViewController *)padLockScreenViewController {
     [pinController dismissViewControllerAnimated:NO completion:^{
-        [self.delegate operationRejected];
         [self.navigationController popViewControllerAnimated:NO];
+        [self.delegate operationRejected];
     }];
 }
 
 - (void)attemptsExpiredForPadLockScreenViewController:(ABPadLockScreenViewController *)padLockScreenViewController {
     [pinController dismissViewControllerAnimated:NO completion:^{
-        [self.delegate operationRejected];
         [self.navigationController popViewControllerAnimated:NO];
+        [self.delegate operationRejected];
     }];
 }
 
@@ -167,8 +167,8 @@ static int const kAllowedAttempts = 3;
     NSString *title = Localize(@"settings.cell.pin.change.title");
     [LWFingerprintHelper validateFingerprintTitle:title ok:^{
         [pinController dismissViewControllerAnimated:NO completion:^{
-            [self.delegate operationConfirmed:self];
             [self.navigationController popViewControllerAnimated:NO];
+            [self.delegate operationConfirmed:self];
         }];
     } bad:^{
         // continue working with pin

@@ -38,6 +38,7 @@
     
     
     [[NSUserDefaults standardUserDefaults] setBool:[result[@"CanCashInViaBankCard"] boolValue] forKey:@"CanCashInViaBankCard"];
+    [[NSUserDefaults standardUserDefaults] setBool:[result[@"SwiftDepositEnabled"] boolValue] forKey:@"SwiftDepositEnabled"];
     
 //    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"CanCashInViaBankCard"];//Testing
 
@@ -54,10 +55,12 @@
     {
         [[LWPrivateKeyManager shared] decryptLykkePrivateKeyAndSave:result[@"EncodedPrivateKey"]];
     }
-    else
-    {
-        [[LWAuthManager instance] requestEncodedPrivateKey];
-    }
+//    else
+//    {
+//        [[LWAuthManager instance] requestEncodedPrivateKey];
+//    }
+    
+    
     
 }
 

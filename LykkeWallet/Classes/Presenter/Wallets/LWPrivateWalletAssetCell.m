@@ -7,6 +7,7 @@
 //
 
 #import "LWPrivateWalletAssetCell.h"
+#import "LWCache.h"
 
 @interface LWPrivateWalletAssetCell()
 {
@@ -44,7 +45,7 @@
     baseAssetSumLabel=[[UILabel alloc] init];
     NSDictionary *attributes1=@{NSForegroundColorAttributeName:[UIColor colorWithRed:63.0/255 green:77.0/255 blue:96.0/255 alpha:0.6],
                  NSFontAttributeName:[UIFont fontWithName:@"ProximaNova-Regular" size:13]};
-    baseAssetSumLabel.attributedText=[[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"$ %.2f", asset.baseAssetAmount.floatValue] attributes:attributes1];
+    baseAssetSumLabel.attributedText=[[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@ %.2f", [[LWCache instance] baseAssetSymbol],asset.baseAssetAmount.floatValue] attributes:attributes1];
     [baseAssetSumLabel sizeToFit];
     [self addSubview:baseAssetSumLabel];
     

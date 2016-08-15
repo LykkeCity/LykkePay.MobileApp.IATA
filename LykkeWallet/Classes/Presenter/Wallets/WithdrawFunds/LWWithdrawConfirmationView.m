@@ -21,6 +21,7 @@
 @interface LWWithdrawConfirmationView ()<UITableViewDataSource, LWPinKeyboardViewDelegate> {
     LWPinKeyboardView *pinKeyboardView;
     BOOL               isRequested;
+        UIView *shadowView;
 }
 
 
@@ -34,6 +35,8 @@
 @property (weak, nonatomic) IBOutlet UIButton         *placeOrderButton;
 @property (weak, nonatomic) IBOutlet UILabel          *waitingLabel;
 @property (weak, nonatomic) IBOutlet LWLoadingIndicatorView *waitingImageView;
+
+@property (weak, nonatomic) IBOutlet UIView *touchCatchView;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *topViewHeightConstraint;
 
@@ -59,6 +62,12 @@ static int const kDescriptionRows = 2;
 static float const kPinProtectionHeight = 444;
 static float const kNoPinProtectionHeight = 356;
 
+
+-(void) awakeFromNib
+{
+    UITapGestureRecognizer *gesture=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cancelClicked:)];
+    [self.touchCatchView addGestureRecognizer:gesture];
+}
 
 #pragma mark - General
 
@@ -103,13 +112,14 @@ static float const kNoPinProtectionHeight = 356;
 
 - (void)cancelOperation {
     [self.delegate cancelClicked];
-    [self removeFromSuperview];
+    [self hide];
 }
 
 - (void)updateView {
-    [UIView setAnimationsEnabled:NO];
+
     
-    self.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5f];
+//    self.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5f];
+    self.backgroundColor=nil;
     
     self.topView.backgroundColor = [UIColor whiteColor];
     self.topView.opaque = NO;
@@ -204,6 +214,35 @@ static float const kNoPinProtectionHeight = 356;
     return values[row];
 }
 
+-(void) hide
+{
+    [UIView animateWithDuration:0.5 animations:^{
+        shadowView.alpha=0;
+        self.iPadNavShadowView.alpha=0;
+        self.center=CGPointMake(self.bounds.size.width/2, self.bounds.size.height*1.5);
+    } completion:^(BOOL finished){
+            [self.iPadNavShadowView removeFromSuperview];
+            [shadowView removeFromSuperview];
+        [self removeFromSuperview];
+    }];
+}
+
+-(void) show
+{
+    shadowView=[[UIView alloc] initWithFrame:self.superview.bounds];
+    shadowView.backgroundColor=[UIColor colorWithWhite:0 alpha:0.5];
+    shadowView.alpha=0;
+    shadowView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    [self.superview insertSubview:shadowView belowSubview:self];
+    
+    [UIView animateWithDuration:0.5 animations:^{
+        shadowView.alpha=1;
+        self.iPadNavShadowView.alpha=1;
+    }];
+}
+
+
+
 
 #pragma mark - UITableViewDataSource
 
@@ -259,13 +298,18 @@ static float const kNoPinProtectionHeight = 356;
 }
 
 - (void)pinCanceled {
-    [self removeFromSuperview];
+    [self hide];
     [self.delegate cancelClicked];
 }
 
 - (void)pinAttemptEnds {
-    [self removeFromSuperview];
+    [self hide];
     [self.delegate noAttemptsForPin];
+}
+
+-(void) dealloc
+{
+    
 }
 
 @end

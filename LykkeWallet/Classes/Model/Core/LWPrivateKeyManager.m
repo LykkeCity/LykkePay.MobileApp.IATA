@@ -18,9 +18,103 @@
 //#import "curves.h"
 #import "LWConstantsLykke.h"
 //#import "sha2.h"
+#import "LWUtils.h"
 
 
 @import Security;
+
+@implementation NSData (NYMnemonic)
+- (NSString *)ny_hexString {
+    const unsigned char *dataBuffer = (const unsigned char *)[self bytes];
+    
+    if (!dataBuffer) {
+        return [NSString string];
+    }
+    
+    NSUInteger dataLength = [self length];
+    NSMutableString *hexString = [NSMutableString stringWithCapacity:(dataLength * 2)];
+    for (int i = 0; i < dataLength; ++i) {
+        [hexString appendString:[NSString stringWithFormat:@"%02lx", (unsigned long)dataBuffer[i]]];
+    }
+    
+    return [NSString stringWithString:hexString];
+}
+
+- (NSArray *)ny_hexToBitArray {
+    NSMutableArray *bitArray = [NSMutableArray arrayWithCapacity:(int)self.length * 8];
+    NSString *hexStr = [self ny_hexString];
+    // Loop over the string and convert each char
+    for (NSUInteger i = 0; i < [hexStr length]; i++) {
+        NSString *bin = [self _hexToBinary:[hexStr characterAtIndex:i]];
+        // Each character will return a string representation of the binary
+        // Create NSNumbers from each and append to the array.
+        for (NSInteger j = 0; j < bin.length; j++) {
+            [bitArray addObject:
+             @([[NSString stringWithFormat: @"%C", [bin characterAtIndex: j]] intValue])];
+        }
+    }
+    return [NSArray arrayWithArray:bitArray];
+}
+
+- (NSString *)_hexToBinary:(unichar)value {
+    switch (value) {
+        case '0': return @"0000";
+        case '1': return @"0001";
+        case '2': return @"0010";
+        case '3': return @"0011";
+        case '4': return @"0100";
+        case '5': return @"0101";
+        case '6': return @"0110";
+        case '7': return @"0111";
+        case '8': return @"1000";
+        case '9': return @"1001";
+            
+        case 'a':
+        case 'A': return @"1010";
+            
+        case 'b':
+        case 'B': return @"1011";
+            
+        case 'c':
+        case 'C': return @"1100";
+            
+        case 'd':
+        case 'D': return @"1101";
+            
+        case 'e':
+        case 'E': return @"1110";
+            
+        case 'f':
+        case 'F': return @"1111";
+    }
+    return @"-1";
+}
+
+@end
+
+@implementation NSString (NYMnemonic)
+- (NSData *)ny_dataFromHexString {
+    const char *chars = [self UTF8String];
+    int i = 0, len = (int)self.length;
+    
+    NSMutableData *data = [NSMutableData dataWithCapacity:len / 2];
+    char byteChars[3] = { '\0', '\0', '\0' };
+    unsigned long wholeByte;
+    
+    while (i < len) {
+        byteChars[0] = chars[i++];
+        byteChars[1] = chars[i++];
+        wholeByte = strtoul(byteChars, NULL, 16);
+        [data appendBytes:&wholeByte length:1];
+    }
+    
+    return data;
+}
+
+@end
+
+
+
 
 @interface LWPrivateKeyManager()
 {
@@ -37,21 +131,23 @@
     
     
     
-//    NSString *kkk=[self decryptPrivateKey:@"0016e31d066dfa99294aa33ea98285696883032a86b034e49fa6f54c67dd1788df6e38d09d2a8067df2ad7d3530e429eacb7d8516581e3aabd79a2b0df59a0f8"];
+//    NSString *kkk=[self decryptPrivateKey:@"74F15EC5FDD88F6287E3CFC88A9B8EBAC0484D4FE6767DFB616CD38E80C8571208B7D39AE09AD061BB9D3BE7189255DB62D3D2D14B346E904BCF7247518C9144" withPassword:@"111111"];
 //    NSLog(@"%@", kkk);
-    
+//
     
 //    privateKeyForLykke=[[BTCKey alloc] initWithWIF:@"cU6bPP5KN9kvM7zek2bRURr9ABeF92kRFuqX7o8B2ojCMGyCxgsv"];
 //    
 //    NSString *pubkey=[self publicKeyLykke];
 //    int iii=pubkey.length;
 //    NSLog(@"%@", pubkey);
-//    
+//
     
     
     
 //    [self generatePrivateKey];
-//    NSString *sss=[self publicKeyLykke];
+//    
+//    NSLog(@"%@  %@", privateKeyForLykke.WIFTestnet, privateKeyForLykke.addressTestnet.string);
+    
     
     return self;
 }
@@ -64,6 +160,179 @@
         shared = [[LWPrivateKeyManager alloc] init];
     });
     return shared;
+}
+
+-(BOOL) savePrivateKeyLykkeFromSeedWords:(NSArray *) words
+{
+    NSData *privateKeyData=[self keyDataFromSeedWords:words];
+    if(!privateKeyData)
+        return NO;
+    privateKeyForLykke=[[BTCKey alloc] initWithPrivateKey:privateKeyData];
+    privateKeyForLykke.publicKeyCompressed=YES;
+    NSString *wif;
+    if([self isDevServer])
+        wif=privateKeyForLykke.WIFTestnet;
+    else
+        wif=privateKeyForLykke.WIF;
+
+    return YES;
+}
+
++(NSArray *) generateWords
+{
+//    NSMutableArray *arr=[[NSMutableArray alloc] init];
+    
+    
+    NSData *data=[NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"english_words_list" ofType:@"txt"]];
+    NSString *string=[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    NSArray *lines=[string componentsSeparatedByString:@"\n"];
+    
+    uint8_t randKeyBytes[16];
+    
+    SecRandomCopyBytes (kSecRandomDefault, 16, randKeyBytes);
+    
+    
+    NSData *seedData=[[NSData alloc] initWithBytes:randKeyBytes length:16];
+    NSLog(@"%@", seedData);
+
+//    NSData *seedData = [seed ny_dataFromHexString];
+    
+    // Calculate the sha256 hash to use with a checksum
+    NSMutableData *hash = [NSMutableData dataWithLength:CC_SHA256_DIGEST_LENGTH];
+    CC_SHA256(seedData.bytes, (int)seedData.length, hash.mutableBytes);
+    
+    NSMutableArray *checksumBits = [NSMutableArray
+                                    arrayWithArray:[[NSData dataWithData:hash] ny_hexToBitArray]];
+    NSMutableArray *seedBits =
+    [NSMutableArray arrayWithArray:[seedData ny_hexToBitArray]];
+    
+    // Append the appropriate checksum bits to the seed
+    for (int i = 0; i < (int)seedBits.count / 32; i++) {
+        [seedBits addObject: checksumBits[i]];
+    }
+    
+    // Split into groups of 11, and change to numbers
+    NSMutableArray *words = [NSMutableArray arrayWithCapacity:(int)seedBits.count / 11];
+    for (int i = 0; i < (int)seedBits.count / 11; i++) {
+        NSUInteger wordNumber =
+        strtol(
+               [[[seedBits subarrayWithRange: NSMakeRange(i * 11, 11)] componentsJoinedByString: @""] UTF8String],
+               NULL,
+               2);
+        
+        [words addObject: lines[wordNumber]];
+    }
+
+    
+    NSLog(@"%@", words);
+    
+//    NSData *keyData=[LWPrivateKeyManager keyDataFromSeedWords:words];
+
+    
+    return words;
+}
+
++(NSArray *) generateSeedWords
+{
+    while(1)
+    {
+        NSArray *arr=[LWPrivateKeyManager generateWords];
+        BOOL flag=YES;
+        for(int i=0;i<arr.count-1;i++)
+        {
+            NSString *word=arr[i];
+            if([[arr subarrayWithRange:NSMakeRange(i+1, arr.count-i-1)] containsObject:word])
+            {
+                flag=NO;
+                break;
+            }
+            
+        }
+        if(flag)
+            return arr;
+    }
+}
+
+-(NSData *) keyDataFromSeedWords:(NSArray *) words
+{
+    NSData *data=[NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"english_words_list" ofType:@"txt"]];
+    NSString *string=[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    NSArray *lines=[string componentsSeparatedByString:@"\n"];
+    
+    NSMutableArray *dataBits=[[NSMutableArray alloc] init];
+    for(NSString *s in words)
+    {
+        if([lines indexOfObject:s]==NSNotFound)
+        {
+            return nil;
+        }
+        int index=(int)[lines indexOfObject:s];
+        char *c=(char *)&index;
+        c[2]=c[0];
+        c[0]=c[1];
+        c[1]=c[2];
+        NSData *d=[NSData dataWithBytes:&index length:2];
+        NSArray *bits=[d ny_hexToBitArray];
+        [dataBits addObjectsFromArray:[bits subarrayWithRange:NSMakeRange(5, 11)]];
+        NSLog(@"%@", [dataBits componentsJoinedByString:@""]);
+    }
+    
+    char bytes[17];
+    for(int i=0;i<17;i++)
+        bytes[i]=0x0;
+    
+    for(int i=0;i<17;i++)
+    {
+        for(int j=0;j<8;j++)
+        {
+            if(i==16 && j==4)
+                break;
+            char byte=bytes[i];
+            byte=byte<<1;
+            char mul=(char)[dataBits[i*8+j] intValue];
+            byte=byte | mul;
+            bytes[i]=byte;
+        }
+    }
+    
+    NSData *keyData=[NSData dataWithBytes:bytes length:16];
+    NSLog(@"%@", keyData);
+    
+    NSMutableData *hash = [NSMutableData dataWithLength:CC_SHA256_DIGEST_LENGTH];
+    CC_SHA256(keyData.bytes, (int)keyData.length, hash.mutableBytes);
+    
+    char *checksum=(char *)hash.mutableBytes;
+    *checksum=*checksum>>4;
+    *checksum=*checksum&0x0f;
+    
+    if(*checksum!=bytes[16])
+        return nil;
+    
+    
+    
+//    for(int i=0;i<17;i++)
+//        bytes[i]=0x0;
+//
+//    
+//    
+//    NSMutableData *privateKeyData=[[NSMutableData alloc] initWithData:keyData];
+//    [privateKeyData appendBytes:bytes length:16];
+//    
+//    BTCKey *privateKeyForLykke=[[BTCKey alloc] initWithPrivateKey:privateKeyData];
+//    privateKeyForLykke.publicKeyCompressed=YES;
+//    NSString *wif;
+//    if([LWPrivateKeyManager shared].isDevServer)
+//        wif=privateKeyForLykke.WIFTestnet;
+//    else
+//        wif=privateKeyForLykke.WIF;
+//
+//    NSLog(@"%@", wif);
+    
+    
+    
+
+    
+    return keyData;
 }
 
 +(NSString *) addressFromPrivateKeyWIF:(NSString *)wif
@@ -104,8 +373,8 @@
     if(!self.privateKeyLykke)
         return nil;
     NSData *publicKey=privateKeyForLykke.compressedPublicKey;
-    return [self hexStringFromData:privateKeyForLykke.publicKey];
-    return [self hexStringFromData:publicKey];
+    return [LWUtils hexStringFromData:privateKeyForLykke.publicKey];
+    
 }
 
 -(void) decryptLykkePrivateKeyAndSave:(NSString *)encodedPrivateKey
@@ -168,7 +437,7 @@
     NSData *data=[self AES256Encrypt:ddd WithKey:key];
     
     
-    return [self hexStringFromData:data];
+    return [LWUtils hexStringFromData:data];
     
 }
 
@@ -187,9 +456,9 @@
     
     NSData *encodedKey=[[LWPrivateKeyManager shared] AES256Encrypt:keyData withDataKey:macOut];
     
-    NSString *ddd=[LWPrivateKeyManager decodedPrivateKeyWif:[[LWPrivateKeyManager shared] hexStringFromData:encodedKey] withPassPhrase:passPhrase];
+    NSString *ddd=[LWPrivateKeyManager decodedPrivateKeyWif:[LWUtils hexStringFromData:encodedKey] withPassPhrase:passPhrase];
     
-    return [[LWPrivateKeyManager shared] hexStringFromData:encodedKey];
+    return [LWUtils hexStringFromData:encodedKey];
 }
 
 +(NSString *) decodedPrivateKeyWif:(NSString *) encodedKey withPassPhrase:(NSString *) passPhrase
@@ -198,7 +467,7 @@
     NSMutableData *macOut = [NSMutableData dataWithLength:CC_SHA256_DIGEST_LENGTH];
     
     CC_SHA256(dataIn.bytes, dataIn.length,  macOut.mutableBytes);
-    NSData *decodedKey=[[LWPrivateKeyManager shared] AES256Decrypt:[[LWPrivateKeyManager shared] dataFromHexString:encodedKey] withDataKey:macOut];
+    NSData *decodedKey=[[LWPrivateKeyManager shared] AES256Decrypt:[LWUtils dataFromHexString:encodedKey] withDataKey:macOut];
     
     NSString *str=[[NSString alloc] initWithBytes:decodedKey.bytes length:strlen(decodedKey.bytes) encoding:NSASCIIStringEncoding];
     
@@ -340,7 +609,7 @@
     }
     
     
-    NSData *prKeyData=[self AES256DecryptData:[self dataFromHexString:encryptedPrivateKeyData] WithKey:key];
+    NSData *prKeyData=[self AES256DecryptData:[LWUtils dataFromHexString:encryptedPrivateKeyData] WithKey:key];
     
     char *pointer=(char *)prKeyData.bytes;
     NSString *privateWifString=[[NSString alloc] initWithData:prKeyData encoding:NSUTF8StringEncoding];
@@ -512,36 +781,10 @@
 //}
 
 
--(NSString *) hexStringFromData:(NSData *) data
-{
-    NSUInteger capacity = data.length * 2;
-    NSMutableString *string = [NSMutableString stringWithCapacity:capacity];
-    const unsigned char *buf = data.bytes;
-    NSInteger i;
-    for (i=0; i<data.length; ++i) {
-        [string appendFormat:@"%02x", (NSUInteger)buf[i]];
-    }
-    return string;
-}
-
--(NSData *) dataFromHexString:(NSString *) command
-{
-    
-    command = [command stringByReplacingOccurrencesOfString:@" " withString:@""];
-    NSMutableData *commandToSend= [[NSMutableData alloc] init];
-    unsigned char whole_byte;
-    char byte_chars[3] = {'\0','\0','\0'};
-    int i;
-    for (i=0; i < [command length]/2; i++) {
-        byte_chars[0] = [command characterAtIndex:i*2];
-        byte_chars[1] = [command characterAtIndex:i*2+1];
-        whole_byte = strtol(byte_chars, NULL, 16);
-        [commandToSend appendBytes:&whole_byte length:1];
-    }
-    
-    return commandToSend;
-}
 
 
 
 @end
+
+
+

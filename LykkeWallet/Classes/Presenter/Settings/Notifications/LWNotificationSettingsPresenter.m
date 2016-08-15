@@ -69,6 +69,11 @@ static NSString *const SettingsIdentifiers[kNumberOfRows] = {
 
 #pragma mark - UITableViewDataSource
 
+-(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 50;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return kNumberOfRows;
 }

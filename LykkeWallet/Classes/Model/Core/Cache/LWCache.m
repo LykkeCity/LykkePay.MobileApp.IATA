@@ -39,7 +39,12 @@ SINGLETON_INIT {
     {
         if([asset.identity isEqualToString:assetID])
         {
-            shouldHide=asset.hideDeposit;
+            shouldHide=!((asset.bankCardDepositEnabled && [[NSUserDefaults standardUserDefaults] boolForKey:@"CanCashInViaBankCard"])
+                         ||
+                         (asset.swiftDepositEnabled && [[NSUserDefaults standardUserDefaults] boolForKey:@"SwiftDepositEnabled"])
+                         ||
+                         asset.blockchainDepositEnabled
+                         );
             break;
         }
     }
@@ -65,6 +70,31 @@ SINGLETON_INIT {
 
 //    NSArray *arr=@[@"USD",@"EUR", @"CHF", @"GBP", @"BTC", @"LKK"];
 //    return [arr containsObject:assetID];
+}
+
++(BOOL) isBankCardDepositEnabledForAssetId:(NSString *)assetID
+{
+    for(LWAssetModel *asset in [LWCache instance].allAssets)
+    {
+        if([asset.identity isEqualToString:assetID])
+        {
+            return asset.bankCardDepositEnabled && [[NSUserDefaults standardUserDefaults] boolForKey:@"CanCashInViaBankCard"];
+        }
+    }
+    return NO;
+
+}
+
++(BOOL) isSwiftDepositEnabledForAssetId:(NSString *)assetID
+{
+    for(LWAssetModel *asset in [LWCache instance].allAssets)
+    {
+        if([asset.identity isEqualToString:assetID])
+        {
+            return asset.swiftDepositEnabled && [[NSUserDefaults standardUserDefaults] boolForKey:@"SwiftDepositEnabled"];
+        }
+    }
+    return NO;
 }
 
 +(NSString *) currentAppVersion
@@ -126,6 +156,11 @@ SINGLETON_INIT {
         }
     }
     return flag;
+}
+
+-(NSString *) baseAssetSymbol
+{
+    return [self currencySymbolForAssetId:self.baseAssetId];
 }
 
 @end

@@ -18,9 +18,14 @@
     result.identity    = model.identity;
     result.volume      = model.volume;
     result.asset       = model.asset;
-    result.iconId      = model.iconId;
-    result.blockchainHash = model.blockchainHash;
+    
     result.historyType = LWHistoryItemTypeTransfer;
+    result.addressFrom=model.addressFrom;
+    result.addressTo=model.addressTo;
+
+    result.iconId=model.iconId;
+    result.blockchainHash=model.blockchainHash;
+    
     
     return result;
 }

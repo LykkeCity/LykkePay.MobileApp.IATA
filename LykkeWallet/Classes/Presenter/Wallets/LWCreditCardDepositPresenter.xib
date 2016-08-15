@@ -37,12 +37,15 @@
                 <outlet property="city" destination="NcQ-Pm-CaE" id="vHg-ot-odI"/>
                 <outlet property="country" destination="PCs-f7-Fhx" id="Ad7-hD-24H"/>
                 <outlet property="creditCardButton" destination="HCa-g9-ryt" id="4uy-vi-w2y"/>
+                <outlet property="creditCardIconTopOffset" destination="qYD-Nh-kqv" id="hBC-Sv-Ygz"/>
                 <outlet property="email" destination="Hkr-ww-FyN" id="ET1-eD-atM"/>
                 <outlet property="firstName" destination="0Lb-SB-0HV" id="SSz-TU-yxQ"/>
                 <outlet property="lastName" destination="vX1-be-bGi" id="G2p-Qd-hN9"/>
                 <outlet property="phone" destination="VhO-9U-KdY" id="6JH-kd-Xl8"/>
                 <outlet property="scrollView" destination="8ac-NY-qx4" id="4T8-0V-NVp"/>
                 <outlet property="swiftButton" destination="oIb-5C-hON" id="tUS-Cr-5Li"/>
+                <outlet property="swiftCardMenuContainer" destination="Kpg-yQ-gGr" id="aas-9T-X2g"/>
+                <outlet property="topViewHeightConstraint" destination="91I-w3-Wen" id="LbK-Rf-Evm"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="zip" destination="Qbc-zd-ZIJ" id="6X6-Ds-D9A"/>
             </connections>
@@ -164,12 +167,12 @@ wallet please fill in the form</string>
                                 <constraint firstItem="FuD-RY-Emv" firstAttribute="centerX" secondItem="5JY-LW-Kqq" secondAttribute="centerX" id="Ogp-1W-ZaC"/>
                                 <constraint firstItem="R8T-1M-vqi" firstAttribute="centerX" secondItem="5JY-LW-Kqq" secondAttribute="centerX" multiplier="1.3" id="TMA-XA-8he"/>
                                 <constraint firstItem="Kpg-yQ-gGr" firstAttribute="top" secondItem="5JY-LW-Kqq" secondAttribute="top" constant="10" id="Uw0-DY-v5y"/>
-                                <constraint firstItem="FuD-RY-Emv" firstAttribute="top" secondItem="Kpg-yQ-gGr" secondAttribute="bottom" constant="16" id="XlN-Xm-r5r"/>
                                 <constraint firstAttribute="trailing" secondItem="E4B-jF-T2b" secondAttribute="trailing" constant="30" id="ZeX-av-vrC"/>
                                 <constraint firstAttribute="bottom" secondItem="6OP-CP-ghE" secondAttribute="bottom" constant="55" id="fDA-25-B3h"/>
                                 <constraint firstItem="Kpg-yQ-gGr" firstAttribute="centerX" secondItem="5JY-LW-Kqq" secondAttribute="centerX" id="hQ2-2O-Egx"/>
                                 <constraint firstItem="7ZP-NV-H6g" firstAttribute="leading" secondItem="5JY-LW-Kqq" secondAttribute="leading" constant="30" id="iX8-fF-eFf"/>
                                 <constraint firstItem="E4B-jF-T2b" firstAttribute="leading" secondItem="5JY-LW-Kqq" secondAttribute="leading" constant="30" id="obH-6Y-1Iv"/>
+                                <constraint firstItem="FuD-RY-Emv" firstAttribute="top" secondItem="5JY-LW-Kqq" secondAttribute="top" constant="56" id="qYD-Nh-kqv"/>
                                 <constraint firstAttribute="bottom" secondItem="7ZP-NV-H6g" secondAttribute="bottom" id="sY0-bt-rF1"/>
                             </constraints>
                         </view>

@@ -17,8 +17,15 @@
 #import "LWPrivateWalletModel.h"
 #import "LWCache.h"
 #import "LWPKTransferModel.h"
+#import "LWTransactionManager.h"
+#import "LWPKTransferConfirmationView.h"
+#import "LWSettingsConfirmationPresenter.h"
+#import "LWResultPresenter.h"
+#import "LWPrivateWalletHistoryPresenter.h"
+#import "LWIPadModalNavigationControllerViewController.h"
 
-@interface LWPrivateWalletTransferInputPresenter () <LWMathKeyboardViewDelegate, UITextFieldDelegate>
+
+@interface LWPrivateWalletTransferInputPresenter () <LWMathKeyboardViewDelegate, UITextFieldDelegate, LWSettingsConfirmationPresenter, LWResultPresenterDelegate>
 {
     UILabel *balanceLabel;
     NSNumber *balance;
@@ -39,6 +46,7 @@
     [self.view addSubview:inputView];
     inputView.textField.delegate=self;
     checkoutButton=[UIButton buttonWithType:UIButtonTypeCustom];
+    [checkoutButton addTarget:self action:@selector(checkoutButtonPressed) forControlEvents:UIControlEventTouchUpInside];
     
     [checkoutButton setAttributedTitle:[[NSAttributedString alloc] initWithString:@"CHECKOUT" attributes:@{NSKernAttributeName:@(1), NSFontAttributeName:[UIFont fontWithName:@"ProximaNova-Semibold" size:15], NSForegroundColorAttributeName:[UIColor whiteColor]}] forState:UIControlStateNormal];
     [checkoutButton setAttributedTitle:[[NSAttributedString alloc] initWithString:@"CHECKOUT" attributes:@{NSKernAttributeName:@(1), NSFontAttributeName:[UIFont fontWithName:@"ProximaNova-Semibold" size:15], NSForegroundColorAttributeName:[UIColor colorWithRed:63.0/255 green:77.0/255 blue:96.0/255 alpha:0.2]}] forState:UIControlStateDisabled];
@@ -49,6 +57,7 @@
     balanceLabel=[[UILabel alloc] init];
     balanceLabel.font=[UIFont fontWithName:@"ProximaNova-Regular" size:17];
     balanceLabel.textColor=[UIColor colorWithRed:63.0/255 green:77.0/255 blue:96.0/255 alpha:1];
+    balanceLabel.textAlignment=NSTextAlignmentCenter;
     
     LWPrivateWalletAssetModel *asset=self.transfer.asset;
     balanceLabel.text=[NSString stringWithFormat:@"%@ %f available", asset.assetId, asset.amount.floatValue];
@@ -63,7 +72,7 @@
         checkoutButton.frame=CGRectMake(30, self.view.bounds.size.height-30-45, self.view.bounds.size.width-60, 45);
     [LWValidator setButton:checkoutButton enabled:checkoutButton.enabled];
 
-    
+    balanceLabel.frame=CGRectMake(0, 0, self.view.bounds.size.width, 20);
 }
 
 - (void)didReceiveMemoryWarning {
@@ -138,8 +147,8 @@
     return NO;
 }
 
-//-(void) checkoutButtonPressed
-//{
+-(void) checkoutButtonPressed
+{
 //    BOOL const shouldSignOrder = [LWCache instance].shouldSignOrder;
 //    if (shouldSignOrder) {
 //        [self validateUser];
@@ -147,7 +156,109 @@
 //    else {
 //        [self showConfirmationView];
 //    }
-//}
+    self.transfer.amount=@(inputView.textField.text.floatValue);
+    
+    [LWPKTransferConfirmationView showTransfer:self.transfer withCompletion:^(BOOL result){
+        if(result)
+            [self signPressed];
+    }];
+    
+    
+    
+}
+
+#pragma mark - LWRadioTableViewCellDelegate
+
+- (void) signPressed {
+    LWSettingsConfirmationPresenter *validator = [LWSettingsConfirmationPresenter new];
+    validator.delegate = self;
+    
+    [self.navigationController pushViewController:validator animated:YES];
+}
+
+
+#pragma mark - LWSettingsConfirmationPresenter
+
+- (void)operationConfirmed:(LWSettingsConfirmationPresenter *)presenter {
+    
+    
+    [[LWPrivateWalletsManager shared] requestTransferTransaction:self.transfer withCompletion:^(NSDictionary *dict) {
+        if([dict isKindOfClass:[NSDictionary class]] && dict[@"Hex"])
+        {
+            NSString *signedTransaction=[LWTransactionManager signTransactionRaw:dict[@"Hex"] forModel:self.transfer];
+            if(signedTransaction)
+            {
+                [[LWPrivateWalletsManager shared] broadcastTransaction:signedTransaction identity:dict[@"Id"] withCompletion:^(BOOL success){
+                    [self setLoading:NO];
+                    if(success)
+                    {
+                        LWResultPresenter *presenter=[[LWResultPresenter alloc] init];
+                        presenter.image=[UIImage imageNamed:@"WithdrawSuccessFlag.png"];
+                        presenter.titleString=@"SUCCESSFUL!";
+                        presenter.textString=@"Your transfer transaction has been successfuly broadcasted to Blockchain. We will notify you when it will be confirmed.";
+                        
+                        presenter.delegate=self;
+                        [self.navigationController presentViewController:presenter animated:YES completion:nil];
+
+                    }
+                    else
+                        [self showFailed];
+                }];
+                return;
+            }
+            else
+                [self showFailed];
+        }
+        else
+        {
+            [self showFailed];
+        }
+        
+        [self setLoading:NO];
+        
+    }];
+}
+
+-(void) showFailed
+{
+    LWResultPresenter *presenter=[[LWResultPresenter alloc] init];
+    presenter.titleString=@"Sorry!";
+    presenter.textString=@"Something went wrong.\nYour transfer transaction was unsuccessfull";
+    presenter.image=[UIImage imageNamed:@"RegisterFailed"];
+    
+    presenter.delegate=self;
+    [self.navigationController presentViewController:presenter animated:YES completion:nil];
+
+}
+
+-(void) resultPresenterWillDismiss
+{
+    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
+    {
+        NSArray *array=self.navigationController.viewControllers;
+        for(UIViewController *v in array)
+        {
+            if([v isKindOfClass:[LWPrivateWalletHistoryPresenter class]])
+            {
+                [self.navigationController popToViewController:v animated:NO];
+                break;
+            }
+        }
+    }
+    else
+    {
+        self.navigationController.view.hidden=YES;
+        //        [self.navigationController setViewControllers:@[]];
+        [(LWIPadModalNavigationControllerViewController *)self.navigationController dismissAnimated:NO];
+    }
+
+    
+}
+
+- (void)operationRejected {
+    
+}
+
 
 
 -(NSString *) nibName

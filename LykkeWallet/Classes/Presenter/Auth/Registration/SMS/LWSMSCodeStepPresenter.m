@@ -16,6 +16,7 @@
 #import "TKButton.h"
 #import "UIViewController+Loading.h"
 #import "UIView+Toast.h"
+#import "LWGenerateKeyPresenter.h"
 
 
 @interface LWSMSCodeStepPresenter ()<LWTextFieldDelegate> {
@@ -91,6 +92,11 @@
 {
     [super viewDidAppear:animated];
     self.title = Localize(@"register.title");
+    
+    
+    
+//    LWGenerateKeyPresenter *presenter=[[LWGenerateKeyPresenter alloc] init]; //Testing
+//    [self.navigationController pushViewController:presenter animated:YES];
 }
 
 - (void)localize {

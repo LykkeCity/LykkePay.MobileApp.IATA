@@ -6,9 +6,10 @@
 //  Copyright © 2016 Lykkex. All rights reserved.
 //
 
+#import "LWAuthComplexPresenter.h"
 #import <UIKit/UIKit.h>
 
-@interface LWRefundTransactionPresenter : UIViewController
+@interface LWRefundTransactionPresenter : LWAuthComplexPresenter
 
 @property (strong, nonatomic) NSString *email;
 

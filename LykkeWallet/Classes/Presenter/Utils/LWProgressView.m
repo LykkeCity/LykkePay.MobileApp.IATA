@@ -180,11 +180,14 @@
 
 -(void) startLoop
 {
+    NSLog(@"Started loop");
     while(isAnimating)
     {
         
     [NSThread sleepForTimeInterval:0.005];
     [self repeatAnimation];
+        if(isAnimating==NO)
+            break;
     }
 }
 
@@ -220,11 +223,11 @@
     
     CGContextDrawImage(context, CGRectMake(self.bounds.size.width/2-_diameter/2, self.bounds.size.height/2-_diameter/2, _diameter, _diameter), images[count]);
     
-    UIView *vvv=self.superview;
-    UIView *vvv1=self.superview.superview;
-    UIView *vvv2=self.superview.superview.superview;
+//    UIView *vvv=self.superview;
+//    UIView *vvv1=self.superview.superview;
+//    UIView *vvv2=self.superview.superview.superview;
 //
-    NSLog(@"CALLED DRAWRECT");
+//    NSLog(@"CALLED DRAWRECT");
     
  }
 

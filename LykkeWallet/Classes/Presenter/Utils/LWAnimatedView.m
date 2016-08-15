@@ -20,6 +20,8 @@
     
     int total;
     int count;
+    
+    int animateTo;
 }
 
 @end
@@ -30,14 +32,8 @@
 -(id) initWithFrame:(CGRect)frame name:(NSString *) name
 {
     self=[super initWithFrame:frame];
-//    NSData *data=[NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:gif_name ofType:@"gif"]];
-//    FLAnimatedImage *image=[[FLAnimatedImage alloc] initWithAnimatedGIFData:data];
-//    
-//    imageView=[[FLAnimatedImageView alloc] initWithFrame:self.bounds];
-//    imageView.animatedImage=image;
-//    [self addSubview:imageView];
-//    [imageView startAnimating];
-//
+    animateTo=-1;
+    self.backgroundColor=[UIColor whiteColor];
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
     
@@ -66,8 +62,16 @@
     return self;
 }
 
+-(void) animateUntilFrame:(int)frame
+{
+    animateTo=frame;
+    [self startAnimationIfNeeded];
+}
+
 -(void) startAnimationIfNeeded
 {
+    [timer invalidate];
+    
     timer=[NSTimer timerWithTimeInterval:0.017 target:self selector:@selector(repeatAnimation) userInfo:nil repeats:YES];
     [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
 }
@@ -75,6 +79,9 @@
 
 -(void) repeatAnimation
 {
+    if(animateTo>0 && count>=animateTo)
+        return;
+    
     [self setNeedsDisplay];
 }
 

@@ -321,4 +321,36 @@
     return result;
 }
 
+
++(NSString *) hexStringFromData:(NSData *) data
+{
+    NSUInteger capacity = data.length * 2;
+    NSMutableString *string = [NSMutableString stringWithCapacity:capacity];
+    const unsigned char *buf = data.bytes;
+    NSInteger i;
+    for (i=0; i<data.length; ++i) {
+        [string appendFormat:@"%02x", (NSUInteger)buf[i]];
+    }
+    return string;
+}
+
++(NSData *) dataFromHexString:(NSString *) command
+{
+    
+    command = [command stringByReplacingOccurrencesOfString:@" " withString:@""];
+    NSMutableData *commandToSend= [[NSMutableData alloc] init];
+    unsigned char whole_byte;
+    char byte_chars[3] = {'\0','\0','\0'};
+    int i;
+    for (i=0; i < [command length]/2; i++) {
+        byte_chars[0] = [command characterAtIndex:i*2];
+        byte_chars[1] = [command characterAtIndex:i*2+1];
+        whole_byte = strtol(byte_chars, NULL, 16);
+        [commandToSend appendBytes:&whole_byte length:1];
+    }
+    
+    return commandToSend;
+}
+
+
 @end

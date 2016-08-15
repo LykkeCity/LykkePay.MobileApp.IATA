@@ -10,15 +10,16 @@
 
 
 @class LWTransactionTradeModel;
+@class LWExchangeInfoModel;
 
 
 @interface LWTradeHistoryItemType : LWBaseHistoryItemType {
     
 }
 
-@property (copy, nonatomic) NSNumber *volume;
-@property (copy, nonatomic) NSString *iconId;
-@property (copy, nonatomic) NSString *blockchainHash;
+
+
+@property (strong, nonatomic) LWExchangeInfoModel *marketOrder;
 
 + (LWTradeHistoryItemType *)convertFromNetworkModel:(LWTransactionTradeModel *)model;
 

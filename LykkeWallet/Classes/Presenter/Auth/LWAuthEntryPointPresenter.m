@@ -27,6 +27,8 @@
 #import "LWKeychainManager.h"
 #import "LWRefundTransactionPresenter.h"
 
+#import "LWTestBackupWordsPresenter.h"
+
 typedef NS_ENUM(NSInteger, LWAuthEntryPointNextStep) {
     LWAuthEntryPointNextStepNone,
     LWAuthEntryPointNextStepLogin,
@@ -62,7 +64,7 @@ typedef NS_ENUM(NSInteger, LWAuthEntryPointNextStep) {
 
 @property (weak, nonatomic) IBOutlet UILabel *versionLabel;
 
-@property (strong,nonatomic) UIButton *refundButton;
+@property (strong,nonatomic) IBOutlet UIButton *refundButton;
 
 
 #pragma mark - Actions
@@ -105,12 +107,22 @@ typedef NS_ENUM(NSInteger, LWAuthEntryPointNextStep) {
     tipsView.delegate = self;
     [self.tipsContainer attach:tipsView];
     
-//    self.refundButton=[UIButton buttonWithType:UIButtonTypeSystem];
-    self.refundButton.frame=CGRectMake(0, 20, 100, 30);
-    [self.view addSubview:self.refundButton];
-    [self.refundButton setTitle:@"Refund" forState:UIControlStateNormal];
+    [self.refundButton setTitle:@"Take refund" forState:UIControlStateNormal];
     [self.refundButton addTarget:self action:@selector(refundButtonPressed) forControlEvents:UIControlEventTouchUpInside];
     self.refundButton.hidden=YES;
+    
+//    UIButton *testBackupButton=[UIButton buttonWithType:UIButtonTypeSystem]; //Testing
+//    [testBackupButton setTitle:@"Test backup words" forState:UIControlStateNormal];
+//    [testBackupButton sizeToFit];
+//    testBackupButton.center=CGPointMake(200, 50);
+//    [self.view addSubview:testBackupButton];
+//    [testBackupButton addTarget:self action:@selector(testBackupButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+}
+
+-(void) testBackupButtonPressed
+{
+    LWTestBackupWordsPresenter *test=[[LWTestBackupWordsPresenter alloc] init];
+    [self.navigationController pushViewController:test animated:YES];
 }
 
 -(void) viewWillDisappear:(BOOL)animated

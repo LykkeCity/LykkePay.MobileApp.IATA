@@ -42,6 +42,7 @@ typedef enum {
 @interface LWExchangeDealFormPresenter () <UITextFieldDelegate, LWExchangeConfirmationViewDelegate, LWMathKeyboardViewDelegate> {
     
     LWExchangeConfirmationView *confirmationView;
+    
     UITextField                *sumTextField;
     UITextField                *resultTextField;
     
@@ -443,7 +444,7 @@ static NSString *const FormIdentifiers[kFormRows] = {
     
     if (confirmationView) {
         [confirmationView setLoading:NO withReason:@""];
-        [confirmationView removeFromSuperview];
+        [confirmationView hide];
     }
     
 //    if(lastInput==LastInput_Result)
@@ -483,7 +484,7 @@ static NSString *const FormIdentifiers[kFormRows] = {
         [confirmationView setLoading:NO withReason:@""];
         [self showReject:reject response:context.task.response code:context.error.code willNotify:YES];
         
-        [confirmationView removeFromSuperview];
+        [confirmationView hide];
     }
     else
     {
@@ -754,19 +755,34 @@ static NSString *const FormIdentifiers[kFormRows] = {
     transition.type = kCATransitionPush;
     transition.subtype = kCATransitionFromTop;
     [transition setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
+    
+    
+    
     [confirmationView.layer addAnimation:transition forKey:nil];
     
+    
     // showing modal view
-    [self.navigationController.view addSubview:confirmationView];
+    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad)
+    {
+    [self.view addSubview:confirmationView];
+    
+    
+    confirmationView.iPadNavShadowView=[[UIView alloc] initWithFrame:self.navigationController.navigationBar.bounds];
+    confirmationView.iPadNavShadowView.backgroundColor=[UIColor colorWithWhite:0 alpha:0.5];
+    confirmationView.iPadNavShadowView.alpha=0;
+    [self.navigationController.navigationBar addSubview:confirmationView.iPadNavShadowView];
+        
+    }
+    else
+    {
+        [self.navigationController.view addSubview:confirmationView];
+    }
+    
+    [confirmationView show];
+    
     [self updatePrice];
     NSString *priceText;
     
-//    if (self.assetDealType == LWAssetDealTypeBuy) {
-//        priceText = [LWUtils priceForAsset:self.assetPair forValue:self.assetRate.ask];
-//    }
-//    else {
-//        priceText = [LWUtils priceForAsset:self.assetPair forValue:self.assetRate.bid];
-//    }
 
     if (self.assetDealType == LWAssetDealTypeBuy) {
         priceText = [LWUtils priceForAsset:self.assetPair forValue:rateToSend.ask];
@@ -805,24 +821,7 @@ static NSString *const FormIdentifiers[kFormRows] = {
     else {
         priceValue=[LWUtils fairVolume:self.assetRate.bid.doubleValue accuracy:priceAccuracy roundToHigher:NO];
     }
-
-//    
-//    
-//    
-//    
-//    NSDecimalNumber *decimalPrice = nil;
-//    if (self.assetDealType == LWAssetDealTypeBuy) {
-//        decimalPrice = [NSDecimalNumber decimalNumberWithDecimal:[self.assetRate.ask decimalValue]];
-//    }
-//    else {
-//        decimalPrice = [NSDecimalNumber decimalNumberWithDecimal:[self.assetRate.bid decimalValue]];
-//    }
-//    
-//    double price=decimalPrice.doubleValue;
-    double result=0;
-    
-    
-    result=volumeString.doubleValue*priceValue;
+    double result=volumeString.doubleValue*priceValue;
     
     NSString *str;
     if(self.assetDealType == LWAssetDealTypeBuy)
@@ -830,8 +829,6 @@ static NSString *const FormIdentifiers[kFormRows] = {
     else
         str=[LWUtils formatFairVolume:result accuracy:[self accuracyForQuotingAsset].intValue roundToHigher:NO];
 
-    
-//    NSString *vvv=[LWUtils formatVolumeNumber:@(result) currencySign:@"" accuracy:[self accuracyForQuotingAsset].intValue removeExtraZeroes:YES];
     if([str isEqualToString:@"0"])
         str=@"";
     return str;

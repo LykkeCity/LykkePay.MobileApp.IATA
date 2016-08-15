@@ -14,6 +14,8 @@
 #import "UIViewController+Loading.h"
 #import "LWCache.h"
 #import "LWKeychainManager.h"
+#import "LWPrivateKeyManager.h"
+#import "LWGenerateKeyPresenter.h"
 
 #import <AFNetworking/AFNetworking.h>
 
@@ -168,7 +170,15 @@ static int const kAllowedAttempts = 3;
             _isSuccess(YES);
         }
         else
-            [((LWAuthNavigationController *)self.navigationController) setRootMainTabScreen];
+        {
+            if([LWPrivateKeyManager shared].wifPrivateKeyLykke)
+                [((LWAuthNavigationController *)self.navigationController) setRootMainTabScreen];
+            else
+            {
+                LWGenerateKeyPresenter *presenter=[[LWGenerateKeyPresenter alloc] init];
+                [self.navigationController pushViewController:presenter animated:YES];
+            }
+        }
     }];
 }
 
@@ -204,7 +214,15 @@ static int const kAllowedAttempts = 3;
                  _isSuccess(YES);
              }
              else
-                 [((LWAuthNavigationController *)self.navigationController) setRootMainTabScreen];
+             {
+                 if([LWPrivateKeyManager shared].wifPrivateKeyLykke)
+                     [((LWAuthNavigationController *)self.navigationController) setRootMainTabScreen];
+                 else
+                 {
+                     LWGenerateKeyPresenter *presenter=[[LWGenerateKeyPresenter alloc] init];
+                     [self.navigationController pushViewController:presenter animated:YES];
+                 }
+             }
          }];
      }
      bad:^(void) {

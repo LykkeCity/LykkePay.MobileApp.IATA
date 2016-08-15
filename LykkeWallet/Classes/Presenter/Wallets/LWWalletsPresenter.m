@@ -39,6 +39,7 @@
 #import "UIViewController+Navigation.h"
 #import "LWKYCManager.h"
 #import "LWCreditCardDepositPresenter.h"
+#import "LWRefreshControlView.h"
 
 
 #ifdef PROJECT_IATA
@@ -438,12 +439,9 @@ static NSString *const WalletIcons[kNumberOfSections] = {
                     lykke.walletNameLabel.text = asset.name;
                     lykke.walletBalanceLabel.text = [NSString stringWithFormat:@"%@ %@",
                                                      asset.symbol, balance];
-//                    lykke.addWalletButton.hidden = ![[LWCache instance] isMultisigAvailable];
                     
                     lykke.addWalletButton.hidden=[LWCache shouldHideDepositForAssetId:asset.identity];
                     
-                    if([asset.identity isEqualToString:@"USD"] && [[NSUserDefaults standardUserDefaults] boolForKey:@"CanCashInViaBankCard"])
-                        lykke.addWalletButton.hidden=NO;
                     
                     // validate for base asset and balance
                     if ((![asset.identity isEqualToString:[LWCache instance].baseAssetId] && asset.balance.doubleValue > 0.0)) {
@@ -763,13 +761,12 @@ static NSString *const WalletIcons[kNumberOfSections] = {
             {
                 presenter = [LWBitcoinDepositPresenter new];
             }
-//            else if([data.identity isEqualToString:@"USD"] && [[NSUserDefaults standardUserDefaults] boolForKey:@"CanCashInViaBankCard"])
-//            {
-//                presenter=[LWCreditCardDepositPresenter new];
-//            }
             else
             {
-                presenter=[LWCurrencyDepositPresenter new];
+                if([LWCache isBankCardDepositEnabledForAssetId:data.identity])
+                    presenter=[LWCreditCardDepositPresenter new];
+                else
+                    presenter=[LWCurrencyDepositPresenter new];
             }
             
             
@@ -988,8 +985,8 @@ static NSString *const WalletIcons[kNumberOfSections] = {
     UIView *refreshView = [[UIView alloc] initWithFrame:CGRectMake(0, 5, 0, 0)];
     [self.tableView insertSubview:refreshView atIndex:0];
     
-    refreshControl = [[UIRefreshControl alloc] init];
-    refreshControl.tintColor = [UIColor blackColor];
+    refreshControl = [[LWRefreshControlView alloc] init];
+//    refreshControl.tintColor = [UIColor blackColor];
     [refreshControl addTarget:self action:@selector(reloadWallets)
              forControlEvents:UIControlEventValueChanged];
     [refreshView addSubview:refreshControl];

@@ -140,7 +140,7 @@
     
     [self.infoView addSubview:buttonsContainer];
     
-    if([self.assetID isEqualToString:@"USD"] && [[NSUserDefaults standardUserDefaults] boolForKey:@"CanCashInViaBankCard"])
+    if([LWCache isBankCardDepositEnabledForAssetId:self.assetID])
     {
         self.infoViewHeight.constant+=50;
         
@@ -249,7 +249,7 @@
     CGRect rrr=self.infoView.bounds;
     
     CGFloat offset=0;
-    if([self.assetID isEqualToString:@"USD"] && [[NSUserDefaults standardUserDefaults] boolForKey:@"CanCashInViaBankCard"])
+    if([LWCache isBankCardDepositEnabledForAssetId:self.assetID])
         offset=30;
     
     swiftButton.center=CGPointMake(self.view.bounds.size.width/2-3-swiftButton.bounds.size.width/2, 25);
@@ -458,72 +458,7 @@
     
 }
 
--(void) showCopied
-{
-    UIWindow *window=[UIApplication sharedApplication].windows[0];
-    UIView *shadowView=[[UIView alloc] initWithFrame:window.bounds];
-    shadowView.backgroundColor=[UIColor colorWithWhite:0 alpha:0.3];
-    [window addSubview:shadowView];
-    
-    UIView *view=[[UIView alloc] init];
-    view.backgroundColor=[UIColor whiteColor];
-    view.clipsToBounds=YES;
-    [window addSubview:view];
-    
-    UIView *labelView=[[UIView alloc] init];
-    UILabel *label=[[UILabel alloc] init];
-    label.font=[UIFont systemFontOfSize:18];
-    label.textColor=[UIColor colorWithRed:36.0/255 green:182.0/255 blue:53.0/255 alpha:1];
-    label.text=Localize(@"wallets.currency.copied");
-    
-    [label sizeToFit];
-    
-    UIImageView *signView=[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, label.bounds.size.height*1.2, label.bounds.size.height*1.2)];
-    signView.image=[UIImage imageNamed:@"CopiedCheckMarkSign.png"];
-    labelView.frame=CGRectMake(0, 0, label.bounds.size.width+10+signView.bounds.size.width, signView.bounds.size.width);
-    [labelView addSubview:label];
-    [labelView addSubview:signView];
-    
-    label.center=CGPointMake(labelView.bounds.size.width-label.bounds.size.width/2, labelView.bounds.size.height/2);
-    
-    
-    view.frame=CGRectMake(0, 0, labelView.bounds.size.width+80, labelView.bounds.size.height+25);
-    view.layer.cornerRadius=view.bounds.size.height/2;
 
-    [view addSubview:labelView];
-    
-    labelView.center=CGPointMake(view.bounds.size.width/2, view.bounds.size.height/2);
-    
-    view.center=CGPointMake(window.bounds.size.width/2, window.bounds.size.height/2);
-    
-    
-    
-    shadowView.alpha=0;
-    view.alpha=0;
-    
-    [UIView animateWithDuration:0.3 animations:^{
-    
-        shadowView.alpha=1;
-        view.alpha=1;
-    }];
-    
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        
-        [UIView animateWithDuration:0.3 animations:^{
-            
-            shadowView.alpha=0;
-            view.alpha=0;
-        } completion:^(BOOL finished){
-            [shadowView removeFromSuperview];
-            [view removeFromSuperview];
-        
-        }];
-
-        
-    });
-    
-    
-}
 
 
 -(void) mathKeyboardDonePressed:(LWMathKeyboardView *)keyboardView

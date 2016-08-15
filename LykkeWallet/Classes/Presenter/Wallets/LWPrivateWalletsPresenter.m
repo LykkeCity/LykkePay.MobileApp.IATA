@@ -37,33 +37,6 @@
     [self.view addSubview:tableView];
     
     NSMutableArray *www=[[NSMutableArray alloc] init];
-    
-//    NSArray *arr=@[@"MY LYKKE WALLET", @"MULTI WALLET", @"WALLET #30153"];
-//    for(NSString *s in arr)
-//    {
-//        LWPrivateWalletModel *w=[[LWPrivateWalletModel alloc] init];
-//        w.name=s;
-//        if([arr indexOfObject:s]==0)
-//        {
-//            LWPrivateWalletAssetModel *ass=[[LWPrivateWalletAssetModel alloc] init];
-//            ass.name=@"BTC";
-//            ass.amount=@(30.15);
-//            ass.baseAssetAmount=@(201);
-//            ass.assetId=@"BTC";
-//            LWPrivateWalletAssetModel *ass1=[[LWPrivateWalletAssetModel alloc] init];
-//            ass1.name=@"Lykke Corp";
-//            ass1.amount=@(134.20);
-//            ass1.baseAssetAmount=@(14);
-//            ass1.assetId=@"LKK";
-//            w.assets=@[ass1, ass];
-//
-//        }
-//        [www addObject:w];
-//    }
-
-    
-//    [[LWPrivateWalletsManager shared] deleteWallet:@"muo8D3pp9aCULe123F9YLEpriY3N5EgGWd" withCompletion:nil];
-    
     wallets=www;
     // Do any additional setup after loading the view.
 }
@@ -125,6 +98,7 @@
     {
         LWPrivateWalletAssetCell *cell=[[LWPrivateWalletAssetCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
         cell.asset=[wallets[indexPath.section] assets][indexPath.row-1];
+        cell.selectionStyle=UITableViewCellSelectionStyleNone;
         if(indexPath.row==[self tableView:tableView numberOfRowsInSection:indexPath.section]-1)
             [cell addBottomLine];
         return cell;
@@ -148,7 +122,7 @@
     {
         presenter=[[LWPrivateWalletHistoryPresenter alloc] init];
         [(LWAddPrivateWalletPresenter *)presenter setWallet:wallets[indexPath.section]];
-        [(LWPrivateWalletHistoryPresenter *)presenter setAsset:[wallets[indexPath.section] assets][indexPath.row]];
+        [(LWPrivateWalletHistoryPresenter *)presenter setAsset:[wallets[indexPath.section] assets][indexPath.row-1]];
         
     }
     [self.navigationController pushViewController:presenter animated:YES];
@@ -178,7 +152,7 @@
         float total=0;
         for(LWPrivateWalletModel *m in wallets)
             for(LWPrivateWalletAssetModel *a in m.assets)
-                total+=a.amount.floatValue;
+                total+=a.baseAssetAmount.floatValue;
         
         
         view.total=@(total);

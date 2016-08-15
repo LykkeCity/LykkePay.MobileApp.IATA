@@ -21,4 +21,7 @@
 @property (readonly, nonatomic) NSString *blockchainHash;
 @property BOOL isRefund;
 
+@property (readonly, nonatomic) NSString *addressFrom;
+@property (readonly, nonatomic) NSString *addressTo;
+
 @end

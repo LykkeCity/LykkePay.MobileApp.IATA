@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class LWPKTransferModel;
+
 @interface LWPKTransferConfirmationView : UIView
+
++(void) showTransfer:(LWPKTransferModel *) transfer withCompletion:(void(^)(BOOL result)) completion;
 
 @end

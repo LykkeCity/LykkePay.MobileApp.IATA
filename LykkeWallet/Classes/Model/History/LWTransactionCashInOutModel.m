@@ -26,6 +26,9 @@
         _iconId   = [json objectForKey:@"IconId"];
         _blockchainHash=[json objectForKey:@"BlockChainHash"];
         _isRefund=[[json objectForKey:@"IsRefund"] boolValue];
+        
+        _addressFrom=json[@"AddressFrom"];
+        _addressTo=json[@"AddressTo"];
     }
     return self;
 }

@@ -33,5 +33,8 @@
 +(NSString *) stringFromDouble:(double) number;
 +(NSString *) stringFromNumber:(NSNumber *) number;
 +(NSNumber *) accuracyForAssetId:(NSString *) assetID;
++(NSString *) hexStringFromData:(NSData *) data;
++(NSData *) dataFromHexString:(NSString *) command;
+
 
 @end

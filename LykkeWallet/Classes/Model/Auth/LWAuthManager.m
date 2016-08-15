@@ -68,6 +68,7 @@
 #import "LWPacketClientKeys.h"
 #import "LWPacketGetPaymentUrl.h"
 #import "LWPacketPrevCardPayment.h"
+#import "LWPacketGetHistory.h"
 
 
 #import "LWLykkeWalletsData.h"
@@ -564,6 +565,13 @@ SINGLETON_INIT {
     [self sendPacket:pack];
 }
 
+-(void) requestGetHistory:(NSString *) assetId
+{
+    LWPacketGetHistory *pack=[[LWPacketGetHistory alloc] init];
+    pack.assetId=assetId;
+    [self sendPacket:pack];
+}
+
 #pragma mark - Observing
 
 - (void)observeGDXNetAdapterDidReceiveResponseNotification:(NSNotification *)notification {
@@ -899,7 +907,24 @@ SINGLETON_INIT {
             [self.delegate authManager:self  didGetLastCardPaymentData:(LWPacketPrevCardPayment *) pack];
         }
     }
-
+    else if (pack.class == LWPacketGetHistory.class) {
+        if ([self.delegate respondsToSelector:@selector(authManager:didGetHistory:)]) {
+            [self.delegate authManager:self  didGetHistory:(LWPacketGetHistory *) pack];
+        }
+    }
+    
+    else if (pack.class == LWPacketGetHistory.class) {
+        if ([self.delegate respondsToSelector:@selector(authManager:didGetHistory:)]) {
+            [self.delegate authManager:self  didGetHistory:(LWPacketGetHistory *) pack];
+        }
+    }
+    else if (pack.class == LWPacketClientKeys.class) {
+        if ([self.delegate respondsToSelector:@selector(authManagerDidSendClientKeys:)]) {
+            [self.delegate authManagerDidSendClientKeys:self];
+        }
+    }
+   
+    
 
     
 }

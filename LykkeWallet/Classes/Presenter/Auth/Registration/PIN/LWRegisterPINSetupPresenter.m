@@ -11,6 +11,8 @@
 #import "ABPadLockScreen.h"
 #import "LWValidator.h"
 #import "UIViewController+Loading.h"
+#import "LWGenerateKeyPresenter.h"
+
 
 #import "LWKeychainManager.h"
 
@@ -118,8 +120,11 @@
 - (void)authManagerDidSetPin:(LWAuthManager *)manager {
     pinDidSendToServer = YES;
     // hide masking view
-    self.maskingView.hidden = YES;
+//    self.maskingView.hidden = YES;
     [self setLoading:NO];
+    LWGenerateKeyPresenter *presenter=[[LWGenerateKeyPresenter alloc] init];
+    [self.navigationController pushViewController:presenter animated:YES];
+    
 }
 
 @end

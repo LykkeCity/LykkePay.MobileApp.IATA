@@ -10,6 +10,7 @@
 
 @class LWPrivateWalletModel;
 @class LWPKBackupModel;
+@class LWPKTransferModel;
 
 @interface LWPrivateWalletsManager : NSObject
 
@@ -24,6 +25,9 @@
 -(void) deleteWallet:(NSString *) address withCompletion:(void (^)(BOOL))completion;
 
 -(void) backupPrivateKeyWithModel:(LWPKBackupModel *) model  withCompletion:(void (^)(BOOL))completion;
+
+-(void) requestTransferTransaction:(LWPKTransferModel *) transfer withCompletion:(void(^)(NSDictionary *)) completion;
+-(void) broadcastTransaction:(NSString *) raw identity:(NSString *) identity withCompletion:(void(^)(BOOL)) completion;
 
 + (instancetype) shared;
 

@@ -37,6 +37,10 @@ SINGLETON_DECLARE
 
 @property (strong, nonatomic) LWLykkeData *walletsData;
 
+@property (strong, nonatomic) NSString *cashInVisaURL;
+@property (strong, nonatomic) NSString *cashInVisaSuccessURL;
+@property (strong, nonatomic) NSString *cashInVisaFailURL;
+
 @property (copy, nonatomic) NSArray *allAssets;
 
 @property (copy, nonatomic) NSString *depositUrl;
@@ -60,6 +64,10 @@ SINGLETON_DECLARE
 
 +(BOOL) shouldHideDepositForAssetId:(NSString *)assetID;
 +(BOOL) shouldHideWithdrawForAssetId:(NSString *)assetID;
+
++(BOOL) isBankCardDepositEnabledForAssetId:(NSString *) assetID;
++(BOOL) isSwiftDepositEnabledForAssetId:(NSString *) assetID;
+
 
 +(BOOL) isBaseAsset:(NSString *) assetId;
 

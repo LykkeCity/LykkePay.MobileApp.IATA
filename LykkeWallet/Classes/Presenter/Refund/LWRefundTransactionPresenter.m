@@ -16,6 +16,9 @@
 #import "LWCameraMessageView2.h"
 #import "ZBarReaderViewController.h"
 #import "LWRefundBroadcastPresenter.h"
+#import "LWTransactionManager.h"
+#import "BTCTransaction.h"
+#import "LWUtils.h"
 
 #define BAR_GRAY_COLOR [UIColor colorWithRed:245.0/255 green:246.0/255 blue:248.0/255 alpha:1]
 #define TextColor [UIColor colorWithRed:63.0/255 green:77.0/255 blue:96.0/255 alpha:0.2]
@@ -25,11 +28,17 @@
 @interface LWRefundTransactionPresenter () <UITextFieldDelegate, UITextViewDelegate>
 {
     NSString *encodedPrivateKey;
+    BTCKey *key;
+    
+    BTCTransaction *signedTransaction;
+    
+    NSString *transactionPlaceholder;
 }
 
 @property (weak, nonatomic) IBOutlet UITextField *password;
 @property (weak, nonatomic) IBOutlet UITextView *transaction;
 @property (weak, nonatomic) IBOutlet UIImageView *iconValid;
+@property (weak, nonatomic) IBOutlet UIImageView *iconTransactionIsValid;
 @property (weak, nonatomic) IBOutlet UIButton *buttonProceed;
 @property (weak, nonatomic) IBOutlet UIView *scanView;
 
@@ -39,9 +48,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.password.secureTextEntry=YES;
+    transactionPlaceholder=@"Hex encoded bitcoin transaction";
+    
+    self.password.placeholder=@"Your password";
     self.password.delegate=self;
     self.transaction.delegate=self;
+    self.transaction.textColor = [UIColor colorWithRed:63.0/255 green:77.0/255 blue:96.0/255 alpha:0.3];
+    self.transaction.text = transactionPlaceholder;
+
     
     encodedPrivateKey=[[LWKeychainManager instance] encodedPrivateKeyForEmail:self.email];
     
@@ -55,9 +69,16 @@
     [self.buttonProceed setAttributedTitle:[[NSAttributedString alloc] initWithString:@"PROCEED" attributes:attrDisabled] forState:UIControlStateDisabled];
     [LWValidator setButton:self.buttonProceed enabled:NO];
 
-    
+//    UITapGestureRecognizer *tapGesture=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
+//    [self.view addGestureRecognizer:gesture];
     // Do any additional setup after loading the view from its nib.
 }
+
+//-(void) hideKeyboard
+//{
+//    [self.view endEditing:YES];
+//}
+
 
 -(void) viewWillAppear:(BOOL)animated
 {
@@ -72,63 +93,126 @@
     
 }
 
+-(void) viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
+    
+}
+
+
+-(void) tryToSignransaction
+{
+    if(!key)
+        return;
+    NSString *keyWif;
+    
+    if([[LWPrivateKeyManager shared] isDevServer])
+        keyWif=key.WIFTestnet;
+    else
+        keyWif=key.WIF;
+    
+    signedTransaction=[LWTransactionManager signMultiSigTransaction:self.transaction.text withKey:keyWif];
+    
+    if(signedTransaction)
+    {
+        [self.transaction resignFirstResponder];
+        self.iconTransactionIsValid.hidden=NO;
+        self.transaction.userInteractionEnabled=NO;
+        
+        [LWValidator setButton:self.buttonProceed enabled:YES];
+    }
+ 
+}
+
+
 -(BOOL) textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
 {
     NSString *newString=[textView.text stringByReplacingCharactersInRange:range withString:text];
-    if(newString.length && self.iconValid.hidden==NO)
-    {
-        [LWValidator setButton:self.buttonProceed enabled:YES];
-        return YES;
-    }
-    [LWValidator setButton:self.buttonProceed enabled:NO];
-    return YES;
+    textView.text=newString;
+    [self tryToSignransaction];
+    
+    return NO;
+//    
+//
+//    if(newString.length && self.iconValid.hidden==NO)
+//    {
+//        [LWValidator setButton:self.buttonProceed enabled:YES];
+//        return NO;
+//    }
+//    [LWValidator setButton:self.buttonProceed enabled:NO];
+//    return YES;
 }
 
 
 -(BOOL) textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
     NSString *newString=[textField.text stringByReplacingCharactersInRange:range withString:string];
+    self.password.text=newString;
 
-    if(textField==self.password)
-    {
         NSString *prK=[[LWPrivateKeyManager shared] decryptPrivateKey:encodedPrivateKey withPassword:newString];
         if(prK && prK.length>15)
         {
-            BTCKey *key=[[BTCKey alloc] initWithWIF:prK];
+            key=[[BTCKey alloc] initWithWIF:prK];
             if(key)
             {
                 self.password.userInteractionEnabled=NO;
                 [self.password resignFirstResponder];
                 self.iconValid.hidden=NO;
-                if([self.transaction.text length])
-                {
-                    [LWValidator setButton:self.buttonProceed enabled:YES];
-                    return YES;
-                }
-                    
-
+                
+                [self tryToSignransaction];
+                return NO;
             }
         }
-    }
-    else if(textField==self.password)
-    {
-
-    }
+    
     
     [LWValidator setButton:self.buttonProceed enabled:NO];
 
+    return NO;
+}
+
+- (BOOL) textViewShouldBeginEditing:(UITextView *)textView
+{
+    if([self.transaction.text isEqualToString:transactionPlaceholder])
+    {
+    self.transaction.text = @"";
+    }
+    self.transaction.textColor = [UIColor colorWithRed:63.0/255 green:77.0/255 blue:96.0/255 alpha:1];
     return YES;
+}
+
+-(void) textViewDidEndEditing:(UITextView *)textView
+{
+    [self textViewDidChange:textView];
+}
+
+-(void) textViewDidChange:(UITextView *)textView
+{
+    
+    if(self.transaction.text.length == 0){
+        self.transaction.textColor = [UIColor colorWithRed:63.0/255 green:77.0/255 blue:96.0/255 alpha:0.3];
+        self.transaction.text = transactionPlaceholder;
+        return;
+    }
+    else
+    {
+        self.transaction.textColor = [UIColor colorWithRed:63.0/255 green:77.0/255 blue:96.0/255 alpha:1];
+    }
+    
+    [self tryToSignransaction];
 }
 
 -(IBAction) proceedPressed:(id)sender
 {
     LWRefundBroadcastPresenter *presenter=[[LWRefundBroadcastPresenter alloc] init];
-    presenter.transactionText=self.transaction.text;
+    presenter.transactionText=[LWUtils hexStringFromData:signedTransaction.data];
+    presenter.lockTime=signedTransaction.lockTime;
     [self.navigationController pushViewController:presenter animated:YES];
 }
 
 -(void) scanQRPressed
 {
+    [self.view endEditing:YES];
     
 #if TARGET_IPHONE_SIMULATOR
     // Simulator
@@ -225,14 +309,14 @@
     // showing the result on textview
     
     
-    
     self.transaction.text=symbol.data;
-    if(self.iconValid.hidden==NO)
-    {
-        dispatch_async(dispatch_get_main_queue(), ^{
-        [LWValidator setButton:self.buttonProceed enabled:YES];
-            });
-    }
+    [self textViewDidChange:self.transaction];
+//    if(self.iconValid.hidden==NO)
+//    {
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//        [LWValidator setButton:self.buttonProceed enabled:YES];
+//            });
+//    }
     
     
     

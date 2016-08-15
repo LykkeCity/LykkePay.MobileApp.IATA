@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="Proxima Nova Regular.otf">
+            <string>ProximaNova-Regular</string>
+            <string>ProximaNova-Regular</string>
+        </mutableArray>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LWBackupIntroPresenter">
+            <connections>
+                <outlet property="takeBackupButton" destination="yLW-t4-Oge" id="t9X-pb-hkF"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IconLogo" translatesAutoresizingMaskIntoConstraints="NO" id="NQE-KX-jve">
+                    <rect key="frame" x="257" y="81" width="85" height="78"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="78" id="qdl-vz-Xap"/>
+                        <constraint firstAttribute="width" constant="85" id="wir-b5-stK"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Take a backup" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aF2-e2-Rnt">
+                    <rect key="frame" x="233" y="257" width="133.5" height="26"/>
+                    <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="21"/>
+                    <color key="textColor" red="0.24705882352941178" green="0.30196078431372547" blue="0.37647058823529411" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZDB-MW-0Ez">
+                    <rect key="frame" x="40" y="292" width="520" height="68.5"/>
+                    <string key="text">You have to make a backup of your wallet — with it you will be able to easily restore your funds in case of loss, damage, or malfunction of your device. Just write down 12 words and keep them in a safe place.</string>
+                    <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="14"/>
+                    <color key="textColor" red="0.24705882352941178" green="0.30196078431372547" blue="0.37647058823529411" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yLW-t4-Oge">
+                    <rect key="frame" x="282" y="533" width="46" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="45" id="XcM-p6-3hs"/>
+                    </constraints>
+                    <state key="normal" title="Button">
+                        <color key="titleColor" red="0.24705882352941178" green="0.30196078431372547" blue="0.37647058823529411" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="takeBackupButtonPressed:" destination="-2" eventType="touchUpInside" id="hSz-9n-BOa"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="aF2-e2-Rnt" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" multiplier="0.9" id="1hc-Zn-A2u"/>
+                <constraint firstAttribute="trailing" secondItem="yLW-t4-Oge" secondAttribute="trailing" constant="30" id="284-3x-cKO"/>
+                <constraint firstItem="aF2-e2-Rnt" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="C3k-Ox-cd2"/>
+                <constraint firstItem="ZDB-MW-0Ez" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="40" id="Ime-kz-cDe"/>
+                <constraint firstItem="NQE-KX-jve" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="82" id="Qlm-48-R1q"/>
+                <constraint firstItem="yLW-t4-Oge" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="30" id="R2Z-pb-8uW"/>
+                <constraint firstItem="NQE-KX-jve" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="fsg-41-wYa"/>
+                <constraint firstAttribute="bottom" secondItem="yLW-t4-Oge" secondAttribute="bottom" constant="30" id="llV-Kp-cwb"/>
+                <constraint firstItem="ZDB-MW-0Ez" firstAttribute="top" secondItem="aF2-e2-Rnt" secondAttribute="bottom" constant="9" id="niL-2w-raV"/>
+                <constraint firstItem="NQE-KX-jve" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" multiplier="0.4" id="oNw-n3-f98"/>
+                <constraint firstItem="ZDB-MW-0Ez" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="rRK-Lu-Sw7"/>
+                <constraint firstAttribute="trailing" secondItem="ZDB-MW-0Ez" secondAttribute="trailing" constant="40" id="vsJ-Do-9oh"/>
+            </constraints>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="Qlm-48-R1q"/>
+                </mask>
+            </variation>
+        </view>
+    </objects>
+    <resources>
+        <image name="IconLogo" width="95" height="60"/>
+    </resources>
+</document>

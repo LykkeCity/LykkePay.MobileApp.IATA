@@ -42,6 +42,8 @@
 
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomOffsetConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topViewHeightConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *creditCardIconTopOffset;
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UITextField *amount;
@@ -58,6 +60,10 @@
 @property (weak, nonatomic) IBOutlet UIButton *creditCardButton;
 @property (weak, nonatomic) IBOutlet UIButton *cachInButton;
 
+@property (weak, nonatomic) IBOutlet UIView *swiftCardMenuContainer;
+
+
+
 
 
 
@@ -72,6 +78,12 @@
     [self.scrollView addSubview:topBackView];
 
 
+    if([LWCache isSwiftDepositEnabledForAssetId:self.assetID]==NO)
+    {
+        self.topViewHeightConstraint.constant=self.topViewHeightConstraint.constant-60;
+        self.creditCardIconTopOffset.constant=16;
+        self.swiftCardMenuContainer.hidden=YES;
+    }
     
     self.firstName.autocapitalizationType=UITextAutocapitalizationTypeWords;
     self.lastName.autocapitalizationType=UITextAutocapitalizationTypeWords;
@@ -96,6 +108,8 @@
     
     [self checkTextFieldsAlpha];
     
+    self.country.delegate=self;
+    
     UIView *line=[[UIView alloc] initWithFrame:CGRectMake(0, self.amount.frame.origin.y-0.5, 1024, 0.5)];
     line.backgroundColor=[UIColor colorWithRed:211.0/255 green:214.0/255 blue:219.0/255 alpha:1];
     [_scrollView addSubview:line];
@@ -115,6 +129,9 @@
             countries=[NSArray arrayWithContentsOfFile:path];
     }
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(foundSuccessUrl) name:@"CreditCardFoundSuccessURL" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(foundSuccessUrl) name:@"CreditCardFoundFailURL" object:nil];
+
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -329,7 +346,7 @@
             [[LWAuthManager instance] requestPrevCardPayment];
         });
 
-        UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"BackIcon"] style:UIBarButtonItemStylePlain target:self action:@selector(backButtonPressed)];
+        UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"CloseCross"] style:UIBarButtonItemStylePlain target:self action:@selector(backButtonPressed)];
         self.navigationItem.leftBarButtonItem = button;
         
         
@@ -468,45 +485,60 @@
     }
     NSString *url=request.URL.absoluteString;
     NSLog(@"Loaded URL: %@", url);
-    if([url isEqualToString:okUrl])
-    {
-        
-        LWResultPresenter *presenter=[[LWResultPresenter alloc] init];
-        presenter.image=[UIImage imageNamed:@"WithdrawSuccessFlag.png"];
-        presenter.titleString=@"SUCCESSFUL!";
-        presenter.textString=@"Your payment was successfully sent!\nReturn to wallet and proceed with the trade.";
-        
-        presenter.delegate=self;
-        [self.navigationController presentViewController:presenter animated:YES completion:nil];
-        
-        
-        
-        
-        
-//        NSLog(@"Found OK URL");
-//        UIWindow *window=[UIApplication sharedApplication].windows[0];
-//        LWSuccessPresenterView *successView=[[LWSuccessPresenterView alloc] initWithFrame:window.bounds title:@"SUCCESSFUL!" text:@"Your payment was successfully sent!\nReturn to wallet and proceed with the trade."];
-//        successView.delegate=self;
-//        [window addSubview:successView];
-
-    }
-    else if([url isEqualToString:failUrl])
-    {
-        NSLog(@"Found FAIL URL");
-        
-        [webView removeFromSuperview];
-        webView=nil;
-        return NO;
-        
-        UIWindow *window=[UIApplication sharedApplication].windows[0];
-        LWFailedPresenterView *failView=[[LWFailedPresenterView alloc] initWithFrame:window.bounds title:@"OOPS!" text:@"We're terribly sorry, but we failed to make a payment on your provided details. Please try again later."];
-        failView.delegate=self;
-        [window addSubview:failView];
-
-        
-    }
+//    if([url isEqualToString:okUrl])
+//    {
+//        
+//        
+//        
+//        
+//        
+//        
+////        NSLog(@"Found OK URL");
+////        UIWindow *window=[UIApplication sharedApplication].windows[0];
+////        LWSuccessPresenterView *successView=[[LWSuccessPresenterView alloc] initWithFrame:window.bounds title:@"SUCCESSFUL!" text:@"Your payment was successfully sent!\nReturn to wallet and proceed with the trade."];
+////        successView.delegate=self;
+////        [window addSubview:successView];
+//
+//    }
+//    else if([url isEqualToString:failUrl])
+//    {
+//        NSLog(@"Found FAIL URL");
+//        
+//
+//        
+//    }
     return YES;
 }
+
+-(void) foundSuccessUrl
+{
+    webView.delegate=nil;
+    [webView stopLoading];
+    LWResultPresenter *presenter=[[LWResultPresenter alloc] init];
+    presenter.image=[UIImage imageNamed:@"WithdrawSuccessFlag.png"];
+    presenter.titleString=@"SUCCESSFUL!";
+    presenter.textString=@"Your payment was successfully sent!\nReturn to wallet and proceed with the trade.";
+    
+    presenter.delegate=self;
+    [self.navigationController presentViewController:presenter animated:YES completion:nil];
+
+}
+
+-(void) foundFailUrl
+{
+    [webView stopLoading];
+    webView.delegate=nil;
+    [webView removeFromSuperview];
+    webView=nil;
+//    return NO;
+    
+//    UIWindow *window=[UIApplication sharedApplication].windows[0];
+//    LWFailedPresenterView *failView=[[LWFailedPresenterView alloc] initWithFrame:window.bounds title:@"OOPS!" text:@"We're terribly sorry, but we failed to make a payment on your provided details. Please try again later."];
+//    failView.delegate=self;
+//    [window addSubview:failView];
+
+}
+
 
 -(void) resultPresenterDismissed
 {
@@ -584,6 +616,11 @@
         }
     }
 
+}
+
+-(void) dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 

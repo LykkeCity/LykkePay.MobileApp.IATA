@@ -10,4 +10,27 @@
 
 @implementation LWPacketGetHistory
 
+- (void)parseResponse:(id)response error:(NSError *)error {
+    [super parseResponse:response error:error];
+    
+    if (self.isRejected) {
+        return;
+    }
+    self.historyArray=(NSArray *)result;
+    
+    
+}
+
+- (NSString *)urlRelative {
+    if(self.assetId && [self.assetId isKindOfClass:[NSString class]])
+        return [NSString stringWithFormat:@"History?assetId=%@", self.assetId];
+    else
+        return @"History";
+}
+
+- (GDXRESTPacketType)type {
+    return GDXRESTPacketTypeGET;
+}
+
+
 @end

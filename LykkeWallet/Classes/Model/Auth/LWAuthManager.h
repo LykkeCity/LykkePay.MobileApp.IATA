@@ -45,6 +45,8 @@
 @class LWPacketPushSettingsGet;
 @class LWPacketGetPaymentUrl;
 @class LWPacketPrevCardPayment;
+@class LWPacketGetHistory;
+@class LWPacketClientKeys;
 
 
 @protocol LWAuthManagerDelegate<NSObject>
@@ -115,7 +117,9 @@
 -(void) authManager:(LWAuthManager *)manager didGetPaymentUrl:(LWPacketGetPaymentUrl *) packet;
 
 -(void) authManager:(LWAuthManager *)manager didGetLastCardPaymentData:(LWPacketPrevCardPayment *) packet;
+-(void) authManager:(LWAuthManager *)manager didGetHistory:(LWPacketGetHistory *) packet;
 
+-(void) authManagerDidSendClientKeys:(LWAuthManager *) manager;
 
 @end
 
@@ -207,6 +211,8 @@ SINGLETON_DECLARE
 -(void) requestGetPaymentUrlWithParameters:(NSDictionary *) params;
 
 -(void) requestPrevCardPayment;
+
+-(void) requestGetHistory:(NSString *) assetId;
 
 
 

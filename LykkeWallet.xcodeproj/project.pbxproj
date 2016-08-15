@@ -39,7 +39,6 @@
 		A1165D241CF580630017A725 /* LWAssetTableViewCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1165D231CF580630017A725 /* LWAssetTableViewCell~ipad.xib */; };
 		A1165D261CF583100017A725 /* LWExchangePresenter~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1165D251CF583100017A725 /* LWExchangePresenter~ipad.xib */; };
 		A1165D271CF586BF0017A725 /* LWHistoryPresenter~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC89231F1CC3DAC700201BE7 /* LWHistoryPresenter~ipad.xib */; };
-		A1165D281CF58C120017A725 /* LWHistoryTableViewCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC8923211CC3DB5B00201BE7 /* LWHistoryTableViewCell~ipad.xib */; };
 		A1165D291CF5CC420017A725 /* LWSettingsPresenter~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC8923231CC3DCAB00201BE7 /* LWSettingsPresenter~ipad.xib */; };
 		A1165D2D1CF5DB5C0017A725 /* LWChooseAssetTableViewCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1165D2C1CF5DB5C0017A725 /* LWChooseAssetTableViewCell~ipad.xib */; };
 		A1165D2F1CF5E4DA0017A725 /* CheckMark.png in Resources */ = {isa = PBXBuildFile; fileRef = A1165D2E1CF5E4DA0017A725 /* CheckMark.png */; };
@@ -95,6 +94,8 @@
 		A1654E411D51DC51001741A7 /* LWRefundBroadcastPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A1654E3F1D51DC51001741A7 /* LWRefundBroadcastPresenter.m */; };
 		A1654E421D51DC51001741A7 /* LWRefundBroadcastPresenter.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1654E401D51DC51001741A7 /* LWRefundBroadcastPresenter.xib */; };
 		A1654E451D5201D5001741A7 /* LWTransactionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A1654E441D5201D5001741A7 /* LWTransactionManager.m */; };
+		A1654E481D583702001741A7 /* LWPKTransferConfirmationCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = A1654E471D583702001741A7 /* LWPKTransferConfirmationCellView.m */; };
+		A1654E4B1D589A00001741A7 /* LWURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = A1654E4A1D589A00001741A7 /* LWURLProtocol.m */; };
 		A17069891D25FBFB0044D7FA /* LWAssetURLTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A17069881D25FBFB0044D7FA /* LWAssetURLTableViewCell.xib */; };
 		A170698C1D25FC3D0044D7FA /* LWAssetURLTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A170698B1D25FC3D0044D7FA /* LWAssetURLTableViewCell.m */; };
 		A17069901D2601CC0044D7FA /* LWCameraMessageView2.m in Sources */ = {isa = PBXBuildFile; fileRef = A170698E1D2601CC0044D7FA /* LWCameraMessageView2.m */; };
@@ -115,6 +116,8 @@
 		A18F892C1CE85B0A00399850 /* LWWithdrawCurrencyPresenter.xib in Resources */ = {isa = PBXBuildFile; fileRef = A18F892B1CE85B0A00399850 /* LWWithdrawCurrencyPresenter.xib */; };
 		A19E08D51CEB5275004D286A /* LWRegisterCameraPresenter~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A19E08D41CEB5275004D286A /* LWRegisterCameraPresenter~ipad.xib */; };
 		A19E08D71CEB5722004D286A /* LWCameraOverlayPresenter~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A19E08D61CEB5722004D286A /* LWCameraOverlayPresenter~ipad.xib */; };
+		A1A7D3521D62393A00026576 /* LWTestBackupWordsPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A1A7D3501D62393A00026576 /* LWTestBackupWordsPresenter.m */; };
+		A1A7D3531D62393A00026576 /* LWTestBackupWordsPresenter.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1A7D3511D62393A00026576 /* LWTestBackupWordsPresenter.xib */; };
 		A1AA588F1CED730F00D24E68 /* LWWalletsPresenter~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC89230D1CC3C35100201BE7 /* LWWalletsPresenter~ipad.xib */; };
 		A1AA58921CED7BFC00D24E68 /* LWWalletTableViewCell~iphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC0E84401C8EC7EA00FE128C /* LWWalletTableViewCell~iphone.xib */; };
 		A1AA58931CED7C0100D24E68 /* LWWalletTableViewCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC89230F1CC3CA2400201BE7 /* LWWalletTableViewCell~ipad.xib */; };
@@ -844,6 +847,141 @@
 		A1D4777E1D050B9900438846 /* loader-color@2x_00078.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D4772D1D050B9900438846 /* loader-color@2x_00078.png */; };
 		A1D4777F1D050B9900438846 /* loader-color@2x_00079.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D4772E1D050B9900438846 /* loader-color@2x_00079.png */; };
 		A1D477801D050B9900438846 /* loader-color@2x_00080.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D4772F1D050B9900438846 /* loader-color@2x_00080.png */; };
+		A1D65CC01D5A17DE00828783 /* LWEmptyHistoryPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A1D65CBE1D5A17DE00828783 /* LWEmptyHistoryPresenter.m */; };
+		A1D65CC11D5A17DE00828783 /* LWEmptyHistoryPresenter.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1D65CBF1D5A17DE00828783 /* LWEmptyHistoryPresenter.xib */; };
+		A1D65CC51D5DB09700828783 /* LWGenerateKeyPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A1D65CC31D5DB09700828783 /* LWGenerateKeyPresenter.m */; };
+		A1D65CC61D5DB09700828783 /* LWGenerateKeyPresenter.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1D65CC41D5DB09700828783 /* LWGenerateKeyPresenter.xib */; };
+		A1D65D441D5DCF1100828783 /* crypto_bar_00000.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65CCC1D5DCF1000828783 /* crypto_bar_00000.png */; };
+		A1D65D451D5DCF1100828783 /* crypto_bar_00001.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65CCD1D5DCF1000828783 /* crypto_bar_00001.png */; };
+		A1D65D461D5DCF1100828783 /* crypto_bar_00002.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65CCE1D5DCF1000828783 /* crypto_bar_00002.png */; };
+		A1D65D471D5DCF1100828783 /* crypto_bar_00003.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65CCF1D5DCF1000828783 /* crypto_bar_00003.png */; };
+		A1D65D481D5DCF1100828783 /* crypto_bar_00004.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65CD01D5DCF1000828783 /* crypto_bar_00004.png */; };
+		A1D65D491D5DCF1100828783 /* crypto_bar_00005.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65CD11D5DCF1000828783 /* crypto_bar_00005.png */; };
+		A1D65D4A1D5DCF1100828783 /* crypto_bar_00006.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65CD21D5DCF1000828783 /* crypto_bar_00006.png */; };
+		A1D65D4B1D5DCF1100828783 /* crypto_bar_00007.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65CD31D5DCF1000828783 /* crypto_bar_00007.png */; };
+		A1D65D4C1D5DCF1100828783 /* crypto_bar_00008.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65CD41D5DCF1000828783 /* crypto_bar_00008.png */; };
+		A1D65D4D1D5DCF1100828783 /* crypto_bar_00009.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65CD51D5DCF1000828783 /* crypto_bar_00009.png */; };
+		A1D65D4E1D5DCF1100828783 /* crypto_bar_00010.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65CD61D5DCF1000828783 /* crypto_bar_00010.png */; };
+		A1D65D4F1D5DCF1100828783 /* crypto_bar_00011.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65CD71D5DCF1000828783 /* crypto_bar_00011.png */; };
+		A1D65D501D5DCF1100828783 /* crypto_bar_00012.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65CD81D5DCF1000828783 /* crypto_bar_00012.png */; };
+		A1D65D511D5DCF1100828783 /* crypto_bar_00013.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65CD91D5DCF1000828783 /* crypto_bar_00013.png */; };
+		A1D65D521D5DCF1100828783 /* crypto_bar_00014.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65CDA1D5DCF1000828783 /* crypto_bar_00014.png */; };
+		A1D65D531D5DCF1100828783 /* crypto_bar_00015.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65CDB1D5DCF1000828783 /* crypto_bar_00015.png */; };
+		A1D65D541D5DCF1100828783 /* crypto_bar_00016.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65CDC1D5DCF1000828783 /* crypto_bar_00016.png */; };
+		A1D65D551D5DCF1100828783 /* crypto_bar_00017.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65CDD1D5DCF1000828783 /* crypto_bar_00017.png */; };
+		A1D65D561D5DCF1100828783 /* crypto_bar_00018.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65CDE1D5DCF1000828783 /* crypto_bar_00018.png */; };
+		A1D65D571D5DCF1100828783 /* crypto_bar_00019.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65CDF1D5DCF1000828783 /* crypto_bar_00019.png */; };
+		A1D65D581D5DCF1100828783 /* crypto_bar_00020.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65CE01D5DCF1000828783 /* crypto_bar_00020.png */; };
+		A1D65D591D5DCF1100828783 /* crypto_bar_00021.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65CE11D5DCF1000828783 /* crypto_bar_00021.png */; };
+		A1D65D5A1D5DCF1100828783 /* crypto_bar_00022.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65CE21D5DCF1000828783 /* crypto_bar_00022.png */; };
+		A1D65D5B1D5DCF1100828783 /* crypto_bar_00023.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65CE31D5DCF1000828783 /* crypto_bar_00023.png */; };
+		A1D65D5C1D5DCF1100828783 /* crypto_bar_00024.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65CE41D5DCF1000828783 /* crypto_bar_00024.png */; };
+		A1D65D5D1D5DCF1100828783 /* crypto_bar_00025.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65CE51D5DCF1000828783 /* crypto_bar_00025.png */; };
+		A1D65D5E1D5DCF1100828783 /* crypto_bar_00026.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65CE61D5DCF1000828783 /* crypto_bar_00026.png */; };
+		A1D65D5F1D5DCF1100828783 /* crypto_bar_00027.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65CE71D5DCF1000828783 /* crypto_bar_00027.png */; };
+		A1D65D601D5DCF1100828783 /* crypto_bar_00028.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65CE81D5DCF1000828783 /* crypto_bar_00028.png */; };
+		A1D65D611D5DCF1100828783 /* crypto_bar_00029.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65CE91D5DCF1000828783 /* crypto_bar_00029.png */; };
+		A1D65D621D5DCF1100828783 /* crypto_bar_00030.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65CEA1D5DCF1000828783 /* crypto_bar_00030.png */; };
+		A1D65D631D5DCF1100828783 /* crypto_bar_00031.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65CEB1D5DCF1000828783 /* crypto_bar_00031.png */; };
+		A1D65D641D5DCF1100828783 /* crypto_bar_00032.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65CEC1D5DCF1000828783 /* crypto_bar_00032.png */; };
+		A1D65D651D5DCF1100828783 /* crypto_bar_00033.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65CED1D5DCF1000828783 /* crypto_bar_00033.png */; };
+		A1D65D661D5DCF1100828783 /* crypto_bar_00034.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65CEE1D5DCF1000828783 /* crypto_bar_00034.png */; };
+		A1D65D671D5DCF1100828783 /* crypto_bar_00035.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65CEF1D5DCF1000828783 /* crypto_bar_00035.png */; };
+		A1D65D681D5DCF1100828783 /* crypto_bar_00036.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65CF01D5DCF1000828783 /* crypto_bar_00036.png */; };
+		A1D65D691D5DCF1100828783 /* crypto_bar_00037.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65CF11D5DCF1000828783 /* crypto_bar_00037.png */; };
+		A1D65D6A1D5DCF1100828783 /* crypto_bar_00038.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65CF21D5DCF1000828783 /* crypto_bar_00038.png */; };
+		A1D65D6B1D5DCF1100828783 /* crypto_bar_00039.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65CF31D5DCF1000828783 /* crypto_bar_00039.png */; };
+		A1D65D6C1D5DCF1100828783 /* crypto_bar_00040.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65CF41D5DCF1000828783 /* crypto_bar_00040.png */; };
+		A1D65D6D1D5DCF1100828783 /* crypto_bar_00041.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65CF51D5DCF1000828783 /* crypto_bar_00041.png */; };
+		A1D65D6E1D5DCF1100828783 /* crypto_bar_00042.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65CF61D5DCF1000828783 /* crypto_bar_00042.png */; };
+		A1D65D6F1D5DCF1100828783 /* crypto_bar_00043.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65CF71D5DCF1000828783 /* crypto_bar_00043.png */; };
+		A1D65D701D5DCF1100828783 /* crypto_bar_00044.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65CF81D5DCF1000828783 /* crypto_bar_00044.png */; };
+		A1D65D711D5DCF1100828783 /* crypto_bar_00045.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65CF91D5DCF1000828783 /* crypto_bar_00045.png */; };
+		A1D65D721D5DCF1100828783 /* crypto_bar_00046.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65CFA1D5DCF1000828783 /* crypto_bar_00046.png */; };
+		A1D65D731D5DCF1100828783 /* crypto_bar_00047.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65CFB1D5DCF1000828783 /* crypto_bar_00047.png */; };
+		A1D65D741D5DCF1100828783 /* crypto_bar_00048.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65CFC1D5DCF1000828783 /* crypto_bar_00048.png */; };
+		A1D65D751D5DCF1100828783 /* crypto_bar_00049.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65CFD1D5DCF1000828783 /* crypto_bar_00049.png */; };
+		A1D65D761D5DCF1100828783 /* crypto_bar_00050.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65CFE1D5DCF1000828783 /* crypto_bar_00050.png */; };
+		A1D65D771D5DCF1100828783 /* crypto_bar_00051.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65CFF1D5DCF1000828783 /* crypto_bar_00051.png */; };
+		A1D65D781D5DCF1100828783 /* crypto_bar_00052.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65D001D5DCF1000828783 /* crypto_bar_00052.png */; };
+		A1D65D791D5DCF1100828783 /* crypto_bar_00053.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65D011D5DCF1000828783 /* crypto_bar_00053.png */; };
+		A1D65D7A1D5DCF1100828783 /* crypto_bar_00054.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65D021D5DCF1000828783 /* crypto_bar_00054.png */; };
+		A1D65D7B1D5DCF1100828783 /* crypto_bar_00055.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65D031D5DCF1000828783 /* crypto_bar_00055.png */; };
+		A1D65D7C1D5DCF1100828783 /* crypto_bar_00056.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65D041D5DCF1000828783 /* crypto_bar_00056.png */; };
+		A1D65D7D1D5DCF1100828783 /* crypto_bar_00057.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65D051D5DCF1000828783 /* crypto_bar_00057.png */; };
+		A1D65D7E1D5DCF1100828783 /* crypto_bar_00058.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65D061D5DCF1000828783 /* crypto_bar_00058.png */; };
+		A1D65D7F1D5DCF1100828783 /* crypto_bar_00059.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65D071D5DCF1000828783 /* crypto_bar_00059.png */; };
+		A1D65D801D5DCF1100828783 /* crypto_bar_00060.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65D081D5DCF1000828783 /* crypto_bar_00060.png */; };
+		A1D65D811D5DCF1100828783 /* crypto_bar_00061.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65D091D5DCF1000828783 /* crypto_bar_00061.png */; };
+		A1D65D821D5DCF1100828783 /* crypto_bar_00062.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65D0A1D5DCF1000828783 /* crypto_bar_00062.png */; };
+		A1D65D831D5DCF1100828783 /* crypto_bar_00063.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65D0B1D5DCF1000828783 /* crypto_bar_00063.png */; };
+		A1D65D841D5DCF1100828783 /* crypto_bar_00064.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65D0C1D5DCF1000828783 /* crypto_bar_00064.png */; };
+		A1D65D851D5DCF1100828783 /* crypto_bar_00065.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65D0D1D5DCF1000828783 /* crypto_bar_00065.png */; };
+		A1D65D861D5DCF1100828783 /* crypto_bar_00066.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65D0E1D5DCF1000828783 /* crypto_bar_00066.png */; };
+		A1D65D871D5DCF1100828783 /* crypto_bar_00067.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65D0F1D5DCF1000828783 /* crypto_bar_00067.png */; };
+		A1D65D881D5DCF1100828783 /* crypto_bar_00068.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65D101D5DCF1000828783 /* crypto_bar_00068.png */; };
+		A1D65D891D5DCF1100828783 /* crypto_bar_00069.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65D111D5DCF1100828783 /* crypto_bar_00069.png */; };
+		A1D65D8A1D5DCF1100828783 /* crypto_bar_00070.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65D121D5DCF1100828783 /* crypto_bar_00070.png */; };
+		A1D65D8B1D5DCF1100828783 /* crypto_bar_00071.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65D131D5DCF1100828783 /* crypto_bar_00071.png */; };
+		A1D65D8C1D5DCF1100828783 /* crypto_bar_00072.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65D141D5DCF1100828783 /* crypto_bar_00072.png */; };
+		A1D65D8D1D5DCF1100828783 /* crypto_bar_00073.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65D151D5DCF1100828783 /* crypto_bar_00073.png */; };
+		A1D65D8E1D5DCF1100828783 /* crypto_bar_00074.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65D161D5DCF1100828783 /* crypto_bar_00074.png */; };
+		A1D65D8F1D5DCF1100828783 /* crypto_bar_00075.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65D171D5DCF1100828783 /* crypto_bar_00075.png */; };
+		A1D65D901D5DCF1100828783 /* crypto_bar_00076.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65D181D5DCF1100828783 /* crypto_bar_00076.png */; };
+		A1D65D911D5DCF1100828783 /* crypto_bar_00077.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65D191D5DCF1100828783 /* crypto_bar_00077.png */; };
+		A1D65D921D5DCF1100828783 /* crypto_bar_00078.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65D1A1D5DCF1100828783 /* crypto_bar_00078.png */; };
+		A1D65D931D5DCF1100828783 /* crypto_bar_00079.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65D1B1D5DCF1100828783 /* crypto_bar_00079.png */; };
+		A1D65D941D5DCF1100828783 /* crypto_bar_00080.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65D1C1D5DCF1100828783 /* crypto_bar_00080.png */; };
+		A1D65D951D5DCF1100828783 /* crypto_bar_00081.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65D1D1D5DCF1100828783 /* crypto_bar_00081.png */; };
+		A1D65D961D5DCF1100828783 /* crypto_bar_00082.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65D1E1D5DCF1100828783 /* crypto_bar_00082.png */; };
+		A1D65D971D5DCF1100828783 /* crypto_bar_00083.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65D1F1D5DCF1100828783 /* crypto_bar_00083.png */; };
+		A1D65D981D5DCF1100828783 /* crypto_bar_00084.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65D201D5DCF1100828783 /* crypto_bar_00084.png */; };
+		A1D65D991D5DCF1100828783 /* crypto_bar_00085.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65D211D5DCF1100828783 /* crypto_bar_00085.png */; };
+		A1D65D9A1D5DCF1100828783 /* crypto_bar_00086.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65D221D5DCF1100828783 /* crypto_bar_00086.png */; };
+		A1D65D9B1D5DCF1100828783 /* crypto_bar_00087.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65D231D5DCF1100828783 /* crypto_bar_00087.png */; };
+		A1D65D9C1D5DCF1100828783 /* crypto_bar_00088.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65D241D5DCF1100828783 /* crypto_bar_00088.png */; };
+		A1D65D9D1D5DCF1100828783 /* crypto_bar_00089.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65D251D5DCF1100828783 /* crypto_bar_00089.png */; };
+		A1D65D9E1D5DCF1100828783 /* crypto_bar_00090.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65D261D5DCF1100828783 /* crypto_bar_00090.png */; };
+		A1D65D9F1D5DCF1100828783 /* crypto_bar_00091.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65D271D5DCF1100828783 /* crypto_bar_00091.png */; };
+		A1D65DA01D5DCF1100828783 /* crypto_bar_00092.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65D281D5DCF1100828783 /* crypto_bar_00092.png */; };
+		A1D65DA11D5DCF1100828783 /* crypto_bar_00093.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65D291D5DCF1100828783 /* crypto_bar_00093.png */; };
+		A1D65DA21D5DCF1100828783 /* crypto_bar_00094.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65D2A1D5DCF1100828783 /* crypto_bar_00094.png */; };
+		A1D65DA31D5DCF1100828783 /* crypto_bar_00095.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65D2B1D5DCF1100828783 /* crypto_bar_00095.png */; };
+		A1D65DA41D5DCF1100828783 /* crypto_bar_00096.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65D2C1D5DCF1100828783 /* crypto_bar_00096.png */; };
+		A1D65DA51D5DCF1100828783 /* crypto_bar_00097.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65D2D1D5DCF1100828783 /* crypto_bar_00097.png */; };
+		A1D65DA61D5DCF1100828783 /* crypto_bar_00098.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65D2E1D5DCF1100828783 /* crypto_bar_00098.png */; };
+		A1D65DA71D5DCF1100828783 /* crypto_bar_00099.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65D2F1D5DCF1100828783 /* crypto_bar_00099.png */; };
+		A1D65DA81D5DCF1100828783 /* crypto_bar_00100.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65D301D5DCF1100828783 /* crypto_bar_00100.png */; };
+		A1D65DA91D5DCF1100828783 /* crypto_bar_00101.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65D311D5DCF1100828783 /* crypto_bar_00101.png */; };
+		A1D65DAA1D5DCF1100828783 /* crypto_bar_00102.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65D321D5DCF1100828783 /* crypto_bar_00102.png */; };
+		A1D65DAB1D5DCF1100828783 /* crypto_bar_00103.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65D331D5DCF1100828783 /* crypto_bar_00103.png */; };
+		A1D65DAC1D5DCF1100828783 /* crypto_bar_00104.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65D341D5DCF1100828783 /* crypto_bar_00104.png */; };
+		A1D65DAD1D5DCF1100828783 /* crypto_bar_00105.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65D351D5DCF1100828783 /* crypto_bar_00105.png */; };
+		A1D65DAE1D5DCF1100828783 /* crypto_bar_00106.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65D361D5DCF1100828783 /* crypto_bar_00106.png */; };
+		A1D65DAF1D5DCF1100828783 /* crypto_bar_00107.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65D371D5DCF1100828783 /* crypto_bar_00107.png */; };
+		A1D65DB01D5DCF1100828783 /* crypto_bar_00108.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65D381D5DCF1100828783 /* crypto_bar_00108.png */; };
+		A1D65DB11D5DCF1100828783 /* crypto_bar_00109.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65D391D5DCF1100828783 /* crypto_bar_00109.png */; };
+		A1D65DB21D5DCF1100828783 /* crypto_bar_00110.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65D3A1D5DCF1100828783 /* crypto_bar_00110.png */; };
+		A1D65DB31D5DCF1100828783 /* crypto_bar_00111.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65D3B1D5DCF1100828783 /* crypto_bar_00111.png */; };
+		A1D65DB41D5DCF1100828783 /* crypto_bar_00112.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65D3C1D5DCF1100828783 /* crypto_bar_00112.png */; };
+		A1D65DB51D5DCF1100828783 /* crypto_bar_00113.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65D3D1D5DCF1100828783 /* crypto_bar_00113.png */; };
+		A1D65DB61D5DCF1100828783 /* crypto_bar_00114.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65D3E1D5DCF1100828783 /* crypto_bar_00114.png */; };
+		A1D65DB71D5DCF1100828783 /* crypto_bar_00115.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65D3F1D5DCF1100828783 /* crypto_bar_00115.png */; };
+		A1D65DB81D5DCF1100828783 /* crypto_bar_00116.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65D401D5DCF1100828783 /* crypto_bar_00116.png */; };
+		A1D65DB91D5DCF1100828783 /* crypto_bar_00117.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65D411D5DCF1100828783 /* crypto_bar_00117.png */; };
+		A1D65DBA1D5DCF1100828783 /* crypto_bar_00118.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65D421D5DCF1100828783 /* crypto_bar_00118.png */; };
+		A1D65DBB1D5DCF1100828783 /* crypto_bar_00119.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65D431D5DCF1100828783 /* crypto_bar_00119.png */; };
+		A1D65DBE1D5EBCBC00828783 /* LWBackupIntroPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A1D65DBD1D5EBCBC00828783 /* LWBackupIntroPresenter.m */; };
+		A1D65DC01D5EBD0000828783 /* LWBackupIntroPresenter.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1D65DBF1D5EBD0000828783 /* LWBackupIntroPresenter.xib */; };
+		A1D65DC31D5EC14700828783 /* LWBackupGetStartedPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A1D65DC21D5EC14700828783 /* LWBackupGetStartedPresenter.m */; };
+		A1D65DC51D5EC18600828783 /* LWBackupGetStartedPresenter.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1D65DC41D5EC18600828783 /* LWBackupGetStartedPresenter.xib */; };
+		A1D65DC91D5EC53200828783 /* LWBackupSingleWordPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A1D65DC71D5EC53200828783 /* LWBackupSingleWordPresenter.m */; };
+		A1D65DCA1D5EC53200828783 /* LWBackupSingleWordPresenter.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1D65DC81D5EC53200828783 /* LWBackupSingleWordPresenter.xib */; };
+		A1D65DCE1D5ECF6E00828783 /* LWBackupCheckWordsPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A1D65DCC1D5ECF6E00828783 /* LWBackupCheckWordsPresenter.m */; };
+		A1D65DCF1D5ECF6E00828783 /* LWBackupCheckWordsPresenter.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1D65DCD1D5ECF6E00828783 /* LWBackupCheckWordsPresenter.xib */; };
+		A1D65DD21D602B0100828783 /* english_words_list.txt in Resources */ = {isa = PBXBuildFile; fileRef = A1D65DD11D602B0100828783 /* english_words_list.txt */; };
+		A1D65DD51D6073BA00828783 /* LWBackupSuccessPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A1D65DD41D6073BA00828783 /* LWBackupSuccessPresenter.m */; };
+		A1D65DD71D60741100828783 /* LWBackupSuccessPresenter.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1D65DD61D60741100828783 /* LWBackupSuccessPresenter.xib */; };
 		A1E4EA931CE424D800293282 /* LWPacketGraphPeriods.m in Sources */ = {isa = PBXBuildFile; fileRef = A1E4EA921CE424D800293282 /* LWPacketGraphPeriods.m */; };
 		A1E4EA971CE4283100293282 /* LWGraphPeriodModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A1E4EA961CE4283100293282 /* LWGraphPeriodModel.m */; };
 		A1E4EA9A1CE42D5800293282 /* LWPacketGraphData.m in Sources */ = {isa = PBXBuildFile; fileRef = A1E4EA991CE42D5800293282 /* LWPacketGraphData.m */; };
@@ -1190,7 +1328,7 @@
 		EC4D924D1C8778DF006EE7C8 /* LWRegisterPasswordPresenter~iphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDCD5B171C26CC50007BAD78 /* LWRegisterPasswordPresenter~iphone.xib */; };
 		EC4D924E1C8778DF006EE7C8 /* LWKYCCheckDocumentsPresenter~iphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC59526B1C31ED6C0036240C /* LWKYCCheckDocumentsPresenter~iphone.xib */; };
 		EC4D924F1C8778DF006EE7C8 /* LWHistoryPresenter~iphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDCD5AE91C259629007BAD78 /* LWHistoryPresenter~iphone.xib */; };
-		EC4D92521C8778DF006EE7C8 /* LWHistoryTableViewCell~iphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECEC40B71C4298DC00B22BEE /* LWHistoryTableViewCell~iphone.xib */; };
+		EC4D92521C8778DF006EE7C8 /* LWHistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECEC40B71C4298DC00B22BEE /* LWHistoryTableViewCell.xib */; };
 		EC4D92591C8778DF006EE7C8 /* LWAssetsTablePresenter.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC7519B71C37351C00CDDF5B /* LWAssetsTablePresenter.xib */; };
 		EC4D925C1C8778DF006EE7C8 /* LWKYCPendingPresenter.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFF7583B1C202C6500BC7658 /* LWKYCPendingPresenter.xib */; };
 		EC4D925E1C8778DF006EE7C8 /* LWRegisterPINSetupPresenter.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF68774F1C234A7200E7A7D9 /* LWRegisterPINSetupPresenter.xib */; };
@@ -1276,7 +1414,6 @@
 		EC89231C1CC3D49B00201BE7 /* LWTransferPresenter~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC89231B1CC3D49B00201BE7 /* LWTransferPresenter~ipad.xib */; };
 		EC89231E1CC3D53400201BE7 /* LWTransferTableViewCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC89231D1CC3D53400201BE7 /* LWTransferTableViewCell~ipad.xib */; };
 		EC8923201CC3DAC700201BE7 /* LWHistoryPresenter~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC89231F1CC3DAC700201BE7 /* LWHistoryPresenter~ipad.xib */; };
-		EC8923221CC3DB5B00201BE7 /* LWHistoryTableViewCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC8923211CC3DB5B00201BE7 /* LWHistoryTableViewCell~ipad.xib */; };
 		EC8923241CC3DCAB00201BE7 /* LWSettingsPresenter~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC8923231CC3DCAB00201BE7 /* LWSettingsPresenter~ipad.xib */; };
 		EC8F48381C4D8A710087DF1F /* LWNotificationSettingsPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = EC8F48361C4D8A710087DF1F /* LWNotificationSettingsPresenter.m */; };
 		EC8F48391C4D8A710087DF1F /* LWNotificationSettingsPresenter.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC8F48371C4D8A710087DF1F /* LWNotificationSettingsPresenter.xib */; };
@@ -1435,7 +1572,7 @@
 		ECE902C41C354FA500F52971 /* LWPacketBankCards.m in Sources */ = {isa = PBXBuildFile; fileRef = ECE902C31C354FA500F52971 /* LWPacketBankCards.m */; };
 		ECE902C71C35504200F52971 /* LWBankCardsAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = ECE902C61C35504200F52971 /* LWBankCardsAdd.m */; };
 		ECEC40B61C4298CF00B22BEE /* LWHistoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ECEC40B51C4298CF00B22BEE /* LWHistoryTableViewCell.m */; };
-		ECEC40B81C4298DC00B22BEE /* LWHistoryTableViewCell~iphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECEC40B71C4298DC00B22BEE /* LWHistoryTableViewCell~iphone.xib */; };
+		ECEC40B81C4298DC00B22BEE /* LWHistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECEC40B71C4298DC00B22BEE /* LWHistoryTableViewCell.xib */; };
 		ECEC40BB1C42B06700B22BEE /* LWPacketTransactions.m in Sources */ = {isa = PBXBuildFile; fileRef = ECEC40BA1C42B06700B22BEE /* LWPacketTransactions.m */; };
 		ECEC40BF1C42B2EB00B22BEE /* LWTransactionsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ECEC40BE1C42B2EB00B22BEE /* LWTransactionsModel.m */; };
 		ECEC40CB1C42CA7B00B22BEE /* LWHistoryManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ECEC40CA1C42CA7B00B22BEE /* LWHistoryManager.m */; };
@@ -1624,6 +1761,10 @@
 		A1654E401D51DC51001741A7 /* LWRefundBroadcastPresenter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LWRefundBroadcastPresenter.xib; path = Refund/LWRefundBroadcastPresenter.xib; sourceTree = "<group>"; };
 		A1654E431D5201D5001741A7 /* LWTransactionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LWTransactionManager.h; path = Security/LWTransactionManager.h; sourceTree = "<group>"; };
 		A1654E441D5201D5001741A7 /* LWTransactionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LWTransactionManager.m; path = Security/LWTransactionManager.m; sourceTree = "<group>"; };
+		A1654E461D583702001741A7 /* LWPKTransferConfirmationCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWPKTransferConfirmationCellView.h; sourceTree = "<group>"; };
+		A1654E471D583702001741A7 /* LWPKTransferConfirmationCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWPKTransferConfirmationCellView.m; sourceTree = "<group>"; };
+		A1654E491D589A00001741A7 /* LWURLProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWURLProtocol.h; sourceTree = "<group>"; };
+		A1654E4A1D589A00001741A7 /* LWURLProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWURLProtocol.m; sourceTree = "<group>"; };
 		A17069881D25FBFB0044D7FA /* LWAssetURLTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LWAssetURLTableViewCell.xib; path = Assets/LWAssetURLTableViewCell.xib; sourceTree = "<group>"; };
 		A170698A1D25FC3D0044D7FA /* LWAssetURLTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LWAssetURLTableViewCell.h; path = Assets/LWAssetURLTableViewCell.h; sourceTree = "<group>"; };
 		A170698B1D25FC3D0044D7FA /* LWAssetURLTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LWAssetURLTableViewCell.m; path = Assets/LWAssetURLTableViewCell.m; sourceTree = "<group>"; };
@@ -1651,6 +1792,9 @@
 		A18F892B1CE85B0A00399850 /* LWWithdrawCurrencyPresenter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LWWithdrawCurrencyPresenter.xib; path = WithdrawFunds/LWWithdrawCurrencyPresenter.xib; sourceTree = "<group>"; };
 		A19E08D41CEB5275004D286A /* LWRegisterCameraPresenter~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "LWRegisterCameraPresenter~ipad.xib"; sourceTree = "<group>"; };
 		A19E08D61CEB5722004D286A /* LWCameraOverlayPresenter~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "LWCameraOverlayPresenter~ipad.xib"; path = "Utils/LWCameraOverlayPresenter~ipad.xib"; sourceTree = "<group>"; };
+		A1A7D34F1D62393A00026576 /* LWTestBackupWordsPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LWTestBackupWordsPresenter.h; path = Backup/LWTestBackupWordsPresenter.h; sourceTree = "<group>"; };
+		A1A7D3501D62393A00026576 /* LWTestBackupWordsPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LWTestBackupWordsPresenter.m; path = Backup/LWTestBackupWordsPresenter.m; sourceTree = "<group>"; };
+		A1A7D3511D62393A00026576 /* LWTestBackupWordsPresenter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LWTestBackupWordsPresenter.xib; path = Backup/LWTestBackupWordsPresenter.xib; sourceTree = "<group>"; };
 		A1AA58941CED7C1200D24E68 /* LWWalletTableViewCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "LWWalletTableViewCell~ipad.xib"; path = "Wallets/LWWalletTableViewCell~ipad.xib"; sourceTree = "<group>"; };
 		A1AA58951CED7C1200D24E68 /* LWWalletTableViewCell~iphone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "LWWalletTableViewCell~iphone.xib"; path = "Wallets/LWWalletTableViewCell~iphone.xib"; sourceTree = "<group>"; };
 		A1AA58981CED7DE400D24E68 /* LWLykkeTableViewCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "LWLykkeTableViewCell~ipad.xib"; path = "Wallets/LWLykkeTableViewCell~ipad.xib"; sourceTree = "<group>"; };
@@ -2507,6 +2651,148 @@
 		A1D4772D1D050B9900438846 /* loader-color@2x_00078.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loader-color@2x_00078.png"; sourceTree = "<group>"; };
 		A1D4772E1D050B9900438846 /* loader-color@2x_00079.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loader-color@2x_00079.png"; sourceTree = "<group>"; };
 		A1D4772F1D050B9900438846 /* loader-color@2x_00080.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loader-color@2x_00080.png"; sourceTree = "<group>"; };
+		A1D65CBD1D5A17DE00828783 /* LWEmptyHistoryPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LWEmptyHistoryPresenter.h; path = History/LWEmptyHistoryPresenter.h; sourceTree = "<group>"; };
+		A1D65CBE1D5A17DE00828783 /* LWEmptyHistoryPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LWEmptyHistoryPresenter.m; path = History/LWEmptyHistoryPresenter.m; sourceTree = "<group>"; };
+		A1D65CBF1D5A17DE00828783 /* LWEmptyHistoryPresenter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LWEmptyHistoryPresenter.xib; path = History/LWEmptyHistoryPresenter.xib; sourceTree = "<group>"; };
+		A1D65CC21D5DB09700828783 /* LWGenerateKeyPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LWGenerateKeyPresenter.h; path = Backup/LWGenerateKeyPresenter.h; sourceTree = "<group>"; };
+		A1D65CC31D5DB09700828783 /* LWGenerateKeyPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LWGenerateKeyPresenter.m; path = Backup/LWGenerateKeyPresenter.m; sourceTree = "<group>"; };
+		A1D65CC41D5DB09700828783 /* LWGenerateKeyPresenter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LWGenerateKeyPresenter.xib; path = Backup/LWGenerateKeyPresenter.xib; sourceTree = "<group>"; };
+		A1D65CCC1D5DCF1000828783 /* crypto_bar_00000.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00000.png; sourceTree = "<group>"; };
+		A1D65CCD1D5DCF1000828783 /* crypto_bar_00001.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00001.png; sourceTree = "<group>"; };
+		A1D65CCE1D5DCF1000828783 /* crypto_bar_00002.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00002.png; sourceTree = "<group>"; };
+		A1D65CCF1D5DCF1000828783 /* crypto_bar_00003.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00003.png; sourceTree = "<group>"; };
+		A1D65CD01D5DCF1000828783 /* crypto_bar_00004.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00004.png; sourceTree = "<group>"; };
+		A1D65CD11D5DCF1000828783 /* crypto_bar_00005.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00005.png; sourceTree = "<group>"; };
+		A1D65CD21D5DCF1000828783 /* crypto_bar_00006.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00006.png; sourceTree = "<group>"; };
+		A1D65CD31D5DCF1000828783 /* crypto_bar_00007.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00007.png; sourceTree = "<group>"; };
+		A1D65CD41D5DCF1000828783 /* crypto_bar_00008.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00008.png; sourceTree = "<group>"; };
+		A1D65CD51D5DCF1000828783 /* crypto_bar_00009.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00009.png; sourceTree = "<group>"; };
+		A1D65CD61D5DCF1000828783 /* crypto_bar_00010.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00010.png; sourceTree = "<group>"; };
+		A1D65CD71D5DCF1000828783 /* crypto_bar_00011.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00011.png; sourceTree = "<group>"; };
+		A1D65CD81D5DCF1000828783 /* crypto_bar_00012.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00012.png; sourceTree = "<group>"; };
+		A1D65CD91D5DCF1000828783 /* crypto_bar_00013.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00013.png; sourceTree = "<group>"; };
+		A1D65CDA1D5DCF1000828783 /* crypto_bar_00014.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00014.png; sourceTree = "<group>"; };
+		A1D65CDB1D5DCF1000828783 /* crypto_bar_00015.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00015.png; sourceTree = "<group>"; };
+		A1D65CDC1D5DCF1000828783 /* crypto_bar_00016.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00016.png; sourceTree = "<group>"; };
+		A1D65CDD1D5DCF1000828783 /* crypto_bar_00017.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00017.png; sourceTree = "<group>"; };
+		A1D65CDE1D5DCF1000828783 /* crypto_bar_00018.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00018.png; sourceTree = "<group>"; };
+		A1D65CDF1D5DCF1000828783 /* crypto_bar_00019.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00019.png; sourceTree = "<group>"; };
+		A1D65CE01D5DCF1000828783 /* crypto_bar_00020.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00020.png; sourceTree = "<group>"; };
+		A1D65CE11D5DCF1000828783 /* crypto_bar_00021.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00021.png; sourceTree = "<group>"; };
+		A1D65CE21D5DCF1000828783 /* crypto_bar_00022.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00022.png; sourceTree = "<group>"; };
+		A1D65CE31D5DCF1000828783 /* crypto_bar_00023.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00023.png; sourceTree = "<group>"; };
+		A1D65CE41D5DCF1000828783 /* crypto_bar_00024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00024.png; sourceTree = "<group>"; };
+		A1D65CE51D5DCF1000828783 /* crypto_bar_00025.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00025.png; sourceTree = "<group>"; };
+		A1D65CE61D5DCF1000828783 /* crypto_bar_00026.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00026.png; sourceTree = "<group>"; };
+		A1D65CE71D5DCF1000828783 /* crypto_bar_00027.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00027.png; sourceTree = "<group>"; };
+		A1D65CE81D5DCF1000828783 /* crypto_bar_00028.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00028.png; sourceTree = "<group>"; };
+		A1D65CE91D5DCF1000828783 /* crypto_bar_00029.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00029.png; sourceTree = "<group>"; };
+		A1D65CEA1D5DCF1000828783 /* crypto_bar_00030.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00030.png; sourceTree = "<group>"; };
+		A1D65CEB1D5DCF1000828783 /* crypto_bar_00031.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00031.png; sourceTree = "<group>"; };
+		A1D65CEC1D5DCF1000828783 /* crypto_bar_00032.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00032.png; sourceTree = "<group>"; };
+		A1D65CED1D5DCF1000828783 /* crypto_bar_00033.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00033.png; sourceTree = "<group>"; };
+		A1D65CEE1D5DCF1000828783 /* crypto_bar_00034.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00034.png; sourceTree = "<group>"; };
+		A1D65CEF1D5DCF1000828783 /* crypto_bar_00035.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00035.png; sourceTree = "<group>"; };
+		A1D65CF01D5DCF1000828783 /* crypto_bar_00036.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00036.png; sourceTree = "<group>"; };
+		A1D65CF11D5DCF1000828783 /* crypto_bar_00037.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00037.png; sourceTree = "<group>"; };
+		A1D65CF21D5DCF1000828783 /* crypto_bar_00038.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00038.png; sourceTree = "<group>"; };
+		A1D65CF31D5DCF1000828783 /* crypto_bar_00039.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00039.png; sourceTree = "<group>"; };
+		A1D65CF41D5DCF1000828783 /* crypto_bar_00040.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00040.png; sourceTree = "<group>"; };
+		A1D65CF51D5DCF1000828783 /* crypto_bar_00041.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00041.png; sourceTree = "<group>"; };
+		A1D65CF61D5DCF1000828783 /* crypto_bar_00042.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00042.png; sourceTree = "<group>"; };
+		A1D65CF71D5DCF1000828783 /* crypto_bar_00043.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00043.png; sourceTree = "<group>"; };
+		A1D65CF81D5DCF1000828783 /* crypto_bar_00044.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00044.png; sourceTree = "<group>"; };
+		A1D65CF91D5DCF1000828783 /* crypto_bar_00045.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00045.png; sourceTree = "<group>"; };
+		A1D65CFA1D5DCF1000828783 /* crypto_bar_00046.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00046.png; sourceTree = "<group>"; };
+		A1D65CFB1D5DCF1000828783 /* crypto_bar_00047.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00047.png; sourceTree = "<group>"; };
+		A1D65CFC1D5DCF1000828783 /* crypto_bar_00048.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00048.png; sourceTree = "<group>"; };
+		A1D65CFD1D5DCF1000828783 /* crypto_bar_00049.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00049.png; sourceTree = "<group>"; };
+		A1D65CFE1D5DCF1000828783 /* crypto_bar_00050.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00050.png; sourceTree = "<group>"; };
+		A1D65CFF1D5DCF1000828783 /* crypto_bar_00051.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00051.png; sourceTree = "<group>"; };
+		A1D65D001D5DCF1000828783 /* crypto_bar_00052.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00052.png; sourceTree = "<group>"; };
+		A1D65D011D5DCF1000828783 /* crypto_bar_00053.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00053.png; sourceTree = "<group>"; };
+		A1D65D021D5DCF1000828783 /* crypto_bar_00054.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00054.png; sourceTree = "<group>"; };
+		A1D65D031D5DCF1000828783 /* crypto_bar_00055.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00055.png; sourceTree = "<group>"; };
+		A1D65D041D5DCF1000828783 /* crypto_bar_00056.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00056.png; sourceTree = "<group>"; };
+		A1D65D051D5DCF1000828783 /* crypto_bar_00057.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00057.png; sourceTree = "<group>"; };
+		A1D65D061D5DCF1000828783 /* crypto_bar_00058.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00058.png; sourceTree = "<group>"; };
+		A1D65D071D5DCF1000828783 /* crypto_bar_00059.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00059.png; sourceTree = "<group>"; };
+		A1D65D081D5DCF1000828783 /* crypto_bar_00060.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00060.png; sourceTree = "<group>"; };
+		A1D65D091D5DCF1000828783 /* crypto_bar_00061.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00061.png; sourceTree = "<group>"; };
+		A1D65D0A1D5DCF1000828783 /* crypto_bar_00062.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00062.png; sourceTree = "<group>"; };
+		A1D65D0B1D5DCF1000828783 /* crypto_bar_00063.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00063.png; sourceTree = "<group>"; };
+		A1D65D0C1D5DCF1000828783 /* crypto_bar_00064.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00064.png; sourceTree = "<group>"; };
+		A1D65D0D1D5DCF1000828783 /* crypto_bar_00065.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00065.png; sourceTree = "<group>"; };
+		A1D65D0E1D5DCF1000828783 /* crypto_bar_00066.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00066.png; sourceTree = "<group>"; };
+		A1D65D0F1D5DCF1000828783 /* crypto_bar_00067.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00067.png; sourceTree = "<group>"; };
+		A1D65D101D5DCF1000828783 /* crypto_bar_00068.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00068.png; sourceTree = "<group>"; };
+		A1D65D111D5DCF1100828783 /* crypto_bar_00069.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00069.png; sourceTree = "<group>"; };
+		A1D65D121D5DCF1100828783 /* crypto_bar_00070.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00070.png; sourceTree = "<group>"; };
+		A1D65D131D5DCF1100828783 /* crypto_bar_00071.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00071.png; sourceTree = "<group>"; };
+		A1D65D141D5DCF1100828783 /* crypto_bar_00072.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00072.png; sourceTree = "<group>"; };
+		A1D65D151D5DCF1100828783 /* crypto_bar_00073.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00073.png; sourceTree = "<group>"; };
+		A1D65D161D5DCF1100828783 /* crypto_bar_00074.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00074.png; sourceTree = "<group>"; };
+		A1D65D171D5DCF1100828783 /* crypto_bar_00075.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00075.png; sourceTree = "<group>"; };
+		A1D65D181D5DCF1100828783 /* crypto_bar_00076.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00076.png; sourceTree = "<group>"; };
+		A1D65D191D5DCF1100828783 /* crypto_bar_00077.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00077.png; sourceTree = "<group>"; };
+		A1D65D1A1D5DCF1100828783 /* crypto_bar_00078.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00078.png; sourceTree = "<group>"; };
+		A1D65D1B1D5DCF1100828783 /* crypto_bar_00079.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00079.png; sourceTree = "<group>"; };
+		A1D65D1C1D5DCF1100828783 /* crypto_bar_00080.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00080.png; sourceTree = "<group>"; };
+		A1D65D1D1D5DCF1100828783 /* crypto_bar_00081.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00081.png; sourceTree = "<group>"; };
+		A1D65D1E1D5DCF1100828783 /* crypto_bar_00082.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00082.png; sourceTree = "<group>"; };
+		A1D65D1F1D5DCF1100828783 /* crypto_bar_00083.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00083.png; sourceTree = "<group>"; };
+		A1D65D201D5DCF1100828783 /* crypto_bar_00084.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00084.png; sourceTree = "<group>"; };
+		A1D65D211D5DCF1100828783 /* crypto_bar_00085.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00085.png; sourceTree = "<group>"; };
+		A1D65D221D5DCF1100828783 /* crypto_bar_00086.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00086.png; sourceTree = "<group>"; };
+		A1D65D231D5DCF1100828783 /* crypto_bar_00087.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00087.png; sourceTree = "<group>"; };
+		A1D65D241D5DCF1100828783 /* crypto_bar_00088.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00088.png; sourceTree = "<group>"; };
+		A1D65D251D5DCF1100828783 /* crypto_bar_00089.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00089.png; sourceTree = "<group>"; };
+		A1D65D261D5DCF1100828783 /* crypto_bar_00090.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00090.png; sourceTree = "<group>"; };
+		A1D65D271D5DCF1100828783 /* crypto_bar_00091.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00091.png; sourceTree = "<group>"; };
+		A1D65D281D5DCF1100828783 /* crypto_bar_00092.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00092.png; sourceTree = "<group>"; };
+		A1D65D291D5DCF1100828783 /* crypto_bar_00093.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00093.png; sourceTree = "<group>"; };
+		A1D65D2A1D5DCF1100828783 /* crypto_bar_00094.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00094.png; sourceTree = "<group>"; };
+		A1D65D2B1D5DCF1100828783 /* crypto_bar_00095.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00095.png; sourceTree = "<group>"; };
+		A1D65D2C1D5DCF1100828783 /* crypto_bar_00096.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00096.png; sourceTree = "<group>"; };
+		A1D65D2D1D5DCF1100828783 /* crypto_bar_00097.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00097.png; sourceTree = "<group>"; };
+		A1D65D2E1D5DCF1100828783 /* crypto_bar_00098.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00098.png; sourceTree = "<group>"; };
+		A1D65D2F1D5DCF1100828783 /* crypto_bar_00099.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00099.png; sourceTree = "<group>"; };
+		A1D65D301D5DCF1100828783 /* crypto_bar_00100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00100.png; sourceTree = "<group>"; };
+		A1D65D311D5DCF1100828783 /* crypto_bar_00101.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00101.png; sourceTree = "<group>"; };
+		A1D65D321D5DCF1100828783 /* crypto_bar_00102.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00102.png; sourceTree = "<group>"; };
+		A1D65D331D5DCF1100828783 /* crypto_bar_00103.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00103.png; sourceTree = "<group>"; };
+		A1D65D341D5DCF1100828783 /* crypto_bar_00104.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00104.png; sourceTree = "<group>"; };
+		A1D65D351D5DCF1100828783 /* crypto_bar_00105.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00105.png; sourceTree = "<group>"; };
+		A1D65D361D5DCF1100828783 /* crypto_bar_00106.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00106.png; sourceTree = "<group>"; };
+		A1D65D371D5DCF1100828783 /* crypto_bar_00107.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00107.png; sourceTree = "<group>"; };
+		A1D65D381D5DCF1100828783 /* crypto_bar_00108.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00108.png; sourceTree = "<group>"; };
+		A1D65D391D5DCF1100828783 /* crypto_bar_00109.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00109.png; sourceTree = "<group>"; };
+		A1D65D3A1D5DCF1100828783 /* crypto_bar_00110.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00110.png; sourceTree = "<group>"; };
+		A1D65D3B1D5DCF1100828783 /* crypto_bar_00111.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00111.png; sourceTree = "<group>"; };
+		A1D65D3C1D5DCF1100828783 /* crypto_bar_00112.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00112.png; sourceTree = "<group>"; };
+		A1D65D3D1D5DCF1100828783 /* crypto_bar_00113.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00113.png; sourceTree = "<group>"; };
+		A1D65D3E1D5DCF1100828783 /* crypto_bar_00114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00114.png; sourceTree = "<group>"; };
+		A1D65D3F1D5DCF1100828783 /* crypto_bar_00115.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00115.png; sourceTree = "<group>"; };
+		A1D65D401D5DCF1100828783 /* crypto_bar_00116.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00116.png; sourceTree = "<group>"; };
+		A1D65D411D5DCF1100828783 /* crypto_bar_00117.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00117.png; sourceTree = "<group>"; };
+		A1D65D421D5DCF1100828783 /* crypto_bar_00118.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00118.png; sourceTree = "<group>"; };
+		A1D65D431D5DCF1100828783 /* crypto_bar_00119.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00119.png; sourceTree = "<group>"; };
+		A1D65DBC1D5EBCBC00828783 /* LWBackupIntroPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LWBackupIntroPresenter.h; path = Backup/LWBackupIntroPresenter.h; sourceTree = "<group>"; };
+		A1D65DBD1D5EBCBC00828783 /* LWBackupIntroPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LWBackupIntroPresenter.m; path = Backup/LWBackupIntroPresenter.m; sourceTree = "<group>"; };
+		A1D65DBF1D5EBD0000828783 /* LWBackupIntroPresenter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LWBackupIntroPresenter.xib; path = Backup/LWBackupIntroPresenter.xib; sourceTree = "<group>"; };
+		A1D65DC11D5EC14700828783 /* LWBackupGetStartedPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LWBackupGetStartedPresenter.h; path = Backup/LWBackupGetStartedPresenter.h; sourceTree = "<group>"; };
+		A1D65DC21D5EC14700828783 /* LWBackupGetStartedPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LWBackupGetStartedPresenter.m; path = Backup/LWBackupGetStartedPresenter.m; sourceTree = "<group>"; };
+		A1D65DC41D5EC18600828783 /* LWBackupGetStartedPresenter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LWBackupGetStartedPresenter.xib; path = Backup/LWBackupGetStartedPresenter.xib; sourceTree = "<group>"; };
+		A1D65DC61D5EC53200828783 /* LWBackupSingleWordPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LWBackupSingleWordPresenter.h; path = Backup/LWBackupSingleWordPresenter.h; sourceTree = "<group>"; };
+		A1D65DC71D5EC53200828783 /* LWBackupSingleWordPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LWBackupSingleWordPresenter.m; path = Backup/LWBackupSingleWordPresenter.m; sourceTree = "<group>"; };
+		A1D65DC81D5EC53200828783 /* LWBackupSingleWordPresenter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LWBackupSingleWordPresenter.xib; path = Backup/LWBackupSingleWordPresenter.xib; sourceTree = "<group>"; };
+		A1D65DCB1D5ECF6E00828783 /* LWBackupCheckWordsPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LWBackupCheckWordsPresenter.h; path = Backup/LWBackupCheckWordsPresenter.h; sourceTree = "<group>"; };
+		A1D65DCC1D5ECF6E00828783 /* LWBackupCheckWordsPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LWBackupCheckWordsPresenter.m; path = Backup/LWBackupCheckWordsPresenter.m; sourceTree = "<group>"; };
+		A1D65DCD1D5ECF6E00828783 /* LWBackupCheckWordsPresenter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LWBackupCheckWordsPresenter.xib; path = Backup/LWBackupCheckWordsPresenter.xib; sourceTree = "<group>"; };
+		A1D65DD11D602B0100828783 /* english_words_list.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = english_words_list.txt; sourceTree = "<group>"; };
+		A1D65DD31D6073BA00828783 /* LWBackupSuccessPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LWBackupSuccessPresenter.h; path = Backup/LWBackupSuccessPresenter.h; sourceTree = "<group>"; };
+		A1D65DD41D6073BA00828783 /* LWBackupSuccessPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LWBackupSuccessPresenter.m; path = Backup/LWBackupSuccessPresenter.m; sourceTree = "<group>"; };
+		A1D65DD61D60741100828783 /* LWBackupSuccessPresenter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LWBackupSuccessPresenter.xib; path = Backup/LWBackupSuccessPresenter.xib; sourceTree = "<group>"; };
 		A1E4EA911CE424D800293282 /* LWPacketGraphPeriods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWPacketGraphPeriods.h; sourceTree = "<group>"; };
 		A1E4EA921CE424D800293282 /* LWPacketGraphPeriods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWPacketGraphPeriods.m; sourceTree = "<group>"; };
 		A1E4EA951CE4283100293282 /* LWGraphPeriodModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWGraphPeriodModel.h; sourceTree = "<group>"; };
@@ -2887,7 +3173,6 @@
 		EC89231B1CC3D49B00201BE7 /* LWTransferPresenter~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "LWTransferPresenter~ipad.xib"; path = "IATA/Classes/Presenter/Transfer/LWTransferPresenter~ipad.xib"; sourceTree = SOURCE_ROOT; };
 		EC89231D1CC3D53400201BE7 /* LWTransferTableViewCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "LWTransferTableViewCell~ipad.xib"; path = "IATA/Classes/View/Transfer/LWTransferTableViewCell~ipad.xib"; sourceTree = SOURCE_ROOT; };
 		EC89231F1CC3DAC700201BE7 /* LWHistoryPresenter~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "LWHistoryPresenter~ipad.xib"; sourceTree = "<group>"; };
-		EC8923211CC3DB5B00201BE7 /* LWHistoryTableViewCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "LWHistoryTableViewCell~ipad.xib"; path = "History/LWHistoryTableViewCell~ipad.xib"; sourceTree = "<group>"; };
 		EC8923231CC3DCAB00201BE7 /* LWSettingsPresenter~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "LWSettingsPresenter~ipad.xib"; sourceTree = "<group>"; };
 		EC8F48351C4D8A710087DF1F /* LWNotificationSettingsPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LWNotificationSettingsPresenter.h; path = Notifications/LWNotificationSettingsPresenter.h; sourceTree = "<group>"; };
 		EC8F48361C4D8A710087DF1F /* LWNotificationSettingsPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LWNotificationSettingsPresenter.m; path = Notifications/LWNotificationSettingsPresenter.m; sourceTree = "<group>"; };
@@ -3068,7 +3353,7 @@
 		ECE902C61C35504200F52971 /* LWBankCardsAdd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LWBankCardsAdd.m; path = Wallets/LWBankCardsAdd.m; sourceTree = "<group>"; };
 		ECEC40B41C4298CF00B22BEE /* LWHistoryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LWHistoryTableViewCell.h; path = History/LWHistoryTableViewCell.h; sourceTree = "<group>"; };
 		ECEC40B51C4298CF00B22BEE /* LWHistoryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LWHistoryTableViewCell.m; path = History/LWHistoryTableViewCell.m; sourceTree = "<group>"; };
-		ECEC40B71C4298DC00B22BEE /* LWHistoryTableViewCell~iphone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "LWHistoryTableViewCell~iphone.xib"; path = "History/LWHistoryTableViewCell~iphone.xib"; sourceTree = "<group>"; };
+		ECEC40B71C4298DC00B22BEE /* LWHistoryTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LWHistoryTableViewCell.xib; path = History/LWHistoryTableViewCell.xib; sourceTree = "<group>"; };
 		ECEC40B91C42B06700B22BEE /* LWPacketTransactions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWPacketTransactions.h; sourceTree = "<group>"; };
 		ECEC40BA1C42B06700B22BEE /* LWPacketTransactions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWPacketTransactions.m; sourceTree = "<group>"; };
 		ECEC40BD1C42B2EB00B22BEE /* LWTransactionsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LWTransactionsModel.h; path = History/LWTransactionsModel.h; sourceTree = "<group>"; };
@@ -3226,6 +3511,7 @@
 			children = (
 				A1D476DE1D050B9900438846 /* loader-color@2x */,
 				A1BCCE2C1D012D3B00CF42E4 /* IntroductionAnimations */,
+				A1D65CCB1D5DCF1000828783 /* crypto_bar */,
 				A14B7D2D1CE3233D00820084 /* ButtonOK_square.png */,
 				A1AB306B1CE59632009AF37B /* CopiedCheckMarkSign.png */,
 				A1743CAF1CE8A6B100176F59 /* WithdrawSuccessFlag.png */,
@@ -4151,6 +4437,8 @@
 				A1C99D381D460D1900833C4E /* LWPWTransferInputView.m */,
 				A11494741D4A146D000BD347 /* LWPKTransferConfirmationView.h */,
 				A11494751D4A146D000BD347 /* LWPKTransferConfirmationView.m */,
+				A1654E461D583702001741A7 /* LWPKTransferConfirmationCellView.h */,
+				A1654E471D583702001741A7 /* LWPKTransferConfirmationCellView.m */,
 			);
 			name = PrivateWalletsTransfer;
 			sourceTree = "<group>";
@@ -4241,6 +4529,169 @@
 				A1D4772F1D050B9900438846 /* loader-color@2x_00080.png */,
 			);
 			path = "loader-color@2x";
+			sourceTree = "<group>";
+		};
+		A1D65CC71D5DB0AB00828783 /* Backup */ = {
+			isa = PBXGroup;
+			children = (
+				A1D65CC21D5DB09700828783 /* LWGenerateKeyPresenter.h */,
+				A1D65CC31D5DB09700828783 /* LWGenerateKeyPresenter.m */,
+				A1D65CC41D5DB09700828783 /* LWGenerateKeyPresenter.xib */,
+				A1D65DBC1D5EBCBC00828783 /* LWBackupIntroPresenter.h */,
+				A1D65DBD1D5EBCBC00828783 /* LWBackupIntroPresenter.m */,
+				A1D65DBF1D5EBD0000828783 /* LWBackupIntroPresenter.xib */,
+				A1D65DC11D5EC14700828783 /* LWBackupGetStartedPresenter.h */,
+				A1D65DC21D5EC14700828783 /* LWBackupGetStartedPresenter.m */,
+				A1D65DC41D5EC18600828783 /* LWBackupGetStartedPresenter.xib */,
+				A1D65DC61D5EC53200828783 /* LWBackupSingleWordPresenter.h */,
+				A1D65DC71D5EC53200828783 /* LWBackupSingleWordPresenter.m */,
+				A1D65DC81D5EC53200828783 /* LWBackupSingleWordPresenter.xib */,
+				A1D65DCB1D5ECF6E00828783 /* LWBackupCheckWordsPresenter.h */,
+				A1D65DCC1D5ECF6E00828783 /* LWBackupCheckWordsPresenter.m */,
+				A1D65DCD1D5ECF6E00828783 /* LWBackupCheckWordsPresenter.xib */,
+				A1D65DD31D6073BA00828783 /* LWBackupSuccessPresenter.h */,
+				A1D65DD41D6073BA00828783 /* LWBackupSuccessPresenter.m */,
+				A1D65DD61D60741100828783 /* LWBackupSuccessPresenter.xib */,
+				A1A7D34F1D62393A00026576 /* LWTestBackupWordsPresenter.h */,
+				A1A7D3501D62393A00026576 /* LWTestBackupWordsPresenter.m */,
+				A1A7D3511D62393A00026576 /* LWTestBackupWordsPresenter.xib */,
+			);
+			name = Backup;
+			sourceTree = "<group>";
+		};
+		A1D65CCB1D5DCF1000828783 /* crypto_bar */ = {
+			isa = PBXGroup;
+			children = (
+				A1D65CCC1D5DCF1000828783 /* crypto_bar_00000.png */,
+				A1D65CCD1D5DCF1000828783 /* crypto_bar_00001.png */,
+				A1D65CCE1D5DCF1000828783 /* crypto_bar_00002.png */,
+				A1D65CCF1D5DCF1000828783 /* crypto_bar_00003.png */,
+				A1D65CD01D5DCF1000828783 /* crypto_bar_00004.png */,
+				A1D65CD11D5DCF1000828783 /* crypto_bar_00005.png */,
+				A1D65CD21D5DCF1000828783 /* crypto_bar_00006.png */,
+				A1D65CD31D5DCF1000828783 /* crypto_bar_00007.png */,
+				A1D65CD41D5DCF1000828783 /* crypto_bar_00008.png */,
+				A1D65CD51D5DCF1000828783 /* crypto_bar_00009.png */,
+				A1D65CD61D5DCF1000828783 /* crypto_bar_00010.png */,
+				A1D65CD71D5DCF1000828783 /* crypto_bar_00011.png */,
+				A1D65CD81D5DCF1000828783 /* crypto_bar_00012.png */,
+				A1D65CD91D5DCF1000828783 /* crypto_bar_00013.png */,
+				A1D65CDA1D5DCF1000828783 /* crypto_bar_00014.png */,
+				A1D65CDB1D5DCF1000828783 /* crypto_bar_00015.png */,
+				A1D65CDC1D5DCF1000828783 /* crypto_bar_00016.png */,
+				A1D65CDD1D5DCF1000828783 /* crypto_bar_00017.png */,
+				A1D65CDE1D5DCF1000828783 /* crypto_bar_00018.png */,
+				A1D65CDF1D5DCF1000828783 /* crypto_bar_00019.png */,
+				A1D65CE01D5DCF1000828783 /* crypto_bar_00020.png */,
+				A1D65CE11D5DCF1000828783 /* crypto_bar_00021.png */,
+				A1D65CE21D5DCF1000828783 /* crypto_bar_00022.png */,
+				A1D65CE31D5DCF1000828783 /* crypto_bar_00023.png */,
+				A1D65CE41D5DCF1000828783 /* crypto_bar_00024.png */,
+				A1D65CE51D5DCF1000828783 /* crypto_bar_00025.png */,
+				A1D65CE61D5DCF1000828783 /* crypto_bar_00026.png */,
+				A1D65CE71D5DCF1000828783 /* crypto_bar_00027.png */,
+				A1D65CE81D5DCF1000828783 /* crypto_bar_00028.png */,
+				A1D65CE91D5DCF1000828783 /* crypto_bar_00029.png */,
+				A1D65CEA1D5DCF1000828783 /* crypto_bar_00030.png */,
+				A1D65CEB1D5DCF1000828783 /* crypto_bar_00031.png */,
+				A1D65CEC1D5DCF1000828783 /* crypto_bar_00032.png */,
+				A1D65CED1D5DCF1000828783 /* crypto_bar_00033.png */,
+				A1D65CEE1D5DCF1000828783 /* crypto_bar_00034.png */,
+				A1D65CEF1D5DCF1000828783 /* crypto_bar_00035.png */,
+				A1D65CF01D5DCF1000828783 /* crypto_bar_00036.png */,
+				A1D65CF11D5DCF1000828783 /* crypto_bar_00037.png */,
+				A1D65CF21D5DCF1000828783 /* crypto_bar_00038.png */,
+				A1D65CF31D5DCF1000828783 /* crypto_bar_00039.png */,
+				A1D65CF41D5DCF1000828783 /* crypto_bar_00040.png */,
+				A1D65CF51D5DCF1000828783 /* crypto_bar_00041.png */,
+				A1D65CF61D5DCF1000828783 /* crypto_bar_00042.png */,
+				A1D65CF71D5DCF1000828783 /* crypto_bar_00043.png */,
+				A1D65CF81D5DCF1000828783 /* crypto_bar_00044.png */,
+				A1D65CF91D5DCF1000828783 /* crypto_bar_00045.png */,
+				A1D65CFA1D5DCF1000828783 /* crypto_bar_00046.png */,
+				A1D65CFB1D5DCF1000828783 /* crypto_bar_00047.png */,
+				A1D65CFC1D5DCF1000828783 /* crypto_bar_00048.png */,
+				A1D65CFD1D5DCF1000828783 /* crypto_bar_00049.png */,
+				A1D65CFE1D5DCF1000828783 /* crypto_bar_00050.png */,
+				A1D65CFF1D5DCF1000828783 /* crypto_bar_00051.png */,
+				A1D65D001D5DCF1000828783 /* crypto_bar_00052.png */,
+				A1D65D011D5DCF1000828783 /* crypto_bar_00053.png */,
+				A1D65D021D5DCF1000828783 /* crypto_bar_00054.png */,
+				A1D65D031D5DCF1000828783 /* crypto_bar_00055.png */,
+				A1D65D041D5DCF1000828783 /* crypto_bar_00056.png */,
+				A1D65D051D5DCF1000828783 /* crypto_bar_00057.png */,
+				A1D65D061D5DCF1000828783 /* crypto_bar_00058.png */,
+				A1D65D071D5DCF1000828783 /* crypto_bar_00059.png */,
+				A1D65D081D5DCF1000828783 /* crypto_bar_00060.png */,
+				A1D65D091D5DCF1000828783 /* crypto_bar_00061.png */,
+				A1D65D0A1D5DCF1000828783 /* crypto_bar_00062.png */,
+				A1D65D0B1D5DCF1000828783 /* crypto_bar_00063.png */,
+				A1D65D0C1D5DCF1000828783 /* crypto_bar_00064.png */,
+				A1D65D0D1D5DCF1000828783 /* crypto_bar_00065.png */,
+				A1D65D0E1D5DCF1000828783 /* crypto_bar_00066.png */,
+				A1D65D0F1D5DCF1000828783 /* crypto_bar_00067.png */,
+				A1D65D101D5DCF1000828783 /* crypto_bar_00068.png */,
+				A1D65D111D5DCF1100828783 /* crypto_bar_00069.png */,
+				A1D65D121D5DCF1100828783 /* crypto_bar_00070.png */,
+				A1D65D131D5DCF1100828783 /* crypto_bar_00071.png */,
+				A1D65D141D5DCF1100828783 /* crypto_bar_00072.png */,
+				A1D65D151D5DCF1100828783 /* crypto_bar_00073.png */,
+				A1D65D161D5DCF1100828783 /* crypto_bar_00074.png */,
+				A1D65D171D5DCF1100828783 /* crypto_bar_00075.png */,
+				A1D65D181D5DCF1100828783 /* crypto_bar_00076.png */,
+				A1D65D191D5DCF1100828783 /* crypto_bar_00077.png */,
+				A1D65D1A1D5DCF1100828783 /* crypto_bar_00078.png */,
+				A1D65D1B1D5DCF1100828783 /* crypto_bar_00079.png */,
+				A1D65D1C1D5DCF1100828783 /* crypto_bar_00080.png */,
+				A1D65D1D1D5DCF1100828783 /* crypto_bar_00081.png */,
+				A1D65D1E1D5DCF1100828783 /* crypto_bar_00082.png */,
+				A1D65D1F1D5DCF1100828783 /* crypto_bar_00083.png */,
+				A1D65D201D5DCF1100828783 /* crypto_bar_00084.png */,
+				A1D65D211D5DCF1100828783 /* crypto_bar_00085.png */,
+				A1D65D221D5DCF1100828783 /* crypto_bar_00086.png */,
+				A1D65D231D5DCF1100828783 /* crypto_bar_00087.png */,
+				A1D65D241D5DCF1100828783 /* crypto_bar_00088.png */,
+				A1D65D251D5DCF1100828783 /* crypto_bar_00089.png */,
+				A1D65D261D5DCF1100828783 /* crypto_bar_00090.png */,
+				A1D65D271D5DCF1100828783 /* crypto_bar_00091.png */,
+				A1D65D281D5DCF1100828783 /* crypto_bar_00092.png */,
+				A1D65D291D5DCF1100828783 /* crypto_bar_00093.png */,
+				A1D65D2A1D5DCF1100828783 /* crypto_bar_00094.png */,
+				A1D65D2B1D5DCF1100828783 /* crypto_bar_00095.png */,
+				A1D65D2C1D5DCF1100828783 /* crypto_bar_00096.png */,
+				A1D65D2D1D5DCF1100828783 /* crypto_bar_00097.png */,
+				A1D65D2E1D5DCF1100828783 /* crypto_bar_00098.png */,
+				A1D65D2F1D5DCF1100828783 /* crypto_bar_00099.png */,
+				A1D65D301D5DCF1100828783 /* crypto_bar_00100.png */,
+				A1D65D311D5DCF1100828783 /* crypto_bar_00101.png */,
+				A1D65D321D5DCF1100828783 /* crypto_bar_00102.png */,
+				A1D65D331D5DCF1100828783 /* crypto_bar_00103.png */,
+				A1D65D341D5DCF1100828783 /* crypto_bar_00104.png */,
+				A1D65D351D5DCF1100828783 /* crypto_bar_00105.png */,
+				A1D65D361D5DCF1100828783 /* crypto_bar_00106.png */,
+				A1D65D371D5DCF1100828783 /* crypto_bar_00107.png */,
+				A1D65D381D5DCF1100828783 /* crypto_bar_00108.png */,
+				A1D65D391D5DCF1100828783 /* crypto_bar_00109.png */,
+				A1D65D3A1D5DCF1100828783 /* crypto_bar_00110.png */,
+				A1D65D3B1D5DCF1100828783 /* crypto_bar_00111.png */,
+				A1D65D3C1D5DCF1100828783 /* crypto_bar_00112.png */,
+				A1D65D3D1D5DCF1100828783 /* crypto_bar_00113.png */,
+				A1D65D3E1D5DCF1100828783 /* crypto_bar_00114.png */,
+				A1D65D3F1D5DCF1100828783 /* crypto_bar_00115.png */,
+				A1D65D401D5DCF1100828783 /* crypto_bar_00116.png */,
+				A1D65D411D5DCF1100828783 /* crypto_bar_00117.png */,
+				A1D65D421D5DCF1100828783 /* crypto_bar_00118.png */,
+				A1D65D431D5DCF1100828783 /* crypto_bar_00119.png */,
+			);
+			path = crypto_bar;
+			sourceTree = "<group>";
+		};
+		A1D65DD01D602B0100828783 /* WordsLists */ = {
+			isa = PBXGroup;
+			children = (
+				A1D65DD11D602B0100828783 /* english_words_list.txt */,
+			);
+			path = WordsLists;
 			sourceTree = "<group>";
 		};
 		A1E4EA941CE427C200293282 /* Graphs */ = {
@@ -4455,6 +4906,7 @@
 		CF6632421C175B54004353F5 /* Resources_Lykke */ = {
 			isa = PBXGroup;
 			children = (
+				A1D65DD01D602B0100828783 /* WordsLists */,
 				A14B7D2C1CE3233D00820084 /* Images */,
 				CD73626B1C2C26BE00924077 /* Fonts */,
 				CF66327D1C1768B0004353F5 /* Localizable.strings */,
@@ -4715,6 +5167,7 @@
 				CFF2AADE1C1F88B800320FF9 /* Camera */,
 				CFF758211C2022A400BC7658 /* KYCStatus */,
 				CF68774C1C234A5700E7A7D9 /* PIN */,
+				A1D65CC71D5DB0AB00828783 /* Backup */,
 			);
 			path = Registration;
 			sourceTree = "<group>";
@@ -4751,6 +5204,8 @@
 				CD3CCDDC1C2B3DD400DDCE46 /* LWDeviceInfo.m */,
 				EC51D1941C3054AA00550EF2 /* LWJSONObject.h */,
 				EC51D1951C3054AA00550EF2 /* LWJSONObject.m */,
+				A1654E491D589A00001741A7 /* LWURLProtocol.h */,
+				A1654E4A1D589A00001741A7 /* LWURLProtocol.m */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -5810,8 +6265,10 @@
 			children = (
 				ECEC40B41C4298CF00B22BEE /* LWHistoryTableViewCell.h */,
 				ECEC40B51C4298CF00B22BEE /* LWHistoryTableViewCell.m */,
-				ECEC40B71C4298DC00B22BEE /* LWHistoryTableViewCell~iphone.xib */,
-				EC8923211CC3DB5B00201BE7 /* LWHistoryTableViewCell~ipad.xib */,
+				ECEC40B71C4298DC00B22BEE /* LWHistoryTableViewCell.xib */,
+				A1D65CBD1D5A17DE00828783 /* LWEmptyHistoryPresenter.h */,
+				A1D65CBE1D5A17DE00828783 /* LWEmptyHistoryPresenter.m */,
+				A1D65CBF1D5A17DE00828783 /* LWEmptyHistoryPresenter.xib */,
 			);
 			name = History;
 			sourceTree = "<group>";
@@ -5975,7 +6432,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1D65DA51D5DCF1100828783 /* crypto_bar_00097.png in Resources */,
 				A1BCD1A71D012D3C00CF42E4 /* 3-settle-2x_00048.png in Resources */,
+				A1D65D601D5DCF1100828783 /* crypto_bar_00028.png in Resources */,
+				A1D65D661D5DCF1100828783 /* crypto_bar_00034.png in Resources */,
 				EC57F4551C3C3DD900E31746 /* LWExchangeFormPresenter.xib in Resources */,
 				A1BCD1271D012D3C00CF42E4 /* 2-trade-2x_00039.png in Resources */,
 				A1BCD2591D012D3C00CF42E4 /* 4-withdraw-2x_00106.png in Resources */,
@@ -5994,10 +6454,13 @@
 				A1D477511D050B9900438846 /* loader-color@2x_00033.png in Resources */,
 				A1BCD0F71D012D3C00CF42E4 /* 1-deposit-2x_00111.png in Resources */,
 				A1BCD1F91D012D3C00CF42E4 /* 4-withdraw-2x_00010.png in Resources */,
+				A1D65D841D5DCF1100828783 /* crypto_bar_00064.png in Resources */,
 				A1D477591D050B9900438846 /* loader-color@2x_00041.png in Resources */,
 				A1D4777A1D050B9900438846 /* loader-color@2x_00074.png in Resources */,
+				A1D65D571D5DCF1100828783 /* crypto_bar_00019.png in Resources */,
 				A1BCD1BB1D012D3C00CF42E4 /* 3-settle-2x_00068.png in Resources */,
 				A1BCD18F1D012D3C00CF42E4 /* 3-settle-2x_00024.png in Resources */,
+				A1D65D6F1D5DCF1100828783 /* crypto_bar_00043.png in Resources */,
 				A1BCD2B81D012D3C00CF42E4 /* 5-onboard-2x_00082.png in Resources */,
 				A1BCD2161D012D3C00CF42E4 /* 4-withdraw-2x_00039.png in Resources */,
 				A1BCD1E31D012D3C00CF42E4 /* 3-settle-2x_00108.png in Resources */,
@@ -6011,6 +6474,7 @@
 				A1BCD2661D012D3C00CF42E4 /* 5-onboard-2x_00000.png in Resources */,
 				A1BCD11B1D012D3C00CF42E4 /* 2-trade-2x_00027.png in Resources */,
 				A1BCD2CD1D012D3C00CF42E4 /* 5-onboard-2x_00103.png in Resources */,
+				A1D65D881D5DCF1100828783 /* crypto_bar_00068.png in Resources */,
 				A1BCD2431D012D3C00CF42E4 /* 4-withdraw-2x_00084.png in Resources */,
 				A1BCD2A71D012D3C00CF42E4 /* 5-onboard-2x_00065.png in Resources */,
 				A1BCD09F1D012D3C00CF42E4 /* 1-deposit-2x_00023.png in Resources */,
@@ -6035,6 +6499,7 @@
 				A1BCD15F1D012D3C00CF42E4 /* 2-trade-2x_00095.png in Resources */,
 				A1BCD25B1D012D3C00CF42E4 /* 4-withdraw-2x_00108.png in Resources */,
 				A1BCD2871D012D3C00CF42E4 /* 5-onboard-2x_00033.png in Resources */,
+				A1D65D4E1D5DCF1100828783 /* crypto_bar_00010.png in Resources */,
 				A1BCD1611D012D3C00CF42E4 /* 2-trade-2x_00097.png in Resources */,
 				A1743CC41CEB018000176F59 /* LWRegisterPhoneConfirmPresenter~ipad.xib in Resources */,
 				A1BCD16A1D012D3C00CF42E4 /* 2-trade-2x_00106.png in Resources */,
@@ -6056,23 +6521,33 @@
 				CD7362811C2C26FF00924077 /* Proxima Nova Light.otf in Resources */,
 				A15B3F021D13A55D00A6B506 /* zbar-back.png in Resources */,
 				A1165D2F1CF5E4DA0017A725 /* CheckMark.png in Resources */,
+				A1D65D861D5DCF1100828783 /* crypto_bar_00066.png in Resources */,
+				A1D65D501D5DCF1100828783 /* crypto_bar_00012.png in Resources */,
+				A1D65DA41D5DCF1100828783 /* crypto_bar_00096.png in Resources */,
 				A1BCD2AD1D012D3C00CF42E4 /* 5-onboard-2x_00071.png in Resources */,
+				A1D65D9C1D5DCF1100828783 /* crypto_bar_00088.png in Resources */,
 				A1D477621D050B9900438846 /* loader-color@2x_00050.png in Resources */,
 				A1BCD2AA1D012D3C00CF42E4 /* 5-onboard-2x_00068.png in Resources */,
 				A1BCD2951D012D3C00CF42E4 /* 5-onboard-2x_00047.png in Resources */,
 				A1BCD2961D012D3C00CF42E4 /* 5-onboard-2x_00048.png in Resources */,
+				A1D65D9A1D5DCF1100828783 /* crypto_bar_00086.png in Resources */,
+				A1D65DCF1D5ECF6E00828783 /* LWBackupCheckWordsPresenter.xib in Resources */,
 				A1BCD29A1D012D3C00CF42E4 /* 5-onboard-2x_00052.png in Resources */,
 				A1D477521D050B9900438846 /* loader-color@2x_00034.png in Resources */,
 				A15B3F041D13A55D00A6B506 /* zbar-helpicons.png in Resources */,
 				A1BCD2A51D012D3C00CF42E4 /* 5-onboard-2x_00063.png in Resources */,
 				A1BCD26B1D012D3C00CF42E4 /* 5-onboard-2x_00005.png in Resources */,
+				A1D65D6B1D5DCF1100828783 /* crypto_bar_00039.png in Resources */,
 				A1BCD1231D012D3C00CF42E4 /* 2-trade-2x_00035.png in Resources */,
+				A1D65DAD1D5DCF1100828783 /* crypto_bar_00105.png in Resources */,
 				A1BCD2801D012D3C00CF42E4 /* 5-onboard-2x_00026.png in Resources */,
 				A1BCD1D81D012D3C00CF42E4 /* 3-settle-2x_00097.png in Resources */,
 				A1BCD16F1D012D3C00CF42E4 /* 2-trade-2x_00111.png in Resources */,
 				A1165D271CF586BF0017A725 /* LWHistoryPresenter~ipad.xib in Resources */,
 				A1BCD26C1D012D3C00CF42E4 /* 5-onboard-2x_00006.png in Resources */,
+				A1D65D761D5DCF1100828783 /* crypto_bar_00050.png in Resources */,
 				A1BCD0E01D012D3C00CF42E4 /* 1-deposit-2x_00088.png in Resources */,
+				A1D65D7E1D5DCF1100828783 /* crypto_bar_00058.png in Resources */,
 				A1BCD0CF1D012D3C00CF42E4 /* 1-deposit-2x_00071.png in Resources */,
 				A15B3F031D13A55D00A6B506 /* zbar-help.html in Resources */,
 				A1BCD1FE1D012D3C00CF42E4 /* 4-withdraw-2x_00015.png in Resources */,
@@ -6082,41 +6557,55 @@
 				A1BCD08C1D012D3C00CF42E4 /* 1-deposit-2x_00004.png in Resources */,
 				A1BCD0DB1D012D3C00CF42E4 /* 1-deposit-2x_00083.png in Resources */,
 				A1BCD17C1D012D3C00CF42E4 /* 3-settle-2x_00005.png in Resources */,
+				A1D65D961D5DCF1100828783 /* crypto_bar_00082.png in Resources */,
 				A1BCD2B61D012D3C00CF42E4 /* 5-onboard-2x_00080.png in Resources */,
+				A1D65DAE1D5DCF1100828783 /* crypto_bar_00106.png in Resources */,
+				A1D65DC51D5EC18600828783 /* LWBackupGetStartedPresenter.xib in Resources */,
 				A1BCD2571D012D3C00CF42E4 /* 4-withdraw-2x_00104.png in Resources */,
 				A1BCD12F1D012D3C00CF42E4 /* 2-trade-2x_00047.png in Resources */,
 				A1D477651D050B9900438846 /* loader-color@2x_00053.png in Resources */,
 				A1BCD2991D012D3C00CF42E4 /* 5-onboard-2x_00051.png in Resources */,
 				A1BCD1B41D012D3C00CF42E4 /* 3-settle-2x_00061.png in Resources */,
+				A1D65DB91D5DCF1100828783 /* crypto_bar_00117.png in Resources */,
 				A1BCD2BC1D012D3C00CF42E4 /* 5-onboard-2x_00086.png in Resources */,
+				A1D65DAF1D5DCF1100828783 /* crypto_bar_00107.png in Resources */,
 				A1D477561D050B9900438846 /* loader-color@2x_00038.png in Resources */,
+				A1D65D731D5DCF1100828783 /* crypto_bar_00047.png in Resources */,
+				A1D65D481D5DCF1100828783 /* crypto_bar_00004.png in Resources */,
 				A1BCD0E91D012D3C00CF42E4 /* 1-deposit-2x_00097.png in Resources */,
 				A1BCD2441D012D3C00CF42E4 /* 4-withdraw-2x_00085.png in Resources */,
 				EC7F05091C3EC54B0079ECD0 /* LWExchangeResultPresenter.xib in Resources */,
 				A1BCD1511D012D3C00CF42E4 /* 2-trade-2x_00081.png in Resources */,
 				A1BCD0E81D012D3C00CF42E4 /* 1-deposit-2x_00096.png in Resources */,
+				A1D65D8B1D5DCF1100828783 /* crypto_bar_00071.png in Resources */,
 				ECD1E9171C3BE4050064AAB3 /* LWAssetEmptyTableViewCell.xib in Resources */,
 				A1BCD2841D012D3C00CF42E4 /* 5-onboard-2x_00030.png in Resources */,
 				EC9C947A1C899003006FD46B /* Assets.xcassets in Resources */,
 				A1BCD22F1D012D3C00CF42E4 /* 4-withdraw-2x_00064.png in Resources */,
+				A1D65DB61D5DCF1100828783 /* crypto_bar_00114.png in Resources */,
 				A1BCD1EF1D012D3C00CF42E4 /* 4-withdraw-2x_00000.png in Resources */,
+				A1D65D8C1D5DCF1100828783 /* crypto_bar_00072.png in Resources */,
 				A1BCD0CB1D012D3C00CF42E4 /* 1-deposit-2x_00067.png in Resources */,
 				A1BCD15C1D012D3C00CF42E4 /* 2-trade-2x_00092.png in Resources */,
 				A1BCD0D81D012D3C00CF42E4 /* 1-deposit-2x_00080.png in Resources */,
 				A1BCD10D1D012D3C00CF42E4 /* 2-trade-2x_00013.png in Resources */,
+				A1D65D951D5DCF1100828783 /* crypto_bar_00081.png in Resources */,
 				CD7362851C2C26FF00924077 /* Proxima Nova Semibold.otf in Resources */,
 				A1BCD2971D012D3C00CF42E4 /* 5-onboard-2x_00049.png in Resources */,
 				A1BCD1F71D012D3C00CF42E4 /* 4-withdraw-2x_00008.png in Resources */,
+				A1D65DA91D5DCF1100828783 /* crypto_bar_00101.png in Resources */,
 				A1BCD1EE1D012D3C00CF42E4 /* 3-settle-2x_00119.png in Resources */,
 				CD7362831C2C26FF00924077 /* Proxima Nova Regular.otf in Resources */,
 				A1BCD1C91D012D3C00CF42E4 /* 3-settle-2x_00082.png in Resources */,
 				A1BCD1B91D012D3C00CF42E4 /* 3-settle-2x_00066.png in Resources */,
 				A1BCD1A91D012D3C00CF42E4 /* 3-settle-2x_00050.png in Resources */,
+				A1D65DB21D5DCF1100828783 /* crypto_bar_00110.png in Resources */,
 				ECD1E9071C3BCAF60064AAB3 /* LWExchangePresenter~iphone.xib in Resources */,
 				A1BCD0B81D012D3C00CF42E4 /* 1-deposit-2x_00048.png in Resources */,
 				A1BCD1BF1D012D3C00CF42E4 /* 3-settle-2x_00072.png in Resources */,
 				A10A95061D0E8F5F00557C87 /* SlashSign@2x.png in Resources */,
 				A18F892C1CE85B0A00399850 /* LWWithdrawCurrencyPresenter.xib in Resources */,
+				A1D65D801D5DCF1100828783 /* crypto_bar_00060.png in Resources */,
 				A1BCD25A1D012D3C00CF42E4 /* 4-withdraw-2x_00107.png in Resources */,
 				A1BCD1BE1D012D3C00CF42E4 /* 3-settle-2x_00071.png in Resources */,
 				A1BCD0FA1D012D3C00CF42E4 /* 1-deposit-2x_00114.png in Resources */,
@@ -6130,8 +6619,10 @@
 				A1BCD0F81D012D3C00CF42E4 /* 1-deposit-2x_00112.png in Resources */,
 				EC3144491C4C01B500DEA50B /* LWMathKeyboardView.xib in Resources */,
 				A1BCD1701D012D3C00CF42E4 /* 2-trade-2x_00112.png in Resources */,
+				A1D65D631D5DCF1100828783 /* crypto_bar_00031.png in Resources */,
 				A1BCD0C61D012D3C00CF42E4 /* 1-deposit-2x_00062.png in Resources */,
 				A1D4773D1D050B9900438846 /* loader-color@2x_00013.png in Resources */,
+				A1D65D5E1D5DCF1100828783 /* crypto_bar_00026.png in Resources */,
 				A1BCD1161D012D3C00CF42E4 /* 2-trade-2x_00022.png in Resources */,
 				EC57F45D1C3C557E00E31746 /* LWAssetInfoTextTableViewCell.xib in Resources */,
 				ECF9D11A1C5BEC060025FC36 /* LWUrlAddressPresenter.xib in Resources */,
@@ -6140,17 +6631,24 @@
 				A1743CBE1CEAF5F200176F59 /* LWRegisterConfirmPasswordPresenter~ipad.xib in Resources */,
 				A1BCD1661D012D3C00CF42E4 /* 2-trade-2x_00102.png in Resources */,
 				A1BCD1131D012D3C00CF42E4 /* 2-trade-2x_00019.png in Resources */,
+				A1D65D5C1D5DCF1100828783 /* crypto_bar_00024.png in Resources */,
 				A1BCD2861D012D3C00CF42E4 /* 5-onboard-2x_00032.png in Resources */,
 				A1BCD1141D012D3C00CF42E4 /* 2-trade-2x_00020.png in Resources */,
 				A1BCD2D91D012D3C00CF42E4 /* 5-onboard-2x_00115.png in Resources */,
+				A1D65D641D5DCF1100828783 /* crypto_bar_00032.png in Resources */,
 				A1E4EA9F1CE4485E00293282 /* LWTradingLinearGraphPresenter.xib in Resources */,
 				A1D477691D050B9900438846 /* loader-color@2x_00057.png in Resources */,
 				A1BCD1641D012D3C00CF42E4 /* 2-trade-2x_00100.png in Resources */,
 				EC4754A81C614EAF0037614D /* LWWalletDepositPresenter.xib in Resources */,
+				A1D65D651D5DCF1100828783 /* crypto_bar_00033.png in Resources */,
 				A1BCD2231D012D3C00CF42E4 /* 4-withdraw-2x_00052.png in Resources */,
 				A1BCD0991D012D3C00CF42E4 /* 1-deposit-2x_00017.png in Resources */,
+				A1D65DB11D5DCF1100828783 /* crypto_bar_00109.png in Resources */,
 				EC168F0C1C51362800AF8DD5 /* LWPersonalDataPresenter.xib in Resources */,
+				A1D65D491D5DCF1100828783 /* crypto_bar_00005.png in Resources */,
 				A12BEEA71D2E482500045916 /* LWSettingsCallSupportTableViewCell~ipad.xib in Resources */,
+				A1A7D3531D62393A00026576 /* LWTestBackupWordsPresenter.xib in Resources */,
+				A1D65CC61D5DB09700828783 /* LWGenerateKeyPresenter.xib in Resources */,
 				A124D5C71CEB1B550074A1A8 /* LWAuthValidationPresenter~ipad.xib in Resources */,
 				A1BCD19B1D012D3C00CF42E4 /* 3-settle-2x_00036.png in Resources */,
 				A1D4775E1D050B9900438846 /* loader-color@2x_00046.png in Resources */,
@@ -6184,8 +6682,10 @@
 				EC8F48391C4D8A710087DF1F /* LWNotificationSettingsPresenter.xib in Resources */,
 				A1BCD22D1D012D3C00CF42E4 /* 4-withdraw-2x_00062.png in Resources */,
 				A1BCD25F1D012D3C00CF42E4 /* 4-withdraw-2x_00112.png in Resources */,
+				A1D65D7A1D5DCF1100828783 /* crypto_bar_00054.png in Resources */,
 				A1BCD14A1D012D3C00CF42E4 /* 2-trade-2x_00074.png in Resources */,
 				A1BCD1021D012D3C00CF42E4 /* 2-trade-2x_00002.png in Resources */,
+				A1D65D7F1D5DCF1100828783 /* crypto_bar_00059.png in Resources */,
 				A1BCD1D11D012D3C00CF42E4 /* 3-settle-2x_00090.png in Resources */,
 				A1BCD0FB1D012D3C00CF42E4 /* 1-deposit-2x_00115.png in Resources */,
 				A1BCD16D1D012D3C00CF42E4 /* 2-trade-2x_00109.png in Resources */,
@@ -6206,14 +6706,17 @@
 				A1BCD2261D012D3C00CF42E4 /* 4-withdraw-2x_00055.png in Resources */,
 				A1BCD1341D012D3C00CF42E4 /* 2-trade-2x_00052.png in Resources */,
 				EC3CE8C21C402FF000CAC3FE /* LWAssetBlockchainIconTableViewCell.xib in Resources */,
+				A1D65D591D5DCF1100828783 /* crypto_bar_00021.png in Resources */,
 				A1BCD0DC1D012D3C00CF42E4 /* 1-deposit-2x_00084.png in Resources */,
 				A1D477801D050B9900438846 /* loader-color@2x_00080.png in Resources */,
 				A1BCD1C61D012D3C00CF42E4 /* 3-settle-2x_00079.png in Resources */,
 				A1BCD1861D012D3C00CF42E4 /* 3-settle-2x_00015.png in Resources */,
 				A1BCD13E1D012D3C00CF42E4 /* 2-trade-2x_00062.png in Resources */,
 				A1BCD18A1D012D3C00CF42E4 /* 3-settle-2x_00019.png in Resources */,
+				A1D65D5D1D5DCF1100828783 /* crypto_bar_00025.png in Resources */,
 				A1BCD2631D012D3C00CF42E4 /* 4-withdraw-2x_00116.png in Resources */,
 				A1BCD2601D012D3C00CF42E4 /* 4-withdraw-2x_00113.png in Resources */,
+				A1D65DD21D602B0100828783 /* english_words_list.txt in Resources */,
 				A1BCD0AF1D012D3C00CF42E4 /* 1-deposit-2x_00039.png in Resources */,
 				A1BCD19E1D012D3C00CF42E4 /* 3-settle-2x_00039.png in Resources */,
 				A1D477771D050B9900438846 /* loader-color@2x_00071.png in Resources */,
@@ -6229,6 +6732,7 @@
 				A1BCD21A1D012D3C00CF42E4 /* 4-withdraw-2x_00043.png in Resources */,
 				A1BCD1671D012D3C00CF42E4 /* 2-trade-2x_00103.png in Resources */,
 				A1D4775C1D050B9900438846 /* loader-color@2x_00044.png in Resources */,
+				A1D65D851D5DCF1100828783 /* crypto_bar_00065.png in Resources */,
 				A1BCD2A91D012D3C00CF42E4 /* 5-onboard-2x_00067.png in Resources */,
 				A1BCD2341D012D3C00CF42E4 /* 4-withdraw-2x_00069.png in Resources */,
 				A1BCD1F01D012D3C00CF42E4 /* 4-withdraw-2x_00001.png in Resources */,
@@ -6258,7 +6762,9 @@
 				A1AA58961CED7C1200D24E68 /* LWWalletTableViewCell~ipad.xib in Resources */,
 				A1BCD20B1D012D3C00CF42E4 /* 4-withdraw-2x_00028.png in Resources */,
 				EC57F4771C3D528100E31746 /* LWAssetBuyPriceTableViewCell.xib in Resources */,
+				A1D65D831D5DCF1100828783 /* crypto_bar_00063.png in Resources */,
 				A1D4774A1D050B9900438846 /* loader-color@2x_00026.png in Resources */,
+				A1D65D671D5DCF1100828783 /* crypto_bar_00035.png in Resources */,
 				A1BCD0E51D012D3C00CF42E4 /* 1-deposit-2x_00093.png in Resources */,
 				A1BCD0FC1D012D3C00CF42E4 /* 1-deposit-2x_00116.png in Resources */,
 				A1BCD2141D012D3C00CF42E4 /* 4-withdraw-2x_00037.png in Resources */,
@@ -6275,6 +6781,7 @@
 				A1BCD1971D012D3C00CF42E4 /* 3-settle-2x_00032.png in Resources */,
 				A1D4777D1D050B9900438846 /* loader-color@2x_00077.png in Resources */,
 				A1BCD1B71D012D3C00CF42E4 /* 3-settle-2x_00064.png in Resources */,
+				A1D65D611D5DCF1100828783 /* crypto_bar_00029.png in Resources */,
 				CDCD5AF01C259662007BAD78 /* LWSettingsPresenter~iphone.xib in Resources */,
 				A1BCD2CB1D012D3C00CF42E4 /* 5-onboard-2x_00101.png in Resources */,
 				A1BCD13A1D012D3C00CF42E4 /* 2-trade-2x_00058.png in Resources */,
@@ -6284,14 +6791,19 @@
 				A1BCD1801D012D3C00CF42E4 /* 3-settle-2x_00009.png in Resources */,
 				A1C5AF511D0A85CB0056DC53 /* LWSettingsTermsTableViewCell~ipad.xib in Resources */,
 				A1BCD1071D012D3C00CF42E4 /* 2-trade-2x_00007.png in Resources */,
+				A1D65DBB1D5DCF1100828783 /* crypto_bar_00119.png in Resources */,
+				A1D65D6A1D5DCF1100828783 /* crypto_bar_00038.png in Resources */,
 				A1D477571D050B9900438846 /* loader-color@2x_00039.png in Resources */,
 				A1BCD2711D012D3C00CF42E4 /* 5-onboard-2x_00011.png in Resources */,
+				A1D65D8E1D5DCF1100828783 /* crypto_bar_00074.png in Resources */,
+				A1D65D561D5DCF1100828783 /* crypto_bar_00018.png in Resources */,
 				A1D4775F1D050B9900438846 /* loader-color@2x_00047.png in Resources */,
 				EC7F04FB1C3E75E00079ECD0 /* LWExchangeConfirmationView.xib in Resources */,
 				ECAB1BC91C99F70C00A64A20 /* LWExchangeEmptyBlockchainPresenter.xib in Resources */,
 				A1BCD2C51D012D3C00CF42E4 /* 5-onboard-2x_00095.png in Resources */,
 				A1BCD1401D012D3C00CF42E4 /* 2-trade-2x_00064.png in Resources */,
 				A1BCD1921D012D3C00CF42E4 /* 3-settle-2x_00027.png in Resources */,
+				A1D65D541D5DCF1100828783 /* crypto_bar_00016.png in Resources */,
 				A122B9831CFEB2E4009DC795 /* Info.plist in Resources */,
 				A1BCD2B41D012D3C00CF42E4 /* 5-onboard-2x_00078.png in Resources */,
 				ECD114741CDDF726002B36C0 /* LWRegisterPhoneConfirmPresenter~iphone.xib in Resources */,
@@ -6314,9 +6826,11 @@
 				A1D477461D050B9900438846 /* loader-color@2x_00022.png in Resources */,
 				A1BCD1DC1D012D3C00CF42E4 /* 3-settle-2x_00101.png in Resources */,
 				A114948B1D4F46A3000BD347 /* LWRefundTransactionPresenter.xib in Resources */,
+				A1D65DA71D5DCF1100828783 /* crypto_bar_00099.png in Resources */,
 				A1BCD1891D012D3C00CF42E4 /* 3-settle-2x_00018.png in Resources */,
 				A1BCD1B31D012D3C00CF42E4 /* 3-settle-2x_00060.png in Resources */,
 				A1BCD1C21D012D3C00CF42E4 /* 3-settle-2x_00075.png in Resources */,
+				A1D65D9F1D5DCF1100828783 /* crypto_bar_00091.png in Resources */,
 				A1BCD13B1D012D3C00CF42E4 /* 2-trade-2x_00059.png in Resources */,
 				A1BCD1E61D012D3C00CF42E4 /* 3-settle-2x_00111.png in Resources */,
 				A1BCD0BB1D012D3C00CF42E4 /* 1-deposit-2x_00051.png in Resources */,
@@ -6325,15 +6839,20 @@
 				A1BCD1791D012D3C00CF42E4 /* 3-settle-2x_00002.png in Resources */,
 				A1743CBA1CEAC63600176F59 /* LWSMSCodeStepPresenter~ipad.xib in Resources */,
 				A1BCD2211D012D3C00CF42E4 /* 4-withdraw-2x_00050.png in Resources */,
+				A1D65D771D5DCF1100828783 /* crypto_bar_00051.png in Resources */,
 				A1BCD1A61D012D3C00CF42E4 /* 3-settle-2x_00047.png in Resources */,
+				A1D65DB01D5DCF1100828783 /* crypto_bar_00108.png in Resources */,
 				A1BCD1C41D012D3C00CF42E4 /* 3-settle-2x_00077.png in Resources */,
 				A1BCD1091D012D3C00CF42E4 /* 2-trade-2x_00009.png in Resources */,
 				A1BCD1BC1D012D3C00CF42E4 /* 3-settle-2x_00069.png in Resources */,
 				A1BCD2491D012D3C00CF42E4 /* 4-withdraw-2x_00090.png in Resources */,
 				A1BCD1101D012D3C00CF42E4 /* 2-trade-2x_00016.png in Resources */,
 				A1BCD1651D012D3C00CF42E4 /* 2-trade-2x_00101.png in Resources */,
+				A1D65D581D5DCF1100828783 /* crypto_bar_00020.png in Resources */,
 				A1D477391D050B9900438846 /* loader-color@2x_00009.png in Resources */,
+				A1D65DA81D5DCF1100828783 /* crypto_bar_00100.png in Resources */,
 				A1BCD0ED1D012D3C00CF42E4 /* 1-deposit-2x_00101.png in Resources */,
+				A1D65D751D5DCF1100828783 /* crypto_bar_00049.png in Resources */,
 				A1BCD28D1D012D3C00CF42E4 /* 5-onboard-2x_00039.png in Resources */,
 				A1BCD2C81D012D3C00CF42E4 /* 5-onboard-2x_00098.png in Resources */,
 				A1BCD16C1D012D3C00CF42E4 /* 2-trade-2x_00108.png in Resources */,
@@ -6350,10 +6869,12 @@
 				A1BCD1521D012D3C00CF42E4 /* 2-trade-2x_00082.png in Resources */,
 				A1BCD2031D012D3C00CF42E4 /* 4-withdraw-2x_00020.png in Resources */,
 				EC57F47C1C3D52A800E31746 /* LWAssetBuyTotalTableViewCell.xib in Resources */,
+				A1D65D531D5DCF1100828783 /* crypto_bar_00015.png in Resources */,
 				A1BCD1F81D012D3C00CF42E4 /* 4-withdraw-2x_00009.png in Resources */,
 				A1BCD1F51D012D3C00CF42E4 /* 4-withdraw-2x_00006.png in Resources */,
 				A1BCD19A1D012D3C00CF42E4 /* 3-settle-2x_00035.png in Resources */,
 				A1BCD2461D012D3C00CF42E4 /* 4-withdraw-2x_00087.png in Resources */,
+				A1D65D941D5DCF1100828783 /* crypto_bar_00080.png in Resources */,
 				A1165D491CF70CED0017A725 /* LWRegisterHintPresenter~iphone.xib in Resources */,
 				A1BCD1831D012D3C00CF42E4 /* 3-settle-2x_00012.png in Resources */,
 				A1BCD2221D012D3C00CF42E4 /* 4-withdraw-2x_00051.png in Resources */,
@@ -6369,8 +6890,11 @@
 				A1BCD0D01D012D3C00CF42E4 /* 1-deposit-2x_00072.png in Resources */,
 				EC9AE0541CAC5F440047DF0D /* LWWithdrawFundsPresenter.xib in Resources */,
 				A1BCD26E1D012D3C00CF42E4 /* 5-onboard-2x_00008.png in Resources */,
+				A1D65D441D5DCF1100828783 /* crypto_bar_00000.png in Resources */,
 				A1BCD2391D012D3C00CF42E4 /* 4-withdraw-2x_00074.png in Resources */,
+				A1D65D6E1D5DCF1100828783 /* crypto_bar_00042.png in Resources */,
 				A1D477761D050B9900438846 /* loader-color@2x_00070.png in Resources */,
+				A1D65DA61D5DCF1100828783 /* crypto_bar_00098.png in Resources */,
 				A1BCD2611D012D3C00CF42E4 /* 4-withdraw-2x_00114.png in Resources */,
 				A1BCD23E1D012D3C00CF42E4 /* 4-withdraw-2x_00079.png in Resources */,
 				A1BCD1A11D012D3C00CF42E4 /* 3-settle-2x_00042.png in Resources */,
@@ -6400,10 +6924,14 @@
 				A1BCD2CF1D012D3C00CF42E4 /* 5-onboard-2x_00105.png in Resources */,
 				CF6632871C176A63004353F5 /* LWWalletsPresenter~iphone.xib in Resources */,
 				A1D477701D050B9900438846 /* loader-color@2x_00064.png in Resources */,
+				A1D65D4A1D5DCF1100828783 /* crypto_bar_00006.png in Resources */,
+				A1D65D991D5DCF1100828783 /* crypto_bar_00085.png in Resources */,
 				A1BCD2771D012D3C00CF42E4 /* 5-onboard-2x_00017.png in Resources */,
 				A1BCD2281D012D3C00CF42E4 /* 4-withdraw-2x_00057.png in Resources */,
 				A1BCD19C1D012D3C00CF42E4 /* 3-settle-2x_00037.png in Resources */,
 				A1BCD0AE1D012D3C00CF42E4 /* 1-deposit-2x_00038.png in Resources */,
+				A1D65D681D5DCF1100828783 /* crypto_bar_00036.png in Resources */,
+				A1D65D6C1D5DCF1100828783 /* crypto_bar_00040.png in Resources */,
 				A1D4775A1D050B9900438846 /* loader-color@2x_00042.png in Resources */,
 				A1BCD08D1D012D3C00CF42E4 /* 1-deposit-2x_00005.png in Resources */,
 				A1BCD0BF1D012D3C00CF42E4 /* 1-deposit-2x_00055.png in Resources */,
@@ -6416,6 +6944,7 @@
 				A1BCD1DE1D012D3C00CF42E4 /* 3-settle-2x_00103.png in Resources */,
 				A1BCD10A1D012D3C00CF42E4 /* 2-trade-2x_00010.png in Resources */,
 				A1D477791D050B9900438846 /* loader-color@2x_00073.png in Resources */,
+				A1D65D741D5DCF1100828783 /* crypto_bar_00048.png in Resources */,
 				A1BCD17F1D012D3C00CF42E4 /* 3-settle-2x_00008.png in Resources */,
 				ECAACF381C9F3BCD000227E0 /* LWErrorView.xib in Resources */,
 				A19E08D71CEB5722004D286A /* LWCameraOverlayPresenter~ipad.xib in Resources */,
@@ -6427,6 +6956,7 @@
 				A1BCD2021D012D3C00CF42E4 /* 4-withdraw-2x_00019.png in Resources */,
 				EC59526D1C31ED6C0036240C /* LWKYCCheckDocumentsPresenter~iphone.xib in Resources */,
 				A1BCD27F1D012D3C00CF42E4 /* 5-onboard-2x_00025.png in Resources */,
+				A1D65D781D5DCF1100828783 /* crypto_bar_00052.png in Resources */,
 				A1BCD1471D012D3C00CF42E4 /* 2-trade-2x_00071.png in Resources */,
 				A1165D241CF580630017A725 /* LWAssetTableViewCell~ipad.xib in Resources */,
 				A1BCD2811D012D3C00CF42E4 /* 5-onboard-2x_00027.png in Resources */,
@@ -6454,6 +6984,7 @@
 				A1BCD2671D012D3C00CF42E4 /* 5-onboard-2x_00001.png in Resources */,
 				CF66327B1C1768B0004353F5 /* Localizable.strings in Resources */,
 				A1D477661D050B9900438846 /* loader-color@2x_00054.png in Resources */,
+				A1D65D511D5DCF1100828783 /* crypto_bar_00013.png in Resources */,
 				A1BCD1381D012D3C00CF42E4 /* 2-trade-2x_00056.png in Resources */,
 				A1BCD1761D012D3C00CF42E4 /* 2-trade-2x_00118.png in Resources */,
 				ECECAB4C1C98A1200020E050 /* LWBitcoinTableViewCell~iphone.xib in Resources */,
@@ -6461,8 +6992,11 @@
 				A1BCD0C81D012D3C00CF42E4 /* 1-deposit-2x_00064.png in Resources */,
 				A1BCD0DA1D012D3C00CF42E4 /* 1-deposit-2x_00082.png in Resources */,
 				A1BCD1FC1D012D3C00CF42E4 /* 4-withdraw-2x_00013.png in Resources */,
+				A1D65D4C1D5DCF1100828783 /* crypto_bar_00008.png in Resources */,
+				A1D65DA01D5DCF1100828783 /* crypto_bar_00092.png in Resources */,
 				A1BCD1CA1D012D3C00CF42E4 /* 3-settle-2x_00083.png in Resources */,
 				A1BCD2171D012D3C00CF42E4 /* 4-withdraw-2x_00040.png in Resources */,
+				A1D65DC01D5EBD0000828783 /* LWBackupIntroPresenter.xib in Resources */,
 				A1BCD1A51D012D3C00CF42E4 /* 3-settle-2x_00046.png in Resources */,
 				A1BCD0C11D012D3C00CF42E4 /* 1-deposit-2x_00057.png in Resources */,
 				A1BCD2321D012D3C00CF42E4 /* 4-withdraw-2x_00067.png in Resources */,
@@ -6471,13 +7005,16 @@
 				A1BCD1211D012D3C00CF42E4 /* 2-trade-2x_00033.png in Resources */,
 				A1BCD0A21D012D3C00CF42E4 /* 1-deposit-2x_00026.png in Resources */,
 				A1BCD0E31D012D3C00CF42E4 /* 1-deposit-2x_00091.png in Resources */,
+				A1D65D4D1D5DCF1100828783 /* crypto_bar_00009.png in Resources */,
 				A1D4775B1D050B9900438846 /* loader-color@2x_00043.png in Resources */,
 				A1BCD2BA1D012D3C00CF42E4 /* 5-onboard-2x_00084.png in Resources */,
 				EC7A45D81C309A6200926BB4 /* LWLykkeTableViewCell~iphone.xib in Resources */,
 				A1BCD2411D012D3C00CF42E4 /* 4-withdraw-2x_00082.png in Resources */,
 				A1BCD2B71D012D3C00CF42E4 /* 5-onboard-2x_00081.png in Resources */,
 				A1BCD0A91D012D3C00CF42E4 /* 1-deposit-2x_00033.png in Resources */,
-				ECEC40B81C4298DC00B22BEE /* LWHistoryTableViewCell~iphone.xib in Resources */,
+				A1D65D9E1D5DCF1100828783 /* crypto_bar_00090.png in Resources */,
+				A1D65D5F1D5DCF1100828783 /* crypto_bar_00027.png in Resources */,
+				ECEC40B81C4298DC00B22BEE /* LWHistoryTableViewCell.xib in Resources */,
 				A1BCD15E1D012D3C00CF42E4 /* 2-trade-2x_00094.png in Resources */,
 				A1BCD2481D012D3C00CF42E4 /* 4-withdraw-2x_00089.png in Resources */,
 				A1BCD0931D012D3C00CF42E4 /* 1-deposit-2x_00011.png in Resources */,
@@ -6494,13 +7031,16 @@
 				A1BCD1571D012D3C00CF42E4 /* 2-trade-2x_00087.png in Resources */,
 				A1BCD1C01D012D3C00CF42E4 /* 3-settle-2x_00073.png in Resources */,
 				A1BCD08E1D012D3C00CF42E4 /* 1-deposit-2x_00006.png in Resources */,
+				A1D65D691D5DCF1100828783 /* crypto_bar_00037.png in Resources */,
 				A1BCD1CB1D012D3C00CF42E4 /* 3-settle-2x_00084.png in Resources */,
+				A1D65DA31D5DCF1100828783 /* crypto_bar_00095.png in Resources */,
 				A1D4776C1D050B9900438846 /* loader-color@2x_00060.png in Resources */,
 				A1BCD2581D012D3C00CF42E4 /* 4-withdraw-2x_00105.png in Resources */,
 				A1312B271D184062009726FF /* LWCameraMessageView.xib in Resources */,
 				A1BCD12B1D012D3C00CF42E4 /* 2-trade-2x_00043.png in Resources */,
 				A1BCD0911D012D3C00CF42E4 /* 1-deposit-2x_00009.png in Resources */,
 				A1D4774D1D050B9900438846 /* loader-color@2x_00029.png in Resources */,
+				A1D65DD71D60741100828783 /* LWBackupSuccessPresenter.xib in Resources */,
 				A1BCD1E11D012D3C00CF42E4 /* 3-settle-2x_00106.png in Resources */,
 				A1BCD0A11D012D3C00CF42E4 /* 1-deposit-2x_00025.png in Resources */,
 				A1D477431D050B9900438846 /* loader-color@2x_00019.png in Resources */,
@@ -6511,14 +7051,18 @@
 				A1743CB81CEABCB500176F59 /* LWAuthEntryPointPresenter~ipad.xib in Resources */,
 				EC57F4721C3D520600E31746 /* LWAssetBuySumTableViewCell.xib in Resources */,
 				A1BCD0F41D012D3C00CF42E4 /* 1-deposit-2x_00108.png in Resources */,
+				A1D65DB51D5DCF1100828783 /* crypto_bar_00113.png in Resources */,
 				A1BCD1301D012D3C00CF42E4 /* 2-trade-2x_00048.png in Resources */,
 				A1BCD0F91D012D3C00CF42E4 /* 1-deposit-2x_00113.png in Resources */,
 				A1BCD2DD1D012D3C00CF42E4 /* 5-onboard-2x_00119.png in Resources */,
 				A1BCD29D1D012D3C00CF42E4 /* 5-onboard-2x_00055.png in Resources */,
 				A1BCD1DB1D012D3C00CF42E4 /* 3-settle-2x_00100.png in Resources */,
+				A1D65DB31D5DCF1100828783 /* crypto_bar_00111.png in Resources */,
 				A1BCD2181D012D3C00CF42E4 /* 4-withdraw-2x_00041.png in Resources */,
+				A1D65D551D5DCF1100828783 /* crypto_bar_00017.png in Resources */,
 				A1BCD1061D012D3C00CF42E4 /* 2-trade-2x_00006.png in Resources */,
 				EC3CE8B21C4014D600CAC3FE /* LWExchangeBlockchainPresenter.xib in Resources */,
+				A1D65D521D5DCF1100828783 /* crypto_bar_00014.png in Resources */,
 				A1BCD27E1D012D3C00CF42E4 /* 5-onboard-2x_00024.png in Resources */,
 				A1AA589D1CEED16700D24E68 /* CustomKeyboardPointer.png in Resources */,
 				A1BCD1881D012D3C00CF42E4 /* 3-settle-2x_00017.png in Resources */,
@@ -6527,6 +7071,8 @@
 				A1BCD1871D012D3C00CF42E4 /* 3-settle-2x_00016.png in Resources */,
 				A1BCD0CC1D012D3C00CF42E4 /* 1-deposit-2x_00068.png in Resources */,
 				A1BCD2AE1D012D3C00CF42E4 /* 5-onboard-2x_00072.png in Resources */,
+				A1D65D451D5DCF1100828783 /* crypto_bar_00001.png in Resources */,
+				A1D65D931D5DCF1100828783 /* crypto_bar_00079.png in Resources */,
 				A1BCD1781D012D3C00CF42E4 /* 3-settle-2x_00001.png in Resources */,
 				A1BCD2D71D012D3C00CF42E4 /* 5-onboard-2x_00113.png in Resources */,
 				A1BCD1541D012D3C00CF42E4 /* 2-trade-2x_00084.png in Resources */,
@@ -6537,6 +7083,7 @@
 				A1BCD11F1D012D3C00CF42E4 /* 2-trade-2x_00031.png in Resources */,
 				EC7519B41C3733FD00CDDF5B /* LWSettingsAssetTableViewCell~iphone.xib in Resources */,
 				A1BCD1961D012D3C00CF42E4 /* 3-settle-2x_00031.png in Resources */,
+				A1D65D811D5DCF1100828783 /* crypto_bar_00061.png in Resources */,
 				A1BCD0C91D012D3C00CF42E4 /* 1-deposit-2x_00065.png in Resources */,
 				A1BCD2111D012D3C00CF42E4 /* 4-withdraw-2x_00034.png in Resources */,
 				A1165D481CF70CED0017A725 /* LWRegisterHintPresenter~ipad.xib in Resources */,
@@ -6545,6 +7092,7 @@
 				A1D477781D050B9900438846 /* loader-color@2x_00072.png in Resources */,
 				A1BCD2301D012D3C00CF42E4 /* 4-withdraw-2x_00065.png in Resources */,
 				A1BCD1E71D012D3C00CF42E4 /* 3-settle-2x_00112.png in Resources */,
+				A1D65D7C1D5DCF1100828783 /* crypto_bar_00056.png in Resources */,
 				A1BCD2DF1D01651D00CF42E4 /* tips_about.png in Resources */,
 				A1BCD2071D012D3C00CF42E4 /* 4-withdraw-2x_00024.png in Resources */,
 				A1B6A0F71D3A5C2100FE02E1 /* LWBackupMessageView.xib in Resources */,
@@ -6557,6 +7105,7 @@
 				A1BCD2911D012D3C00CF42E4 /* 5-onboard-2x_00043.png in Resources */,
 				A1BCD2831D012D3C00CF42E4 /* 5-onboard-2x_00029.png in Resources */,
 				EC57F46A1C3D400600E31746 /* LWExchangeDealFormPresenter.xib in Resources */,
+				A1D65D981D5DCF1100828783 /* crypto_bar_00084.png in Resources */,
 				A1BCD2C11D012D3C00CF42E4 /* 5-onboard-2x_00091.png in Resources */,
 				A1BCD0F01D012D3C00CF42E4 /* 1-deposit-2x_00104.png in Resources */,
 				A1BCD1BD1D012D3C00CF42E4 /* 3-settle-2x_00070.png in Resources */,
@@ -6568,6 +7117,7 @@
 				A1BCD21B1D012D3C00CF42E4 /* 4-withdraw-2x_00044.png in Resources */,
 				A1165D2D1CF5DB5C0017A725 /* LWChooseAssetTableViewCell~ipad.xib in Resources */,
 				A1BCD0A01D012D3C00CF42E4 /* 1-deposit-2x_00024.png in Resources */,
+				A1D65DCA1D5EC53200828783 /* LWBackupSingleWordPresenter.xib in Resources */,
 				A1BCD2C21D012D3C00CF42E4 /* 5-onboard-2x_00092.png in Resources */,
 				A1BCD2931D012D3C00CF42E4 /* 5-onboard-2x_00045.png in Resources */,
 				A1BCD15D1D012D3C00CF42E4 /* 2-trade-2x_00093.png in Resources */,
@@ -6578,11 +7128,14 @@
 				A1BCD2A41D012D3C00CF42E4 /* 5-onboard-2x_00062.png in Resources */,
 				A17069891D25FBFB0044D7FA /* LWAssetURLTableViewCell.xib in Resources */,
 				A1BCD1461D012D3C00CF42E4 /* 2-trade-2x_00070.png in Resources */,
+				A1D65D471D5DCF1100828783 /* crypto_bar_00003.png in Resources */,
 				A1BCD1FD1D012D3C00CF42E4 /* 4-withdraw-2x_00014.png in Resources */,
+				A1D65D621D5DCF1100828783 /* crypto_bar_00030.png in Resources */,
 				A1BCD2721D012D3C00CF42E4 /* 5-onboard-2x_00012.png in Resources */,
 				A1BCD1C81D012D3C00CF42E4 /* 3-settle-2x_00081.png in Resources */,
 				A1BCD1EA1D012D3C00CF42E4 /* 3-settle-2x_00115.png in Resources */,
 				CFF7583D1C202C6500BC7658 /* LWKYCPendingPresenter.xib in Resources */,
+				A1D65D971D5DCF1100828783 /* crypto_bar_00083.png in Resources */,
 				A1BCD0BD1D012D3C00CF42E4 /* 1-deposit-2x_00053.png in Resources */,
 				A1BCD0B71D012D3C00CF42E4 /* 1-deposit-2x_00047.png in Resources */,
 				A1BCD1DD1D012D3C00CF42E4 /* 3-settle-2x_00102.png in Resources */,
@@ -6592,6 +7145,7 @@
 				A1BCD0F31D012D3C00CF42E4 /* 1-deposit-2x_00107.png in Resources */,
 				EC7A45E01C309ACD00926BB4 /* LWWalletEmptyTableViewCell.xib in Resources */,
 				A1BCD2561D012D3C00CF42E4 /* 4-withdraw-2x_00103.png in Resources */,
+				A1D65D8F1D5DCF1100828783 /* crypto_bar_00075.png in Resources */,
 				A1D477321D050B9900438846 /* loader-color@2x_00002.png in Resources */,
 				A12BEEA11D2BBC7900045916 /* tabbara-line.png in Resources */,
 				A1BCD0EB1D012D3C00CF42E4 /* 1-deposit-2x_00099.png in Resources */,
@@ -6612,7 +7166,9 @@
 				A1D477361D050B9900438846 /* loader-color@2x_00006.png in Resources */,
 				A1BCD08B1D012D3C00CF42E4 /* 1-deposit-2x_00003.png in Resources */,
 				A1BCD2531D012D3C00CF42E4 /* 4-withdraw-2x_00100.png in Resources */,
+				A1D65D9B1D5DCF1100828783 /* crypto_bar_00087.png in Resources */,
 				A1BCD0951D012D3C00CF42E4 /* 1-deposit-2x_00013.png in Resources */,
+				A1D65DB81D5DCF1100828783 /* crypto_bar_00116.png in Resources */,
 				A1BCD1181D012D3C00CF42E4 /* 2-trade-2x_00024.png in Resources */,
 				A1BCD1241D012D3C00CF42E4 /* 2-trade-2x_00036.png in Resources */,
 				A1BCD19F1D012D3C00CF42E4 /* 3-settle-2x_00040.png in Resources */,
@@ -6628,16 +7184,19 @@
 				A1BCD2131D012D3C00CF42E4 /* 4-withdraw-2x_00036.png in Resources */,
 				A1BCD0AD1D012D3C00CF42E4 /* 1-deposit-2x_00037.png in Resources */,
 				A1BCD2C01D012D3C00CF42E4 /* 5-onboard-2x_00090.png in Resources */,
+				A1D65DA11D5DCF1100828783 /* crypto_bar_00093.png in Resources */,
 				A1BCD21F1D012D3C00CF42E4 /* 4-withdraw-2x_00048.png in Resources */,
 				A1D477351D050B9900438846 /* loader-color@2x_00005.png in Resources */,
 				A1BCD24E1D012D3C00CF42E4 /* 4-withdraw-2x_00095.png in Resources */,
+				A1D65D821D5DCF1100828783 /* crypto_bar_00062.png in Resources */,
 				A1BCD1FB1D012D3C00CF42E4 /* 4-withdraw-2x_00012.png in Resources */,
 				A1D477741D050B9900438846 /* loader-color@2x_00068.png in Resources */,
+				A1D65DAB1D5DCF1100828783 /* crypto_bar_00103.png in Resources */,
 				A1BCD0F11D012D3C00CF42E4 /* 1-deposit-2x_00105.png in Resources */,
-				A1165D281CF58C120017A725 /* LWHistoryTableViewCell~ipad.xib in Resources */,
 				EC7F05131C3EE5360079ECD0 /* LWRadioTableViewCell~iphone.xib in Resources */,
 				A1D477601D050B9900438846 /* loader-color@2x_00048.png in Resources */,
 				A1BCD1121D012D3C00CF42E4 /* 2-trade-2x_00018.png in Resources */,
+				A1D65D461D5DCF1100828783 /* crypto_bar_00002.png in Resources */,
 				A1BCD0EE1D012D3C00CF42E4 /* 1-deposit-2x_00102.png in Resources */,
 				A1BCD20D1D012D3C00CF42E4 /* 4-withdraw-2x_00030.png in Resources */,
 				A1BCD2681D012D3C00CF42E4 /* 5-onboard-2x_00002.png in Resources */,
@@ -6653,6 +7212,7 @@
 				A1BCD0E41D012D3C00CF42E4 /* 1-deposit-2x_00092.png in Resources */,
 				A1BCD1481D012D3C00CF42E4 /* 2-trade-2x_00072.png in Resources */,
 				A1BCD1AC1D012D3C00CF42E4 /* 3-settle-2x_00053.png in Resources */,
+				A1D65D9D1D5DCF1100828783 /* crypto_bar_00089.png in Resources */,
 				CDCE88501C26F6630039798B /* LWAuthenticationPresenter.xib in Resources */,
 				A1BCD28E1D012D3C00CF42E4 /* 5-onboard-2x_00040.png in Resources */,
 				A1D4776F1D050B9900438846 /* loader-color@2x_00063.png in Resources */,
@@ -6661,6 +7221,8 @@
 				A1BCD1371D012D3C00CF42E4 /* 2-trade-2x_00055.png in Resources */,
 				A1D477681D050B9900438846 /* loader-color@2x_00056.png in Resources */,
 				A1BCD24A1D012D3C00CF42E4 /* 4-withdraw-2x_00091.png in Resources */,
+				A1D65D4B1D5DCF1100828783 /* crypto_bar_00007.png in Resources */,
+				A1D65CC11D5A17DE00828783 /* LWEmptyHistoryPresenter.xib in Resources */,
 				A1BCD1901D012D3C00CF42E4 /* 3-settle-2x_00025.png in Resources */,
 				A1BCD20C1D012D3C00CF42E4 /* 4-withdraw-2x_00029.png in Resources */,
 				A1BCD0E21D012D3C00CF42E4 /* 1-deposit-2x_00090.png in Resources */,
@@ -6674,8 +7236,11 @@
 				A1BCD25D1D012D3C00CF42E4 /* 4-withdraw-2x_00110.png in Resources */,
 				A1BCD1AA1D012D3C00CF42E4 /* 3-settle-2x_00051.png in Resources */,
 				A1BCD1681D012D3C00CF42E4 /* 2-trade-2x_00104.png in Resources */,
+				A1D65D891D5DCF1100828783 /* crypto_bar_00069.png in Resources */,
 				A1BCD2D11D012D3C00CF42E4 /* 5-onboard-2x_00107.png in Resources */,
+				A1D65D8A1D5DCF1100828783 /* crypto_bar_00070.png in Resources */,
 				A1BCD24D1D012D3C00CF42E4 /* 4-withdraw-2x_00094.png in Resources */,
+				A1D65D871D5DCF1100828783 /* crypto_bar_00067.png in Resources */,
 				A1D477301D050B9900438846 /* loader-color@2x_00000.png in Resources */,
 				A1BCD15A1D012D3C00CF42E4 /* 2-trade-2x_00090.png in Resources */,
 				CFF7584C1C202D1100BC7658 /* LWKYCSuccessPresenter.xib in Resources */,
@@ -6691,13 +7256,17 @@
 				A1BCD27D1D012D3C00CF42E4 /* 5-onboard-2x_00023.png in Resources */,
 				A1BCD2061D012D3C00CF42E4 /* 4-withdraw-2x_00023.png in Resources */,
 				A1D477481D050B9900438846 /* loader-color@2x_00024.png in Resources */,
+				A1D65D7B1D5DCF1100828783 /* crypto_bar_00055.png in Resources */,
 				A1BCD1CD1D012D3C00CF42E4 /* 3-settle-2x_00086.png in Resources */,
 				A1BCD2D21D012D3C00CF42E4 /* 5-onboard-2x_00108.png in Resources */,
+				A1D65DAC1D5DCF1100828783 /* crypto_bar_00104.png in Resources */,
 				EC9C947D1C899019006FD46B /* LaunchScreen.storyboard in Resources */,
 				A1BCD1171D012D3C00CF42E4 /* 2-trade-2x_00023.png in Resources */,
 				A1BCD2A21D012D3C00CF42E4 /* 5-onboard-2x_00060.png in Resources */,
+				A1D65D911D5DCF1100828783 /* crypto_bar_00077.png in Resources */,
 				A1BCD1AE1D012D3C00CF42E4 /* 3-settle-2x_00055.png in Resources */,
 				A1BCD21D1D012D3C00CF42E4 /* 4-withdraw-2x_00046.png in Resources */,
+				A1D65D5A1D5DCF1100828783 /* crypto_bar_00022.png in Resources */,
 				A1BCD0B41D012D3C00CF42E4 /* 1-deposit-2x_00044.png in Resources */,
 				A1BCD11E1D012D3C00CF42E4 /* 2-trade-2x_00030.png in Resources */,
 				A1BCD08A1D012D3C00CF42E4 /* 1-deposit-2x_00002.png in Resources */,
@@ -6709,14 +7278,19 @@
 				A1BCD2651D012D3C00CF42E4 /* 4-withdraw-2x_00118.png in Resources */,
 				A1BCD1AF1D012D3C00CF42E4 /* 3-settle-2x_00056.png in Resources */,
 				EC0175331CA8041800ACC675 /* LWTradingWalletPresenter~iphone.xib in Resources */,
+				A1D65D4F1D5DCF1100828783 /* crypto_bar_00011.png in Resources */,
 				A1BCD0B11D012D3C00CF42E4 /* 1-deposit-2x_00041.png in Resources */,
+				A1D65DB71D5DCF1100828783 /* crypto_bar_00115.png in Resources */,
 				A15B3F051D13A55D00A6B506 /* zbar-samples.png in Resources */,
 				A1743CC21CEAFAD200176F59 /* LWRegisterPhonePresenter~ipad.xib in Resources */,
+				A1D65DA21D5DCF1100828783 /* crypto_bar_00094.png in Resources */,
+				A1D65D5B1D5DCF1100828783 /* crypto_bar_00023.png in Resources */,
 				A1BCD20A1D012D3C00CF42E4 /* 4-withdraw-2x_00027.png in Resources */,
 				A1BCD1B61D012D3C00CF42E4 /* 3-settle-2x_00063.png in Resources */,
 				A10A95071D0E8F5F00557C87 /* SlashSign@3x.png in Resources */,
 				A1BCD1A41D012D3C00CF42E4 /* 3-settle-2x_00045.png in Resources */,
 				A1BCD2091D012D3C00CF42E4 /* 4-withdraw-2x_00026.png in Resources */,
+				A1D65DAA1D5DCF1100828783 /* crypto_bar_00102.png in Resources */,
 				A1BCD1331D012D3C00CF42E4 /* 2-trade-2x_00051.png in Resources */,
 				A1BCD2C41D012D3C00CF42E4 /* 5-onboard-2x_00094.png in Resources */,
 				A1BCD14D1D012D3C00CF42E4 /* 2-trade-2x_00077.png in Resources */,
@@ -6737,6 +7311,7 @@
 				A1BCD1AB1D012D3C00CF42E4 /* 3-settle-2x_00052.png in Resources */,
 				A1BCD2A81D012D3C00CF42E4 /* 5-onboard-2x_00066.png in Resources */,
 				A1BCD0C21D012D3C00CF42E4 /* 1-deposit-2x_00058.png in Resources */,
+				A1D65D901D5DCF1100828783 /* crypto_bar_00076.png in Resources */,
 				A1BCD2D31D012D3C00CF42E4 /* 5-onboard-2x_00109.png in Resources */,
 				A1BCD1D31D012D3C00CF42E4 /* 3-settle-2x_00092.png in Resources */,
 				A1BCD20E1D012D3C00CF42E4 /* 4-withdraw-2x_00031.png in Resources */,
@@ -6747,6 +7322,7 @@
 				A1BCD09D1D012D3C00CF42E4 /* 1-deposit-2x_00021.png in Resources */,
 				EC7F05041C3EA8950079ECD0 /* LWDetailTableViewCell.xib in Resources */,
 				A1BCD2401D012D3C00CF42E4 /* 4-withdraw-2x_00081.png in Resources */,
+				A1D65D7D1D5DCF1100828783 /* crypto_bar_00057.png in Resources */,
 				A1BCD2761D012D3C00CF42E4 /* 5-onboard-2x_00016.png in Resources */,
 				A1BCD1591D012D3C00CF42E4 /* 2-trade-2x_00089.png in Resources */,
 				A1BCD13C1D012D3C00CF42E4 /* 2-trade-2x_00060.png in Resources */,
@@ -6758,23 +7334,30 @@
 				A1BCD2621D012D3C00CF42E4 /* 4-withdraw-2x_00115.png in Resources */,
 				A1D477531D050B9900438846 /* loader-color@2x_00035.png in Resources */,
 				CFF758471C202C8E00BC7658 /* LWKYCRestrictedPresenter.xib in Resources */,
+				A1D65D701D5DCF1100828783 /* crypto_bar_00044.png in Resources */,
 				CDA69FE01C281E1C00BE4DCA /* LWAuthValidationPresenter~iphone.xib in Resources */,
 				A1BCD1991D012D3C00CF42E4 /* 3-settle-2x_00034.png in Resources */,
 				A1BCD16E1D012D3C00CF42E4 /* 2-trade-2x_00110.png in Resources */,
 				A1BCD14F1D012D3C00CF42E4 /* 2-trade-2x_00079.png in Resources */,
 				A1BCD1251D012D3C00CF42E4 /* 2-trade-2x_00037.png in Resources */,
+				A1D65DB41D5DCF1100828783 /* crypto_bar_00112.png in Resources */,
 				A1BCD2081D012D3C00CF42E4 /* 4-withdraw-2x_00025.png in Resources */,
 				A1BCCE2B1D011C2D00CF42E4 /* LWIntroductionPresenter.xib in Resources */,
+				A1D65D721D5DCF1100828783 /* crypto_bar_00046.png in Resources */,
 				A1BCD2A11D012D3C00CF42E4 /* 5-onboard-2x_00059.png in Resources */,
 				ECD1146D1CDDE3B4002B36C0 /* LWCountryTableViewCell.xib in Resources */,
 				A1BCD0F61D012D3C00CF42E4 /* 1-deposit-2x_00110.png in Resources */,
 				A1BCD0C41D012D3C00CF42E4 /* 1-deposit-2x_00060.png in Resources */,
 				A1BCD2551D012D3C00CF42E4 /* 4-withdraw-2x_00102.png in Resources */,
 				A1BCD2BF1D012D3C00CF42E4 /* 5-onboard-2x_00089.png in Resources */,
+				A1D65D711D5DCF1100828783 /* crypto_bar_00045.png in Resources */,
 				A1BCD1411D012D3C00CF42E4 /* 2-trade-2x_00065.png in Resources */,
 				A1BCD2521D012D3C00CF42E4 /* 4-withdraw-2x_00099.png in Resources */,
 				A1BCD1821D012D3C00CF42E4 /* 3-settle-2x_00011.png in Resources */,
 				A1BCD2851D012D3C00CF42E4 /* 5-onboard-2x_00031.png in Resources */,
+				A1D65DBA1D5DCF1100828783 /* crypto_bar_00118.png in Resources */,
+				A1D65D921D5DCF1100828783 /* crypto_bar_00078.png in Resources */,
+				A1D65D6D1D5DCF1100828783 /* crypto_bar_00041.png in Resources */,
 				A1BCD2AF1D012D3C00CF42E4 /* 5-onboard-2x_00073.png in Resources */,
 				A1BCD29C1D012D3C00CF42E4 /* 5-onboard-2x_00054.png in Resources */,
 				A1BCD2CE1D012D3C00CF42E4 /* 5-onboard-2x_00104.png in Resources */,
@@ -6783,10 +7366,12 @@
 				A1BCD0A31D012D3C00CF42E4 /* 1-deposit-2x_00027.png in Resources */,
 				A1BCD12C1D012D3C00CF42E4 /* 2-trade-2x_00044.png in Resources */,
 				ECECAB5E1C998CAD0020E050 /* LWLykkeEmptyTableViewCell.xib in Resources */,
+				A1D65D8D1D5DCF1100828783 /* crypto_bar_00073.png in Resources */,
 				A124D5C21CEB14400074A1A8 /* LWAuthenticationPresenter~ipad.xib in Resources */,
 				A1BCD1FA1D012D3C00CF42E4 /* 4-withdraw-2x_00011.png in Resources */,
 				A1165D421CF6D22C0017A725 /* LWSettingsLogOutTableViewCell~ipad.xib in Resources */,
 				A1BCD1551D012D3C00CF42E4 /* 2-trade-2x_00085.png in Resources */,
+				A1D65D791D5DCF1100828783 /* crypto_bar_00053.png in Resources */,
 				A1D477751D050B9900438846 /* loader-color@2x_00069.png in Resources */,
 				A1BCD24F1D012D3C00CF42E4 /* 4-withdraw-2x_00096.png in Resources */,
 				A1BCD0E71D012D3C00CF42E4 /* 1-deposit-2x_00095.png in Resources */,
@@ -6865,7 +7450,7 @@
 				EC0E84431C8EC7EB00FE128C /* LWWalletEmptyTableViewCell.xib in Resources */,
 				EC4D924F1C8778DF006EE7C8 /* LWHistoryPresenter~iphone.xib in Resources */,
 				EC0E84421C8EC7EB00FE128C /* LWLykkeTableViewCell~iphone.xib in Resources */,
-				EC4D92521C8778DF006EE7C8 /* LWHistoryTableViewCell~iphone.xib in Resources */,
+				EC4D92521C8778DF006EE7C8 /* LWHistoryTableViewCell.xib in Resources */,
 				EC9C94B31C89F584006FD46B /* GothaProBol.otf in Resources */,
 				ECAACF391C9F3BCD000227E0 /* LWErrorView.xib in Resources */,
 				EC3EDBA01C92F89F0044AA6B /* LWChooseAssetTableViewCell.xib in Resources */,
@@ -6917,7 +7502,6 @@
 				EC4D926D1C8778DF006EE7C8 /* LWKYCRestrictedPresenter.xib in Resources */,
 				EC051A721CB6E15000E31BD5 /* LWTransferConfirmationView.xib in Resources */,
 				EC302FFD1C903444003A1F5F /* LWRadioTableViewCell.xib in Resources */,
-				EC8923221CC3DB5B00201BE7 /* LWHistoryTableViewCell~ipad.xib in Resources */,
 				ECA23FA71CBD937900B4D58D /* LWTransferEmptyBlockchainPresenter.xib in Resources */,
 				EC302FFB1C90343C003A1F5F /* LWDetailTableViewCell.xib in Resources */,
 				EC8923161CC3CE0F00201BE7 /* LWExchangePresenter~ipad.xib in Resources */,
@@ -7068,6 +7652,7 @@
 				EC57F4651C3D197900E31746 /* NSString+Utils.m in Sources */,
 				A114948F1D509238000BD347 /* LWResultPresenter.m in Sources */,
 				A114946A1D491097000BD347 /* LWDropdownViewCell.m in Sources */,
+				A1654E481D583702001741A7 /* LWPKTransferConfirmationCellView.m in Sources */,
 				A11D0F3D1D3761A800BFDE4D /* LWPrivateWalletsPresenter.m in Sources */,
 				CDCD5AE31C2576EB007BAD78 /* LWKeychainManager.m in Sources */,
 				ECFAC5B31CB11138009B1CC9 /* LWUtils.m in Sources */,
@@ -7126,11 +7711,13 @@
 				A1BCCE2A1D011C2D00CF42E4 /* LWIntroductionPresenter.m in Sources */,
 				A1D476DD1D0506F900438846 /* LWProgressView.m in Sources */,
 				ECD1146A1CDDE39D002B36C0 /* LWCountryTableViewCell.m in Sources */,
+				A1D65DC31D5EC14700828783 /* LWBackupGetStartedPresenter.m in Sources */,
 				A1C99D361D460BCE00833C4E /* LWPrivateWalletTransferInputPresenter.m in Sources */,
 				ECE902C41C354FA500F52971 /* LWPacketBankCards.m in Sources */,
 				ECD1E9101C3BDED40064AAB3 /* LWAssetLykkeTableViewCell.m in Sources */,
 				A122B97A1CFEB0BC009DC795 /* LWAnimatedView.m in Sources */,
 				EC3CE8A61C3FCDBE00CAC3FE /* LWSettingsConfirmationPresenter.m in Sources */,
+				A1D65DD51D6073BA00828783 /* LWBackupSuccessPresenter.m in Sources */,
 				CF6632701C175DF0004353F5 /* TKTableViewCell.m in Sources */,
 				CDCE884F1C26F6630039798B /* LWAuthenticationPresenter.m in Sources */,
 				CF6F69D11C2413F70016CFC5 /* ABPadLockScreenSetupViewController.m in Sources */,
@@ -7163,6 +7750,7 @@
 				A1BCCD2B1CFEC9C900CF42E4 /* LWPacketApplicationInfo.m in Sources */,
 				CFF7584B1C202D1100BC7658 /* LWKYCSuccessPresenter.m in Sources */,
 				CF9EC90E1C17C6C100F742A6 /* UIColor+Generic.m in Sources */,
+				A1D65DBE1D5EBCBC00828783 /* LWBackupIntroPresenter.m in Sources */,
 				ECEC40B61C4298CF00B22BEE /* LWHistoryTableViewCell.m in Sources */,
 				A1AB30751CE5C03E009AF37B /* LWSendImageManager.m in Sources */,
 				A114948A1D4F46A3000BD347 /* LWRefundTransactionPresenter.m in Sources */,
@@ -7175,6 +7763,7 @@
 				A1E4EA9A1CE42D5800293282 /* LWPacketGraphData.m in Sources */,
 				ECE902BD1C3537B700F52971 /* LWWalletFormPresenter.m in Sources */,
 				A15B3EB61D12CA1500A6B506 /* LWKYCManager.m in Sources */,
+				A1A7D3521D62393A00026576 /* LWTestBackupWordsPresenter.m in Sources */,
 				CFF758411C202C7D00BC7658 /* LWKYCInvalidDocumentsPresenter.m in Sources */,
 				A10A950D1D0EA07B00557C87 /* LWPacketLastBaseAssets.m in Sources */,
 				A1BB07C21D3793F600924804 /* LWPrivateWalletsHeaderSumView.m in Sources */,
@@ -7212,6 +7801,7 @@
 				EC51D19F1C30578700550EF2 /* LWLykkeAssetsData.m in Sources */,
 				A1BB07C51D388CB100924804 /* LWAddPrivateWalletPresenter.m in Sources */,
 				ECD114721CDDF726002B36C0 /* LWRegisterPhoneConfirmPresenter.m in Sources */,
+				A1654E4B1D589A00001741A7 /* LWURLProtocol.m in Sources */,
 				EC2813EC1C343CE9009BE680 /* UIImage+Resize.m in Sources */,
 				ECE902C71C35504200F52971 /* LWBankCardsAdd.m in Sources */,
 				A11494821D4F2804000BD347 /* LWPKBackupModel.m in Sources */,
@@ -7238,6 +7828,7 @@
 				EC57F4681C3D3FF900E31746 /* LWExchangeDealFormPresenter.m in Sources */,
 				CDA69FCE1C275C3800BE4DCA /* LWKYCSubmitPresenter.m in Sources */,
 				ECD1E8FF1C3B21300064AAB3 /* LWMath.m in Sources */,
+				A1D65DCE1D5ECF6E00828783 /* LWBackupCheckWordsPresenter.m in Sources */,
 				A12BEEAE1D2FA21400045916 /* LWPacketPushSettingsSet.m in Sources */,
 				ECD114801CDF1809002B36C0 /* UIView+Navigation.m in Sources */,
 				A1D432281D0FFCCC0060866F /* LWRefundTableViewCell.m in Sources */,
@@ -7267,6 +7858,7 @@
 				CF6F69D21C2413F70016CFC5 /* ABPadLockScreenView.m in Sources */,
 				EC7519B81C37351C00CDDF5B /* LWAssetsTablePresenter.m in Sources */,
 				CF6F69D31C2413F70016CFC5 /* ABPadLockScreenViewController.m in Sources */,
+				A1D65CC51D5DB09700828783 /* LWGenerateKeyPresenter.m in Sources */,
 				CDCD5B181C26CC50007BAD78 /* LWRegisterPasswordPresenter.m in Sources */,
 				A1B6A0F61D3A5C2100FE02E1 /* LWBackupMessageView.m in Sources */,
 				CF9EC8FC1C17C6AD00F742A6 /* LWAuthManager.m in Sources */,
@@ -7296,6 +7888,7 @@
 				A15B3EAF1D12626B00A6B506 /* LWRefundInformationPresenter.m in Sources */,
 				EC7F04FE1C3E86760079ECD0 /* LWPacketBuySellAsset.m in Sources */,
 				A1BB07D51D38BB1F00924804 /* LWWalletAddressView.m in Sources */,
+				A1D65DC91D5EC53200828783 /* LWBackupSingleWordPresenter.m in Sources */,
 				EC3CE89E1C3FB6CC00CAC3FE /* LWAssetDealModel.m in Sources */,
 				ECD1E8FB1C3B181F0064AAB3 /* LWPacketAppSettings.m in Sources */,
 				CFAD8A8D1C1D5E4B00185CD1 /* LWDocumentsStatus.m in Sources */,
@@ -7304,6 +7897,7 @@
 				ECD1145A1CDDCC73002B36C0 /* LWCountryModel.m in Sources */,
 				CF6F69CF1C2413F70016CFC5 /* ABPadButton.m in Sources */,
 				A1654E3A1D50C491001741A7 /* LWPacketPrevCardPayment.m in Sources */,
+				A1D65CC01D5A17DE00828783 /* LWEmptyHistoryPresenter.m in Sources */,
 				ECA23F9D1CBD733300B4D58D /* LWTransactionCashInOutModel.m in Sources */,
 				ECA80B651C2E0E47001C4E8F /* LWCameraOverlayPresenter.m in Sources */,
 				ECD1147C1CDE2362002B36C0 /* LWPacketPhoneVerificationSet.m in Sources */,
@@ -7717,7 +8311,7 @@
 					"$(PROJECT_DIR)/LykkeWallet/Classes/Model/Core/Security",
 					"$(PROJECT_DIR)/LykkeWallet/Classes/Model/Core/CoreBitcoin",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.lykkex.Lykke-Wallet-test";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.lykkex.Lykke-Wallet";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -7748,7 +8342,7 @@
 					"$(PROJECT_DIR)/LykkeWallet/Classes/Model/Core/Security",
 					"$(PROJECT_DIR)/LykkeWallet/Classes/Model/Core/CoreBitcoin",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.lykkex.Lykke-Wallet-test";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.lykkex.Lykke-Wallet";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "739d1803-3e6a-45f6-a16e-304ce210d1a9";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -7829,7 +8423,7 @@
 					"$(PROJECT_DIR)/LykkeWallet/Classes/Model/Core/Security",
 					"$(PROJECT_DIR)/LykkeWallet/Classes/Model/Core/CoreBitcoin",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.lykkex.Lykke-Wallet-test";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.lykkex.Lykke-Wallet";
 				PRODUCT_NAME = "$(TARGET_NAME).Test";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -7904,7 +8498,7 @@
 					"$(PROJECT_DIR)/LykkeWallet/Classes/Model/Core/Security",
 					"$(PROJECT_DIR)/LykkeWallet/Classes/Model/Core/CoreBitcoin",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.lykkex.Lykke-Wallet-test";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.lykkex.Lykke-Wallet";
 				PRODUCT_NAME = "$(TARGET_NAME).Test";
 				PROVISIONING_PROFILE = "94778a79-61e0-4642-b7cb-463404699219";
 				TARGETED_DEVICE_FAMILY = "1,2";

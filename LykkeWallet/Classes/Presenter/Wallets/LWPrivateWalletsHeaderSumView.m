@@ -7,6 +7,7 @@
 //
 
 #import "LWPrivateWalletsHeaderSumView.h"
+#import "LWCache.h"
 
 @interface LWPrivateWalletsHeaderSumView()
 {
@@ -42,7 +43,7 @@
     _total=total;
     NSDictionary *attributes=@{NSForegroundColorAttributeName:[UIColor colorWithRed:63.0/255 green:77.0/255 blue:96.0/255 alpha:1],
                                NSFontAttributeName:[UIFont fontWithName:@"ProximaNova-Semibold" size:16]};
-    sumLabel.attributedText=[[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"$ %.2f",total.floatValue] attributes:attributes];
+    sumLabel.attributedText=[[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@ %.2f",[LWCache instance].baseAssetSymbol,total.floatValue] attributes:attributes];
     [sumLabel sizeToFit];
 
 }

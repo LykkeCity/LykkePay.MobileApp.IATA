@@ -10,6 +10,7 @@
 
 
 @class LWExchangeInfoModel;
+@class  LWBaseHistoryItemType;
 
 
 @interface LWExchangeEmptyBlockchainPresenter : LWAuthComplexPresenter {
@@ -18,5 +19,6 @@
 
 @property (nonatomic, strong) NSString            *asset;
 @property (nonatomic, strong) LWExchangeInfoModel *model;
+@property (nonatomic, strong) LWBaseHistoryItemType *historyItem;
 
 @end

@@ -23,6 +23,8 @@
 @interface LWExchangeConfirmationView () <UITableViewDataSource, LWPinKeyboardViewDelegate> {
     LWPinKeyboardView *pinKeyboardView;
     BOOL               isRequested;
+    
+    UIView *shadowView;
 }
 
 #pragma mark - Outlets
@@ -35,6 +37,8 @@
 @property (weak, nonatomic) IBOutlet UIButton         *placeOrderButton;
 @property (weak, nonatomic) IBOutlet UILabel          *waitingLabel;
 @property (weak, nonatomic) IBOutlet LWLoadingIndicatorView *waitingImageView;
+
+@property (weak, nonatomic) IBOutlet UIView *touchCatchView;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *topViewHeightConstraint;
 
@@ -63,6 +67,13 @@ static float const kNoPinProtectionHeight = 300;
 
 
 #pragma mark - General
+
+-(void) awakeFromNib
+{
+    UITapGestureRecognizer *gesture=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cancelOperation)];
+    [self.touchCatchView addGestureRecognizer:gesture];
+    
+}
 
 + (LWExchangeConfirmationView *)modalViewWithDelegate:(id<LWExchangeConfirmationViewDelegate>)delegate {
 
@@ -105,16 +116,31 @@ static float const kNoPinProtectionHeight = 300;
 
 - (void)cancelOperation {
     [self.delegate cancelClicked];
-    [self removeFromSuperview];
+    [self hide];
+}
+
+-(void) show
+{
+    shadowView=[[UIView alloc] initWithFrame:self.superview.bounds];
+    shadowView.backgroundColor=[UIColor colorWithWhite:0 alpha:0.5];
+    shadowView.alpha=0;
+    shadowView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    [self.superview insertSubview:shadowView belowSubview:self];
+
+    [UIView animateWithDuration:0.5 animations:^{
+        shadowView.alpha=1;
+        self.iPadNavShadowView.alpha=1;
+    }];
 }
 
 - (void)updateView {
-    [UIView setAnimationsEnabled:NO];
+//    [UIView setAnimationsEnabled:NO];
     
-    self.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5f];
+//    self.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5f];
     
     self.topView.backgroundColor = [UIColor whiteColor];
     self.topView.opaque = NO;
+    self.backgroundColor=nil;
     
     BOOL const shouldSignOrder = [LWCache instance].shouldSignOrder;
     if (shouldSignOrder) {
@@ -256,13 +282,27 @@ static float const kNoPinProtectionHeight = 300;
     [self.delegate checkPin:pin];
 }
 
+-(void) hide
+{
+    [UIView animateWithDuration:0.5 animations:^{
+        shadowView.alpha=0;
+        self.iPadNavShadowView.alpha=0;
+        self.center=CGPointMake(self.bounds.size.width/2, self.bounds.size.height*1.5);
+    } completion:^(BOOL finished){
+        [self.iPadNavShadowView removeFromSuperview];
+        [shadowView removeFromSuperview];
+            [self removeFromSuperview];
+        
+    }];
+}
+
 - (void)pinCanceled {
-    [self removeFromSuperview];
+    [self hide];
     [self.delegate cancelClicked];
 }
 
 - (void)pinAttemptEnds {
-    [self removeFromSuperview];
+    [self hide];
     [self.delegate noAttemptsForPin];
 }
 

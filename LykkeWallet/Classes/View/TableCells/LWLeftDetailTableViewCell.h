@@ -18,10 +18,20 @@
     
 }
 
+@property id delegate;
+@property BOOL showCopyButton;
+
 
 #pragma mark - Outlets
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *detailLabel;
+
+
+@end
+
+@protocol LWLeftDetailTableViewCellDelegate
+
+-(void) leftDetailCellCopyPressed:(LWLeftDetailTableViewCell *) cell;
 
 @end

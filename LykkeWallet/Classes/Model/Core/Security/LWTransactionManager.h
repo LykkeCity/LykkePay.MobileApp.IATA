@@ -8,8 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+@class LWPKTransferModel;
+@class BTCTransaction;
+
 @interface LWTransactionManager : NSObject
 
-+(NSString *) signMultiSigTransaction:(NSString *) transaction withKey:(NSString *) key;
++(BTCTransaction *) signMultiSigTransaction:(NSString *) transaction withKey:(NSString *) key;
++(NSString *) signTransactionRaw:(NSString *) rawString forModel:(LWPKTransferModel *) model;
 
 @end

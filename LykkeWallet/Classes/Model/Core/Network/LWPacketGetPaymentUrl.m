@@ -7,6 +7,7 @@
 //
 
 #import "LWPacketGetPaymentUrl.h"
+#import "LWCache.h"
 
 @implementation LWPacketGetPaymentUrl
 
@@ -22,6 +23,9 @@
     _successUrl=result[@"OkUrl"];
     _failUrl=result[@"FailUrl"];
     _reloadRegex=result[@"ReloadRegex"];
+    [LWCache instance].cashInVisaURL=_urlString;
+    [LWCache instance].cashInVisaSuccessURL=_successUrl;
+    [LWCache instance].cashInVisaFailURL=_failUrl;
     
 }
 

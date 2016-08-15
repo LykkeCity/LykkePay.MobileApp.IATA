@@ -16,6 +16,7 @@
 #import "UIViewController+Loading.h"
 #import "UIViewController+Navigation.h"
 #import "LWPKTransferModel.h"
+#import "LWIPadModalNavigationControllerViewController.h"
 
 
 @interface LWPrivateWalletHistoryPresenter () <UITableViewDelegate, UITableViewDataSource, LWDoubleButtonViewDelegate>
@@ -82,7 +83,21 @@
     transfer.asset=self.asset;
     presenter.transfer=transfer;
     
-    [self.navigationController pushViewController:presenter animated:YES];
+//    [self.navigationController pushViewController:presenter animated:YES];
+    
+    
+    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
+        [self.navigationController pushViewController:presenter animated:YES];
+    else
+    {
+        LWIPadModalNavigationControllerViewController *navigationController =
+        [[LWIPadModalNavigationControllerViewController alloc] initWithRootViewController:presenter];
+        navigationController.modalPresentationStyle=UIModalPresentationCustom;
+        navigationController.transitioningDelegate=navigationController;
+        [self.navigationController presentViewController:navigationController animated:YES completion:nil];
+        
+    }
+
 }
 
 -(void) doubleButtonPressedRight:(LWDoubleButtonView *)button

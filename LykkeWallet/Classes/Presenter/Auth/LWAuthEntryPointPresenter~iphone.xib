@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15G7a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="Proxima Nova Regular.otf">
+            <string>ProximaNova-Regular</string>
+        </mutableArray>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LWAuthEntryPointPresenter">
             <connections>
@@ -11,6 +16,7 @@
                 <outlet property="chooseServerButton" destination="hQ0-W1-g4x" id="xIl-1N-fvB"/>
                 <outlet property="emailTextFieldContainer" destination="jTR-ra-Fsm" id="f0R-5h-rt2"/>
                 <outlet property="proceedButton" destination="ZD9-eO-6FP" id="QMh-G4-fRH"/>
+                <outlet property="refundButton" destination="IHK-zF-81o" id="fFh-Cf-oe1"/>
                 <outlet property="tipsBottomConstraint" destination="e0I-6C-Pvp" id="cX4-WT-cIg"/>
                 <outlet property="tipsContainer" destination="Glz-RF-sGK" id="E2S-zZ-tGf"/>
                 <outlet property="versionLabel" destination="fsk-1T-C4H" id="C7B-Zo-a2x"/>
@@ -58,8 +64,8 @@
                         <constraint firstAttribute="height" constant="65" id="qKm-3S-pLj"/>
                     </constraints>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hQ0-W1-g4x" customClass="TKButton">
-                    <rect key="frame" x="8" y="316" width="304" height="45"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hQ0-W1-g4x" customClass="TKButton">
+                    <rect key="frame" x="8" y="354" width="304" height="45"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="45" id="MIT-4I-0Kf"/>
                         <constraint firstAttribute="width" constant="304" id="cfj-8f-aMc"/>
@@ -82,18 +88,25 @@
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0V3-Cg-dNs" customClass="LWProgressView">
-                    <rect key="frame" x="187" y="270" width="41" height="39"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0V3-Cg-dNs" customClass="LWProgressView">
+                    <rect key="frame" x="145" y="274" width="30" height="30"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="I2R-cB-tSs"/>
                         <constraint firstAttribute="width" constant="30" id="OmX-yl-m57"/>
                     </constraints>
                 </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IHK-zF-81o">
+                    <rect key="frame" x="123.5" y="312" width="73" height="30"/>
+                    <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="14"/>
+                    <state key="normal" title="Take refund">
+                        <color key="titleColor" red="0.6705882352941176" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="hQ0-W1-g4x" firstAttribute="top" secondItem="0V3-Cg-dNs" secondAttribute="bottom" constant="22" id="1Ul-BD-4Ri"/>
+                <constraint firstItem="hQ0-W1-g4x" firstAttribute="top" secondItem="0V3-Cg-dNs" secondAttribute="bottom" constant="50" id="1Ul-BD-4Ri"/>
                 <constraint firstItem="ZD9-eO-6FP" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="2j5-rL-6zh"/>
                 <constraint firstAttribute="trailing" secondItem="fsk-1T-C4H" secondAttribute="trailing" id="49E-9l-UX5"/>
                 <constraint firstAttribute="bottom" secondItem="fsk-1T-C4H" secondAttribute="bottom" id="9GY-cG-AEq"/>
@@ -103,6 +116,8 @@
                 <constraint firstItem="nEs-eH-7Sv" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="57" id="I2t-g5-4Qu"/>
                 <constraint firstItem="0V3-Cg-dNs" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="IrB-MK-rBT"/>
                 <constraint firstItem="Glz-RF-sGK" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="K8A-ux-U2c"/>
+                <constraint firstItem="IHK-zF-81o" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="W99-Q6-H0e"/>
+                <constraint firstItem="IHK-zF-81o" firstAttribute="top" secondItem="0V3-Cg-dNs" secondAttribute="bottom" constant="8" id="cjw-5y-2ZZ"/>
                 <constraint firstItem="ZD9-eO-6FP" firstAttribute="top" secondItem="jTR-ra-Fsm" secondAttribute="bottom" constant="11" id="d3j-jO-c0L"/>
                 <constraint firstAttribute="bottom" secondItem="Glz-RF-sGK" secondAttribute="bottom" constant="30" id="e0I-6C-Pvp"/>
                 <constraint firstItem="nEs-eH-7Sv" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="gG0-2R-Mro"/>

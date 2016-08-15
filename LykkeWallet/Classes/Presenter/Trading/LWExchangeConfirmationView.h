@@ -40,12 +40,17 @@
 @property (copy, nonatomic) NSString *totalString;
 @property LWAssetDealType assetDealType;
 
+@property (strong, nonatomic) UIView *iPadNavShadowView;
+
 #pragma mark - General
 
 + (LWExchangeConfirmationView *)modalViewWithDelegate:(id<LWExchangeConfirmationViewDelegate>)delegate;
 
 
 #pragma mark - Utils
+
+-(void) show;
+-(void) hide;
 
 - (void)requestOperation;
 - (void)pinRejected;

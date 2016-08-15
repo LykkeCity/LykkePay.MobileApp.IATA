@@ -17,7 +17,7 @@
     
     if([response[@"Error"] isKindOfClass:[NSDictionary class]] && [response[@"Error"][@"Code"] intValue]==1)  //Error occures
     {
-        [[LWPrivateKeyManager shared] generatePrivateKey];
+//        [[LWPrivateKeyManager shared] generatePrivateKey];
         [[LWAuthManager instance] requestSaveClientKeysWithPubKey:[LWPrivateKeyManager shared].publicKeyLykke encodedPrivateKey:[LWPrivateKeyManager shared].encryptedKeyLykke];
         return;
     }

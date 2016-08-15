@@ -25,6 +25,7 @@
         _numberOfCoins        = [json objectForKey:@"NumberOfCoins"];
         _marketCapitalization = [json objectForKey:@"MarketCapitalization"];
         _assetDescriptionURL  = [json objectForKey:@"AssetDescriptionUrl"];
+        _fullName=[json objectForKey:@"FullName"];
     }
     return self;
 }

@@ -88,8 +88,8 @@
 
 - (void)authManagerDidRegister:(LWAuthManager *)manager {
     [[LWAuthManager instance] requestPersonalData];
-    [[LWPrivateKeyManager shared] generatePrivateKey];
-    [[LWAuthManager instance] requestSaveClientKeysWithPubKey:[LWPrivateKeyManager shared].publicKeyLykke encodedPrivateKey:[LWPrivateKeyManager shared].encryptedKeyLykke];
+//    [[LWPrivateKeyManager shared] generatePrivateKey];
+//    [[LWAuthManager instance] requestSaveClientKeysWithPubKey:[LWPrivateKeyManager shared].publicKeyLykke encodedPrivateKey:[LWPrivateKeyManager shared].encryptedKeyLykke];
 
 }
 

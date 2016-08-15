@@ -7,6 +7,7 @@
 //
 
 #import "LWPrivateWalletHistoryCellModel.h"
+#import "NSString+Date.h"
 
 @implementation LWPrivateWalletHistoryCellModel
 
@@ -14,12 +15,24 @@
 {
     self=[super init];
     
-    self.amount=@(20);
-    self.assetId=@"BTC";
-    self.baseAssetAmount=@(1000);
-    self.type=LWPrivateWalletTransferTypeSend;
+    self.amount=@(fabs([d[@"Amount"] doubleValue]));
+    self.assetId=d[@"AssetId"];
+    self.date=[d[@"DateTime"] toDate];
+    self.baseAssetAmount=@(fabs([d[@"AmountInBase"] doubleValue]));
+    if([d[@"Amount"] doubleValue]>0)
+        self.type=LWPrivateWalletTransferTypeReceive;
+    else
+        self.type=LWPrivateWalletTransferTypeSend;
     
-    self.date=[NSDate date];
+    
+    
+    
+//    self.amount=@(20);
+//    self.assetId=@"BTC";
+//    self.baseAssetAmount=@(1000);
+//    self.type=LWPrivateWalletTransferTypeSend;
+//    
+//    self.date=[NSDate date];
     
     return self;
 }

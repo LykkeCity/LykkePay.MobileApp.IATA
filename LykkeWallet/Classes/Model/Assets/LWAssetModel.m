@@ -35,8 +35,12 @@
         _name     = [json objectForKey:@"Name"];
         _accuracy = [json objectForKey:@"Accuracy"];
         _symbol   = [json objectForKey:@"Symbol"];
-        _hideDeposit=[[json objectForKey:@"HideDeposit"] boolValue];
+//        _hideDeposit=[[json objectForKey:@"HideDeposit"] boolValue];
         _hideWithdraw=[[json objectForKey:@"HideWithdraw"] boolValue];
+        _bankCardDepositEnabled=[[json objectForKey:@"BankCardsDepositEnabled"] boolValue];
+        _swiftDepositEnabled=[[json objectForKey:@"SwiftDepositEnabled"] boolValue];
+        _blockchainDepositEnabled=[[json objectForKey:@"BlockchainDepositEnabled"] boolValue];
+        
     }
     return self;
 }

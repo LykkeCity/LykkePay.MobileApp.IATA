@@ -14,6 +14,7 @@
 #import "LWTradeHistoryItemType.h"
 #import "LWCashInOutHistoryItemType.h"
 #import "LWTransferHistoryItemType.h"
+#import "LWExchangeInfoModel.h"
 
 
 @implementation LWHistoryManager
@@ -61,6 +62,64 @@
     
     return result;
 }
+
++(NSArray *) convertHistoryToArrayOfArrays:(NSArray *) history
+{
+    NSMutableArray *result=[[NSMutableArray alloc] init];
+    
+    NSMutableArray *similar=[[NSMutableArray alloc] init];
+    
+    for(NSDictionary *d in history)
+    {
+        id item;
+        if(d[@"Trade"])
+        {
+            LWTransactionTradeModel *m=[[LWTransactionTradeModel alloc] initWithJSON:d[@"Trade"]];
+//            if(!result[m.dateTime])
+//                result[m.dateTime]=[[NSMutableArray alloc] init];
+            item = [LWTradeHistoryItemType convertFromNetworkModel:m];
+            [(LWTradeHistoryItemType *)item setMarketOrder:[[LWExchangeInfoModel alloc] initWithJSON:d[@"Trade"][@"MarketOrder"]]];
+//            [result[m.dateTime] addObject:item];
+        }
+        else if(d[@"CashInOut"])
+        {
+            LWTransactionCashInOutModel *m=[[LWTransactionCashInOutModel alloc] initWithJSON:d[@"CashInOut"]];
+//            if(!result[m.dateTime])
+//                result[m.dateTime]=[[NSMutableArray alloc] init];
+            item = [LWCashInOutHistoryItemType convertFromNetworkModel:m];
+//            [result[m.dateTime] addObject:item];
+        }
+        else if(d[@"Transfer"])
+        {
+            LWTransactionTransferModel *m=[[LWTransactionTransferModel alloc] initWithJSON:d[@"Transfer"]];
+//            if(!result[m.dateTime])
+//                result[m.dateTime]=[[NSMutableArray alloc] init];
+            item = [LWTransferHistoryItemType convertFromNetworkModel:m];
+//            [result[m.dateTime] addObject:item];
+        }
+        
+        if(!item)
+            continue;
+        
+        if(similar.count==0 || [similar.lastObject isKindOfClass:[item class]])
+        {
+            [similar addObject:item];
+        }
+        else
+        {
+            [result addObject:similar];
+            similar=[[NSMutableArray alloc] init];
+            [similar addObject:item];
+        }
+        
+
+    }
+    if(similar.count)
+        [result addObject:similar];
+    
+    return result;
+}
+
 
 + (NSArray *)sortKeys:(NSDictionary *)dictionary {
     // sorting
