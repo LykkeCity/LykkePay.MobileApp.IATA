@@ -1011,12 +1011,14 @@ static NSString *const WalletIcons[kNumberOfSections] = {
 
 - (void)showTradingWallet:(NSIndexPath *)indexPath {
     LWTradingWalletPresenter *presenter = [LWTradingWalletPresenter new];
+    
     LWLykkeAssetsData *data = [self assetDataForIndexPath:indexPath];
     if (data) {
         presenter.assetId = [NSString stringWithString:data.identity];
         presenter.assetName = data.name;
         presenter.issuerId = data.issuerId;
         presenter.currencySymbol=data.symbol;
+        presenter.balance=data.balance;
         
         [self.navigationController pushViewController:presenter animated:YES];
         

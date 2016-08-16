@@ -19,4 +19,7 @@
 @property (copy,   nonatomic) NSString *assetId;
 @property (assign, nonatomic) BOOL shouldGoBack;
 
+@property (readonly, nonatomic) NSArray *operations;
+
+
 @end

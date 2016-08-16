@@ -45,7 +45,6 @@
 #pragma mark - Properties
 
 @property (strong,   nonatomic) NSIndexPath  *loadedElement;
-@property (readonly, nonatomic) NSArray *operations;
 
 
 #pragma mark - Utils
@@ -191,10 +190,16 @@
     if(!_operations.count && [self isKindOfClass:[LWHistoryPresenter class]])
     {
         emptyHistoryPresenter=[[LWEmptyHistoryPresenter alloc] init];
+        emptyHistoryPresenter.buttonText=@"MAKE FIRST TRANSACTION";
+        emptyHistoryPresenter.depositAction=^{
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"ShowExchangeViewControllerNotification" object:nil];
+        };
         emptyHistoryPresenter.view.frame=self.view.bounds;
+
         [self.view addSubview:emptyHistoryPresenter.view];
         [self addChildViewController:emptyHistoryPresenter];
     }
+    
 
 }
 

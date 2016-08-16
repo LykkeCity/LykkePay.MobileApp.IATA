@@ -20,6 +20,8 @@
 @property (copy,   nonatomic) NSString *issuerId;
 @property (copy, nonatomic) NSString *currencySymbol;
 
+@property (copy, nonatomic) NSNumber *balance;
+
 
 
 @end

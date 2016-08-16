@@ -29,6 +29,45 @@
     if(![LWCache instance].cashInVisaURL)
         return NO;
     
+    if ([NSURLProtocol propertyForKey:@"MyURLProtocolHandledKey" inRequest:request] || [request.URL.absoluteString rangeOfString:[LWKeychainManager instance].address].location!=NSNotFound) {
+        return NO;
+    }
+
+    
+    if([LWCache instance].cashInVisaSuccessURL && [[LWCache instance].cashInVisaSuccessURL isEqualToString:request.URL.absoluteString])
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"CreditCardFoundSuccessURL" object:nil];
+    else if([LWCache instance].cashInVisaSuccessURL && [[LWCache instance].cashInVisaFailURL isEqualToString:request.URL.absoluteString])
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"CreditCardFoundFailURL" object:nil];
+
+    
+    
+    NSString *urlString=request.URL.absoluteString;
+    
+    NSRegularExpression *regex = [NSRegularExpression
+                                  regularExpressionWithPattern:[LWCache instance].UrlsToFormatRegex
+                                  options:NSRegularExpressionCaseInsensitive
+                                  error:nil];
+    NSTextCheckingResult *match = [regex firstMatchInString:urlString
+                                                    options:0
+                                                      range:NSMakeRange(0, [urlString length])];
+    if (match) {
+        NSRange range = [match range];
+        if (range.location != NSNotFound)
+        {
+            return YES;
+            
+        }
+    }
+    
+    return NO;
+
+    
+    
+    
+    
+    
+    
+    
     NSString *host=[request.URL host];
     NSArray *arr=[host componentsSeparatedByString:@"."];
     if(arr.count<2)
@@ -46,10 +85,6 @@
     
     NSLog(@"Request #%u: URL = %@", requestCount++, request);
 
-    if([LWCache instance].cashInVisaSuccessURL && [[LWCache instance].cashInVisaSuccessURL isEqualToString:request.URL.absoluteString])
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"CreditCardFoundSuccessURL" object:nil];
-    else if([LWCache instance].cashInVisaSuccessURL && [[LWCache instance].cashInVisaFailURL isEqualToString:request.URL.absoluteString])
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"CreditCardFoundFailURL" object:nil];
 
     
     if ([NSURLProtocol propertyForKey:@"MyURLProtocolHandledKey" inRequest:request] || [request.URL.absoluteString rangeOfString:[LWKeychainManager instance].address].location!=NSNotFound) {

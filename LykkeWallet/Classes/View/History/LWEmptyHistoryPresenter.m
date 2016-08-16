@@ -12,21 +12,41 @@
 
 @interface LWEmptyHistoryPresenter ()
 
+@property (weak, nonatomic) IBOutlet UIImageView *bottomCurveView;
 @property (weak, nonatomic) IBOutlet UIButton *button;
 
 @end
 
 @implementation LWEmptyHistoryPresenter
 
+-(id) init
+{
+    self=[super init];
+    self.flagColoredButton=NO;
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [LWValidator setButtonWithClearBackground:self.button enabled:YES];
+    if(self.flagColoredButton)
+        [LWValidator setButton:self.button enabled:YES];
+    else
+        [LWValidator setButtonWithClearBackground:self.button enabled:YES];
     
-    NSDictionary *attributes=@{NSKernAttributeName:@(1), NSForegroundColorAttributeName: [UIColor colorWithRed:63.0/255 green:77.0/255 blue:96.0/255 alpha:1], NSFontAttributeName: [UIFont fontWithName:@"ProximaNova-Semibold" size:15]};
-    [self.button setAttributedTitle:[[NSAttributedString alloc] initWithString:@"MAKE FIRST TRANSACTION" attributes:attributes] forState:UIControlStateNormal];
-    [self.button addTarget:self action:@selector(buttonMakeFirstTransactionPressed) forControlEvents:UIControlEventTouchUpInside];
-    // Do any additional setup after loading the view from its nib.
+    NSDictionary *attributesNotColored=@{NSKernAttributeName:@(1), NSForegroundColorAttributeName: [UIColor colorWithRed:63.0/255 green:77.0/255 blue:96.0/255 alpha:1], NSFontAttributeName: [UIFont fontWithName:@"ProximaNova-Semibold" size:15]};
+    
+    NSDictionary *attributesColored=@{NSKernAttributeName:@(1), NSForegroundColorAttributeName: [UIColor whiteColor], NSFontAttributeName: [UIFont fontWithName:@"ProximaNova-Semibold" size:15]};
+
+    
+    
+    [self.button setAttributedTitle:[[NSAttributedString alloc] initWithString:self.buttonText attributes:self.flagColoredButton?attributesColored:attributesNotColored] forState:UIControlStateNormal];
+    [self.button addTarget:self action:@selector(buttonPressed) forControlEvents:UIControlEventTouchUpInside];
+    
+    if(self.depositAction==nil)
+        self.button.hidden=YES;
+    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad)
+        self.bottomCurveView.hidden=YES;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -40,9 +60,9 @@
     self.button.layer.cornerRadius=self.button.bounds.size.height/2;
 }
 
--(void)buttonMakeFirstTransactionPressed
+-(void)buttonPressed
 {
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"ShowExchangeViewControllerNotification" object:nil];
+    self.depositAction();
 }
 /*
 #pragma mark - Navigation

@@ -41,6 +41,8 @@ SINGLETON_DECLARE
 @property (strong, nonatomic) NSString *cashInVisaSuccessURL;
 @property (strong, nonatomic) NSString *cashInVisaFailURL;
 
+@property (strong, nonatomic) NSString *UrlsToFormatRegex;
+
 @property (copy, nonatomic) NSArray *allAssets;
 
 @property (copy, nonatomic) NSString *depositUrl;

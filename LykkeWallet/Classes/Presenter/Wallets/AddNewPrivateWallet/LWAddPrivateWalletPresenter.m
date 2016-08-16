@@ -50,7 +50,7 @@
     UIButton *generatePrivateKeyButton;
     UIButton *scanQRCodeButton;
     
-    UIButton *backupButton;
+//    UIButton *backupButton;
     UIButton *createWalletButton;
     
     NSDictionary *buttonDisabledAttributes;
@@ -180,26 +180,15 @@
     addressView=[[LWWalletAddressView alloc] initWithWidth:scrollView.bounds.size.width-60];
     [scrollView addSubview:addressView];
     
-    
-    
-    backupButton=[UIButton buttonWithType:UIButtonTypeCustom];
-    
     buttonDisabledAttributes = @{NSKernAttributeName:@(1), NSFontAttributeName:[UIFont fontWithName:@"ProximaNova-Semibold" size:15], NSForegroundColorAttributeName:TextColor};
     createButtonEnabledAttributes=@{NSKernAttributeName:@(1), NSFontAttributeName:[UIFont fontWithName:@"ProximaNova-Semibold" size:15], NSForegroundColorAttributeName:[UIColor whiteColor]};
     
     
-    [backupButton setAttributedTitle:[[NSAttributedString alloc] initWithString:@"BACKUP" attributes:buttonDisabledAttributes] forState:UIControlStateNormal];
-    backupButton.titleLabel.alpha=0.2;
-    backupButton.frame=CGRectMake(0, 0, self.view.bounds.size.width-60, 45);
-    [backupButton addTarget:self action:@selector(backupButtonPressed) forControlEvents:UIControlEventTouchUpInside];
-    [scrollView addSubview:backupButton];
-    
     createWalletButton=[UIButton buttonWithType:UIButtonTypeCustom];
-    createWalletButton.frame=backupButton.frame;
+    createWalletButton.frame=CGRectMake(0, 0, self.view.bounds.size.width-60, 45);
     [createWalletButton addTarget:self action:@selector(createWalletButtonPressed) forControlEvents:UIControlEventTouchUpInside];
     [scrollView addSubview:createWalletButton];
-    
-    [LWValidator setButtonWithClearBackground:backupButton enabled:NO];
+
     [LWValidator setButton:createWalletButton enabled:NO];
     
     
@@ -231,6 +220,13 @@
     faderView.frame=CGRectMake(0, 0, 80, 45);
     [privateKeyContainer addSubview:faderView];
     
+    
+    if([self.wallet.privateKey isEqualToString:[LWPrivateKeyManager shared].wifPrivateKeyLykke])
+    {
+        createWalletButton.hidden=YES;
+        
+        walletNameTextField.userInteractionEnabled=NO;
+    }
     
     
     [self alignScrollView];
@@ -297,18 +293,14 @@
     
     addressView.center=CGPointMake(scrollView.bounds.size.width/2, headerBackground.bounds.size.height+10+addressView.bounds.size.height/2);
     
-    backupButton.center=CGPointMake(scrollView.bounds.size.width/2, addressView.frame.origin.y+addressView.bounds.size.height+10+backupButton.bounds.size.height/2);
-    createWalletButton.center=CGPointMake(scrollView.bounds.size.width/2, backupButton.frame.origin.y+backupButton.bounds.size.height+10+createWalletButton.bounds.size.height/2);
+    
+    createWalletButton.center=CGPointMake(scrollView.bounds.size.width/2, addressView.frame.origin.y+addressView.bounds.size.height+10+createWalletButton.bounds.size.height/2);
 
     NSString *sss=addressView.address;
     NSString *eee=walletNameTextField.text;
     
     [LWValidator setButton:createWalletButton enabled:(addressView.address.length && walletNameTextField.text.length)];
-    [LWValidator setButtonWithClearBackground:backupButton enabled:(addressView.address.length && walletNameTextField.text.length)];
-    if(backupButton.enabled)
-        backupButton.titleLabel.alpha=1;
-    else
-        backupButton.titleLabel.alpha=0.2;
+    
 
     if(self.editMode==NO)
     {
@@ -724,7 +716,7 @@
 
    if(textField==walletNameTextField)
     {
-        
+        textField.text=[textField.text uppercaseString];
         if(str.length && addressView.address && createWalletButton.enabled==NO)
         {
             [self.view setNeedsLayout];

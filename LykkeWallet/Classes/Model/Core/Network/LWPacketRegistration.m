@@ -35,6 +35,10 @@
         AppDelegate *tmptmp=[UIApplication sharedApplication].delegate;
         [tmptmp registerForNotificationsInAzureWithTag:result[@"NotificationsId"]];
     }
+    
+    [[NSUserDefaults standardUserDefaults] setBool:[result[@"CanCashInViaBankCard"] boolValue] forKey:@"CanCashInViaBankCard"];
+    [[NSUserDefaults standardUserDefaults] setBool:[result[@"SwiftDepositEnabled"] boolValue] forKey:@"SwiftDepositEnabled"];
+
 
 }
 

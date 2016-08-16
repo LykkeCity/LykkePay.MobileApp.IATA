@@ -33,6 +33,8 @@
     gesture=[[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(previousTapped)];
     gesture.direction=UISwipeGestureRecognizerDirectionRight;
     [self.view addGestureRecognizer:gesture];
+    
+    self.numberLabel.textColor=[UIColor colorWithRed:178.0/255 green:184.0/255 blue:191.0/255 alpha:1];
 
     // Do any additional setup after loading the view from its nib.
 }
@@ -106,23 +108,85 @@
         LWBackupCheckWordsPresenter *presenter=[[LWBackupCheckWordsPresenter alloc] init];
         presenter.wordsList=self.wordsList;
         [self.navigationController pushViewController:presenter animated:YES];
+        return;
     }
-    else
-    {
-        LWBackupSingleWordPresenter *presenter=[[LWBackupSingleWordPresenter alloc] init];
-        presenter.wordsList=self.wordsList;
-        presenter.currentWordNum=self.currentWordNum+1;
-        [self.navigationController pushViewController:presenter animated:YES];
+    
+    [UIView animateWithDuration:0.25 animations:^{
+        self.wordLabel.center=CGPointMake(-self.wordLabel.bounds.size.width/2, self.wordLabel.center.y);
+        
+    } completion:^(BOOL finished){
+        if(self.currentWordNum==0)
+        {
+            [self setBackButton];
+        }
+        
 
-    }
+        self.wordLabel.center=CGPointMake(self.view.bounds.size.width+self.wordLabel.bounds.size.width/2, self.wordLabel.center.y);
+        self.currentWordNum++;
+        self.wordLabel.text=self.wordsList[self.currentWordNum];
+        self.numberLabel.text=[NSString stringWithFormat:@"%d of %d", self.currentWordNum+1, (int)self.wordsList.count];
+
+        [UIView animateWithDuration:0.25 animations:^{
+            self.wordLabel.center=CGPointMake(self.view.bounds.size.width/2, self.wordLabel.center.y);
+        }];
+    }];
+    
+//    if(self.currentWordNum==self.wordsList.count-1)
+//    {
+//        LWBackupCheckWordsPresenter *presenter=[[LWBackupCheckWordsPresenter alloc] init];
+//        presenter.wordsList=self.wordsList;
+//        [self.navigationController pushViewController:presenter animated:YES];
+//    }
+//    else
+//    {
+//        LWBackupSingleWordPresenter *presenter=[[LWBackupSingleWordPresenter alloc] init];
+//        presenter.wordsList=self.wordsList;
+//        presenter.currentWordNum=self.currentWordNum+1;
+//        [self.navigationController pushViewController:presenter animated:YES];
+//
+//    }
 
 }
 
 -(void) previousTapped
 {
-    if(self.currentWordNum!=0)
-        [self.navigationController popViewControllerAnimated:YES];
+    if(self.currentWordNum==0)
+        return;
+    
+    if(CACurrentMediaTime()-lastNextTapTime<0.5)
+        return;
+    
+    lastNextTapTime=CACurrentMediaTime();
+
+    [UIView animateWithDuration:0.25 animations:^{
+        self.wordLabel.center=CGPointMake(self.view.bounds.size.width+self.wordLabel.bounds.size.width/2, self.wordLabel.center.y);
+   
+    } completion:^(BOOL finished){
+        if(self.currentWordNum==1)
+            self.navigationItem.leftBarButtonItem=nil;
+        self.wordLabel.center=CGPointMake(-self.wordLabel.bounds.size.width/2, self.wordLabel.center.y);
+
+        self.currentWordNum--;
+        self.wordLabel.text=self.wordsList[self.currentWordNum];
+        self.numberLabel.text=[NSString stringWithFormat:@"%d of %d", self.currentWordNum+1, (int)self.wordsList.count];
+        [UIView animateWithDuration:0.25 animations:^{
+            self.wordLabel.center=CGPointMake(self.view.bounds.size.width/2, self.wordLabel.center.y);
+        }];
+    }];
+
+    
+//    if(self.currentWordNum!=0)
+//        [self.navigationController popViewControllerAnimated:YES];
 }
+
+
+- (void)setBackButton {
+    
+            UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"BackIcon"] style:UIBarButtonItemStylePlain target:self action:@selector(previousTapped)];
+            self.navigationItem.leftBarButtonItem = button;
+}
+
+
 /*
 #pragma mark - Navigation
 

@@ -26,6 +26,8 @@
     [LWCache instance].cashInVisaURL=_urlString;
     [LWCache instance].cashInVisaSuccessURL=_successUrl;
     [LWCache instance].cashInVisaFailURL=_failUrl;
+    [LWCache instance].UrlsToFormatRegex=result[@"UrlsToFormatRegex"];
+    
     
 }
 

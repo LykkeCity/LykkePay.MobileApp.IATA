@@ -19,9 +19,11 @@
 #import "LWValidator.h"
 #import "LWKYCManager.h"
 #import "LWCreditCardDepositPresenter.h"
+#import "LWEmptyHistoryPresenter.h"
 
 
 @interface LWTradingWalletPresenter () {
+    LWEmptyHistoryPresenter *emptyHistoryPresenter;
     
 }
 
@@ -79,7 +81,7 @@
     [self.withdrawButton setAttributedTitle:[[NSAttributedString alloc] initWithString:Localize(@"wallets.trading.withdraw") attributes:attributesWithdraw] forState:UIControlStateNormal];
     [self.depositButton setAttributedTitle:[[NSAttributedString alloc] initWithString:Localize(@"wallets.trading.deposit") attributes:attributesDeposit] forState:UIControlStateNormal];
 
-    self.withdrawButton.hidden=[LWCache shouldHideWithdrawForAssetId:self.assetId];
+    self.withdrawButton.hidden=[LWCache shouldHideWithdrawForAssetId:self.assetId] || self.balance.doubleValue==0;
     self.depositButton.hidden=[LWCache shouldHideDepositForAssetId:self.assetId];
     if(self.withdrawButton.hidden && self.depositButton.hidden)
         [self.tableViewBottomConstraint setConstant:0];
@@ -190,6 +192,39 @@
     }];
     
 }
+
+-(void) authManager:(LWAuthManager *)manager didGetHistory:(LWPacketGetHistory *)packet
+{
+    [super authManager:manager didGetHistory:packet];
+    
+    if(!self.operations.count)
+    {
+        if(emptyHistoryPresenter)
+            return;
+        __weak LWTradingWalletPresenter *weakSelf=self;
+
+        emptyHistoryPresenter=[[LWEmptyHistoryPresenter alloc] init];
+        emptyHistoryPresenter.flagColoredButton=YES;
+        if(self.depositButton.hidden==NO)
+            emptyHistoryPresenter.depositAction=^{
+                [weakSelf depositClicked:weakSelf.depositButton];
+            };
+
+        emptyHistoryPresenter.buttonText=@"DEPOSIT";
+        emptyHistoryPresenter.view.frame=self.view.bounds;
+         [self.view addSubview:emptyHistoryPresenter.view];
+        [self addChildViewController:emptyHistoryPresenter];
+    }
+    else if(self.operations.count && emptyHistoryPresenter)
+    {
+        [emptyHistoryPresenter.view removeFromSuperview];
+        [emptyHistoryPresenter removeFromParentViewController];
+        emptyHistoryPresenter=nil;
+    }
+    
+    
+}
+
 
 -(void) createConstraintsForButton:(UIButton *) button
 {
