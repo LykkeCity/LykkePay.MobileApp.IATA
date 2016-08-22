@@ -33,15 +33,16 @@
         return NO;
     }
 
+    NSString *urlString=request.URL.absoluteString;
+
     
     if([LWCache instance].cashInVisaSuccessURL && [[LWCache instance].cashInVisaSuccessURL isEqualToString:request.URL.absoluteString])
         [[NSNotificationCenter defaultCenter] postNotificationName:@"CreditCardFoundSuccessURL" object:nil];
-    else if([LWCache instance].cashInVisaSuccessURL && [[LWCache instance].cashInVisaFailURL isEqualToString:request.URL.absoluteString])
+    else if([LWCache instance].cashInVisaFailURL && [[LWCache instance].cashInVisaFailURL isEqualToString:request.URL.absoluteString])
         [[NSNotificationCenter defaultCenter] postNotificationName:@"CreditCardFoundFailURL" object:nil];
 
     
     
-    NSString *urlString=request.URL.absoluteString;
     
     NSRegularExpression *regex = [NSRegularExpression
                                   regularExpressionWithPattern:[LWCache instance].UrlsToFormatRegex

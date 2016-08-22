@@ -9,6 +9,7 @@
 #import "UIViewController+Navigation.h"
 #import "LWConstants.h"
 #import "LWAuthManager.h"
+#import "LWIPadModalNavigationControllerViewController.h"
 
 
 
@@ -32,7 +33,7 @@
 
 - (void)setCrossCloseButton {
     if (self.navigationController && self.navigationItem) {
-             UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"CloseCross"] style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(popToRootViewControllerAnimated:)];
+             UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"CloseCross"] style:UIBarButtonItemStylePlain target:self action:@selector(crossCloseButtonPressed)];
             self.navigationItem.leftBarButtonItem = button;
     }
 }
@@ -55,6 +56,16 @@
         
         self.navigationItem.leftBarButtonItem = cancelButton;
     }
+}
+
+-(void) crossCloseButtonPressed
+{
+    if([self.navigationController isKindOfClass:[LWIPadModalNavigationControllerViewController class]])
+    {
+        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+    }
+    else
+        [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 @end

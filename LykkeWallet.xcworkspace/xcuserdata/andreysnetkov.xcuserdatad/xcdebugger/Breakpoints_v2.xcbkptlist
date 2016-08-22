@@ -136,11 +136,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LykkeWallet/Classes/Model/Auth/LWAuthManager.m"
-            timestampString = "491970657.177076"
+            timestampString = "493542940.796782"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "473"
-            endingLineNumber = "473"
+            startingLineNumber = "476"
+            endingLineNumber = "476"
             landmarkName = "-requestCurrencyDepositForAsset:changeValue:"
             landmarkType = "5">
          </BreakpointContent>
@@ -344,11 +344,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LykkeWallet/Classes/AppDelegate.m"
-            timestampString = "492842034.008932"
+            timestampString = "493538798.58395"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "210"
-            endingLineNumber = "210"
+            startingLineNumber = "212"
+            endingLineNumber = "212"
             landmarkName = "-application:didReceiveRemoteNotification:"
             landmarkType = "5">
          </BreakpointContent>
@@ -488,11 +488,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LykkeWallet/Classes/Model/Core/LWURLProtocol.m"
-            timestampString = "493062515.351384"
+            timestampString = "493129604.106956"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "182"
-            endingLineNumber = "182"
+            startingLineNumber = "183"
+            endingLineNumber = "183"
             landmarkName = "-requestServer"
             landmarkType = "5">
          </BreakpointContent>
@@ -535,38 +535,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "LykkeWallet/Classes/Model/Wallets/LWPrivateWalletsManager.m"
-            timestampString = "492683842.142475"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "188"
-            endingLineNumber = "188"
-            landmarkName = "-requestTransferTransaction:withCompletion:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "LykkeWallet/Classes/Model/Wallets/LWPrivateWalletsManager.m"
-            timestampString = "492683842.142475"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "193"
-            endingLineNumber = "193"
-            landmarkName = "-requestTransferTransaction:withCompletion:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "LykkeWallet/Classes/Model/Core/Network/LWPacketEncodedPrivateKey.m"
             timestampString = "492938460.373748"
             startingColumnNumber = "9223372036854775807"
@@ -583,13 +551,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "LykkeWallet/Classes/Model/Core/LWPrivateKeyManager.m"
-            timestampString = "492971609.654457"
+            filePath = "LykkeWallet/Classes/Model/Core/Network/LWPacketAuthentication.m"
+            timestampString = "492979303.099206"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "171"
-            endingLineNumber = "171"
-            landmarkName = "-savePrivateKeyLykkeFromSeedWords:"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
+            landmarkName = "-parseResponse:error:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -599,13 +567,45 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "LykkeWallet/Classes/Model/Core/Network/LWPacketAuthentication.m"
-            timestampString = "492979303.099206"
+            filePath = "LykkeWallet/Classes/Model/Core/LWPrivateKeyManager.m"
+            timestampString = "493540425.492805"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "29"
-            endingLineNumber = "29"
-            landmarkName = "-parseResponse:error:"
+            startingLineNumber = "721"
+            endingLineNumber = "721"
+            landmarkName = "-generatePrivateKey"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LykkeWallet/Classes/Model/Wallets/LWPrivateWalletsManager.m"
+            timestampString = "493137732.592344"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "152"
+            endingLineNumber = "152"
+            landmarkName = "-updateWallet:withCompletion:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LykkeWallet/Classes/Model/Core/LWPrivateKeyManager.m"
+            timestampString = "493543759.457034"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "435"
+            endingLineNumber = "435"
+            landmarkName = "-decryptLykkePrivateKeyAndSave:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

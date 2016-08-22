@@ -23,6 +23,16 @@
 {
     self=[super initWithFrame:CGRectMake(0, 0, 99, 30)];
     
+    [self setTitle:title];
+    
+    return self;
+}
+
+-(void) setTitle:(NSString *)title
+{
+    [self setTitle:@"" forState:UIControlStateNormal];
+    [self setTitle:@"" forState:UIControlStateSelected];
+    [self setTitle:@"" forState:UIControlStateFocused];
     UIView *view=[[UIView alloc] initWithFrame:self.bounds];
     view.backgroundColor=nil;
     
@@ -39,7 +49,7 @@
     
     NSDictionary *attributesActive=@{NSKernAttributeName:@(1.1), NSFontAttributeName:[UIFont fontWithName:@"ProximaNova-Semibold" size:13], NSForegroundColorAttributeName:[UIColor whiteColor]};
     label.attributedText=[[NSAttributedString alloc] initWithString:title attributes:attributesActive];
-
+    
     view.backgroundColor=[UIColor colorWithRed:171.0/255 green:0 blue:1 alpha:1];
     view.layer.cornerRadius=view.bounds.size.height/2;
     view.clipsToBounds=YES;
@@ -49,8 +59,12 @@
     [self setBackgroundImage:normalImage forState:UIControlStateNormal];
     [self setBackgroundImage:selectedImage forState:UIControlStateSelected];
     [self setBackgroundImage:selectedImage forState:UIControlStateFocused];
-    
-    return self;
+
+}
+
+-(void) setFrame:(CGRect)frame
+{
+    [super setFrame:frame];
 }
 
 -(UIImage *) render:(UIView *) view

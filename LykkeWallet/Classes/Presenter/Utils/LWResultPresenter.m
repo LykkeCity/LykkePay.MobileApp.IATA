@@ -16,6 +16,7 @@
 #import "LWConstants.h"
 #import "LWValidator.h"
 #import "LWKYCManager.h"
+#import "LWCommonButton.h"
 
 
 @interface LWResultPresenter () {
@@ -25,7 +26,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UILabel  *headerLabel;
 @property (weak, nonatomic) IBOutlet UILabel  *textLabel;
-@property (weak, nonatomic) IBOutlet TKButton *okButton;
+@property (weak, nonatomic) IBOutlet LWCommonButton *okButton;
 
 
 #pragma mark - Actions
@@ -43,14 +44,12 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    [self.okButton setTitleFont:[UIFont fontWithName:kFontSemibold size:kButtonFontSize]];
-    [self.okButton setTitleColor:[UIColor colorWithHexString:kMainDarkElementsColor] forState:UIControlStateNormal];
-    
-    [LWValidator setButton:self.okButton enabled:YES];
 
+    self.okButton.colored=YES;
     
     [self.okButton setTitle:@"RETURN TO WALLET"
                    forState:UIControlStateNormal];
+    self.okButton.enabled=YES;
     
     _headerLabel.text=_titleString;
     _textLabel.text=_textString;
@@ -77,13 +76,19 @@
     _imageView.image=image;
 }
 
+-(void) setButtonTitle:(NSString *)buttonTitle
+{
+    _buttonTitle=buttonTitle;
+    [self.okButton setTitle:buttonTitle forState:UIControlStateNormal];
+}
+
 #pragma mark - Actions
 
 - (IBAction)okButtonClick:(id)sender {
     if([self.delegate respondsToSelector:@selector(resultPresenterWillDismiss)])
         [self.delegate resultPresenterWillDismiss];
 
-    [self dismissViewControllerAnimated:YES completion:^{
+    [self dismissViewControllerAnimated:YES completion:^{     //Testing
         if([self.delegate respondsToSelector:@selector(resultPresenterDismissed)])
             [self.delegate resultPresenterDismissed];
         

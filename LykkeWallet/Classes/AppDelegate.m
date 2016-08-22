@@ -129,6 +129,8 @@
     
 //    [LWPrivateKeyManager generateSeedWords]; //Testing
     
+//    [[LWPrivateKeyManager shared] signatureForMessageWithLykkeKey:@"Test message"]; //Testing
+    
     return YES;
 }
 

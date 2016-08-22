@@ -22,6 +22,8 @@
 -(void) loadHistoryForWallet:(NSString *) address withCompletion:(void(^)(NSArray *)) completion;
 
 -(void) addNewWallet:(LWPrivateWalletModel *) wallet   withCompletion:(void (^)(BOOL))completion;
+-(void) updateWallet:(LWPrivateWalletModel *) wallet withCompletion:(void (^)(BOOL))completion;
+
 -(void) deleteWallet:(NSString *) address withCompletion:(void (^)(BOOL))completion;
 
 -(void) backupPrivateKeyWithModel:(LWPKBackupModel *) model  withCompletion:(void (^)(BOOL))completion;

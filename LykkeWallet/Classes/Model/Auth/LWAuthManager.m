@@ -69,6 +69,9 @@
 #import "LWPacketGetPaymentUrl.h"
 #import "LWPacketPrevCardPayment.h"
 #import "LWPacketGetHistory.h"
+#import "LWPrivateKeyOwnershipMessage.h"
+#import "LWPacketRecoverySMSConfirmation.h"
+#import "LWPacketChangePINAndPassword.h"
 
 
 #import "LWLykkeWalletsData.h"
@@ -572,6 +575,27 @@ SINGLETON_INIT {
     [self sendPacket:pack];
 }
 
+-(void) requestPrivateKeyOwnershipMessage:(NSString *)email
+{
+    LWPrivateKeyOwnershipMessage *pack=[[LWPrivateKeyOwnershipMessage alloc] init];
+    pack.email=email;
+    [self sendPacket:pack];
+}
+
+-(void) requestRecoverySMSConfirmation:(LWRecoveryPasswordModel *)recModel
+{
+    LWPacketRecoverySMSConfirmation *pack=[LWPacketRecoverySMSConfirmation new];
+    pack.recModel=recModel;
+    [self sendPacket:pack];
+}
+
+-(void) requestChangePINAndPassword:(LWRecoveryPasswordModel *)recModel
+{
+    LWPacketChangePINAndPassword *pack=[LWPacketChangePINAndPassword new];
+    pack.recModel=recModel;
+    [self sendPacket:pack];
+}
+
 #pragma mark - Observing
 
 - (void)observeGDXNetAdapterDidReceiveResponseNotification:(NSNotification *)notification {
@@ -923,8 +947,23 @@ SINGLETON_INIT {
             [self.delegate authManagerDidSendClientKeys:self];
         }
     }
-   
-    
+    else if (pack.class == LWPrivateKeyOwnershipMessage.class) {
+        if ([self.delegate respondsToSelector:@selector(authManager:didGetPrivateKeyOwnershipMessage:)]) {
+            [self.delegate authManager:(LWAuthManager *)self didGetPrivateKeyOwnershipMessage:(LWPrivateKeyOwnershipMessage *)pack];
+        }
+    }
+    else if (pack.class == LWPacketRecoverySMSConfirmation.class) {
+        if ([self.delegate respondsToSelector:@selector(authManagerDidGetRecoverySMSConfirmation:)]) {
+            [self.delegate authManagerDidGetRecoverySMSConfirmation:self];
+        }
+    }
+    else if (pack.class == LWPacketChangePINAndPassword.class) {
+        if ([self.delegate respondsToSelector:@selector(authManagerDidChangePINAndPassword:)]) {
+            [self.delegate authManagerDidChangePINAndPassword:self];
+        }
+    }
+
+
 
     
 }

@@ -130,7 +130,7 @@
     }
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(foundSuccessUrl) name:@"CreditCardFoundSuccessURL" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(foundSuccessUrl) name:@"CreditCardFoundFailURL" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(foundFailUrl) name:@"CreditCardFoundFailURL" object:nil];
 
     // Do any additional setup after loading the view from its nib.
 }

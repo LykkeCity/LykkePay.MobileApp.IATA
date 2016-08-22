@@ -13,6 +13,9 @@
 #import <CommonCrypto/CommonDigest.h>
 #import "BTCAddress.h"
 
+#import "LWPrivateWalletsManager.h"
+#import "LWPrivateWalletModel.h"
+
 #import "ecdsa.h"
 //#import "secp256k1.h"
 //#import "curves.h"
@@ -167,6 +170,7 @@
     NSData *privateKeyData=[self keyDataFromSeedWords:words];
     if(!privateKeyData)
         return NO;
+    
     privateKeyForLykke=[[BTCKey alloc] initWithPrivateKey:privateKeyData];
     privateKeyForLykke.publicKeyCompressed=YES;
     NSString *wif;
@@ -176,6 +180,34 @@
         wif=privateKeyForLykke.WIF;
 
     return YES;
+}
+
+-(NSString *) signatureForMessageWithLykkeKey:(NSString *) message
+{
+//    NSString *signature=[LWUtils hexStringFromData:[self.privateKeyLykke signatureForMessage:message]];
+//    
+//    message=@"TestMessage";
+    
+//    BTCKey *key=[[BTCKey alloc] init];
+//    NSString *address=key.address.string;
+  
+    NSString *address=self.privateKeyLykke.addressTestnet.string;
+    NSData *sign=[self.privateKeyLykke signatureForMessage:message];
+    
+    NSString *str=[sign base64EncodedStringWithOptions:NSDataBase64EncodingEndLineWithLineFeed];
+//    NSString *signature=[LWUtils hexStringFromData:sign];
+
+    NSLog(@"%@", str);
+    NSLog(@"%@", self.privateKeyLykke.address.string);
+    NSLog(@"%@", message);
+    
+//    BTCKey *ttt=[BTCKey verifySignature:[LWUtils dataFromHexString:signature] forMessage:message];
+//    NSLog(@"%@", ttt.address.publicAddress.string);
+    
+    
+//    NSString *signature=[LWUtils hexStringFromData:[self.privateKeyLykke signatureForBinaryMessage:[LWUtils dataFromHexString:message]]];
+
+    return str;
 }
 
 +(NSArray *) generateWords
@@ -307,32 +339,53 @@
     
     if(*checksum!=bytes[16])
         return nil;
-    
-    
-    
-//    for(int i=0;i<17;i++)
-//        bytes[i]=0x0;
-//
-//    
-//    
-//    NSMutableData *privateKeyData=[[NSMutableData alloc] initWithData:keyData];
-//    [privateKeyData appendBytes:bytes length:16];
-//    
-//    BTCKey *privateKeyForLykke=[[BTCKey alloc] initWithPrivateKey:privateKeyData];
-//    privateKeyForLykke.publicKeyCompressed=YES;
-//    NSString *wif;
-//    if([LWPrivateKeyManager shared].isDevServer)
-//        wif=privateKeyForLykke.WIFTestnet;
-//    else
-//        wif=privateKeyForLykke.WIF;
-//
-//    NSLog(@"%@", wif);
-    
+
+    NSMutableData *finalData=[[NSMutableData alloc] init];
+    for(int i=0;i<16;i++)
+    {
+        char byte=0x0;
+        [finalData appendBytes:&byte length:1];
+    }
+    [finalData appendData:keyData];
     
     
 
     
-    return keyData;
+    return finalData;
+}
+
+-(NSString *) availableSecondaryPrivateKey
+{
+    NSArray *wallets=[LWPrivateWalletsManager shared].wallets;
+    NSMutableData *data=[self.privateKeyLykke.privateKey mutableCopy];
+    
+    
+    NSLog(@"%@", [LWUtils hexStringFromData:data]);
+    char *pointer=data.mutableBytes;
+    for(int i=0;i<256;i++)
+    {
+        *pointer=*pointer+1;
+        BTCKey *key=[[BTCKey alloc] initWithPrivateKey:data];
+        key.publicKeyCompressed=YES;
+        NSString *address;
+        if([self isDevServer])
+            address=key.addressTestnet.string;
+        else
+            address=key.address.string;
+        
+        BOOL found=NO;
+        for(LWPrivateWalletModel *w in wallets)
+        {
+            if([w.address isEqualToString:address])
+            {
+                found=YES;
+                break;
+            }
+        }
+        if(!found)
+            return [self isDevServer]?key.WIFTestnet:key.WIF;
+    }
+    return nil;
 }
 
 +(NSString *) addressFromPrivateKeyWIF:(NSString *)wif

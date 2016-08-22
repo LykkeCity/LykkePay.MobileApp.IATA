@@ -47,6 +47,8 @@
 @class LWPacketPrevCardPayment;
 @class LWPacketGetHistory;
 @class LWPacketClientKeys;
+@class LWPrivateKeyOwnershipMessage;
+@class LWRecoveryPasswordModel;
 
 
 @protocol LWAuthManagerDelegate<NSObject>
@@ -120,6 +122,10 @@
 -(void) authManager:(LWAuthManager *)manager didGetHistory:(LWPacketGetHistory *) packet;
 
 -(void) authManagerDidSendClientKeys:(LWAuthManager *) manager;
+
+-(void) authManager:(LWAuthManager *) manager didGetPrivateKeyOwnershipMessage:(LWPrivateKeyOwnershipMessage *) packet;
+-(void) authManagerDidGetRecoverySMSConfirmation:(LWAuthManager *) manager;
+-(void) authManagerDidChangePINAndPassword:(LWAuthManager *) manager;
 
 @end
 
@@ -213,6 +219,11 @@ SINGLETON_DECLARE
 -(void) requestPrevCardPayment;
 
 -(void) requestGetHistory:(NSString *) assetId;
+
+-(void) requestPrivateKeyOwnershipMessage:(NSString *) email;
+-(void) requestRecoverySMSConfirmation:(LWRecoveryPasswordModel *) recModel;
+
+-(void) requestChangePINAndPassword:(LWRecoveryPasswordModel *) recModel;
 
 
 

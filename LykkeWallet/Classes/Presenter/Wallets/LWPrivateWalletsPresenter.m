@@ -17,6 +17,8 @@
 #import "LWAddPrivateWalletPresenter.h"
 #import "UIViewController+Loading.h"
 
+#import "LWCreateEditPrivateWalletPresenter.h"
+
 @interface LWPrivateWalletsPresenter () <UITableViewDelegate, UITableViewDataSource>
 {
     UITableView *tableView;
@@ -113,15 +115,15 @@
     id presenter;
     if(indexPath.row==0)
     {
-        presenter=[[LWAddPrivateWalletPresenter alloc] init];
-        [(LWAddPrivateWalletPresenter *)presenter setEditMode:YES];
-        [(LWAddPrivateWalletPresenter *)presenter setWallet:wallets[indexPath.section]];
+        presenter=[[LWCreateEditPrivateWalletPresenter alloc] init];
+        [(LWCreateEditPrivateWalletPresenter *)presenter setEditMode:YES];
+        [(LWCreateEditPrivateWalletPresenter *)presenter setWallet:wallets[indexPath.section]];
 
     }
     else
     {
         presenter=[[LWPrivateWalletHistoryPresenter alloc] init];
-        [(LWAddPrivateWalletPresenter *)presenter setWallet:wallets[indexPath.section]];
+        [(LWCreateEditPrivateWalletPresenter *)presenter setWallet:wallets[indexPath.section]];
         [(LWPrivateWalletHistoryPresenter *)presenter setAsset:[wallets[indexPath.section] assets][indexPath.row-1]];
         
     }

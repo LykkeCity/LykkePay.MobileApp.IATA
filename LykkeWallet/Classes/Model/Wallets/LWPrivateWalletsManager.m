@@ -147,6 +147,28 @@
 
 }
 
+-(void) updateWallet:(LWPrivateWalletModel *) wallet   withCompletion:(void (^)(BOOL))completion
+{
+    NSMutableURLRequest *request=[self createRequestWithAPI:@"PrivateWallet" httpMethod:@"PUT" getParameters:nil postParameters:@{@"Address":wallet.address, @"Name":wallet.name, @"EncodedPrivateKey":wallet.encryptedKey}];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        NSDictionary *dict=[self sendRequest:request];
+        
+        NSLog(@"%@", dict);
+        if(completion)
+        {
+            
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completion(YES);
+            });
+        }
+        
+    });
+    
+}
+
+
 -(void) loadHistoryForWallet:(NSString *) address withCompletion:(void(^)(NSArray *)) completion
 {
     NSMutableURLRequest *request=[self createRequestWithAPI:@"PrivateWalletHistory" httpMethod:@"GET" getParameters:@{@"address":address} postParameters:nil];

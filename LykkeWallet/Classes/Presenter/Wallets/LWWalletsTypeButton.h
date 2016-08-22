@@ -11,5 +11,6 @@
 @interface LWWalletsTypeButton : UIButton
 
 -(id) initWithTitle:(NSString *) title;
+-(void) setTitle:(NSString *)title;
 
 @end

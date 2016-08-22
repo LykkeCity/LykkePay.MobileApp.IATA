@@ -6,6 +6,9 @@
 //  Copyright © 2016 Lykkex. All rights reserved.
 //
 
+
+//words for c1@c1.com: size odor choose rare sweet recipe render hour forget used resource ill
+
 #import <Foundation/Foundation.h>
 #import "BTCKey.h"
 
@@ -38,6 +41,10 @@
 
 
 -(BOOL) savePrivateKeyLykkeFromSeedWords:(NSArray *) words;
+
+-(NSString *) availableSecondaryPrivateKey;
+
+-(NSString *) signatureForMessageWithLykkeKey:(NSString *) message;
 
 
 @end

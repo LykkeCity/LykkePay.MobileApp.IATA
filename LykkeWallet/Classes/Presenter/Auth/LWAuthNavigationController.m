@@ -281,13 +281,13 @@
 #else
     
     
-//    LWWalletsNavigationController *nWallets=[[LWWalletsNavigationController alloc] initWithNavigationBarClass:[LWWalletsNavigationBar class] toolbarClass:nil];
-//    nWallets.tabBarItem = [self createTabBarItemWithTitle:@"tab.wallets"
-//                                                withImage:@"WalletsTab"];
-//
-//    tabBarController.viewControllers = @[nWallets, pTrading, pHistory, pSettings];
+    LWWalletsNavigationController *nWallets=[[LWWalletsNavigationController alloc] initWithNavigationBarClass:[LWWalletsNavigationBar class] toolbarClass:nil];
+    nWallets.tabBarItem = [self createTabBarItemWithTitle:@"tab.wallets"
+                                                withImage:@"WalletsTab"];
+
+    tabBarController.viewControllers = @[nWallets, pTrading, pHistory, pSettings];
     
-    tabBarController.viewControllers = @[pWallets, pTrading, pHistory, pSettings];
+//    tabBarController.viewControllers = @[pWallets, pTrading, pHistory, pSettings];
     
 #endif
 
@@ -347,6 +347,21 @@
     }
     return result;
 }
+
+
+- (NSArray<UIViewController *> *)popToRootViewControllerAnimated:(BOOL) animated
+{
+    
+    NSArray *result = [super popToRootViewControllerAnimated:animated];
+    // clean steps
+    for (NSNumber *key in activeSteps.allKeys) {
+        if (![self.viewControllers containsObject:activeSteps[key]]) {
+            [activeSteps removeObjectForKey:key];
+        }
+    }
+    return result;
+}
+
 
 - (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController {
     return viewController != tabBarController.selectedViewController;

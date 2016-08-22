@@ -17,6 +17,7 @@
 @property (strong, nonatomic) NSString *titleString;
 @property (strong, nonatomic) NSString *textString;
 @property (strong, nonatomic) UIImage *image;
+@property (strong,nonatomic) NSString *buttonTitle;
 
 @end
 

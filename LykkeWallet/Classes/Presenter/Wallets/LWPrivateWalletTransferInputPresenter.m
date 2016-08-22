@@ -181,6 +181,7 @@
 
 - (void)operationConfirmed:(LWSettingsConfirmationPresenter *)presenter {
     
+    [self setLoading:YES];
     
     [[LWPrivateWalletsManager shared] requestTransferTransaction:self.transfer withCompletion:^(NSDictionary *dict) {
         if([dict isKindOfClass:[NSDictionary class]] && dict[@"Hex"])
@@ -188,6 +189,7 @@
             NSString *signedTransaction=[LWTransactionManager signTransactionRaw:dict[@"Hex"] forModel:self.transfer];
             if(signedTransaction)
             {
+                
                 [[LWPrivateWalletsManager shared] broadcastTransaction:signedTransaction identity:dict[@"Id"] withCompletion:^(BOOL success){
                     [self setLoading:NO];
                     if(success)
@@ -221,6 +223,7 @@
 
 -(void) showFailed
 {
+    
     LWResultPresenter *presenter=[[LWResultPresenter alloc] init];
     presenter.titleString=@"Sorry!";
     presenter.textString=@"Something went wrong.\nYour transfer transaction was unsuccessfull";

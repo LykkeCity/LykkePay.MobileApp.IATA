@@ -155,7 +155,7 @@
 
 -(void) selectWalletPressed
 {
-    
+    [self.view endEditing:YES];
     [LWChoosePrivateWalletView showWithCurrentWallet:self.transfer.sourceWallet completion:^(LWPrivateWalletModel *wallet){
         addressTextField.text=wallet.address;
         [self validateProceedButton];
