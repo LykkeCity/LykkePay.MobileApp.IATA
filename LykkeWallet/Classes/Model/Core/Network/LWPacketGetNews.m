@@ -1,0 +1,39 @@
+//
+//  LWPacketGetNews.m
+//  LykkeWallet
+//
+//  Created by Andrey Snetkov on 30/08/16.
+//  Copyright © 2016 Lykkex. All rights reserved.
+//
+
+#import "LWPacketGetNews.h"
+#import "LWNewsElementModel.h"
+
+@implementation LWPacketGetNews
+
+- (void)parseResponse:(id)response error:(NSError *)error {
+    [super parseResponse:response error:error];
+    
+    if (self.isRejected) {
+        return;
+    }
+    
+    NSMutableArray *arr=[[NSMutableArray alloc] init];
+    for(NSDictionary *d in result)
+    {
+        LWNewsElementModel *m=[[LWNewsElementModel alloc] initWithDictionary:d];
+        [arr addObject:m];
+    }
+    self.news=(NSArray *)arr;
+}
+
+- (NSString *)urlRelative {
+    return @"LykkeNews";
+}
+
+- (GDXRESTPacketType)type {
+    return GDXRESTPacketTypeGET;
+}
+
+
+@end

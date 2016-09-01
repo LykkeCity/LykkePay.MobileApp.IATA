@@ -41,8 +41,8 @@
         self.textLabel.text=@"Shake your iPad to generate a private key to your Lykke Wallet";
 
     
-//    UITapGestureRecognizer *gesture=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismiss)];
-//    [self.view addGestureRecognizer:gesture];
+    UITapGestureRecognizer *gesture=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(testing)]; //Testing
+    [self.view addGestureRecognizer:gesture];
 }
 
 //-(void) dismiss
@@ -89,6 +89,19 @@
         [animationView animateUntilFrame:shakeCount*40];
 
     }
+
+}
+
+-(void) testing //Testing
+{
+    isShakingNow=YES;
+    // User was shaking the device.
+    shakeCount++;
+    if(shakeCount==1)
+    {
+        [self performSelectorInBackground:@selector(checkShakingState) withObject:nil];
+    }
+    [animationView animateUntilFrame:shakeCount*40];
 
 }
 

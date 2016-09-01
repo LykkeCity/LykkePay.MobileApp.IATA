@@ -17,15 +17,22 @@
 #import "UIViewController+Navigation.h"
 #import "LWPKTransferModel.h"
 #import "LWIPadModalNavigationControllerViewController.h"
+#import "LWRefreshControlView.h"
+#import "LWPrivateWalletEmptyHistoryPresenter.h"
+#import "LWPrivateWalletDeposit.h"
 
-
-@interface LWPrivateWalletHistoryPresenter () <UITableViewDelegate, UITableViewDataSource, LWDoubleButtonViewDelegate>
+@interface LWPrivateWalletHistoryPresenter () <UITableViewDelegate, UITableViewDataSource, LWDoubleButtonViewDelegate, LWPrivateWalletEmptyHistoryPresenterDelegate>
 {
     UITableView *tableView;
     NSArray *wallets;
     LWDoubleButtonView *button;
     
     NSArray *historyArray;
+    LWRefreshControlView *refreshControl;
+    LWPrivateWalletEmptyHistoryPresenter *emptyPresenter;
+    
+    
+    UILabel *balanceLabel;
 }
 
 @end
@@ -48,30 +55,89 @@
     tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
     tableView.backgroundColor=[UIColor whiteColor];
     [self.view addSubview:tableView];
+    
+    
+    UIView *refreshView = [[UIView alloc] initWithFrame:CGRectMake(0, 5, 0, 0)];
+    [tableView insertSubview:refreshView atIndex:0];
+    
+    refreshControl = [[LWRefreshControlView alloc] init];
+    [refreshControl addTarget:self action:@selector(reloadHistory)
+             forControlEvents:UIControlEventValueChanged];
+    [refreshView addSubview:refreshControl];
+
+    balanceLabel=[[UILabel alloc] init];
+    balanceLabel.font=[UIFont fontWithName:@"ProximaNova-Regular" size:17];
+    balanceLabel.textAlignment=NSTextAlignmentCenter;
+    balanceLabel.textColor=[UIColor colorWithRed:63.0/255 green:77.0/255 blue:96.0/255 alpha:1];
+    [self.view addSubview:balanceLabel];
+    
+    
+    
 
     
     
     // Do any additional setup after loading the view.
 }
 
--(void) viewWillAppear:(BOOL)animated
+-(void) reloadHistory
 {
-    [super viewWillAppear:animated];
-    [self setLoading:YES];
     [[LWPrivateWalletsManager shared] loadHistoryForWallet:self.wallet.address withCompletion:^(NSArray *array){
         [self setLoading:NO];
         historyArray=array;
         [tableView reloadData];
+        [refreshControl endRefreshing];
+        if(emptyPresenter)
+            [emptyPresenter.refreshControl endRefreshing];
+        
+        if(historyArray.count==0)
+        {
+            emptyPresenter=[[LWPrivateWalletEmptyHistoryPresenter alloc] init];
+            emptyPresenter.view.frame=self.view.bounds;
+            emptyPresenter.delegate=self;
+            [self.view addSubview:emptyPresenter.view];
+            [self addChildViewController:emptyPresenter];
+        }
+        else if(emptyPresenter)
+        {
+            [emptyPresenter.view removeFromSuperview];
+            [emptyPresenter removeFromParentViewController];
+            emptyPresenter=nil;
+        }
+        
+        [[LWPrivateWalletsManager shared] loadWalletBalances:self.wallet.address withCompletion:^(NSArray *arr){
+        
+            for(LWPrivateWalletAssetModel *m in arr)
+            {
+                if([m.assetId isEqualToString:self.asset.assetId])
+                {
+                    balanceLabel.text=[NSString stringWithFormat:@"%@ %@ available", self.asset.assetId, m.amount.stringValue];
+                    if(emptyPresenter)
+                        emptyPresenter.balanceLabel.text=balanceLabel.text;
+                        
+                }
+            }
+        
+        }];
+        
     }];
+
+}
+
+-(void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self setLoading:YES];
+    [self reloadHistory];
     
-    [self setTitle:@"HISTORY"];
+    [self setTitle:self.wallet.name];
 
 }
 
 -(void) viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
-    tableView.frame=CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height-82);
+    balanceLabel.frame=CGRectMake(0, 0, self.view.bounds.size.width, 20);
+    tableView.frame=CGRectMake(0, 20, self.view.bounds.size.width, self.view.bounds.size.height-82-20);
     button.frame=CGRectMake(30, self.view.bounds.size.height-30-45, self.view.bounds.size.width-60, 45);
 }
 
@@ -102,7 +168,26 @@
 
 -(void) doubleButtonPressedRight:(LWDoubleButtonView *)button
 {
+    [self depositPressed];
+}
+
+-(void) depositPressed
+{
+    LWPrivateWalletDeposit *presenter=[[LWPrivateWalletDeposit alloc] init];
+    presenter.asset=self.asset;
+    presenter.wallet=self.wallet;
     
+    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
+        [self.navigationController pushViewController:presenter animated:YES];
+    else
+    {
+        LWIPadModalNavigationControllerViewController *navigationController =
+        [[LWIPadModalNavigationControllerViewController alloc] initWithRootViewController:presenter];
+        navigationController.modalPresentationStyle=UIModalPresentationCustom;
+        navigationController.transitioningDelegate=navigationController;
+        [self.navigationController presentViewController:navigationController animated:YES completion:nil];
+    }
+
 }
 
 -(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

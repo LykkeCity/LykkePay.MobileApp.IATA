@@ -39,6 +39,7 @@
 #import "LWExchangePresenter.h"
 #import "LWHistoryPresenter.h"
 #import "LWSettingsPresenter.h"
+#import "LWMyLykkePresenter.h"
 
 #import "LWWalletsNavigationController.h"
 #import "LWWalletsNavigationBar.h"
@@ -272,6 +273,9 @@
     LWSettingsPresenter *pSettings = [LWSettingsPresenter new];
     pSettings.tabBarItem = [self createTabBarItemWithTitle:@"tab.settings"
                                                  withImage:@"SettingsTab"];
+    LWMyLykkePresenter *myLykke=[LWMyLykkePresenter new];
+    myLykke.tabBarItem=[self createTabBarItemWithTitle:@"MY LYKKE" withImage:@"MyLykkeTab"];
+    
 
 #ifdef PROJECT_IATA
     LWTransferPresenter *pTransfer = [LWTransferPresenter new];
@@ -285,7 +289,7 @@
     nWallets.tabBarItem = [self createTabBarItemWithTitle:@"tab.wallets"
                                                 withImage:@"WalletsTab"];
 
-    tabBarController.viewControllers = @[nWallets, pTrading, pHistory, pSettings];
+    tabBarController.viewControllers = @[nWallets, pTrading, pHistory, myLykke, pSettings];
     
 //    tabBarController.viewControllers = @[pWallets, pTrading, pHistory, pSettings];
     

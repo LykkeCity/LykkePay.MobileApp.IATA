@@ -8,8 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+typedef enum {BUTTON_TYPE_COLORED, BUTTON_TYPE_CLEAR, BUTTON_TYPE_GREEN} COMMON_BUTTON_TYPE;
+
 @interface LWCommonButton : UIButton
 
-@property BOOL colored;
+@property COMMON_BUTTON_TYPE type;
+
 
 @end

@@ -26,7 +26,8 @@
 
 @interface LWCreateEditPrivateWalletPresenter () <UITextFieldDelegate>
 {
-//    BTCKey *privateKey;
+    NSDictionary *createButtonEnabledAttributes;
+    NSDictionary *buttonDisabledAttributes;
 }
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
@@ -42,6 +43,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *keyPasteButton;
 @property (weak, nonatomic) IBOutlet UIButton *keyCopyButton;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+
+@property (weak, nonatomic) IBOutlet UILabel *addressTitleLabel;
 
 @property (strong, nonatomic) NSLayoutConstraint *keyPasteWidthConstraint;
 @property (strong, nonatomic) NSLayoutConstraint *padlockWidthConstraint;
@@ -79,9 +82,9 @@
     
     self.lineViewHeightConstraint.constant=0.5;
 
-    NSDictionary *createButtonEnabledAttributes=@{NSKernAttributeName:@(1), NSFontAttributeName:[UIFont fontWithName:@"ProximaNova-Semibold" size:15], NSForegroundColorAttributeName:[UIColor whiteColor]};
+    createButtonEnabledAttributes=@{NSKernAttributeName:@(1), NSFontAttributeName:[UIFont fontWithName:@"ProximaNova-Semibold" size:15], NSForegroundColorAttributeName:[UIColor whiteColor]};
 
-    NSDictionary *buttonDisabledAttributes = @{NSKernAttributeName:@(1), NSFontAttributeName:[UIFont fontWithName:@"ProximaNova-Semibold" size:15], NSForegroundColorAttributeName:TextColor};
+     buttonDisabledAttributes= @{NSKernAttributeName:@(1), NSFontAttributeName:[UIFont fontWithName:@"ProximaNova-Semibold" size:15], NSForegroundColorAttributeName:TextColor};
 
     NSString *createUpdateButtonTitle;
     
@@ -190,6 +193,7 @@
     self.walletExistingButton.selected=NO;
     button.selected=YES;
     
+    NSString *createUpdateButtonTitle;
     
     if(button==self.walletNewButton)
     {
@@ -202,6 +206,10 @@
         self.keyPasteWidthConstraint.active=YES;
         
         NSString *sss=self.addressLabel.text;
+        
+        
+                createUpdateButtonTitle=@"CREATE WALLET";
+        
         NSLog(@"%@", sss);
     }
     else
@@ -212,9 +220,15 @@
         self.scanQRView.hidden=NO;
         self.scanQRHeightConstraint.constant=54;
         self.keyPasteWidthConstraint.active=NO;
+        createUpdateButtonTitle=@"ADD WALLET";
+
     }
     
     _padlockWidthConstraint.active=YES;
+    
+    [self.createUpdateButton setAttributedTitle:[[NSAttributedString alloc] initWithString:createUpdateButtonTitle attributes:createButtonEnabledAttributes] forState:UIControlStateNormal];
+    [self.createUpdateButton setAttributedTitle:[[NSAttributedString alloc] initWithString:createUpdateButtonTitle attributes:buttonDisabledAttributes] forState:UIControlStateDisabled];
+
 
     
     [self.view endEditing:YES];
@@ -304,21 +318,44 @@
     {
         if([self.walletNameTextField.text isEqualToString:_wallet.name])
             [LWValidator setButton:self.createUpdateButton enabled:NO];
-        else if(self.walletNameTextField.text.length)
+        else if(self.walletNameTextField.text.length && [self.walletNameTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]].length)
         {
             [LWValidator setButton:self.createUpdateButton enabled:YES];
+        }
+        for(LWPrivateWalletModel *m in [LWPrivateWalletsManager shared].wallets)
+        {
+            if([[m.name lowercaseString] isEqualToString:self.walletNameTextField.text.lowercaseString])
+            {
+                [LWValidator setButton:self.createUpdateButton enabled:NO];
+                break;
+            }
         }
     }
     else
     {
-        if(self.walletNameTextField.text.length && self.addressLabel.text.length)
+        if(self.walletNameTextField.text.length && [self.walletNameTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]].length && self.addressLabel.text.length)
         {
             [LWValidator setButton:self.createUpdateButton enabled:YES];
         }
         else
             [LWValidator setButton:self.createUpdateButton enabled:NO];
         
+        for(LWPrivateWalletModel *m in [LWPrivateWalletsManager shared].wallets)
+        {
+            if([[m.name lowercaseString] isEqualToString:self.walletNameTextField.text.lowercaseString])
+            {
+                [LWValidator setButton:self.createUpdateButton enabled:NO];
+                break;
+            }
+        }
+
+        
     }
+    
+    if(_addressLabel.text.length)
+        _addressTitleLabel.text=@"Wallet address";
+    else
+        _addressTitleLabel.text=@"Wallet address is not defined";
     
     
 }
@@ -327,6 +364,18 @@
 
 -(BOOL) textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
+    NSCharacterSet *charSet=[NSCharacterSet alphanumericCharacterSet];
+    NSString *newString=[textField.text stringByReplacingCharactersInRange:range withString:string];
+    if(newString.length)
+    {
+        NSString *nums=@"0123456789";
+        NSString *first=[newString substringToIndex:1];
+        if([nums rangeOfString:first].location!=NSNotFound)
+            return NO;
+        if([first stringByTrimmingCharactersInSet:charSet].length!=0)
+            return NO;
+    }
+    
     if(textField==self.walletNameTextField)
         string=string.uppercaseString;
         

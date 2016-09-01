@@ -55,6 +55,13 @@
 		A11D0F431D3766A200BFDE4D /* LWPrivateWalletAssetModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A11D0F421D3766A200BFDE4D /* LWPrivateWalletAssetModel.m */; };
 		A11D0F461D37676E00BFDE4D /* LWPrivateWalletTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A11D0F451D37676E00BFDE4D /* LWPrivateWalletTitleCell.m */; };
 		A11D0F491D3767A400BFDE4D /* LWPrivateWalletAssetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A11D0F481D3767A400BFDE4D /* LWPrivateWalletAssetCell.m */; };
+		A120FE731D72B51300D710B1 /* LWPacketMyLykkeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = A120FE721D72B51300D710B1 /* LWPacketMyLykkeInfo.m */; };
+		A120FE771D72C61D00D710B1 /* LWMyLykkeInfoPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A120FE751D72C61D00D710B1 /* LWMyLykkeInfoPresenter.m */; };
+		A120FE781D72C61D00D710B1 /* LWMyLykkeInfoPresenter.xib in Resources */ = {isa = PBXBuildFile; fileRef = A120FE761D72C61D00D710B1 /* LWMyLykkeInfoPresenter.xib */; };
+		A120FE7B1D72CBED00D710B1 /* LWMyLykkeInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A120FE7A1D72CBED00D710B1 /* LWMyLykkeInfoTableViewCell.m */; };
+		A120FE7D1D72CBF700D710B1 /* LWMyLykkeInfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A120FE7C1D72CBF700D710B1 /* LWMyLykkeInfoTableViewCell.xib */; };
+		A120FE811D72E44300D710B1 /* LWMyLykkeDepositBTCPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A120FE7F1D72E44300D710B1 /* LWMyLykkeDepositBTCPresenter.m */; };
+		A120FE821D72E44300D710B1 /* LWMyLykkeDepositBTCPresenter.xib in Resources */ = {isa = PBXBuildFile; fileRef = A120FE801D72E44300D710B1 /* LWMyLykkeDepositBTCPresenter.xib */; };
 		A122B97A1CFEB0BC009DC795 /* LWAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = A122B9791CFEB0BC009DC795 /* LWAnimatedView.m */; };
 		A122B9811CFEB2E4009DC795 /* FLAnimatedImage.m in Sources */ = {isa = PBXBuildFile; fileRef = A122B97D1CFEB2E4009DC795 /* FLAnimatedImage.m */; };
 		A122B9821CFEB2E4009DC795 /* FLAnimatedImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A122B97F1CFEB2E4009DC795 /* FLAnimatedImageView.m */; };
@@ -71,6 +78,28 @@
 		A12BEEAE1D2FA21400045916 /* LWPacketPushSettingsSet.m in Sources */ = {isa = PBXBuildFile; fileRef = A12BEEAD1D2FA21400045916 /* LWPacketPushSettingsSet.m */; };
 		A12BEEB11D2FA22A00045916 /* LWPacketPushSettingsGet.m in Sources */ = {isa = PBXBuildFile; fileRef = A12BEEB01D2FA22A00045916 /* LWPacketPushSettingsGet.m */; };
 		A12BEEB21D32498500045916 /* LWTransferEmptyBlockchainPresenter.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECA23FA51CBD937900B4D58D /* LWTransferEmptyBlockchainPresenter.xib */; };
+		A12DB5441D72F4B400319EA7 /* LWPacketAllAssetPairs.m in Sources */ = {isa = PBXBuildFile; fileRef = A12DB5431D72F4B400319EA7 /* LWPacketAllAssetPairs.m */; };
+		A12DB5481D730E5300319EA7 /* LWMyLykkeDepositSwiftPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A12DB5461D730E5300319EA7 /* LWMyLykkeDepositSwiftPresenter.m */; };
+		A12DB5491D730E5400319EA7 /* LWMyLykkeDepositSwiftPresenter.xib in Resources */ = {isa = PBXBuildFile; fileRef = A12DB5471D730E5300319EA7 /* LWMyLykkeDepositSwiftPresenter.xib */; };
+		A12DB54F1D741C2300319EA7 /* Proxima Nova Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = A12DB54A1D741C2300319EA7 /* Proxima Nova Bold.otf */; };
+		A12DB5501D741C2300319EA7 /* Proxima Nova Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = A12DB54B1D741C2300319EA7 /* Proxima Nova Light.otf */; };
+		A12DB5511D741C2300319EA7 /* Proxima Nova Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = A12DB54C1D741C2300319EA7 /* Proxima Nova Regular.otf */; };
+		A12DB5521D741C2300319EA7 /* Proxima Nova Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = A12DB54D1D741C2300319EA7 /* Proxima Nova Semibold.otf */; };
+		A12DB5531D741C2300319EA7 /* Proxima Nova Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = A12DB54E1D741C2300319EA7 /* Proxima Nova Thin.otf */; };
+		A12DB5581D757F9400319EA7 /* LWMyLykkeCreditCardDepositPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A12DB5561D757F9400319EA7 /* LWMyLykkeCreditCardDepositPresenter.m */; };
+		A12DB5591D757F9400319EA7 /* LWMyLykkeCreditCardDepositPresenter.xib in Resources */ = {isa = PBXBuildFile; fileRef = A12DB5571D757F9400319EA7 /* LWMyLykkeCreditCardDepositPresenter.xib */; };
+		A12DB55C1D75CC4700319EA7 /* LWPacketGetNews.m in Sources */ = {isa = PBXBuildFile; fileRef = A12DB55B1D75CC4700319EA7 /* LWPacketGetNews.m */; };
+		A12DB5661D75DA0A00319EA7 /* LWMyLykkeNewsListPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A12DB5641D75DA0A00319EA7 /* LWMyLykkeNewsListPresenter.m */; };
+		A12DB5671D75DA0A00319EA7 /* LWMyLykkeNewsListPresenter.xib in Resources */ = {isa = PBXBuildFile; fileRef = A12DB5651D75DA0A00319EA7 /* LWMyLykkeNewsListPresenter.xib */; };
+		A12DB56B1D75DB0400319EA7 /* LWNewsFirstTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A12DB5691D75DB0400319EA7 /* LWNewsFirstTableViewCell.m */; };
+		A12DB56C1D75DB0400319EA7 /* LWNewsFirstTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A12DB56A1D75DB0400319EA7 /* LWNewsFirstTableViewCell.xib */; };
+		A12DB56F1D75E75F00319EA7 /* LWNewsElementModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A12DB56E1D75E75F00319EA7 /* LWNewsElementModel.m */; };
+		A12DB5731D767FD500319EA7 /* LWMyLykkeNewsCommonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A12DB5711D767FD500319EA7 /* LWMyLykkeNewsCommonTableViewCell.m */; };
+		A12DB5741D767FD500319EA7 /* LWMyLykkeNewsCommonTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A12DB5721D767FD500319EA7 /* LWMyLykkeNewsCommonTableViewCell.xib */; };
+		A12DB5761D76BABE00319EA7 /* LWNewsFirstNoImageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A12DB5751D76BABE00319EA7 /* LWNewsFirstNoImageTableViewCell.xib */; };
+		A12DB57A1D76D4F200319EA7 /* LWNewsDetailPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A12DB5781D76D4F200319EA7 /* LWNewsDetailPresenter.m */; };
+		A12DB57B1D76D4F200319EA7 /* LWNewsDetailPresenter.xib in Resources */ = {isa = PBXBuildFile; fileRef = A12DB5791D76D4F200319EA7 /* LWNewsDetailPresenter.xib */; };
+		A12DB57D1D76F2B200319EA7 /* LWMyLykkePresenter_Iphone5.xib in Resources */ = {isa = PBXBuildFile; fileRef = A12DB57C1D76F2B200319EA7 /* LWMyLykkePresenter_Iphone5.xib */; };
 		A1312B251D184047009726FF /* LWCameraMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A1312B241D184047009726FF /* LWCameraMessageView.m */; };
 		A1312B271D184062009726FF /* LWCameraMessageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1312B261D184062009726FF /* LWCameraMessageView.xib */; };
 		A1312B2A1D19027F009726FF /* NewDecodeBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = A1312B291D19027F009726FF /* NewDecodeBase64.m */; };
@@ -113,6 +142,19 @@
 		A1743CC21CEAFAD200176F59 /* LWRegisterPhonePresenter~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1743CC11CEAFAD200176F59 /* LWRegisterPhonePresenter~ipad.xib */; };
 		A1743CC41CEB018000176F59 /* LWRegisterPhoneConfirmPresenter~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1743CC31CEB018000176F59 /* LWRegisterPhoneConfirmPresenter~ipad.xib */; };
 		A17CF1DC1D41D08400EDBF2E /* LWPrivateWalletsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A17CF1DB1D41D08400EDBF2E /* LWPrivateWalletsManager.m */; };
+		A188DA121D6EB33800AA6D8A /* LWPrivateWalletEmptyHistoryPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A188DA101D6EB33800AA6D8A /* LWPrivateWalletEmptyHistoryPresenter.m */; };
+		A188DA131D6EB33800AA6D8A /* LWPrivateWalletEmptyHistoryPresenter.xib in Resources */ = {isa = PBXBuildFile; fileRef = A188DA111D6EB33800AA6D8A /* LWPrivateWalletEmptyHistoryPresenter.xib */; };
+		A188DA151D6EF1C400AA6D8A /* LWBackupIntroPresenter~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A188DA141D6EF1C400AA6D8A /* LWBackupIntroPresenter~ipad.xib */; };
+		A188DA171D6EF2FC00AA6D8A /* LWGenerateKeyPresenter~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A188DA161D6EF2FC00AA6D8A /* LWGenerateKeyPresenter~ipad.xib */; };
+		A188DA1C1D705D4100AA6D8A /* LWMyLykkePresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A188DA1A1D705D4100AA6D8A /* LWMyLykkePresenter.m */; };
+		A188DA1D1D705D4100AA6D8A /* LWMyLykkePresenter.xib in Resources */ = {isa = PBXBuildFile; fileRef = A188DA1B1D705D4100AA6D8A /* LWMyLykkePresenter.xib */; };
+		A188DA211D71349D00AA6D8A /* LWPrivateWalletDeposit.m in Sources */ = {isa = PBXBuildFile; fileRef = A188DA1F1D71349D00AA6D8A /* LWPrivateWalletDeposit.m */; };
+		A188DA221D71349D00AA6D8A /* LWPrivateWalletDeposit.xib in Resources */ = {isa = PBXBuildFile; fileRef = A188DA201D71349D00AA6D8A /* LWPrivateWalletDeposit.xib */; };
+		A188DA261D71414D00AA6D8A /* LWMyLykkeBuyPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A188DA241D71414D00AA6D8A /* LWMyLykkeBuyPresenter.m */; };
+		A188DA271D71414D00AA6D8A /* LWMyLykkeBuyPresenter.xib in Resources */ = {isa = PBXBuildFile; fileRef = A188DA251D71414D00AA6D8A /* LWMyLykkeBuyPresenter.xib */; };
+		A188DA2B1D716C2700AA6D8A /* LWMyLykkeBuyAssetPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A188DA291D716C2700AA6D8A /* LWMyLykkeBuyAssetPresenter.m */; };
+		A188DA2C1D716C2700AA6D8A /* LWMyLykkeBuyAssetPresenter.xib in Resources */ = {isa = PBXBuildFile; fileRef = A188DA2A1D716C2700AA6D8A /* LWMyLykkeBuyAssetPresenter.xib */; };
+		A188DA331D71C05B00AA6D8A /* LWPacketAllAssetPairsRates.m in Sources */ = {isa = PBXBuildFile; fileRef = A188DA321D71C05B00AA6D8A /* LWPacketAllAssetPairsRates.m */; };
 		A18D259E1D65CA22005CEF66 /* LWRestorePasswordWordsPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A18D259C1D65CA22005CEF66 /* LWRestorePasswordWordsPresenter.m */; };
 		A18D259F1D65CA22005CEF66 /* LWRestorePasswordWordsPresenter.xib in Resources */ = {isa = PBXBuildFile; fileRef = A18D259D1D65CA22005CEF66 /* LWRestorePasswordWordsPresenter.xib */; };
 		A18D25A21D6710A6005CEF66 /* LWCommonButton.m in Sources */ = {isa = PBXBuildFile; fileRef = A18D25A11D6710A6005CEF66 /* LWCommonButton.m */; };
@@ -870,7 +912,7 @@
 		A1D65CC01D5A17DE00828783 /* LWEmptyHistoryPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A1D65CBE1D5A17DE00828783 /* LWEmptyHistoryPresenter.m */; };
 		A1D65CC11D5A17DE00828783 /* LWEmptyHistoryPresenter.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1D65CBF1D5A17DE00828783 /* LWEmptyHistoryPresenter.xib */; };
 		A1D65CC51D5DB09700828783 /* LWGenerateKeyPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A1D65CC31D5DB09700828783 /* LWGenerateKeyPresenter.m */; };
-		A1D65CC61D5DB09700828783 /* LWGenerateKeyPresenter.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1D65CC41D5DB09700828783 /* LWGenerateKeyPresenter.xib */; };
+		A1D65CC61D5DB09700828783 /* LWGenerateKeyPresenter~iphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1D65CC41D5DB09700828783 /* LWGenerateKeyPresenter~iphone.xib */; };
 		A1D65D441D5DCF1100828783 /* crypto_bar_00000.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65CCC1D5DCF1000828783 /* crypto_bar_00000.png */; };
 		A1D65D451D5DCF1100828783 /* crypto_bar_00001.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65CCD1D5DCF1000828783 /* crypto_bar_00001.png */; };
 		A1D65D461D5DCF1100828783 /* crypto_bar_00002.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65CCE1D5DCF1000828783 /* crypto_bar_00002.png */; };
@@ -992,7 +1034,7 @@
 		A1D65DBA1D5DCF1100828783 /* crypto_bar_00118.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65D421D5DCF1100828783 /* crypto_bar_00118.png */; };
 		A1D65DBB1D5DCF1100828783 /* crypto_bar_00119.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D65D431D5DCF1100828783 /* crypto_bar_00119.png */; };
 		A1D65DBE1D5EBCBC00828783 /* LWBackupIntroPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A1D65DBD1D5EBCBC00828783 /* LWBackupIntroPresenter.m */; };
-		A1D65DC01D5EBD0000828783 /* LWBackupIntroPresenter.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1D65DBF1D5EBD0000828783 /* LWBackupIntroPresenter.xib */; };
+		A1D65DC01D5EBD0000828783 /* LWBackupIntroPresenter~iphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1D65DBF1D5EBD0000828783 /* LWBackupIntroPresenter~iphone.xib */; };
 		A1D65DC31D5EC14700828783 /* LWBackupGetStartedPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A1D65DC21D5EC14700828783 /* LWBackupGetStartedPresenter.m */; };
 		A1D65DC51D5EC18600828783 /* LWBackupGetStartedPresenter.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1D65DC41D5EC18600828783 /* LWBackupGetStartedPresenter.xib */; };
 		A1D65DC91D5EC53200828783 /* LWBackupSingleWordPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A1D65DC71D5EC53200828783 /* LWBackupSingleWordPresenter.m */; };
@@ -1021,10 +1063,6 @@
 		CD10AAAF1C1E14800086634B /* LWPacketRestrictedCountries.m in Sources */ = {isa = PBXBuildFile; fileRef = CD10AAAE1C1E14800086634B /* LWPacketRestrictedCountries.m */; };
 		CD10AAB21C1E16260086634B /* LWAuthorizePacket.m in Sources */ = {isa = PBXBuildFile; fileRef = CD10AAB11C1E16260086634B /* LWAuthorizePacket.m */; };
 		CD3CCDDD1C2B3DD400DDCE46 /* LWDeviceInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3CCDDC1C2B3DD400DDCE46 /* LWDeviceInfo.m */; };
-		CD73627D1C2C26FF00924077 /* Proxima Nova Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = CD73626F1C2C26FF00924077 /* Proxima Nova Bold.otf */; };
-		CD7362811C2C26FF00924077 /* Proxima Nova Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = CD7362731C2C26FF00924077 /* Proxima Nova Light.otf */; };
-		CD7362831C2C26FF00924077 /* Proxima Nova Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = CD7362751C2C26FF00924077 /* Proxima Nova Regular.otf */; };
-		CD7362851C2C26FF00924077 /* Proxima Nova Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = CD7362771C2C26FF00924077 /* Proxima Nova Semibold.otf */; };
 		CDA69FCE1C275C3800BE4DCA /* LWKYCSubmitPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = CDA69FCC1C275C3800BE4DCA /* LWKYCSubmitPresenter.m */; };
 		CDA69FCF1C275C3800BE4DCA /* LWKYCSubmitPresenter.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDA69FCD1C275C3800BE4DCA /* LWKYCSubmitPresenter.xib */; };
 		CDA69FDB1C281A5500BE4DCA /* LWPacketRegistrationGet.m in Sources */ = {isa = PBXBuildFile; fileRef = CDA69FDA1C281A5500BE4DCA /* LWPacketRegistrationGet.m */; };
@@ -1706,6 +1744,17 @@
 		A11D0F451D37676E00BFDE4D /* LWPrivateWalletTitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWPrivateWalletTitleCell.m; sourceTree = "<group>"; };
 		A11D0F471D3767A400BFDE4D /* LWPrivateWalletAssetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWPrivateWalletAssetCell.h; sourceTree = "<group>"; };
 		A11D0F481D3767A400BFDE4D /* LWPrivateWalletAssetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWPrivateWalletAssetCell.m; sourceTree = "<group>"; };
+		A120FE711D72B51200D710B1 /* LWPacketMyLykkeInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWPacketMyLykkeInfo.h; sourceTree = "<group>"; };
+		A120FE721D72B51300D710B1 /* LWPacketMyLykkeInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWPacketMyLykkeInfo.m; sourceTree = "<group>"; };
+		A120FE741D72C61D00D710B1 /* LWMyLykkeInfoPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWMyLykkeInfoPresenter.h; sourceTree = "<group>"; };
+		A120FE751D72C61D00D710B1 /* LWMyLykkeInfoPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWMyLykkeInfoPresenter.m; sourceTree = "<group>"; };
+		A120FE761D72C61D00D710B1 /* LWMyLykkeInfoPresenter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LWMyLykkeInfoPresenter.xib; sourceTree = "<group>"; };
+		A120FE791D72CBED00D710B1 /* LWMyLykkeInfoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWMyLykkeInfoTableViewCell.h; sourceTree = "<group>"; };
+		A120FE7A1D72CBED00D710B1 /* LWMyLykkeInfoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWMyLykkeInfoTableViewCell.m; sourceTree = "<group>"; };
+		A120FE7C1D72CBF700D710B1 /* LWMyLykkeInfoTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LWMyLykkeInfoTableViewCell.xib; sourceTree = "<group>"; };
+		A120FE7E1D72E44300D710B1 /* LWMyLykkeDepositBTCPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWMyLykkeDepositBTCPresenter.h; sourceTree = "<group>"; };
+		A120FE7F1D72E44300D710B1 /* LWMyLykkeDepositBTCPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWMyLykkeDepositBTCPresenter.m; sourceTree = "<group>"; };
+		A120FE801D72E44300D710B1 /* LWMyLykkeDepositBTCPresenter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LWMyLykkeDepositBTCPresenter.xib; sourceTree = "<group>"; };
 		A122B9781CFEB0BC009DC795 /* LWAnimatedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWAnimatedView.h; sourceTree = "<group>"; };
 		A122B9791CFEB0BC009DC795 /* LWAnimatedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWAnimatedView.m; sourceTree = "<group>"; };
 		A122B97C1CFEB2E4009DC795 /* FLAnimatedImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLAnimatedImage.h; sourceTree = "<group>"; };
@@ -1727,6 +1776,37 @@
 		A12BEEAD1D2FA21400045916 /* LWPacketPushSettingsSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWPacketPushSettingsSet.m; sourceTree = "<group>"; };
 		A12BEEAF1D2FA22A00045916 /* LWPacketPushSettingsGet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWPacketPushSettingsGet.h; sourceTree = "<group>"; };
 		A12BEEB01D2FA22A00045916 /* LWPacketPushSettingsGet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWPacketPushSettingsGet.m; sourceTree = "<group>"; };
+		A12DB5421D72F4B400319EA7 /* LWPacketAllAssetPairs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWPacketAllAssetPairs.h; sourceTree = "<group>"; };
+		A12DB5431D72F4B400319EA7 /* LWPacketAllAssetPairs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWPacketAllAssetPairs.m; sourceTree = "<group>"; };
+		A12DB5451D730E5300319EA7 /* LWMyLykkeDepositSwiftPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWMyLykkeDepositSwiftPresenter.h; sourceTree = "<group>"; };
+		A12DB5461D730E5300319EA7 /* LWMyLykkeDepositSwiftPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWMyLykkeDepositSwiftPresenter.m; sourceTree = "<group>"; };
+		A12DB5471D730E5300319EA7 /* LWMyLykkeDepositSwiftPresenter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LWMyLykkeDepositSwiftPresenter.xib; sourceTree = "<group>"; };
+		A12DB54A1D741C2300319EA7 /* Proxima Nova Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Proxima Nova Bold.otf"; sourceTree = "<group>"; };
+		A12DB54B1D741C2300319EA7 /* Proxima Nova Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Proxima Nova Light.otf"; sourceTree = "<group>"; };
+		A12DB54C1D741C2300319EA7 /* Proxima Nova Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Proxima Nova Regular.otf"; sourceTree = "<group>"; };
+		A12DB54D1D741C2300319EA7 /* Proxima Nova Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Proxima Nova Semibold.otf"; sourceTree = "<group>"; };
+		A12DB54E1D741C2300319EA7 /* Proxima Nova Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Proxima Nova Thin.otf"; sourceTree = "<group>"; };
+		A12DB5551D757F9400319EA7 /* LWMyLykkeCreditCardDepositPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWMyLykkeCreditCardDepositPresenter.h; sourceTree = "<group>"; };
+		A12DB5561D757F9400319EA7 /* LWMyLykkeCreditCardDepositPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWMyLykkeCreditCardDepositPresenter.m; sourceTree = "<group>"; };
+		A12DB5571D757F9400319EA7 /* LWMyLykkeCreditCardDepositPresenter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LWMyLykkeCreditCardDepositPresenter.xib; sourceTree = "<group>"; };
+		A12DB55A1D75CC4700319EA7 /* LWPacketGetNews.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWPacketGetNews.h; sourceTree = "<group>"; };
+		A12DB55B1D75CC4700319EA7 /* LWPacketGetNews.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWPacketGetNews.m; sourceTree = "<group>"; };
+		A12DB5631D75DA0A00319EA7 /* LWMyLykkeNewsListPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWMyLykkeNewsListPresenter.h; sourceTree = "<group>"; };
+		A12DB5641D75DA0A00319EA7 /* LWMyLykkeNewsListPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWMyLykkeNewsListPresenter.m; sourceTree = "<group>"; };
+		A12DB5651D75DA0A00319EA7 /* LWMyLykkeNewsListPresenter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LWMyLykkeNewsListPresenter.xib; sourceTree = "<group>"; };
+		A12DB5681D75DB0400319EA7 /* LWNewsFirstTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWNewsFirstTableViewCell.h; sourceTree = "<group>"; };
+		A12DB5691D75DB0400319EA7 /* LWNewsFirstTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWNewsFirstTableViewCell.m; sourceTree = "<group>"; };
+		A12DB56A1D75DB0400319EA7 /* LWNewsFirstTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LWNewsFirstTableViewCell.xib; sourceTree = "<group>"; };
+		A12DB56D1D75E75F00319EA7 /* LWNewsElementModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWNewsElementModel.h; sourceTree = "<group>"; };
+		A12DB56E1D75E75F00319EA7 /* LWNewsElementModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWNewsElementModel.m; sourceTree = "<group>"; };
+		A12DB5701D767FD500319EA7 /* LWMyLykkeNewsCommonTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWMyLykkeNewsCommonTableViewCell.h; sourceTree = "<group>"; };
+		A12DB5711D767FD500319EA7 /* LWMyLykkeNewsCommonTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWMyLykkeNewsCommonTableViewCell.m; sourceTree = "<group>"; };
+		A12DB5721D767FD500319EA7 /* LWMyLykkeNewsCommonTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LWMyLykkeNewsCommonTableViewCell.xib; sourceTree = "<group>"; };
+		A12DB5751D76BABE00319EA7 /* LWNewsFirstNoImageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LWNewsFirstNoImageTableViewCell.xib; sourceTree = "<group>"; };
+		A12DB5771D76D4F200319EA7 /* LWNewsDetailPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWNewsDetailPresenter.h; sourceTree = "<group>"; };
+		A12DB5781D76D4F200319EA7 /* LWNewsDetailPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWNewsDetailPresenter.m; sourceTree = "<group>"; };
+		A12DB5791D76D4F200319EA7 /* LWNewsDetailPresenter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LWNewsDetailPresenter.xib; sourceTree = "<group>"; };
+		A12DB57C1D76F2B200319EA7 /* LWMyLykkePresenter_Iphone5.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LWMyLykkePresenter_Iphone5.xib; sourceTree = "<group>"; };
 		A1312B231D184047009726FF /* LWCameraMessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWCameraMessageView.h; sourceTree = "<group>"; };
 		A1312B241D184047009726FF /* LWCameraMessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWCameraMessageView.m; sourceTree = "<group>"; };
 		A1312B261D184062009726FF /* LWCameraMessageView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LWCameraMessageView.xib; sourceTree = "<group>"; };
@@ -1809,6 +1889,25 @@
 		A1743CC31CEB018000176F59 /* LWRegisterPhoneConfirmPresenter~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "LWRegisterPhoneConfirmPresenter~ipad.xib"; path = "FirstRegistrationStep/LWRegisterPhoneConfirmPresenter~ipad.xib"; sourceTree = "<group>"; };
 		A17CF1DA1D41D08400EDBF2E /* LWPrivateWalletsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LWPrivateWalletsManager.h; path = Wallets/LWPrivateWalletsManager.h; sourceTree = "<group>"; };
 		A17CF1DB1D41D08400EDBF2E /* LWPrivateWalletsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LWPrivateWalletsManager.m; path = Wallets/LWPrivateWalletsManager.m; sourceTree = "<group>"; };
+		A188DA0F1D6EB33800AA6D8A /* LWPrivateWalletEmptyHistoryPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWPrivateWalletEmptyHistoryPresenter.h; sourceTree = "<group>"; };
+		A188DA101D6EB33800AA6D8A /* LWPrivateWalletEmptyHistoryPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWPrivateWalletEmptyHistoryPresenter.m; sourceTree = "<group>"; };
+		A188DA111D6EB33800AA6D8A /* LWPrivateWalletEmptyHistoryPresenter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LWPrivateWalletEmptyHistoryPresenter.xib; sourceTree = "<group>"; };
+		A188DA141D6EF1C400AA6D8A /* LWBackupIntroPresenter~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "LWBackupIntroPresenter~ipad.xib"; path = "Backup/LWBackupIntroPresenter~ipad.xib"; sourceTree = "<group>"; };
+		A188DA161D6EF2FC00AA6D8A /* LWGenerateKeyPresenter~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "LWGenerateKeyPresenter~ipad.xib"; path = "Backup/LWGenerateKeyPresenter~ipad.xib"; sourceTree = "<group>"; };
+		A188DA191D705D4100AA6D8A /* LWMyLykkePresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWMyLykkePresenter.h; sourceTree = "<group>"; };
+		A188DA1A1D705D4100AA6D8A /* LWMyLykkePresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWMyLykkePresenter.m; sourceTree = "<group>"; };
+		A188DA1B1D705D4100AA6D8A /* LWMyLykkePresenter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LWMyLykkePresenter.xib; sourceTree = "<group>"; };
+		A188DA1E1D71349D00AA6D8A /* LWPrivateWalletDeposit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWPrivateWalletDeposit.h; sourceTree = "<group>"; };
+		A188DA1F1D71349D00AA6D8A /* LWPrivateWalletDeposit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWPrivateWalletDeposit.m; sourceTree = "<group>"; };
+		A188DA201D71349D00AA6D8A /* LWPrivateWalletDeposit.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LWPrivateWalletDeposit.xib; sourceTree = "<group>"; };
+		A188DA231D71414D00AA6D8A /* LWMyLykkeBuyPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWMyLykkeBuyPresenter.h; sourceTree = "<group>"; };
+		A188DA241D71414D00AA6D8A /* LWMyLykkeBuyPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWMyLykkeBuyPresenter.m; sourceTree = "<group>"; };
+		A188DA251D71414D00AA6D8A /* LWMyLykkeBuyPresenter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LWMyLykkeBuyPresenter.xib; sourceTree = "<group>"; };
+		A188DA281D716C2700AA6D8A /* LWMyLykkeBuyAssetPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWMyLykkeBuyAssetPresenter.h; sourceTree = "<group>"; };
+		A188DA291D716C2700AA6D8A /* LWMyLykkeBuyAssetPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWMyLykkeBuyAssetPresenter.m; sourceTree = "<group>"; };
+		A188DA2A1D716C2700AA6D8A /* LWMyLykkeBuyAssetPresenter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LWMyLykkeBuyAssetPresenter.xib; sourceTree = "<group>"; };
+		A188DA311D71C05B00AA6D8A /* LWPacketAllAssetPairsRates.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWPacketAllAssetPairsRates.h; sourceTree = "<group>"; };
+		A188DA321D71C05B00AA6D8A /* LWPacketAllAssetPairsRates.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWPacketAllAssetPairsRates.m; sourceTree = "<group>"; };
 		A18D259B1D65CA22005CEF66 /* LWRestorePasswordWordsPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWRestorePasswordWordsPresenter.h; sourceTree = "<group>"; };
 		A18D259C1D65CA22005CEF66 /* LWRestorePasswordWordsPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWRestorePasswordWordsPresenter.m; sourceTree = "<group>"; };
 		A18D259D1D65CA22005CEF66 /* LWRestorePasswordWordsPresenter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LWRestorePasswordWordsPresenter.xib; sourceTree = "<group>"; };
@@ -2711,7 +2810,7 @@
 		A1D65CBF1D5A17DE00828783 /* LWEmptyHistoryPresenter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LWEmptyHistoryPresenter.xib; path = History/LWEmptyHistoryPresenter.xib; sourceTree = "<group>"; };
 		A1D65CC21D5DB09700828783 /* LWGenerateKeyPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LWGenerateKeyPresenter.h; path = Backup/LWGenerateKeyPresenter.h; sourceTree = "<group>"; };
 		A1D65CC31D5DB09700828783 /* LWGenerateKeyPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LWGenerateKeyPresenter.m; path = Backup/LWGenerateKeyPresenter.m; sourceTree = "<group>"; };
-		A1D65CC41D5DB09700828783 /* LWGenerateKeyPresenter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LWGenerateKeyPresenter.xib; path = Backup/LWGenerateKeyPresenter.xib; sourceTree = "<group>"; };
+		A1D65CC41D5DB09700828783 /* LWGenerateKeyPresenter~iphone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "LWGenerateKeyPresenter~iphone.xib"; path = "Backup/LWGenerateKeyPresenter~iphone.xib"; sourceTree = "<group>"; };
 		A1D65CCC1D5DCF1000828783 /* crypto_bar_00000.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00000.png; sourceTree = "<group>"; };
 		A1D65CCD1D5DCF1000828783 /* crypto_bar_00001.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00001.png; sourceTree = "<group>"; };
 		A1D65CCE1D5DCF1000828783 /* crypto_bar_00002.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00002.png; sourceTree = "<group>"; };
@@ -2834,7 +2933,7 @@
 		A1D65D431D5DCF1100828783 /* crypto_bar_00119.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crypto_bar_00119.png; sourceTree = "<group>"; };
 		A1D65DBC1D5EBCBC00828783 /* LWBackupIntroPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LWBackupIntroPresenter.h; path = Backup/LWBackupIntroPresenter.h; sourceTree = "<group>"; };
 		A1D65DBD1D5EBCBC00828783 /* LWBackupIntroPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LWBackupIntroPresenter.m; path = Backup/LWBackupIntroPresenter.m; sourceTree = "<group>"; };
-		A1D65DBF1D5EBD0000828783 /* LWBackupIntroPresenter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LWBackupIntroPresenter.xib; path = Backup/LWBackupIntroPresenter.xib; sourceTree = "<group>"; };
+		A1D65DBF1D5EBD0000828783 /* LWBackupIntroPresenter~iphone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "LWBackupIntroPresenter~iphone.xib"; path = "Backup/LWBackupIntroPresenter~iphone.xib"; sourceTree = "<group>"; };
 		A1D65DC11D5EC14700828783 /* LWBackupGetStartedPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LWBackupGetStartedPresenter.h; path = Backup/LWBackupGetStartedPresenter.h; sourceTree = "<group>"; };
 		A1D65DC21D5EC14700828783 /* LWBackupGetStartedPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LWBackupGetStartedPresenter.m; path = Backup/LWBackupGetStartedPresenter.m; sourceTree = "<group>"; };
 		A1D65DC41D5EC18600828783 /* LWBackupGetStartedPresenter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LWBackupGetStartedPresenter.xib; path = Backup/LWBackupGetStartedPresenter.xib; sourceTree = "<group>"; };
@@ -2881,10 +2980,6 @@
 		CD10AAB11C1E16260086634B /* LWAuthorizePacket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWAuthorizePacket.m; sourceTree = "<group>"; };
 		CD3CCDDB1C2B3DD400DDCE46 /* LWDeviceInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWDeviceInfo.h; sourceTree = "<group>"; };
 		CD3CCDDC1C2B3DD400DDCE46 /* LWDeviceInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWDeviceInfo.m; sourceTree = "<group>"; };
-		CD73626F1C2C26FF00924077 /* Proxima Nova Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Proxima Nova Bold.otf"; path = "Fonts/Proxima Nova Bold.otf"; sourceTree = "<group>"; };
-		CD7362731C2C26FF00924077 /* Proxima Nova Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Proxima Nova Light.otf"; path = "Fonts/Proxima Nova Light.otf"; sourceTree = "<group>"; };
-		CD7362751C2C26FF00924077 /* Proxima Nova Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Proxima Nova Regular.otf"; path = "Fonts/Proxima Nova Regular.otf"; sourceTree = "<group>"; };
-		CD7362771C2C26FF00924077 /* Proxima Nova Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Proxima Nova Semibold.otf"; path = "Fonts/Proxima Nova Semibold.otf"; sourceTree = "<group>"; };
 		CDA69FCB1C275C3800BE4DCA /* LWKYCSubmitPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWKYCSubmitPresenter.h; sourceTree = "<group>"; };
 		CDA69FCC1C275C3800BE4DCA /* LWKYCSubmitPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWKYCSubmitPresenter.m; sourceTree = "<group>"; };
 		CDA69FCD1C275C3800BE4DCA /* LWKYCSubmitPresenter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LWKYCSubmitPresenter.xib; sourceTree = "<group>"; };
@@ -3545,6 +3640,9 @@
 				A1C99D121D436D3900833C4E /* PrivateWalletsPresenter */,
 				A1BB07C61D388CBC00924804 /* AddNewPrivateWallet */,
 				A114946E1D49E191000BD347 /* PrivateKeyBackup */,
+				A188DA1E1D71349D00AA6D8A /* LWPrivateWalletDeposit.h */,
+				A188DA1F1D71349D00AA6D8A /* LWPrivateWalletDeposit.m */,
+				A188DA201D71349D00AA6D8A /* LWPrivateWalletDeposit.xib */,
 			);
 			name = PrivateWallets;
 			sourceTree = "<group>";
@@ -3559,6 +3657,38 @@
 				A122B9801CFEB2E4009DC795 /* Info.plist */,
 			);
 			path = FLAnimatedImage;
+			sourceTree = "<group>";
+		};
+		A12DB5541D741C2A00319EA7 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				A12DB54A1D741C2300319EA7 /* Proxima Nova Bold.otf */,
+				A12DB54B1D741C2300319EA7 /* Proxima Nova Light.otf */,
+				A12DB54C1D741C2300319EA7 /* Proxima Nova Regular.otf */,
+				A12DB54D1D741C2300319EA7 /* Proxima Nova Semibold.otf */,
+				A12DB54E1D741C2300319EA7 /* Proxima Nova Thin.otf */,
+			);
+			name = Fonts;
+			sourceTree = "<group>";
+		};
+		A12DB5621D75D9BE00319EA7 /* News */ = {
+			isa = PBXGroup;
+			children = (
+				A12DB5631D75DA0A00319EA7 /* LWMyLykkeNewsListPresenter.h */,
+				A12DB5641D75DA0A00319EA7 /* LWMyLykkeNewsListPresenter.m */,
+				A12DB5651D75DA0A00319EA7 /* LWMyLykkeNewsListPresenter.xib */,
+				A12DB5681D75DB0400319EA7 /* LWNewsFirstTableViewCell.h */,
+				A12DB5691D75DB0400319EA7 /* LWNewsFirstTableViewCell.m */,
+				A12DB56A1D75DB0400319EA7 /* LWNewsFirstTableViewCell.xib */,
+				A12DB5751D76BABE00319EA7 /* LWNewsFirstNoImageTableViewCell.xib */,
+				A12DB5701D767FD500319EA7 /* LWMyLykkeNewsCommonTableViewCell.h */,
+				A12DB5711D767FD500319EA7 /* LWMyLykkeNewsCommonTableViewCell.m */,
+				A12DB5721D767FD500319EA7 /* LWMyLykkeNewsCommonTableViewCell.xib */,
+				A12DB5771D76D4F200319EA7 /* LWNewsDetailPresenter.h */,
+				A12DB5781D76D4F200319EA7 /* LWNewsDetailPresenter.m */,
+				A12DB5791D76D4F200319EA7 /* LWNewsDetailPresenter.xib */,
+			);
+			path = News;
 			sourceTree = "<group>";
 		};
 		A14B7D2C1CE3233D00820084 /* Images */ = {
@@ -3652,6 +3782,40 @@
 				A15B3F001D13A55D00A6B506 /* zbar-samples.png */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		A188DA181D705CFF00AA6D8A /* MyLykke */ = {
+			isa = PBXGroup;
+			children = (
+				A12DB5621D75D9BE00319EA7 /* News */,
+				A188DA191D705D4100AA6D8A /* LWMyLykkePresenter.h */,
+				A188DA1A1D705D4100AA6D8A /* LWMyLykkePresenter.m */,
+				A188DA1B1D705D4100AA6D8A /* LWMyLykkePresenter.xib */,
+				A12DB57C1D76F2B200319EA7 /* LWMyLykkePresenter_Iphone5.xib */,
+				A188DA231D71414D00AA6D8A /* LWMyLykkeBuyPresenter.h */,
+				A188DA241D71414D00AA6D8A /* LWMyLykkeBuyPresenter.m */,
+				A188DA251D71414D00AA6D8A /* LWMyLykkeBuyPresenter.xib */,
+				A188DA281D716C2700AA6D8A /* LWMyLykkeBuyAssetPresenter.h */,
+				A188DA291D716C2700AA6D8A /* LWMyLykkeBuyAssetPresenter.m */,
+				A188DA2A1D716C2700AA6D8A /* LWMyLykkeBuyAssetPresenter.xib */,
+				A120FE741D72C61D00D710B1 /* LWMyLykkeInfoPresenter.h */,
+				A120FE751D72C61D00D710B1 /* LWMyLykkeInfoPresenter.m */,
+				A120FE761D72C61D00D710B1 /* LWMyLykkeInfoPresenter.xib */,
+				A120FE791D72CBED00D710B1 /* LWMyLykkeInfoTableViewCell.h */,
+				A120FE7A1D72CBED00D710B1 /* LWMyLykkeInfoTableViewCell.m */,
+				A120FE7C1D72CBF700D710B1 /* LWMyLykkeInfoTableViewCell.xib */,
+				A120FE7E1D72E44300D710B1 /* LWMyLykkeDepositBTCPresenter.h */,
+				A120FE7F1D72E44300D710B1 /* LWMyLykkeDepositBTCPresenter.m */,
+				A120FE801D72E44300D710B1 /* LWMyLykkeDepositBTCPresenter.xib */,
+				A12DB5451D730E5300319EA7 /* LWMyLykkeDepositSwiftPresenter.h */,
+				A12DB5461D730E5300319EA7 /* LWMyLykkeDepositSwiftPresenter.m */,
+				A12DB5471D730E5300319EA7 /* LWMyLykkeDepositSwiftPresenter.xib */,
+				A12DB5551D757F9400319EA7 /* LWMyLykkeCreditCardDepositPresenter.h */,
+				A12DB5561D757F9400319EA7 /* LWMyLykkeCreditCardDepositPresenter.m */,
+				A12DB5571D757F9400319EA7 /* LWMyLykkeCreditCardDepositPresenter.xib */,
+			);
+			name = MyLykke;
+			path = Wallets/MyLykke;
 			sourceTree = "<group>";
 		};
 		A18D259A1D65C9E0005CEF66 /* RestorePassword */ = {
@@ -4509,6 +4673,9 @@
 				A1C99D1D1D44E70500833C4E /* LWPrivateWalletHistoryCell.m */,
 				A1C99D161D4372E200833C4E /* LWDoubleButtonView.h */,
 				A1C99D171D4372E200833C4E /* LWDoubleButtonView.m */,
+				A188DA0F1D6EB33800AA6D8A /* LWPrivateWalletEmptyHistoryPresenter.h */,
+				A188DA101D6EB33800AA6D8A /* LWPrivateWalletEmptyHistoryPresenter.m */,
+				A188DA111D6EB33800AA6D8A /* LWPrivateWalletEmptyHistoryPresenter.xib */,
 			);
 			name = PrivateWalletHistory;
 			sourceTree = "<group>";
@@ -4627,10 +4794,12 @@
 			children = (
 				A1D65CC21D5DB09700828783 /* LWGenerateKeyPresenter.h */,
 				A1D65CC31D5DB09700828783 /* LWGenerateKeyPresenter.m */,
-				A1D65CC41D5DB09700828783 /* LWGenerateKeyPresenter.xib */,
+				A1D65CC41D5DB09700828783 /* LWGenerateKeyPresenter~iphone.xib */,
+				A188DA161D6EF2FC00AA6D8A /* LWGenerateKeyPresenter~ipad.xib */,
 				A1D65DBC1D5EBCBC00828783 /* LWBackupIntroPresenter.h */,
 				A1D65DBD1D5EBCBC00828783 /* LWBackupIntroPresenter.m */,
-				A1D65DBF1D5EBD0000828783 /* LWBackupIntroPresenter.xib */,
+				A1D65DBF1D5EBD0000828783 /* LWBackupIntroPresenter~iphone.xib */,
+				A188DA141D6EF1C400AA6D8A /* LWBackupIntroPresenter~ipad.xib */,
 				A1D65DC11D5EC14700828783 /* LWBackupGetStartedPresenter.h */,
 				A1D65DC21D5EC14700828783 /* LWBackupGetStartedPresenter.m */,
 				A1D65DC41D5EC18600828783 /* LWBackupGetStartedPresenter.xib */,
@@ -4817,17 +4986,6 @@
 			name = ExchangeWallet;
 			sourceTree = "<group>";
 		};
-		CD73626B1C2C26BE00924077 /* Fonts */ = {
-			isa = PBXGroup;
-			children = (
-				CD73626F1C2C26FF00924077 /* Proxima Nova Bold.otf */,
-				CD7362731C2C26FF00924077 /* Proxima Nova Light.otf */,
-				CD7362751C2C26FF00924077 /* Proxima Nova Regular.otf */,
-				CD7362771C2C26FF00924077 /* Proxima Nova Semibold.otf */,
-			);
-			name = Fonts;
-			sourceTree = "<group>";
-		};
 		CDA9E7F01C25764E0067FB32 /* Security */ = {
 			isa = PBXGroup;
 			children = (
@@ -4966,6 +5124,7 @@
 				EC9F3F511C90706A00DC1F87 /* Transfer */,
 				CF9EC8B71C17C00A00F742A6 /* Auth */,
 				CF6632821C176A63004353F5 /* Wallets */,
+				A188DA181D705CFF00AA6D8A /* MyLykke */,
 				CF66327F1C176A63004353F5 /* History */,
 				CF6632801C176A63004353F5 /* Settings */,
 				CF6632811C176A63004353F5 /* Trading */,
@@ -4998,9 +5157,9 @@
 		CF6632421C175B54004353F5 /* Resources_Lykke */ = {
 			isa = PBXGroup;
 			children = (
+				A12DB5541D741C2A00319EA7 /* Fonts */,
 				A1D65DD01D602B0100828783 /* WordsLists */,
 				A14B7D2C1CE3233D00820084 /* Images */,
-				CD73626B1C2C26BE00924077 /* Fonts */,
 				CF66327D1C1768B0004353F5 /* Localizable.strings */,
 				CF6632431C175B54004353F5 /* Assets.xcassets */,
 				EC9C947C1C899019006FD46B /* LaunchScreen.storyboard */,
@@ -5445,6 +5604,14 @@
 				A18D25CE1D6AC381005CEF66 /* LWPacketRecoverySMSConfirmation.m */,
 				A18D25D01D6AD949005CEF66 /* LWPacketChangePINAndPassword.h */,
 				A18D25D11D6AD949005CEF66 /* LWPacketChangePINAndPassword.m */,
+				A188DA311D71C05B00AA6D8A /* LWPacketAllAssetPairsRates.h */,
+				A188DA321D71C05B00AA6D8A /* LWPacketAllAssetPairsRates.m */,
+				A120FE711D72B51200D710B1 /* LWPacketMyLykkeInfo.h */,
+				A120FE721D72B51300D710B1 /* LWPacketMyLykkeInfo.m */,
+				A12DB5421D72F4B400319EA7 /* LWPacketAllAssetPairs.h */,
+				A12DB5431D72F4B400319EA7 /* LWPacketAllAssetPairs.m */,
+				A12DB55A1D75CC4700319EA7 /* LWPacketGetNews.h */,
+				A12DB55B1D75CC4700319EA7 /* LWPacketGetNews.m */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -5826,6 +5993,8 @@
 				A11494781D4A156F000BD347 /* LWPKTransferModel.m */,
 				A18D25C71D6AB2F9005CEF66 /* LWRecoveryPasswordModel.h */,
 				A18D25C81D6AB2F9005CEF66 /* LWRecoveryPasswordModel.m */,
+				A12DB56D1D75E75F00319EA7 /* LWNewsElementModel.h */,
+				A12DB56E1D75E75F00319EA7 /* LWNewsElementModel.m */,
 			);
 			name = Wallets;
 			sourceTree = "<group>";
@@ -6565,6 +6734,7 @@
 				A1D4777A1D050B9900438846 /* loader-color@2x_00074.png in Resources */,
 				A1D65D571D5DCF1100828783 /* crypto_bar_00019.png in Resources */,
 				A1BCD1BB1D012D3C00CF42E4 /* 3-settle-2x_00068.png in Resources */,
+				A12DB57B1D76D4F200319EA7 /* LWNewsDetailPresenter.xib in Resources */,
 				A1BCD18F1D012D3C00CF42E4 /* 3-settle-2x_00024.png in Resources */,
 				A1D65D6F1D5DCF1100828783 /* crypto_bar_00043.png in Resources */,
 				A1BCD2B81D012D3C00CF42E4 /* 5-onboard-2x_00082.png in Resources */,
@@ -6582,6 +6752,7 @@
 				A1BCD2CD1D012D3C00CF42E4 /* 5-onboard-2x_00103.png in Resources */,
 				A1D65D881D5DCF1100828783 /* crypto_bar_00068.png in Resources */,
 				A1BCD2431D012D3C00CF42E4 /* 4-withdraw-2x_00084.png in Resources */,
+				A12DB56C1D75DB0400319EA7 /* LWNewsFirstTableViewCell.xib in Resources */,
 				A1BCD2A71D012D3C00CF42E4 /* 5-onboard-2x_00065.png in Resources */,
 				A1BCD09F1D012D3C00CF42E4 /* 1-deposit-2x_00023.png in Resources */,
 				A1BCD20F1D012D3C00CF42E4 /* 4-withdraw-2x_00032.png in Resources */,
@@ -6598,7 +6769,6 @@
 				EC370B241C47BEE300175786 /* LWKeyboardToolbar.xib in Resources */,
 				A1BCD1C11D012D3C00CF42E4 /* 3-settle-2x_00074.png in Resources */,
 				A1BCD1751D012D3C00CF42E4 /* 2-trade-2x_00117.png in Resources */,
-				CD73627D1C2C26FF00924077 /* Proxima Nova Bold.otf in Resources */,
 				A1BCD2AB1D012D3C00CF42E4 /* 5-onboard-2x_00069.png in Resources */,
 				A1BCD0F51D012D3C00CF42E4 /* 1-deposit-2x_00109.png in Resources */,
 				A1165D311CF5E76A0017A725 /* LWRadioTableViewCell~ipad.xib in Resources */,
@@ -6624,7 +6794,6 @@
 				A1BCD0DE1D012D3C00CF42E4 /* 1-deposit-2x_00086.png in Resources */,
 				A12BEEA81D2E482500045916 /* LWSettingsCallSupportTableViewCell~iphone.xib in Resources */,
 				A1BCD29E1D012D3C00CF42E4 /* 5-onboard-2x_00056.png in Resources */,
-				CD7362811C2C26FF00924077 /* Proxima Nova Light.otf in Resources */,
 				A15B3F021D13A55D00A6B506 /* zbar-back.png in Resources */,
 				A1165D2F1CF5E4DA0017A725 /* CheckMark.png in Resources */,
 				A1D65D861D5DCF1100828783 /* crypto_bar_00066.png in Resources */,
@@ -6647,6 +6816,7 @@
 				A1BCD1231D012D3C00CF42E4 /* 2-trade-2x_00035.png in Resources */,
 				A1D65DAD1D5DCF1100828783 /* crypto_bar_00105.png in Resources */,
 				A1BCD2801D012D3C00CF42E4 /* 5-onboard-2x_00026.png in Resources */,
+				A12DB57D1D76F2B200319EA7 /* LWMyLykkePresenter_Iphone5.xib in Resources */,
 				A1BCD1D81D012D3C00CF42E4 /* 3-settle-2x_00097.png in Resources */,
 				A1BCD16F1D012D3C00CF42E4 /* 2-trade-2x_00111.png in Resources */,
 				A1165D271CF586BF0017A725 /* LWHistoryPresenter~ipad.xib in Resources */,
@@ -6696,12 +6866,11 @@
 				A1BCD0D81D012D3C00CF42E4 /* 1-deposit-2x_00080.png in Resources */,
 				A1BCD10D1D012D3C00CF42E4 /* 2-trade-2x_00013.png in Resources */,
 				A1D65D951D5DCF1100828783 /* crypto_bar_00081.png in Resources */,
-				CD7362851C2C26FF00924077 /* Proxima Nova Semibold.otf in Resources */,
 				A1BCD2971D012D3C00CF42E4 /* 5-onboard-2x_00049.png in Resources */,
 				A1BCD1F71D012D3C00CF42E4 /* 4-withdraw-2x_00008.png in Resources */,
 				A1D65DA91D5DCF1100828783 /* crypto_bar_00101.png in Resources */,
+				A12DB5521D741C2300319EA7 /* Proxima Nova Semibold.otf in Resources */,
 				A1BCD1EE1D012D3C00CF42E4 /* 3-settle-2x_00119.png in Resources */,
-				CD7362831C2C26FF00924077 /* Proxima Nova Regular.otf in Resources */,
 				A1BCD1C91D012D3C00CF42E4 /* 3-settle-2x_00082.png in Resources */,
 				A1BCD1B91D012D3C00CF42E4 /* 3-settle-2x_00066.png in Resources */,
 				A1BCD1A91D012D3C00CF42E4 /* 3-settle-2x_00050.png in Resources */,
@@ -6719,6 +6888,7 @@
 				EC3CE8A81C3FCE6B00CAC3FE /* LWSettingsConfirmationPresenter.xib in Resources */,
 				A1BCD2741D012D3C00CF42E4 /* 5-onboard-2x_00014.png in Resources */,
 				A1BCD0B91D012D3C00CF42E4 /* 1-deposit-2x_00049.png in Resources */,
+				A188DA131D6EB33800AA6D8A /* LWPrivateWalletEmptyHistoryPresenter.xib in Resources */,
 				ECD1E90D1C3BDEB60064AAB3 /* LWAssetTableViewCell~iphone.xib in Resources */,
 				A1BCD0D61D012D3C00CF42E4 /* 1-deposit-2x_00078.png in Resources */,
 				A1BCD2DA1D012D3C00CF42E4 /* 5-onboard-2x_00116.png in Resources */,
@@ -6755,7 +6925,7 @@
 				A1D65D491D5DCF1100828783 /* crypto_bar_00005.png in Resources */,
 				A12BEEA71D2E482500045916 /* LWSettingsCallSupportTableViewCell~ipad.xib in Resources */,
 				A1A7D3531D62393A00026576 /* LWTestBackupWordsPresenter.xib in Resources */,
-				A1D65CC61D5DB09700828783 /* LWGenerateKeyPresenter.xib in Resources */,
+				A1D65CC61D5DB09700828783 /* LWGenerateKeyPresenter~iphone.xib in Resources */,
 				A124D5C71CEB1B550074A1A8 /* LWAuthValidationPresenter~ipad.xib in Resources */,
 				A1BCD19B1D012D3C00CF42E4 /* 3-settle-2x_00036.png in Resources */,
 				A1D4775E1D050B9900438846 /* loader-color@2x_00046.png in Resources */,
@@ -6803,8 +6973,10 @@
 				A1BCD23C1D012D3C00CF42E4 /* 4-withdraw-2x_00077.png in Resources */,
 				EC31444E1C4C01ED00DEA50B /* LWPinKeyboardView.xib in Resources */,
 				A1BCD0FD1D012D3C00CF42E4 /* 1-deposit-2x_00117.png in Resources */,
+				A188DA151D6EF1C400AA6D8A /* LWBackupIntroPresenter~ipad.xib in Resources */,
 				A1BCD0F21D012D3C00CF42E4 /* 1-deposit-2x_00106.png in Resources */,
 				A1D477721D050B9900438846 /* loader-color@2x_00066.png in Resources */,
+				A188DA271D71414D00AA6D8A /* LWMyLykkeBuyPresenter.xib in Resources */,
 				A1BCD11A1D012D3C00CF42E4 /* 2-trade-2x_00026.png in Resources */,
 				A1BCD1951D012D3C00CF42E4 /* 3-settle-2x_00030.png in Resources */,
 				A1BCD1431D012D3C00CF42E4 /* 2-trade-2x_00067.png in Resources */,
@@ -6815,9 +6987,11 @@
 				EC3CE8C21C402FF000CAC3FE /* LWAssetBlockchainIconTableViewCell.xib in Resources */,
 				A1D65D591D5DCF1100828783 /* crypto_bar_00021.png in Resources */,
 				A1BCD0DC1D012D3C00CF42E4 /* 1-deposit-2x_00084.png in Resources */,
+				A12DB5531D741C2300319EA7 /* Proxima Nova Thin.otf in Resources */,
 				A1D477801D050B9900438846 /* loader-color@2x_00080.png in Resources */,
 				A1BCD1C61D012D3C00CF42E4 /* 3-settle-2x_00079.png in Resources */,
 				A1BCD1861D012D3C00CF42E4 /* 3-settle-2x_00015.png in Resources */,
+				A188DA221D71349D00AA6D8A /* LWPrivateWalletDeposit.xib in Resources */,
 				A1BCD13E1D012D3C00CF42E4 /* 2-trade-2x_00062.png in Resources */,
 				A1BCD18A1D012D3C00CF42E4 /* 3-settle-2x_00019.png in Resources */,
 				A1D65D5D1D5DCF1100828783 /* crypto_bar_00025.png in Resources */,
@@ -6856,6 +7030,7 @@
 				A1BCD09B1D012D3C00CF42E4 /* 1-deposit-2x_00019.png in Resources */,
 				A1BCD0DF1D012D3C00CF42E4 /* 1-deposit-2x_00087.png in Resources */,
 				A1BCD2901D012D3C00CF42E4 /* 5-onboard-2x_00042.png in Resources */,
+				A120FE7D1D72CBF700D710B1 /* LWMyLykkeInfoTableViewCell.xib in Resources */,
 				A1BCD0EF1D012D3C00CF42E4 /* 1-deposit-2x_00103.png in Resources */,
 				A1BCD18C1D012D3C00CF42E4 /* 3-settle-2x_00021.png in Resources */,
 				A1BCD14B1D012D3C00CF42E4 /* 2-trade-2x_00075.png in Resources */,
@@ -6912,6 +7087,7 @@
 				A1BCD1921D012D3C00CF42E4 /* 3-settle-2x_00027.png in Resources */,
 				A1D65D541D5DCF1100828783 /* crypto_bar_00016.png in Resources */,
 				A122B9831CFEB2E4009DC795 /* Info.plist in Resources */,
+				A188DA1D1D705D4100AA6D8A /* LWMyLykkePresenter.xib in Resources */,
 				A1BCD2B41D012D3C00CF42E4 /* 5-onboard-2x_00078.png in Resources */,
 				ECD114741CDDF726002B36C0 /* LWRegisterPhoneConfirmPresenter~iphone.xib in Resources */,
 				A1BCD2BB1D012D3C00CF42E4 /* 5-onboard-2x_00085.png in Resources */,
@@ -6963,6 +7139,7 @@
 				A1BCD28D1D012D3C00CF42E4 /* 5-onboard-2x_00039.png in Resources */,
 				A1BCD2C81D012D3C00CF42E4 /* 5-onboard-2x_00098.png in Resources */,
 				A1BCD16C1D012D3C00CF42E4 /* 2-trade-2x_00108.png in Resources */,
+				A188DA2C1D716C2700AA6D8A /* LWMyLykkeBuyAssetPresenter.xib in Resources */,
 				ECECAB531C98ACF30020E050 /* LWBitcoinDepositPresenter.xib in Resources */,
 				A1BCD1EB1D012D3C00CF42E4 /* 3-settle-2x_00116.png in Resources */,
 				A1BCD0C01D012D3C00CF42E4 /* 1-deposit-2x_00056.png in Resources */,
@@ -6995,6 +7172,7 @@
 				A1BCD2291D012D3C00CF42E4 /* 4-withdraw-2x_00058.png in Resources */,
 				A1BCD1BA1D012D3C00CF42E4 /* 3-settle-2x_00067.png in Resources */,
 				A1BCD2371D012D3C00CF42E4 /* 4-withdraw-2x_00072.png in Resources */,
+				A120FE821D72E44300D710B1 /* LWMyLykkeDepositBTCPresenter.xib in Resources */,
 				A1BCD0D01D012D3C00CF42E4 /* 1-deposit-2x_00072.png in Resources */,
 				EC9AE0541CAC5F440047DF0D /* LWWithdrawFundsPresenter.xib in Resources */,
 				A1BCD26E1D012D3C00CF42E4 /* 5-onboard-2x_00008.png in Resources */,
@@ -7099,12 +7277,13 @@
 				A1D477641D050B9900438846 /* loader-color@2x_00052.png in Resources */,
 				A1BCD0C81D012D3C00CF42E4 /* 1-deposit-2x_00064.png in Resources */,
 				A1BCD0DA1D012D3C00CF42E4 /* 1-deposit-2x_00082.png in Resources */,
+				A12DB5501D741C2300319EA7 /* Proxima Nova Light.otf in Resources */,
 				A1BCD1FC1D012D3C00CF42E4 /* 4-withdraw-2x_00013.png in Resources */,
 				A1D65D4C1D5DCF1100828783 /* crypto_bar_00008.png in Resources */,
 				A1D65DA01D5DCF1100828783 /* crypto_bar_00092.png in Resources */,
 				A1BCD1CA1D012D3C00CF42E4 /* 3-settle-2x_00083.png in Resources */,
 				A1BCD2171D012D3C00CF42E4 /* 4-withdraw-2x_00040.png in Resources */,
-				A1D65DC01D5EBD0000828783 /* LWBackupIntroPresenter.xib in Resources */,
+				A1D65DC01D5EBD0000828783 /* LWBackupIntroPresenter~iphone.xib in Resources */,
 				A1BCD1A51D012D3C00CF42E4 /* 3-settle-2x_00046.png in Resources */,
 				A1BCD0C11D012D3C00CF42E4 /* 1-deposit-2x_00057.png in Resources */,
 				A1BCD2321D012D3C00CF42E4 /* 4-withdraw-2x_00067.png in Resources */,
@@ -7145,6 +7324,7 @@
 				A1D4776C1D050B9900438846 /* loader-color@2x_00060.png in Resources */,
 				A1BCD2581D012D3C00CF42E4 /* 4-withdraw-2x_00105.png in Resources */,
 				A1312B271D184062009726FF /* LWCameraMessageView.xib in Resources */,
+				A12DB5591D757F9400319EA7 /* LWMyLykkeCreditCardDepositPresenter.xib in Resources */,
 				A1BCD12B1D012D3C00CF42E4 /* 2-trade-2x_00043.png in Resources */,
 				A1BCD0911D012D3C00CF42E4 /* 1-deposit-2x_00009.png in Resources */,
 				A1D4774D1D050B9900438846 /* loader-color@2x_00029.png in Resources */,
@@ -7168,6 +7348,7 @@
 				A1D65DB31D5DCF1100828783 /* crypto_bar_00111.png in Resources */,
 				A18D25BD1D697DC3005CEF66 /* LWSMSCodeCheckPresenter.xib in Resources */,
 				A1BCD2181D012D3C00CF42E4 /* 4-withdraw-2x_00041.png in Resources */,
+				A120FE781D72C61D00D710B1 /* LWMyLykkeInfoPresenter.xib in Resources */,
 				A1D65D551D5DCF1100828783 /* crypto_bar_00017.png in Resources */,
 				A1BCD1061D012D3C00CF42E4 /* 2-trade-2x_00006.png in Resources */,
 				EC3CE8B21C4014D600CAC3FE /* LWExchangeBlockchainPresenter.xib in Resources */,
@@ -7195,6 +7376,7 @@
 				A1D65D811D5DCF1100828783 /* crypto_bar_00061.png in Resources */,
 				A1BCD0C91D012D3C00CF42E4 /* 1-deposit-2x_00065.png in Resources */,
 				A1BCD2111D012D3C00CF42E4 /* 4-withdraw-2x_00034.png in Resources */,
+				A12DB5761D76BABE00319EA7 /* LWNewsFirstNoImageTableViewCell.xib in Resources */,
 				A1165D481CF70CED0017A725 /* LWRegisterHintPresenter~ipad.xib in Resources */,
 				A1BCD18D1D012D3C00CF42E4 /* 3-settle-2x_00022.png in Resources */,
 				A11494901D509238000BD347 /* LWResultPresenter.xib in Resources */,
@@ -7260,6 +7442,7 @@
 				A1BCD0EB1D012D3C00CF42E4 /* 1-deposit-2x_00099.png in Resources */,
 				A1C5AF521D0A85CB0056DC53 /* LWSettingsTermsTableViewCell~iphone.xib in Resources */,
 				A1BCD17D1D012D3C00CF42E4 /* 3-settle-2x_00006.png in Resources */,
+				A12DB54F1D741C2300319EA7 /* Proxima Nova Bold.otf in Resources */,
 				ECECAB451C9897300020E050 /* LWCashEmptyBlockchainPresenter.xib in Resources */,
 				CF6877511C234A7200E7A7D9 /* LWRegisterPINSetupPresenter.xib in Resources */,
 				A1BCD0A71D012D3C00CF42E4 /* 1-deposit-2x_00031.png in Resources */,
@@ -7280,6 +7463,7 @@
 				A1D65DB81D5DCF1100828783 /* crypto_bar_00116.png in Resources */,
 				A1BCD1181D012D3C00CF42E4 /* 2-trade-2x_00024.png in Resources */,
 				A1BCD1241D012D3C00CF42E4 /* 2-trade-2x_00036.png in Resources */,
+				A12DB5491D730E5400319EA7 /* LWMyLykkeDepositSwiftPresenter.xib in Resources */,
 				A1BCD19F1D012D3C00CF42E4 /* 3-settle-2x_00040.png in Resources */,
 				A11494731D49E1E8000BD347 /* LWPKBackupPresenter.xib in Resources */,
 				A1D477631D050B9900438846 /* loader-color@2x_00051.png in Resources */,
@@ -7301,6 +7485,7 @@
 				A1BCD1FB1D012D3C00CF42E4 /* 4-withdraw-2x_00012.png in Resources */,
 				A1D477741D050B9900438846 /* loader-color@2x_00068.png in Resources */,
 				A1D65DAB1D5DCF1100828783 /* crypto_bar_00103.png in Resources */,
+				A12DB5741D767FD500319EA7 /* LWMyLykkeNewsCommonTableViewCell.xib in Resources */,
 				A1BCD0F11D012D3C00CF42E4 /* 1-deposit-2x_00105.png in Resources */,
 				EC7F05131C3EE5360079ECD0 /* LWRadioTableViewCell~iphone.xib in Resources */,
 				A1D477601D050B9900438846 /* loader-color@2x_00048.png in Resources */,
@@ -7317,6 +7502,7 @@
 				A1BCD2101D012D3C00CF42E4 /* 4-withdraw-2x_00033.png in Resources */,
 				A1BCD23F1D012D3C00CF42E4 /* 4-withdraw-2x_00080.png in Resources */,
 				A1BCD2121D012D3C00CF42E4 /* 4-withdraw-2x_00035.png in Resources */,
+				A188DA171D6EF2FC00AA6D8A /* LWGenerateKeyPresenter~ipad.xib in Resources */,
 				A1BCD2151D012D3C00CF42E4 /* 4-withdraw-2x_00038.png in Resources */,
 				A1BCD0EC1D012D3C00CF42E4 /* 1-deposit-2x_00100.png in Resources */,
 				A1BCD0E41D012D3C00CF42E4 /* 1-deposit-2x_00092.png in Resources */,
@@ -7353,6 +7539,7 @@
 				A1D65D8A1D5DCF1100828783 /* crypto_bar_00070.png in Resources */,
 				A1BCD24D1D012D3C00CF42E4 /* 4-withdraw-2x_00094.png in Resources */,
 				A1D65D871D5DCF1100828783 /* crypto_bar_00067.png in Resources */,
+				A12DB5511D741C2300319EA7 /* Proxima Nova Regular.otf in Resources */,
 				A1D477301D050B9900438846 /* loader-color@2x_00000.png in Resources */,
 				A1BCD15A1D012D3C00CF42E4 /* 2-trade-2x_00090.png in Resources */,
 				CFF7584C1C202D1100BC7658 /* LWKYCSuccessPresenter.xib in Resources */,
@@ -7485,6 +7672,7 @@
 				A1D65D791D5DCF1100828783 /* crypto_bar_00053.png in Resources */,
 				A1D477751D050B9900438846 /* loader-color@2x_00069.png in Resources */,
 				A1BCD24F1D012D3C00CF42E4 /* 4-withdraw-2x_00096.png in Resources */,
+				A12DB5671D75DA0A00319EA7 /* LWMyLykkeNewsListPresenter.xib in Resources */,
 				A1BCD0E71D012D3C00CF42E4 /* 1-deposit-2x_00095.png in Resources */,
 				A1BCD2DC1D012D3C00CF42E4 /* 5-onboard-2x_00118.png in Resources */,
 				A1BCD0CD1D012D3C00CF42E4 /* 1-deposit-2x_00069.png in Resources */,
@@ -7773,6 +7961,7 @@
 				A122B9821CFEB2E4009DC795 /* FLAnimatedImageView.m in Sources */,
 				A11494761D4A146D000BD347 /* LWPKTransferConfirmationView.m in Sources */,
 				A1E4EA971CE4283100293282 /* LWGraphPeriodModel.m in Sources */,
+				A12DB55C1D75CC4700319EA7 /* LWPacketGetNews.m in Sources */,
 				ECD1E8EB1C3B0E670064AAB3 /* LWPacketAssetPairs.m in Sources */,
 				CF8252B51C1CE2C700D6A4BD /* LWPacketKYCStatusSet.m in Sources */,
 				A1165D4E1CF9838F0017A725 /* UINavigationItem+Kerning.m in Sources */,
@@ -7816,6 +8005,7 @@
 				EC57F4581C3C41E600E31746 /* UIViewController+Navigation.m in Sources */,
 				EC31444C1C4C01DD00DEA50B /* LWPinKeyboardView.m in Sources */,
 				ECF55EA21C5961F2006FE254 /* LWWalletsLoadingTableViewCell.m in Sources */,
+				A188DA211D71349D00AA6D8A /* LWPrivateWalletDeposit.m in Sources */,
 				EC51D19C1C30575600550EF2 /* LWBankCardsData.m in Sources */,
 				A122B9811CFEB2E4009DC795 /* FLAnimatedImage.m in Sources */,
 				A11494671D490F10000BD347 /* LWDropdownView.m in Sources */,
@@ -7865,18 +8055,22 @@
 				CF9EC90E1C17C6C100F742A6 /* UIColor+Generic.m in Sources */,
 				A1D65DBE1D5EBCBC00828783 /* LWBackupIntroPresenter.m in Sources */,
 				ECEC40B61C4298CF00B22BEE /* LWHistoryTableViewCell.m in Sources */,
+				A188DA121D6EB33800AA6D8A /* LWPrivateWalletEmptyHistoryPresenter.m in Sources */,
 				A1AB30751CE5C03E009AF37B /* LWSendImageManager.m in Sources */,
 				A114948A1D4F46A3000BD347 /* LWRefundTransactionPresenter.m in Sources */,
 				EC7F05161C3EEAC00079ECD0 /* LWPacketSettingSignOrder.m in Sources */,
 				EC7519C61C373A4900CDDF5B /* LWAssetModel.m in Sources */,
+				A120FE731D72B51300D710B1 /* LWPacketMyLykkeInfo.m in Sources */,
 				CF68775A1C234A9800E7A7D9 /* LWAuthPINEnterPresenter.m in Sources */,
 				A1C99D151D436DA200833C4E /* LWPrivateWalletHistoryPresenter.m in Sources */,
 				A1BCCE1F1D0009A500CF42E4 /* LWPacketBitcoinAddressValidation.m in Sources */,
+				A12DB5731D767FD500319EA7 /* LWMyLykkeNewsCommonTableViewCell.m in Sources */,
 				CD10AAAC1C1E10F60086634B /* LWPacketPinSecuritySet.m in Sources */,
 				A1E4EA9A1CE42D5800293282 /* LWPacketGraphData.m in Sources */,
 				ECE902BD1C3537B700F52971 /* LWWalletFormPresenter.m in Sources */,
 				A15B3EB61D12CA1500A6B506 /* LWKYCManager.m in Sources */,
 				A1A7D3521D62393A00026576 /* LWTestBackupWordsPresenter.m in Sources */,
+				A12DB56B1D75DB0400319EA7 /* LWNewsFirstTableViewCell.m in Sources */,
 				CFF758411C202C7D00BC7658 /* LWKYCInvalidDocumentsPresenter.m in Sources */,
 				A10A950D1D0EA07B00557C87 /* LWPacketLastBaseAssets.m in Sources */,
 				A1BB07C21D3793F600924804 /* LWPrivateWalletsHeaderSumView.m in Sources */,
@@ -7904,6 +8098,7 @@
 				EC8F48381C4D8A710087DF1F /* LWNotificationSettingsPresenter.m in Sources */,
 				EC8FF6A71CA32D3400160528 /* LWPacketDicts.m in Sources */,
 				A1654E451D5201D5001741A7 /* LWTransactionManager.m in Sources */,
+				A12DB5481D730E5300319EA7 /* LWMyLykkeDepositSwiftPresenter.m in Sources */,
 				EC57F4541C3C3DD900E31746 /* LWExchangeFormPresenter.m in Sources */,
 				ECD1E8EE1C3B0F300064AAB3 /* LWAssetPairRateModel.m in Sources */,
 				CF6A9CD71C18ED7E00B69F53 /* LWPacket.m in Sources */,
@@ -7912,6 +8107,7 @@
 				A17CF1DC1D41D08400EDBF2E /* LWPrivateWalletsManager.m in Sources */,
 				ECD76BCA1C2EBE9C00E1D3DA /* LWPersonalDataPacket.m in Sources */,
 				ECD114551CDD4758002B36C0 /* LWPacketClientFullNameSet.m in Sources */,
+				A188DA1C1D705D4100AA6D8A /* LWMyLykkePresenter.m in Sources */,
 				EC51D19F1C30578700550EF2 /* LWLykkeAssetsData.m in Sources */,
 				A1BB07C51D388CB100924804 /* LWAddPrivateWalletPresenter.m in Sources */,
 				ECD114721CDDF726002B36C0 /* LWRegisterPhoneConfirmPresenter.m in Sources */,
@@ -7935,6 +8131,7 @@
 				A18D25C91D6AB2F9005CEF66 /* LWRecoveryPasswordModel.m in Sources */,
 				ECEC40BB1C42B06700B22BEE /* LWPacketTransactions.m in Sources */,
 				ECA80B5B1C2DE1A8001C4E8F /* TKButton.m in Sources */,
+				A188DA331D71C05B00AA6D8A /* LWPacketAllAssetPairsRates.m in Sources */,
 				ECD114471CD8E470002B36C0 /* LWSMSCodeStepPresenter.m in Sources */,
 				A18D25AB1D688B7C005CEF66 /* LWRestorePasswordHintPresenter.m in Sources */,
 				CF6632491C175B54004353F5 /* main.m in Sources */,
@@ -7975,18 +8172,22 @@
 				CF8252B81C1CE2D400D6A4BD /* LWPacketKYCStatusGet.m in Sources */,
 				A12BEEA41D2E47C300045916 /* LWSettingsCallSupportTableViewCell.m in Sources */,
 				A1AB307E1CE5F3A3009AF37B /* LWTradingLinearGraphViewTest.m in Sources */,
+				A120FE811D72E44300D710B1 /* LWMyLykkeDepositBTCPresenter.m in Sources */,
 				CF6F69D21C2413F70016CFC5 /* ABPadLockScreenView.m in Sources */,
 				EC7519B81C37351C00CDDF5B /* LWAssetsTablePresenter.m in Sources */,
 				A18D25B71D689D7F005CEF66 /* LWPINEnterProgressView.m in Sources */,
 				CF6F69D31C2413F70016CFC5 /* ABPadLockScreenViewController.m in Sources */,
+				A120FE7B1D72CBED00D710B1 /* LWMyLykkeInfoTableViewCell.m in Sources */,
 				A1D65CC51D5DB09700828783 /* LWGenerateKeyPresenter.m in Sources */,
 				CDCD5B181C26CC50007BAD78 /* LWRegisterPasswordPresenter.m in Sources */,
 				A1B6A0F61D3A5C2100FE02E1 /* LWBackupMessageView.m in Sources */,
 				CF9EC8FC1C17C6AD00F742A6 /* LWAuthManager.m in Sources */,
+				A12DB57A1D76D4F200319EA7 /* LWNewsDetailPresenter.m in Sources */,
 				EC7F05111C3EE5290079ECD0 /* LWRadioTableViewCell.m in Sources */,
 				ECAB1BC21C99D67700A64A20 /* LWExchangeInfoModel.m in Sources */,
 				EC7A45C41C30650C00926BB4 /* LWWalletTableViewCell.m in Sources */,
 				EC8FF6AC1CA32DE400160528 /* LWAssetsDictionaryItem.m in Sources */,
+				A12DB56F1D75E75F00319EA7 /* LWNewsElementModel.m in Sources */,
 				ECE902C11C353F5600F52971 /* LWAuthenticatedTablePresenter.m in Sources */,
 				CF6877501C234A7200E7A7D9 /* LWRegisterPINSetupPresenter.m in Sources */,
 				ECC527001C9C1F3700022382 /* LWTradingGraphPresenter.m in Sources */,
@@ -7994,6 +8195,7 @@
 				A15B3F0A1D13FD0700A6B506 /* LWPacketGetRefundAddress.m in Sources */,
 				A18D25D21D6AD949005CEF66 /* LWPacketChangePINAndPassword.m in Sources */,
 				A1C99D391D460D1900833C4E /* LWPWTransferInputView.m in Sources */,
+				A12DB5581D757F9400319EA7 /* LWMyLykkeCreditCardDepositPresenter.m in Sources */,
 				CDCD5AEA1C259629007BAD78 /* LWHistoryPresenter.m in Sources */,
 				EC9AE0611CAC79910047DF0D /* QRCodeReader.m in Sources */,
 				A1BCCE261D011BA700CF42E4 /* LWIntroductionProgressView.m in Sources */,
@@ -8021,6 +8223,7 @@
 				A1654E3A1D50C491001741A7 /* LWPacketPrevCardPayment.m in Sources */,
 				A1D65CC01D5A17DE00828783 /* LWEmptyHistoryPresenter.m in Sources */,
 				ECA23F9D1CBD733300B4D58D /* LWTransactionCashInOutModel.m in Sources */,
+				A12DB5441D72F4B400319EA7 /* LWPacketAllAssetPairs.m in Sources */,
 				ECA80B651C2E0E47001C4E8F /* LWCameraOverlayPresenter.m in Sources */,
 				ECD1147C1CDE2362002B36C0 /* LWPacketPhoneVerificationSet.m in Sources */,
 				CFD60E571C18C80C000BF83C /* LWTipsView.m in Sources */,
@@ -8050,6 +8253,7 @@
 				ECEC40E41C44253D00B22BEE /* LWPacketMarketOrder.m in Sources */,
 				CF66326F1C175DF0004353F5 /* TKImageView.m in Sources */,
 				ECD1E90B1C3BDEA70064AAB3 /* LWAssetTableViewCell.m in Sources */,
+				A120FE771D72C61D00D710B1 /* LWMyLykkeInfoPresenter.m in Sources */,
 				A11D0F401D3761EB00BFDE4D /* LWPrivateWalletModel.m in Sources */,
 				ECAB1BBC1C99D45300A64A20 /* LWPacketExchangeInfoGet.m in Sources */,
 				EC370B221C47BD7F00175786 /* LWKeyboardToolbar.m in Sources */,
@@ -8057,13 +8261,16 @@
 				ECEC40E11C4316D100B22BEE /* NSDate+String.m in Sources */,
 				EC37ED1A1C3A817D002379DD /* LWStringUtils.m in Sources */,
 				EC3CE8C01C402FE400CAC3FE /* LWAssetBlockchainIconTableViewCell.m in Sources */,
+				A12DB5661D75DA0A00319EA7 /* LWMyLykkeNewsListPresenter.m in Sources */,
 				EC3CE8B51C401CD200CAC3FE /* LWAssetBlockchainModel.m in Sources */,
 				A18D25CF1D6AC381005CEF66 /* LWPacketRecoverySMSConfirmation.m in Sources */,
+				A188DA261D71414D00AA6D8A /* LWMyLykkeBuyPresenter.m in Sources */,
 				ECEC40DE1C430FE200B22BEE /* NSString+Date.m in Sources */,
 				CD10AAA91C1E10E40086634B /* LWPacketPinSecurityGet.m in Sources */,
 				CFB1E7661C4A59AD002428E0 /* GCMathParser.m in Sources */,
 				ECD76BC41C2EA81100E1D3DA /* LWPacketPersonalData.m in Sources */,
 				EC051A7A1CB6FB1200E31BD5 /* LWPacketTransfer.m in Sources */,
+				A188DA2B1D716C2700AA6D8A /* LWMyLykkeBuyAssetPresenter.m in Sources */,
 				A1C99D1E1D44E70500833C4E /* LWPrivateWalletHistoryCell.m in Sources */,
 				EC168F0A1C51360800AF8DD5 /* LWPersonalDataPresenter.m in Sources */,
 				A1C99D271D44FADF00833C4E /* LWPrivateWalletTransferPresenter.m in Sources */,

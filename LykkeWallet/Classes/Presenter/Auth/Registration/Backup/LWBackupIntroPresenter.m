@@ -9,6 +9,8 @@
 #import "LWBackupIntroPresenter.h"
 #import "LWValidator.h"
 #import "LWBackupGetStartedPresenter.h"
+#import "LWIPadModalNavigationControllerViewController.h"
+#import "UIViewController+Navigation.h"
 
 @interface LWBackupIntroPresenter ()
 
@@ -29,6 +31,8 @@
     // Do any additional setup after loading the view.
 }
 
+
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -43,7 +47,20 @@
 -(IBAction)takeBackupButtonPressed:(UIButton *)takeBackupButton
 {
     LWBackupGetStartedPresenter *presenter=[[LWBackupGetStartedPresenter alloc] init];
-    [self.navigationController pushViewController:presenter animated:YES];
+    
+    
+    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
+        [self.navigationController pushViewController:presenter animated:YES];
+
+    else
+    {
+        LWIPadModalNavigationControllerViewController *navigationController =
+        [[LWIPadModalNavigationControllerViewController alloc] initWithRootViewController:presenter];
+        navigationController.modalPresentationStyle=UIModalPresentationOverCurrentContext;
+        navigationController.transitioningDelegate=navigationController;
+        [self.navigationController presentViewController:navigationController animated:YES completion:nil];
+    }
+
 }
 
 /*

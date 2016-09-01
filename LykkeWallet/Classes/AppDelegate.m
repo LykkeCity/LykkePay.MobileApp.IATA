@@ -22,6 +22,7 @@
 #import "LWTransactionManager.h"
 #import "LWURLProtocol.h"
 #import "LWUtils.h"
+#import "LWAuthManager.h"
 
 
 
@@ -131,6 +132,17 @@
     
 //    [[LWPrivateKeyManager shared] signatureForMessageWithLykkeKey:@"Test message"]; //Testing
     
+//    NSArray *fontFamilies = [UIFont familyNames];
+//    for (int i = 0; i < [fontFamilies count]; i++)
+//    {
+//        NSString *fontFamily = [fontFamilies objectAtIndex:i];
+//        NSArray *fontNames = [UIFont fontNamesForFamilyName:[fontFamilies objectAtIndex:i]];
+//        NSLog (@"%@: %@", fontFamily, fontNames);
+//    }
+//    
+    
+    [[LWAuthManager instance] requestAllAssetPairs];
+    
     return YES;
 }
 
@@ -239,6 +251,8 @@ didFailToRegisterForRemoteNotificationsWithError:(NSError *)err {
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"ApplicationDidBecomeActiveNotification" object:nil];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {

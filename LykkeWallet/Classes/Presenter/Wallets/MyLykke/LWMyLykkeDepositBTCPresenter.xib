@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="Proxima Nova Regular.otf">
+            <string>ProximaNova-Regular</string>
+            <string>ProximaNova-Regular</string>
+            <string>ProximaNova-Regular</string>
+            <string>ProximaNova-Regular</string>
+        </mutableArray>
+        <mutableArray key="Proxima Nova Semibold.otf">
+            <string>ProximaNova-Semibold</string>
+            <string>ProximaNova-Semibold</string>
+        </mutableArray>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LWMyLykkeDepositBTCPresenter">
+            <connections>
+                <outlet property="addressLabel" destination="9TK-9N-G3l" id="dnq-PV-etp"/>
+                <outlet property="clipboardButton" destination="csA-C2-jDR" id="giv-R2-N5c"/>
+                <outlet property="emailButton" destination="TGR-9h-rM6" id="VOT-J3-2kD"/>
+                <outlet property="qrCodeImageView" destination="ElN-PC-wgO" id="ZAZ-3V-tmA"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qdk-ig-m7l">
+                    <rect key="frame" x="0.0" y="271" width="320" height="297"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" alpha="0.59999999999999998" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wallet address" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Ph-9Z-syT">
+                            <rect key="frame" x="0.0" y="127" width="320" height="24"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="24" id="HLg-69-m0F"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="14"/>
+                            <color key="textColor" red="0.24705882352941178" green="0.30196078431372547" blue="0.37647058823529411" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9TK-9N-G3l">
+                            <rect key="frame" x="10" y="151" width="300" height="50"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="300" id="JeB-G7-763"/>
+                                <constraint firstAttribute="height" constant="50" id="hVp-Zr-Wk0"/>
+                            </constraints>
+                            <string key="text">1CsawdTDfZEvJJVtDWsAqx
+nvJfzWN6cH2</string>
+                            <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="17"/>
+                            <color key="textColor" red="0.6705882352941176" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OfA-dq-F0h">
+                            <rect key="frame" x="0.0" y="192" width="320" height="105"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="csA-C2-jDR" customClass="LWCommonButton">
+                                    <rect key="frame" x="20" y="30" width="130" height="45"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="45" id="Qcc-nB-757"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" name="ProximaNova-Semibold" family="Proxima Nova" pointSize="15"/>
+                                    <state key="normal" title="COPY" backgroundImage="ButtonOKInactive">
+                                        <color key="titleColor" red="0.2470588235" green="0.30196078430000001" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="copyClicked:" destination="-1" eventType="touchUpInside" id="e8C-U5-d32"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TGR-9h-rM6" customClass="LWCommonButton">
+                                    <rect key="frame" x="170" y="30" width="130" height="45"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="45" id="LgT-Oc-YHT"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" name="ProximaNova-Semibold" family="Proxima Nova" pointSize="15"/>
+                                    <state key="normal" title="EMAIL ME" backgroundImage="ButtonOK_square.png">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="emailClicked:" destination="-1" eventType="touchUpInside" id="p9V-KX-W0w"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstItem="TGR-9h-rM6" firstAttribute="width" secondItem="csA-C2-jDR" secondAttribute="width" id="8pS-mA-gFR"/>
+                                <constraint firstItem="csA-C2-jDR" firstAttribute="centerY" secondItem="OfA-dq-F0h" secondAttribute="centerY" id="AIy-YE-l5N"/>
+                                <constraint firstAttribute="trailing" secondItem="TGR-9h-rM6" secondAttribute="trailing" constant="20" id="bHc-cJ-KAl"/>
+                                <constraint firstItem="TGR-9h-rM6" firstAttribute="centerY" secondItem="OfA-dq-F0h" secondAttribute="centerY" id="jRf-P6-6an"/>
+                                <constraint firstAttribute="height" constant="105" id="r4j-oo-gX0"/>
+                                <constraint firstItem="TGR-9h-rM6" firstAttribute="leading" secondItem="csA-C2-jDR" secondAttribute="trailing" constant="20" id="wyi-Ym-96K"/>
+                                <constraint firstItem="csA-C2-jDR" firstAttribute="leading" secondItem="OfA-dq-F0h" secondAttribute="leading" constant="20" id="yEo-ml-6t8"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pbi-6S-LVx">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" alpha="0.59999999999999998" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lykke coins will be transferred to your Lykke Wallet after BTC transaction is detected" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zma-bB-D78">
+                                    <rect key="frame" x="30" y="14" width="260" height="51.5"/>
+                                    <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="14"/>
+                                    <color key="textColor" red="0.2470588235" green="0.30196078430000001" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cEQ-9D-lqE">
+                                    <rect key="frame" x="0.0" y="79" width="320" height="1"/>
+                                    <color key="backgroundColor" red="0.82745098039215681" green="0.83921568627450982" blue="0.85882352941176465" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="1" id="zRn-ca-Wl4"/>
+                                    </constraints>
+                                </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Azx-J2-OiG">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="1"/>
+                                    <color key="backgroundColor" red="0.82745098039215681" green="0.83921568627450982" blue="0.85882352941176465" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="1" id="oQD-14-azD"/>
+                                    </constraints>
+                                </view>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="cEQ-9D-lqE" secondAttribute="trailing" id="9Pw-Tm-V4q"/>
+                                <constraint firstAttribute="bottom" secondItem="cEQ-9D-lqE" secondAttribute="bottom" id="CiI-Kl-87z"/>
+                                <constraint firstItem="cEQ-9D-lqE" firstAttribute="leading" secondItem="pbi-6S-LVx" secondAttribute="leading" id="FM7-lE-urA"/>
+                                <constraint firstItem="Azx-J2-OiG" firstAttribute="top" secondItem="pbi-6S-LVx" secondAttribute="top" id="J6E-KK-aga"/>
+                                <constraint firstAttribute="trailing" secondItem="Azx-J2-OiG" secondAttribute="trailing" id="KlM-4Y-jnu"/>
+                                <constraint firstItem="Azx-J2-OiG" firstAttribute="leading" secondItem="pbi-6S-LVx" secondAttribute="leading" id="Ld7-WE-yqj"/>
+                                <constraint firstItem="zma-bB-D78" firstAttribute="centerY" secondItem="pbi-6S-LVx" secondAttribute="centerY" id="NIs-aF-Oaz"/>
+                                <constraint firstAttribute="height" constant="80" id="gpU-aa-7UP"/>
+                                <constraint firstAttribute="trailing" secondItem="zma-bB-D78" secondAttribute="trailing" constant="30" id="mPh-UT-80h"/>
+                                <constraint firstItem="zma-bB-D78" firstAttribute="leading" secondItem="pbi-6S-LVx" secondAttribute="leading" constant="30" id="qfz-BQ-pqZ"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="9TK-9N-G3l" firstAttribute="centerX" secondItem="qdk-ig-m7l" secondAttribute="centerX" id="ABo-lb-bz7"/>
+                        <constraint firstAttribute="trailing" secondItem="OfA-dq-F0h" secondAttribute="trailing" id="BpX-JZ-Uei"/>
+                        <constraint firstItem="2Ph-9Z-syT" firstAttribute="leading" secondItem="qdk-ig-m7l" secondAttribute="leading" id="GqW-aL-5K1"/>
+                        <constraint firstAttribute="bottom" secondItem="OfA-dq-F0h" secondAttribute="bottom" id="Mha-pc-wQp"/>
+                        <constraint firstItem="pbi-6S-LVx" firstAttribute="leading" secondItem="qdk-ig-m7l" secondAttribute="leading" id="RI6-Vx-Gfp"/>
+                        <constraint firstItem="OfA-dq-F0h" firstAttribute="leading" secondItem="qdk-ig-m7l" secondAttribute="leading" id="Rcy-eQ-MGg"/>
+                        <constraint firstItem="pbi-6S-LVx" firstAttribute="top" secondItem="qdk-ig-m7l" secondAttribute="top" id="erf-KZ-cwe"/>
+                        <constraint firstItem="2Ph-9Z-syT" firstAttribute="top" secondItem="pbi-6S-LVx" secondAttribute="bottom" constant="47" id="iBM-oQ-e4Q"/>
+                        <constraint firstAttribute="trailing" secondItem="2Ph-9Z-syT" secondAttribute="trailing" id="mkz-sP-EYy"/>
+                        <constraint firstItem="9TK-9N-G3l" firstAttribute="top" secondItem="2Ph-9Z-syT" secondAttribute="bottom" id="pTp-Yz-Jli"/>
+                        <constraint firstAttribute="trailing" secondItem="pbi-6S-LVx" secondAttribute="trailing" id="zcF-Zs-qtu"/>
+                    </constraints>
+                </view>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BitcoinQrCode" translatesAutoresizingMaskIntoConstraints="NO" id="ElN-PC-wgO">
+                    <rect key="frame" x="73" y="66" width="173" height="173"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="173" id="tT4-Ep-XPL"/>
+                        <constraint firstAttribute="width" constant="173" id="xHk-Uj-HHI"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To buy Lykke coins send bitcoins to this address" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DrT-yN-BdN">
+                    <rect key="frame" x="30" y="0.0" width="260" height="41.5"/>
+                    <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="17"/>
+                    <color key="textColor" red="0.24705882352941178" green="0.30196078431372547" blue="0.37647058823529411" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="0.91764705882352937" green="0.92941176470588238" blue="0.93725490196078431" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="qdk-ig-m7l" firstAttribute="top" secondItem="ElN-PC-wgO" secondAttribute="bottom" constant="32" id="8WL-be-SNc"/>
+                <constraint firstItem="qdk-ig-m7l" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="271" id="Cos-nU-jrO"/>
+                <constraint firstItem="DrT-yN-BdN" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="30" id="E7a-Bu-UhA"/>
+                <constraint firstItem="DrT-yN-BdN" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Ec5-um-1F4"/>
+                <constraint firstItem="qdk-ig-m7l" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Pwb-6M-hF9"/>
+                <constraint firstAttribute="bottom" secondItem="qdk-ig-m7l" secondAttribute="bottom" id="fmZ-tL-UFb"/>
+                <constraint firstItem="DrT-yN-BdN" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="lfU-tq-VH5"/>
+                <constraint firstAttribute="trailing" secondItem="DrT-yN-BdN" secondAttribute="trailing" constant="30" id="puI-ze-p9q"/>
+                <constraint firstAttribute="trailing" secondItem="qdk-ig-m7l" secondAttribute="trailing" id="xWO-3Q-1NX"/>
+                <constraint firstItem="ElN-PC-wgO" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="yXL-yR-ofW"/>
+            </constraints>
+            <point key="canvasLocation" x="167" y="244"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="BitcoinQrCode" width="173" height="173"/>
+        <image name="ButtonOKInactive" width="320" height="51"/>
+        <image name="ButtonOK_square.png" width="1800" height="200"/>
+    </resources>
+</document>

@@ -98,13 +98,14 @@
 
 - (IBAction)emailClicked:(id)sender {
     [self setLoading:YES];
-    [[LWAuthManager instance] requestEmailBlockchainForAssetId:self.assetID?self.assetID:self.issuerId];
+    [[LWAuthManager instance] requestEmailBlockchainForAssetId:self.assetID?self.assetID:self.issuerId address:nil];
 }
 
 
 #pragma mark - LWAuthManagerDelegate
 
 - (void)authManager:(LWAuthManager *)manager didFailWithReject:(NSDictionary *)reject context:(GDXRESTContext *)context {
+    [self setLoading:NO];
     [self showReject:reject response:context.task.response code:context.error.code willNotify:YES];
 }
 

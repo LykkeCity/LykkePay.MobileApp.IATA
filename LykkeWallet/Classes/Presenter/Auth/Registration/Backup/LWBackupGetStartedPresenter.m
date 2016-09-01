@@ -10,6 +10,7 @@
 #import "LWValidator.h"
 #import "LWBackupSingleWordPresenter.h"
 #import "LWPrivateKeyManager.h"
+#import "UIViewController+Navigation.h"
 
 @interface LWBackupGetStartedPresenter ()
 
@@ -38,6 +39,8 @@
     [self.navigationController setNavigationBarHidden:NO];
     [self.navigationItem setHidesBackButton:YES animated:NO];
     self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:244.0/255 green:246.0/255 blue:247.0/255 alpha:1];
+    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad)
+        [self setCrossCloseButton];
 }
 
 -(void) viewDidAppear:(BOOL)animated

@@ -23,6 +23,8 @@
 #import "LWResultPresenter.h"
 #import "LWPrivateWalletHistoryPresenter.h"
 #import "LWIPadModalNavigationControllerViewController.h"
+#import "LWCache.h"
+#import "LWAssetModel.h"
 
 
 @interface LWPrivateWalletTransferInputPresenter () <LWMathKeyboardViewDelegate, UITextFieldDelegate, LWSettingsConfirmationPresenter, LWResultPresenterDelegate>
@@ -140,7 +142,17 @@
     
     self.keyboardView.targetTextField=textField;
     
-    self.keyboardView.accuracy=@(2);
+    NSNumber *accuracy=@(0);
+    for(LWAssetModel *asset in [LWCache instance].allAssets)
+    {
+        if([asset.identity isEqualToString:self.transfer.asset.assetId])
+        {
+            accuracy=asset.accuracy;
+            break;
+        }
+    }
+    
+    self.keyboardView.accuracy=accuracy;
     [self.keyboardView setText:[textField.text stringByReplacingOccurrencesOfString:@" " withString:@""]];
     
     

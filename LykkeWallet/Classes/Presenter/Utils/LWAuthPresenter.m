@@ -27,6 +27,7 @@
     UISwipeGestureRecognizer *swipeGesture=[[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(userSwipedBack)];
     swipeGesture.direction=UISwipeGestureRecognizerDirectionRight;
     [self.view addGestureRecognizer:swipeGesture];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {

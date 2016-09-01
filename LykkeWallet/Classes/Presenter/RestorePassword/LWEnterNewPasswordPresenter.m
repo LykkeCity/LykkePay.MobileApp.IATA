@@ -33,7 +33,7 @@
     self.password1.delegate=self;
     self.password2.delegate=self;
     self.proceedButton.enabled=NO;
-    self.proceedButton.colored=YES;
+    self.proceedButton.type=BUTTON_TYPE_COLORED;
     
     [self.proceedButton addTarget:self action:@selector(proceedButtonPressed) forControlEvents:UIControlEventTouchUpInside];
     

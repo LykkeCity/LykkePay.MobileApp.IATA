@@ -80,7 +80,7 @@
     
     self.passwordInvalidImageView.hidden=YES;
     
-    self.loginButton.colored=YES;
+    self.loginButton.type=BUTTON_TYPE_COLORED;
 
 }
 

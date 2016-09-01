@@ -7,6 +7,7 @@
 //
 
 #import "LWPacketWallets.h"
+#import "LWCache.h"
 
 
 @implementation LWPacketWallets
@@ -22,6 +23,7 @@
     }
     
     _data = [[LWLykkeWalletsData alloc] initWithJSON:result];
+    [LWCache instance].walletsData=_data.lykkeData;
 }
 
 - (NSString *)urlRelative {

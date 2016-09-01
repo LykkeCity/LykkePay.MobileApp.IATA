@@ -16,13 +16,14 @@
 #import "LWPrivateWalletHistoryPresenter.h"
 #import "LWAddPrivateWalletPresenter.h"
 #import "UIViewController+Loading.h"
-
+#import "LWRefreshControlView.h"
 #import "LWCreateEditPrivateWalletPresenter.h"
 
 @interface LWPrivateWalletsPresenter () <UITableViewDelegate, UITableViewDataSource>
 {
     UITableView *tableView;
     NSArray *wallets;
+    LWRefreshControlView *refreshControl;
 }
 
 @end
@@ -40,6 +41,16 @@
     
     NSMutableArray *www=[[NSMutableArray alloc] init];
     wallets=www;
+    
+    
+    UIView *refreshView = [[UIView alloc] initWithFrame:CGRectMake(0, 5, 0, 0)];
+    [tableView insertSubview:refreshView atIndex:0];
+    
+    refreshControl = [[LWRefreshControlView alloc] init];
+    [refreshControl addTarget:self action:@selector(reloadWallets)
+             forControlEvents:UIControlEventValueChanged];
+    [refreshView addSubview:refreshControl];
+
     // Do any additional setup after loading the view.
 }
 
@@ -48,8 +59,14 @@
     [super viewWillAppear:animated];
     [self.navigationItem setHidesBackButton:YES];
     [self setLoading:YES];
+    [self reloadWallets];
+}
+
+-(void) reloadWallets
+{
     [[LWPrivateWalletsManager shared] loadWalletsWithCompletion:^(NSArray *arr){
         wallets=arr;
+        [refreshControl endRefreshing];
         [tableView reloadData];
         [self setLoading:NO];
     }];

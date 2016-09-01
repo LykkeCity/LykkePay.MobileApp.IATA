@@ -49,6 +49,9 @@
 @class LWPacketClientKeys;
 @class LWPrivateKeyOwnershipMessage;
 @class LWRecoveryPasswordModel;
+@class LWPacketAllAssetPairsRates;
+@class LWPacketMyLykkeInfo;
+@class LWPacketGetNews;
 
 
 @protocol LWAuthManagerDelegate<NSObject>
@@ -127,6 +130,11 @@
 -(void) authManagerDidGetRecoverySMSConfirmation:(LWAuthManager *) manager;
 -(void) authManagerDidChangePINAndPassword:(LWAuthManager *) manager;
 
+-(void) authManager:(LWAuthManager *) manager didGetAllAssetPairsRate:(LWPacketAllAssetPairsRates *) packet;
+-(void) authManager:(LWAuthManager *)manager didGetMyLykkeInfo:(LWPacketMyLykkeInfo *) packet;
+
+-(void) authManager:(LWAuthManager *) manager didGetNews:(LWPacketGetNews *) packet;
+
 @end
 
 
@@ -181,7 +189,7 @@ SINGLETON_DECLARE
 - (void)requestBlockchainTransferTrnasaction:(NSString *)transferOperationId;
 - (void)requestTransactions:(NSString *)assetId;
 - (void)requestMarketOrder:(NSString *)orderId;
-- (void)requestEmailBlockchainForAssetId:(NSString *) assetId;
+- (void)requestEmailBlockchainForAssetId:(NSString *) assetId address:(NSString *) address;
 - (void)requestExchangeInfo:(NSString *)exchangeId;
 - (void)requestDictionaries;
 - (void)requestCashOut:(NSNumber *)amount assetId:(NSString *)assetId multiSig:(NSString *)multiSig;
@@ -224,6 +232,16 @@ SINGLETON_DECLARE
 -(void) requestRecoverySMSConfirmation:(LWRecoveryPasswordModel *) recModel;
 
 -(void) requestChangePINAndPassword:(LWRecoveryPasswordModel *) recModel;
+
+-(void) requestAllAssetPairsRates:(NSString *) assetId;
+
+-(void) requestMyLykkeInfo;
+
+-(void) requestAllAssetPairs;
+
+-(void) requestLykkeNews;
+
+
 
 
 

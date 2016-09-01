@@ -163,4 +163,15 @@ SINGLETON_INIT {
     return [self currencySymbolForAssetId:self.baseAssetId];
 }
 
++(int) accuracyForAssetId:(NSString *)assetId
+{
+    for(LWAssetModel *asset in [LWCache instance].allAssets)
+    {
+        if([asset.identity isEqualToString:assetId])
+            return asset.accuracy.intValue;
+    }
+    return 0;
+}
+
+
 @end

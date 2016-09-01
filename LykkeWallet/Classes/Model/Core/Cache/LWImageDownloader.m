@@ -13,6 +13,7 @@
 @interface LWImageDownloader()
 {
     NSMutableDictionary *images;
+    NSMutableDictionary *completions;
 }
 
 @end
@@ -24,6 +25,7 @@
     self=[super init];
     
     images=[[NSMutableDictionary alloc] init];
+    completions=[[NSMutableDictionary alloc] init];
     
     return self;
 }
@@ -47,6 +49,12 @@
         completion(images[urlString]);
         return;
     }
+    if(completions[urlString])
+    {
+        completions[urlString]=completion;
+        return;
+    }
+    completions[urlString]=completion;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
         NSURL *url=[NSURL URLWithString:urlString];
         if(!url)
@@ -59,7 +67,10 @@
         {
             images[urlString]=image;
             dispatch_async(dispatch_get_main_queue(), ^{
-                completion(image);
+                
+                void(^completionn)(UIImage *)=completions[urlString];
+                completionn(image);
+                [completions removeObjectForKey:urlString];
             });
         }
     });

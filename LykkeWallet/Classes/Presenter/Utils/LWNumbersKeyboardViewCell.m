@@ -16,11 +16,13 @@
 {
     [super touchesBegan:touches withEvent:event];
     self.backgroundColor=[UIColor lightGrayColor];
-    if(self.tag>0 && self.tag<=10)
+    if(self.tag>0 && self.tag<=11)
     {
         NSString *symbol=[@(self.tag) stringValue];
         if(self.tag==10)
             symbol=@"0";
+        if(self.tag==11)
+            symbol=@".";
         [self.delegate numberCellPressedSymbol:symbol];
     }
     else

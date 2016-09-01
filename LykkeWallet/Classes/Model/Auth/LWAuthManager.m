@@ -72,6 +72,11 @@
 #import "LWPrivateKeyOwnershipMessage.h"
 #import "LWPacketRecoverySMSConfirmation.h"
 #import "LWPacketChangePINAndPassword.h"
+#import "LWPacketAllAssetPairsRates.h"
+#import "LWPacketMyLykkeInfo.h"
+#import "LWPacketAllAssetPairs.h"
+#import "LWPacketGetNews.h"
+
 
 
 #import "LWLykkeWalletsData.h"
@@ -372,9 +377,11 @@ SINGLETON_INIT {
     [self sendPacket:pack];
 }
 
-- (void)requestEmailBlockchainForAssetId:(NSString *)assetId {
+- (void)requestEmailBlockchainForAssetId:(NSString *)assetId address:(NSString *) address
+{
     LWPacketSendBlockchainEmail *pack = [LWPacketSendBlockchainEmail new];
     pack.assetId=assetId;
+    pack.address=address;
     [self sendPacket:pack];
 }
 
@@ -593,6 +600,31 @@ SINGLETON_INIT {
 {
     LWPacketChangePINAndPassword *pack=[LWPacketChangePINAndPassword new];
     pack.recModel=recModel;
+    [self sendPacket:pack];
+}
+
+-(void) requestAllAssetPairsRates:(NSString *)assetId
+{
+    LWPacketAllAssetPairsRates *pack=[LWPacketAllAssetPairsRates new];
+    pack.assetId=assetId;
+    [self sendPacket:pack];
+}
+
+-(void) requestMyLykkeInfo
+{
+    LWPacketMyLykkeInfo *pack=[LWPacketMyLykkeInfo new];
+    [self sendPacket:pack];
+}
+
+-(void) requestAllAssetPairs
+{
+    LWPacketAllAssetPairs *pack=[LWPacketAllAssetPairs new];
+    [self sendPacket:pack];
+}
+
+-(void) requestLykkeNews
+{
+    LWPacketGetNews *pack=[LWPacketGetNews new];
     [self sendPacket:pack];
 }
 
@@ -960,6 +992,21 @@ SINGLETON_INIT {
     else if (pack.class == LWPacketChangePINAndPassword.class) {
         if ([self.delegate respondsToSelector:@selector(authManagerDidChangePINAndPassword:)]) {
             [self.delegate authManagerDidChangePINAndPassword:self];
+        }
+    }
+    else if (pack.class == LWPacketAllAssetPairsRates.class) {
+        if ([self.delegate respondsToSelector:@selector(authManager:didGetAllAssetPairsRate:)]) {
+            [self.delegate authManager:(LWAuthManager *)self didGetAllAssetPairsRate:(LWPacketAllAssetPairsRates *) pack];
+        }
+    }
+    else if (pack.class == LWPacketMyLykkeInfo.class) {
+        if ([self.delegate respondsToSelector:@selector(authManager:didGetMyLykkeInfo:)]) {
+            [self.delegate authManager:(LWAuthManager *)self didGetMyLykkeInfo:(LWPacketMyLykkeInfo *) pack];
+        }
+    }
+    else if (pack.class == LWPacketGetNews.class) {
+        if ([self.delegate respondsToSelector:@selector(authManager:didGetNews:)]) {
+            [self.delegate authManager:(LWAuthManager *)self didGetNews:(LWPacketGetNews *) pack];
         }
     }
 

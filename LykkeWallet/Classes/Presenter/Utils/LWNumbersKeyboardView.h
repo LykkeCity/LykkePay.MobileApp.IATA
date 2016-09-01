@@ -13,11 +13,20 @@
 @property (strong, nonatomic) UITextField *textField;
 @property id delegate;
 
+@property BOOL showDoneButton;
+@property BOOL showDotButton;
+@property BOOL showPredefinedSums;
+
+@property (strong, nonatomic) NSString *prefix;
+
+@property int accuracy;
+
 @end
 
 @protocol LWNumbersKeyboardViewDelegate
 
 -(void) numbersKeyboardViewPressedDone;
--(void) numbersKeyboardChangedText;
+-(void) numbersKeyboardChangedText:(LWNumbersKeyboardView *) keyboard;
+-(void) numbersKeyboardViewPressedDot;
 
 @end

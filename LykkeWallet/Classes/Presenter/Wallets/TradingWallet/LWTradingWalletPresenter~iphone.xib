@@ -28,7 +28,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O6u-WM-TMp">
                     <rect key="frame" x="0.0" y="483" width="320" height="85"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7ap-Ar-9yN" customClass="TKButton">
+                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7ap-Ar-9yN" customClass="TKButton">
                             <rect key="frame" x="20" y="20" width="130" height="45"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="45" id="g6C-eG-H6c"/>
@@ -41,7 +41,7 @@
                                 <action selector="withdrawClicked:" destination="-1" eventType="touchUpInside" id="ay5-ci-Jvo"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BNm-RT-c2W" customClass="TKButton">
+                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BNm-RT-c2W" customClass="TKButton">
                             <rect key="frame" x="170" y="20" width="130" height="45"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="45" id="hR8-VF-VDj"/>
@@ -57,12 +57,12 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstItem="7ap-Ar-9yN" firstAttribute="leading" secondItem="O6u-WM-TMp" secondAttribute="leading" constant="20" id="1s0-mB-jZp"/>
-                        <constraint firstAttribute="trailing" secondItem="BNm-RT-c2W" secondAttribute="trailing" constant="20" id="4jo-gh-0EZ"/>
-                        <constraint firstItem="7ap-Ar-9yN" firstAttribute="centerY" secondItem="O6u-WM-TMp" secondAttribute="centerY" id="Aaw-qY-Dnu"/>
+                        <constraint firstItem="7ap-Ar-9yN" firstAttribute="leading" secondItem="O6u-WM-TMp" secondAttribute="leading" constant="30" id="1s0-mB-jZp"/>
+                        <constraint firstAttribute="trailing" secondItem="BNm-RT-c2W" secondAttribute="trailing" constant="30" id="4jo-gh-0EZ"/>
+                        <constraint firstAttribute="bottom" secondItem="BNm-RT-c2W" secondAttribute="bottom" constant="30" id="79F-8n-ccr"/>
                         <constraint firstItem="BNm-RT-c2W" firstAttribute="leading" secondItem="7ap-Ar-9yN" secondAttribute="trailing" constant="20" id="CfL-gz-UOb"/>
                         <constraint firstAttribute="height" constant="85" id="JaY-tE-S17"/>
-                        <constraint firstItem="BNm-RT-c2W" firstAttribute="centerY" secondItem="O6u-WM-TMp" secondAttribute="centerY" id="W6B-Et-dyM"/>
+                        <constraint firstAttribute="bottom" secondItem="7ap-Ar-9yN" secondAttribute="bottom" constant="30" id="ZjT-Ga-YsF"/>
                         <constraint firstItem="BNm-RT-c2W" firstAttribute="width" secondItem="7ap-Ar-9yN" secondAttribute="width" id="n9t-su-o6l"/>
                     </constraints>
                 </view>

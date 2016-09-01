@@ -20,6 +20,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LWCreateEditPrivateWalletPresenter">
             <connections>
                 <outlet property="addressLabel" destination="19a-Qa-9Oh" id="UcD-bQ-UCS"/>
+                <outlet property="addressTitleLabel" destination="lII-Iq-0DH" id="CUT-n0-Fd8"/>
                 <outlet property="createUpdateButton" destination="Zf0-rf-hlJ" id="hU6-Ci-lb8"/>
                 <outlet property="keyCopyButton" destination="3Fe-bn-RtH" id="zjq-oP-qA1"/>
                 <outlet property="keyPasteButton" destination="fif-fb-uXU" id="0Zn-5u-Zqd"/>

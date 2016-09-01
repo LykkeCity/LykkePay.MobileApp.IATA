@@ -20,11 +20,15 @@
 #import "LWKYCManager.h"
 #import "LWCreditCardDepositPresenter.h"
 #import "LWEmptyHistoryPresenter.h"
+#import "LWLykkeAssetsData.h"
+#import "LWLykkeWalletsData.h"
 
 
-@interface LWTradingWalletPresenter () {
-    LWEmptyHistoryPresenter *emptyHistoryPresenter;
-    
+@interface LWTradingWalletPresenter()  {
+    NSArray *originalButtonContainerConstraints;
+    NSArray *originalWithdrawConstraints;
+    NSArray *originalDepositConstraints;
+    CGFloat originalTableViewBottomConstraintConstant;
 }
 
 #pragma mark - Outlets
@@ -33,6 +37,8 @@
 @property (weak, nonatomic) IBOutlet TKButton *depositButton;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewBottomConstraint;
 
+
+
 @end
 
 
@@ -40,6 +46,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    originalButtonContainerConstraints=self.withdrawButton.superview.constraints;
+    originalWithdrawConstraints=self.withdrawButton.constraints;
+    originalDepositConstraints=self.depositButton.constraints;
+    originalTableViewBottomConstraintConstant=self.tableViewBottomConstraint.constant;
     
 //    [self.withdrawButton setTitle:Localize(@"wallets.trading.withdraw") forState:UIControlStateNormal];
 //    [self.depositButton setTitle:Localize(@"wallets.trading.deposit") forState:UIControlStateNormal];
@@ -75,16 +86,44 @@
 
     [LWValidator setButton:self.depositButton enabled:![LWCache shouldHideDepositForAssetId:self.assetId]];
 
+    [[LWAuthManager instance] requestLykkeWallets];
+
+    [self adjustButtons];
+}
+
+-(void) viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    self.title = Localize(@"wallets.trading.title");
+
+}
+
+-(void) adjustButtons
+{
+    
+    for(NSLayoutConstraint *c in self.depositButton.superview.constraints)
+        [self.depositButton.superview removeConstraint:c];
+    [self.depositButton.superview addConstraints:originalButtonContainerConstraints];
+    for(NSLayoutConstraint *c in self.depositButton.constraints)
+        [self.depositButton removeConstraint:c];
+    [self.depositButton addConstraints:originalDepositConstraints];
+    for(NSLayoutConstraint *c in self.withdrawButton.constraints)
+        [self.withdrawButton removeConstraint:c];
+    [self.withdrawButton addConstraints:originalWithdrawConstraints];
+    
+    
     NSDictionary *attributesWithdraw = @{NSKernAttributeName:@(1), NSFontAttributeName:self.withdrawButton.titleLabel.font, NSForegroundColorAttributeName:self.withdrawButton.currentTitleColor};
     NSDictionary *attributesDeposit = @{NSKernAttributeName:@(1), NSFontAttributeName:self.depositButton.titleLabel.font, NSForegroundColorAttributeName:self.depositButton.currentTitleColor};
     
     [self.withdrawButton setAttributedTitle:[[NSAttributedString alloc] initWithString:Localize(@"wallets.trading.withdraw") attributes:attributesWithdraw] forState:UIControlStateNormal];
     [self.depositButton setAttributedTitle:[[NSAttributedString alloc] initWithString:Localize(@"wallets.trading.deposit") attributes:attributesDeposit] forState:UIControlStateNormal];
-
+    
     self.withdrawButton.hidden=[LWCache shouldHideWithdrawForAssetId:self.assetId] || self.balance.doubleValue==0;
     self.depositButton.hidden=[LWCache shouldHideDepositForAssetId:self.assetId];
     if(self.withdrawButton.hidden && self.depositButton.hidden)
         [self.tableViewBottomConstraint setConstant:0];
+    else
+        self.tableViewBottomConstraint.constant=originalTableViewBottomConstraintConstant;
     
     if(self.withdrawButton.hidden && self.depositButton.hidden==NO)
     {
@@ -92,13 +131,7 @@
         [self createConstraintsForButton:self.depositButton];
     }
     else if(self.withdrawButton.hidden==NO && self.depositButton.hidden)
-            [self createConstraintsForButton:self.withdrawButton];
-}
-
--(void) viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    self.title = Localize(@"wallets.trading.title");
+        [self createConstraintsForButton:self.withdrawButton];
 
 }
 
@@ -196,31 +229,36 @@
 -(void) authManager:(LWAuthManager *)manager didGetHistory:(LWPacketGetHistory *)packet
 {
     [super authManager:manager didGetHistory:packet];
+    [[LWAuthManager instance] requestLykkeWallets];
+    
+    [self adjustButtons];
     
     if(!self.operations.count)
     {
-        if(emptyHistoryPresenter)
+        if(self.emptyHistoryPresenter)
             return;
         __weak LWTradingWalletPresenter *weakSelf=self;
 
-        emptyHistoryPresenter=[[LWEmptyHistoryPresenter alloc] init];
-        emptyHistoryPresenter.flagColoredButton=YES;
+        self.emptyHistoryPresenter=[[LWEmptyHistoryPresenter alloc] init];
+        self.emptyHistoryPresenter.flagColoredButton=YES;
         if(self.depositButton.hidden==NO)
-            emptyHistoryPresenter.depositAction=^{
+            self.emptyHistoryPresenter.depositAction=^{
                 [weakSelf depositClicked:weakSelf.depositButton];
             };
 
-        emptyHistoryPresenter.buttonText=@"DEPOSIT";
-        emptyHistoryPresenter.view.frame=self.view.bounds;
-         [self.view addSubview:emptyHistoryPresenter.view];
-        [self addChildViewController:emptyHistoryPresenter];
+        self.emptyHistoryPresenter.buttonText=@"DEPOSIT";
+        self.emptyHistoryPresenter.view.frame=self.view.bounds;
+//        [self.view addSubview:self.emptyHistoryPresenter.view];
+        [self addChildViewController:self.emptyHistoryPresenter];
     }
-    else if(self.operations.count && emptyHistoryPresenter)
+    else if(self.operations.count && self.emptyHistoryPresenter)
     {
-        [emptyHistoryPresenter.view removeFromSuperview];
-        [emptyHistoryPresenter removeFromParentViewController];
-        emptyHistoryPresenter=nil;
+        [self.emptyHistoryPresenter.view removeFromSuperview];
+        [self.emptyHistoryPresenter removeFromParentViewController];
+        self.emptyHistoryPresenter=nil;
     }
+    
+    [self.tableView reloadData];
     
     
 }
@@ -236,14 +274,6 @@
     }
 
     
-//    NSLayoutConstraint *left=[NSLayoutConstraint constraintWithItem:button attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:button.superview attribute:NSLayoutAttributeLeading multiplier:1 constant:30];
-//    [button.superview addConstraint:left];
-//    
-//    NSLayoutConstraint *right=[NSLayoutConstraint constraintWithItem:button attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:button.superview attribute:NSLayoutAttributeTrailing multiplier:1 constant:30];
-//    
-//
-//    
-//    [button.superview addConstraint:right];
     NSLayoutConstraint *center=[NSLayoutConstraint constraintWithItem:button attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:button.superview attribute:NSLayoutAttributeCenterY multiplier:1 constant:0];
     [button.superview addConstraint:center];
 
@@ -257,9 +287,30 @@
     [button addConstraint:width];
     
     
-//    [button addConstraints:@[left, right, height, center]];
-    
 }
+
+-(void) authManager:(LWAuthManager *)manager didReceiveLykkeData:(LWLykkeWalletsData *)data
+{
+    [self showBalanceFromLykkeData:data.lykkeData];
+}
+
+-(void) showBalanceFromLykkeData:(LWLykkeData *) data
+{
+    NSString *balanceAsset=self.assetId;
+    
+    
+    for(LWLykkeAssetsData *d in data.assets)
+    {
+        if([d.identity isEqualToString:balanceAsset])
+        {
+            self.balance=d.balance;
+            break;
+        }
+    }
+    
+    [self adjustButtons];
+}
+
 
 
 @end

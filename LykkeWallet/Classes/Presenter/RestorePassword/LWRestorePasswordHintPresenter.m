@@ -33,8 +33,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.proceedButton.colored=YES;
+    self.proceedButton.type=BUTTON_TYPE_COLORED;
     self.textField.delegate=self;
+    self.textField.placeholder=@"Enter a hint";
     self.proceedButton.enabled=NO;
     [self.proceedButton addTarget:self action:@selector(proceedPressed) forControlEvents:UIControlEventTouchUpInside];
     

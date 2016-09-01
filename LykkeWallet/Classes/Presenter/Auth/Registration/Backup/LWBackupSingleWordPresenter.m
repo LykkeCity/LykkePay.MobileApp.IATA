@@ -49,8 +49,13 @@
     [super viewWillAppear:animated];
     
     
-    
-    [self.navigationItem setHidesBackButton:self.currentWordNum==0 animated:NO];
+    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
+        [self.navigationItem setHidesBackButton:self.currentWordNum==0 animated:NO];
+    else
+    {
+        if(self.currentWordNum==0)
+            [self setCrossCloseButton];
+    }
     
     NSDictionary *attributes=@{NSFontAttributeName:[UIFont fontWithName:@"ProximaNova-Regular" size:14], NSKernAttributeName:@(1.2), NSForegroundColorAttributeName:[UIColor colorWithRed:171.0/255 green:0 blue:1 alpha:1]};
 
@@ -117,6 +122,7 @@
     } completion:^(BOOL finished){
         if(self.currentWordNum==0)
         {
+            
             [self setBackButton];
         }
         
@@ -163,7 +169,11 @@
    
     } completion:^(BOOL finished){
         if(self.currentWordNum==1)
+        {
             self.navigationItem.leftBarButtonItem=nil;
+            if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad)
+                [self setCrossCloseButton];
+        }
         self.wordLabel.center=CGPointMake(-self.wordLabel.bounds.size.width/2, self.wordLabel.center.y);
 
         self.currentWordNum--;

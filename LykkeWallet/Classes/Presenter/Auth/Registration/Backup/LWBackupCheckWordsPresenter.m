@@ -22,7 +22,7 @@
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIButton *submitButton;
 
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *scrollViewTopConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *scrollViewBottomConstraint;
 
 @end
 
@@ -132,7 +132,7 @@
     [super viewDidLayoutSubviews];
     
     self.submitButton.layer.cornerRadius=self.submitButton.bounds.size.height/2;
-    [self.scrollViewTopConstraint setConstant:(self.view.bounds.size.height-keyboardHeight-self.scrollView.bounds.size.height)/2];
+    [self.scrollViewBottomConstraint setConstant:keyboardHeight];
 }
 
 
@@ -140,9 +140,15 @@
 {
  //   [self.view layoutIfNeeded];
     CGRect const frame = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
-    keyboardHeight=frame.size.height;
+//    keyboardHeight=frame.size.height;
     
-    [self.scrollViewTopConstraint setConstant:(self.view.bounds.size.height-keyboardHeight-self.scrollView.bounds.size.height)/2];
+    
+    UIWindow *window=[UIApplication sharedApplication].keyWindow;
+    CGPoint point=[window convertPoint:CGPointMake(0, window.bounds.size.height-frame.size.height) toView:self.view];
+
+    keyboardHeight=self.view.bounds.size.height-point.y;
+    
+    [self.scrollViewBottomConstraint setConstant:keyboardHeight];
 
     [UIView animateWithDuration:0.8 animations:^{
     [self.view layoutIfNeeded];
@@ -154,7 +160,7 @@
 {
 //    [self.view layoutIfNeeded];
     keyboardHeight=0;
-    [self.scrollViewTopConstraint setConstant:(self.view.bounds.size.height-keyboardHeight-self.scrollView.bounds.size.height)/2];
+    [self.scrollViewBottomConstraint setConstant:keyboardHeight];
 
     [UIView animateWithDuration:0.8 animations:^{
         [self.view layoutIfNeeded];

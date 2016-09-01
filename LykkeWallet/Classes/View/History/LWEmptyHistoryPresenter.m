@@ -9,11 +9,14 @@
 #import "LWEmptyHistoryPresenter.h"
 
 #import "LWValidator.h"
+#import "LWRefreshControlView.h"
 
 @interface LWEmptyHistoryPresenter ()
 
+
 @property (weak, nonatomic) IBOutlet UIImageView *bottomCurveView;
 @property (weak, nonatomic) IBOutlet UIButton *button;
+
 
 @end
 
@@ -28,6 +31,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     
     if(self.flagColoredButton)
         [LWValidator setButton:self.button enabled:YES];
@@ -53,6 +57,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 
 -(void) viewDidLayoutSubviews

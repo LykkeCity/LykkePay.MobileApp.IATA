@@ -90,7 +90,7 @@
     self.city.autocapitalizationType=UITextAutocapitalizationTypeWords;
     self.address.autocapitalizationType=UITextAutocapitalizationTypeWords;
     
-    [self.cachInButton setAttributedTitle:[[NSAttributedString alloc] initWithString:@"WIRE TRANSFER" attributes:@{NSKernAttributeName:@(1), NSFontAttributeName:[UIFont fontWithName:@"ProximaNova-Semibold" size:15], NSForegroundColorAttributeName:[UIColor whiteColor]}] forState:UIControlStateNormal];
+    [self.cachInButton setAttributedTitle:[[NSAttributedString alloc] initWithString:@"PROCEED" attributes:@{NSKernAttributeName:@(1), NSFontAttributeName:[UIFont fontWithName:@"ProximaNova-Semibold" size:15], NSForegroundColorAttributeName:[UIColor whiteColor]}] forState:UIControlStateNormal];
     [self.swiftButton setAttributedTitle:[[NSAttributedString alloc] initWithString:@"SWIFT" attributes:@{NSKernAttributeName:@(1.1), NSFontAttributeName:[UIFont fontWithName:@"ProximaNova-Regular" size:13], NSForegroundColorAttributeName:[UIColor colorWithRed:63.0/255 green:77.0/255 blue:96.0/255 alpha:1]}] forState:UIControlStateNormal];
     self.creditCardButton.backgroundColor=[UIColor colorWithRed:171.0/255 green:0 blue:1 alpha:1];
     self.creditCardButton.clipsToBounds=YES;
@@ -181,7 +181,7 @@
 -(void) viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    self.title=@"DEPOSIT WALLET";
+    self.title=@"TRANSFER FUNDS";
 
     if(countries==nil)
     {

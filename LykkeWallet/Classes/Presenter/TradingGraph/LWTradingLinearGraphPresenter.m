@@ -271,8 +271,11 @@ static int const kNumberOfRows = 4;
     
     if (self.isValid) {
         values[0] = @"4:30 PM EST";
-        values[1] = [LWMath makeStringByNumber:self.pairRateModel.ask
-                                 withPrecision:self.assetPair.accuracy.integerValue];
+        
+        values[1]=[LWUtils formatVolumeString:self.pairRateModel.ask.stringValue currencySign:@"" accuracy:self.assetPair.accuracy.intValue removeExtraZeroes:YES];
+        
+//        values[1] = [LWMath makeStringByNumber:self.pairRateModel.ask
+//                                 withPrecision:self.assetPair.accuracy.integerValue];
         values[2] = @"-21,06 -1,08%";
     }
     if(row<3)
@@ -412,7 +415,10 @@ static int const kNumberOfRows = 4;
         fixedPriceOnGraphLabel.textColor=GRAPH_RED_COLOR;
     }
     
-    lastPriceLabel.text=[LWUtils stringFromNumber:graphData.lastPrice];
+    lastPriceLabel.text=[LWUtils formatVolumeNumber:graphData.lastPrice currencySign:@"" accuracy:self.assetPair.accuracy.intValue removeExtraZeroes:YES];
+    
+    
+ //   lastPriceLabel.text=[LWUtils stringFromNumber:graphData.lastPrice];
     
     fixedPriceOnGraphLabel.text=lastPriceLabel.text;
     NSDateFormatter *formatter=[[NSDateFormatter alloc] init];

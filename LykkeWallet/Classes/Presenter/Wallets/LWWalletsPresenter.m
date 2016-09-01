@@ -216,6 +216,9 @@ static NSString *const WalletIcons[kNumberOfSections] = {
     [self setHideKeyboardOnTap:NO]; // gesture recognizer deletion
     
     [self setRefreshControl];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadWallets) name:@"ApplicationDidBecomeActiveNotification" object:nil];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -633,7 +636,6 @@ static NSString *const WalletIcons[kNumberOfSections] = {
     [refreshControl endRefreshing];
     [self setLoading:NO];
     
-    [LWCache instance].walletsData=data.lykkeData;
 
     shouldShowError = NO;
 
@@ -1077,6 +1079,11 @@ static NSString *const WalletIcons[kNumberOfSections] = {
     UIImage *image=[UIImage imageWithData:data];
     
     return image;
+}
+
+-(void) dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 

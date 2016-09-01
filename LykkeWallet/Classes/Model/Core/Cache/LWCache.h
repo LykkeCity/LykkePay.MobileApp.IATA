@@ -30,10 +30,13 @@ SINGLETON_DECLARE
 
 @property PushNotificationsStatus pushNotificationsStatus;
 
+@property (copy, nonatomic) NSString *btcConversionWalletAddress;
+
 @property (copy, nonatomic) NSNumber *refreshTimer;
 @property (copy, nonatomic) NSString *baseAssetId;
 @property (copy, nonatomic) NSString *baseAssetSymbol;
 @property (copy, nonatomic) NSArray  *baseAssets; // Array of LWAssetModel items
+@property (strong, nonatomic) NSArray *allAssetPairs;
 
 @property (strong, nonatomic) LWLykkeData *walletsData;
 
@@ -77,6 +80,8 @@ SINGLETON_DECLARE
 
 -(NSString *) currencySymbolForAssetId:(NSString *) assetId;
 +(NSString *) nameForAsset:(NSString *) assetId;
++(int) accuracyForAssetId:(NSString *) assetId;
+
 
 
 

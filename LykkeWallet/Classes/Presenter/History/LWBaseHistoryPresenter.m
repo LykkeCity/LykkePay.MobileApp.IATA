@@ -39,12 +39,15 @@
 
 @interface LWBaseHistoryPresenter () {
     UIRefreshControl *refreshControl;
-    LWEmptyHistoryPresenter *emptyHistoryPresenter;
 }
 
 #pragma mark - Properties
 
 @property (strong,   nonatomic) NSIndexPath  *loadedElement;
+
+//@property (strong, nonatomic) LWEmptyHistoryPresenter *emptyHistoryPresenter;
+
+//@property (strong, nonatomic) LWEmptyHistoryPresenter *emptyHistoryPresenter;
 
 
 #pragma mark - Utils
@@ -78,6 +81,9 @@
     [self setRefreshControl];
     
     self.tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadHistory) name:@"ApplicationDidBecomeActiveNotification" object:nil];
+
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -94,8 +100,6 @@
         [[LWAuthManager instance] requestGetHistory:self.assetId];
 
     }
-    
-    
 }
 
 -(void) viewWillDisappear:(BOOL)animated
@@ -106,8 +110,8 @@
 -(void) viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
-    [emptyHistoryPresenter removeFromParentViewController];
-    [emptyHistoryPresenter.view removeFromSuperview];
+    [self.emptyHistoryPresenter removeFromParentViewController];
+    [_emptyHistoryPresenter.view removeFromSuperview];
 }
 
 
@@ -115,11 +119,17 @@
 
 -(CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
+    if(_operations.count==0)
+        return 0;
         return 35;
 }
 
 -(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if(_operations.count==0)
+    {
+        return self.view.bounds.size.height;
+    }
     return 60;
 }
 
@@ -155,15 +165,33 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    if(_operations.count==0)
+        return 1;
+    
     return _operations.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    if(_operations.count==0)
+        return 1;
     return [_operations[section] count];
 }
 
+
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if(_operations.count==0)
+    {
+        CGRect rrr=self.emptyHistoryPresenter.view.frame;
+
+        UITableViewCell *cell=[[UITableViewCell alloc] init];
+//        cell.autoresizesSubviews=NO;
+        [cell addSubview:_emptyHistoryPresenter.view];
+        _emptyHistoryPresenter.view.frame=cell.bounds;
+        return cell;
+    }
+    
     LWHistoryTableViewCell *cell = (LWHistoryTableViewCell *)[tableView dequeueReusableCellWithIdentifier:kHistoryTableViewCellIdentifier];
     [self updateCell:cell indexPath:indexPath];
     
@@ -185,23 +213,37 @@
     [refreshControl endRefreshing];
     
     [self setLoading:NO];
-    [self.tableView reloadData];
     
     if(!_operations.count && [self isKindOfClass:[LWHistoryPresenter class]])
     {
-        emptyHistoryPresenter=[[LWEmptyHistoryPresenter alloc] init];
-        emptyHistoryPresenter.buttonText=@"MAKE FIRST TRANSACTION";
-        emptyHistoryPresenter.depositAction=^{
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"ShowExchangeViewControllerNotification" object:nil];
-        };
-        emptyHistoryPresenter.view.frame=self.view.bounds;
-
-        [self.view addSubview:emptyHistoryPresenter.view];
-        [self addChildViewController:emptyHistoryPresenter];
+        if(!_emptyHistoryPresenter)
+        {
+            _emptyHistoryPresenter=[[LWEmptyHistoryPresenter alloc] init];
+            _emptyHistoryPresenter.buttonText=@"MAKE FIRST TRANSACTION";
+            _emptyHistoryPresenter.depositAction=^{
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"ShowExchangeViewControllerNotification" object:nil];
+            };
+            _emptyHistoryPresenter.view.frame=self.view.bounds;
+            
+            //        [self.view addSubview:emptyHistoryPresenter.view];
+            [self addChildViewController:_emptyHistoryPresenter];
+        }
+    }
+    else
+    {
+        [self.emptyHistoryPresenter.view removeFromSuperview];
+        [self.emptyHistoryPresenter removeFromParentViewController];
+        self.emptyHistoryPresenter=nil;
     }
     
+    
+    
+    [self.tableView reloadData];
+
 
 }
+
+
 
 -(void) authManager:(LWAuthManager *) manager didGetBlockchainTransaction:(LWAssetBlockchainModel *)blockchain
 {
@@ -301,6 +343,8 @@
 #pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if(_operations.count==0)
+        return;
     LWBaseHistoryItemType *item = [self getHistoryItemByIndexPath:indexPath];
     if (!item) {
         return;
@@ -534,5 +578,13 @@
 - (void)setImageTransfer:(NSString *)imageType forImageView:(UIImageView *)imageView {
     imageView.image = [LWUtils imageForIATAId:imageType];
 }
+
+
+
+-(void) dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 
 @end

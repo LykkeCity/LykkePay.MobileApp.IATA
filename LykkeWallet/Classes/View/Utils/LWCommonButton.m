@@ -11,7 +11,7 @@
 @interface LWCommonButton()
 {
     NSString *title;
-    BOOL isColored;
+    COMMON_BUTTON_TYPE myType;
 }
 
 @property BOOL flagModified;
@@ -24,7 +24,7 @@
 {
     LWCommonButton *button=[super buttonWithType:UIButtonTypeCustom];
     button.flagModified=NO;
-    button.colored=YES;
+    
     button.clipsToBounds=YES;
     return button;
 }
@@ -43,14 +43,15 @@
     
 }
 
--(void) setColored:(BOOL)colored
+-(void) setType:(COMMON_BUTTON_TYPE)type
 {
-    isColored=colored;
+    myType=type;
+    [self update];
 }
 
--(BOOL) colored
+-(COMMON_BUTTON_TYPE) type
 {
-    return isColored;
+    return myType;
 }
 
 -(void) layoutSubviews
@@ -77,20 +78,25 @@
     NSDictionary *buttonEnabledAttributes;
     NSDictionary *buttonDisabledAttributes= @{NSKernAttributeName:@(1), NSFontAttributeName:[UIFont fontWithName:@"ProximaNova-Semibold" size:15], NSForegroundColorAttributeName:[UIColor colorWithRed:63.0/255 green:77.0/255 blue:96.0/255 alpha:0.2]};
 
-    if(self.colored)
+    if(myType==BUTTON_TYPE_COLORED)
     {
         [self setBackgroundImage:[UIImage imageNamed:@"ButtonOK_square"] forState:UIControlStateNormal];
         [self setBackgroundImage:[self whiteImage] forState:UIControlStateDisabled];
 
         buttonEnabledAttributes=@{NSKernAttributeName:@(1), NSFontAttributeName:[UIFont fontWithName:@"ProximaNova-Semibold" size:15], NSForegroundColorAttributeName:[UIColor whiteColor]};
-        
-
     }
-    else
+    else if(myType==BUTTON_TYPE_CLEAR)
     {
         buttonEnabledAttributes=@{NSKernAttributeName:@(1), NSFontAttributeName:[UIFont fontWithName:@"ProximaNova-Semibold" size:15], NSForegroundColorAttributeName:[UIColor colorWithRed:63.0/255 green:77.0/255 blue:96.0/255 alpha:1]};
 
     }
+    else if(myType==BUTTON_TYPE_GREEN)
+    {
+        self.backgroundColor=[UIColor colorWithRed:19.0/255 green:183.0/255 blue:42.0/255 alpha:1];
+        buttonEnabledAttributes=@{NSKernAttributeName:@(1), NSFontAttributeName:[UIFont fontWithName:@"ProximaNova-Semibold" size:15], NSForegroundColorAttributeName:[UIColor whiteColor]};
+        
+    }
+
     
     
     [super setAttributedTitle:[[NSAttributedString alloc] initWithString:title attributes:buttonEnabledAttributes] forState:UIControlStateNormal];

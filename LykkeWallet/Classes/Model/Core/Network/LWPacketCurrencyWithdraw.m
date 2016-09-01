@@ -7,6 +7,7 @@
 //
 
 #import "LWPacketCurrencyWithdraw.h"
+#import "LWPrivateKeyManager.h"
 
 @implementation LWPacketCurrencyWithdraw
 #pragma mark - LWPacket
@@ -29,7 +30,8 @@
 -(NSDictionary *) params
 {
     
-    NSDictionary *params=@{@"AssetId":self.assetId, @"Bic":self.bic, @"AccNumber":self.accountNumber, @"AccName":self.accountName, @"Postcheck":self.postCheck, @"Amount":self.amount};
+    NSDictionary *params=@{@"AssetId":self.assetId, @"Bic":self.bic, @"AccNumber":self.accountNumber, @"AccName":self.accountName, @"Postcheck":self.postCheck, @"Amount":self.amount, @"PrivateKey":[LWPrivateKeyManager shared].wifPrivateKeyLykke};
+    NSLog(@"%@", params);
     return params;
 }
 @end

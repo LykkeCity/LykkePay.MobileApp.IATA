@@ -272,35 +272,33 @@
 {
     [self.view endEditing:YES];
     
+    BOOL const shouldSignOrder = [LWCache instance].shouldSignOrder;
+
+    void (^requestBlock)(void)=^{ LWPacketCurrencyWithdraw *packet=[LWPacketCurrencyWithdraw new];
+        packet.bic=[textCells[0] text];
+        packet.accountNumber=[textCells[1] text];
+        packet.accountName=[textCells[2] text];
+        packet.postCheck=[textCells[3] text];
+        packet.amount=self.amount;
+        packet.assetId=self.assetID;
+        [[LWAuthManager instance] requestCurrencyWithdraw:packet];
+        [self setLoading:YES];};
     
-//    [self authManager:nil didSendWithdraw:nil];
-//    return;
-//    
-    
-    
-    LWAuthPINEnterPresenter *auth=[LWAuthPINEnterPresenter new];
-    
-    auth.isSuccess=^(BOOL success){
-    
-        if(success)
-        {
-            
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                LWPacketCurrencyWithdraw *packet=[LWPacketCurrencyWithdraw new];
-                packet.bic=[textCells[0] text];
-                packet.accountNumber=[textCells[1] text];
-                packet.accountName=[textCells[2] text];
-                packet.postCheck=[textCells[3] text];
-                packet.amount=self.amount;
-                packet.assetId=self.assetID;
-                [[LWAuthManager instance] requestCurrencyWithdraw:packet];
-                [self setLoading:YES];
-            });
-        }
-    
-    };
-    
-    [self.navigationController pushViewController:auth animated:YES];
+    if(shouldSignOrder)
+    {
+        LWAuthPINEnterPresenter *auth=[LWAuthPINEnterPresenter new];
+        
+        auth.isSuccess=^(BOOL success){
+            if(success)
+            {
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), requestBlock);
+            }
+        };
+        
+        [self.navigationController pushViewController:auth animated:YES];
+    }
+    else
+        requestBlock();
 }
 
 -(void) resultPresenterWillDismiss

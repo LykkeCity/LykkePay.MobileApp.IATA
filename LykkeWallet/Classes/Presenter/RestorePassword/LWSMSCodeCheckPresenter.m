@@ -46,7 +46,7 @@
     gesture.delegate=self;
     [self.view addGestureRecognizer:gesture];
     
-    self.proceedButton.colored=YES;
+    self.proceedButton.type=BUTTON_TYPE_COLORED;
     self.proceedButton.enabled=NO;
     [self.proceedButton addTarget:self action:@selector(proceedPressed) forControlEvents:UIControlEventTouchUpInside];
     
@@ -104,7 +104,7 @@
     return YES;
 }
 
--(void) numbersKeyboardChangedText
+-(void) numbersKeyboardChangedText:(LWNumbersKeyboardView *) keyboard
 {
     if(self.textField.text.length==4)
     {

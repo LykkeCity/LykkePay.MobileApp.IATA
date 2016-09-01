@@ -63,7 +63,7 @@
 
 static int const kDescriptionRows = 3;
 static float const kPinProtectionHeight = 488;
-static float const kNoPinProtectionHeight = 300;
+static float const kNoPinProtectionHeight = 360;
 
 
 #pragma mark - General

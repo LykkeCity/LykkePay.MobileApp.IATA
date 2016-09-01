@@ -99,7 +99,7 @@
     NSString *email=[[LWKeychainManager instance].login stringByReplacingOccurrencesOfString:@"@" withString:@"(at)"];
     lineValues=@[@"BALPLI22",
                  acc,
-                 @"Lykke Corp.",
+                 @"Lykke corp., Zurich",
                  [NSString stringWithFormat:@"Lykke shares (coins) purchase %@ [ %@ ]",self.assetName, email]
                  ];
     

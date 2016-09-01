@@ -45,7 +45,7 @@
     [super viewWillAppear:animated];
     
 
-    self.okButton.colored=YES;
+    self.okButton.type=BUTTON_TYPE_COLORED;
     
     [self.okButton setTitle:@"RETURN TO WALLET"
                    forState:UIControlStateNormal];
