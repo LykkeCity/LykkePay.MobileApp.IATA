@@ -29,19 +29,19 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hkF-Ai-3eJ">
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hkF-Ai-3eJ">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <subviews>
-                        <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="udy-eL-k40">
-                            <rect key="frame" x="2.5" y="190" width="315" height="45"/>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="udy-eL-k40">
+                            <rect key="frame" x="7" y="190" width="305" height="45"/>
                             <subviews>
-                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iUq-bA-d7N">
-                                    <rect key="frame" x="15" y="0.0" width="285" height="45"/>
+                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iUq-bA-d7N">
+                                    <rect key="frame" x="15" y="0.0" width="275" height="45"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits"/>
                                 </textField>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IconInvalid" translatesAutoresizingMaskIntoConstraints="NO" id="nI6-aa-IMt">
-                                    <rect key="frame" x="251" y="-8" width="17" height="17"/>
+                                    <rect key="frame" x="296" y="-8" width="17" height="17"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="17" id="7hg-SB-hNQ"/>
                                         <constraint firstAttribute="width" constant="17" id="qP9-VM-RIQ"/>
@@ -50,7 +50,8 @@
                             </subviews>
                             <color key="backgroundColor" red="0.96078431372549022" green="0.96470588235294119" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
-                                <constraint firstAttribute="width" relation="lessThanOrEqual" constant="315" id="1NV-pn-fk0"/>
+                                <constraint firstAttribute="width" constant="305" id="1NV-pn-fk0"/>
+                                <constraint firstItem="iUq-bA-d7N" firstAttribute="centerY" secondItem="udy-eL-k40" secondAttribute="centerY" id="2nG-ag-0Ig"/>
                                 <constraint firstItem="iUq-bA-d7N" firstAttribute="height" secondItem="udy-eL-k40" secondAttribute="height" id="3BI-nG-4dI"/>
                                 <constraint firstAttribute="trailing" secondItem="iUq-bA-d7N" secondAttribute="trailing" constant="15" id="Pzs-1m-KXG"/>
                                 <constraint firstItem="nI6-aa-IMt" firstAttribute="top" secondItem="udy-eL-k40" secondAttribute="top" constant="-8" id="QOq-Dq-5i7"/>
@@ -60,10 +61,10 @@
                             </constraints>
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xy7-l4-u9d" customClass="LWCommonButton">
-                            <rect key="frame" x="2" y="255" width="315" height="45"/>
+                            <rect key="frame" x="7" y="255" width="305" height="45"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="45" id="kSN-XQ-Zeg"/>
-                                <constraint firstAttribute="width" relation="lessThanOrEqual" constant="315" id="ptD-DY-9md"/>
+                                <constraint firstAttribute="width" constant="305" id="ptD-DY-9md"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <state key="normal" title="LOG IN" backgroundImage="ButtonOK">
@@ -117,8 +118,6 @@
                     </subviews>
                     <constraints>
                         <constraint firstItem="udy-eL-k40" firstAttribute="top" secondItem="tAt-ux-yqF" secondAttribute="bottom" constant="77" id="0qc-YH-Rmb"/>
-                        <constraint firstItem="xy7-l4-u9d" firstAttribute="leading" secondItem="hkF-Ai-3eJ" secondAttribute="leading" priority="750" constant="30" id="1DU-Gd-NpQ"/>
-                        <constraint firstAttribute="trailing" secondItem="xy7-l4-u9d" secondAttribute="trailing" priority="750" constant="30" id="3mw-LD-QmK"/>
                         <constraint firstItem="xy7-l4-u9d" firstAttribute="top" secondItem="udy-eL-k40" secondAttribute="bottom" constant="20" id="9QS-fi-3Ek"/>
                         <constraint firstItem="udy-eL-k40" firstAttribute="leading" secondItem="hkF-Ai-3eJ" secondAttribute="leading" priority="750" constant="30" id="AeG-BN-svb"/>
                         <constraint firstItem="udy-eL-k40" firstAttribute="centerX" secondItem="hkF-Ai-3eJ" secondAttribute="centerX" id="FsN-xs-Ga6"/>

@@ -59,7 +59,7 @@
                         <color key="titleColor" red="0.59067753569548631" green="0.58039215686274492" blue="0.62745098039215685" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                 </button>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="EmptyHistoryCurve" translatesAutoresizingMaskIntoConstraints="NO" id="YIY-bE-4Kg">
+                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="EmptyHistoryCurve" translatesAutoresizingMaskIntoConstraints="NO" id="YIY-bE-4Kg">
                     <rect key="frame" x="297" y="386" width="240" height="128"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="123" id="xrz-VH-bAU"/>

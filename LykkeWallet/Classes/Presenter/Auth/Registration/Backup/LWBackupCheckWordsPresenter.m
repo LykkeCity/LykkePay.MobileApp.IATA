@@ -12,6 +12,7 @@
 #import "LWBackupSuccessPresenter.h"
 #import "LWPrivateKeyManager.h"
 #import "UIViewController+Loading.h"
+#import "UIViewController+Navigation.h"
 
 @interface LWBackupCheckWordsPresenter () <UITextFieldDelegate>
 {
@@ -47,6 +48,7 @@
     [self.submitButton addTarget:self action:@selector(submitButtonPressed) forControlEvents:UIControlEventTouchUpInside];
 
     
+    
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -55,19 +57,25 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self setBackButton];
+}
+
 -(void) viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
     self.observeKeyboardEvents=YES;
-    self.title=@"BACKUP";
+    self.title=@"BACK UP";
 }
 
 -(BOOL) textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
     UITextPosition *beginning = textField.beginningOfDocument;
     UITextPosition *start = [textField positionFromPosition:beginning offset:range.location];
-    UITextPosition *end = [textField positionFromPosition:start offset:range.length];
-    UITextRange *textRange = [textField textRangeFromPosition:start toPosition:end];
+//    UITextPosition *end = [textField positionFromPosition:start offset:range.length];
+//    UITextRange *textRange = [textField textRangeFromPosition:start toPosition:end];
     
     // this will be the new cursor location after insert/paste/typing
     NSInteger cursorOffset = [textField offsetFromPosition:beginning toPosition:start] + string.length;

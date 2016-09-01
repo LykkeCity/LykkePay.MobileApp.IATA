@@ -35,17 +35,19 @@
                         <constraint firstAttribute="width" constant="85" id="kOd-Lj-3vU"/>
                     </constraints>
                 </imageView>
-                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jTR-ra-Fsm" customClass="TKContainer">
-                    <rect key="frame" x="0.0" y="234" width="320" height="64"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jTR-ra-Fsm" customClass="TKContainer">
+                    <rect key="frame" x="-4" y="234" width="328" height="64"/>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="64" id="dcK-Ic-585"/>
+                        <constraint firstAttribute="width" constant="328" id="mbj-TO-v7P"/>
                     </constraints>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZD9-eO-6FP" customClass="TKButton">
-                    <rect key="frame" x="8" y="309" width="304" height="45"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZD9-eO-6FP" customClass="TKButton">
+                    <rect key="frame" x="2.5" y="309" width="315" height="45"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="45" id="9R3-NG-MuV"/>
+                        <constraint firstAttribute="width" constant="315" id="x5b-V9-M1M"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <state key="normal" title="SIGN UP" backgroundImage="ButtonOKInactive">
@@ -62,8 +64,8 @@
                         <constraint firstAttribute="height" constant="65" id="qKm-3S-pLj"/>
                     </constraints>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hQ0-W1-g4x" customClass="TKButton">
-                    <rect key="frame" x="8" y="442" width="304" height="45"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hQ0-W1-g4x" customClass="TKButton">
+                    <rect key="frame" x="8" y="435" width="304" height="45"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="45" id="MIT-4I-0Kf"/>
                         <constraint firstAttribute="width" constant="304" id="cfj-8f-aMc"/>
@@ -110,18 +112,15 @@
                 <constraint firstItem="jTR-ra-Fsm" firstAttribute="top" secondItem="nEs-eH-7Sv" secondAttribute="bottom" constant="77" id="DOJ-Tg-bEy"/>
                 <constraint firstItem="hQ0-W1-g4x" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="DcO-2j-kE9"/>
                 <constraint firstItem="fsk-1T-C4H" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="FvG-7E-wB5"/>
-                <constraint firstAttribute="trailing" secondItem="ZD9-eO-6FP" secondAttribute="trailing" constant="20" id="Gpb-EA-LNY"/>
                 <constraint firstItem="nEs-eH-7Sv" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="79" id="I2t-g5-4Qu"/>
                 <constraint firstItem="0V3-Cg-dNs" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="IrB-MK-rBT"/>
-                <constraint firstAttribute="trailing" secondItem="jTR-ra-Fsm" secondAttribute="trailing" constant="12" id="JrY-9l-CiA"/>
                 <constraint firstItem="Glz-RF-sGK" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="K8A-ux-U2c"/>
-                <constraint firstItem="ZD9-eO-6FP" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="V8h-OM-35u"/>
                 <constraint firstItem="IHK-zF-81o" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="W99-Q6-H0e"/>
                 <constraint firstItem="IHK-zF-81o" firstAttribute="top" secondItem="0V3-Cg-dNs" secondAttribute="bottom" constant="8" id="cjw-5y-2ZZ"/>
                 <constraint firstItem="ZD9-eO-6FP" firstAttribute="top" secondItem="jTR-ra-Fsm" secondAttribute="bottom" constant="11" id="d3j-jO-c0L"/>
                 <constraint firstAttribute="bottom" secondItem="Glz-RF-sGK" secondAttribute="bottom" constant="30" id="e0I-6C-Pvp"/>
                 <constraint firstItem="nEs-eH-7Sv" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="gG0-2R-Mro"/>
-                <constraint firstItem="jTR-ra-Fsm" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="12" id="kfv-bw-me5"/>
+                <constraint firstItem="jTR-ra-Fsm" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="ljs-e6-NhM"/>
                 <constraint firstAttribute="trailing" secondItem="Glz-RF-sGK" secondAttribute="trailing" id="pkS-3Y-jXA"/>
                 <constraint firstItem="hQ0-W1-g4x" firstAttribute="top" secondItem="IHK-zF-81o" secondAttribute="bottom" constant="5" id="rW0-fn-n58"/>
                 <constraint firstItem="0V3-Cg-dNs" firstAttribute="top" secondItem="ZD9-eO-6FP" secondAttribute="bottom" constant="8" id="smj-Nl-CZs"/>

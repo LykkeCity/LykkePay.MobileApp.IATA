@@ -117,7 +117,9 @@
     if(type==1 || type==2 || type==3)
     {
         [self hide];
-        [LWKYCManager sharedInstance].viewController=[[UIApplication sharedApplication].keyWindow visibleViewController];
+//        [LWKYCManager sharedInstance].viewController=[[UIApplication sharedApplication].keyWindow visibleViewController];
+        [LWKYCManager sharedInstance].viewController=[keyWindow visibleViewController];
+        
         [[LWKYCManager sharedInstance] manageKYCStatus];
         
 //        LWKYCInvalidDocumentsPresenter *presenter=[[LWKYCInvalidDocumentsPresenter alloc] init];

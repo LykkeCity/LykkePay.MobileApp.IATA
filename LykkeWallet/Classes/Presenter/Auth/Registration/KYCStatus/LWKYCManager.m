@@ -49,6 +49,9 @@
 -(void) manageKYCStatusForAsset:(NSString *)assetId successBlock:(void(^)(void)) completion
 {
     navigationController=self.viewController.navigationController;
+    
+    
+    
     if([navigationController isKindOfClass:[LWWalletsNavigationController class]])
         lastViewController=[navigationController.navigationController.viewControllers lastObject];
     else
@@ -66,6 +69,8 @@
 -(void) manageKYCStatus
 {
     navigationController=self.viewController.navigationController;
+    
+
     if([navigationController isKindOfClass:[LWWalletsNavigationController class]])
         lastViewController=[navigationController.navigationController.viewControllers lastObject];
     else

@@ -85,6 +85,14 @@
 
 -(BOOL) textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
+    
+    UITextPosition *beginning = textField.beginningOfDocument;
+    UITextPosition *start = [textField positionFromPosition:beginning offset:range.location];
+    UITextPosition *end = [textField positionFromPosition:start offset:range.length];
+    
+    
+    // this will be the new cursor location after insert/paste/typing
+    NSInteger cursorOffset = [textField offsetFromPosition:beginning toPosition:start] + string.length;
     textField.text=[textField.text stringByReplacingCharactersInRange:range withString:string];
     if(self.iconInvalid.hidden==NO)
         self.iconInvalid.hidden=YES;
@@ -98,6 +106,11 @@
     {
         self.proceedButton.enabled=NO;
     }
+    
+    UITextPosition *newCursorPosition = [textField positionFromPosition:textField.beginningOfDocument offset:cursorOffset];
+    UITextRange *newSelectedRange = [textField textRangeFromPosition:newCursorPosition toPosition:newCursorPosition];
+    [textField setSelectedTextRange:newSelectedRange];
+
     
     return NO;
 }

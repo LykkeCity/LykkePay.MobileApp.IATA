@@ -38,6 +38,8 @@
     UIWebView *webView;
     UIView *whiteView;
     NSString *regexExp;
+    
+    BOOL flagAmountLinesAdded;
 }
 
 
@@ -77,6 +79,7 @@
     topBackView.backgroundColor=BAR_GRAY_COLOR;
     [self.scrollView addSubview:topBackView];
 
+    flagAmountLinesAdded=NO;
 
     if([LWCache isSwiftDepositEnabledForAssetId:self.assetID]==NO)
     {
@@ -110,13 +113,6 @@
     
     self.country.delegate=self;
     
-    UIView *line=[[UIView alloc] initWithFrame:CGRectMake(0, self.amount.frame.origin.y-0.5, 1024, 0.5)];
-    line.backgroundColor=[UIColor colorWithRed:211.0/255 green:214.0/255 blue:219.0/255 alpha:1];
-    [_scrollView addSubview:line];
-    
-    line=[[UIView alloc] initWithFrame:CGRectMake(0, self.amount.frame.origin.y+self.amount.bounds.size.height-0.5, 1024, 0.5)];
-    line.backgroundColor=[UIColor colorWithRed:211.0/255 green:214.0/255 blue:219.0/255 alpha:1];
-    [_scrollView addSubview:line];
     
     NSString *path=[NSString stringWithFormat:@"%@/Documents/%@", NSHomeDirectory(), COUNTRIES_FILENAME];
     BOOL countriesCached=[[NSFileManager defaultManager] fileExistsAtPath:path];
@@ -188,6 +184,17 @@
         [self setLoading:YES];
         [[LWAuthManager instance] requestCountyCodes];
     }
+    if(!flagAmountLinesAdded)
+    {
+        UIView *line=[[UIView alloc] initWithFrame:CGRectMake(0, self.amount.frame.origin.y-0.5, 1024, 0.5)];
+        line.backgroundColor=[UIColor colorWithRed:211.0/255 green:214.0/255 blue:219.0/255 alpha:1];
+        [_scrollView addSubview:line];
+        
+        line=[[UIView alloc] initWithFrame:CGRectMake(0, self.amount.frame.origin.y+self.amount.bounds.size.height-0.5, 1024, 0.5)];
+        line.backgroundColor=[UIColor colorWithRed:211.0/255 green:214.0/255 blue:219.0/255 alpha:1];
+        [_scrollView addSubview:line];
+    }
+
 }
 
 -(void) viewDidLayoutSubviews

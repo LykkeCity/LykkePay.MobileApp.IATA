@@ -16,6 +16,7 @@
 
 @property (strong, nonatomic) UIViewController *viewController;
 
+
 -(void) manageKYCStatusForAsset:(NSString *)assetId successBlock:(void(^)(void)) completion;
 -(void) manageKYCStatus;
 

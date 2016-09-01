@@ -66,7 +66,7 @@
     [super layoutSubviews];
     CGFloat height=[self heightForWidth:self.bounds.size.width];
     leftLabel.center=CGPointMake(leftLabel.bounds.size.width/2+30, height/2);
-    rightLabel.frame=CGRectMake(leftLabel.frame.origin.x+leftLabel.bounds.size.width+30, 0, self.bounds.size.width-(leftLabel.frame.origin.x+leftLabel.bounds.size.width+30)-60, height);
+    rightLabel.frame=CGRectMake(leftLabel.frame.origin.x+leftLabel.bounds.size.width+30, 0, self.bounds.size.width-(leftLabel.frame.origin.x+leftLabel.bounds.size.width+30)-30, height);
     lineView.frame=CGRectMake(30, height-0.5, self.bounds.size.width-60, 0.5);
 }
 

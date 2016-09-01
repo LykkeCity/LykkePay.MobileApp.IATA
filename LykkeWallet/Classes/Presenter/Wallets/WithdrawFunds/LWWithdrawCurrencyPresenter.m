@@ -88,7 +88,7 @@
     lineTitles=@[@"BIC (SWIFT)",
                  @"Account Number",
                  @"Account Name",
-                 @"Postcheck"
+//                 @"Postcheck"
                  ];
     
 //    lineValues=@[@"POFICHBEXXX",
@@ -101,7 +101,7 @@
     lineValues=@[@"",
                  @"",
                  @"",
-                 @""
+//                 @""
                  
                  ];
 
@@ -127,9 +127,10 @@
     [termsOfUseButton sizeToFit];
     
     prospectusButton=[UIButton buttonWithType:UIButtonTypeCustom];
-    [prospectusButton setTitle:@"Lykke Shares Prospectus" forState:UIControlStateNormal];
+    [prospectusButton setTitle:@"Information Brochure" forState:UIControlStateNormal];
     prospectusButton.titleLabel.font=[UIFont fontWithName:@"ProximaNova-Regular" size:14];
     [prospectusButton setTitleColor:[UIColor colorWithRed:171.0/255 green:0.0/255 blue:255.0/255 alpha:1] forState:UIControlStateNormal];
+    [prospectusButton addTarget:self action:@selector(informationBrochurePressed) forControlEvents:UIControlEventTouchUpInside];
     
     [prospectusButton sizeToFit];
     
@@ -278,7 +279,7 @@
         packet.bic=[textCells[0] text];
         packet.accountNumber=[textCells[1] text];
         packet.accountName=[textCells[2] text];
-        packet.postCheck=[textCells[3] text];
+//        packet.postCheck=[textCells[3] text];
         packet.amount=self.amount;
         packet.assetId=self.assetID;
         [[LWAuthManager instance] requestCurrencyWithdraw:packet];
@@ -368,6 +369,11 @@
         
     });
  
+}
+
+-(void) informationBrochurePressed
+{
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://www.lykkex.com/Lykke_Corp_Placement_Memorandum.pdf"]];
 }
 
 

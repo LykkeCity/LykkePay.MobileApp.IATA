@@ -120,9 +120,9 @@
 
 "withdraw.wallet.button" = "Withdraw";
 "withdraw.funds.title" = "WITHDRAW FUNDS";
-"withdraw.funds.address" = "Enter the bitcoin address";
+"withdraw.funds.address" = "Enter the colored coin address";
 "withdraw.funds.address.iata" = "Enter the bank account";
-"withdraw.funds.wallet" = "Bitcoin Wallet";
+"withdraw.funds.wallet" = "Colored coin wallet";
 "withdraw.funds.wallet.iata" = "Bank Account";
 "withdraw.funds.paste" = "Paste";
 "withdraw.funds.scan" = "Scan QR code";
@@ -139,7 +139,7 @@
 "withdraw.funds.modal.title" = "ORDER SUMMARY";
 "withdraw.funds.modal.button" = "PLACE AN ORDER";
 "withdraw.funds.modal.cancel" = "CANCEL";
-"withdraw.funds.modal.cell.address" = "Bitcoin address";
+"withdraw.funds.modal.cell.address" = "Colored coin address";
 "withdraw.funds.modal.cell.amount" = "Amount";
 "withdraw.funds.confirm.title" = "Message";
 "withdraw.funds.confirm.desc" = "Withdraw completed";

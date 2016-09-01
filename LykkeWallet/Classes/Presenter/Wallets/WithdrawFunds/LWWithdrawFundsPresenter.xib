@@ -29,7 +29,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter the bitcoin address" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Del-Cf-d4P">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter the colored coin address" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Del-Cf-d4P">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="30"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="HpV-eD-gkG"/>
@@ -65,13 +65,13 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BQp-tD-K67">
-                    <rect key="frame" x="80" y="139" width="160" height="30"/>
+                    <rect key="frame" x="107" y="126" width="106.5" height="20"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="QrCodeIcon" translatesAutoresizingMaskIntoConstraints="NO" id="xQb-Gg-60a">
-                            <rect key="frame" x="17" y="5" width="18" height="18"/>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="QrCodeIcon" translatesAutoresizingMaskIntoConstraints="NO" id="xQb-Gg-60a">
+                            <rect key="frame" x="0.0" y="1" width="18" height="18"/>
                         </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Scan QR code" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P5T-EI-POH">
-                            <rect key="frame" x="43" y="4" width="101" height="21"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Scan QR code" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P5T-EI-POH">
+                            <rect key="frame" x="25" y="2" width="81.5" height="16"/>
                             <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="13"/>
                             <color key="textColor" red="0.6705882353" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
@@ -79,12 +79,16 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="160" id="OpY-pZ-dp3"/>
-                        <constraint firstAttribute="height" constant="30" id="m7a-rq-tgX"/>
+                        <constraint firstItem="P5T-EI-POH" firstAttribute="centerY" secondItem="BQp-tD-K67" secondAttribute="centerY" id="8Ll-Vg-p0o"/>
+                        <constraint firstAttribute="trailing" secondItem="P5T-EI-POH" secondAttribute="trailing" id="EO0-Lk-aRE"/>
+                        <constraint firstItem="xQb-Gg-60a" firstAttribute="centerY" secondItem="BQp-tD-K67" secondAttribute="centerY" id="K4X-ba-jy1"/>
+                        <constraint firstItem="P5T-EI-POH" firstAttribute="leading" secondItem="xQb-Gg-60a" secondAttribute="trailing" constant="7" id="gLr-2u-hzC"/>
+                        <constraint firstAttribute="height" constant="20" id="m7a-rq-tgX"/>
+                        <constraint firstItem="xQb-Gg-60a" firstAttribute="leading" secondItem="BQp-tD-K67" secondAttribute="leading" id="rjx-ro-wzk"/>
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vuW-oV-4pM" customClass="TKButton">
-                    <rect key="frame" x="8" y="189" width="304" height="45"/>
+                    <rect key="frame" x="8" y="161" width="304" height="45"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="45" id="7yY-Wi-28i"/>
                         <constraint firstAttribute="width" constant="304" id="NGX-7S-ZNu"/>
@@ -98,7 +102,7 @@
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your wallet will not be charged until you authorize this transaction." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bNv-eg-p7n">
-                    <rect key="frame" x="12" y="242" width="296" height="80"/>
+                    <rect key="frame" x="12" y="214" width="296" height="80"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="80" id="huF-5I-LnH"/>
                     </constraints>
@@ -109,14 +113,14 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="BQp-tD-K67" firstAttribute="top" secondItem="7KG-y3-dbu" secondAttribute="bottom" constant="20" id="4o3-c3-YGs"/>
+                <constraint firstItem="BQp-tD-K67" firstAttribute="top" secondItem="7KG-y3-dbu" secondAttribute="bottom" constant="7" id="4o3-c3-YGs"/>
                 <constraint firstItem="vuW-oV-4pM" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="DAf-uK-GQ9"/>
                 <constraint firstItem="bNv-eg-p7n" firstAttribute="top" secondItem="vuW-oV-4pM" secondAttribute="bottom" constant="8" id="EGW-Ra-Vq1"/>
                 <constraint firstAttribute="trailing" secondItem="bNv-eg-p7n" secondAttribute="trailing" constant="12" id="Tw2-hl-K3d"/>
                 <constraint firstItem="Del-Cf-d4P" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="WKQ-JL-ys1"/>
                 <constraint firstItem="bNv-eg-p7n" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="12" id="aPY-8v-cql"/>
                 <constraint firstItem="7KG-y3-dbu" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="eg6-fT-oMi"/>
-                <constraint firstItem="vuW-oV-4pM" firstAttribute="top" secondItem="BQp-tD-K67" secondAttribute="bottom" constant="20" id="h7C-l8-rwP"/>
+                <constraint firstItem="vuW-oV-4pM" firstAttribute="top" secondItem="BQp-tD-K67" secondAttribute="bottom" constant="15" id="h7C-l8-rwP"/>
                 <constraint firstItem="Del-Cf-d4P" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="oNB-0g-Ldm"/>
                 <constraint firstItem="7KG-y3-dbu" firstAttribute="top" secondItem="Del-Cf-d4P" secondAttribute="bottom" constant="25" id="r6c-H6-FCX"/>
                 <constraint firstItem="BQp-tD-K67" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="tCc-E6-HTr"/>

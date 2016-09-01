@@ -29,6 +29,7 @@
     [self checkSubviews:self.view];
 }
 
+
 -(void) checkSubviews:(UIView *) view
 {
     for(UIView *v in view.subviews)
@@ -45,6 +46,19 @@
         }
         [self checkSubviews:v];
     }
+}
+
+-(void) deselectButtons:(UIView *) view
+{
+    for(UIView *v in view.subviews)
+    {
+        if([v isKindOfClass:[LWPINButtonView class]])
+        {
+            v.backgroundColor=[UIColor whiteColor];
+        }
+        [self checkSubviews:v];
+    }
+
 }
 
 -(void) pinButtonViewPressedButtonWithSymbol:(NSString *)symbol
@@ -89,6 +103,8 @@
     [self.navigationController setNavigationBarHidden:YES animated:NO];
     if(self.pinType==PIN_TYPE_ENTER)
         self.fingerprintContainerView.hidden=YES;
+    pin=@"";
+    [self deselectButtons:self.view];
 }
 
 -(void) viewDidLayoutSubviews

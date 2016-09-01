@@ -527,7 +527,16 @@ static NSString *const FormIdentifiers[kFormRows] = {
 }
 
 - (void)noAttemptsForPin {
-    [(LWAuthNavigationController *)self.navigationController logout];
+    if([self.navigationController isKindOfClass:[LWAuthNavigationController class]])
+        [(LWAuthNavigationController *)self.navigationController logout];
+    else
+    {
+        
+        [(LWAuthNavigationController *)self.navigationController.presentingViewController logout];//iPad
+    }
+
+    
+    
 }
 
 - (void)cancelClicked {

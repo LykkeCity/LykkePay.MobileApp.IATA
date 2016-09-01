@@ -47,6 +47,7 @@
                     <rect key="frame" x="282" y="533" width="46" height="30"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="45" id="XcM-p6-3hs"/>
+                        <constraint firstAttribute="width" constant="315" id="iXF-FW-kSy"/>
                     </constraints>
                     <state key="normal" title="Button">
                         <color key="titleColor" red="0.24705882352941178" green="0.30196078431372547" blue="0.37647058823529411" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
@@ -68,12 +69,15 @@
                 <constraint firstAttribute="bottom" secondItem="yLW-t4-Oge" secondAttribute="bottom" constant="30" id="llV-Kp-cwb"/>
                 <constraint firstItem="ZDB-MW-0Ez" firstAttribute="top" secondItem="aF2-e2-Rnt" secondAttribute="bottom" constant="9" id="niL-2w-raV"/>
                 <constraint firstItem="NQE-KX-jve" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" multiplier="0.4" id="oNw-n3-f98"/>
+                <constraint firstItem="yLW-t4-Oge" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="qIL-AM-AmX"/>
                 <constraint firstItem="ZDB-MW-0Ez" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="rRK-Lu-Sw7"/>
                 <constraint firstAttribute="trailing" secondItem="ZDB-MW-0Ez" secondAttribute="trailing" constant="40" id="vsJ-Do-9oh"/>
             </constraints>
             <variation key="default">
                 <mask key="constraints">
                     <exclude reference="Qlm-48-R1q"/>
+                    <exclude reference="284-3x-cKO"/>
+                    <exclude reference="R2Z-pb-8uW"/>
                 </mask>
             </variation>
         </view>

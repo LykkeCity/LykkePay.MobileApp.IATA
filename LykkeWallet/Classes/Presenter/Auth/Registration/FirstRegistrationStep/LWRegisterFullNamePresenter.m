@@ -31,30 +31,30 @@
     self.navigationItem.hidesBackButton = YES;
 }
 
-- (void)observeKeyboardWillShowNotification:(NSNotification *)notification {
-    
-    if([UIDevice currentDevice].userInterfaceIdiom!=UIUserInterfaceIdiomPad)
-    {
-        [super observeKeyboardWillShowNotification:notification];
-        return;
-    }
-    
-    self.scrollView.contentOffset=CGPointMake(0, 120);
-    self.scrollView.scrollEnabled=NO;
-    
-}
-
-- (void)observeKeyboardWillHideNotification:(NSNotification *)notification {
-    if([UIDevice currentDevice].userInterfaceIdiom!=UIUserInterfaceIdiomPad)
-    {
-        [super observeKeyboardWillShowNotification:notification];
-        return;
-    }
-    self.scrollView.contentOffset=CGPointMake(0, 0);
-    
-    self.scrollView.contentInset = UIEdgeInsetsZero;
-    self.scrollView.scrollEnabled=YES;
-}
+//- (void)observeKeyboardWillShowNotification:(NSNotification *)notification {
+//    
+//    if([UIDevice currentDevice].userInterfaceIdiom!=UIUserInterfaceIdiomPad)
+//    {
+//        [super observeKeyboardWillShowNotification:notification];
+//        return;
+//    }
+//    
+//    self.scrollView.contentOffset=CGPointMake(0, 120);
+//    self.scrollView.scrollEnabled=NO;
+//    
+//}
+//
+//- (void)observeKeyboardWillHideNotification:(NSNotification *)notification {
+//    if([UIDevice currentDevice].userInterfaceIdiom!=UIUserInterfaceIdiomPad)
+//    {
+//        [super observeKeyboardWillShowNotification:notification];
+//        return;
+//    }
+//    self.scrollView.contentOffset=CGPointMake(0, 0);
+//    
+//    self.scrollView.contentInset = UIEdgeInsetsZero;
+//    self.scrollView.scrollEnabled=YES;
+//}
 
 
 

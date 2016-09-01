@@ -126,13 +126,13 @@ wallet please fill in the form</string>
                                         <action selector="termsOfUsePressed:" destination="-2" eventType="touchUpInside" id="xzD-Q9-rnP"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R8T-1M-vqi">
+                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R8T-1M-vqi">
                                     <rect key="frame" x="314" y="180" width="152" height="30"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="30" id="zkO-Py-z1X"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="14"/>
-                                    <state key="normal" title="Lykke shares prospectus">
+                                    <state key="normal" title="Information Brochure">
                                         <color key="titleColor" red="0.6705882352941176" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     </state>
                                 </button>

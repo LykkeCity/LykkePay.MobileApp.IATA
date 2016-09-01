@@ -834,7 +834,10 @@
 //}
 
 
-
+-(void) logoutUser
+{
+    privateKeyForLykke=nil;
+}
 
 
 @end

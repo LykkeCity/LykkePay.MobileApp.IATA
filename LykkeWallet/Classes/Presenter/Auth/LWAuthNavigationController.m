@@ -32,6 +32,8 @@
 #import "LWRegisterHintPresenter.h"
 #import "LWGenerateKeyPresenter.h"
 
+#import "LWPrivateKeyManager.h"
+
 
 // tab presenters
 #import "LWTabController.h"
@@ -54,6 +56,7 @@
 
 
 #import "LWAnimatedView.h"
+#import "LWIPadModalNavigationControllerViewController.h"
 
 
 @interface LWAuthNavigationController () <UIAlertViewDelegate, UITabBarControllerDelegate>{
@@ -238,8 +241,11 @@
 #pragma mark - Auth
 
 - (void)logout {
+    if([self.presentedViewController isKindOfClass:[LWIPadModalNavigationControllerViewController class]])
+        [self dismissViewControllerAnimated:YES completion:nil];
     [[LWKeychainManager instance] clear];
     [activeSteps removeAllObjects];
+    [[LWPrivateKeyManager shared] logoutUser];
     [self setRootAuthScreen];
 }
 

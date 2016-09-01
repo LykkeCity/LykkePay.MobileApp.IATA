@@ -124,9 +124,10 @@
     [termsOfUseButton sizeToFit];
     
     prospectusButton=[UIButton buttonWithType:UIButtonTypeCustom];
-    [prospectusButton setTitle:@"Lykke Shares Prospectus" forState:UIControlStateNormal];
+    [prospectusButton setTitle:@"Information Brochure" forState:UIControlStateNormal];
     prospectusButton.titleLabel.font=[UIFont fontWithName:@"ProximaNova-Regular" size:14];
     [prospectusButton setTitleColor:[UIColor colorWithRed:171.0/255 green:0.0/255 blue:255.0/255 alpha:1] forState:UIControlStateNormal];
+    [prospectusButton addTarget:self action:@selector(informationBrochurePressed) forControlEvents:UIControlEventTouchUpInside];
 
     [prospectusButton sizeToFit];
     
@@ -248,6 +249,8 @@
     [super viewDidLayoutSubviews];
     CGRect rrr=self.infoView.bounds;
     
+    [infoLabel sizeToFit];
+    
     CGFloat offset=0;
     if([LWCache isBankCardDepositEnabledForAssetId:self.assetID])
         offset=30;
@@ -256,7 +259,7 @@
     creditCardButton.center=CGPointMake(self.view.bounds.size.width/2+3+creditCardButton.bounds.size.width/2, 25);
     
     infoLabel.center=CGPointMake(self.view.bounds.size.width/2, self.infoView.bounds.size.height/2-20+offset);
-    buttonsContainer.center=CGPointMake(self.view.bounds.size.width/2, self.infoView.bounds.size.height-20);
+    buttonsContainer.center=CGPointMake(self.view.bounds.size.width/2, (infoLabel.frame.origin.y+infoLabel.bounds.size.height+self.infoView.bounds.size.height)/2-5);
 
     
     
@@ -506,6 +509,11 @@
     amountTextField.text=[LWUtils formatVolumeString:string currencySign:@"" accuracy:2 removeExtraZeroes:NO];
     [self positionCurrencySymbol];
     
+}
+
+-(void) informationBrochurePressed
+{
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://www.lykkex.com/Lykke_Corp_Placement_Memorandum.pdf"]];
 }
 
 

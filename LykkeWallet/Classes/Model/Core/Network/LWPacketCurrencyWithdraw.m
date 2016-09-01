@@ -29,8 +29,9 @@
 
 -(NSDictionary *) params
 {
-    
-    NSDictionary *params=@{@"AssetId":self.assetId, @"Bic":self.bic, @"AccNumber":self.accountNumber, @"AccName":self.accountName, @"Postcheck":self.postCheck, @"Amount":self.amount, @"PrivateKey":[LWPrivateKeyManager shared].wifPrivateKeyLykke};
+    NSMutableDictionary *params=[@{@"AssetId":self.assetId, @"Bic":self.bic, @"AccNumber":self.accountNumber, @"AccName":self.accountName, @"Amount":self.amount, @"PrivateKey":[LWPrivateKeyManager shared].wifPrivateKeyLykke} mutableCopy];
+    if(self.postCheck)
+        params[@"Postcheck"]=self.postCheck;
     NSLog(@"%@", params);
     return params;
 }

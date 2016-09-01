@@ -310,43 +310,47 @@ static NSString *const AssetIcons[kNumberOfSections] = {
         }
     }
     // react just for headers
-    else {
+    else //Do not collapse  when we have only one section
+    {
         // only first row toggles exapand/collapse
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
         
         NSInteger section = indexPath.section;
         BOOL currentlyExpanded = [expandedSections containsIndex:section];
-        NSInteger rows = 0;
-        
-        NSMutableArray *tmpArray = [NSMutableArray array];
-        
-        if (currentlyExpanded)
+        if(currentlyExpanded==NO || kNumberOfSections>1)
         {
-            rows = [self tableView:tableView numberOfRowsInSection:section];
-            [expandedSections removeIndex:section];
-        }
-        else
-        {
-            [expandedSections addIndex:section];
-            rows = [self tableView:tableView numberOfRowsInSection:section];
-        }
-        
-        for (int i = 1; i < rows; i++)
-        {
-            NSIndexPath *tmpIndexPath = [NSIndexPath indexPathForRow:i
-                                                           inSection:section];
-            [tmpArray addObject:tmpIndexPath];
-        }
-        
-        if (currentlyExpanded)
-        {
-            [tableView deleteRowsAtIndexPaths:tmpArray
-                             withRowAnimation:UITableViewRowAnimationTop];
-        }
-        else
-        {
-            [tableView insertRowsAtIndexPaths:tmpArray
-                             withRowAnimation:UITableViewRowAnimationTop];
+            NSInteger rows = 0;
+            
+            NSMutableArray *tmpArray = [NSMutableArray array];
+            
+            if (currentlyExpanded)
+            {
+                rows = [self tableView:tableView numberOfRowsInSection:section];
+                [expandedSections removeIndex:section];
+            }
+            else
+            {
+                [expandedSections addIndex:section];
+                rows = [self tableView:tableView numberOfRowsInSection:section];
+            }
+            
+            for (int i = 1; i < rows; i++)
+            {
+                NSIndexPath *tmpIndexPath = [NSIndexPath indexPathForRow:i
+                                                               inSection:section];
+                [tmpArray addObject:tmpIndexPath];
+            }
+            
+            if (currentlyExpanded)
+            {
+                [tableView deleteRowsAtIndexPaths:tmpArray
+                                 withRowAnimation:UITableViewRowAnimationTop];
+            }
+            else
+            {
+                [tableView insertRowsAtIndexPaths:tmpArray
+                                 withRowAnimation:UITableViewRowAnimationTop];
+            }
         }
     }
 }

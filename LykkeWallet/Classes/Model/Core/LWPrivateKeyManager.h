@@ -46,5 +46,7 @@
 
 -(NSString *) signatureForMessageWithLykkeKey:(NSString *) message;
 
+-(void) logoutUser;
+
 
 @end

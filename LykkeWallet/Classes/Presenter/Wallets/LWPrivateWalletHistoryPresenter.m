@@ -72,7 +72,7 @@
     [self.view addSubview:balanceLabel];
     
     
-    
+    button.hidden=YES;
 
     
     
@@ -103,6 +103,9 @@
             [emptyPresenter removeFromParentViewController];
             emptyPresenter=nil;
         }
+        
+        if(historyArray.count>0)
+            button.hidden=NO;
         
         [[LWPrivateWalletsManager shared] loadWalletBalances:self.wallet.address withCompletion:^(NSArray *arr){
         

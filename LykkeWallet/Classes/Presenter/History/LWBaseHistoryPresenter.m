@@ -189,6 +189,7 @@
 //        cell.autoresizesSubviews=NO;
         [cell addSubview:_emptyHistoryPresenter.view];
         _emptyHistoryPresenter.view.frame=cell.bounds;
+        cell.selectionStyle=UITableViewCellSelectionStyleNone;
         return cell;
     }
     
@@ -213,6 +214,11 @@
     [refreshControl endRefreshing];
     
     [self setLoading:NO];
+    
+    if(_operations.count)
+        self.tableView.showsVerticalScrollIndicator=YES;
+    else
+        self.tableView.showsVerticalScrollIndicator=NO;
     
     if(!_operations.count && [self isKindOfClass:[LWHistoryPresenter class]])
     {
@@ -344,7 +350,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if(_operations.count==0)
+    {
         return;
+    }
     LWBaseHistoryItemType *item = [self getHistoryItemByIndexPath:indexPath];
     if (!item) {
         return;
