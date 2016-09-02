@@ -18,7 +18,6 @@
     if (self.isRejected) {
         return;
     }
-    self.recModel.securityMessage2=result[@"NewOwnershipMsgToSign"];
     
 }
 

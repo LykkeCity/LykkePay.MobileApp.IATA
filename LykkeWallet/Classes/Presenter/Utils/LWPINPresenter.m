@@ -55,8 +55,9 @@
         if([v isKindOfClass:[LWPINButtonView class]])
         {
             v.backgroundColor=[UIColor whiteColor];
+            continue;
         }
-        [self checkSubviews:v];
+        [self deselectButtons:v];
     }
 
 }
@@ -104,6 +105,7 @@
     if(self.pinType==PIN_TYPE_ENTER)
         self.fingerprintContainerView.hidden=YES;
     pin=@"";
+    [self.progressView setNumberOfSymbols:(int)pin.length];
     [self deselectButtons:self.view];
 }
 

@@ -31,6 +31,8 @@
 @property (copy, nonatomic) NSString *amountString;
 @property (copy, nonatomic) NSString *bitcoinString;
 
+@property (strong, nonatomic) NSString *assetId;
+
 @property (strong, nonatomic) UIView *iPadNavShadowView;
 
 

@@ -19,6 +19,7 @@
 #import "LWKYCRestrictedPresenter.h"
 #import "LWKYCInvalidDocumentsPresenter.h"
 #import "LWWalletsNavigationController.h"
+#import "LWIPadModalNavigationControllerViewController.h"
 
 @interface LWKYCManager() <LWAuthManagerDelegate, LWRegisterCameraPresenterDelegate, LWKYCSubmitPresenterDelegate, LWKYCPendingPresenterDelegate, LWKYCSuccessPresenterDelegate, LWKYCInvalidDocumentsPresenterDelegate>
 {
@@ -191,6 +192,8 @@
 {
     LWKYCSuccessPresenter *vc=[LWKYCSuccessPresenter new];
     vc.delegate=self;
+    
+    
     [navigationController pushViewController:vc animated:YES];
 
 }

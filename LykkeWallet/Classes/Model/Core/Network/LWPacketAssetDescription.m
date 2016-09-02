@@ -27,7 +27,7 @@
 }
 
 - (NSString *)urlRelative {
-    return [NSString stringWithFormat:@"AssetDescription/%@", self.identity];
+    return [NSString stringWithFormat:@"AllAssetDescription/%@", self.identity];
 }
 
 - (GDXRESTPacketType)type {

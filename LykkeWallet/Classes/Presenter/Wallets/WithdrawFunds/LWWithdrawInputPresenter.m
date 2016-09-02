@@ -411,6 +411,7 @@ float const kMathHeightKeyboard = 239.0;
 - (void)showConfirmationView {
     // preparing modal view
     confirmationView = [LWWithdrawConfirmationView modalViewWithDelegate:self];
+    confirmationView.assetId=self.assetId;
     
 //    NSDecimalNumber *amount = [volumeString isEmpty] ? [NSDecimalNumber zero] : [LWMath numberWithString:volumeString];
 //    NSString *amountText = [LWMath makeStringByDecimal:amount withPrecision:2];

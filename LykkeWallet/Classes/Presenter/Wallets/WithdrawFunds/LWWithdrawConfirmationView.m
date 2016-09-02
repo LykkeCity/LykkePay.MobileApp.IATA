@@ -257,7 +257,7 @@ static float const kNoPinProtectionHeight = 356;
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *const titles[kDescriptionRows] = {
-        Localize(@"withdraw.funds.modal.cell.address"),
+        [self.assetId isEqualToString:@"BTC"]?@"Bitcoin address":@"Colored coin address",//     Localize(@"withdraw.funds.modal.cell.address"),
         Localize(@"withdraw.funds.modal.cell.amount")
     };
     

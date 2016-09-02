@@ -6,10 +6,10 @@
 //  Copyright © 2016 Lykkex. All rights reserved.
 //
 
-#import "LWAuthPresenter.h"
+#import "LWAuthComplexPresenter.h"
 
 
-@interface LWWithdrawFundsPresenter : LWAuthPresenter {
+@interface LWWithdrawFundsPresenter : LWAuthComplexPresenter {
     
 }
 

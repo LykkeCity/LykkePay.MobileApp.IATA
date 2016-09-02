@@ -21,7 +21,7 @@
 
 @interface LWPrivateWalletsPresenter () <UITableViewDelegate, UITableViewDataSource>
 {
-    UITableView *tableView;
+//    UITableView *tableView;
     NSArray *wallets;
     LWRefreshControlView *refreshControl;
 }
@@ -32,19 +32,19 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    tableView=[[UITableView alloc] init];
-    tableView.delegate=self;
-    tableView.dataSource=self;
-    tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
-    tableView.backgroundColor=[UIColor colorWithRed:245.0/255 green:246.0/255 blue:247.0/255 alpha:1];
-    [self.view addSubview:tableView];
+//    tableView=[[UITableView alloc] init];
+    self.tableView.delegate=self;
+    self.tableView.dataSource=self;
+    self.tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
+    self.tableView.backgroundColor=[UIColor colorWithRed:245.0/255 green:246.0/255 blue:247.0/255 alpha:1];
+//    [self.view addSubview:tableView];
     
     NSMutableArray *www=[[NSMutableArray alloc] init];
     wallets=www;
     
     
     UIView *refreshView = [[UIView alloc] initWithFrame:CGRectMake(0, 5, 0, 0)];
-    [tableView insertSubview:refreshView atIndex:0];
+    [self.tableView insertSubview:refreshView atIndex:0];
     
     refreshControl = [[LWRefreshControlView alloc] init];
     [refreshControl addTarget:self action:@selector(reloadWallets)
@@ -67,7 +67,7 @@
     [[LWPrivateWalletsManager shared] loadWalletsWithCompletion:^(NSArray *arr){
         wallets=arr;
         [refreshControl endRefreshing];
-        [tableView reloadData];
+        [self.tableView reloadData];
         [self setLoading:NO];
     }];
 
@@ -82,7 +82,8 @@
 -(void) viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
-    tableView.frame=self.view.bounds;
+//    self.tableView.frame=self.view.bounds;
+//    [self.tableView layoutIfNeeded];
 }
 
 -(NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
@@ -106,46 +107,76 @@
 
 -(UITableViewCell *) tableView:(UITableView *)_tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    id tableViewCell;
     if(indexPath.row==0)
     {
+        
         LWPrivateWalletTitleCell *cell=[[LWPrivateWalletTitleCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
         cell.wallet=wallets[indexPath.section];
         cell.selectionStyle=UITableViewCellSelectionStyleNone;
-        return cell;
+        tableViewCell=cell;
     }
     else
     {
         LWPrivateWalletAssetCell *cell=[[LWPrivateWalletAssetCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
         cell.asset=[wallets[indexPath.section] assets][indexPath.row-1];
         cell.selectionStyle=UITableViewCellSelectionStyleNone;
-        if(indexPath.row==[self tableView:tableView numberOfRowsInSection:indexPath.section]-1)
+        if(indexPath.row==[self tableView:self.tableView numberOfRowsInSection:indexPath.section]-1)
             [cell addBottomLine];
-        return cell;
+        tableViewCell=cell;
     }
-    
+    UITapGestureRecognizer *gesture=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cellSelected:)];
+    [(UIView *)tableViewCell addGestureRecognizer:gesture];
+    [(UIView *)tableViewCell setTag:indexPath.section*1000+indexPath.row];
+    return tableViewCell;
 }
 
--(void) tableView:(UITableView *)_tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+-(void) cellSelected:(UITapGestureRecognizer *) gesture;
 {
-    [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    
+    int tag=(int)gesture.view.tag;
+    int row=tag%1000;
+    int section=tag/1000;
     id presenter;
-    if(indexPath.row==0)
+    if(row==0)
     {
         presenter=[[LWCreateEditPrivateWalletPresenter alloc] init];
         [(LWCreateEditPrivateWalletPresenter *)presenter setEditMode:YES];
-        [(LWCreateEditPrivateWalletPresenter *)presenter setWallet:wallets[indexPath.section]];
-
+        [(LWCreateEditPrivateWalletPresenter *)presenter setWallet:wallets[section]];
+        
     }
     else
     {
         presenter=[[LWPrivateWalletHistoryPresenter alloc] init];
-        [(LWCreateEditPrivateWalletPresenter *)presenter setWallet:wallets[indexPath.section]];
-        [(LWPrivateWalletHistoryPresenter *)presenter setAsset:[wallets[indexPath.section] assets][indexPath.row-1]];
+        [(LWCreateEditPrivateWalletPresenter *)presenter setWallet:wallets[section]];
+        [(LWPrivateWalletHistoryPresenter *)presenter setAsset:[wallets[section] assets][row-1]];
         
     }
     [self.navigationController pushViewController:presenter animated:YES];
+
 }
+
+//-(void) tableView:(UITableView *)_tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
+//    
+//    id presenter;
+//    if(indexPath.row==0)
+//    {
+//        presenter=[[LWCreateEditPrivateWalletPresenter alloc] init];
+//        [(LWCreateEditPrivateWalletPresenter *)presenter setEditMode:YES];
+//        [(LWCreateEditPrivateWalletPresenter *)presenter setWallet:wallets[indexPath.section]];
+//
+//    }
+//    else
+//    {
+//        presenter=[[LWPrivateWalletHistoryPresenter alloc] init];
+//        [(LWCreateEditPrivateWalletPresenter *)presenter setWallet:wallets[indexPath.section]];
+//        [(LWPrivateWalletHistoryPresenter *)presenter setAsset:[wallets[indexPath.section] assets][indexPath.row-1]];
+//        
+//    }
+//    [self.navigationController pushViewController:presenter animated:YES];
+//}
+
 
 -(CGFloat) tableView:(UITableView *) tableView heightForFooterInSection:(NSInteger)section
 {
@@ -180,6 +211,11 @@
     return nil;
 }
 
+
+//-(NSString *) nibName
+//{
+//    return nil;
+//}
 
 
 

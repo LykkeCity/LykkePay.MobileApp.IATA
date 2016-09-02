@@ -105,6 +105,8 @@
 		A1312B2A1D19027F009726FF /* NewDecodeBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = A1312B291D19027F009726FF /* NewDecodeBase64.m */; };
 		A135977B1D6360A70021228E /* LWCreateEditPrivateWalletPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A13597791D6360A70021228E /* LWCreateEditPrivateWalletPresenter.m */; };
 		A135977C1D6360A70021228E /* LWCreateEditPrivateWalletPresenter.xib in Resources */ = {isa = PBXBuildFile; fileRef = A135977A1D6360A70021228E /* LWCreateEditPrivateWalletPresenter.xib */; };
+		A14515631D793E5200B4BED9 /* LWPrivateWalletsPresenter.xib in Resources */ = {isa = PBXBuildFile; fileRef = A14515621D793E5200B4BED9 /* LWPrivateWalletsPresenter.xib */; };
+		A14515651D79B18C00B4BED9 /* LWMyLykkePresenter_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A14515641D79B18C00B4BED9 /* LWMyLykkePresenter_iPad.xib */; };
 		A14B7D2E1CE3233D00820084 /* ButtonOK_square.png in Resources */ = {isa = PBXBuildFile; fileRef = A14B7D2D1CE3233D00820084 /* ButtonOK_square.png */; };
 		A15B3EAF1D12626B00A6B506 /* LWRefundInformationPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A15B3EAD1D12626B00A6B506 /* LWRefundInformationPresenter.m */; };
 		A15B3EB01D12626B00A6B506 /* LWRefundInformationPresenter.xib in Resources */ = {isa = PBXBuildFile; fileRef = A15B3EAE1D12626B00A6B506 /* LWRefundInformationPresenter.xib */; };
@@ -1815,6 +1817,8 @@
 		A13597781D6360A70021228E /* LWCreateEditPrivateWalletPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWCreateEditPrivateWalletPresenter.h; sourceTree = "<group>"; };
 		A13597791D6360A70021228E /* LWCreateEditPrivateWalletPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWCreateEditPrivateWalletPresenter.m; sourceTree = "<group>"; };
 		A135977A1D6360A70021228E /* LWCreateEditPrivateWalletPresenter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LWCreateEditPrivateWalletPresenter.xib; sourceTree = "<group>"; };
+		A14515621D793E5200B4BED9 /* LWPrivateWalletsPresenter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LWPrivateWalletsPresenter.xib; sourceTree = "<group>"; };
+		A14515641D79B18C00B4BED9 /* LWMyLykkePresenter_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LWMyLykkePresenter_iPad.xib; sourceTree = "<group>"; };
 		A14B7D2D1CE3233D00820084 /* ButtonOK_square.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ButtonOK_square.png; sourceTree = "<group>"; };
 		A15B3EAC1D12626B00A6B506 /* LWRefundInformationPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWRefundInformationPresenter.h; sourceTree = "<group>"; };
 		A15B3EAD1D12626B00A6B506 /* LWRefundInformationPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWRefundInformationPresenter.m; sourceTree = "<group>"; };
@@ -3792,6 +3796,7 @@
 				A188DA1A1D705D4100AA6D8A /* LWMyLykkePresenter.m */,
 				A188DA1B1D705D4100AA6D8A /* LWMyLykkePresenter.xib */,
 				A12DB57C1D76F2B200319EA7 /* LWMyLykkePresenter_Iphone5.xib */,
+				A14515641D79B18C00B4BED9 /* LWMyLykkePresenter_iPad.xib */,
 				A188DA231D71414D00AA6D8A /* LWMyLykkeBuyPresenter.h */,
 				A188DA241D71414D00AA6D8A /* LWMyLykkeBuyPresenter.m */,
 				A188DA251D71414D00AA6D8A /* LWMyLykkeBuyPresenter.xib */,
@@ -4651,6 +4656,7 @@
 			children = (
 				A11D0F3B1D3761A800BFDE4D /* LWPrivateWalletsPresenter.h */,
 				A11D0F3C1D3761A800BFDE4D /* LWPrivateWalletsPresenter.m */,
+				A14515621D793E5200B4BED9 /* LWPrivateWalletsPresenter.xib */,
 				A11D0F441D37676E00BFDE4D /* LWPrivateWalletTitleCell.h */,
 				A11D0F451D37676E00BFDE4D /* LWPrivateWalletTitleCell.m */,
 				A11D0F471D3767A400BFDE4D /* LWPrivateWalletAssetCell.h */,
@@ -6783,6 +6789,7 @@
 				A1BCD1D01D012D3C00CF42E4 /* 3-settle-2x_00089.png in Resources */,
 				A124D5C51CEB19880074A1A8 /* LWKYCCheckDocumentsPresenter~ipad.xib in Resources */,
 				A1BCD1111D012D3C00CF42E4 /* 2-trade-2x_00017.png in Resources */,
+				A14515631D793E5200B4BED9 /* LWPrivateWalletsPresenter.xib in Resources */,
 				A1BCD2A01D012D3C00CF42E4 /* 5-onboard-2x_00058.png in Resources */,
 				A1BCD2B51D012D3C00CF42E4 /* 5-onboard-2x_00079.png in Resources */,
 				A1165D221CF577CB0017A725 /* LWAssetLykkeTableViewCell~ipad.xib in Resources */,
@@ -7124,6 +7131,7 @@
 				A1BCD2211D012D3C00CF42E4 /* 4-withdraw-2x_00050.png in Resources */,
 				A1D65D771D5DCF1100828783 /* crypto_bar_00051.png in Resources */,
 				A1BCD1A61D012D3C00CF42E4 /* 3-settle-2x_00047.png in Resources */,
+				A14515651D79B18C00B4BED9 /* LWMyLykkePresenter_iPad.xib in Resources */,
 				A1D65DB01D5DCF1100828783 /* crypto_bar_00108.png in Resources */,
 				A1BCD1C41D012D3C00CF42E4 /* 3-settle-2x_00077.png in Resources */,
 				A1BCD1091D012D3C00CF42E4 /* 2-trade-2x_00009.png in Resources */,

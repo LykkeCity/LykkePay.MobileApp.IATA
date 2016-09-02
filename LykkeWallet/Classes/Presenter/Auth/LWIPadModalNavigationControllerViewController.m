@@ -81,6 +81,11 @@
     [super viewDidLayoutSubviews];
     self.view.frame=CGRectMake(0, 0, 475, 650);
     UIWindow *window=[UIApplication sharedApplication].keyWindow;
+//    CGRect frame=window.frame;
+    if(window.bounds.size.height<768)
+    {
+        window=[UIApplication sharedApplication].windows[1];
+    }
     self.view.center=CGPointMake(window.bounds.size.width/2, window.bounds.size.height/2);
 }
 

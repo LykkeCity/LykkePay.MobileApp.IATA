@@ -13,6 +13,8 @@
 #import "LWPrivateKeyManager.h"
 #import "LWRecoveryPasswordModel.h"
 #import "LWResultPresenter.h"
+#import "LWPrivateKeyOwnershipMessage.h"
+#import "UIView+Toast.h"
 
 @interface LWSMSCodeCheckPresenter () <UITextFieldDelegate, LWNumbersKeyboardViewDelegate, UIGestureRecognizerDelegate, LWResultPresenterDelegate>
 {
@@ -26,6 +28,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *textField;
 @property (weak, nonatomic) IBOutlet LWCommonButton *proceedButton;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *scrollViewBottomConstraint;
+@property (weak, nonatomic) IBOutlet UIImageView *iconValid;
 
 @end
 
@@ -64,8 +67,14 @@
 {
     [super viewDidAppear:animated];
     self.title=@"RESET PASSWORD";
-    [self setLoading:YES];
-    [[LWAuthManager instance] requestRecoverySMSConfirmation:self.recModel];
+    
+    
+    if(!self.recModel.securityMessage2)
+    {
+        [self setLoading:YES];
+
+        [[LWAuthManager instance] requestRecoverySMSConfirmation:self.recModel];
+    }
 
 }
 
@@ -106,6 +115,7 @@
 
 -(void) numbersKeyboardChangedText:(LWNumbersKeyboardView *) keyboard
 {
+    self.iconValid.hidden=YES;
     if(self.textField.text.length==4)
     {
         self.proceedButton.enabled=YES;
@@ -114,6 +124,23 @@
     else
         self.proceedButton.enabled=NO;
 }
+
+-(IBAction) resendSMS:(id)sender
+{
+    [self setLoading:YES];
+    [[LWAuthManager instance] requestPrivateKeyOwnershipMessage:self.recModel.email];
+
+}
+
+-(void) authManager:(LWAuthManager *) manager didGetPrivateKeyOwnershipMessage:(LWPrivateKeyOwnershipMessage *)packet
+{
+    
+    self.recModel.securityMessage1=packet.ownershipMessage;
+    self.recModel.signature1=[[LWPrivateKeyManager shared] signatureForMessageWithLykkeKey:self.recModel.securityMessage1];
+    [[LWAuthManager instance] requestRecoverySMSConfirmation:self.recModel];
+    
+}
+
 
 -(void) authManagerDidChangePINAndPassword:(LWAuthManager *)manager
 {
@@ -162,8 +189,12 @@
 -(void) authManager:(LWAuthManager *)manager didFailWithReject:(NSDictionary *)reject context:(GDXRESTContext *)context
 {
     [self setLoading:NO];
-    
-    [self showReject:reject response:context.task.response code:context.error.code willNotify:YES];
+    if(reject[@"Code"] && [reject[@"Code"] intValue]==8)
+    {
+        self.iconValid.hidden=NO;
+    }
+    else
+        [self showReject:reject response:context.task.response code:context.error.code willNotify:YES];
     
 }
 
@@ -173,9 +204,10 @@
     [self setLoading:NO];
     
     self.recModel.signature2=[[LWPrivateKeyManager shared] signatureForMessageWithLykkeKey:self.recModel.securityMessage2];
-
+    [self.view makeToast:@"SMS sent"];
+    self.textField.text=@"";
+    self.iconValid.hidden=YES;
 }
-
 
 
 

@@ -7,7 +7,8 @@
 //
 
 #import "LWAuthPresenter.h"
+#import "LWAuthComplexPresenter.h"
 
-@interface LWPrivateWalletsPresenter : UIViewController
+@interface LWPrivateWalletsPresenter : LWAuthComplexPresenter
 
 @end

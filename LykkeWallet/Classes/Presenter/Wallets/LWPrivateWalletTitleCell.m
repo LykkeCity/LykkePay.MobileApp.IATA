@@ -21,6 +21,7 @@
 @implementation LWPrivateWalletTitleCell
 
 
+
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 
@@ -29,6 +30,9 @@
 
 -(void) setWallet:(LWPrivateWalletModel *)wallet
 {
+    
+    
+
     iconImageView=[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
     [self addSubview:iconImageView];
     
@@ -63,9 +67,12 @@
 -(void) layoutSubviews
 {
     [super layoutSubviews];
+    CGRect rrr=self.frame;
     iconImageView.center=CGPointMake(25+15, self.bounds.size.height/2);
     titleLabel.frame=CGRectMake(62, 0, self.bounds.size.width-45-62, self.bounds.size.height);
     disclosureImageView.center=CGPointMake(self.bounds.size.width-32, self.bounds.size.height/2);
+    
+    
 }
 
 +(CGFloat) height

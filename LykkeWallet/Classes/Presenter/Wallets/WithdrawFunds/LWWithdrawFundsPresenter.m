@@ -69,7 +69,11 @@
 #ifdef PROJECT_IATA
     bitcoinTextField.placeholder = Localize(@"withdraw.funds.wallet.iata");
 #else
-    bitcoinTextField.placeholder = Localize(@"withdraw.funds.wallet");
+    if([self.assetId isEqualToString:@"BTC"])
+        bitcoinTextField.placeholder=@"Bitcoin wallet";
+    else
+        bitcoinTextField.placeholder=@"Colored coin wallet";
+//    bitcoinTextField.placeholder = Localize(@"withdraw.funds.wallet");
 #endif
     bitcoinTextField.viewMode = UITextFieldViewModeNever;
     [self.qrCodeContainer attach:bitcoinTextField];
@@ -116,7 +120,10 @@
 #ifdef PROJECT_IATA
     self.titleLabel.text = Localize(@"withdraw.funds.address.iata");
 #else
-    self.titleLabel.text = Localize(@"withdraw.funds.address");
+    if([self.assetId isEqualToString:@"BTC"])
+        self.titleLabel.text=@"Enter the bitcoin address";
+    else
+        self.titleLabel.text = @"Enter the colored coin address";
 #endif
     
     [self.proceedButton setTitle:Localize(@"withdraw.funds.proceed")

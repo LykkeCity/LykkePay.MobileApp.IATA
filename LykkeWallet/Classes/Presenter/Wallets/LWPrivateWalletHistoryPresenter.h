@@ -12,7 +12,7 @@
 @class LWPrivateWalletModel;
 @class LWPrivateWalletAssetModel;
 
-@interface LWPrivateWalletHistoryPresenter : UIViewController
+@interface LWPrivateWalletHistoryPresenter : LWAuthComplexPresenter
 
 @property (strong, nonatomic) LWPrivateWalletModel *wallet;
 @property (strong, nonatomic) LWPrivateWalletAssetModel *asset;

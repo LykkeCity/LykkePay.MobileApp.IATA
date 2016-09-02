@@ -72,7 +72,7 @@
     self.navigationController.navigationBar.topItem.titleView=view;
 
     [self setLoading:YES];
-    [[LWAuthManager instance] requestAssetDescription:@"BTCLKK"];
+    [[LWAuthManager instance] requestAssetDescription:@"LKK"];
 
 }
 

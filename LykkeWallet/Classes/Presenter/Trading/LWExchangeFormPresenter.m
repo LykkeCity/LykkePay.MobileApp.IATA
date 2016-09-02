@@ -103,7 +103,8 @@ static NSString *const DescriptionIdentifiers[kDescriptionRows] = {
 
     if (!assetDetails) {
         [self setLoading:YES];
-        [[LWAuthManager instance] requestAssetDescription:self.assetPair.identity];
+        
+        [[LWAuthManager instance] requestAssetDescription:self.assetPair.quotingAssetId];
     }
     else {
         [[LWAuthManager instance] requestAssetPairRate:self.assetPair.identity];

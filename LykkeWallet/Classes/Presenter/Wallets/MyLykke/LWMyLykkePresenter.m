@@ -25,6 +25,12 @@
     NSTimer *timer;
     
 }
+
+@property (weak, nonatomic) IBOutlet UIView *iPadLandscapeView;
+@property (weak, nonatomic) IBOutlet UIView *iPadPortraitView;
+
+
+
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *currentTimeLabel;
 
@@ -41,6 +47,27 @@
 @property (weak, nonatomic) IBOutlet UIButton *infoButton;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *fieldsWidth;
+
+
+
+
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel2;
+@property (weak, nonatomic) IBOutlet UILabel *currentTimeLabel2;
+
+@property (weak, nonatomic) IBOutlet UIView *equityView2;
+@property (weak, nonatomic) IBOutlet UIView *newsView2;
+@property (weak, nonatomic) IBOutlet UILabel *equityLabel2;
+@property (weak, nonatomic) IBOutlet UILabel *newsLabel2;
+@property (weak, nonatomic) IBOutlet LWCommonButton *buyButton2;
+
+@property (weak, nonatomic) IBOutlet UILabel *balance2;
+@property (weak, nonatomic) IBOutlet UILabel *marketValue2;
+@property (weak, nonatomic) IBOutlet UILabel *equity2;
+@property (weak, nonatomic) IBOutlet UILabel *numberOfShares2;
+
+
+
+
 
 @end
 
@@ -73,7 +100,57 @@
     UITapGestureRecognizer *gesture=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(newsPressed)];
     [self.newsLabel addGestureRecognizer:gesture];
     _newsLabel.userInteractionEnabled=YES;
+    
+    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad)
+    {
+//        [self.view addSubview:self.iPadPortraitView];
+//        [self.view addSubview:self.iPadLandscapeView];
+////        self.view.translatesAutoresizingMaskIntoConstraints=NO;
+//        
+//        NSLayoutConstraint *width1=[NSLayoutConstraint constraintWithItem:self.iPadPortraitView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeWidth multiplier:1 constant:0];
+//
+//        NSLayoutConstraint *height1=[NSLayoutConstraint constraintWithItem:self.iPadPortraitView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeHeight multiplier:1 constant:0];
+//
+//        NSLayoutConstraint *width2=[NSLayoutConstraint constraintWithItem:self.iPadLandscapeView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeWidth multiplier:1 constant:0];
+//        
+//        NSLayoutConstraint *height2=[NSLayoutConstraint constraintWithItem:self.iPadLandscapeView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeHeight multiplier:1 constant:0];
+//        
+//        NSLayoutConstraint *centerY=[NSLayoutConstraint constraintWithItem:self.iPadPortraitView attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterY multiplier:1 constant:0];
+//        
+//        
+//        NSLayoutConstraint *centerX=[NSLayoutConstraint constraintWithItem:self.iPadPortraitView attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterX multiplier:1 constant:0];
+//
+//        
+//        
+//
+//        [self.view addConstraints:@[width1, width2, height1, height2, centerX, centerY]];
+//        
+//        self.iPadPortraitView.frame=self.view.bounds;
+//        self.iPadLandscapeView.frame=self.view.bounds;
+    }
 }
+
+-(void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad)
+    {
+        if(UIInterfaceOrientationIsPortrait([UIApplication sharedApplication].statusBarOrientation))
+        {
+            self.iPadPortraitView.hidden=NO;
+            self.iPadLandscapeView.hidden=YES;
+            
+        }
+        else
+        {
+            self.iPadPortraitView.hidden=YES;
+            self.iPadLandscapeView.hidden=NO;
+            
+
+        }
+    }
+}
+
 
 
 - (void)didReceiveMemoryWarning {
@@ -90,6 +167,9 @@
 -(void) viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    
+    CGRect frame=self.iPadPortraitView.frame;
+
     if(infoLoaded==NO)
         [self setLoading:YES];
     infoLoaded=YES;
@@ -182,11 +262,32 @@
 
 -(NSString *) nibName
 {
+    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad)
+    {
+        return @"LWMyLykkePresenter_iPad";
+    }
+    else
+    {
     if([UIScreen mainScreen].bounds.size.width==320)
         return @"LWMyLykkePresenter_Iphone5";
     else
         return @"LWMyLykkePresenter";
-    
+    }
+}
+
+-(void) viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
+{
+    if(UIDeviceOrientationIsPortrait([UIDevice currentDevice].orientation))
+    {
+        self.iPadPortraitView.hidden=NO;
+        self.iPadLandscapeView.hidden=YES;
+    }
+    else
+    {
+        self.iPadPortraitView.hidden=YES;
+        self.iPadLandscapeView.hidden=NO;
+
+    }
 }
 
 /*
