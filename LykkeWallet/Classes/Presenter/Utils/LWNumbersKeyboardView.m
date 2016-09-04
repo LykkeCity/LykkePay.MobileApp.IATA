@@ -10,7 +10,7 @@
 #import "LWNumbersKeyboardViewCell.h"
 #import "LWMathKeyboardCursorView.h"
 
-#define STEP 0.5
+
 
 @interface LWNumbersKeyboardView() <LWNumbersKeyboardViewCellDelegate>
 {
@@ -20,9 +20,12 @@
     BOOL shouldShowTopBarView;
     BOOL shouldShowDotButton;
     BOOL shouldShowPredefinedSums;
+    BOOL shouldShowSeparators;
     UILabel *dotLabel;
     LWMathKeyboardCursorView *cursor;
     NSMutableArray *predefinedSumButtons;
+    
+    CGFloat STEP;
 }
 
 
@@ -53,6 +56,7 @@
     self.userInteractionEnabled=YES;
     shouldShowDotButton=NO;
     shouldShowPredefinedSums=NO;
+    shouldShowSeparators=YES;
     self.backgroundColor=[UIColor colorWithRed:211.0/255 green:214.0/255 blue:219.0/255 alpha:1];
     
     topBarView=[[UIView alloc] init];
@@ -143,6 +147,19 @@
     [cursor removeFromSuperview];
 }
 
+-(void) setShowSeparators:(BOOL)showSeparators
+{
+    shouldShowSeparators=showSeparators;
+    [self layoutSubviews];
+}
+
+-(BOOL) showSeparators
+{
+    return shouldShowSeparators;
+}
+
+
+
 -(void) setTextField:(UITextField *)textField
 {
     _textField=textField;
@@ -206,6 +223,10 @@
 {
     [super layoutSubviews];
     CGSize size=self.bounds.size;
+    if(shouldShowSeparators)
+        STEP=0.5;
+    else
+        STEP=0;
     
     topBarView.frame=CGRectMake(0,STEP, size.width, 40-STEP*2);
     if(shouldShowTopBarView==NO)

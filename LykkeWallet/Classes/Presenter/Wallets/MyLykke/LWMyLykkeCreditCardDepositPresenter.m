@@ -170,13 +170,15 @@
     self.phone.text=data.phone;
     [self checkTextFieldsAlpha];
     
-    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad)
-        [self setBackButton];
-    else
+    
+    
+    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
     {
         UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"BackIcon"] style:UIBarButtonItemStylePlain target:self action:@selector(backButtonPressed)];
         self.navigationItem.leftBarButtonItem = button;
     }
+    else
+        [self.navigationController setNavigationBarHidden:YES];
     
     
 }
@@ -184,7 +186,10 @@
 -(void) viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
     self.title=@"BUY LYKKE";
+    else
+        self.navigationController.title=@"PURCHASE LKK WITH USD";
     
     if(countries==nil)
     {
@@ -266,6 +271,8 @@
 {
     if(textField==self.amountTextField)
     {
+        return NO;
+        
         if(keyboardIsVisible)
             return NO;
         [self.view endEditing:YES];
@@ -334,11 +341,22 @@
     
     [self.bottomOffsetConstraint setConstant:self.view.bounds.size.height-point.y];
     
+    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad)
+    {
+        [self.bottomOffsetConstraint setConstant:self.view.bounds.size.height-point.y+80];
+
+        self.buttonBottomConstraint.constant=self.view.bounds.size.height-point.y+20;
+    }
 }
 
 -(void) observeKeyboardWillHideNotification:(NSNotification *)notification
 {
     [self.bottomOffsetConstraint setConstant:0];
+    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad)
+    {
+        self.buttonBottomConstraint.constant=33;
+
+    }
 }
 
 

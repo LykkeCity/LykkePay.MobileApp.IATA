@@ -14,6 +14,7 @@
 #import "LWAssetPairModel.h"
 #import "LWUtils.h"
 #import "LWCache.h"
+#import "LWMyLykkeBuyAssetPresenter.h"
 
 @interface LWMyLykkeBuyPresenter ()
 
@@ -26,6 +27,9 @@
 @property (weak, nonatomic) IBOutlet UIView *bitcoinContainerView;
 @property (weak, nonatomic) IBOutlet UIView *swiftContainerView;
 @property (weak, nonatomic) IBOutlet UIView *ethereumContainerView;
+
+@property (weak, nonatomic) IBOutlet UIView *subtitleContainerView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *subtitleContainerHeightConstraint;
 
 
 
@@ -55,6 +59,11 @@
     gesture=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(buyPressed:)];
     [_ethereumContainerView addGestureRecognizer:gesture];
     
+    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad)
+    {
+        self.subtitleContainerView.hidden=YES;
+        self.subtitleContainerHeightConstraint.constant=0;
+    }
 }
 
 -(void) viewDidAppear:(BOOL)animated
@@ -74,22 +83,46 @@
 -(void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self setBackButton];
+    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
+        [self setBackButton];
+    else
+        [self.navigationController setNavigationBarHidden:YES];
 }
 
 
 -(void) buyPressed:(UITapGestureRecognizer *) gesture
 {
-    
-    LWMyLykkeBuyAssetPresenter *presenter=[[LWMyLykkeBuyAssetPresenter alloc] init];
-    if(gesture.view==_bitcoinContainerView)
-        presenter.assetId=@"BTC";
+    NSString *assetId;
+    UIView *container;
+     if(gesture.view==_bitcoinContainerView)
+     {
+        assetId=@"BTC";
+         container=self.bitcoinContainerView;
+     }
     else if(gesture.view==_creditCardContainerView)
-        presenter.assetId=@"USD";
+    {
+        assetId=@"USD";
+        container=_creditCardContainerView;
+    }
     else if(gesture.view==_swiftContainerView)
-        presenter.assetId=@"CHF";
-    
-    [self.navigationController pushViewController:presenter animated:YES];
+    {
+        assetId=@"CHF";
+        container=_swiftContainerView;
+    }
+    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
+    {
+        LWMyLykkeBuyAssetPresenter *presenter=[[LWMyLykkeBuyAssetPresenter alloc] init];
+        presenter.assetId=assetId;
+        [self.navigationController pushViewController:presenter animated:YES];
+    }
+    else
+    {
+        _bitcoinContainerView.backgroundColor=[UIColor whiteColor];
+        _creditCardContainerView.backgroundColor=[UIColor whiteColor];
+        _swiftContainerView.backgroundColor=[UIColor whiteColor];
+        container.backgroundColor=[UIColor colorWithRed:244.0/255 green:246.0/255 blue:247.0/255 alpha:1];
+        [self.delegate buyPresenterChosenAsset:assetId];
+    }
 }
 
 -(void) authManager:(LWAuthManager *)manager didGetAllAssetPairsRate:(LWPacketAllAssetPairsRates *)packet

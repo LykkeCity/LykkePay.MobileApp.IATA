@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -28,6 +28,8 @@
                 <outlet property="bitcoinPriceLabel" destination="tuY-DH-cRe" id="Kf9-mW-bvM"/>
                 <outlet property="creditCardContainerView" destination="QPd-sg-E4E" id="n3h-7F-67j"/>
                 <outlet property="creditCardPriceLabel" destination="kRG-k6-xlP" id="3pw-Xp-sGY"/>
+                <outlet property="subtitleContainerHeightConstraint" destination="19e-0D-NVO" id="nwf-1h-66v"/>
+                <outlet property="subtitleContainerView" destination="fSj-zG-c0r" id="99d-vm-JvR"/>
                 <outlet property="swiftContainerView" destination="nIS-mz-i1e" id="bGP-fg-imD"/>
                 <outlet property="swiftPriceLabel" destination="kvc-YV-fnd" id="uJE-Rz-Y4P"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>

@@ -43,6 +43,8 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *keyboardHeightConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *submitBottomConstraint;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableWidthConstraint;
+
 @end
 
 @implementation LWMyLykkeBuyAssetPresenter
@@ -76,6 +78,9 @@
         self.keyboardHeightConstraint.constant=189;
         self.submitBottomConstraint.constant=13;
     }
+    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad)
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(orientationChanged) name:UIApplicationDidChangeStatusBarOrientationNotification object:nil];
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -86,18 +91,39 @@
 -(void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self setBackButton];
+    
+    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
+    {
+        self.keyboard.showSeparators=YES;
+        [self setBackButton];
+    }
+    else
+    {
+        [self.navigationController setNavigationBarHidden:YES];
+        self.keyboard.showSeparators=NO;
+        if(UIInterfaceOrientationIsPortrait([UIApplication sharedApplication].statusBarOrientation))
+        {
+            self.tableWidthConstraint.constant=400;
+        }
+        else
+            self.tableWidthConstraint.constant=516;
+    }
+    
 }
 
 -(void) viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    self.title=@"BUY LYKKE";
+    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
+        self.title=@"BUY LYKKE";
+    else
+        self.navigationController.title=[NSString stringWithFormat:@"PURCHASE LKK WITH %@", [LWCache nameForAsset:self.assetId]];
     [_lkkTextField becomeFirstResponder];
 
     timer=[NSTimer timerWithTimeInterval:5 target:self selector:@selector(refreshPrice) userInfo:nil repeats:YES];
     [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
     [self refreshPrice];
+    
 }
 
 -(void) viewWillDisappear:(BOOL)animated
@@ -290,10 +316,23 @@
 }
 
 
+
+-(void) orientationChanged
+{
+    if(UIInterfaceOrientationIsPortrait([UIApplication sharedApplication].statusBarOrientation))
+    {
+        self.tableWidthConstraint.constant=400;
+    }
+    else
+        self.tableWidthConstraint.constant=516;
+
+}
+
+
 -(void) dealloc
 {
     [timer invalidate];
-    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 

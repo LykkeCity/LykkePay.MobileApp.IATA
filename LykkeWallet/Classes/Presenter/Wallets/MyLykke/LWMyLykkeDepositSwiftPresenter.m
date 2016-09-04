@@ -39,6 +39,8 @@
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *buttonBottomConstraint;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *scrollViewWidthConstraint;
+
 @end
 
 @implementation LWMyLykkeDepositSwiftPresenter
@@ -57,6 +59,10 @@
     
     lineValues=@[@"POFICHBEXXX", @"CH06 0900 0000 8016 2421 0", @"Richard Olsen", @"80-165 421-0", _purposeLabel.text];
     
+    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad)
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(orientationChanged) name:UIApplicationDidChangeStatusBarOrientationNotification object:nil];
+
+    
 }
 
 -(void) viewWillAppear:(BOOL)animated
@@ -64,13 +70,19 @@
     [super viewWillAppear:animated];
     UIColor *color = [UIColor colorWithRed:244.0/255 green:246.0/255 blue:247.0/255 alpha:1];
     [self.navigationController.navigationBar setBarTintColor:color];
+    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad)
+        [self.navigationController setNavigationBarHidden:YES];
 
+    [self orientationChanged];
 }
 
 -(void) viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    self.title=@"BUY LYKKE";
+    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
+        self.title=@"BUY LYKKE";
+    else
+        self.navigationController.title=@"PURCHASE LKK WITH CHF";
 }
 
 -(void) viewWillDisappear:(BOOL)animated
@@ -88,6 +100,7 @@
 
 -(BOOL) textFieldShouldBeginEditing:(UITextField *)textField
 {
+    return NO;
     if(keyboardIsVisible)
         return NO;
     keyboard=[[LWNumbersKeyboardView alloc] init];
@@ -227,6 +240,23 @@
     string=[string stringByReplacingOccurrencesOfString:@" " withString:@""];
     return string;
 }
+
+-(void) orientationChanged
+{
+    if(UIInterfaceOrientationIsPortrait([UIApplication sharedApplication].statusBarOrientation))
+    {
+        self.scrollViewWidthConstraint.constant=460;
+    }
+    else
+        self.scrollViewWidthConstraint.constant=576;
+    
+}
+
+-(void) dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 
 
 

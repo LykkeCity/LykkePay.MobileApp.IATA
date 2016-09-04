@@ -36,16 +36,21 @@
     self.clipboardButton.type=BUTTON_TYPE_CLEAR;
     self.emailButton.enabled=YES;
     self.clipboardButton.enabled=YES;
-    self.addressLabel.textColor=[UIColor colorWithRed:171.0/255 green:0 blue:1 alpha:1];
+    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
+        self.addressLabel.textColor=[UIColor colorWithRed:171.0/255 green:0 blue:1 alpha:1];
 }
 
 -(void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
+    {
     [self setBackButton];
     UIColor *color = [UIColor colorWithHexString:kMainGrayElementsColor];
     [self.navigationController.navigationBar setBarTintColor:color];
-
+    }
+    else
+        [self.navigationController setNavigationBarHidden:YES];
 
 }
 
@@ -59,7 +64,10 @@
 -(void) viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    self.title=@"BUY LYKKE";
+    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
+        self.title=@"BUY LYKKE";
+    else
+        self.navigationController.title=@"PURCHASE LKK WITH BITCOIN";
 }
 
 - (IBAction)copyClicked:(id)sender {

@@ -18,11 +18,15 @@
 #import "LWMyLykkeInfoPresenter.h"
 #import "LWMyLykkeNewsListPresenter.h"
 #import "LWTabController.h"
+#import "LWAssetDescriptionModel.h"
+#import "LWMyLykkeIpadController.h"
 
 @interface LWMyLykkePresenter ()
 {
     BOOL infoLoaded;
     NSTimer *timer;
+    
+    BOOL descriptionLoaded;
     
 }
 
@@ -46,6 +50,11 @@
 @property (weak, nonatomic) IBOutlet UILabel *numberOfShares;
 @property (weak, nonatomic) IBOutlet UIButton *infoButton;
 
+@property (weak, nonatomic) IBOutlet UILabel *assetClassLabel;
+@property (weak, nonatomic) IBOutlet UILabel *assetDescriptionLabel;
+@property (weak, nonatomic) IBOutlet UILabel *issuerNameLabel;
+
+
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *fieldsWidth;
 
 
@@ -65,6 +74,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *equity2;
 @property (weak, nonatomic) IBOutlet UILabel *numberOfShares2;
 
+@property (weak, nonatomic) IBOutlet UILabel *assetClassLabel2;
+@property (weak, nonatomic) IBOutlet UILabel *assetDescriptionLabel2;
+@property (weak, nonatomic) IBOutlet UILabel *issuerNameLabel2;
+
 
 
 
@@ -80,16 +93,27 @@
     
     _equityView.clipsToBounds=YES;
     _equityView.layer.cornerRadius=_equityView.bounds.size.height/2;
+    _equityView2.clipsToBounds=YES;
+    _equityView2.layer.cornerRadius=_equityView.bounds.size.height/2;
+
+    
     
     NSDictionary *attr=@{NSKernAttributeName:@(1.2), NSForegroundColorAttributeName:[UIColor whiteColor], NSFontAttributeName:[UIFont fontWithName:@"ProximaNova-Regular" size:14]};
     _equityLabel.attributedText=[[NSAttributedString alloc] initWithString:@"EQUITY" attributes:attr];    
     _equityLabel.textColor=[UIColor whiteColor];
+    _equityLabel2.attributedText=[[NSAttributedString alloc] initWithString:@"EQUITY" attributes:attr];
+    _equityLabel2.textColor=[UIColor whiteColor];
     
     _buyButton.type=BUTTON_TYPE_GREEN;
     _buyButton.enabled=YES;
+    _buyButton2.type=BUTTON_TYPE_GREEN;
+    _buyButton2.enabled=YES;
+
     infoLoaded=NO;
+    descriptionLoaded=NO;
     
     self.nameLabel.text=[LWKeychainManager instance].fullName;
+    self.nameLabel2.text=[LWKeychainManager instance].fullName;
     [self.infoButton addTarget:self action:@selector(infoPressed) forControlEvents:UIControlEventTouchUpInside];
     
     if([UIScreen mainScreen].bounds.size.width==320)
@@ -100,6 +124,15 @@
     UITapGestureRecognizer *gesture=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(newsPressed)];
     [self.newsLabel addGestureRecognizer:gesture];
     _newsLabel.userInteractionEnabled=YES;
+    
+    UITapGestureRecognizer *gesture2=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(newsPressed)];
+    [self.newsLabel2 addGestureRecognizer:gesture2];
+    _newsLabel2.userInteractionEnabled=YES;
+
+    
+    self.currentTimeLabel.text=[LWKeychainManager instance].login;
+    self.currentTimeLabel2.text=[LWKeychainManager instance].login;
+
     
     if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad)
     {
@@ -160,8 +193,17 @@
 
 -(IBAction)buyLykkePressed:(id)sender
 {
+    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
+    {
     LWMyLykkeBuyPresenter *presenter=[[LWMyLykkeBuyPresenter alloc] init];
     [self.navigationController pushViewController:presenter animated:YES];
+    }
+    else
+    {
+        LWMyLykkeIpadController *presenter=[LWMyLykkeIpadController new];
+        [self.navigationController pushViewController:presenter animated:YES];
+                                            
+    }
 }
 
 -(void) viewDidAppear:(BOOL)animated
@@ -178,6 +220,9 @@
     [self loadMyLykkeInfo];
     [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:246.0/255 green:247.0/255 blue:248.0/255 alpha:1]];
     self.title=@"MY LYKKE";
+    
+    if(descriptionLoaded==NO)
+        [[LWAuthManager instance] requestAssetDescription:@"LKK"];
 }
 
 -(void) viewWillDisappear:(BOOL)animated
@@ -191,10 +236,9 @@
 {
     [[LWAuthManager instance] requestMyLykkeInfo];
 
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"hh:mm a"];
-    self.currentTimeLabel.text=[[dateFormatter stringFromDate:[NSDate date]] stringByAppendingString:@" local time"];
-    
+//    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+//    [dateFormatter setDateFormat:@"hh:mm a"];
+//    self.currentTimeLabel.text=[[dateFormatter stringFromDate:[NSDate date]] stringByAppendingString:@" local time"];
 
 }
 
@@ -203,6 +247,7 @@
     [self setLoading:NO];
     self.balance.text=[LWUtils formatVolumeNumber:packet.lkkBalance currencySign:@"" accuracy:0 removeExtraZeroes:NO];
     self.balance.text=[self.balance.text stringByReplacingOccurrencesOfString:@" " withString:@","];
+    self.balance2.text=self.balance.text;
     
     
     if(packet.myEquityPercent.doubleValue<0.001)
@@ -213,15 +258,35 @@
     {
         self.equity.text=[[LWUtils formatVolumeNumber:packet.myEquityPercent currencySign:@"" accuracy:3 removeExtraZeroes:YES] stringByAppendingString:@"%"];
     }
+    self.equity2.text=self.equity.text;
     
     self.numberOfShares.text=[LWUtils formatVolumeNumber:packet.numberOfShares currencySign:@"" accuracy:2 removeExtraZeroes:YES];
     self.numberOfShares.text=[self.numberOfShares.text stringByReplacingOccurrencesOfString:@" " withString:@","];
+    
+    self.numberOfShares2.text=self.numberOfShares.text;
 
     self.marketValue.text=[LWUtils formatVolumeNumber:packet.marketValue currencySign:@"$" accuracy:0 removeExtraZeroes:YES];
     self.marketValue.text=[self.marketValue.text stringByReplacingOccurrencesOfString:@" " withString:@","];
     
+    self.marketValue2.text=self.marketValue.text;
     
 }
+
+
+-(void) authManager:(LWAuthManager *)manager didGetAssetDescription:(LWAssetDescriptionModel *)assetDescription
+{
+    [self setLoading:NO];
+    self.assetClassLabel.text=assetDescription.assetClass;
+    self.assetDescriptionLabel.text=assetDescription.details;
+    self.issuerNameLabel.text=assetDescription.issuerName;
+
+    self.assetClassLabel2.text=assetDescription.assetClass;
+    self.assetDescriptionLabel2.text=assetDescription.details;
+    self.issuerNameLabel2.text=assetDescription.issuerName;
+
+    descriptionLoaded=YES;
+}
+
 
 -(void) infoPressed
 {

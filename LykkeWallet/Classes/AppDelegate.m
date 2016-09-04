@@ -24,6 +24,8 @@
 #import "LWUtils.h"
 #import "LWAuthManager.h"
 
+#import "LWMyLykkeSuccessViewController.h"
+
 
 
 @interface AppDelegate () {
@@ -123,6 +125,14 @@
 //    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(30 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
 //    [LWPushNotificationView showPushNotification:@{@"aps":@{@"alert":@"Need to show sticker above action bar, so clock, network, battery etc icons won't overlap notification text", @"type":@(1)}} clickImmediately:NO];//Testing
 //    });
+
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(30 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        LWMyLykkeSuccessViewController *presenter=[[LWMyLykkeSuccessViewController alloc] init];//Testing
+        [presenter showInWindow:[UIApplication sharedApplication].keyWindow];
+    });
+
+    //LWMyLykkeSuccessViewController
     
 //    NSString *sss=[LWKeychainManager instance].privateKeyLykke;//Testing
 //    NSLog(@" ");

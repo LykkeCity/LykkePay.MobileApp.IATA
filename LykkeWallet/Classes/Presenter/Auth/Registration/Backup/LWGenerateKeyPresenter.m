@@ -41,8 +41,8 @@
         self.textLabel.text=@"Shake your iPad to generate a private key to your Lykke Wallet";
 
     
-//    UITapGestureRecognizer *gesture=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(testing)]; //Testing
-//    [self.view addGestureRecognizer:gesture];
+    UITapGestureRecognizer *gesture=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(testing)]; //Testing
+    [self.view addGestureRecognizer:gesture];
 }
 
 //-(void) dismiss

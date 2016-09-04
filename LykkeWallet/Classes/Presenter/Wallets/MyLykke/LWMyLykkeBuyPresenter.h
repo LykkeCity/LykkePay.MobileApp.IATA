@@ -10,4 +10,13 @@
 
 @interface LWMyLykkeBuyPresenter : LWAuthComplexPresenter
 
+@property id delegate;
+
+@end
+
+
+@protocol LWMyLykkeBuyPresenterDelegate
+
+-(void) buyPresenterChosenAsset:(NSString *) assetId;
+
 @end

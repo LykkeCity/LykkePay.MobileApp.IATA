@@ -16,6 +16,7 @@
 @property BOOL showDoneButton;
 @property BOOL showDotButton;
 @property BOOL showPredefinedSums;
+@property BOOL showSeparators;
 
 @property (strong, nonatomic) NSString *prefix;
 
