@@ -140,8 +140,18 @@
     if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad)
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(orientationChanged) name:UIApplicationDidChangeStatusBarOrientationNotification object:nil];
 
-
+    [self checkView:self];
+    
 }
+-(void) checkView:(UIView *) view
+{
+    for(UIView *v in view.subviews)
+    {
+        v.translatesAutoresizingMaskIntoConstraints=YES;
+        [self checkView:v];
+    }
+}
+
 
 -(void) removeFromSuperview
 {

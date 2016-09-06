@@ -14,6 +14,7 @@
 #import "UIViewController+Loading.h"
 #import "UIViewController+Navigation.h"
 #import "LWUtils.h"
+#import "LWCache.h"
 #import "LWKeychainManager.h"
 #import "LWMyLykkeInfoPresenter.h"
 #import "LWMyLykkeNewsListPresenter.h"
@@ -268,7 +269,7 @@
     
     self.numberOfShares2.text=self.numberOfShares.text;
 
-    self.marketValue.text=[LWUtils formatVolumeNumber:packet.marketValue currencySign:@"$" accuracy:0 removeExtraZeroes:YES];
+    self.marketValue.text=[LWUtils formatVolumeNumber:packet.marketValue currencySign:@"$" accuracy:[LWCache accuracyForAssetId:@"USD"] removeExtraZeroes:YES];
     self.marketValue.text=[self.marketValue.text stringByReplacingOccurrencesOfString:@" " withString:@","];
     
     self.marketValue2.text=self.marketValue.text;

@@ -13,5 +13,7 @@
 @property (nonatomic, copy) void (^depositAction)(void);
 @property (strong, nonatomic) NSString *buttonText;
 @property BOOL flagColoredButton;
+@property (weak, nonatomic) IBOutlet UIButton *button;
+
 
 @end

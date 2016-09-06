@@ -47,6 +47,7 @@
     inputView=[[LWPWTransferInputView alloc] init];
     [self.view addSubview:inputView];
     inputView.textField.delegate=self;
+    inputView.textField.text=@"BTC 0";
     checkoutButton=[UIButton buttonWithType:UIButtonTypeCustom];
     [checkoutButton addTarget:self action:@selector(checkoutButtonPressed) forControlEvents:UIControlEventTouchUpInside];
     
@@ -129,9 +130,9 @@
 
 - (void)mathKeyboardView:(LWMathKeyboardView *) view volumeStringChangedTo:(NSString *) string
 {
-    inputView.textField.text=string;
-    [LWValidator setButton:checkoutButton enabled:string.floatValue>0];
-
+//    inputView.textField.text=string;
+    [LWValidator setButton:checkoutButton enabled:string.floatValue<=self.transfer.asset.amount.floatValue && string.floatValue>0];
+    inputView.textField.text=[@"BTC " stringByAppendingString:string];
 }
 
 
@@ -153,7 +154,9 @@
     }
     
     self.keyboardView.accuracy=accuracy;
-    [self.keyboardView setText:[textField.text stringByReplacingOccurrencesOfString:@" " withString:@""]];
+    NSString *text=[textField.text stringByReplacingOccurrencesOfString:@"BTC " withString:@""];
+    text=[text stringByReplacingOccurrencesOfString:@" " withString:@""];
+    [self.keyboardView setText:text];
     
     
     return NO;
@@ -168,7 +171,9 @@
 //    else {
 //        [self showConfirmationView];
 //    }
-    self.transfer.amount=@(inputView.textField.text.floatValue);
+    
+    NSString *text=[inputView.textField.text stringByReplacingOccurrencesOfString:@"BTC " withString:@""];
+    self.transfer.amount=@(text.floatValue);
     
     [LWPKTransferConfirmationView showTransfer:self.transfer withCompletion:^(BOOL result){
         if(result)

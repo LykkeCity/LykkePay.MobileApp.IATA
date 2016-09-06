@@ -144,13 +144,13 @@
     LWPKTransferConfirmationCellView *cell=[[LWPKTransferConfirmationCellView alloc] init];
     if(indexPath.row==0)
     {
-        cell.leftText=@"Wallet From";
+        cell.leftText=@"Wallet";
         cell.rightText=self.transfer.sourceWallet.name;
         firstLineHeight=[cell heightForWidth:tableView.bounds.size.width];
     }
     else if(indexPath.row==1)
     {
-        cell.leftText=@"To address";
+        cell.leftText=@"Wallet address";
         cell.rightText=self.transfer.destinationAddress;
         secondLineHeight=[cell heightForWidth:tableView.bounds.size.width];
     }
@@ -174,7 +174,7 @@
         [view addSubview:fingerPrintView];
         
         UILabel *label=[[UILabel alloc] initWithFrame:CGRectMake(0, 60, 120, 30)];
-        label.text=@"Sign an Order";
+        label.text=@"Send transfer";
         [view addSubview:label];
         label.textAlignment=NSTextAlignmentCenter;
         label.textColor=[UIColor blackColor];

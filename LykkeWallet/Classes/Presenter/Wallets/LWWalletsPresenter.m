@@ -59,6 +59,7 @@ static NSInteger const kSectionLykkeWallets   = 2;
     BOOL               shouldShowError;
     
     UIImageView *screenshot;
+    NSNumber *balanceToSellCompletely;
 }
 
 
@@ -148,6 +149,12 @@ static NSString *const WalletIcons[kNumberOfSections] = {
     self.title = Localize(@"tab.wallets");
     
 
+}
+
+-(void) viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    [screenshot removeFromSuperview];
 }
 
 -(void) viewDidLayoutSubviews
@@ -687,6 +694,7 @@ static NSString *const WalletIcons[kNumberOfSections] = {
     LWExchangeDealFormPresenter *controller = [LWExchangeDealFormPresenter new];
     controller.assetPair = assetPair;
     controller.assetDealType = LWAssetDealTypeSell;
+    controller.balanceToSell=balanceToSellCompletely;
     if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
         [self.navigationController pushViewController:controller animated:YES];
     else
@@ -979,6 +987,7 @@ static NSString *const WalletIcons[kNumberOfSections] = {
 - (void)showDealFormForIndexPath:(NSIndexPath *)indexPath {
     [self setLoading:YES];
     LWLykkeAssetsData *data = [self assetDataForIndexPath:indexPath];
+    balanceToSellCompletely=data.balance;
     [[LWAuthManager instance] requestAssetPair:data.assetPairId];
 }
 

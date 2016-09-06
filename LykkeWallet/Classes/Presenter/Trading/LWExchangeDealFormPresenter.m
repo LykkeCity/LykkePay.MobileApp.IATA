@@ -135,6 +135,12 @@ static NSString *const FormIdentifiers[kFormRows] = {
     
     [self setBackButton];
     
+    if(self.balanceToSell)
+    {
+        lastInput=LastInput_Result;
+        resultString=self.balanceToSell.stringValue;
+        [self updatePrice];
+    }
     
 }
 

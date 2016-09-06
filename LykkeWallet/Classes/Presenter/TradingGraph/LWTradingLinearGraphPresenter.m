@@ -272,7 +272,9 @@ static int const kNumberOfRows = 4;
     if (self.isValid) {
         values[0] = @"4:30 PM EST";
         
-        values[1]=[LWUtils formatVolumeString:self.pairRateModel.ask.stringValue currencySign:@"" accuracy:self.assetPair.accuracy.intValue removeExtraZeroes:YES];
+ //       values[1]=[LWUtils formatVolumeString:self.pairRateModel.ask.stringValue currencySign:@"" accuracy:self.assetPair.accuracy.intValue removeExtraZeroes:YES];
+        
+        values[1]=[LWUtils formatFairVolume:self.pairRateModel.ask.doubleValue accuracy:self.assetPair.accuracy.intValue roundToHigher:YES];
         
 //        values[1] = [LWMath makeStringByNumber:self.pairRateModel.ask
 //                                 withPrecision:self.assetPair.accuracy.integerValue];
@@ -287,7 +289,8 @@ static int const kNumberOfRows = 4;
 }
 
 - (void)requestPrices {
-    const NSInteger repeatSeconds = [LWCache instance].refreshTimer.integerValue / 1000;
+//    const NSInteger repeatSeconds = [LWCache instance].refreshTimer.integerValue / 1000;
+    int repeatSeconds=5;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(repeatSeconds * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         if (self.isVisible) {
             [[LWAuthManager instance] requestAssetPairRate:self.assetPair.identity];
@@ -304,10 +307,23 @@ static int const kNumberOfRows = 4;
     NSString *priceSellRateString = @". . .";
     NSString *priceBuyRateString = @". . .";
     if (self.pairRateModel) {
-        priceSellRateString = [LWUtils priceForAsset:self.assetPair forValue:self.pairRateModel.bid withFormat:Localize(@"graph.button.sell")];
+//        priceSellRateString = [LWUtils priceForAsset:self.assetPair forValue:self.pairRateModel.bid withFormat:Localize(@"graph.button.sell")];
+//        
+//        priceBuyRateString = [LWUtils priceForAsset:self.assetPair forValue:self.pairRateModel.ask withFormat:Localize(@"graph.button.buy")];
         
-        priceBuyRateString = [LWUtils priceForAsset:self.assetPair forValue:self.pairRateModel.ask withFormat:Localize(@"graph.button.buy")];
+        
+        NSString *priceSell=[LWUtils formatFairVolume:self.pairRateModel.bid.doubleValue accuracy:self.assetPair.accuracy.intValue roundToHigher:NO];
+        priceSell=[priceSell stringByReplacingOccurrencesOfString:@" " withString:@""];
+        NSString *priceBuy=[LWUtils formatFairVolume:self.pairRateModel.ask.doubleValue accuracy:self.assetPair.accuracy.intValue roundToHigher:YES];
+        priceBuy=[priceBuy stringByReplacingOccurrencesOfString:@" " withString:@""];
+        
+        priceSellRateString = [LWUtils priceForAsset:self.assetPair forValue:@(priceSell.doubleValue) withFormat:Localize(@"graph.button.sell")];
+        
+        priceBuyRateString = [LWUtils priceForAsset:self.assetPair forValue:@(priceBuy.doubleValue) withFormat:Localize(@"graph.button.buy")];
+
     }
+    
+    
     
     [self.sellButton setTitle:priceSellRateString forState:UIControlStateNormal];
     [self.buyButton setTitle:priceBuyRateString forState:UIControlStateNormal];

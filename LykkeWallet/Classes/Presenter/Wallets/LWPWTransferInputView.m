@@ -36,10 +36,12 @@
     [titleLabel sizeToFit];
     [self addSubview:titleLabel];
     
-    currencyLabel=[[UILabel alloc] init];
-    currencyLabel.font=[UIFont fontWithName:@"ProximaNova-Light" size:22.5];
-    currencyLabel.textColor=TEXT_COLOR;
-    [self addSubview:currencyLabel];
+//    currencyLabel=[[UILabel alloc] init];
+//    currencyLabel.font=[UIFont fontWithName:@"ProximaNova-Light" size:22.5];
+//    currencyLabel.textColor=TEXT_COLOR;
+//    currencyLabel.text=@"BTC ";
+//    [self addSubview:currencyLabel];
+//    [currencyLabel sizeToFit];
     
     self.textField=[[UITextField alloc] init];
     self.textField.textColor=TEXT_COLOR;
@@ -60,6 +62,7 @@
 {
     _amountString=amountString;
     self.textField.text=amountString;
+    
 }
 
 

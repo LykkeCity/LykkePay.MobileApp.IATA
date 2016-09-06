@@ -78,8 +78,17 @@ typedef NS_ENUM(NSInteger, LWMathKeyboardViewSign) {
     [super awakeFromNib];
     
     self.isVisible=NO;
-//    [self setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self checkView:self];
     
+}
+
+-(void) checkView:(UIView *) view
+{
+    for(UIView *v in view.subviews)
+    {
+        v.translatesAutoresizingMaskIntoConstraints=YES;
+        [self checkView:v];
+    }
 }
 
 -(void) setIsVisible:(BOOL)isVisible
@@ -143,7 +152,7 @@ typedef NS_ENUM(NSInteger, LWMathKeyboardViewSign) {
         }
     }
     
-    const CGFloat whLine = 1; // 1px between elements
+    CGFloat whLine = 1; // 1px between elements
     
     CGFloat wTotal = self.frame.size.width;
 //    CGFloat wSign = [self.signButtons.firstObject frame].size.width;

@@ -29,6 +29,7 @@
     double price;
     BOOL lastChangedLKK;
     NSTimer *timer;
+    int timerChangeCount;
     
     NSString *ASSET_PREFIX;
 }
@@ -46,6 +47,7 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *submitBottomConstraint;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableWidthConstraint;
+
 
 @end
 
@@ -85,6 +87,11 @@
     if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad)
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(orientationChanged) name:UIApplicationDidChangeStatusBarOrientationNotification object:nil];
 
+    UITapGestureRecognizer *gesture=[[UITapGestureRecognizer alloc] initWithTarget:_lkkTextField action:@selector(becomeFirstResponder)];
+    [_lkkTextField.superview addGestureRecognizer:gesture];
+    gesture=[[UITapGestureRecognizer alloc] initWithTarget:_btcTextField action:@selector(becomeFirstResponder)];
+    [_btcTextField.superview addGestureRecognizer:gesture];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -113,6 +120,8 @@
             self.tableWidthConstraint.constant=516;
     }
     
+    [self updatePrice];
+    
 }
 
 -(void) viewDidAppear:(BOOL)animated
@@ -124,7 +133,7 @@
         self.navigationController.title=[NSString stringWithFormat:@"PURCHASE LKK WITH %@", [LWCache nameForAsset:self.assetId]];
     [_lkkTextField becomeFirstResponder];
 
-    timer=[NSTimer timerWithTimeInterval:5 target:self selector:@selector(refreshPrice) userInfo:nil repeats:YES];
+    timer=[NSTimer timerWithTimeInterval:0.5 target:self selector:@selector(refreshPrice) userInfo:nil repeats:YES];
     [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
     [self refreshPrice];
     
@@ -138,13 +147,18 @@
 
 -(void) refreshPrice
 {
-    NSString *assetPair;
-    if([self.assetId isEqualToString:@"BTC"])
-        assetPair=@"BTCLKK";
-    else
-        assetPair=[@"LKK" stringByAppendingString:self.assetId];
-
-    [[LWAuthManager instance] requestAllAssetPairsRates:assetPair];
+    if(timerChangeCount%10==0)
+    {
+        NSString *assetPair;
+        if([self.assetId isEqualToString:@"BTC"])
+            assetPair=@"BTCLKK";
+        else
+            assetPair=[@"LKK" stringByAppendingString:self.assetId];
+        
+        [[LWAuthManager instance] requestAllAssetPairsRates:assetPair];
+    }
+    timerChangeCount++;
+    [self updatePrice];
 }
 
 -(BOOL) textFieldShouldBeginEditing:(UITextField *)textField
@@ -153,10 +167,12 @@
     {
         _keyboard.prefix=LKK_PREFIX;
         _keyboard.accuracy=[LWCache accuracyForAssetId:@"LKK"];
+        lastChangedLKK=YES;
         
     }
     else
     {
+        lastChangedLKK=NO;
         _keyboard.prefix=ASSET_PREFIX;
         _keyboard.accuracy=[LWCache accuracyForAssetId:self.assetId];
     }
@@ -174,15 +190,35 @@
         return;
     if(keyboard.textField==_lkkTextField)
     {
+        NSString *string=[self removePrefix:keyboard.textField.text];
+        double equity=string.doubleValue/12500000.0;
+        if(equity>99.9)
+        {
+            _lkkTextField.text=[_lkkTextField.text substringToIndex:_lkkTextField.text.length-1];
+            return;
+        }
+        
         lastChangedLKK=YES;
 
         [self calcBTC];
     }
     else
     {
+        NSString *currentLkk=_lkkTextField.text;
+        NSString *prevBtc=[_btcTextField.text substringToIndex:_btcTextField.text.length-1];
+        [self calcLKK];
+        NSString *string=[self removePrefix:_lkkTextField.text];
+        double equity=string.doubleValue/12500000.0;
+        if(equity>99.9)
+        {
+            _btcTextField.text=prevBtc;
+            _lkkTextField.text=currentLkk;
+            return;
+        }
+        
+        
         lastChangedLKK=NO;
 
-        [self calcLKK];
      }
     
     if([[self removePrefix:_btcTextField.text] doubleValue]>0)
@@ -266,22 +302,36 @@
     return text;
 }
 
-
--(void) authManager:(LWAuthManager *) manager didGetAllAssetPairsRate:(LWPacketAllAssetPairsRates *)packet
+-(void) updatePrice
 {
+    
+
     NSString *assetPair;
+    
+    
+    if([self.assetId isEqualToString:@"BTC"])
+        assetPair=@"BTCLKK";
+    else
+        assetPair=[@"LKK" stringByAppendingString:self.assetId];
+    
+    LWAssetPairRateModel *rate=[LWCache instance].cachedAssetPairsRates[assetPair];
+
+    if(!rate)
+        return;
+    
     if([self.assetId isEqualToString:@"BTC"])
     {
-        assetPair=@"BTCLKK";
-        price=(double)1/packet.rate.bid.doubleValue;
-
+        
+        price=(double)1.0/rate.bid.doubleValue;
+        
     }
     else
     {
-        assetPair=[@"LKK" stringByAppendingString:self.assetId];
-        price=packet.rate.bid.doubleValue;
-
+        
+        price=rate.ask.doubleValue;
+        
     }
+
     int accuracy=0;
     
     for(LWAssetPairModel *pair in [LWCache instance].allAssetPairs)
@@ -301,6 +351,13 @@
         [self calcBTC];
     else
         [self calcLKK];
+
+}
+
+
+-(void) authManager:(LWAuthManager *) manager didGetAllAssetPairsRate:(LWPacketAllAssetPairsRates *)packet
+{
+    [self updatePrice];
 }
 
 -(void) submitPressed

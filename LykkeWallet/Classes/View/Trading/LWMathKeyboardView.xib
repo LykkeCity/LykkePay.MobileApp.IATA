@@ -28,7 +28,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view autoresizesSubviews="NO" contentMode="scaleToFill" id="iN0-l3-epB" customClass="LWMathKeyboardView">
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="LWMathKeyboardView">
             <rect key="frame" x="0.0" y="0.0" width="320" height="239"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
@@ -257,6 +257,7 @@
                 </button>
             </subviews>
             <color key="backgroundColor" red="0.82352941176470584" green="0.83921568627450982" blue="0.85882352941176465" alpha="1" colorSpace="calibratedRGB"/>
+            <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>

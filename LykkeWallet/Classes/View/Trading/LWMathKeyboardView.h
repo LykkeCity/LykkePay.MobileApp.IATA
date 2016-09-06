@@ -18,7 +18,7 @@
 @end
 
 
-@interface LWMathKeyboardView : TKView {
+@interface LWMathKeyboardView : UIView {
     
 }
 

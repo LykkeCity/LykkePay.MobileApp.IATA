@@ -28,6 +28,8 @@ SINGLETON_DECLARE
 
 #pragma mark - Properties
 
+@property (strong, nonatomic) NSMutableDictionary *cachedAssetPairsRates;
+
 @property PushNotificationsStatus pushNotificationsStatus;
 
 @property BOOL showMyLykkeTab;

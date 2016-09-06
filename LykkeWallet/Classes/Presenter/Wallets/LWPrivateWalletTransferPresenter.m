@@ -33,6 +33,7 @@
     NSDictionary *proceedEnabledAttributes;
     NSDictionary *proceedDisabledAttributes;
     UILabel *selectedWalletNameLabel;
+    
 }
 
 @end
@@ -49,6 +50,8 @@
     selectedWalletNameLabel.font=[UIFont fontWithName:@"ProximaNova-Regular" size:17];
     selectedWalletNameLabel.textColor=[UIColor colorWithRed:63.0/255 green:77.0/255 blue:96.0/255 alpha:1];
     selectedWalletNameLabel.textAlignment=NSTextAlignmentCenter;
+    selectedWalletNameLabel.text=@"Select wallet for transfer";
+
     [self.view addSubview:selectedWalletNameLabel];
     
     addressBackground=[[UIView alloc] init];
@@ -64,6 +67,8 @@
     addressTextField.backgroundColor=nil;
     addressTextField.font=[UIFont fontWithName:@"ProximaNova-Regular" size:17];
     addressTextField.placeholder=@"Enter address of wallet";
+    
+    
     
     
     scanQRCodeButton=[self createButtonWithIcon:[UIImage imageNamed:@"QrCodeIcon"] title:@"Scan QR code"];
@@ -87,19 +92,30 @@
     pasteButton=[UIButton buttonWithType:UIButtonTypeCustom];
     [pasteButton setTitle:@"Paste" forState:UIControlStateNormal];
     pasteButton.titleLabel.font=[UIFont fontWithName:@"ProximaNova-Regular" size:14];
-    pasteButton.titleLabel.textColor=[UIColor colorWithRed:63.0/255 green:77.0/255 blue:96.0/255 alpha:0.6];
+    [pasteButton setTitleColor:[UIColor colorWithRed:63.0/255 green:77.0/255 blue:96.0/255 alpha:0.6] forState:UIControlStateNormal];
+    [pasteButton addTarget:self action:@selector(pastePressed) forControlEvents:UIControlEventTouchUpInside];
+    
     [pasteButton sizeToFit];
     [addressBackground addSubview:pasteButton];
     
     proceedButton.enabled=NO;
     [self validateProceedButton];
     
+    
+    
+}
+
+-(void) pastePressed
+{
+    UIPasteboard *board=[UIPasteboard generalPasteboard];
+    addressTextField.text=board.string;
+    [self validateProceedButton];
 }
 
 -(void) viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    self.title=@"TRANSFER TO";
+    self.title=@"TRANSFER";
 }
 
 -(void) viewDidLayoutSubviews
@@ -142,7 +158,7 @@
     else
         pasteButton.hidden=NO;
     if(proceedButton.enabled==NO)
-        selectedWalletNameLabel.text=@"";
+        selectedWalletNameLabel.text=@"Select wallet for transfer";
 }
 
 -(BOOL) textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string

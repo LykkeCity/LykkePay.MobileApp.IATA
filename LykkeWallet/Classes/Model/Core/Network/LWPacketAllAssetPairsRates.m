@@ -8,6 +8,7 @@
 
 #import "LWPacketAllAssetPairsRates.h"
 #import "LWAssetPairRateModel.h"
+#import "LWCache.h"
 
 @implementation LWPacketAllAssetPairsRates
 
@@ -20,6 +21,7 @@
     }
     _rate = [[LWAssetPairRateModel alloc] initWithJSON:result[@"Rate"]];
 
+    [LWCache instance].cachedAssetPairsRates[self.assetId]=_rate;
     
 }
 

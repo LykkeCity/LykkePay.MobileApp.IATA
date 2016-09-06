@@ -20,6 +20,7 @@
 @interface LWMyLykkeBuyPresenter ()
 {
     NSTimer *timer;
+    int timerChangeCount;
 }
 
 @property (weak, nonatomic) IBOutlet UILabel *creditCardPriceLabel;
@@ -45,7 +46,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self adjustThinLines];
-
+    timerChangeCount=0;
 //    _bitcoinPriceLabel.text=@"฿ 0";
     _bitcoinPriceLabel.hidden=YES;
     _creditCardPriceLabel.hidden=YES;
@@ -77,7 +78,7 @@
     self.title=@"BUY LYKKE";
     
     [self reloadRates];
-    timer=[NSTimer timerWithTimeInterval:5 target:self selector:@selector(reloadRates) userInfo:nil repeats:YES];
+    timer=[NSTimer timerWithTimeInterval:0.5 target:self selector:@selector(reloadRates) userInfo:nil repeats:YES];
     [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
 
     
@@ -85,10 +86,14 @@
 
 -(void) reloadRates
 {
-    [[LWAuthManager instance] requestAllAssetPairsRates:@"BTCLKK"];
-    [[LWAuthManager instance] requestAllAssetPairsRates:@"LKKUSD"];
-    [[LWAuthManager instance] requestAllAssetPairsRates:@"LKKCHF"];
-
+    if(timerChangeCount%10==0)
+    {
+        [[LWAuthManager instance] requestAllAssetPairsRates:@"BTCLKK"];
+        [[LWAuthManager instance] requestAllAssetPairsRates:@"LKKUSD"];
+        [[LWAuthManager instance] requestAllAssetPairsRates:@"LKKCHF"];
+    }
+    timerChangeCount++;
+    [self updateRates];
 }
 
 -(void) viewWillDisappear:(BOOL)animated
@@ -104,6 +109,7 @@
         [self setBackButton];
     else
         [self.navigationController setNavigationBarHidden:YES];
+    [self updateRates];
 }
 
 
@@ -142,44 +148,61 @@
     }
 }
 
--(void) authManager:(LWAuthManager *)manager didGetAllAssetPairsRate:(LWPacketAllAssetPairsRates *)packet
+-(void) updateRates
+{
+    
+    if([LWCache instance].cachedAssetPairsRates[@"BTCLKK"])
+    {
+        int accuracy=[self accuraceForPair:@"BTCLKK"];
+        double ask=[[LWCache instance].cachedAssetPairsRates[@"BTCLKK"] bid].doubleValue;
+        NSString *string=[LWUtils formatFairVolume:1.0/ask accuracy:accuracy roundToHigher:YES];
+        string=[string stringByReplacingOccurrencesOfString:@" " withString:@","];
+        _bitcoinPriceLabel.text=[@"฿ " stringByAppendingString:string];
+        _bitcoinPriceLabel.hidden=NO;
+    }
+    if([LWCache instance].cachedAssetPairsRates[@"LKKUSD"])
+    {
+        int accuracy=[self accuraceForPair:@"LKKUSD"];
+        double ask=[[LWCache instance].cachedAssetPairsRates[@"LKKUSD"] ask].doubleValue;
+        NSString *string=[LWUtils formatFairVolume:ask accuracy:accuracy roundToHigher:YES];
+        string=[string stringByReplacingOccurrencesOfString:@" " withString:@","];
+        _creditCardPriceLabel.text=[@"$ " stringByAppendingString:string];
+        _creditCardPriceLabel.hidden=NO;
+    }
+    if([LWCache instance].cachedAssetPairsRates[@"LKKCHF"])
+    {
+        int accuracy=[self accuraceForPair:@"LKKCHF"];
+        double ask=[[LWCache instance].cachedAssetPairsRates[@"LKKCHF"] ask].doubleValue;
+        NSString *string=[LWUtils formatFairVolume:ask accuracy:accuracy roundToHigher:YES];
+        string=[string stringByReplacingOccurrencesOfString:@" " withString:@","];
+        _swiftPriceLabel.text=[@"₣ " stringByAppendingString:string];
+        _swiftPriceLabel.hidden=NO;
+    }
+
+}
+
+-(int) accuraceForPair:(NSString *) pairr
 {
     int accuracy=0;
     
     for(LWAssetPairModel *pair in [LWCache instance].allAssetPairs)
     {
-        if([packet.rate.identity isEqualToString:pair.identity])
+        if([pairr isEqualToString:pair.identity])
         {
-            if([packet.rate.identity isEqualToString:@"BTCLKK"])
+            if([pairr isEqualToString:@"BTCLKK"])
                 accuracy=pair.invertedAccuracy.intValue;
             else
                 accuracy=pair.accuracy.intValue;
             break;
         }
     }
+    return accuracy;
+ 
+}
 
-    
-    if([packet.rate.identity isEqualToString:@"BTCLKK"])
-    {
-        NSString *string=[LWUtils formatFairVolume:1.0/packet.rate.ask.doubleValue accuracy:accuracy roundToHigher:NO];
-        string=[string stringByReplacingOccurrencesOfString:@" " withString:@","];
-        _bitcoinPriceLabel.text=[@"฿ " stringByAppendingString:string];
-        _bitcoinPriceLabel.hidden=NO;
-    }
-    if([packet.rate.identity isEqualToString:@"LKKUSD"])
-    {
-        NSString *string=[LWUtils formatFairVolume:packet.rate.ask.doubleValue accuracy:accuracy roundToHigher:NO];
-        string=[string stringByReplacingOccurrencesOfString:@" " withString:@","];
-        _creditCardPriceLabel.text=[@"$ " stringByAppendingString:string];
-        _creditCardPriceLabel.hidden=NO;
-    }
-    if([packet.rate.identity isEqualToString:@"LKKCHF"])
-    {
-        NSString *string=[LWUtils formatFairVolume:packet.rate.ask.doubleValue accuracy:accuracy roundToHigher:NO];
-        string=[string stringByReplacingOccurrencesOfString:@" " withString:@","];
-        _swiftPriceLabel.text=[@"₣ " stringByAppendingString:string];
-        _swiftPriceLabel.hidden=NO;
-    }
+-(void) authManager:(LWAuthManager *)manager didGetAllAssetPairsRate:(LWPacketAllAssetPairsRates *)packet
+{
+    [self updateRates];
 }
 
 

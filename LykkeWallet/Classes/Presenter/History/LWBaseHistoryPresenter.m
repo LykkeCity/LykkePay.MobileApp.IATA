@@ -362,7 +362,8 @@
     if(item.blockchainHash && item.blockchainHash.length)
     {
         [self setLoading:YES];
-        [[LWAuthManager instance] requestBlockchainOrderTransaction:item.blockchainHash];
+ //       [[LWAuthManager instance] requestBlockchainOrderTransaction:item.blockchainHash];
+        [[LWAuthManager instance] requestBlockchainOrderTransaction:item.identity];
         return;
     }
     

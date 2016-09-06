@@ -15,7 +15,6 @@
 
 
 @property (weak, nonatomic) IBOutlet UIImageView *bottomCurveView;
-@property (weak, nonatomic) IBOutlet UIButton *button;
 
 
 @end

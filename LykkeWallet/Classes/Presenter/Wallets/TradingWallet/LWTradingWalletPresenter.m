@@ -241,11 +241,11 @@
 
         self.emptyHistoryPresenter=[[LWEmptyHistoryPresenter alloc] init];
         self.emptyHistoryPresenter.flagColoredButton=YES;
-        if(self.depositButton.hidden==NO)
-            self.emptyHistoryPresenter.depositAction=^{
-                [weakSelf depositClicked:weakSelf.depositButton];
-            };
-
+//        if(self.depositButton.hidden==NO)
+//            self.emptyHistoryPresenter.depositAction=^{
+//                [weakSelf depositClicked:weakSelf.depositButton];
+//            };
+        self.emptyHistoryPresenter.button.hidden=YES;
         self.emptyHistoryPresenter.buttonText=@"DEPOSIT";
         self.emptyHistoryPresenter.view.frame=self.view.bounds;
 //        [self.view addSubview:self.emptyHistoryPresenter.view];
@@ -307,8 +307,8 @@
             break;
         }
     }
-    
-    [self adjustButtons];
+    if(self.balance.floatValue>0)
+        [self adjustButtons];
 }
 
 

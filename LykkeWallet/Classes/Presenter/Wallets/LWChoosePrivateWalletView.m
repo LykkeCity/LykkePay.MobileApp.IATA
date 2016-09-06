@@ -10,6 +10,7 @@
 #import "LWPrivateWalletsManager.h"
 #import "LWChoosePrivateWalletCell.h"
 #import "LWPrivateWalletModel.h"
+#import "LWCache.h"
 
 @interface LWChoosePrivateWalletView() <UITableViewDelegate, UITableViewDataSource>
 {
@@ -24,6 +25,7 @@
     NSArray *wallets;
     
     LWPrivateWalletModel *selectedWallet;
+    LWPrivateWalletModel *tradingWallet;
 }
 
 @property (strong, nonatomic) void(^completion)(LWPrivateWalletModel *model);
@@ -37,6 +39,14 @@
 {
     self=[super init];
     
+    tradingWallet=[[LWPrivateWalletModel alloc] init];
+    tradingWallet.address=[LWCache instance].multiSig;
+    tradingWallet.name=@"MY TRADING WALLET";
+    
+    NSString *path=[[NSBundle mainBundle] pathForResource:@"lykke_logo.png" ofType:nil];
+    tradingWallet.iconURL=[NSURL fileURLWithPath:path].absoluteString;
+
+    
     UIWindow *parentView=[UIApplication sharedApplication].keyWindow;
     
     wallets=[LWPrivateWalletsManager shared].wallets;
@@ -44,16 +54,16 @@
     self.backgroundColor=[UIColor whiteColor];
     
     cancelButton=[UIButton buttonWithType:UIButtonTypeCustom];
-    [cancelButton setAttributedTitle:[[NSAttributedString alloc] initWithString:@"CANCEL" attributes:@{NSKernAttributeName:@(1.2), NSFontAttributeName:[UIFont fontWithName:@"ProximaNova-Regular" size:14], NSForegroundColorAttributeName:[UIColor colorWithRed:140.0/255 green:148.0/255 blue:160.0/255 alpha:1]}] forState:UIControlStateNormal];
+    [cancelButton setAttributedTitle:[[NSAttributedString alloc] initWithString:@"CANCEL" attributes:@{NSKernAttributeName:@(1.2), NSFontAttributeName:[UIFont fontWithName:@"ProximaNova-Regular" size:14], NSForegroundColorAttributeName:[UIColor colorWithRed:171.0/255 green:0 blue:1 alpha:1]}] forState:UIControlStateNormal];
     [cancelButton addTarget:self action:@selector(cancelPressed) forControlEvents:UIControlEventTouchUpInside];
     [cancelButton sizeToFit];
     [self addSubview:cancelButton];
 
-    doneButton=[UIButton buttonWithType:UIButtonTypeCustom];
-    [doneButton setAttributedTitle:[[NSAttributedString alloc] initWithString:@"DONE" attributes:@{NSKernAttributeName:@(0.5), NSFontAttributeName:[UIFont fontWithName:@"ProximaNova-Regular" size:14], NSForegroundColorAttributeName:[UIColor colorWithRed:171.0/255 green:0 blue:1 alpha:1]}] forState:UIControlStateNormal];
-    [doneButton sizeToFit];
-    [doneButton addTarget:self action:@selector(donePressed) forControlEvents:UIControlEventTouchUpInside];
-    [self addSubview:doneButton];
+//    doneButton=[UIButton buttonWithType:UIButtonTypeCustom];
+//    [doneButton setAttributedTitle:[[NSAttributedString alloc] initWithString:@"DONE" attributes:@{NSKernAttributeName:@(0.5), NSFontAttributeName:[UIFont fontWithName:@"ProximaNova-Regular" size:14], NSForegroundColorAttributeName:[UIColor colorWithRed:171.0/255 green:0 blue:1 alpha:1]}] forState:UIControlStateNormal];
+//    [doneButton sizeToFit];
+//    [doneButton addTarget:self action:@selector(donePressed) forControlEvents:UIControlEventTouchUpInside];
+//    [self addSubview:doneButton];
     
     titleLabel=[[UILabel alloc] init];
     titleLabel.attributedText=[[NSAttributedString alloc] initWithString:@"WALLETS" attributes:@{NSKernAttributeName:@(1.5), NSFontAttributeName:[UIFont fontWithName:@"ProximaNova-Semibold" size:17], NSForegroundColorAttributeName:[UIColor colorWithRed:63.0/255 green:77.0/255 blue:96.0/255 alpha:1]}];
@@ -99,7 +109,10 @@
     UIView *view=[[UIView alloc] initWithFrame:CGRectMake(0, 0, 1024, 35)];
     view.backgroundColor=[UIColor colorWithRed:245.0/255 green:246.0/255 blue:247.0/255 alpha:1];
     UILabel *label=[[UILabel alloc] initWithFrame:CGRectMake(30, 0, 300, 35)];
+    if(section==1)
     label.text=@"Private wallet";
+    else
+        label.text=@"Trading wallet";
     label.font=[UIFont fontWithName:@"ProximaNova-Regular" size:14];
     label.textColor=[UIColor colorWithRed:63.0/255 green:77.0/255 blue:96.0/255 alpha:0.6];
     [view addSubview:label];
@@ -157,23 +170,40 @@
 
 -(NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
 {
+    if(wallets.count)
+        return 2;
     return 1;
 }
 
 -(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    if(section==0)
+        return 1;
     return wallets.count;
 }
 
 -(UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    LWChoosePrivateWalletCell *cell=[[LWChoosePrivateWalletCell alloc] initWithWallet:wallets[indexPath.row]];
+    LWChoosePrivateWalletCell *cell;
+    if(indexPath.section==0)
+    {
+        cell=[[LWChoosePrivateWalletCell alloc] initWithWallet:tradingWallet];
+    }
+    else
+    {
+        cell=[[LWChoosePrivateWalletCell alloc] initWithWallet:wallets[indexPath.row]];
+    }
     return cell;
 }
 
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    selectedWallet=wallets[indexPath.row];
+    if(wallets.count==0 || (wallets.count>0 && indexPath.section==0))
+        selectedWallet=tradingWallet;
+    else
+        selectedWallet=wallets[indexPath.row];
+    
+    [self donePressed];
 }
 
 -(void) hideView

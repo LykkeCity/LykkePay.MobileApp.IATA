@@ -32,6 +32,23 @@
     self.tableView.separatorColor=[UIColor colorWithRed:211.0/255 green:214.0/255 blue:219.0/255 alpha:1];
 }
 
+-(void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
+ 
+}
+
+-(void) viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    UIWindow *window=self.view.window;
+    for(UIGestureRecognizer *g in window.gestureRecognizers)
+    {
+        g.delaysTouchesBegan=NO;
+    }
+}
+
 
 -(void) showCustomKeyboard
 {

@@ -120,6 +120,8 @@
 		A145157E1D7D304600B4BED9 /* LWMyLykkeNewsCommonTableViewCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A145157D1D7D304600B4BED9 /* LWMyLykkeNewsCommonTableViewCell~ipad.xib */; };
 		A14515821D7DAC0000B4BED9 /* LWWebViewDocumentPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A14515801D7DAC0000B4BED9 /* LWWebViewDocumentPresenter.m */; };
 		A14515831D7DAC0000B4BED9 /* LWWebViewDocumentPresenter.xib in Resources */ = {isa = PBXBuildFile; fileRef = A14515811D7DAC0000B4BED9 /* LWWebViewDocumentPresenter.xib */; };
+		A14515851D7E830D00B4BED9 /* LWMathKeyboardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A14515841D7E830D00B4BED9 /* LWMathKeyboardView.xib */; };
+		A14515871D7EFA7000B4BED9 /* lykke_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = A14515861D7EFA7000B4BED9 /* lykke_logo.png */; };
 		A14B7D2E1CE3233D00820084 /* ButtonOK_square.png in Resources */ = {isa = PBXBuildFile; fileRef = A14B7D2D1CE3233D00820084 /* ButtonOK_square.png */; };
 		A15B3EAF1D12626B00A6B506 /* LWRefundInformationPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A15B3EAD1D12626B00A6B506 /* LWRefundInformationPresenter.m */; };
 		A15B3EB01D12626B00A6B506 /* LWRefundInformationPresenter.xib in Resources */ = {isa = PBXBuildFile; fileRef = A15B3EAE1D12626B00A6B506 /* LWRefundInformationPresenter.xib */; };
@@ -1190,7 +1192,6 @@
 		EC302FFC1C903440003A1F5F /* LWLeftDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC302FF61C903439003A1F5F /* LWLeftDetailTableViewCell.xib */; };
 		EC302FFD1C903444003A1F5F /* LWRadioTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC302FF71C903439003A1F5F /* LWRadioTableViewCell.xib */; };
 		EC3144481C4C01B500DEA50B /* LWMathKeyboardView.m in Sources */ = {isa = PBXBuildFile; fileRef = EC3144461C4C01B500DEA50B /* LWMathKeyboardView.m */; };
-		EC3144491C4C01B500DEA50B /* LWMathKeyboardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC3144471C4C01B500DEA50B /* LWMathKeyboardView.xib */; };
 		EC31444C1C4C01DD00DEA50B /* LWPinKeyboardView.m in Sources */ = {isa = PBXBuildFile; fileRef = EC31444B1C4C01DD00DEA50B /* LWPinKeyboardView.m */; };
 		EC31444E1C4C01ED00DEA50B /* LWPinKeyboardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC31444D1C4C01ED00DEA50B /* LWPinKeyboardView.xib */; };
 		EC35B0C21CC6CB50001C6F96 /* LWPacketBlockchainTransferTransaction.m in Sources */ = {isa = PBXBuildFile; fileRef = EC35B0C11CC6CB50001C6F96 /* LWPacketBlockchainTransferTransaction.m */; };
@@ -1385,7 +1386,6 @@
 		EC4D92251C8778DF006EE7C8 /* LWWalletFormPresenter.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECE902BC1C3537B700F52971 /* LWWalletFormPresenter.xib */; };
 		EC4D92281C8778DF006EE7C8 /* LWKeyboardToolbar.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC370B231C47BEE300175786 /* LWKeyboardToolbar.xib */; };
 		EC4D92321C8778DF006EE7C8 /* LWSettingsConfirmationPresenter.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC3CE8A71C3FCE6B00CAC3FE /* LWSettingsConfirmationPresenter.xib */; };
-		EC4D92341C8778DF006EE7C8 /* LWMathKeyboardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC3144471C4C01B500DEA50B /* LWMathKeyboardView.xib */; };
 		EC4D92381C8778DF006EE7C8 /* LWUrlAddressPresenter.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECF9D1181C5BEC060025FC36 /* LWUrlAddressPresenter.xib */; };
 		EC4D92391C8778DF006EE7C8 /* LWWalletDepositPresenter.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC4754A61C614EAF0037614D /* LWWalletDepositPresenter.xib */; };
 		EC4D923B1C8778DF006EE7C8 /* LWPersonalDataPresenter.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC168F0B1C51362800AF8DD5 /* LWPersonalDataPresenter.xib */; };
@@ -1849,6 +1849,8 @@
 		A145157F1D7DAC0000B4BED9 /* LWWebViewDocumentPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWWebViewDocumentPresenter.h; sourceTree = "<group>"; };
 		A14515801D7DAC0000B4BED9 /* LWWebViewDocumentPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWWebViewDocumentPresenter.m; sourceTree = "<group>"; };
 		A14515811D7DAC0000B4BED9 /* LWWebViewDocumentPresenter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LWWebViewDocumentPresenter.xib; sourceTree = "<group>"; };
+		A14515841D7E830D00B4BED9 /* LWMathKeyboardView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LWMathKeyboardView.xib; path = Trading/LWMathKeyboardView.xib; sourceTree = "<group>"; };
+		A14515861D7EFA7000B4BED9 /* lykke_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lykke_logo.png; sourceTree = "<group>"; };
 		A14B7D2D1CE3233D00820084 /* ButtonOK_square.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ButtonOK_square.png; sourceTree = "<group>"; };
 		A15B3EAC1D12626B00A6B506 /* LWRefundInformationPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWRefundInformationPresenter.h; sourceTree = "<group>"; };
 		A15B3EAD1D12626B00A6B506 /* LWRefundInformationPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWRefundInformationPresenter.m; sourceTree = "<group>"; };
@@ -3202,7 +3204,6 @@
 		EC302FF71C903439003A1F5F /* LWRadioTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LWRadioTableViewCell.xib; path = IATA/Classes/View/TableCells/LWRadioTableViewCell.xib; sourceTree = SOURCE_ROOT; };
 		EC3144451C4C01B500DEA50B /* LWMathKeyboardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LWMathKeyboardView.h; path = Trading/LWMathKeyboardView.h; sourceTree = "<group>"; };
 		EC3144461C4C01B500DEA50B /* LWMathKeyboardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LWMathKeyboardView.m; path = Trading/LWMathKeyboardView.m; sourceTree = "<group>"; };
-		EC3144471C4C01B500DEA50B /* LWMathKeyboardView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LWMathKeyboardView.xib; path = Trading/LWMathKeyboardView.xib; sourceTree = "<group>"; };
 		EC31444A1C4C01DD00DEA50B /* LWPinKeyboardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LWPinKeyboardView.h; path = Trading/LWPinKeyboardView.h; sourceTree = "<group>"; };
 		EC31444B1C4C01DD00DEA50B /* LWPinKeyboardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LWPinKeyboardView.m; path = Trading/LWPinKeyboardView.m; sourceTree = "<group>"; };
 		EC31444D1C4C01ED00DEA50B /* LWPinKeyboardView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LWPinKeyboardView.xib; path = Trading/LWPinKeyboardView.xib; sourceTree = "<group>"; };
@@ -3744,6 +3745,7 @@
 				A10A95041D0E8F5F00557C87 /* SlashSign@2x.png */,
 				A10A95051D0E8F5F00557C87 /* SlashSign@3x.png */,
 				A12BEEA01D2BBC7900045916 /* tabbara-line.png */,
+				A14515861D7EFA7000B4BED9 /* lykke_logo.png */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -5879,7 +5881,7 @@
 			isa = PBXGroup;
 			children = (
 				EC31444D1C4C01ED00DEA50B /* LWPinKeyboardView.xib */,
-				EC3144471C4C01B500DEA50B /* LWMathKeyboardView.xib */,
+				A14515841D7E830D00B4BED9 /* LWMathKeyboardView.xib */,
 			);
 			name = Lykke;
 			sourceTree = "<group>";
@@ -6950,7 +6952,6 @@
 				A1BCD2DA1D012D3C00CF42E4 /* 5-onboard-2x_00116.png in Resources */,
 				A1BCD22B1D012D3C00CF42E4 /* 4-withdraw-2x_00060.png in Resources */,
 				A1BCD0F81D012D3C00CF42E4 /* 1-deposit-2x_00112.png in Resources */,
-				EC3144491C4C01B500DEA50B /* LWMathKeyboardView.xib in Resources */,
 				A1BCD1701D012D3C00CF42E4 /* 2-trade-2x_00112.png in Resources */,
 				A1D65D631D5DCF1100828783 /* crypto_bar_00031.png in Resources */,
 				A1BCD0C61D012D3C00CF42E4 /* 1-deposit-2x_00062.png in Resources */,
@@ -7040,6 +7041,7 @@
 				A1BCD22A1D012D3C00CF42E4 /* 4-withdraw-2x_00059.png in Resources */,
 				A1BCD2261D012D3C00CF42E4 /* 4-withdraw-2x_00055.png in Resources */,
 				A1BCD1341D012D3C00CF42E4 /* 2-trade-2x_00052.png in Resources */,
+				A14515871D7EFA7000B4BED9 /* lykke_logo.png in Resources */,
 				EC3CE8C21C402FF000CAC3FE /* LWAssetBlockchainIconTableViewCell.xib in Resources */,
 				A1D65D591D5DCF1100828783 /* crypto_bar_00021.png in Resources */,
 				A1BCD0DC1D012D3C00CF42E4 /* 1-deposit-2x_00084.png in Resources */,
@@ -7094,6 +7096,7 @@
 				A1BCD1DF1D012D3C00CF42E4 /* 3-settle-2x_00104.png in Resources */,
 				ECA80B661C2E0E47001C4E8F /* LWCameraOverlayPresenter~iphone.xib in Resources */,
 				A1D4773C1D050B9900438846 /* loader-color@2x_00012.png in Resources */,
+				A14515851D7E830D00B4BED9 /* LWMathKeyboardView.xib in Resources */,
 				A1BCD0D51D012D3C00CF42E4 /* 1-deposit-2x_00077.png in Resources */,
 				A1BCD2C71D012D3C00CF42E4 /* 5-onboard-2x_00097.png in Resources */,
 				A1BCD1F41D012D3C00CF42E4 /* 4-withdraw-2x_00005.png in Resources */,
@@ -7778,7 +7781,6 @@
 				EC9EC2661C8EF58700C986DD /* LWAssetBuyTotalTableViewCell.xib in Resources */,
 				EC8923201CC3DAC700201BE7 /* LWHistoryPresenter~ipad.xib in Resources */,
 				EC4D92321C8778DF006EE7C8 /* LWSettingsConfirmationPresenter.xib in Resources */,
-				EC4D92341C8778DF006EE7C8 /* LWMathKeyboardView.xib in Resources */,
 				EC9EC26B1C8EF58700C986DD /* LWAssetTableViewCell~iphone.xib in Resources */,
 				EC8923121CC3CAF400201BE7 /* LWLykkeTableViewCell~ipad.xib in Resources */,
 				EC4D92381C8778DF006EE7C8 /* LWUrlAddressPresenter.xib in Resources */,

@@ -48,7 +48,7 @@
 -(void) viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    self.title=@"MY LYKKE";
+    self.title=@"NEWS";
 }
 
 /*

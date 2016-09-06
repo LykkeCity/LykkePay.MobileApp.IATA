@@ -62,6 +62,15 @@
     [super viewWillAppear:animated];
     if(!newsArray)
         self.tableView.backgroundColor=[UIColor whiteColor];
+    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:246.0/255 green:247.0/255 blue:248.0/255 alpha:1]];
+
+}
+
+-(void) viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
+
 }
 
 -(void) viewDidAppear:(BOOL)animated
