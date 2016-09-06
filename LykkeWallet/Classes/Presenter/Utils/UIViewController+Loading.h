@@ -17,4 +17,6 @@
 - (void)showReject:(NSDictionary *)reject response:(NSURLResponse *)response;
 - (void)showReject:(NSDictionary *)reject response:(NSURLResponse *)response code:(NSInteger)code willNotify:(BOOL)willNotify;
 
+-(void) adjustThinLines;
+
 @end

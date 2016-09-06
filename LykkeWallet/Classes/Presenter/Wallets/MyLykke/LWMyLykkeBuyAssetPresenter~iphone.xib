@@ -217,7 +217,7 @@
                         <constraint firstItem="SPj-9r-n1q" firstAttribute="centerY" secondItem="aVG-t3-sHA" secondAttribute="centerY" id="vln-tX-DvW"/>
                     </constraints>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KIx-NN-YYU" customClass="LWCommonButton">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KIx-NN-YYU" customClass="LWCommonButton">
                     <rect key="frame" x="30" y="340" width="315" height="45"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="315" id="fgc-aw-Ztt"/>

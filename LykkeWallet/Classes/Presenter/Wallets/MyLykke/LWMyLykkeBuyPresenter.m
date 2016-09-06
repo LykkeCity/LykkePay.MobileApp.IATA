@@ -8,6 +8,7 @@
 
 #import "LWMyLykkeBuyPresenter.h"
 #import "UIViewController+Navigation.h"
+#import "UIViewController+Loading.h"
 #import "LWMyLykkeBuyAssetPresenter.h"
 #import "LWPacketAllAssetPairsRates.h"
 #import "LWAssetPairRateModel.h"
@@ -17,6 +18,9 @@
 #import "LWMyLykkeBuyAssetPresenter.h"
 
 @interface LWMyLykkeBuyPresenter ()
+{
+    NSTimer *timer;
+}
 
 @property (weak, nonatomic) IBOutlet UILabel *creditCardPriceLabel;
 @property (weak, nonatomic) IBOutlet UILabel *bitcoinPriceLabel;
@@ -40,7 +44,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    [self adjustThinLines];
+
 //    _bitcoinPriceLabel.text=@"฿ 0";
     _bitcoinPriceLabel.hidden=YES;
     _creditCardPriceLabel.hidden=YES;
@@ -71,13 +76,25 @@
     [super viewDidAppear:animated];
     self.title=@"BUY LYKKE";
     
+    [self reloadRates];
+    timer=[NSTimer timerWithTimeInterval:5 target:self selector:@selector(reloadRates) userInfo:nil repeats:YES];
+    [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
+
     
+}
+
+-(void) reloadRates
+{
     [[LWAuthManager instance] requestAllAssetPairsRates:@"BTCLKK"];
     [[LWAuthManager instance] requestAllAssetPairsRates:@"LKKUSD"];
     [[LWAuthManager instance] requestAllAssetPairsRates:@"LKKCHF"];
-//    [[LWAuthManager instance] requestAllAssetPairsRates:@"ETHLKK"];
 
-    
+}
+
+-(void) viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [timer invalidate];
 }
 
 -(void) viewWillAppear:(BOOL)animated
@@ -145,21 +162,21 @@
     if([packet.rate.identity isEqualToString:@"BTCLKK"])
     {
         NSString *string=[LWUtils formatFairVolume:1.0/packet.rate.ask.doubleValue accuracy:accuracy roundToHigher:NO];
-        [string stringByReplacingOccurrencesOfString:@" " withString:@","];
+        string=[string stringByReplacingOccurrencesOfString:@" " withString:@","];
         _bitcoinPriceLabel.text=[@"฿ " stringByAppendingString:string];
         _bitcoinPriceLabel.hidden=NO;
     }
     if([packet.rate.identity isEqualToString:@"LKKUSD"])
     {
         NSString *string=[LWUtils formatFairVolume:packet.rate.ask.doubleValue accuracy:accuracy roundToHigher:NO];
-        [string stringByReplacingOccurrencesOfString:@" " withString:@","];
+        string=[string stringByReplacingOccurrencesOfString:@" " withString:@","];
         _creditCardPriceLabel.text=[@"$ " stringByAppendingString:string];
         _creditCardPriceLabel.hidden=NO;
     }
     if([packet.rate.identity isEqualToString:@"LKKCHF"])
     {
         NSString *string=[LWUtils formatFairVolume:packet.rate.ask.doubleValue accuracy:accuracy roundToHigher:NO];
-        [string stringByReplacingOccurrencesOfString:@" " withString:@","];
+        string=[string stringByReplacingOccurrencesOfString:@" " withString:@","];
         _swiftPriceLabel.text=[@"₣ " stringByAppendingString:string];
         _swiftPriceLabel.hidden=NO;
     }

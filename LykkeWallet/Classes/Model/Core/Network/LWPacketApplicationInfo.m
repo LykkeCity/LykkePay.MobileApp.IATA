@@ -8,6 +8,7 @@
 
 #import "LWPacketApplicationInfo.h"
 #import "NSString+Date.h"
+#import "LWCache.h"
 
 @implementation LWPacketApplicationInfo
 
@@ -32,6 +33,12 @@
 
         [[NSUserDefaults standardUserDefaults] setObject:dateFromString forKey:@"CountryPhoneCodesLastModified"];
     }
+    
+    [LWCache instance].informationBrochureUrl=result[@"InformationBrochureLink"];
+    [LWCache instance].termsOfUseUrl=result[@"TermsOfUseLink"];
+    [LWCache instance].refundInfoUrl=result[@"RefundInfoLink"];
+    
+    [LWCache instance].showMyLykkeTab=[result[@"MyLykke"] boolValue];
     
 }
 

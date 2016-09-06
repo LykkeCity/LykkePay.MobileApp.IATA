@@ -21,6 +21,8 @@
     NSMutableArray *arr=[[NSMutableArray alloc] init];
     for(NSDictionary *d in result)
     {
+//        if([(NSArray *)result indexOfObject:d]==0)
+//            continue;
         LWNewsElementModel *m=[[LWNewsElementModel alloc] initWithDictionary:d];
         [arr addObject:m];
     }

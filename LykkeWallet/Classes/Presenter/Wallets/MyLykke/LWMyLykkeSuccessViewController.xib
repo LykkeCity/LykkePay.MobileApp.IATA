@@ -16,6 +16,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LWMyLykkeSuccessViewController">
             <connections>
+                <outlet property="amountLabel" destination="LBE-Ij-f1s" id="ivm-of-pmc"/>
                 <outlet property="button" destination="eRr-q3-Uak" id="H80-yR-d6R"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -51,7 +52,7 @@
                     <color key="textColor" red="0.56470588239999997" green="0.58431372550000005" blue="0.61176470589999998" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eRr-q3-Uak" customClass="LWCommonButton">
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eRr-q3-Uak" customClass="LWCommonButton">
                     <rect key="frame" x="133" y="505" width="54" height="34"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="45" id="8lv-o9-zdE"/>

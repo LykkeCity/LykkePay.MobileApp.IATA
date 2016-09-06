@@ -13,6 +13,21 @@
 @interface LWMyLykkeNewsCommonTableViewCell : UITableViewCell
 
 @property (strong, nonatomic) LWNewsElementModel *element;
+@property (strong, nonatomic) LWNewsElementModel *element2;
 
+@property (strong, nonatomic) LWNewsElementModel *element3;
+
+-(void) hideEmpty;
+
+@property id delegate;
+
+
+@end
+
+
+@protocol  LWNewsTableViewCellDelegate
+
+
+-(void) newsCellPressedElement:(LWNewsElementModel *) element;
 
 @end

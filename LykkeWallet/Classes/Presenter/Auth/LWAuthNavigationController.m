@@ -32,6 +32,8 @@
 #import "LWRegisterHintPresenter.h"
 #import "LWGenerateKeyPresenter.h"
 
+#import "LWCache.h"
+
 #import "LWPrivateKeyManager.h"
 
 
@@ -295,7 +297,11 @@
     nWallets.tabBarItem = [self createTabBarItemWithTitle:@"tab.wallets"
                                                 withImage:@"WalletsTab"];
 
-    tabBarController.viewControllers = @[nWallets, pTrading, pHistory, myLykke, pSettings];
+    NSMutableArray *array=[[NSMutableArray alloc] initWithArray:@[nWallets, pTrading, pHistory, pSettings]];
+    if([LWCache instance].showMyLykkeTab)
+        [array insertObject:myLykke atIndex:3];
+    
+    tabBarController.viewControllers =array;
     
 //    tabBarController.viewControllers = @[pWallets, pTrading, pHistory, pSettings];
     

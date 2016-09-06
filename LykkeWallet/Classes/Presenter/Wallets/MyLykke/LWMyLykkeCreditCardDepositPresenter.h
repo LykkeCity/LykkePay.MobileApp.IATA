@@ -11,5 +11,8 @@
 @interface LWMyLykkeCreditCardDepositPresenter : LWAuthComplexPresenter
 
 @property double amount;
+@property (strong, nonatomic) NSString *lkkAmountString;
+
+-(void) backButtonPressed;
 
 @end

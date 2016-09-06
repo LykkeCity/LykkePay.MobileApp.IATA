@@ -91,6 +91,8 @@
     
 //    [[LWAuthManager instance] requestLykkeNews];//Testing
     
+    [self adjustThinLines];
+    
     _equityView.clipsToBounds=YES;
     _equityView.layer.cornerRadius=_equityView.bounds.size.height/2;
     _equityView2.clipsToBounds=YES;
@@ -229,6 +231,7 @@
 {
     [super viewWillDisappear:animated];
     [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
+    [timer invalidate];
 }
 
 
@@ -322,7 +325,7 @@
 
 -(void) dealloc
 {
-    [timer invalidate];
+   
 }
 
 -(NSString *) nibName

@@ -22,6 +22,7 @@ SINGLETON_INIT {
         _pushNotificationsStatus=PushNotificationsStatusUnknown;
         _refreshTimer = [NSNumber numberWithInteger:15];
         _debugMode    = NO;
+        self.showMyLykkeTab=NO;
     }
     return self;
 }

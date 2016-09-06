@@ -53,6 +53,8 @@
     [self.equityView addGestureRecognizer:gesture];
     self.tableView.bounces=NO;
     self.tableView.editing=NO;
+    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad)
+        self.tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
 }
 
 -(void) viewWillAppear:(BOOL)animated
@@ -65,6 +67,8 @@
 -(void) viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    self.title=@"MY LYKKE";
+
     if(!newsArray)
         [self setLoading:YES];
     [[LWAuthManager instance] requestLykkeNews];
@@ -77,13 +81,14 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    if(section==0)
+    if(section==0 && [UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
         return CGFLOAT_MIN;
     return 10;
 }
 
 -(CGFloat) tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
+    
     return CGFLOAT_MIN;
 }
 
@@ -96,7 +101,18 @@
 
 -(NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return newsArray.count;
+    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
+        return newsArray.count;
+    else
+    {
+        if(newsArray.count==0)
+            return 0;
+        int count=(int)(newsArray.count-2)/3;
+        if((newsArray.count-2)%3==0)
+            return count+1;
+        else
+            return count+2;
+    }
 }
 
 -(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -120,6 +136,10 @@
 
         LWNewsFirstTableViewCell *_cell=[topLevelObjects objectAtIndex:0];
         _cell.element=element;
+        if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad)
+            _cell.element2=newsArray[1];
+        _cell.delegate=self;
+
         cell=_cell;
     }
     else
@@ -127,22 +147,35 @@
         
         NSArray *topLevelObjects=[[NSBundle mainBundle] loadNibNamed:@"LWMyLykkeNewsCommonTableViewCell" owner:self options:nil];
         LWMyLykkeNewsCommonTableViewCell *_cell = [topLevelObjects objectAtIndex:0];
-        _cell.element=newsArray[indexPath.section];
+        
+        if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
+            _cell.element=newsArray[indexPath.section];
+        else
+        {
+            int index=(int)(indexPath.section-1)*3+2;
+            _cell.element=newsArray[index];
+            if(newsArray.count>index+1)
+                _cell.element2=newsArray[index+1];
+            if(newsArray.count>index+2)
+                _cell.element3=newsArray[index+2];
+            [_cell hideEmpty];
+        }
+        _cell.delegate=self;
         cell=_cell;
     }
     
-    UITapGestureRecognizer *gesture=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cellPressed:)];
-    [cell addGestureRecognizer:gesture];
-    cell.tag=indexPath.section;
+    cell.selectionStyle=UITableViewCellSelectionStyleNone;
+    
     
     return cell;
 }
 
--(void) cellPressed:(UITapGestureRecognizer *) gesture
+-(void) newsCellPressedElement:(LWNewsElementModel *) element
 {
     LWNewsDetailPresenter *presenter=[[LWNewsDetailPresenter alloc] init];
-    presenter.url=[newsArray[gesture.view.tag] detailsURL];
+    presenter.url=[element detailsURL];
     [self.navigationController pushViewController:presenter animated:YES];
+ 
 }
 
 -(void) authManager:(LWAuthManager *)manager didGetNews:(LWPacketGetNews *)packet

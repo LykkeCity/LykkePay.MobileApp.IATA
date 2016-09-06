@@ -111,6 +111,7 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="author" destination="Vxx-em-PqW" id="jSc-XT-08H"/>
+                <outlet property="firstContainer" destination="H2p-sc-9uM" id="HFx-Wr-hkf"/>
                 <outlet property="imageViewHeight" destination="nkX-Ct-Gez" id="Ak4-O5-bfj"/>
                 <outlet property="newsImageView" destination="VUP-8z-JkG" id="RP0-bN-xYJ"/>
                 <outlet property="text" destination="9zO-3i-0be" id="Zwt-M3-BRj"/>

@@ -127,10 +127,10 @@
 //    });
 
     
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(30 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        LWMyLykkeSuccessViewController *presenter=[[LWMyLykkeSuccessViewController alloc] init];//Testing
-        [presenter showInWindow:[UIApplication sharedApplication].keyWindow];
-    });
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(30 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//        LWMyLykkeSuccessViewController *presenter=[[LWMyLykkeSuccessViewController alloc] init];//Testing
+//        [presenter showInWindow:[UIApplication sharedApplication].keyWindow];
+//    });
 
     //LWMyLykkeSuccessViewController
     
@@ -154,6 +154,7 @@
 //    
     
     [[LWAuthManager instance] requestAllAssetPairs];
+    [[LWAuthManager instance] requestAPIVersion];
     
     return YES;
 }

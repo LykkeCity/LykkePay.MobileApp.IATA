@@ -30,7 +30,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    [self adjustThinLines];
+
     [self setupQRCode];
     self.emailButton.type=BUTTON_TYPE_COLORED;
     self.clipboardButton.type=BUTTON_TYPE_CLEAR;
@@ -67,7 +68,7 @@
     if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
         self.title=@"BUY LYKKE";
     else
-        self.navigationController.title=@"PURCHASE LKK WITH BITCOIN";
+        self.navigationController.title=@"PURCHASE LKK WITH BTC";
 }
 
 - (IBAction)copyClicked:(id)sender {

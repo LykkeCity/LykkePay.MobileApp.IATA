@@ -89,7 +89,7 @@
                                 <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9nE-HZ-JxZ">
                                     <rect key="frame" x="172.5" y="96" width="255" height="20"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R8T-1M-vqi">
+                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R8T-1M-vqi">
                                             <rect key="frame" x="103" y="-5" width="152" height="30"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="30" id="zkO-Py-z1X"/>
@@ -98,8 +98,11 @@
                                             <state key="normal" title="Placement Memorandum">
                                                 <color key="titleColor" red="0.6705882352941176" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             </state>
+                                            <connections>
+                                                <action selector="placementMemorandumPressed:" destination="-2" eventType="touchUpInside" id="hyr-GP-bey"/>
+                                            </connections>
                                         </button>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6OP-CP-ghE">
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6OP-CP-ghE">
                                             <rect key="frame" x="0.0" y="-5" width="81" height="30"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="30" id="Ypc-zb-nnv"/>
@@ -316,7 +319,7 @@
                                 <constraint firstAttribute="height" constant="45" id="ybY-v1-ooe"/>
                             </constraints>
                         </view>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sQv-JY-H4l" customClass="LWCommonButton">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sQv-JY-H4l" customClass="LWCommonButton">
                             <rect key="frame" x="30" y="665" width="540" height="45"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="45" id="wTV-ld-0Vf"/>

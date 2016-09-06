@@ -314,9 +314,10 @@
 
 -(void) validateCreateUpdateButton
 {
+    NSString *walletName=[self.walletNameTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]].lowercaseString;
     if(self.editMode)
     {
-        if([self.walletNameTextField.text isEqualToString:_wallet.name])
+        if([self.walletNameTextField.text isEqualToString:_wallet.name.lowercaseString])
             [LWValidator setButton:self.createUpdateButton enabled:NO];
         else if(self.walletNameTextField.text.length && [self.walletNameTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]].length)
         {
@@ -324,7 +325,7 @@
         }
         for(LWPrivateWalletModel *m in [LWPrivateWalletsManager shared].wallets)
         {
-            if([[m.name lowercaseString] isEqualToString:self.walletNameTextField.text.lowercaseString])
+            if([[m.name lowercaseString] isEqualToString:walletName])
             {
                 [LWValidator setButton:self.createUpdateButton enabled:NO];
                 break;
@@ -342,7 +343,7 @@
         
         for(LWPrivateWalletModel *m in [LWPrivateWalletsManager shared].wallets)
         {
-            if([[m.name lowercaseString] isEqualToString:self.walletNameTextField.text.lowercaseString])
+            if([[m.name lowercaseString] isEqualToString:walletName])
             {
                 [LWValidator setButton:self.createUpdateButton enabled:NO];
                 break;

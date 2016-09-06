@@ -14,5 +14,17 @@
 
 @property (strong, nonatomic) LWNewsElementModel *element;
 
+@property (strong, nonatomic) LWNewsElementModel *element2;
+
+@property id delegate;
+
+
+@end
+
+
+@protocol  LWNewsTableViewCellDelegate
+
+
+-(void) newsCellPressedElement:(LWNewsElementModel *) element;
 
 @end

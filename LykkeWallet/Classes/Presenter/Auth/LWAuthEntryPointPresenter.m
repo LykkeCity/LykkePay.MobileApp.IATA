@@ -26,6 +26,7 @@
 #import "LWProgressView.h"
 #import "LWKeychainManager.h"
 #import "LWRefundTransactionPresenter.h"
+#import "AppDelegate.h"
 
 #import "LWTestBackupWordsPresenter.h"
 
@@ -148,7 +149,6 @@ typedef NS_ENUM(NSInteger, LWAuthEntryPointNextStep) {
     self.observeKeyboardEvents = YES;
     // check button state
     [LWValidator setButton:self.proceedButton enabled:[self canProceed]];
-    
     
     
     if([[NSUserDefaults standardUserDefaults] boolForKey:@"IntroductionShown"]==NO)
@@ -425,7 +425,8 @@ typedef NS_ENUM(NSInteger, LWAuthEntryPointNextStep) {
         [intro.view removeFromSuperview];
         [self.view removeFromSuperview];
         
-        window.rootViewController=self.navigationController;
+        AppDelegate *tmptmp=[[UIApplication sharedApplication] delegate];
+        window.rootViewController=tmptmp.mainController;
 
         intro.delegate=nil;
         

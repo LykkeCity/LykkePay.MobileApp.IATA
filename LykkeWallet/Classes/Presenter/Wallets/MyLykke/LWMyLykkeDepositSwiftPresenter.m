@@ -18,6 +18,7 @@
 #import "LWUtils.h"
 #import "LWNumbersKeyboardView.h"
 #import "LWCache.h"
+#import "LWWebViewDocumentPresenter.h"
 
 
 @interface LWMyLykkeDepositSwiftPresenter () <UITextFieldDelegate, LWMathKeyboardViewDelegate, LWNumbersKeyboardViewDelegate>
@@ -47,6 +48,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self adjustThinLines];
+
     NSArray *arr=[[LWKeychainManager instance].login componentsSeparatedByString:@"@"];
     self.purposeLabel.text=[NSString stringWithFormat:@"Lykke shares (coins) purchase CHF [%@(at)%@]", arr[0], arr[1]];
     self.emailButton.type=BUTTON_TYPE_COLORED;
@@ -74,6 +77,7 @@
         [self.navigationController setNavigationBarHidden:YES];
 
     [self orientationChanged];
+    [self setBackButton];
 }
 
 -(void) viewDidAppear:(BOOL)animated
@@ -164,7 +168,9 @@
 {
     UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
     [pasteboard setString:lineValues[sender.tag]];
-    [self showCopied];
+//    [self showCopied];
+    
+    [self.view makeToast:@"COPIED!"];
 
 }
 
@@ -255,6 +261,23 @@
 -(void) dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+-(IBAction)termsOfUsePressed:(id)sender
+{
+    LWWebViewDocumentPresenter *presenter=[[LWWebViewDocumentPresenter alloc] init];
+    presenter.urlString=[LWCache instance].termsOfUseUrl;
+    presenter.documentTitle=@"TERMS OF USE";
+    [self.navigationController pushViewController:presenter animated:YES];
+}
+
+-(IBAction)placementMemorandumPressed:(id)sender
+{
+    LWWebViewDocumentPresenter *presenter=[[LWWebViewDocumentPresenter alloc] init];
+    presenter.urlString=[LWCache instance].informationBrochureUrl;
+    presenter.documentTitle=@"INFORMATION BROCHURE";
+    [self.navigationController pushViewController:presenter animated:YES];
+
 }
 
 

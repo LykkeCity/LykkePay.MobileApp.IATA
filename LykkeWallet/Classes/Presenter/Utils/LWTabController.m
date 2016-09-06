@@ -44,6 +44,7 @@
     [[LWAuthManager instance] requestGetRefundAddress];
     [[LWAuthManager instance] requestAPIVersion];
     [[LWAuthManager instance] requestPrevCardPayment];
+    [[LWAuthManager instance] requestAllAssetPairs];
     
     
     [self.navigationController setNavigationBarHidden:NO animated:NO];

@@ -119,22 +119,28 @@
                                 <constraint firstAttribute="height" constant="1" id="fD9-Gx-XoX"/>
                             </constraints>
                         </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tln-u7-x3a">
+                        <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tln-u7-x3a">
                             <rect key="frame" x="60" y="119" width="255" height="25"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="31Y-wV-p0m">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="31Y-wV-p0m">
                                     <rect key="frame" x="0.0" y="-3" width="81" height="30"/>
                                     <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="14"/>
                                     <state key="normal" title="Terms of Use">
                                         <color key="titleColor" red="0.6705882352941176" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     </state>
+                                    <connections>
+                                        <action selector="termsOfUsePressed:" destination="-2" eventType="touchUpInside" id="4kq-fw-FDo"/>
+                                    </connections>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bsH-XT-PLj">
+                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bsH-XT-PLj">
                                     <rect key="frame" x="101" y="-2" width="154" height="30"/>
                                     <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="14"/>
-                                    <state key="normal" title="Placement Memorandum">
+                                    <state key="normal" title="Information Brochure">
                                         <color key="titleColor" red="0.6705882353" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     </state>
+                                    <connections>
+                                        <action selector="placementMemorandumPressed:" destination="-2" eventType="touchUpInside" id="r16-nS-q12"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -485,7 +491,7 @@ purchase CHF
                         <constraint firstItem="L5o-P9-jWH" firstAttribute="leading" secondItem="kdl-yb-brP" secondAttribute="leading" id="qqm-3O-eWl"/>
                     </constraints>
                 </scrollView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o5e-01-gVJ" customClass="LWCommonButton">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o5e-01-gVJ" customClass="LWCommonButton">
                     <rect key="frame" x="30" y="592" width="315" height="45"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="315" id="IKH-qm-dSU"/>

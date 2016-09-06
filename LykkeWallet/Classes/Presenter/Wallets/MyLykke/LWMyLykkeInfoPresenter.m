@@ -31,6 +31,8 @@
     [super viewDidLoad];
     self.buyButton.type=BUTTON_TYPE_GREEN;
     self.buyButton.enabled=YES;
+    [self adjustThinLines];
+
     
     [self registerCellWithIdentifier:@"LWMyLykkeInfoTableViewCellIdentifier"
                                 name:@"LWMyLykkeInfoTableViewCell"];

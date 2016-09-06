@@ -168,5 +168,30 @@
     
 }
 
+-(void) adjustThinLines
+{
+    [self checkLinesInView:self.view];
+}
+
+-(void) checkLinesInView:(UIView *) view
+{
+    for(UIView *v in view.subviews)
+    {
+        if([v isKindOfClass:[UIView class]])
+        {
+            for(NSLayoutConstraint *c in v.constraints)
+            {
+                if(c.firstAttribute==NSLayoutAttributeWidth && c.constant==1)
+                    c.constant=0.5;
+                if(c.firstAttribute==NSLayoutAttributeHeight && c.constant==1)
+                    c.constant=0.5;
+            }
+            
+        }
+        [self checkLinesInView:v];
+            
+    }
+}
+
 
 @end

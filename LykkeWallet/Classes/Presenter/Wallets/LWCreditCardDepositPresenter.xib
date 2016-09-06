@@ -354,7 +354,7 @@ wallet please fill in the form</string>
                                 <constraint firstAttribute="height" constant="45" id="ybY-v1-ooe"/>
                             </constraints>
                         </view>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sQv-JY-H4l">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sQv-JY-H4l" customClass="LWCommonButton">
                             <rect key="frame" x="30" y="710" width="540" height="45"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="45" id="wTV-ld-0Vf"/>

@@ -879,7 +879,7 @@
                                         <constraint firstItem="EOC-jE-Eaq" firstAttribute="leading" secondItem="HFt-lN-cUw" secondAttribute="leading" id="ycY-Ld-4GX"/>
                                     </constraints>
                                 </view>
-                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fb6-Xr-ylz" customClass="LWCommonButton">
+                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fb6-Xr-ylz" customClass="LWCommonButton">
                                     <rect key="frame" x="0.0" y="470" width="315" height="45"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="45" id="TAw-EU-IoG"/>

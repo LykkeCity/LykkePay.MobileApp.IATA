@@ -30,7 +30,14 @@ SINGLETON_DECLARE
 
 @property PushNotificationsStatus pushNotificationsStatus;
 
+@property BOOL showMyLykkeTab;
+
 @property (copy, nonatomic) NSString *btcConversionWalletAddress;
+
+@property (strong, nonatomic) NSString *informationBrochureUrl;
+
+@property (strong, nonatomic) NSString *termsOfUseUrl;
+@property (strong, nonatomic) NSString *refundInfoUrl;
 
 @property (copy, nonatomic) NSNumber *refreshTimer;
 @property (copy, nonatomic) NSString *baseAssetId;

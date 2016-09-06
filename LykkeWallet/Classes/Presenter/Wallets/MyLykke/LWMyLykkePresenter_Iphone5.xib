@@ -361,7 +361,7 @@
                         <constraint firstItem="54g-vZ-HCC" firstAttribute="top" secondItem="94o-8i-HEf" secondAttribute="top" id="yxT-4p-f5T"/>
                     </constraints>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="McK-31-W3x" customClass="LWCommonButton">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="McK-31-W3x" customClass="LWCommonButton">
                     <rect key="frame" x="52.5" y="608" width="270" height="45"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="45" id="EPE-op-7FY"/>

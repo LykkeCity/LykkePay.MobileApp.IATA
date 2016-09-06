@@ -11,6 +11,7 @@
 #import "LWMyLykkeCreditCardDepositPresenter.h"
 #import "LWMyLykkeBuyAssetPresenter.h"
 #import "LWMyLykkeIPadNavigationController.h"
+#import "UIViewController+Loading.h"
 
 @interface LWMyLykkeIpadController () <LWMyLykkeBuyPresenterDelegate>
 {
@@ -36,6 +37,7 @@
     [super viewDidLoad];
     [self.backButton addTarget:self action:@selector(backButtonPressed) forControlEvents:UIControlEventTouchUpInside];
     
+    [self adjustThinLines];
     buyPresenter=[LWMyLykkeBuyPresenter new];
     buyPresenter.delegate=self;
     [_buyContainer insertSubview:buyPresenter.view atIndex:0];

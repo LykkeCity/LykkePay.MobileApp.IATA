@@ -51,10 +51,16 @@
     }
     if(completions[urlString])
     {
-        completions[urlString]=completion;
+        
+        [completions[urlString] addObject:completion];
         return;
     }
-    completions[urlString]=completion;
+    else
+    {
+        completions[urlString]=[[NSMutableArray alloc] init];
+        [completions[urlString] addObject:completion];
+
+    }
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
         NSURL *url=[NSURL URLWithString:urlString];
         if(!url)
@@ -68,8 +74,10 @@
             images[urlString]=image;
             dispatch_async(dispatch_get_main_queue(), ^{
                 
-                void(^completionn)(UIImage *)=completions[urlString];
-                completionn(image);
+                for(void(^completionn)(UIImage *) in completions[urlString])
+                {
+                    completionn(image);
+                }
                 [completions removeObjectForKey:urlString];
             });
         }

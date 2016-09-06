@@ -99,10 +99,11 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="author" destination="Di3-Jt-t03" id="2KO-iO-LTz"/>
+                <outlet property="firstContainer" destination="H2p-sc-9uM" id="OTC-jJ-1cL"/>
                 <outlet property="newsImageView" destination="2g8-2Q-X1Y" id="rmc-hp-75e"/>
                 <outlet property="title" destination="6oY-bE-NQV" id="iUa-Sc-mWQ"/>
             </connections>
-            <point key="canvasLocation" x="430.5" y="384.5"/>
+            <point key="canvasLocation" x="285.5" y="4.5"/>
         </tableViewCell>
     </objects>
 </document>

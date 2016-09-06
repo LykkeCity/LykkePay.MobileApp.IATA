@@ -137,7 +137,9 @@
         
     }
     
-    
+    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad)
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(orientationChanged) name:UIApplicationDidChangeStatusBarOrientationNotification object:nil];
+
 
 }
 
@@ -340,8 +342,23 @@
     
 }
 
+-(void) orientationChanged
+{
+
+    cursor.hidden=YES;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        CGPoint point=CGPointMake(_textField.bounds.size.width+3, _textField.bounds.size.height/2);
+        point=[_textField.superview convertPoint:point fromView:_textField];
+        cursor.center=point;
+        cursor.hidden=NO;
+    });
+}
 
 
+-(void) dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 
 
 

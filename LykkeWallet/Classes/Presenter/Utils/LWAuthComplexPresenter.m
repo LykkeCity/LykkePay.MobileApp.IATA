@@ -54,7 +54,7 @@
 //    self.operationButton.translatesAutoresizingMaskIntoConstraints = YES;
     _keyboardView.isVisible=YES;
     [UIView animateWithDuration:0.5 animations:^{
-        _keyboardView.center=CGPointMake(_keyboardView.bounds.size.width/2, _keyboardView.center.y-_keyboardView.bounds.size.height);
+        _keyboardView.center=CGPointMake(_keyboardView.bounds.size.width/2, self.view.bounds.size.height-_keyboardView.bounds.size.height/2);
 //        self.operationButton.center=CGPointMake(self.operationButton.center.x, self.operationButton.center.y-_keyboardView.bounds.size.height);
     }];
 }
@@ -72,6 +72,10 @@
     {
         _keyboardView.frame=CGRectMake(0, self.view.bounds.size.height, self.view.bounds.size.width, self.view.bounds.size.width*0.6);
     }
+    
+//    _keyboardView.frame=CGRectMake(0, self.view.bounds.size.height, self.view.bounds.size.width, self.view.bounds.size.width*0.6);
+
+    
     CGRect rrr=_keyboardView.frame;
     CGRect eee=self.view.frame;
 //    _keyboardView.center=CGPointMake(_keyboardView.bounds.size.width/2, _keyboardView.center.y-_keyboardView.bounds.size.height);

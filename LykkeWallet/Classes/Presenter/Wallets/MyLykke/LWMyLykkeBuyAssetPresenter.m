@@ -8,6 +8,8 @@
 
 #import "LWMyLykkeBuyAssetPresenter.h"
 #import "UIViewController+Navigation.h"
+#import "UIViewController+Loading.h"
+
 #import "LWNumbersKeyboardView.h"
 #import "LWCommonButton.h"
 #import "LWCache.h"
@@ -51,6 +53,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self adjustThinLines];
+
     
     ASSET_PREFIX=[self.assetId stringByAppendingString:@" "];
     
@@ -305,9 +309,15 @@
     if([self.assetId isEqualToString:@"BTC"])
         presenter=[LWMyLykkeDepositBTCPresenter new];
     else if([self.assetId isEqualToString:@"CHF"])
+    {
         presenter=[LWMyLykkeDepositSwiftPresenter new];
+        
+    }
     else if([self.assetId isEqualToString:@"USD"])
+    {
         presenter=[LWMyLykkeCreditCardDepositPresenter new];
+        [(LWMyLykkeCreditCardDepositPresenter *)presenter setLkkAmountString:[self.lkkTextField.text stringByReplacingOccurrencesOfString:@"LKK" withString:@""]];
+    }
     
     presenter.amount=[self removePrefix:_btcTextField.text].doubleValue;
     

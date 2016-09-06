@@ -12,5 +12,6 @@
 
 
 -(void) showInWindow:(UIWindow *) window;
+@property (strong, nonatomic) NSString *amount;
 
 @end

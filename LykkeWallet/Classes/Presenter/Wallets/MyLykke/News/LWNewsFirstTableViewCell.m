@@ -16,11 +16,21 @@
     LWNewsElementModel *newsElement;
 }
 
+@property (weak, nonatomic) IBOutlet UIView *firstContainer;
 @property (weak, nonatomic) IBOutlet UIImageView *newsImageView;
 @property (weak, nonatomic) IBOutlet UILabel *title;
 @property (weak, nonatomic) IBOutlet UILabel *author;
 @property (weak, nonatomic) IBOutlet UILabel *text;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *imageViewHeight;
+
+@property (weak, nonatomic) IBOutlet UIView *secondContainer;
+@property (weak, nonatomic) IBOutlet UIImageView *newsImageView2;
+@property (weak, nonatomic) IBOutlet UILabel *title2;
+@property (weak, nonatomic) IBOutlet UILabel *author2;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *equalWidthConstraint;
+
+
 
 @end
 
@@ -28,7 +38,10 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-//    self.title.textColor=[UIColor whiteColor];
+    UITapGestureRecognizer *gesture=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(containerTapped:)];
+    [_firstContainer addGestureRecognizer:gesture];
+    gesture=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(containerTapped:)];
+    [_secondContainer addGestureRecognizer:gesture];
     [self update];
 }
 
@@ -52,20 +65,24 @@
         }];
     else
     {
+        if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
+        {
         color1=[UIColor colorWithRed:63.0/255 green:77.0/255 blue:96.0/255 alpha:1];
         color2=[UIColor colorWithRed:140.0/255 green:148.0/255 blue:160.0/255 alpha:1];
-//        [self.newsImageView removeConstraint:self.imageViewHeight];
-//        [self.newsImageView removeFromSuperview];
-//        NSLayoutConstraint *constraint=[NSLayoutConstraint constraintWithItem:self.title attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.title.superview attribute:NSLayoutAttributeTop multiplier:1 constant:25];
-//        [self.title.superview addConstraint:constraint];
-        
-        
-//        NSArray *ccc=self.newsImageView.superview.constraints;
-//        for(NSLayoutConstraint *c in ccc)
-//            if(c.firstItem==_newsImageView || c.secondItem==_newsImageView)
-//            {
-//                [_newsImageView.superview removeConstraint:c];
-//            }
+        }
+        else if(self.equalWidthConstraint)
+        {
+            self.equalWidthConstraint.active=NO;
+            self.equalWidthConstraint=nil;
+            NSLayoutConstraint *constraint=[NSLayoutConstraint constraintWithItem:self.newsImageView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:0];
+            [self.newsImageView addConstraint:constraint];
+        }
+    }
+    
+    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad)
+    {
+        color1=[UIColor colorWithRed:63.0/255 green:77.0/255 blue:96.0/255 alpha:1];
+        color2=[UIColor colorWithRed:140.0/255 green:148.0/255 blue:160.0/255 alpha:1];
     }
     
     
@@ -92,13 +109,43 @@
     _author.text=[NSString stringWithFormat:@"%@ • %@", newsElement.author, [[NSDate date] timePassedFromDate:newsElement.date]];
 
     _text.text=newsElement.text;
-    [self setNeedsLayout];
+    
+    
+    if(_element2)
+    {
+        if(_element2.imageURL)
+            [[LWImageDownloader shared] downloadImageFromURLString:_element2.imageURL.absoluteString withCompletion:^(UIImage *image){
+                self.newsImageView2.image=image;
+            }];
+        self.title2.text=_element2.title;
+        _author2.text=[NSString stringWithFormat:@"%@ • %@", _element2.author, [[NSDate date] timePassedFromDate:_element2.date]];
 
+    }
+    
+    
+    [self setNeedsLayout];
+    
+    
+
+}
+
+-(void) setElement2:(LWNewsElementModel *)element2
+{
+    _element2=element2;
+    [self update];
 }
 
 -(LWNewsElementModel *) element
 {
     return newsElement;
+}
+
+-(void) containerTapped:(UITapGestureRecognizer *) gesture
+{
+    if(gesture.view==_firstContainer)
+        [self.delegate newsCellPressedElement:newsElement];
+    else
+        [self.delegate newsCellPressedElement:_element2];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

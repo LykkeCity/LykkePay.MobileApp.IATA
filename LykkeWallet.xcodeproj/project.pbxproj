@@ -92,10 +92,10 @@
 		A12DB5661D75DA0A00319EA7 /* LWMyLykkeNewsListPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A12DB5641D75DA0A00319EA7 /* LWMyLykkeNewsListPresenter.m */; };
 		A12DB5671D75DA0A00319EA7 /* LWMyLykkeNewsListPresenter.xib in Resources */ = {isa = PBXBuildFile; fileRef = A12DB5651D75DA0A00319EA7 /* LWMyLykkeNewsListPresenter.xib */; };
 		A12DB56B1D75DB0400319EA7 /* LWNewsFirstTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A12DB5691D75DB0400319EA7 /* LWNewsFirstTableViewCell.m */; };
-		A12DB56C1D75DB0400319EA7 /* LWNewsFirstTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A12DB56A1D75DB0400319EA7 /* LWNewsFirstTableViewCell.xib */; };
+		A12DB56C1D75DB0400319EA7 /* LWNewsFirstTableViewCell~iphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = A12DB56A1D75DB0400319EA7 /* LWNewsFirstTableViewCell~iphone.xib */; };
 		A12DB56F1D75E75F00319EA7 /* LWNewsElementModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A12DB56E1D75E75F00319EA7 /* LWNewsElementModel.m */; };
 		A12DB5731D767FD500319EA7 /* LWMyLykkeNewsCommonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A12DB5711D767FD500319EA7 /* LWMyLykkeNewsCommonTableViewCell.m */; };
-		A12DB5741D767FD500319EA7 /* LWMyLykkeNewsCommonTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A12DB5721D767FD500319EA7 /* LWMyLykkeNewsCommonTableViewCell.xib */; };
+		A12DB5741D767FD500319EA7 /* LWMyLykkeNewsCommonTableViewCell~iphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = A12DB5721D767FD500319EA7 /* LWMyLykkeNewsCommonTableViewCell~iphone.xib */; };
 		A12DB5761D76BABE00319EA7 /* LWNewsFirstNoImageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A12DB5751D76BABE00319EA7 /* LWNewsFirstNoImageTableViewCell.xib */; };
 		A12DB57A1D76D4F200319EA7 /* LWNewsDetailPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A12DB5781D76D4F200319EA7 /* LWNewsDetailPresenter.m */; };
 		A12DB57B1D76D4F200319EA7 /* LWNewsDetailPresenter.xib in Resources */ = {isa = PBXBuildFile; fileRef = A12DB5791D76D4F200319EA7 /* LWNewsDetailPresenter.xib */; };
@@ -116,6 +116,10 @@
 		A14515751D7C5C8F00B4BED9 /* LWMyLykkeIPadNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = A14515741D7C5C8F00B4BED9 /* LWMyLykkeIPadNavigationController.m */; };
 		A14515791D7C77C600B4BED9 /* LWMyLykkeSuccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A14515771D7C77C600B4BED9 /* LWMyLykkeSuccessViewController.m */; };
 		A145157A1D7C77C600B4BED9 /* LWMyLykkeSuccessViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A14515781D7C77C600B4BED9 /* LWMyLykkeSuccessViewController.xib */; };
+		A145157C1D7D1C9200B4BED9 /* LWNewsFirstTableViewCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A145157B1D7D1C9200B4BED9 /* LWNewsFirstTableViewCell~ipad.xib */; };
+		A145157E1D7D304600B4BED9 /* LWMyLykkeNewsCommonTableViewCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A145157D1D7D304600B4BED9 /* LWMyLykkeNewsCommonTableViewCell~ipad.xib */; };
+		A14515821D7DAC0000B4BED9 /* LWWebViewDocumentPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A14515801D7DAC0000B4BED9 /* LWWebViewDocumentPresenter.m */; };
+		A14515831D7DAC0000B4BED9 /* LWWebViewDocumentPresenter.xib in Resources */ = {isa = PBXBuildFile; fileRef = A14515811D7DAC0000B4BED9 /* LWWebViewDocumentPresenter.xib */; };
 		A14B7D2E1CE3233D00820084 /* ButtonOK_square.png in Resources */ = {isa = PBXBuildFile; fileRef = A14B7D2D1CE3233D00820084 /* ButtonOK_square.png */; };
 		A15B3EAF1D12626B00A6B506 /* LWRefundInformationPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A15B3EAD1D12626B00A6B506 /* LWRefundInformationPresenter.m */; };
 		A15B3EB01D12626B00A6B506 /* LWRefundInformationPresenter.xib in Resources */ = {isa = PBXBuildFile; fileRef = A15B3EAE1D12626B00A6B506 /* LWRefundInformationPresenter.xib */; };
@@ -1807,12 +1811,12 @@
 		A12DB5651D75DA0A00319EA7 /* LWMyLykkeNewsListPresenter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LWMyLykkeNewsListPresenter.xib; sourceTree = "<group>"; };
 		A12DB5681D75DB0400319EA7 /* LWNewsFirstTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWNewsFirstTableViewCell.h; sourceTree = "<group>"; };
 		A12DB5691D75DB0400319EA7 /* LWNewsFirstTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWNewsFirstTableViewCell.m; sourceTree = "<group>"; };
-		A12DB56A1D75DB0400319EA7 /* LWNewsFirstTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LWNewsFirstTableViewCell.xib; sourceTree = "<group>"; };
+		A12DB56A1D75DB0400319EA7 /* LWNewsFirstTableViewCell~iphone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "LWNewsFirstTableViewCell~iphone.xib"; sourceTree = "<group>"; };
 		A12DB56D1D75E75F00319EA7 /* LWNewsElementModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWNewsElementModel.h; sourceTree = "<group>"; };
 		A12DB56E1D75E75F00319EA7 /* LWNewsElementModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWNewsElementModel.m; sourceTree = "<group>"; };
 		A12DB5701D767FD500319EA7 /* LWMyLykkeNewsCommonTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWMyLykkeNewsCommonTableViewCell.h; sourceTree = "<group>"; };
 		A12DB5711D767FD500319EA7 /* LWMyLykkeNewsCommonTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWMyLykkeNewsCommonTableViewCell.m; sourceTree = "<group>"; };
-		A12DB5721D767FD500319EA7 /* LWMyLykkeNewsCommonTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LWMyLykkeNewsCommonTableViewCell.xib; sourceTree = "<group>"; };
+		A12DB5721D767FD500319EA7 /* LWMyLykkeNewsCommonTableViewCell~iphone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "LWMyLykkeNewsCommonTableViewCell~iphone.xib"; sourceTree = "<group>"; };
 		A12DB5751D76BABE00319EA7 /* LWNewsFirstNoImageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LWNewsFirstNoImageTableViewCell.xib; sourceTree = "<group>"; };
 		A12DB5771D76D4F200319EA7 /* LWNewsDetailPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWNewsDetailPresenter.h; sourceTree = "<group>"; };
 		A12DB5781D76D4F200319EA7 /* LWNewsDetailPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWNewsDetailPresenter.m; sourceTree = "<group>"; };
@@ -1840,6 +1844,11 @@
 		A14515761D7C77C600B4BED9 /* LWMyLykkeSuccessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWMyLykkeSuccessViewController.h; sourceTree = "<group>"; };
 		A14515771D7C77C600B4BED9 /* LWMyLykkeSuccessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWMyLykkeSuccessViewController.m; sourceTree = "<group>"; };
 		A14515781D7C77C600B4BED9 /* LWMyLykkeSuccessViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LWMyLykkeSuccessViewController.xib; sourceTree = "<group>"; };
+		A145157B1D7D1C9200B4BED9 /* LWNewsFirstTableViewCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "LWNewsFirstTableViewCell~ipad.xib"; sourceTree = "<group>"; };
+		A145157D1D7D304600B4BED9 /* LWMyLykkeNewsCommonTableViewCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "LWMyLykkeNewsCommonTableViewCell~ipad.xib"; sourceTree = "<group>"; };
+		A145157F1D7DAC0000B4BED9 /* LWWebViewDocumentPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWWebViewDocumentPresenter.h; sourceTree = "<group>"; };
+		A14515801D7DAC0000B4BED9 /* LWWebViewDocumentPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWWebViewDocumentPresenter.m; sourceTree = "<group>"; };
+		A14515811D7DAC0000B4BED9 /* LWWebViewDocumentPresenter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LWWebViewDocumentPresenter.xib; sourceTree = "<group>"; };
 		A14B7D2D1CE3233D00820084 /* ButtonOK_square.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ButtonOK_square.png; sourceTree = "<group>"; };
 		A15B3EAC1D12626B00A6B506 /* LWRefundInformationPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWRefundInformationPresenter.h; sourceTree = "<group>"; };
 		A15B3EAD1D12626B00A6B506 /* LWRefundInformationPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWRefundInformationPresenter.m; sourceTree = "<group>"; };
@@ -3704,11 +3713,13 @@
 				A12DB5651D75DA0A00319EA7 /* LWMyLykkeNewsListPresenter.xib */,
 				A12DB5681D75DB0400319EA7 /* LWNewsFirstTableViewCell.h */,
 				A12DB5691D75DB0400319EA7 /* LWNewsFirstTableViewCell.m */,
-				A12DB56A1D75DB0400319EA7 /* LWNewsFirstTableViewCell.xib */,
+				A12DB56A1D75DB0400319EA7 /* LWNewsFirstTableViewCell~iphone.xib */,
+				A145157B1D7D1C9200B4BED9 /* LWNewsFirstTableViewCell~ipad.xib */,
 				A12DB5751D76BABE00319EA7 /* LWNewsFirstNoImageTableViewCell.xib */,
 				A12DB5701D767FD500319EA7 /* LWMyLykkeNewsCommonTableViewCell.h */,
 				A12DB5711D767FD500319EA7 /* LWMyLykkeNewsCommonTableViewCell.m */,
-				A12DB5721D767FD500319EA7 /* LWMyLykkeNewsCommonTableViewCell.xib */,
+				A12DB5721D767FD500319EA7 /* LWMyLykkeNewsCommonTableViewCell~iphone.xib */,
+				A145157D1D7D304600B4BED9 /* LWMyLykkeNewsCommonTableViewCell~ipad.xib */,
 				A12DB5771D76D4F200319EA7 /* LWNewsDetailPresenter.h */,
 				A12DB5781D76D4F200319EA7 /* LWNewsDetailPresenter.m */,
 				A12DB5791D76D4F200319EA7 /* LWNewsDetailPresenter.xib */,
@@ -5263,6 +5274,9 @@
 				A18D25C21D69FD45005CEF66 /* LWNumbersKeyboardView.m */,
 				A18D25C41D6A0A68005CEF66 /* LWNumbersKeyboardViewCell.h */,
 				A18D25C51D6A0A68005CEF66 /* LWNumbersKeyboardViewCell.m */,
+				A145157F1D7DAC0000B4BED9 /* LWWebViewDocumentPresenter.h */,
+				A14515801D7DAC0000B4BED9 /* LWWebViewDocumentPresenter.m */,
+				A14515811D7DAC0000B4BED9 /* LWWebViewDocumentPresenter.xib */,
 				A18D25B81D6963F2005CEF66 /* PIN */,
 				A122B97B1CFEB2E4009DC795 /* FLAnimatedImage */,
 				ECAACF371C9F3BCD000227E0 /* LWErrorView.xib */,
@@ -6791,7 +6805,7 @@
 				A1BCD2CD1D012D3C00CF42E4 /* 5-onboard-2x_00103.png in Resources */,
 				A1D65D881D5DCF1100828783 /* crypto_bar_00068.png in Resources */,
 				A1BCD2431D012D3C00CF42E4 /* 4-withdraw-2x_00084.png in Resources */,
-				A12DB56C1D75DB0400319EA7 /* LWNewsFirstTableViewCell.xib in Resources */,
+				A12DB56C1D75DB0400319EA7 /* LWNewsFirstTableViewCell~iphone.xib in Resources */,
 				A1BCD2A71D012D3C00CF42E4 /* 5-onboard-2x_00065.png in Resources */,
 				A1BCD09F1D012D3C00CF42E4 /* 1-deposit-2x_00023.png in Resources */,
 				A1BCD20F1D012D3C00CF42E4 /* 4-withdraw-2x_00032.png in Resources */,
@@ -6932,6 +6946,7 @@
 				A188DA131D6EB33800AA6D8A /* LWPrivateWalletEmptyHistoryPresenter.xib in Resources */,
 				ECD1E90D1C3BDEB60064AAB3 /* LWAssetTableViewCell~iphone.xib in Resources */,
 				A1BCD0D61D012D3C00CF42E4 /* 1-deposit-2x_00078.png in Resources */,
+				A145157C1D7D1C9200B4BED9 /* LWNewsFirstTableViewCell~ipad.xib in Resources */,
 				A1BCD2DA1D012D3C00CF42E4 /* 5-onboard-2x_00116.png in Resources */,
 				A1BCD22B1D012D3C00CF42E4 /* 4-withdraw-2x_00060.png in Resources */,
 				A1BCD0F81D012D3C00CF42E4 /* 1-deposit-2x_00112.png in Resources */,
@@ -7315,6 +7330,7 @@
 				CF66327B1C1768B0004353F5 /* Localizable.strings in Resources */,
 				A1D477661D050B9900438846 /* loader-color@2x_00054.png in Resources */,
 				A1D65D511D5DCF1100828783 /* crypto_bar_00013.png in Resources */,
+				A14515831D7DAC0000B4BED9 /* LWWebViewDocumentPresenter.xib in Resources */,
 				A1BCD1381D012D3C00CF42E4 /* 2-trade-2x_00056.png in Resources */,
 				A1BCD1761D012D3C00CF42E4 /* 2-trade-2x_00118.png in Resources */,
 				ECECAB4C1C98A1200020E050 /* LWBitcoinTableViewCell~iphone.xib in Resources */,
@@ -7489,6 +7505,7 @@
 				A1BCD17D1D012D3C00CF42E4 /* 3-settle-2x_00006.png in Resources */,
 				A12DB54F1D741C2300319EA7 /* Proxima Nova Bold.otf in Resources */,
 				ECECAB451C9897300020E050 /* LWCashEmptyBlockchainPresenter.xib in Resources */,
+				A145157E1D7D304600B4BED9 /* LWMyLykkeNewsCommonTableViewCell~ipad.xib in Resources */,
 				CF6877511C234A7200E7A7D9 /* LWRegisterPINSetupPresenter.xib in Resources */,
 				A1BCD0A71D012D3C00CF42E4 /* 1-deposit-2x_00031.png in Resources */,
 				EC7A45D71C309A6200926BB4 /* LWBanksTableViewCell.xib in Resources */,
@@ -7530,7 +7547,7 @@
 				A1BCD1FB1D012D3C00CF42E4 /* 4-withdraw-2x_00012.png in Resources */,
 				A1D477741D050B9900438846 /* loader-color@2x_00068.png in Resources */,
 				A1D65DAB1D5DCF1100828783 /* crypto_bar_00103.png in Resources */,
-				A12DB5741D767FD500319EA7 /* LWMyLykkeNewsCommonTableViewCell.xib in Resources */,
+				A12DB5741D767FD500319EA7 /* LWMyLykkeNewsCommonTableViewCell~iphone.xib in Resources */,
 				A1BCD0F11D012D3C00CF42E4 /* 1-deposit-2x_00105.png in Resources */,
 				EC7F05131C3EE5360079ECD0 /* LWRadioTableViewCell~iphone.xib in Resources */,
 				A1D477601D050B9900438846 /* loader-color@2x_00048.png in Resources */,
@@ -8127,6 +8144,7 @@
 				EC51D1991C30573200550EF2 /* LWLykkeData.m in Sources */,
 				EC7519BD1C3735CA00CDDF5B /* LWSettingsLogOutTableViewCell.m in Sources */,
 				A1D4322B1D1001AA0060866F /* LWRefundAfterView.m in Sources */,
+				A14515821D7DAC0000B4BED9 /* LWWebViewDocumentPresenter.m in Sources */,
 				EC5AE4951CD8A7000079DDFA /* LWBaseHistoryPresenter.m in Sources */,
 				A1E4EAA51CE4588C00293282 /* LWTradingLinearGraphView.m in Sources */,
 				EC57F46D1C3D452300E31746 /* LWAuthComplexPresenter.m in Sources */,

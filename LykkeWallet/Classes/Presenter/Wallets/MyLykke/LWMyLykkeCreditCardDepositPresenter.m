@@ -26,6 +26,8 @@
 #import "LWUtils.h"
 #import "LWNumbersKeyboardView.h"
 #import "LWCommonButton.h"
+#import "LWWebViewDocumentPresenter.h"
+#import "LWMyLykkeSuccessViewController.h"
 
 #define COUNTRIES_FILENAME @"countries.cache"
 
@@ -84,6 +86,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self adjustThinLines];
+
     UIView *topBackView=[[UIView alloc] initWithFrame:CGRectMake(0, -300, 1024, 300)];
     topBackView.backgroundColor=BAR_GRAY_COLOR;
     [self.scrollView addSubview:topBackView];
@@ -390,8 +395,10 @@
         failUrl=packet.failUrl;
         regexExp=packet.reloadRegex;
         webView=[[UIWebView alloc] initWithFrame:self.view.bounds];
-        webView.delegate=self;
+        webView.autoresizingMask=UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         [self.view addSubview:webView];
+        
+        webView.delegate=self;
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self setLoading:YES];
             [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:packet.urlString]]];
@@ -510,16 +517,14 @@
 
 -(void) foundSuccessUrl
 {
-    webView.delegate=nil;
-    [webView stopLoading];
-    LWResultPresenter *presenter=[[LWResultPresenter alloc] init];
-    presenter.image=[UIImage imageNamed:@"WithdrawSuccessFlag.png"];
-    presenter.titleString=@"SUCCESSFUL!";
-    presenter.textString=@"Your payment was successfully sent!\nReturn to wallet and proceed with the trade.";
-    
-    presenter.delegate=self;
-    [self.navigationController presentViewController:presenter animated:YES completion:nil];
-    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        webView.delegate=nil;
+        [webView stopLoading];
+        LWMyLykkeSuccessViewController *pr=[[LWMyLykkeSuccessViewController alloc] init];
+        pr.amount=[self.lkkAmountString stringByReplacingOccurrencesOfString:@" " withString:@""];
+        [pr showInWindow:[UIApplication sharedApplication].keyWindow];
+        [self.navigationController popViewControllerAnimated:NO];
+    });
 }
 
 -(void) foundFailUrl
@@ -532,32 +537,23 @@
 }
 
 
--(void) resultPresenterDismissed
-{
-    //    [self.navigationController popViewControllerAnimated:NO];
-}
-
--(void) resultPresenterWillDismiss
-{
-    [webView removeFromSuperview];
-    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
-    {
-        NSMutableArray *arr=[NSMutableArray arrayWithArray:self.navigationController.viewControllers];
-        [arr removeLastObject];
-        [self.navigationController setViewControllers:arr];
-    }
-    else
-    {
-        self.navigationController.view.hidden=YES;
-        [(LWIPadModalNavigationControllerViewController *) self.navigationController dismissAnimated:NO];
-    }
-}
-
-
 -(IBAction)termsOfUsePressed:(id)sender
 {
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://wiki.lykkex.com/terms_of_use"]];
+    LWWebViewDocumentPresenter *presenter=[[LWWebViewDocumentPresenter alloc] init];
+    presenter.urlString=[LWCache instance].termsOfUseUrl;
+    presenter.documentTitle=@"TERMS OF USE";
+    [self.navigationController pushViewController:presenter animated:YES];
 }
+
+-(IBAction)placementMemorandumPressed:(id)sender
+{
+    LWWebViewDocumentPresenter *presenter=[[LWWebViewDocumentPresenter alloc] init];
+    presenter.urlString=[LWCache instance].informationBrochureUrl;
+    presenter.documentTitle=@"INFORMATION BROCHURE";
+    [self.navigationController pushViewController:presenter animated:YES];
+    
+}
+
 
 
 -(BOOL) checkTextFieldsNotEmpty

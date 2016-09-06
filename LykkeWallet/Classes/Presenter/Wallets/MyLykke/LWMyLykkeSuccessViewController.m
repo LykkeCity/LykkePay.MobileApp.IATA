@@ -16,6 +16,7 @@
 }
 
 @property (weak, nonatomic) IBOutlet UIButton *button;
+@property (weak, nonatomic) IBOutlet UILabel *amountLabel;
 
 @end
 
@@ -38,6 +39,7 @@
     self.view.frame=window.bounds;
     [window setRootViewController:self];
     myWindow=window;
+    self.amountLabel.text=[NSString stringWithFormat:@"Your purchase of LKK %@ has been successfully committed. Your Lykke Wallet balance is now updated.", self.amount];
 }
 
 -(void) buttonPressed

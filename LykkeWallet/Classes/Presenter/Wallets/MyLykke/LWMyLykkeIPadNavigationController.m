@@ -7,6 +7,7 @@
 //
 
 #import "LWMyLykkeIPadNavigationController.h"
+#import "LWMyLykkeCreditCardDepositPresenter.h"
 
 @interface LWMyLykkeIPadNavigationController ()
 
@@ -56,7 +57,12 @@
 
 -(void) backButtonPressed
 {
-    [self popViewControllerAnimated:YES];
+    if([self.viewControllers.lastObject isKindOfClass:[LWMyLykkeCreditCardDepositPresenter class]])
+    {
+        [(LWMyLykkeCreditCardDepositPresenter *)self.viewControllers.lastObject backButtonPressed];
+    }
+    else
+        [self popViewControllerAnimated:YES];
 }
 
 /*
