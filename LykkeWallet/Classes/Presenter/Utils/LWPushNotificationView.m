@@ -11,6 +11,7 @@
 #import "LWKYCInvalidDocumentsPresenter.h"
 #import "LWKYCPendingPresenter.h"
 #import "LWAuthComplexPresenter.h"
+#import "LWMyLykkeSuccessViewController.h"
 
 
 
@@ -82,7 +83,7 @@
     type=[pushDict[@"aps"][@"type"] intValue];
     if(type==3)
         imageView.image=[UIImage imageNamed:@"KYCNeedDocuments"];
-    else if(type==1 || type==5)
+    else if(type==1 || type==5 || type==6)
         imageView.image=[UIImage imageNamed:@"KYCSuccess"];
     else if(type==2 || type==4)
         imageView.image=[UIImage imageNamed:@"KYCFailed"];
@@ -125,6 +126,16 @@
 //        LWKYCInvalidDocumentsPresenter *presenter=[[LWKYCInvalidDocumentsPresenter alloc] init];
 //        presenter.delegate=self;
 //        [[[UIApplication sharedApplication].keyWindow visibleViewController] presentViewController:presenter animated:YES completion:nil];
+        
+    }
+    else if(type==6)
+    {
+        [self hide];
+
+        //=[pushDict[@"aps"][@"Amount"] intValue];
+        LWMyLykkeSuccessViewController *presenter=[LWMyLykkeSuccessViewController new];
+        presenter.amount=[pushDict[@"aps"][@"amount"] stringValue];
+        [presenter showInWindow:keyWindow];
         
     }
 }

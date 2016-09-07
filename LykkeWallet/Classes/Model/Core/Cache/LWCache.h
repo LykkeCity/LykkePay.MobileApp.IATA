@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "Macro.h"
 
+
 @class LWLykkeData;
 @class LWPersonalDataModel;
 
@@ -29,6 +30,7 @@ SINGLETON_DECLARE
 #pragma mark - Properties
 
 @property (strong, nonatomic) NSMutableDictionary *cachedAssetPairsRates;
+@property (strong, nonatomic) NSDictionary *swiftCredentialsDict;
 
 @property PushNotificationsStatus pushNotificationsStatus;
 

@@ -128,7 +128,12 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(foundSuccessUrl) name:@"CreditCardFoundSuccessURL" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(foundFailUrl) name:@"CreditCardFoundFailURL" object:nil];
 
-    // Do any additional setup after loading the view from its nib.
+    
+    
+    
+    [[LWAuthManager instance] requestSwiftCredentials];
+    
+    
 }
 
 -(void) viewWillAppear:(BOOL)animated
@@ -177,7 +182,7 @@
 -(void) viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    self.title=@"TRANSFER FUNDS";
+    self.title=@"DEPOSIT WALLET";
 
     if(countries==nil)
     {
@@ -447,37 +452,6 @@
             }
         }
         
-//        
-//        
-//        
-//        
-//        NSRange first=[html rangeOfString:@"{"];
-//        if(first.location!=NSNotFound)
-//        {
-//            html=[html substringFromIndex:first.location];
-//            NSRange second=[html rangeOfString:@"}"];
-//            if(second.location!=NSNotFound)
-//            {
-//                html=[html substringToIndex:second.location];
-//                html=[html stringByReplacingOccurrencesOfString:@" " withString:@""];
-//                if([html rangeOfString:@"status\":440"].location!=NSNotFound)
-//                {
-//                    whiteView=[[UIView alloc] initWithFrame:webView.frame];
-//                    whiteView.backgroundColor=[UIColor whiteColor];
-//                    [self.view addSubview:whiteView];
-//                    webView.delegate=nil;
-//                    [webView removeFromSuperview];
-//                    webView=nil;
-//                    
-//                    NSLog(@"TimeOUT!");
-//                    [self cashInButtonPressed:nil];
-//
-//                }
-//                
-//            }
-//
-//            
-//        }
     }
 }
 
@@ -492,39 +466,19 @@
     }
     NSString *url=request.URL.absoluteString;
     NSLog(@"Loaded URL: %@", url);
-//    if([url isEqualToString:okUrl])
-//    {
-//        
-//        
-//        
-//        
-//        
-//        
-////        NSLog(@"Found OK URL");
-////        UIWindow *window=[UIApplication sharedApplication].windows[0];
-////        LWSuccessPresenterView *successView=[[LWSuccessPresenterView alloc] initWithFrame:window.bounds title:@"SUCCESSFUL!" text:@"Your payment was successfully sent!\nReturn to wallet and proceed with the trade."];
-////        successView.delegate=self;
-////        [window addSubview:successView];
-//
-//    }
-//    else if([url isEqualToString:failUrl])
-//    {
-//        NSLog(@"Found FAIL URL");
-//        
-//
-//        
-//    }
     return YES;
 }
 
 -(void) foundSuccessUrl
 {
+//    [self foundFailUrl];
+//    return;
     webView.delegate=nil;
     [webView stopLoading];
     LWResultPresenter *presenter=[[LWResultPresenter alloc] init];
     presenter.image=[UIImage imageNamed:@"WithdrawSuccessFlag.png"];
     presenter.titleString=@"SUCCESSFUL!";
-    presenter.textString=@"Your payment was successfully sent!\nReturn to wallet and proceed with the trade.";
+    presenter.textString=@"Your payment was successfully sent!\nYou may return to your wallet and proceed with the trade.";
     
     presenter.delegate=self;
     [self.navigationController presentViewController:presenter animated:YES completion:nil];
@@ -533,17 +487,22 @@
 
 -(void) foundFailUrl
 {
-    [webView stopLoading];
-    webView.delegate=nil;
-    [webView removeFromSuperview];
-    webView=nil;
-//    return NO;
+//    [webView stopLoading];
+//    webView.delegate=nil;
+ //   [webView removeFromSuperview];
+//    webView=nil;
     
-//    UIWindow *window=[UIApplication sharedApplication].windows[0];
-//    LWFailedPresenterView *failView=[[LWFailedPresenterView alloc] initWithFrame:window.bounds title:@"OOPS!" text:@"We're terribly sorry, but we failed to make a payment on your provided details. Please try again later."];
-//    failView.delegate=self;
-//    [window addSubview:failView];
+    webView.delegate=nil;
+    [webView stopLoading];
+    LWResultPresenter *presenter=[[LWResultPresenter alloc] init];
+    presenter.image=[UIImage imageNamed:@"RegisterFailed"];
+    presenter.titleString=@"OOPS!";
+    presenter.textString=@"We’re sorry, but we were unable to make a payment according to the details that you provided. Please try again later.";
+    
+    presenter.delegate=self;
+    [self.navigationController presentViewController:presenter animated:YES completion:nil];
 
+ 
 }
 
 
@@ -590,7 +549,7 @@
                        NSString *placeholder=v1.placeholder;
                        if(v1==self.amount)
                            placeholder=@"Amount";
-                       UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"LYKKE" message:[NSString stringWithFormat:@"Please fill %@ field.", placeholder] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+                       UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"LYKKE" message:[NSString stringWithFormat:@"Please fill in the %@ field.", placeholder] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
                        [alert show];
                        return NO;
                    }

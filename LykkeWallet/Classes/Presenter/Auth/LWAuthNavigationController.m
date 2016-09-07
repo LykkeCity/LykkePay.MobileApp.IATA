@@ -121,11 +121,41 @@
         activeSteps[@(self.currentStep)] = self.viewControllers.firstObject;
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showExchangeViewController) name:@"ShowExchangeViewControllerNotification" object:nil];
-        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showMyLykkeTab) name:@"ShowMyLykkeTabNotification" object:nil];
     }
     
 
     return self;
+}
+
+-(void) showMyLykkeTab
+{
+    if(!tabBarController || !tabBarController.viewControllers.count)
+        return;
+
+    
+    NSMutableArray *array=[[NSMutableArray alloc] init];
+    
+    BOOL flagHave=NO;
+    for(id v in tabBarController.viewControllers)
+    {
+        if([v isKindOfClass:[LWMyLykkePresenter class]])
+        {
+            flagHave=YES;
+            break;
+        }
+        else
+        {
+            [array addObject:v];
+        }
+    }
+    if(flagHave==NO)
+    {
+        LWMyLykkePresenter *myLykke=[LWMyLykkePresenter new];
+        myLykke.tabBarItem=[self createTabBarItemWithTitle:@"MY LYKKE" withImage:@"MyLykkeTab"];
+        [array insertObject:myLykke atIndex:3];
+        tabBarController.viewControllers =array;
+    }
 }
 
 -(void) viewDidAppear:(BOOL)animated

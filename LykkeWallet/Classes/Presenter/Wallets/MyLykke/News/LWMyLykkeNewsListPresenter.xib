@@ -26,14 +26,14 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="5DH-SK-5kt">
-                    <rect key="frame" x="0.0" y="61" width="600" height="539"/>
+                    <rect key="frame" x="0.0" y="53" width="600" height="547"/>
                     <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                 </tableView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zJ5-Jm-uRx">
-                    <rect key="frame" x="0.0" y="0.0" width="600" height="62"/>
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="54"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nlo-hx-Jwv">
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nlo-hx-Jwv">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="8"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G4O-j1-Qug">
@@ -53,7 +53,7 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iA7-Qh-cVP">
-                    <rect key="frame" x="190" y="21" width="220" height="30"/>
+                    <rect key="frame" x="190" y="13" width="220" height="30"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GTR-Rc-Ebq">
                             <rect key="frame" x="0.0" y="0.0" width="114" height="30"/>
@@ -127,15 +127,18 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="5DH-SK-5kt" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="0Eh-lS-ViC"/>
+                <constraint firstItem="iA7-Qh-cVP" firstAttribute="top" secondItem="Nlo-hx-Jwv" secondAttribute="bottom" constant="13" id="0J3-qQ-Q85"/>
                 <constraint firstAttribute="trailing" secondItem="zJ5-Jm-uRx" secondAttribute="trailing" id="0xz-K5-K4X"/>
                 <constraint firstItem="iA7-Qh-cVP" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="2xA-j9-MAV"/>
                 <constraint firstAttribute="trailing" secondItem="5DH-SK-5kt" secondAttribute="trailing" id="74Q-ni-NwD"/>
                 <constraint firstItem="5DH-SK-5kt" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="BGv-8a-nJh"/>
                 <constraint firstItem="Nlo-hx-Jwv" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Bu5-uJ-00T"/>
                 <constraint firstItem="zJ5-Jm-uRx" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="NXf-Mp-1Pv"/>
+                <constraint firstItem="iA7-Qh-cVP" firstAttribute="top" secondItem="Nlo-hx-Jwv" secondAttribute="bottom" constant="13" id="OBh-u8-K7m"/>
                 <constraint firstItem="zJ5-Jm-uRx" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="SgT-SS-SAL"/>
                 <constraint firstAttribute="bottom" secondItem="5DH-SK-5kt" secondAttribute="bottom" id="WiL-rk-Mv3"/>
                 <constraint firstItem="5DH-SK-5kt" firstAttribute="top" secondItem="iA7-Qh-cVP" secondAttribute="bottom" constant="10" id="ZoK-nw-2bE"/>
+                <constraint firstItem="iA7-Qh-cVP" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="13" id="cbT-zt-ujT"/>
                 <constraint firstItem="5DH-SK-5kt" firstAttribute="top" secondItem="zJ5-Jm-uRx" secondAttribute="bottom" constant="-1" id="kUz-oG-vbq"/>
                 <constraint firstItem="iA7-Qh-cVP" firstAttribute="top" secondItem="Nlo-hx-Jwv" secondAttribute="bottom" constant="13" id="m13-qd-68k"/>
                 <constraint firstItem="iA7-Qh-cVP" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="21" id="uYX-d0-b59"/>
@@ -145,6 +148,9 @@
             <variation key="default">
                 <mask key="constraints">
                     <exclude reference="BGv-8a-nJh"/>
+                    <exclude reference="0J3-qQ-Q85"/>
+                    <exclude reference="OBh-u8-K7m"/>
+                    <exclude reference="m13-qd-68k"/>
                     <exclude reference="uYX-d0-b59"/>
                 </mask>
             </variation>

@@ -122,6 +122,8 @@
     // hide masking view
 //    self.maskingView.hidden = YES;
     [self setLoading:NO];
+    
+    [[LWAuthManager instance] requestMyLykkeSettings];
     LWGenerateKeyPresenter *presenter=[[LWGenerateKeyPresenter alloc] init];
     [self.navigationController pushViewController:presenter animated:YES];
     

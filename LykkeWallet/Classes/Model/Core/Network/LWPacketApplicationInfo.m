@@ -38,7 +38,6 @@
     [LWCache instance].termsOfUseUrl=result[@"TermsOfUseLink"];
     [LWCache instance].refundInfoUrl=result[@"RefundInfoLink"];
     
-    [LWCache instance].showMyLykkeTab=[result[@"MyLykke"] boolValue];
     
 }
 

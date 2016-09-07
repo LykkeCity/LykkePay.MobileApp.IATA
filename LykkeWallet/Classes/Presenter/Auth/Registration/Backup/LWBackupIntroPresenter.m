@@ -11,10 +11,14 @@
 #import "LWBackupGetStartedPresenter.h"
 #import "LWIPadModalNavigationControllerViewController.h"
 #import "UIViewController+Navigation.h"
+#import "LWAuthNavigationController.h"
+#import "LWCommonButton.h"
+#import "LWPrivateKeyManager.h"
 
 @interface LWBackupIntroPresenter ()
 
 @property (weak, nonatomic) IBOutlet UIButton *takeBackupButton;
+@property (weak, nonatomic) IBOutlet LWCommonButton *skipBackupButton;
 
 @end
 
@@ -28,6 +32,9 @@
     [self.takeBackupButton setAttributedTitle:[[NSAttributedString alloc] initWithString:@"BACK UP NOW" attributes:dict] forState:UIControlStateNormal];
     
     [LWValidator setButton:self.takeBackupButton enabled:YES];
+    
+    _skipBackupButton.type=BUTTON_TYPE_CLEAR;
+    
     // Do any additional setup after loading the view.
 }
 
@@ -61,6 +68,15 @@
         [self.navigationController presentViewController:navigationController animated:YES completion:nil];
     }
 
+}
+
+-(IBAction)skipBackupPressed:(id)sender
+{
+    [[LWPrivateKeyManager shared] savePrivateKeyLykkeFromSeedWords:[LWPrivateKeyManager generateSeedWords]];
+    [[LWAuthManager instance] requestSaveClientKeysWithPubKey:[LWPrivateKeyManager shared].publicKeyLykke encodedPrivateKey:[LWPrivateKeyManager shared].encryptedKeyLykke];
+
+    
+    [((LWAuthNavigationController *)self.navigationController) setRootMainTabScreen];
 }
 
 /*

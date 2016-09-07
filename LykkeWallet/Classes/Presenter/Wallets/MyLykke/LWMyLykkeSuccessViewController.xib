@@ -27,14 +27,14 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WithdrawSuccessFlag.png" translatesAutoresizingMaskIntoConstraints="NO" id="ToU-Hd-Iih">
-                    <rect key="frame" x="71" y="110" width="178" height="178"/>
+                    <rect key="frame" x="71" y="81.5" width="178" height="178"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="178" id="S3x-SK-zXp"/>
                         <constraint firstAttribute="width" constant="178" id="mPO-Vj-Te8"/>
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CONGRATS!" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gG1-Xd-A9R">
-                    <rect key="frame" x="50" y="320" width="220" height="45"/>
+                    <rect key="frame" x="50" y="291.5" width="220" height="45"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="45" id="Z5Y-kj-ajV"/>
                         <constraint firstAttribute="width" constant="220" id="yga-aY-Smy"/>
@@ -44,7 +44,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your purchase of LKK 10,000,000 has been successfully committed. Your Lykke Wallet balance is now updated." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LBE-Ij-f1s">
-                    <rect key="frame" x="17" y="383" width="285" height="51.5"/>
+                    <rect key="frame" x="17" y="354.5" width="285" height="51.5"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="285" id="gck-U5-qNP"/>
                     </constraints>
@@ -70,7 +70,7 @@
                 <constraint firstItem="LBE-Ij-f1s" firstAttribute="top" secondItem="gG1-Xd-A9R" secondAttribute="bottom" constant="18" id="dnO-cp-kZV"/>
                 <constraint firstItem="gG1-Xd-A9R" firstAttribute="top" secondItem="ToU-Hd-Iih" secondAttribute="bottom" constant="32" id="fEL-gV-vKX"/>
                 <constraint firstItem="gG1-Xd-A9R" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="qtr-MN-W0J"/>
-                <constraint firstItem="ToU-Hd-Iih" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" multiplier="0.7" id="uqa-2X-PCI"/>
+                <constraint firstItem="ToU-Hd-Iih" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" multiplier="0.6" id="uqa-2X-PCI"/>
                 <constraint firstItem="LBE-Ij-f1s" firstAttribute="top" secondItem="gG1-Xd-A9R" secondAttribute="bottom" constant="5" id="xKd-mA-9Ms"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>

@@ -62,6 +62,12 @@
     [self reloadWallets];
 }
 
+-(void) viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    self.title=@"WALLET";
+}
+
 -(void) reloadWallets
 {
     [[LWPrivateWalletsManager shared] loadWalletsWithCompletion:^(NSArray *arr){

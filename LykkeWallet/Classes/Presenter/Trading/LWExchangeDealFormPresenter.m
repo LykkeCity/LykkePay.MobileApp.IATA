@@ -137,9 +137,16 @@ static NSString *const FormIdentifiers[kFormRows] = {
     
     if(self.balanceToSell)
     {
-        lastInput=LastInput_Result;
-        resultString=self.balanceToSell.stringValue;
-        [self updatePrice];
+        
+        if([self.assetPair.originalBaseAsset isEqualToString:[LWCache instance].baseAssetId])
+        {
+            [self.assetPair setInverted:YES];
+        }
+        else
+            [self.assetPair setInverted:NO];
+        
+        lastInput=LastInput_Volume;
+        volumeString=[[LWUtils formatFairVolume:self.balanceToSell.doubleValue accuracy:[[LWUtils accuracyForAssetId:self.assetPair.baseAssetId] intValue]  roundToHigher:NO] stringByReplacingOccurrencesOfString:@" " withString:@""];
     }
     
 }
@@ -165,6 +172,10 @@ static NSString *const FormIdentifiers[kFormRows] = {
 //    [self.view addSubview:predefinedSumsView];
 //    
 //    predefinedSumsView.center=CGPointMake(self.view.bounds.size.width/2, self.view.bounds.size.height+predefinedSumsView.bounds.size.height/2);
+    if(!self.assetRate && self.balanceToSell)
+    {
+        sumTextField.text=volumeString;
+    }
     if (sumTextField) {
         [sumTextField becomeFirstResponder];
     }
@@ -243,6 +254,7 @@ static NSString *const FormIdentifiers[kFormRows] = {
 
 //        sumCell.titleLabel.text = Localize(@"exchange.assets.buy.sum");
         sumCell.assetLabel.text = [LWUtils baseAssetTitle:self.assetPair];
+        
 
         sumTextField = sumCell.sumTextField;
         sumTextField.delegate = self;
@@ -250,6 +262,7 @@ static NSString *const FormIdentifiers[kFormRows] = {
         sumTextField.keyboardType = UIKeyboardTypeDecimalPad;
 
         [sumTextField setTintColor:[UIColor colorWithHexString:kDefaultTextFieldPlaceholder]];
+        
 //        [sumTextField addTarget:self
 //                         action:@selector(textFieldDidChange:)
 //               forControlEvents:UIControlEventEditingChanged];
@@ -266,12 +279,20 @@ static NSString *const FormIdentifiers[kFormRows] = {
 //        totalCell.titleLabel.text = Localize(@"exchange.assets.buy.total");
         totalCell.assetLabel.text = [LWUtils quotedAssetTitle:self.assetPair];
         
+        
+        BOOL flagNeedRefresh=resultTextField==nil;
+
         resultTextField = totalCell.totalTextField;
         resultTextField.delegate = self;
         resultTextField.placeholder = Localize(@"exchange.assets.result.placeholder");
         resultTextField.keyboardType = UIKeyboardTypeDecimalPad;
         
         [resultTextField setTintColor:[UIColor colorWithHexString:kDefaultTextFieldPlaceholder]];
+    
+        if(flagNeedRefresh)
+            [self updatePrice];
+
+
 //        [resultTextField addTarget:self
 //                         action:@selector(textFieldDidChange:)
 //               forControlEvents:UIControlEventEditingChanged];
@@ -403,6 +424,8 @@ static NSString *const FormIdentifiers[kFormRows] = {
 - (void)authManager:(LWAuthManager *)manager didGetAssetPairRate:(LWAssetPairRateModel *)assetPairRate {
     
     self.assetRate = assetPairRate;
+    if(self.balanceToSell && self.assetPair.inverted!=self.assetRate.inverted)
+        [self.assetRate invert];
     
     [self updatePrice];
     

@@ -76,6 +76,10 @@
 #import "LWPacketMyLykkeInfo.h"
 #import "LWPacketAllAssetPairs.h"
 #import "LWPacketGetNews.h"
+#import "LWPacketMyLykkeCashInEmail.h"
+#import "LWPacketSwiftCredentials.h"
+#import "LWPacketGetEthereumAddress.h"
+#import "LWPacketLykkeSettings.h"
 
 
 
@@ -87,6 +91,8 @@
 #import "LWPersonalDataModel.h"
 #import "LWAssetBlockchainModel.h"
 #import "LWExchangeInfoModel.h"
+#import "LWSwiftCredentialsModel.h"
+
 
 
 
@@ -628,6 +634,34 @@ SINGLETON_INIT {
     [self sendPacket:pack];
 }
 
+-(void) requestSwiftCredentials
+{
+    LWPacketSwiftCredentials *pack=[LWPacketSwiftCredentials new];
+    [self sendPacket:pack];
+}
+
+-(void) requestMyLykkeSettings
+{
+    LWPacketLykkeSettings *pack=[LWPacketLykkeSettings new];
+    [self sendPacket:pack];
+}
+
+-(void) requestSendMyLykkeCashInEmail:(NSDictionary *)params
+{
+    LWPacketMyLykkeCashInEmail *pack=[LWPacketMyLykkeCashInEmail new];
+    pack.assetId=params[@"AssetId"];
+    pack.amount=params[@"Amount"];
+    pack.lkkAmount=params[@"LkkAmount"];
+    pack.price=params[@"Price"];
+    [self sendPacket:pack];
+}
+
+-(void) requestEthereumAddress
+{
+    LWPacketGetEthereumAddress *pack=[LWPacketGetEthereumAddress new];
+    [self sendPacket:pack];
+}
+
 #pragma mark - Observing
 
 - (void)observeGDXNetAdapterDidReceiveResponseNotification:(NSNotification *)notification {
@@ -1009,9 +1043,21 @@ SINGLETON_INIT {
             [self.delegate authManager:(LWAuthManager *)self didGetNews:(LWPacketGetNews *) pack];
         }
     }
-
-
-
+    else if (pack.class == LWPacketMyLykkeCashInEmail.class) {
+        if ([self.delegate respondsToSelector:@selector(authManagerDidSendMyLykkeCashInEmail:)]) {
+            [self.delegate authManagerDidSendMyLykkeCashInEmail:self];
+        }
+    }
+    else if (pack.class == LWPacketSwiftCredentials.class) {
+        if ([self.delegate respondsToSelector:@selector(authManagerDidGetSwiftCredentials:)]) {
+            [self.delegate authManagerDidGetSwiftCredentials:(LWPacketSwiftCredentials *) pack];
+        }
+    }
+    else if (pack.class == LWPacketGetEthereumAddress.class) {
+        if ([self.delegate respondsToSelector:@selector(authManagerDidGetEthereumAddress:)]) {
+            [self.delegate authManagerDidGetEthereumAddress:(LWPacketGetEthereumAddress *)pack];
+        }
+    }
     
 }
 

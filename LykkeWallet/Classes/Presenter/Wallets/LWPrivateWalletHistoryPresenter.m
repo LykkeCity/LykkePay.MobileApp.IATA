@@ -20,6 +20,8 @@
 #import "LWRefreshControlView.h"
 #import "LWPrivateWalletEmptyHistoryPresenter.h"
 #import "LWPrivateWalletDeposit.h"
+#import "LWUtils.h"
+#import "LWCache.h"
 
 @interface LWPrivateWalletHistoryPresenter () <UITableViewDelegate, UITableViewDataSource, LWDoubleButtonViewDelegate, LWPrivateWalletEmptyHistoryPresenterDelegate>
 {
@@ -81,7 +83,7 @@
 
 -(void) reloadHistory
 {
-    [[LWPrivateWalletsManager shared] loadHistoryForWallet:self.wallet.address withCompletion:^(NSArray *array){
+    [[LWPrivateWalletsManager shared] loadHistoryForWallet:self.wallet.address assetId:self.asset.assetId withCompletion:^(NSArray *array){
         [self setLoading:NO];
         historyArray=array;
         [tableView reloadData];
@@ -113,7 +115,9 @@
             {
                 if([m.assetId isEqualToString:self.asset.assetId])
                 {
-                    balanceLabel.text=[NSString stringWithFormat:@"%@ %@ available", self.asset.assetId, m.amount.stringValue];
+                    NSString *amount=[[LWUtils formatFairVolume:m.amount.doubleValue accuracy:[LWCache accuracyForAssetId:m.assetId] roundToHigher:NO] stringByReplacingOccurrencesOfString:@" " withString:@","];
+                    
+                    balanceLabel.text=[NSString stringWithFormat:@"%@ %@ available", self.asset.assetId, amount];
                     if(emptyPresenter)
                         emptyPresenter.balanceLabel.text=balanceLabel.text;
                         
@@ -132,6 +136,12 @@
     [self setLoading:YES];
     [self reloadHistory];
     
+
+}
+
+-(void) viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
     [self setTitle:self.wallet.name];
 
 }

@@ -104,6 +104,9 @@
     [super viewDidAppear:animated];
     [_passwordField becomeFirstResponder];
     self.title = Localize(@"title.authentication");
+    
+    [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
+
 
 //    LWSMSCodeCheckPresenter *pin=[[LWSMSCodeCheckPresenter alloc] init];
 //    [self.navigationController pushViewController:pin animated:YES];

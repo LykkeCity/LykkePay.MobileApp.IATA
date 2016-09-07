@@ -20,15 +20,15 @@
             <string>ProximaNova-Regular</string>
             <string>ProximaNova-Regular</string>
             <string>ProximaNova-Regular</string>
-            <string>ProximaNova-Regular</string>
-            <string>ProximaNova-Regular</string>
         </mutableArray>
     </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LWMyLykkeDepositSwiftPresenter">
             <connections>
+                <outlet property="accountNameLabel" destination="6Av-7U-UGU" id="JML-s4-rYm"/>
                 <outlet property="accountNumberLabel" destination="jgi-nZ-PkB" id="gNx-6z-Tie"/>
                 <outlet property="amountContainer" destination="6eV-Y4-Z5q" id="knt-La-3gu"/>
+                <outlet property="bicLabel" destination="59J-PG-ldS" id="10z-p0-wHO"/>
                 <outlet property="buttonBottomConstraint" destination="p89-d2-mIG" id="Ama-ew-1YF"/>
                 <outlet property="emailButton" destination="o5e-01-gVJ" id="0Pn-Ax-iH4"/>
                 <outlet property="purposeLabel" destination="NP7-Fa-6aw" id="36p-Ss-t1l"/>
@@ -54,14 +54,14 @@
                                 <constraint firstAttribute="height" constant="1" id="hIs-rm-uDA"/>
                             </constraints>
                         </view>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Amount" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fX1-J7-pNB">
-                            <rect key="frame" x="173" y="13" width="58.5" height="21"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amount" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fX1-J7-pNB">
+                            <rect key="frame" x="261" y="13" width="58.5" height="21"/>
                             <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="17"/>
                             <color key="textColor" red="0.2470588235" green="0.30196078430000001" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JtX-gO-UpZ">
-                            <rect key="frame" x="679" y="0.0" width="10" height="48"/>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JtX-gO-UpZ">
+                            <rect key="frame" x="591" y="0.0" width="10" height="48"/>
                             <constraints>
                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="gQb-zF-LhT"/>
                             </constraints>
@@ -91,8 +91,8 @@
                     </constraints>
                     <variation key="default">
                         <mask key="constraints">
-                            <exclude reference="SxP-PN-NGz"/>
                             <exclude reference="aPf-dc-Rh6"/>
+                            <exclude reference="SxP-PN-NGz"/>
                             <exclude reference="iF0-Ig-Yhh"/>
                             <exclude reference="t3s-ny-Rbm"/>
                         </mask>
@@ -109,11 +109,11 @@
                         <action selector="emailButtonPressed:" destination="-2" eventType="touchUpInside" id="NkL-sM-62Z"/>
                     </connections>
                 </button>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kdl-yb-brP">
-                    <rect key="frame" x="143" y="48" width="576" height="838"/>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kdl-yb-brP">
+                    <rect key="frame" x="231" y="48" width="400" height="812"/>
                     <subviews>
-                        <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7yW-iU-phv">
-                            <rect key="frame" x="0.0" y="0.0" width="576" height="48"/>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7yW-iU-phv">
+                            <rect key="frame" x="0.0" y="0.0" width="400" height="48"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" alpha="0.59999999999999998" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BIC (SWIFT)" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rzg-9Y-t88">
                                     <rect key="frame" x="30" y="14.5" width="105" height="17.5"/>
@@ -121,14 +121,14 @@
                                     <color key="textColor" red="0.2470588235" green="0.30196078430000001" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="POFICHBEXXX" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="59J-PG-ldS">
-                                    <rect key="frame" x="155" y="10" width="364" height="28"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="POFICHBEXXX" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="59J-PG-ldS">
+                                    <rect key="frame" x="155" y="10" width="188" height="28"/>
                                     <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="17"/>
                                     <color key="textColor" red="0.2470588235" green="0.30196078430000001" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LiC-dh-xGR">
-                                    <rect key="frame" x="529" y="15" width="17" height="17"/>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LiC-dh-xGR">
+                                    <rect key="frame" x="353" y="15" width="17" height="17"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="17" id="YUi-lO-Ha0"/>
                                         <constraint firstAttribute="width" constant="17" id="mgU-1d-bsR"/>
@@ -138,8 +138,8 @@
                                         <action selector="copyPressed:" destination="-2" eventType="touchUpInside" id="tem-Jc-VDx"/>
                                     </connections>
                                 </button>
-                                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WVm-Nn-wgC">
-                                    <rect key="frame" x="30" y="47" width="516" height="1"/>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WVm-Nn-wgC">
+                                    <rect key="frame" x="30" y="47" width="340" height="1"/>
                                     <color key="backgroundColor" red="0.82745098039215681" green="0.83921568627450982" blue="0.85882352941176465" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="1" id="gFe-Fs-jso"/>
@@ -171,67 +171,8 @@
                                 </mask>
                             </variation>
                         </view>
-                        <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cQx-BD-iit">
-                            <rect key="frame" x="0.0" y="157" width="576" height="48"/>
-                            <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" alpha="0.60000002384185791" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Postcheck" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m6x-uz-8ud">
-                                    <rect key="frame" x="30" y="14.5" width="105" height="17.5"/>
-                                    <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="14"/>
-                                    <color key="textColor" red="0.2470588235" green="0.30196078430000001" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="80-165 421-0" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="saK-8Y-Jym">
-                                    <rect key="frame" x="155" y="10" width="364" height="28"/>
-                                    <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="17"/>
-                                    <color key="textColor" red="0.2470588235" green="0.30196078430000001" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                                <button opaque="NO" tag="3" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JwK-bp-G73">
-                                    <rect key="frame" x="529" y="15" width="17" height="17"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" constant="17" id="e4n-Ba-1Xf"/>
-                                        <constraint firstAttribute="height" constant="17" id="eoa-M1-FAs"/>
-                                    </constraints>
-                                    <state key="normal" title="Button" image="CopyInDepositIcon"/>
-                                    <connections>
-                                        <action selector="copyPressed:" destination="-2" eventType="touchUpInside" id="bJ9-zM-KZn"/>
-                                    </connections>
-                                </button>
-                                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Pap-o8-YJI">
-                                    <rect key="frame" x="30" y="47" width="516" height="1"/>
-                                    <color key="backgroundColor" red="0.82745098039999998" green="0.83921568629999999" blue="0.85882352939999995" alpha="1" colorSpace="calibratedRGB"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="1" id="Pyt-4b-79L"/>
-                                    </constraints>
-                                </view>
-                            </subviews>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <constraints>
-                                <constraint firstAttribute="bottom" secondItem="saK-8Y-Jym" secondAttribute="bottom" constant="10" id="Dqg-Kj-kKu"/>
-                                <constraint firstAttribute="trailing" secondItem="Pap-o8-YJI" secondAttribute="trailing" constant="30" id="EWP-YH-ryS"/>
-                                <constraint firstItem="JwK-bp-G73" firstAttribute="centerY" secondItem="cQx-BD-iit" secondAttribute="centerY" id="GXb-yu-IN0"/>
-                                <constraint firstItem="JwK-bp-G73" firstAttribute="leading" secondItem="Pap-o8-YJI" secondAttribute="trailing" id="HcM-ic-JHm"/>
-                                <constraint firstItem="m6x-uz-8ud" firstAttribute="leading" secondItem="cQx-BD-iit" secondAttribute="leading" constant="30" id="Hhs-WK-gVt"/>
-                                <constraint firstItem="saK-8Y-Jym" firstAttribute="leading" secondItem="m6x-uz-8ud" secondAttribute="trailing" constant="155" id="JWq-qc-8dS"/>
-                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="48" id="M0G-fy-27Q"/>
-                                <constraint firstItem="m6x-uz-8ud" firstAttribute="centerY" secondItem="cQx-BD-iit" secondAttribute="centerY" id="ML3-FC-5Xc"/>
-                                <constraint firstItem="saK-8Y-Jym" firstAttribute="leading" secondItem="cQx-BD-iit" secondAttribute="leading" constant="155" id="WG0-NS-qMP"/>
-                                <constraint firstItem="JwK-bp-G73" firstAttribute="leading" secondItem="saK-8Y-Jym" secondAttribute="trailing" constant="10" id="aJM-eq-bMI"/>
-                                <constraint firstAttribute="trailing" secondItem="JwK-bp-G73" secondAttribute="trailing" constant="30" id="baa-MP-RXf"/>
-                                <constraint firstItem="saK-8Y-Jym" firstAttribute="leading" secondItem="m6x-uz-8ud" secondAttribute="trailing" constant="20" id="ff0-SD-lZJ"/>
-                                <constraint firstItem="Pap-o8-YJI" firstAttribute="leading" secondItem="cQx-BD-iit" secondAttribute="leading" constant="30" id="kXy-cr-9kx"/>
-                                <constraint firstAttribute="bottom" secondItem="Pap-o8-YJI" secondAttribute="bottom" id="m9A-bN-4Z0"/>
-                                <constraint firstItem="saK-8Y-Jym" firstAttribute="top" secondItem="cQx-BD-iit" secondAttribute="top" constant="10" id="zXV-ML-Mbk"/>
-                            </constraints>
-                            <variation key="default">
-                                <mask key="constraints">
-                                    <exclude reference="JWq-qc-8dS"/>
-                                    <exclude reference="HcM-ic-JHm"/>
-                                </mask>
-                            </variation>
-                        </view>
-                        <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="L5o-P9-jWH">
-                            <rect key="frame" x="0.0" y="48" width="576" height="61.5"/>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L5o-P9-jWH">
+                            <rect key="frame" x="0.0" y="48" width="400" height="61.5"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" alpha="0.60000002384185791" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Account number" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2bp-4c-qvG">
                                     <rect key="frame" x="30" y="22" width="105" height="17.5"/>
@@ -239,16 +180,16 @@
                                     <color key="textColor" red="0.2470588235" green="0.30196078430000001" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jgi-nZ-PkB">
-                                    <rect key="frame" x="155" y="10" width="364" height="41.5"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jgi-nZ-PkB">
+                                    <rect key="frame" x="155" y="10" width="188" height="41.5"/>
                                     <string key="text">CH06 0900 0000
 8016 2421 0</string>
                                     <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="17"/>
                                     <color key="textColor" red="0.2470588235" green="0.30196078430000001" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <button opaque="NO" tag="1" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ggU-g6-GXq">
-                                    <rect key="frame" x="529" y="22" width="17" height="17"/>
+                                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ggU-g6-GXq">
+                                    <rect key="frame" x="353" y="22" width="17" height="17"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="17" id="fAB-iV-6tw"/>
                                         <constraint firstAttribute="width" constant="17" id="paf-On-W1N"/>
@@ -258,8 +199,8 @@
                                         <action selector="copyPressed:" destination="-2" eventType="touchUpInside" id="17E-EH-imm"/>
                                     </connections>
                                 </button>
-                                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BnD-De-6H1">
-                                    <rect key="frame" x="30" y="60" width="516" height="1"/>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BnD-De-6H1">
+                                    <rect key="frame" x="30" y="60" width="340" height="1"/>
                                     <color key="backgroundColor" red="0.82745098039999998" green="0.83921568629999999" blue="0.85882352939999995" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="1" id="B4y-az-GFC"/>
@@ -291,8 +232,8 @@
                                 </mask>
                             </variation>
                         </view>
-                        <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AS4-vq-Zku">
-                            <rect key="frame" x="0.0" y="109" width="576" height="48"/>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AS4-vq-Zku">
+                            <rect key="frame" x="0.0" y="109" width="400" height="48"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" alpha="0.60000002384185791" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Account name" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2eU-mP-LyU">
                                     <rect key="frame" x="30" y="14.5" width="105" height="17.5"/>
@@ -300,14 +241,14 @@
                                     <color key="textColor" red="0.2470588235" green="0.30196078430000001" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Richard Olsen" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Av-7U-UGU">
-                                    <rect key="frame" x="155" y="10" width="364" height="28"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Richard Olsen" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Av-7U-UGU">
+                                    <rect key="frame" x="155" y="10" width="188" height="28"/>
                                     <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="17"/>
                                     <color key="textColor" red="0.2470588235" green="0.30196078430000001" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <button opaque="NO" tag="2" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dzy-1j-4aw">
-                                    <rect key="frame" x="529" y="15" width="17" height="17"/>
+                                <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dzy-1j-4aw">
+                                    <rect key="frame" x="353" y="15" width="17" height="17"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="17" id="t1t-wo-PXv"/>
                                         <constraint firstAttribute="height" constant="17" id="vnn-iH-CmS"/>
@@ -317,8 +258,8 @@
                                         <action selector="copyPressed:" destination="-2" eventType="touchUpInside" id="8fS-V5-Fut"/>
                                     </connections>
                                 </button>
-                                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CsO-mn-kMD">
-                                    <rect key="frame" x="30" y="47" width="516" height="1"/>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CsO-mn-kMD">
+                                    <rect key="frame" x="30" y="47" width="340" height="1"/>
                                     <color key="backgroundColor" red="0.82745098039999998" green="0.83921568629999999" blue="0.85882352939999995" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="1" id="lbA-gH-hih"/>
@@ -350,8 +291,8 @@
                                 </mask>
                             </variation>
                         </view>
-                        <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0GC-7F-jUt">
-                            <rect key="frame" x="0.0" y="205" width="576" height="103"/>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0GC-7F-jUt">
+                            <rect key="frame" x="0.0" y="157" width="400" height="103"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" alpha="0.60000002384185791" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Purpose of payment" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CL2-So-gxe">
                                     <rect key="frame" x="30" y="42" width="105" height="17.5"/>
@@ -359,8 +300,8 @@
                                     <color key="textColor" red="0.2470588235" green="0.30196078430000001" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NP7-Fa-6aw">
-                                    <rect key="frame" x="155" y="10" width="364" height="83"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NP7-Fa-6aw">
+                                    <rect key="frame" x="155" y="10" width="188" height="83"/>
                                     <string key="text">Lykke shares (coins)
 purchase CHF
 [ maksim.kucher
@@ -369,8 +310,8 @@ purchase CHF
                                     <color key="textColor" red="0.2470588235" green="0.30196078430000001" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <button opaque="NO" tag="4" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FTJ-pS-fjo">
-                                    <rect key="frame" x="529" y="43" width="17" height="17"/>
+                                <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FTJ-pS-fjo">
+                                    <rect key="frame" x="353" y="43" width="17" height="17"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="17" id="hCr-pG-2hl"/>
                                         <constraint firstAttribute="width" constant="17" id="uro-cA-wx1"/>
@@ -380,8 +321,8 @@ purchase CHF
                                         <action selector="copyPressed:" destination="-2" eventType="touchUpInside" id="WsP-nt-USH"/>
                                     </connections>
                                 </button>
-                                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="V4N-Zm-CJF">
-                                    <rect key="frame" x="30" y="102" width="516" height="1"/>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V4N-Zm-CJF">
+                                    <rect key="frame" x="30" y="102" width="340" height="1"/>
                                     <color key="backgroundColor" red="0.82745098039999998" green="0.83921568629999999" blue="0.85882352939999995" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="1" id="D4C-4W-Lur"/>
@@ -413,8 +354,8 @@ purchase CHF
                                 </mask>
                             </variation>
                         </view>
-                        <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tln-u7-x3a">
-                            <rect key="frame" x="160" y="328" width="255" height="25"/>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tln-u7-x3a">
+                            <rect key="frame" x="84" y="280" width="231" height="25"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="31Y-wV-p0m">
                                     <rect key="frame" x="0.0" y="-3" width="81" height="30"/>
@@ -426,8 +367,8 @@ purchase CHF
                                         <action selector="termsOfUsePressed:" destination="-2" eventType="touchUpInside" id="CrE-eR-Jzg"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bsH-XT-PLj">
-                                    <rect key="frame" x="101" y="-2" width="154" height="30"/>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bsH-XT-PLj">
+                                    <rect key="frame" x="101" y="-2" width="130" height="30"/>
                                     <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="14"/>
                                     <state key="normal" title="Information Brochure">
                                         <color key="titleColor" red="0.6705882353" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -448,7 +389,7 @@ purchase CHF
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n3Z-kA-LLd">
-                            <rect key="frame" x="0.0" y="373" width="400" height="0.0"/>
+                            <rect key="frame" x="0.0" y="325" width="400" height="0.0"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="height" id="I93-UH-blI"/>
@@ -457,7 +398,6 @@ purchase CHF
                         </view>
                     </subviews>
                     <constraints>
-                        <constraint firstItem="cQx-BD-iit" firstAttribute="centerX" secondItem="kdl-yb-brP" secondAttribute="centerX" id="0Ke-aP-ylX"/>
                         <constraint firstItem="L5o-P9-jWH" firstAttribute="centerX" secondItem="kdl-yb-brP" secondAttribute="centerX" id="2mE-mV-u1z"/>
                         <constraint firstItem="7yW-iU-phv" firstAttribute="leading" secondItem="kdl-yb-brP" secondAttribute="leading" id="5mM-Ys-cXx"/>
                         <constraint firstItem="AS4-vq-Zku" firstAttribute="top" secondItem="L5o-P9-jWH" secondAttribute="bottom" id="5yA-4q-ng0"/>
@@ -468,13 +408,12 @@ purchase CHF
                         <constraint firstItem="0GC-7F-jUt" firstAttribute="width" secondItem="kdl-yb-brP" secondAttribute="width" id="FDD-Xy-NPQ"/>
                         <constraint firstAttribute="trailing" secondItem="7yW-iU-phv" secondAttribute="trailing" id="FXJ-cl-0Gq"/>
                         <constraint firstAttribute="width" constant="576" id="Gb7-Xk-ear"/>
-                        <constraint firstItem="0GC-7F-jUt" firstAttribute="top" secondItem="cQx-BD-iit" secondAttribute="bottom" id="I78-n4-Oln"/>
                         <constraint firstItem="L5o-P9-jWH" firstAttribute="top" secondItem="7yW-iU-phv" secondAttribute="bottom" id="JxS-22-UtV"/>
                         <constraint firstAttribute="bottom" secondItem="n3Z-kA-LLd" secondAttribute="bottom" id="KT5-6j-5A4"/>
                         <constraint firstItem="0GC-7F-jUt" firstAttribute="leading" secondItem="kdl-yb-brP" secondAttribute="leading" id="MZT-WW-jSF"/>
                         <constraint firstItem="7yW-iU-phv" firstAttribute="top" secondItem="kdl-yb-brP" secondAttribute="top" id="PKC-3V-uaj"/>
                         <constraint firstAttribute="bottom" secondItem="0GC-7F-jUt" secondAttribute="bottom" id="Ptb-8r-y5e"/>
-                        <constraint firstItem="cQx-BD-iit" firstAttribute="leading" secondItem="kdl-yb-brP" secondAttribute="leading" id="SZo-sV-PWr"/>
+                        <constraint firstItem="0GC-7F-jUt" firstAttribute="top" secondItem="AS4-vq-Zku" secondAttribute="bottom" id="ZTb-sB-feL"/>
                         <constraint firstItem="n3Z-kA-LLd" firstAttribute="leading" secondItem="kdl-yb-brP" secondAttribute="leading" id="ZeB-3V-Bv2"/>
                         <constraint firstAttribute="bottom" secondItem="Tln-u7-x3a" secondAttribute="bottom" constant="20" id="azU-az-mex"/>
                         <constraint firstItem="n3Z-kA-LLd" firstAttribute="width" secondItem="kdl-yb-brP" secondAttribute="width" id="cSb-qV-y1R"/>
@@ -483,10 +422,7 @@ purchase CHF
                         <constraint firstItem="L5o-P9-jWH" firstAttribute="width" secondItem="kdl-yb-brP" secondAttribute="width" id="eJw-0N-GWk"/>
                         <constraint firstAttribute="trailing" secondItem="0GC-7F-jUt" secondAttribute="trailing" id="hBK-ax-SGb"/>
                         <constraint firstItem="7yW-iU-phv" firstAttribute="width" secondItem="kdl-yb-brP" secondAttribute="width" id="hYG-ep-6Xn"/>
-                        <constraint firstItem="cQx-BD-iit" firstAttribute="top" secondItem="AS4-vq-Zku" secondAttribute="bottom" id="hcD-Ig-aQr"/>
-                        <constraint firstAttribute="trailing" secondItem="cQx-BD-iit" secondAttribute="trailing" id="jKI-4C-FML"/>
                         <constraint firstItem="Tln-u7-x3a" firstAttribute="top" secondItem="0GC-7F-jUt" secondAttribute="bottom" constant="20" id="mAD-i3-HZz"/>
-                        <constraint firstItem="cQx-BD-iit" firstAttribute="width" secondItem="kdl-yb-brP" secondAttribute="width" id="mZz-9C-QcI"/>
                         <constraint firstItem="7yW-iU-phv" firstAttribute="width" secondItem="n3Z-kA-LLd" secondAttribute="width" id="n0O-El-nvX"/>
                         <constraint firstItem="L5o-P9-jWH" firstAttribute="leading" secondItem="kdl-yb-brP" secondAttribute="leading" id="qqm-3O-eWl"/>
                         <constraint firstItem="Tln-u7-x3a" firstAttribute="centerX" secondItem="kdl-yb-brP" secondAttribute="centerX" id="uQl-bZ-pxS"/>
@@ -503,8 +439,6 @@ purchase CHF
                             <exclude reference="qqm-3O-eWl"/>
                             <exclude reference="822-38-V5B"/>
                             <exclude reference="ADP-2B-tcD"/>
-                            <exclude reference="SZo-sV-PWr"/>
-                            <exclude reference="jKI-4C-FML"/>
                             <exclude reference="MZT-WW-jSF"/>
                             <exclude reference="Ptb-8r-y5e"/>
                             <exclude reference="hBK-ax-SGb"/>

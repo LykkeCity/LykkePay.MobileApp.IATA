@@ -22,6 +22,9 @@
 #import "LWEmptyHistoryPresenter.h"
 #import "LWLykkeAssetsData.h"
 #import "LWLykkeWalletsData.h"
+#import "LWMyLykkeBuyPresenter.h"
+#import "LWMyLykkeIpadController.h"
+#import "LWEtheriumDepositPresenter.h"
 
 
 @interface LWTradingWalletPresenter()  {
@@ -191,11 +194,30 @@
     
     [[LWKYCManager sharedInstance] manageKYCStatusForAsset:self.assetId successBlock:^{
 
-    
+        if([self.assetId isEqualToString:@"LKK"])
+        {
+            if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
+            {
+                LWMyLykkeBuyPresenter *presenter=[[LWMyLykkeBuyPresenter alloc] init];
+                [self.navigationController pushViewController:presenter animated:YES];
+            }
+            else
+            {
+                LWMyLykkeIpadController *presenter=[LWMyLykkeIpadController new];
+                [self.navigationController pushViewController:presenter animated:YES];
+                
+            }
+            return;
+        }
+
     
     UIViewController *presenter;
-    
-    if([depositTypes[self.assetId] isEqualToString:@"bitcoin"])
+        
+    if([self.assetId isEqualToString:@"ETH"])
+    {
+            presenter = [LWEtheriumDepositPresenter new];
+    }
+    else if([depositTypes[self.assetId] isEqualToString:@"bitcoin"])
     {
         presenter = [LWBitcoinDepositPresenter new];
     }

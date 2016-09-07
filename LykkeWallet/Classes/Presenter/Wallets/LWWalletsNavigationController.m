@@ -59,6 +59,12 @@
     }
 }
 
+-(void) viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    self.title=@"WALLET";
+}
+
 - (NSArray<UIViewController *> *)popToViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
     if([self.navigationController.viewControllers containsObject:viewController])

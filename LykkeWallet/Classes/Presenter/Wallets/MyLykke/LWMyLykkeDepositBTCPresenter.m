@@ -16,13 +16,20 @@
 #import "UIView+Toast.h"
 #import "UIViewController+Loading.h"
 #import "LWCache.h"
+#import "LWPacketGetEthereumAddress.h"
 
 @interface LWMyLykkeDepositBTCPresenter ()
+{
+    NSString *etheriumAddress;
+}
 
 @property (weak, nonatomic) IBOutlet UIImageView *qrCodeImageView;
 @property (weak, nonatomic) IBOutlet UILabel *addressLabel;
 @property (weak, nonatomic) IBOutlet LWCommonButton *clipboardButton;
 @property (weak, nonatomic) IBOutlet LWCommonButton *emailButton;
+
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *textLabel;
 
 @end
 
@@ -32,7 +39,18 @@
     [super viewDidLoad];
     [self adjustThinLines];
 
-    [self setupQRCode];
+    if([self.assetId isEqualToString:@"BTC"])
+    {
+        [self setupQRCode];
+        self.titleLabel.text=@"To buy Lykke coins send bitcoins to this address";
+        self.textLabel.text=@"Lykke coins will be transferred to your Lykke Wallet after BTC transaction is detected";
+    }
+    else
+    {
+        self.titleLabel.text=@"To buy Lykke coins send ethereums to this address";
+        self.textLabel.text=@"Lykke coins will be transferred to your Lykke Wallet after ETH transaction is detected";
+
+    }
     self.emailButton.type=BUTTON_TYPE_COLORED;
     self.clipboardButton.type=BUTTON_TYPE_CLEAR;
     self.emailButton.enabled=YES;
@@ -68,21 +86,34 @@
     if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
         self.title=@"BUY LYKKE";
     else
-        self.navigationController.title=@"PURCHASE LKK WITH BTC";
+    {
+        if([self.assetId isEqualToString:@"BTC"])
+            self.navigationController.title=@"PURCHASE LKK WITH BTC";
+        else if([self.assetId isEqualToString:@"ETH"])
+            self.navigationController.title=@"PURCHASE LKK WITH ETH";
+    }
+    
+    if([self.assetId isEqualToString:@"ETH"])
+    {
+        [self setLoading:YES];
+        [[LWAuthManager instance] requestEthereumAddress];
+    }
+
 }
 
 - (IBAction)copyClicked:(id)sender {
     UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
     pasteboard.string = self.addressLabel.text;
     
-//    [self.navigationController.view makeToast:@"COPIED"];
-    [self showCopied];
+    [self.navigationController.view makeToast:@"Copied."];
+//    [self showCopied];
 }
 
 -(IBAction)emailClicked:(id)sender
 {
     [self setLoading:YES];
-    [[LWAuthManager instance] requestEmailBlockchainForAssetId:@"LKK" address:[LWCache instance].btcConversionWalletAddress];
+//    [[LWAuthManager instance] requestEmailBlockchainForAssetId:@"LKK" address:[LWCache instance].btcConversionWalletAddress];
+    [[LWAuthManager instance] requestSendMyLykkeCashInEmail:@{@"AssetId":_assetId, @"Amount":@(_amount), @"LkkAmount":@(_lkkAmount), @"Price":@(_price)}];
 }
 
 - (void)authManager:(LWAuthManager *)manager didFailWithReject:(NSDictionary *)reject context:(GDXRESTContext *)context {
@@ -90,24 +121,42 @@
     [self showReject:reject response:context.task.response code:context.error.code willNotify:YES];
 }
 
-- (void)authManagerDidSendBlockchainEmail:(LWAuthManager *)manager {
+//- (void)authManagerDidSendBlockchainEmail:(LWAuthManager *)manager {
+//    [self setLoading:NO];
+//    
+//    [self.navigationController.view makeToast:Localize(@"wallets.bitcoin.sendemail")];
+//}
+
+-(void) authManagerDidSendMyLykkeCashInEmail:(LWAuthManager *)manager
+{
     [self setLoading:NO];
-    
     [self.navigationController.view makeToast:Localize(@"wallets.bitcoin.sendemail")];
+
+}
+
+-(void) authManagerDidGetEthereumAddress:(LWPacketGetEthereumAddress *)ethereumAddressPacket
+{
+    [self setLoading:NO];
+    etheriumAddress=ethereumAddressPacket.ethereumAddress;
+    [self setupQRCode];
 }
 
 
-
 - (void)setupQRCode {
+    self.qrCodeImageView.hidden=NO;
+    self.addressLabel.hidden=NO;
     CIFilter *filter = [CIFilter filterWithName:@"CIQRCodeGenerator"];
     [filter setDefaults];
     
-    NSString *bitcoinHash = [LWCache instance].btcConversionWalletAddress;
     
-    self.addressLabel.text = bitcoinHash;
+    
+    if([self.assetId isEqualToString:@"BTC"])
+        self.addressLabel.text = [LWCache instance].btcConversionWalletAddress;
+    else
+        self.addressLabel.text=etheriumAddress;
     
     //    NSString *qrCodeString = [NSString stringWithFormat:@"%@%@", @"bitcoin:", bitcoinHash];
-    NSString *qrCodeString = bitcoinHash;
+    NSString *qrCodeString = self.addressLabel.text;
     NSData *data = [qrCodeString dataUsingEncoding:NSUTF8StringEncoding];
     [filter setValue:data forKey:@"inputMessage"];
     

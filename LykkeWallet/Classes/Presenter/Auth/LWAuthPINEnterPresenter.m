@@ -53,6 +53,8 @@ static int const kAllowedAttempts = 3;
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
+    [[LWAuthManager instance] requestMyLykkeSettings];
+    
     [self.navigationController setNavigationBarHidden:YES animated:NO];
     
     // adjust pin controller frame

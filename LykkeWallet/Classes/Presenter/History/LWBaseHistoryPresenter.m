@@ -83,6 +83,8 @@
     self.tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadHistory) name:@"ApplicationDidBecomeActiveNotification" object:nil];
+    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad)
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(orientationChanged) name:UIApplicationDidChangeStatusBarOrientationNotification object:nil];
 
 }
 
@@ -128,7 +130,7 @@
 {
     if(_operations.count==0)
     {
-        return self.view.bounds.size.height;
+        return self.view.bounds.size.height-90;
     }
     return 60;
 }
@@ -594,6 +596,12 @@
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
+
+-(void) orientationChanged
+{
+    [self.tableView reloadData];
+}
+
 
 
 @end

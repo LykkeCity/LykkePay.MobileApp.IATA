@@ -25,6 +25,8 @@
 #import "LWIPadModalNavigationControllerViewController.h"
 #import "LWCache.h"
 #import "LWAssetModel.h"
+#import "LWUtils.h"
+#import "LWAuthNavigationController.h"
 
 
 @interface LWPrivateWalletTransferInputPresenter () <LWMathKeyboardViewDelegate, UITextFieldDelegate, LWSettingsConfirmationPresenter, LWResultPresenterDelegate>
@@ -33,7 +35,7 @@
     NSNumber *balance;
     LWPWTransferInputView *inputView;
     UIButton *checkoutButton;
-    
+    NSString *prefix;
 }
 
 @end
@@ -47,7 +49,10 @@
     inputView=[[LWPWTransferInputView alloc] init];
     [self.view addSubview:inputView];
     inputView.textField.delegate=self;
-    inputView.textField.text=@"BTC 0";
+    
+    prefix=[self.transfer.asset.assetId stringByAppendingString:@" "];
+
+    inputView.textField.text=[prefix stringByAppendingString:@"0"];
     checkoutButton=[UIButton buttonWithType:UIButtonTypeCustom];
     [checkoutButton addTarget:self action:@selector(checkoutButtonPressed) forControlEvents:UIControlEventTouchUpInside];
     
@@ -63,8 +68,9 @@
     balanceLabel.textAlignment=NSTextAlignmentCenter;
     
     LWPrivateWalletAssetModel *asset=self.transfer.asset;
-    balanceLabel.text=[NSString stringWithFormat:@"%@ %f available", asset.assetId, asset.amount.floatValue];
+    balanceLabel.text=[NSString stringWithFormat:@"%@ %@ available", asset.assetId, [LWUtils formatFairVolume:asset.amount.doubleValue accuracy:[LWCache accuracyForAssetId:asset.assetId] roundToHigher:NO]];
     [self.view addSubview:balanceLabel];
+    
 }
 
 -(void) viewDidLayoutSubviews
@@ -132,7 +138,7 @@
 {
 //    inputView.textField.text=string;
     [LWValidator setButton:checkoutButton enabled:string.floatValue<=self.transfer.asset.amount.floatValue && string.floatValue>0];
-    inputView.textField.text=[@"BTC " stringByAppendingString:string];
+    inputView.textField.text=[prefix stringByAppendingString:string];
 }
 
 
@@ -154,7 +160,7 @@
     }
     
     self.keyboardView.accuracy=accuracy;
-    NSString *text=[textField.text stringByReplacingOccurrencesOfString:@"BTC " withString:@""];
+    NSString *text=[textField.text stringByReplacingOccurrencesOfString:prefix withString:@""];
     text=[text stringByReplacingOccurrencesOfString:@" " withString:@""];
     [self.keyboardView setText:text];
     
@@ -172,7 +178,7 @@
 //        [self showConfirmationView];
 //    }
     
-    NSString *text=[inputView.textField.text stringByReplacingOccurrencesOfString:@"BTC " withString:@""];
+    NSString *text=[inputView.textField.text stringByReplacingOccurrencesOfString:prefix withString:@""];
     self.transfer.amount=@(text.floatValue);
     
     [LWPKTransferConfirmationView showTransfer:self.transfer withCompletion:^(BOOL result){
@@ -276,7 +282,7 @@
 }
 
 - (void)operationRejected {
-    
+    [(LWAuthNavigationController *)self.navigationController logout];
 }
 
 

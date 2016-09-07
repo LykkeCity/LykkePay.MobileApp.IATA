@@ -19,6 +19,7 @@
 #import "LWNumbersKeyboardView.h"
 #import "LWCache.h"
 #import "LWWebViewDocumentPresenter.h"
+#import "LWSwiftCredentialsModel.h"
 
 
 @interface LWMyLykkeDepositSwiftPresenter () <UITextFieldDelegate, LWMathKeyboardViewDelegate, LWNumbersKeyboardViewDelegate>
@@ -29,6 +30,9 @@
 }
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *bicLabel;
+@property (weak, nonatomic) IBOutlet UILabel *accountNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *accountNumberLabel;
 @property (weak, nonatomic) IBOutlet UILabel *purposeLabel;
 @property (weak, nonatomic) IBOutlet LWCommonButton *emailButton;
@@ -50,8 +54,18 @@
     [super viewDidLoad];
     [self adjustThinLines];
 
-    NSArray *arr=[[LWKeychainManager instance].login componentsSeparatedByString:@"@"];
-    self.purposeLabel.text=[NSString stringWithFormat:@"Lykke shares (coins) purchase CHF [%@(at)%@]", arr[0], arr[1]];
+    NSString *login=[[LWKeychainManager instance].login stringByReplacingOccurrencesOfString:@"@" withString:@"."];
+    
+    LWSwiftCredentialsModel *swiftCreds=[LWCache instance].swiftCredentialsDict[@"CHF"];
+    self.bicLabel.text=swiftCreds.bic;
+    self.accountNumberLabel.text=swiftCreds.accountNumber;
+    self.accountNameLabel.text=swiftCreds.accountName;
+
+    NSString *purposeTemp=[swiftCreds.purposeOfPayment stringByReplacingOccurrencesOfString:@"{0}" withString:@"%@"];
+    purposeTemp=[purposeTemp stringByReplacingOccurrencesOfString:@"{1}" withString:@"%@"];
+
+    
+    self.purposeLabel.text=[NSString stringWithFormat:purposeTemp, @"CHF", login];
     self.emailButton.type=BUTTON_TYPE_COLORED;
     self.emailButton.enabled=YES;
     self.textField.delegate=self;
@@ -60,7 +74,7 @@
     keyboardIsVisible=NO;
     
     
-    lineValues=@[@"POFICHBEXXX", @"CH06 0900 0000 8016 2421 0", @"Richard Olsen", @"80-165 421-0", _purposeLabel.text];
+    lineValues=@[swiftCreds.bic, swiftCreds.accountNumber, swiftCreds.accountName, @"80-165 421-0", _purposeLabel.text];
     
     if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad)
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(orientationChanged) name:UIApplicationDidChangeStatusBarOrientationNotification object:nil];
@@ -170,7 +184,7 @@
     [pasteboard setString:lineValues[sender.tag]];
 //    [self showCopied];
     
-    [self.view makeToast:@"COPIED!"];
+    [self.view makeToast:@"Copied."];
 
 }
 
@@ -219,7 +233,7 @@
     NSString *sum=[self removePrefix:_textField.text];
     if(sum.doubleValue==0)
         return;
-    [self hideCustomKeyboard];
+//    [self hideCustomKeyboard];
     [self setLoading:YES];
     
     [[LWAuthManager instance] requestCurrencyDepositForAsset:@"CHF" changeValue:@(sum.doubleValue)];
@@ -235,7 +249,7 @@
 {
     [self setLoading:NO];
     
-    [self.navigationController.view makeToast:Localize(@"wallets.bitcoin.sendemail")];
+    [self.view makeToast:Localize(@"wallets.bitcoin.sendemail")];
 }
 
 

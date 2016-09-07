@@ -19,7 +19,7 @@
 -(void) loadWalletsWithCompletion:(void(^)(NSArray *)) completion;
 -(void) loadWalletBalances:(NSString *) address withCompletion:(void (^)(NSArray *))completion;
 
--(void) loadHistoryForWallet:(NSString *) address withCompletion:(void(^)(NSArray *)) completion;
+-(void) loadHistoryForWallet:(NSString *) address assetId:(NSString *) assetId withCompletion:(void(^)(NSArray *)) completion;
 
 -(void) addNewWallet:(LWPrivateWalletModel *) wallet   withCompletion:(void (^)(BOOL))completion;
 -(void) updateWallet:(LWPrivateWalletModel *) wallet withCompletion:(void (^)(BOOL))completion;

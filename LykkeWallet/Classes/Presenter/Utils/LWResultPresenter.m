@@ -47,8 +47,12 @@
 
     self.okButton.type=BUTTON_TYPE_COLORED;
     
+    if(!_buttonTitle)
     [self.okButton setTitle:@"RETURN TO WALLET"
                    forState:UIControlStateNormal];
+    else
+        [self.okButton setTitle:_buttonTitle
+                       forState:UIControlStateNormal];
     self.okButton.enabled=YES;
     
     _headerLabel.text=_titleString;

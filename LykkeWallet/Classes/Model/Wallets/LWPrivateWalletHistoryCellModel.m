@@ -24,7 +24,7 @@
     else
         self.type=LWPrivateWalletTransferTypeSend;
     
-    
+    self.baseAssetId=d[@"BaseAssetId"];
     
     
 //    self.amount=@(20);

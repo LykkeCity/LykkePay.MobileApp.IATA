@@ -14,6 +14,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LWBackupIntroPresenter">
             <connections>
+                <outlet property="skipBackupButton" destination="Mdg-ES-bni" id="5py-ij-htw"/>
                 <outlet property="takeBackupButton" destination="yLW-t4-Oge" id="t9X-pb-hkF"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -56,6 +57,18 @@
                         <action selector="takeBackupButtonPressed:" destination="-2" eventType="touchUpInside" id="hSz-9n-BOa"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mdg-ES-bni" customClass="LWCommonButton">
+                    <rect key="frame" x="282" y="474" width="46" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="45" id="V6p-cu-rc3"/>
+                    </constraints>
+                    <state key="normal" title="SKIP BACKUP">
+                        <color key="titleColor" red="0.5490196078431373" green="0.58039215686274503" blue="0.62745098039215685" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="skipBackupPressed:" destination="-2" eventType="touchUpInside" id="73F-RT-6bu"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
@@ -65,6 +78,7 @@
                 <constraint firstItem="ZDB-MW-0Ez" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="40" id="Ime-kz-cDe"/>
                 <constraint firstItem="NQE-KX-jve" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="82" id="Qlm-48-R1q"/>
                 <constraint firstItem="yLW-t4-Oge" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="30" id="R2Z-pb-8uW"/>
+                <constraint firstItem="yLW-t4-Oge" firstAttribute="top" secondItem="Mdg-ES-bni" secondAttribute="bottom" constant="10" id="VGW-R5-OZE"/>
                 <constraint firstItem="NQE-KX-jve" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="fsg-41-wYa"/>
                 <constraint firstAttribute="bottom" secondItem="yLW-t4-Oge" secondAttribute="bottom" constant="30" id="llV-Kp-cwb"/>
                 <constraint firstItem="ZDB-MW-0Ez" firstAttribute="top" secondItem="aF2-e2-Rnt" secondAttribute="bottom" constant="9" id="niL-2w-raV"/>
@@ -72,6 +86,8 @@
                 <constraint firstItem="yLW-t4-Oge" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="qIL-AM-AmX"/>
                 <constraint firstItem="ZDB-MW-0Ez" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="rRK-Lu-Sw7"/>
                 <constraint firstAttribute="trailing" secondItem="ZDB-MW-0Ez" secondAttribute="trailing" constant="40" id="vsJ-Do-9oh"/>
+                <constraint firstItem="Mdg-ES-bni" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="wf5-J5-4zi"/>
+                <constraint firstItem="Mdg-ES-bni" firstAttribute="width" secondItem="yLW-t4-Oge" secondAttribute="width" id="xRC-y2-B63"/>
             </constraints>
             <variation key="default">
                 <mask key="constraints">

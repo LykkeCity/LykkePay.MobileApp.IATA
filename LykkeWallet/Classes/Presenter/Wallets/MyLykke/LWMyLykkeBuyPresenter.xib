@@ -28,6 +28,8 @@
                 <outlet property="bitcoinPriceLabel" destination="tuY-DH-cRe" id="Kf9-mW-bvM"/>
                 <outlet property="creditCardContainerView" destination="QPd-sg-E4E" id="n3h-7F-67j"/>
                 <outlet property="creditCardPriceLabel" destination="kRG-k6-xlP" id="3pw-Xp-sGY"/>
+                <outlet property="ethereumContainerView" destination="3yB-LN-gnG" id="bBx-Dp-CWz"/>
+                <outlet property="ethereumPriceLabel" destination="nZU-kq-OFG" id="5ab-m0-WBz"/>
                 <outlet property="subtitleContainerHeightConstraint" destination="19e-0D-NVO" id="nwf-1h-66v"/>
                 <outlet property="subtitleContainerView" destination="fSj-zG-c0r" id="99d-vm-JvR"/>
                 <outlet property="swiftContainerView" destination="nIS-mz-i1e" id="bGP-fg-imD"/>
@@ -313,7 +315,7 @@
                             <color key="textColor" red="0.2470588235" green="0.30196078430000001" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="F 0,05196" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nZU-kq-OFG">
+                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Ξ 0,05196" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nZU-kq-OFG">
                             <rect key="frame" x="136" y="48" width="60.5" height="17.5"/>
                             <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="14"/>
                             <color key="textColor" red="0.6705882353" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>

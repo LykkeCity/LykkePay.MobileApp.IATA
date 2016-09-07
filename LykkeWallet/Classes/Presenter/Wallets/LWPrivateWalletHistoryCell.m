@@ -8,6 +8,8 @@
 
 #import "LWPrivateWalletHistoryCell.h"
 #import "LWPrivateWalletHistoryCellModel.h"
+#import "LWUtils.h"
+#import "LWCache.h"
 
 #define TEXT_COLOR [UIColor colorWithRed:63.0/255 green:77.0/255 blue:96.0/255 alpha:1]
 
@@ -37,25 +39,36 @@
     self=[super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
     model=_model;
     
+    if([model.assetId isEqualToString:@"BTC"])
     icon=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"WalletBitcoin"]];
+    else
+        icon=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"lykke_logo"]];
     icon.frame=CGRectMake(0, 0, 25, 25);
     [self addSubview:icon];
     
     ;
     
     priceLabel=[[UILabel alloc] init];
-    priceLabel.text=[NSString stringWithFormat:@"%f", model.amount.floatValue];
+    priceLabel.text=[[LWUtils formatFairVolume:model.amount.doubleValue accuracy:[LWCache accuracyForAssetId:model.assetId] roundToHigher:NO] stringByReplacingOccurrencesOfString:@" " withString:@","];
     priceLabel.font=[UIFont fontWithName:@"ProximaNova-Light" size:22.5];
-    priceLabel.textColor=[UIColor colorWithRed:1 green:62.0/255 blue:46.0/255 alpha:1];
     [priceLabel sizeToFit];
     [self addSubview:priceLabel];
     
     titleLabel=[[UILabel alloc] init];
     
     if(model.type==LWPrivateWalletTransferTypeSend)
+    {
         titleLabel.text=@"Send Transfer";
+        priceLabel.textColor=[UIColor colorWithRed:1 green:62.0/255 blue:46.0/255 alpha:1];
+
+    }
     else
+    {
         titleLabel.text=@"Receive Transfer";
+        priceLabel.textColor=[UIColor colorWithRed:19.0/255 green:183.0/255 blue:42.0/255 alpha:1];
+
+    }
+    
     titleLabel.font=[UIFont fontWithName:@"ProximaNova-Regular" size:17];
     titleLabel.textColor=TEXT_COLOR;
     [titleLabel sizeToFit];
@@ -74,7 +87,12 @@
     priceSmallLabel=[[UILabel alloc] init];
     priceSmallLabel.textColor=dateLabel.textColor;
     priceSmallLabel.font=dateLabel.font;
-    priceSmallLabel.text=model.baseAssetAmount.stringValue;
+    
+    NSString *smallString=[[LWUtils formatFairVolume:model.baseAssetAmount.doubleValue accuracy:[LWCache accuracyForAssetId:model.baseAssetId] roundToHigher:NO] stringByReplacingOccurrencesOfString:@" " withString:@","];
+    
+    smallString=[NSString stringWithFormat:@"%@ %@", [[LWCache instance] currencySymbolForAssetId:model.baseAssetId], smallString];
+    
+    priceSmallLabel.text=smallString;
     priceSmallLabel.alpha=dateLabel.alpha;
     [priceSmallLabel sizeToFit];
     [self addSubview:priceSmallLabel];

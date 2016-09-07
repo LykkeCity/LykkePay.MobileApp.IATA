@@ -169,7 +169,7 @@
 }
 
 
--(void) loadHistoryForWallet:(NSString *) address withCompletion:(void(^)(NSArray *)) completion
+-(void) loadHistoryForWallet:(NSString *) address assetId:(NSString *) assetId withCompletion:(void(^)(NSArray *)) completion
 {
     NSMutableURLRequest *request=[self createRequestWithAPI:@"PrivateWalletHistory" httpMethod:@"GET" getParameters:@{@"address":address} postParameters:nil];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{

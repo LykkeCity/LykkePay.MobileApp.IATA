@@ -82,7 +82,8 @@
 {
     [super layoutSubviews];
     titleLabel.center=CGPointMake(titleLabel.bounds.size.width/2+30, self.bounds.size.height/2);
-    baseAssetSumLabel.center=CGPointMake(self.bounds.size.width-115-baseAssetSumLabel.bounds.size.width/2, self.bounds.size.height/2);
+//    baseAssetSumLabel.center=CGPointMake(self.bounds.size.width-115-baseAssetSumLabel.bounds.size.width/2, self.bounds.size.height/2);
+    baseAssetSumLabel.center=CGPointMake(titleLabel.center.x+titleLabel.bounds.size.width/2+20+baseAssetSumLabel.bounds.size.width/2, self.bounds.size.height/2);
     sumLabel.center=CGPointMake(self.bounds.size.width-30-sumLabel.bounds.size.width/2, self.bounds.size.height/2);
     
 }

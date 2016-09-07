@@ -221,7 +221,11 @@
     timer=[NSTimer timerWithTimeInterval:5 target:self selector:@selector(loadMyLykkeInfo) userInfo:nil repeats:YES];
     [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
     [self loadMyLykkeInfo];
-    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:246.0/255 green:247.0/255 blue:248.0/255 alpha:1]];
+    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
+        [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:246.0/255 green:247.0/255 blue:248.0/255 alpha:1]];
+    else
+        [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
+
     self.title=@"MY LYKKE";
     
     if(descriptionLoaded==NO)

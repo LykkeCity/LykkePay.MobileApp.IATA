@@ -52,6 +52,8 @@
 @class LWPacketAllAssetPairsRates;
 @class LWPacketMyLykkeInfo;
 @class LWPacketGetNews;
+@class LWPacketSwiftCredentials;
+@class LWPacketGetEthereumAddress;
 
 
 @protocol LWAuthManagerDelegate<NSObject>
@@ -134,6 +136,12 @@
 -(void) authManager:(LWAuthManager *)manager didGetMyLykkeInfo:(LWPacketMyLykkeInfo *) packet;
 
 -(void) authManager:(LWAuthManager *) manager didGetNews:(LWPacketGetNews *) packet;
+
+-(void) authManagerDidSendMyLykkeCashInEmail:(LWAuthManager *)manager;
+-(void) authManagerDidGetSwiftCredentials:(LWPacketSwiftCredentials *) packet;
+
+-(void) authManagerDidGetEthereumAddress:(LWPacketGetEthereumAddress *) ethereumAddress;
+
 
 @end
 
@@ -241,8 +249,13 @@ SINGLETON_DECLARE
 
 -(void) requestLykkeNews;
 
+-(void) requestSendMyLykkeCashInEmail:(NSDictionary *) params;
 
+-(void) requestSwiftCredentials;
 
+-(void) requestEthereumAddress;
+
+-(void) requestMyLykkeSettings;
 
 
 //PubkeyAddressValidation

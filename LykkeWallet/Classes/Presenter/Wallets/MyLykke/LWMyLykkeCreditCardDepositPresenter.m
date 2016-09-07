@@ -176,7 +176,6 @@
     [self checkTextFieldsAlpha];
     
     
-    
     if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
     {
         UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"BackIcon"] style:UIBarButtonItemStylePlain target:self action:@selector(backButtonPressed)];
@@ -184,6 +183,7 @@
     }
     else
         [self.navigationController setNavigationBarHidden:YES];
+
     
     
 }
@@ -201,6 +201,9 @@
         [self setLoading:YES];
         [[LWAuthManager instance] requestCountyCodes];
     }
+    
+
+    
 }
 
 -(void) viewDidLayoutSubviews
@@ -515,26 +518,26 @@
     return YES;
 }
 
--(void) foundSuccessUrl
-{
-    dispatch_async(dispatch_get_main_queue(), ^{
-        webView.delegate=nil;
-        [webView stopLoading];
-        LWMyLykkeSuccessViewController *pr=[[LWMyLykkeSuccessViewController alloc] init];
-        pr.amount=[self.lkkAmountString stringByReplacingOccurrencesOfString:@" " withString:@""];
-        [pr showInWindow:[UIApplication sharedApplication].keyWindow];
-        [self.navigationController popViewControllerAnimated:NO];
-    });
-}
-
--(void) foundFailUrl
-{
-    [webView stopLoading];
-    webView.delegate=nil;
-    [webView removeFromSuperview];
-    webView=nil;
-    
-}
+//-(void) foundSuccessUrl
+//{
+//    dispatch_async(dispatch_get_main_queue(), ^{
+//        webView.delegate=nil;
+//        [webView stopLoading];
+//        LWMyLykkeSuccessViewController *pr=[[LWMyLykkeSuccessViewController alloc] init];
+//        pr.amount=[self.lkkAmountString stringByReplacingOccurrencesOfString:@" " withString:@""];
+//        [pr showInWindow:[UIApplication sharedApplication].keyWindow];
+//        [self.navigationController popViewControllerAnimated:NO];
+//    });
+//}
+//
+//-(void) foundFailUrl
+//{
+//    [webView stopLoading];
+//    webView.delegate=nil;
+//    [webView removeFromSuperview];
+//    webView=nil;
+//    
+//}
 
 
 -(IBAction)termsOfUsePressed:(id)sender
@@ -697,6 +700,75 @@
     _email.superview.hidden=hidden;
     _phone.superview.hidden=hidden;
 
+}
+
+
+
+
+
+
+
+-(void) foundSuccessUrl
+{
+//    [self foundFailUrl];
+//    return;
+    webView.delegate=nil;
+    [webView stopLoading];
+    LWResultPresenter *presenter=[[LWResultPresenter alloc] init];
+    presenter.image=[UIImage imageNamed:@"WithdrawSuccessFlag.png"];
+    presenter.titleString=@"SUCCESSFUL!";
+    presenter.textString=@"Your payment was successfully sent!\nYou may return to your wallet and proceed with the trade.";
+    presenter.buttonTitle=@"RETURN TO MY LYKKE";
+
+    presenter.delegate=self;
+    [self.navigationController presentViewController:presenter animated:YES completion:nil];
+    
+}
+
+-(void) foundFailUrl
+{
+    //    [webView stopLoading];
+    //    webView.delegate=nil;
+    //   [webView removeFromSuperview];
+    //    webView=nil;
+    
+    webView.delegate=nil;
+    [webView stopLoading];
+    LWResultPresenter *presenter=[[LWResultPresenter alloc] init];
+    presenter.image=[UIImage imageNamed:@"RegisterFailed"];
+    presenter.titleString=@"OOPS!";
+    presenter.textString=@"We’re sorry, but we were unable to make a payment according to the details that you provided. Please try again later.";
+    presenter.buttonTitle=@"RETURN TO MY LYKKE";
+    presenter.delegate=self;
+    [self.navigationController presentViewController:presenter animated:YES completion:nil];
+    
+    
+}
+
+
+-(void) resultPresenterDismissed
+{
+    //    [self.navigationController popViewControllerAnimated:NO];
+}
+
+-(void) resultPresenterWillDismiss
+{
+    [webView removeFromSuperview];
+    
+    [self.navigationController popToRootViewControllerAnimated:NO];
+
+//    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
+//    {
+////        NSMutableArray *arr=[NSMutableArray arrayWithArray:self.navigationController.viewControllers];
+////        [arr removeLastObject];
+////        [self.navigationController setViewControllers:arr];
+//        [self.navigationController popToRootViewControllerAnimated:NO];
+//    }
+//    else
+//    {
+//        self.navigationController.view.hidden=YES;
+//        [(LWIPadModalNavigationControllerViewController *) self.navigationController dismissAnimated:NO];
+//    }
 }
 
 

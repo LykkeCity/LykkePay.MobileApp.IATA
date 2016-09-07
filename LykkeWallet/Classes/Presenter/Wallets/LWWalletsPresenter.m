@@ -40,6 +40,9 @@
 #import "LWKYCManager.h"
 #import "LWCreditCardDepositPresenter.h"
 #import "LWRefreshControlView.h"
+#import "LWMyLykkeBuyPresenter.h"
+#import "LWMyLykkeIpadController.h"
+#import "LWEtheriumDepositPresenter.h"
 
 
 #ifdef PROJECT_IATA
@@ -47,8 +50,8 @@ static NSInteger const kSectionIATAWallets    = 0;
 static NSInteger const kSectionSWIFTItems     = 1;
 #else
 static NSInteger const kSectionBankCards      = 0;
-static NSInteger const kSectionBitcoinWallets = 1;
-static NSInteger const kSectionLykkeWallets   = 2;
+static NSInteger const kSectionLykkeWallets   = 1;
+static NSInteger const kSectionBitcoinWallets = 2;
 #endif
 
 @interface LWWalletsPresenter ()<UITableViewDelegate, UITableViewDataSource, LWWalletTableViewCellDelegate, LWLykkeEmptyTableViewCellDelegate, LWLykkeTableViewCellDelegate, LWBitcoinTableViewCellDelegate, SWTableViewCellDelegate> {
@@ -115,8 +118,9 @@ static NSInteger const kNumberOfSections = 3;//6;
 
 static NSString *const WalletIdentifiers[kNumberOfSections] = {
     kBanksTableViewCellIdentifier,
-    kBitcoinTableViewCellIdentifier,
-    kLykkeTableViewCellIdentifier
+    kLykkeTableViewCellIdentifier,
+    kBitcoinTableViewCellIdentifier
+
     /*, kWalletEmptyTableViewCell,
         kWalletEmptyTableViewCell,
         kWalletEmptyTableViewCell,
@@ -125,15 +129,16 @@ static NSString *const WalletIdentifiers[kNumberOfSections] = {
 
 static NSString *const WalletNames[kNumberOfSections] = {
     @"VISA/MASTERCARD",
-    @"BITCOIN",
-    @"LYKKE"
+    @"LYKKE",
+    @"BITCOIN"
     /*, @"PAYPAL", @"WEBMONEY", @"MONETAS", @"QIWI"*/
 };
 
 static NSString *const WalletIcons[kNumberOfSections] = {
     @"WalletBanks",
-    @"WalletBitcoin",
-    @"WalletLykke"
+    @"WalletLykke",
+    @"WalletBitcoin"
+
     /*, @"WalletPaypal", @"WalletWebmoney", @"WalletMonetas", @"WalletQiwi"*/
 };
 
@@ -462,6 +467,8 @@ static NSString *const WalletIcons[kNumberOfSections] = {
 
                         lykke.delegate = self;
                     }
+                    else
+                        lykke.rightUtilityButtons=nil;
                 }
                 // Show Empty
                 else {
@@ -509,6 +516,10 @@ static NSString *const WalletIcons[kNumberOfSections] = {
                         [bitcoin setRightUtilityButtons:rightUtilityButtons WithButtonWidth:buttonWidth];
                         
                         bitcoin.delegate = self;
+                    }
+                    else
+                    {
+                        bitcoin.rightUtilityButtons=nil;
                     }
                 }
                 // Show Empty
@@ -765,9 +776,28 @@ static NSString *const WalletIcons[kNumberOfSections] = {
                                      @"LKK":@"bitcoin"};
         
         if (data) {
-            UIViewController *presenter;
+            if([data.identity isEqualToString:@"LKK"])
+            {
+                if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
+                {
+                    LWMyLykkeBuyPresenter *presenter=[[LWMyLykkeBuyPresenter alloc] init];
+                    [self.navigationController pushViewController:presenter animated:YES];
+                }
+                else
+                {
+                    LWMyLykkeIpadController *presenter=[LWMyLykkeIpadController new];
+                    [self.navigationController pushViewController:presenter animated:YES];
+                    
+                }
+                return;
+            }
+                
             
-            if([depositTypes[data.identity] isEqualToString:@"bitcoin"])
+            UIViewController *presenter;
+
+            if([data.identity isEqualToString:@"ETH"])
+                presenter=[LWEtheriumDepositPresenter new];
+            else if([depositTypes[data.identity] isEqualToString:@"bitcoin"])
             {
                 presenter = [LWBitcoinDepositPresenter new];
             }

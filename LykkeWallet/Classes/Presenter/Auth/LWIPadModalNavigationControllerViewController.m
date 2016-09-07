@@ -7,6 +7,7 @@
 //
 
 #import "LWIPadModalNavigationControllerViewController.h"
+#import "LWAuthNavigationController.h"
 
 @interface LWIPadModalNavigationControllerViewController  ()
 {
@@ -71,9 +72,21 @@
     
 }
 
+-(void) setRootMainTabScreen
+{
+    LWAuthNavigationController *nav=self.presentingViewController;
+    [self dismissViewControllerAnimated:NO completion:^{
+        [nav setRootMainTabScreen];
+    }];
+}
+
 -(void) logout
 {
-    
+    LWAuthNavigationController *nav=self.presentingViewController;
+    [self dismissViewControllerAnimated:NO completion:^{
+        [nav logout];
+    }];
+
 }
 
 -(void) viewDidLayoutSubviews

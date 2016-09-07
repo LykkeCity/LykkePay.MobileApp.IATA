@@ -20,6 +20,9 @@
 #import "LWUtils.h"
 #import "LWCurrencyDepositElementView.h"
 #import "LWCreditCardDepositPresenter.h"
+#import "LWSwiftCredentialsModel.h"
+
+
 
 #define BAR_GRAY_COLOR [UIColor colorWithRed:245.0/255 green:246.0/255 blue:248.0/255 alpha:1]
 
@@ -78,12 +81,16 @@
     infoLabel.font=[UIFont fontWithName:@"ProximaNova-Regular" size:16];
     infoLabel.textColor=[UIColor colorWithRed:63.0/255 green:77.0/255 blue:96.0/255 alpha:1];
     
-    NSDictionary *accounts=@{
-                             @"CHF":@"LI71 0880 1200 9711 0000 1",
-                             @"EUR":@"LI08 0880 1200 9711 0181 4",
-                             @"USD":@"LI60 0880 1200 9711 0233 3",
-                             @"GBP":@"LI06 0880 1200 9711 0340 2"
-                             };
+    
+    LWSwiftCredentialsModel *swiftCreds=[LWCache instance].swiftCredentialsDict[self.assetID];
+    
+    
+//    NSDictionary *accounts=@{
+//                             @"CHF":@"LI71 0880 1200 9711 0000 1",
+//                             @"EUR":@"LI08 0880 1200 9711 0181 4",
+//                             @"USD":@"LI60 0880 1200 9711 0233 3",
+//                             @"GBP":@"LI06 0880 1200 9711 0340 2"
+//                             };
     
     lineTitles=@[@"BIC (SWIFT)",
                  @"Account number",
@@ -92,15 +99,17 @@
                  
                   ];
     
-    NSString *acc=accounts[self.assetID];
-    if(!acc)
-        acc=@"";
+//    NSString *acc=accounts[self.assetID];
+//    if(!acc)
+//        acc=@"";
     
-    NSString *email=[[LWKeychainManager instance].login stringByReplacingOccurrencesOfString:@"@" withString:@"(at)"];
-    lineValues=@[@"BALPLI22",
-                 acc,
-                 @"Lykke corp., Zurich",
-                 [NSString stringWithFormat:@"Lykke shares (coins) purchase %@ [ %@ ]",self.assetName, email]
+    NSString *purposeTemp=[swiftCreds.purposeOfPayment stringByReplacingOccurrencesOfString:@"{0}" withString:@"%@"];
+    purposeTemp=[purposeTemp stringByReplacingOccurrencesOfString:@"{1}" withString:@"%@"];
+    NSString *email=[[LWKeychainManager instance].login stringByReplacingOccurrencesOfString:@"@" withString:@"."];
+    lineValues=@[swiftCreds.bic,
+                 swiftCreds.accountNumber,
+                 swiftCreds.accountName,
+                 [NSString stringWithFormat:purposeTemp,self.assetName, email]
                  ];
     
     [self.infoView addSubview:infoLabel];

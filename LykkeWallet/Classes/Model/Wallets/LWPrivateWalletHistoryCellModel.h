@@ -24,6 +24,7 @@ typedef NS_ENUM(NSInteger, LWPrivateWalletTransferType) {
 @property (strong, nonatomic) NSDate *date;
 @property (strong, nonatomic) NSNumber *amount;
 @property (strong, nonatomic) NSNumber *baseAssetAmount;
+@property (strong, nonatomic) NSString *baseAssetId;
 
 
 @end

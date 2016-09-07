@@ -150,8 +150,8 @@
     if(timerChangeCount%10==0)
     {
         NSString *assetPair;
-        if([self.assetId isEqualToString:@"BTC"])
-            assetPair=@"BTCLKK";
+        if([self.assetId isEqualToString:@"BTC"] || [self.assetId isEqualToString:@"ETH"])
+            assetPair=[self.assetId stringByAppendingString:@"LKK"];
         else
             assetPair=[@"LKK" stringByAppendingString:self.assetId];
         
@@ -172,6 +172,7 @@
     }
     else
     {
+        
         lastChangedLKK=NO;
         _keyboard.prefix=ASSET_PREFIX;
         _keyboard.accuracy=[LWCache accuracyForAssetId:self.assetId];
@@ -192,7 +193,7 @@
     {
         NSString *string=[self removePrefix:keyboard.textField.text];
         double equity=string.doubleValue/12500000.0;
-        if(equity>99.9)
+        if(equity>99.999)
         {
             _lkkTextField.text=[_lkkTextField.text substringToIndex:_lkkTextField.text.length-1];
             return;
@@ -209,7 +210,7 @@
         [self calcLKK];
         NSString *string=[self removePrefix:_lkkTextField.text];
         double equity=string.doubleValue/12500000.0;
-        if(equity>99.9)
+        if(equity>99.999)
         {
             _btcTextField.text=prevBtc;
             _lkkTextField.text=currentLkk;
@@ -309,8 +310,8 @@
     NSString *assetPair;
     
     
-    if([self.assetId isEqualToString:@"BTC"])
-        assetPair=@"BTCLKK";
+    if([self.assetId isEqualToString:@"BTC"] || [self.assetId isEqualToString:@"ETH"])
+        assetPair=[self.assetId stringByAppendingString:@"LKK"];
     else
         assetPair=[@"LKK" stringByAppendingString:self.assetId];
     
@@ -319,7 +320,7 @@
     if(!rate)
         return;
     
-    if([self.assetId isEqualToString:@"BTC"])
+    if([self.assetId isEqualToString:@"BTC"] || [self.assetId isEqualToString:@"ETH"])
     {
         
         price=(double)1.0/rate.bid.doubleValue;
@@ -338,7 +339,7 @@
     {
         if([pair.identity isEqualToString:assetPair])
         {
-            if([self.assetId isEqualToString:@"BTC"])
+            if([self.assetId isEqualToString:@"BTC"] || [self.assetId isEqualToString:@"ETH"])
                 accuracy=pair.invertedAccuracy.intValue;
             else
                 accuracy=pair.accuracy.intValue;
@@ -364,7 +365,19 @@
 {
     LWMyLykkeDepositBTCPresenter *presenter;
     if([self.assetId isEqualToString:@"BTC"])
+    {
         presenter=[LWMyLykkeDepositBTCPresenter new];
+        presenter.assetId=@"BTC";
+        presenter.lkkAmount=[self removePrefix:_lkkTextField.text].doubleValue;
+        presenter.price=_priceLabel.text.doubleValue;
+    }
+    else if([self.assetId isEqualToString:@"ETH"])
+    {
+        presenter=[LWMyLykkeDepositBTCPresenter new];
+        presenter.assetId=@"ETH";
+        presenter.lkkAmount=[self removePrefix:_lkkTextField.text].doubleValue;
+        presenter.price=_priceLabel.text.doubleValue;
+    }
     else if([self.assetId isEqualToString:@"CHF"])
     {
         presenter=[LWMyLykkeDepositSwiftPresenter new];

@@ -55,6 +55,7 @@
     _swiftPriceLabel.textColor=[UIColor colorWithRed:171.0/255 green:0 blue:1 alpha:1];
     _bitcoinPriceLabel.textColor=[UIColor colorWithRed:171.0/255 green:0 blue:1 alpha:1];
     _creditCardPriceLabel.textColor=[UIColor colorWithRed:171.0/255 green:0 blue:1 alpha:1];
+    _ethereumPriceLabel.textColor=[UIColor colorWithRed:171.0/255 green:0 blue:1 alpha:1];
 
     UITapGestureRecognizer *gesture=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(buyPressed:)];
     [_bitcoinContainerView addGestureRecognizer:gesture];
@@ -91,6 +92,8 @@
         [[LWAuthManager instance] requestAllAssetPairsRates:@"BTCLKK"];
         [[LWAuthManager instance] requestAllAssetPairsRates:@"LKKUSD"];
         [[LWAuthManager instance] requestAllAssetPairsRates:@"LKKCHF"];
+        [[LWAuthManager instance] requestAllAssetPairsRates:@"ETHLKK"];
+
     }
     timerChangeCount++;
     [self updateRates];
@@ -132,6 +135,12 @@
         assetId=@"CHF";
         container=_swiftContainerView;
     }
+    else if(gesture.view==_ethereumContainerView)
+    {
+        assetId=@"ETH";
+        container=_ethereumContainerView;
+    }
+
     if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
     {
         LWMyLykkeBuyAssetPresenter *presenter=[[LWMyLykkeBuyAssetPresenter alloc] init];
@@ -143,6 +152,7 @@
         _bitcoinContainerView.backgroundColor=[UIColor whiteColor];
         _creditCardContainerView.backgroundColor=[UIColor whiteColor];
         _swiftContainerView.backgroundColor=[UIColor whiteColor];
+        _ethereumContainerView.backgroundColor=[UIColor whiteColor];
         container.backgroundColor=[UIColor colorWithRed:244.0/255 green:246.0/255 blue:247.0/255 alpha:1];
         [self.delegate buyPresenterChosenAsset:assetId];
     }
@@ -178,6 +188,16 @@
         _swiftPriceLabel.text=[@"₣ " stringByAppendingString:string];
         _swiftPriceLabel.hidden=NO;
     }
+    if([LWCache instance].cachedAssetPairsRates[@"ETHLKK"])
+    {
+        int accuracy=[self accuraceForPair:@"ETHLKK"];
+        double ask=[[LWCache instance].cachedAssetPairsRates[@"ETHLKK"] bid].doubleValue;
+        NSString *string=[LWUtils formatFairVolume:1.0/ask accuracy:accuracy roundToHigher:YES];
+        string=[string stringByReplacingOccurrencesOfString:@" " withString:@","];
+        _ethereumPriceLabel.text=[@"Ξ " stringByAppendingString:string];
+        _ethereumPriceLabel.hidden=NO;
+    }
+
 
 }
 
@@ -189,7 +209,7 @@
     {
         if([pairr isEqualToString:pair.identity])
         {
-            if([pairr isEqualToString:@"BTCLKK"])
+            if([pairr isEqualToString:@"BTCLKK"] || [pairr isEqualToString:@"ETHLKK"])
                 accuracy=pair.invertedAccuracy.intValue;
             else
                 accuracy=pair.accuracy.intValue;
