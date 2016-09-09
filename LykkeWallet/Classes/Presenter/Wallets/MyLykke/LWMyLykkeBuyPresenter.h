@@ -18,5 +18,6 @@
 @protocol LWMyLykkeBuyPresenterDelegate
 
 -(void) buyPresenterChosenAsset:(NSString *) assetId;
+-(void) buyPresenterSelectedTransfer;
 
 @end

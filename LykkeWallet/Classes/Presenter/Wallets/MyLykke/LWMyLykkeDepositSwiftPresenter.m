@@ -35,6 +35,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *accountNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *accountNumberLabel;
 @property (weak, nonatomic) IBOutlet UILabel *purposeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *bankAddressLabel;
+@property (weak, nonatomic) IBOutlet UILabel *companyAddressLabel;
 @property (weak, nonatomic) IBOutlet LWCommonButton *emailButton;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
@@ -60,6 +62,8 @@
     self.bicLabel.text=swiftCreds.bic;
     self.accountNumberLabel.text=swiftCreds.accountNumber;
     self.accountNameLabel.text=swiftCreds.accountName;
+    self.bankAddressLabel.text=swiftCreds.bankAddress;
+    self.companyAddressLabel.text=swiftCreds.companyAddress;
 
     NSString *purposeTemp=[swiftCreds.purposeOfPayment stringByReplacingOccurrencesOfString:@"{0}" withString:@"%@"];
     purposeTemp=[purposeTemp stringByReplacingOccurrencesOfString:@"{1}" withString:@"%@"];
@@ -74,7 +78,7 @@
     keyboardIsVisible=NO;
     
     
-    lineValues=@[swiftCreds.bic, swiftCreds.accountNumber, swiftCreds.accountName, @"80-165 421-0", _purposeLabel.text];
+    lineValues=@[swiftCreds.bic, swiftCreds.accountNumber, swiftCreds.accountName, swiftCreds.bankAddress, swiftCreds.companyAddress, _purposeLabel.text];
     
     if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad)
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(orientationChanged) name:UIApplicationDidChangeStatusBarOrientationNotification object:nil];

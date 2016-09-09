@@ -558,7 +558,9 @@
 //    [refreshControl endRefreshing];
 //    [self setLoading:YES];
 //    [[LWAuthManager instance] requestTransactions:self.assetId];
-    [[LWAuthManager instance] requestGetHistory:self.assetId];
+//    if([self isKindOfClass:[LWHistoryPresenter class]])
+    if(self.isViewLoaded && self.view.window)
+        [[LWAuthManager instance] requestGetHistory:self.assetId];
 }
 
 - (LWBaseHistoryItemType *)getHistoryItemByIndexPath:(NSIndexPath *)indexPath {

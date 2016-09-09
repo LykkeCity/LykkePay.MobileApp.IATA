@@ -628,9 +628,10 @@ SINGLETON_INIT {
     [self sendPacket:pack];
 }
 
--(void) requestLykkeNews
+-(void) requestLykkeNewsWithCompletion:(void (^)(NSArray *))completion
 {
     LWPacketGetNews *pack=[LWPacketGetNews new];
+    pack.completion=completion;
     [self sendPacket:pack];
 }
 
@@ -1036,11 +1037,6 @@ SINGLETON_INIT {
     else if (pack.class == LWPacketMyLykkeInfo.class) {
         if ([self.delegate respondsToSelector:@selector(authManager:didGetMyLykkeInfo:)]) {
             [self.delegate authManager:(LWAuthManager *)self didGetMyLykkeInfo:(LWPacketMyLykkeInfo *) pack];
-        }
-    }
-    else if (pack.class == LWPacketGetNews.class) {
-        if ([self.delegate respondsToSelector:@selector(authManager:didGetNews:)]) {
-            [self.delegate authManager:(LWAuthManager *)self didGetNews:(LWPacketGetNews *) pack];
         }
     }
     else if (pack.class == LWPacketMyLykkeCashInEmail.class) {

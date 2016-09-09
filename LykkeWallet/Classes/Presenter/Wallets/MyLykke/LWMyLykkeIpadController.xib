@@ -9,7 +9,6 @@
         <mutableArray key="Proxima Nova Regular.otf">
             <string>ProximaNova-Regular</string>
             <string>ProximaNova-Regular</string>
-            <string>ProximaNova-Regular</string>
         </mutableArray>
     </customFonts>
     <objects>
@@ -51,7 +50,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BER-w4-eLY">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="75"/>
                     <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EZf-mG-cYS">
+                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EZf-mG-cYS">
                             <rect key="frame" x="0.0" y="74" width="320" height="1"/>
                             <color key="backgroundColor" red="0.82745098039215681" green="0.83921568627450982" blue="0.85882352941176465" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
@@ -89,10 +88,16 @@
                         <constraint firstItem="EZf-mG-cYS" firstAttribute="top" secondItem="msa-sR-WvA" secondAttribute="bottom" constant="20" id="Ts9-vl-m7W"/>
                         <constraint firstAttribute="bottom" secondItem="lv3-fS-BOu" secondAttribute="bottom" id="Yzs-17-09e"/>
                         <constraint firstAttribute="trailing" secondItem="lv3-fS-BOu" secondAttribute="trailing" id="cTF-Fm-Lbz"/>
+                        <constraint firstItem="EZf-mG-cYS" firstAttribute="top" secondItem="msa-sR-WvA" secondAttribute="bottom" constant="20" id="g6w-GS-xo5"/>
                         <constraint firstItem="plX-wf-aLM" firstAttribute="centerX" secondItem="BER-w4-eLY" secondAttribute="centerX" id="gE1-7Q-9CV"/>
                         <constraint firstItem="lv3-fS-BOu" firstAttribute="top" secondItem="BER-w4-eLY" secondAttribute="top" id="wAf-ef-zlz"/>
                         <constraint firstItem="EZf-mG-cYS" firstAttribute="leading" secondItem="BER-w4-eLY" secondAttribute="leading" id="xAb-cb-H8b"/>
                     </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="Ts9-vl-m7W"/>
+                        </mask>
+                    </variation>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F9c-xp-bp2">
                     <rect key="frame" x="320" y="75" width="502" height="570"/>
@@ -104,20 +109,9 @@
                                 <constraint firstAttribute="width" constant="100" id="b4e-nO-303"/>
                             </constraints>
                         </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" alpha="0.59999999999999998" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose a convenient way to purchase Lykke Shares" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vv1-cY-F5w">
-                            <rect key="frame" x="108.5" y="292" width="285" height="41.5"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="285" id="HJS-mD-yeQ"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="17"/>
-                            <color key="textColor" red="0.5490196078431373" green="0.58039215686274503" blue="0.62745098039215685" alpha="1" colorSpace="calibratedRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstItem="Vv1-cY-F5w" firstAttribute="top" secondItem="ZLY-Pe-icE" secondAttribute="bottom" constant="14" id="Bae-2s-aXI"/>
-                        <constraint firstItem="Vv1-cY-F5w" firstAttribute="centerX" secondItem="F9c-xp-bp2" secondAttribute="centerX" id="Bkx-18-FDg"/>
                         <constraint firstItem="ZLY-Pe-icE" firstAttribute="centerX" secondItem="F9c-xp-bp2" secondAttribute="centerX" id="MIP-yR-geX"/>
                         <constraint firstItem="ZLY-Pe-icE" firstAttribute="centerY" secondItem="F9c-xp-bp2" secondAttribute="centerY" multiplier="0.8" id="qRe-BM-75v"/>
                     </constraints>

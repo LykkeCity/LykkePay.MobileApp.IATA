@@ -10,4 +10,12 @@
 
 @interface LWMyLykkeNewsListPresenter : LWAuthComplexPresenter
 
+@property id delegate;
+
+@end
+
+@protocol LWMyLykkeNewsListDelegate
+
+-(void) listScrolled:(UIScrollView *) scrollView;
+
 @end

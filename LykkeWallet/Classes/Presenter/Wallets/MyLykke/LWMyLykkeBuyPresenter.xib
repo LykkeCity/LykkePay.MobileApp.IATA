@@ -19,6 +19,8 @@
             <string>ProximaNova-Regular</string>
             <string>ProximaNova-Regular</string>
             <string>ProximaNova-Regular</string>
+            <string>ProximaNova-Regular</string>
+            <string>ProximaNova-Regular</string>
         </mutableArray>
     </customFonts>
     <objects>
@@ -26,6 +28,7 @@
             <connections>
                 <outlet property="bitcoinContainerView" destination="czB-KD-1jU" id="deY-Xz-ciu"/>
                 <outlet property="bitcoinPriceLabel" destination="tuY-DH-cRe" id="Kf9-mW-bvM"/>
+                <outlet property="buyTopButton" destination="mBX-SP-Ays" id="fmh-UW-kLs"/>
                 <outlet property="creditCardContainerView" destination="QPd-sg-E4E" id="n3h-7F-67j"/>
                 <outlet property="creditCardPriceLabel" destination="kRG-k6-xlP" id="3pw-Xp-sGY"/>
                 <outlet property="ethereumContainerView" destination="3yB-LN-gnG" id="bBx-Dp-CWz"/>
@@ -34,6 +37,7 @@
                 <outlet property="subtitleContainerView" destination="fSj-zG-c0r" id="99d-vm-JvR"/>
                 <outlet property="swiftContainerView" destination="nIS-mz-i1e" id="bGP-fg-imD"/>
                 <outlet property="swiftPriceLabel" destination="kvc-YV-fnd" id="uJE-Rz-Y4P"/>
+                <outlet property="transferTopButton" destination="YZQ-bW-Gc7" id="Eb7-iZ-buQ"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -42,20 +46,58 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fSj-zG-c0r">
-                    <rect key="frame" x="0.0" y="0.0" width="600" height="66"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6eD-6P-JEQ">
+                    <rect key="frame" x="183" y="11" width="233" height="30"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose a convenient way to purchase Lykke Shares" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5kU-Ms-d5Q">
-                            <rect key="frame" x="160" y="-2" width="280" height="41.5"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mBX-SP-Ays">
+                            <rect key="frame" x="0.0" y="0.0" width="114" height="30"/>
+                            <color key="backgroundColor" red="0.6705882352941176" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="114" id="yvd-uf-T4h"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="14"/>
+                            <state key="normal" title="BUY"/>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YZQ-bW-Gc7">
+                            <rect key="frame" x="119" y="0.0" width="114" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="114" id="xXb-I5-G0b"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="14"/>
+                            <state key="normal" title="TRANSFER">
+                                <color key="titleColor" red="0.24705882352941178" green="0.30196078431372547" blue="0.37647058823529411" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="transferTopButtonPressed:" destination="-2" eventType="touchUpInside" id="2MG-MC-7Lz"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="mBX-SP-Ays" firstAttribute="leading" secondItem="6eD-6P-JEQ" secondAttribute="leading" id="4kZ-tN-xJ4"/>
+                        <constraint firstAttribute="trailing" secondItem="YZQ-bW-Gc7" secondAttribute="trailing" id="7RC-GV-M8f"/>
+                        <constraint firstItem="mBX-SP-Ays" firstAttribute="centerY" secondItem="6eD-6P-JEQ" secondAttribute="centerY" id="Nft-Rd-cwZ"/>
+                        <constraint firstItem="mBX-SP-Ays" firstAttribute="height" secondItem="6eD-6P-JEQ" secondAttribute="height" id="ZaN-rj-kG3"/>
+                        <constraint firstAttribute="height" constant="30" id="Zuh-wH-GWZ"/>
+                        <constraint firstAttribute="width" constant="233" id="cYn-u0-rj8"/>
+                        <constraint firstItem="YZQ-bW-Gc7" firstAttribute="height" secondItem="6eD-6P-JEQ" secondAttribute="height" id="lyz-kO-Dke"/>
+                        <constraint firstItem="YZQ-bW-Gc7" firstAttribute="centerY" secondItem="6eD-6P-JEQ" secondAttribute="centerY" id="u2u-ZJ-cJC"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fSj-zG-c0r">
+                    <rect key="frame" x="0.0" y="64" width="600" height="48.5"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" alpha="0.59999999999999998" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose a convenient way to purchase Lykke Shares" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5kU-Ms-d5Q">
+                            <rect key="frame" x="160" y="-2" width="280" height="34.5"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="280" id="TCa-rW-myF"/>
                             </constraints>
-                            <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="17"/>
+                            <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="14"/>
                             <color key="textColor" red="0.24705882352941178" green="0.30196078431372547" blue="0.37647058823529411" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7he-wd-3EM">
-                            <rect key="frame" x="0.0" y="65" width="600" height="1"/>
+                            <rect key="frame" x="0.0" y="47.5" width="600" height="1"/>
                             <color key="backgroundColor" red="0.84705882352941175" green="0.84705882352941175" blue="0.84705882352941175" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="1" id="3KP-49-q4c"/>
@@ -68,13 +110,19 @@
                         <constraint firstAttribute="trailing" secondItem="7he-wd-3EM" secondAttribute="trailing" id="1Dh-1o-i9B"/>
                         <constraint firstItem="7he-wd-3EM" firstAttribute="leading" secondItem="fSj-zG-c0r" secondAttribute="leading" id="9H7-7X-reA"/>
                         <constraint firstItem="5kU-Ms-d5Q" firstAttribute="top" secondItem="fSj-zG-c0r" secondAttribute="top" constant="-2" id="ACB-Zv-D7W"/>
+                        <constraint firstItem="7he-wd-3EM" firstAttribute="top" secondItem="5kU-Ms-d5Q" secondAttribute="bottom" constant="15" id="VXF-dK-80V"/>
                         <constraint firstItem="7he-wd-3EM" firstAttribute="centerX" secondItem="fSj-zG-c0r" secondAttribute="centerX" id="jVC-Ux-ODX"/>
                         <constraint firstItem="5kU-Ms-d5Q" firstAttribute="centerX" secondItem="fSj-zG-c0r" secondAttribute="centerX" id="mvs-jy-hgC"/>
                         <constraint firstAttribute="bottom" secondItem="7he-wd-3EM" secondAttribute="bottom" id="uk4-vB-RIa"/>
                     </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="19e-0D-NVO"/>
+                        </mask>
+                    </variation>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QPd-sg-E4E">
-                    <rect key="frame" x="0.0" y="66" width="600" height="90"/>
+                    <rect key="frame" x="0.0" y="112.5" width="600" height="90"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CreditCardMyLykke" translatesAutoresizingMaskIntoConstraints="NO" id="VLb-m0-PrL">
                             <rect key="frame" x="30" y="31" width="37" height="27"/>
@@ -143,7 +191,7 @@
                     </variation>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="czB-KD-1jU">
-                    <rect key="frame" x="0.0" y="156" width="600" height="90"/>
+                    <rect key="frame" x="0.0" y="202.5" width="600" height="90"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WalletBitcoin" translatesAutoresizingMaskIntoConstraints="NO" id="sKl-MC-xvo">
                             <rect key="frame" x="27" y="22" width="45" height="45"/>
@@ -218,10 +266,10 @@
                     </variation>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nIS-mz-i1e">
-                    <rect key="frame" x="0.0" y="246" width="600" height="90"/>
+                    <rect key="frame" x="0.0" y="292.5" width="600" height="90"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SwiftIcon" translatesAutoresizingMaskIntoConstraints="NO" id="pm6-R5-YTs">
-                            <rect key="frame" x="25" y="19.5" width="50" height="50"/>
+                            <rect key="frame" x="25" y="20" width="50" height="50"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="50" id="mOj-vM-sJC"/>
                                 <constraint firstAttribute="height" constant="50" id="qql-aD-bHk"/>
@@ -287,10 +335,10 @@
                     </variation>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3yB-LN-gnG">
-                    <rect key="frame" x="0.0" y="336" width="600" height="90"/>
+                    <rect key="frame" x="0.0" y="382.5" width="600" height="90"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="EthereumIcon" translatesAutoresizingMaskIntoConstraints="NO" id="CNW-tu-MwM">
-                            <rect key="frame" x="25" y="19.5" width="50" height="50"/>
+                            <rect key="frame" x="25" y="20" width="50" height="50"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="50" id="ZO6-uv-gTK"/>
                                 <constraint firstAttribute="width" constant="50" id="zMf-Na-YjB"/>
@@ -303,8 +351,8 @@
                                 <constraint firstAttribute="height" constant="1" id="n1g-Bx-lae"/>
                             </constraints>
                         </view>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Ethereum" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1zL-Qg-9TI">
-                            <rect key="frame" x="100" y="19" width="104" height="26"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ethereum" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1zL-Qg-9TI">
+                            <rect key="frame" x="100" y="19" width="89" height="26"/>
                             <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="21"/>
                             <color key="textColor" red="0.2470588235" green="0.30196078430000001" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
@@ -315,8 +363,8 @@
                             <color key="textColor" red="0.2470588235" green="0.30196078430000001" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Ξ 0,05196" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nZU-kq-OFG">
-                            <rect key="frame" x="136" y="48" width="60.5" height="17.5"/>
+                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ξ 0,05196" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nZU-kq-OFG">
+                            <rect key="frame" x="136" y="48" width="61.5" height="17.5"/>
                             <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="14"/>
                             <color key="textColor" red="0.6705882353" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
@@ -360,12 +408,15 @@
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="3yB-LN-gnG" secondAttribute="trailing" id="6zc-y8-C0i"/>
                 <constraint firstItem="nIS-mz-i1e" firstAttribute="top" secondItem="czB-KD-1jU" secondAttribute="bottom" id="7Ya-J2-alL"/>
+                <constraint firstItem="6eD-6P-JEQ" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="7iK-r9-xik"/>
                 <constraint firstItem="3yB-LN-gnG" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="C99-Gy-ww7"/>
+                <constraint firstItem="6eD-6P-JEQ" firstAttribute="top" secondItem="QPd-sg-E4E" secondAttribute="bottom" constant="11" id="GeU-np-TWg"/>
                 <constraint firstItem="QPd-sg-E4E" firstAttribute="top" secondItem="fSj-zG-c0r" secondAttribute="bottom" id="Po7-lG-09I"/>
                 <constraint firstAttribute="trailing" secondItem="czB-KD-1jU" secondAttribute="trailing" id="S0b-xY-qlo"/>
                 <constraint firstItem="fSj-zG-c0r" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="W3a-0e-6Yp"/>
                 <constraint firstItem="czB-KD-1jU" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="WAC-9Y-wEH"/>
-                <constraint firstItem="fSj-zG-c0r" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="dht-Rs-aQk"/>
+                <constraint firstItem="6eD-6P-JEQ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="11" id="ceM-93-BtD"/>
+                <constraint firstItem="fSj-zG-c0r" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="dht-Rs-aQk"/>
                 <constraint firstItem="nIS-mz-i1e" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="efH-dF-f3H"/>
                 <constraint firstAttribute="trailing" secondItem="fSj-zG-c0r" secondAttribute="trailing" id="fdd-ks-Hmd"/>
                 <constraint firstAttribute="trailing" secondItem="nIS-mz-i1e" secondAttribute="trailing" id="sKJ-tx-EeT"/>
@@ -374,6 +425,11 @@
                 <constraint firstItem="czB-KD-1jU" firstAttribute="top" secondItem="QPd-sg-E4E" secondAttribute="bottom" id="w1e-xc-L05"/>
                 <constraint firstItem="3yB-LN-gnG" firstAttribute="top" secondItem="nIS-mz-i1e" secondAttribute="bottom" id="y87-GB-9vf"/>
             </constraints>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="GeU-np-TWg"/>
+                </mask>
+            </variation>
         </view>
     </objects>
     <resources>

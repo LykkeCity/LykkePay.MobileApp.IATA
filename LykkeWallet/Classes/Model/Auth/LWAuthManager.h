@@ -135,8 +135,6 @@
 -(void) authManager:(LWAuthManager *) manager didGetAllAssetPairsRate:(LWPacketAllAssetPairsRates *) packet;
 -(void) authManager:(LWAuthManager *)manager didGetMyLykkeInfo:(LWPacketMyLykkeInfo *) packet;
 
--(void) authManager:(LWAuthManager *) manager didGetNews:(LWPacketGetNews *) packet;
-
 -(void) authManagerDidSendMyLykkeCashInEmail:(LWAuthManager *)manager;
 -(void) authManagerDidGetSwiftCredentials:(LWPacketSwiftCredentials *) packet;
 
@@ -247,7 +245,7 @@ SINGLETON_DECLARE
 
 -(void) requestAllAssetPairs;
 
--(void) requestLykkeNews;
+-(void) requestLykkeNewsWithCompletion:(void(^)(NSArray *)) completion;
 
 -(void) requestSendMyLykkeCashInEmail:(NSDictionary *) params;
 

@@ -95,6 +95,8 @@
     lineTitles=@[@"BIC (SWIFT)",
                  @"Account number",
                  @"Account name",
+                 @"Bank address",
+                 @"Company address",
                  @"Purpose of payment"
                  
                   ];
@@ -109,6 +111,8 @@
     lineValues=@[swiftCreds.bic,
                  swiftCreds.accountNumber,
                  swiftCreds.accountName,
+                 swiftCreds.bankAddress,
+                 swiftCreds.companyAddress,
                  [NSString stringWithFormat:purposeTemp,self.assetName, email]
                  ];
     

@@ -11,6 +11,6 @@
 
 @interface LWPacketGetNews : LWAuthorizePacket
 
-@property (strong, nonatomic) NSArray *news;
+@property (strong,nonatomic) void(^completion)(NSArray *);
 
 @end

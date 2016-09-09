@@ -43,7 +43,8 @@
 #import "LWExchangePresenter.h"
 #import "LWHistoryPresenter.h"
 #import "LWSettingsPresenter.h"
-#import "LWMyLykkePresenter.h"
+
+#import "LWMyLykkeMainContainerPresenter.h"
 
 #import "LWWalletsNavigationController.h"
 #import "LWWalletsNavigationBar.h"
@@ -139,7 +140,7 @@
     BOOL flagHave=NO;
     for(id v in tabBarController.viewControllers)
     {
-        if([v isKindOfClass:[LWMyLykkePresenter class]])
+        if([v isKindOfClass:[LWMyLykkeMainContainerPresenter class]])
         {
             flagHave=YES;
             break;
@@ -151,7 +152,7 @@
     }
     if(flagHave==NO)
     {
-        LWMyLykkePresenter *myLykke=[LWMyLykkePresenter new];
+        LWMyLykkeMainContainerPresenter *myLykke=[LWMyLykkeMainContainerPresenter new];
         myLykke.tabBarItem=[self createTabBarItemWithTitle:@"MY LYKKE" withImage:@"MyLykkeTab"];
         [array insertObject:myLykke atIndex:3];
         tabBarController.viewControllers =array;
@@ -285,6 +286,11 @@
 #pragma mark - Root Controller Configuration
 
 + (LWAuthStepPresenter *)authPresenter {
+    
+    BOOL flag=[LWKeychainManager instance].isAuthenticated;
+    
+    NSLog(@"NOT authenticated");
+    
     return ([LWKeychainManager instance].isAuthenticated
             ? [LWAuthValidationPresenter new]
             : [LWAuthEntryPointPresenter new]);
@@ -311,7 +317,7 @@
     LWSettingsPresenter *pSettings = [LWSettingsPresenter new];
     pSettings.tabBarItem = [self createTabBarItemWithTitle:@"tab.settings"
                                                  withImage:@"SettingsTab"];
-    LWMyLykkePresenter *myLykke=[LWMyLykkePresenter new];
+    LWMyLykkeMainContainerPresenter *myLykke=[LWMyLykkeMainContainerPresenter new];
     myLykke.tabBarItem=[self createTabBarItemWithTitle:@"MY LYKKE" withImage:@"MyLykkeTab"];
     
 

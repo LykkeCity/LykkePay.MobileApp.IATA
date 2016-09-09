@@ -12,11 +12,20 @@
 #import "LWMyLykkeBuyAssetPresenter.h"
 #import "LWMyLykkeIPadNavigationController.h"
 #import "UIViewController+Loading.h"
+#import "LWMyLykkeTransferLKKLeftPanelPresenter.h"
+#import "LWMyLykkeTransferLKKPresenter.h"
 
-@interface LWMyLykkeIpadController () <LWMyLykkeBuyPresenterDelegate>
+@interface LWMyLykkeIpadController () <LWMyLykkeBuyPresenterDelegate, LWMyLykkeTransferLKKLeftPanelPresenterDelegate>
 {
     LWMyLykkeBuyPresenter *buyPresenter;
     LWMyLykkeIPadNavigationController *navController;
+    
+    LWMyLykkeTransferLKKLeftPanelPresenter *transferLeftPanel;
+    LWMyLykkeTransferLKKPresenter *transferLKKPresenter;
+    
+    NSString *prevDetailsLabelValue;
+    
+    BOOL prevBackButtonState;
 }
 
 @property (weak, nonatomic) IBOutlet UIView *buyContainer;
@@ -51,7 +60,7 @@
     [navController setNavigationBarHidden:YES];
 
     NSDictionary *dict=@{NSKernAttributeName:@(1.5), NSFontAttributeName:[UIFont fontWithName:@"ProximaNova-Semibold" size:17], NSForegroundColorAttributeName:[UIColor colorWithRed:63.0/255 green:77.0/255 blue:96.0/255 alpha:1]};
-    NSAttributedString *string=[[NSAttributedString alloc] initWithString:@"BUY LYKKE" attributes:dict];
+    NSAttributedString *string=[[NSAttributedString alloc] initWithString:@"DEPOSIT LYKKE" attributes:dict];
     self.buyLykkeTitleLabel.attributedText=string;
     
     // Do any additional setup after loading the view from its nib.
@@ -87,6 +96,57 @@
         [navController setViewControllers:@[presenter]];
 
     
+}
+
+-(void) buyPresenterSelectedTransfer
+{
+    transferLeftPanel=[LWMyLykkeTransferLKKLeftPanelPresenter new];
+    [_buyContainer insertSubview:transferLeftPanel.view aboveSubview:buyPresenter.view];
+    [self addChildViewController:buyPresenter];
+    transferLeftPanel.view.frame=_buyContainer.bounds;
+    transferLeftPanel.delegate=self;
+
+    transferLKKPresenter=[LWMyLykkeTransferLKKPresenter new];
+    transferLKKPresenter.view.frame=_detailsContainer.bounds;
+    [_detailsContainer addSubview:transferLKKPresenter.view];
+    [self addChildViewController:transferLKKPresenter];
+    
+    prevDetailsLabelValue=_detailsViewControllerLabel.attributedText.string;
+    
+    UIFont *font = [UIFont fontWithName:@"ProximaNova-Semibold" size:17];
+    
+    NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:
+                                [UIColor colorWithRed:63.0/255 green:77.0/255 blue:96.0/255 alpha:1], NSForegroundColorAttributeName,
+                                font, NSFontAttributeName,
+                                @(1.5f), NSKernAttributeName,
+                                nil];
+    
+    _detailsViewControllerLabel.attributedText=[[NSAttributedString alloc] initWithString:@"TRANSFER LKK" attributes:attributes];
+
+    prevBackButtonState=_detailsBackButton.hidden;
+    _detailsBackButton.hidden=YES;
+    
+}
+
+-(void) leftPanelPressedBuy:(LWMyLykkeTransferLKKLeftPanelPresenter *)panel
+{
+    [panel.view removeFromSuperview];
+    [panel removeFromParentViewController];
+    transferLeftPanel.delegate=nil;
+    transferLeftPanel=nil;
+    [transferLKKPresenter removeFromParentViewController];
+    [transferLKKPresenter.view removeFromSuperview];
+    transferLKKPresenter=nil;
+    UIFont *font = [UIFont fontWithName:@"ProximaNova-Semibold" size:17];
+    
+    NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:
+                                [UIColor colorWithRed:63.0/255 green:77.0/255 blue:96.0/255 alpha:1], NSForegroundColorAttributeName,
+                                font, NSFontAttributeName,
+                                @(1.5f), NSKernAttributeName,
+                                nil];
+    
+    _detailsViewControllerLabel.attributedText=[[NSAttributedString alloc] initWithString:prevDetailsLabelValue attributes:attributes];
+    _detailsBackButton.hidden=prevBackButtonState;
 }
 
 -(void) backButtonPressed

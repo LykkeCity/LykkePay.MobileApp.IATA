@@ -178,6 +178,8 @@
         wif=privateKeyForLykke.WIFTestnet;
     else
         wif=privateKeyForLykke.WIF;
+    
+//    [[LWKeychainManager instance] saveEncodedLykkePrivateKey:self.encryptedKeyLykke];
 
     return YES;
 }

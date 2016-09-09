@@ -16,8 +16,10 @@
 #import "LWUtils.h"
 #import "LWCache.h"
 #import "LWMyLykkeBuyAssetPresenter.h"
+#import "LWMyLykkeTransferLKKPresenter.h"
+#import "LWMyLykkeTransferLKKLeftPanelPresenter.h"
 
-@interface LWMyLykkeBuyPresenter ()
+@interface LWMyLykkeBuyPresenter () <LWMyLykkeTransferLKKLeftPanelPresenterDelegate>
 {
     NSTimer *timer;
     int timerChangeCount;
@@ -35,6 +37,9 @@
 
 @property (weak, nonatomic) IBOutlet UIView *subtitleContainerView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *subtitleContainerHeightConstraint;
+
+@property (weak, nonatomic) IBOutlet UIButton *buyTopButton;
+@property (weak, nonatomic) IBOutlet UIButton *transferTopButton;
 
 
 
@@ -66,17 +71,19 @@
     gesture=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(buyPressed:)];
     [_ethereumContainerView addGestureRecognizer:gesture];
     
-    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad)
-    {
-        self.subtitleContainerView.hidden=YES;
-        self.subtitleContainerHeightConstraint.constant=0;
-    }
+//    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad)
+//    {
+//        self.subtitleContainerView.hidden=YES;
+//        self.subtitleContainerHeightConstraint.constant=0;
+//    }
+    _buyTopButton.layer.cornerRadius=_buyTopButton.bounds.size.height/2;
+    _buyTopButton.clipsToBounds=YES;
 }
 
 -(void) viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    self.title=@"BUY LYKKE";
+    self.title=@"DEPOSIT LYKKE";
     
     [self reloadRates];
     timer=[NSTimer timerWithTimeInterval:0.5 target:self selector:@selector(reloadRates) userInfo:nil repeats:YES];
@@ -224,6 +231,31 @@
 {
     [self updateRates];
 }
+
+
+
+-(IBAction) transferTopButtonPressed:(id)sender
+{
+    
+    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
+    {
+        LWMyLykkeTransferLKKPresenter *presenter=[LWMyLykkeTransferLKKPresenter new];
+        NSMutableArray *arr=[NSMutableArray arrayWithArray:self.navigationController.viewControllers];
+        [arr removeLastObject];
+        [arr addObject:presenter];
+        [self.navigationController setViewControllers:arr];
+
+    }
+    else
+    {
+        [self.delegate buyPresenterSelectedTransfer];
+    }
+    
+
+    
+}
+
+
 
 
 @end

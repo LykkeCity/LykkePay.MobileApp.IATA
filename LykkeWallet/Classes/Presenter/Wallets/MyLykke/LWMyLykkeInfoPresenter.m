@@ -40,6 +40,7 @@
     
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.estimatedRowHeight = 44.0;
+    self.tableView.bounces=NO;
     [self.buyButton addTarget:self action:@selector(buyPressed) forControlEvents:UIControlEventTouchUpInside];
     
     if([UIScreen mainScreen].bounds.size.width==320)

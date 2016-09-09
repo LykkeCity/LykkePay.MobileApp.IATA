@@ -33,6 +33,9 @@
     [super viewDidLoad];
     self.tableView.delegate=self;
     
+    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
+        
+    
     _newsView.clipsToBounds=YES;
     _newsView.layer.cornerRadius=_newsView.bounds.size.height/2;
     
@@ -46,15 +49,24 @@
 //    [self.tableView registerNib:[UINib nibWithNibName:@"LWMyLykkeNewsCommonTableViewCell" bundle:nil] forCellReuseIdentifier:@"LWMyLykkeNewsCommonTableViewCell"];
 
     self.tableView.rowHeight = UITableViewAutomaticDimension;
-    self.tableView.estimatedRowHeight = 44.0;
+    self.tableView.estimatedRowHeight = 200.0;
     self.tableView.backgroundColor=[UIColor colorWithRed:245.0/255 green:246.0/255 blue:247.0/255 alpha:1];
 
     UITapGestureRecognizer *gesture=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(equityPressed)];
     [self.equityView addGestureRecognizer:gesture];
-    self.tableView.bounces=NO;
+//    self.tableView.bounces=NO;
     self.tableView.editing=NO;
     if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad)
         self.tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
+    
+    [[LWAuthManager instance] requestLykkeNewsWithCompletion:^(NSArray *newsArr){
+        newsArray=newsArr;
+        self.tableView.backgroundColor=[UIColor colorWithRed:245.0/255 green:246.0/255 blue:247.0/255 alpha:1];
+        if(self.isViewLoaded && self.view.window)
+            [self setLoading:NO];
+        [self.tableView reloadData];
+    }];
+
 }
 
 -(void) viewWillAppear:(BOOL)animated
@@ -72,18 +84,18 @@
 -(void) viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
+    [self setLoading:NO];
+//    [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
 
 }
 
 -(void) viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    self.title=@"MY LYKKE";
+//    self.title=@"MY LYKKE";
 
     if(!newsArray)
         [self setLoading:YES];
-    [[LWAuthManager instance] requestLykkeNews];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -190,35 +202,22 @@
  
 }
 
--(void) authManager:(LWAuthManager *)manager didGetNews:(LWPacketGetNews *)packet
+//-(void) authManager:(LWAuthManager *)manager didGetNews:(LWPacketGetNews *)packet
+//{
+//    [self setLoading:NO];
+//    newsArray=packet.news;
+//    self.tableView.backgroundColor=[UIColor colorWithRed:245.0/255 green:246.0/255 blue:247.0/255 alpha:1];
+//    [self.tableView reloadData];
+//}
+
+
+-(void) scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    [self setLoading:NO];
-    newsArray=packet.news;
-    self.tableView.backgroundColor=[UIColor colorWithRed:245.0/255 green:246.0/255 blue:247.0/255 alpha:1];
-    [self.tableView reloadData];
+    [self.delegate listScrolled:scrollView];
 }
 
--(void) equityPressed
+-(void) scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {
-    
-    LWMyLykkePresenter *presenter=[[LWMyLykkePresenter alloc] init];
-    presenter.tabBarItem=self.tabBarItem;
-    
-    
-    NSArray *arr=self.navigationController.viewControllers;
-    LWTabController *tabController=arr[0];
-    NSMutableArray *newTabcontrollers=[[NSMutableArray alloc] init];
-    for(UIViewController *v in tabController.viewControllers)
-    {
-        if([v isKindOfClass:[LWMyLykkeNewsListPresenter class]])
-        {
-            [newTabcontrollers addObject:presenter];
-        }
-        else
-            [newTabcontrollers addObject:v];
-    }
-    [tabController setViewControllers:newTabcontrollers];
-    
     
 }
 

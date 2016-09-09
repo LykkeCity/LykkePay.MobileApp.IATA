@@ -58,6 +58,8 @@
 //    [self.withdrawButton setTitle:Localize(@"wallets.trading.withdraw") forState:UIControlStateNormal];
 //    [self.depositButton setTitle:Localize(@"wallets.trading.deposit") forState:UIControlStateNormal];
     
+
+    
 #ifdef PROJECT_IATA
 #else
     [self.withdrawButton setGrayPalette];

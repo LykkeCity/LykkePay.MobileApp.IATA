@@ -40,8 +40,8 @@
                                     </mask>
                                 </variation>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="NewsFirstImageShadow" translatesAutoresizingMaskIntoConstraints="NO" id="0h4-nb-Xza">
-                                <rect key="frame" x="0.0" y="147" width="651" height="147.5"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NewsFirstImageShadow" translatesAutoresizingMaskIntoConstraints="NO" id="0h4-nb-Xza">
+                                <rect key="frame" x="0.0" y="74" width="651" height="137"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vxx-em-PqW">
                                 <rect key="frame" x="25" y="182" width="601" height="17.5"/>
@@ -49,8 +49,8 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hQc-DX-23E">
-                                <rect key="frame" x="25" y="136" width="601" height="39"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hQc-DX-23E">
+                                <rect key="frame" x="25" y="149" width="601" height="26"/>
                                 <fontDescription key="fontDescription" name="ProximaNova-Semibold" family="Proxima Nova" pointSize="21"/>
                                 <color key="textColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -64,7 +64,7 @@
                             <constraint firstItem="0h4-nb-Xza" firstAttribute="leading" secondItem="Qop-ge-fOw" secondAttribute="leading" id="Dqk-aw-CE5"/>
                             <constraint firstItem="Vxx-em-PqW" firstAttribute="leading" secondItem="Qop-ge-fOw" secondAttribute="leading" constant="25" id="KhE-jL-cWS"/>
                             <constraint firstItem="Vxx-em-PqW" firstAttribute="top" secondItem="hQc-DX-23E" secondAttribute="bottom" constant="7" id="PI0-hg-F8a"/>
-                            <constraint firstItem="0h4-nb-Xza" firstAttribute="height" secondItem="Qop-ge-fOw" secondAttribute="height" multiplier="0.5" id="bBf-aC-Tyc"/>
+                            <constraint firstItem="0h4-nb-Xza" firstAttribute="height" secondItem="Qop-ge-fOw" secondAttribute="height" multiplier="0.65" id="bBf-aC-Tyc"/>
                             <constraint firstAttribute="trailing" secondItem="VUP-8z-JkG" secondAttribute="trailing" id="f0R-d4-FbF"/>
                             <constraint firstItem="hQc-DX-23E" firstAttribute="leading" secondItem="Qop-ge-fOw" secondAttribute="leading" constant="25" id="jFx-iC-kth"/>
                             <constraint firstAttribute="trailing" secondItem="0h4-nb-Xza" secondAttribute="trailing" id="pu4-Xh-0MG"/>

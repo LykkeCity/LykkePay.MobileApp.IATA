@@ -129,6 +129,15 @@
 		A14515961D80470E00B4BED9 /* LWEtheriumDepositPresenter.xib in Resources */ = {isa = PBXBuildFile; fileRef = A14515941D80470E00B4BED9 /* LWEtheriumDepositPresenter.xib */; };
 		A14515991D80492900B4BED9 /* LWPacketGetEthereumAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = A14515981D80492900B4BED9 /* LWPacketGetEthereumAddress.m */; };
 		A145159C1D80C25700B4BED9 /* LWPacketLykkeSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = A145159B1D80C25700B4BED9 /* LWPacketLykkeSettings.m */; };
+		A14515A51D828EBC00B4BED9 /* LWMyLykkeMainContainerPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A14515A31D828EBC00B4BED9 /* LWMyLykkeMainContainerPresenter.m */; };
+		A14515A61D828EBC00B4BED9 /* LWMyLykkeMainContainerPresenter.xib in Resources */ = {isa = PBXBuildFile; fileRef = A14515A41D828EBC00B4BED9 /* LWMyLykkeMainContainerPresenter.xib */; };
+		A14515A81D82CF2800B4BED9 /* LWMyLykkeMainContainerPresenter_Iphone5.xib in Resources */ = {isa = PBXBuildFile; fileRef = A14515A71D82CF2800B4BED9 /* LWMyLykkeMainContainerPresenter_Iphone5.xib */; };
+		A14515AA1D82DD5900B4BED9 /* LWMyLykkeMainContainerPresenter_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A14515A91D82DD5900B4BED9 /* LWMyLykkeMainContainerPresenter_iPad.xib */; };
+		A14515AF1D82E91800B4BED9 /* LWMyLykkeTransferLKKPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A14515AC1D82E91800B4BED9 /* LWMyLykkeTransferLKKPresenter.m */; };
+		A14515B01D82E91800B4BED9 /* LWMyLykkeTransferLKKPresenter~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A14515AD1D82E91800B4BED9 /* LWMyLykkeTransferLKKPresenter~ipad.xib */; };
+		A14515B11D82E91800B4BED9 /* LWMyLykkeTransferLKKPresenter~iphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = A14515AE1D82E91800B4BED9 /* LWMyLykkeTransferLKKPresenter~iphone.xib */; };
+		A14515B51D82F9B800B4BED9 /* LWMyLykkeTransferLKKLeftPanelPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A14515B31D82F9B800B4BED9 /* LWMyLykkeTransferLKKLeftPanelPresenter.m */; };
+		A14515B61D82F9B800B4BED9 /* LWMyLykkeTransferLKKLeftPanelPresenter.xib in Resources */ = {isa = PBXBuildFile; fileRef = A14515B41D82F9B800B4BED9 /* LWMyLykkeTransferLKKLeftPanelPresenter.xib */; };
 		A14B7D2E1CE3233D00820084 /* ButtonOK_square.png in Resources */ = {isa = PBXBuildFile; fileRef = A14B7D2D1CE3233D00820084 /* ButtonOK_square.png */; };
 		A15B3EAF1D12626B00A6B506 /* LWRefundInformationPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A15B3EAD1D12626B00A6B506 /* LWRefundInformationPresenter.m */; };
 		A15B3EB01D12626B00A6B506 /* LWRefundInformationPresenter.xib in Resources */ = {isa = PBXBuildFile; fileRef = A15B3EAE1D12626B00A6B506 /* LWRefundInformationPresenter.xib */; };
@@ -1871,6 +1880,18 @@
 		A14515981D80492900B4BED9 /* LWPacketGetEthereumAddress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWPacketGetEthereumAddress.m; sourceTree = "<group>"; };
 		A145159A1D80C25700B4BED9 /* LWPacketLykkeSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWPacketLykkeSettings.h; sourceTree = "<group>"; };
 		A145159B1D80C25700B4BED9 /* LWPacketLykkeSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWPacketLykkeSettings.m; sourceTree = "<group>"; };
+		A14515A21D828EBC00B4BED9 /* LWMyLykkeMainContainerPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWMyLykkeMainContainerPresenter.h; sourceTree = "<group>"; };
+		A14515A31D828EBC00B4BED9 /* LWMyLykkeMainContainerPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWMyLykkeMainContainerPresenter.m; sourceTree = "<group>"; };
+		A14515A41D828EBC00B4BED9 /* LWMyLykkeMainContainerPresenter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LWMyLykkeMainContainerPresenter.xib; sourceTree = "<group>"; };
+		A14515A71D82CF2800B4BED9 /* LWMyLykkeMainContainerPresenter_Iphone5.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LWMyLykkeMainContainerPresenter_Iphone5.xib; sourceTree = "<group>"; };
+		A14515A91D82DD5900B4BED9 /* LWMyLykkeMainContainerPresenter_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LWMyLykkeMainContainerPresenter_iPad.xib; sourceTree = "<group>"; };
+		A14515AB1D82E91800B4BED9 /* LWMyLykkeTransferLKKPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWMyLykkeTransferLKKPresenter.h; sourceTree = "<group>"; };
+		A14515AC1D82E91800B4BED9 /* LWMyLykkeTransferLKKPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWMyLykkeTransferLKKPresenter.m; sourceTree = "<group>"; };
+		A14515AD1D82E91800B4BED9 /* LWMyLykkeTransferLKKPresenter~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "LWMyLykkeTransferLKKPresenter~ipad.xib"; sourceTree = "<group>"; };
+		A14515AE1D82E91800B4BED9 /* LWMyLykkeTransferLKKPresenter~iphone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "LWMyLykkeTransferLKKPresenter~iphone.xib"; sourceTree = "<group>"; };
+		A14515B21D82F9B800B4BED9 /* LWMyLykkeTransferLKKLeftPanelPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWMyLykkeTransferLKKLeftPanelPresenter.h; sourceTree = "<group>"; };
+		A14515B31D82F9B800B4BED9 /* LWMyLykkeTransferLKKLeftPanelPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWMyLykkeTransferLKKLeftPanelPresenter.m; sourceTree = "<group>"; };
+		A14515B41D82F9B800B4BED9 /* LWMyLykkeTransferLKKLeftPanelPresenter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LWMyLykkeTransferLKKLeftPanelPresenter.xib; sourceTree = "<group>"; };
 		A14B7D2D1CE3233D00820084 /* ButtonOK_square.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ButtonOK_square.png; sourceTree = "<group>"; };
 		A15B3EAC1D12626B00A6B506 /* LWRefundInformationPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWRefundInformationPresenter.h; sourceTree = "<group>"; };
 		A15B3EAD1D12626B00A6B506 /* LWRefundInformationPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWRefundInformationPresenter.m; sourceTree = "<group>"; };
@@ -3861,6 +3882,11 @@
 				A188DA1B1D705D4100AA6D8A /* LWMyLykkePresenter.xib */,
 				A12DB57C1D76F2B200319EA7 /* LWMyLykkePresenter_Iphone5.xib */,
 				A14515641D79B18C00B4BED9 /* LWMyLykkePresenter_iPad.xib */,
+				A14515A21D828EBC00B4BED9 /* LWMyLykkeMainContainerPresenter.h */,
+				A14515A31D828EBC00B4BED9 /* LWMyLykkeMainContainerPresenter.m */,
+				A14515A41D828EBC00B4BED9 /* LWMyLykkeMainContainerPresenter.xib */,
+				A14515A71D82CF2800B4BED9 /* LWMyLykkeMainContainerPresenter_Iphone5.xib */,
+				A14515A91D82DD5900B4BED9 /* LWMyLykkeMainContainerPresenter_iPad.xib */,
 				A14515661D7A89CB00B4BED9 /* LWMyLykkeIpadController.h */,
 				A14515671D7A89CB00B4BED9 /* LWMyLykkeIpadController.m */,
 				A14515681D7A89CB00B4BED9 /* LWMyLykkeIpadController.xib */,
@@ -3891,6 +3917,13 @@
 				A12DB5561D757F9400319EA7 /* LWMyLykkeCreditCardDepositPresenter.m */,
 				A12DB5571D757F9400319EA7 /* LWMyLykkeCreditCardDepositPresenter~iphone.xib */,
 				A145156B1D7A975E00B4BED9 /* LWMyLykkeCreditCardDepositPresenter~ipad.xib */,
+				A14515B21D82F9B800B4BED9 /* LWMyLykkeTransferLKKLeftPanelPresenter.h */,
+				A14515B31D82F9B800B4BED9 /* LWMyLykkeTransferLKKLeftPanelPresenter.m */,
+				A14515B41D82F9B800B4BED9 /* LWMyLykkeTransferLKKLeftPanelPresenter.xib */,
+				A14515AB1D82E91800B4BED9 /* LWMyLykkeTransferLKKPresenter.h */,
+				A14515AC1D82E91800B4BED9 /* LWMyLykkeTransferLKKPresenter.m */,
+				A14515AD1D82E91800B4BED9 /* LWMyLykkeTransferLKKPresenter~ipad.xib */,
+				A14515AE1D82E91800B4BED9 /* LWMyLykkeTransferLKKPresenter~iphone.xib */,
 				A14515761D7C77C600B4BED9 /* LWMyLykkeSuccessViewController.h */,
 				A14515771D7C77C600B4BED9 /* LWMyLykkeSuccessViewController.m */,
 				A14515781D7C77C600B4BED9 /* LWMyLykkeSuccessViewController.xib */,
@@ -6977,6 +7010,7 @@
 				A1BCD0B81D012D3C00CF42E4 /* 1-deposit-2x_00048.png in Resources */,
 				A1BCD1BF1D012D3C00CF42E4 /* 3-settle-2x_00072.png in Resources */,
 				A10A95061D0E8F5F00557C87 /* SlashSign@2x.png in Resources */,
+				A14515A61D828EBC00B4BED9 /* LWMyLykkeMainContainerPresenter.xib in Resources */,
 				A18F892C1CE85B0A00399850 /* LWWithdrawCurrencyPresenter.xib in Resources */,
 				A1D65D801D5DCF1100828783 /* crypto_bar_00060.png in Resources */,
 				A135977C1D6360A70021228E /* LWCreateEditPrivateWalletPresenter.xib in Resources */,
@@ -7084,11 +7118,13 @@
 				A1BCD1341D012D3C00CF42E4 /* 2-trade-2x_00052.png in Resources */,
 				A14515871D7EFA7000B4BED9 /* lykke_logo.png in Resources */,
 				A14515961D80470E00B4BED9 /* LWEtheriumDepositPresenter.xib in Resources */,
+				A14515B01D82E91800B4BED9 /* LWMyLykkeTransferLKKPresenter~ipad.xib in Resources */,
 				EC3CE8C21C402FF000CAC3FE /* LWAssetBlockchainIconTableViewCell.xib in Resources */,
 				A1D65D591D5DCF1100828783 /* crypto_bar_00021.png in Resources */,
 				A1BCD0DC1D012D3C00CF42E4 /* 1-deposit-2x_00084.png in Resources */,
 				A12DB5531D741C2300319EA7 /* Proxima Nova Thin.otf in Resources */,
 				A1D477801D050B9900438846 /* loader-color@2x_00080.png in Resources */,
+				A14515B61D82F9B800B4BED9 /* LWMyLykkeTransferLKKLeftPanelPresenter.xib in Resources */,
 				A1BCD1C61D012D3C00CF42E4 /* 3-settle-2x_00079.png in Resources */,
 				A1BCD1861D012D3C00CF42E4 /* 3-settle-2x_00015.png in Resources */,
 				A188DA221D71349D00AA6D8A /* LWPrivateWalletDeposit.xib in Resources */,
@@ -7475,6 +7511,7 @@
 				A1D4773A1D050B9900438846 /* loader-color@2x_00010.png in Resources */,
 				A1BCD1D91D012D3C00CF42E4 /* 3-settle-2x_00098.png in Resources */,
 				A1BCD2D61D012D3C00CF42E4 /* 5-onboard-2x_00112.png in Resources */,
+				A14515B11D82E91800B4BED9 /* LWMyLykkeTransferLKKPresenter~iphone.xib in Resources */,
 				A1BCD11F1D012D3C00CF42E4 /* 2-trade-2x_00031.png in Resources */,
 				EC7519B41C3733FD00CDDF5B /* LWSettingsAssetTableViewCell~iphone.xib in Resources */,
 				A1BCD1961D012D3C00CF42E4 /* 3-settle-2x_00031.png in Resources */,
@@ -7543,6 +7580,7 @@
 				EC7A45E01C309ACD00926BB4 /* LWWalletEmptyTableViewCell.xib in Resources */,
 				A1BCD2561D012D3C00CF42E4 /* 4-withdraw-2x_00103.png in Resources */,
 				A1D65D8F1D5DCF1100828783 /* crypto_bar_00075.png in Resources */,
+				A14515A81D82CF2800B4BED9 /* LWMyLykkeMainContainerPresenter_Iphone5.xib in Resources */,
 				A1D477321D050B9900438846 /* loader-color@2x_00002.png in Resources */,
 				A12BEEA11D2BBC7900045916 /* tabbara-line.png in Resources */,
 				A1BCD0EB1D012D3C00CF42E4 /* 1-deposit-2x_00099.png in Resources */,
@@ -7764,6 +7802,7 @@
 				A1BCD1821D012D3C00CF42E4 /* 3-settle-2x_00011.png in Resources */,
 				A1BCD2851D012D3C00CF42E4 /* 5-onboard-2x_00031.png in Resources */,
 				A1D65DBA1D5DCF1100828783 /* crypto_bar_00118.png in Resources */,
+				A14515AA1D82DD5900B4BED9 /* LWMyLykkeMainContainerPresenter_iPad.xib in Resources */,
 				A1D65D921D5DCF1100828783 /* crypto_bar_00078.png in Resources */,
 				A1D65D6D1D5DCF1100828783 /* crypto_bar_00041.png in Resources */,
 				A1BCD2AF1D012D3C00CF42E4 /* 5-onboard-2x_00073.png in Resources */,
@@ -8077,6 +8116,7 @@
 				CF6632631C175DE5004353F5 /* TKNavigationPresenter.m in Sources */,
 				A11D0F461D37676E00BFDE4D /* LWPrivateWalletTitleCell.m in Sources */,
 				A18D259E1D65CA22005CEF66 /* LWRestorePasswordWordsPresenter.m in Sources */,
+				A14515AF1D82E91800B4BED9 /* LWMyLykkeTransferLKKPresenter.m in Sources */,
 				EC7A45DC1C309A9F00926BB4 /* LWWalletEmptyTableViewCell.m in Sources */,
 				A14515691D7A89CB00B4BED9 /* LWMyLykkeIpadController.m in Sources */,
 				CFD9B7031C1C932B00F717FE /* LWPacketCheckDocumentsToUpload.m in Sources */,
@@ -8167,6 +8207,7 @@
 				A1D65DBE1D5EBCBC00828783 /* LWBackupIntroPresenter.m in Sources */,
 				ECEC40B61C4298CF00B22BEE /* LWHistoryTableViewCell.m in Sources */,
 				A188DA121D6EB33800AA6D8A /* LWPrivateWalletEmptyHistoryPresenter.m in Sources */,
+				A14515A51D828EBC00B4BED9 /* LWMyLykkeMainContainerPresenter.m in Sources */,
 				A1AB30751CE5C03E009AF37B /* LWSendImageManager.m in Sources */,
 				A114948A1D4F46A3000BD347 /* LWRefundTransactionPresenter.m in Sources */,
 				EC7F05161C3EEAC00079ECD0 /* LWPacketSettingSignOrder.m in Sources */,
@@ -8203,6 +8244,7 @@
 				A12BEEAB1D2E8FA200045916 /* LWPushNotificationView.m in Sources */,
 				A11494721D49E1E8000BD347 /* LWPKBackupPresenter.m in Sources */,
 				EC59526C1C31ED6C0036240C /* LWKYCCheckDocumentsPresenter.m in Sources */,
+				A14515B51D82F9B800B4BED9 /* LWMyLykkeTransferLKKLeftPanelPresenter.m in Sources */,
 				A145159C1D80C25700B4BED9 /* LWPacketLykkeSettings.m in Sources */,
 				A11494591D476BA2000BD347 /* LWPacketGetPaymentUrl.m in Sources */,
 				EC9AE0521CAC5F440047DF0D /* LWWithdrawFundsPresenter.m in Sources */,

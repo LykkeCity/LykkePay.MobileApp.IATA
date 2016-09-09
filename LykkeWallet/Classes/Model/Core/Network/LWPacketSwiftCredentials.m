@@ -31,6 +31,8 @@
         c.accountNumber=result[key][@"AccountNumber"];
         c.accountName=result[key][@"AccountName"];
         c.purposeOfPayment=result[key][@"PurposeOfPayment"];
+        c.bankAddress=result[key][@"BankAddress"];
+        c.companyAddress=result[key][@"CompanyAddress"];
         swiftCredentialsDict[key]=c;
     }
     

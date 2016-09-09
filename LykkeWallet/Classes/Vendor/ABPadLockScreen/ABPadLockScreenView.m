@@ -87,10 +87,10 @@
         
         _contentView.center = self.center;
 
-        if(frame.size.height==568)  //Andrey
-        {
-            _contentView.center=CGPointMake(_contentView.center.x, _contentView.center.y+40);
-        }
+//        if(frame.size.height==568)  //Andrey
+//        {
+//            _contentView.center=CGPointMake(_contentView.center.x, _contentView.center.y+40);
+//        }
 		[self addSubview:_contentView];
         
         _requiresRotationCorrection = NO;

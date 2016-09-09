@@ -4,18 +4,9 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <mutableArray key="Proxima Nova Regular.otf">
-            <string>ProximaNova-Regular</string>
-            <string>ProximaNova-Regular</string>
-        </mutableArray>
-    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LWMyLykkeNewsListPresenter">
             <connections>
-                <outlet property="equityView" destination="GTR-Rc-Ebq" id="yTC-Gw-Lt7"/>
-                <outlet property="newsLabel" destination="HLY-Z2-75f" id="gU8-3H-tVV"/>
-                <outlet property="newsView" destination="dDJ-Ic-YkB" id="xkZ-Lm-L1g"/>
                 <outlet property="tableView" destination="5DH-SK-5kt" id="gUU-uC-934"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -25,139 +16,24 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="5DH-SK-5kt">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="5DH-SK-5kt">
                     <rect key="frame" x="0.0" y="53" width="600" height="547"/>
                     <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                 </tableView>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zJ5-Jm-uRx">
-                    <rect key="frame" x="0.0" y="0.0" width="600" height="54"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                </view>
-                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nlo-hx-Jwv">
-                    <rect key="frame" x="0.0" y="0.0" width="600" height="8"/>
-                    <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G4O-j1-Qug">
-                            <rect key="frame" x="0.0" y="7" width="600" height="1"/>
-                            <color key="backgroundColor" red="0.84705882352941175" green="0.84705882352941175" blue="0.84705882352941175" alpha="1" colorSpace="calibratedRGB"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="1" id="2cw-VI-aJ6"/>
-                            </constraints>
-                        </view>
-                    </subviews>
-                    <color key="backgroundColor" red="0.96470588235294119" green="0.96862745098039216" blue="0.97254901960784312" alpha="1" colorSpace="calibratedRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="8" id="Pws-cU-MwC"/>
-                        <constraint firstItem="G4O-j1-Qug" firstAttribute="leading" secondItem="Nlo-hx-Jwv" secondAttribute="leading" id="UOt-gJ-gxT"/>
-                        <constraint firstAttribute="bottom" secondItem="G4O-j1-Qug" secondAttribute="bottom" id="utc-P1-OTv"/>
-                        <constraint firstAttribute="trailing" secondItem="G4O-j1-Qug" secondAttribute="trailing" id="v83-LJ-kH8"/>
-                    </constraints>
-                </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iA7-Qh-cVP">
-                    <rect key="frame" x="190" y="13" width="220" height="30"/>
-                    <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GTR-Rc-Ebq">
-                            <rect key="frame" x="0.0" y="0.0" width="114" height="30"/>
-                            <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EQUITY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vdf-vj-MNo">
-                                    <rect key="frame" x="33" y="6" width="49" height="17.5"/>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                    <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="14"/>
-                                    <color key="textColor" red="0.24705882352941178" green="0.30196078431372547" blue="0.37647058823529411" alpha="1" colorSpace="calibratedRGB"/>
-                                    <nil key="highlightedColor"/>
-                                    <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                            <integer key="value" value="15"/>
-                                        </userDefinedRuntimeAttribute>
-                                    </userDefinedRuntimeAttributes>
-                                </label>
-                                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="EquityIconBlack" translatesAutoresizingMaskIntoConstraints="NO" id="xBM-R4-10n">
-                                    <rect key="frame" x="13" y="6" width="15" height="16"/>
-                                </imageView>
-                            </subviews>
-                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="30" id="E12-cd-mJC"/>
-                                <constraint firstItem="Vdf-vj-MNo" firstAttribute="centerY" secondItem="GTR-Rc-Ebq" secondAttribute="centerY" id="Gxm-lt-mcS"/>
-                                <constraint firstItem="xBM-R4-10n" firstAttribute="leading" secondItem="GTR-Rc-Ebq" secondAttribute="leading" constant="13" id="PVy-GO-Tpx"/>
-                                <constraint firstItem="xBM-R4-10n" firstAttribute="centerY" secondItem="GTR-Rc-Ebq" secondAttribute="centerY" id="YqN-zc-XeY"/>
-                                <constraint firstItem="Vdf-vj-MNo" firstAttribute="leading" secondItem="xBM-R4-10n" secondAttribute="trailing" constant="5" id="tPm-h0-NEf"/>
-                                <constraint firstAttribute="width" constant="114" id="zsI-fH-Q0i"/>
-                            </constraints>
-                        </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dDJ-Ic-YkB">
-                            <rect key="frame" x="119" y="0.0" width="114" height="30"/>
-                            <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NEWS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HLY-Z2-75f">
-                                    <rect key="frame" x="41" y="6" width="38.5" height="17.5"/>
-                                    <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="14"/>
-                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                    <nil key="highlightedColor"/>
-                                    <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                            <integer key="value" value="15"/>
-                                        </userDefinedRuntimeAttribute>
-                                    </userDefinedRuntimeAttributes>
-                                </label>
-                                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NewsIconWhite" translatesAutoresizingMaskIntoConstraints="NO" id="gae-dR-mzf">
-                                    <rect key="frame" x="22" y="8" width="14" height="13"/>
-                                </imageView>
-                            </subviews>
-                            <color key="backgroundColor" red="0.6705882352941176" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="30" id="11c-aG-tXf"/>
-                                <constraint firstItem="HLY-Z2-75f" firstAttribute="centerY" secondItem="dDJ-Ic-YkB" secondAttribute="centerY" id="2F8-kh-VCk"/>
-                                <constraint firstItem="gae-dR-mzf" firstAttribute="centerY" secondItem="dDJ-Ic-YkB" secondAttribute="centerY" id="4WE-sm-QTy"/>
-                                <constraint firstAttribute="width" constant="114" id="Fxh-gi-gPz"/>
-                                <constraint firstItem="HLY-Z2-75f" firstAttribute="leading" secondItem="gae-dR-mzf" secondAttribute="trailing" constant="5" id="JPI-xJ-IOV"/>
-                                <constraint firstItem="gae-dR-mzf" firstAttribute="leading" secondItem="dDJ-Ic-YkB" secondAttribute="leading" constant="22" id="g6r-Us-M9H"/>
-                            </constraints>
-                        </view>
-                    </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstItem="GTR-Rc-Ebq" firstAttribute="centerY" secondItem="iA7-Qh-cVP" secondAttribute="centerY" id="JFV-x4-ggZ"/>
-                        <constraint firstItem="GTR-Rc-Ebq" firstAttribute="leading" secondItem="iA7-Qh-cVP" secondAttribute="leading" id="Lmr-Ps-VCy"/>
-                        <constraint firstItem="dDJ-Ic-YkB" firstAttribute="centerY" secondItem="iA7-Qh-cVP" secondAttribute="centerY" id="UOO-Li-Mge"/>
-                        <constraint firstItem="dDJ-Ic-YkB" firstAttribute="leading" secondItem="GTR-Rc-Ebq" secondAttribute="trailing" constant="5" id="aSm-lI-1Yu"/>
-                        <constraint firstAttribute="height" constant="30" id="eyP-4h-OAC"/>
-                        <constraint firstAttribute="width" constant="220" id="lux-3e-bGw"/>
-                    </constraints>
-                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="5DH-SK-5kt" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="0Eh-lS-ViC"/>
-                <constraint firstItem="iA7-Qh-cVP" firstAttribute="top" secondItem="Nlo-hx-Jwv" secondAttribute="bottom" constant="13" id="0J3-qQ-Q85"/>
-                <constraint firstAttribute="trailing" secondItem="zJ5-Jm-uRx" secondAttribute="trailing" id="0xz-K5-K4X"/>
-                <constraint firstItem="iA7-Qh-cVP" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="2xA-j9-MAV"/>
                 <constraint firstAttribute="trailing" secondItem="5DH-SK-5kt" secondAttribute="trailing" id="74Q-ni-NwD"/>
                 <constraint firstItem="5DH-SK-5kt" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="BGv-8a-nJh"/>
-                <constraint firstItem="Nlo-hx-Jwv" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Bu5-uJ-00T"/>
-                <constraint firstItem="zJ5-Jm-uRx" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="NXf-Mp-1Pv"/>
-                <constraint firstItem="iA7-Qh-cVP" firstAttribute="top" secondItem="Nlo-hx-Jwv" secondAttribute="bottom" constant="13" id="OBh-u8-K7m"/>
-                <constraint firstItem="zJ5-Jm-uRx" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="SgT-SS-SAL"/>
+                <constraint firstItem="5DH-SK-5kt" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="HyK-eh-5E6"/>
                 <constraint firstAttribute="bottom" secondItem="5DH-SK-5kt" secondAttribute="bottom" id="WiL-rk-Mv3"/>
-                <constraint firstItem="5DH-SK-5kt" firstAttribute="top" secondItem="iA7-Qh-cVP" secondAttribute="bottom" constant="10" id="ZoK-nw-2bE"/>
-                <constraint firstItem="iA7-Qh-cVP" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="13" id="cbT-zt-ujT"/>
-                <constraint firstItem="5DH-SK-5kt" firstAttribute="top" secondItem="zJ5-Jm-uRx" secondAttribute="bottom" constant="-1" id="kUz-oG-vbq"/>
-                <constraint firstItem="iA7-Qh-cVP" firstAttribute="top" secondItem="Nlo-hx-Jwv" secondAttribute="bottom" constant="13" id="m13-qd-68k"/>
-                <constraint firstItem="iA7-Qh-cVP" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="21" id="uYX-d0-b59"/>
-                <constraint firstItem="Nlo-hx-Jwv" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="ufD-xK-oim"/>
-                <constraint firstAttribute="trailing" secondItem="Nlo-hx-Jwv" secondAttribute="trailing" id="wv8-Dl-gio"/>
             </constraints>
             <variation key="default">
                 <mask key="constraints">
                     <exclude reference="BGv-8a-nJh"/>
-                    <exclude reference="0J3-qQ-Q85"/>
-                    <exclude reference="OBh-u8-K7m"/>
-                    <exclude reference="m13-qd-68k"/>
-                    <exclude reference="uYX-d0-b59"/>
                 </mask>
             </variation>
         </view>
     </objects>
-    <resources>
-        <image name="EquityIconBlack" width="15" height="16"/>
-        <image name="NewsIconWhite" width="14" height="13"/>
-    </resources>
 </document>

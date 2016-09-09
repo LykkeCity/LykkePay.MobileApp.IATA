@@ -26,7 +26,10 @@
         LWNewsElementModel *m=[[LWNewsElementModel alloc] initWithDictionary:d];
         [arr addObject:m];
     }
-    self.news=(NSArray *)arr;
+    if(self.completion)
+    {
+        self.completion(arr);
+    }
 }
 
 - (NSString *)urlRelative {
