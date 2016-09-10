@@ -46,6 +46,8 @@ SINGLETON_DECLARE
 
 - (void)clear;
 
+-(void) saveFullName:(NSString *) fullName;
+
 
 #pragma mark - Properties
 

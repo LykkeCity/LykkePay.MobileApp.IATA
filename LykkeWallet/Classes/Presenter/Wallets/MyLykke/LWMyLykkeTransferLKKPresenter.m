@@ -161,5 +161,15 @@
     CGImageRelease(cgImage);
 }
 
+-(NSString *) nibName
+{
+    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad)
+        return @"LWMyLykkeTransferLKKPresenter_ipad";
+    else if([UIScreen mainScreen].bounds.size.width==320)
+        return @"LWMyLykkeTransferLKKPresenter_iphone5";
+    else
+        return @"LWMyLykkeTransferLKKPresenter_iphone";
+}
+
 
 @end

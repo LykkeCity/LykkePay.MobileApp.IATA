@@ -70,8 +70,10 @@
     self.btcTextField.text=[ASSET_PREFIX stringByAppendingString:@"0"];
     self.keyboard.delegate=self;
     [self.submitButton addTarget:self action:@selector(submitPressed) forControlEvents:UIControlEventTouchUpInside];
-    
-    self.titleLabel.text=[NSString stringWithFormat:@"Purchase LKK with %@", self.assetId];
+    if([self.assetId isEqualToString:@"ETH"])
+        self.titleLabel.text=@"Purchase LKK with ETH";
+    else
+        self.titleLabel.text=[NSString stringWithFormat:@"Purchase LKK with %@", self.assetId];
     
     UIFont *font=[UIFont fontWithName:@"ProximaNova-Regular" size:22];
     self.lkkTextField.font=font;
@@ -130,7 +132,12 @@
     if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
         self.title=@"BUY LYKKE";
     else
-        self.navigationController.title=[NSString stringWithFormat:@"PURCHASE LKK WITH %@", [LWCache nameForAsset:self.assetId]];
+    {
+        if([self.assetId isEqualToString:@"ETH"])
+            self.navigationController.title=@"PURCHASE LKK WITH ETH";
+        else
+            self.navigationController.title=[NSString stringWithFormat:@"PURCHASE LKK WITH %@", [LWCache nameForAsset:self.assetId]];
+    }
     [_lkkTextField becomeFirstResponder];
 
     timer=[NSTimer timerWithTimeInterval:0.5 target:self selector:@selector(refreshPrice) userInfo:nil repeats:YES];

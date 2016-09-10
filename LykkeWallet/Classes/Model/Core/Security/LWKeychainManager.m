@@ -80,6 +80,12 @@ SINGLETON_INIT {
     }
 }
 
+-(void) saveFullName:(NSString *)fullName
+{
+    [valet setString:fullName forKey:kKeychainManagerFullName];
+
+}
+
 -(LWPersonalDataModel *) personalData
 {
     NSString *json=[valet stringForKey:kKeychainManagerPersonalData];

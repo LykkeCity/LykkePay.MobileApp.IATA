@@ -23,6 +23,7 @@
 #import "LWPacketPrevCardPayment.h"
 #import "LWCache.h"
 #import "LWIPadModalNavigationControllerViewController.h"
+#import "LWWebViewDocumentPresenter.h"
 
 #define COUNTRIES_FILENAME @"countries.cache"
 
@@ -530,7 +531,10 @@
 
 -(IBAction)termsOfUsePressed:(id)sender
 {
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://wiki.lykkex.com/terms_of_use"]];
+    LWWebViewDocumentPresenter *presenter=[[LWWebViewDocumentPresenter alloc] init];
+    presenter.urlString=[LWCache instance].termsOfUseUrl;
+    presenter.documentTitle=@"TERMS OF USE";
+    [self.navigationController pushViewController:presenter animated:YES];
 }
 
 
@@ -586,7 +590,10 @@
 
 -(IBAction) informationBrochurePressed:(id)sender
 {
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://www.lykkex.com/Lykke_Corp_Placement_Memorandum.pdf"]];
+    LWWebViewDocumentPresenter *presenter=[[LWWebViewDocumentPresenter alloc] init];
+    presenter.urlString=[LWCache instance].informationBrochureUrl;
+    presenter.documentTitle=@"INFORMATION BROCHURE";
+    [self.navigationController pushViewController:presenter animated:YES];
 }
 
 -(void) dealloc

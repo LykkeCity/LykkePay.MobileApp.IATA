@@ -31,6 +31,7 @@ SINGLETON_DECLARE
 
 @property (strong, nonatomic) NSMutableDictionary *cachedAssetPairsRates;
 @property (strong, nonatomic) NSDictionary *swiftCredentialsDict;
+@property (strong, nonatomic) NSString *supportPhoneNum;
 
 @property PushNotificationsStatus pushNotificationsStatus;
 

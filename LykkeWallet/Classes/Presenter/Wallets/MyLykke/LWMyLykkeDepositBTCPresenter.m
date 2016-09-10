@@ -42,12 +42,12 @@
     if([self.assetId isEqualToString:@"BTC"])
     {
         [self setupQRCode];
-        self.titleLabel.text=@"To buy Lykke coins send bitcoins to this address";
+        self.titleLabel.text=@"To buy Lykke coins send BTC to this address";
         self.textLabel.text=@"Lykke coins will be transferred to your Lykke Wallet after BTC transaction is detected";
     }
     else
     {
-        self.titleLabel.text=@"To buy Lykke coins send ethereums to this address";
+        self.titleLabel.text=@"To buy Lykke coins send ETH to this address";
         self.textLabel.text=@"Lykke coins will be transferred to your Lykke Wallet after ETH transaction is detected";
 
     }
@@ -148,8 +148,6 @@
     CIFilter *filter = [CIFilter filterWithName:@"CIQRCodeGenerator"];
     [filter setDefaults];
     
-    
-    
     if([self.assetId isEqualToString:@"BTC"])
         self.addressLabel.text = [LWCache instance].btcConversionWalletAddress;
     else
@@ -176,6 +174,23 @@
     
     CGImageRelease(cgImage);
 }
+
+
+-(NSString *) nibName
+{
+    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad)
+    {
+        return @"LWMyLykkeDepositBTCPresenter_ipad";
+    }
+    else
+    {
+        if([UIScreen mainScreen].bounds.size.width==320)
+            return @"LWMyLykkeDepositBTCPresenter_iphone5";
+        else
+            return @"LWMyLykkeDepositBTCPresenter_iphone";
+    }
+}
+
 
 
 @end

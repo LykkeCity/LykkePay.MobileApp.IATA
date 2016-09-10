@@ -37,7 +37,7 @@
     [LWCache instance].informationBrochureUrl=result[@"InformationBrochureLink"];
     [LWCache instance].termsOfUseUrl=result[@"TermsOfUseLink"];
     [LWCache instance].refundInfoUrl=result[@"RefundInfoLink"];
-    
+    [LWCache instance].supportPhoneNum=result[@"SupportPhoneNum"];
     
 }
 

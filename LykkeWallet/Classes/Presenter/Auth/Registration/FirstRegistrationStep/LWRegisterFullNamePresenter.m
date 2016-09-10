@@ -12,6 +12,7 @@
 #import "LWTextField.h"
 #import "LWValidator.h"
 #import "UIViewController+Loading.h"
+#import "LWKeychainManager.h"
 
 
 @interface LWRegisterFullNamePresenter ()  {
@@ -66,6 +67,7 @@
     if (![fullName isEqualToString:@""]) {
         [self setLoading:YES];
         [[LWAuthManager instance] requestSetFullName:fullName];
+        [[LWKeychainManager instance] saveFullName:fullName];
     }
 }
 

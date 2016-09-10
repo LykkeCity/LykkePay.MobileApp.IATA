@@ -13,7 +13,9 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LWCurrencyDepositPresenter">
             <connections>
                 <outlet property="container" destination="gF6-pH-XQq" id="J1U-fJ-wC0"/>
+                <outlet property="containerHeightConstraint" destination="kgt-RX-emr" id="9dx-Is-he1"/>
                 <outlet property="emailButton" destination="WqU-tb-oi1" id="h6j-ZS-7r3"/>
+                <outlet property="emailButtonBottomConstraint" destination="0z3-kX-s8P" id="skN-bB-4Qg"/>
                 <outlet property="infoView" destination="nj4-R1-fo9" id="1Fj-ey-YcK"/>
                 <outlet property="infoViewHeight" destination="3ge-Il-bCv" id="8ND-FD-Ufc"/>
                 <outlet property="scrollView" destination="Msi-Dx-aC5" id="JbP-3B-qfF"/>
@@ -25,11 +27,11 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Msi-Dx-aC5">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                <scrollView autoresizesSubviews="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Msi-Dx-aC5">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="582"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gF6-pH-XQq">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nj4-R1-fo9">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="135"/>
@@ -38,26 +40,13 @@
                                         <constraint firstAttribute="height" constant="135" id="3ge-Il-bCv"/>
                                     </constraints>
                                 </view>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WqU-tb-oi1">
-                                    <rect key="frame" x="30" y="602" width="315" height="45"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="45" id="HyG-Ra-keV"/>
-                                    </constraints>
-                                    <fontDescription key="fontDescription" name="ProximaNova-Semibold" family="Proxima Nova" pointSize="15"/>
-                                    <state key="normal" title="EMAIL ME" backgroundImage="ButtonOK_square.png"/>
-                                    <connections>
-                                        <action selector="emailButtonPressed:" destination="-2" eventType="touchUpInside" id="cLl-YS-79e"/>
-                                    </connections>
-                                </button>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
-                                <constraint firstItem="WqU-tb-oi1" firstAttribute="leading" secondItem="gF6-pH-XQq" secondAttribute="leading" constant="30" id="AoP-IW-Gv3"/>
                                 <constraint firstItem="nj4-R1-fo9" firstAttribute="top" secondItem="gF6-pH-XQq" secondAttribute="top" id="ZEM-1S-uru"/>
                                 <constraint firstItem="nj4-R1-fo9" firstAttribute="leading" secondItem="gF6-pH-XQq" secondAttribute="leading" id="bpV-C6-0dv"/>
-                                <constraint firstAttribute="bottom" secondItem="WqU-tb-oi1" secondAttribute="bottom" constant="20" id="c6n-Pv-AkH"/>
                                 <constraint firstAttribute="trailing" secondItem="nj4-R1-fo9" secondAttribute="trailing" id="kBg-5F-guD"/>
-                                <constraint firstAttribute="trailing" secondItem="WqU-tb-oi1" secondAttribute="trailing" constant="30" id="lrb-UA-wBw"/>
+                                <constraint firstAttribute="height" constant="200" id="kgt-RX-emr"/>
                                 <constraint firstItem="nj4-R1-fo9" firstAttribute="centerX" secondItem="gF6-pH-XQq" secondAttribute="centerX" id="qzj-Ct-HVD"/>
                             </constraints>
                         </view>
@@ -65,20 +54,33 @@
                     <constraints>
                         <constraint firstItem="gF6-pH-XQq" firstAttribute="centerX" secondItem="Msi-Dx-aC5" secondAttribute="centerX" id="Bij-Xw-XFn"/>
                         <constraint firstItem="gF6-pH-XQq" firstAttribute="leading" secondItem="Msi-Dx-aC5" secondAttribute="leading" id="Ckl-tg-CHE"/>
-                        <constraint firstItem="gF6-pH-XQq" firstAttribute="centerY" secondItem="Msi-Dx-aC5" secondAttribute="centerY" id="WDh-3s-TmN"/>
                         <constraint firstAttribute="trailing" secondItem="gF6-pH-XQq" secondAttribute="trailing" id="aaO-kH-Ozt"/>
                         <constraint firstItem="gF6-pH-XQq" firstAttribute="top" secondItem="Msi-Dx-aC5" secondAttribute="top" id="s5T-Hu-vHc"/>
                         <constraint firstAttribute="bottom" secondItem="gF6-pH-XQq" secondAttribute="bottom" id="vkJ-fO-tcx"/>
                     </constraints>
                 </scrollView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WqU-tb-oi1">
+                    <rect key="frame" x="30" y="592" width="315" height="45"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="315" id="laH-jA-F85"/>
+                        <constraint firstAttribute="height" constant="45" id="s49-p3-CtL"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="ProximaNova-Semibold" family="Proxima Nova" pointSize="15"/>
+                    <state key="normal" title="EMAIL ME" backgroundImage="ButtonOK_square.png"/>
+                    <connections>
+                        <action selector="emailButtonPressed:" destination="-2" eventType="touchUpInside" id="cLl-YS-79e"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstAttribute="bottom" secondItem="WqU-tb-oi1" secondAttribute="bottom" constant="30" id="0z3-kX-s8P"/>
                 <constraint firstItem="Msi-Dx-aC5" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="1Kn-xj-RTH"/>
                 <constraint firstItem="Msi-Dx-aC5" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="6Kc-Ef-bh6"/>
+                <constraint firstItem="WqU-tb-oi1" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="A9K-GB-Zu8"/>
                 <constraint firstItem="Msi-Dx-aC5" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="UPg-zO-3f3"/>
                 <constraint firstAttribute="trailing" secondItem="Msi-Dx-aC5" secondAttribute="trailing" id="ZIm-dL-xKb"/>
-                <constraint firstItem="Msi-Dx-aC5" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" id="hlB-N2-6cI"/>
+                <constraint firstItem="WqU-tb-oi1" firstAttribute="top" secondItem="Msi-Dx-aC5" secondAttribute="bottom" constant="10" id="sdo-YO-afF"/>
                 <constraint firstItem="Msi-Dx-aC5" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="xeX-QU-hmo"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>

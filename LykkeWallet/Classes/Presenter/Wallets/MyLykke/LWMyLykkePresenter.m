@@ -136,6 +136,7 @@
     self.currentTimeLabel.text=[LWKeychainManager instance].login;
     self.currentTimeLabel2.text=[LWKeychainManager instance].login;
 
+    NSString *str=[LWKeychainManager instance].address;
     
     if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad)
     {
@@ -164,6 +165,8 @@
 //        self.iPadPortraitView.frame=self.view.bounds;
 //        self.iPadLandscapeView.frame=self.view.bounds;
     }
+    
+    
 }
 
 -(void) viewWillAppear:(BOOL)animated

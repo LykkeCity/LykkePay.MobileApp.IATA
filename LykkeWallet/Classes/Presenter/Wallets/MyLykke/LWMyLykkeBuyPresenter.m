@@ -71,6 +71,8 @@
     gesture=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(buyPressed:)];
     [_ethereumContainerView addGestureRecognizer:gesture];
     
+    [[LWAuthManager instance] requestMyLykkeInfo];
+    
 //    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad)
 //    {
 //        self.subtitleContainerView.hidden=YES;

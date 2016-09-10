@@ -61,7 +61,7 @@
 		A120FE7B1D72CBED00D710B1 /* LWMyLykkeInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A120FE7A1D72CBED00D710B1 /* LWMyLykkeInfoTableViewCell.m */; };
 		A120FE7D1D72CBF700D710B1 /* LWMyLykkeInfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A120FE7C1D72CBF700D710B1 /* LWMyLykkeInfoTableViewCell.xib */; };
 		A120FE811D72E44300D710B1 /* LWMyLykkeDepositBTCPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A120FE7F1D72E44300D710B1 /* LWMyLykkeDepositBTCPresenter.m */; };
-		A120FE821D72E44300D710B1 /* LWMyLykkeDepositBTCPresenter~iphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = A120FE801D72E44300D710B1 /* LWMyLykkeDepositBTCPresenter~iphone.xib */; };
+		A120FE821D72E44300D710B1 /* LWMyLykkeDepositBTCPresenter_iphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = A120FE801D72E44300D710B1 /* LWMyLykkeDepositBTCPresenter_iphone.xib */; };
 		A122B97A1CFEB0BC009DC795 /* LWAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = A122B9791CFEB0BC009DC795 /* LWAnimatedView.m */; };
 		A122B9811CFEB2E4009DC795 /* FLAnimatedImage.m in Sources */ = {isa = PBXBuildFile; fileRef = A122B97D1CFEB2E4009DC795 /* FLAnimatedImage.m */; };
 		A122B9821CFEB2E4009DC795 /* FLAnimatedImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A122B97F1CFEB2E4009DC795 /* FLAnimatedImageView.m */; };
@@ -111,7 +111,7 @@
 		A145156A1D7A89CB00B4BED9 /* LWMyLykkeIpadController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A14515681D7A89CB00B4BED9 /* LWMyLykkeIpadController.xib */; };
 		A145156C1D7A975E00B4BED9 /* LWMyLykkeCreditCardDepositPresenter~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A145156B1D7A975E00B4BED9 /* LWMyLykkeCreditCardDepositPresenter~ipad.xib */; };
 		A145156E1D7BECE500B4BED9 /* LWMyLykkeBuyAssetPresenter~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A145156D1D7BECE500B4BED9 /* LWMyLykkeBuyAssetPresenter~ipad.xib */; };
-		A14515701D7C425900B4BED9 /* LWMyLykkeDepositBTCPresenter~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A145156F1D7C425900B4BED9 /* LWMyLykkeDepositBTCPresenter~ipad.xib */; };
+		A14515701D7C425900B4BED9 /* LWMyLykkeDepositBTCPresenter_ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A145156F1D7C425900B4BED9 /* LWMyLykkeDepositBTCPresenter_ipad.xib */; };
 		A14515721D7C46CC00B4BED9 /* LWMyLykkeDepositSwiftPresenter~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A14515711D7C46CC00B4BED9 /* LWMyLykkeDepositSwiftPresenter~ipad.xib */; };
 		A14515751D7C5C8F00B4BED9 /* LWMyLykkeIPadNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = A14515741D7C5C8F00B4BED9 /* LWMyLykkeIPadNavigationController.m */; };
 		A14515791D7C77C600B4BED9 /* LWMyLykkeSuccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A14515771D7C77C600B4BED9 /* LWMyLykkeSuccessViewController.m */; };
@@ -134,10 +134,12 @@
 		A14515A81D82CF2800B4BED9 /* LWMyLykkeMainContainerPresenter_Iphone5.xib in Resources */ = {isa = PBXBuildFile; fileRef = A14515A71D82CF2800B4BED9 /* LWMyLykkeMainContainerPresenter_Iphone5.xib */; };
 		A14515AA1D82DD5900B4BED9 /* LWMyLykkeMainContainerPresenter_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A14515A91D82DD5900B4BED9 /* LWMyLykkeMainContainerPresenter_iPad.xib */; };
 		A14515AF1D82E91800B4BED9 /* LWMyLykkeTransferLKKPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A14515AC1D82E91800B4BED9 /* LWMyLykkeTransferLKKPresenter.m */; };
-		A14515B01D82E91800B4BED9 /* LWMyLykkeTransferLKKPresenter~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A14515AD1D82E91800B4BED9 /* LWMyLykkeTransferLKKPresenter~ipad.xib */; };
-		A14515B11D82E91800B4BED9 /* LWMyLykkeTransferLKKPresenter~iphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = A14515AE1D82E91800B4BED9 /* LWMyLykkeTransferLKKPresenter~iphone.xib */; };
+		A14515B01D82E91800B4BED9 /* LWMyLykkeTransferLKKPresenter_ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A14515AD1D82E91800B4BED9 /* LWMyLykkeTransferLKKPresenter_ipad.xib */; };
+		A14515B11D82E91800B4BED9 /* LWMyLykkeTransferLKKPresenter_iphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = A14515AE1D82E91800B4BED9 /* LWMyLykkeTransferLKKPresenter_iphone.xib */; };
 		A14515B51D82F9B800B4BED9 /* LWMyLykkeTransferLKKLeftPanelPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A14515B31D82F9B800B4BED9 /* LWMyLykkeTransferLKKLeftPanelPresenter.m */; };
 		A14515B61D82F9B800B4BED9 /* LWMyLykkeTransferLKKLeftPanelPresenter.xib in Resources */ = {isa = PBXBuildFile; fileRef = A14515B41D82F9B800B4BED9 /* LWMyLykkeTransferLKKLeftPanelPresenter.xib */; };
+		A14515B81D84182C00B4BED9 /* LWMyLykkeTransferLKKPresenter_iphone5.xib in Resources */ = {isa = PBXBuildFile; fileRef = A14515B71D84182C00B4BED9 /* LWMyLykkeTransferLKKPresenter_iphone5.xib */; };
+		A14515C11D844A8800B4BED9 /* LWMyLykkeDepositBTCPresenter_iphone5.xib in Resources */ = {isa = PBXBuildFile; fileRef = A14515C01D844A8800B4BED9 /* LWMyLykkeDepositBTCPresenter_iphone5.xib */; };
 		A14B7D2E1CE3233D00820084 /* ButtonOK_square.png in Resources */ = {isa = PBXBuildFile; fileRef = A14B7D2D1CE3233D00820084 /* ButtonOK_square.png */; };
 		A15B3EAF1D12626B00A6B506 /* LWRefundInformationPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A15B3EAD1D12626B00A6B506 /* LWRefundInformationPresenter.m */; };
 		A15B3EB01D12626B00A6B506 /* LWRefundInformationPresenter.xib in Resources */ = {isa = PBXBuildFile; fileRef = A15B3EAE1D12626B00A6B506 /* LWRefundInformationPresenter.xib */; };
@@ -1785,7 +1787,7 @@
 		A120FE7C1D72CBF700D710B1 /* LWMyLykkeInfoTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LWMyLykkeInfoTableViewCell.xib; sourceTree = "<group>"; };
 		A120FE7E1D72E44300D710B1 /* LWMyLykkeDepositBTCPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWMyLykkeDepositBTCPresenter.h; sourceTree = "<group>"; };
 		A120FE7F1D72E44300D710B1 /* LWMyLykkeDepositBTCPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWMyLykkeDepositBTCPresenter.m; sourceTree = "<group>"; };
-		A120FE801D72E44300D710B1 /* LWMyLykkeDepositBTCPresenter~iphone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "LWMyLykkeDepositBTCPresenter~iphone.xib"; sourceTree = "<group>"; };
+		A120FE801D72E44300D710B1 /* LWMyLykkeDepositBTCPresenter_iphone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LWMyLykkeDepositBTCPresenter_iphone.xib; sourceTree = "<group>"; };
 		A122B9781CFEB0BC009DC795 /* LWAnimatedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWAnimatedView.h; sourceTree = "<group>"; };
 		A122B9791CFEB0BC009DC795 /* LWAnimatedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWAnimatedView.m; sourceTree = "<group>"; };
 		A122B97C1CFEB2E4009DC795 /* FLAnimatedImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLAnimatedImage.h; sourceTree = "<group>"; };
@@ -1853,7 +1855,7 @@
 		A14515681D7A89CB00B4BED9 /* LWMyLykkeIpadController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LWMyLykkeIpadController.xib; sourceTree = "<group>"; };
 		A145156B1D7A975E00B4BED9 /* LWMyLykkeCreditCardDepositPresenter~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "LWMyLykkeCreditCardDepositPresenter~ipad.xib"; sourceTree = "<group>"; };
 		A145156D1D7BECE500B4BED9 /* LWMyLykkeBuyAssetPresenter~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "LWMyLykkeBuyAssetPresenter~ipad.xib"; sourceTree = "<group>"; };
-		A145156F1D7C425900B4BED9 /* LWMyLykkeDepositBTCPresenter~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "LWMyLykkeDepositBTCPresenter~ipad.xib"; sourceTree = "<group>"; };
+		A145156F1D7C425900B4BED9 /* LWMyLykkeDepositBTCPresenter_ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LWMyLykkeDepositBTCPresenter_ipad.xib; sourceTree = "<group>"; };
 		A14515711D7C46CC00B4BED9 /* LWMyLykkeDepositSwiftPresenter~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "LWMyLykkeDepositSwiftPresenter~ipad.xib"; sourceTree = "<group>"; };
 		A14515731D7C5C8F00B4BED9 /* LWMyLykkeIPadNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWMyLykkeIPadNavigationController.h; sourceTree = "<group>"; };
 		A14515741D7C5C8F00B4BED9 /* LWMyLykkeIPadNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWMyLykkeIPadNavigationController.m; sourceTree = "<group>"; };
@@ -1887,11 +1889,13 @@
 		A14515A91D82DD5900B4BED9 /* LWMyLykkeMainContainerPresenter_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LWMyLykkeMainContainerPresenter_iPad.xib; sourceTree = "<group>"; };
 		A14515AB1D82E91800B4BED9 /* LWMyLykkeTransferLKKPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWMyLykkeTransferLKKPresenter.h; sourceTree = "<group>"; };
 		A14515AC1D82E91800B4BED9 /* LWMyLykkeTransferLKKPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWMyLykkeTransferLKKPresenter.m; sourceTree = "<group>"; };
-		A14515AD1D82E91800B4BED9 /* LWMyLykkeTransferLKKPresenter~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "LWMyLykkeTransferLKKPresenter~ipad.xib"; sourceTree = "<group>"; };
-		A14515AE1D82E91800B4BED9 /* LWMyLykkeTransferLKKPresenter~iphone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "LWMyLykkeTransferLKKPresenter~iphone.xib"; sourceTree = "<group>"; };
+		A14515AD1D82E91800B4BED9 /* LWMyLykkeTransferLKKPresenter_ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LWMyLykkeTransferLKKPresenter_ipad.xib; sourceTree = "<group>"; };
+		A14515AE1D82E91800B4BED9 /* LWMyLykkeTransferLKKPresenter_iphone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LWMyLykkeTransferLKKPresenter_iphone.xib; sourceTree = "<group>"; };
 		A14515B21D82F9B800B4BED9 /* LWMyLykkeTransferLKKLeftPanelPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWMyLykkeTransferLKKLeftPanelPresenter.h; sourceTree = "<group>"; };
 		A14515B31D82F9B800B4BED9 /* LWMyLykkeTransferLKKLeftPanelPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWMyLykkeTransferLKKLeftPanelPresenter.m; sourceTree = "<group>"; };
 		A14515B41D82F9B800B4BED9 /* LWMyLykkeTransferLKKLeftPanelPresenter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LWMyLykkeTransferLKKLeftPanelPresenter.xib; sourceTree = "<group>"; };
+		A14515B71D84182C00B4BED9 /* LWMyLykkeTransferLKKPresenter_iphone5.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LWMyLykkeTransferLKKPresenter_iphone5.xib; sourceTree = "<group>"; };
+		A14515C01D844A8800B4BED9 /* LWMyLykkeDepositBTCPresenter_iphone5.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LWMyLykkeDepositBTCPresenter_iphone5.xib; sourceTree = "<group>"; };
 		A14B7D2D1CE3233D00820084 /* ButtonOK_square.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ButtonOK_square.png; sourceTree = "<group>"; };
 		A15B3EAC1D12626B00A6B506 /* LWRefundInformationPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWRefundInformationPresenter.h; sourceTree = "<group>"; };
 		A15B3EAD1D12626B00A6B506 /* LWRefundInformationPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWRefundInformationPresenter.m; sourceTree = "<group>"; };
@@ -3907,8 +3911,9 @@
 				A120FE7C1D72CBF700D710B1 /* LWMyLykkeInfoTableViewCell.xib */,
 				A120FE7E1D72E44300D710B1 /* LWMyLykkeDepositBTCPresenter.h */,
 				A120FE7F1D72E44300D710B1 /* LWMyLykkeDepositBTCPresenter.m */,
-				A120FE801D72E44300D710B1 /* LWMyLykkeDepositBTCPresenter~iphone.xib */,
-				A145156F1D7C425900B4BED9 /* LWMyLykkeDepositBTCPresenter~ipad.xib */,
+				A120FE801D72E44300D710B1 /* LWMyLykkeDepositBTCPresenter_iphone.xib */,
+				A145156F1D7C425900B4BED9 /* LWMyLykkeDepositBTCPresenter_ipad.xib */,
+				A14515C01D844A8800B4BED9 /* LWMyLykkeDepositBTCPresenter_iphone5.xib */,
 				A12DB5451D730E5300319EA7 /* LWMyLykkeDepositSwiftPresenter.h */,
 				A12DB5461D730E5300319EA7 /* LWMyLykkeDepositSwiftPresenter.m */,
 				A12DB5471D730E5300319EA7 /* LWMyLykkeDepositSwiftPresenter~iphone.xib */,
@@ -3922,8 +3927,9 @@
 				A14515B41D82F9B800B4BED9 /* LWMyLykkeTransferLKKLeftPanelPresenter.xib */,
 				A14515AB1D82E91800B4BED9 /* LWMyLykkeTransferLKKPresenter.h */,
 				A14515AC1D82E91800B4BED9 /* LWMyLykkeTransferLKKPresenter.m */,
-				A14515AD1D82E91800B4BED9 /* LWMyLykkeTransferLKKPresenter~ipad.xib */,
-				A14515AE1D82E91800B4BED9 /* LWMyLykkeTransferLKKPresenter~iphone.xib */,
+				A14515AD1D82E91800B4BED9 /* LWMyLykkeTransferLKKPresenter_ipad.xib */,
+				A14515AE1D82E91800B4BED9 /* LWMyLykkeTransferLKKPresenter_iphone.xib */,
+				A14515B71D84182C00B4BED9 /* LWMyLykkeTransferLKKPresenter_iphone5.xib */,
 				A14515761D7C77C600B4BED9 /* LWMyLykkeSuccessViewController.h */,
 				A14515771D7C77C600B4BED9 /* LWMyLykkeSuccessViewController.m */,
 				A14515781D7C77C600B4BED9 /* LWMyLykkeSuccessViewController.xib */,
@@ -6972,7 +6978,7 @@
 				A1D477651D050B9900438846 /* loader-color@2x_00053.png in Resources */,
 				A1BCD2991D012D3C00CF42E4 /* 5-onboard-2x_00051.png in Resources */,
 				A1BCD1B41D012D3C00CF42E4 /* 3-settle-2x_00061.png in Resources */,
-				A14515701D7C425900B4BED9 /* LWMyLykkeDepositBTCPresenter~ipad.xib in Resources */,
+				A14515701D7C425900B4BED9 /* LWMyLykkeDepositBTCPresenter_ipad.xib in Resources */,
 				A1D65DB91D5DCF1100828783 /* crypto_bar_00117.png in Resources */,
 				A1BCD2BC1D012D3C00CF42E4 /* 5-onboard-2x_00086.png in Resources */,
 				A1D65DAF1D5DCF1100828783 /* crypto_bar_00107.png in Resources */,
@@ -7118,7 +7124,7 @@
 				A1BCD1341D012D3C00CF42E4 /* 2-trade-2x_00052.png in Resources */,
 				A14515871D7EFA7000B4BED9 /* lykke_logo.png in Resources */,
 				A14515961D80470E00B4BED9 /* LWEtheriumDepositPresenter.xib in Resources */,
-				A14515B01D82E91800B4BED9 /* LWMyLykkeTransferLKKPresenter~ipad.xib in Resources */,
+				A14515B01D82E91800B4BED9 /* LWMyLykkeTransferLKKPresenter_ipad.xib in Resources */,
 				EC3CE8C21C402FF000CAC3FE /* LWAssetBlockchainIconTableViewCell.xib in Resources */,
 				A1D65D591D5DCF1100828783 /* crypto_bar_00021.png in Resources */,
 				A1BCD0DC1D012D3C00CF42E4 /* 1-deposit-2x_00084.png in Resources */,
@@ -7155,6 +7161,7 @@
 				A1BCD1F01D012D3C00CF42E4 /* 4-withdraw-2x_00001.png in Resources */,
 				A1BCD1CC1D012D3C00CF42E4 /* 3-settle-2x_00085.png in Resources */,
 				A1BCD19D1D012D3C00CF42E4 /* 3-settle-2x_00038.png in Resources */,
+				A14515C11D844A8800B4BED9 /* LWMyLykkeDepositBTCPresenter_iphone5.xib in Resources */,
 				A1BCD0CA1D012D3C00CF42E4 /* 1-deposit-2x_00066.png in Resources */,
 				A1BCD2691D012D3C00CF42E4 /* 5-onboard-2x_00003.png in Resources */,
 				A1D477421D050B9900438846 /* loader-color@2x_00018.png in Resources */,
@@ -7311,7 +7318,7 @@
 				A1BCD2291D012D3C00CF42E4 /* 4-withdraw-2x_00058.png in Resources */,
 				A1BCD1BA1D012D3C00CF42E4 /* 3-settle-2x_00067.png in Resources */,
 				A1BCD2371D012D3C00CF42E4 /* 4-withdraw-2x_00072.png in Resources */,
-				A120FE821D72E44300D710B1 /* LWMyLykkeDepositBTCPresenter~iphone.xib in Resources */,
+				A120FE821D72E44300D710B1 /* LWMyLykkeDepositBTCPresenter_iphone.xib in Resources */,
 				A1BCD0D01D012D3C00CF42E4 /* 1-deposit-2x_00072.png in Resources */,
 				EC9AE0541CAC5F440047DF0D /* LWWithdrawFundsPresenter.xib in Resources */,
 				A1BCD26E1D012D3C00CF42E4 /* 5-onboard-2x_00008.png in Resources */,
@@ -7351,6 +7358,7 @@
 				A1D477701D050B9900438846 /* loader-color@2x_00064.png in Resources */,
 				A1D65D4A1D5DCF1100828783 /* crypto_bar_00006.png in Resources */,
 				A1D65D991D5DCF1100828783 /* crypto_bar_00085.png in Resources */,
+				A14515B81D84182C00B4BED9 /* LWMyLykkeTransferLKKPresenter_iphone5.xib in Resources */,
 				A1BCD2771D012D3C00CF42E4 /* 5-onboard-2x_00017.png in Resources */,
 				A1BCD2281D012D3C00CF42E4 /* 4-withdraw-2x_00057.png in Resources */,
 				A1BCD19C1D012D3C00CF42E4 /* 3-settle-2x_00037.png in Resources */,
@@ -7511,7 +7519,7 @@
 				A1D4773A1D050B9900438846 /* loader-color@2x_00010.png in Resources */,
 				A1BCD1D91D012D3C00CF42E4 /* 3-settle-2x_00098.png in Resources */,
 				A1BCD2D61D012D3C00CF42E4 /* 5-onboard-2x_00112.png in Resources */,
-				A14515B11D82E91800B4BED9 /* LWMyLykkeTransferLKKPresenter~iphone.xib in Resources */,
+				A14515B11D82E91800B4BED9 /* LWMyLykkeTransferLKKPresenter_iphone.xib in Resources */,
 				A1BCD11F1D012D3C00CF42E4 /* 2-trade-2x_00031.png in Resources */,
 				EC7519B41C3733FD00CDDF5B /* LWSettingsAssetTableViewCell~iphone.xib in Resources */,
 				A1BCD1961D012D3C00CF42E4 /* 3-settle-2x_00031.png in Resources */,
@@ -8804,7 +8812,7 @@
 					"$(PROJECT_DIR)/LykkeWallet/Classes/Model/Core/Security",
 					"$(PROJECT_DIR)/LykkeWallet/Classes/Model/Core/CoreBitcoin",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.lykkex.Lykke-Wallet";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.lykkex.Lykke-Wallet-test";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -8835,7 +8843,7 @@
 					"$(PROJECT_DIR)/LykkeWallet/Classes/Model/Core/Security",
 					"$(PROJECT_DIR)/LykkeWallet/Classes/Model/Core/CoreBitcoin",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.lykkex.Lykke-Wallet";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.lykkex.Lykke-Wallet-test";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "739d1803-3e6a-45f6-a16e-304ce210d1a9";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -8916,7 +8924,7 @@
 					"$(PROJECT_DIR)/LykkeWallet/Classes/Model/Core/Security",
 					"$(PROJECT_DIR)/LykkeWallet/Classes/Model/Core/CoreBitcoin",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.lykkex.Lykke-Wallet";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.lykkex.Lykke-Wallet-test";
 				PRODUCT_NAME = "$(TARGET_NAME).Test";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -8991,9 +8999,9 @@
 					"$(PROJECT_DIR)/LykkeWallet/Classes/Model/Core/Security",
 					"$(PROJECT_DIR)/LykkeWallet/Classes/Model/Core/CoreBitcoin",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.lykkex.Lykke-Wallet";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.lykkex.Lykke-Wallet-test";
 				PRODUCT_NAME = "$(TARGET_NAME).Test";
-				PROVISIONING_PROFILE = "94778a79-61e0-4642-b7cb-463404699219";
+				PROVISIONING_PROFILE = "c6ca73c3-f8ac-4329-863a-ccf072a8002f";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release.Test;

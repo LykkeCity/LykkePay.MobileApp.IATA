@@ -21,6 +21,7 @@
 #import "LWCurrencyDepositElementView.h"
 #import "LWCreditCardDepositPresenter.h"
 #import "LWSwiftCredentialsModel.h"
+#import "LWWebViewDocumentPresenter.h"
 
 
 
@@ -55,6 +56,8 @@
 
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *infoViewHeight;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *containerHeightConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *emailButtonBottomConstraint;
 
 @end
 
@@ -64,7 +67,6 @@
     [super viewDidLoad];
     
     [self setBackButton];
-    self.emailButton.hidden=YES;
 
     UIView *topBackView=[[UIView alloc] initWithFrame:CGRectMake(0, -300, 1024, 300)];
     topBackView.backgroundColor=BAR_GRAY_COLOR;
@@ -203,6 +205,8 @@
     
     amountView=[self createAmountContainer];
     [_scrollView addSubview:amountView];
+    
+    _scrollView.contentSize=CGSizeMake(500, 2000);
 }
 
 -(void) creditCardButtonPressed
@@ -295,17 +299,19 @@
     
     offset+=amountView.bounds.size.height;
     
-    offset+=50;
+    offset+=10;
+    
+    self.containerHeightConstraint.constant=offset;
     
     //    self.emailButton.frame=CGRectMake(30, offset, _scrollView.bounds.size.width-60, 45);
-    self.emailButton.hidden=NO;
     
-    self.emailButton.center=CGPointMake(_scrollView.bounds.size.width/2,offset);
+    
+//    self.emailButton.center=CGPointMake(_scrollView.bounds.size.width/2,offset);
 
     
-    offset+=(_emailButton.bounds.size.height+20);
+//    offset+=(_emailButton.bounds.size.height+20);
     
-    _scrollView.contentSize=CGSizeMake(_scrollView.bounds.size.width, offset);
+//    _scrollView.contentSize=CGSizeMake(_scrollView.bounds.size.width, offset);
     
     [self positionCurrencySymbol];
     
@@ -413,7 +419,11 @@
 
 -(void) termsOfUsePressed
 {
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://wiki.lykkex.com/terms_of_use"]];
+    LWWebViewDocumentPresenter *presenter=[[LWWebViewDocumentPresenter alloc] init];
+    presenter.urlString=[LWCache instance].termsOfUseUrl;
+    presenter.documentTitle=@"TERMS OF USE";
+    [self.navigationController pushViewController:presenter animated:YES];
+
 }
 
 
@@ -488,15 +498,20 @@
 {
     [super showCustomKeyboard];
     
-    UIEdgeInsets contentInset = self.scrollView.contentInset;
-    contentInset.bottom = self.keyboardView.bounds.size.height-(self.view.bounds.size.height-self.scrollView.bounds.size.height);
+    self.emailButtonBottomConstraint.constant=self.keyboardView.bounds.size.height+20;
+//    UIEdgeInsets contentInset = self.scrollView.contentInset;
+//    contentInset.bottom = self.keyboardView.bounds.size.height-(self.view.bounds.size.height-self.scrollView.bounds.size.height);
     [UIView animateWithDuration:0.5 animations:^{
-    self.scrollView.contentInset = contentInset;
+//    self.scrollView.contentInset = contentInset;
+//    
+//        CGFloat offset=self.scrollView.contentSize.height-(self.scrollView.bounds.size.height-self.keyboardView.bounds.size.height);
+//        if(offset>0)
+//            self.scrollView.contentOffset=CGPointMake(0, offset);
+        [self.view layoutIfNeeded];
+    } completion:^(BOOL finished){
     
-        CGFloat offset=self.scrollView.contentSize.height-(self.scrollView.bounds.size.height-self.keyboardView.bounds.size.height);
-        if(offset>0)
-            self.scrollView.contentOffset=CGPointMake(0, offset);
-        
+        if(self.scrollView.contentSize.height>self.scrollView.bounds.size.height)
+            [self.scrollView setContentOffset:CGPointMake(0, self.scrollView.contentSize.height-self.scrollView.bounds.size.height) animated:YES];
     }];
 }
 
@@ -505,10 +520,14 @@
 {
     [super hideCustomKeyboard];
     
+    self.emailButtonBottomConstraint.constant=30;
+
+    
     [UIView animateWithDuration:0.5 animations:^{
-        UIEdgeInsets contentInset = self.scrollView.contentInset;
-        contentInset.bottom = 0;
-        self.scrollView.contentInset = contentInset;
+//        UIEdgeInsets contentInset = self.scrollView.contentInset;
+//        contentInset.bottom = 0;
+//        self.scrollView.contentInset = contentInset;
+        [self.view layoutIfNeeded];
     }];
     
     
@@ -526,8 +545,10 @@
 
 -(void) informationBrochurePressed
 {
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://www.lykkex.com/Lykke_Corp_Placement_Memorandum.pdf"]];
-}
+    LWWebViewDocumentPresenter *presenter=[[LWWebViewDocumentPresenter alloc] init];
+    presenter.urlString=[LWCache instance].informationBrochureUrl;
+    presenter.documentTitle=@"INFORMATION BROCHURE";
+    [self.navigationController pushViewController:presenter animated:YES];}
 
 
 @end

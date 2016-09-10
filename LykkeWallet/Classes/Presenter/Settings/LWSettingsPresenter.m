@@ -148,7 +148,10 @@ static NSString *const SettingsIdentifiers[kNumberOfRows] = {
 -(void) callSupport
 {
     if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"tel://+41615880402"]];
+    {
+        NSString *string=[@"tel://" stringByAppendingString:[[LWCache instance].supportPhoneNum stringByReplacingOccurrencesOfString:@" " withString:@""]];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:string]];
+    }
     else
     {
         if ([MFMailComposeViewController canSendMail]) {
@@ -414,6 +417,7 @@ static NSString *const SettingsIdentifiers[kNumberOfRows] = {
         if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
         {
             assetCell.titleLabel.text = Localize(@"settings.callbutton.title");
+            assetCell.phoneLabel.text=[LWCache instance].supportPhoneNum;
         }
         else
         {
