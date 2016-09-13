@@ -38,6 +38,15 @@
     }
 }
 
+-(void) setCrossCloseButtonOnlyOne
+{
+    if (self.navigationController && self.navigationItem) {
+        UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"CloseCross"] style:UIBarButtonItemStylePlain target:self action:@selector(crossCloseOnlyOne)];
+        self.navigationItem.leftBarButtonItem = button;
+    }
+
+}
+
 
 
 - (void)setCancelButtonWithTitle:(NSString *)title target:(id)target selector:(SEL)action {
@@ -66,6 +75,11 @@
     }
     else
         [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
+-(void) crossCloseOnlyOne
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end

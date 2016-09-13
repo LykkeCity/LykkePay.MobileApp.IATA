@@ -46,6 +46,7 @@
 //@property (strong, nonatomic) NSLayoutConstraint *distanceBetweenButtonsConstraint2;
 
 @property (strong,nonatomic) NSLayoutConstraint *resetPasswordWidthConstraint;
+@property (strong, nonatomic) NSLayoutConstraint *emailHintWidthConstraint;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *scrollViewBottomConstraint;
 
@@ -69,12 +70,6 @@
     
     self.resetPasswordWidthConstraint=[NSLayoutConstraint constraintWithItem:self.resetPasswordButton attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:0];
     [self.resetPasswordButton addConstraint:self.resetPasswordWidthConstraint];
-    
-    
-//    [self.buttonsContainer removeConstraint:self.distanceBetweenButtonsConstraint];
-    
-//    self.distanceBetweenButtonsConstraint2=[NSLayoutConstraint constraintWithItem:self.resetPasswordButton attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.emailHintButton attribute:NSLayoutAttributeTrailing multiplier:1 constant:0];
-//    [self.buttonsContainer addConstraint:self.distanceBetweenButtonsConstraint2];
 
     self.distanceBetweenButtonsConstraint.constant=0;
     
@@ -96,6 +91,14 @@
     // focus first name
     
     self.observeKeyboardEvents=YES;
+    
+//    if(_userHasHint==NO && !self.emailHintWidthConstraint)
+    if(!self.emailHintWidthConstraint)
+    {
+        self.emailHintWidthConstraint=[NSLayoutConstraint constraintWithItem:self.emailHintButton attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:0];
+        [self.emailHintButton addConstraint:self.emailHintWidthConstraint];
+    }
+
     
 }
 
@@ -244,9 +247,18 @@
 
 - (void)authManager:(LWAuthManager *)manager didFailWithReject:(NSDictionary *)reject context:(GDXRESTContext *)context {
    // [self showReject:reject response:context.task.response];
+    
     [self setLoading:NO];
+    
+    if([reject[@"Code"] intValue]!=2)
+    {
+        [self showReject:reject response:context.task.response];
+        return;
+    }
+    
     self.resetPasswordWidthConstraint.active=NO;
-    self.distanceBetweenButtonsConstraint.constant=25;
+    if(_userHasHint)
+        self.distanceBetweenButtonsConstraint.constant=25;
     self.passwordInvalidImageView.hidden=NO;
     [self.view layoutSubviews];
 }

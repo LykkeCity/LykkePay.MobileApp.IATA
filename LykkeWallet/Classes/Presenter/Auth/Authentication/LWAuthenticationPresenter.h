@@ -14,5 +14,6 @@
 }
 
 @property (copy, nonatomic) NSString *email;
+@property BOOL userHasHint;
 
 @end

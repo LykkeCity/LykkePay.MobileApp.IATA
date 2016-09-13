@@ -71,7 +71,7 @@
         [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
         lockTimeString=[formatter stringFromDate:date];
         
-        UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"WARNING" message:[NSString stringWithFormat:@"Please remember that you will not be able to broadcast this refund transaction to blockchain before %@", lockTimeString] delegate:nil cancelButtonTitle:@"I GOT IT" otherButtonTitles: nil];
+        UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"WARNING" message:[NSString stringWithFormat:@"Please remember that you will not be able to broadcast this refund transaction to the blockchain before %@", lockTimeString] delegate:nil cancelButtonTitle:@"I GOT IT" otherButtonTitles: nil];
         [alert show];
 
     }

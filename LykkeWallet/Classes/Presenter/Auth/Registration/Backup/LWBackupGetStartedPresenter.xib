@@ -31,7 +31,7 @@
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZDB-MW-0Ez">
                     <rect key="frame" x="40" y="232" width="520" height="51.5"/>
-                    <string key="text">You are about to back up a master seed of your wallet. This seed allows anyone knowing it to spend all funds from your wallet. You will see a list of words, one by one. Write them down and store in a safe place.</string>
+                    <string key="text">You are about to back up your wallet. You will see a series of 12 words for you to write down. Anyone who knows this sequence of words can access and spend all the funds in your wallet, so be sure to keep it in a safe place.</string>
                     <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="14"/>
                     <color key="textColor" red="0.24705882352941178" green="0.30196078431372547" blue="0.37647058823529411" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>

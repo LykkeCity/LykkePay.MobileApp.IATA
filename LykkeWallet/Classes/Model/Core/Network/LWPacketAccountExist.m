@@ -20,11 +20,13 @@
     if (self.isRejected) {
         return;
     }
-    _isRegistered = [result[@"IsEmailRegistered"] boolValue];
+    _isRegistered = [result[@"IsRegistered"] boolValue];
+    _hasHint=result[@"HasPwdHint"];
+    
 }
 
 - (NSString *)urlRelative {
-    return @"AccountExist";
+    return @"ClientState";
 }
 
 - (NSDictionary *)params {

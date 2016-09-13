@@ -81,7 +81,7 @@
                                 <constraint firstAttribute="height" constant="78" id="dTA-YR-qGP"/>
                             </constraints>
                         </imageView>
-                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mPp-CY-Bvt">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mPp-CY-Bvt">
                             <rect key="frame" x="14" y="322" width="292" height="30"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ta2-76-Vfc">

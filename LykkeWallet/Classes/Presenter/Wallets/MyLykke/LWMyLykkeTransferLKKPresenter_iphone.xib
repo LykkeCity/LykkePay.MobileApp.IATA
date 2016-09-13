@@ -36,7 +36,7 @@
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" alpha="0.60000002384185791" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kuX-Q0-AlN">
                     <rect key="frame" x="30" y="66" width="523" height="17.5"/>
-                    <string key="text">Use the QR code to transfer LKK on your wallet. Lykke coins will be transferred to your Lykke Wallet after bitcoin transaction is detected</string>
+                    <string key="text">Use the QR code to transfer LKK on your wallet. Lykke coins will be transferred to your Lykke Wallet as soon as the BTC transaction is detected</string>
                     <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="14"/>
                     <color key="textColor" red="0.2470588235" green="0.30196078430000001" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>

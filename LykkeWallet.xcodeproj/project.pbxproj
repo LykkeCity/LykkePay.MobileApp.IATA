@@ -140,6 +140,7 @@
 		A14515B61D82F9B800B4BED9 /* LWMyLykkeTransferLKKLeftPanelPresenter.xib in Resources */ = {isa = PBXBuildFile; fileRef = A14515B41D82F9B800B4BED9 /* LWMyLykkeTransferLKKLeftPanelPresenter.xib */; };
 		A14515B81D84182C00B4BED9 /* LWMyLykkeTransferLKKPresenter_iphone5.xib in Resources */ = {isa = PBXBuildFile; fileRef = A14515B71D84182C00B4BED9 /* LWMyLykkeTransferLKKPresenter_iphone5.xib */; };
 		A14515C11D844A8800B4BED9 /* LWMyLykkeDepositBTCPresenter_iphone5.xib in Resources */ = {isa = PBXBuildFile; fileRef = A14515C01D844A8800B4BED9 /* LWMyLykkeDepositBTCPresenter_iphone5.xib */; };
+		A14515C31D87B28400B4BED9 /* LWPINPresenter_iphone5.xib in Resources */ = {isa = PBXBuildFile; fileRef = A14515C21D87B28400B4BED9 /* LWPINPresenter_iphone5.xib */; };
 		A14B7D2E1CE3233D00820084 /* ButtonOK_square.png in Resources */ = {isa = PBXBuildFile; fileRef = A14B7D2D1CE3233D00820084 /* ButtonOK_square.png */; };
 		A15B3EAF1D12626B00A6B506 /* LWRefundInformationPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A15B3EAD1D12626B00A6B506 /* LWRefundInformationPresenter.m */; };
 		A15B3EB01D12626B00A6B506 /* LWRefundInformationPresenter.xib in Resources */ = {isa = PBXBuildFile; fileRef = A15B3EAE1D12626B00A6B506 /* LWRefundInformationPresenter.xib */; };
@@ -1896,6 +1897,7 @@
 		A14515B41D82F9B800B4BED9 /* LWMyLykkeTransferLKKLeftPanelPresenter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LWMyLykkeTransferLKKLeftPanelPresenter.xib; sourceTree = "<group>"; };
 		A14515B71D84182C00B4BED9 /* LWMyLykkeTransferLKKPresenter_iphone5.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LWMyLykkeTransferLKKPresenter_iphone5.xib; sourceTree = "<group>"; };
 		A14515C01D844A8800B4BED9 /* LWMyLykkeDepositBTCPresenter_iphone5.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LWMyLykkeDepositBTCPresenter_iphone5.xib; sourceTree = "<group>"; };
+		A14515C21D87B28400B4BED9 /* LWPINPresenter_iphone5.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LWPINPresenter_iphone5.xib; sourceTree = "<group>"; };
 		A14B7D2D1CE3233D00820084 /* ButtonOK_square.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ButtonOK_square.png; sourceTree = "<group>"; };
 		A15B3EAC1D12626B00A6B506 /* LWRefundInformationPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWRefundInformationPresenter.h; sourceTree = "<group>"; };
 		A15B3EAD1D12626B00A6B506 /* LWRefundInformationPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWRefundInformationPresenter.m; sourceTree = "<group>"; };
@@ -3963,6 +3965,7 @@
 				A18D25AD1D688DAB005CEF66 /* LWPINPresenter.h */,
 				A18D25AE1D688DAB005CEF66 /* LWPINPresenter.m */,
 				A18D25AF1D688DAB005CEF66 /* LWPINPresenter.xib */,
+				A14515C21D87B28400B4BED9 /* LWPINPresenter_iphone5.xib */,
 				A18D25B21D689A77005CEF66 /* LWPINButtonView.h */,
 				A18D25B31D689A77005CEF66 /* LWPINButtonView.m */,
 				A18D25B51D689D7F005CEF66 /* LWPINEnterProgressView.h */,
@@ -6898,6 +6901,7 @@
 				A1D477581D050B9900438846 /* loader-color@2x_00040.png in Resources */,
 				A1BCD0A61D012D3C00CF42E4 /* 1-deposit-2x_00030.png in Resources */,
 				A1BCD11C1D012D3C00CF42E4 /* 2-trade-2x_00028.png in Resources */,
+				A14515C31D87B28400B4BED9 /* LWPINPresenter_iphone5.xib in Resources */,
 				A1BCD08F1D012D3C00CF42E4 /* 1-deposit-2x_00007.png in Resources */,
 				A1BCD0B31D012D3C00CF42E4 /* 1-deposit-2x_00043.png in Resources */,
 				A1BCD1D41D012D3C00CF42E4 /* 3-settle-2x_00093.png in Resources */,

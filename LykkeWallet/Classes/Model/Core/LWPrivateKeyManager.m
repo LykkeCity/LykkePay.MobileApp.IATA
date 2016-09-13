@@ -133,6 +133,14 @@
     self=[super init];
     
     
+//    BTCKey *kkk1=[[BTCKey alloc] initWithWIF:@"cMahea7zqjxrtgAbB7LSGbcQt7gX5j3yY5pDFz8sw4ayZFKmkLXe"];
+//    NSData *data1=kkk1.privateKey;
+//    NSLog(@"%@", [LWUtils hexStringFromData:data1]);
+// 
+//    BTCKey *kkk2=[[BTCKey alloc] initWithWIF:@"cMahea7zqjxrtgAbB7LSGbcS7FJp6rxmugMCRgCJ5t9gr2BLnZbW"];
+//    NSData *data2=kkk2.privateKey;
+//    NSLog(@"%@", [LWUtils hexStringFromData:data2]);
+
     
 //    NSString *kkk=[self decryptPrivateKey:@"74F15EC5FDD88F6287E3CFC88A9B8EBAC0484D4FE6767DFB616CD38E80C8571208B7D39AE09AD061BB9D3BE7189255DB62D3D2D14B346E904BCF7247518C9144" withPassword:@"111111"];
 //    NSLog(@"%@", kkk);

@@ -20,7 +20,7 @@
 #import "UIView+Navigation.h"
 
 
-@interface LWExchangeConfirmationView () <UITableViewDataSource, LWPinKeyboardViewDelegate> {
+@interface LWExchangeConfirmationView () <UITableViewDataSource, UITableViewDelegate, LWPinKeyboardViewDelegate> {
     LWPinKeyboardView *pinKeyboardView;
     BOOL               isRequested;
     
@@ -72,7 +72,11 @@ static float const kNoPinProtectionHeight = 360;
 {
     UITapGestureRecognizer *gesture=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cancelOperation)];
     [self.touchCatchView addGestureRecognizer:gesture];
-    
+    self.tableView.delegate=self;
+    if([UIScreen mainScreen].bounds.size.width==320)
+    {
+        _topViewHeightConstraint.constant=520;
+    }
 }
 
 + (LWExchangeConfirmationView *)modalViewWithDelegate:(id<LWExchangeConfirmationViewDelegate>)delegate {
@@ -119,6 +123,15 @@ static float const kNoPinProtectionHeight = 360;
     [self hide];
 }
 
+-(void) pinKeyboardViewPressedFingerPrint
+{
+    [self hide];
+    if([self.delegate respondsToSelector:@selector(exchangeConfirmationViewPressedFingerPrint)])
+        [self.delegate exchangeConfirmationViewPressedFingerPrint];
+    
+        
+}
+
 -(void) show
 {
     shadowView=[[UIView alloc] initWithFrame:self.superview.bounds];
@@ -149,6 +162,8 @@ static float const kNoPinProtectionHeight = 360;
         pinKeyboardView.hidden = !shouldSignOrder;
         [pinKeyboardView updateView];
         [self.bottomView addSubview:pinKeyboardView];
+        pinKeyboardView.frame=self.bottomView.bounds;
+        pinKeyboardView.autoresizingMask=UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     }
     else {
         if (pinKeyboardView) {
@@ -157,15 +172,21 @@ static float const kNoPinProtectionHeight = 360;
         }
     }
     
-    self.topViewHeightConstraint.constant = (shouldSignOrder ? kPinProtectionHeight : kNoPinProtectionHeight);
+    if(shouldSignOrder==NO)
+        self.topViewHeightConstraint.constant=kNoPinProtectionHeight;
+//    self.topViewHeightConstraint.constant = (shouldSignOrder ? kPinProtectionHeight : kNoPinProtectionHeight);
     self.placeOrderButton.hidden = shouldSignOrder;
     
     self.waitingLabel.text = Localize(@"exchange.assets.modal.waiting");
-    [self.navigationItem setTitle:Localize(@"exchange.assets.modal.title")];
+    UILabel *label=[[UILabel alloc] init];
+    label.attributedText=[[NSAttributedString alloc] initWithString:@"ORDER SUMMARY" attributes:@{NSKernAttributeName:@(1.5), NSFontAttributeName:[UIFont fontWithName:@"ProximaNova-Semibold" size:17], NSForegroundColorAttributeName:[UIColor colorWithRed:63.0/255 green:77.0/255 blue:96.0/255 alpha:1]}];
+    [label sizeToFit];
+    [self.navigationItem setTitleView:label];
+//    [self.navigationItem setTitle:Localize(@"exchange.assets.modal.title")];
     [self.placeOrderButton setTitle:Localize(@"exchange.assets.modal.button")
                            forState:UIControlStateNormal];
     
-    NSString *cancelTitle = Localize(@"exchange.assets.modal.cancel");
+    NSString *cancelTitle = @" CANCEL";
     [self setCancelButtonWithTitle:cancelTitle
                         navigation:self.navigationItem
                             target:self
@@ -216,6 +237,11 @@ static float const kNoPinProtectionHeight = 360;
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return kDescriptionRows;
+}
+
+-(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 50;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

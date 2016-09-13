@@ -49,6 +49,8 @@ typedef NS_ENUM(NSInteger, LWAuthEntryPointNextStep) {
     LWAuthEntryPointNextStep step;
     
     CGFloat keyboardHeight;
+    
+    BOOL userHasHint;
 }
 
 @property (weak, nonatomic) IBOutlet UIImageView *logoView;
@@ -299,6 +301,7 @@ typedef NS_ENUM(NSInteger, LWAuthEntryPointNextStep) {
             [nav navigateToStep:LWAuthStepAuthentication
                preparationBlock:^(LWAuthStepPresenter *presenter) {
                 ((LWAuthenticationPresenter *)presenter).email = emailTextField.text;
+                   ((LWAuthenticationPresenter *)presenter).userHasHint=userHasHint;
             }];
             break;
         }
@@ -439,8 +442,10 @@ typedef NS_ENUM(NSInteger, LWAuthEntryPointNextStep) {
 
 #pragma mark - LWAuthManagerDelegate
 
-- (void)authManager:(LWAuthManager *)manager didCheckRegistration:(BOOL)isRegistered email:(NSString *)email {
+- (void)authManager:(LWAuthManager *)manager didCheckRegistration:(BOOL)isRegistered hasHint:(BOOL) hasHint email:(NSString *)email {
     [self.activityView stopAnimating];
+    
+    userHasHint=hasHint;
     
     if (isRegistered) {
         step = LWAuthEntryPointNextStepLogin;

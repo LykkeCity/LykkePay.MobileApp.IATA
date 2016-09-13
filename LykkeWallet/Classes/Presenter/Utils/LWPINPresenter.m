@@ -10,10 +10,13 @@
 #import "LWPINButtonView.h"
 #import "LWPINEnterProgressView.h"
 #import "LWFingerprintHelper.h"
+#import "LWAuthNavigationController.h"
+#import "UIViewController+Navigation.h"
 
 @interface LWPINPresenter () <LWPINButtonViewDelegate>
 {
     NSString *pin;
+    int numberOfTries;
 }
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet LWPINEnterProgressView *progressView;
@@ -26,7 +29,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     pin=@"";
+    numberOfTries=0;
     [self checkSubviews:self.view];
+    
+    if(self.pinType==PIN_TYPE_ENTER)
+        self.titleLabel.text=@"Enter a new PIN";
+    else
+        self.titleLabel.text=@"Enter PIN";
 }
 
 
@@ -62,6 +71,18 @@
 
 }
 
+-(void) viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+}
+
+-(void) viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+}
+
 -(void) pinButtonViewPressedButtonWithSymbol:(NSString *)symbol
 {
     pin=[pin stringByAppendingString:symbol];
@@ -74,13 +95,26 @@
             return;
         }
         
+        if(_checkBlock(pin))
+        {
+            [self.navigationController popViewControllerAnimated:YES];
+            _successBlock();
+            return;
+        }
+        else
+        {
+            numberOfTries++;
+            if(numberOfTries==3)
+            {
+                [(LWAuthNavigationController *)self.navigationController logout];
+                return;
+            }
+            pin=@"";
+            [self.progressView setNumberOfSymbols:(int)pin.length];
+            
+            [self animateFailureNotificationDirection:-35];
+        }
         
-        
-        pin=@"";
-        [self.progressView setNumberOfSymbols:(int)pin.length];
-
-        [self animateFailureNotificationDirection:-35];
-        return;
     }
 
 }
@@ -89,7 +123,10 @@
 {
     if(self.pinType==PIN_TYPE_ENTER || [LWFingerprintHelper isFingerprintAvailable]==NO)
         return;
+    [LWFingerprintHelper validateFingerprintTitle:@"Fingerprint validation" ok:^{
+        _successBlock();
     
+    } bad:^{} unavailable:nil];
 }
 
 -(void) pinButtonViewPressedDelete
@@ -101,7 +138,9 @@
 
 -(void) viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:NO];
+
     if(self.pinType==PIN_TYPE_ENTER)
         self.fingerprintContainerView.hidden=YES;
     pin=@"";
@@ -143,14 +182,13 @@
 }
 
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(NSString *) nibName
+{
+    if([UIScreen mainScreen].bounds.size.width==320)
+        return @"LWPINPresenter_iphone5";
+    else
+        return @"LWPINPresenter";
 }
-*/
+
 
 @end

@@ -42,13 +42,13 @@
     if([self.assetId isEqualToString:@"BTC"])
     {
         [self setupQRCode];
-        self.titleLabel.text=@"To buy Lykke coins send BTC to this address";
-        self.textLabel.text=@"Lykke coins will be transferred to your Lykke Wallet after BTC transaction is detected";
+        self.titleLabel.text=@"To buy Lykke coins, send BTC to this address";
+        self.textLabel.text=@"Lykke coins will be transferred to your Lykke Wallet as soon as the BTC transaction is detected";
     }
     else
     {
-        self.titleLabel.text=@"To buy Lykke coins send ETH to this address";
-        self.textLabel.text=@"Lykke coins will be transferred to your Lykke Wallet after ETH transaction is detected";
+        self.titleLabel.text=@"To buy Lykke coins, send ETH to this address";
+        self.textLabel.text=@"Lykke coins will be transferred to your Lykke Wallet as soon as the ETH transaction is detected";
 
     }
     self.emailButton.type=BUTTON_TYPE_COLORED;

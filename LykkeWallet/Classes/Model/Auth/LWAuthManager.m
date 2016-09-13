@@ -677,10 +677,11 @@ SINGLETON_INIT {
 
     // parse packet by class
     if (pack.class == LWPacketAccountExist.class) {
-        if ([self.delegate respondsToSelector:@selector(authManager:didCheckRegistration:email:)])  {
+        if ([self.delegate respondsToSelector:@selector(authManager:didCheckRegistration:hasHint:email:)])  {
             LWPacketAccountExist *account = (LWPacketAccountExist *)pack;
             [self.delegate authManager:self
                   didCheckRegistration:account.isRegistered
+                               hasHint:account.hasHint
                                  email:account.email];
         }
     }

@@ -15,6 +15,10 @@
     
 }
 
+-(void) awakeFromNib
+{
+    self.separatorInset=UIEdgeInsetsMake(0, 30, 0, 30);
+}
 
 #pragma mark - Colorization
 

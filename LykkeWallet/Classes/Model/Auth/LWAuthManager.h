@@ -59,7 +59,7 @@
 @protocol LWAuthManagerDelegate<NSObject>
 @optional
 - (void)authManager:(LWAuthManager *)manager didFailWithReject:(NSDictionary *)reject context:(GDXRESTContext *)context;
-- (void)authManager:(LWAuthManager *)manager didCheckRegistration:(BOOL)isRegistered email:(NSString *)email;
+- (void)authManager:(LWAuthManager *)manager didCheckRegistration:(BOOL)isRegistered hasHint:(BOOL) userHasHint email:(NSString *)email;
 - (void)authManagerDidRegister:(LWAuthManager *)manager;
 - (void)authManagerDidRegisterGet:(LWAuthManager *)manager KYCStatus:(NSString *)status isPinEntered:(BOOL)isPinEntered personalData:(LWPersonalData *)personalData;
 - (void)authManagerDidAuthenticate:(LWAuthManager *)manager KYCStatus:(NSString *)status isPinEntered:(BOOL)isPinEntered;

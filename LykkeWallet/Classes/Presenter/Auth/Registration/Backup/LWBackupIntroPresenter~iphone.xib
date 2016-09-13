@@ -31,21 +31,21 @@
                         <constraint firstAttribute="width" constant="85" id="wir-b5-stK"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Take a backup" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aF2-e2-Rnt">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Make a backup" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aF2-e2-Rnt">
                     <rect key="frame" x="233" y="257" width="133.5" height="26"/>
                     <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="21"/>
                     <color key="textColor" red="0.24705882352941178" green="0.30196078431372547" blue="0.37647058823529411" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZDB-MW-0Ez">
-                    <rect key="frame" x="40" y="292" width="520" height="68.5"/>
-                    <string key="text">You have to make a backup of your wallet — with it you will be able to easily restore your funds in case of loss, damage, or malfunction of your device. Just write down 12 words and keep them in a safe place.</string>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZDB-MW-0Ez">
+                    <rect key="frame" x="40" y="292" width="520" height="51.5"/>
+                    <string key="text">You need to make a backup of your wallet. With your backup, you can easily restore your funds if your device is lost or damaged. Your backup is a series of 12 words. Just write them down and keep them in a safe place.</string>
                     <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="14"/>
                     <color key="textColor" red="0.24705882352941178" green="0.30196078431372547" blue="0.37647058823529411" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yLW-t4-Oge">
-                    <rect key="frame" x="282" y="533" width="46" height="30"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yLW-t4-Oge">
+                    <rect key="frame" x="142.5" y="525" width="315" height="45"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="45" id="XcM-p6-3hs"/>
                         <constraint firstAttribute="width" constant="315" id="iXF-FW-kSy"/>
@@ -57,8 +57,8 @@
                         <action selector="takeBackupButtonPressed:" destination="-2" eventType="touchUpInside" id="hSz-9n-BOa"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mdg-ES-bni" customClass="LWCommonButton">
-                    <rect key="frame" x="282" y="474" width="46" height="30"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mdg-ES-bni" customClass="LWCommonButton">
+                    <rect key="frame" x="142.5" y="470" width="315" height="45"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="45" id="V6p-cu-rc3"/>
                     </constraints>

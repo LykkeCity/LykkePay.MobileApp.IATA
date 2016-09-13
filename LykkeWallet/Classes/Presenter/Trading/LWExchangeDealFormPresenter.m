@@ -32,6 +32,7 @@
 #import "LWLykkeAssetsData.h"
 #import "LWMathKeyboardView.h"
 #import "LWAssetDealModel.h"
+#import "LWPINPresenter.h"
 
 
 typedef enum {
@@ -476,16 +477,6 @@ static NSString *const FormIdentifiers[kFormRows] = {
         [confirmationView hide];
     }
     
-//    if(lastInput==LastInput_Result)
-//    {
-//        if([purchase.orderType isEqualToString:@"Buy"])
-//        {
-//            purchase.orderType=@"Sell";
-//        }
-//        else
-//            purchase.orderType=@"Buy";
-//
-//    }
     
     LWExchangeResultPresenter *controller = [LWExchangeResultPresenter new];
     controller.purchase = purchase;
@@ -566,6 +557,11 @@ static NSString *const FormIdentifiers[kFormRows] = {
 
     
     
+}
+
+-(void) exchangeConfirmationViewPressedFingerPrint
+{
+    [self validateUser];
 }
 
 - (void)cancelClicked {
@@ -782,11 +778,38 @@ static NSString *const FormIdentifiers[kFormRows] = {
 }
 
 - (void)showConfirmationView {
+    
+    
+//    LWPINPresenter *presenter=[[LWPINPresenter alloc] init];
+//    presenter.pinType=PIN_TYPE_CHECK;
+//    presenter.checkBlock=^(NSString *pin){
+//        if([pin isEqualToString:@"2222"])
+//            return YES;
+//        else
+//            return NO;
+//    };
+//    
+//    presenter.successBlock=^{
+//    
+//    };
+//    
+//    [self.navigationController pushViewController:presenter animated:YES];
+//    return;
+    
+    
+    
+    
+    
+    
+    
+    
     // preparing modal view
     confirmationView = [LWExchangeConfirmationView modalViewWithDelegate:self];
     confirmationView.assetPair = self.assetPair;
     [confirmationView setFrame:self.navigationController.view.bounds];
     
+    
+    CGRect rrr=self.navigationController.view.bounds;
     // animation
     CATransition *transition = [CATransition animation];
     transition.duration = 0.5;
@@ -802,6 +825,8 @@ static NSString *const FormIdentifiers[kFormRows] = {
     // showing modal view
     if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad)
     {
+        [confirmationView setFrame:self.view.bounds];
+
     [self.view addSubview:confirmationView];
     
     

@@ -17,6 +17,10 @@
 
 @protocol LWExchangeConfirmationViewDelegate <NSObject>
 
+@optional
+
+-(void) exchangeConfirmationViewPressedFingerPrint;
+
 @required
 - (void)cancelClicked;
 - (void)requestOperationWithHud:(BOOL)isHudActivated;
