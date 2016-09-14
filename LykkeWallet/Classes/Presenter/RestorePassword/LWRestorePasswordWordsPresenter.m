@@ -37,6 +37,7 @@
     self.proceedButton.type=BUTTON_TYPE_COLORED;
     self.textField.delegate=self;
     self.proceedButton.enabled=NO;
+    self.textField.placeholder=@"Words";
     [self.proceedButton addTarget:self action:@selector(proceedPressed) forControlEvents:UIControlEventTouchUpInside];
     
     
@@ -94,16 +95,26 @@
     // this will be the new cursor location after insert/paste/typing
     NSInteger cursorOffset = [textField offsetFromPosition:beginning toPosition:start] + string.length;
     textField.text=[textField.text stringByReplacingCharactersInRange:range withString:string];
-    if(self.iconInvalid.hidden==NO)
-        self.iconInvalid.hidden=YES;
+//    if(self.iconInvalid.hidden==NO)
+//        self.iconInvalid.hidden=YES;
     
     NSArray *arr=[textField.text componentsSeparatedByString:@" "];
     if(arr.count==12 && [arr.lastObject length])
     {
-        self.proceedButton.enabled=YES;
+        if([[LWPrivateKeyManager shared] savePrivateKeyLykkeFromSeedWords:[_textField.text componentsSeparatedByString:@" "]])
+        {
+            self.proceedButton.enabled=YES;
+
+            [textField resignFirstResponder];
+
+            self.iconInvalid.hidden=NO;
+        }
+
     }
     else
     {
+        self.iconInvalid.hidden=YES;
+
         self.proceedButton.enabled=NO;
     }
     
@@ -117,18 +128,19 @@
 
 -(void) proceedPressed
 {
-    if([[LWPrivateKeyManager shared] savePrivateKeyLykkeFromSeedWords:[_textField.text componentsSeparatedByString:@" "]])
-    {
+//    if([[LWPrivateKeyManager shared] savePrivateKeyLykkeFromSeedWords:[_textField.text componentsSeparatedByString:@" "]])
+//    {
         [self setLoading:YES];
         [[LWAuthManager instance] requestPrivateKeyOwnershipMessage:self.email];
  
-    }
-    else
-    {
-        UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"ERROR" message:@"Private key recovering failed! Please check seed words." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [alert show];
-    }
-    
+//    }
+//    else
+//    {
+////        UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"ERROR" message:@"Private key recovering failed! Please check seed words." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+////        [alert show];
+//        self.iconInvalid.hidden=NO;
+//    }
+//    
     
     
 
@@ -136,6 +148,7 @@
 
 -(void) authManager:(LWAuthManager *) manager didGetPrivateKeyOwnershipMessage:(LWPrivateKeyOwnershipMessage *)packet
 {
+    [self setLoading:NO];
     LWRecoveryPasswordModel *recModel=[[LWRecoveryPasswordModel alloc] init];
     recModel.securityMessage1=packet.ownershipMessage;
     recModel.email=self.email;
@@ -152,7 +165,9 @@
 
 -(void) authManager:(LWAuthManager *)manager didFailWithReject:(NSDictionary *)reject context:(GDXRESTContext *)context
 {
-    
+    [self setLoading:NO];
+
+    [self showReject:reject response:context.task.response];
 }
 
 -(void) observeKeyboardWillShowNotification:(NSNotification *)notification

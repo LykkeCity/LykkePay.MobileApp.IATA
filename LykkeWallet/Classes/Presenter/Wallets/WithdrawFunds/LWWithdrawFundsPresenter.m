@@ -19,6 +19,9 @@
 #import "LWProgressView.h"
 #import "LWCameraMessageView.h"
 #import "LWCameraMessageView2.h"
+#import "LWChoosePrivateWalletView.h"
+#import "LWPrivateWalletsManager.h"
+#import "LWPrivateWalletModel.h"
 
 #import "UIViewController+Navigation.h"
 #import "UIViewController+Loading.h"
@@ -41,6 +44,9 @@
 @property (weak, nonatomic) IBOutlet TKButton    *proceedButton;
 @property (weak, nonatomic) IBOutlet UILabel     *infoLabel;
 @property (weak, nonatomic) IBOutlet UIButton    *pasteButton;
+@property (weak, nonatomic) IBOutlet UIView *qrCodeButtonContainer;
+@property (weak, nonatomic) IBOutlet UIView *selectWalletButtonContainer;
+@property (weak, nonatomic) IBOutlet UILabel *selectWalletLabel;
 
 
 #pragma mark - Utils
@@ -86,8 +92,12 @@
 #endif
     
     UITapGestureRecognizer* gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(scanClicked:)];
-    [self.qrCodeLabel setUserInteractionEnabled:YES];
-    [self.qrCodeLabel addGestureRecognizer:gesture];
+    [self.qrCodeButtonContainer setUserInteractionEnabled:YES];
+    [self.qrCodeButtonContainer addGestureRecognizer:gesture];
+    
+    gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(selectWalletPressed)];
+    [self.selectWalletButtonContainer setUserInteractionEnabled:YES];
+    [self.selectWalletButtonContainer addGestureRecognizer:gesture];
     
     progressValidation=[[LWProgressView alloc] init];
     [self.proceedButton addSubview:progressValidation];
@@ -110,7 +120,13 @@
     }
     self.title = Localize(@"withdraw.funds.title");
     
-    
+    if(![LWPrivateWalletsManager shared].wallets)
+    {
+        [self setLoading:YES];
+        [[LWPrivateWalletsManager shared] loadWalletsWithCompletion:^(NSArray *arr){
+            [self setLoading:NO];
+        }];
+    }
 
 }
 
@@ -136,6 +152,7 @@
 - (void)colorize {
     UIColor *color = [UIColor colorWithHexString:kMainElementsColor];
     [self.qrCodeLabel setTextColor:color];
+    [self.selectWalletLabel setTextColor:color];
 }
 
 #pragma mark - LWTextFieldDelegate
@@ -166,6 +183,18 @@
     bitcoinTextField.text = [pasteboard string];
     
     [self updatePasteButtonStatus];
+}
+
+
+-(void) selectWalletPressed
+{
+    [self.view endEditing:YES];
+    
+    [LWChoosePrivateWalletView showWithCurrentWallet:nil completion:^(LWPrivateWalletModel *wallet){
+        bitcoinTextField.text=wallet.address;
+        [self updatePasteButtonStatus];
+    }];
+
 }
 
 - (void)scanClicked:(id)sender {

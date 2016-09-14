@@ -709,11 +709,12 @@ static NSString *const FormIdentifiers[kFormRows] = {
     resultString=[total stringByReplacingOccurrencesOfString:@" " withString:@""];
 
 
-//    if (confirmationView) {
-//        confirmationView.rateString = priceText;
-//        confirmationView.volumeString = volumeString;
-//        confirmationView.totalString = resultString;
-//    }
+    
+    if (confirmationView) {
+        confirmationView.rateString = priceText;
+        confirmationView.volumeString = volumeString;
+        confirmationView.totalString = resultString;
+    }
     if(self.assetDealType==LWAssetDealTypeBuy)
     {
         if(resultString.doubleValue>balanceOfAccount.doubleValue || (resultString.doubleValue==0 || volumeString.doubleValue==0))

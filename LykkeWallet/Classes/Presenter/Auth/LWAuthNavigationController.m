@@ -347,6 +347,8 @@
     tabBarController.tabBar.translucent = NO;
     
     [self setViewControllers:@[tabBarController] animated:NO];
+    
+    
 }
 
 

@@ -17,6 +17,7 @@
 #import "LWCameraMessageView.h"
 #import "LWPacketGetRefundAddress.h"
 #import "LWCameraMessageView2.h"
+#import "LWPrivateWalletsManager.h"
 
 @import AVFoundation;
 
@@ -223,7 +224,7 @@ static int CellTypes[kNumberOfCells] = {
 
 -(void) authManager:(LWAuthManager *)manager didGetRefundAddress:(LWPacketGetRefundAddress *)address
 {
-    [self setLoading:NO];
+
     LWRefundTableViewCell *cell=cellsDict[@(0)];
     
     if(address.refundAddress.length)
@@ -238,6 +239,16 @@ static int CellTypes[kNumberOfCells] = {
     cell.daysValidAfter=address.validDays;
     cell.sendAutomatically=address.sendAutomatically;
     shouldGetRefundSettings=NO;
+    
+    if(![LWPrivateWalletsManager shared].wallets)
+    {
+        [[LWPrivateWalletsManager shared] loadWalletsWithCompletion:^(NSArray *arr){
+            [self setLoading:NO];
+        }];
+    }
+    else
+        [self setLoading:NO];
+    
 }
 
 -(void) authManagerDidSetRefundAddress:(LWAuthManager *)manager

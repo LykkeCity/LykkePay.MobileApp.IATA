@@ -10,6 +10,7 @@
 #import "LWNumbersKeyboardView.h"
 #import "LWCommonButton.h"
 #import "UIViewController+Loading.h"
+#import "UIViewController+Navigation.h"
 #import "LWPrivateKeyManager.h"
 #import "LWRecoveryPasswordModel.h"
 #import "LWResultPresenter.h"
@@ -25,10 +26,15 @@
 
 }
 
+
+
 @property (weak, nonatomic) IBOutlet UITextField *textField;
 @property (weak, nonatomic) IBOutlet LWCommonButton *proceedButton;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *scrollViewBottomConstraint;
 @property (weak, nonatomic) IBOutlet UIImageView *iconValid;
+
+@property (weak, nonatomic) IBOutlet UILabel *textLabel;
+
 
 @end
 
@@ -42,7 +48,10 @@
     keyboard=[[LWNumbersKeyboardView alloc] init];
     keyboard.delegate=self;
     keyboard.textField=self.textField;
+    keyboard.showSMSCodeCursor=YES;
     [self.view addSubview:keyboard];
+    keyboard.cursor.hidden=YES;
+    
     self.textField.delegate=self;
     
     UITapGestureRecognizer *gesture=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideNumbersKeyboard)];
@@ -53,6 +62,10 @@
     self.proceedButton.enabled=NO;
     [self.proceedButton addTarget:self action:@selector(proceedPressed) forControlEvents:UIControlEventTouchUpInside];
     
+    if(self.recModel.phoneNumber)
+    {
+        self.textLabel.text=[NSString stringWithFormat:@"Please enter the 4-digit code that we just sent to your phone %@", self.recModel.phoneNumber];
+    }
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -61,6 +74,20 @@
     if(!keyboardIsShowing)
         [self showNumbersKeyboard];
     return NO;
+}
+
+-(void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self setBackButton];
+    self.navigationController.navigationBar.barTintColor = BAR_GRAY_COLOR;
+    self.observeKeyboardEvents=YES;
+}
+
+-(void) viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    self.navigationController.navigationBar.barTintColor=[UIColor whiteColor];
 }
 
 -(void) viewDidAppear:(BOOL)animated
@@ -94,6 +121,7 @@
         [self.view layoutIfNeeded];
     }];
     keyboardIsShowing=YES;
+    keyboard.cursor.hidden=NO;
 }
 
 -(void) proceedPressed
@@ -138,7 +166,6 @@
     self.recModel.securityMessage1=packet.ownershipMessage;
     self.recModel.signature1=[[LWPrivateKeyManager shared] signatureForMessageWithLykkeKey:self.recModel.securityMessage1];
     [[LWAuthManager instance] requestRecoverySMSConfirmation:self.recModel];
-    
 }
 
 
@@ -207,6 +234,12 @@
     [self.view makeToast:@"SMS sent"];
     self.textField.text=@"";
     self.iconValid.hidden=YES;
+    
+    if(self.recModel.phoneNumber)
+    {
+        self.textLabel.text=[NSString stringWithFormat:@"Please enter the 4-digit code that we just sent to your phone %@", self.recModel.phoneNumber];
+    }
+
 }
 
 
@@ -221,7 +254,7 @@
         [self.view layoutIfNeeded];
     }];
     keyboardIsShowing=NO;
-
+    keyboard.cursor.hidden=YES;
 }
 
 -(void) numbersKeyboardViewPressedDone

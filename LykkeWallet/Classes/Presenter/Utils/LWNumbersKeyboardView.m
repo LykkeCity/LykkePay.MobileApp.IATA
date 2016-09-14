@@ -8,7 +8,7 @@
 
 #import "LWNumbersKeyboardView.h"
 #import "LWNumbersKeyboardViewCell.h"
-#import "LWMathKeyboardCursorView.h"
+
 
 
 
@@ -21,8 +21,8 @@
     BOOL shouldShowDotButton;
     BOOL shouldShowPredefinedSums;
     BOOL shouldShowSeparators;
+    BOOL shouldShowSMScodeCursor;
     UILabel *dotLabel;
-    LWMathKeyboardCursorView *cursor;
     NSMutableArray *predefinedSumButtons;
     
     CGFloat STEP;
@@ -57,6 +57,8 @@
     shouldShowDotButton=NO;
     shouldShowPredefinedSums=NO;
     shouldShowSeparators=YES;
+    shouldShowSMScodeCursor=NO;
+    
     self.backgroundColor=[UIColor colorWithRed:211.0/255 green:214.0/255 blue:219.0/255 alpha:1];
     
     topBarView=[[UIView alloc] init];
@@ -156,7 +158,7 @@
 -(void) removeFromSuperview
 {
     [super removeFromSuperview];
-    [cursor removeFromSuperview];
+    [_cursor removeFromSuperview];
 }
 
 -(void) setShowSeparators:(BOOL)showSeparators
@@ -175,14 +177,14 @@
 -(void) setTextField:(UITextField *)textField
 {
     _textField=textField;
-    [cursor removeFromSuperview];
+    [_cursor removeFromSuperview];
     if(shouldShowDotButton)
     {
-        cursor=[[LWMathKeyboardCursorView alloc] init];
+        _cursor=[[LWMathKeyboardCursorView alloc] init];
         CGPoint point=CGPointMake(_textField.bounds.size.width+3, _textField.bounds.size.height/2);
         point=[_textField.superview convertPoint:point fromView:_textField];
-        cursor.center=point;
-        [textField.superview addSubview:cursor];
+        _cursor.center=point;
+        [textField.superview addSubview:_cursor];
     }
 }
 
@@ -219,6 +221,17 @@
 -(BOOL) showDotButton
 {
     return shouldShowDotButton;
+}
+
+-(BOOL) showSMSCodeCursor
+{
+    return shouldShowSMScodeCursor;
+}
+
+-(void) setShowSMSCodeCursor:(BOOL)showSMSCodeCursor
+{
+    shouldShowSMScodeCursor=showSMSCodeCursor;
+    [self layoutSubviews];
 }
 
 
@@ -278,6 +291,29 @@
     doneButton.center=CGPointMake(topBarView.bounds.size.width-doneButton.bounds.size.width/2-27, topBarView.bounds.size.height/2);
     
     
+    if(shouldShowSMScodeCursor)
+    {
+        if(!_cursor)
+        {
+            _cursor=[[LWMathKeyboardCursorView alloc] init];
+            [_textField addSubview:_cursor];
+
+        }
+        [self positionCursor];
+    }
+    
+}
+
+-(void) positionCursor
+{
+    UILabel *label=[[UILabel alloc] init];
+    label.text=_textField.text;
+    label.font=_textField.font;
+    [label sizeToFit];
+    
+    CGPoint point=CGPointMake(label.bounds.size.width+1, _textField.bounds.size.height/2);
+    _cursor.center=point;
+
 }
 
 -(void) numberCellPressedSymbol:(NSString *)symbol
@@ -317,6 +353,9 @@
     }
     if([self.delegate respondsToSelector:@selector(numbersKeyboardChangedText:)])
         [self.delegate numbersKeyboardChangedText:self];
+    
+    if(shouldShowSMScodeCursor)
+        [self positionCursor];
 }
 
 -(void) numberCellPressedBackspace
@@ -350,17 +389,22 @@
     if([self.delegate respondsToSelector:@selector(numbersKeyboardChangedText:)])
         [self.delegate numbersKeyboardChangedText:self];
     
+    if(shouldShowSMScodeCursor)
+        [self positionCursor];
+
 }
 
 -(void) orientationChanged
 {
-
-    cursor.hidden=YES;
+    if(shouldShowSMScodeCursor)
+        return;
+    BOOL prevCursorStatus=_cursor.hidden;
+    _cursor.hidden=YES;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         CGPoint point=CGPointMake(_textField.bounds.size.width+3, _textField.bounds.size.height/2);
         point=[_textField.superview convertPoint:point fromView:_textField];
-        cursor.center=point;
-        cursor.hidden=NO;
+        _cursor.center=point;
+        _cursor.hidden=prevCursorStatus;
     });
 }
 

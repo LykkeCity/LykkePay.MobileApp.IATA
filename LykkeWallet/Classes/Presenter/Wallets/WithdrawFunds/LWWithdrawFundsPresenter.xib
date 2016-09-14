@@ -10,6 +10,7 @@
             <string>ProximaNova-Regular</string>
             <string>ProximaNova-Regular</string>
             <string>ProximaNova-Regular</string>
+            <string>ProximaNova-Regular</string>
         </mutableArray>
     </customFonts>
     <objects>
@@ -18,8 +19,11 @@
                 <outlet property="infoLabel" destination="bNv-eg-p7n" id="SAF-OI-RG3"/>
                 <outlet property="pasteButton" destination="E91-c2-9oM" id="dtg-LZ-tB4"/>
                 <outlet property="proceedButton" destination="vuW-oV-4pM" id="nDd-Xc-S5o"/>
+                <outlet property="qrCodeButtonContainer" destination="BQp-tD-K67" id="UtJ-fB-LsK"/>
                 <outlet property="qrCodeContainer" destination="7KG-y3-dbu" id="FER-yB-TUl"/>
                 <outlet property="qrCodeLabel" destination="P5T-EI-POH" id="asD-RT-Fg6"/>
+                <outlet property="selectWalletButtonContainer" destination="mWr-1a-gcX" id="HMV-Fr-zJM"/>
+                <outlet property="selectWalletLabel" destination="Zkh-GH-ZOW" id="zeE-qy-kcP"/>
                 <outlet property="titleLabel" destination="Del-Cf-d4P" id="VL9-SQ-HMC"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -64,31 +68,8 @@
                         <constraint firstAttribute="width" constant="320" id="pLd-2C-SJ8"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BQp-tD-K67">
-                    <rect key="frame" x="107" y="126" width="106.5" height="20"/>
-                    <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="QrCodeIcon" translatesAutoresizingMaskIntoConstraints="NO" id="xQb-Gg-60a">
-                            <rect key="frame" x="0.0" y="1" width="18" height="18"/>
-                        </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Scan QR code" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P5T-EI-POH">
-                            <rect key="frame" x="25" y="2" width="81.5" height="16"/>
-                            <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="13"/>
-                            <color key="textColor" red="0.6705882353" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                    </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstItem="P5T-EI-POH" firstAttribute="centerY" secondItem="BQp-tD-K67" secondAttribute="centerY" id="8Ll-Vg-p0o"/>
-                        <constraint firstAttribute="trailing" secondItem="P5T-EI-POH" secondAttribute="trailing" id="EO0-Lk-aRE"/>
-                        <constraint firstItem="xQb-Gg-60a" firstAttribute="centerY" secondItem="BQp-tD-K67" secondAttribute="centerY" id="K4X-ba-jy1"/>
-                        <constraint firstItem="P5T-EI-POH" firstAttribute="leading" secondItem="xQb-Gg-60a" secondAttribute="trailing" constant="7" id="gLr-2u-hzC"/>
-                        <constraint firstAttribute="height" constant="20" id="m7a-rq-tgX"/>
-                        <constraint firstItem="xQb-Gg-60a" firstAttribute="leading" secondItem="BQp-tD-K67" secondAttribute="leading" id="rjx-ro-wzk"/>
-                    </constraints>
-                </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vuW-oV-4pM" customClass="TKButton">
-                    <rect key="frame" x="8" y="161" width="304" height="45"/>
+                    <rect key="frame" x="8" y="157" width="304" height="45"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="45" id="7yY-Wi-28i"/>
                         <constraint firstAttribute="width" constant="304" id="NGX-7S-ZNu"/>
@@ -102,7 +83,7 @@
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your wallet will not be charged until you authorize this transaction." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bNv-eg-p7n">
-                    <rect key="frame" x="12" y="214" width="296" height="80"/>
+                    <rect key="frame" x="12" y="210" width="296" height="80"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="80" id="huF-5I-LnH"/>
                     </constraints>
@@ -110,20 +91,80 @@
                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RJF-B1-oaN">
+                    <rect key="frame" x="43.5" y="127" width="233.5" height="20"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BQp-tD-K67">
+                            <rect key="frame" x="0.0" y="0.0" width="106.5" height="20"/>
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="QrCodeIcon" translatesAutoresizingMaskIntoConstraints="NO" id="xQb-Gg-60a">
+                                    <rect key="frame" x="0.0" y="1" width="18" height="18"/>
+                                </imageView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Scan QR code" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P5T-EI-POH">
+                                    <rect key="frame" x="25" y="2" width="81.5" height="16"/>
+                                    <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="13"/>
+                                    <color key="textColor" red="0.6705882353" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstItem="P5T-EI-POH" firstAttribute="centerY" secondItem="BQp-tD-K67" secondAttribute="centerY" id="8Ll-Vg-p0o"/>
+                                <constraint firstAttribute="trailing" secondItem="P5T-EI-POH" secondAttribute="trailing" id="EO0-Lk-aRE"/>
+                                <constraint firstItem="xQb-Gg-60a" firstAttribute="centerY" secondItem="BQp-tD-K67" secondAttribute="centerY" id="K4X-ba-jy1"/>
+                                <constraint firstItem="P5T-EI-POH" firstAttribute="leading" secondItem="xQb-Gg-60a" secondAttribute="trailing" constant="7" id="gLr-2u-hzC"/>
+                                <constraint firstAttribute="height" constant="20" id="m7a-rq-tgX"/>
+                                <constraint firstItem="xQb-Gg-60a" firstAttribute="leading" secondItem="BQp-tD-K67" secondAttribute="leading" id="rjx-ro-wzk"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mWr-1a-gcX">
+                            <rect key="frame" x="126.5" y="0.0" width="106.5" height="20"/>
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="SelectWallet" translatesAutoresizingMaskIntoConstraints="NO" id="dPI-dH-amA">
+                                    <rect key="frame" x="0.0" y="1" width="18" height="18"/>
+                                </imageView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Select wallet" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zkh-GH-ZOW">
+                                    <rect key="frame" x="25" y="2" width="81.5" height="16"/>
+                                    <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="13"/>
+                                    <color key="textColor" red="0.6705882353" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstItem="Zkh-GH-ZOW" firstAttribute="leading" secondItem="dPI-dH-amA" secondAttribute="trailing" constant="7" id="0Qv-N8-hgC"/>
+                                <constraint firstItem="dPI-dH-amA" firstAttribute="leading" secondItem="mWr-1a-gcX" secondAttribute="leading" id="4Q5-E0-cz0"/>
+                                <constraint firstAttribute="height" constant="20" id="ByB-Os-uXi"/>
+                                <constraint firstAttribute="trailing" secondItem="Zkh-GH-ZOW" secondAttribute="trailing" id="NiG-MJ-wUB"/>
+                                <constraint firstItem="dPI-dH-amA" firstAttribute="centerY" secondItem="mWr-1a-gcX" secondAttribute="centerY" id="ib2-tp-h9B"/>
+                                <constraint firstItem="Zkh-GH-ZOW" firstAttribute="centerY" secondItem="mWr-1a-gcX" secondAttribute="centerY" id="mZu-Du-WDZ"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="mWr-1a-gcX" firstAttribute="centerY" secondItem="RJF-B1-oaN" secondAttribute="centerY" id="Ad5-30-iy3"/>
+                        <constraint firstAttribute="trailing" secondItem="mWr-1a-gcX" secondAttribute="trailing" id="OrF-OZ-lHI"/>
+                        <constraint firstItem="mWr-1a-gcX" firstAttribute="leading" secondItem="BQp-tD-K67" secondAttribute="trailing" constant="20" id="VLV-8w-N15"/>
+                        <constraint firstItem="BQp-tD-K67" firstAttribute="leading" secondItem="RJF-B1-oaN" secondAttribute="leading" id="o3V-Ab-BXx"/>
+                        <constraint firstAttribute="bottom" secondItem="BQp-tD-K67" secondAttribute="bottom" id="pBF-i3-nCw"/>
+                        <constraint firstItem="BQp-tD-K67" firstAttribute="top" secondItem="RJF-B1-oaN" secondAttribute="top" id="uai-ax-CYi"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="BQp-tD-K67" firstAttribute="top" secondItem="7KG-y3-dbu" secondAttribute="bottom" constant="7" id="4o3-c3-YGs"/>
+                <constraint firstItem="RJF-B1-oaN" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="2gj-QM-oj5"/>
                 <constraint firstItem="vuW-oV-4pM" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="DAf-uK-GQ9"/>
                 <constraint firstItem="bNv-eg-p7n" firstAttribute="top" secondItem="vuW-oV-4pM" secondAttribute="bottom" constant="8" id="EGW-Ra-Vq1"/>
+                <constraint firstItem="RJF-B1-oaN" firstAttribute="top" secondItem="7KG-y3-dbu" secondAttribute="bottom" constant="8" id="HK5-8U-2Wf"/>
+                <constraint firstItem="vuW-oV-4pM" firstAttribute="top" secondItem="RJF-B1-oaN" secondAttribute="bottom" constant="10" id="JEZ-Ba-QQc"/>
                 <constraint firstAttribute="trailing" secondItem="bNv-eg-p7n" secondAttribute="trailing" constant="12" id="Tw2-hl-K3d"/>
                 <constraint firstItem="Del-Cf-d4P" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="WKQ-JL-ys1"/>
                 <constraint firstItem="bNv-eg-p7n" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="12" id="aPY-8v-cql"/>
                 <constraint firstItem="7KG-y3-dbu" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="eg6-fT-oMi"/>
-                <constraint firstItem="vuW-oV-4pM" firstAttribute="top" secondItem="BQp-tD-K67" secondAttribute="bottom" constant="15" id="h7C-l8-rwP"/>
                 <constraint firstItem="Del-Cf-d4P" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="oNB-0g-Ldm"/>
                 <constraint firstItem="7KG-y3-dbu" firstAttribute="top" secondItem="Del-Cf-d4P" secondAttribute="bottom" constant="25" id="r6c-H6-FCX"/>
-                <constraint firstItem="BQp-tD-K67" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="tCc-E6-HTr"/>
                 <constraint firstAttribute="trailing" secondItem="Del-Cf-d4P" secondAttribute="trailing" id="ukc-ws-pHV"/>
             </constraints>
             <point key="canvasLocation" x="158" y="192"/>
@@ -132,5 +173,6 @@
     <resources>
         <image name="ButtonOKInactive" width="320" height="51"/>
         <image name="QrCodeIcon" width="18" height="18"/>
+        <image name="SelectWallet" width="14" height="13"/>
     </resources>
 </document>

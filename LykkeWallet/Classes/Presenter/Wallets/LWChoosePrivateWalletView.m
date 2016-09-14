@@ -109,7 +109,7 @@
     UIView *view=[[UIView alloc] initWithFrame:CGRectMake(0, 0, 1024, 35)];
     view.backgroundColor=[UIColor colorWithRed:245.0/255 green:246.0/255 blue:247.0/255 alpha:1];
     UILabel *label=[[UILabel alloc] initWithFrame:CGRectMake(30, 0, 300, 35)];
-    if(section==1)
+    if(section==1 || !_sourceWallet)
     label.text=@"Private wallet";
     else
         label.text=@"Trading wallet";
@@ -170,14 +170,14 @@
 
 -(NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
 {
-    if(wallets.count)
+    if(wallets.count && _sourceWallet)
         return 2;
     return 1;
 }
 
 -(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if(section==0)
+    if(section==0 && _sourceWallet)
         return 1;
     return wallets.count;
 }
@@ -185,7 +185,7 @@
 -(UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     LWChoosePrivateWalletCell *cell;
-    if(indexPath.section==0)
+    if(indexPath.section==0 && _sourceWallet)
     {
         cell=[[LWChoosePrivateWalletCell alloc] initWithWallet:tradingWallet];
     }
@@ -198,7 +198,7 @@
 
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(wallets.count==0 || (wallets.count>0 && indexPath.section==0))
+    if((wallets.count==0 || (wallets.count>0 && indexPath.section==0)) && _sourceWallet)
         selectedWallet=tradingWallet;
     else
         selectedWallet=wallets[indexPath.row];

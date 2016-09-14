@@ -17,6 +17,8 @@
 {
     NSString *pin;
     int numberOfTries;
+    BOOL flagRepeat;
+    NSString *firstPINEnter;
 }
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet LWPINEnterProgressView *progressView;
@@ -29,13 +31,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     pin=@"";
+    flagRepeat=NO;
     numberOfTries=0;
     [self checkSubviews:self.view];
-    
-    if(self.pinType==PIN_TYPE_ENTER)
-        self.titleLabel.text=@"Enter a new PIN";
-    else
-        self.titleLabel.text=@"Enter PIN";
+    [self adjustTitle];
 }
 
 
@@ -91,7 +90,33 @@
     {
         if(self.pinType==PIN_TYPE_ENTER)
         {
-            self.finishBlock(YES, pin);
+            if(flagRepeat==NO)
+            {
+                flagRepeat=YES;
+                firstPINEnter=pin;
+                pin=@"";
+                [self.progressView setNumberOfSymbols:(int)pin.length];
+                [self adjustTitle];
+                return;
+            }
+            else
+            {
+                flagRepeat=NO;
+
+                if([pin isEqualToString:firstPINEnter]==NO)
+                {
+                    pin=@"";
+                    [self.progressView setNumberOfSymbols:(int)pin.length];
+
+                    [self animateFailureNotificationDirection:-35];
+                }
+                else
+                {
+                    self.finishBlock(YES, pin);
+                }
+                [self adjustTitle];
+            }
+            
             return;
         }
         
@@ -179,6 +204,20 @@
         }
         [self animateFailureNotificationDirection:-1 * direction / 2];
     }];
+}
+
+-(void) adjustTitle
+{
+    if(self.pinType==PIN_TYPE_ENTER)
+    {
+        if(flagRepeat==NO)
+            self.titleLabel.text=@"Enter a new PIN";
+        else
+            self.titleLabel.text=@"Repeat PIN";
+    }
+    else
+        self.titleLabel.text=@"Enter PIN";
+
 }
 
 

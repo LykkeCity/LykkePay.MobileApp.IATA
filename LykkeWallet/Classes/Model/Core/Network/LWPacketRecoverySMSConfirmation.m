@@ -18,7 +18,7 @@
         return;
     }
     self.recModel.securityMessage2=result[@"NewOwnershipMsgToSign"];
-    
+    self.recModel.phoneNumber=result[@"PhoneNumber"];
 }
 
 - (NSString *)urlRelative {

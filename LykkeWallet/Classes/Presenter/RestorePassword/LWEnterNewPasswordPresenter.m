@@ -35,6 +35,9 @@
     self.proceedButton.enabled=NO;
     self.proceedButton.type=BUTTON_TYPE_COLORED;
     
+    self.password1.placeholder=@"Enter a password";
+    self.password2.placeholder=@"Enter again";
+    
     [self.proceedButton addTarget:self action:@selector(proceedButtonPressed) forControlEvents:UIControlEventTouchUpInside];
     
     // Do any additional setup after loading the view from its nib.
@@ -48,7 +51,7 @@
 -(void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self setCrossCloseButton];
+    [self setBackButton];
     self.navigationController.navigationBar.barTintColor = BAR_GRAY_COLOR;
     self.observeKeyboardEvents=YES;
 

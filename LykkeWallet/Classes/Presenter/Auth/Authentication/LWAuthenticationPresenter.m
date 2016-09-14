@@ -239,11 +239,18 @@
 - (void)authManagerDidAuthenticate:(LWAuthManager *)manager KYCStatus:(NSString *)status isPinEntered:(BOOL)isPinEntered {
     [self setLoading:NO];
     
+    
+    
     LWAuthNavigationController *navController = (LWAuthNavigationController *)self.navigationController;
     [navController navigateKYCStatus:status
                           isPinEntered:isPinEntered
                         isAuthentication:YES];
 }
+
+
+
+
+
 
 - (void)authManager:(LWAuthManager *)manager didFailWithReject:(NSDictionary *)reject context:(GDXRESTContext *)context {
    // [self showReject:reject response:context.task.response];
@@ -258,7 +265,12 @@
     
     self.resetPasswordWidthConstraint.active=NO;
     if(_userHasHint)
+    {
         self.distanceBetweenButtonsConstraint.constant=25;
+        _emailHintWidthConstraint.active=NO;
+    }
+    else
+        self.distanceBetweenButtonsConstraint.constant=0;
     self.passwordInvalidImageView.hidden=NO;
     [self.view layoutSubviews];
 }

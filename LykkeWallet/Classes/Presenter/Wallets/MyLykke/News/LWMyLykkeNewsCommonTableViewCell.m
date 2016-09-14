@@ -92,6 +92,8 @@
         _author3.text=[NSString stringWithFormat:@"%@ • %@", _element3.author, [[NSDate date] timePassedFromDate:_element3.date]];
         
     }
+    
+    [self layoutIfNeeded];
 
     
 }

@@ -46,7 +46,7 @@
 -(void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self setCrossCloseButton];
+    [self setBackButton];
     self.navigationController.navigationBar.barTintColor = BAR_GRAY_COLOR;
     self.observeKeyboardEvents=YES;
 }

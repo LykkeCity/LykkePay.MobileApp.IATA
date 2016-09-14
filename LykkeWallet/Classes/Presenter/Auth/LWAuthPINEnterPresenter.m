@@ -173,13 +173,7 @@ static int const kAllowedAttempts = 3;
         }
         else
         {
-            if([LWPrivateKeyManager shared].wifPrivateKeyLykke)
-                [((LWAuthNavigationController *)self.navigationController) setRootMainTabScreen];
-            else
-            {
-                LWGenerateKeyPresenter *presenter=[[LWGenerateKeyPresenter alloc] init];
-                [self.navigationController pushViewController:presenter animated:YES];
-            }
+            [self checkPrivateKey];
         }
     }];
 }
@@ -200,6 +194,38 @@ static int const kAllowedAttempts = 3;
     }];
 }
 
+-(void) checkPrivateKey
+{
+    if([LWPrivateKeyManager shared].wifPrivateKeyLykke)
+        [((LWAuthNavigationController *)self.navigationController) setRootMainTabScreen];
+    else
+    {
+        [self setLoading:YES];
+        [[LWAuthManager instance] requestEncodedPrivateKey];
+        
+        
+    }
+
+}
+
+-(void) authManagerDidGetEncodedPrivateKey:(LWAuthManager *)manager
+{
+    [self setLoading:NO];
+    [((LWAuthNavigationController *)self.navigationController) setRootMainTabScreen];
+}
+
+-(void) authManager:(LWAuthManager *)manager didFailWithReject:(NSDictionary *)reject context:(GDXRESTContext *)context
+{
+    [self setLoading:NO];
+    if([reject[@"Code"] intValue]==1)
+    {
+        LWGenerateKeyPresenter *presenter=[[LWGenerateKeyPresenter alloc] init];
+        [self.navigationController pushViewController:presenter animated:YES];
+    }
+    else
+        [self showReject:reject response:context.task.response];
+}
+
 
 #pragma mark - Utils
 
@@ -217,13 +243,7 @@ static int const kAllowedAttempts = 3;
              }
              else
              {
-                 if([LWPrivateKeyManager shared].wifPrivateKeyLykke)
-                     [((LWAuthNavigationController *)self.navigationController) setRootMainTabScreen];
-                 else
-                 {
-                     LWGenerateKeyPresenter *presenter=[[LWGenerateKeyPresenter alloc] init];
-                     [self.navigationController pushViewController:presenter animated:YES];
-                 }
+                 [self checkPrivateKey];
              }
          }];
      }

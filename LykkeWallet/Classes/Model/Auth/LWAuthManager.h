@@ -56,6 +56,7 @@
 @class LWPacketGetEthereumAddress;
 
 
+
 @protocol LWAuthManagerDelegate<NSObject>
 @optional
 - (void)authManager:(LWAuthManager *)manager didFailWithReject:(NSDictionary *)reject context:(GDXRESTContext *)context;
@@ -140,6 +141,7 @@
 
 -(void) authManagerDidGetEthereumAddress:(LWPacketGetEthereumAddress *) ethereumAddress;
 
+-(void) authManagerDidGetEncodedPrivateKey:(LWAuthManager *) manager;
 
 @end
 

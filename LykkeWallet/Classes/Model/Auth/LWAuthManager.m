@@ -1055,6 +1055,12 @@ SINGLETON_INIT {
             [self.delegate authManagerDidGetEthereumAddress:(LWPacketGetEthereumAddress *)pack];
         }
     }
+    else if (pack.class == LWPacketEncodedPrivateKey.class) {
+        if ([self.delegate respondsToSelector:@selector(authManagerDidGetEncodedPrivateKey:)]) {
+            [self.delegate authManagerDidGetEncodedPrivateKey:self];
+        }
+    }
+    
     
 }
 

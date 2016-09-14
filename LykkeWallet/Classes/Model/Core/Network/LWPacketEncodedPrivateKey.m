@@ -15,12 +15,12 @@
 
 - (void)parseResponse:(id)response error:(NSError *)error {
     
-    if([response[@"Error"] isKindOfClass:[NSDictionary class]] && [response[@"Error"][@"Code"] intValue]==1)  //Error occures
-    {
-//        [[LWPrivateKeyManager shared] generatePrivateKey];
-        [[LWAuthManager instance] requestSaveClientKeysWithPubKey:[LWPrivateKeyManager shared].publicKeyLykke encodedPrivateKey:[LWPrivateKeyManager shared].encryptedKeyLykke];
-        return;
-    }
+//    if([response[@"Error"] isKindOfClass:[NSDictionary class]] && [response[@"Error"][@"Code"] intValue]==1)  //Error occures
+//    {
+////        [[LWPrivateKeyManager shared] generatePrivateKey];
+////        [[LWAuthManager instance] requestSaveClientKeysWithPubKey:[LWPrivateKeyManager shared].publicKeyLykke encodedPrivateKey:[LWPrivateKeyManager shared].encryptedKeyLykke];
+//        return;
+//    }
     
     [super parseResponse:response error:error];
     

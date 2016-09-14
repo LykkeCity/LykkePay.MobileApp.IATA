@@ -20,5 +20,7 @@
 @property (strong, nonatomic) NSString *securityMessage2;
 @property (strong, nonatomic) NSString *signature2;
 
+@property (strong, nonatomic) NSString *phoneNumber;
+
 
 @end

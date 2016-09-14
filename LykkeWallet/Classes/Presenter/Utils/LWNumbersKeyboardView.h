@@ -7,10 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LWMathKeyboardCursorView.h"
 
 @interface LWNumbersKeyboardView : UIView
 
 @property (strong, nonatomic) UITextField *textField;
+
+@property (strong, nonatomic) LWMathKeyboardCursorView *cursor;
+
 @property id delegate;
 
 @property BOOL showDoneButton;
@@ -18,9 +22,12 @@
 @property BOOL showPredefinedSums;
 @property BOOL showSeparators;
 
+@property BOOL showSMSCodeCursor;
+
 @property (strong, nonatomic) NSString *prefix;
 
 @property int accuracy;
+
 
 @end
 
