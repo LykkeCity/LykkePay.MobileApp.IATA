@@ -1,18 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <mutableArray key="Proxima Nova Semibold.otf">
+        <array key="Proxima Nova Regular.otf">
+            <string>ProximaNova-Regular</string>
+        </array>
+        <array key="Proxima Nova Semibold.otf">
             <string>ProximaNova-Semibold</string>
-            <string>ProximaNova-Semibold</string>
-        </mutableArray>
+        </array>
     </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LWTradingWalletPresenter">
             <connections>
+                <outlet property="balanceLabel" destination="2ha-q5-sQq" id="SFQ-1c-95l"/>
                 <outlet property="depositButton" destination="BNm-RT-c2W" id="ToQ-ZL-jS0"/>
                 <outlet property="tableView" destination="Cax-fM-Y0r" id="GOg-6S-tWP"/>
                 <outlet property="tableViewBottomConstraint" destination="NO3-4B-EVs" id="gvQ-YR-zNx"/>
@@ -21,41 +25,40 @@
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="GMb-Nj-ATo">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+        <view contentMode="scaleToFill" misplaced="YES" id="GMb-Nj-ATo">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O6u-WM-TMp">
-                    <rect key="frame" x="0.0" y="483" width="320" height="85"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7ap-Ar-9yN" customClass="TKButton">
-                            <rect key="frame" x="20" y="20" width="130" height="45"/>
+                            <frame key="frameInset" minX="20" minY="20" width="130" height="45"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="45" id="g6C-eG-H6c"/>
                             </constraints>
                             <fontDescription key="fontDescription" name="ProximaNova-Semibold" family="Proxima Nova" pointSize="15"/>
                             <state key="normal" title="WITHDRAW" backgroundImage="ButtonOKInactive">
-                                <color key="titleColor" red="0.2470588235" green="0.30196078430000001" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleColor" red="0.2470588235" green="0.30196078430000001" blue="0.37647058820000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                             <connections>
                                 <action selector="withdrawClicked:" destination="-1" eventType="touchUpInside" id="ay5-ci-Jvo"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BNm-RT-c2W" customClass="TKButton">
-                            <rect key="frame" x="170" y="20" width="130" height="45"/>
+                            <frame key="frameInset" minX="170" minY="20" width="130" height="45"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="45" id="hR8-VF-VDj"/>
                             </constraints>
                             <fontDescription key="fontDescription" name="ProximaNova-Semibold" family="Proxima Nova" pointSize="15"/>
                             <state key="normal" title="DEPOSIT" backgroundImage="ButtonOK_square">
-                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                             <connections>
                                 <action selector="depositClicked:" destination="-1" eventType="touchUpInside" id="vOd-nr-w6T"/>
                             </connections>
                         </button>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstItem="7ap-Ar-9yN" firstAttribute="leading" secondItem="O6u-WM-TMp" secondAttribute="leading" constant="30" id="1s0-mB-jZp"/>
                         <constraint firstAttribute="trailing" secondItem="BNm-RT-c2W" secondAttribute="trailing" constant="30" id="4jo-gh-0EZ"/>
@@ -67,25 +70,37 @@
                     </constraints>
                 </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Cax-fM-Y0r">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="483"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 </tableView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2ha-q5-sQq">
+                    <frame key="frameInset" minX="166" width="42" height="21"/>
+                    <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="17"/>
+                    <color key="textColor" red="0.24705882352941178" green="0.30196078431372547" blue="0.37647058823529411" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="O6u-WM-TMp" firstAttribute="leading" secondItem="GMb-Nj-ATo" secondAttribute="leading" id="38r-RT-tVL"/>
                 <constraint firstAttribute="trailing" secondItem="Cax-fM-Y0r" secondAttribute="trailing" id="LRg-wH-xO1"/>
                 <constraint firstAttribute="bottom" secondItem="Cax-fM-Y0r" secondAttribute="bottom" constant="85" id="NO3-4B-EVs"/>
+                <constraint firstItem="2ha-q5-sQq" firstAttribute="centerX" secondItem="GMb-Nj-ATo" secondAttribute="centerX" id="kwP-Eq-JrN"/>
                 <constraint firstAttribute="bottom" secondItem="O6u-WM-TMp" secondAttribute="bottom" id="oU5-tv-X1m"/>
                 <constraint firstAttribute="trailing" secondItem="O6u-WM-TMp" secondAttribute="trailing" id="pg6-Qj-3cp"/>
-                <constraint firstItem="Cax-fM-Y0r" firstAttribute="top" secondItem="GMb-Nj-ATo" secondAttribute="top" id="sk5-L9-nQF"/>
+                <constraint firstItem="2ha-q5-sQq" firstAttribute="top" secondItem="GMb-Nj-ATo" secondAttribute="top" constant="-1" id="qsJ-te-Hmx"/>
+                <constraint firstItem="Cax-fM-Y0r" firstAttribute="top" secondItem="GMb-Nj-ATo" secondAttribute="top" constant="26" id="sk5-L9-nQF"/>
                 <constraint firstItem="Cax-fM-Y0r" firstAttribute="leading" secondItem="GMb-Nj-ATo" secondAttribute="leading" id="uZV-a1-n6A"/>
             </constraints>
-            <point key="canvasLocation" x="97" y="166"/>
+            <point key="canvasLocation" x="96.5" y="165.5"/>
         </view>
     </objects>
     <resources>
         <image name="ButtonOKInactive" width="320" height="51"/>
         <image name="ButtonOK_square" width="320" height="51"/>
     </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4_7.fullscreen"/>
+    </simulatedMetricsContainer>
 </document>

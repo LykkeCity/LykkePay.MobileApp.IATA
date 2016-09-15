@@ -26,7 +26,7 @@
     
     NSDictionary *attributes=@{NSKernAttributeName:@(1.5), NSForegroundColorAttributeName:[UIColor colorWithRed:63.0/255 green:77.0/255 blue:96.0/255 alpha:1], NSFontAttributeName:[UIFont fontWithName:@"ProximaNova-Semibold" size:17]};
     self.informationLabel.attributedText=[[NSAttributedString alloc] initWithString:@"INFORMATION" attributes:attributes];
-    self.titleLabel.attributedText=[[NSAttributedString alloc] initWithString:@"BACKUP IS COMPLETE" attributes:attributes];
+    self.titleLabel.attributedText=[[NSAttributedString alloc] initWithString:@"Your backup is complete" attributes:attributes];
     
     
     NSDictionary *attributesButton=@{NSFontAttributeName:[UIFont fontWithName:@"ProximaNova-Regular" size:15], NSKernAttributeName:@(1), NSForegroundColorAttributeName:[UIColor whiteColor]};

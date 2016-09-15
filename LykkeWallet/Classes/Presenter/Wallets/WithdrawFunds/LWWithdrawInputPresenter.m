@@ -435,6 +435,8 @@ float const kMathHeightKeyboard = 239.0;
     // showing modal view
     if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad)
     {
+        
+         [confirmationView setFrame:self.view.bounds];
         [self.view addSubview:confirmationView];
         
         

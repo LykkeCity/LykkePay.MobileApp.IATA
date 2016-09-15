@@ -120,7 +120,7 @@
     
     if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad)
     {
-        UIWindow *window=[UIApplication sharedApplication].keyWindow;
+        UIWindow *window=self.view.window;
         CGPoint point=[self.view convertPoint:CGPointMake(0, self.view.bounds.size.height) toView:window];
         height=height-(window.bounds.size.height-point.y);
     }

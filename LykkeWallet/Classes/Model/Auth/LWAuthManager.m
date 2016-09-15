@@ -80,6 +80,7 @@
 #import "LWPacketSwiftCredentials.h"
 #import "LWPacketGetEthereumAddress.h"
 #import "LWPacketLykkeSettings.h"
+#import "LWPacketEmailHint.h"
 
 
 
@@ -663,6 +664,13 @@ SINGLETON_INIT {
     [self sendPacket:pack];
 }
 
+-(void) requestSendHintForEmail:(NSString *)email
+{
+    LWPacketEmailHint *pack=[LWPacketEmailHint new];
+    pack.email=email;
+    [self sendPacket:pack];
+}
+
 #pragma mark - Observing
 
 - (void)observeGDXNetAdapterDidReceiveResponseNotification:(NSNotification *)notification {
@@ -1060,7 +1068,11 @@ SINGLETON_INIT {
             [self.delegate authManagerDidGetEncodedPrivateKey:self];
         }
     }
-    
+    else if (pack.class == LWPacketEmailHint.class) {
+        if ([self.delegate respondsToSelector:@selector(authManagerDidSendEmailHint:)]) {
+            [self.delegate authManagerDidSendEmailHint:self];
+        }
+    }
     
 }
 

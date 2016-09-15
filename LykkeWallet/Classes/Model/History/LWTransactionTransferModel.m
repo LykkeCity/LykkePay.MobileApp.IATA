@@ -27,7 +27,8 @@
         _blockchainHash = [json objectForKey:@"BlockChainHash"];
         _addressFrom=json[@"AddressFrom"];
         _addressTo=json[@"AddressTo"];
-
+        _isSettled=[json[@"IsSettled"] boolValue];
+        
     }
     return self;
 }

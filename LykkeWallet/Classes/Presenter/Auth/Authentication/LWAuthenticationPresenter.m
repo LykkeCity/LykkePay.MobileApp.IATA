@@ -27,7 +27,7 @@
 
 
 @interface LWAuthenticationPresenter () <UITextFieldDelegate, LWAuthManagerDelegate> {
-    
+    CGFloat passwordContainerTopOffsetConstraintOrigin;
 }
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -49,6 +49,8 @@
 @property (strong, nonatomic) NSLayoutConstraint *emailHintWidthConstraint;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *scrollViewBottomConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *passwordContainerTopOffsetConstraint;
+
 
 @end
 
@@ -60,7 +62,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
+    passwordContainerTopOffsetConstraintOrigin=_passwordContainerTopOffsetConstraint.constant;
     
     // init fields
     
@@ -197,11 +199,22 @@
 -(IBAction)sendHintPressed:(id)sender
 {
     [self.view endEditing:YES];
-      [self.navigationController.view makeToast:Localize(@"wallets.bitcoin.sendemail")];
+    [self setLoading:YES];
+    [[LWAuthManager instance] requestSendHintForEmail:self.email];
+    
 }
 
 - (void)observeKeyboardWillShowNotification:(NSNotification *)notification {
     
+    if([UIScreen mainScreen].bounds.size.width==320)
+    {
+        _passwordContainerTopOffsetConstraint.constant=22;
+        [UIView animateWithDuration:0.3 animations:^{
+            [self.view layoutIfNeeded];
+        }];
+        return;
+    }
+
 //    if([UIDevice currentDevice].userInterfaceIdiom!=UIUserInterfaceIdiomPad)
 //    {
 //        [super observeKeyboardWillShowNotification:notification];
@@ -218,6 +231,15 @@
 }
 
 - (void)observeKeyboardWillHideNotification:(NSNotification *)notification {
+    if([UIScreen mainScreen].bounds.size.width==320)
+    {
+        _passwordContainerTopOffsetConstraint.constant=passwordContainerTopOffsetConstraintOrigin;
+        [UIView animateWithDuration:0.3 animations:^{
+            [self.view layoutIfNeeded];
+        }];
+        return;
+    }
+    
     
     self.scrollViewBottomConstraint.constant=0;
     
@@ -247,7 +269,12 @@
                         isAuthentication:YES];
 }
 
+-(void) authManagerDidSendEmailHint:(LWAuthManager *)manager
+{
+    [self setLoading:NO];
+    [self.navigationController.view makeToast:Localize(@"wallets.bitcoin.sendemail")];
 
+}
 
 
 
@@ -273,6 +300,16 @@
         self.distanceBetweenButtonsConstraint.constant=0;
     self.passwordInvalidImageView.hidden=NO;
     [self.view layoutSubviews];
+}
+
+-(NSString *) nibName
+{
+    if([UIScreen mainScreen].bounds.size.width==320)
+    {
+        return @"LWAuthenticationPresenter_iphone5";
+    }
+    else
+        return @"LWAuthenticationPresenter";
 }
 
 @end

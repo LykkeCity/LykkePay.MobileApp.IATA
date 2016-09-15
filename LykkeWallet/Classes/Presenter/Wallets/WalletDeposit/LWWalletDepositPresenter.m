@@ -78,7 +78,7 @@
     self.indicatorView.hidden = YES;
 }
 
-- (void)webView:(UIWebView *)webView didFailLoadWithError:(nullable NSError *)error {
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
     [self.indicatorView stopAnimating];
     self.indicatorView.hidden = YES;
 }

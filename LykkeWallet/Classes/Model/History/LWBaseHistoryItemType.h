@@ -36,4 +36,6 @@ typedef NS_ENUM(NSInteger, LWHistoryItemType) {
 
 @property (copy, nonatomic) NSNumber *volume;
 
+@property BOOL isSettled;
+
 @end

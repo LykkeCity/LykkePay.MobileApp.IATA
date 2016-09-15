@@ -22,5 +22,7 @@
 @property (readonly, nonatomic) NSString *addressFrom;
 @property (readonly, nonatomic) NSString *addressTo;
 
+@property BOOL isSettled;
+
 
 @end

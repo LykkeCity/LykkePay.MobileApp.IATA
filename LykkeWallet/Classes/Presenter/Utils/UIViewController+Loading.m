@@ -135,7 +135,7 @@
 - (void)showReleaseError:(NSDictionary *)reject response:(NSURLResponse *)response {
     NSString *message = [reject objectForKey:kErrorMessage];
     
-    UIWindow *window=[UIApplication sharedApplication].keyWindow;
+    UIWindow *window=self.view.window;
     
     if (response && [LWAuthManager isInternalServerError:response]) {
         message = [NSString stringWithFormat:Localize(@"errors.server.problems")];

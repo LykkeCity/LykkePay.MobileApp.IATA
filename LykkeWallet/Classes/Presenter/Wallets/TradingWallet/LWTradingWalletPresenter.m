@@ -25,6 +25,7 @@
 #import "LWMyLykkeBuyPresenter.h"
 #import "LWMyLykkeIpadController.h"
 #import "LWEtheriumDepositPresenter.h"
+#import "LWUtils.h"
 
 
 @interface LWTradingWalletPresenter()  {
@@ -40,6 +41,7 @@
 @property (weak, nonatomic) IBOutlet TKButton *depositButton;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewBottomConstraint;
 
+@property (weak, nonatomic) IBOutlet UILabel *balanceLabel;
 
 
 @end
@@ -333,6 +335,7 @@
     }
     if(self.balance.floatValue>0)
         [self adjustButtons];
+    _balanceLabel.text=[NSString stringWithFormat:@"%@ %@ available", self.assetName, [[LWUtils formatFairVolume:self.balance.doubleValue accuracy:[LWCache accuracyForAssetId:self.assetId] roundToHigher:NO] stringByReplacingOccurrencesOfString:@" " withString:@","]];
 }
 
 

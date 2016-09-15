@@ -21,7 +21,7 @@
         return;
     }
     _isRegistered = [result[@"IsRegistered"] boolValue];
-    _hasHint=result[@"HasPwdHint"];
+    _hasHint=[result[@"HasPwdHint"] boolValue];
     
 }
 

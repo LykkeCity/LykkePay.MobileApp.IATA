@@ -510,7 +510,7 @@
     if([item respondsToSelector:@selector(blockchainHash)])
     {
         LWTradeHistoryItemType *trade = (LWTradeHistoryItemType *)item;
-        if(!trade.blockchainHash.length)
+        if(!trade.isSettled)
         {
             
             

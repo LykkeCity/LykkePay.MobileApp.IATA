@@ -151,7 +151,7 @@
 //    keyboardHeight=frame.size.height;
     
     
-    UIWindow *window=[UIApplication sharedApplication].keyWindow;
+    UIWindow *window=self.view.window;
     CGPoint point=[window convertPoint:CGPointMake(0, window.bounds.size.height-frame.size.height) toView:self.view];
 
     keyboardHeight=self.view.bounds.size.height-point.y;

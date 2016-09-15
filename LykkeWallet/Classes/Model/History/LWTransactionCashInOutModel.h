@@ -20,8 +20,9 @@
 @property (readonly, nonatomic) NSString *iconId;
 @property (readonly, nonatomic) NSString *blockchainHash;
 @property BOOL isRefund;
-
+@property BOOL isSettled;
 @property (readonly, nonatomic) NSString *addressFrom;
 @property (readonly, nonatomic) NSString *addressTo;
+
 
 @end

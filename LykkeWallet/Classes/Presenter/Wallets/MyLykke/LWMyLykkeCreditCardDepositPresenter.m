@@ -344,7 +344,7 @@
 {
     CGRect const frame = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
     
-    UIWindow *window=[UIApplication sharedApplication].keyWindow;
+    UIWindow *window=self.view.window;
     CGPoint point=[window convertPoint:CGPointMake(0, window.bounds.size.height-frame.size.height) toView:self.view];
     
     [self.bottomOffsetConstraint setConstant:self.view.bounds.size.height-point.y];

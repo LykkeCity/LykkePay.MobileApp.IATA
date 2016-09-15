@@ -25,7 +25,7 @@
 }
 
 - (NSString *)urlRelative {
-    NSString *url = [NSString stringWithFormat:@"CheckMobilePhone?phoneNumber=%@&code=%@", self.phone, self.code];
+    NSString *url = [NSString stringWithFormat:@"CheckMobilePhone?phoneNumber=%@&code=%@",  [self.phone stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],self.code];
     return url;
 }
 

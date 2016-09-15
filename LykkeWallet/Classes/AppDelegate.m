@@ -122,10 +122,10 @@
     }
     
 //    [LWTransactionManager signTransactionRaw:@"01000000027f5932253320381830aefd8c6dfac7560aadcd90565b767bcafa6f4fd9c5de6f010300006a473044022075c08ce8f79864fd62e06dc3b22867ddbbab8d464ec0977594b65a76cf1140b002200995ee6dbcf3e7f56cd519a1f1772d4708c237b5e4375de32aa4288a548c03ae012103f50cb40deb9026745f2fcfe2a07457771732d0786f406575d6246d462109a908ffffffff47912b7e0f1ff48b0bc2010c07c8f564fa7dd2652be55ec63cd73b02517652190100000000ffffffff0280f0fa02000000001976a914019a3eeb91cddb144550d775a716041517db15b288ac80d1f008000000001976a9141a1837100134a6d346390b4bc8202ffd7e593fa788ac00000000" forModel:nil];   //Testing
-//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(30 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(20 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
 //    [LWPushNotificationView showPushNotification:@{@"aps":@{@"alert":@"Need to show sticker above action bar, so clock, network, battery etc icons won't overlap notification text", @"type":@(1)}} clickImmediately:NO];//Testing
 //    });
-
+//
     
 //    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(30 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
 //        LWMyLykkeSuccessViewController *presenter=[[LWMyLykkeSuccessViewController alloc] init];//Testing
@@ -208,8 +208,8 @@
             NSLog(@"Error registering for notifications: %@", error);
             if(([[LWKeychainManager instance].address isEqualToString:kProductionServer] || [[LWKeychainManager instance].address isEqualToString:kStagingTestServer])==NO)
             {
-                UIAlertView *alert=[[UIAlertView alloc] initWithTitle:nil message:@"Error registering for notifications" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
-                [alert show];
+//                UIAlertView *alert=[[UIAlertView alloc] initWithTitle:nil message:@"Error registering for notifications" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+//                [alert show];
             }
 
         }

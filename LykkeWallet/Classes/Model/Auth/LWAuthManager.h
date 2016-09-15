@@ -142,6 +142,7 @@
 -(void) authManagerDidGetEthereumAddress:(LWPacketGetEthereumAddress *) ethereumAddress;
 
 -(void) authManagerDidGetEncodedPrivateKey:(LWAuthManager *) manager;
+-(void) authManagerDidSendEmailHint:(LWAuthManager *) manager;
 
 @end
 
@@ -256,6 +257,8 @@ SINGLETON_DECLARE
 -(void) requestEthereumAddress;
 
 -(void) requestMyLykkeSettings;
+
+-(void) requestSendHintForEmail:(NSString *) email;
 
 
 //PubkeyAddressValidation

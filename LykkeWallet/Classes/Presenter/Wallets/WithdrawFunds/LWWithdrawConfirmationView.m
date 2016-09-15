@@ -67,6 +67,11 @@ static float const kNoPinProtectionHeight = 356;
 {
     UITapGestureRecognizer *gesture=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cancelClicked:)];
     [self.touchCatchView addGestureRecognizer:gesture];
+    if([UIScreen mainScreen].bounds.size.width==320)
+    {
+        _topViewHeightConstraint.constant=520;
+    }
+
 }
 
 #pragma mark - General
@@ -131,6 +136,8 @@ static float const kNoPinProtectionHeight = 356;
         pinKeyboardView.hidden = !shouldSignOrder;
         [pinKeyboardView updateView];
         [self.bottomView addSubview:pinKeyboardView];
+        pinKeyboardView.frame=self.bottomView.bounds;
+        pinKeyboardView.autoresizingMask=UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     }
     else {
         if (pinKeyboardView) {
@@ -138,8 +145,11 @@ static float const kNoPinProtectionHeight = 356;
             pinKeyboardView = nil;
         }
     }
-    
-    self.topViewHeightConstraint.constant = (shouldSignOrder ? kPinProtectionHeight : kNoPinProtectionHeight);
+  
+    if(shouldSignOrder==NO)
+        self.topViewHeightConstraint.constant=kNoPinProtectionHeight;
+
+//    self.topViewHeightConstraint.constant = (shouldSignOrder ? kPinProtectionHeight : kNoPinProtectionHeight);
     self.placeOrderButton.hidden = shouldSignOrder;
     
     self.waitingLabel.text = Localize(@"withdraw.funds.modal.waiting");
@@ -254,6 +264,11 @@ static float const kNoPinProtectionHeight = 356;
     return kDescriptionRows;
 }
 
+-(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 50;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *const titles[kDescriptionRows] = {
@@ -282,13 +297,13 @@ static float const kNoPinProtectionHeight = 356;
 
 #pragma mark - UITableViewDelegate
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSString *text = [self dataByCellRow:indexPath.row - 1];
-    if (text) {
-        return [self calculateRowHeightForText:text];
-    }
-    return 0.0;
-}
+//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+//    NSString *text = [self dataByCellRow:indexPath.row - 1];
+//    if (text) {
+//        return [self calculateRowHeightForText:text];
+//    }
+//    return 0.0;
+//}
 
 
 #pragma mark - LWPinKeyboardViewDelegate

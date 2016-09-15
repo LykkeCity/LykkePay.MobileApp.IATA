@@ -25,6 +25,7 @@
     
     result.iconId=model.iconId;
     result.blockchainHash=model.blockchainHash;
+    result.isSettled=model.isSettled;
     
     return result;
 }
