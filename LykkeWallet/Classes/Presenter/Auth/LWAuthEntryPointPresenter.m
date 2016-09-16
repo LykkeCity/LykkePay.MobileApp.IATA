@@ -61,6 +61,8 @@ typedef NS_ENUM(NSInteger, LWAuthEntryPointNextStep) {
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *tipsBottomConstraint;
 @property (weak, nonatomic) IBOutlet LWProgressView *activityView;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *proceedButtonWidth;
+
 // for IATA iPad
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *viewTopConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *loginBottomConstraint;
@@ -97,6 +99,8 @@ typedef NS_ENUM(NSInteger, LWAuthEntryPointNextStep) {
     {
         self.observeKeyboardEvents=YES;
     }
+    if([UIScreen mainScreen].bounds.size.width==320)
+        self.proceedButtonWidth.constant=280;
     
     self.versionLabel.text=[LWCache currentAppVersion];
     

@@ -260,6 +260,8 @@ SINGLETON_DECLARE
 
 -(void) requestSendHintForEmail:(NSString *) email;
 
+-(void) requestSaveBackupState;
+
 
 //PubkeyAddressValidation
 

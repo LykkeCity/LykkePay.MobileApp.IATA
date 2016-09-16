@@ -19,7 +19,9 @@
     
 }
 
-@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *proceedWidthConstraint;
 
 @end
 
@@ -30,6 +32,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.hidesBackButton = YES;
+    if([UIScreen mainScreen].bounds.size.width==320)
+        _proceedWidthConstraint.constant=280;
+
 }
 
 //- (void)observeKeyboardWillShowNotification:(NSNotification *)notification {

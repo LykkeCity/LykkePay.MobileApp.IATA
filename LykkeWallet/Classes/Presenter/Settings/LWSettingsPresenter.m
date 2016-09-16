@@ -28,6 +28,7 @@
 #import "LWRefundPresenter.h"
 #import "LWPacketGetRefundAddress.h"
 #import "LWUtils.h"
+#import "LWBackupGetStartedPresenter.h"
 
 @import MessageUI;
 
@@ -48,7 +49,6 @@
 @implementation LWSettingsPresenter
 
 
-static NSInteger const kNumberOfRows = 8;
 // cell identifiers
 static NSInteger const kKYCCellId    = 0;
 static NSInteger const kPINCellId    = 1;
@@ -59,8 +59,10 @@ static NSInteger const kTermsOfUseCellId   = 5;
 static NSInteger const kCallSupportCellId =6;
 static NSInteger const kLogoutCellId = 7;
 
+static NSInteger const kBackupCellId=8;
 
-static NSString *const SettingsCells[kNumberOfRows] = {
+
+static NSString *const SettingsCells[] = {
     kSettingsAssetTableViewCell,
     kRadioTableViewCell,
     kSettingsAssetTableViewCell,
@@ -68,11 +70,13 @@ static NSString *const SettingsCells[kNumberOfRows] = {
     kSettingsAssetTableViewCell,
     kSettingsTermsTableViewCell,
     kSettingsCallSupportTableViewCell,
-    @"LWSettingsLogOutTableViewCell"
+    @"LWSettingsLogOutTableViewCell",
+    kSettingsAssetTableViewCell
+
 
 };
 
-static NSString *const SettingsIdentifiers[kNumberOfRows] = {
+static NSString *const SettingsIdentifiers[] = {
     kSettingsAssetTableViewCellIdentifier,
     kRadioTableViewCellIdentifier,
     kSettingsAssetTableViewCellIdentifier,
@@ -80,7 +84,9 @@ static NSString *const SettingsIdentifiers[kNumberOfRows] = {
     kSettingsAssetTableViewCellIdentifier,
     kSettingsTermsTableViewCellIdentifier,
     kSettingsCallSupportTableViewCellIdentifier,
-    @"LWSettingsLogOutTableViewCellIdentifier"
+    @"LWSettingsLogOutTableViewCellIdentifier",
+    kSettingsAssetTableViewCellIdentifier
+
 };
 
 
@@ -174,7 +180,7 @@ static NSString *const SettingsIdentifiers[kNumberOfRows] = {
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 3;
+    return 4;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -182,9 +188,12 @@ static NSString *const SettingsIdentifiers[kNumberOfRows] = {
         return 5;
     else if(section==1)
         return 2;
-    else
+    else if(section==3)
         return 2;
+    else if(section==2)
+        return 1;
     
+    return 0;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -195,7 +204,7 @@ static NSString *const SettingsIdentifiers[kNumberOfRows] = {
 {
     NSLog(@"%d", indexPath.row);
     
-    if(indexPath.section==2 && indexPath.row==1)
+    if(indexPath.section==3 && indexPath.row==1)
     {
         UITableViewCell *cell=[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
         if([[LWCache instance].serverAPIVersion length])
@@ -207,9 +216,8 @@ static NSString *const SettingsIdentifiers[kNumberOfRows] = {
             label.font=[UIFont fontWithName:@"ProximaNova-Regular" size:14];
             label.autoresizingMask=UIViewAutoresizingFlexibleWidth;
             [cell.contentView addSubview:label];
-            
         }
-        
+        cell.separatorInset=UIEdgeInsetsMake(0, 0, 0, 1024);
         cell.userInteractionEnabled=NO;
         return cell;
     }
@@ -220,8 +228,11 @@ static NSString *const SettingsIdentifiers[kNumberOfRows] = {
     {
         newIndexPath=[NSIndexPath indexPathForRow:indexPath.row+5 inSection:0];
     }
-    else if(indexPath.section==2)
+    else if(indexPath.section==3)
         newIndexPath=[NSIndexPath indexPathForRow:indexPath.row+7 inSection:0];
+    else if(indexPath.section==2)
+        newIndexPath=[NSIndexPath indexPathForRow:indexPath.row+8 inSection:0];
+
     
     NSString *identifier = SettingsIdentifiers[newIndexPath.row];
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
@@ -234,13 +245,14 @@ static NSString *const SettingsIdentifiers[kNumberOfRows] = {
         lineView.backgroundColor=[UIColor colorWithRed:211.0/255 green:214.0/255 blue:219.0/255 alpha:1];
         [cell addSubview:lineView];
     }
-    if((indexPath.section==0 && indexPath.row==4) || (indexPath.section==1 && indexPath.row==1) || (indexPath.section==2))
+    if((indexPath.section==0 && indexPath.row==4) || (indexPath.section==1 && indexPath.row==1) || (indexPath.section==2) || (indexPath.section==3 && indexPath.row==0))
     {
         UIView *lineView=[[UIView alloc] initWithFrame:CGRectMake(0, 50.0-0.5, 1024, 0.5)];
         lineView.backgroundColor=[UIColor colorWithRed:211.0/255 green:214.0/255 blue:219.0/255 alpha:1];
         [cell addSubview:lineView];
 
     }
+    
     
     return cell;
 }
@@ -290,11 +302,16 @@ static NSString *const SettingsIdentifiers[kNumberOfRows] = {
         else if(indexPath.row+5==kCallSupportCellId)
             [self callSupport];
     }
-    else if(indexPath.section==2)
+    else if(indexPath.section==3)
     {
         if(indexPath.row+7==kLogoutCellId)
             [(LWAuthNavigationController *)self.navigationController logout];
 
+    }
+    else if(indexPath.section==2)
+    {
+        LWBackupGetStartedPresenter *presenter=[LWBackupGetStartedPresenter new];
+        [self.navigationController pushViewController:presenter animated:YES];
     }
     
 
@@ -302,7 +319,7 @@ static NSString *const SettingsIdentifiers[kNumberOfRows] = {
 
 -(CGFloat) tableView:(UITableView *) tableView heightForFooterInSection:(NSInteger)section
 {
-    if(section==2)
+    if(section==3)
         return 0;
     
     return 20;
@@ -427,6 +444,13 @@ static NSString *const SettingsIdentifiers[kNumberOfRows] = {
         
  
     }
+    else if (indexPath.row == kBackupCellId) {
+        LWSettingsAssetTableViewCell *backupCell = (LWSettingsAssetTableViewCell *)cell;
+        backupCell.titleLabel.text = @"Backup private key";
+        backupCell.assetLabel.text=@"";
+        
+    }
+
 
     
 }

@@ -11,6 +11,7 @@
 #import "LWTextField.h"
 #import "LWValidator.h"
 #import "LWDeviceInfo.h"
+#import "LWCommonButton.h"
 
 
 @interface LWRegisterBasePresenter () <LWTextFieldDelegate> {
@@ -47,7 +48,10 @@
     [super viewWillAppear:animated];
 
     // check button state
-    [LWValidator setButton:self.nextButton enabled:[self canProceed]];
+    if([self.nextButton isKindOfClass:[LWCommonButton class]])
+        self.nextButton.enabled=[self canProceed];
+    else
+        [LWValidator setButton:self.nextButton enabled:[self canProceed]];
 
     self.observeKeyboardEvents = YES;
 }
@@ -153,7 +157,11 @@
     }
     textField.valid = [self validateInput:textField.text];
     // check button state
-    [LWValidator setButton:self.nextButton enabled:self.canProceed];
+    if([self.nextButton isKindOfClass:[LWCommonButton class]])
+        self.nextButton.enabled=[self canProceed];
+    else
+        [LWValidator setButton:self.nextButton enabled:[self canProceed]];
+
 }
 
 @end

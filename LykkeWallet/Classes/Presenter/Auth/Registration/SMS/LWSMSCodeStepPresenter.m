@@ -17,6 +17,7 @@
 #import "UIViewController+Loading.h"
 #import "UIView+Toast.h"
 #import "LWGenerateKeyPresenter.h"
+#import "LWCommonButton.h"
 
 
 @interface LWSMSCodeStepPresenter ()<LWTextFieldDelegate> {
@@ -28,9 +29,11 @@
 
 @property (weak, nonatomic) IBOutlet UILabel     *titleLabel;
 @property (weak, nonatomic) IBOutlet TKContainer *codeContainer;
-@property (weak, nonatomic) IBOutlet TKButton    *confirmButton;
+@property (weak, nonatomic) IBOutlet LWCommonButton    *confirmButton;
 @property (weak, nonatomic) IBOutlet UILabel     *infoLabel;
 @property (weak, nonatomic) IBOutlet UIButton    *pasteButton;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *confirmButtonWidthConstraint;
 
 @end
 
@@ -55,13 +58,15 @@
     
 #ifdef PROJECT_IATA
 #else
-    [self.confirmButton setGrayPalette];
+//    [self.confirmButton setGrayPalette];
 #endif
     
     UITapGestureRecognizer* gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(infoClicked:)];
     [self.infoLabel setUserInteractionEnabled:YES];
     [self.infoLabel addGestureRecognizer:gesture];
     
+    if([UIScreen mainScreen].bounds.size.width==320)
+        _confirmButtonWidthConstraint.constant=280;
     
 }
 
@@ -172,7 +177,8 @@
 
 - (void)updatePasteButtonStatus {
     // check button state
-    [LWValidator setButton:self.confirmButton enabled:[self canProceed]];
+    self.confirmButton.enabled=[self canProceed];
+    
     self.pasteButton.hidden = [self canProceed];
 }
 

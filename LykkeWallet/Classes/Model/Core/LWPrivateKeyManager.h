@@ -8,6 +8,7 @@
 
 
 //words for c1@c1.com: size odor choose rare sweet recipe render hour forget used resource ill
+//words for c2@c2.com: market sister page gorilla unusual arctic lava off fresh number report pull
 
 #import <Foundation/Foundation.h>
 #import "BTCKey.h"
@@ -39,6 +40,7 @@
 
 +(NSArray *) generateSeedWords;
 
+-(NSArray *) privateKeyWords;
 
 -(BOOL) savePrivateKeyLykkeFromSeedWords:(NSArray *) words;
 

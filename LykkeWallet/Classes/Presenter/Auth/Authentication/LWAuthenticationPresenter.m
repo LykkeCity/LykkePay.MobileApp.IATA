@@ -290,14 +290,16 @@
         return;
     }
     
-    self.resetPasswordWidthConstraint.active=NO;
     if(_userHasHint)
-    {
-        self.distanceBetweenButtonsConstraint.constant=25;
         _emailHintWidthConstraint.active=NO;
-    }
+    if([[NSUserDefaults standardUserDefaults] boolForKey:@"UserHasBackupOfPrivateKey"])
+        self.resetPasswordWidthConstraint.active=NO;
+    
+    if(_userHasHint && [[NSUserDefaults standardUserDefaults] boolForKey:@"UserHasBackupOfPrivateKey"])
+        self.distanceBetweenButtonsConstraint.constant=25;
     else
         self.distanceBetweenButtonsConstraint.constant=0;
+    
     self.passwordInvalidImageView.hidden=NO;
     [self.view layoutSubviews];
 }

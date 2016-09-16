@@ -18,7 +18,7 @@
     
 }
 
-@property (weak, nonatomic) IBOutlet UIImageView *backgroundImageView;
+
 @property (weak, nonatomic) IBOutlet UITextField *textField;
 @property (weak, nonatomic) IBOutlet UIImageView *validImageView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *leftConstraint;
@@ -39,15 +39,14 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    self.layer.cornerRadius=2;
     
     self.validImageView.hidden = YES;
     // observe text changes
     [self subscribe:UITextFieldTextDidChangeNotification
            selector:@selector(observeTextFieldDidChangeNotification:)];
     
-    UIImage *background = [[UIImage imageNamed:@"TextField"]
-                           resizableImageWithCapInsets:UIEdgeInsetsMake(15, 15, 15, 15)];
-    self.backgroundImageView.image = background;
+    
     [self setLeftOffset:kDefaultLeftTextFieldOffset];
     [self setRightOffset:kDefaultRigthTextFieldOffset];
 }

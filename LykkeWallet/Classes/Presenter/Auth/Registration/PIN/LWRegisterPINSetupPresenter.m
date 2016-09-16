@@ -13,13 +13,16 @@
 #import "UIViewController+Loading.h"
 #import "LWGenerateKeyPresenter.h"
 
+#import "LWPINPresenter.h"
+
 
 #import "LWKeychainManager.h"
 
 
 @interface LWRegisterPINSetupPresenter ()<ABPadLockScreenSetupViewControllerDelegate> {
-    ABPadLockScreenSetupViewController *pinController;
-    
+//    ABPadLockScreenSetupViewController *pinController;
+  
+    LWPINPresenter *pinController;
     NSString *pin;
     BOOL     pinDidSendToServer;
     UIImageView *progressView;
@@ -48,20 +51,37 @@
 
     // adjust pin controller frame
     if (!pinController) {
-        pinController = [[ABPadLockScreenSetupViewController alloc] initWithDelegate:self
-                                                                          complexPin:NO];
-        [pinController cancelButtonDisabled:YES];
         
-        pinController.modalPresentationStyle = UIModalPresentationFullScreen;
-        pinController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-        progressView=[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 37)];
-        progressView.image=[UIImage imageNamed:@"RegisterLineStep4.png"];
-        progressView.contentMode=UIViewContentModeCenter;
-        progressView.hidden=YES;
-        [pinController.view addSubview:progressView];
+        pinController=[LWPINPresenter new];
+        pinController.pinType=PIN_TYPE_ENTER;
+        pinController.view.autoresizingMask=UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+
+        pinController.pinEnteredBlock=^(NSString *pin_){
+            pin=pin_;
+            [[LWAuthManager instance] requestPinSecuritySet:pin_];
+            
+            
+        
+        };
+//        pinController = [[ABPadLockScreenSetupViewController alloc] initWithDelegate:self
+//                                                                          complexPin:NO];
+//        [pinController cancelButtonDisabled:YES];
+//        
+//        pinController.modalPresentationStyle = UIModalPresentationFullScreen;
+//        pinController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+//        progressView=[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 37)];
+//        progressView.image=[UIImage imageNamed:@"RegisterLineStep4.png"];
+//        progressView.contentMode=UIViewContentModeCenter;
+//        progressView.hidden=YES;
+//        [pinController.view addSubview:progressView];
+        
+        
     }
     if (!pin) {
-        [self presentViewController:pinController animated:YES completion:nil];
+//        [self presentViewController:pinController animated:YES completion:nil];
+        pinController.view.frame=self.view.bounds;
+        [self.view addSubview:pinController.view];
+        [self addChildViewController:pinController];
     }
     
     
@@ -103,16 +123,16 @@
 
 #pragma mark - ABPadLockScreenSetupViewControllerDelegate
 
-- (void)padLockScreenSetupViewController:(ABPadLockScreenSetupViewController *)controller didSetPin:(NSString *)pin_ {
-    [controller dismissViewControllerAnimated:YES completion:nil]; // dismiss
-    [pinController clearPin]; // don't forget to clear PIN data
-    // save pin
-    
-    pin = [pin_ copy];
-    
-    // request PIN setup
-    [[LWAuthManager instance] requestPinSecuritySet:pin];
-}
+//- (void)padLockScreenSetupViewController:(ABPadLockScreenSetupViewController *)controller didSetPin:(NSString *)pin_ {
+//    [controller dismissViewControllerAnimated:YES completion:nil]; // dismiss
+//    [pinController clearPin]; // don't forget to clear PIN data
+//    // save pin
+//    
+//    pin = [pin_ copy];
+//    
+//    // request PIN setup
+//    [[LWAuthManager instance] requestPinSecuritySet:pin];
+//}
 
 
 #pragma mark - LWAuthManagerDelegate
@@ -127,6 +147,12 @@
     LWGenerateKeyPresenter *presenter=[[LWGenerateKeyPresenter alloc] init];
     [self.navigationController pushViewController:presenter animated:YES];
     
+}
+
+-(void) authManager:(LWAuthManager *)manager didFailWithReject:(NSDictionary *)reject context:(GDXRESTContext *)context
+{
+    [self setLoading:NO];
+    [self showReject:reject response:context.task.response];
 }
 
 @end

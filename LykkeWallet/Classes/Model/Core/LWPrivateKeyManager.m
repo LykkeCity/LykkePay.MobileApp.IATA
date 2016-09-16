@@ -295,6 +295,60 @@
     }
 }
 
+-(NSArray *) privateKeyWords
+{
+    NSData *data=privateKeyForLykke.privateKey;
+    char *bytes=(char *)data.bytes;
+    
+    for(int i=0;i<16;i++)
+    {
+        if(bytes[i]!=0x0)
+        {
+            return nil;
+        }
+    }
+    
+    NSData *dataWords=[NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"english_words_list" ofType:@"txt"]];
+    NSString *string=[[NSString alloc] initWithData:dataWords encoding:NSUTF8StringEncoding];
+    NSArray *lines=[string componentsSeparatedByString:@"\n"];
+
+    
+    NSData *seedData=[data subdataWithRange:NSMakeRange(16, 16)];
+    NSLog(@"%@", seedData);
+    
+    //    NSData *seedData = [seed ny_dataFromHexString];
+    
+    // Calculate the sha256 hash to use with a checksum
+    NSMutableData *hash = [NSMutableData dataWithLength:CC_SHA256_DIGEST_LENGTH];
+    CC_SHA256(seedData.bytes, (int)seedData.length, hash.mutableBytes);
+    
+    NSMutableArray *checksumBits = [NSMutableArray
+                                    arrayWithArray:[[NSData dataWithData:hash] ny_hexToBitArray]];
+    NSMutableArray *seedBits =
+    [NSMutableArray arrayWithArray:[seedData ny_hexToBitArray]];
+    
+    // Append the appropriate checksum bits to the seed
+    for (int i = 0; i < (int)seedBits.count / 32; i++) {
+        [seedBits addObject: checksumBits[i]];
+    }
+    
+    
+    NSMutableArray *words=[[NSMutableArray alloc] init];
+    for (int i = 0; i < (int)seedBits.count / 11; i++) {
+        NSUInteger wordNumber =
+        strtol(
+               [[[seedBits subarrayWithRange: NSMakeRange(i * 11, 11)] componentsJoinedByString: @""] UTF8String],
+               NULL,
+               2);
+        
+        [words addObject: lines[wordNumber]];
+    }
+
+    
+    
+    return words;
+}
+
 -(NSData *) keyDataFromSeedWords:(NSArray *) words
 {
     NSData *data=[NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"english_words_list" ofType:@"txt"]];

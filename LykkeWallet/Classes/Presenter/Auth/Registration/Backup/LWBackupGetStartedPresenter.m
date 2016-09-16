@@ -11,6 +11,7 @@
 #import "LWBackupSingleWordPresenter.h"
 #import "LWPrivateKeyManager.h"
 #import "UIViewController+Navigation.h"
+#import "LWKeychainManager.h"
 
 @interface LWBackupGetStartedPresenter ()
 
@@ -65,7 +66,17 @@
 -(IBAction)getStartedPressed:(id)sender
 {
     LWBackupSingleWordPresenter *presenter=[[LWBackupSingleWordPresenter alloc] init];
-    presenter.wordsList=[LWPrivateKeyManager generateSeedWords];
+    if(![LWKeychainManager instance].login)
+        presenter.wordsList=[LWPrivateKeyManager generateSeedWords];
+    else if([LWPrivateKeyManager shared].privateKeyLykke)
+        presenter.wordsList=[[LWPrivateKeyManager shared] privateKeyWords];
+    else
+    {
+        UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"ERROR" message:@"You have no private key" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alert show];
+        return;
+    }
+        
     presenter.currentWordNum=0;
     [self.navigationController pushViewController:presenter animated:YES];
 }

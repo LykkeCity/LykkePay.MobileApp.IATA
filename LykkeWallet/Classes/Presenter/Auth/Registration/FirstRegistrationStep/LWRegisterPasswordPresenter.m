@@ -27,6 +27,8 @@
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet TKContainer *passwordConfirm;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *proceedWidthConstraint;
+
 @end
 
 
@@ -36,13 +38,14 @@
     [super viewDidLoad];
 
     passwordConfirmTextField = [LWTextField createTextFieldForContainer:self.passwordConfirm
-                                         withPlaceholder:@"Confirm your password"];
+                                         withPlaceholder:@"Enter again"];
 //    passwordConfirmTextField.keyboardType = UIKeyboardTypeDefault;
     passwordConfirmTextField.delegate = self;
     passwordConfirmTextField.secure=YES;
 
     
-
+    if([UIScreen mainScreen].bounds.size.width==320)
+        _proceedWidthConstraint.constant=280;
 }
 
 

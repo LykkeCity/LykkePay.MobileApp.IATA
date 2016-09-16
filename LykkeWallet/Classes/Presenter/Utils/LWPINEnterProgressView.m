@@ -20,6 +20,7 @@
 -(void) awakeFromNib
 {
     pointViews=[[NSMutableArray alloc] init];
+    
     CGFloat dist=(self.bounds.size.width-12*4)/3;
     for(int i=0;i<4;i++)
     {
@@ -30,6 +31,18 @@
         [pointViews addObject:v];
         v.backgroundColor=[UIColor colorWithRed:234.0/255 green:237.0/255 blue:239.0/255 alpha:1];
     }
+}
+
+-(void) layoutSubviews
+{
+    [super layoutSubviews];
+    CGFloat dist=(self.bounds.size.width-12*4)/3;
+    for(int i=0;i<4;i++)
+    {
+        UIView *v=pointViews[i];
+        v.frame=CGRectMake(i*(dist+12), 0, 12, 12);
+    }
+
 }
 
 -(void) setNumberOfSymbols:(int)num

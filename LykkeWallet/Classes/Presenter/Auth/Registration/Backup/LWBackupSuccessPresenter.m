@@ -9,6 +9,7 @@
 #import "LWBackupSuccessPresenter.h"
 #import "LWValidator.h"
 #import "LWAuthNavigationController.h"
+#import "LWKeychainManager.h"
 
 @interface LWBackupSuccessPresenter ()
 
@@ -39,7 +40,10 @@
 
 -(void) okButtonPressed
 {
-    [((LWAuthNavigationController *)self.navigationController) setRootMainTabScreen];
+    if(![LWKeychainManager instance].login)
+        [((LWAuthNavigationController *)self.navigationController) setRootMainTabScreen];
+    else
+        [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 -(void) viewWillAppear:(BOOL)animated

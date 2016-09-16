@@ -21,10 +21,19 @@
 }
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *nextButtonWidthConstraint;
+
 @end
 
 
 @implementation LWRegisterHintPresenter
+
+-(void) viewDidLoad
+{
+    [super viewDidLoad];
+    if([UIScreen mainScreen].bounds.size.width==320)
+        _nextButtonWidthConstraint.constant=280;
+}
 
 
 #pragma mark - LWRegisterBasePresenter

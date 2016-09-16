@@ -16,8 +16,8 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+        self.backgroundColor = [UIColor clearColor];
     
-    self.backgroundColor = [UIColor clearColor];
 }
 
 - (void)layoutSubviews {

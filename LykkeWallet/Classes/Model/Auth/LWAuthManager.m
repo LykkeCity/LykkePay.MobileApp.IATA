@@ -81,6 +81,7 @@
 #import "LWPacketGetEthereumAddress.h"
 #import "LWPacketLykkeSettings.h"
 #import "LWPacketEmailHint.h"
+#import "LWPacketSaveBackupState.h"
 
 
 
@@ -671,6 +672,13 @@ SINGLETON_INIT {
     [self sendPacket:pack];
 }
 
+
+-(void) requestSaveBackupState
+{
+    LWPacketSaveBackupState *pack=[LWPacketSaveBackupState new];
+    [self sendPacket:pack];
+    
+}
 #pragma mark - Observing
 
 - (void)observeGDXNetAdapterDidReceiveResponseNotification:(NSNotification *)notification {

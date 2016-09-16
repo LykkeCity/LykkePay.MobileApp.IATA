@@ -35,6 +35,9 @@
     numberOfTries=0;
     [self checkSubviews:self.view];
     [self adjustTitle];
+    
+    if([LWFingerprintHelper isFingerprintAvailable]==NO)
+        _fingerprintContainerView.hidden=YES;
 }
 
 
@@ -73,6 +76,8 @@
 -(void) viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    if([LWFingerprintHelper isFingerprintAvailable])
+        [self pinButtonPressedFingerPrint];
     
 }
 
@@ -112,7 +117,7 @@
                 }
                 else
                 {
-                    self.finishBlock(YES, pin);
+                    self.pinEnteredBlock(pin);
                 }
                 [self adjustTitle];
             }
@@ -122,7 +127,6 @@
         
         if(_checkBlock(pin))
         {
-            [self.navigationController popViewControllerAnimated:YES];
             _successBlock();
             return;
         }
@@ -148,7 +152,7 @@
 {
     if(self.pinType==PIN_TYPE_ENTER || [LWFingerprintHelper isFingerprintAvailable]==NO)
         return;
-    [LWFingerprintHelper validateFingerprintTitle:@"Fingerprint validation" ok:^{
+    [LWFingerprintHelper validateFingerprintTitle:Localize(@"auth.validation.fingerpring") ok:^{
         _successBlock();
     
     } bad:^{} unavailable:nil];
@@ -228,6 +232,8 @@
     else
         return @"LWPINPresenter";
 }
+
+
 
 
 @end

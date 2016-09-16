@@ -130,7 +130,11 @@
 {
     if(_operations.count==0)
     {
-        return self.view.bounds.size.height-90;
+        if([self isKindOfClass:[LWHistoryPresenter class]])
+            return self.view.bounds.size.height;
+        else
+            return self.view.bounds.size.height-90;
+        
     }
     return 60;
 }
@@ -232,7 +236,8 @@
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"ShowExchangeViewControllerNotification" object:nil];
             };
             _emptyHistoryPresenter.view.frame=self.view.bounds;
-            
+            _emptyHistoryPresenter.view.autoresizingMask=UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+            CGRect rrr=self.view.bounds;
             //        [self.view addSubview:emptyHistoryPresenter.view];
             [self addChildViewController:_emptyHistoryPresenter];
         }

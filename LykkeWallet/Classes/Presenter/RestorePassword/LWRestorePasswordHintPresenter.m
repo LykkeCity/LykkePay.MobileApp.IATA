@@ -93,7 +93,7 @@
     LWPINPresenter *pin=[[LWPINPresenter alloc] init];
     pin.pinType=PIN_TYPE_ENTER;
     pinBlock=pin;
-    pin.finishBlock=^(BOOL flag, NSString *selectedPin){
+    pin.pinEnteredBlock=^(NSString *selectedPin){
         self.recModel.pin=selectedPin;
         LWSMSCodeCheckPresenter *presenter=[[LWSMSCodeCheckPresenter alloc] init];
         presenter.recModel=self.recModel;

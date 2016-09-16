@@ -22,6 +22,8 @@
     }
     _isRegistered = [result[@"IsRegistered"] boolValue];
     _hasHint=[result[@"HasPwdHint"] boolValue];
+    [[NSUserDefaults standardUserDefaults] setBool:[result[@"HasBackup"] boolValue] forKey:@"UserHasBackupOfPrivateKey"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
     
 }
 

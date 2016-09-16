@@ -177,7 +177,10 @@
 
 -(void) submitButtonPressed
 {
-    BOOL result=[[LWPrivateKeyManager shared] savePrivateKeyLykkeFromSeedWords:self.wordsList];
+    BOOL flagHasKey=[LWPrivateKeyManager shared].privateKeyLykke;
+    BOOL result=YES;
+    if(!flagHasKey)
+        result=[[LWPrivateKeyManager shared] savePrivateKeyLykkeFromSeedWords:self.wordsList];
     if(!result)
     {
         UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"ERROR" message:@"Something went wrong" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
@@ -185,19 +188,30 @@
         return;
     }
     
-    [self setLoading:YES];
-    [[LWAuthManager instance] requestSaveClientKeysWithPubKey:[LWPrivateKeyManager shared].publicKeyLykke encodedPrivateKey:[LWPrivateKeyManager shared].encryptedKeyLykke];
+    if(flagHasKey==NO)
+    {
+        [self setLoading:YES];
+        [[LWAuthManager instance] requestSaveClientKeysWithPubKey:[LWPrivateKeyManager shared].publicKeyLykke encodedPrivateKey:[LWPrivateKeyManager shared].encryptedKeyLykke];
+    }
+    else
+        [self saveBackupStateAndShowSuccess];
 
+}
+
+-(void) saveBackupStateAndShowSuccess
+{
+    [[LWAuthManager instance] requestSaveBackupState];
+    
+    LWBackupSuccessPresenter *presenter=[[LWBackupSuccessPresenter alloc] init];
+    
+    [self.navigationController pushViewController:presenter animated:YES];
 
 }
 
 -(void) authManagerDidSendClientKeys:(LWAuthManager *)manager
 {
     [self setLoading:NO];
-    LWBackupSuccessPresenter *presenter=[[LWBackupSuccessPresenter alloc] init];
-    
-    [self.navigationController pushViewController:presenter animated:YES];
-
+    [self saveBackupStateAndShowSuccess];
 }
 
 -(void) authManager:(LWAuthManager *)manager didFailWithReject:(NSDictionary *)reject context:(GDXRESTContext *)context

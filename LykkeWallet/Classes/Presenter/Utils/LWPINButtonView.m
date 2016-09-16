@@ -21,7 +21,6 @@
 
 -(void) awakeFromNib
 {
-    self.layer.cornerRadius=self.bounds.size.height/2;
     if(self.tag<11)
     {
         self.layer.borderColor=[UIColor colorWithRed:211.0/255 green:214.0/255 blue:219.0/255 alpha:1].CGColor;
@@ -36,6 +35,14 @@
             self.lettersLabel.attributedText=[[NSAttributedString alloc] initWithString:_lettersLabel.text attributes:@{NSKernAttributeName:@(1.8), NSForegroundColorAttributeName:[UIColor colorWithRed:63.0/255 green:77.0/255 blue:96.0/255 alpha:0.6], NSFontAttributeName:[UIFont fontWithName:@"ProximaNova-Regular" size:17]}];
 
     }
+
+}
+
+
+-(void) layoutSubviews
+{
+    [super layoutSubviews];
+    self.layer.cornerRadius=self.bounds.size.height/2;
 
 }
 

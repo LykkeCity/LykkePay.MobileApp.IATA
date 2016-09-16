@@ -216,6 +216,7 @@
 		A18F892C1CE85B0A00399850 /* LWWithdrawCurrencyPresenter.xib in Resources */ = {isa = PBXBuildFile; fileRef = A18F892B1CE85B0A00399850 /* LWWithdrawCurrencyPresenter.xib */; };
 		A19E08D51CEB5275004D286A /* LWRegisterCameraPresenter~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A19E08D41CEB5275004D286A /* LWRegisterCameraPresenter~ipad.xib */; };
 		A19E08D71CEB5722004D286A /* LWCameraOverlayPresenter~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A19E08D61CEB5722004D286A /* LWCameraOverlayPresenter~ipad.xib */; };
+		A1A11FE21D8BA80900D1D4AA /* LWPacketSaveBackupState.m in Sources */ = {isa = PBXBuildFile; fileRef = A1A11FE11D8BA80900D1D4AA /* LWPacketSaveBackupState.m */; };
 		A1A7D3521D62393A00026576 /* LWTestBackupWordsPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A1A7D3501D62393A00026576 /* LWTestBackupWordsPresenter.m */; };
 		A1A7D3531D62393A00026576 /* LWTestBackupWordsPresenter.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1A7D3511D62393A00026576 /* LWTestBackupWordsPresenter.xib */; };
 		A1AA588F1CED730F00D24E68 /* LWWalletsPresenter~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC89230D1CC3C35100201BE7 /* LWWalletsPresenter~ipad.xib */; };
@@ -2035,6 +2036,8 @@
 		A18F892B1CE85B0A00399850 /* LWWithdrawCurrencyPresenter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LWWithdrawCurrencyPresenter.xib; path = WithdrawFunds/LWWithdrawCurrencyPresenter.xib; sourceTree = "<group>"; };
 		A19E08D41CEB5275004D286A /* LWRegisterCameraPresenter~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "LWRegisterCameraPresenter~ipad.xib"; sourceTree = "<group>"; };
 		A19E08D61CEB5722004D286A /* LWCameraOverlayPresenter~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "LWCameraOverlayPresenter~ipad.xib"; path = "Utils/LWCameraOverlayPresenter~ipad.xib"; sourceTree = "<group>"; };
+		A1A11FE01D8BA80900D1D4AA /* LWPacketSaveBackupState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWPacketSaveBackupState.h; sourceTree = "<group>"; };
+		A1A11FE11D8BA80900D1D4AA /* LWPacketSaveBackupState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWPacketSaveBackupState.m; sourceTree = "<group>"; };
 		A1A7D34F1D62393A00026576 /* LWTestBackupWordsPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LWTestBackupWordsPresenter.h; path = Backup/LWTestBackupWordsPresenter.h; sourceTree = "<group>"; };
 		A1A7D3501D62393A00026576 /* LWTestBackupWordsPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LWTestBackupWordsPresenter.m; path = Backup/LWTestBackupWordsPresenter.m; sourceTree = "<group>"; };
 		A1A7D3511D62393A00026576 /* LWTestBackupWordsPresenter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LWTestBackupWordsPresenter.xib; path = Backup/LWTestBackupWordsPresenter.xib; sourceTree = "<group>"; };
@@ -5757,6 +5760,8 @@
 				A145159B1D80C25700B4BED9 /* LWPacketLykkeSettings.m */,
 				A102CF001D8A55B100089A92 /* LWPacketEmailHint.h */,
 				A102CF011D8A55B100089A92 /* LWPacketEmailHint.m */,
+				A1A11FE01D8BA80900D1D4AA /* LWPacketSaveBackupState.h */,
+				A1A11FE11D8BA80900D1D4AA /* LWPacketSaveBackupState.m */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -8228,6 +8233,7 @@
 				CFF7584B1C202D1100BC7658 /* LWKYCSuccessPresenter.m in Sources */,
 				CF9EC90E1C17C6C100F742A6 /* UIColor+Generic.m in Sources */,
 				A1D65DBE1D5EBCBC00828783 /* LWBackupIntroPresenter.m in Sources */,
+				A1A11FE21D8BA80900D1D4AA /* LWPacketSaveBackupState.m in Sources */,
 				ECEC40B61C4298CF00B22BEE /* LWHistoryTableViewCell.m in Sources */,
 				A188DA121D6EB33800AA6D8A /* LWPrivateWalletEmptyHistoryPresenter.m in Sources */,
 				A14515A51D828EBC00B4BED9 /* LWMyLykkeMainContainerPresenter.m in Sources */,

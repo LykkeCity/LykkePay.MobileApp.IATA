@@ -33,6 +33,8 @@
 @property (weak, nonatomic) IBOutlet UILabel     *statusLabel;
 @property (weak, nonatomic) IBOutlet UILabel     *infoLabel;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *proceedWidthConstraint;
+
 @end
 
 
@@ -51,6 +53,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    if([UIScreen mainScreen].bounds.size.width==320)
+        _proceedWidthConstraint.constant=280;
+
     
     keyboardHeight=0;
     

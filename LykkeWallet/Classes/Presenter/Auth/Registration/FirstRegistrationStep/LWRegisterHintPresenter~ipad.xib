@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <mutableArray key="Proxima Nova Regular.otf">
+        <array key="Proxima Nova Regular.otf">
             <string>ProximaNova-Regular</string>
-        </mutableArray>
+        </array>
     </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LWRegisterHintPresenter">
@@ -24,59 +25,49 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create a hint for password recovery" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="97c-PF-rct">
-                    <rect key="frame" x="137" y="0.0" width="304" height="21"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="304" id="Hxf-Gq-cvj"/>
                         <constraint firstAttribute="height" constant="21" id="KFK-x9-YUZ"/>
                     </constraints>
                     <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="16"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="RegisterLineStep1" translatesAutoresizingMaskIntoConstraints="NO" id="ELT-mC-bHn">
-                    <rect key="frame" x="129" y="29" width="320" height="40"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="6g0-gz-gZi"/>
                         <constraint firstAttribute="width" constant="320" id="tFT-cC-ksa"/>
                     </constraints>
                 </imageView>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z58-EF-fdx">
-                    <rect key="frame" x="0.0" y="77" width="579" height="661"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZLC-1c-xiY">
-                            <rect key="frame" x="0.0" y="146.5" width="579" height="128"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rsg-x6-n4H" customClass="TKContainer">
-                                    <rect key="frame" x="129" y="0.0" width="320" height="64"/>
-                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="backgroundColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="320" id="H1h-SG-8b7"/>
                                         <constraint firstAttribute="width" constant="320" id="IkZ-bt-nX8"/>
-                                        <constraint firstAttribute="height" constant="64" id="MhR-9i-pmt"/>
-                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="64" id="xhu-qZ-KxQ"/>
+                                        <constraint firstAttribute="height" constant="45" id="MhR-9i-pmt"/>
                                     </constraints>
                                 </view>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tg5-fp-5cg" customClass="TKButton">
-                                    <rect key="frame" x="137" y="72" width="304" height="45"/>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tg5-fp-5cg" customClass="LWCommonButton">
                                     <constraints>
-                                        <constraint firstAttribute="width" constant="304" id="0BX-nl-tf3"/>
-                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="45" id="BEo-Lv-Bnu"/>
-                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="304" id="FQ4-nE-gEP"/>
+                                        <constraint firstAttribute="width" constant="320" id="0BX-nl-tf3"/>
                                         <constraint firstAttribute="height" constant="45" id="XmD-vk-AFA"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                     <state key="normal" title="NEXT" backgroundImage="ButtonOK">
-                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </state>
                                     <connections>
                                         <action selector="nextClicked:" destination="-1" eventType="touchUpInside" id="cRb-Xu-U8G"/>
                                     </connections>
                                 </button>
                             </subviews>
-                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstItem="Tg5-fp-5cg" firstAttribute="centerX" secondItem="ZLC-1c-xiY" secondAttribute="centerX" id="0dz-65-9Gg"/>
-                                <constraint firstItem="Tg5-fp-5cg" firstAttribute="top" secondItem="Rsg-x6-n4H" secondAttribute="bottom" constant="8" id="5Az-5o-pfa"/>
+                                <constraint firstItem="Tg5-fp-5cg" firstAttribute="top" secondItem="Rsg-x6-n4H" secondAttribute="bottom" constant="20" id="5Az-5o-pfa"/>
                                 <constraint firstItem="Rsg-x6-n4H" firstAttribute="centerX" secondItem="ZLC-1c-xiY" secondAttribute="centerX" id="6S9-sW-oqJ"/>
                                 <constraint firstItem="Rsg-x6-n4H" firstAttribute="top" secondItem="ZLC-1c-xiY" secondAttribute="top" id="boL-VI-5DV"/>
                                 <constraint firstAttribute="height" constant="128" id="bph-0m-Ad2"/>
@@ -92,7 +83,7 @@
                     </constraints>
                 </scrollView>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="z58-EF-fdx" firstAttribute="top" secondItem="ELT-mC-bHn" secondAttribute="bottom" constant="8" id="BhY-eb-Haq"/>
                 <constraint firstItem="97c-PF-rct" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="IJs-sh-oZ6"/>
@@ -111,4 +102,9 @@
         <image name="ButtonOK" width="320" height="51"/>
         <image name="RegisterLineStep1" width="296" height="23"/>
     </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4_7.fullscreen"/>
+    </simulatedMetricsContainer>
 </document>
