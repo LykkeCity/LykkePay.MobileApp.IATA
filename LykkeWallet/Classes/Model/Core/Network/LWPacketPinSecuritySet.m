@@ -7,12 +7,23 @@
 //
 
 #import "LWPacketPinSecuritySet.h"
+#import "LWKeychainManager.h"
 
 
 @implementation LWPacketPinSecuritySet
 
 
 #pragma mark - LWPacket
+
+- (void)parseResponse:(id)response error:(NSError *)error {
+    [super parseResponse:response error:error];
+    
+    if (self.isRejected) {
+        return;
+    }
+    [[LWKeychainManager instance] savePIN:self.pin];
+}
+
 
 - (NSString *)urlRelative {
 //    return @"PinSecurity";

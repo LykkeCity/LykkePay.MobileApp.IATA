@@ -15,6 +15,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LWBackupGetStartedPresenter">
             <connections>
                 <outlet property="getStartedButton" destination="yLW-t4-Oge" id="76W-1K-alC"/>
+                <outlet property="getStartedWidthConstraint" destination="oty-23-eTx" id="pZx-11-dq2"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

@@ -463,7 +463,8 @@ static NSString *const FormIdentifiers[kFormRows] = {
             balanceCurrencySymbol=d.symbol;
         }
     }
-    
+    if(!balanceCurrencySymbol)      //Fixed according to crash in Crashlytics
+        balanceCurrencySymbol=@"";
     balance.text=[NSString stringWithFormat:@"%@ available", [LWUtils formatVolumeNumber:balanceOfAccount currencySign:balanceCurrencySymbol accuracy:balanceAccuracy removeExtraZeroes:YES]];
 
 }

@@ -18,7 +18,7 @@
 #import "LWCache.h"
 #import "Macro.h"
 #import "UIView+Navigation.h"
-
+#import "LWKeychainManager.h"
 
 @interface LWExchangeConfirmationView () <UITableViewDataSource, UITableViewDelegate, LWPinKeyboardViewDelegate> {
     LWPinKeyboardView *pinKeyboardView;
@@ -305,7 +305,13 @@ static float const kNoPinProtectionHeight = 360;
 #pragma mark - LWPinKeyboardViewDelegate
 
 - (void)pinEntered:(NSString *)pin {
-    [self.delegate checkPin:pin];
+    if([[LWKeychainManager instance].pin isEqualToString:pin])
+        [self requestOperation];
+    else
+        [self pinRejected];
+    
+    
+//    [self.delegate checkPin:pin];
 }
 
 -(void) hide

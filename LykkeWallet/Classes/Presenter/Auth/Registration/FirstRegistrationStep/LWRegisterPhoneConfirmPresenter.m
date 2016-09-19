@@ -222,6 +222,7 @@
 }
 
 - (void)authManager:(LWAuthManager *)manager didFailWithReject:(NSDictionary *)reject context:(GDXRESTContext *)context {
+    [self setLoading:NO];
     [self showReject:reject response:context.task.response code:context.error.code willNotify:YES];
 }
 

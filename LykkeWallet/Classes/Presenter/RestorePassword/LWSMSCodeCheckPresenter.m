@@ -52,6 +52,8 @@
     [self.view addSubview:keyboard];
     keyboard.cursor.hidden=YES;
     
+    _textField.placeholder=@"Code";
+    
     self.textField.delegate=self;
     
     UITapGestureRecognizer *gesture=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideNumbersKeyboard)];

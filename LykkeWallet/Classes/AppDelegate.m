@@ -74,16 +74,20 @@
     
     BOOL success=[NSURLProtocol registerClass:[LWURLProtocol class]];
     
-    
-    if (![[NSUserDefaults standardUserDefaults] objectForKey:@"FirstRun"]) {
+    NSString *build = [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString *)kCFBundleVersionKey];
+
+
+    if (![[NSUserDefaults standardUserDefaults] objectForKey:@"FirstRun"] || [[[NSUserDefaults standardUserDefaults] stringForKey:@"LWLastLaunchedVersion"] isEqualToString:build]==NO) {
         // Delete values from keychain here
         
         [[LWKeychainManager instance] clear];
         [[NSUserDefaults standardUserDefaults] setValue:@"1strun" forKey:@"FirstRun"];
         [[NSUserDefaults standardUserDefaults] synchronize];
+        [[NSUserDefaults standardUserDefaults] setObject:build forKey:@"LWLastLaunchedVersion"];
     }
     
-    [Fabric with:@[[Crashlytics class]]];
+//    [Fabric with:@[[Crashlytics class]]];
+    [Fabric with:@[CrashlyticsKit]];
 
     [self customizePINScreen];
     [self customizeNavigationBar];

@@ -48,9 +48,11 @@ SINGLETON_DECLARE
 
 -(void) saveFullName:(NSString *) fullName;
 
+-(void) savePIN:(NSString *) pin;
 
 #pragma mark - Properties
 
 - (NSString *)fullName;
+-(NSString *) pin;
 
 @end

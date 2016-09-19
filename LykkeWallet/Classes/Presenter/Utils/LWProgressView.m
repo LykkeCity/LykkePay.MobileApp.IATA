@@ -18,6 +18,8 @@
     int count;
     
     BOOL isAnimating;
+    
+    int loopCount;
 
 }
 
@@ -34,6 +36,7 @@
 {
     self=[super initWithFrame:frame];
     isAnimating=NO;
+    loopCount=0;
     
     UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
     _squareBackground = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
@@ -76,6 +79,7 @@
 -(void) awakeFromNib
 {
     isAnimating=NO;
+    loopCount=0;
     [self loadFrames];
     self.diameter=self.bounds.size.width;
     if(self.diameter>30)
@@ -126,6 +130,7 @@
 {
     self=[super initWithFrame:CGRectMake(0, 0, 30, 30)];
     self.diameter=30;
+    loopCount=0;
     [self loadFrames];
     return self;
 }
@@ -181,14 +186,17 @@
 -(void) startLoop
 {
     NSLog(@"Started loop");
+    loopCount++;
     while(isAnimating)
     {
-        
+        if(loopCount>1)
+            break;
     [NSThread sleepForTimeInterval:0.005];
     [self repeatAnimation];
         if(isAnimating==NO)
             break;
     }
+    loopCount--;
 }
 
 -(void) stopAnimating
@@ -252,3 +260,8 @@
 
 
 @end
+
+
+
+
+

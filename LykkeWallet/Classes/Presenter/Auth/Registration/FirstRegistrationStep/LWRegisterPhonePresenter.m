@@ -14,6 +14,7 @@
 #import "LWValidator.h"
 #import "UIViewController+Loading.h"
 #import "LWPacketCountryCodes.h"
+#import "LWCountrySelectorContainer.h"
 
 
 @interface LWRegisterPhonePresenter () <UITextFieldDelegate, LWCountrySelectorPresenterDelegate> {
@@ -33,6 +34,8 @@
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIView *phoneInputMask;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *nextButtonWidthConstraint;
+
 @end
 
 
@@ -49,6 +52,9 @@
 //    [self.nextButton setTitle:Localize(@"register.phone.send")
 //                     forState:UIControlStateNormal];
     
+    if([UIScreen mainScreen].bounds.size.width==320)
+        _nextButtonWidthConstraint.constant=280;
+    
     self.phoneInputMask.userInteractionEnabled=YES;
     self.phoneInputMask.backgroundColor=[UIColor colorWithRed:236.0/255 green:238.0/255 blue:239.0/255 alpha:1];
     self.phoneInputMask.layer.cornerRadius=3;
@@ -60,7 +66,7 @@
     self.codeLabel.opaque=NO;
     [self.phoneInputMask addSubview:self.codeLabel];
     
-    separator=[[UIView alloc] initWithFrame:CGRectMake(self.codeLabel.frame.origin.x+self.codeLabel.bounds.size.width+10, 10, 0.5, self.phoneInputMask.bounds.size.height-20)];
+    separator=[[UIView alloc] initWithFrame:CGRectMake(self.codeLabel.frame.origin.x+self.codeLabel.bounds.size.width+10,0, 0.5, self.phoneInputMask.bounds.size.height)];
     separator.backgroundColor=[UIColor lightGrayColor];
     [self.phoneInputMask addSubview:separator];
     
@@ -114,15 +120,29 @@
 }
 
 - (IBAction)countryClicked:(id)sender {
-    LWCountrySelectorPresenter *presenter = [LWCountrySelectorPresenter new];
-    presenter.delegate = self;
-    presenter.countries=countries.countries;
     
-    UINavigationController *navigation = [[UINavigationController alloc] initWithRootViewController:presenter];
-
-    [self.navigationController presentViewController:navigation
-                                            animated:YES
-                                          completion:nil];
+    
+    LWCountrySelectorContainer *presenter=[[LWCountrySelectorContainer alloc] init];
+    presenter.countries=countries.countries;
+    presenter.delegate=self;
+    [self.navigationController pushViewController:presenter animated:YES];
+    
+    
+//    LWCountrySelectorPresenter *presenter = [LWCountrySelectorPresenter new];
+//    presenter.delegate = self;
+//    presenter.countries=countries.countries;
+//    
+////    [self.navigationController setNavigationBarHidden:YES animated:NO];
+//    presenter.view.frame=self.view.bounds;
+//    presenter.view.autoresizingMask=UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+//    [self.view addSubview:presenter.view];
+//    [self addChildViewController:presenter];
+    
+//    UINavigationController *navigation = [[UINavigationController alloc] initWithRootViewController:presenter];
+//
+//    [self.navigationController presentViewController:navigation
+//                                            animated:YES
+//                                          completion:nil];
 }
 
 -(void) updateTextFieldFrame
@@ -130,10 +150,16 @@
     [self.codeLabel sizeToFit];
 
     self.codeLabel.center=CGPointMake(self.codeLabel.bounds.size.width/2+10, self.phoneInputMask.bounds.size.height/2);
-    separator.center=CGPointMake(self.codeLabel.frame.origin.x+self.codeLabel.bounds.size.width+10, self.codeLabel.center.y);
+    separator.frame=CGRectMake(self.codeLabel.frame.origin.x+self.codeLabel.bounds.size.width+10,0, 0.5, self.phoneInputMask.bounds.size.height);
     self.numberTextField.frame=CGRectMake(separator.frame.origin.x+10, 0, self.phoneInputMask.bounds.size.width-separator.frame.origin.x-20, self.phoneInputMask.bounds.size.height);
     
     codeLabelButton.frame=CGRectMake(0, 0, separator.frame.origin.x, self.phoneInputMask.bounds.size.height);
+}
+
+-(void) viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    [self updateTextFieldFrame];
 }
 
 #pragma mark - Keyboard
@@ -256,5 +282,15 @@
     return phone;
 }
 
+-(NSString *) nibName
+{
+    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad)
+        return @"LWRegisterPhonePresenter_ipad";
+    else if([UIScreen mainScreen].bounds.size.width==320)
+        return @"LWRegisterPhonePresenter_iphone5";
+    else
+        return @"LWRegisterPhonePresenter_iphone";
+
+}
 
 @end

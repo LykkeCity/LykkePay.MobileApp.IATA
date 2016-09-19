@@ -47,7 +47,7 @@
                             <color key="textColor" red="0.6705882353" green="0.0" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jn9-pG-n5t" customClass="TKButton">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jn9-pG-n5t" customClass="LWCommonButton">
                             <constraints>
                                 <constraint firstAttribute="height" constant="45" id="WzP-dF-fbK"/>
                                 <constraint firstAttribute="width" constant="404" id="vPU-xq-wAJ"/>

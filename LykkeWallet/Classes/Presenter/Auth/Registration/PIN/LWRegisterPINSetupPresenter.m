@@ -47,7 +47,7 @@
     [self.navigationController setNavigationBarHidden:YES animated:NO];
     // set masking view visibility
     self.maskingView.hidden = pinDidSendToServer;
-    [self setLoading:!pinDidSendToServer];
+//    [self setLoading:!pinDidSendToServer];
 
     // adjust pin controller frame
     if (!pinController) {
@@ -58,6 +58,7 @@
 
         pinController.pinEnteredBlock=^(NSString *pin_){
             pin=pin_;
+            [self setLoading:YES];
             [[LWAuthManager instance] requestPinSecuritySet:pin_];
             
             

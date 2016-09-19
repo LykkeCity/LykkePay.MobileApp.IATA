@@ -118,7 +118,8 @@
 
 - (void)cancelClicked {
     [self.searchController setActive:NO];
-    [self dismissViewControllerAnimated:YES completion:nil];
+//    [self dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)willPresentSearchController:(UISearchController *)searchController {
@@ -131,9 +132,10 @@
 
 -(void) cancelButtonPressed
 {
-    if(self.searchController.isActive)
-        [self dismissViewControllerAnimated:NO completion:nil];
-    [self dismissViewControllerAnimated:YES completion:nil];
+//    if(self.searchController.isActive)
+//        [self dismissViewControllerAnimated:NO completion:nil];
+//    [self dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 
@@ -273,5 +275,31 @@
     NSArray *sectionArray = [_countries filteredArrayUsingPredicate:predicate];
     return sectionArray;
 }
+
+
+-(BOOL) shouldAutorotate
+{
+    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad)
+        return YES;
+    
+    return NO;
+}
+
+- (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+{
+    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad)
+        return YES;
+    
+    return NO;
+}
+
+-(UIInterfaceOrientationMask)supportedInterfaceOrientations
+{
+    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad)
+        return UIInterfaceOrientationMaskAll;
+    
+    return UIInterfaceOrientationMaskPortrait;
+}
+
 
 @end

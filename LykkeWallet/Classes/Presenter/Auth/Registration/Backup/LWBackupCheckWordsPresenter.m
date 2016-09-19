@@ -24,6 +24,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *submitButton;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *scrollViewBottomConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *submitWidthConstraint;
+
 
 @end
 
@@ -47,7 +49,10 @@
     
     [self.submitButton addTarget:self action:@selector(submitButtonPressed) forControlEvents:UIControlEventTouchUpInside];
 
+    if([UIScreen mainScreen].bounds.size.width==320)
+        _submitWidthConstraint.constant=280;
     
+
     
     // Do any additional setup after loading the view from its nib.
 }

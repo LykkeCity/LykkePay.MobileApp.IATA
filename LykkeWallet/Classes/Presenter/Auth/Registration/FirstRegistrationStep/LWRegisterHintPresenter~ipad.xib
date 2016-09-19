@@ -33,13 +33,8 @@
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="RegisterLineStep1" translatesAutoresizingMaskIntoConstraints="NO" id="ELT-mC-bHn">
-                    <constraints>
-                        <constraint firstAttribute="height" constant="40" id="6g0-gz-gZi"/>
-                        <constraint firstAttribute="width" constant="320" id="tFT-cC-ksa"/>
-                    </constraints>
-                </imageView>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z58-EF-fdx">
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="z58-EF-fdx">
+                    <frame key="frameInset" minY="77" width="579" height="661"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZLC-1c-xiY">
                             <subviews>
@@ -85,12 +80,10 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="z58-EF-fdx" firstAttribute="top" secondItem="ELT-mC-bHn" secondAttribute="bottom" constant="8" id="BhY-eb-Haq"/>
                 <constraint firstItem="97c-PF-rct" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="IJs-sh-oZ6"/>
                 <constraint firstItem="97c-PF-rct" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Qrg-2C-9k0"/>
-                <constraint firstItem="ELT-mC-bHn" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Uab-yn-ufI"/>
+                <constraint firstItem="z58-EF-fdx" firstAttribute="top" secondItem="97c-PF-rct" secondAttribute="bottom" constant="40" id="V73-DA-eZa"/>
                 <constraint firstAttribute="trailing" secondItem="z58-EF-fdx" secondAttribute="trailing" id="VNx-PA-xIn"/>
-                <constraint firstItem="ELT-mC-bHn" firstAttribute="top" secondItem="97c-PF-rct" secondAttribute="bottom" constant="8" id="bfO-HI-MvU"/>
                 <constraint firstItem="z58-EF-fdx" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="sdj-Cz-6bW"/>
                 <constraint firstItem="z58-EF-fdx" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" id="zuB-cu-HQr"/>
             </constraints>
@@ -100,7 +93,6 @@
     </objects>
     <resources>
         <image name="ButtonOK" width="320" height="51"/>
-        <image name="RegisterLineStep1" width="296" height="23"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

@@ -17,6 +17,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UIButton *okButton;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *okButtonWidthConstraint;
+
+
 
 @end
 
@@ -36,6 +39,10 @@
     [self.okButton addTarget:self action:@selector(okButtonPressed) forControlEvents:UIControlEventTouchUpInside];
     [LWValidator setButton:self.okButton enabled:YES];
     self.okButton.clipsToBounds=YES;
+    
+    if([UIScreen mainScreen].bounds.size.width==320)
+        _okButtonWidthConstraint.constant=280;
+
 }
 
 -(void) okButtonPressed

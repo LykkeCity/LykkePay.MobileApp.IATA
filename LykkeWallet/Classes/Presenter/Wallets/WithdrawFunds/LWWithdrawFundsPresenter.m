@@ -22,9 +22,12 @@
 #import "LWChoosePrivateWalletView.h"
 #import "LWPrivateWalletsManager.h"
 #import "LWPrivateWalletModel.h"
+#import "LWCommonButton.h"
 
 #import "UIViewController+Navigation.h"
 #import "UIViewController+Loading.h"
+
+#import "BTCAddress.h"
 
 
 
@@ -41,12 +44,14 @@
 @property (weak, nonatomic) IBOutlet UILabel     *titleLabel;
 @property (weak, nonatomic) IBOutlet TKContainer *qrCodeContainer;
 @property (weak, nonatomic) IBOutlet UILabel     *qrCodeLabel;
-@property (weak, nonatomic) IBOutlet TKButton    *proceedButton;
+@property (weak, nonatomic) IBOutlet LWCommonButton *proceedButton;
 @property (weak, nonatomic) IBOutlet UILabel     *infoLabel;
 @property (weak, nonatomic) IBOutlet UIButton    *pasteButton;
 @property (weak, nonatomic) IBOutlet UIView *qrCodeButtonContainer;
 @property (weak, nonatomic) IBOutlet UIView *selectWalletButtonContainer;
 @property (weak, nonatomic) IBOutlet UILabel *selectWalletLabel;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *proceedButtonWidthConstraint;
 
 
 #pragma mark - Utils
@@ -64,6 +69,9 @@
     
     [self setBackButton];
     validationRequests=0;
+    
+    if([UIScreen mainScreen].bounds.size.width==320)
+        _proceedButtonWidthConstraint.constant=280;
 
     
     // init email field
@@ -88,7 +96,7 @@
     
 #ifdef PROJECT_IATA
 #else
-    [self.proceedButton setGrayPalette];
+ //   [self.proceedButton setGrayPalette];
 #endif
     
     UITapGestureRecognizer* gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(scanClicked:)];
@@ -159,6 +167,7 @@
 
 - (void)textFieldDidChangeValue:(LWTextField *)textField {
     // prevent from being processed if controller is not presented
+    
     if (!self.isVisible) {
         return;
     }
@@ -329,63 +338,27 @@
 
 #pragma mark - Utils
 
-- (BOOL)canProceed {
-    if(bitcoinTextField.text.length<26 || bitcoinTextField.text.length>35)
-        return NO;
-    NSString *sss=[[bitcoinTextField.text componentsSeparatedByCharactersInSet:[NSCharacterSet alphanumericCharacterSet]] componentsJoinedByString:@""];
-    if(sss.length)
-        return NO;
-//    NSString *firstSymbol=[bitcoinTextField.text substringToIndex:1];
-//    NSArray *possibleFirstSymbols=@[@"1", @"3", @"2", @"m", @"n"];
-//    BOOL flag=false;
-//    for(NSString *s in possibleFirstSymbols)
-//    {
-//        if([s isEqualToString:firstSymbol])
-//        {
-//            flag=true;
-//            break;
-//        }
-//    }
-//
-//    return flag;
-    
-    return YES;
-}
 
 - (void)updatePasteButtonStatus {
-    
-    if([self canProceed]==NO)
-    {
-        [LWValidator setButton:self.proceedButton enabled:NO];
-        [self hideShowPasteButton:NO];
-
-    }
-    else
-    {
-        validationRequests++;
-        if(validationRequests==1)
-            [progressValidation startAnimating];
-        [[LWAuthManager instance] validateBitcoinAddress:bitcoinTextField.text];
-    }
-        
-//    // check button state
-//    [LWValidator setButton:self.proceedButton enabled:[self canProceed]];
-//    self.pasteButton.hidden = [self canProceed];
+        BTCAddress *addr=[BTCAddress addressWithString:bitcoinTextField.text];
+        _proceedButton.enabled=addr!=nil;
+    [self hideShowPasteButton:bitcoinTextField.text.length];
 }
 
-#pragma mark - LWAuthManager
-
--(void) authManager:(LWAuthManager *)manager didValidateBitcoinAddress:(LWPacketBitcoinAddressValidation *)bitconAddress
-{
-    BOOL isValid=bitconAddress.isValid && [self canProceed] && [bitconAddress.bitcoinAddress isEqualToString:bitcoinTextField.text];
-    [LWValidator setButton:self.proceedButton enabled:isValid];
-    [self hideShowPasteButton:isValid];
-    
-    validationRequests--;
-    if(validationRequests==0)
-        [progressValidation stopAnimating];
-    
-}
+//#pragma mark - LWAuthManager
+//
+//-(void) authManager:(LWAuthManager *)manager didValidateBitcoinAddress:(LWPacketBitcoinAddressValidation *)bitconAddress
+//{
+//    BOOL isValid=bitconAddress.isValid && [self canProceed] && [bitconAddress.bitcoinAddress isEqualToString:bitcoinTextField.text];
+//    [LWValidator setButton:self.proceedButton enabled:isValid];
+//    
+//    [self hideShowPasteButton:isValid];
+//    
+//    validationRequests--;
+//    if(validationRequests==0)
+//        [progressValidation stopAnimating];
+//    
+//}
 
 -(void) hideShowPasteButton:(BOOL) shouldHide
 {

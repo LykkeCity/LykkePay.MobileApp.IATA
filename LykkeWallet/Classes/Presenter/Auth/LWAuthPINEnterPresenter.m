@@ -65,51 +65,53 @@
     
     pin.checkBlock = ^BOOL(NSString *pin_) {
         
+        return [pin_ isEqualToString:[[LWKeychainManager instance] pin]];
+        
         // configure URL
-        __block LWPacketPinSecurityGet *pack = [LWPacketPinSecurityGet new];
-        pack.pin = [pin_ copy];
-        
-        NSURL *url = [NSURL URLWithString:pack.urlBase];
-        AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc]
-                                         initWithBaseURL:url];
-        manager.requestSerializer = [AFJSONRequestSerializer serializer];
-        manager.completionQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-        dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
-        
-        NSDictionary *headers = [pack headers];
-        for (NSString *key in headers.allKeys) {
-            [manager.requestSerializer setValue:headers[key] forHTTPHeaderField:key];
-        }
-        
-        [manager GET:pack.urlRelative
-          parameters:nil
-            progress:nil
-             success:^(NSURLSessionTask *task, id responseObject) {
-                 [pack parseResponse:responseObject error:nil];
-                 dispatch_semaphore_signal(semaphore);
-             }
-             failure:^(NSURLSessionTask *operation, NSError *error) {
-                 if (![LWAuthManager isAuthneticationFailed:operation.response]) {
-                     NSMutableDictionary *errorInfo = [[NSMutableDictionary alloc]
-                                                       initWithObjects:@[ error.localizedDescription, [NSNumber numberWithInt:-1]] forKeys:@[ @"Message", @"Code" ]];
-                     dispatch_async(dispatch_get_main_queue(), ^{
-                         [mainController showReject:errorInfo response:operation.response];
-                     });
-                 }
-                 
-                 dispatch_async(dispatch_get_main_queue(), ^{
-                     [mainController setLoading:NO];
-                     [((LWAuthNavigationController *)navigation) logout];
-                 });
-                 
-                 pack = nil;
-                 dispatch_semaphore_signal(semaphore);
-             }];
-        
-        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
-        
-        BOOL const result = (pack && pack.isPassed);
-        return result;
+//        __block LWPacketPinSecurityGet *pack = [LWPacketPinSecurityGet new];
+//        pack.pin = [pin_ copy];
+//        
+//        NSURL *url = [NSURL URLWithString:pack.urlBase];
+//        AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc]
+//                                         initWithBaseURL:url];
+//        manager.requestSerializer = [AFJSONRequestSerializer serializer];
+//        manager.completionQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+//        dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+//        
+//        NSDictionary *headers = [pack headers];
+//        for (NSString *key in headers.allKeys) {
+//            [manager.requestSerializer setValue:headers[key] forHTTPHeaderField:key];
+//        }
+//        
+//        [manager GET:pack.urlRelative
+//          parameters:nil
+//            progress:nil
+//             success:^(NSURLSessionTask *task, id responseObject) {
+//                 [pack parseResponse:responseObject error:nil];
+//                 dispatch_semaphore_signal(semaphore);
+//             }
+//             failure:^(NSURLSessionTask *operation, NSError *error) {
+//                 if (![LWAuthManager isAuthneticationFailed:operation.response]) {
+//                     NSMutableDictionary *errorInfo = [[NSMutableDictionary alloc]
+//                                                       initWithObjects:@[ error.localizedDescription, [NSNumber numberWithInt:-1]] forKeys:@[ @"Message", @"Code" ]];
+//                     dispatch_async(dispatch_get_main_queue(), ^{
+//                         [mainController showReject:errorInfo response:operation.response];
+//                     });
+//                 }
+//                 
+//                 dispatch_async(dispatch_get_main_queue(), ^{
+//                     [mainController setLoading:NO];
+//                     [((LWAuthNavigationController *)navigation) logout];
+//                 });
+//                 
+//                 pack = nil;
+//                 dispatch_semaphore_signal(semaphore);
+//             }];
+//        
+//        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+//        
+//        BOOL const result = (pack && pack.isPassed);
+//        return result;
     };
 
 
@@ -128,6 +130,8 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    
+    [[LWAuthManager instance] requestMyLykkeSettings];
     
 //    return;
 //    

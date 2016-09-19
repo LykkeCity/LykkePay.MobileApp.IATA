@@ -35,7 +35,8 @@
     [[LWKeychainManager instance] saveLogin:self.authenticationData.email
                                    password:self.authenticationData.password
                                       token:_token];
-    
+    if(result[@"Pin"])
+        [[LWKeychainManager instance] savePIN:result[@"Pin"]];
     
     [[NSUserDefaults standardUserDefaults] setBool:[result[@"CanCashInViaBankCard"] boolValue] forKey:@"CanCashInViaBankCard"];
     [[NSUserDefaults standardUserDefaults] setBool:[result[@"SwiftDepositEnabled"] boolValue] forKey:@"SwiftDepositEnabled"];

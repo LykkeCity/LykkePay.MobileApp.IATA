@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LWAuthComplexPresenter.h"
 
-@interface LWBackupIntroPresenter : UIViewController
+@interface LWBackupIntroPresenter : LWAuthComplexPresenter
 
 @end

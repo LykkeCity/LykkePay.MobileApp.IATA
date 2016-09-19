@@ -18,9 +18,6 @@
     }
 }
 
-- (GDXRESTPacketType)type {
-    return GDXRESTPacketTypeGET;
-}
 
 - (NSString *)urlRelative {
     return @"BackupCompleted";

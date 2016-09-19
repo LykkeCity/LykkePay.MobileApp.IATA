@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LWAuthEntryPointPresenter">
@@ -25,79 +26,75 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IconLogo" translatesAutoresizingMaskIntoConstraints="NO" id="nEs-eH-7Sv">
-                    <rect key="frame" x="275" y="110" width="85" height="78"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="78" id="6jA-SS-RmP"/>
                         <constraint firstAttribute="width" constant="85" id="kOd-Lj-3vU"/>
                     </constraints>
                 </imageView>
                 <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jTR-ra-Fsm" customClass="TKContainer">
-                    <rect key="frame" x="152" y="310" width="331" height="64"/>
-                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <frame key="frameInset" minX="152" minY="310" width="331" height="64"/>
+                    <color key="backgroundColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="64" id="dcK-Ic-585"/>
-                        <constraint firstAttribute="width" constant="331" id="xZr-av-feG"/>
+                        <constraint firstAttribute="height" constant="45" id="dcK-Ic-585"/>
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZD9-eO-6FP" customClass="TKButton">
-                    <rect key="frame" x="160" y="394" width="315" height="45"/>
+                    <frame key="frameInset" minX="160" minY="394" width="315" height="45"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="45" id="9R3-NG-MuV"/>
                         <constraint firstAttribute="width" constant="315" id="gsK-Ln-7xt"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <state key="normal" title="SIGN UP" backgroundImage="ButtonOKInactive">
-                        <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
                     <connections>
                         <action selector="proceedButtonClick:" destination="-1" eventType="touchUpInside" id="ePu-3q-JOk"/>
                     </connections>
                 </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Glz-RF-sGK" customClass="TKContainer">
-                    <rect key="frame" x="0.0" y="664" width="635" height="65"/>
-                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="65" id="qKm-3S-pLj"/>
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hQ0-W1-g4x" customClass="TKButton">
-                    <rect key="frame" x="159" y="527" width="315" height="45"/>
+                    <frame key="frameInset" minX="159" minY="527" width="315" height="45"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="45" id="MIT-4I-0Kf"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <state key="normal" title="CHOOSE SERVER" backgroundImage="ButtonOKInactive">
-                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
                     <connections>
                         <action selector="proceedChooseServerClick:" destination="-1" eventType="touchUpInside" id="hS0-h7-Hdm"/>
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yzc-4p-6ld">
-                    <rect key="frame" x="0.0" y="738" width="635" height="21"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="GFL-sY-G4J"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="X8H-oU-d7Q" customClass="LWProgressView">
-                    <rect key="frame" x="302" y="447" width="30" height="30"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <frame key="frameInset" minX="302" minY="447" width="30" height="30"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="gSz-3h-QIx"/>
                         <constraint firstAttribute="width" constant="30" id="oaH-PI-Nmd"/>
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xFB-7A-8KD">
-                    <rect key="frame" x="276" y="493" width="81" height="30"/>
+                    <frame key="frameInset" minX="276" minY="493" width="81" height="30"/>
                     <state key="normal" title="Take refund">
-                        <color key="titleColor" red="0.6705882352941176" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleColor" red="0.6705882352941176" green="0.0" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
                 </button>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="ZD9-eO-6FP" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="2j5-rL-6zh"/>
                 <constraint firstItem="yzc-4p-6ld" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="5Th-0d-T0Z"/>
@@ -107,6 +104,7 @@
                 <constraint firstItem="xFB-7A-8KD" firstAttribute="top" secondItem="X8H-oU-d7Q" secondAttribute="bottom" constant="16" id="Kaz-9M-B7R"/>
                 <constraint firstItem="hQ0-W1-g4x" firstAttribute="width" secondItem="ZD9-eO-6FP" secondAttribute="width" id="Mg2-gA-SJP"/>
                 <constraint firstItem="xFB-7A-8KD" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Qrh-WM-x5q"/>
+                <constraint firstItem="jTR-ra-Fsm" firstAttribute="width" secondItem="ZD9-eO-6FP" secondAttribute="width" id="RyM-yF-y3s"/>
                 <constraint firstAttribute="bottom" secondItem="yzc-4p-6ld" secondAttribute="bottom" id="Zyh-ST-IWC"/>
                 <constraint firstItem="ZD9-eO-6FP" firstAttribute="top" secondItem="jTR-ra-Fsm" secondAttribute="bottom" constant="20" id="d3j-jO-c0L"/>
                 <constraint firstAttribute="bottom" secondItem="Glz-RF-sGK" secondAttribute="bottom" constant="30" id="e0I-6C-Pvp"/>
@@ -127,4 +125,9 @@
         <image name="ButtonOKInactive" width="320" height="51"/>
         <image name="IconLogo" width="95" height="60"/>
     </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4_7.fullscreen"/>
+    </simulatedMetricsContainer>
 </document>

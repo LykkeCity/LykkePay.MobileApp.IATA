@@ -17,6 +17,8 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *getStartedButton;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *getStartedWidthConstraint;
+
 @end
 
 @implementation LWBackupGetStartedPresenter
@@ -29,7 +31,10 @@
     
     [LWValidator setButton:self.getStartedButton enabled:YES];
 
+    if([UIScreen mainScreen].bounds.size.width==320)
+        _getStartedWidthConstraint.constant=280;
     
+
     
     // Do any additional setup after loading the view.
 }

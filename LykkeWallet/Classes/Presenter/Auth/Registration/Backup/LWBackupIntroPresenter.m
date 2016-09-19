@@ -11,6 +11,7 @@
 #import "LWBackupGetStartedPresenter.h"
 #import "LWIPadModalNavigationControllerViewController.h"
 #import "UIViewController+Navigation.h"
+#import "UIViewController+Loading.h"
 #import "LWAuthNavigationController.h"
 #import "LWCommonButton.h"
 #import "LWPrivateKeyManager.h"
@@ -19,6 +20,8 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *takeBackupButton;
 @property (weak, nonatomic) IBOutlet LWCommonButton *skipBackupButton;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *takeBackupWidthConstraint;
 
 @end
 
@@ -34,6 +37,9 @@
     [LWValidator setButton:self.takeBackupButton enabled:YES];
     
     _skipBackupButton.type=BUTTON_TYPE_CLEAR;
+    
+    if([UIScreen mainScreen].bounds.size.width==320)
+        _takeBackupWidthConstraint.constant=280;
     
     // Do any additional setup after loading the view.
 }
@@ -73,11 +79,27 @@
 -(IBAction)skipBackupPressed:(id)sender
 {
     [[LWPrivateKeyManager shared] savePrivateKeyLykkeFromSeedWords:[LWPrivateKeyManager generateSeedWords]];
+    [self setLoading:YES];
     [[LWAuthManager instance] requestSaveClientKeysWithPubKey:[LWPrivateKeyManager shared].publicKeyLykke encodedPrivateKey:[LWPrivateKeyManager shared].encryptedKeyLykke];
 
     
-    [((LWAuthNavigationController *)self.navigationController) setRootMainTabScreen];
 }
+
+
+-(void) authManagerDidSendClientKeys:(LWAuthManager *)manager
+{
+    [self setLoading:NO];
+    [((LWAuthNavigationController *)self.navigationController) setRootMainTabScreen];
+
+}
+
+-(void) authManager:(LWAuthManager *)manager didFailWithReject:(NSDictionary *)reject context:(GDXRESTContext *)context
+{
+    [self setLoading:NO];
+    [self showReject:reject response:context.task.response];
+}
+
+
 
 /*
 #pragma mark - Navigation

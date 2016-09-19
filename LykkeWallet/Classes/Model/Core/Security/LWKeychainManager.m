@@ -119,7 +119,7 @@ SINGLETON_INIT {
     [valet removeObjectForKey:kKeychainManagerPassword];
     [valet removeObjectForKey:kKeychainManagerNotificationsTag];
     [valet removeObjectForKey:kKeychainManagerPersonalData];
-    
+    [valet removeObjectForKey:kKeychainManagerPIN];
 }
 
 -(void) saveEncodedLykkePrivateKey:(NSString *)privateKey
@@ -151,6 +151,15 @@ SINGLETON_INIT {
     [valet setString:privateKey forKey:address];
 }
 
+-(void) savePIN:(NSString *) pin
+{
+    [valet setString:pin forKey:kKeychainManagerPIN];
+}
+
+-(NSString *) pin
+{
+    return [valet stringForKey:kKeychainManagerPIN];
+}
 
 
 #pragma mark - Properties
