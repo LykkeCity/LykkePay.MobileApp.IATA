@@ -12,5 +12,8 @@
 
 @property (copy, nonatomic) NSString *ownershipMessage;
 @property (copy, nonatomic) NSString *email;
+@property (copy, nonatomic) NSString *signature;
+
+@property BOOL confirmedOwnership;
 
 @end

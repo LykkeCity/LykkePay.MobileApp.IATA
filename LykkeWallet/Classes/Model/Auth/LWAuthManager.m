@@ -597,6 +597,15 @@ SINGLETON_INIT {
     [self sendPacket:pack];
 }
 
+-(void) requestCheckPrivateKeyOwnershipMessageSignature:(NSString *)signature email:(NSString *)email
+{
+    LWPrivateKeyOwnershipMessage *pack=[[LWPrivateKeyOwnershipMessage alloc] init];
+    pack.email=email;
+    pack.signature=signature;
+    [self sendPacket:pack];
+
+}
+
 -(void) requestRecoverySMSConfirmation:(LWRecoveryPasswordModel *)recModel
 {
     LWPacketRecoverySMSConfirmation *pack=[LWPacketRecoverySMSConfirmation new];

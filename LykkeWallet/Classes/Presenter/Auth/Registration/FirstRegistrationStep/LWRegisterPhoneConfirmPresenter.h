@@ -15,4 +15,6 @@
 
 @property (nonatomic, strong) NSString *phone;
 
+@property BOOL flagHaveSentSMS;
+
 @end

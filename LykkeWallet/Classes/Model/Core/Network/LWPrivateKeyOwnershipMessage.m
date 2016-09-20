@@ -17,15 +17,29 @@
         return;
     }
     self.ownershipMessage=result[@"Message"];
-    
+    self.confirmedOwnership=[result[@"Confirmed"] boolValue];
 }
 
 - (NSString *)urlRelative {
-    return [NSString stringWithFormat:@"PrivateKeyOwnershipMsg?email=%@", self.email];
+    if(!self.signature)
+        return [NSString stringWithFormat:@"PrivateKeyOwnershipMsg?email=%@", self.email];
+    else
+        return @"PrivateKeyOwnershipMsg";
+}
+
+-(NSDictionary *) params
+{
+    if(self.signature)
+        return @{@"Email":self.email, @"SignedOwnershipMsg":self.signature};
+    else
+        return nil;
 }
 
 - (GDXRESTPacketType)type {
-    return GDXRESTPacketTypeGET;
+    if(!self.signature)
+        return GDXRESTPacketTypeGET;
+    else
+        return GDXRESTPacketTypePOST;
 }
 
 

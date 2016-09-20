@@ -25,6 +25,9 @@
     UIView *separator;
     
     UIButton *codeLabelButton;
+    
+    LWRegisterPhoneConfirmPresenter *nextPresenter;
+    
 }
 
 @property (weak, nonatomic) IBOutlet UIButton *countryButton;
@@ -113,9 +116,18 @@
 
 - (IBAction)nextClicked:(id)sender {
     if ([self canProceed]) {
-        NSString *phone = [self phoneNumberWithoutPlus];
-        [self setLoading:YES];
-        [[LWAuthManager instance] requestVerificationPhone:phone];
+        if(!nextPresenter)
+            nextPresenter=[LWRegisterPhoneConfirmPresenter new];
+        nextPresenter.phone=[self phoneNumberWithPlus];
+        [self.navigationController pushViewController:nextPresenter animated:YES];
+        
+//        LWAuthNavigationController *controller = (LWAuthNavigationController *)self.navigationController;
+//        [controller navigateToStep:[self nextStep]
+//                  preparationBlock:^(LWAuthStepPresenter *presenter) {
+//                      
+//                      LWRegisterPhoneConfirmPresenter *nextPresenter=(LWRegisterPhoneConfirmPresenter *)presenter;
+//                      nextPresenter.phone = [self phoneNumberWithPlus];
+//                  }];
     }
 }
 
@@ -260,16 +272,6 @@
     [self showReject:reject response:context.task.response];
 }
 
-- (void)authManagerDidSendValidationPhone:(LWAuthManager *)manager {
-    // copy data to model
-    [self setLoading:NO];
-    LWAuthNavigationController *controller = (LWAuthNavigationController *)self.navigationController;
-    [controller navigateToStep:[self nextStep]
-              preparationBlock:^(LWAuthStepPresenter *presenter) {
-                  LWRegisterPhoneConfirmPresenter *nextPresenter = (LWRegisterPhoneConfirmPresenter *)presenter;
-                  nextPresenter.phone = [self phoneNumberWithPlus];
-              }];
-}
 
 - (NSString *)phoneNumberWithoutPlus {
     NSString *phone = [NSString stringWithFormat:@"%@%@", self.codeLabel.text, self.numberTextField.text];

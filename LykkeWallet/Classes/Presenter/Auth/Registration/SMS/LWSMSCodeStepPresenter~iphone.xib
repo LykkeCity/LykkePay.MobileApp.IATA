@@ -19,7 +19,7 @@
                 <outlet property="codeContainer" destination="7V4-RI-SyE" id="4rJ-VV-Dwi"/>
                 <outlet property="confirmButton" destination="Jn9-pG-n5t" id="g2t-j4-ZBM"/>
                 <outlet property="confirmButtonWidthConstraint" destination="vPU-xq-wAJ" id="tfl-LM-Rmy"/>
-                <outlet property="infoLabel" destination="fO2-wn-mL8" id="Ork-Ur-au8"/>
+                <outlet property="infoLabel" destination="dqO-fu-5h8" id="D4O-16-YF7"/>
                 <outlet property="pasteButton" destination="LpI-gT-bqQ" id="eHZ-av-tr5"/>
                 <outlet property="titleLabel" destination="cpa-nt-Xua" id="4Ki-3G-wjL"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -74,12 +74,9 @@
                         <action selector="confirmClicked:" destination="-1" eventType="touchUpInside" id="mdd-p8-czC"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Haven't received the code?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fO2-wn-mL8">
-                    <constraints>
-                        <constraint firstAttribute="height" constant="25" id="ZLA-XN-W4q"/>
-                    </constraints>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Haven't receive the code?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dqO-fu-5h8">
                     <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="14"/>
-                    <color key="textColor" red="0.6705882353" green="0.0" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="textColor" red="0.6705882352941176" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
@@ -89,12 +86,12 @@
                 <constraint firstItem="7V4-RI-SyE" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="70k-p5-DDQ"/>
                 <constraint firstAttribute="trailing" secondItem="cpa-nt-Xua" secondAttribute="trailing" id="A4U-aD-MIE"/>
                 <constraint firstItem="Jn9-pG-n5t" firstAttribute="top" secondItem="7V4-RI-SyE" secondAttribute="bottom" constant="20" id="KSv-KN-6MU"/>
+                <constraint firstItem="dqO-fu-5h8" firstAttribute="top" secondItem="Jn9-pG-n5t" secondAttribute="bottom" constant="30" id="Z3G-Id-Kaw"/>
                 <constraint firstItem="cpa-nt-Xua" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="a1C-hJ-LtQ"/>
                 <constraint firstItem="7V4-RI-SyE" firstAttribute="top" secondItem="cpa-nt-Xua" secondAttribute="bottom" constant="40" id="lYW-a5-UfI"/>
-                <constraint firstAttribute="trailing" secondItem="fO2-wn-mL8" secondAttribute="trailing" id="lgJ-Tx-WAv"/>
                 <constraint firstItem="7V4-RI-SyE" firstAttribute="width" secondItem="Jn9-pG-n5t" secondAttribute="width" id="nZX-xc-T5R"/>
-                <constraint firstItem="fO2-wn-mL8" firstAttribute="top" secondItem="Jn9-pG-n5t" secondAttribute="bottom" constant="30" id="to6-xi-gAy"/>
-                <constraint firstItem="fO2-wn-mL8" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="xcT-bF-Dbg"/>
+                <constraint firstAttribute="trailing" secondItem="dqO-fu-5h8" secondAttribute="trailing" id="nZj-WC-3S8"/>
+                <constraint firstItem="dqO-fu-5h8" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="noh-GH-3P4"/>
                 <constraint firstItem="cpa-nt-Xua" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="-8" id="zfw-u6-VMB"/>
             </constraints>
             <point key="canvasLocation" x="266" y="202"/>

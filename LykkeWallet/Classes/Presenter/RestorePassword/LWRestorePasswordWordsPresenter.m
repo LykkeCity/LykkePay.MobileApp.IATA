@@ -19,6 +19,8 @@
 
 @interface LWRestorePasswordWordsPresenter () <UITextFieldDelegate>
 {
+    
+    
 }
 
 @property (weak, nonatomic) IBOutlet LWCommonButton *proceedButton;
@@ -148,19 +150,39 @@
 
 -(void) authManager:(LWAuthManager *) manager didGetPrivateKeyOwnershipMessage:(LWPrivateKeyOwnershipMessage *)packet
 {
-    [self setLoading:NO];
-    LWRecoveryPasswordModel *recModel=[[LWRecoveryPasswordModel alloc] init];
-    recModel.securityMessage1=packet.ownershipMessage;
-    recModel.email=self.email;
+    if(packet.signature)
+    {
+        [self setLoading:NO];
+        
+        if(packet.confirmedOwnership)
+        {
+            LWRecoveryPasswordModel *recModel=[[LWRecoveryPasswordModel alloc] init];
+            //        recModel.securityMessage1=packet.ownershipMessage;
+            recModel.email=self.email;
+            
+            LWEnterNewPasswordPresenter *presenter=[[LWEnterNewPasswordPresenter alloc] init];
+            presenter.recModel=recModel;
+            [self.navigationController pushViewController:presenter animated:YES];
+
+        }
+        else
+        {
+            UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"ERROR" message:@"These seed words are not corresponding your private key." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+            [alert show];
+        }
+        
+//        NSString *address=[LWPrivateKeyManager addressFromPrivateKeyWIF:[LWPrivateKeyManager shared].wifPrivateKeyLykke];
+//        
+//        recModel.signature1=[[LWPrivateKeyManager shared] signatureForMessageWithLykkeKey:recModel.securityMessage1];
+        
+
+    }
+    else
+    {
+        NSString *signature=[[LWPrivateKeyManager shared] signatureForMessageWithLykkeKey:packet.ownershipMessage];
+        [[LWAuthManager instance] requestCheckPrivateKeyOwnershipMessageSignature:signature email:self.email];
+    }
     
-    LWEnterNewPasswordPresenter *presenter=[[LWEnterNewPasswordPresenter alloc] init];
-    presenter.recModel=recModel;
-    
-    NSString *address=[LWPrivateKeyManager addressFromPrivateKeyWIF:[LWPrivateKeyManager shared].wifPrivateKeyLykke];
-    
-    recModel.signature1=[[LWPrivateKeyManager shared] signatureForMessageWithLykkeKey:recModel.securityMessage1];
-    
-    [self.navigationController pushViewController:presenter animated:YES];
 }
 
 -(void) authManager:(LWAuthManager *)manager didFailWithReject:(NSDictionary *)reject context:(GDXRESTContext *)context

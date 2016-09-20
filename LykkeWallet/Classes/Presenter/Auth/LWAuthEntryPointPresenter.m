@@ -27,6 +27,7 @@
 #import "LWKeychainManager.h"
 #import "LWRefundTransactionPresenter.h"
 #import "AppDelegate.h"
+#import "LWPrivateKeyManager.h"
 
 #import "LWTestBackupWordsPresenter.h"
 
@@ -149,6 +150,9 @@ typedef NS_ENUM(NSInteger, LWAuthEntryPointNextStep) {
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    
+    [[LWKeychainManager instance] clear];
+    [[LWPrivateKeyManager shared] logoutUser];
     // hide navigation bar
     [self.navigationController setNavigationBarHidden:YES animated:NO];
     // keyboard observing

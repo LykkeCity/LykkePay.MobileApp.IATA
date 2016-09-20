@@ -16,8 +16,11 @@
 #import "LWResultPresenter.h"
 #import "LWPrivateKeyOwnershipMessage.h"
 #import "UIView+Toast.h"
+#import "LWSMSTimerView.h"
+#import "LWRequestCallMessageView.h"
 
-@interface LWSMSCodeCheckPresenter () <UITextFieldDelegate, LWNumbersKeyboardViewDelegate, UIGestureRecognizerDelegate, LWResultPresenterDelegate>
+
+@interface LWSMSCodeCheckPresenter () <UITextFieldDelegate, LWNumbersKeyboardViewDelegate, UIGestureRecognizerDelegate, LWResultPresenterDelegate,LWSMSTimerViewDelegate>
 {
     BOOL keyboardIsShowing;
     LWNumbersKeyboardView *keyboard;
@@ -35,6 +38,8 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *textLabel;
 
+@property (weak, nonatomic) IBOutlet LWSMSTimerView *smsTimerView;
+
 
 @end
 
@@ -51,6 +56,9 @@
     keyboard.showSMSCodeCursor=YES;
     [self.view addSubview:keyboard];
     keyboard.cursor.hidden=YES;
+    
+    [_smsTimerView setTitle:@"Haven't receive the code?"];
+    _smsTimerView.delegate=self;
     
     _textField.placeholder=@"Code";
     
@@ -98,12 +106,17 @@
     self.title=@"RESET PASSWORD";
     
     
-    if(!self.recModel.securityMessage2)
+//    if(!self.recModel.securityMessage2)
+//    {
+
+ //       [[LWAuthManager instance] requestRecoverySMSConfirmation:self.recModel];
+    if([_smsTimerView isTimerRunnig]==NO)
     {
+        [self resendSMS];
         [self setLoading:YES];
 
-        [[LWAuthManager instance] requestRecoverySMSConfirmation:self.recModel];
     }
+//    }
 
 }
 
@@ -155,7 +168,22 @@
         self.proceedButton.enabled=NO;
 }
 
--(IBAction) resendSMS:(id)sender
+-(void) smsTimerViewPressedResend:(LWSMSTimerView *)view
+{
+    [self resendSMS];
+}
+
+-(void) smsTimerViewPressedRequestVoiceCall:(LWSMSTimerView *)view
+{
+    LWRequestCallMessageView *vvv=[[NSBundle mainBundle] loadNibNamed:@"LWRequestCallMessageView" owner:self options:nil][0];
+    
+    UIWindow *window=self.view.window;
+    vvv.frame=window.bounds;
+    [window addSubview:vvv];
+    [vvv showWithCompletion:nil];
+}
+
+-(void) resendSMS
 {
     [self setLoading:YES];
     [[LWAuthManager instance] requestPrivateKeyOwnershipMessage:self.recModel.email];

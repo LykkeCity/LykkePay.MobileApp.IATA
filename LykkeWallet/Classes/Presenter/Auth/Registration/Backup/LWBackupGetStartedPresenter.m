@@ -71,9 +71,9 @@
 -(IBAction)getStartedPressed:(id)sender
 {
     LWBackupSingleWordPresenter *presenter=[[LWBackupSingleWordPresenter alloc] init];
-    if(![LWKeychainManager instance].login)
-        presenter.wordsList=[LWPrivateKeyManager generateSeedWords];
-    else if([LWPrivateKeyManager shared].privateKeyLykke)
+//    if(![LWKeychainManager instance].login)
+//        presenter.wordsList=[LWPrivateKeyManager generateSeedWords];
+    if([LWPrivateKeyManager shared].privateKeyLykke)
         presenter.wordsList=[[LWPrivateKeyManager shared] privateKeyWords];
     else
     {

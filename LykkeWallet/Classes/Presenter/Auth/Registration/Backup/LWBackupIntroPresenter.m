@@ -44,6 +44,24 @@
     // Do any additional setup after loading the view.
 }
 
+-(void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
+}
+
+-(void) viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    if([LWPrivateKeyManager shared].privateKeyLykke==nil)
+    {
+        [[LWPrivateKeyManager shared] savePrivateKeyLykkeFromSeedWords:[LWPrivateKeyManager generateSeedWords]];
+        [self setLoading:YES];
+        [[LWAuthManager instance] requestSaveClientKeysWithPubKey:[LWPrivateKeyManager shared].publicKeyLykke encodedPrivateKey:[LWPrivateKeyManager shared].encryptedKeyLykke];
+
+    }
+}
 
 
 - (void)didReceiveMemoryWarning {
@@ -78,10 +96,7 @@
 
 -(IBAction)skipBackupPressed:(id)sender
 {
-    [[LWPrivateKeyManager shared] savePrivateKeyLykkeFromSeedWords:[LWPrivateKeyManager generateSeedWords]];
-    [self setLoading:YES];
-    [[LWAuthManager instance] requestSaveClientKeysWithPubKey:[LWPrivateKeyManager shared].publicKeyLykke encodedPrivateKey:[LWPrivateKeyManager shared].encryptedKeyLykke];
-
+    [((LWAuthNavigationController *)self.navigationController) setRootMainTabScreen];
     
 }
 
@@ -89,7 +104,6 @@
 -(void) authManagerDidSendClientKeys:(LWAuthManager *)manager
 {
     [self setLoading:NO];
-    [((LWAuthNavigationController *)self.navigationController) setRootMainTabScreen];
 
 }
 

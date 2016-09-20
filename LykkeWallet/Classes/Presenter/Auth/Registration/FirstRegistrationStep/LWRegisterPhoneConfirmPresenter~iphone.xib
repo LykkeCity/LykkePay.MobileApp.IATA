@@ -18,7 +18,7 @@
             <connections>
                 <outlet property="codeContainer" destination="9bM-Qa-akT" id="JVT-7T-8hB"/>
                 <outlet property="confirmButton" destination="zfm-MU-Ghg" id="4cH-Xd-Vbb"/>
-                <outlet property="infoLabel" destination="XNX-vK-411" id="2Q5-aW-egn"/>
+                <outlet property="notReceivedSMSView" destination="4En-kV-NcS" id="nGf-ot-deW"/>
                 <outlet property="proceedWidthConstraint" destination="QkA-yv-n3X" id="T4g-GI-u8E"/>
                 <outlet property="statusLabel" destination="VlG-77-cV8" id="9F2-a6-tGq"/>
                 <outlet property="titleLabel" destination="3a2-oh-15P" id="vMe-rR-Kww"/>
@@ -61,14 +61,6 @@
                         <action selector="confirmClicked:" destination="-1" eventType="touchUpInside" id="oxV-fh-cui"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Haven't received the code?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XNX-vK-411">
-                    <constraints>
-                        <constraint firstAttribute="height" constant="25" id="Gid-KH-MIG"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="14"/>
-                    <color key="textColor" red="0.6705882353" green="0.0" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Complete your phone" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3a2-oh-15P">
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="E9P-Pv-Jtc"/>
@@ -78,19 +70,25 @@
                     <color key="textColor" red="0.24705882352941178" green="0.30196078431372547" blue="0.37647058823529411" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4En-kV-NcS" customClass="LWSMSTimerView">
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="18" id="jvm-6q-pM8"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="4En-kV-NcS" firstAttribute="leading" secondItem="Ysh-Gz-Prh" secondAttribute="leading" id="58v-07-0xW"/>
                 <constraint firstItem="9bM-Qa-akT" firstAttribute="centerX" secondItem="Ysh-Gz-Prh" secondAttribute="centerX" id="7oB-20-GF0"/>
                 <constraint firstItem="zfm-MU-Ghg" firstAttribute="top" secondItem="9bM-Qa-akT" secondAttribute="bottom" constant="20" id="8aV-JN-0oF"/>
+                <constraint firstItem="4En-kV-NcS" firstAttribute="top" secondItem="VlG-77-cV8" secondAttribute="bottom" constant="17" id="9ki-mQ-c2c"/>
                 <constraint firstItem="3a2-oh-15P" firstAttribute="centerX" secondItem="Ysh-Gz-Prh" secondAttribute="centerX" id="HI6-Hh-a8H"/>
-                <constraint firstItem="XNX-vK-411" firstAttribute="top" secondItem="VlG-77-cV8" secondAttribute="bottom" constant="11" id="OFI-ov-um3"/>
-                <constraint firstAttribute="trailing" secondItem="XNX-vK-411" secondAttribute="trailing" id="Rvj-0n-JpX"/>
                 <constraint firstItem="zfm-MU-Ghg" firstAttribute="centerX" secondItem="Ysh-Gz-Prh" secondAttribute="centerX" id="UGb-XN-hUT"/>
-                <constraint firstItem="XNX-vK-411" firstAttribute="leading" secondItem="Ysh-Gz-Prh" secondAttribute="leading" id="VnI-aD-RFC"/>
                 <constraint firstItem="9bM-Qa-akT" firstAttribute="width" secondItem="zfm-MU-Ghg" secondAttribute="width" id="ckO-u7-WY0"/>
                 <constraint firstItem="9bM-Qa-akT" firstAttribute="top" secondItem="3a2-oh-15P" secondAttribute="bottom" constant="40" id="cuX-gR-5DI"/>
                 <constraint firstItem="VlG-77-cV8" firstAttribute="top" secondItem="zfm-MU-Ghg" secondAttribute="bottom" constant="20" id="fiC-bm-c0S"/>
+                <constraint firstAttribute="trailing" secondItem="4En-kV-NcS" secondAttribute="trailing" id="keb-iE-UIy"/>
                 <constraint firstItem="3a2-oh-15P" firstAttribute="top" secondItem="Ysh-Gz-Prh" secondAttribute="top" id="olj-Gs-jIS"/>
                 <constraint firstItem="VlG-77-cV8" firstAttribute="centerX" secondItem="Ysh-Gz-Prh" secondAttribute="centerX" id="qr3-gK-ngh"/>
             </constraints>

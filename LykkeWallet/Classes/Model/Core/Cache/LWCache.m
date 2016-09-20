@@ -9,6 +9,7 @@
 #import "LWCache.h"
 #import "LWAssetModel.h"
 
+#define SMS_DELAY 15
 
 @implementation LWCache
 
@@ -24,6 +25,8 @@ SINGLETON_INIT {
         _debugMode    = NO;
         self.cachedAssetPairsRates=[[NSMutableDictionary alloc] init];
         self.showMyLykkeTab=NO;
+        
+        _smsRetriesLeft=3;
     }
     return self;
 }
@@ -36,7 +39,7 @@ SINGLETON_INIT {
 
 +(BOOL) shouldHideDepositForAssetId:(NSString *)assetID
 {
-    BOOL shouldHide=NO;
+    BOOL shouldHide=YES;
     for(LWAssetModel *asset in [LWCache instance].allAssets)
     {
         if([asset.identity isEqualToString:assetID])
@@ -174,6 +177,38 @@ SINGLETON_INIT {
     }
     return 0;
 }
+
+
+-(void) startTimerForSMS
+{
+    _smsDelaySecondsLeft=SMS_DELAY;
+    _timerSMS=[NSTimer timerWithTimeInterval:1 target:self selector:@selector(smsDelayTimerFired) userInfo:nil repeats:YES];
+    [[NSRunLoop currentRunLoop] addTimer:_timerSMS forMode:NSDefaultRunLoopMode];
+}
+
+-(void) smsDelayTimerFired
+{
+    _smsDelaySecondsLeft--;
+    if(_smsDelaySecondsLeft==0)
+    {
+        _smsRetriesLeft--;
+        [_timerSMS invalidate];
+        _timerSMS=nil;
+        if([_smsDelayDelegate respondsToSelector:@selector(smsTimerFinished)])
+        {
+            [_smsDelayDelegate smsTimerFinished];
+        }
+    }
+    else
+    {
+        if([_smsDelayDelegate respondsToSelector:@selector(smsTimerFired)])
+        {
+            [_smsDelayDelegate smsTimerFired];
+        }
+
+    }
+}
+
 
 
 @end

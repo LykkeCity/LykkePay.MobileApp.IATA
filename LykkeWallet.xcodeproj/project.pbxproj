@@ -107,6 +107,8 @@
 		A1312B2A1D19027F009726FF /* NewDecodeBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = A1312B291D19027F009726FF /* NewDecodeBase64.m */; };
 		A135977B1D6360A70021228E /* LWCreateEditPrivateWalletPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A13597791D6360A70021228E /* LWCreateEditPrivateWalletPresenter.m */; };
 		A135977C1D6360A70021228E /* LWCreateEditPrivateWalletPresenter.xib in Resources */ = {isa = PBXBuildFile; fileRef = A135977A1D6360A70021228E /* LWCreateEditPrivateWalletPresenter.xib */; };
+		A1369BA31D90E9F5003CAC09 /* LWRequestCallMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A1369BA11D90E9F5003CAC09 /* LWRequestCallMessageView.m */; };
+		A1369BA41D90E9F5003CAC09 /* LWRequestCallMessageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1369BA21D90E9F5003CAC09 /* LWRequestCallMessageView.xib */; };
 		A14515631D793E5200B4BED9 /* LWPrivateWalletsPresenter.xib in Resources */ = {isa = PBXBuildFile; fileRef = A14515621D793E5200B4BED9 /* LWPrivateWalletsPresenter.xib */; };
 		A14515651D79B18C00B4BED9 /* LWMyLykkePresenter_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A14515641D79B18C00B4BED9 /* LWMyLykkePresenter_iPad.xib */; };
 		A14515691D7A89CB00B4BED9 /* LWMyLykkeIpadController.m in Sources */ = {isa = PBXBuildFile; fileRef = A14515671D7A89CB00B4BED9 /* LWMyLykkeIpadController.m */; };
@@ -144,6 +146,7 @@
 		A14515C11D844A8800B4BED9 /* LWMyLykkeDepositBTCPresenter_iphone5.xib in Resources */ = {isa = PBXBuildFile; fileRef = A14515C01D844A8800B4BED9 /* LWMyLykkeDepositBTCPresenter_iphone5.xib */; };
 		A14515C31D87B28400B4BED9 /* LWPINPresenter_iphone5.xib in Resources */ = {isa = PBXBuildFile; fileRef = A14515C21D87B28400B4BED9 /* LWPINPresenter_iphone5.xib */; };
 		A145E3061D90045A00248575 /* LWCountrySelectorContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = A145E3051D90045A00248575 /* LWCountrySelectorContainer.m */; };
+		A145E3091D90B58D00248575 /* LWSMSTimerView.m in Sources */ = {isa = PBXBuildFile; fileRef = A145E3081D90B58D00248575 /* LWSMSTimerView.m */; };
 		A14B7D2E1CE3233D00820084 /* ButtonOK_square.png in Resources */ = {isa = PBXBuildFile; fileRef = A14B7D2D1CE3233D00820084 /* ButtonOK_square.png */; };
 		A15B3EAF1D12626B00A6B506 /* LWRefundInformationPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A15B3EAD1D12626B00A6B506 /* LWRefundInformationPresenter.m */; };
 		A15B3EB01D12626B00A6B506 /* LWRefundInformationPresenter.xib in Resources */ = {isa = PBXBuildFile; fileRef = A15B3EAE1D12626B00A6B506 /* LWRefundInformationPresenter.xib */; };
@@ -1858,6 +1861,9 @@
 		A13597781D6360A70021228E /* LWCreateEditPrivateWalletPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWCreateEditPrivateWalletPresenter.h; sourceTree = "<group>"; };
 		A13597791D6360A70021228E /* LWCreateEditPrivateWalletPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWCreateEditPrivateWalletPresenter.m; sourceTree = "<group>"; };
 		A135977A1D6360A70021228E /* LWCreateEditPrivateWalletPresenter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LWCreateEditPrivateWalletPresenter.xib; sourceTree = "<group>"; };
+		A1369BA01D90E9F5003CAC09 /* LWRequestCallMessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWRequestCallMessageView.h; sourceTree = "<group>"; };
+		A1369BA11D90E9F5003CAC09 /* LWRequestCallMessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWRequestCallMessageView.m; sourceTree = "<group>"; };
+		A1369BA21D90E9F5003CAC09 /* LWRequestCallMessageView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LWRequestCallMessageView.xib; sourceTree = "<group>"; };
 		A14515621D793E5200B4BED9 /* LWPrivateWalletsPresenter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LWPrivateWalletsPresenter.xib; sourceTree = "<group>"; };
 		A14515641D79B18C00B4BED9 /* LWMyLykkePresenter_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LWMyLykkePresenter_iPad.xib; sourceTree = "<group>"; };
 		A14515661D7A89CB00B4BED9 /* LWMyLykkeIpadController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWMyLykkeIpadController.h; sourceTree = "<group>"; };
@@ -1909,6 +1915,8 @@
 		A14515C21D87B28400B4BED9 /* LWPINPresenter_iphone5.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LWPINPresenter_iphone5.xib; sourceTree = "<group>"; };
 		A145E3041D90045A00248575 /* LWCountrySelectorContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWCountrySelectorContainer.h; sourceTree = "<group>"; };
 		A145E3051D90045A00248575 /* LWCountrySelectorContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWCountrySelectorContainer.m; sourceTree = "<group>"; };
+		A145E3071D90B58D00248575 /* LWSMSTimerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWSMSTimerView.h; sourceTree = "<group>"; };
+		A145E3081D90B58D00248575 /* LWSMSTimerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWSMSTimerView.m; sourceTree = "<group>"; };
 		A14B7D2D1CE3233D00820084 /* ButtonOK_square.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ButtonOK_square.png; sourceTree = "<group>"; };
 		A15B3EAC1D12626B00A6B506 /* LWRefundInformationPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWRefundInformationPresenter.h; sourceTree = "<group>"; };
 		A15B3EAD1D12626B00A6B506 /* LWRefundInformationPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWRefundInformationPresenter.m; sourceTree = "<group>"; };
@@ -5369,6 +5377,8 @@
 				A145157F1D7DAC0000B4BED9 /* LWWebViewDocumentPresenter.h */,
 				A14515801D7DAC0000B4BED9 /* LWWebViewDocumentPresenter.m */,
 				A14515811D7DAC0000B4BED9 /* LWWebViewDocumentPresenter.xib */,
+				A145E3071D90B58D00248575 /* LWSMSTimerView.h */,
+				A145E3081D90B58D00248575 /* LWSMSTimerView.m */,
 				A18D25B81D6963F2005CEF66 /* PIN */,
 				A122B97B1CFEB2E4009DC795 /* FLAnimatedImage */,
 				ECAACF371C9F3BCD000227E0 /* LWErrorView.xib */,
@@ -6610,6 +6620,9 @@
 				ECD114451CD8E470002B36C0 /* LWSMSCodeStepPresenter.m */,
 				ECD114461CD8E470002B36C0 /* LWSMSCodeStepPresenter~iphone.xib */,
 				A1743CB91CEAC63600176F59 /* LWSMSCodeStepPresenter~ipad.xib */,
+				A1369BA01D90E9F5003CAC09 /* LWRequestCallMessageView.h */,
+				A1369BA11D90E9F5003CAC09 /* LWRequestCallMessageView.m */,
+				A1369BA21D90E9F5003CAC09 /* LWRequestCallMessageView.xib */,
 			);
 			name = SMS;
 			sourceTree = "<group>";
@@ -7643,6 +7656,7 @@
 				A1D65D9B1D5DCF1100828783 /* crypto_bar_00087.png in Resources */,
 				A1BCD0951D012D3C00CF42E4 /* 1-deposit-2x_00013.png in Resources */,
 				A1D65DB81D5DCF1100828783 /* crypto_bar_00116.png in Resources */,
+				A1369BA41D90E9F5003CAC09 /* LWRequestCallMessageView.xib in Resources */,
 				A1BCD1181D012D3C00CF42E4 /* 2-trade-2x_00024.png in Resources */,
 				A1BCD1241D012D3C00CF42E4 /* 2-trade-2x_00036.png in Resources */,
 				A12DB5491D730E5400319EA7 /* LWMyLykkeDepositSwiftPresenter~iphone.xib in Resources */,
@@ -8225,6 +8239,7 @@
 				A1165D1C1CF55B530017A725 /* LWIPadModalNavigationControllerViewController.m in Sources */,
 				EC3CE8B81C401E2E00CAC3FE /* LWPacketBlockchainTransaction.m in Sources */,
 				EC7519CC1C37430900CDDF5B /* LWPacketBaseAssets.m in Sources */,
+				A1369BA31D90E9F5003CAC09 /* LWRequestCallMessageView.m in Sources */,
 				CFF758461C202C8E00BC7658 /* LWKYCRestrictedPresenter.m in Sources */,
 				A114947C1D4B86A4000BD347 /* LWPacketGetHistory.m in Sources */,
 				EC9AE0721CAD19EE0047DF0D /* LWWithdrawConfirmationView.m in Sources */,
@@ -8376,6 +8391,7 @@
 				A18D25B71D689D7F005CEF66 /* LWPINEnterProgressView.m in Sources */,
 				CF6F69D31C2413F70016CFC5 /* ABPadLockScreenViewController.m in Sources */,
 				A120FE7B1D72CBED00D710B1 /* LWMyLykkeInfoTableViewCell.m in Sources */,
+				A145E3091D90B58D00248575 /* LWSMSTimerView.m in Sources */,
 				A1D65CC51D5DB09700828783 /* LWGenerateKeyPresenter.m in Sources */,
 				CDCD5B181C26CC50007BAD78 /* LWRegisterPasswordPresenter.m in Sources */,
 				A1B6A0F61D3A5C2100FE02E1 /* LWBackupMessageView.m in Sources */,

@@ -157,9 +157,13 @@
 //    }
 //    
     
+    
+    
     [[LWAuthManager instance] requestAllAssetPairs];
     [[LWAuthManager instance] requestAPIVersion];
     [[LWAuthManager instance] requestSwiftCredentials];
+    
+    
     
     return YES;
 }

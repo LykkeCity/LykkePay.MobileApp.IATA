@@ -17,6 +17,7 @@
                 <outlet property="iconValid" destination="cSE-Wx-Ztn" id="Zn4-RL-Tjw"/>
                 <outlet property="proceedButton" destination="SXA-f5-O3f" id="sZ4-7n-k0V"/>
                 <outlet property="scrollViewBottomConstraint" destination="riN-qL-2tm" id="3rD-j0-4yA"/>
+                <outlet property="smsTimerView" destination="76Z-U8-r2y" id="5w1-aW-u0j"/>
                 <outlet property="textField" destination="1Hf-3i-Rl3" id="wxE-pY-rdz"/>
                 <outlet property="textLabel" destination="tHW-O3-Rha" id="e5c-GU-atb"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -77,21 +78,18 @@
                                 <color key="titleColor" red="0.96078431372549022" green="0.23780256859455196" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sQM-25-x3N">
-                            <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="14"/>
-                            <state key="normal" title="Haven’t received the code?">
-                                <color key="titleColor" red="0.6705882352941176" green="0.0" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </state>
-                            <connections>
-                                <action selector="resendSMS:" destination="-2" eventType="touchUpInside" id="XHs-vd-kZs"/>
-                            </connections>
-                        </button>
+                        <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="76Z-U8-r2y" customClass="LWSMSTimerView">
+                            <rect key="frame" x="67" y="419" width="240" height="128"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="18" id="GwE-Wg-jsH"/>
+                            </constraints>
+                        </view>
                     </subviews>
                     <constraints>
                         <constraint firstItem="tHW-O3-Rha" firstAttribute="top" secondItem="Itd-Cj-ndI" secondAttribute="bottom" constant="10" id="33E-iv-dMf"/>
                         <constraint firstItem="Itd-Cj-ndI" firstAttribute="centerX" secondItem="OVk-Tn-2S8" secondAttribute="centerX" id="6am-Jq-ILK"/>
                         <constraint firstItem="BE2-8P-3nB" firstAttribute="centerX" secondItem="tHW-O3-Rha" secondAttribute="centerX" id="BNi-um-QYs"/>
-                        <constraint firstItem="sQM-25-x3N" firstAttribute="centerX" secondItem="OVk-Tn-2S8" secondAttribute="centerX" id="BuA-T6-Rq3"/>
                         <constraint firstItem="BE2-8P-3nB" firstAttribute="top" secondItem="tHW-O3-Rha" secondAttribute="bottom" constant="15" id="I7t-sB-Rxn"/>
                         <constraint firstAttribute="trailing" secondItem="BE2-8P-3nB" secondAttribute="trailing" constant="30" id="S1E-Q8-WnT"/>
                         <constraint firstAttribute="bottom" secondItem="SXA-f5-O3f" secondAttribute="bottom" constant="20" id="SGE-mL-aF1"/>
@@ -99,8 +97,10 @@
                         <constraint firstItem="SXA-f5-O3f" firstAttribute="top" secondItem="BE2-8P-3nB" secondAttribute="bottom" constant="20" id="Ueq-5O-5nF"/>
                         <constraint firstItem="BE2-8P-3nB" firstAttribute="centerY" secondItem="OVk-Tn-2S8" secondAttribute="centerY" multiplier="0.9" id="VIp-wx-3kh"/>
                         <constraint firstItem="tHW-O3-Rha" firstAttribute="centerX" secondItem="OVk-Tn-2S8" secondAttribute="centerX" id="hIy-Rk-CrV"/>
-                        <constraint firstItem="sQM-25-x3N" firstAttribute="top" secondItem="SXA-f5-O3f" secondAttribute="bottom" constant="17" id="hWe-zG-X7D"/>
+                        <constraint firstAttribute="trailing" secondItem="76Z-U8-r2y" secondAttribute="trailing" id="i9O-Bg-WbN"/>
+                        <constraint firstItem="76Z-U8-r2y" firstAttribute="top" secondItem="SXA-f5-O3f" secondAttribute="bottom" constant="20" id="ntm-dz-kPZ"/>
                         <constraint firstItem="BE2-8P-3nB" firstAttribute="leading" secondItem="OVk-Tn-2S8" secondAttribute="leading" constant="30" id="r0z-v0-s3M"/>
+                        <constraint firstItem="76Z-U8-r2y" firstAttribute="leading" secondItem="OVk-Tn-2S8" secondAttribute="leading" id="rBC-7p-zut"/>
                         <constraint firstAttribute="bottom" secondItem="BE2-8P-3nB" secondAttribute="bottom" constant="236" id="xcl-2I-dbO"/>
                         <constraint firstItem="SXA-f5-O3f" firstAttribute="width" secondItem="BE2-8P-3nB" secondAttribute="width" id="yJi-wx-U7I"/>
                     </constraints>

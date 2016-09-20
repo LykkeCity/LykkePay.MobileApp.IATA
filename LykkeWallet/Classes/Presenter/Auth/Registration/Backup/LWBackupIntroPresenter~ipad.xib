@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <mutableArray key="Proxima Nova Regular.otf">
+        <array key="Proxima Nova Regular.otf">
             <string>ProximaNova-Regular</string>
-            <string>ProximaNova-Regular</string>
-        </mutableArray>
+        </array>
     </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LWBackupIntroPresenter">
@@ -25,57 +25,57 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="IconLogo" translatesAutoresizingMaskIntoConstraints="NO" id="NQE-KX-jve">
-                    <rect key="frame" x="257" y="197" width="85" height="78"/>
+                    <frame key="frameInset" minX="257" minY="197" width="85" height="78"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="78" id="qdl-vz-Xap"/>
                         <constraint firstAttribute="width" constant="85" id="wir-b5-stK"/>
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Make a backup" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aF2-e2-Rnt">
-                    <rect key="frame" x="233" y="352" width="133.5" height="26"/>
+                    <frame key="frameInset" minX="233" minY="352" width="133.5" height="26"/>
                     <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="21"/>
-                    <color key="textColor" red="0.24705882352941178" green="0.30196078431372547" blue="0.37647058823529411" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="textColor" red="0.24705882352941178" green="0.30196078431372547" blue="0.37647058823529411" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZDB-MW-0Ez">
-                    <rect key="frame" x="98" y="387" width="404" height="68.5"/>
+                    <frame key="frameInset" minX="98" minY="387" width="404" height="68.5"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="404" id="X5x-Vj-MkO"/>
                     </constraints>
                     <string key="text">You need to make a backup of your wallet. With your backup, you can easily restore your funds if your device is lost or damaged. Your backup is a series of 12 words. Just write them down and keep them in a safe place.</string>
                     <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="14"/>
-                    <color key="textColor" red="0.24705882352941178" green="0.30196078431372547" blue="0.37647058823529411" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                    <color key="textColor" red="0.24705882352941178" green="0.30196078431372547" blue="0.37647058823529411" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yLW-t4-Oge">
-                    <rect key="frame" x="163" y="646" width="315" height="45"/>
+                    <frame key="frameInset" minX="163" minY="646" width="315" height="45"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="45" id="XcM-p6-3hs"/>
                         <constraint firstAttribute="width" constant="315" id="odo-j3-pcM"/>
                     </constraints>
                     <state key="normal" title="Button">
-                        <color key="titleColor" red="0.24705882352941178" green="0.30196078431372547" blue="0.37647058823529411" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                        <color key="titleColor" red="0.24705882352941178" green="0.30196078431372547" blue="0.37647058823529411" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
                     <connections>
                         <action selector="takeBackupButtonPressed:" destination="-2" eventType="touchUpInside" id="hSz-9n-BOa"/>
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZCl-Ag-xkr" customClass="LWCommonButton">
-                    <rect key="frame" x="296" y="593" width="46" height="30"/>
+                    <frame key="frameInset" minX="296" minY="593" width="46" height="30"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="45" id="bHH-bJ-anV"/>
                     </constraints>
                     <state key="normal" title="SKIP BACKUP">
-                        <color key="titleColor" red="0.54901960780000003" green="0.58039215690000001" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleColor" red="0.54901960780000003" green="0.58039215690000001" blue="0.62745098040000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
                     <connections>
                         <action selector="skipBackupPressed:" destination="-2" eventType="touchUpInside" id="Btl-oK-QGy"/>
                     </connections>
                 </button>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="yLW-t4-Oge" firstAttribute="top" secondItem="ZDB-MW-0Ez" secondAttribute="bottom" constant="201" id="07K-NT-mNS"/>
+                <constraint firstAttribute="bottom" secondItem="yLW-t4-Oge" secondAttribute="bottom" constant="63" id="0VM-6K-vn6"/>
                 <constraint firstItem="aF2-e2-Rnt" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" multiplier="0.9" id="1hc-Zn-A2u"/>
                 <constraint firstAttribute="trailing" secondItem="yLW-t4-Oge" secondAttribute="trailing" constant="30" id="284-3x-cKO"/>
                 <constraint firstItem="aF2-e2-Rnt" firstAttribute="top" secondItem="NQE-KX-jve" secondAttribute="bottom" constant="77" id="8PD-0N-QGP"/>
@@ -85,7 +85,7 @@
                 <constraint firstItem="yLW-t4-Oge" firstAttribute="top" secondItem="ZCl-Ag-xkr" secondAttribute="bottom" constant="10" id="QK8-Fv-u4S"/>
                 <constraint firstItem="NQE-KX-jve" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="82" id="Qlm-48-R1q"/>
                 <constraint firstItem="yLW-t4-Oge" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="30" id="R2Z-pb-8uW"/>
-                <constraint firstItem="NQE-KX-jve" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="197" id="TRd-gR-RRs"/>
+                <constraint firstItem="NQE-KX-jve" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="177" id="TRd-gR-RRs"/>
                 <constraint firstItem="NQE-KX-jve" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="fsg-41-wYa"/>
                 <constraint firstItem="ZCl-Ag-xkr" firstAttribute="width" secondItem="yLW-t4-Oge" secondAttribute="width" id="gqk-kR-akS"/>
                 <constraint firstAttribute="bottom" secondItem="yLW-t4-Oge" secondAttribute="bottom" constant="63" id="llV-Kp-cwb"/>
@@ -113,6 +113,6 @@
         </view>
     </objects>
     <resources>
-        <image name="IconLogo" width="95" height="60"/>
+        <image name="IconLogo" width="160" height="160"/>
     </resources>
 </document>

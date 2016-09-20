@@ -18,7 +18,7 @@
             <connections>
                 <outlet property="codeContainer" destination="7V4-RI-SyE" id="4rJ-VV-Dwi"/>
                 <outlet property="confirmButton" destination="Jn9-pG-n5t" id="g2t-j4-ZBM"/>
-                <outlet property="infoLabel" destination="fO2-wn-mL8" id="Ork-Ur-au8"/>
+                <outlet property="infoLabel" destination="fO2-wn-mL8" id="Mof-lc-NJt"/>
                 <outlet property="pasteButton" destination="LpI-gT-bqQ" id="eHZ-av-tr5"/>
                 <outlet property="titleLabel" destination="cpa-nt-Xua" id="4Ki-3G-wjL"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>

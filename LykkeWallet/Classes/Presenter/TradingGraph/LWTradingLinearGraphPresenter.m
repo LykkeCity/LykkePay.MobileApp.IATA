@@ -457,6 +457,7 @@ static int const kNumberOfRows = 4;
     LWExchangeDealFormPresenter *controller = [LWExchangeDealFormPresenter new];
     controller.assetPair = self.assetPair;
     controller.assetDealType = LWAssetDealTypeSell;
+    controller.assetRate=self.pairRateModel;
     [self.navigationController pushViewController:controller animated:YES];
 }
 
@@ -464,6 +465,8 @@ static int const kNumberOfRows = 4;
     LWExchangeDealFormPresenter *controller = [LWExchangeDealFormPresenter new];
     controller.assetPair = self.assetPair;
     controller.assetDealType = LWAssetDealTypeBuy;
+    controller.assetRate=self.pairRateModel;
+
     [self.navigationController pushViewController:controller animated:YES];
 }
 

@@ -15,9 +15,12 @@
 #import "TKButton.h"
 #import "UIViewController+Loading.h"
 #import "UIView+Toast.h"
+#import "LWSMSTimerView.h"
+#import "LWRequestCallMessageView.h"
 
 
-@interface LWRegisterPhoneConfirmPresenter () <LWTextFieldDelegate> {
+
+@interface LWRegisterPhoneConfirmPresenter () <LWTextFieldDelegate, LWSMSTimerViewDelegate> {
     LWTextField *codeTextField;
     CGFloat keyboardHeight;
 }
@@ -31,7 +34,7 @@
 @property (weak, nonatomic) IBOutlet TKContainer *codeContainer;
 @property (weak, nonatomic) IBOutlet TKButton    *confirmButton;
 @property (weak, nonatomic) IBOutlet UILabel     *statusLabel;
-@property (weak, nonatomic) IBOutlet UILabel     *infoLabel;
+@property (weak, nonatomic) IBOutlet LWSMSTimerView *notReceivedSMSView;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *proceedWidthConstraint;
 
@@ -48,6 +51,16 @@
 
     [codeTextField becomeFirstResponder];
     self.title = Localize(@"register.title");
+    
+    _notReceivedSMSView.delegate=self;
+    
+    if([_notReceivedSMSView isTimerRunnig]==NO && _flagHaveSentSMS==NO)
+    {
+        [self setLoading:YES];
+        [[LWAuthManager instance] requestVerificationPhone:self.phone];
+        _flagHaveSentSMS=YES;
+    }
+
 
 }
 
@@ -73,21 +86,19 @@
     
     [LWValidator setButton:self.confirmButton enabled:NO];
     
-    
+    [_notReceivedSMSView setTitle:@"Haven't receive the code?"];
+    _flagHaveSentSMS=NO;
     
 //#ifdef PROJECT_IATA
 //#else
 //    [self.confirmButton setGrayPalette];
 //#endif
     
-    UITapGestureRecognizer* gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(infoClicked:)];
-    [self.infoLabel setUserInteractionEnabled:YES];
-    [self.infoLabel addGestureRecognizer:gesture];
     
 }
 
 - (void)localize {
-    self.infoLabel.text = Localize(@"register.sms.help.info");
+    
     self.statusLabel.text = [NSString stringWithFormat:Localize(@"register.phone.sent"), self.phone];
     
     
@@ -97,7 +108,7 @@
 
 - (void)colorize {
     UIColor *color = [UIColor colorWithHexString:kMainElementsColor];
-    [self.infoLabel setTextColor:color];
+    
 }
 
 
@@ -138,7 +149,8 @@
     }
 }
 
-- (void)infoClicked:(id)sender {
+- (void)smsTimerViewPressedResend:(LWSMSTimerView *)view
+{
     
     [self setLoading:YES];
     [[LWAuthManager instance] requestVerificationPhone:self.phone];
@@ -148,6 +160,16 @@
 //    [self.navigationController popViewControllerAnimated:YES];
 }
 
+
+-(void) smsTimerViewPressedRequestVoiceCall:(LWSMSTimerView *)view
+{
+    LWRequestCallMessageView *vvv=[[NSBundle mainBundle] loadNibNamed:@"LWRequestCallMessageView" owner:self options:nil][0];
+    
+    UIWindow *window=self.view.window;
+    vvv.frame=window.bounds;
+    [window addSubview:vvv];
+    [vvv showWithCompletion:nil];
+}
 
 #pragma mark - LWAuthStepPresenter
 

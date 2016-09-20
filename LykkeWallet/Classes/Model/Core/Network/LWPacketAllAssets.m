@@ -24,6 +24,8 @@
     NSMutableArray *list = [NSMutableArray new];
     for (NSDictionary *item in result[@"Assets"]) {
         [list addObject:[[LWAssetModel alloc] initWithJSON:item]];
+        
+        
     }
     
     

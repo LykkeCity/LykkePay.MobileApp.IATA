@@ -30,7 +30,7 @@
 @property (weak, nonatomic) IBOutlet UILabel     *titleLabel;
 @property (weak, nonatomic) IBOutlet TKContainer *codeContainer;
 @property (weak, nonatomic) IBOutlet LWCommonButton    *confirmButton;
-@property (weak, nonatomic) IBOutlet UILabel     *infoLabel;
+@property (weak, nonatomic) IBOutlet UILabel *infoLabel;
 @property (weak, nonatomic) IBOutlet UIButton    *pasteButton;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *confirmButtonWidthConstraint;
@@ -68,6 +68,8 @@
     if([UIScreen mainScreen].bounds.size.width==320)
         _confirmButtonWidthConstraint.constant=280;
     
+    _infoLabel.textColor=[UIColor colorWithRed:171.0/255 green:0 blue:1 alpha:1];
+    
 }
 
 -(void) viewWillDisappear:(BOOL)animated
@@ -86,8 +88,7 @@
     
     [self updatePasteButtonStatus];
 
-    [self setLoading:YES];
-    [[LWAuthManager instance] requestVerificationEmail:self.email];
+
 //    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad)
         self.observeKeyboardEvents=YES;
     
@@ -99,13 +100,16 @@
     self.title = Localize(@"register.title");
     
     
+    [self setLoading:YES];
+    [[LWAuthManager instance] requestVerificationEmail:self.email];
+
     
 //    LWGenerateKeyPresenter *presenter=[[LWGenerateKeyPresenter alloc] init]; //Testing
 //    [self.navigationController pushViewController:presenter animated:YES];
 }
 
 - (void)localize {
-    self.infoLabel.text = Localize(@"register.sms.help.info");
+//    self.infoLabel.text = Localize(@"register.sms.help.info");
     self.titleLabel.text = [NSString stringWithFormat:Localize(@"register.sms.title"), self.email];
 
     
@@ -117,9 +121,18 @@
 }
 
 - (void)colorize {
-    UIColor *color = [UIColor colorWithHexString:kMainElementsColor];
-    [self.infoLabel setTextColor:color];
+//    UIColor *color = [UIColor colorWithHexString:kMainElementsColor];
+//    [self.infoLabel setTextColor:color];
 }
+
+
+-(void) infoPressed
+{
+    [self setLoading:YES];
+    [[LWAuthManager instance] requestVerificationEmail:self.email];
+    
+}
+
 
 #pragma mark - LWTextFieldDelegate
 

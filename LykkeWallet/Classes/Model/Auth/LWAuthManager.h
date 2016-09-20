@@ -238,6 +238,8 @@ SINGLETON_DECLARE
 -(void) requestGetHistory:(NSString *) assetId;
 
 -(void) requestPrivateKeyOwnershipMessage:(NSString *) email;
+-(void) requestCheckPrivateKeyOwnershipMessageSignature:(NSString *) signature email:(NSString *) email;
+
 -(void) requestRecoverySMSConfirmation:(LWRecoveryPasswordModel *) recModel;
 
 -(void) requestChangePINAndPassword:(LWRecoveryPasswordModel *) recModel;

@@ -29,6 +29,11 @@ SINGLETON_DECLARE
 
 #pragma mark - Properties
 
+@property (strong, nonatomic) NSTimer *timerSMS;
+@property (strong, nonatomic) id smsDelayDelegate;
+@property int smsDelaySecondsLeft;
+@property int smsRetriesLeft;
+
 @property (strong, nonatomic) NSMutableDictionary *cachedAssetPairsRates;
 @property (strong, nonatomic) NSDictionary *swiftCredentialsDict;
 @property (strong, nonatomic) NSString *supportPhoneNum;
@@ -94,7 +99,14 @@ SINGLETON_DECLARE
 +(NSString *) nameForAsset:(NSString *) assetId;
 +(int) accuracyForAssetId:(NSString *) assetId;
 
+-(void) startTimerForSMS;
 
 
+@end
 
+
+@protocol SMSTimerDelegate
+
+-(void) smsTimerFinished;
+-(void) smsTimerFired;
 @end
