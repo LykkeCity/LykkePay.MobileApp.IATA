@@ -218,6 +218,7 @@
 		A18D25D21D6AD949005CEF66 /* LWPacketChangePINAndPassword.m in Sources */ = {isa = PBXBuildFile; fileRef = A18D25D11D6AD949005CEF66 /* LWPacketChangePINAndPassword.m */; };
 		A18F892A1CE85A6600399850 /* LWWithdrawCurrencyPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A18F89291CE85A6600399850 /* LWWithdrawCurrencyPresenter.m */; };
 		A18F892C1CE85B0A00399850 /* LWWithdrawCurrencyPresenter.xib in Resources */ = {isa = PBXBuildFile; fileRef = A18F892B1CE85B0A00399850 /* LWWithdrawCurrencyPresenter.xib */; };
+		A19A37CF1D92851A00BC4D42 /* LWPacketVoiceCall.m in Sources */ = {isa = PBXBuildFile; fileRef = A19A37CE1D92851A00BC4D42 /* LWPacketVoiceCall.m */; };
 		A19E08D51CEB5275004D286A /* LWRegisterCameraPresenter~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A19E08D41CEB5275004D286A /* LWRegisterCameraPresenter~ipad.xib */; };
 		A19E08D71CEB5722004D286A /* LWCameraOverlayPresenter~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A19E08D61CEB5722004D286A /* LWCameraOverlayPresenter~ipad.xib */; };
 		A1A11FE21D8BA80900D1D4AA /* LWPacketSaveBackupState.m in Sources */ = {isa = PBXBuildFile; fileRef = A1A11FE11D8BA80900D1D4AA /* LWPacketSaveBackupState.m */; };
@@ -2046,6 +2047,8 @@
 		A18F89281CE85A6600399850 /* LWWithdrawCurrencyPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LWWithdrawCurrencyPresenter.h; path = WithdrawFunds/LWWithdrawCurrencyPresenter.h; sourceTree = "<group>"; };
 		A18F89291CE85A6600399850 /* LWWithdrawCurrencyPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LWWithdrawCurrencyPresenter.m; path = WithdrawFunds/LWWithdrawCurrencyPresenter.m; sourceTree = "<group>"; };
 		A18F892B1CE85B0A00399850 /* LWWithdrawCurrencyPresenter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LWWithdrawCurrencyPresenter.xib; path = WithdrawFunds/LWWithdrawCurrencyPresenter.xib; sourceTree = "<group>"; };
+		A19A37CD1D92851A00BC4D42 /* LWPacketVoiceCall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWPacketVoiceCall.h; sourceTree = "<group>"; };
+		A19A37CE1D92851A00BC4D42 /* LWPacketVoiceCall.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWPacketVoiceCall.m; sourceTree = "<group>"; };
 		A19E08D41CEB5275004D286A /* LWRegisterCameraPresenter~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "LWRegisterCameraPresenter~ipad.xib"; sourceTree = "<group>"; };
 		A19E08D61CEB5722004D286A /* LWCameraOverlayPresenter~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "LWCameraOverlayPresenter~ipad.xib"; path = "Utils/LWCameraOverlayPresenter~ipad.xib"; sourceTree = "<group>"; };
 		A1A11FE01D8BA80900D1D4AA /* LWPacketSaveBackupState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWPacketSaveBackupState.h; sourceTree = "<group>"; };
@@ -5780,6 +5783,8 @@
 				A102CF011D8A55B100089A92 /* LWPacketEmailHint.m */,
 				A1A11FE01D8BA80900D1D4AA /* LWPacketSaveBackupState.h */,
 				A1A11FE11D8BA80900D1D4AA /* LWPacketSaveBackupState.m */,
+				A19A37CD1D92851A00BC4D42 /* LWPacketVoiceCall.h */,
+				A19A37CE1D92851A00BC4D42 /* LWPacketVoiceCall.m */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -8150,6 +8155,7 @@
 				A114948F1D509238000BD347 /* LWResultPresenter.m in Sources */,
 				A114946A1D491097000BD347 /* LWDropdownViewCell.m in Sources */,
 				A1654E481D583702001741A7 /* LWPKTransferConfirmationCellView.m in Sources */,
+				A19A37CF1D92851A00BC4D42 /* LWPacketVoiceCall.m in Sources */,
 				A11D0F3D1D3761A800BFDE4D /* LWPrivateWalletsPresenter.m in Sources */,
 				CDCD5AE31C2576EB007BAD78 /* LWKeychainManager.m in Sources */,
 				ECFAC5B31CB11138009B1CC9 /* LWUtils.m in Sources */,

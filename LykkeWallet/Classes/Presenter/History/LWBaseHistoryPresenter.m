@@ -215,6 +215,8 @@
 
 -(void) authManager:(LWAuthManager *)manager didGetHistory:(LWPacketGetHistory *)packet
 {
+    if([self isKindOfClass:[LWHistoryPresenter class]] && packet.assetId)
+        return;
     _operations=[LWHistoryManager convertHistoryToArrayOfArrays:packet.historyArray];
     
     [refreshControl endRefreshing];

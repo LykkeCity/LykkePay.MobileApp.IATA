@@ -175,12 +175,8 @@
 
 -(void) smsTimerViewPressedRequestVoiceCall:(LWSMSTimerView *)view
 {
-    LWRequestCallMessageView *vvv=[[NSBundle mainBundle] loadNibNamed:@"LWRequestCallMessageView" owner:self options:nil][0];
-    
-    UIWindow *window=self.view.window;
-    vvv.frame=window.bounds;
-    [window addSubview:vvv];
-    [vvv showWithCompletion:nil];
+    [self setLoading:YES];
+    [[LWAuthManager instance] requestVoiceCall];
 }
 
 -(void) resendSMS
@@ -253,6 +249,19 @@
     else
         [self showReject:reject response:context.task.response code:context.error.code willNotify:YES];
     
+}
+
+-(void) authManagerDidRequestVoiceCall:(LWAuthManager *)manager
+{
+    [self setLoading:NO];
+    
+    LWRequestCallMessageView *vvv=[[NSBundle mainBundle] loadNibNamed:@"LWRequestCallMessageView" owner:self options:nil][0];
+    
+    UIWindow *window=self.view.window;
+    vvv.frame=window.bounds;
+    [window addSubview:vvv];
+    [vvv showWithCompletion:nil];
+
 }
 
 

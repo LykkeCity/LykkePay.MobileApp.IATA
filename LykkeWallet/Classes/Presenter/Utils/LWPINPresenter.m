@@ -106,20 +106,22 @@
             }
             else
             {
-                flagRepeat=NO;
 
                 if([pin isEqualToString:firstPINEnter]==NO)
                 {
+                    flagRepeat=NO;
+
                     pin=@"";
                     [self.progressView setNumberOfSymbols:(int)pin.length];
 
                     [self animateFailureNotificationDirection:-35];
+                    [self adjustTitle];
+
                 }
                 else
                 {
                     self.pinEnteredBlock(pin);
                 }
-                [self adjustTitle];
             }
             
             return;
@@ -217,7 +219,7 @@
         if(flagRepeat==NO)
             self.titleLabel.text=@"Enter a new PIN";
         else
-            self.titleLabel.text=@"Repeat PIN";
+            self.titleLabel.text=@"Verify your PIN";
     }
     else
         self.titleLabel.text=@"Enter PIN";

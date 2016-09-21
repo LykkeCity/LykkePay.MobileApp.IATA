@@ -9,7 +9,7 @@
 #import "LWCache.h"
 #import "LWAssetModel.h"
 
-#define SMS_DELAY 15
+#define SMS_DELAY 59
 
 @implementation LWCache
 

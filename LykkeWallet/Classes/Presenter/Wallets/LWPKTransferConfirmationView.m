@@ -9,6 +9,8 @@
 #import "LWPKTransferConfirmationView.h"
 #import "LWPKTransferConfirmationCellView.h"
 #import "LWPKTransferModel.h"
+#import "LWCache.h"
+#import "LWCommonButton.h"
 
 @interface LWPKTransferConfirmationView() <UITableViewDelegate, UITableViewDataSource>
 {
@@ -164,26 +166,56 @@
     {
         cell=[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
 //        cell.translatesAutoresizingMaskIntoConstraints=NO;
-        UIView *view=[[UIView alloc] initWithFrame:CGRectMake(0, 0, 120, 120)];
+        
+        CGFloat widthV;
+        CGFloat heightV;
+        if([LWCache instance].shouldSignOrder)
+        {
+            widthV=120;
+            heightV=120;
+        }
+        else
+        {
+            if([UIScreen mainScreen].bounds.size.width==320)
+                widthV=280;
+            else
+                widthV=315;
+            heightV=45;
+        }
+        
+        UIView *view=[[UIView alloc] initWithFrame:CGRectMake(0, 0, widthV, heightV)];
         view.translatesAutoresizingMaskIntoConstraints=NO;
+        if([LWCache instance].shouldSignOrder)
+        {
         
-        UIImageView *fingerPrintView=[[UIImageView alloc] initWithFrame:CGRectMake(30, 0, 60, 60)];
-//        fingerPrintView.autoresizingMask=UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-//        fingerPrintView.contentMode=UIViewContentModeCenter;
-        fingerPrintView.image=[UIImage imageNamed:@"TransferSignFinger"];
-        [view addSubview:fingerPrintView];
-        
-        UILabel *label=[[UILabel alloc] initWithFrame:CGRectMake(0, 60, 120, 30)];
-        label.text=@"Send transfer";
-        [view addSubview:label];
-        label.textAlignment=NSTextAlignmentCenter;
-        label.textColor=[UIColor blackColor];
+            UIImageView *fingerPrintView=[[UIImageView alloc] initWithFrame:CGRectMake(30, 0, 60, 60)];
+            fingerPrintView.image=[UIImage imageNamed:@"TransferSignFinger"];
+            [view addSubview:fingerPrintView];
+            
+            UILabel *label=[[UILabel alloc] initWithFrame:CGRectMake(0, 60, 120, 30)];
+            label.text=@"Send transfer";
+            [view addSubview:label];
+            label.textAlignment=NSTextAlignmentCenter;
+            label.textColor=[UIColor blackColor];
+            UITapGestureRecognizer *gesture=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(signPressed)];
+            [view addGestureRecognizer:gesture];
+
+        }
+        else
+        {
+            LWCommonButton *button=[LWCommonButton buttonWithType:UIButtonTypeCustom];
+            button.enabled=YES;
+            button.frame=view.bounds;
+            [view addSubview:button];
+            [button setTitle:@"PLACE AN ORDER" forState:UIControlStateNormal];
+            [button addTarget:self action:@selector(signPressed) forControlEvents:UIControlEventTouchUpInside];
+        }
         
         [cell addSubview:view];
         
-        NSLayoutConstraint *width=[NSLayoutConstraint constraintWithItem:view attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:120];
+        NSLayoutConstraint *width=[NSLayoutConstraint constraintWithItem:view attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:widthV];
         
-        NSLayoutConstraint *height=[NSLayoutConstraint constraintWithItem:view attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:120];
+        NSLayoutConstraint *height=[NSLayoutConstraint constraintWithItem:view attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:heightV];
 
         NSLayoutConstraint *centerX=[NSLayoutConstraint constraintWithItem:cell attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:view attribute:NSLayoutAttributeCenterX multiplier:1 constant:0];
         NSLayoutConstraint *centerY=[NSLayoutConstraint constraintWithItem:cell attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:view attribute:NSLayoutAttributeCenterY multiplier:1 constant:0];
@@ -195,8 +227,6 @@
 
         [NSLayoutConstraint activateConstraints:@[centerY, centerX]];
         
-        UITapGestureRecognizer *gesture=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(signPressed)];
-        [view addGestureRecognizer:gesture];
         
     }
     cell.selectionStyle=UITableViewCellSelectionStyleNone;

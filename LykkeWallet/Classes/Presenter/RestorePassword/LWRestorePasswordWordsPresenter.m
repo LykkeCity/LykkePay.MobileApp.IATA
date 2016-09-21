@@ -167,7 +167,7 @@
         }
         else
         {
-            UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"ERROR" message:@"These seed words are not corresponding your private key." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+            UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"ERROR" message:@"These seed words are not corresponding to your private key." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
             [alert show];
         }
         

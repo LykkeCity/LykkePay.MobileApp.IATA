@@ -16,6 +16,8 @@
 - (void)requestOperationWithHud:(BOOL)isHudActivated;
 - (void)checkPin:(NSString *)pin;
 - (void)noAttemptsForPin;
+-(void) pressedFingerPrint;
+
 
 @end
 
@@ -46,6 +48,7 @@
 - (void)requestOperation;
 - (void)pinRejected;
 - (void)setLoading:(BOOL)loading withReason:(NSString *)reason;
+
 
 -(void) show;
 -(void) hide;

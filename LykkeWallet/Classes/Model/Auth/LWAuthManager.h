@@ -144,6 +144,8 @@
 -(void) authManagerDidGetEncodedPrivateKey:(LWAuthManager *) manager;
 -(void) authManagerDidSendEmailHint:(LWAuthManager *) manager;
 
+-(void) authManagerDidRequestVoiceCall:(LWAuthManager *) manager;
+
 @end
 
 
@@ -263,6 +265,8 @@ SINGLETON_DECLARE
 -(void) requestSendHintForEmail:(NSString *) email;
 
 -(void) requestSaveBackupState;
+
+-(void) requestVoiceCall;
 
 
 //PubkeyAddressValidation

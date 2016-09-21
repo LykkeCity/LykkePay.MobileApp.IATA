@@ -26,6 +26,7 @@
 #import "LWMyLykkeIpadController.h"
 #import "LWEtheriumDepositPresenter.h"
 #import "LWUtils.h"
+#import "LWPacketGetHistory.h"
 
 
 @interface LWTradingWalletPresenter()  {
@@ -254,6 +255,8 @@
 
 -(void) authManager:(LWAuthManager *)manager didGetHistory:(LWPacketGetHistory *)packet
 {
+    if(!(packet.assetId && [packet.assetId isKindOfClass:[NSString class]]))  //This request was made by previous LWBaseHistoryPresenter
+        return;
     [super authManager:manager didGetHistory:packet];
     [[LWAuthManager instance] requestLykkeWallets];
     

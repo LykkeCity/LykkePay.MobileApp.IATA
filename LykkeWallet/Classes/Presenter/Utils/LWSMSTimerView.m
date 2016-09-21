@@ -62,6 +62,10 @@
     timerLabel=[[UILabel alloc] init];
     timerLabel.font=[UIFont fontWithName:@"ProximaNova-Regular" size:14];
     timerLabel.textColor=[UIColor colorWithRed:63.0/255 green:77.0/255 blue:96.0/255 alpha:0.6];
+    timerLabel.text=@"00:00";
+    [timerLabel sizeToFit];
+    timerLabel.frame=CGRectMake(0, 0, timerLabel.bounds.size.width+5, timerLabel.bounds.size.height);
+    timerLabel.text=@"";
     
     timerIcon=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"TimerIcon"]];
     timerIcon.frame=CGRectMake(0, 0, 18, 18);
@@ -96,7 +100,7 @@
     [super layoutSubviews];
     if(flagTimerMode)
     {
-        [timerLabel sizeToFit];
+//        [timerLabel sizeToFit];
         timerLabel.center=CGPointMake(timerIcon.bounds.size.width+4+timerLabel.bounds.size.width/2, timerIcon.bounds.size.height/2+1);
         timerContainer.frame=CGRectMake(0, 0, timerLabel.frame.origin.x+timerLabel.bounds.size.width, timerIcon.bounds.size.height);
         timerContainer.center=CGPointMake(self.bounds.size.width/2, self.bounds.size.height/2);

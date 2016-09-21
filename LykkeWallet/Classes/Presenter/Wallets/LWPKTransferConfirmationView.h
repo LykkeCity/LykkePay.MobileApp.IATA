@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+
 @class LWPKTransferModel;
 
 @interface LWPKTransferConfirmationView : UIView

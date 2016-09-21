@@ -488,11 +488,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LykkeWallet/Classes/Presenter/Wallets/LWPrivateWalletTransferInputPresenter.m"
-            timestampString = "495981492.126383"
+            timestampString = "496137179.819468"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "290"
-            endingLineNumber = "290"
+            startingLineNumber = "296"
+            endingLineNumber = "296"
             landmarkName = "-operationRejected"
             landmarkType = "7">
          </BreakpointContent>
@@ -702,22 +702,6 @@
             startingLineNumber = "290"
             endingLineNumber = "290"
             landmarkName = "-shouldAutorotateToInterfaceOrientation:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "LykkeWallet/Classes/Model/Core/Network/LWPacketAccountExist.m"
-            timestampString = "496057378.413668"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "24"
-            endingLineNumber = "24"
-            landmarkName = "-parseResponse:error:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

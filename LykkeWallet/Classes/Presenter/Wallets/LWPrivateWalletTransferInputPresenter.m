@@ -183,7 +183,13 @@
     
     [LWPKTransferConfirmationView showTransfer:self.transfer withCompletion:^(BOOL result){
         if(result)
-            [self signPressed];
+        {
+            if([LWCache instance].shouldSignOrder)
+                [self signPressed];
+            else
+                [self operationConfirmed:nil];
+            
+        }
     }];
     
     

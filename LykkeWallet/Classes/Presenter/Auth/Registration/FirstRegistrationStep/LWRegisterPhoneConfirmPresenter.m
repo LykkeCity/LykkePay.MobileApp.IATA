@@ -163,12 +163,9 @@
 
 -(void) smsTimerViewPressedRequestVoiceCall:(LWSMSTimerView *)view
 {
-    LWRequestCallMessageView *vvv=[[NSBundle mainBundle] loadNibNamed:@"LWRequestCallMessageView" owner:self options:nil][0];
+    [self setLoading:YES];
+    [[LWAuthManager instance] requestVoiceCall];
     
-    UIWindow *window=self.view.window;
-    vvv.frame=window.bounds;
-    [window addSubview:vvv];
-    [vvv showWithCompletion:nil];
 }
 
 #pragma mark - LWAuthStepPresenter
@@ -224,6 +221,18 @@
 
 
 #pragma mark - LWAuthManagerDelegate
+
+-(void) authManagerDidRequestVoiceCall:(LWAuthManager *)manager
+{
+    [self setLoading:NO];
+    
+    LWRequestCallMessageView *vvv=[[NSBundle mainBundle] loadNibNamed:@"LWRequestCallMessageView" owner:self options:nil][0];
+    UIWindow *window=self.view.window;
+    vvv.frame=window.bounds;
+    [window addSubview:vvv];
+    [vvv showWithCompletion:nil];
+
+}
 
 - (void)authManagerDidSendValidationPhone:(LWAuthManager *)manager {
     // copy data to model

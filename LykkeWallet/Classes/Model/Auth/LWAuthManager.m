@@ -82,6 +82,7 @@
 #import "LWPacketLykkeSettings.h"
 #import "LWPacketEmailHint.h"
 #import "LWPacketSaveBackupState.h"
+#import "LWPacketVoiceCall.h"
 
 
 
@@ -688,6 +689,12 @@ SINGLETON_INIT {
     [self sendPacket:pack];
     
 }
+
+-(void) requestVoiceCall
+{
+    LWPacketVoiceCall *pack=[LWPacketVoiceCall new];
+    [self sendPacket:pack];
+}
 #pragma mark - Observing
 
 - (void)observeGDXNetAdapterDidReceiveResponseNotification:(NSNotification *)notification {
@@ -1088,6 +1095,11 @@ SINGLETON_INIT {
     else if (pack.class == LWPacketEmailHint.class) {
         if ([self.delegate respondsToSelector:@selector(authManagerDidSendEmailHint:)]) {
             [self.delegate authManagerDidSendEmailHint:self];
+        }
+    }
+    else if (pack.class == LWPacketVoiceCall.class) {
+        if ([self.delegate respondsToSelector:@selector(authManagerDidRequestVoiceCall:)]) {
+            [self.delegate authManagerDidRequestVoiceCall:self];
         }
     }
     

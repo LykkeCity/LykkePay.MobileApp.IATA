@@ -87,6 +87,11 @@ static NSInteger const kAttemptsAvailable = 3;
 - (void)pinRejected {
     --attemptsRemaining;
     if (attemptsRemaining > 0) {
+        
+        
+        [self animateFailureNotificationDirection:30];
+        
+        
 //        NSString *attempts = Localize(@"ABPadLockScreen.pin.attempts.left.one");
 //        if (attemptsRemaining != 1) {
 //            attempts = Localize(@"ABPadLockScreen.pin.attempts.left.several");
@@ -169,5 +174,25 @@ static NSInteger const kAttemptsAvailable = 3;
         [self.delegate pinEntered:pin];
     }
 }
+
+- (void) animateFailureNotificationDirection:(CGFloat)direction
+{
+    [UIView setAnimationsEnabled:YES];
+    [UIView animateWithDuration:0.08 animations:^{
+        
+        CGAffineTransform transform = CGAffineTransformMakeTranslation(direction, 0);
+        
+        self.statusImageView.layer.affineTransform = transform;
+        
+        
+    } completion:^(BOOL finished) {
+        if(fabs(direction) < 1) {
+            self.statusImageView.layer.affineTransform = CGAffineTransformIdentity;
+            return;
+        }
+        [self animateFailureNotificationDirection:-1 * direction / 2];
+    }];
+}
+
 
 @end

@@ -155,7 +155,8 @@ static float const kNoPinProtectionHeight = 356;
     self.waitingLabel.text = Localize(@"withdraw.funds.modal.waiting");
     [self.navigationItem setTitle:Localize(@"withdraw.funds.modal.title")];
     
-    [LWValidator setButton:self.placeOrderButton enabled:YES];
+//    [LWValidator setButton:self.placeOrderButton enabled:YES];
+    self.placeOrderButton.enabled=YES;
     
     [self.placeOrderButton setTitle:Localize(@"withdraw.funds.modal.button")
                            forState:UIControlStateNormal];
@@ -292,6 +293,11 @@ static float const kNoPinProtectionHeight = 356;
     //cell.detailLabel.text = values[indexPath.row];
     
     return cell;
+}
+
+-(void) pinKeyboardViewPressedFingerPrint
+{
+    [self.delegate pressedFingerPrint];
 }
 
 

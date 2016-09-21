@@ -131,10 +131,17 @@
 
 -(void) showMyLykkeTab
 {
-    if(!tabBarController || !tabBarController.viewControllers.count)
-        return;
-
     
+    
+    if(!tabBarController || !tabBarController.viewControllers.count)
+    {
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//        [self performSelector:@selector(showMyLykkeTab) withObject:nil afterDelay:5];
+//            });
+        return;
+    }
+
+    dispatch_async(dispatch_get_main_queue(), ^{
     NSMutableArray *array=[[NSMutableArray alloc] init];
     
     BOOL flagHave=NO;
@@ -155,8 +162,9 @@
         LWMyLykkeMainContainerPresenter *myLykke=[LWMyLykkeMainContainerPresenter new];
         myLykke.tabBarItem=[self createTabBarItemWithTitle:@"MY LYKKE" withImage:@"MyLykkeTab"];
         [array insertObject:myLykke atIndex:3];
-        tabBarController.viewControllers =array;
+        [tabBarController setViewControllers:array animated:NO];
     }
+        });
 }
 
 -(void) viewDidAppear:(BOOL)animated
@@ -321,12 +329,6 @@
     myLykke.tabBarItem=[self createTabBarItemWithTitle:@"MY LYKKE" withImage:@"MyLykkeTab"];
     
 
-#ifdef PROJECT_IATA
-    LWTransferPresenter *pTransfer = [LWTransferPresenter new];
-    pTransfer.tabBarItem = [self createTabBarItemWithTitle:@"tab.transfer"
-                                                 withImage:@"TransferTab"];
-    tab.viewControllers = @[pWallets, pTransfer, pTrading, pHistory, pSettings];
-#else
     
     
     LWWalletsNavigationController *nWallets=[[LWWalletsNavigationController alloc] initWithNavigationBarClass:[LWWalletsNavigationBar class] toolbarClass:nil];
@@ -341,7 +343,7 @@
     
 //    tabBarController.viewControllers = @[pWallets, pTrading, pHistory, pSettings];
     
-#endif
+
 
     // init tab controller
     tabBarController.tabBar.translucent = NO;

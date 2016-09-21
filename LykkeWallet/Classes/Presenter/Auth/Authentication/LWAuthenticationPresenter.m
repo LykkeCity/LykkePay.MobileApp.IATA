@@ -85,7 +85,7 @@
     [super viewWillAppear:animated];
     
     
-    self.loginButton.enabled=[self canProceed];
+    self.loginButton.enabled=[self canProceed:_passwordField.text];
 //    [LWValidator setButton:self.loginButton enabled:[self canProceed]];
     
     // load email
@@ -131,11 +131,12 @@
 
 -(BOOL) textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
-    textField.text=[textField.text stringByReplacingCharactersInRange:range withString:string];
-//    [LWValidator setButton:self.loginButton enabled:[self canProceed]];
+
+    
+    NSString *newString=[textField.text stringByReplacingCharactersInRange:range withString:string];
     self.passwordInvalidImageView.hidden=YES;
-    self.loginButton.enabled=[self canProceed];
-    return NO;
+    self.loginButton.enabled=[self canProceed:newString];
+    return YES;
 }
 
 
@@ -150,9 +151,10 @@
 
 #pragma mark - Private
 
-- (BOOL)canProceed {
+- (BOOL)canProceed:(NSString *) pass
+{
     
-    BOOL isValidPassword = [LWValidator validatePassword:_passwordField.text];
+    BOOL isValidPassword = [LWValidator validatePassword:pass];
     
     return isValidPassword;
 }
@@ -162,7 +164,7 @@
 
 - (IBAction)loginClicked:(id)sender {
     [self.view endEditing:YES];
-    if ([self canProceed]) {
+    if ([self canProceed:_passwordField.text]) {
         [self setLoading:YES];
         
         LWAuthenticationData *data = [LWAuthenticationData new];
@@ -292,10 +294,10 @@
     
     if(_userHasHint)
         _emailHintWidthConstraint.active=NO;
-    if([[NSUserDefaults standardUserDefaults] boolForKey:@"UserHasBackupOfPrivateKey"])
+//    if([[NSUserDefaults standardUserDefaults] boolForKey:@"UserHasBackupOfPrivateKey"])
         self.resetPasswordWidthConstraint.active=NO;
     
-    if(_userHasHint && [[NSUserDefaults standardUserDefaults] boolForKey:@"UserHasBackupOfPrivateKey"])
+    if(_userHasHint)// && [[NSUserDefaults standardUserDefaults] boolForKey:@"UserHasBackupOfPrivateKey"])
         self.distanceBetweenButtonsConstraint.constant=25;
     else
         self.distanceBetweenButtonsConstraint.constant=0;

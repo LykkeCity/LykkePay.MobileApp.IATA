@@ -26,6 +26,7 @@
 #import "LWLykkeWalletsData.h"
 #import "LWMathKeyboardView.h"
 #import "LWUtils.h"
+#import "LWKeychainManager.h"
 
 
 
@@ -235,16 +236,16 @@ float const kMathHeightKeyboard = 239.0;
     [self presentViewController:ctrl animated:YES completion:nil];
 }
 
-- (void)authManager:(LWAuthManager *)manager didValidatePin:(BOOL)isValid {
-    if (confirmationView) {
-        if (isValid) {
-            [confirmationView requestOperation];
-        }
-        else {
-            [confirmationView pinRejected];
-        }
-    }
-}
+//- (void)authManager:(LWAuthManager *)manager didValidatePin:(BOOL)isValid {
+//    if (confirmationView) {
+//        if (isValid) {
+//            [confirmationView requestOperation];
+//        }
+//        else {
+//            [confirmationView pinRejected];
+//        }
+//    }
+//}
 
 - (void)authManager:(LWAuthManager *)manager didFailWithReject:(NSDictionary *)reject context:(GDXRESTContext *)context {
     
@@ -332,8 +333,16 @@ float const kMathHeightKeyboard = 239.0;
 
 - (void)checkPin:(NSString *)pin {
     if (confirmationView) {
-        [confirmationView setLoading:YES withReason:Localize(@"withdraw.funds.validatepin")];
-        [[LWAuthManager instance] requestPinSecurityGet:pin];
+        
+        if([[LWKeychainManager instance].pin isEqualToString:pin])
+            [confirmationView requestOperation];
+        else
+            [confirmationView pinRejected];
+        
+//        
+//        
+//        [confirmationView setLoading:YES withReason:Localize(@"withdraw.funds.validatepin")];
+//        [[LWAuthManager instance] requestPinSecurityGet:pin];
     }
 }
 
@@ -391,7 +400,20 @@ float const kMathHeightKeyboard = 239.0;
     [self volumeChanged:volume withValidState:valid];
 }
 
-
+-(void) pressedFingerPrint
+{
+    [LWFingerprintHelper
+     validateFingerprintTitle:Localize(@"withdraw.funds.modal.fingerpring")
+     ok:^(void) {
+         [confirmationView requestOperation];
+     }
+     bad:^(void) {
+//         [self showConfirmationView];
+     }
+     unavailable:^(void) {
+//         [self showConfirmationView];
+     }];
+}
 
 - (void)validateUser {
     
