@@ -208,8 +208,16 @@
     [[LWAuthManager instance] requestSaveBackupState];
     
     LWBackupSuccessPresenter *presenter=[[LWBackupSuccessPresenter alloc] init];
-    
-    [self.navigationController pushViewController:presenter animated:YES];
+    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
+        [self.navigationController pushViewController:presenter animated:YES];
+    else
+    {
+        UINavigationController *parent=(UINavigationController *)[self.navigationController presentingViewController];
+        [self.navigationController dismissViewControllerAnimated:NO completion:^{
+            [parent pushViewController:presenter animated:NO];
+        
+        }];
+    }
 
 }
 

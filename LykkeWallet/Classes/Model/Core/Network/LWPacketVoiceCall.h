@@ -10,4 +10,6 @@
 
 @interface LWPacketVoiceCall : LWAuthorizePacket
 
+@property (strong, nonatomic) NSString *phone;
+
 @end

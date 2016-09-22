@@ -47,10 +47,11 @@
 
 -(void) okButtonPressed
 {
-    if(![LWKeychainManager instance].login)
-        [((LWAuthNavigationController *)self.navigationController) setRootMainTabScreen];
-    else
+    if([[self.navigationController.viewControllers firstObject] isKindOfClass:[UITabBarController class]])
         [self.navigationController popToRootViewControllerAnimated:YES];
+    else
+        [((LWAuthNavigationController *)self.navigationController) setRootMainTabScreen];
+
 }
 
 -(void) viewWillAppear:(BOOL)animated

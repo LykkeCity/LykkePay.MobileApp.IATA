@@ -29,6 +29,7 @@
 #import "LWPacketGetRefundAddress.h"
 #import "LWUtils.h"
 #import "LWBackupGetStartedPresenter.h"
+#import "LWIPadModalNavigationControllerViewController.h"
 
 @import MessageUI;
 
@@ -310,8 +311,19 @@ static NSString *const SettingsIdentifiers[] = {
     }
     else if(indexPath.section==2)
     {
-        LWBackupGetStartedPresenter *presenter=[LWBackupGetStartedPresenter new];
-        [self.navigationController pushViewController:presenter animated:YES];
+        LWBackupGetStartedPresenter *presenter=[[LWBackupGetStartedPresenter alloc] init];
+        
+        
+        if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
+            [self.navigationController pushViewController:presenter animated:YES];
+        
+        else
+        {
+            LWIPadModalNavigationControllerViewController *navigationController=[[LWIPadModalNavigationControllerViewController alloc] initWithRootViewController:presenter];
+            navigationController.modalPresentationStyle=UIModalPresentationOverCurrentContext;
+            navigationController.transitioningDelegate=navigationController;
+            [self.navigationController presentViewController:navigationController animated:YES completion:nil];
+        }
     }
     
 

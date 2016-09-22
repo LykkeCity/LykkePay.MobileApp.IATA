@@ -266,7 +266,7 @@ SINGLETON_DECLARE
 
 -(void) requestSaveBackupState;
 
--(void) requestVoiceCall;
+-(void) requestVoiceCall:(NSString *) phone;
 
 
 //PubkeyAddressValidation

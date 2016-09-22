@@ -27,4 +27,12 @@
     return @"RequestVoiceCall";
 }
 
+-(NSDictionary *) params
+{
+    if(self.phone)
+        return @{@"PhoneNumber":self.phone};
+    else
+        return nil;
+}
+
 @end

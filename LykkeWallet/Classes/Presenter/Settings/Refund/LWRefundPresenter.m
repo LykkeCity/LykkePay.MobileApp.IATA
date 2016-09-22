@@ -94,6 +94,8 @@ static int CellTypes[kNumberOfCells] = {
     self.tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
     
     
+    self.tableView.bounces=NO;
+    self.tableView.allowsSelection=NO;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(saveRefundSettings) name:@"SaveRefundSettings" object:nil];
     

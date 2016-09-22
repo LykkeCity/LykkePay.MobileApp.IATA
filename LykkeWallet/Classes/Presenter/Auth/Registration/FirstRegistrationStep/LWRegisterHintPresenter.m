@@ -45,7 +45,7 @@
 }
 
 - (NSString *)fieldPlaceholder {
-    return @"Hint for your password";
+    return @"Enter a hint";
 }
 
 - (BOOL)validateInput:(NSString *)input {

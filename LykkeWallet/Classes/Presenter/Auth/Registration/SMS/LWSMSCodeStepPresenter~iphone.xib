@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -83,11 +83,11 @@
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="Jn9-pG-n5t" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="4bF-qF-8Ay"/>
+                <constraint firstItem="cpa-nt-Xua" firstAttribute="width" secondItem="Jn9-pG-n5t" secondAttribute="width" id="4xR-wx-Ecl"/>
                 <constraint firstItem="7V4-RI-SyE" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="70k-p5-DDQ"/>
-                <constraint firstAttribute="trailing" secondItem="cpa-nt-Xua" secondAttribute="trailing" id="A4U-aD-MIE"/>
+                <constraint firstItem="cpa-nt-Xua" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Jf4-hC-FNv"/>
                 <constraint firstItem="Jn9-pG-n5t" firstAttribute="top" secondItem="7V4-RI-SyE" secondAttribute="bottom" constant="20" id="KSv-KN-6MU"/>
                 <constraint firstItem="dqO-fu-5h8" firstAttribute="top" secondItem="Jn9-pG-n5t" secondAttribute="bottom" constant="30" id="Z3G-Id-Kaw"/>
-                <constraint firstItem="cpa-nt-Xua" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="a1C-hJ-LtQ"/>
                 <constraint firstItem="7V4-RI-SyE" firstAttribute="top" secondItem="cpa-nt-Xua" secondAttribute="bottom" constant="40" id="lYW-a5-UfI"/>
                 <constraint firstItem="7V4-RI-SyE" firstAttribute="width" secondItem="Jn9-pG-n5t" secondAttribute="width" id="nZX-xc-T5R"/>
                 <constraint firstAttribute="trailing" secondItem="dqO-fu-5h8" secondAttribute="trailing" id="nZj-WC-3S8"/>

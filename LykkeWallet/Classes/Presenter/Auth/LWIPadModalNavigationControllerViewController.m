@@ -192,18 +192,18 @@
     [vc.view endEditing:YES];
     [parent dismissViewControllerAnimated:animated completion:^{
         
-        UITabBarController *vvv=(UITabBarController *)parent.visibleViewController;
-        
-        if([vvv isKindOfClass:[UITabBarController class]])
-        {
-            [vvv.selectedViewController viewWillAppear:YES];
-            [vvv.selectedViewController viewDidAppear:YES];
-        }
-        else
-        {
-            [vvv viewWillAppear:YES];
-            [vvv viewDidAppear:YES];
-        }
+            UITabBarController *vvv=(UITabBarController *)parent.visibleViewController;
+            
+            if([vvv isKindOfClass:[UITabBarController class]])
+            {
+                [vvv.selectedViewController viewWillAppear:YES];
+                [vvv.selectedViewController viewDidAppear:YES];
+            }
+            else
+            {
+                [vvv viewWillAppear:YES];
+                [vvv viewDidAppear:YES];
+            }
         
     }];
 

@@ -176,7 +176,7 @@
 -(void) smsTimerViewPressedRequestVoiceCall:(LWSMSTimerView *)view
 {
     [self setLoading:YES];
-    [[LWAuthManager instance] requestVoiceCall];
+    [[LWAuthManager instance] requestVoiceCall:nil];
 }
 
 -(void) resendSMS

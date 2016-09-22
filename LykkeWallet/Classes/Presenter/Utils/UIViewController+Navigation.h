@@ -18,5 +18,6 @@
 - (void)setCancelButtonWithTitle:(NSString *)title target:(id)target selector:(SEL)action;
 - (void)setCrossCloseButton;
 -(void) setCrossCloseButtonOnlyOne;
+-(void) crossCloseButtonPressed;
 
 @end

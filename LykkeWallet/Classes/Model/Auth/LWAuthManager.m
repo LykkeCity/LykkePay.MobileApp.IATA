@@ -690,9 +690,10 @@ SINGLETON_INIT {
     
 }
 
--(void) requestVoiceCall
+-(void) requestVoiceCall:(NSString *) phone
 {
     LWPacketVoiceCall *pack=[LWPacketVoiceCall new];
+    pack.phone=phone;
     [self sendPacket:pack];
 }
 #pragma mark - Observing

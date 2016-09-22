@@ -91,7 +91,7 @@
         if(emptyPresenter)
             [emptyPresenter.refreshControl endRefreshing];
         
-        if(historyArray.count==0)
+        if(historyArray.count==0 && !emptyPresenter)
         {
             emptyPresenter=[[LWPrivateWalletEmptyHistoryPresenter alloc] init];
             emptyPresenter.view.frame=self.view.bounds;
@@ -99,7 +99,7 @@
             [self.view addSubview:emptyPresenter.view];
             [self addChildViewController:emptyPresenter];
         }
-        else if(emptyPresenter)
+        else if(emptyPresenter && historyArray.count)
         {
             [emptyPresenter.view removeFromSuperview];
             [emptyPresenter removeFromParentViewController];

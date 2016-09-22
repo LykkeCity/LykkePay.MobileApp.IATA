@@ -160,6 +160,7 @@
 
 -(void) selectWalletButtonPressed
 {
+    [self endEditing:YES];
             [LWChoosePrivateWalletView showWithCurrentWallet:nil completion:^(LWPrivateWalletModel *wallet){
                 textField.text=wallet.address;
                 [textFieldButton setTitle:@"Clear" forState:UIControlStateNormal];

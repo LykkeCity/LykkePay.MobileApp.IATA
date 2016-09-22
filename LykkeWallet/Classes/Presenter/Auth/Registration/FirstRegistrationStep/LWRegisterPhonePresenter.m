@@ -15,6 +15,7 @@
 #import "UIViewController+Loading.h"
 #import "LWPacketCountryCodes.h"
 #import "LWCountrySelectorContainer.h"
+#import "LWCache.h"
 
 
 @interface LWRegisterPhonePresenter () <UITextFieldDelegate, LWCountrySelectorPresenterDelegate> {
@@ -102,7 +103,7 @@
     [LWValidator setButton:self.nextButton enabled:[self canProceed]];
     
     self.observeKeyboardEvents = YES;
-
+    self.navigationItem.hidesBackButton=YES;
 }
 
 -(void) viewDidAppear:(BOOL)animated
@@ -111,23 +112,21 @@
     originalSrollViewFrame=self.scrollView.frame;
     [self.numberTextField becomeFirstResponder];
     self.title = Localize(@"title.register");
-
+    
 }
 
 - (IBAction)nextClicked:(id)sender {
     if ([self canProceed]) {
         if(!nextPresenter)
             nextPresenter=[LWRegisterPhoneConfirmPresenter new];
-        nextPresenter.phone=[self phoneNumberWithPlus];
+        if([nextPresenter.phone isEqualToString:[self phoneNumberWithPlus]]==NO)
+        {
+            nextPresenter.phone=[self phoneNumberWithPlus];
+            [[LWCache instance].timerSMS invalidate];
+            [LWCache instance].smsRetriesLeft=3;
+        }
         [self.navigationController pushViewController:nextPresenter animated:YES];
         
-//        LWAuthNavigationController *controller = (LWAuthNavigationController *)self.navigationController;
-//        [controller navigateToStep:[self nextStep]
-//                  preparationBlock:^(LWAuthStepPresenter *presenter) {
-//                      
-//                      LWRegisterPhoneConfirmPresenter *nextPresenter=(LWRegisterPhoneConfirmPresenter *)presenter;
-//                      nextPresenter.phone = [self phoneNumberWithPlus];
-//                  }];
     }
 }
 

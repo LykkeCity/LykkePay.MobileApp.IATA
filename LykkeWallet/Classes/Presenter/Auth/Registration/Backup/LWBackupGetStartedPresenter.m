@@ -12,6 +12,7 @@
 #import "LWPrivateKeyManager.h"
 #import "UIViewController+Navigation.h"
 #import "LWKeychainManager.h"
+#import "LWAuthNavigationController.h"
 
 @interface LWBackupGetStartedPresenter ()
 
@@ -53,7 +54,7 @@
 {
     [super viewDidAppear:animated];
 
-    
+    [self setCrossCloseButton];
     [self setTitle:@"BACK UP"];
 }
 
@@ -61,6 +62,25 @@
 {
     [super viewDidLayoutSubviews];
     self.getStartedButton.layer.cornerRadius=self.getStartedButton.bounds.size.height/2;
+}
+
+-(void) crossCloseButtonPressed
+{
+    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
+    {
+        UIViewController *firstController=[self.navigationController.viewControllers firstObject];
+        if([firstController isKindOfClass:[UITabBarController class]])
+            [self.navigationController popToRootViewControllerAnimated:YES];
+        else
+            [((LWAuthNavigationController *)self.navigationController) setRootMainTabScreen];
+
+    }
+    else
+    {
+        [super crossCloseButtonPressed];
+    }
+    
+
 }
 
 - (void)didReceiveMemoryWarning {

@@ -18,6 +18,8 @@
 @property (weak, nonatomic) IBOutlet LWCommonButton *button;
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *buttonWidthConsraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *lineViewHeightConstraint;
 
 @end
 
@@ -39,6 +41,11 @@
     [refreshView addSubview:_refreshControl];
     
     _scrollView.alwaysBounceVertical=YES;
+    
+    
+    if([UIScreen mainScreen].bounds.size.width==320)
+        _buttonWidthConsraint.constant=280;
+    _lineViewHeightConstraint.constant=0.5;
 
 }
 
