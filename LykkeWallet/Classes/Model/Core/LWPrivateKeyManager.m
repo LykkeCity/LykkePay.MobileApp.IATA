@@ -12,6 +12,7 @@
 #import <CommonCrypto/CommonCryptor.h>
 #import <CommonCrypto/CommonDigest.h>
 #import "BTCAddress.h"
+#import "BTCBase58.h"
 
 #import "LWPrivateWalletsManager.h"
 #import "LWPrivateWalletModel.h"
@@ -133,6 +134,9 @@
     self=[super init];
     
     
+
+    
+    
 //    BTCKey *kkk1=[[BTCKey alloc] initWithWIF:@"cMahea7zqjxrtgAbB7LSGbcQt7gX5j3yY5pDFz8sw4ayZFKmkLXe"];
 //    NSData *data1=kkk1.privateKey;
 //    NSLog(@"%@", [LWUtils hexStringFromData:data1]);
@@ -171,6 +175,31 @@
         shared = [[LWPrivateKeyManager alloc] init];
     });
     return shared;
+}
+
+-(NSString *) coloredAddressFromBitcoinAddress:(NSString *) address
+{
+    BTCAddress *kkk=[BTCAddress addressWithString:address];
+    
+    char prefix[2];
+    
+    prefix[0]=0x13;
+    if([self isDevServer])
+        prefix[1]=0x6f;
+    else
+        prefix[1]=0x0;
+    NSMutableData *data=[NSMutableData dataWithBytes:prefix length:2];
+    [data appendData:kkk.data];
+    
+    NSMutableData *hash=[NSMutableData dataWithLength:CC_SHA256_DIGEST_LENGTH];
+    CC_SHA256(data.bytes, (int)data.length, hash.mutableBytes);
+    
+    NSMutableData *hash1=[NSMutableData dataWithLength:CC_SHA256_DIGEST_LENGTH];
+    CC_SHA256(hash.bytes, (int)hash.length, hash1.mutableBytes);
+    
+    [data appendBytes:hash1.bytes length:4];
+    
+    return BTCBase58StringWithData(data);
 }
 
 -(BOOL) savePrivateKeyLykkeFromSeedWords:(NSArray *) words

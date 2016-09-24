@@ -123,7 +123,9 @@
         {
             nextPresenter.phone=[self phoneNumberWithPlus];
             [[LWCache instance].timerSMS invalidate];
+            [LWCache instance].timerSMS=nil;
             [LWCache instance].smsRetriesLeft=3;
+            nextPresenter.flagHaveSentSMS=NO;
         }
         [self.navigationController pushViewController:nextPresenter animated:YES];
         
@@ -268,7 +270,13 @@
 }
 
 - (void)authManager:(LWAuthManager *)manager didFailWithReject:(NSDictionary *)reject context:(GDXRESTContext *)context {
-    [self showReject:reject response:context.task.response];
+    if(reject)
+        [self showReject:reject response:context.task.response];
+    else if([context.packet isKindOfClass:[LWPacketCountryCodes class]])
+    {
+        [[LWAuthManager instance] requestCountyCodes];
+    }
+    
 }
 
 

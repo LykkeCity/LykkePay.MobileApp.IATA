@@ -47,6 +47,7 @@
 -(NSString *) availableSecondaryPrivateKey;
 
 -(NSString *) signatureForMessageWithLykkeKey:(NSString *) message;
+-(NSString *) coloredAddressFromBitcoinAddress:(NSString *) address;
 
 -(void) logoutUser;
 

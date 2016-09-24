@@ -148,6 +148,8 @@
 		A145E3061D90045A00248575 /* LWCountrySelectorContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = A145E3051D90045A00248575 /* LWCountrySelectorContainer.m */; };
 		A145E3091D90B58D00248575 /* LWSMSTimerView.m in Sources */ = {isa = PBXBuildFile; fileRef = A145E3081D90B58D00248575 /* LWSMSTimerView.m */; };
 		A14B7D2E1CE3233D00820084 /* ButtonOK_square.png in Resources */ = {isa = PBXBuildFile; fileRef = A14B7D2D1CE3233D00820084 /* ButtonOK_square.png */; };
+		A15AAF7E1D96462800324F97 /* LWPacketWalletMigration.m in Sources */ = {isa = PBXBuildFile; fileRef = A15AAF7D1D96462800324F97 /* LWPacketWalletMigration.m */; };
+		A15AAF811D96465300324F97 /* LWWalletMigrationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A15AAF801D96465300324F97 /* LWWalletMigrationModel.m */; };
 		A15B3EAF1D12626B00A6B506 /* LWRefundInformationPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A15B3EAD1D12626B00A6B506 /* LWRefundInformationPresenter.m */; };
 		A15B3EB01D12626B00A6B506 /* LWRefundInformationPresenter.xib in Resources */ = {isa = PBXBuildFile; fileRef = A15B3EAE1D12626B00A6B506 /* LWRefundInformationPresenter.xib */; };
 		A15B3EB61D12CA1500A6B506 /* LWKYCManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A15B3EB51D12CA1500A6B506 /* LWKYCManager.m */; };
@@ -1919,6 +1921,10 @@
 		A145E3071D90B58D00248575 /* LWSMSTimerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWSMSTimerView.h; sourceTree = "<group>"; };
 		A145E3081D90B58D00248575 /* LWSMSTimerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWSMSTimerView.m; sourceTree = "<group>"; };
 		A14B7D2D1CE3233D00820084 /* ButtonOK_square.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ButtonOK_square.png; sourceTree = "<group>"; };
+		A15AAF7C1D96462800324F97 /* LWPacketWalletMigration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWPacketWalletMigration.h; sourceTree = "<group>"; };
+		A15AAF7D1D96462800324F97 /* LWPacketWalletMigration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWPacketWalletMigration.m; sourceTree = "<group>"; };
+		A15AAF7F1D96465300324F97 /* LWWalletMigrationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWWalletMigrationModel.h; sourceTree = "<group>"; };
+		A15AAF801D96465300324F97 /* LWWalletMigrationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWWalletMigrationModel.m; sourceTree = "<group>"; };
 		A15B3EAC1D12626B00A6B506 /* LWRefundInformationPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWRefundInformationPresenter.h; sourceTree = "<group>"; };
 		A15B3EAD1D12626B00A6B506 /* LWRefundInformationPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWRefundInformationPresenter.m; sourceTree = "<group>"; };
 		A15B3EAE1D12626B00A6B506 /* LWRefundInformationPresenter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LWRefundInformationPresenter.xib; sourceTree = "<group>"; };
@@ -5785,6 +5791,8 @@
 				A1A11FE11D8BA80900D1D4AA /* LWPacketSaveBackupState.m */,
 				A19A37CD1D92851A00BC4D42 /* LWPacketVoiceCall.h */,
 				A19A37CE1D92851A00BC4D42 /* LWPacketVoiceCall.m */,
+				A15AAF7C1D96462800324F97 /* LWPacketWalletMigration.h */,
+				A15AAF7D1D96462800324F97 /* LWPacketWalletMigration.m */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -6170,6 +6178,8 @@
 				A12DB56E1D75E75F00319EA7 /* LWNewsElementModel.m */,
 				A145158E1D800A2F00B4BED9 /* LWSwiftCredentialsModel.h */,
 				A145158F1D800A2F00B4BED9 /* LWSwiftCredentialsModel.m */,
+				A15AAF7F1D96465300324F97 /* LWWalletMigrationModel.h */,
+				A15AAF801D96465300324F97 /* LWWalletMigrationModel.m */,
 			);
 			name = Wallets;
 			sourceTree = "<group>";
@@ -8324,6 +8334,7 @@
 				ECD76BCA1C2EBE9C00E1D3DA /* LWPersonalDataPacket.m in Sources */,
 				ECD114551CDD4758002B36C0 /* LWPacketClientFullNameSet.m in Sources */,
 				A14515791D7C77C600B4BED9 /* LWMyLykkeSuccessViewController.m in Sources */,
+				A15AAF811D96465300324F97 /* LWWalletMigrationModel.m in Sources */,
 				A188DA1C1D705D4100AA6D8A /* LWMyLykkePresenter.m in Sources */,
 				EC51D19F1C30578700550EF2 /* LWLykkeAssetsData.m in Sources */,
 				A1BB07C51D388CB100924804 /* LWAddPrivateWalletPresenter.m in Sources */,
@@ -8336,6 +8347,7 @@
 				A1C99D181D4372E200833C4E /* LWDoubleButtonView.m in Sources */,
 				A1D4322E1D1019F80060866F /* LWRefundAddressView.m in Sources */,
 				CF9EC8BB1C17C02F00F742A6 /* LWAuthEntryPointPresenter.m in Sources */,
+				A15AAF7E1D96462800324F97 /* LWPacketWalletMigration.m in Sources */,
 				CFF7583C1C202C6500BC7658 /* LWKYCPendingPresenter.m in Sources */,
 				A1F78C8C1D3664B900BCFF03 /* LWWalletsNavigationBar.m in Sources */,
 				A15B3F101D141F5400A6B506 /* UIAlertView+Blocks.m in Sources */,
@@ -9058,7 +9070,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.lykkex.Lykke-Wallet-test";
 				PRODUCT_NAME = "$(TARGET_NAME).Test";
-				PROVISIONING_PROFILE = "c6ca73c3-f8ac-4329-863a-ccf072a8002f";
+				PROVISIONING_PROFILE = "bbdaf056-de2a-4164-9ce4-87ca11a1a1cb";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release.Test;

@@ -10,9 +10,10 @@
 
 @interface LWSMSTimerView : UIView
 
--(void) setTitle:(NSString *) title;
-
 -(BOOL) isTimerRunnig;
+
+-(void) viewWillAppear;
+-(void) startTimer;
 
 @property id delegate;
 

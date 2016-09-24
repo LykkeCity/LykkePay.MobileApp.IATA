@@ -29,10 +29,11 @@
 
 -(NSDictionary *) params
 {
+    NSMutableDictionary *params=[[NSMutableDictionary alloc] init];
+    params[@"Email"]=_email;
     if(self.phone)
-        return @{@"PhoneNumber":self.phone};
-    else
-        return nil;
+        params[@"PhoneNumber"]=_phone;
+    return params;
 }
 
 @end

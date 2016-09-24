@@ -83,6 +83,7 @@
 #import "LWPacketEmailHint.h"
 #import "LWPacketSaveBackupState.h"
 #import "LWPacketVoiceCall.h"
+#import "LWPacketWalletMigration.h"
 
 
 
@@ -690,10 +691,18 @@ SINGLETON_INIT {
     
 }
 
--(void) requestVoiceCall:(NSString *) phone
+-(void) requestVoiceCall:(NSString *) phone email:(NSString *) email
 {
     LWPacketVoiceCall *pack=[LWPacketVoiceCall new];
     pack.phone=phone;
+    pack.email=email;
+    [self sendPacket:pack];
+}
+
+-(void) requestWalletMigration:(LWWalletMigrationModel *)migration
+{
+    LWPacketWalletMigration *pack=[LWPacketWalletMigration new];
+    pack.migration=migration;
     [self sendPacket:pack];
 }
 #pragma mark - Observing
@@ -1101,6 +1110,11 @@ SINGLETON_INIT {
     else if (pack.class == LWPacketVoiceCall.class) {
         if ([self.delegate respondsToSelector:@selector(authManagerDidRequestVoiceCall:)]) {
             [self.delegate authManagerDidRequestVoiceCall:self];
+        }
+    }
+    else if (pack.class == LWPacketWalletMigration.class) {
+        if ([self.delegate respondsToSelector:@selector(authManagerDidCompleteWalletMigration:)]) {
+            [self.delegate authManagerDidCompleteWalletMigration:self];
         }
     }
     

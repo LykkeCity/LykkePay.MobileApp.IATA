@@ -17,6 +17,7 @@
 #import "UIView+Toast.h"
 #import "LWSMSTimerView.h"
 #import "LWRequestCallMessageView.h"
+#import "LWKeychainManager.h"
 
 
 
@@ -43,6 +44,11 @@
 
 @implementation LWRegisterPhoneConfirmPresenter
 
+-(void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [_notReceivedSMSView viewWillAppear];
+}
 
 -(void) viewDidAppear:(BOOL)animated
 {
@@ -58,10 +64,7 @@
     {
         [self setLoading:YES];
         [[LWAuthManager instance] requestVerificationPhone:self.phone];
-        _flagHaveSentSMS=YES;
     }
-
-
 }
 
 - (void)viewDidLoad {
@@ -86,13 +89,8 @@
     
     [LWValidator setButton:self.confirmButton enabled:NO];
     
-    [_notReceivedSMSView setTitle:@"Haven't receive the code?"];
     _flagHaveSentSMS=NO;
-    
-//#ifdef PROJECT_IATA
-//#else
-//    [self.confirmButton setGrayPalette];
-//#endif
+ 
     
     
 }
@@ -151,7 +149,7 @@
 
 - (void)smsTimerViewPressedResend:(LWSMSTimerView *)view
 {
-    
+    _flagHaveSentSMS=YES;
     [self setLoading:YES];
     [[LWAuthManager instance] requestVerificationPhone:self.phone];
 
@@ -164,7 +162,7 @@
 -(void) smsTimerViewPressedRequestVoiceCall:(LWSMSTimerView *)view
 {
     [self setLoading:YES];
-    [[LWAuthManager instance] requestVoiceCall:self.phone];
+    [[LWAuthManager instance] requestVoiceCall:self.phone email:[LWKeychainManager instance].login];
     
 }
 
@@ -238,6 +236,11 @@
     // copy data to model
     [self setLoading:NO];
     [self.view makeToast:@"SMS sent" duration:2 position:[NSValue valueWithCGPoint:CGPointMake(self.view.bounds.size.width/2, self.view.bounds.size.height-keyboardHeight-30)]];
+    if(_flagHaveSentSMS)
+        [_notReceivedSMSView startTimer];
+
+    _flagHaveSentSMS=YES;
+
 
 }
 

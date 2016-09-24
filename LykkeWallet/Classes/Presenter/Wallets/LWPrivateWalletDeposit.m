@@ -10,6 +10,7 @@
 #import "LWCommonButton.h"
 #import "LWPrivateWalletAssetModel.h"
 #import "LWPrivateWalletModel.h"
+#import "LWPrivateKeyManager.h"
 #import "UIImage+Resize.h"
 #import "UIViewController+Navigation.h"
 #import "LWConstants.h"
@@ -92,7 +93,12 @@
     CIFilter *filter = [CIFilter filterWithName:@"CIQRCodeGenerator"];
     [filter setDefaults];
     
-    NSString *bitcoinHash = self.wallet.address;
+    NSString *bitcoinHash;
+    
+    if([self.asset.assetId isEqualToString:@"BTC"])
+        bitcoinHash= self.wallet.address;
+    else
+        bitcoinHash=[[LWPrivateKeyManager shared] coloredAddressFromBitcoinAddress:self.wallet.address];
     
     self.addressLabel.text = bitcoinHash;
     

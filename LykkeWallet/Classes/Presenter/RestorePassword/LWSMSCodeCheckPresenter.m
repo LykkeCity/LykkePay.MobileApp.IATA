@@ -57,7 +57,6 @@
     [self.view addSubview:keyboard];
     keyboard.cursor.hidden=YES;
     
-    [_smsTimerView setTitle:@"Haven't receive the code?"];
     _smsTimerView.delegate=self;
     
     _textField.placeholder=@"Code";
@@ -92,6 +91,7 @@
     [self setBackButton];
     self.navigationController.navigationBar.barTintColor = BAR_GRAY_COLOR;
     self.observeKeyboardEvents=YES;
+    [_smsTimerView viewWillAppear];
 }
 
 -(void) viewWillDisappear:(BOOL)animated
@@ -176,7 +176,7 @@
 -(void) smsTimerViewPressedRequestVoiceCall:(LWSMSTimerView *)view
 {
     [self setLoading:YES];
-    [[LWAuthManager instance] requestVoiceCall:nil];
+    [[LWAuthManager instance] requestVoiceCall:nil email:self.recModel.email];
 }
 
 -(void) resendSMS
@@ -268,6 +268,9 @@
 -(void) authManagerDidGetRecoverySMSConfirmation:(LWAuthManager *)manager
 {
     [self setLoading:NO];
+    if(self.recModel.signature2)
+        [_smsTimerView startTimer];
+
     
     self.recModel.signature2=[[LWPrivateKeyManager shared] signatureForMessageWithLykkeKey:self.recModel.securityMessage2];
     [self.view makeToast:@"SMS sent"];
@@ -278,6 +281,7 @@
     {
         self.textLabel.text=[NSString stringWithFormat:@"Please enter the 4-digit code that we just sent to your phone %@", self.recModel.phoneNumber];
     }
+    
 
 }
 

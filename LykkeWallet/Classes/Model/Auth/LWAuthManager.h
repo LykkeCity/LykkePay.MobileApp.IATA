@@ -54,6 +54,7 @@
 @class LWPacketGetNews;
 @class LWPacketSwiftCredentials;
 @class LWPacketGetEthereumAddress;
+@class LWWalletMigrationModel;
 
 
 
@@ -145,6 +146,7 @@
 -(void) authManagerDidSendEmailHint:(LWAuthManager *) manager;
 
 -(void) authManagerDidRequestVoiceCall:(LWAuthManager *) manager;
+-(void) authManagerDidCompleteWalletMigration:(LWAuthManager *) manager;
 
 @end
 
@@ -266,7 +268,9 @@ SINGLETON_DECLARE
 
 -(void) requestSaveBackupState;
 
--(void) requestVoiceCall:(NSString *) phone;
+-(void) requestVoiceCall:(NSString *) phone email:(NSString *) email;
+
+-(void) requestWalletMigration:(LWWalletMigrationModel *) migration;
 
 
 //PubkeyAddressValidation

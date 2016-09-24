@@ -60,6 +60,7 @@
         self.tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
     
     [[LWAuthManager instance] requestLykkeNewsWithCompletion:^(NSArray *newsArr){
+        
         newsArray=newsArr;
         self.tableView.backgroundColor=[UIColor colorWithRed:245.0/255 green:246.0/255 blue:247.0/255 alpha:1];
         if(self.isViewLoaded && self.view.window)

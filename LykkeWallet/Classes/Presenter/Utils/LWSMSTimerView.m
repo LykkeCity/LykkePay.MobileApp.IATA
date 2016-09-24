@@ -13,7 +13,7 @@
 
 @interface LWSMSTimerView()
 {
-    NSString *title;
+
     UILabel *titleLabel;
     UILabel *timerLabel;
     UIImageView *timerIcon;
@@ -57,8 +57,8 @@
     titleLabel=[[UILabel alloc] init];
     titleLabel.font=[UIFont fontWithName:@"ProximaNova-Regular" size:14];
     titleLabel.textColor=[UIColor colorWithRed:171.0/255 green:0 blue:1 alpha:1];
-    if(title)
-        titleLabel.text=title;
+//    if(title)
+//        titleLabel.text=title;
     timerLabel=[[UILabel alloc] init];
     timerLabel.font=[UIFont fontWithName:@"ProximaNova-Regular" size:14];
     timerLabel.textColor=[UIColor colorWithRed:63.0/255 green:77.0/255 blue:96.0/255 alpha:0.6];
@@ -76,23 +76,29 @@
     [timerContainer addSubview:timerIcon];
     [self addSubview:timerContainer];
     
-    if([LWCache instance].timerSMS)
-    {
-        flagTimerMode=YES;
-        titleLabel.hidden=YES;
-        [self adjustTimerTitle];
-    }
-    else
-    {
-        if([LWCache instance].smsRetriesLeft==0)
-            titleLabel.text=@"Request voice call";
-        timerContainer.hidden=YES;
-    }
-    
     UITapGestureRecognizer *gesture=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(userTapped)];
     [self addGestureRecognizer:gesture];
     
     [LWCache instance].smsDelayDelegate=self;
+}
+
+-(void) viewWillAppear
+{
+    if([LWCache instance].timerSMS)
+    {
+        flagTimerMode=YES;
+        [self adjustTimerTitle];
+    }
+    else
+    {
+        flagTimerMode=NO;
+    }
+    if([LWCache instance].smsRetriesLeft==0)
+        titleLabel.text=@"Request voice call";
+    else
+        titleLabel.text=@"Haven't receive the code?";
+
+    [self setNeedsLayout];
 }
 
 -(void) layoutSubviews
@@ -129,10 +135,14 @@
     }
     if([self.delegate respondsToSelector:@selector(smsTimerViewPressedResend:)])
         [self.delegate smsTimerViewPressedResend:self];
+}
+
+-(void) startTimer
+{
     [[LWCache instance] startTimerForSMS];
     flagTimerMode=YES;
     [self smsTimerFired];
-//    [self setNeedsLayout];
+
 }
 
 -(void) smsTimerFinished
@@ -160,17 +170,6 @@
     [self adjustTimerTitle];
 }
 
--(void) setTitle:(NSString *)_title
-{
-    if([LWCache instance].smsRetriesLeft==0)
-    {
-        titleLabel.text=@"Request voice call";
-        return;
-    }
-    title=_title;
-    titleLabel.text=title;
-    
-}
 
 -(BOOL) isTimerRunnig
 {
