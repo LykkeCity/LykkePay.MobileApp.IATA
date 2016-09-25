@@ -10,4 +10,13 @@
 
 @interface LWGenerateKeyPresenter : LWAuthComplexPresenter
 
+@property BOOL flagSkipIntro;
+@property id delegate;
+
+@end
+
+@protocol LWGenerateKeyPresenterDelegate
+
+-(void) generateKeyPresenterFinished:(LWGenerateKeyPresenter *) presenter;
+
 @end

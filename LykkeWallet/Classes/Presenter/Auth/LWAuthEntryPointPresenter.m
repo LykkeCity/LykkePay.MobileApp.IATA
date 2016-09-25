@@ -93,7 +93,7 @@ typedef NS_ENUM(NSInteger, LWAuthEntryPointNextStep) {
     emailTextField = [LWTextField new];
     emailTextField.delegate = self;
     emailTextField.keyboardType = UIKeyboardTypeEmailAddress;
-    emailTextField.placeholder = Localize(@"auth.email");
+    emailTextField.placeholder = @"Your email";
     [self.emailTextFieldContainer attach:emailTextField];
     
     if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad)

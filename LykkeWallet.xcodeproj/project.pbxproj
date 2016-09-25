@@ -186,6 +186,8 @@
 		A1743CC21CEAFAD200176F59 /* LWRegisterPhonePresenter_ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1743CC11CEAFAD200176F59 /* LWRegisterPhonePresenter_ipad.xib */; };
 		A1743CC41CEB018000176F59 /* LWRegisterPhoneConfirmPresenter~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1743CC31CEB018000176F59 /* LWRegisterPhoneConfirmPresenter~ipad.xib */; };
 		A17CF1DC1D41D08400EDBF2E /* LWPrivateWalletsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A17CF1DB1D41D08400EDBF2E /* LWPrivateWalletsManager.m */; };
+		A1827B401D97BB72007127A0 /* LWMigrationInfoPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A1827B3E1D97BB72007127A0 /* LWMigrationInfoPresenter.m */; };
+		A1827B411D97BB72007127A0 /* LWMigrationInfoPresenter.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1827B3F1D97BB72007127A0 /* LWMigrationInfoPresenter.xib */; };
 		A188DA121D6EB33800AA6D8A /* LWPrivateWalletEmptyHistoryPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A188DA101D6EB33800AA6D8A /* LWPrivateWalletEmptyHistoryPresenter.m */; };
 		A188DA131D6EB33800AA6D8A /* LWPrivateWalletEmptyHistoryPresenter.xib in Resources */ = {isa = PBXBuildFile; fileRef = A188DA111D6EB33800AA6D8A /* LWPrivateWalletEmptyHistoryPresenter.xib */; };
 		A188DA151D6EF1C400AA6D8A /* LWBackupIntroPresenter~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A188DA141D6EF1C400AA6D8A /* LWBackupIntroPresenter~ipad.xib */; };
@@ -1998,6 +2000,9 @@
 		A1743CC31CEB018000176F59 /* LWRegisterPhoneConfirmPresenter~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "LWRegisterPhoneConfirmPresenter~ipad.xib"; path = "FirstRegistrationStep/LWRegisterPhoneConfirmPresenter~ipad.xib"; sourceTree = "<group>"; };
 		A17CF1DA1D41D08400EDBF2E /* LWPrivateWalletsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LWPrivateWalletsManager.h; path = Wallets/LWPrivateWalletsManager.h; sourceTree = "<group>"; };
 		A17CF1DB1D41D08400EDBF2E /* LWPrivateWalletsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LWPrivateWalletsManager.m; path = Wallets/LWPrivateWalletsManager.m; sourceTree = "<group>"; };
+		A1827B3D1D97BB72007127A0 /* LWMigrationInfoPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LWMigrationInfoPresenter.h; path = Backup/LWMigrationInfoPresenter.h; sourceTree = "<group>"; };
+		A1827B3E1D97BB72007127A0 /* LWMigrationInfoPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LWMigrationInfoPresenter.m; path = Backup/LWMigrationInfoPresenter.m; sourceTree = "<group>"; };
+		A1827B3F1D97BB72007127A0 /* LWMigrationInfoPresenter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LWMigrationInfoPresenter.xib; path = Backup/LWMigrationInfoPresenter.xib; sourceTree = "<group>"; };
 		A188DA0F1D6EB33800AA6D8A /* LWPrivateWalletEmptyHistoryPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWPrivateWalletEmptyHistoryPresenter.h; sourceTree = "<group>"; };
 		A188DA101D6EB33800AA6D8A /* LWPrivateWalletEmptyHistoryPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWPrivateWalletEmptyHistoryPresenter.m; sourceTree = "<group>"; };
 		A188DA111D6EB33800AA6D8A /* LWPrivateWalletEmptyHistoryPresenter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LWPrivateWalletEmptyHistoryPresenter.xib; sourceTree = "<group>"; };
@@ -4970,6 +4975,9 @@
 				A1A7D34F1D62393A00026576 /* LWTestBackupWordsPresenter.h */,
 				A1A7D3501D62393A00026576 /* LWTestBackupWordsPresenter.m */,
 				A1A7D3511D62393A00026576 /* LWTestBackupWordsPresenter.xib */,
+				A1827B3D1D97BB72007127A0 /* LWMigrationInfoPresenter.h */,
+				A1827B3E1D97BB72007127A0 /* LWMigrationInfoPresenter.m */,
+				A1827B3F1D97BB72007127A0 /* LWMigrationInfoPresenter.xib */,
 			);
 			name = Backup;
 			sourceTree = "<group>";
@@ -7678,6 +7686,7 @@
 				A1BCD19F1D012D3C00CF42E4 /* 3-settle-2x_00040.png in Resources */,
 				A11494731D49E1E8000BD347 /* LWPKBackupPresenter.xib in Resources */,
 				A1D477631D050B9900438846 /* loader-color@2x_00051.png in Resources */,
+				A1827B411D97BB72007127A0 /* LWMigrationInfoPresenter.xib in Resources */,
 				A1BCD2A61D012D3C00CF42E4 /* 5-onboard-2x_00064.png in Resources */,
 				A1BCD0941D012D3C00CF42E4 /* 1-deposit-2x_00012.png in Resources */,
 				A1BCD2311D012D3C00CF42E4 /* 4-withdraw-2x_00066.png in Resources */,
@@ -8446,6 +8455,7 @@
 				A1BB07D51D38BB1F00924804 /* LWWalletAddressView.m in Sources */,
 				A1D65DC91D5EC53200828783 /* LWBackupSingleWordPresenter.m in Sources */,
 				EC3CE89E1C3FB6CC00CAC3FE /* LWAssetDealModel.m in Sources */,
+				A1827B401D97BB72007127A0 /* LWMigrationInfoPresenter.m in Sources */,
 				ECD1E8FB1C3B181F0064AAB3 /* LWPacketAppSettings.m in Sources */,
 				CFAD8A8D1C1D5E4B00185CD1 /* LWDocumentsStatus.m in Sources */,
 				CDCD5B1D1C26CC73007BAD78 /* LWRegisterConfirmPasswordPresenter.m in Sources */,

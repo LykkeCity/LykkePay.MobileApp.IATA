@@ -73,7 +73,7 @@
 -(IBAction)emailClicked:(id)sender
 {
     [self setLoading:YES];
-    [[LWAuthManager instance] requestEmailBlockchainForAssetId:self.asset.assetId address:self.wallet.address];
+    [[LWAuthManager instance] requestEmailBlockchainForAssetId:self.asset.assetId address:self.addressLabel.text];
 }
 
 - (void)authManager:(LWAuthManager *)manager didFailWithReject:(NSDictionary *)reject context:(GDXRESTContext *)context {

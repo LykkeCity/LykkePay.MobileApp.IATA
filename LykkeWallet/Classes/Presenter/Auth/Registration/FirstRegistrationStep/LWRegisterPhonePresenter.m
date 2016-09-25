@@ -133,7 +133,7 @@
 }
 
 - (IBAction)countryClicked:(id)sender {
-    
+    [self.view endEditing:YES];
     
     LWCountrySelectorContainer *presenter=[[LWCountrySelectorContainer alloc] init];
     presenter.countries=countries.countries;

@@ -66,7 +66,7 @@
     
     // init fields
     
-    _passwordField.placeholder = Localize(@"auth.password");
+    _passwordField.placeholder = @"Your password";
     _passwordField.secureTextEntry = YES;
     _passwordField.delegate = self;
     
@@ -108,7 +108,7 @@
 {
     [super viewDidAppear:animated];
     [_passwordField becomeFirstResponder];
-    self.title = Localize(@"title.authentication");
+//    self.title = Localize(@"title.authentication");
     
     [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
 

@@ -302,6 +302,7 @@
     if([reject[@"Code"] intValue]==1)
     {
         LWGenerateKeyPresenter *presenter=[[LWGenerateKeyPresenter alloc] init];
+        presenter.flagSkipIntro=NO;
         [self.navigationController pushViewController:presenter animated:YES];
     }
     else

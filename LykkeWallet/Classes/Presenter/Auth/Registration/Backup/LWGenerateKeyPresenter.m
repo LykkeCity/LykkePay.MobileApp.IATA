@@ -120,8 +120,17 @@
     }
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        LWBackupIntroPresenter *presenter=[[LWBackupIntroPresenter alloc] init];
-        [self.navigationController pushViewController:presenter animated:YES];
+        if([self.delegate respondsToSelector:@selector(generateKeyPresenterFinished:)])
+        {
+            [self.delegate generateKeyPresenterFinished:self];
+        }
+        if(_flagSkipIntro==NO)
+        {
+            LWBackupIntroPresenter *presenter=[[LWBackupIntroPresenter alloc] init];
+
+            [self.navigationController pushViewController:presenter animated:YES];
+
+        }
     });
 }
 

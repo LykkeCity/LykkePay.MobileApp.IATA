@@ -146,6 +146,7 @@
     
     [[LWAuthManager instance] requestMyLykkeSettings];
     LWGenerateKeyPresenter *presenter=[[LWGenerateKeyPresenter alloc] init];
+    presenter.flagSkipIntro=NO;
     [self.navigationController pushViewController:presenter animated:YES];
     
 }

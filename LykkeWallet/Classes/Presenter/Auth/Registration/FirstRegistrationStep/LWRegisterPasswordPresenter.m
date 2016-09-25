@@ -100,7 +100,7 @@
 }
 
 - (NSString *)fieldPlaceholder {
-    return Localize(@"register.password");
+    return @"Enter a password";
 }
 
 - (BOOL)validateInput:(NSString *)input {

@@ -23,6 +23,7 @@
 #import "LWPrivateWalletsManager.h"
 #import "LWPrivateWalletModel.h"
 #import "LWCommonButton.h"
+#import "LWPrivateKeyManager.h"
 
 #import "UIViewController+Navigation.h"
 #import "UIViewController+Loading.h"
@@ -200,7 +201,10 @@
     [self.view endEditing:YES];
     
     [LWChoosePrivateWalletView showWithCurrentWallet:nil completion:^(LWPrivateWalletModel *wallet){
-        bitcoinTextField.text=wallet.address;
+        if([self.assetId isEqualToString:@"BTC"])
+            bitcoinTextField.text=wallet.address;
+        else
+            bitcoinTextField.text=[[LWPrivateKeyManager shared] coloredAddressFromBitcoinAddress:wallet.address];
         [self updatePasteButtonStatus];
     }];
 

@@ -61,6 +61,7 @@
 
     [self setCrossCloseButton];
     [self setTitle:@"BACK UP"];
+    [self checkPrivateKey];
 }
 
 -(void) viewDidLayoutSubviews
@@ -95,65 +96,59 @@
 
 -(IBAction)getStartedPressed:(id)sender
 {
+    if([self checkPrivateKey]==NO)
+        return;
 //    if(![LWKeychainManager instance].login)
 //        presenter.wordsList=[LWPrivateKeyManager generateSeedWords];
+    LWBackupSingleWordPresenter *presenter=[[LWBackupSingleWordPresenter alloc] init];
+
+    presenter.currentWordNum=0;
+    presenter.wordsList=[[LWPrivateKeyManager shared] privateKeyWords];
+    [self.navigationController pushViewController:presenter animated:YES];
+}
+
+-(BOOL) checkPrivateKey
+{
     NSArray *words;
     if([LWPrivateKeyManager shared].privateKeyLykke)
     {
         words=[[LWPrivateKeyManager shared] privateKeyWords];
         if(words==nil)
         {
-            UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"UPDATE REQUIRED" message:@"When you click \"Continue\" your private key will be regenerated and all your funds will be automatically transfered to your new wallet address. This step is necessary for security reasons." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Continue", nil];
-            alert.tag=1;
-            [alert show];
-            return;
+//            UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"UPDATE REQUIRED" message:@"When you click \"Continue\" your private key will be regenerated and all your funds will be automatically transfered to your new wallet address. This step is necessary for security reasons." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Continue", nil];
+//            alert.tag=1;
+//            [alert show];
+            
+            [self setLoading:YES];
+            oldEncodedPrivateKey=[LWPrivateKeyManager shared].encryptedKeyLykke;
+            LWWalletMigrationModel *model=[[LWWalletMigrationModel alloc] init];
+            model.fromPrivateKey=[[LWPrivateKeyManager shared] wifPrivateKeyLykke];
+            
+            [[LWPrivateKeyManager shared] savePrivateKeyLykkeFromSeedWords:[LWPrivateKeyManager generateSeedWords]];
+            model.toPrivateKey=[[LWPrivateKeyManager shared] wifPrivateKeyLykke];
+            model.toEncodedPrivateKey=[LWPrivateKeyManager shared].encryptedKeyLykke;
+            model.toPubKey=[[LWPrivateKeyManager shared] publicKeyLykke];
+            [[LWAuthManager instance] requestWalletMigration:model];
+
+            
+            return NO;
         }
     }
     else
     {
         UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"ERROR" message:@"You have no private key" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [alert show];
-        return;
+        return NO;
     }
-    LWBackupSingleWordPresenter *presenter=[[LWBackupSingleWordPresenter alloc] init];
-
-    presenter.currentWordNum=0;
-    presenter.wordsList=words;
-    [self.navigationController pushViewController:presenter animated:YES];
+    return YES;
 }
 
--(void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if(alertView.tag==1)
-    {
-        if(buttonIndex!=alertView.cancelButtonIndex)
-        {
-            [self setLoading:YES];
-            oldEncodedPrivateKey=[LWPrivateKeyManager shared].encryptedKeyLykke;
-            LWWalletMigrationModel *model=[[LWWalletMigrationModel alloc] init];
-            model.fromPrivateKey=[[LWPrivateKeyManager shared] wifPrivateKeyLykke];
-
-            [[LWPrivateKeyManager shared] savePrivateKeyLykkeFromSeedWords:[LWPrivateKeyManager generateSeedWords]];
-            model.toPrivateKey=[[LWPrivateKeyManager shared] wifPrivateKeyLykke];
-            model.toEncodedPrivateKey=[LWPrivateKeyManager shared].encryptedKeyLykke;
-            model.toPubKey=[[LWPrivateKeyManager shared] publicKeyLykke];
-            [[LWAuthManager instance] requestWalletMigration:model];
-        }
-    }
-    else if(alertView.tag==2)
-    {
-        if(buttonIndex!=alertView.cancelButtonIndex)
-        {
-            [self getStartedPressed:nil];
-        }
-    }
-}
 
 -(void) authManagerDidCompleteWalletMigration:(LWAuthManager *)manager
 {
     [self setLoading:NO];
-    UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"CONGRATULATIONS" message:@"Your wallets migration has been successfully completed. Now you can proceed with the backup of your private key." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Backup", nil];
-    alert.tag=2;
+    UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"CONGRATULATIONS" message:@"Your wallets migration has been successfully completed. Now you can proceed with the backup of your private key." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    
     [alert show];
 }
 
