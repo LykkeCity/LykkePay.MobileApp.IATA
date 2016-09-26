@@ -231,7 +231,7 @@
 {
     [super viewWillAppear:animated];
     
-    infoLabel.text=[NSString stringWithFormat:@"To deposit %@ to your trading\nwallet, please use the following bank\n account details", self.assetName];
+    infoLabel.text=[NSString stringWithFormat:@"To buy LKK for %@ via SWIFT,\nplease use the following details", self.assetName];
     [infoLabel sizeToFit];
     [self setBackButton];
     self.navigationController.navigationBar.barTintColor = BAR_GRAY_COLOR;

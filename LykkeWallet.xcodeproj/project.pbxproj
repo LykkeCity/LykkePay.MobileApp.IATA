@@ -223,6 +223,8 @@
 		A18F892A1CE85A6600399850 /* LWWithdrawCurrencyPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A18F89291CE85A6600399850 /* LWWithdrawCurrencyPresenter.m */; };
 		A18F892C1CE85B0A00399850 /* LWWithdrawCurrencyPresenter.xib in Resources */ = {isa = PBXBuildFile; fileRef = A18F892B1CE85B0A00399850 /* LWWithdrawCurrencyPresenter.xib */; };
 		A19A37CF1D92851A00BC4D42 /* LWPacketVoiceCall.m in Sources */ = {isa = PBXBuildFile; fileRef = A19A37CE1D92851A00BC4D42 /* LWPacketVoiceCall.m */; };
+		A19AEEB51D99515E00D208E8 /* LWHistoryTableViewCell_iphone5.xib in Resources */ = {isa = PBXBuildFile; fileRef = A19AEEB41D99515E00D208E8 /* LWHistoryTableViewCell_iphone5.xib */; };
+		A19AEEB81D99752C00D208E8 /* LWBackupTemplatePresenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A19AEEB71D99752C00D208E8 /* LWBackupTemplatePresenterViewController.m */; };
 		A19E08D51CEB5275004D286A /* LWRegisterCameraPresenter~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A19E08D41CEB5275004D286A /* LWRegisterCameraPresenter~ipad.xib */; };
 		A19E08D71CEB5722004D286A /* LWCameraOverlayPresenter~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A19E08D61CEB5722004D286A /* LWCameraOverlayPresenter~ipad.xib */; };
 		A1A11FE21D8BA80900D1D4AA /* LWPacketSaveBackupState.m in Sources */ = {isa = PBXBuildFile; fileRef = A1A11FE11D8BA80900D1D4AA /* LWPacketSaveBackupState.m */; };
@@ -2060,6 +2062,9 @@
 		A18F892B1CE85B0A00399850 /* LWWithdrawCurrencyPresenter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LWWithdrawCurrencyPresenter.xib; path = WithdrawFunds/LWWithdrawCurrencyPresenter.xib; sourceTree = "<group>"; };
 		A19A37CD1D92851A00BC4D42 /* LWPacketVoiceCall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWPacketVoiceCall.h; sourceTree = "<group>"; };
 		A19A37CE1D92851A00BC4D42 /* LWPacketVoiceCall.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWPacketVoiceCall.m; sourceTree = "<group>"; };
+		A19AEEB41D99515E00D208E8 /* LWHistoryTableViewCell_iphone5.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LWHistoryTableViewCell_iphone5.xib; path = History/LWHistoryTableViewCell_iphone5.xib; sourceTree = "<group>"; };
+		A19AEEB61D99752C00D208E8 /* LWBackupTemplatePresenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LWBackupTemplatePresenterViewController.h; path = Backup/LWBackupTemplatePresenterViewController.h; sourceTree = "<group>"; };
+		A19AEEB71D99752C00D208E8 /* LWBackupTemplatePresenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LWBackupTemplatePresenterViewController.m; path = Backup/LWBackupTemplatePresenterViewController.m; sourceTree = "<group>"; };
 		A19E08D41CEB5275004D286A /* LWRegisterCameraPresenter~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "LWRegisterCameraPresenter~ipad.xib"; sourceTree = "<group>"; };
 		A19E08D61CEB5722004D286A /* LWCameraOverlayPresenter~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "LWCameraOverlayPresenter~ipad.xib"; path = "Utils/LWCameraOverlayPresenter~ipad.xib"; sourceTree = "<group>"; };
 		A1A11FE01D8BA80900D1D4AA /* LWPacketSaveBackupState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWPacketSaveBackupState.h; sourceTree = "<group>"; };
@@ -4978,6 +4983,8 @@
 				A1827B3D1D97BB72007127A0 /* LWMigrationInfoPresenter.h */,
 				A1827B3E1D97BB72007127A0 /* LWMigrationInfoPresenter.m */,
 				A1827B3F1D97BB72007127A0 /* LWMigrationInfoPresenter.xib */,
+				A19AEEB61D99752C00D208E8 /* LWBackupTemplatePresenterViewController.h */,
+				A19AEEB71D99752C00D208E8 /* LWBackupTemplatePresenterViewController.m */,
 			);
 			name = Backup;
 			sourceTree = "<group>";
@@ -6738,6 +6745,7 @@
 				ECEC40B41C4298CF00B22BEE /* LWHistoryTableViewCell.h */,
 				ECEC40B51C4298CF00B22BEE /* LWHistoryTableViewCell.m */,
 				ECEC40B71C4298DC00B22BEE /* LWHistoryTableViewCell.xib */,
+				A19AEEB41D99515E00D208E8 /* LWHistoryTableViewCell_iphone5.xib */,
 				A1D65CBD1D5A17DE00828783 /* LWEmptyHistoryPresenter.h */,
 				A1D65CBE1D5A17DE00828783 /* LWEmptyHistoryPresenter.m */,
 				A1D65CBF1D5A17DE00828783 /* LWEmptyHistoryPresenter.xib */,
@@ -7899,6 +7907,7 @@
 				A1BCD0E71D012D3C00CF42E4 /* 1-deposit-2x_00095.png in Resources */,
 				A1BCD2DC1D012D3C00CF42E4 /* 5-onboard-2x_00118.png in Resources */,
 				A1BCD0CD1D012D3C00CF42E4 /* 1-deposit-2x_00069.png in Resources */,
+				A19AEEB51D99515E00D208E8 /* LWHistoryTableViewCell_iphone5.xib in Resources */,
 				A1BCD0881D012D3C00CF42E4 /* 1-deposit-2x_00000.png in Resources */,
 				A1BCD2541D012D3C00CF42E4 /* 4-withdraw-2x_00101.png in Resources */,
 				A1BCD11D1D012D3C00CF42E4 /* 2-trade-2x_00029.png in Resources */,
@@ -8331,6 +8340,7 @@
 				EC168F1A1C514D0800AF8DD5 /* LWPersonalDataModel.m in Sources */,
 				EC8F48381C4D8A710087DF1F /* LWNotificationSettingsPresenter.m in Sources */,
 				EC8FF6A71CA32D3400160528 /* LWPacketDicts.m in Sources */,
+				A19AEEB81D99752C00D208E8 /* LWBackupTemplatePresenterViewController.m in Sources */,
 				A1654E451D5201D5001741A7 /* LWTransactionManager.m in Sources */,
 				A12DB5481D730E5300319EA7 /* LWMyLykkeDepositSwiftPresenter.m in Sources */,
 				A14515751D7C5C8F00B4BED9 /* LWMyLykkeIPadNavigationController.m in Sources */,

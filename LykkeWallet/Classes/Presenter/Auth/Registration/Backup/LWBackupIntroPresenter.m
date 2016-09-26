@@ -30,12 +30,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    NSDictionary *dict=@{NSKernAttributeName:@(1), NSFontAttributeName:[UIFont fontWithName:@"ProximaNova-Semibold" size:15], NSForegroundColorAttributeName:[UIColor whiteColor]};
     
-    [self.takeBackupButton setAttributedTitle:[[NSAttributedString alloc] initWithString:@"BACK UP NOW" attributes:dict] forState:UIControlStateNormal];
-    
-    [LWValidator setButton:self.takeBackupButton enabled:YES];
-    
+    _takeBackupButton.enabled=YES;
     _skipBackupButton.type=BUTTON_TYPE_CLEAR;
     
     if([UIScreen mainScreen].bounds.size.width==320)

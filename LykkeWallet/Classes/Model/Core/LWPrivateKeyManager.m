@@ -216,7 +216,8 @@
     else
         wif=privateKeyForLykke.WIF;
     
-    [[LWKeychainManager instance] saveEncodedLykkePrivateKey:self.encryptedKeyLykke];
+    if([LWKeychainManager instance].password)
+        [[LWKeychainManager instance] saveEncodedLykkePrivateKey:self.encryptedKeyLykke];
 
     return YES;
 }

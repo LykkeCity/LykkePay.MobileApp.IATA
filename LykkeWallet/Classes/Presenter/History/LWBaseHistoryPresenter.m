@@ -73,8 +73,14 @@
     
     self.loadedElement = nil;
     
-    [self registerCellWithIdentifier:kHistoryTableViewCellIdentifier
+    
+    if([UIScreen mainScreen].bounds.size.width==320)
+        [self registerCellWithIdentifier:kHistoryTableViewCellIdentifier name:@"LWHistoryTableViewCell_iphone5"];
+    else
+        [self registerCellWithIdentifier:kHistoryTableViewCellIdentifier
                                 name:kHistoryTableViewCell];
+    
+    
     
     [self setHideKeyboardOnTap:NO]; // gesture recognizer deletion
     

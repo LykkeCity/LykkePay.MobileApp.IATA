@@ -29,6 +29,8 @@ SINGLETON_DECLARE
 
 #pragma mark - Properties
 
+//@property BOOL userWatchedAllBackupWords;
+
 @property (strong, nonatomic) NSTimer *timerSMS;
 @property (strong, nonatomic) id smsDelayDelegate;
 @property int smsDelaySecondsLeft;
@@ -48,6 +50,7 @@ SINGLETON_DECLARE
 
 @property (strong, nonatomic) NSString *termsOfUseUrl;
 @property (strong, nonatomic) NSString *refundInfoUrl;
+@property (strong, nonatomic) NSString *userAgreementUrl;
 
 @property (copy, nonatomic) NSNumber *refreshTimer;
 @property (copy, nonatomic) NSString *baseAssetId;

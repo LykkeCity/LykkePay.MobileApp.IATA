@@ -6,10 +6,10 @@
 //  Copyright © 2016 Lykkex. All rights reserved.
 //
 
-#import "LWAuthComplexPresenter.h"
+#import "LWBackupTemplatePresenterViewController.h"
 
-@interface LWBackupCheckWordsPresenter : LWAuthComplexPresenter
+@interface LWBackupCheckWordsPresenter : LWBackupTemplatePresenterViewController
 
-@property (strong, nonatomic) NSArray *wordsList;;
+@property (strong, nonatomic) NSArray *wordsList;
 
 @end

@@ -1129,6 +1129,11 @@ SINGLETON_INIT {
     
     // check if user not authorized - kick them
     if ([LWAuthManager isAuthneticationFailed:ctx.task.response]) {
+//        UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"ERROR" message:@"You are not authorised" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil]; //Testing
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            [alert show];
+//        });
+
         [self.delegate authManagerDidNotAuthorized:self];
     }
     else {

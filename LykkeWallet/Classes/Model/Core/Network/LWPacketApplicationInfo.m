@@ -38,6 +38,7 @@
     [LWCache instance].termsOfUseUrl=result[@"TermsOfUseLink"];
     [LWCache instance].refundInfoUrl=result[@"RefundInfoLink"];
     [LWCache instance].supportPhoneNum=result[@"SupportPhoneNum"];
+    [LWCache instance].userAgreementUrl=result[@"UserAgreementUrl"];
     
 }
 

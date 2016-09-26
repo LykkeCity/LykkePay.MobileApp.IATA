@@ -1,31 +1,21 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <mutableArray key="Proxima Nova Light.otf">
+        <array key="Proxima Nova Light.otf">
             <string>ProximaNova-Light</string>
-        </mutableArray>
-        <mutableArray key="Proxima Nova Regular.otf">
+        </array>
+        <array key="Proxima Nova Regular.otf">
             <string>ProximaNova-Regular</string>
-            <string>ProximaNova-Regular</string>
-            <string>ProximaNova-Regular</string>
-            <string>ProximaNova-Regular</string>
-            <string>ProximaNova-Regular</string>
-            <string>ProximaNova-Regular</string>
-            <string>ProximaNova-Regular</string>
-            <string>ProximaNova-Regular</string>
-            <string>ProximaNova-Regular</string>
-            <string>ProximaNova-Regular</string>
-            <string>ProximaNova-Regular</string>
-            <string>ProximaNova-Regular</string>
-        </mutableArray>
-        <mutableArray key="Proxima Nova Semibold.otf">
+        </array>
+        <array key="Proxima Nova Semibold.otf">
             <string>ProximaNova-Semibold</string>
-        </mutableArray>
+        </array>
     </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LWCreditCardDepositPresenter">
@@ -56,17 +46,13 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8ac-NY-qx4">
-                    <rect key="frame" x="0.0" y="0.0" width="600" height="997"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5JY-LW-Kqq">
-                            <rect key="frame" x="0.0" y="0.0" width="600" height="265"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kpg-yQ-gGr">
-                                    <rect key="frame" x="163" y="10" width="274" height="30"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HCa-g9-ryt">
-                                            <rect key="frame" x="140" y="0.0" width="134" height="30"/>
-                                            <color key="backgroundColor" red="0.6705882352941176" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" red="0.6705882352941176" green="0.0" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="134" id="uGi-F0-6G2"/>
                                             </constraints>
@@ -74,19 +60,18 @@
                                             <state key="normal" title="CREDIT CARD"/>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oIb-5C-hON">
-                                            <rect key="frame" x="0.0" y="0.0" width="134" height="30"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="134" id="3rt-Iy-gcg"/>
                                             </constraints>
                                             <state key="normal" title="SWIFT">
-                                                <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </state>
                                             <connections>
                                                 <action selector="swiftButtonPressed:" destination="-2" eventType="touchUpInside" id="Lxf-Wg-pfm"/>
                                             </connections>
                                         </button>
                                     </subviews>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstItem="oIb-5C-hON" firstAttribute="centerY" secondItem="Kpg-yQ-gGr" secondAttribute="centerY" id="2dJ-5J-fcN"/>
                                         <constraint firstAttribute="width" constant="274" id="6mF-ld-iRf"/>
@@ -99,64 +84,58 @@
                                     </constraints>
                                 </view>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CreditCard" translatesAutoresizingMaskIntoConstraints="NO" id="FuD-RY-Emv">
-                                    <rect key="frame" x="278" y="56" width="45" height="45"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="45" id="8Yo-Ue-OF6"/>
                                         <constraint firstAttribute="height" constant="45" id="PkB-bF-IBv"/>
                                     </constraints>
                                 </imageView>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To deposit USD to your trading wallet, please complete this form" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E4B-jF-T2b">
-                                    <rect key="frame" x="30" y="110" width="540" height="21"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To buy LKK for USD with your credit card, please fill out the form below" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="E4B-jF-T2b">
                                     <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="17"/>
-                                    <color key="textColor" red="0.24705882352941178" green="0.30196078431372547" blue="0.37647058823529411" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="textColor" red="0.24705882352941178" green="0.30196078431372547" blue="0.37647058823529411" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6OP-CP-ghE">
-                                    <rect key="frame" x="109" y="180" width="81" height="30"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="30" id="Ypc-zb-nnv"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="14"/>
                                     <state key="normal" title="Terms of Use">
-                                        <color key="titleColor" red="0.6705882352941176" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="titleColor" red="0.6705882352941176" green="0.0" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </state>
                                     <connections>
                                         <action selector="termsOfUsePressed:" destination="-2" eventType="touchUpInside" id="xzD-Q9-rnP"/>
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R8T-1M-vqi">
-                                    <rect key="frame" x="325" y="180" width="130" height="30"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="30" id="zkO-Py-z1X"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="14"/>
                                     <state key="normal" title="Information Brochure">
-                                        <color key="titleColor" red="0.6705882352941176" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="titleColor" red="0.6705882352941176" green="0.0" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </state>
                                     <connections>
                                         <action selector="informationBrochurePressed:" destination="-2" eventType="touchUpInside" id="twD-ru-JLs"/>
                                     </connections>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7ZP-NV-H6g">
-                                    <rect key="frame" x="30" y="220" width="58.5" height="45"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="45" id="adE-U4-RP4"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="17"/>
-                                    <color key="textColor" red="0.24705882352941178" green="0.30196078431372547" blue="0.37647058823529411" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="textColor" red="0.24705882352941178" green="0.30196078431372547" blue="0.37647058823529411" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="0" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Xm5-6F-1eG">
-                                    <rect key="frame" x="118" y="220" width="451.5" height="45"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="45" id="mpI-wg-ByN"/>
                                     </constraints>
-                                    <color key="textColor" red="0.24705882352941178" green="0.30196078431372547" blue="0.37647058823529411" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="textColor" red="0.24705882352941178" green="0.30196078431372547" blue="0.37647058823529411" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <fontDescription key="fontDescription" name="ProximaNova-Light" family="Proxima Nova" pointSize="22"/>
                                     <textInputTraits key="textInputTraits"/>
                                 </textField>
                             </subviews>
-                            <color key="backgroundColor" red="0.95686274509803915" green="0.96470588235294119" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="backgroundColor" red="0.95686274509803915" green="0.96470588235294119" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstItem="E4B-jF-T2b" firstAttribute="top" secondItem="FuD-RY-Emv" secondAttribute="bottom" constant="9" id="2aw-da-D1s"/>
                                 <constraint firstItem="6OP-CP-ghE" firstAttribute="centerX" secondItem="5JY-LW-Kqq" secondAttribute="centerX" multiplier="0.5" id="8AK-Fl-qKw"/>
@@ -178,19 +157,17 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nTY-nK-sTh">
-                            <rect key="frame" x="30" y="285" width="540" height="45"/>
                             <subviews>
                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="First Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0Lb-SB-0HV">
-                                    <rect key="frame" x="15" y="0.0" width="510" height="45"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="45" id="Y2H-Sf-frU"/>
                                     </constraints>
-                                    <color key="textColor" red="0.24705882352941178" green="0.30196078431372547" blue="0.37647058823529411" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="textColor" red="0.24705882352941178" green="0.30196078431372547" blue="0.37647058823529411" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="17"/>
                                     <textInputTraits key="textInputTraits"/>
                                 </textField>
                             </subviews>
-                            <color key="backgroundColor" red="0.96078431372549022" green="0.96470588235294119" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="backgroundColor" red="0.96078431372549022" green="0.96470588235294119" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstItem="0Lb-SB-0HV" firstAttribute="height" secondItem="nTY-nK-sTh" secondAttribute="height" id="65z-mJ-Cf0"/>
                                 <constraint firstAttribute="height" constant="45" id="AU3-me-tuM"/>
@@ -200,19 +177,17 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3eF-E8-WUe">
-                            <rect key="frame" x="30" y="340" width="540" height="45"/>
                             <subviews>
                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Last Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vX1-be-bGi">
-                                    <rect key="frame" x="15" y="0.0" width="515" height="45"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="45" id="Y6r-5g-gGO"/>
                                     </constraints>
-                                    <color key="textColor" red="0.2470588235" green="0.30196078430000001" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="textColor" red="0.2470588235" green="0.30196078430000001" blue="0.37647058820000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="17"/>
                                     <textInputTraits key="textInputTraits"/>
                                 </textField>
                             </subviews>
-                            <color key="backgroundColor" red="0.96078431369999995" green="0.96470588239999999" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="backgroundColor" red="0.96078431369999995" green="0.96470588239999999" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstItem="vX1-be-bGi" firstAttribute="centerY" secondItem="3eF-E8-WUe" secondAttribute="centerY" id="G7y-jb-bgV"/>
                                 <constraint firstAttribute="trailing" secondItem="vX1-be-bGi" secondAttribute="trailing" constant="10" id="GLF-VK-CdR"/>
@@ -222,19 +197,17 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hi3-QM-wke">
-                            <rect key="frame" x="30" y="405" width="540" height="45"/>
                             <subviews>
                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Country" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PCs-f7-Fhx">
-                                    <rect key="frame" x="15" y="0.0" width="515" height="45"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="45" id="cqd-qM-9r2"/>
                                     </constraints>
-                                    <color key="textColor" red="0.2470588235" green="0.30196078430000001" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="textColor" red="0.2470588235" green="0.30196078430000001" blue="0.37647058820000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="17"/>
                                     <textInputTraits key="textInputTraits"/>
                                 </textField>
                             </subviews>
-                            <color key="backgroundColor" red="0.96078431369999995" green="0.96470588239999999" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="backgroundColor" red="0.96078431369999995" green="0.96470588239999999" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="45" id="Ktn-EY-ait"/>
                                 <constraint firstItem="PCs-f7-Fhx" firstAttribute="height" secondItem="Hi3-QM-wke" secondAttribute="height" id="RYZ-wK-I5O"/>
@@ -244,19 +217,17 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hq3-Zl-hHM">
-                            <rect key="frame" x="30" y="460" width="425" height="45"/>
                             <subviews>
                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="City" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NcQ-Pm-CaE">
-                                    <rect key="frame" x="15" y="0.0" width="400" height="45"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="45" id="BsW-Mv-VP7"/>
                                     </constraints>
-                                    <color key="textColor" red="0.2470588235" green="0.30196078430000001" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="textColor" red="0.2470588235" green="0.30196078430000001" blue="0.37647058820000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="17"/>
                                     <textInputTraits key="textInputTraits"/>
                                 </textField>
                             </subviews>
-                            <color key="backgroundColor" red="0.96078431369999995" green="0.96470588239999999" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="backgroundColor" red="0.96078431369999995" green="0.96470588239999999" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstItem="NcQ-Pm-CaE" firstAttribute="height" secondItem="Hq3-Zl-hHM" secondAttribute="height" id="IHo-fu-yPW"/>
                                 <constraint firstAttribute="height" constant="45" id="Ofz-Vv-NHi"/>
@@ -266,19 +237,17 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lV2-7M-Q4H">
-                            <rect key="frame" x="465" y="460" width="105" height="45"/>
                             <subviews>
                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Zip" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Qbc-zd-ZIJ">
-                                    <rect key="frame" x="15" y="0.0" width="80" height="45"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="45" id="gCz-lW-V4T"/>
                                     </constraints>
-                                    <color key="textColor" red="0.2470588235" green="0.30196078430000001" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="textColor" red="0.2470588235" green="0.30196078430000001" blue="0.37647058820000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="17"/>
                                     <textInputTraits key="textInputTraits"/>
                                 </textField>
                             </subviews>
-                            <color key="backgroundColor" red="0.96078431369999995" green="0.96470588239999999" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="backgroundColor" red="0.96078431369999995" green="0.96470588239999999" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstItem="Qbc-zd-ZIJ" firstAttribute="centerY" secondItem="lV2-7M-Q4H" secondAttribute="centerY" id="1a6-jf-8fN"/>
                                 <constraint firstItem="Qbc-zd-ZIJ" firstAttribute="height" secondItem="lV2-7M-Q4H" secondAttribute="height" id="66B-TN-HQq"/>
@@ -289,10 +258,8 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QUl-Ft-D6f">
-                            <rect key="frame" x="30" y="515" width="540" height="45"/>
                             <subviews>
                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Address" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sWI-k9-Atd">
-                                    <rect key="frame" x="15" y="0.0" width="515" height="45"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="45" id="En6-AX-M5f"/>
                                     </constraints>
@@ -300,7 +267,7 @@
                                     <textInputTraits key="textInputTraits"/>
                                 </textField>
                             </subviews>
-                            <color key="backgroundColor" red="0.96078431369999995" green="0.96470588239999999" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="backgroundColor" red="0.96078431369999995" green="0.96470588239999999" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstItem="sWI-k9-Atd" firstAttribute="centerY" secondItem="QUl-Ft-D6f" secondAttribute="centerY" id="RZD-6n-bjX"/>
                                 <constraint firstItem="sWI-k9-Atd" firstAttribute="height" secondItem="QUl-Ft-D6f" secondAttribute="height" id="WNJ-8c-weF"/>
@@ -310,19 +277,17 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h4B-qt-LCc">
-                            <rect key="frame" x="30" y="580" width="540" height="45"/>
                             <subviews>
                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Hkr-ww-FyN">
-                                    <rect key="frame" x="15" y="0.0" width="515" height="45"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="45" id="j5V-cB-CMZ"/>
                                     </constraints>
-                                    <color key="textColor" red="0.2470588235" green="0.30196078430000001" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="textColor" red="0.2470588235" green="0.30196078430000001" blue="0.37647058820000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="17"/>
                                     <textInputTraits key="textInputTraits"/>
                                 </textField>
                             </subviews>
-                            <color key="backgroundColor" red="0.96078431369999995" green="0.96470588239999999" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="backgroundColor" red="0.96078431369999995" green="0.96470588239999999" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="trailing" secondItem="Hkr-ww-FyN" secondAttribute="trailing" constant="10" id="95T-LW-YiG"/>
                                 <constraint firstAttribute="height" constant="45" id="BYE-LB-5yL"/>
@@ -332,10 +297,8 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gZB-hp-Zlv">
-                            <rect key="frame" x="30" y="635" width="540" height="45"/>
                             <subviews>
                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Contact Phone" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VhO-9U-KdY">
-                                    <rect key="frame" x="15" y="0.0" width="515" height="45"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="45" id="RqP-bB-hJL"/>
                                     </constraints>
@@ -343,7 +306,7 @@
                                     <textInputTraits key="textInputTraits"/>
                                 </textField>
                             </subviews>
-                            <color key="backgroundColor" red="0.96078431369999995" green="0.96470588239999999" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="backgroundColor" red="0.96078431369999995" green="0.96470588239999999" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstItem="VhO-9U-KdY" firstAttribute="centerY" secondItem="gZB-hp-Zlv" secondAttribute="centerY" id="3GW-al-01g"/>
                                 <constraint firstAttribute="trailing" secondItem="VhO-9U-KdY" secondAttribute="trailing" constant="10" id="Qaa-80-lOL"/>
@@ -353,12 +316,11 @@
                             </constraints>
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sQv-JY-H4l" customClass="LWCommonButton">
-                            <rect key="frame" x="30" y="710" width="540" height="45"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="45" id="wTV-ld-0Vf"/>
                             </constraints>
                             <state key="normal" title="CASH IN">
-                                <color key="titleColor" red="0.2470588235" green="0.30196078430000001" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleColor" red="0.2470588235" green="0.30196078430000001" blue="0.37647058820000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                             <connections>
                                 <action selector="cashInButtonPressed:" destination="-2" eventType="touchUpInside" id="Zuf-AH-fR7"/>
@@ -406,7 +368,7 @@
                     </variation>
                 </scrollView>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="8ac-NY-qx4" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="0Zd-9K-i7V"/>
                 <constraint firstItem="8ac-NY-qx4" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="TNd-vc-tY1"/>

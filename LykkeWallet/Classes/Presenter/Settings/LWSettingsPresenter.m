@@ -32,6 +32,7 @@
 #import "LWIPadModalNavigationControllerViewController.h"
 #import "LWMigrationInfoPresenter.h"
 #import "LWPrivateKeyManager.h"
+#import "LWBackupIntroPresenter.h"
 
 @import MessageUI;
 
@@ -313,6 +314,15 @@ static NSString *const SettingsIdentifiers[] = {
     }
     else if(indexPath.section==2)
     {
+//        LWBackupIntroPresenter *p=[LWBackupIntroPresenter new];
+//        [self.navigationController pushViewController:p animated:YES];
+//        return;
+//        
+//        
+//        
+//        
+        
+        
         if([[LWPrivateKeyManager shared] privateKeyWords]==nil)
         {
             LWMigrationInfoPresenter *ppp=[LWMigrationInfoPresenter new];

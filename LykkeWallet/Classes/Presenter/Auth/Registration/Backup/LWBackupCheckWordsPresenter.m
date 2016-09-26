@@ -13,10 +13,12 @@
 #import "LWPrivateKeyManager.h"
 #import "UIViewController+Loading.h"
 #import "UIViewController+Navigation.h"
+#import "LWWalletMigrationModel.h"
 
 @interface LWBackupCheckWordsPresenter () <UITextFieldDelegate>
 {
     CGFloat keyboardHeight;
+    NSString *oldEncodedPrivateKey;
 }
 
 @property (weak, nonatomic) IBOutlet UITextField *textField;
@@ -37,16 +39,7 @@
     self.textField.delegate=self;
     self.textField.placeholder=@"Words";
     
-    NSDictionary *attributesDisabled=@{NSFontAttributeName:[UIFont fontWithName:@"ProximaNova-Regular" size:15], NSKernAttributeName:@(1), NSForegroundColorAttributeName:[UIColor colorWithRed:63.0/255 green:77.0/255 blue:96.0/255 alpha:0.2]};
-    
-    NSDictionary *attributesEnabled=@{NSFontAttributeName:[UIFont fontWithName:@"ProximaNova-Regular" size:15], NSKernAttributeName:@(1), NSForegroundColorAttributeName:[UIColor whiteColor]};
-    
-    [self.submitButton setAttributedTitle:[[NSAttributedString alloc] initWithString:@"SUBMIT" attributes:attributesDisabled] forState:UIControlStateDisabled];
-    [self.submitButton setAttributedTitle:[[NSAttributedString alloc] initWithString:@"SUBMIT" attributes:attributesEnabled] forState:UIControlStateNormal];
-    
-    self.submitButton.clipsToBounds=YES;
-    [LWValidator setButton:self.submitButton enabled:NO];
-    
+    _submitButton.enabled=NO;
     [self.submitButton addTarget:self action:@selector(submitButtonPressed) forControlEvents:UIControlEventTouchUpInside];
 
     if([UIScreen mainScreen].bounds.size.width==320)
@@ -118,7 +111,7 @@
                 str=[[NSAttributedString alloc] initWithString:s attributes:greenAttributes];
                 [self.textField resignFirstResponder];
                 self.textField.userInteractionEnabled=NO;
-                [LWValidator setButton:self.submitButton enabled:YES];
+                _submitButton.enabled=YES;
 
             }
             else
@@ -140,11 +133,32 @@
     
 }
 
+-(void) crossCloseButtonPressed
+{
+    if([super shouldDismissIpadModalViewController]==NO)
+        return;
+    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
+    {
+        UIViewController *firstController=[self.navigationController.viewControllers firstObject];
+        if([firstController isKindOfClass:[UITabBarController class]])
+            [self.navigationController popToRootViewControllerAnimated:YES];
+        else
+            [((LWAuthNavigationController *)self.navigationController) setRootMainTabScreen];
+        
+    }
+    else
+    {
+        [super crossCloseButtonPressed];
+    }
+    
+    
+}
+
+
 -(void) viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
     
-    self.submitButton.layer.cornerRadius=self.submitButton.bounds.size.height/2;
     [self.scrollViewBottomConstraint setConstant:keyboardHeight];
 }
 
@@ -182,23 +196,40 @@
 
 -(void) submitButtonPressed
 {
-    BOOL flagHasKey=[LWPrivateKeyManager shared].privateKeyLykke;
-    BOOL result=YES;
-    if(!flagHasKey)
-        result=[[LWPrivateKeyManager shared] savePrivateKeyLykkeFromSeedWords:self.wordsList];
-    if(!result)
+    if([LWPrivateKeyManager shared].wifPrivateKeyLykke && ![LWPrivateKeyManager shared].privateKeyWords)
     {
-        UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"ERROR" message:@"Something went wrong" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [alert show];
+        [self setLoading:YES];
+        oldEncodedPrivateKey=[LWPrivateKeyManager shared].encryptedKeyLykke;
+        LWWalletMigrationModel *model=[[LWWalletMigrationModel alloc] init];
+        model.fromPrivateKey=[[LWPrivateKeyManager shared] wifPrivateKeyLykke];
+        
+        [[LWPrivateKeyManager shared] savePrivateKeyLykkeFromSeedWords:self.wordsList];
+        model.toPrivateKey=[[LWPrivateKeyManager shared] wifPrivateKeyLykke];
+        model.toEncodedPrivateKey=[LWPrivateKeyManager shared].encryptedKeyLykke;
+        model.toPubKey=[[LWPrivateKeyManager shared] publicKeyLykke];
+        [[LWAuthManager instance] requestWalletMigration:model];
         return;
     }
     
-    if(flagHasKey==NO)
-    {
-        [self setLoading:YES];
-        [[LWAuthManager instance] requestSaveClientKeysWithPubKey:[LWPrivateKeyManager shared].publicKeyLykke encodedPrivateKey:[LWPrivateKeyManager shared].encryptedKeyLykke];
-    }
-    else
+//    
+//    
+//    BOOL flagHasKey=[LWPrivateKeyManager shared].privateKeyLykke;
+//    BOOL result=YES;
+//    if(!flagHasKey)
+//        result=[[LWPrivateKeyManager shared] savePrivateKeyLykkeFromSeedWords:self.wordsList];
+//    if(!result)
+//    {
+//        UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"ERROR" message:@"Something went wrong" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+//        [alert show];
+//        return;
+//    }
+//    
+//    if(flagHasKey==NO)
+//    {
+//        [self setLoading:YES];
+//        [[LWAuthManager instance] requestSaveClientKeysWithPubKey:[LWPrivateKeyManager shared].publicKeyLykke encodedPrivateKey:[LWPrivateKeyManager shared].encryptedKeyLykke];
+//    }
+//    else
         [self saveBackupStateAndShowSuccess];
 
 }
@@ -207,6 +238,11 @@
 {
     [[LWAuthManager instance] requestSaveBackupState];
     
+    [self showSuccess];
+}
+
+-(void) showSuccess
+{
     LWBackupSuccessPresenter *presenter=[[LWBackupSuccessPresenter alloc] init];
     if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
         [self.navigationController pushViewController:presenter animated:YES];
@@ -215,7 +251,7 @@
         UINavigationController *parent=(UINavigationController *)[self.navigationController presentingViewController];
         [self.navigationController dismissViewControllerAnimated:NO completion:^{
             [parent pushViewController:presenter animated:NO];
-        
+            
         }];
     }
 
@@ -231,8 +267,20 @@
 {
     [self setLoading:NO];
     [self showReject:reject response:context.task.response code:context.error.code willNotify:YES];
+    if(oldEncodedPrivateKey)
+        [[LWPrivateKeyManager shared] decryptLykkePrivateKeyAndSave:oldEncodedPrivateKey];
  
 }
+
+-(void) authManagerDidCompleteWalletMigration:(LWAuthManager *)manager
+{
+    [self setLoading:NO];
+    [self showSuccess];
+//    UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"CONGRATULATIONS" message:@"Your wallets migration has been successfully completed. Now you can proceed with the backup of your private key." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+//
+//    [alert show];
+}
+
 
 
 

@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -99,7 +99,7 @@
                 <constraint firstItem="ZD9-eO-6FP" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="2j5-rL-6zh"/>
                 <constraint firstItem="yzc-4p-6ld" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="5Th-0d-T0Z"/>
                 <constraint firstItem="hQ0-W1-g4x" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="DcO-2j-kE9"/>
-                <constraint firstItem="nEs-eH-7Sv" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="110" id="I2t-g5-4Qu"/>
+                <constraint firstItem="nEs-eH-7Sv" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="79" id="I2t-g5-4Qu"/>
                 <constraint firstItem="Glz-RF-sGK" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="K8A-ux-U2c"/>
                 <constraint firstItem="xFB-7A-8KD" firstAttribute="top" secondItem="X8H-oU-d7Q" secondAttribute="bottom" constant="16" id="Kaz-9M-B7R"/>
                 <constraint firstItem="hQ0-W1-g4x" firstAttribute="width" secondItem="ZD9-eO-6FP" secondAttribute="width" id="Mg2-gA-SJP"/>

@@ -24,6 +24,8 @@
 @property (weak, nonatomic) IBOutlet LWPINEnterProgressView *progressView;
 @property (weak, nonatomic) IBOutlet UIView *fingerprintContainerView;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *ipadTopConstraint;
+
 @end
 
 @implementation LWPINPresenter
@@ -38,6 +40,11 @@
     
     if([LWFingerprintHelper isFingerprintAvailable]==NO)
         _fingerprintContainerView.hidden=YES;
+    
+    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad)
+    {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(orientationChanged) name:UIApplicationDidChangeStatusBarOrientationNotification object:nil];
+    }
 }
 
 
@@ -72,6 +79,7 @@
     }
 
 }
+
 
 -(void) viewDidAppear:(BOOL)animated
 {
@@ -177,6 +185,10 @@
     pin=@"";
     [self.progressView setNumberOfSymbols:(int)pin.length];
     [self deselectButtons:self.view];
+    
+    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad)
+        [self orientationChanged];
+
 }
 
 -(void) viewDidLayoutSubviews
@@ -233,6 +245,16 @@
         return @"LWPINPresenter_iphone5";
     else
         return @"LWPINPresenter";
+}
+
+-(void) orientationChanged
+{
+    if(UIInterfaceOrientationIsPortrait([UIApplication sharedApplication].statusBarOrientation))
+    {
+        _ipadTopConstraint.constant=250;
+    }
+    else
+        _ipadTopConstraint.constant=68;
 }
 
 

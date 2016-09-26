@@ -6,8 +6,8 @@
 //  Copyright © 2016 Lykkex. All rights reserved.
 //
 
-#import "LWAuthComplexPresenter.h"
+#import "LWBackupTemplatePresenterViewController.h"
 
-@interface LWBackupGetStartedPresenter : LWAuthComplexPresenter
+@interface LWBackupGetStartedPresenter : LWBackupTemplatePresenterViewController
 
 @end

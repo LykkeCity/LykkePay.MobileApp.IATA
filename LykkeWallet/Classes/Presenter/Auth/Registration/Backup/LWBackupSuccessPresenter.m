@@ -10,6 +10,8 @@
 #import "LWValidator.h"
 #import "LWAuthNavigationController.h"
 #import "LWKeychainManager.h"
+#import "LWWebViewDocumentPresenter.h"
+#import "LWCache.h"
 
 @interface LWBackupSuccessPresenter ()
 
@@ -33,13 +35,8 @@
     self.titleLabel.attributedText=[[NSAttributedString alloc] initWithString:@"Your backup is complete" attributes:attributes];
     
     
-    NSDictionary *attributesButton=@{NSFontAttributeName:[UIFont fontWithName:@"ProximaNova-Regular" size:15], NSKernAttributeName:@(1), NSForegroundColorAttributeName:[UIColor whiteColor]};
-    
-    [self.okButton setAttributedTitle:[[NSAttributedString alloc] initWithString:@"GET STARTED!" attributes:attributesButton] forState:UIControlStateNormal];
-    [self.okButton addTarget:self action:@selector(okButtonPressed) forControlEvents:UIControlEventTouchUpInside];
-    [LWValidator setButton:self.okButton enabled:YES];
-    self.okButton.clipsToBounds=YES;
-    
+    _okButton.enabled=YES;
+    [_okButton addTarget:self action:@selector(okButtonPressed) forControlEvents:UIControlEventTouchUpInside];
     if([UIScreen mainScreen].bounds.size.width==320)
         _okButtonWidthConstraint.constant=280;
 
@@ -60,6 +57,15 @@
     self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
 
     [self.navigationController setNavigationBarHidden:YES animated:NO];
+
+}
+
+-(IBAction)userAgreementPressed:(id)sender
+{
+    LWWebViewDocumentPresenter *presenter=[[LWWebViewDocumentPresenter alloc] init];
+    presenter.urlString=[LWCache instance].userAgreementUrl;
+    presenter.documentTitle=@"USER AGREEMENT";
+    [self.navigationController pushViewController:presenter animated:YES];
 
 }
 

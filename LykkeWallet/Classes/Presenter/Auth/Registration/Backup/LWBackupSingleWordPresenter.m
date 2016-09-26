@@ -9,6 +9,8 @@
 #import "LWBackupSingleWordPresenter.h"
 #import "UIViewController+Navigation.h"
 #import "LWBackupCheckWordsPresenter.h"
+#import "LWAuthNavigationController.h"
+#import "LWCache.h"
 
 @interface LWBackupSingleWordPresenter ()
 {
@@ -49,13 +51,13 @@
     [super viewWillAppear:animated];
     
     
-    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
-        [self.navigationItem setHidesBackButton:self.currentWordNum==0 animated:NO];
-    else
-    {
+//    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
+//        [self.navigationItem setHidesBackButton:self.currentWordNum==0 animated:NO];
+//    else
+//    {
         if(self.currentWordNum==0)
             [self setCrossCloseButton];
-    }
+//    }
     
     NSDictionary *attributes=@{NSFontAttributeName:[UIFont fontWithName:@"ProximaNova-Regular" size:14], NSKernAttributeName:@(1.2), NSForegroundColorAttributeName:[UIColor colorWithRed:171.0/255 green:0 blue:1 alpha:1]};
 
@@ -101,15 +103,43 @@
 
 }
 
+-(void) crossCloseButtonPressed
+{
+    if([super shouldDismissIpadModalViewController]==NO)
+        return;
+    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
+    {
+        UIViewController *firstController=[self.navigationController.viewControllers firstObject];
+        if([firstController isKindOfClass:[UITabBarController class]])
+            [self.navigationController popToRootViewControllerAnimated:YES];
+        else
+            [((LWAuthNavigationController *)self.navigationController) setRootMainTabScreen];
+        
+    }
+    else
+    {
+        [super crossCloseButtonPressed];
+    }
+    
+    
+}
+
+
 -(void) nextTapped
 {
     if(CACurrentMediaTime()-lastNextTapTime<0.5)
         return;
     
+    [UIView setAnimationsEnabled:YES];
+    
     lastNextTapTime=CACurrentMediaTime();
+//    if(self.currentWordNum==self.wordsList.count-2)
+//        [LWCache instance].userWatchedAllBackupWords=YES;
+
     
     if(self.currentWordNum==self.wordsList.count-1)
     {
+        
         LWBackupCheckWordsPresenter *presenter=[[LWBackupCheckWordsPresenter alloc] init];
         presenter.wordsList=self.wordsList;
         [self.navigationController pushViewController:presenter animated:YES];
@@ -162,6 +192,8 @@
     if(CACurrentMediaTime()-lastNextTapTime<0.5)
         return;
     
+    [UIView setAnimationsEnabled:YES];
+
     lastNextTapTime=CACurrentMediaTime();
 
     [UIView animateWithDuration:0.25 animations:^{
@@ -171,7 +203,7 @@
         if(self.currentWordNum==1)
         {
             self.navigationItem.leftBarButtonItem=nil;
-            if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad)
+//            if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad)
                 [self setCrossCloseButton];
         }
         self.wordLabel.center=CGPointMake(-self.wordLabel.bounds.size.width/2, self.wordLabel.center.y);

@@ -51,7 +51,7 @@
                     <color key="textColor" red="0.56470588239999997" green="0.58431372550000005" blue="0.61176470589999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fI1-Qd-Kup" customClass="LWCommonButton">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fI1-Qd-Kup" customClass="LWCommonButton">
                     <constraints>
                         <constraint firstAttribute="height" constant="45" id="0b6-YZ-LW2"/>
                     </constraints>
@@ -62,7 +62,7 @@
                         <action selector="skipBackupPressed:" destination="-2" eventType="touchUpInside" id="pHl-HS-fbW"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KkJ-Vq-N13" customClass="LWCommonButton">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KkJ-Vq-N13" customClass="LWCommonButton">
                     <constraints>
                         <constraint firstAttribute="width" constant="315" id="CfT-eL-9aK"/>
                         <constraint firstAttribute="height" constant="45" id="uvs-Mk-jMH"/>

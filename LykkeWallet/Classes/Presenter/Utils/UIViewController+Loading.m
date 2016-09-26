@@ -56,10 +56,10 @@
         return;
     }
     
-    NSString *message = [reject objectForKey:kErrorMessage];    //Prevent showing error if connection to server was terminated when app was suspended
-    NSNumber *code = [reject objectForKey:kErrorCode];
-    if(!message && !code)
-        return;
+//    NSString *message = [reject objectForKey:kErrorMessage];    //Prevent showing error if connection to server was terminated when app was suspended
+//    NSNumber *code = [reject objectForKey:kErrorCode];
+//    if(!message && !code)
+//        return;
     
     if ([LWCache instance].debugMode) {
         [self showDebugError:reject response:response];
@@ -140,7 +140,8 @@
     if (response && [LWAuthManager isInternalServerError:response]) {
         message = [NSString stringWithFormat:Localize(@"errors.server.problems")];
     }
-    
+    if(!message)
+        message=@"Unknown server error";
     LWErrorView *errorView = [LWErrorView modalViewWithDescription:message];
     [errorView setFrame:window.bounds];
     

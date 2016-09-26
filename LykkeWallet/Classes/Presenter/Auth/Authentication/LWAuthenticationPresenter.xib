@@ -117,7 +117,7 @@
                         <constraint firstAttribute="bottom" secondItem="mPp-CY-Bvt" secondAttribute="bottom" constant="20" id="VpZ-Yz-fKc"/>
                         <constraint firstItem="xy7-l4-u9d" firstAttribute="centerX" secondItem="hkF-Ai-3eJ" secondAttribute="centerX" id="fQ1-S5-nhL"/>
                         <constraint firstAttribute="trailing" secondItem="udy-eL-k40" secondAttribute="trailing" priority="750" constant="30" id="fdH-hO-sVg"/>
-                        <constraint firstItem="tAt-ux-yqF" firstAttribute="top" secondItem="hkF-Ai-3eJ" secondAttribute="top" constant="35" id="lU8-34-FG4"/>
+                        <constraint firstItem="tAt-ux-yqF" firstAttribute="top" secondItem="hkF-Ai-3eJ" secondAttribute="top" constant="15" id="lU8-34-FG4"/>
                         <constraint firstItem="mPp-CY-Bvt" firstAttribute="centerX" secondItem="hkF-Ai-3eJ" secondAttribute="centerX" id="zHd-uV-LWB"/>
                     </constraints>
                 </scrollView>

@@ -6,9 +6,9 @@
 //  Copyright © 2016 Lykkex. All rights reserved.
 //
 
-#import "LWAuthComplexPresenter.h"
+#import "LWBackupTemplatePresenterViewController.h"
 
-@interface LWBackupSingleWordPresenter : LWAuthComplexPresenter
+@interface LWBackupSingleWordPresenter : LWBackupTemplatePresenterViewController
 
 @property (strong, nonatomic) NSArray *wordsList;
 @property int currentWordNum;

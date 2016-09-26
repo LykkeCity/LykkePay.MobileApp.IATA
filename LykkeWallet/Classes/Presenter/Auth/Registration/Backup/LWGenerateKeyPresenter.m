@@ -9,6 +9,7 @@
 #import "LWGenerateKeyPresenter.h"
 #import "LWAnimatedView.h"
 #import "LWBackupIntroPresenter.h"
+#import "LWCache.h"
 
 
 @interface LWGenerateKeyPresenter ()
@@ -62,6 +63,7 @@
 -(void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [self becomeFirstResponder];
+//    [LWCache instance].userWatchedAllBackupWords=NO;
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

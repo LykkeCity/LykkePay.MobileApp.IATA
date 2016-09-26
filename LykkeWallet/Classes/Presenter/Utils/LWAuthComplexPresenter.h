@@ -33,6 +33,8 @@
 - (void)startRefreshControl;
 - (void)stopRefreshControl;
 
+-(BOOL) shouldDismissIpadModalViewController;
+
 -(void) showCopied;
 
 @end

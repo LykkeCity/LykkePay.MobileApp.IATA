@@ -149,6 +149,10 @@
 //        [self adjustCustomKeyboardFrame];
 }
 
+-(BOOL) shouldDismissIpadModalViewController
+{
+    return YES;
+}
 
 #pragma mark - Utils
 

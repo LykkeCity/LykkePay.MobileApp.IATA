@@ -8,6 +8,7 @@
 
 #import "LWIPadModalNavigationControllerViewController.h"
 #import "LWAuthNavigationController.h"
+#import "LWAuthComplexPresenter.h"
 
 @interface LWIPadModalNavigationControllerViewController  ()
 {
@@ -104,7 +105,9 @@
 
 -(void) shadowPressed
 {
-    [self dismissAnimated:YES];
+    LWAuthComplexPresenter *vc=[self.viewControllers lastObject];
+    if([vc shouldDismissIpadModalViewController])
+        [self dismissAnimated:YES];
 }
 
 

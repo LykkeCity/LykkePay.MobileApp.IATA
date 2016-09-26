@@ -27,6 +27,7 @@ SINGLETON_INIT {
         self.showMyLykkeTab=NO;
         
         _smsRetriesLeft=3;
+//        _userWatchedAllBackupWords=NO;
     }
     return self;
 }
