@@ -352,5 +352,31 @@
     return commandToSend;
 }
 
++(void) appendToLogFile:(NSString *)string
+{
+    NSArray *documentPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDir = [documentPaths objectAtIndex:0];
+    NSString *logPath = [[NSString alloc] initWithFormat:@"%@",[documentsDir stringByAppendingPathComponent:@"log.txt"]];
+    if([[NSFileManager defaultManager] fileExistsAtPath:logPath]==NO)
+    {
+        [[NSFileManager defaultManager] createFileAtPath:logPath contents:[NSData data] attributes:nil];
+    }
+    NSFileHandle *fileHandler = [NSFileHandle fileHandleForUpdatingAtPath:logPath];
+    [fileHandler seekToEndOfFile];
+    
+    
+    NSDateFormatter *formatter=[[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    
+
+    NSString *toAppend=[NSString stringWithFormat:@"%@  %@\n",[formatter stringFromDate:[NSDate date]], string];
+    
+    
+    [fileHandler writeData:[toAppend dataUsingEncoding:NSUTF8StringEncoding]];
+    [fileHandler closeFile];
+}
+
+
+
 
 @end

@@ -97,6 +97,8 @@
 #import "LWExchangeInfoModel.h"
 #import "LWSwiftCredentialsModel.h"
 
+#import "LWUtils.h"
+
 
 
 
@@ -1133,7 +1135,9 @@ SINGLETON_INIT {
 //        dispatch_async(dispatch_get_main_queue(), ^{
 //            [alert show];
 //        });
-
+        NSString *http=[[NSString alloc] initWithData:ctx.task.currentRequest.HTTPBody encoding:NSUTF8StringEncoding];
+        
+        [LWUtils appendToLogFile:[NSString stringWithFormat:@"Authentication failed. Packet: %@\nRequest: %@", NSStringFromClass([pack class]), http]];
         [self.delegate authManagerDidNotAuthorized:self];
     }
     else {

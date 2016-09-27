@@ -36,5 +36,7 @@
 +(NSString *) hexStringFromData:(NSData *) data;
 +(NSData *) dataFromHexString:(NSString *) command;
 
++(void) appendToLogFile:(NSString *)string;
+
 
 @end

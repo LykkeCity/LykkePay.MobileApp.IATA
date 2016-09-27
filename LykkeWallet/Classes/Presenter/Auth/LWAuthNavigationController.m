@@ -33,6 +33,7 @@
 #import "LWGenerateKeyPresenter.h"
 
 #import "LWCache.h"
+#import "LWUtils.h"
 
 #import "LWPrivateKeyManager.h"
 
@@ -284,6 +285,8 @@
 - (void)logout {
     if([self.presentedViewController isKindOfClass:[LWIPadModalNavigationControllerViewController class]])
         [self dismissViewControllerAnimated:YES completion:nil];
+    
+    [LWUtils appendToLogFile:[NSString stringWithFormat:@"LOGGED OUT: %@", [NSThread callStackSymbols]]];
     [[LWKeychainManager instance] clear];
     [activeSteps removeAllObjects];
     [[LWPrivateKeyManager shared] logoutUser];

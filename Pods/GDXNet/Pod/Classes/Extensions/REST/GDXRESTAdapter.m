@@ -209,6 +209,7 @@
 #import "AFHTTPSessionManager.h"
 
 
+
 @implementation GDXRESTAdapter
 
 
@@ -244,6 +245,14 @@
     }
     // set headers
     NSDictionary *headers = [pack headers];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{    //Testing
+        
+        NSString *str=[NSString stringWithFormat:@"Method: %@\nHeaders: %@\nParams: ", sss, headers.description, params.description];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"PacketHeadersToLog" object:str];
+    
+    });
+    
     for (NSString *key in headers.allKeys) {
         [manager.requestSerializer setValue:headers[key] forHTTPHeaderField:key];
     }

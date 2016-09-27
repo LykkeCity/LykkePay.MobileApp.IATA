@@ -82,8 +82,8 @@
         
         [[LWKeychainManager instance] clear];
         [[NSUserDefaults standardUserDefaults] setValue:@"1strun" forKey:@"FirstRun"];
-        [[NSUserDefaults standardUserDefaults] synchronize];
         [[NSUserDefaults standardUserDefaults] setObject:build forKey:@"LWLastLaunchedVersion"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
     }
     
 //    [Fabric with:@[[Crashlytics class]]];
@@ -281,9 +281,12 @@ didFailToRegisterForRemoteNotificationsWithError:(NSError *)err {
     UIApplication *app = [UIApplication sharedApplication];
     UIBackgroundTaskIdentifier bgTask;
     bgTask = [app beginBackgroundTaskWithExpirationHandler:^{
-        [app endBackgroundTask:bgTask];
+ //       [app endBackgroundTask:bgTask];
     }];
-    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(70 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [app endBackgroundTask:bgTask];
+    });
+
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {

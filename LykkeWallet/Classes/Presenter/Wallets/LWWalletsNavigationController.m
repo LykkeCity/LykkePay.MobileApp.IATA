@@ -13,6 +13,7 @@
 #import "LWPrivateWalletAddView.h"
 #import "LWAddPrivateWalletPresenter.h"
 #import "LWCreateEditPrivateWalletPresenter.h"
+#import "LWAuthNavigationController.h"
 
 @interface LWWalletsNavigationController () <LWWalletsNavigationBarDelegate>
 {
@@ -106,6 +107,11 @@
 {
     LWCreateEditPrivateWalletPresenter *presenter=[[LWCreateEditPrivateWalletPresenter alloc] init];
     [self.navigationController pushViewController:presenter animated:YES];
+}
+
+-(void) logout
+{
+    [(LWAuthNavigationController *)self.navigationController logout];
 }
 
 

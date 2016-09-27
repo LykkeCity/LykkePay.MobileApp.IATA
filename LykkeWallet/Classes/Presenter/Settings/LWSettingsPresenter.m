@@ -33,6 +33,7 @@
 #import "LWMigrationInfoPresenter.h"
 #import "LWPrivateKeyManager.h"
 #import "LWBackupIntroPresenter.h"
+#import "LWWebViewDocumentPresenter.h"
 
 @import MessageUI;
 
@@ -301,10 +302,28 @@ static NSString *const SettingsIdentifiers[] = {
     }
     else if(indexPath.section==1)
     {
+        
         if(indexPath.row+5==kTermsOfUseCellId)
              [[UIApplication sharedApplication] openURL:[NSURL URLWithString:kTermsOfUseURL]];
         else if(indexPath.row+5==kCallSupportCellId)
+        {
+//            NSArray *documentPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES); //Testing
+//            NSString *documentsDir = [documentPaths objectAtIndex:0];
+//            NSString *logPath = [[NSString alloc] initWithFormat:@"%@",[documentsDir stringByAppendingPathComponent:@"log.txt"]];
+//            
+//            
+//            
+//            LWWebViewDocumentPresenter *presenter=[[LWWebViewDocumentPresenter alloc] init];
+//            presenter.urlString=logPath;
+//            presenter.documentTitle=@"LOG";
+//            [self.navigationController pushViewController:presenter animated:YES];
+//            return;
+
+            
+            
+            
             [self callSupport];
+        }
     }
     else if(indexPath.section==3)
     {
@@ -321,7 +340,6 @@ static NSString *const SettingsIdentifiers[] = {
 //        
 //        
 //        
-        
         
         if([[LWPrivateKeyManager shared] privateKeyWords]==nil)
         {

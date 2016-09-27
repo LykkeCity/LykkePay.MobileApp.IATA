@@ -10,7 +10,7 @@
 #import "LWRegisterCameraPresenter.h"
 #import "LWPersonalDataModel.h"
 #import "LWProgressView.h"
-
+#import "LWUtils.h"
 
 @interface LWKYCCheckDocumentsPresenter () {
     
@@ -79,6 +79,7 @@
 
 - (void)authManager:(LWAuthManager *)manager didFailWithReject:(NSDictionary *)reject context:(GDXRESTContext *)context {
     
+    [LWUtils appendToLogFile:@"KYCCheckDocuments rejected and logged out"];
     [((LWAuthNavigationController *)self.navigationController) logout];
 }
 

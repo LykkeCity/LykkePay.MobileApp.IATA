@@ -8,6 +8,7 @@
 
 #import "LWCache.h"
 #import "LWAssetModel.h"
+#import "LWUtils.h"
 
 #define SMS_DELAY 59
 
@@ -27,7 +28,9 @@ SINGLETON_INIT {
         self.showMyLykkeTab=NO;
         
         _smsRetriesLeft=3;
-//        _userWatchedAllBackupWords=NO;
+
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(logPacketHeaders:) name:@"PacketHeadersToLog" object:nil];
     }
     return self;
 }
@@ -208,6 +211,11 @@ SINGLETON_INIT {
         }
 
     }
+}
+
+-(void) logPacketHeaders:(NSNotification *) notification
+{
+    [LWUtils appendToLogFile:notification.object];
 }
 
 

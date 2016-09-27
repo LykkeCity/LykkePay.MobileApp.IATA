@@ -97,6 +97,9 @@
 
     if(!newsArray)
         [self setLoading:YES];
+    if(newsArray)
+        [self.tableView reloadData];
+
 }
 
 - (void)didReceiveMemoryWarning {

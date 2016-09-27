@@ -21,7 +21,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>145</string>
+	<string>146</string>
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>
@@ -45,6 +45,10 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>Lykke needs to make selfie</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Lykke needs to make selfie</string>
 	<key>TestEnvironmentDefinition</key>
 	<string>$(TEST_ENVIRONMENT)</string>
 	<key>UIAppFonts</key>

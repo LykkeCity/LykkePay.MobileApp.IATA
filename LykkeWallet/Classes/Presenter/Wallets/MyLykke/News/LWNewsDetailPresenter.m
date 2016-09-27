@@ -22,6 +22,8 @@
     [super viewDidLoad];
     self.webView.delegate=self;
     self.webView.backgroundColor=[UIColor colorWithRed:244.0/255 green:246.0/255 blue:247.0/255 alpha:1];
+    self.webView.scalesPageToFit=YES;
+    
     // Do any additional setup after loading the view from its nib.
 }
 

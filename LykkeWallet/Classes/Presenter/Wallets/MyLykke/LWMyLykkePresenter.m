@@ -285,6 +285,11 @@
     
 }
 
+-(void) authManager:(LWAuthManager *)manager didFailWithReject:(NSDictionary *)reject context:(GDXRESTContext *)context
+{
+    [super showReject:reject response:context.task.response];
+}
+
 
 -(void) authManager:(LWAuthManager *)manager didGetAssetDescription:(LWAssetDescriptionModel *)assetDescription
 {
@@ -335,7 +340,7 @@
 
 -(void) dealloc
 {
-   
+    [timer invalidate];
 }
 
 -(NSString *) nibName

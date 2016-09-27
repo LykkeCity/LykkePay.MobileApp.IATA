@@ -128,10 +128,11 @@
         return;
     _newsButtonView.tag=1;
     _equityButtonView.tag=0;
-    [myLykkePresenter willMoveToParentViewController:nil];
-    [self addChildViewController:myLykkeNewsPresenter];
+//    [self addChildViewController:myLykkeNewsPresenter];
 
     myLykkeNewsPresenter.view.center=CGPointMake(self.view.bounds.size.width*1.5, myLykkeNewsPresenter.view.center.y);
+
+    self.view.userInteractionEnabled=NO;
 
     [self transitionFromViewController:myLykkePresenter toViewController:myLykkeNewsPresenter duration:0.5 options:0 animations:^{
         myLykkeNewsPresenter.view.frame=_bottomContainer.bounds;
@@ -140,11 +141,15 @@
         
 
     } completion:^(BOOL finished){
-    
+//        [myLykkePresenter willMoveToParentViewController:nil];
+//        [myLykkePresenter removeFromParentViewController];
+
         [_bottomContainer bringSubviewToFront:myLykkeNewsPresenter.view];
         myLykkePresenter.view.frame=_bottomContainer.bounds;
 //        [myLykkePresenter removeFromParentViewController];
         [myLykkeNewsPresenter didMoveToParentViewController:self];
+
+        self.view.userInteractionEnabled=YES;
 
     }];
     
@@ -183,7 +188,6 @@
     [myLykkeNewsPresenter.tableView setContentOffset:myLykkeNewsPresenter.tableView.contentOffset animated:NO];
     
     
-    [myLykkeNewsPresenter willMoveToParentViewController:nil];
 //    [self addChildViewController:myLykkePresenter];
     
     myLykkePresenter.view.center=CGPointMake(self.view.bounds.size.width*-0.5, myLykkePresenter.view.center.y);
@@ -195,7 +199,7 @@
     
     [self adjustTopViewSubviews];
 
-    
+    self.view.userInteractionEnabled=NO;
     [self transitionFromViewController:myLykkeNewsPresenter toViewController:myLykkePresenter duration:0.5 options:0 animations:^{
         myLykkeNewsPresenter.view.center=CGPointMake(self.view.bounds.size.width*1.5, myLykkeNewsPresenter.view.center.y);
 //        myLykkePresenter.view.center=CGPointMake(self.view.bounds.size.width/2, myLykkePresenter.view.center.y);
@@ -203,11 +207,17 @@
         
     } completion:^(BOOL finished){
         
+//        [myLykkeNewsPresenter willMoveToParentViewController:nil];
+//        [myLykkeNewsPresenter removeFromParentViewController];
+
         [_bottomContainer bringSubviewToFront:myLykkePresenter.view];
         myLykkeNewsPresenter.view.frame=_bottomContainer.bounds;
 //        [myLykkeNewsPresenter removeFromParentViewController];
         [myLykkePresenter didMoveToParentViewController:self];
         [self.view layoutSubviews];
+        
+        self.view.userInteractionEnabled=YES;
+
     }];
 
     

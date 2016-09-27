@@ -15,6 +15,7 @@
 #import "LWCache.h"
 #import "LWProgressView.h"
 #import "LWKeychainManager.h"
+#import "LWUtils.h"
 
 
 @interface LWAuthValidationPresenter () {
@@ -107,7 +108,7 @@
 }
 
 - (void)authManager:(LWAuthManager *)manager didFailWithReject:(NSDictionary *)reject context:(GDXRESTContext *)context {
-    
+    [LWUtils appendToLogFile:[NSString stringWithFormat:@"Validation rejected %@", context.task.response.description]];
     [((LWAuthNavigationController *)self.navigationController) logout];
 }
 

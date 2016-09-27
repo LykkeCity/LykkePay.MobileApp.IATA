@@ -45,8 +45,10 @@ static NSString *const kKeychainManagerPersonalData = @"PersonalData";
 SINGLETON_INIT {
     self = [super init];
     if (self) {
+//        valet = [[VALValet alloc] initWithIdentifier:kKeychainManagerAppId
+//                                       accessibility:VALAccessibilityWhenUnlocked];
         valet = [[VALValet alloc] initWithIdentifier:kKeychainManagerAppId
-                                       accessibility:VALAccessibilityWhenUnlocked];
+                                       accessibility:VALAccessibilityAlways];
 //        [self clear]; //Andrey
     }
     return self;
