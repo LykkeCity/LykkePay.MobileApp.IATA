@@ -14,6 +14,7 @@
 #import "Macro.h"
 #import "UIView+Toast.h"
 #import "LWProgressView.h"
+#import "LWBackupNotificationView.h"
 
 
 @implementation UIViewController (Loading)
@@ -53,6 +54,18 @@
     if([reject[@"Code"] intValue]==6)
     {
         [self showNeedUpdateError:reject[@"Message"]];
+        return;
+    }
+    
+    if([reject[@"Code"] intValue]==9 || [reject[@"Code"] intValue]==10)
+    {
+        LWBackupNotificationView *view = [[[NSBundle mainBundle] loadNibNamed:@"LWBackupNotificationView" owner:self options:nil] objectAtIndex:0];
+        if([reject[@"Code"] intValue]==9)
+            view.type=BackupRequestTypeOptional;
+        else
+            view.type=BackupRequestTypeRequired;
+        view.text=reject[@"Message"];
+        [view show];
         return;
     }
     

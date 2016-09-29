@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LWKYCNewPresenter">
+            <connections>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="538" height="693"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="itw-dK-vsT">
+                    <color key="backgroundColor" red="0.95686274509803915" green="0.96470588235294119" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="130" id="Tuv-Ju-XTy"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CLd-Mf-fIF">
+                    <constraints>
+                        <constraint firstAttribute="width" constant="25" id="E0o-Ss-X5e"/>
+                        <constraint firstAttribute="height" constant="25" id="eyA-hR-Maj"/>
+                    </constraints>
+                    <state key="normal" title="Button" image="KYCCloseIcon"/>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="REGISTER" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9oF-jT-VIF">
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="bXh-mM-Jn1"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q11-AR-KM2">
+                    <constraints>
+                        <constraint firstAttribute="height" constant="17" id="WbT-cR-jQd"/>
+                    </constraints>
+                    <state key="normal" title="NEXT">
+                        <color key="titleColor" red="1" green="0.029134114583333332" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q4P-OV-ens" customClass="LWKYCCameraTopBarView">
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="75" id="C1g-UJ-opN"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ate-zf-VPQ" customClass="LWCommonButton">
+                    <constraints>
+                        <constraint firstAttribute="height" constant="45" id="Igw-Po-sai"/>
+                    </constraints>
+                    <state key="normal" title="Button"/>
+                </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3yk-BF-Bfg" customClass="LWKYCPhotoContainerView">
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="Ate-zf-VPQ" firstAttribute="top" secondItem="3yk-BF-Bfg" secondAttribute="bottom" constant="30" id="20d-Pa-ds2"/>
+                <constraint firstItem="itw-dK-vsT" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="2Pt-Bu-T2u"/>
+                <constraint firstItem="3yk-BF-Bfg" firstAttribute="top" secondItem="q4P-OV-ens" secondAttribute="bottom" constant="30" id="54S-V4-22X"/>
+                <constraint firstAttribute="trailing" secondItem="Ate-zf-VPQ" secondAttribute="trailing" constant="30" id="6xr-OC-9ZV"/>
+                <constraint firstItem="q11-AR-KM2" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="34" id="NFW-go-vOd"/>
+                <constraint firstItem="9oF-jT-VIF" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Qa7-cM-OLc"/>
+                <constraint firstItem="9oF-jT-VIF" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="32" id="U6t-6A-rKi"/>
+                <constraint firstItem="Ate-zf-VPQ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="30" id="W7w-x2-baR"/>
+                <constraint firstItem="CLd-Mf-fIF" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="bcR-nh-ASs"/>
+                <constraint firstAttribute="bottom" secondItem="Ate-zf-VPQ" secondAttribute="bottom" constant="30" id="d9O-Kn-XUz"/>
+                <constraint firstItem="q4P-OV-ens" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" id="hF2-Wk-hQe"/>
+                <constraint firstAttribute="trailing" secondItem="itw-dK-vsT" secondAttribute="trailing" id="iK9-LO-10Y"/>
+                <constraint firstItem="q4P-OV-ens" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="iKj-vl-P4S"/>
+                <constraint firstAttribute="trailing" secondItem="3yk-BF-Bfg" secondAttribute="trailing" constant="30" id="jly-bb-dvq"/>
+                <constraint firstItem="itw-dK-vsT" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="lsp-k2-tuW"/>
+                <constraint firstItem="q4P-OV-ens" firstAttribute="top" secondItem="CLd-Mf-fIF" secondAttribute="bottom" id="uVU-Qa-n2g"/>
+                <constraint firstItem="CLd-Mf-fIF" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="30" id="v5W-oH-CEj"/>
+                <constraint firstAttribute="trailing" secondItem="q11-AR-KM2" secondAttribute="trailing" constant="20" id="x3Y-Jn-gIi"/>
+                <constraint firstItem="3yk-BF-Bfg" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="30" id="yZ4-c2-6a1"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="9" y="52"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="KYCCloseIcon" width="25" height="25"/>
+    </resources>
+</document>

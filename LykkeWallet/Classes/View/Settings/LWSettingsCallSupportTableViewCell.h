@@ -19,5 +19,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *phoneLabel;
 
+@property BOOL hideIcon;
+
 
 @end

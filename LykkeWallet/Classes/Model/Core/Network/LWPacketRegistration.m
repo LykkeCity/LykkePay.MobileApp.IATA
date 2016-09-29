@@ -9,6 +9,7 @@
 #import "LWPacketRegistration.h"
 #import "LWKeychainManager.h"
 #import "AppDelegate.h"
+#import "LWPrivateKeyManager.h"
 
 
 @implementation LWPacketRegistration
@@ -50,7 +51,7 @@
     return @{@"Email" : self.registrationData.email,
              //@"FullName" : self.registrationData.fullName,
              //@"ContactPhone" : self.registrationData.phone,
-             @"Password" : self.registrationData.password,
+             @"Password" : [LWPrivateKeyManager hashForString:self.registrationData.password],
              @"ClientInfo" : self.registrationData.clientInfo,
              @"Hint":self.registrationData.passwordHint};
 }

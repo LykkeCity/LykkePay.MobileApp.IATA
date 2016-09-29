@@ -7,6 +7,7 @@
 //
 
 #import "LWPacketAccountExist.h"
+#import "LWCache.h"
 
 
 @implementation LWPacketAccountExist
@@ -22,6 +23,7 @@
     }
     _isRegistered = [result[@"IsRegistered"] boolValue];
     _hasHint=[result[@"HasPwdHint"] boolValue];
+    [LWCache instance].passwordIsHashed=[result[@"IsPwdHashed"] boolValue];
     [[NSUserDefaults standardUserDefaults] setBool:[result[@"HasBackup"] boolValue] forKey:@"UserHasBackupOfPrivateKey"];
     [[NSUserDefaults standardUserDefaults] synchronize];
     

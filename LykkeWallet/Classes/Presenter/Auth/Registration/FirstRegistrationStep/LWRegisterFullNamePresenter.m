@@ -79,7 +79,7 @@
 
 
 - (void)proceedToNextStep {
-    NSString *fullName = [[self textFieldString] stringByAppendingString:_lastName.text];
+    NSString *fullName = [[self textFieldString] stringByAppendingFormat:@" %@",_lastName.text];
     if (![fullName isEqualToString:@""]) {
         [self setLoading:YES];
         [[LWAuthManager instance] requestSetFullName:fullName];

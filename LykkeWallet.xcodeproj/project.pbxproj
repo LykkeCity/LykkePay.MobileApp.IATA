@@ -188,6 +188,7 @@
 		A17CF1DC1D41D08400EDBF2E /* LWPrivateWalletsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A17CF1DB1D41D08400EDBF2E /* LWPrivateWalletsManager.m */; };
 		A1827B401D97BB72007127A0 /* LWMigrationInfoPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A1827B3E1D97BB72007127A0 /* LWMigrationInfoPresenter.m */; };
 		A1827B411D97BB72007127A0 /* LWMigrationInfoPresenter.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1827B3F1D97BB72007127A0 /* LWMigrationInfoPresenter.xib */; };
+		A1833F911D9D3FC700567457 /* LWPacketPasswordHashSet.m in Sources */ = {isa = PBXBuildFile; fileRef = A1833F901D9D3FC700567457 /* LWPacketPasswordHashSet.m */; };
 		A188DA121D6EB33800AA6D8A /* LWPrivateWalletEmptyHistoryPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A188DA101D6EB33800AA6D8A /* LWPrivateWalletEmptyHistoryPresenter.m */; };
 		A188DA131D6EB33800AA6D8A /* LWPrivateWalletEmptyHistoryPresenter.xib in Resources */ = {isa = PBXBuildFile; fileRef = A188DA111D6EB33800AA6D8A /* LWPrivateWalletEmptyHistoryPresenter.xib */; };
 		A188DA151D6EF1C400AA6D8A /* LWBackupIntroPresenter~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A188DA141D6EF1C400AA6D8A /* LWBackupIntroPresenter~ipad.xib */; };
@@ -859,6 +860,14 @@
 		A1BCD2DC1D012D3C00CF42E4 /* 5-onboard-2x_00118.png in Resources */ = {isa = PBXBuildFile; fileRef = A1BCD0861D012D3C00CF42E4 /* 5-onboard-2x_00118.png */; };
 		A1BCD2DD1D012D3C00CF42E4 /* 5-onboard-2x_00119.png in Resources */ = {isa = PBXBuildFile; fileRef = A1BCD0871D012D3C00CF42E4 /* 5-onboard-2x_00119.png */; };
 		A1BCD2DF1D01651D00CF42E4 /* tips_about.png in Resources */ = {isa = PBXBuildFile; fileRef = A1BCD2DE1D01651D00CF42E4 /* tips_about.png */; };
+		A1C44F511D9BAAD40044F8F8 /* LWKYCCameraTopBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = A1C44F501D9BAAD40044F8F8 /* LWKYCCameraTopBarView.m */; };
+		A1C44F541D9BAC380044F8F8 /* LWKYCCameraTopBarElementView.m in Sources */ = {isa = PBXBuildFile; fileRef = A1C44F531D9BAC380044F8F8 /* LWKYCCameraTopBarElementView.m */; };
+		A1C44F581D9BBBAA0044F8F8 /* LWKYCNewPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A1C44F561D9BBBAA0044F8F8 /* LWKYCNewPresenter.m */; };
+		A1C44F591D9BBBAA0044F8F8 /* LWKYCNewPresenter.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1C44F571D9BBBAA0044F8F8 /* LWKYCNewPresenter.xib */; };
+		A1C44F5C1D9BC2E50044F8F8 /* LWKYCPhotoContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = A1C44F5B1D9BC2E50044F8F8 /* LWKYCPhotoContainerView.m */; };
+		A1C44F601D9CBEE90044F8F8 /* LWBackupNotificationView.m in Sources */ = {isa = PBXBuildFile; fileRef = A1C44F5E1D9CBEE90044F8F8 /* LWBackupNotificationView.m */; };
+		A1C44F611D9CBEE90044F8F8 /* LWBackupNotificationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1C44F5F1D9CBEE90044F8F8 /* LWBackupNotificationView.xib */; };
+		A1C44F641D9CD4CA0044F8F8 /* LWBackupNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = A1C44F631D9CD4CA0044F8F8 /* LWBackupNavigationController.m */; };
 		A1C5AF491D08035E0056DC53 /* LWExchangeBaseAssetsView.m in Sources */ = {isa = PBXBuildFile; fileRef = A1C5AF481D08035E0056DC53 /* LWExchangeBaseAssetsView.m */; };
 		A1C5AF4B1D081EC50056DC53 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC9C94751C898F9F006FD46B /* Assets.xcassets */; };
 		A1C5AF4E1D0941090056DC53 /* LWPacketSetRevertedPair.m in Sources */ = {isa = PBXBuildFile; fileRef = A1C5AF4D1D0941090056DC53 /* LWPacketSetRevertedPair.m */; };
@@ -2005,6 +2014,8 @@
 		A1827B3D1D97BB72007127A0 /* LWMigrationInfoPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LWMigrationInfoPresenter.h; path = Backup/LWMigrationInfoPresenter.h; sourceTree = "<group>"; };
 		A1827B3E1D97BB72007127A0 /* LWMigrationInfoPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LWMigrationInfoPresenter.m; path = Backup/LWMigrationInfoPresenter.m; sourceTree = "<group>"; };
 		A1827B3F1D97BB72007127A0 /* LWMigrationInfoPresenter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LWMigrationInfoPresenter.xib; path = Backup/LWMigrationInfoPresenter.xib; sourceTree = "<group>"; };
+		A1833F8F1D9D3FC700567457 /* LWPacketPasswordHashSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWPacketPasswordHashSet.h; sourceTree = "<group>"; };
+		A1833F901D9D3FC700567457 /* LWPacketPasswordHashSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWPacketPasswordHashSet.m; sourceTree = "<group>"; };
 		A188DA0F1D6EB33800AA6D8A /* LWPrivateWalletEmptyHistoryPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWPrivateWalletEmptyHistoryPresenter.h; sourceTree = "<group>"; };
 		A188DA101D6EB33800AA6D8A /* LWPrivateWalletEmptyHistoryPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWPrivateWalletEmptyHistoryPresenter.m; sourceTree = "<group>"; };
 		A188DA111D6EB33800AA6D8A /* LWPrivateWalletEmptyHistoryPresenter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LWPrivateWalletEmptyHistoryPresenter.xib; sourceTree = "<group>"; };
@@ -2812,6 +2823,20 @@
 		A1BCD0861D012D3C00CF42E4 /* 5-onboard-2x_00118.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "5-onboard-2x_00118.png"; sourceTree = "<group>"; };
 		A1BCD0871D012D3C00CF42E4 /* 5-onboard-2x_00119.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "5-onboard-2x_00119.png"; sourceTree = "<group>"; };
 		A1BCD2DE1D01651D00CF42E4 /* tips_about.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tips_about.png; sourceTree = "<group>"; };
+		A1C44F4F1D9BAAD40044F8F8 /* LWKYCCameraTopBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWKYCCameraTopBarView.h; sourceTree = "<group>"; };
+		A1C44F501D9BAAD40044F8F8 /* LWKYCCameraTopBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWKYCCameraTopBarView.m; sourceTree = "<group>"; };
+		A1C44F521D9BAC380044F8F8 /* LWKYCCameraTopBarElementView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWKYCCameraTopBarElementView.h; sourceTree = "<group>"; };
+		A1C44F531D9BAC380044F8F8 /* LWKYCCameraTopBarElementView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWKYCCameraTopBarElementView.m; sourceTree = "<group>"; };
+		A1C44F551D9BBBAA0044F8F8 /* LWKYCNewPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWKYCNewPresenter.h; sourceTree = "<group>"; };
+		A1C44F561D9BBBAA0044F8F8 /* LWKYCNewPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWKYCNewPresenter.m; sourceTree = "<group>"; };
+		A1C44F571D9BBBAA0044F8F8 /* LWKYCNewPresenter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LWKYCNewPresenter.xib; sourceTree = "<group>"; };
+		A1C44F5A1D9BC2E50044F8F8 /* LWKYCPhotoContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWKYCPhotoContainerView.h; sourceTree = "<group>"; };
+		A1C44F5B1D9BC2E50044F8F8 /* LWKYCPhotoContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWKYCPhotoContainerView.m; sourceTree = "<group>"; };
+		A1C44F5D1D9CBEE90044F8F8 /* LWBackupNotificationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LWBackupNotificationView.h; path = Backup/LWBackupNotificationView.h; sourceTree = "<group>"; };
+		A1C44F5E1D9CBEE90044F8F8 /* LWBackupNotificationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LWBackupNotificationView.m; path = Backup/LWBackupNotificationView.m; sourceTree = "<group>"; };
+		A1C44F5F1D9CBEE90044F8F8 /* LWBackupNotificationView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LWBackupNotificationView.xib; path = Backup/LWBackupNotificationView.xib; sourceTree = "<group>"; };
+		A1C44F621D9CD4CA0044F8F8 /* LWBackupNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LWBackupNavigationController.h; path = Backup/LWBackupNavigationController.h; sourceTree = "<group>"; };
+		A1C44F631D9CD4CA0044F8F8 /* LWBackupNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LWBackupNavigationController.m; path = Backup/LWBackupNavigationController.m; sourceTree = "<group>"; };
 		A1C5AF471D08035E0056DC53 /* LWExchangeBaseAssetsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWExchangeBaseAssetsView.h; sourceTree = "<group>"; };
 		A1C5AF481D08035E0056DC53 /* LWExchangeBaseAssetsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWExchangeBaseAssetsView.m; sourceTree = "<group>"; };
 		A1C5AF4C1D0941090056DC53 /* LWPacketSetRevertedPair.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWPacketSetRevertedPair.h; sourceTree = "<group>"; };
@@ -4983,6 +5008,11 @@
 				A1827B3D1D97BB72007127A0 /* LWMigrationInfoPresenter.h */,
 				A1827B3E1D97BB72007127A0 /* LWMigrationInfoPresenter.m */,
 				A1827B3F1D97BB72007127A0 /* LWMigrationInfoPresenter.xib */,
+				A1C44F5D1D9CBEE90044F8F8 /* LWBackupNotificationView.h */,
+				A1C44F5E1D9CBEE90044F8F8 /* LWBackupNotificationView.m */,
+				A1C44F5F1D9CBEE90044F8F8 /* LWBackupNotificationView.xib */,
+				A1C44F621D9CD4CA0044F8F8 /* LWBackupNavigationController.h */,
+				A1C44F631D9CD4CA0044F8F8 /* LWBackupNavigationController.m */,
 				A19AEEB61D99752C00D208E8 /* LWBackupTemplatePresenterViewController.h */,
 				A19AEEB71D99752C00D208E8 /* LWBackupTemplatePresenterViewController.m */,
 			);
@@ -5808,6 +5838,8 @@
 				A19A37CE1D92851A00BC4D42 /* LWPacketVoiceCall.m */,
 				A15AAF7C1D96462800324F97 /* LWPacketWalletMigration.h */,
 				A15AAF7D1D96462800324F97 /* LWPacketWalletMigration.m */,
+				A1833F8F1D9D3FC700567457 /* LWPacketPasswordHashSet.h */,
+				A1833F901D9D3FC700567457 /* LWPacketPasswordHashSet.m */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -5875,6 +5907,15 @@
 				A170698F1D2601CC0044D7FA /* LWCameraMessageView2.xib */,
 				ECA80B5F1C2E0E2A001C4E8F /* LWRegisterCameraPresenter~iphone.xib */,
 				A19E08D41CEB5275004D286A /* LWRegisterCameraPresenter~ipad.xib */,
+				A1C44F551D9BBBAA0044F8F8 /* LWKYCNewPresenter.h */,
+				A1C44F561D9BBBAA0044F8F8 /* LWKYCNewPresenter.m */,
+				A1C44F571D9BBBAA0044F8F8 /* LWKYCNewPresenter.xib */,
+				A1C44F4F1D9BAAD40044F8F8 /* LWKYCCameraTopBarView.h */,
+				A1C44F501D9BAAD40044F8F8 /* LWKYCCameraTopBarView.m */,
+				A1C44F521D9BAC380044F8F8 /* LWKYCCameraTopBarElementView.h */,
+				A1C44F531D9BAC380044F8F8 /* LWKYCCameraTopBarElementView.m */,
+				A1C44F5A1D9BC2E50044F8F8 /* LWKYCPhotoContainerView.h */,
+				A1C44F5B1D9BC2E50044F8F8 /* LWKYCPhotoContainerView.m */,
 			);
 			path = Camera;
 			sourceTree = "<group>";
@@ -7453,6 +7494,7 @@
 				A1D65D741D5DCF1100828783 /* crypto_bar_00048.png in Resources */,
 				A1BCD17F1D012D3C00CF42E4 /* 3-settle-2x_00008.png in Resources */,
 				ECAACF381C9F3BCD000227E0 /* LWErrorView.xib in Resources */,
+				A1C44F591D9BBBAA0044F8F8 /* LWKYCNewPresenter.xib in Resources */,
 				A19E08D71CEB5722004D286A /* LWCameraOverlayPresenter~ipad.xib in Resources */,
 				A1BCD1A01D012D3C00CF42E4 /* 3-settle-2x_00041.png in Resources */,
 				A1BCD1421D012D3C00CF42E4 /* 2-trade-2x_00066.png in Resources */,
@@ -7913,6 +7955,7 @@
 				A1BCD11D1D012D3C00CF42E4 /* 2-trade-2x_00029.png in Resources */,
 				A1D4773B1D050B9900438846 /* loader-color@2x_00011.png in Resources */,
 				A1BCD1931D012D3C00CF42E4 /* 3-settle-2x_00028.png in Resources */,
+				A1C44F611D9CBEE90044F8F8 /* LWBackupNotificationView.xib in Resources */,
 				A1BCD0D31D012D3C00CF42E4 /* 1-deposit-2x_00075.png in Resources */,
 				A1BCD2D51D012D3C00CF42E4 /* 5-onboard-2x_00111.png in Resources */,
 				A1BCD2D41D012D3C00CF42E4 /* 5-onboard-2x_00110.png in Resources */,
@@ -8227,12 +8270,15 @@
 				A1F78C891D365DF300BCFF03 /* LWWalletsNavigationController.m in Sources */,
 				A10A94F71D0D351000557C87 /* LWExchangeAssetsPopupView.m in Sources */,
 				CDA69FDB1C281A5500BE4DCA /* LWPacketRegistrationGet.m in Sources */,
+				A1C44F581D9BBBAA0044F8F8 /* LWKYCNewPresenter.m in Sources */,
 				EC9AE0671CAC7A370047DF0D /* QRCodeReaderView.m in Sources */,
 				EC7519C91C3742B800CDDF5B /* LWPacketBaseAssetSet.m in Sources */,
+				A1C44F641D9CD4CA0044F8F8 /* LWBackupNavigationController.m in Sources */,
 				CF66326E1C175DF0004353F5 /* TKContainer.m in Sources */,
 				CFB1E7671C4A59AD002428E0 /* ZExpParser.mm in Sources */,
 				A1AB30681CE4BAE3009AF37B /* LWPacketCurrencyDeposit.m in Sources */,
 				ECECAB491C98A0FA0020E050 /* LWBitcoinTableViewCell.m in Sources */,
+				A1C44F511D9BAAD40044F8F8 /* LWKYCCameraTopBarView.m in Sources */,
 				CDCD5AEF1C259662007BAD78 /* LWSettingsPresenter.m in Sources */,
 				EC57F45B1C3C556B00E31746 /* LWAssetInfoTextTableViewCell.m in Sources */,
 				EC24CC791C39786C00C2FDAA /* LWWalletConfirmPresenter.m in Sources */,
@@ -8296,6 +8342,7 @@
 				ECEC40B61C4298CF00B22BEE /* LWHistoryTableViewCell.m in Sources */,
 				A188DA121D6EB33800AA6D8A /* LWPrivateWalletEmptyHistoryPresenter.m in Sources */,
 				A14515A51D828EBC00B4BED9 /* LWMyLykkeMainContainerPresenter.m in Sources */,
+				A1C44F541D9BAC380044F8F8 /* LWKYCCameraTopBarElementView.m in Sources */,
 				A1AB30751CE5C03E009AF37B /* LWSendImageManager.m in Sources */,
 				A114948A1D4F46A3000BD347 /* LWRefundTransactionPresenter.m in Sources */,
 				EC7F05161C3EEAC00079ECD0 /* LWPacketSettingSignOrder.m in Sources */,
@@ -8395,6 +8442,7 @@
 				A18D25A21D6710A6005CEF66 /* LWCommonButton.m in Sources */,
 				ECD114801CDF1809002B36C0 /* UIView+Navigation.m in Sources */,
 				A1D432281D0FFCCC0060866F /* LWRefundTableViewCell.m in Sources */,
+				A1C44F5C1D9BC2E50044F8F8 /* LWKYCPhotoContainerView.m in Sources */,
 				A18D25A61D680869005CEF66 /* LWEnterNewPasswordPresenter.m in Sources */,
 				A1C99D2A1D45150B00833C4E /* LWChoosePrivateWalletView.m in Sources */,
 				CF86B37B1C1B693B006D5488 /* LWPacketRegistration.m in Sources */,
@@ -8513,6 +8561,7 @@
 				CDCD5B101C26C92A007BAD78 /* LWRegisterBasePresenter.m in Sources */,
 				ECEC40E11C4316D100B22BEE /* NSDate+String.m in Sources */,
 				EC37ED1A1C3A817D002379DD /* LWStringUtils.m in Sources */,
+				A1833F911D9D3FC700567457 /* LWPacketPasswordHashSet.m in Sources */,
 				EC3CE8C01C402FE400CAC3FE /* LWAssetBlockchainIconTableViewCell.m in Sources */,
 				A12DB5661D75DA0A00319EA7 /* LWMyLykkeNewsListPresenter.m in Sources */,
 				EC3CE8B51C401CD200CAC3FE /* LWAssetBlockchainModel.m in Sources */,
@@ -8525,6 +8574,7 @@
 				ECD76BC41C2EA81100E1D3DA /* LWPacketPersonalData.m in Sources */,
 				EC051A7A1CB6FB1200E31BD5 /* LWPacketTransfer.m in Sources */,
 				A188DA2B1D716C2700AA6D8A /* LWMyLykkeBuyAssetPresenter.m in Sources */,
+				A1C44F601D9CBEE90044F8F8 /* LWBackupNotificationView.m in Sources */,
 				A1C99D1E1D44E70500833C4E /* LWPrivateWalletHistoryCell.m in Sources */,
 				EC168F0A1C51360800AF8DD5 /* LWPersonalDataPresenter.m in Sources */,
 				A1C99D271D44FADF00833C4E /* LWPrivateWalletTransferPresenter.m in Sources */,

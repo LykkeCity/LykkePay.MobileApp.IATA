@@ -71,7 +71,7 @@
 {
     if([self.navigationController isKindOfClass:[LWIPadModalNavigationControllerViewController class]])
     {
-        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+        [self.navigationController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
     }
     else
         [self.navigationController popToRootViewControllerAnimated:YES];

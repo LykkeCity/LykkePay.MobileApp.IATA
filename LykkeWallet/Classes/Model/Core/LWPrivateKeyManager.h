@@ -49,6 +49,8 @@
 -(NSString *) signatureForMessageWithLykkeKey:(NSString *) message;
 -(NSString *) coloredAddressFromBitcoinAddress:(NSString *) address;
 
++(NSString *) hashForString:(NSString *) string;
+
 -(void) logoutUser;
 
 

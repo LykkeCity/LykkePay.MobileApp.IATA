@@ -84,7 +84,7 @@
 #import "LWPacketSaveBackupState.h"
 #import "LWPacketVoiceCall.h"
 #import "LWPacketWalletMigration.h"
-
+#import "LWPacketPasswordHashSet.h"
 
 
 #import "LWLykkeWalletsData.h"
@@ -707,6 +707,14 @@ SINGLETON_INIT {
     pack.migration=migration;
     [self sendPacket:pack];
 }
+
+-(void) requestSetPasswordHash:(NSString *)hash
+{
+    LWPacketPasswordHashSet *pack=[LWPacketPasswordHashSet new];
+    pack.passwordHash=hash;
+    [self sendPacket:pack];
+}
+
 #pragma mark - Observing
 
 - (void)observeGDXNetAdapterDidReceiveResponseNotification:(NSNotification *)notification {

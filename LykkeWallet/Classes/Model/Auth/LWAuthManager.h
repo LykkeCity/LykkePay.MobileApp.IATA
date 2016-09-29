@@ -271,6 +271,7 @@ SINGLETON_DECLARE
 -(void) requestVoiceCall:(NSString *) phone email:(NSString *) email;
 
 -(void) requestWalletMigration:(LWWalletMigrationModel *) migration;
+-(void) requestSetPasswordHash:(NSString *) hash;
 
 
 //PubkeyAddressValidation

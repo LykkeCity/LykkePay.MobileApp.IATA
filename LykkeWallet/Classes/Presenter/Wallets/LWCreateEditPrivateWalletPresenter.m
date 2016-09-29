@@ -28,6 +28,7 @@
 {
     NSDictionary *createButtonEnabledAttributes;
     NSDictionary *buttonDisabledAttributes;
+    BOOL flagColoredAddress;
 }
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
@@ -64,7 +65,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    flagColoredAddress=NO;
     
     
     UIView *grayView=[[UIView alloc] initWithFrame:CGRectMake(0, -500, 1024, 500)];
@@ -92,8 +93,16 @@
     {
         self.scanQRView.hidden=YES;
         self.scanQRHeightConstraint.constant=25;
-        self.modeButtonsContainer.hidden=YES;
-        self.walletNameTopConstraint.constant=20;
+//        self.modeButtonsContainer.hidden=YES;
+//        self.walletNameTopConstraint.constant=20;
+        
+        [_walletNewButton setTitle:@"BITCOIN"];
+        [_walletExistingButton setTitle:@"COLORED"];
+        [self pressedWalletTypeButton:_walletNewButton];
+
+        
+        
+        
         createUpdateButtonTitle=@"UPDATE WALLET";
         [LWValidator setButton:self.createUpdateButton enabled:YES];
         
@@ -118,6 +127,9 @@
         [LWValidator setButton:self.createUpdateButton enabled:NO];
         self.titleLabel.text=@"Enter details of new wallet";
         self.padlockWidthConstraint.active=YES;
+        [self.walletNewButton setTitle:@"NEW"];
+        [self.walletExistingButton setTitle:@"EXISTING"];
+
     }
     
 //    self.keyPasteWidthConstraint.constant=0;
@@ -127,8 +139,6 @@
     self.privateKeyTextField.userInteractionEnabled=NO;
 
     
-    [self.walletNewButton setTitle:@"NEW"];
-    [self.walletExistingButton setTitle:@"EXISTING"];
     [self.walletNewButton addTarget:self action:@selector(pressedWalletTypeButton:) forControlEvents:UIControlEventTouchUpInside];
     [self.walletExistingButton addTarget:self action:@selector(pressedWalletTypeButton:) forControlEvents:UIControlEventTouchUpInside];
     
@@ -189,9 +199,28 @@
 {
     if(button.selected)
         return;
+    
     self.walletNewButton.selected=NO;
     self.walletExistingButton.selected=NO;
     button.selected=YES;
+
+    if(self.editMode)
+    {
+        if(button==self.walletNewButton)
+        {
+            _addressTitleLabel.text=@"Wallet address";
+            _addressLabel.text=[LWPrivateKeyManager addressFromPrivateKeyWIF:self.privateKeyTextField.text];
+            
+        }
+        else
+        {
+            _addressTitleLabel.text=@"Private wallet colored address";
+            _addressLabel.text=[[LWPrivateKeyManager shared] coloredAddressFromBitcoinAddress:[LWPrivateKeyManager addressFromPrivateKeyWIF:self.privateKeyTextField.text]];
+
+        }
+        return;
+    }
+    
     
     NSString *createUpdateButtonTitle;
     

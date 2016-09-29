@@ -1,15 +1,15 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <mutableArray key="Proxima Nova Regular.otf">
+        <array key="Proxima Nova Regular.otf">
             <string>ProximaNova-Regular</string>
-            <string>ProximaNova-Regular</string>
-        </mutableArray>
+        </array>
     </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -18,17 +18,17 @@
             <rect key="frame" x="0.0" y="0.0" width="660" height="46"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WZ9-gc-JqE" id="CZi-Ts-Qzb">
-                <rect key="frame" x="0.0" y="0.0" width="660" height="45.5"/>
+                <frame key="frameInset" width="660" height="45"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Base asset" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yHw-gr-DK8">
-                        <rect key="frame" x="18" y="8" width="81" height="47.5"/>
+                        <frame key="frameInset" minX="18" minY="8" width="81" height="47.5"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="34" id="Hap-Yg-mW2"/>
                             <constraint firstAttribute="width" constant="120" id="gpD-mQ-tmv"/>
                         </constraints>
                         <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="17"/>
-                        <color key="textColor" red="0.2470588235" green="0.30196078430000001" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="textColor" red="0.2470588235" green="0.30196078430000001" blue="0.37647058820000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                         <variation key="default">
                             <mask key="constraints">
@@ -38,16 +38,13 @@
                         </variation>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="+41 61 588 04 02" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZWn-xD-hwQ">
-                        <rect key="frame" x="510" y="8" width="112" height="47.5"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="112" id="oxd-cF-gnA"/>
-                        </constraints>
+                        <frame key="frameInset" minX="510" minY="8" width="112" height="47.5"/>
                         <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="14"/>
-                        <color key="textColor" red="0.2470588235" green="0.30196078430000001" blue="0.37647058820000001" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                        <color key="textColor" red="0.2470588235" green="0.30196078430000001" blue="0.37647058820000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="SettingsPhoneIcon" translatesAutoresizingMaskIntoConstraints="NO" id="ZY0-Vw-68A">
-                        <rect key="frame" x="498" y="26" width="12" height="12"/>
+                        <frame key="frameInset" minX="498" minY="26" width="12" height="12"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="12" id="SpY-AZ-Qg0"/>
                             <constraint firstAttribute="height" constant="12" id="oBb-ii-gn0"/>
@@ -77,9 +74,10 @@
                     </mask>
                 </variation>
             </tableViewCellContentView>
-            <color key="backgroundColor" red="0.96470588235294119" green="0.96862745098039216" blue="0.97647058823529409" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" red="0.96470588235294119" green="0.96862745098039216" blue="0.97647058823529409" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
             <connections>
+                <outlet property="iconView" destination="ZY0-Vw-68A" id="jRw-ZT-Joa"/>
                 <outlet property="phoneLabel" destination="ZWn-xD-hwQ" id="hdu-rp-Mis"/>
                 <outlet property="titleLabel" destination="yHw-gr-DK8" id="1Yk-cw-OLW"/>
             </connections>
@@ -87,6 +85,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="SettingsPhoneIcon" width="12" height="13"/>
+        <image name="SettingsPhoneIcon" width="12" height="12"/>
     </resources>
 </document>

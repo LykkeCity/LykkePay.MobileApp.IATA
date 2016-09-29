@@ -8,14 +8,27 @@
 
 #import "LWSettingsCallSupportTableViewCell.h"
 
+@interface LWSettingsCallSupportTableViewCell()
+
+@property (weak, nonatomic) IBOutlet UIImageView *iconView;
+
+@end
+
 @implementation LWSettingsCallSupportTableViewCell
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
+-(void) awakeFromNib
+{
+    [super awakeFromNib];
+    if(_hideIcon)
+        _iconView.hidden=YES;
+        
 }
-*/
+
+-(void) setHideIcon:(BOOL)hideIcon
+{
+    if(hideIcon)
+        _iconView.hidden=YES;
+}
+
 
 @end

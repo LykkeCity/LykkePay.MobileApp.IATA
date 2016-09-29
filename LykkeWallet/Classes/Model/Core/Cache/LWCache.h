@@ -31,6 +31,8 @@ SINGLETON_DECLARE
 
 //@property BOOL userWatchedAllBackupWords;
 
+@property BOOL passwordIsHashed;
+
 @property (strong, nonatomic) NSTimer *timerSMS;
 @property (strong, nonatomic) id smsDelayDelegate;
 @property int smsDelaySecondsLeft;

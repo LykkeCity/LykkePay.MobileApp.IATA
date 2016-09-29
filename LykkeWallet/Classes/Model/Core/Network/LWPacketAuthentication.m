@@ -12,6 +12,8 @@
 #import "LWPrivateKeyManager.h"
 #import "AppDelegate.h"
 #import "LWAuthManager.h"
+#import "LWCache.h"
+
 
 
 @implementation LWPacketAuthentication
@@ -61,7 +63,8 @@
 //        [[LWAuthManager instance] requestEncodedPrivateKey];
 //    }
     
-    
+    if([LWCache instance].passwordIsHashed==NO)
+        [[LWAuthManager instance] requestSetPasswordHash:[LWPrivateKeyManager hashForString:self.authenticationData.password]];
     
 }
 
@@ -71,7 +74,7 @@
 
 - (NSDictionary *)params {
     return @{@"Email" : self.authenticationData.email,
-             @"Password" : self.authenticationData.password,
+             @"Password" : [LWCache instance].passwordIsHashed?[LWPrivateKeyManager hashForString:self.authenticationData.password]:self.authenticationData.password,
              @"ClientInfo" : self.authenticationData.clientInfo};
 //             @"AppVersion" : [[NSBundle mainBundle] objectForInfoDictionaryKey:(NSString *)kCFBundleVersionKey]};
 //    @"AppVersion" : @"222"};

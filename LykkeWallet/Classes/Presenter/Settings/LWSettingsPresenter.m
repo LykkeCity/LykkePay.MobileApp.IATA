@@ -66,6 +66,8 @@ static NSInteger const kLogoutCellId = 7;
 
 static NSInteger const kBackupCellId=8;
 
+static NSInteger const kEmailSupportIphoneCellId=9;
+
 
 static NSString *const SettingsCells[] = {
     kSettingsAssetTableViewCell,
@@ -76,7 +78,8 @@ static NSString *const SettingsCells[] = {
     kSettingsTermsTableViewCell,
     kSettingsCallSupportTableViewCell,
     @"LWSettingsLogOutTableViewCell",
-    kSettingsAssetTableViewCell
+    kSettingsAssetTableViewCell,
+    kSettingsCallSupportTableViewCell
 
 
 };
@@ -90,7 +93,8 @@ static NSString *const SettingsIdentifiers[] = {
     kSettingsTermsTableViewCellIdentifier,
     kSettingsCallSupportTableViewCellIdentifier,
     @"LWSettingsLogOutTableViewCellIdentifier",
-    kSettingsAssetTableViewCellIdentifier
+    kSettingsAssetTableViewCellIdentifier,
+    kSettingsCallSupportTableViewCellIdentifier
 
 };
 
@@ -165,14 +169,20 @@ static NSString *const SettingsIdentifiers[] = {
     }
     else
     {
-        if ([MFMailComposeViewController canSendMail]) {
-            MFMailComposeViewController *composeViewController = [[MFMailComposeViewController alloc] initWithNibName:nil bundle:nil];
-            [composeViewController setMailComposeDelegate:self];
-            [composeViewController setToRecipients:@[@"support@lykkex.com"]];
-//            [composeViewController setSubject:@"example subject"];
-            [self presentViewController:composeViewController animated:YES completion:nil];
-        }
+        [self emailSupport];
     }
+}
+
+-(void) emailSupport
+{
+    if ([MFMailComposeViewController canSendMail]) {
+        MFMailComposeViewController *composeViewController = [[MFMailComposeViewController alloc] initWithNibName:nil bundle:nil];
+        [composeViewController setMailComposeDelegate:self];
+        [composeViewController setToRecipients:@[@"support@lykke.com"]];
+        //            [composeViewController setSubject:@"example subject"];
+        [self presentViewController:composeViewController animated:YES completion:nil];
+    }
+
 }
 
 - (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error
@@ -192,7 +202,12 @@ static NSString *const SettingsIdentifiers[] = {
     if(section==0)
         return 5;
     else if(section==1)
-        return 2;
+    {
+        if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad)
+            return 2;
+        else
+            return 3;
+    }
     else if(section==3)
         return 2;
     else if(section==2)
@@ -231,7 +246,10 @@ static NSString *const SettingsIdentifiers[] = {
     
     if(indexPath.section==1)
     {
-        newIndexPath=[NSIndexPath indexPathForRow:indexPath.row+5 inSection:0];
+        if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone && indexPath.row==2)
+            newIndexPath=[NSIndexPath indexPathForRow:kEmailSupportIphoneCellId inSection:0];
+        else
+            newIndexPath=[NSIndexPath indexPathForRow:indexPath.row+5 inSection:0];
     }
     else if(indexPath.section==3)
         newIndexPath=[NSIndexPath indexPathForRow:indexPath.row+7 inSection:0];
@@ -250,7 +268,7 @@ static NSString *const SettingsIdentifiers[] = {
         lineView.backgroundColor=[UIColor colorWithRed:211.0/255 green:214.0/255 blue:219.0/255 alpha:1];
         [cell addSubview:lineView];
     }
-    if((indexPath.section==0 && indexPath.row==4) || (indexPath.section==1 && indexPath.row==1) || (indexPath.section==2) || (indexPath.section==3 && indexPath.row==0))
+    if((indexPath.section==0 && indexPath.row==4) || ((indexPath.section==1 && indexPath.row==1 && [UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad) || (indexPath.section==1 && indexPath.row==2 && [UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)) || (indexPath.section==2) || (indexPath.section==3 && indexPath.row==0))
     {
         UIView *lineView=[[UIView alloc] initWithFrame:CGRectMake(0, 50.0-0.5, 1024, 0.5)];
         lineView.backgroundColor=[UIColor colorWithRed:211.0/255 green:214.0/255 blue:219.0/255 alpha:1];
@@ -323,6 +341,10 @@ static NSString *const SettingsIdentifiers[] = {
             
             
             [self callSupport];
+        }
+        else if(indexPath.row==2)
+        {
+            [self emailSupport];
         }
     }
     else if(indexPath.section==3)
@@ -488,7 +510,7 @@ static NSString *const SettingsIdentifiers[] = {
         else
         {
             assetCell.titleLabel.text = Localize(@"settings.mailbutton.title");
-            assetCell.phoneLabel.text=@"support@lykkex.com";
+            assetCell.phoneLabel.text=@"support@lykke.com";
         }
         
  
@@ -499,6 +521,15 @@ static NSString *const SettingsIdentifiers[] = {
         backupCell.assetLabel.text=@"";
         
     }
+    
+    else if(indexPath.row==kEmailSupportIphoneCellId)
+    {
+        LWSettingsCallSupportTableViewCell *assetCell = (LWSettingsCallSupportTableViewCell *)cell;
+        assetCell.titleLabel.text = Localize(@"settings.mailbutton.title");
+        assetCell.phoneLabel.text=@"support@lykke.com";
+        assetCell.hideIcon=YES;
+    }
+
 
 
     

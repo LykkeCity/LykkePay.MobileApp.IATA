@@ -26,6 +26,8 @@
 
 #import "LWMyLykkeSuccessViewController.h"
 
+#import "LWBackupNotificationView.h"
+
 
 
 @interface AppDelegate () {
@@ -135,6 +137,11 @@
 //        LWMyLykkeSuccessViewController *presenter=[[LWMyLykkeSuccessViewController alloc] init];//Testing
 //        [presenter showInWindow:[UIApplication sharedApplication].keyWindow];
 //    });
+
+//        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(7 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//            LWBackupNotificationView *view = [[[NSBundle mainBundle] loadNibNamed:@"LWBackupNotificationView" owner:self options:nil] objectAtIndex:0];
+//            [view show];
+//        });
 
     //LWMyLykkeSuccessViewController
     

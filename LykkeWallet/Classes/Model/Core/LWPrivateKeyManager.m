@@ -327,6 +327,8 @@
 
 -(NSArray *) privateKeyWords
 {
+    if(!privateKeyForLykke)
+        return nil;
     NSData *data=privateKeyForLykke.privateKey;
     char *bytes=(char *)data.bytes;
     
@@ -446,6 +448,17 @@
 
     
     return finalData;
+}
+
++(NSString *) hashForString:(NSString *) string
+{
+    NSData *data=[string dataUsingEncoding:NSUTF8StringEncoding];
+    
+    
+    NSMutableData *hash=[NSMutableData dataWithLength:CC_SHA256_DIGEST_LENGTH];
+    CC_SHA256(data.bytes, (int)data.length, hash.mutableBytes);
+    
+    return [LWUtils hexStringFromData:hash];
 }
 
 -(NSString *) availableSecondaryPrivateKey
