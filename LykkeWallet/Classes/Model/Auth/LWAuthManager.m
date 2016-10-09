@@ -85,6 +85,7 @@
 #import "LWPacketVoiceCall.h"
 #import "LWPacketWalletMigration.h"
 #import "LWPacketPasswordHashSet.h"
+#import "LWPacketOrderBook.h"
 
 
 #import "LWLykkeWalletsData.h"
@@ -715,6 +716,13 @@ SINGLETON_INIT {
     [self sendPacket:pack];
 }
 
+-(void) requestOrderBook:(NSString *)assetPairId
+{
+    LWPacketOrderBook *pack=[LWPacketOrderBook new];
+    pack.assetPairId=assetPairId;
+    [self sendPacket:pack];
+}
+
 #pragma mark - Observing
 
 - (void)observeGDXNetAdapterDidReceiveResponseNotification:(NSNotification *)notification {
@@ -1127,7 +1135,11 @@ SINGLETON_INIT {
             [self.delegate authManagerDidCompleteWalletMigration:self];
         }
     }
-    
+    else if (pack.class == LWPacketOrderBook.class) {
+        if ([self.delegate respondsToSelector:@selector(authManager:didGetOrderBook:)]) {
+            [self.delegate authManager:self didGetOrderBook:(LWPacketOrderBook *)pack];
+        }
+    }
 }
 
 - (void)observeGDXNetAdapterDidFailRequestNotification:(NSNotification *)notification {

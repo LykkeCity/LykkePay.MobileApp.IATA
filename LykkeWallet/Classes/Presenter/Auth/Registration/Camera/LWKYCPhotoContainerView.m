@@ -16,16 +16,23 @@
     UILabel *titleBadLabel;
     UILabel *descriptionLabel;
     UILabel *titleLabel;
-    KYCPhotoContainerMode currentMode;
+    KYCDocumentStatus currentMode;
 }
 
 @end
 
 @implementation LWKYCPhotoContainerView
 
--(void) awakeFromNib
+-(id) initWithFrame:(CGRect)frame
 {
-    [super awakeFromNib];
+    self=[super initWithFrame:frame];
+    
+    [self createViews];
+    return self;
+}
+
+-(void) createViews
+{
     self.layer.cornerRadius=2.5;
     self.clipsToBounds=YES;
     imageView=[[UIImageView alloc] initWithFrame:self.bounds];
@@ -49,6 +56,7 @@
     titleBadLabel.font=[UIFont fontWithName:@"ProximaNova-Semibold" size:14];
     titleBadLabel.textColor=[UIColor whiteColor];
     titleBadLabel.text=@"Photo failed!";
+    titleBadLabel.textAlignment=NSTextAlignmentCenter;
     [titleBadLabel sizeToFit];
     [self addSubview:titleBadLabel];
     
@@ -59,37 +67,45 @@
     descriptionLabel.alpha=0.6;
     
     titleLabel=[[UILabel alloc] init];
+    titleLabel.numberOfLines=0;
     titleLabel.font=[UIFont fontWithName:@"ProximaNova-Regular" size:14];
     titleLabel.textColor=[UIColor colorWithRed:63.0/255 green:77.0/255 blue:96.0/255 alpha:0.6];
+    titleLabel.textAlignment=NSTextAlignmentCenter;
     if(_title)
         titleLabel.text=_title;
     [titleLabel sizeToFit];
     [self addSubview:titleLabel];
-
+    
     if(_failedDescription)
     {
         descriptionLabel.text=_failedDescription;
         [descriptionLabel sizeToFit];
     }
     [self addSubview:descriptionLabel];
-    
-    
+
 }
 
--(void) setMode:(KYCPhotoContainerMode)mode
+-(void) awakeFromNib
+{
+    [super awakeFromNib];
+    [self createViews];
+}
+
+
+-(void) setStatus:(KYCDocumentStatus)mode
 {
     currentMode=mode;
     [self adjustMode];
 }
 
--(KYCPhotoContainerMode) mode
+-(KYCDocumentStatus) status
 {
     return currentMode;
 }
 
 -(void) adjustMode
 {
-    if(currentMode==KYCPhotoContainerModeEmpty)
+    if(currentMode==KYCDocumentStatusEmpty)
     {
         self.backgroundColor=[UIColor colorWithRed:244.0/255 green:246.0/255 blue:247.0/255 alpha:1];
         self.layer.borderColor=[UIColor colorWithWhite:216.0/255 alpha:1].CGColor;
@@ -102,7 +118,7 @@
         imageView.hidden=YES;
         titleLabel.hidden=NO;
     }
-    else if(currentMode==KYCPhotoContainerModeBad)
+    else if(currentMode==KYCDocumentStatusRejected)
     {
         self.backgroundColor=nil;
         self.layer.borderColor=nil;
@@ -114,7 +130,7 @@
         imageView.hidden=NO;
         titleLabel.hidden=YES;
     }
-    else if(currentMode==KYCPhotoContainerModePhoto)
+    else if(currentMode==KYCDocumentStatusUploaded || currentMode==KYCDocumentStatusApproved)
     {
         self.backgroundColor=nil;
         self.layer.borderColor=nil;
@@ -132,13 +148,15 @@
 -(void) layoutSubviews
 {
     [super layoutSubviews];
-    photoImageView.center=CGPointMake(self.bounds.size.width/2, self.bounds.size.height-70);
-    titleLabel.center=CGPointMake(self.bounds.size.width/2, photoImageView.frame.origin.y+photoImageView.bounds.size.height+10);
-    titleBadLabel.center=titleLabel.center;
+    photoImageView.center=CGPointMake(self.bounds.size.width/2, self.bounds.size.height/2-25);
+    CGSize titleSize=[titleLabel sizeThatFits:CGSizeMake(self.bounds.size.width-60, 1000)];
+    titleLabel.frame=CGRectMake(0, 0, titleSize.width, titleSize.height);
+    titleLabel.center=CGPointMake(self.bounds.size.width/2, photoImageView.frame.origin.y+photoImageView.bounds.size.height+10+titleLabel.bounds.size.height/2);
+    titleBadLabel.center=CGPointMake(self.bounds.size.width/2, photoImageView.frame.origin.y+photoImageView.bounds.size.height+10+titleBadLabel.bounds.size.height/2);
     
-    CGSize size=[descriptionLabel sizeThatFits:CGSizeMake(self.bounds.size.width-40, 1000)];
+    CGSize size=[descriptionLabel sizeThatFits:CGSizeMake(self.bounds.size.width-60, 1000)];
     descriptionLabel.frame=CGRectMake(0, 0, size.width, size.height);
-    descriptionLabel.center=CGPointMake(self.bounds.size.width/2, titleLabel.center.y+10+descriptionLabel.bounds.size.height);
+    descriptionLabel.center=CGPointMake(self.bounds.size.width/2, titleBadLabel.frame.origin.y+titleBadLabel.bounds.size.height+10+descriptionLabel.bounds.size.height/2);
 }
 
 -(void) setImage:(UIImage *)image

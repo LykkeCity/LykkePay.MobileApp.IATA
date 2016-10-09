@@ -10,4 +10,7 @@
 
 @interface LWKYCNewPresenter : UIViewController
 
+@property (strong, nonatomic) NSDictionary *documentsStatuses;
+
+
 @end

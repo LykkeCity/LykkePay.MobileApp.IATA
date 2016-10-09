@@ -46,7 +46,7 @@
     [super layoutSubviews];
     statusImageView.frame=CGRectMake(self.bounds.size.width/2-10, 15, 20, 20);
     label.frame=CGRectMake(0, 44, self.bounds.size.width, 20);
-    underLineView.frame=CGRectMake(self.bounds.size.width-95/2, self.bounds.size.height-1.5, 95, 1.5);
+    underLineView.frame=CGRectMake(self.bounds.size.width/2-95/2, self.bounds.size.height-1.5, 95, 1.5);
     
 }
 

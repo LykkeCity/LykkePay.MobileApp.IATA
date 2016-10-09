@@ -103,6 +103,7 @@
         [[LWAuthManager instance] requestAllAssetPairsRates:@"LKKCHF"];
         [[LWAuthManager instance] requestAllAssetPairsRates:@"ETHLKK"];
 
+        
     }
     timerChangeCount++;
     [self updateRates];

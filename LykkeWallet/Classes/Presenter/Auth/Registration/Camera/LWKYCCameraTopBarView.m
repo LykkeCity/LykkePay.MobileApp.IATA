@@ -14,6 +14,7 @@
     BOOL flagViewsCreated;
     NSMutableArray *views;
     UIView *bottomLineView;
+    KYCDocumentType currentType;
 }
 
 @end
@@ -50,6 +51,37 @@
     bottomLineView.frame=CGRectMake(0, self.bounds.size.height-0.5, self.bounds.size.width, 0.5);
 }
 
+-(void) setDocumentsStatuses:(NSDictionary *)documentsStatuses
+{
+    _documentsStatuses=documentsStatuses;
+    [self adjustStatuses];
+}
+
+-(void) setActiveType:(KYCDocumentType)activeType
+{
+    currentType=activeType;
+    [self adjustCurrentType];
+}
+
+-(KYCDocumentType) activeType
+{
+    return currentType;
+}
+
+-(void) adjustStatuses
+{
+    [(LWKYCCameraTopBarElementView *)views[0] setStatus:[_documentsStatuses[@(KYCDocumentTypeSelfie)] intValue]];
+    [(LWKYCCameraTopBarElementView *)views[1] setStatus:[_documentsStatuses[@(KYCDocumentTypePassport)] intValue]];
+    [(LWKYCCameraTopBarElementView *)views[2] setStatus:[_documentsStatuses[@(KYCDocumentTypeAddress)] intValue]];
+
+    [self setActiveType:[_documentsStatuses[@"ActiveType"] intValue]];
+}
+
+-(void) adjustCurrentType
+{
+    for(LWKYCCameraTopBarElementView *v in views)
+        v.isActive=v.type==currentType;
+}
 
 -(void) createViews
 {
@@ -70,11 +102,13 @@
     v.type=KYCDocumentTypePassport;
     [views addObject:v];
     v=[LWKYCCameraTopBarElementView new];
-    v.type=KYCDocumentTypeSelfie;
+    v.type=KYCDocumentTypeAddress;
     [views addObject:v];
     for(UIView *v in views)
         [self addSubview:v];
-    
+    if(_documentsStatuses)
+        [self adjustStatuses];
+    [self adjustCurrentType];
     
 }
 

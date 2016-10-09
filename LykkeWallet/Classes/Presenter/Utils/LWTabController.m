@@ -46,6 +46,11 @@
     [[LWAuthManager instance] requestPrevCardPayment];
     [[LWAuthManager instance] requestAllAssetPairs];
     
+    [[LWAuthManager instance] requestOrderBook:@"BTCLKK"];
+    [[LWAuthManager instance] requestOrderBook:@"ETHLKK"];
+    [[LWAuthManager instance] requestOrderBook:@"LKKUSD"];
+    [[LWAuthManager instance] requestOrderBook:@"LKKCHF"];
+    
     
     [self.navigationController setNavigationBarHidden:NO animated:NO];
 }

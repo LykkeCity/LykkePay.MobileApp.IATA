@@ -20,6 +20,7 @@
 #import "LWKYCInvalidDocumentsPresenter.h"
 #import "LWWalletsNavigationController.h"
 #import "LWIPadModalNavigationControllerViewController.h"
+#import "LWKYCNewPresenter.h"
 
 @interface LWKYCManager() <LWAuthManagerDelegate, LWRegisterCameraPresenterDelegate, LWKYCSubmitPresenterDelegate, LWKYCPendingPresenterDelegate, LWKYCSuccessPresenterDelegate, LWKYCInvalidDocumentsPresenterDelegate>
 {
@@ -178,6 +179,11 @@
 
 -(void) showCameraWithStep:(LWAuthStep) step
 {
+//    LWKYCNewPresenter *presenter=[LWKYCNewPresenter new];
+//    [navigationController pushViewController:presenter animated:YES];
+//    return;
+    
+    
     LWRegisterCameraPresenter *camera=[LWRegisterCameraPresenter new];
     camera.delegate=self;
     //        camera.shouldHideBackButton=YES;
@@ -202,17 +208,6 @@
 {
     [self checkDocumentsStatus];
     
-//    if(presenter.currentStep==LWAuthStepRegisterIdentity)
-//        [self showCameraWithStep:LWAuthStepRegisterUtilityBill];
-//    else
-//    {
-//        
-//        LWKYCSubmitPresenter *presenter=[LWKYCSubmitPresenter new];
-//        presenter.delegate=self;
-//        [navigationController pushViewController:presenter animated:YES];
-//        
-//        
-//    }
 }
 
 -(void) submitPresenterUserSubmitted:(LWKYCSubmitPresenter *)presenter

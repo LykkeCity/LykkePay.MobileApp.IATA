@@ -33,6 +33,9 @@
 #import "LWMathKeyboardView.h"
 #import "LWAssetDealModel.h"
 #import "LWPINPresenter.h"
+#import "LWPacketOrderBook.h"
+
+#import "LWOrderBookElementModel.h"
 
 
 typedef enum {
@@ -65,6 +68,11 @@ typedef enum {
     NSNumber *volumeToSend;
     NSString *volumeStringToSend;
     NSString *resultStringToSend;
+    
+    LWOrderBookElementModel *buyOrders;
+    LWOrderBookElementModel *sellOrders;
+    
+    NSString *currentPrice;
 }
 
 
@@ -173,7 +181,7 @@ static NSString *const FormIdentifiers[kFormRows] = {
 //    [self.view addSubview:predefinedSumsView];
 //    
 //    predefinedSumsView.center=CGPointMake(self.view.bounds.size.width/2, self.view.bounds.size.height+predefinedSumsView.bounds.size.height/2);
-    if(!self.assetRate && self.balanceToSell)
+    if(!buyOrders && self.balanceToSell)
     {
         sumTextField.text=volumeString;
     }
@@ -184,6 +192,7 @@ static NSString *const FormIdentifiers[kFormRows] = {
     if([LWCache instance].walletsData)
         [self showBalanceFromLykkeData:[LWCache instance].walletsData];
 
+    [[LWAuthManager instance] requestOrderBook:self.assetPair.identity];
 }
 
 
@@ -339,20 +348,32 @@ static NSString *const FormIdentifiers[kFormRows] = {
 - (void)mathKeyboardView:(LWMathKeyboardView *) view volumeStringChangedTo:(NSString *) string
 {
     double price;
-    if (self.assetDealType == LWAssetDealTypeBuy) {
-        price=self.assetRate.ask.doubleValue;
-    }
-    else {
-        price=self.assetRate.bid.doubleValue;
-    }
-    if(price==0)
-        return;
+//    if (self.assetDealType == LWAssetDealTypeBuy) {
+////        price=self.assetRate.ask.doubleValue;
+//        price=buyOrders pric
+//    }
+//    else {
+//        price=self.assetRate.bid.doubleValue;
+//    }
+//    if(price==0)
+//        return;
 
     if(view.targetTextField==sumTextField)
     {
+        if (self.assetDealType == LWAssetDealTypeBuy) {
+            //        price=self.assetRate.ask.doubleValue;
+            price=[buyOrders priceForVolume:string.doubleValue];
+        }
+        else {
+//            price=self.assetRate.bid.doubleValue;
+            price=[sellOrders priceForVolume:string.doubleValue];
+        }
+//        if(price==0)
+//            return;
+
         
-        
-        if(string.doubleValue>=10000000000 || price*string.doubleValue>=10000000000)
+ //       if(string.doubleValue>=10000000000 || price*string.doubleValue>=10000000000)
+        if(price==0)
         {
             [view setText:volumeString];
             return;
@@ -364,7 +385,19 @@ static NSString *const FormIdentifiers[kFormRows] = {
     }
     else
     {
-        if(string.doubleValue>=10000000000 || string.doubleValue/price>=10000000000)
+        if (self.assetDealType == LWAssetDealTypeBuy) {
+            //        price=self.assetRate.ask.doubleValue;
+            price=[buyOrders priceForResult:string.doubleValue];
+        }
+        else {
+            //            price=self.assetRate.bid.doubleValue;
+            price=[sellOrders priceForResult:string.doubleValue];
+        }
+//        if(price==0)
+//            return;
+
+//        if(string.doubleValue>=10000000000 || string.doubleValue/price>=10000000000)
+        if(price==0)
         {
             [view setText:resultString];
             return;
@@ -424,18 +457,46 @@ static NSString *const FormIdentifiers[kFormRows] = {
 
 - (void)authManager:(LWAuthManager *)manager didGetAssetPairRate:(LWAssetPairRateModel *)assetPairRate {
     
-    self.assetRate = assetPairRate;
-    if(self.balanceToSell && self.assetPair.inverted!=self.assetRate.inverted)
-        [self.assetRate invert];
+    
+//    
+//    
+//    self.assetRate = assetPairRate;
+//    if(self.balanceToSell && self.assetPair.inverted!=self.assetRate.inverted)
+//        [self.assetRate invert];
+//    
+//    [self updatePrice];
+//    
+//    const NSInteger repeatSeconds = [LWCache instance].refreshTimer.integerValue / 1000;
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(repeatSeconds * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//        if (self.isVisible) {
+//            [[LWAuthManager instance] requestAssetPairRate:self.assetPair.identity];
+//        }
+//    });
+}
+
+-(void) authManager:(LWAuthManager *)manager didGetOrderBook:(LWPacketOrderBook *)packet
+{
+    buyOrders = packet.buyOrders;
+    sellOrders=packet.sellOrders;
+    
+    if(self.assetPair.inverted)
+    {
+        id tmp=buyOrders;
+        buyOrders=sellOrders;
+        sellOrders=tmp;
+        [buyOrders invert];
+        [sellOrders invert];
+    }
     
     [self updatePrice];
     
     const NSInteger repeatSeconds = [LWCache instance].refreshTimer.integerValue / 1000;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(repeatSeconds * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         if (self.isVisible) {
-            [[LWAuthManager instance] requestAssetPairRate:self.assetPair.identity];
+            [[LWAuthManager instance] requestOrderBook:self.assetPair.identity];
         }
     });
+
 }
 
 -(void) authManager:(LWAuthManager *)manager didReceiveLykkeData:(LWLykkeWalletsData *)data
@@ -497,6 +558,8 @@ static NSString *const FormIdentifiers[kFormRows] = {
     }
 }
 
+
+
 - (void)authManager:(LWAuthManager *)manager didFailWithReject:(NSDictionary *)reject context:(GDXRESTContext *)context {
     
     [self setLoading:NO];
@@ -520,7 +583,7 @@ static NSString *const FormIdentifiers[kFormRows] = {
     
     [self.view endEditing:YES];
     
-    rateToSend=self.assetRate;
+//    rateToSend=self.assetRate;
     volumeToSend=[self volumeFromField];
     resultStringToSend=resultString;
     volumeStringToSend=volumeString;
@@ -587,7 +650,7 @@ static NSString *const FormIdentifiers[kFormRows] = {
     
     if (self.assetDealType == LWAssetDealTypeBuy) {
         
-        NSString *rate=[LWUtils formatVolumeNumber:rateToSend.ask currencySign:@"" accuracy:self.assetPair.accuracy.intValue removeExtraZeroes:YES];
+        NSString *rate=[LWUtils formatVolumeNumber:@(currentPrice.doubleValue) currencySign:@"" accuracy:self.assetPair.accuracy.intValue removeExtraZeroes:YES];
         rate=[rate stringByReplacingOccurrencesOfString:@" " withString:@""];
         
         [[LWAuthManager instance] requestPurchaseAsset: baseAssetId
@@ -597,7 +660,7 @@ static NSString *const FormIdentifiers[kFormRows] = {
     }
     else {
         
-        NSString *rate=[LWUtils formatVolumeNumber:rateToSend.bid currencySign:@"" accuracy:self.assetPair.accuracy.intValue removeExtraZeroes:YES];
+        NSString *rate=[LWUtils formatVolumeNumber:@(currentPrice.doubleValue) currencySign:@"" accuracy:self.assetPair.accuracy.intValue removeExtraZeroes:YES];
         rate=[rate stringByReplacingOccurrencesOfString:@" " withString:@""];
         [[LWAuthManager instance] requestSellAsset:baseAssetId
                                          assetPair:self.assetPair.identity
@@ -666,7 +729,7 @@ static NSString *const FormIdentifiers[kFormRows] = {
 
 - (void)updatePrice {
     
-    if (!self.assetRate) {
+    if (!buyOrders) {
         return;
     }
     
@@ -679,14 +742,14 @@ static NSString *const FormIdentifiers[kFormRows] = {
         priceAccuracy=self.assetPair.invertedAccuracy.intValue;
     else
         priceAccuracy=self.assetPair.accuracy.intValue;
-    if (self.assetDealType == LWAssetDealTypeBuy) {
-        priceText=[LWUtils formatFairVolume:self.assetRate.ask.doubleValue accuracy:priceAccuracy roundToHigher:YES];
-    }
-    else {
-        priceText=[LWUtils formatFairVolume:self.assetRate.bid.doubleValue accuracy:priceAccuracy roundToHigher:NO];
-    }
     
-    priceCell.priceLabel.text = priceText;
+//    if (self.assetDealType == LWAssetDealTypeBuy) {
+//        priceText=[LWUtils formatFairVolume:self.assetRate.ask.doubleValue accuracy:priceAccuracy roundToHigher:YES];
+//    }
+//    else {
+//        priceText=[LWUtils formatFairVolume:self.assetRate.bid.doubleValue accuracy:priceAccuracy roundToHigher:NO];
+//    }
+    
     
     // update total cell
     NSString *volume = [volumeString stringByReplacingOccurrencesOfString:@" " withString:@""];
@@ -696,6 +759,15 @@ static NSString *const FormIdentifiers[kFormRows] = {
         total = [self totalString];
         totalCell.totalTextField.text = total;
         sumTextField.text=[LWUtils formatVolumeString:volume currencySign:@"" accuracy:[self accuracyForQuotingAsset].intValue removeExtraZeroes:NO];
+        
+        if (self.assetDealType == LWAssetDealTypeBuy) {
+            priceText=[LWUtils formatFairVolume:[buyOrders priceForVolume:volume.doubleValue] accuracy:priceAccuracy roundToHigher:YES];
+        }
+        else {
+            priceText=[LWUtils formatFairVolume:[sellOrders priceForVolume:volume.doubleValue] accuracy:priceAccuracy roundToHigher:NO];
+        }
+
+        
     }
     else if (lastInput == LastInput_Result) {
         LWAssetBuySumTableViewCell *sumCell = (LWAssetBuySumTableViewCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
@@ -704,7 +776,28 @@ static NSString *const FormIdentifiers[kFormRows] = {
         
         LWAssetBuyTotalTableViewCell *totalCell = (LWAssetBuyTotalTableViewCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:0]];
         totalCell.totalTextField.text=[LWUtils formatVolumeString:total currencySign:@"" accuracy:[self accuracyForBaseAsset].intValue removeExtraZeroes:NO];
+        
+        if (self.assetDealType == LWAssetDealTypeBuy) {
+            priceText=[LWUtils formatFairVolume:[buyOrders priceForResult:total.doubleValue] accuracy:priceAccuracy roundToHigher:YES];
+        }
+        else {
+            priceText=[LWUtils formatFairVolume:[sellOrders priceForResult:total.doubleValue] accuracy:priceAccuracy roundToHigher:NO];
+        }
+
     }
+    else
+    {
+        if(self.assetDealType==LWAssetDealTypeBuy)
+            priceText=[LWUtils formatFairVolume:[buyOrders priceForVolume:0] accuracy:priceAccuracy roundToHigher:YES];
+        else
+            priceText=[LWUtils formatFairVolume:[sellOrders priceForVolume:0] accuracy:priceAccuracy roundToHigher:NO];
+    }
+    
+    currentPrice=priceText;
+    currentPrice=[currentPrice stringByReplacingOccurrencesOfString:@" " withString:@""];
+    currentPrice=[currentPrice stringByReplacingOccurrencesOfString:@"," withString:@""];
+    priceCell.priceLabel.text = priceText;
+
     
     volumeString=[volume stringByReplacingOccurrencesOfString:@" " withString:@""];
     resultString=[total stringByReplacingOccurrencesOfString:@" " withString:@""];
@@ -781,30 +874,6 @@ static NSString *const FormIdentifiers[kFormRows] = {
 
 - (void)showConfirmationView {
     
-    
-//    LWPINPresenter *presenter=[[LWPINPresenter alloc] init];
-//    presenter.pinType=PIN_TYPE_CHECK;
-//    presenter.checkBlock=^(NSString *pin){
-//        if([pin isEqualToString:@"2222"])
-//            return YES;
-//        else
-//            return NO;
-//    };
-//    
-//    presenter.successBlock=^{
-//    
-//    };
-//    
-//    [self.navigationController pushViewController:presenter animated:YES];
-//    return;
-    
-    
-    
-    
-    
-    
-    
-    
     // preparing modal view
     confirmationView = [LWExchangeConfirmationView modalViewWithDelegate:self];
     confirmationView.assetPair = self.assetPair;
@@ -849,13 +918,15 @@ static NSString *const FormIdentifiers[kFormRows] = {
     NSString *priceText;
     
 
-    if (self.assetDealType == LWAssetDealTypeBuy) {
-        priceText = [LWUtils priceForAsset:self.assetPair forValue:rateToSend.ask];
-    }
-    else {
-        priceText = [LWUtils priceForAsset:self.assetPair forValue:rateToSend.bid];
-    }
+    
+//    if (self.assetDealType == LWAssetDealTypeBuy) {
+//        priceText = [LWUtils priceForAsset:self.assetPair forValue:rateToSend.ask];
+//    }
+//    else {
+//        priceText = [LWUtils priceForAsset:self.assetPair forValue:rateToSend.bid];
+//    }
 
+    priceText=currentPrice;
     
     priceText=[priceText stringByReplacingOccurrencesOfString:@"," withString:@"."];
 
@@ -881,10 +952,10 @@ static NSString *const FormIdentifiers[kFormRows] = {
         priceAccuracy=self.assetPair.accuracy.intValue;
     
     if (self.assetDealType == LWAssetDealTypeBuy) {
-        priceValue=[LWUtils fairVolume:self.assetRate.ask.doubleValue accuracy:priceAccuracy roundToHigher:YES];
+        priceValue=[LWUtils fairVolume:[buyOrders priceForVolume:volumeString.doubleValue] accuracy:priceAccuracy roundToHigher:YES];
     }
     else {
-        priceValue=[LWUtils fairVolume:self.assetRate.bid.doubleValue accuracy:priceAccuracy roundToHigher:NO];
+        priceValue=[LWUtils fairVolume:[sellOrders priceForVolume:volumeString.doubleValue] accuracy:priceAccuracy roundToHigher:NO];
     }
     double result=volumeString.doubleValue*priceValue;
     
@@ -916,10 +987,10 @@ static NSString *const FormIdentifiers[kFormRows] = {
         priceAccuracy=self.assetPair.accuracy.intValue;
     
     if (self.assetDealType == LWAssetDealTypeBuy) {
-        priceValue=[LWUtils fairVolume:self.assetRate.ask.doubleValue accuracy:priceAccuracy roundToHigher:YES];
+        priceValue=[LWUtils fairVolume:[buyOrders priceForResult:resultString.doubleValue] accuracy:priceAccuracy roundToHigher:YES];
     }
     else {
-        priceValue=[LWUtils fairVolume:self.assetRate.bid.doubleValue accuracy:priceAccuracy roundToHigher:NO];
+        priceValue=[LWUtils fairVolume:[sellOrders priceForResult:resultString.doubleValue] accuracy:priceAccuracy roundToHigher:NO];
     }
     
 

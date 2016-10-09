@@ -20,6 +20,7 @@
 #import "LWAssetPairModel.h"
 #import "LWMyLykkeDepositSwiftPresenter.h"
 #import "LWMyLykkeCreditCardDepositPresenter.h"
+#import "LWPacketOrderBook.h"
 
 #define LKK_PREFIX @"LKK "
 
@@ -32,6 +33,9 @@
     int timerChangeCount;
     
     NSString *ASSET_PREFIX;
+    
+    LWOrderBookElementModel *buyOrders;
+    
 }
 
 
@@ -122,6 +126,15 @@
             self.tableWidthConstraint.constant=516;
     }
     
+    NSString *assetPair;
+    if([self.assetId isEqualToString:@"BTC"] || [self.assetId isEqualToString:@"ETH"])
+        assetPair=[self.assetId stringByAppendingString:@"LKK"];
+    else
+        assetPair=[@"LKK" stringByAppendingString:self.assetId];
+    
+    buyOrders=[LWCache instance].cachedBuyOrders[assetPair];
+    
+    
     [self updatePrice];
     
 }
@@ -162,7 +175,9 @@
         else
             assetPair=[@"LKK" stringByAppendingString:self.assetId];
         
-        [[LWAuthManager instance] requestAllAssetPairsRates:assetPair];
+//        [[LWAuthManager instance] requestAllAssetPairsRates:assetPair];
+        
+        [[LWAuthManager instance] requestOrderBook:assetPair];
     }
     timerChangeCount++;
     [self updatePrice];
@@ -200,7 +215,7 @@
     {
         NSString *string=[self removePrefix:keyboard.textField.text];
         double equity=string.doubleValue/12500000.0;
-        if(equity>99.999)
+        if(equity>99.999 || [buyOrders priceForVolume:string.doubleValue]==0)
         {
             _lkkTextField.text=[_lkkTextField.text substringToIndex:_lkkTextField.text.length-1];
             return;
@@ -208,7 +223,7 @@
         
         lastChangedLKK=YES;
 
-        [self calcBTC];
+//        [self calcBTC];
     }
     else
     {
@@ -217,10 +232,12 @@
         [self calcLKK];
         NSString *string=[self removePrefix:_lkkTextField.text];
         double equity=string.doubleValue/12500000.0;
-        if(equity>99.999)
+        if(equity>99.999 || [buyOrders priceForResult:string.doubleValue]==0)
         {
             _btcTextField.text=prevBtc;
             _lkkTextField.text=currentLkk;
+            price=[buyOrders priceForResult:_btcTextField.text.doubleValue];
+            [self formatPrice];
             return;
         }
         
@@ -228,6 +245,8 @@
         lastChangedLKK=NO;
 
      }
+    
+    [self updatePrice];
     
     if([[self removePrefix:_btcTextField.text] doubleValue]>0)
         _submitButton.enabled=YES;
@@ -256,6 +275,8 @@
 {
     NSString *text=[self removePrefix:_lkkTextField.text];
     self.lkkTextField.text=[LKK_PREFIX stringByAppendingString:[self formatVolume:text]];
+    price=[buyOrders priceForVolume:text.doubleValue];
+    [self formatPrice];
     NSString *result=[LWUtils formatFairVolume:text.doubleValue*price accuracy:[LWCache accuracyForAssetId:self.assetId] roundToHigher:YES];
     result=[result stringByReplacingOccurrencesOfString:@" " withString:@","];
     result=[ASSET_PREFIX stringByAppendingString:result];
@@ -268,6 +289,10 @@
     
     NSString *text=[self removePrefix:_btcTextField.text];
     self.btcTextField.text=[ASSET_PREFIX stringByAppendingString:[self formatVolume:text]];
+    
+    price=[buyOrders priceForResult:text.doubleValue];
+    [self formatPrice];
+
     
     NSString *result=[LWUtils formatFairVolume:text.doubleValue/price accuracy:[LWCache accuracyForAssetId:@"LKK"] roundToHigher:NO];
     result=[result stringByReplacingOccurrencesOfString:@" " withString:@","];
@@ -322,23 +347,32 @@
     else
         assetPair=[@"LKK" stringByAppendingString:self.assetId];
     
-    LWAssetPairRateModel *rate=[LWCache instance].cachedAssetPairsRates[assetPair];
+//    LWAssetPairRateModel *rate=[LWCache instance].cachedAssetPairsRates[assetPair];
 
-    if(!rate)
+    
+    
+    if(!buyOrders)
         return;
     
-    if([self.assetId isEqualToString:@"BTC"] || [self.assetId isEqualToString:@"ETH"])
-    {
-        
-        price=(double)1.0/rate.bid.doubleValue;
-        
-    }
+    if(lastChangedLKK)
+        price=[buyOrders priceForVolume:[self removePrefix:_lkkTextField.text].doubleValue];
     else
-    {
-        
-        price=rate.ask.doubleValue;
-        
-    }
+        price=[buyOrders priceForResult:[self removePrefix:_btcTextField.text].doubleValue];
+
+    [self formatPrice];
+    
+//    if([self.assetId isEqualToString:@"BTC"] || [self.assetId isEqualToString:@"ETH"])
+//    {
+//        
+//        price=(double)1.0/rate.bid.doubleValue;
+//        
+//    }
+//    else
+//    {
+//        
+//        price=rate.ask.doubleValue;
+//        
+//    }
 
     int accuracy=0;
     
@@ -362,10 +396,52 @@
 
 }
 
-
--(void) authManager:(LWAuthManager *) manager didGetAllAssetPairsRate:(LWPacketAllAssetPairsRates *)packet
+-(void) formatPrice
 {
+    int accuracy=0;
+    
+    NSString *assetPair;
+    
+    
+    if([self.assetId isEqualToString:@"BTC"] || [self.assetId isEqualToString:@"ETH"])
+        assetPair=[self.assetId stringByAppendingString:@"LKK"];
+    else
+        assetPair=[@"LKK" stringByAppendingString:self.assetId];
+
+    
+    for(LWAssetPairModel *pair in [LWCache instance].allAssetPairs)
+    {
+        if([pair.identity isEqualToString:assetPair])
+        {
+            if([self.assetId isEqualToString:@"BTC"] || [self.assetId isEqualToString:@"ETH"])
+                accuracy=pair.invertedAccuracy.intValue;
+            else
+                accuracy=pair.accuracy.intValue;
+            break;
+        }
+    }
+
+    price=[LWUtils fairVolume:price accuracy:accuracy roundToHigher:YES];
+}
+
+
+//-(void) authManager:(LWAuthManager *) manager didGetAllAssetPairsRate:(LWPacketAllAssetPairsRates *)packet
+//{
+//    [self updatePrice];
+//}
+
+-(void) authManager:(LWAuthManager *)manager didGetOrderBook:(LWPacketOrderBook *)packet
+{
+    
+    buyOrders=packet.buyOrders;
+       
+    if([self.assetId isEqualToString:@"BTC"] || [self.assetId isEqualToString:@"ETH"])
+    {
+        buyOrders=packet.sellOrders;
+        [buyOrders invert];
+    }
     [self updatePrice];
+    
 }
 
 -(void) submitPressed

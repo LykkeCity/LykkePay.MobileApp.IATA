@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LWKYCCameraTopBarElementView.h"
 
 @interface LWKYCCameraTopBarView : UIView
+
+@property (strong, nonatomic) NSDictionary *documentsStatuses;
 
 @end

@@ -185,6 +185,8 @@
 		A1743CC01CEAF97400176F59 /* LWRegisterFullNamePresenter~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1743CBF1CEAF97400176F59 /* LWRegisterFullNamePresenter~ipad.xib */; };
 		A1743CC21CEAFAD200176F59 /* LWRegisterPhonePresenter_ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1743CC11CEAFAD200176F59 /* LWRegisterPhonePresenter_ipad.xib */; };
 		A1743CC41CEB018000176F59 /* LWRegisterPhoneConfirmPresenter~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1743CC31CEB018000176F59 /* LWRegisterPhoneConfirmPresenter~ipad.xib */; };
+		A174C5AB1DAA2E7000FA6408 /* LWPacketOrderBook.m in Sources */ = {isa = PBXBuildFile; fileRef = A174C5AA1DAA2E7000FA6408 /* LWPacketOrderBook.m */; };
+		A174C5AE1DAA318B00FA6408 /* LWOrderBookElementModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A174C5AD1DAA318B00FA6408 /* LWOrderBookElementModel.m */; };
 		A17CF1DC1D41D08400EDBF2E /* LWPrivateWalletsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A17CF1DB1D41D08400EDBF2E /* LWPrivateWalletsManager.m */; };
 		A1827B401D97BB72007127A0 /* LWMigrationInfoPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A1827B3E1D97BB72007127A0 /* LWMigrationInfoPresenter.m */; };
 		A1827B411D97BB72007127A0 /* LWMigrationInfoPresenter.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1827B3F1D97BB72007127A0 /* LWMigrationInfoPresenter.xib */; };
@@ -202,6 +204,7 @@
 		A188DA2B1D716C2700AA6D8A /* LWMyLykkeBuyAssetPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A188DA291D716C2700AA6D8A /* LWMyLykkeBuyAssetPresenter.m */; };
 		A188DA2C1D716C2700AA6D8A /* LWMyLykkeBuyAssetPresenter~iphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = A188DA2A1D716C2700AA6D8A /* LWMyLykkeBuyAssetPresenter~iphone.xib */; };
 		A188DA331D71C05B00AA6D8A /* LWPacketAllAssetPairsRates.m in Sources */ = {isa = PBXBuildFile; fileRef = A188DA321D71C05B00AA6D8A /* LWPacketAllAssetPairsRates.m */; };
+		A189C8001DA8B4E0001EF6BA /* LWKYCImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = A189C7FF1DA8B4E0001EF6BA /* LWKYCImagePickerController.m */; };
 		A18D259E1D65CA22005CEF66 /* LWRestorePasswordWordsPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A18D259C1D65CA22005CEF66 /* LWRestorePasswordWordsPresenter.m */; };
 		A18D259F1D65CA22005CEF66 /* LWRestorePasswordWordsPresenter.xib in Resources */ = {isa = PBXBuildFile; fileRef = A18D259D1D65CA22005CEF66 /* LWRestorePasswordWordsPresenter.xib */; };
 		A18D25A21D6710A6005CEF66 /* LWCommonButton.m in Sources */ = {isa = PBXBuildFile; fileRef = A18D25A11D6710A6005CEF66 /* LWCommonButton.m */; };
@@ -2009,6 +2012,11 @@
 		A1743CBF1CEAF97400176F59 /* LWRegisterFullNamePresenter~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "LWRegisterFullNamePresenter~ipad.xib"; path = "FirstRegistrationStep/LWRegisterFullNamePresenter~ipad.xib"; sourceTree = "<group>"; };
 		A1743CC11CEAFAD200176F59 /* LWRegisterPhonePresenter_ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LWRegisterPhonePresenter_ipad.xib; path = FirstRegistrationStep/LWRegisterPhonePresenter_ipad.xib; sourceTree = "<group>"; };
 		A1743CC31CEB018000176F59 /* LWRegisterPhoneConfirmPresenter~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "LWRegisterPhoneConfirmPresenter~ipad.xib"; path = "FirstRegistrationStep/LWRegisterPhoneConfirmPresenter~ipad.xib"; sourceTree = "<group>"; };
+		A174C5A81DA8EE3500FA6408 /* LWKYCTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWKYCTypes.h; sourceTree = "<group>"; };
+		A174C5A91DAA2E7000FA6408 /* LWPacketOrderBook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWPacketOrderBook.h; sourceTree = "<group>"; };
+		A174C5AA1DAA2E7000FA6408 /* LWPacketOrderBook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWPacketOrderBook.m; sourceTree = "<group>"; };
+		A174C5AC1DAA318B00FA6408 /* LWOrderBookElementModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWOrderBookElementModel.h; sourceTree = "<group>"; };
+		A174C5AD1DAA318B00FA6408 /* LWOrderBookElementModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWOrderBookElementModel.m; sourceTree = "<group>"; };
 		A17CF1DA1D41D08400EDBF2E /* LWPrivateWalletsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LWPrivateWalletsManager.h; path = Wallets/LWPrivateWalletsManager.h; sourceTree = "<group>"; };
 		A17CF1DB1D41D08400EDBF2E /* LWPrivateWalletsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LWPrivateWalletsManager.m; path = Wallets/LWPrivateWalletsManager.m; sourceTree = "<group>"; };
 		A1827B3D1D97BB72007127A0 /* LWMigrationInfoPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LWMigrationInfoPresenter.h; path = Backup/LWMigrationInfoPresenter.h; sourceTree = "<group>"; };
@@ -2035,6 +2043,8 @@
 		A188DA2A1D716C2700AA6D8A /* LWMyLykkeBuyAssetPresenter~iphone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "LWMyLykkeBuyAssetPresenter~iphone.xib"; sourceTree = "<group>"; };
 		A188DA311D71C05B00AA6D8A /* LWPacketAllAssetPairsRates.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWPacketAllAssetPairsRates.h; sourceTree = "<group>"; };
 		A188DA321D71C05B00AA6D8A /* LWPacketAllAssetPairsRates.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWPacketAllAssetPairsRates.m; sourceTree = "<group>"; };
+		A189C7FE1DA8B4E0001EF6BA /* LWKYCImagePickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWKYCImagePickerController.h; sourceTree = "<group>"; };
+		A189C7FF1DA8B4E0001EF6BA /* LWKYCImagePickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWKYCImagePickerController.m; sourceTree = "<group>"; };
 		A18D259B1D65CA22005CEF66 /* LWRestorePasswordWordsPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWRestorePasswordWordsPresenter.h; sourceTree = "<group>"; };
 		A18D259C1D65CA22005CEF66 /* LWRestorePasswordWordsPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWRestorePasswordWordsPresenter.m; sourceTree = "<group>"; };
 		A18D259D1D65CA22005CEF66 /* LWRestorePasswordWordsPresenter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LWRestorePasswordWordsPresenter.xib; sourceTree = "<group>"; };
@@ -5840,6 +5850,8 @@
 				A15AAF7D1D96462800324F97 /* LWPacketWalletMigration.m */,
 				A1833F8F1D9D3FC700567457 /* LWPacketPasswordHashSet.h */,
 				A1833F901D9D3FC700567457 /* LWPacketPasswordHashSet.m */,
+				A174C5A91DAA2E7000FA6408 /* LWPacketOrderBook.h */,
+				A174C5AA1DAA2E7000FA6408 /* LWPacketOrderBook.m */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -5916,6 +5928,9 @@
 				A1C44F531D9BAC380044F8F8 /* LWKYCCameraTopBarElementView.m */,
 				A1C44F5A1D9BC2E50044F8F8 /* LWKYCPhotoContainerView.h */,
 				A1C44F5B1D9BC2E50044F8F8 /* LWKYCPhotoContainerView.m */,
+				A189C7FE1DA8B4E0001EF6BA /* LWKYCImagePickerController.h */,
+				A189C7FF1DA8B4E0001EF6BA /* LWKYCImagePickerController.m */,
+				A174C5A81DA8EE3500FA6408 /* LWKYCTypes.h */,
 			);
 			path = Camera;
 			sourceTree = "<group>";
@@ -6236,6 +6251,8 @@
 				A145158F1D800A2F00B4BED9 /* LWSwiftCredentialsModel.m */,
 				A15AAF7F1D96465300324F97 /* LWWalletMigrationModel.h */,
 				A15AAF801D96465300324F97 /* LWWalletMigrationModel.m */,
+				A174C5AC1DAA318B00FA6408 /* LWOrderBookElementModel.h */,
+				A174C5AD1DAA318B00FA6408 /* LWOrderBookElementModel.m */,
 			);
 			name = Wallets;
 			sourceTree = "<group>";
@@ -8224,6 +8241,7 @@
 				A1F78C8F1D366CA200BCFF03 /* LWWalletsTypeButton.m in Sources */,
 				EC57F4651C3D197900E31746 /* NSString+Utils.m in Sources */,
 				A114948F1D509238000BD347 /* LWResultPresenter.m in Sources */,
+				A174C5AE1DAA318B00FA6408 /* LWOrderBookElementModel.m in Sources */,
 				A114946A1D491097000BD347 /* LWDropdownViewCell.m in Sources */,
 				A1654E481D583702001741A7 /* LWPKTransferConfirmationCellView.m in Sources */,
 				A19A37CF1D92851A00BC4D42 /* LWPacketVoiceCall.m in Sources */,
@@ -8274,6 +8292,7 @@
 				EC9AE0671CAC7A370047DF0D /* QRCodeReaderView.m in Sources */,
 				EC7519C91C3742B800CDDF5B /* LWPacketBaseAssetSet.m in Sources */,
 				A1C44F641D9CD4CA0044F8F8 /* LWBackupNavigationController.m in Sources */,
+				A174C5AB1DAA2E7000FA6408 /* LWPacketOrderBook.m in Sources */,
 				CF66326E1C175DF0004353F5 /* TKContainer.m in Sources */,
 				CFB1E7671C4A59AD002428E0 /* ZExpParser.mm in Sources */,
 				A1AB30681CE4BAE3009AF37B /* LWPacketCurrencyDeposit.m in Sources */,
@@ -8397,6 +8416,7 @@
 				CD10AAAF1C1E14800086634B /* LWPacketRestrictedCountries.m in Sources */,
 				EC51D1961C3054AA00550EF2 /* LWJSONObject.m in Sources */,
 				A17CF1DC1D41D08400EDBF2E /* LWPrivateWalletsManager.m in Sources */,
+				A189C8001DA8B4E0001EF6BA /* LWKYCImagePickerController.m in Sources */,
 				ECD76BCA1C2EBE9C00E1D3DA /* LWPersonalDataPacket.m in Sources */,
 				ECD114551CDD4758002B36C0 /* LWPacketClientFullNameSet.m in Sources */,
 				A14515791D7C77C600B4BED9 /* LWMyLykkeSuccessViewController.m in Sources */,

@@ -25,6 +25,8 @@ SINGLETON_INIT {
         _refreshTimer = [NSNumber numberWithInteger:15];
         _debugMode    = NO;
         self.cachedAssetPairsRates=[[NSMutableDictionary alloc] init];
+        _cachedBuyOrders=[[NSMutableDictionary alloc] init];
+        _cachedSellOrders=[[NSMutableDictionary alloc] init];
         self.showMyLykkeTab=NO;
         
         _smsRetriesLeft=3;

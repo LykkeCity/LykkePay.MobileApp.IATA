@@ -321,6 +321,9 @@ static int const kNumberOfRows = 4;
         
         priceBuyRateString = [LWUtils priceForAsset:self.assetPair forValue:@(priceBuy.doubleValue) withFormat:Localize(@"graph.button.buy")];
 
+        lastPriceLabel.text=priceBuy;
+        fixedPriceOnGraphLabel.text=priceBuy;
+ //       [self.tableView reloadData];
     }
     
     
@@ -431,7 +434,7 @@ static int const kNumberOfRows = 4;
         fixedPriceOnGraphLabel.textColor=GRAPH_RED_COLOR;
     }
     
-    lastPriceLabel.text=[LWUtils formatVolumeNumber:graphData.lastPrice currencySign:@"" accuracy:self.assetPair.accuracy.intValue removeExtraZeroes:YES];
+//    lastPriceLabel.text=[LWUtils formatVolumeNumber:graphData.lastPrice currencySign:@"" accuracy:self.assetPair.accuracy.intValue removeExtraZeroes:YES];
     
     
  //   lastPriceLabel.text=[LWUtils stringFromNumber:graphData.lastPrice];

@@ -69,12 +69,12 @@
         return;
     }
     
-//    NSString *message = [reject objectForKey:kErrorMessage];    //Prevent showing error if connection to server was terminated when app was suspended
-//    NSNumber *code = [reject objectForKey:kErrorCode];
-//    if(!message && !code)
-//        return;
+    NSString *message = [reject objectForKey:kErrorMessage];    //Prevent showing error if connection to server was terminated when app was suspended
+    NSNumber *code = [reject objectForKey:kErrorCode];
+    if(!message && !code)
+        return;
     
-    if ([LWCache instance].debugMode) {
+    if ([LWCache instance].debugMode) {  
         [self showDebugError:reject response:response];
     }
     else {

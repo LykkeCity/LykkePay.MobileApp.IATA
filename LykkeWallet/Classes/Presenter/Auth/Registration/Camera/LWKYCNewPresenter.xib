@@ -5,9 +5,20 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Proxima Nova Regular.otf">
+            <string>ProximaNova-Regular</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LWKYCNewPresenter">
             <connections>
+                <outlet property="actionButton" destination="Ate-zf-VPQ" id="wl9-yl-iFg"/>
+                <outlet property="closeButton" destination="CLd-Mf-fIF" id="qis-2e-jtj"/>
+                <outlet property="nextButton" destination="q11-AR-KM2" id="u8W-0N-skq"/>
+                <outlet property="photoContainerView" destination="3yk-BF-Bfg" id="uOE-xp-r1O"/>
+                <outlet property="titleLabel" destination="9oF-jT-VIF" id="eHu-x3-JmX"/>
+                <outlet property="topBarView" destination="q4P-OV-ens" id="54q-Gd-ZoN"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -28,6 +39,9 @@
                         <constraint firstAttribute="height" constant="25" id="eyA-hR-Maj"/>
                     </constraints>
                     <state key="normal" title="Button" image="KYCCloseIcon"/>
+                    <connections>
+                        <action selector="crossPressed:" destination="-2" eventType="touchUpInside" id="uEd-FA-G5v"/>
+                    </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="REGISTER" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9oF-jT-VIF">
                     <constraints>
@@ -41,8 +55,9 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="17" id="WbT-cR-jQd"/>
                     </constraints>
+                    <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="14"/>
                     <state key="normal" title="NEXT">
-                        <color key="titleColor" red="1" green="0.029134114583333332" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleColor" red="0.6705882352941176" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                 </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q4P-OV-ens" customClass="LWKYCCameraTopBarView">

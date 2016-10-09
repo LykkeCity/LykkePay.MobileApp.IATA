@@ -6,10 +6,9 @@
 //  Copyright © 2016 Lykkex. All rights reserved.
 //
 
-typedef enum {KYCDocumentTypeSelfie, KYCDocumentTypePassport, KYCDocumentTypeAddress} KYCDocumentType;
-typedef enum {KYCDocumentStatusEmpty, KYCDocumentStatusUploaded, KYCDocumentStatusApproved, KYCDocumentStatusRejected} KYCDocumentStatus;
 
 #import <UIKit/UIKit.h>
+#import "LWKYCTypes.h"
 
 @interface LWKYCCameraTopBarElementView : UIView
 

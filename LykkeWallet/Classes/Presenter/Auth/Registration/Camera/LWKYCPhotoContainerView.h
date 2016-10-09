@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
-typedef enum {KYCPhotoContainerModeEmpty, KYCPhotoContainerModeBad, KYCPhotoContainerModePhoto} KYCPhotoContainerMode;
+#import "LWKYCTypes.h"
+//typedef enum {KYCPhotoContainerModeEmpty, KYCPhotoContainerModeBad, KYCPhotoContainerModePhoto} KYCPhotoContainerMode;
 
 @interface LWKYCPhotoContainerView : UIView
 
@@ -16,7 +16,7 @@ typedef enum {KYCPhotoContainerModeEmpty, KYCPhotoContainerModeBad, KYCPhotoCont
 
 @property (strong, nonatomic) NSString *failedDescription;
 
-@property KYCPhotoContainerMode mode;
+@property KYCDocumentStatus status;
 @property (strong, nonatomic) NSString *title;
 
 @end

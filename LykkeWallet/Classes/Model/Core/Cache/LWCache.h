@@ -38,6 +38,8 @@ SINGLETON_DECLARE
 @property int smsDelaySecondsLeft;
 @property int smsRetriesLeft;
 
+@property (strong, nonatomic) NSMutableDictionary *cachedBuyOrders;
+@property (strong, nonatomic) NSMutableDictionary *cachedSellOrders;
 @property (strong, nonatomic) NSMutableDictionary *cachedAssetPairsRates;
 @property (strong, nonatomic) NSDictionary *swiftCredentialsDict;
 @property (strong, nonatomic) NSString *supportPhoneNum;

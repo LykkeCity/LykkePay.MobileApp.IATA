@@ -87,6 +87,8 @@
     }
     else if(myType==BUTTON_TYPE_CLEAR)
     {
+        [self setBackgroundImage:nil forState:UIControlStateNormal];
+        [self setBackgroundImage:nil forState:UIControlStateDisabled];
         buttonEnabledAttributes=@{NSKernAttributeName:@(1), NSFontAttributeName:[UIFont fontWithName:@"ProximaNova-Semibold" size:15], NSForegroundColorAttributeName:[UIColor colorWithRed:63.0/255 green:77.0/255 blue:96.0/255 alpha:1]};
 
     }

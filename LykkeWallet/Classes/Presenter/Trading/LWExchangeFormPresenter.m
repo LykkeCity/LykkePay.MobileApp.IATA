@@ -264,9 +264,14 @@ static NSString *const DescriptionIdentifiers[kDescriptionRows] = {
     
 //    NSDictionary *attributes = @{NSKernAttributeName:@(1), NSFontAttributeName:self.buyButton.titleLabel.font, NSForegroundColorAttributeName:rate==nil?self.buyButton.currentTitleColor:[UIColor whiteColor]};
 
-    NSDictionary *attributesBuy = @{NSKernAttributeName:@(1), NSFontAttributeName:self.buyButton.titleLabel.font, NSForegroundColorAttributeName:rate==nil?self.buyButton.currentTitleColor:[UIColor whiteColor]};
+//    NSDictionary *attributesBuy = @{NSKernAttributeName:@(1), NSFontAttributeName:self.buyButton.titleLabel.font, NSForegroundColorAttributeName:rate==nil?self.buyButton.currentTitleColor:[UIColor whiteColor]};
+//
+//    NSDictionary *attributesSell=@{NSKernAttributeName:@(1), NSFontAttributeName:self.sellButton.titleLabel.font, NSForegroundColorAttributeName:rate==nil?self.sellButton.currentTitleColor:[UIColor whiteColor]};
+    
+        NSDictionary *attributesBuy = @{NSFontAttributeName:self.buyButton.titleLabel.font, NSForegroundColorAttributeName:rate==nil?self.buyButton.currentTitleColor:[UIColor whiteColor]};
+    
+        NSDictionary *attributesSell=@{NSFontAttributeName:self.sellButton.titleLabel.font, NSForegroundColorAttributeName:rate==nil?self.sellButton.currentTitleColor:[UIColor whiteColor]};
 
-    NSDictionary *attributesSell=@{NSKernAttributeName:@(1), NSFontAttributeName:self.sellButton.titleLabel.font, NSForegroundColorAttributeName:rate==nil?self.sellButton.currentTitleColor:[UIColor whiteColor]};
     
     [self.buyButton setAttributedTitle:[[NSAttributedString alloc] initWithString:priceBuyRateString attributes:attributesBuy] forState:UIControlStateNormal];
     [self.sellButton setAttributedTitle:[[NSAttributedString alloc] initWithString:priceSellRateString attributes:attributesSell] forState:UIControlStateNormal];
