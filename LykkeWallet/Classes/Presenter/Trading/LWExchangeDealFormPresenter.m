@@ -348,32 +348,22 @@ static NSString *const FormIdentifiers[kFormRows] = {
 - (void)mathKeyboardView:(LWMathKeyboardView *) view volumeStringChangedTo:(NSString *) string
 {
     double price;
-//    if (self.assetDealType == LWAssetDealTypeBuy) {
-////        price=self.assetRate.ask.doubleValue;
-//        price=buyOrders pric
-//    }
-//    else {
-//        price=self.assetRate.bid.doubleValue;
-//    }
-//    if(price==0)
-//        return;
+
+    LWOrderBookElementModel *model;
+    if (self.assetDealType == LWAssetDealTypeBuy) {
+        model=buyOrders;
+    }
+    else {
+        model=sellOrders;
+    }
+
 
     if(view.targetTextField==sumTextField)
     {
-        if (self.assetDealType == LWAssetDealTypeBuy) {
-            //        price=self.assetRate.ask.doubleValue;
-            price=[buyOrders priceForVolume:string.doubleValue];
-        }
-        else {
-//            price=self.assetRate.bid.doubleValue;
-            price=[sellOrders priceForVolume:string.doubleValue];
-        }
-//        if(price==0)
-//            return;
-
         
- //       if(string.doubleValue>=10000000000 || price*string.doubleValue>=10000000000)
-        if(price==0)
+        price=[model priceForVolume:string.doubleValue];
+
+        if(string.doubleValue>=10000000000 || price*string.doubleValue>=10000000000)
         {
             [view setText:volumeString];
             return;
@@ -385,19 +375,10 @@ static NSString *const FormIdentifiers[kFormRows] = {
     }
     else
     {
-        if (self.assetDealType == LWAssetDealTypeBuy) {
-            //        price=self.assetRate.ask.doubleValue;
-            price=[buyOrders priceForResult:string.doubleValue];
-        }
-        else {
-            //            price=self.assetRate.bid.doubleValue;
-            price=[sellOrders priceForResult:string.doubleValue];
-        }
-//        if(price==0)
-//            return;
+        
+        price=[model priceForResult:string.doubleValue];
 
-//        if(string.doubleValue>=10000000000 || string.doubleValue/price>=10000000000)
-        if(price==0)
+        if(string.doubleValue>=10000000000 || string.doubleValue/price>=10000000000)
         {
             [view setText:resultString];
             return;
@@ -811,14 +792,14 @@ static NSString *const FormIdentifiers[kFormRows] = {
     }
     if(self.assetDealType==LWAssetDealTypeBuy)
     {
-        if(resultString.doubleValue>balanceOfAccount.doubleValue || (resultString.doubleValue==0 || volumeString.doubleValue==0))
+        if(resultString.doubleValue>balanceOfAccount.doubleValue || (resultString.doubleValue==0 || volumeString.doubleValue==0) || [buyOrders isVolumeOK:volumeString.doubleValue]==NO)
             [LWValidator setButton:self.buyButton enabled:NO];
         else if(volumeString.doubleValue>0)
             [LWValidator setButton:self.buyButton enabled:YES];
     }
     else
     {
-        if(volumeString.doubleValue>balanceOfAccount.doubleValue || (resultString.doubleValue==0 || volumeString.doubleValue==0))
+        if(volumeString.doubleValue>balanceOfAccount.doubleValue || (resultString.doubleValue==0 || volumeString.doubleValue==0) || [sellOrders isVolumeOK:volumeString.doubleValue]==NO)
             [LWValidator setButton:self.buyButton enabled:NO];
         else if(volumeString.doubleValue>0)
             [LWValidator setButton:self.buyButton enabled:YES];

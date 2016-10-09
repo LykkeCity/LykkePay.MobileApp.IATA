@@ -65,7 +65,7 @@
         }
     }
     if(volumeLeft>0)
-        return 0;
+        return amount/(volumeOrig-volumeLeft);
     
     
     return amount/volumeOrig;
@@ -96,13 +96,32 @@
             break;
         }
     }
-    if(amount<volumeOrig)
-        return 0;
+//    if(amount<volumeOrig)
+//        return ;
     
     
     return amount/lkkBought;
     
 }
+
+-(BOOL) isVolumeOK:(double) volume
+{
+    double amount=0;
+    for(NSDictionary *d in array)
+        amount+=[d[@"Volume"] doubleValue];
+    return volume<=amount;
+}
+
+
+-(BOOL) isResultOK:(double) result
+{
+    double amount=0;
+    for(NSDictionary *d in array)
+        amount+=[d[@"Volume"] doubleValue]*[d[@"Price"] doubleValue];
+    return result<=amount;
+
+}
+
 
 -(LWOrderBookElementModel *) copy
 {

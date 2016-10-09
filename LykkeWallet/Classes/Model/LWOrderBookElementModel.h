@@ -14,6 +14,10 @@
 -(id) initWithArray:(NSArray *) array;
 -(double) priceForVolume:(double) volume;
 -(double) priceForResult:(double)volumeOrig;
+
+-(BOOL) isVolumeOK:(double) volume;
+-(BOOL) isResultOK:(double) result;
+
 -(void) invert;
 
 @end

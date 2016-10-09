@@ -215,7 +215,7 @@
     {
         NSString *string=[self removePrefix:keyboard.textField.text];
         double equity=string.doubleValue/12500000.0;
-        if(equity>99.999 || [buyOrders priceForVolume:string.doubleValue]==0)
+        if(equity>99.999)
         {
             _lkkTextField.text=[_lkkTextField.text substringToIndex:_lkkTextField.text.length-1];
             return;
@@ -232,7 +232,7 @@
         [self calcLKK];
         NSString *string=[self removePrefix:_lkkTextField.text];
         double equity=string.doubleValue/12500000.0;
-        if(equity>99.999 || [buyOrders priceForResult:string.doubleValue]==0)
+        if(equity>99.999)
         {
             _btcTextField.text=prevBtc;
             _lkkTextField.text=currentLkk;
@@ -248,7 +248,7 @@
     
     [self updatePrice];
     
-    if([[self removePrefix:_btcTextField.text] doubleValue]>0)
+    if([[self removePrefix:_btcTextField.text] doubleValue]>0 && [buyOrders isResultOK:[[self removePrefix:_btcTextField.text] doubleValue]])
         _submitButton.enabled=YES;
     else
         _submitButton.enabled=NO;

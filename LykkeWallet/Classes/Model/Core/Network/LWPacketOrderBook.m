@@ -18,6 +18,18 @@
     if (self.isRejected) {
         return;
     }
+    double amount=0;
+     for(NSDictionary *ddd in result[@"BuyOrders"]) //Testing
+     {
+         amount+=[ddd[@"Volume"] doubleValue];
+     }
+    
+    amount=0;
+    for(NSDictionary *ddd in result[@"SellOrders"]) //Testing
+    {
+        amount+=[ddd[@"Volume"] doubleValue];
+    }
+
     
     _sellOrders=[[LWOrderBookElementModel alloc] initWithArray:result[@"BuyOrders"]];  //These orders are from robot. If robot buys then client sells
     _buyOrders=[[LWOrderBookElementModel alloc] initWithArray:result[@"SellOrders"]];
