@@ -19,6 +19,12 @@
 
 @implementation LWWalletsTypeButton
 
+-(void) awakeFromNib
+{
+    [super awakeFromNib];
+    self.frame=CGRectMake(0, 0, 99, 30);
+}
+
 -(id) initWithTitle:(NSString *) title
 {
     self=[super initWithFrame:CGRectMake(0, 0, 99, 30)];

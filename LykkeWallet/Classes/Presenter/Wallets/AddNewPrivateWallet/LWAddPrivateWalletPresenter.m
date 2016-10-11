@@ -517,20 +517,20 @@
         [self setLoading:NO];
         if(success)
         {
-            [[LWKeychainManager instance] savePrivateKey:wallet.privateKey forWalletAddress:wallet.address];
-            
-            LWBackupMessageView *view=[[NSBundle mainBundle] loadNibNamed:@"LWBackupMessageView" owner:self options:nil][0];
-            UIWindow *window=[[UIApplication sharedApplication] keyWindow];
-            view.center=CGPointMake(window.bounds.size.width/2, window.bounds.size.height/2);
-            
-            [window addSubview:view];
-            
-            [view showWithCompletion:^(BOOL result){
-                if(result)
-                {
-                    [self backupButtonPressed];
-                }
-            }];
+//            [[LWKeychainManager instance] savePrivateKey:wallet.privateKey forWalletAddress:wallet.address];
+//            
+//            LWBackupMessageView *view=[[NSBundle mainBundle] loadNibNamed:@"LWBackupMessageView" owner:self options:nil][0];
+//            UIWindow *window=[[UIApplication sharedApplication] keyWindow];
+//            view.center=CGPointMake(window.bounds.size.width/2, window.bounds.size.height/2);
+//            
+//            [window addSubview:view];
+//            
+//            [view showWithCompletion:^(BOOL result){
+//                if(result)
+//                {
+//                    [self backupButtonPressed];
+//                }
+//            }];
 
         }
     }];

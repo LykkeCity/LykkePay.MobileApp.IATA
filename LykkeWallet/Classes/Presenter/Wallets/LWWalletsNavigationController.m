@@ -14,6 +14,8 @@
 #import "LWAddPrivateWalletPresenter.h"
 #import "LWCreateEditPrivateWalletPresenter.h"
 #import "LWAuthNavigationController.h"
+#import "LWBackupNotificationView.h"
+#import "LWPrivateKeyManager.h"
 
 @interface LWWalletsNavigationController () <LWWalletsNavigationBarDelegate>
 {
@@ -105,6 +107,16 @@
 
 -(void) addNewWalletPressed
 {
+    if([[LWPrivateKeyManager shared] privateKeyWords]==nil)
+    {
+        LWBackupNotificationView *view = [[[NSBundle mainBundle] loadNibNamed:@"LWBackupNotificationView" owner:self options:nil] objectAtIndex:0];
+        view.type=BackupRequestTypeRequired;
+        view.text=@"Please make a backup of your private key to be able to create a new private wallet.";
+        [view show];
+        return;
+    }
+    
+    
     LWCreateEditPrivateWalletPresenter *presenter=[[LWCreateEditPrivateWalletPresenter alloc] init];
     [self.navigationController pushViewController:presenter animated:YES];
 }

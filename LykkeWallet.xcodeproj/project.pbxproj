@@ -109,6 +109,8 @@
 		A135977C1D6360A70021228E /* LWCreateEditPrivateWalletPresenter.xib in Resources */ = {isa = PBXBuildFile; fileRef = A135977A1D6360A70021228E /* LWCreateEditPrivateWalletPresenter.xib */; };
 		A1369BA31D90E9F5003CAC09 /* LWRequestCallMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A1369BA11D90E9F5003CAC09 /* LWRequestCallMessageView.m */; };
 		A1369BA41D90E9F5003CAC09 /* LWRequestCallMessageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1369BA21D90E9F5003CAC09 /* LWRequestCallMessageView.xib */; };
+		A13C31E01DACD3A40042F325 /* LWBackupSuccessPresenter~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A13C31DF1DACD3A40042F325 /* LWBackupSuccessPresenter~ipad.xib */; };
+		A13C31E21DACD5AB0042F325 /* LWPINPresenter_ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A13C31E11DACD5AB0042F325 /* LWPINPresenter_ipad.xib */; };
 		A14515631D793E5200B4BED9 /* LWPrivateWalletsPresenter.xib in Resources */ = {isa = PBXBuildFile; fileRef = A14515621D793E5200B4BED9 /* LWPrivateWalletsPresenter.xib */; };
 		A14515651D79B18C00B4BED9 /* LWMyLykkePresenter_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A14515641D79B18C00B4BED9 /* LWMyLykkePresenter_iPad.xib */; };
 		A14515691D7A89CB00B4BED9 /* LWMyLykkeIpadController.m in Sources */ = {isa = PBXBuildFile; fileRef = A14515671D7A89CB00B4BED9 /* LWMyLykkeIpadController.m */; };
@@ -1106,7 +1108,7 @@
 		A1D65DCF1D5ECF6E00828783 /* LWBackupCheckWordsPresenter.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1D65DCD1D5ECF6E00828783 /* LWBackupCheckWordsPresenter.xib */; };
 		A1D65DD21D602B0100828783 /* english_words_list.txt in Resources */ = {isa = PBXBuildFile; fileRef = A1D65DD11D602B0100828783 /* english_words_list.txt */; };
 		A1D65DD51D6073BA00828783 /* LWBackupSuccessPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A1D65DD41D6073BA00828783 /* LWBackupSuccessPresenter.m */; };
-		A1D65DD71D60741100828783 /* LWBackupSuccessPresenter.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1D65DD61D60741100828783 /* LWBackupSuccessPresenter.xib */; };
+		A1D65DD71D60741100828783 /* LWBackupSuccessPresenter~iphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1D65DD61D60741100828783 /* LWBackupSuccessPresenter~iphone.xib */; };
 		A1E4EA931CE424D800293282 /* LWPacketGraphPeriods.m in Sources */ = {isa = PBXBuildFile; fileRef = A1E4EA921CE424D800293282 /* LWPacketGraphPeriods.m */; };
 		A1E4EA971CE4283100293282 /* LWGraphPeriodModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A1E4EA961CE4283100293282 /* LWGraphPeriodModel.m */; };
 		A1E4EA9A1CE42D5800293282 /* LWPacketGraphData.m in Sources */ = {isa = PBXBuildFile; fileRef = A1E4EA991CE42D5800293282 /* LWPacketGraphData.m */; };
@@ -1883,6 +1885,8 @@
 		A1369BA01D90E9F5003CAC09 /* LWRequestCallMessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWRequestCallMessageView.h; sourceTree = "<group>"; };
 		A1369BA11D90E9F5003CAC09 /* LWRequestCallMessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWRequestCallMessageView.m; sourceTree = "<group>"; };
 		A1369BA21D90E9F5003CAC09 /* LWRequestCallMessageView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LWRequestCallMessageView.xib; sourceTree = "<group>"; };
+		A13C31DF1DACD3A40042F325 /* LWBackupSuccessPresenter~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "LWBackupSuccessPresenter~ipad.xib"; path = "Backup/LWBackupSuccessPresenter~ipad.xib"; sourceTree = "<group>"; };
+		A13C31E11DACD5AB0042F325 /* LWPINPresenter_ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LWPINPresenter_ipad.xib; sourceTree = "<group>"; };
 		A14515621D793E5200B4BED9 /* LWPrivateWalletsPresenter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LWPrivateWalletsPresenter.xib; sourceTree = "<group>"; };
 		A14515641D79B18C00B4BED9 /* LWMyLykkePresenter_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LWMyLykkePresenter_iPad.xib; sourceTree = "<group>"; };
 		A14515661D7A89CB00B4BED9 /* LWMyLykkeIpadController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWMyLykkeIpadController.h; sourceTree = "<group>"; };
@@ -3105,7 +3109,7 @@
 		A1D65DD11D602B0100828783 /* english_words_list.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = english_words_list.txt; sourceTree = "<group>"; };
 		A1D65DD31D6073BA00828783 /* LWBackupSuccessPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LWBackupSuccessPresenter.h; path = Backup/LWBackupSuccessPresenter.h; sourceTree = "<group>"; };
 		A1D65DD41D6073BA00828783 /* LWBackupSuccessPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LWBackupSuccessPresenter.m; path = Backup/LWBackupSuccessPresenter.m; sourceTree = "<group>"; };
-		A1D65DD61D60741100828783 /* LWBackupSuccessPresenter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LWBackupSuccessPresenter.xib; path = Backup/LWBackupSuccessPresenter.xib; sourceTree = "<group>"; };
+		A1D65DD61D60741100828783 /* LWBackupSuccessPresenter~iphone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "LWBackupSuccessPresenter~iphone.xib"; path = "Backup/LWBackupSuccessPresenter~iphone.xib"; sourceTree = "<group>"; };
 		A1E4EA911CE424D800293282 /* LWPacketGraphPeriods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWPacketGraphPeriods.h; sourceTree = "<group>"; };
 		A1E4EA921CE424D800293282 /* LWPacketGraphPeriods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWPacketGraphPeriods.m; sourceTree = "<group>"; };
 		A1E4EA951CE4283100293282 /* LWGraphPeriodModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWGraphPeriodModel.h; sourceTree = "<group>"; };
@@ -4041,6 +4045,7 @@
 				A18D25AD1D688DAB005CEF66 /* LWPINPresenter.h */,
 				A18D25AE1D688DAB005CEF66 /* LWPINPresenter.m */,
 				A18D25AF1D688DAB005CEF66 /* LWPINPresenter.xib */,
+				A13C31E11DACD5AB0042F325 /* LWPINPresenter_ipad.xib */,
 				A14515C21D87B28400B4BED9 /* LWPINPresenter_iphone5.xib */,
 				A18D25B21D689A77005CEF66 /* LWPINButtonView.h */,
 				A18D25B31D689A77005CEF66 /* LWPINButtonView.m */,
@@ -5011,7 +5016,8 @@
 				A1D65DCD1D5ECF6E00828783 /* LWBackupCheckWordsPresenter.xib */,
 				A1D65DD31D6073BA00828783 /* LWBackupSuccessPresenter.h */,
 				A1D65DD41D6073BA00828783 /* LWBackupSuccessPresenter.m */,
-				A1D65DD61D60741100828783 /* LWBackupSuccessPresenter.xib */,
+				A1D65DD61D60741100828783 /* LWBackupSuccessPresenter~iphone.xib */,
+				A13C31DF1DACD3A40042F325 /* LWBackupSuccessPresenter~ipad.xib */,
 				A1A7D34F1D62393A00026576 /* LWTestBackupWordsPresenter.h */,
 				A1A7D3501D62393A00026576 /* LWTestBackupWordsPresenter.m */,
 				A1A7D3511D62393A00026576 /* LWTestBackupWordsPresenter.xib */,
@@ -7250,6 +7256,7 @@
 				A1BCD28F1D012D3C00CF42E4 /* 5-onboard-2x_00041.png in Resources */,
 				A1BCD22A1D012D3C00CF42E4 /* 4-withdraw-2x_00059.png in Resources */,
 				A1BCD2261D012D3C00CF42E4 /* 4-withdraw-2x_00055.png in Resources */,
+				A13C31E01DACD3A40042F325 /* LWBackupSuccessPresenter~ipad.xib in Resources */,
 				A1BCD1341D012D3C00CF42E4 /* 2-trade-2x_00052.png in Resources */,
 				A14515871D7EFA7000B4BED9 /* lykke_logo.png in Resources */,
 				A14515961D80470E00B4BED9 /* LWEtheriumDepositPresenter.xib in Resources */,
@@ -7608,7 +7615,7 @@
 				A1BCD12B1D012D3C00CF42E4 /* 2-trade-2x_00043.png in Resources */,
 				A1BCD0911D012D3C00CF42E4 /* 1-deposit-2x_00009.png in Resources */,
 				A1D4774D1D050B9900438846 /* loader-color@2x_00029.png in Resources */,
-				A1D65DD71D60741100828783 /* LWBackupSuccessPresenter.xib in Resources */,
+				A1D65DD71D60741100828783 /* LWBackupSuccessPresenter~iphone.xib in Resources */,
 				A1BCD1E11D012D3C00CF42E4 /* 3-settle-2x_00106.png in Resources */,
 				A1BCD0A11D012D3C00CF42E4 /* 1-deposit-2x_00025.png in Resources */,
 				A1D477431D050B9900438846 /* loader-color@2x_00019.png in Resources */,
@@ -7744,6 +7751,7 @@
 				A1BCD08B1D012D3C00CF42E4 /* 1-deposit-2x_00003.png in Resources */,
 				A1BCD2531D012D3C00CF42E4 /* 4-withdraw-2x_00100.png in Resources */,
 				A1D65D9B1D5DCF1100828783 /* crypto_bar_00087.png in Resources */,
+				A13C31E21DACD5AB0042F325 /* LWPINPresenter_ipad.xib in Resources */,
 				A1BCD0951D012D3C00CF42E4 /* 1-deposit-2x_00013.png in Resources */,
 				A1D65DB81D5DCF1100828783 /* crypto_bar_00116.png in Resources */,
 				A1369BA41D90E9F5003CAC09 /* LWRequestCallMessageView.xib in Resources */,
@@ -8968,7 +8976,7 @@
 					"$(PROJECT_DIR)/LykkeWallet/Classes/Model/Core/Security",
 					"$(PROJECT_DIR)/LykkeWallet/Classes/Model/Core/CoreBitcoin",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.lykkex.Lykke-Wallet-test";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.lykkex.Lykke-Wallet";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "96eb2237-97fb-4c42-8f0a-01c59c31ce30";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -9000,7 +9008,7 @@
 					"$(PROJECT_DIR)/LykkeWallet/Classes/Model/Core/Security",
 					"$(PROJECT_DIR)/LykkeWallet/Classes/Model/Core/CoreBitcoin",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.lykkex.Lykke-Wallet-test";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.lykkex.Lykke-Wallet";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "739d1803-3e6a-45f6-a16e-304ce210d1a9";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -9082,7 +9090,7 @@
 					"$(PROJECT_DIR)/LykkeWallet/Classes/Model/Core/Security",
 					"$(PROJECT_DIR)/LykkeWallet/Classes/Model/Core/CoreBitcoin",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.lykkex.Lykke-Wallet-test";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.lykkex.Lykke-Wallet";
 				PRODUCT_NAME = "$(TARGET_NAME).Test";
 				PROVISIONING_PROFILE = "d31a3b1a-86ee-4c63-b9c3-c5d76a81bcb5";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -9158,7 +9166,7 @@
 					"$(PROJECT_DIR)/LykkeWallet/Classes/Model/Core/Security",
 					"$(PROJECT_DIR)/LykkeWallet/Classes/Model/Core/CoreBitcoin",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.lykkex.Lykke-Wallet-test";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.lykkex.Lykke-Wallet";
 				PRODUCT_NAME = "$(TARGET_NAME).Test";
 				PROVISIONING_PROFILE = "bbdaf056-de2a-4164-9ce4-87ca11a1a1cb";
 				TARGETED_DEVICE_FAMILY = "1,2";

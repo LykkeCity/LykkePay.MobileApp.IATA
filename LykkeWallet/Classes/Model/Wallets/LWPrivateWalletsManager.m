@@ -128,7 +128,10 @@
 
 -(void) addNewWallet:(LWPrivateWalletModel *) wallet   withCompletion:(void (^)(BOOL))completion
 {
-    NSMutableURLRequest *request=[self createRequestWithAPI:@"PrivateWallet" httpMethod:@"POST" getParameters:nil postParameters:@{@"Address":wallet.address, @"Name":wallet.name, @"EncodedPrivateKey":wallet.encryptedKey}];
+    NSMutableDictionary *params=[@{@"Address":wallet.address, @"Name":wallet.name} mutableCopy];
+    if(wallet.encryptedKey)
+        params[@"EncodedPrivateKey"]=wallet.encryptedKey;
+    NSMutableURLRequest *request=[self createRequestWithAPI:@"PrivateWallet" httpMethod:@"POST" getParameters:nil postParameters:params];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
         NSDictionary *dict=[self sendRequest:request];
@@ -149,7 +152,7 @@
 
 -(void) updateWallet:(LWPrivateWalletModel *) wallet   withCompletion:(void (^)(BOOL))completion
 {
-    NSMutableURLRequest *request=[self createRequestWithAPI:@"PrivateWallet" httpMethod:@"PUT" getParameters:nil postParameters:@{@"Address":wallet.address, @"Name":wallet.name, @"EncodedPrivateKey":wallet.encryptedKey}];
+    NSMutableURLRequest *request=[self createRequestWithAPI:@"PrivateWallet" httpMethod:@"PUT" getParameters:nil postParameters:@{@"Address":wallet.address, @"Name":wallet.name}];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
         NSDictionary *dict=[self sendRequest:request];

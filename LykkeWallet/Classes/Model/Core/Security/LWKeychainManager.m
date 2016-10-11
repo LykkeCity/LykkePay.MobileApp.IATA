@@ -136,22 +136,22 @@ SINGLETON_INIT {
     return [valet stringForKey:email];
 }
 
--(void) savePrivateKey:(NSString *)privateKey forWalletAddress:(NSString *)address
-{
-    NSData *data=[valet objectForKey:kKeychainManagerUserPrivateWalletsAddresses];
-    NSMutableArray *wallets;// = [[NSKeyedUnarchiver unarchiveObjectWithData:data] mutableCopy];
-    if(data)
-        wallets=[[NSKeyedUnarchiver unarchiveObjectWithData:data] mutableCopy];
-    else
-        wallets=[[NSMutableArray alloc] init];
-    if([wallets containsObject:address]==NO)
-    {
-        [wallets addObject:address];
-        data = [NSKeyedArchiver archivedDataWithRootObject:wallets];
-        [valet setObject:data forKey:kKeychainManagerUserPrivateWalletsAddresses];
-    }
-    [valet setString:privateKey forKey:address];
-}
+//-(void) savePrivateKey:(NSString *)privateKey forWalletAddress:(NSString *)address
+//{
+//    NSData *data=[valet objectForKey:kKeychainManagerUserPrivateWalletsAddresses];
+//    NSMutableArray *wallets;// = [[NSKeyedUnarchiver unarchiveObjectWithData:data] mutableCopy];
+//    if(data)
+//        wallets=[[NSKeyedUnarchiver unarchiveObjectWithData:data] mutableCopy];
+//    else
+//        wallets=[[NSMutableArray alloc] init];
+//    if([wallets containsObject:address]==NO)
+//    {
+//        [wallets addObject:address];
+//        data = [NSKeyedArchiver archivedDataWithRootObject:wallets];
+//        [valet setObject:data forKey:kKeychainManagerUserPrivateWalletsAddresses];
+//    }
+//    [valet setString:privateKey forKey:address];
+//}
 
 -(void) savePIN:(NSString *) pin
 {
@@ -190,10 +190,10 @@ SINGLETON_INIT {
     return [valet stringForKey:[self login]];
 }
 
--(NSString *) privateKeyForWalletAddress:(NSString *) address
-{
-    return [valet stringForKey:address];
-}
+//-(NSString *) privateKeyForWalletAddress:(NSString *) address
+//{
+//    return [valet stringForKey:address];
+//}
 
 
 

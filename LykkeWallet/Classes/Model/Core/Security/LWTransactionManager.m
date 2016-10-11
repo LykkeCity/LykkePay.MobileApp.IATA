@@ -79,8 +79,8 @@
 {
     
     BTCTransaction *transaction=[[BTCTransaction alloc] initWithHex:rawString];
-//    BTCKey *key=[[BTCKey alloc] initWithWIF:@"cNTXye9kVVnKegjkngGm6DPauM7NACNJd3K93SgeucMCemuRANux"];//cNj3wXLNcr5fMtWcqaFgLGBBi9qiEGKYrwr2dcP2QnNSrugxiJEL
      BTCKey *key=[[BTCKey alloc] initWithWIF:model.sourceWallet.privateKey];
+//    key=[[BTCKey alloc] initWithWIF:@"cPTyHRvgMLwgiPZqrZidF5G4u5wuNREw6t3yNdQFtByPQ3b5R5hm"];//cNj3wXLNcr5fMtWcqaFgLGBBi9qiEGKYrwr2dcP2QnNSrugxiJEL
     NSMutableArray *newInputs=[[NSMutableArray alloc] init];
     for(BTCTransactionInput *input in transaction.inputs)
     {

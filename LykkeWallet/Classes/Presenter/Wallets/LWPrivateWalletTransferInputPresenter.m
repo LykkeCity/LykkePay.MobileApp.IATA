@@ -27,6 +27,8 @@
 #import "LWAssetModel.h"
 #import "LWUtils.h"
 #import "LWAuthNavigationController.h"
+#import "LWPINPresenter.h"
+#import "LWKeychainManager.h"
 
 
 @interface LWPrivateWalletTransferInputPresenter () <LWMathKeyboardViewDelegate, UITextFieldDelegate, LWSettingsConfirmationPresenter, LWResultPresenterDelegate>
@@ -199,10 +201,25 @@
 #pragma mark - LWRadioTableViewCellDelegate
 
 - (void) signPressed {
-    LWSettingsConfirmationPresenter *validator = [LWSettingsConfirmationPresenter new];
-    validator.delegate = self;
+//    LWSettingsConfirmationPresenter *validator = [LWSettingsConfirmationPresenter new];
+//    validator.delegate = self;
     
-    [self.navigationController pushViewController:validator animated:YES];
+    
+    LWPINPresenter *pin=[LWPINPresenter new];
+    pin.successBlock=^{
+        [self operationConfirmed:nil];
+//        [self.navigationController popViewControllerAnimated:YES];
+        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+    };
+    pin.pinType=PIN_TYPE_CHECK;
+    pin.checkBlock = ^BOOL(NSString *pin_) {
+        
+        return [pin_ isEqualToString:[[LWKeychainManager instance] pin]];
+        
+    };
+
+    
+    [self.navigationController presentViewController:pin animated:YES completion:nil];
 }
 
 

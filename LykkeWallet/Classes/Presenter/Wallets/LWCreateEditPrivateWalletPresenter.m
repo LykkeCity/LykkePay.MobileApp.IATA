@@ -45,6 +45,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *keyCopyButton;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
+@property (weak, nonatomic) IBOutlet UIView *privateKeyContainerView;
+
 @property (weak, nonatomic) IBOutlet UILabel *addressTitleLabel;
 
 @property (strong, nonatomic) NSLayoutConstraint *keyPasteWidthConstraint;
@@ -57,6 +59,7 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *walletNameTopConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *scrollViewBottomConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *lineViewHeightConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *privateKeyContainerHeightConstraint;
 
 
 @end
@@ -93,6 +96,13 @@
     {
         self.scanQRView.hidden=YES;
         self.scanQRHeightConstraint.constant=25;
+        
+        if(_wallet.isExternalWallet==NO)
+        {
+            _privateKeyContainerView.hidden=YES;
+            _privateKeyContainerHeightConstraint.constant=0;
+            _scanQRHeightConstraint.constant=15;
+        }
 //        self.modeButtonsContainer.hidden=YES;
 //        self.walletNameTopConstraint.constant=20;
         
@@ -231,7 +241,9 @@
         self.privateKeyTextField.userInteractionEnabled=NO;
         
         self.scanQRView.hidden=YES;
-        self.scanQRHeightConstraint.constant=20;
+        self.scanQRHeightConstraint.constant=10;
+        _privateKeyContainerView.hidden=YES;
+        _privateKeyContainerHeightConstraint.constant=0;
         self.keyPasteWidthConstraint.active=YES;
         
         NSString *sss=self.addressLabel.text;
@@ -248,6 +260,10 @@
         self.privateKeyTextField.userInteractionEnabled=YES;
         self.scanQRView.hidden=NO;
         self.scanQRHeightConstraint.constant=54;
+        
+        _privateKeyContainerView.hidden=NO;
+        _privateKeyContainerHeightConstraint.constant=45;
+        
         self.keyPasteWidthConstraint.active=NO;
         createUpdateButtonTitle=@"ADD WALLET";
 
@@ -299,6 +315,7 @@
     NSString *string = pasteboard.string;
     self.privateKeyTextField.text=string;
     [self validatePrivateKeyField];
+    [self validateCreateUpdateButton];
 }
 
 -(void) validatePrivateKeyField
@@ -406,17 +423,17 @@
             return NO;
     }
     
-    if(textField==self.walletNameTextField)
-        string=string.uppercaseString;
-        
+//    if(textField==self.walletNameTextField)
+//        string=string.uppercaseString;
+    
         
     textField.text=[textField.text stringByReplacingCharactersInRange:range withString:string];
     if(textField==self.privateKeyTextField)
         [self validatePrivateKeyField];
-    else if(textField==self.walletNameTextField)
-    {
+//    else if(textField==self.walletNameTextField)
+//    {
         [self validateCreateUpdateButton];
-    }
+//    }
     return NO;
 }
 
@@ -583,12 +600,18 @@
         wallet.address=self.addressLabel.text;
         wallet.privateKey=self.privateKeyTextField.text;
         wallet.name=self.walletNameTextField.text;
-        wallet.encryptedKey=[[LWPrivateKeyManager shared] encryptKey:wallet.privateKey password:[LWKeychainManager instance].password];
+        
+        if(_walletExistingButton.selected)
+        {
+            wallet.isExternalWallet=YES;
+            wallet.encryptedKey=[[LWPrivateKeyManager shared] encryptExternalWalletKey:wallet.privateKey];
+        }
+//        wallet.encryptedKey=[[LWPrivateKeyManager shared] encryptKey:wallet.privateKey password:[LWKeychainManager instance].password];
         [[LWPrivateWalletsManager shared] addNewWallet:wallet withCompletion:^(BOOL success){
             [self setLoading:NO];
             if(success)
             {
-                [[LWKeychainManager instance] savePrivateKey:wallet.privateKey forWalletAddress:wallet.address];
+//                [[LWKeychainManager instance] savePrivateKey:wallet.privateKey forWalletAddress:wallet.address];
                 
                 [self.navigationController popViewControllerAnimated:YES];
             }
@@ -597,8 +620,8 @@
     else
     {
         self.wallet.name=self.walletNameTextField.text;
-        if(!self.wallet.encryptedKey)
-            self.wallet.encryptedKey=[[LWPrivateKeyManager shared] encryptKey:_wallet.privateKey password:[LWKeychainManager instance].password];
+//        if(!self.wallet.encryptedKey)
+//            self.wallet.encryptedKey=[[LWPrivateKeyManager shared] encryptKey:_wallet.privateKey password:[LWKeychainManager instance].password];
         [[LWPrivateWalletsManager shared] updateWallet:self.wallet withCompletion:^(BOOL success){
             [self setLoading:NO];
             if(success)

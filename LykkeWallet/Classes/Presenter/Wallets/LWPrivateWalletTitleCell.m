@@ -47,7 +47,7 @@
     NSDictionary *attributes=@{NSForegroundColorAttributeName:[UIColor colorWithRed:63.0/255 green:77.0/255 blue:96.0/255 alpha:1],
                                NSFontAttributeName:[UIFont fontWithName:@"ProximaNova-Semibold" size:16],
                                NSKernAttributeName:@(1.9)};
-    titleLabel.attributedText=[[NSAttributedString alloc] initWithString:wallet.name attributes:attributes];
+    titleLabel.attributedText=[[NSAttributedString alloc] initWithString:[wallet.name uppercaseString] attributes:attributes];
     [self addSubview:titleLabel];
     
     disclosureImageView=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"PrivateWalletTitleDisclosure"]];

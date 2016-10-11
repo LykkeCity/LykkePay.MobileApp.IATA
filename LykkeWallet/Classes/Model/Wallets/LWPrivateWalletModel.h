@@ -18,5 +18,6 @@
 @property (strong, nonatomic) NSArray *assets;
 @property (strong, nonatomic) NSString *iconURL;
 @property (strong, nonatomic) NSString *encryptedKey;
+@property BOOL isExternalWallet;
 
 @end

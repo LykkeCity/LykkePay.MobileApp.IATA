@@ -134,6 +134,13 @@
     self=[super init];
     
     
+    
+    
+//    NSString *sss=[self encryptExternalWalletKey:nil];
+//    NSString *eee=[self decryptExternalWalletKey:sss];
+//    
+//    NSLog(@"%@", eee);
+//    [self generatePrivateKey];
 
     
     
@@ -469,7 +476,7 @@
     
     NSLog(@"%@", [LWUtils hexStringFromData:data]);
     char *pointer=data.mutableBytes;
-    for(int i=0;i<256;i++)
+    for(int i=0;i<255;i++)
     {
         *pointer=*pointer+1;
         BTCKey *key=[[BTCKey alloc] initWithPrivateKey:data];
@@ -493,6 +500,32 @@
             return [self isDevServer]?key.WIFTestnet:key.WIF;
     }
     return nil;
+}
+
+-(NSString *) secondaryPrivateKeyFromPrivateWalletAddress:(NSString *) addressOfPrivateWallet
+{
+    NSMutableData *data=[self.privateKeyLykke.privateKey mutableCopy];
+    
+    
+    NSLog(@"%@", [LWUtils hexStringFromData:data]);
+    char *pointer=data.mutableBytes;
+    for(int i=0;i<255;i++)
+    {
+        *pointer=*pointer+1;
+        BTCKey *key=[[BTCKey alloc] initWithPrivateKey:data];
+        key.publicKeyCompressed=YES;
+        NSString *address;
+        if([self isDevServer])
+            address=key.addressTestnet.string;
+        else
+            address=key.address.string;
+        
+        if([address isEqualToString:addressOfPrivateWallet])
+            return [self isDevServer]?key.WIFTestnet:key.WIF;
+
+    }
+    return nil;
+
 }
 
 +(NSString *) addressFromPrivateKeyWIF:(NSString *)wif
@@ -571,6 +604,101 @@
     
     return [self encryptKey:wif password:[LWKeychainManager instance].password];
 }
+
+-(NSString *) encryptExternalWalletKey:(NSString *) wif
+{
+    
+//    wif=@"cVCRhAsCKxM9q23mFxQiHbdzsuhTWcQjTmC1QrYyjGVRU5An7NnX";
+    
+    BTCKey *keyToEncrypt=[[BTCKey alloc] initWithWIF:wif];
+    
+    NSMutableData *keyData=[[self.privateKeyLykke.privateKey subdataWithRange:NSMakeRange(16, 16)] mutableCopy];
+    NSLog(@"%@", keyToEncrypt.privateKey);
+//    NSLog(@"%@", keyData);
+
+    size_t bufferSize = 32 + kCCBlockSizeAES128;
+    void *buffer = malloc(bufferSize);
+    
+    char ivPtr[kCCBlockSizeAES128 + 1];
+    bzero(ivPtr, sizeof(ivPtr));
+
+//    NSData *tmpKeyToEncrypt=[@"01234567890123456789012345678901" dataUsingEncoding:NSASCIIStringEncoding];
+//    keyData=[@"9876543210987654" dataUsingEncoding:NSASCIIStringEncoding];
+    
+    size_t numBytesEncrypted = 0;
+    CCCryptorStatus cryptStatus = CCCrypt(kCCEncrypt,
+                                          kCCAlgorithmAES128,
+                                          kCCOptionPKCS7Padding,
+                                          keyData.bytes,
+                                          kCCBlockSizeAES128,
+                                          0x0,
+                                          keyToEncrypt.privateKey.bytes,
+                                          32,
+                                          buffer,
+                                          bufferSize,
+                                          &numBytesEncrypted);
+    
+    NSData *data;
+    if (cryptStatus == kCCSuccess) {
+        data=[NSData dataWithBytes:buffer length:32];
+        free(buffer);
+        return [LWUtils hexStringFromData:data];
+    }
+    
+ 
+    
+    free(buffer);
+    return nil;
+    
+    
+}
+
+
+-(NSString *) decryptExternalWalletKey:(NSString *) encryptedKey
+{
+    NSData *encryptedKeyData=[LWUtils dataFromHexString:encryptedKey];
+    
+    NSMutableData *keyData=[[self.privateKeyLykke.privateKey subdataWithRange:NSMakeRange(16, 16)] mutableCopy];
+//    NSLog(@"%@", keyToEncrypt.privateKey);
+//    NSLog(@"%@", keyData);
+    
+    size_t bufferSize = 32 + kCCBlockSizeAES128;
+    void *buffer = malloc(bufferSize);
+    
+    char ivPtr[kCCBlockSizeAES128 + 1];
+    bzero(ivPtr, sizeof(ivPtr));
+    
+    size_t numBytesEncrypted = 0;
+    CCCryptorStatus cryptStatus = CCCrypt(kCCDecrypt,
+                                          kCCAlgorithmAES128,
+                                          kCCOptionPKCS7Padding,
+                                          keyData.bytes,
+                                          kCCBlockSizeAES128,
+                                          0x0,
+                                          encryptedKeyData.bytes,
+                                          32,
+                                          buffer,
+                                          bufferSize,
+                                          &numBytesEncrypted);
+    
+    NSData *data;
+    
+    if (cryptStatus == kCCSuccess) {
+        data=[NSData dataWithBytes:buffer length:numBytesEncrypted];
+        BTCKey *key=[[BTCKey alloc] initWithPrivateKey:data];
+        key.publicKeyCompressed=YES;
+        free(buffer);
+        return [self isDevServer]?key.WIFTestnet:key.WIF;
+
+    }
+    
+    
+    free(buffer);
+    return nil;
+    
+    
+}
+
 
 
 -(NSString *) encryptKey:(NSString *) privateKey password:(NSString *) password
@@ -833,6 +961,8 @@
         wif=privateKeyForLykke.WIFTestnet;
     else
         wif=privateKeyForLykke.WIF;
+    
+    NSLog(@"%@", wif);
     
     
 //    NSString *address=privateKeyForLykke.addressTestnet.string;;

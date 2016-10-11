@@ -142,7 +142,11 @@
             numberOfTries++;
             if(numberOfTries==3)
             {
-                [(LWAuthNavigationController *)self.navigationController logout];
+                id navigationController=self.navigationController;
+                if(navigationController)
+                    [(LWAuthNavigationController *)self.navigationController logout];
+                else
+                    [(LWAuthNavigationController *)self.presentingViewController logout];
                 return;
             }
             pin=@"";
@@ -246,6 +250,8 @@
 {
     if([UIScreen mainScreen].bounds.size.width==320)
         return @"LWPINPresenter_iphone5";
+    else if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad)
+        return @"LWPINPresenter_ipad";
     else
         return @"LWPINPresenter";
 }

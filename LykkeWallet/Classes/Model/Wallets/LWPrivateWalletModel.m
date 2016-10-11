@@ -14,22 +14,35 @@
 
 @implementation LWPrivateWalletModel
 
+-(id) init
+{
+    self=[super init];
+    _isExternalWallet=NO;
+    return self;
+}
+
 -(id) initWithDict:(NSDictionary *) d
 {
     self=[super init];
+    _isExternalWallet=NO;
     
     self.address=d[@"Address"];
     self.name=d[@"Name"];
-    self.privateKey=[[LWKeychainManager instance] privateKeyForWalletAddress:self.address];
+//    self.privateKey=[[LWKeychainManager instance] privateKeyForWalletAddress:self.address];
     if(self.privateKey==nil && [self.address isEqualToString:[LWPrivateKeyManager addressFromPrivateKeyWIF:[LWPrivateKeyManager shared].wifPrivateKeyLykke]])
     {
         self.privateKey=[LWPrivateKeyManager shared].wifPrivateKeyLykke;
     }
+    if(!self.privateKey)
+    {
+        self.privateKey=[[LWPrivateKeyManager shared] secondaryPrivateKeyFromPrivateWalletAddress:self.address];
+    }
+    
     self.encryptedKey=d[@"EncodedPrivateKey"];
     if(!self.privateKey && self.encryptedKey)
     {
-        self.privateKey=[[LWPrivateKeyManager shared] decryptPrivateKey:self.encryptedKey withPassword:[LWKeychainManager instance].password];
-
+        self.privateKey=[[LWPrivateKeyManager shared] decryptExternalWalletKey:self.encryptedKey];
+        _isExternalWallet=YES;
     }
     self.iconURL=d[@"MediumIconUrl"];
     NSMutableArray *arr=[[NSMutableArray alloc] init];

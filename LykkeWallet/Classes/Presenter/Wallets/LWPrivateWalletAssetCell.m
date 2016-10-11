@@ -8,6 +8,7 @@
 
 #import "LWPrivateWalletAssetCell.h"
 #import "LWCache.h"
+#import "LWUtils.h"
 
 @interface LWPrivateWalletAssetCell()
 {
@@ -45,12 +46,18 @@
     baseAssetSumLabel=[[UILabel alloc] init];
     NSDictionary *attributes1=@{NSForegroundColorAttributeName:[UIColor colorWithRed:63.0/255 green:77.0/255 blue:96.0/255 alpha:0.6],
                  NSFontAttributeName:[UIFont fontWithName:@"ProximaNova-Regular" size:13]};
-    baseAssetSumLabel.attributedText=[[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@ %.2f", [[LWCache instance] baseAssetSymbol],asset.baseAssetAmount.floatValue] attributes:attributes1];
+    
+    NSString *baseVolume=[LWUtils formatFairVolume:asset.baseAssetAmount.doubleValue accuracy:[LWCache accuracyForAssetId:[LWCache instance].baseAssetId] roundToHigher:NO];
+    
+    baseAssetSumLabel.attributedText=[[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@ %@", [[LWCache instance] baseAssetSymbol], baseVolume] attributes:attributes1];
     [baseAssetSumLabel sizeToFit];
     [self addSubview:baseAssetSumLabel];
     
     sumLabel=[[UILabel alloc] init];
-    sumLabel.attributedText=[[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@ %.2f", asset.assetId, asset.amount.floatValue] attributes:attributes];
+    
+    NSString *volume=[LWUtils formatFairVolume:asset.amount.doubleValue accuracy:[LWCache accuracyForAssetId:asset.assetId] roundToHigher:NO];
+    
+    sumLabel.attributedText=[[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@ %@", [[LWCache instance] currencySymbolForAssetId:asset.assetId], volume] attributes:attributes];
     [sumLabel sizeToFit];
     [self addSubview:sumLabel];
     

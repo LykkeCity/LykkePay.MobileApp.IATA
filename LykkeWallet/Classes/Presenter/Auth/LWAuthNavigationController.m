@@ -31,6 +31,7 @@
 #import "LWRegisterCameraPresenter.h"
 #import "LWRegisterHintPresenter.h"
 #import "LWGenerateKeyPresenter.h"
+#import "LWPINPresenter.h"
 
 #import "LWCache.h"
 #import "LWUtils.h"
@@ -283,7 +284,7 @@
 #pragma mark - Auth
 
 - (void)logout {
-    if([self.presentedViewController isKindOfClass:[LWIPadModalNavigationControllerViewController class]])
+    if([self.presentedViewController isKindOfClass:[LWIPadModalNavigationControllerViewController class]] || [self.presentedViewController isKindOfClass:[LWPINPresenter class]])
         [self dismissViewControllerAnimated:YES completion:nil];
     
     [LWUtils appendToLogFile:[NSString stringWithFormat:@"LOGGED OUT: %@", [NSThread callStackSymbols]]];

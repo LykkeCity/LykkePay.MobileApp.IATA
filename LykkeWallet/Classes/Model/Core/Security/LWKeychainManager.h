@@ -36,9 +36,9 @@ SINGLETON_DECLARE
 -(void) saveNotificationsTag:(NSString *) tag;
 
 -(void) saveEncodedLykkePrivateKey:(NSString *) privateKey;
--(void) savePrivateKey:(NSString *) privateKey forWalletAddress:(NSString *) address;
+//-(void) savePrivateKey:(NSString *) privateKey forWalletAddress:(NSString *) address;
 
--(NSString *) privateKeyForWalletAddress:(NSString *) address;
+//-(NSString *) privateKeyForWalletAddress:(NSString *) address;
 
 -(NSString *) encodedPrivateKeyForEmail:(NSString *) email;
 

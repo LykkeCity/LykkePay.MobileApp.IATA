@@ -33,6 +33,10 @@
 
 -(NSString *) encryptKey:(NSString *) privateKey password:(NSString *) password;
 
+-(NSString *) encryptExternalWalletKey:(NSString *) wif;
+-(NSString *) decryptExternalWalletKey:(NSString *) encryptedKey;
+
+
 +(NSString *) addressFromPrivateKeyWIF:(NSString *) wif;
 
 +(NSString *) encodedPrivateKeyWif:(NSString *) key withPassPhrase:(NSString *) passPhrase;
@@ -45,6 +49,7 @@
 -(BOOL) savePrivateKeyLykkeFromSeedWords:(NSArray *) words;
 
 -(NSString *) availableSecondaryPrivateKey;
+-(NSString *) secondaryPrivateKeyFromPrivateWalletAddress:(NSString *) addressOfPrivateWallet;
 
 -(NSString *) signatureForMessageWithLykkeKey:(NSString *) message;
 -(NSString *) coloredAddressFromBitcoinAddress:(NSString *) address;

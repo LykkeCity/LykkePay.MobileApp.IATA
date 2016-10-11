@@ -32,7 +32,10 @@
         if([UIScreen mainScreen].bounds.size.width==320)
             self.lettersLabel.attributedText=[[NSAttributedString alloc] initWithString:_lettersLabel.text attributes:@{NSKernAttributeName:@(1.8)}];
         else
-            self.lettersLabel.attributedText=[[NSAttributedString alloc] initWithString:_lettersLabel.text attributes:@{NSKernAttributeName:@(1.8), NSForegroundColorAttributeName:[UIColor colorWithRed:63.0/255 green:77.0/255 blue:96.0/255 alpha:0.6], NSFontAttributeName:[UIFont fontWithName:@"ProximaNova-Regular" size:17]}];
+        {
+            self.lettersLabel.attributedText=[[NSAttributedString alloc] initWithString:_lettersLabel.text attributes:@{NSKernAttributeName:@(1.8), NSForegroundColorAttributeName:[UIColor colorWithRed:63.0/255 green:77.0/255 blue:255.0/255 alpha:1], NSFontAttributeName:[UIFont fontWithName:@"ProximaNova-Regular" size:17]}];
+            self.lettersLabel.alpha=0.6;
+        }
 
     }
 
