@@ -165,6 +165,7 @@
 //    
     
     
+//    NSString *sss=[LWPrivateKeyManager hashForString:@"123456"];  //Testing
     
     [[LWAuthManager instance] requestAllAssetPairs];
     [[LWAuthManager instance] requestAPIVersion];

@@ -102,10 +102,6 @@ static int const kNumberOfRows = 4;
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    [self setLoading:YES];
-
-    [[LWAuthManager instance] requestAssetPairRate:self.assetPair.identity];
-    [[LWAuthManager instance] requestGraphPeriods];
     if(self.assetPair.inverted)
     {
         NSArray *arr=[self.assetPair.name componentsSeparatedByString:@"/"];
@@ -139,6 +135,10 @@ static int const kNumberOfRows = 4;
     else
         self.title = self.assetPair.name;
 
+    [self setLoading:YES];
+    
+    [[LWAuthManager instance] requestAssetPairRate:self.assetPair.identity];
+    [[LWAuthManager instance] requestGraphPeriods];
 
 }
 
@@ -317,9 +317,9 @@ static int const kNumberOfRows = 4;
         NSString *priceBuy=[LWUtils formatFairVolume:self.pairRateModel.ask.doubleValue accuracy:self.assetPair.accuracy.intValue roundToHigher:YES];
         priceBuy=[priceBuy stringByReplacingOccurrencesOfString:@" " withString:@""];
         
-        priceSellRateString = [LWUtils priceForAsset:self.assetPair forValue:@(priceSell.doubleValue) withFormat:Localize(@"graph.button.sell")];
+        priceSellRateString = [LWUtils priceForAsset:self.assetPair forValue:@(priceSell.doubleValue) withFormat:@"SELL"];
         
-        priceBuyRateString = [LWUtils priceForAsset:self.assetPair forValue:@(priceBuy.doubleValue) withFormat:Localize(@"graph.button.buy")];
+        priceBuyRateString = [LWUtils priceForAsset:self.assetPair forValue:@(priceBuy.doubleValue) withFormat:@"BUY"];
 
         lastPriceLabel.text=priceBuy;
         fixedPriceOnGraphLabel.text=priceBuy;
@@ -363,6 +363,7 @@ static int const kNumberOfRows = 4;
     fixedPriceOnGraphLabel.textColor=GRAPH_GREEN_COLOR;
     
     fixedPriceOnGraphLabel.textAlignment=NSTextAlignmentRight;
+    fixedPriceOnGraphLabel.hidden=YES;
     [linearGraphView addSubview:fixedPriceOnGraphLabel];
     
     [self.graphView addSubview:linearGraphView];
@@ -433,6 +434,7 @@ static int const kNumberOfRows = 4;
         changeLabel.textColor=GRAPH_RED_COLOR;
         fixedPriceOnGraphLabel.textColor=GRAPH_RED_COLOR;
     }
+    fixedPriceOnGraphLabel.hidden=NO;
     
 //    lastPriceLabel.text=[LWUtils formatVolumeNumber:graphData.lastPrice currencySign:@"" accuracy:self.assetPair.accuracy.intValue removeExtraZeroes:YES];
     

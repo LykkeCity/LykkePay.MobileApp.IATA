@@ -318,6 +318,8 @@
                         [LWUtils baseAssetTitle:assetPair],
                         [LWUtils quotedAssetTitle:assetPair], rateString];
     
+    result=[NSString stringWithFormat:@"%@ AT PRICE %@ %@", format, [[LWCache instance] currencySymbolForAssetId:assetPair.quotingAssetId], rateString];
+    
     return result;
 }
 

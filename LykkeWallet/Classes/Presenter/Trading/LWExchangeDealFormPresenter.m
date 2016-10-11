@@ -168,8 +168,9 @@ static NSString *const FormIdentifiers[kFormRows] = {
     [[LWAuthManager instance] requestAssetPairRate:self.assetPair.identity];
     
     [[LWAuthManager instance] requestLykkeWallets];
-
+    
     [self updatePrice];
+
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -193,6 +194,8 @@ static NSString *const FormIdentifiers[kFormRows] = {
         [self showBalanceFromLykkeData:[LWCache instance].walletsData];
 
     [[LWAuthManager instance] requestOrderBook:self.assetPair.identity];
+    
+
 }
 
 

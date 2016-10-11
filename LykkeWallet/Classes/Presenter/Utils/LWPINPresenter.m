@@ -32,11 +32,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    pin=@"";
-    flagRepeat=NO;
-    numberOfTries=0;
     [self checkSubviews:self.view];
-    [self adjustTitle];
     
     if([LWFingerprintHelper isFingerprintAvailable]==NO)
         _fingerprintContainerView.hidden=YES;
@@ -84,6 +80,7 @@
 -(void) viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+
     if([LWFingerprintHelper isFingerprintAvailable])
         [self pinButtonPressedFingerPrint];
     
@@ -179,10 +176,16 @@
 {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:NO];
+    
+    pin=@"";
+    flagRepeat=NO;
+    numberOfTries=0;
+    [self adjustTitle];
+
 
     if(self.pinType==PIN_TYPE_ENTER)
         self.fingerprintContainerView.hidden=YES;
-    pin=@"";
+    
     [self.progressView setNumberOfSymbols:(int)pin.length];
     [self deselectButtons:self.view];
     
