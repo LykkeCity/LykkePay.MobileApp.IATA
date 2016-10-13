@@ -21,6 +21,7 @@
     
     NSArray *titles;
     
+    KYCDocumentType activeType;
     
 }
 
@@ -42,27 +43,20 @@
     
     photos=[[NSMutableDictionary alloc] init];
     
-//    [[NSNotificationCenter defaultCenter] addObserver:self
-//                                             selector:@selector(cameraChanged:)
-//                                                 name:@"AVCaptureDeviceDidStartRunningNotification"
-//                                               object:nil];//@"_UIImagePickerControllerUserDidCaptureItem"
-//    
-//    [[NSNotificationCenter defaultCenter] addObserver:self
-//                                             selector:@selector(photoCaptured:)
-//                                                 name:@"_UIImagePickerControllerUserDidCaptureItem"
-//                                               object:nil];//@""
-
+    activeType=KYCDocumentTypeSelfie;
     
-    _documentsStatuses=@{@(KYCDocumentTypeSelfie):@(KYCDocumentStatusEmpty), @(KYCDocumentTypePassport):@(KYCDocumentStatusEmpty), @(KYCDocumentTypeAddress):@(KYCDocumentStatusRejected), @"ActiveType":@(KYCDocumentTypeSelfie)};
+//    _documentsStatuses=@{@(KYCDocumentTypeSelfie):@(KYCDocumentStatusEmpty), @(KYCDocumentTypePassport):@(KYCDocumentStatusEmpty), @(KYCDocumentTypeAddress):@(KYCDocumentStatusRejected), @"ActiveType":@(KYCDocumentTypeSelfie)};
     
     
     [_actionButton addTarget:self action:@selector(shootPressed) forControlEvents:UIControlEventTouchUpInside];
     
     _topBarView.documentsStatuses=_documentsStatuses;
+    [_topBarView setActiveType:activeType];
     
-    _photoContainerView.status=[_documentsStatuses[@([_documentsStatuses[@"ActiveType"] intValue])] intValue];
-    _photoContainerView.title=titles[[_documentsStatuses[@"ActiveType"] intValue]];
-    
+    _photoContainerView.status=[_documentsStatuses statusForDocument:activeType];
+    _photoContainerView.title=titles[activeType];
+    _photoContainerView.image=[_documentsStatuses imageForType:activeType];
+    _photoContainerView.failedDescription=[_documentsStatuses commentForType:activeType];
     
     [self checkDocumentsStatuses];
     
@@ -94,27 +88,32 @@
 
 -(void) swipedLeft
 {
-    int activeType=[_documentsStatuses[@"ActiveType"] intValue];
-    if(activeType==KYCDocumentTypeAddress)
+    
+    if(activeType==KYCDocumentTypeProofOfAddress)
         return;
-    NSMutableDictionary *dict=[_documentsStatuses mutableCopy];
+    
     
     LWKYCPhotoContainerView *prevContainer=[[LWKYCPhotoContainerView alloc] initWithFrame:_photoContainerView.frame];
-    
-    prevContainer.status=[_documentsStatuses[@([_documentsStatuses[@"ActiveType"] intValue])] intValue];
-    prevContainer.title=titles[[_documentsStatuses[@"ActiveType"] intValue]];
+
+    prevContainer.status=[_documentsStatuses statusForDocument:activeType];
+    prevContainer.title=titles[activeType];
+    prevContainer.image=[_documentsStatuses imageForType:activeType];
+    prevContainer.failedDescription=[_documentsStatuses commentForType:activeType];
+
     [self.view addSubview:prevContainer];
     
     _photoContainerView.hidden=YES;
 
     
-    dict[@"ActiveType"]=@(activeType+1);
-    _documentsStatuses=dict;
-    _topBarView.documentsStatuses=_documentsStatuses;
+    activeType++;
+
+    [_topBarView setActiveType:activeType];
     LWKYCPhotoContainerView *tmpContainer=[[LWKYCPhotoContainerView alloc] initWithFrame:_photoContainerView.frame];
     
-    tmpContainer.status=[_documentsStatuses[@([_documentsStatuses[@"ActiveType"] intValue])] intValue];
-    tmpContainer.title=titles[[_documentsStatuses[@"ActiveType"] intValue]];
+    tmpContainer.status=[_documentsStatuses statusForDocument:activeType];
+    tmpContainer.title=titles[activeType];
+    tmpContainer.image=[_documentsStatuses imageForType:activeType];
+    tmpContainer.failedDescription=[_documentsStatuses commentForType:activeType];
 
     tmpContainer.center=CGPointMake(self.view.bounds.size.width*1.5, _photoContainerView.center.y);
     [self.view addSubview:tmpContainer];
@@ -130,37 +129,43 @@
         [prevContainer removeFromSuperview];
         _photoContainerView.hidden=NO;
 
-//        _photoContainerView.center=CGPointMake(self.view.bounds.size.width*0.5, _photoContainerView.center.y);
-        _photoContainerView.status=[_documentsStatuses[@([_documentsStatuses[@"ActiveType"] intValue])] intValue];
-        _photoContainerView.title=titles[[_documentsStatuses[@"ActiveType"] intValue]];
-//        self.view.translatesAutoresizingMaskIntoConstraints=YES;
+
+        _photoContainerView.status=[_documentsStatuses statusForDocument:activeType];
+        _photoContainerView.title=titles[activeType];
+        _photoContainerView.image=[_documentsStatuses imageForType:activeType];
+        _photoContainerView.failedDescription=[_documentsStatuses commentForType:activeType];
 
     }];
     
-    
+    [self checkDocumentsStatuses];
 }
 
 -(void) swipedRight
 {
-    int activeType=[_documentsStatuses[@"ActiveType"] intValue];
+    
     if(activeType==KYCDocumentTypeSelfie)
         return;
-    NSMutableDictionary *dict=[_documentsStatuses mutableCopy];
     
     LWKYCPhotoContainerView *prevContainer=[[LWKYCPhotoContainerView alloc] initWithFrame:_photoContainerView.frame];
     
-    prevContainer.status=[_documentsStatuses[@([_documentsStatuses[@"ActiveType"] intValue])] intValue];
-    prevContainer.title=titles[[_documentsStatuses[@"ActiveType"] intValue]];
+    prevContainer.status=[_documentsStatuses statusForDocument:activeType];
+    prevContainer.title=titles[activeType];
+    prevContainer.image=[_documentsStatuses imageForType:activeType];
+    prevContainer.failedDescription=[_documentsStatuses commentForType:activeType];
+    
     [self.view addSubview:prevContainer];
     
     _photoContainerView.hidden=YES;
-    dict[@"ActiveType"]=@(activeType-1);
-    _documentsStatuses=dict;
+    activeType--;
+
     _topBarView.documentsStatuses=_documentsStatuses;
+    [_topBarView setActiveType:activeType];
     LWKYCPhotoContainerView *tmpContainer=[[LWKYCPhotoContainerView alloc] initWithFrame:_photoContainerView.frame];
     
-    tmpContainer.status=[_documentsStatuses[@([_documentsStatuses[@"ActiveType"] intValue])] intValue];
-    tmpContainer.title=titles[[_documentsStatuses[@"ActiveType"] intValue]];
+    tmpContainer.status=[_documentsStatuses statusForDocument:activeType];
+    tmpContainer.title=titles[activeType];
+    tmpContainer.image=[_documentsStatuses imageForType:activeType];
+    tmpContainer.failedDescription=[_documentsStatuses commentForType:activeType];
     
     tmpContainer.center=CGPointMake(self.view.bounds.size.width*-0.5, _photoContainerView.center.y);
     [self.view addSubview:tmpContainer];
@@ -172,9 +177,13 @@
         [tmpContainer removeFromSuperview];
         [prevContainer removeFromSuperview];
         _photoContainerView.hidden=NO;
-        _photoContainerView.status=[_documentsStatuses[@([_documentsStatuses[@"ActiveType"] intValue])] intValue];
-        _photoContainerView.title=titles[[_documentsStatuses[@"ActiveType"] intValue]];
+        _photoContainerView.status=[_documentsStatuses statusForDocument:activeType];
+        _photoContainerView.title=titles[activeType];
+        _photoContainerView.image=[_documentsStatuses imageForType:activeType];
+        _photoContainerView.failedDescription=[_documentsStatuses commentForType:activeType];;
     }];
+    
+    [self checkDocumentsStatuses];
 
 }
 
@@ -189,7 +198,10 @@
     picker = [[LWKYCImagePickerController alloc] init];
     picker.delegate = self;
     picker.sourceType = UIImagePickerControllerSourceTypeCamera;
-    picker.cameraDevice = UIImagePickerControllerCameraDeviceFront;
+    if(activeType==KYCDocumentTypeSelfie)
+        picker.cameraDevice = UIImagePickerControllerCameraDeviceFront;
+    else
+        picker.cameraDevice=UIImagePickerControllerCameraDeviceRear;
     picker.showsCameraControls = YES;
     
     
@@ -247,18 +259,12 @@
 -(void) imagePickerController:(UIImagePickerController *)_picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info
 {
     UIImage *chosenImage = info[UIImagePickerControllerOriginalImage];
-    UIImage *flippedImage = [UIImage imageWithCGImage:chosenImage.CGImage scale:chosenImage.scale orientation:UIImageOrientationLeftMirrored];
-    _photoContainerView.image=flippedImage;
+//    UIImage *flippedImage = [UIImage imageWithCGImage:chosenImage.CGImage scale:chosenImage.scale orientation:UIImageOrientationLeftMirrored];
+    _photoContainerView.image=chosenImage;
     _photoContainerView.status=KYCDocumentStatusUploaded;
-    _actionButton.type=BUTTON_TYPE_CLEAR;
-    [_actionButton setTitle:@"RESHOOT" forState:UIControlStateNormal];
     
-    NSMutableDictionary *dict=[_documentsStatuses mutableCopy];
-    
-    int activeType=[_documentsStatuses[@"ActiveType"] intValue];
-    
-    dict[@(activeType)]=@(KYCDocumentStatusUploaded);
-    _documentsStatuses=dict;
+    [_documentsStatuses setDocumentStatus:KYCDocumentStatusUploaded forDocument:activeType];
+    [_documentsStatuses saveImage:chosenImage forType:activeType];
     
     [picker dismissViewControllerAnimated:YES completion:NULL];
     
@@ -267,12 +273,28 @@
 
 -(void) checkDocumentsStatuses
 {
-    int status=[_documentsStatuses[@([_documentsStatuses[@"ActiveType"] intValue])] intValue];
+    KYCDocumentStatus status=[_documentsStatuses statusForDocument:activeType];
     if(status==KYCDocumentStatusUploaded || status==KYCDocumentStatusApproved)
         _nextButton.enabled=YES;
     else
         _nextButton.enabled=NO;
+    if([_documentsStatuses statusForDocument:activeType]==KYCDocumentStatusEmpty || [_documentsStatuses statusForDocument:activeType]==KYCDocumentStatusRejected)
+    {
+        
+        _actionButton.type=BUTTON_TYPE_COLORED;
+    }
+    else
+    {
+        _actionButton.type=BUTTON_TYPE_CLEAR;
+    }
     
+    if([_documentsStatuses statusForDocument:activeType]==KYCDocumentStatusEmpty)
+        [_actionButton setTitle:@"SHOOT" forState:UIControlStateNormal];
+    else
+        [_actionButton setTitle:@"RESHOOT" forState:UIControlStateNormal];
+
+    
+    [_topBarView adjustStatuses];
 }
 
 

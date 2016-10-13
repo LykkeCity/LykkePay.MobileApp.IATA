@@ -67,6 +67,12 @@
 //    [self checkPrivateKey];
 }
 
+-(void) viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    self.navigationController.navigationBar.barTintColor=[UIColor whiteColor];
+}
+
 -(void) viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];

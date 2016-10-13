@@ -56,6 +56,7 @@
 @class LWPacketGetEthereumAddress;
 @class LWWalletMigrationModel;
 @class LWPacketOrderBook;
+@class LWPacketKYCDocuments;
 
 
 @protocol LWAuthManagerDelegate<NSObject>
@@ -149,6 +150,7 @@
 -(void) authManagerDidCompleteWalletMigration:(LWAuthManager *) manager;
 
 -(void) authManager:(LWAuthManager *)manager didGetOrderBook:(LWPacketOrderBook *)packet;
+-(void) authManager:(LWAuthManager *)manager didGetKYCDocuments:(LWPacketKYCDocuments *)packet;
 
 @end
 
@@ -276,6 +278,7 @@ SINGLETON_DECLARE
 -(void) requestSetPasswordHash:(NSString *) hash;
 
 -(void) requestOrderBook:(NSString *) assetPairId;
+-(void) requestKYCDocuments;
 
 
 //PubkeyAddressValidation

@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "LWKYCTypes.h"
+#import "LWKYCDocumentsModel.h"
 //typedef enum {KYCPhotoContainerModeEmpty, KYCPhotoContainerModeBad, KYCPhotoContainerModePhoto} KYCPhotoContainerMode;
 
 @interface LWKYCPhotoContainerView : UIView

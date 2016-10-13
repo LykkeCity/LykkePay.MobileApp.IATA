@@ -8,9 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "LWKYCCameraTopBarElementView.h"
+#import "LWKYCDocumentsModel.h"
 
 @interface LWKYCCameraTopBarView : UIView
 
-@property (strong, nonatomic) NSDictionary *documentsStatuses;
+@property (strong, nonatomic) LWKYCDocumentsModel *documentsStatuses;
+
+-(void) setActiveType:(KYCDocumentType) type;
+-(void) adjustStatuses;
 
 @end

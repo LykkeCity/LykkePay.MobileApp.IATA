@@ -88,6 +88,7 @@
     
     [proceedButton setAttributedTitle:[[NSAttributedString alloc] initWithString:@"PROCEED" attributes:proceedDisabledAttributes] forState:UIControlStateDisabled];
     [proceedButton setAttributedTitle:[[NSAttributedString alloc] initWithString:@"PROCEED" attributes:proceedEnabledAttributes] forState:UIControlStateNormal];
+    proceedButton.adjustsImageWhenHighlighted=NO;
     
     pasteButton=[UIButton buttonWithType:UIButtonTypeCustom];
     [pasteButton setTitle:@"Paste" forState:UIControlStateNormal];

@@ -21,6 +21,7 @@
 #import "LWWalletsNavigationController.h"
 #import "LWIPadModalNavigationControllerViewController.h"
 #import "LWKYCNewPresenter.h"
+#import "LWPacketKYCDocuments.h"
 
 @interface LWKYCManager() <LWAuthManagerDelegate, LWRegisterCameraPresenterDelegate, LWKYCSubmitPresenterDelegate, LWKYCPendingPresenterDelegate, LWKYCSuccessPresenterDelegate, LWKYCInvalidDocumentsPresenterDelegate>
 {
@@ -58,15 +59,30 @@
         lastViewController=[navigationController.navigationController.viewControllers lastObject];
     else
         lastViewController=[navigationController.viewControllers lastObject];
-//    navigationController=self.viewController.navigationController.navigationController;
-//    lastViewController=self.viewController.navigationController;
     completionBlock=completion;
     [self.viewController setLoading:YES];
     [LWAuthManager instance].delegate=self;
   
     [[LWAuthManager instance] requestKYCStatusForAsset:assetId];
-
+    
+//    [[LWAuthManager instance] requestKYCDocuments];
+    
 }
+
+-(void) authManager:(LWAuthManager *)manager didGetKYCDocuments:(LWPacketKYCDocuments *)packet
+{
+    [self.viewController setLoading:NO];
+    
+    LWKYCNewPresenter *vc=[LWKYCNewPresenter new];
+    vc.documentsStatuses=packet.documentsStatuses;
+//    vc.delegate=self;
+    
+    [navigationController pushViewController:vc animated:YES];
+
+    
+}
+
+
 
 -(void) manageKYCStatus
 {
@@ -107,7 +123,9 @@
     else if([status.userKYCStatus isEqualToString:@"NeedToFillData"])
     {
         [self.viewController setLoading:YES];
-        [[LWAuthManager instance] requestDocumentsToUpload];
+//        [[LWAuthManager instance] requestDocumentsToUpload];   OLD VERSION
+        [[LWAuthManager instance] requestKYCDocuments];
+        
     }
     else if([status.userKYCStatus isEqualToString:@"RestrictedArea"])
     {

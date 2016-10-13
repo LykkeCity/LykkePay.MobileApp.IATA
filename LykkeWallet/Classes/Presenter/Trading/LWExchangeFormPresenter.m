@@ -256,10 +256,23 @@ static NSString *const DescriptionIdentifiers[kDescriptionRows] = {
     
     NSString *priceSellRateString = @". . .";
     NSString *priceBuyRateString = @". . .";
-    if (rate) {
-        priceSellRateString = [LWUtils priceForAsset:self.assetPair forValue:rate.bid withFormat:@"SELL"];
-        priceBuyRateString = [LWUtils priceForAsset:self.assetPair forValue:rate.ask withFormat:@"BUY"];
+    
+    
+    NSString *priceSell=[LWUtils formatFairVolume:rate.bid.doubleValue accuracy:self.assetPair.accuracy.intValue roundToHigher:NO];
+    priceSell=[priceSell stringByReplacingOccurrencesOfString:@" " withString:@""];
+    NSString *priceBuy=[LWUtils formatFairVolume:rate.ask.doubleValue accuracy:self.assetPair.accuracy.intValue roundToHigher:YES];
+    priceBuy=[priceBuy stringByReplacingOccurrencesOfString:@" " withString:@""];
+    
+    if(rate)
+    {
+        priceSellRateString = [LWUtils priceForAsset:self.assetPair forValue:@(priceSell.doubleValue) withFormat:@"SELL"];
+        priceBuyRateString = [LWUtils priceForAsset:self.assetPair forValue:@(priceBuy.doubleValue) withFormat:@"BUY"];
     }
+    
+//    if (rate) {
+//        priceSellRateString = [LWUtils priceForAsset:self.assetPair forValue:rate.bid withFormat:@"SELL"];
+//        priceBuyRateString = [LWUtils priceForAsset:self.assetPair forValue:rate.ask withFormat:@"BUY"];
+//    }
     
     
 //    NSDictionary *attributes = @{NSKernAttributeName:@(1), NSFontAttributeName:self.buyButton.titleLabel.font, NSForegroundColorAttributeName:rate==nil?self.buyButton.currentTitleColor:[UIColor whiteColor]};

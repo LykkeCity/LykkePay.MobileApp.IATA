@@ -7,6 +7,8 @@
 //
 
 #import "LWKYCPhotoContainerView.h"
+#import "LWImageDownloader.h"
+#import "LWProgressView.h"
 
 @interface LWKYCPhotoContainerView()
 {
@@ -17,6 +19,9 @@
     UILabel *descriptionLabel;
     UILabel *titleLabel;
     KYCDocumentStatus currentMode;
+    
+    NSString *currentLoadingImageURLString;
+    LWProgressView *progressView;
 }
 
 @end
@@ -105,11 +110,12 @@
 
 -(void) adjustMode
 {
+    self.layer.borderColor=[UIColor colorWithRed:216.0/255 green:216.0/255 blue:216.0/255 alpha:1].CGColor;
+    self.layer.borderWidth=0.5;
+
     if(currentMode==KYCDocumentStatusEmpty)
     {
         self.backgroundColor=[UIColor colorWithRed:244.0/255 green:246.0/255 blue:247.0/255 alpha:1];
-        self.layer.borderColor=[UIColor colorWithWhite:216.0/255 alpha:1].CGColor;
-        self.layer.borderWidth=0.5;
         photoImageView.image=[UIImage imageNamed:@"KYCCameraIcon"];
         titleBadLabel.hidden=YES;
         photoImageView.hidden=NO;
@@ -121,7 +127,7 @@
     else if(currentMode==KYCDocumentStatusRejected)
     {
         self.backgroundColor=nil;
-        self.layer.borderColor=nil;
+//        self.layer.borderColor=nil;
         photoImageView.image=[UIImage imageNamed:@"KYCBadImageIcon"];
         titleBadLabel.hidden=NO;
         photoImageView.hidden=NO;
@@ -129,11 +135,18 @@
         shadowView.hidden=NO;
         imageView.hidden=NO;
         titleLabel.hidden=YES;
+        if(imageView.image==nil)
+        {
+            descriptionLabel.hidden=YES;
+            shadowView.hidden=YES;
+            photoImageView.hidden=YES;
+            titleBadLabel.hidden=YES;
+        }
     }
     else if(currentMode==KYCDocumentStatusUploaded || currentMode==KYCDocumentStatusApproved)
     {
         self.backgroundColor=nil;
-        self.layer.borderColor=nil;
+//        self.layer.borderColor=nil;
     
         titleBadLabel.hidden=YES;
         photoImageView.hidden=YES;
@@ -157,12 +170,51 @@
     CGSize size=[descriptionLabel sizeThatFits:CGSizeMake(self.bounds.size.width-60, 1000)];
     descriptionLabel.frame=CGRectMake(0, 0, size.width, size.height);
     descriptionLabel.center=CGPointMake(self.bounds.size.width/2, titleBadLabel.frame.origin.y+titleBadLabel.bounds.size.height+10+descriptionLabel.bounds.size.height/2);
+    if(progressView)
+        progressView.center=CGPointMake(self.bounds.size.width/2, self.bounds.size.height/2);
 }
 
 -(void) setImage:(UIImage *)image
 {
-    _image=image;
-    imageView.image=image;
+    imageView.image=nil;
+
+    if([image isKindOfClass:[UIImage class]])
+    {
+        if(progressView)
+        {
+            [progressView removeFromSuperview];
+            progressView=nil;
+        }
+        _image=image;
+        imageView.image=image;
+    }
+    else if([image isKindOfClass:[NSString class]])
+    {
+        if(!progressView)
+        {
+            progressView=[[LWProgressView alloc] init];
+            progressView.center=imageView.center;
+            [self addSubview:progressView];
+            [progressView startAnimating];
+        }
+        
+        imageView.image=nil;
+        currentLoadingImageURLString=(NSString *) image;
+        NSString *imageUrlString=(NSString *)image;
+        [[LWImageDownloader shared] downloadImageFromURLString:(NSString *) image withCompletion:^(UIImage *image){
+            if([currentLoadingImageURLString isEqualToString:imageUrlString])
+            {
+                _image=image;
+                imageView.image=image;
+                [progressView removeFromSuperview];
+                progressView=nil;
+                [self adjustMode];
+            }
+        }];
+    }
+    [self adjustMode];
+
+    
 }
 
 -(void) setTitle:(NSString *)title

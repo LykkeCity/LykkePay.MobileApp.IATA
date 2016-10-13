@@ -51,7 +51,7 @@
     bottomLineView.frame=CGRectMake(0, self.bounds.size.height-0.5, self.bounds.size.width, 0.5);
 }
 
--(void) setDocumentsStatuses:(NSDictionary *)documentsStatuses
+-(void) setDocumentsStatuses:(LWKYCDocumentsModel *)documentsStatuses
 {
     _documentsStatuses=documentsStatuses;
     [self adjustStatuses];
@@ -70,11 +70,13 @@
 
 -(void) adjustStatuses
 {
-    [(LWKYCCameraTopBarElementView *)views[0] setStatus:[_documentsStatuses[@(KYCDocumentTypeSelfie)] intValue]];
-    [(LWKYCCameraTopBarElementView *)views[1] setStatus:[_documentsStatuses[@(KYCDocumentTypePassport)] intValue]];
-    [(LWKYCCameraTopBarElementView *)views[2] setStatus:[_documentsStatuses[@(KYCDocumentTypeAddress)] intValue]];
 
-    [self setActiveType:[_documentsStatuses[@"ActiveType"] intValue]];
+    [(LWKYCCameraTopBarElementView *)views[0] setStatus:[_documentsStatuses statusForDocument:KYCDocumentTypeSelfie]];
+    [(LWKYCCameraTopBarElementView *)views[1] setStatus:[_documentsStatuses statusForDocument:KYCDocumentTypeIdCard]];
+    [(LWKYCCameraTopBarElementView *)views[2] setStatus:[_documentsStatuses statusForDocument:KYCDocumentTypeProofOfAddress]];
+
+    
+//    [self setActiveType:[_documentsStatuses[@"ActiveType"] intValue]];
 }
 
 -(void) adjustCurrentType
@@ -99,10 +101,10 @@
     v.type=KYCDocumentTypeSelfie;
     [views addObject:v];
     v=[LWKYCCameraTopBarElementView new];
-    v.type=KYCDocumentTypePassport;
+    v.type=KYCDocumentTypeIdCard;
     [views addObject:v];
     v=[LWKYCCameraTopBarElementView new];
-    v.type=KYCDocumentTypeAddress;
+    v.type=KYCDocumentTypeProofOfAddress;
     [views addObject:v];
     for(UIView *v in views)
         [self addSubview:v];

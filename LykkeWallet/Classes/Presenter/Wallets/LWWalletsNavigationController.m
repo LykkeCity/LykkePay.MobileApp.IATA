@@ -93,14 +93,24 @@
 -(void) walletsNavigationBarPressedPrivateWallets
 {
     LWPrivateWalletsPresenter *presenter=[[LWPrivateWalletsPresenter alloc] init];
+    self.view.userInteractionEnabled=NO;
     [super pushViewController:presenter animated:YES];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        self.view.userInteractionEnabled=YES;
+    });
     
     self.navigationController.visibleViewController.navigationItem.rightBarButtonItem=itemPlus;
 }
 
 -(void) walletsNavigationBarPressedTradingWallets
 {
+    self.view.userInteractionEnabled=NO;
+
     [super popViewControllerAnimated:YES];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        self.view.userInteractionEnabled=YES;
+    });
+
     self.navigationController.visibleViewController.navigationItem.rightBarButtonItem=nil;
 
 }

@@ -7,6 +7,7 @@
 //
 
 #import "LWImageDownloader.h"
+#import "LWKeychainManager.h"
 
 @import UIKit;
 
@@ -65,7 +66,13 @@
         NSURL *url=[NSURL URLWithString:urlString];
         if(!url)
             return;
-        NSData *data=[NSData dataWithContentsOfURL:url];
+        
+        NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:url];
+        [urlRequest setHTTPMethod: @"GET"];
+        [urlRequest setValue:[NSString stringWithFormat:@"Bearer %@", [LWKeychainManager instance].token] forHTTPHeaderField:@"Authorization"];
+        
+
+        NSData *data=[NSURLConnection sendSynchronousRequest:urlRequest returningResponse:nil error:nil];
         if(!data)
             return;
         UIImage *image=[UIImage imageWithData:data];

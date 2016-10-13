@@ -37,7 +37,7 @@
 //    {
 //        return YES;
 //    }
-    UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"Cancel backup" message:@"12 words will be discarded and will not be valid any more.\nDo you want to cancel the wallet backup?" delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil];
+    UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"Cancel backup" message:@"If you cancel your backup, the sequence of twelve words that you use to access your wallet will no longer be valid. Do you want to proceed?" delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil];
     [alert show];
     return NO;
 }

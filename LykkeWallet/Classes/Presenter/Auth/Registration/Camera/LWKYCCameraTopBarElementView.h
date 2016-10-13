@@ -8,7 +8,8 @@
 
 
 #import <UIKit/UIKit.h>
-#import "LWKYCTypes.h"
+
+#import "LWKYCDocumentsModel.h"
 
 @interface LWKYCCameraTopBarElementView : UIView
 

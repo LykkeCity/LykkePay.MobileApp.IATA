@@ -86,6 +86,7 @@
 #import "LWPacketWalletMigration.h"
 #import "LWPacketPasswordHashSet.h"
 #import "LWPacketOrderBook.h"
+#import "LWPacketKYCDocuments.h"
 
 
 #import "LWLykkeWalletsData.h"
@@ -723,6 +724,12 @@ SINGLETON_INIT {
     [self sendPacket:pack];
 }
 
+-(void) requestKYCDocuments
+{
+    LWPacketKYCDocuments *pack=[LWPacketKYCDocuments new];
+    [self sendPacket:pack];
+}
+
 #pragma mark - Observing
 
 - (void)observeGDXNetAdapterDidReceiveResponseNotification:(NSNotification *)notification {
@@ -1140,6 +1147,12 @@ SINGLETON_INIT {
             [self.delegate authManager:self didGetOrderBook:(LWPacketOrderBook *)pack];
         }
     }
+    else if (pack.class == LWPacketKYCDocuments.class) {
+        if ([self.delegate respondsToSelector:@selector(authManager:didGetKYCDocuments:)]) {
+            [self.delegate authManager:self didGetKYCDocuments:(LWPacketKYCDocuments *)pack];
+        }
+    }
+
 }
 
 - (void)observeGDXNetAdapterDidFailRequestNotification:(NSNotification *)notification {

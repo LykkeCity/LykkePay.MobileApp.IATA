@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LWKYCDocumentsModel.h"
 
 @interface LWKYCNewPresenter : UIViewController
 
-@property (strong, nonatomic) NSDictionary *documentsStatuses;
+@property (strong, nonatomic) LWKYCDocumentsModel *documentsStatuses;
 
 
 @end

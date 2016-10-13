@@ -49,6 +49,8 @@
 -(void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:244.0/255 green:246.0/255 blue:247.0/255 alpha:1];
+
     
     
 //    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
@@ -103,10 +105,20 @@
 
 }
 
+-(void) viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
+
+}
+
 -(void) crossCloseButtonPressed
 {
     if([super shouldDismissIpadModalViewController]==NO)
         return;
+    self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
+
     if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
     {
         UIViewController *firstController=[self.navigationController.viewControllers firstObject];

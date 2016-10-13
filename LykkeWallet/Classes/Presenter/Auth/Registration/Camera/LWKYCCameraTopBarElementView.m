@@ -55,9 +55,9 @@
     docType=type;
     if(type==KYCDocumentTypeSelfie)
         label.text=@"Selfie";
-    else if(type==KYCDocumentTypePassport)
+    else if(type==KYCDocumentTypeIdCard)
         label.text=@"Passport";
-    else if(type==KYCDocumentTypeAddress)
+    else if(type==KYCDocumentTypeProofOfAddress)
         label.text=@"Address";
     
 }

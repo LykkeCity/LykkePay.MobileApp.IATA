@@ -60,6 +60,7 @@
     
     [checkoutButton setAttributedTitle:[[NSAttributedString alloc] initWithString:@"CHECKOUT" attributes:@{NSKernAttributeName:@(1), NSFontAttributeName:[UIFont fontWithName:@"ProximaNova-Semibold" size:15], NSForegroundColorAttributeName:[UIColor whiteColor]}] forState:UIControlStateNormal];
     [checkoutButton setAttributedTitle:[[NSAttributedString alloc] initWithString:@"CHECKOUT" attributes:@{NSKernAttributeName:@(1), NSFontAttributeName:[UIFont fontWithName:@"ProximaNova-Semibold" size:15], NSForegroundColorAttributeName:[UIColor colorWithRed:63.0/255 green:77.0/255 blue:96.0/255 alpha:0.2]}] forState:UIControlStateDisabled];
+    checkoutButton.adjustsImageWhenHighlighted=NO;
     
     [LWValidator setButton:checkoutButton enabled:NO];
     [self.view addSubview:checkoutButton];
