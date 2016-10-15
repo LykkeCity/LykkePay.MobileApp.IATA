@@ -50,6 +50,7 @@
 
 - (void)showReject:(NSDictionary *)reject response:(NSURLResponse *)response {
     [self setLoading:NO];
+
     
     if([reject[@"Code"] intValue]==6)
     {

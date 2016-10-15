@@ -17,4 +17,12 @@
 -(void) setActiveType:(KYCDocumentType) type;
 -(void) adjustStatuses;
 
+@property id delegate;
+
+@end
+
+@protocol LWKYCCameraTopBarViewDelegate
+
+-(void) kycTopBarViewPressedDocumentType:(KYCDocumentType) type;
+
 @end

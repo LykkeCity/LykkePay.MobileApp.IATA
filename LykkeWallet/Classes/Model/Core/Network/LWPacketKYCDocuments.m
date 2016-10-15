@@ -18,7 +18,8 @@
         return;
     }
     
-    _documentsStatuses=[[LWKYCDocumentsModel alloc] initWithArray:result[@"Docs"]];
+    [[LWKYCDocumentsModel shared] setArrayOfDocuments:result[@"Docs"]];
+    _documentsStatuses=[LWKYCDocumentsModel shared];
     
     
 }

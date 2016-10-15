@@ -37,9 +37,9 @@
     shakeCount=0;
     
     if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
-        self.textLabel.text=@"Shake your iPhone to generate a private key to your Lykke Wallet";
+        self.textLabel.text=@"Shake your iPhone to generate the private key to your Lykke Wallet";
     else
-        self.textLabel.text=@"Shake your iPad to generate a private key to your Lykke Wallet";
+        self.textLabel.text=@"Shake your iPad to generate the private key to your Lykke Wallet";
 
     
 //    UITapGestureRecognizer *gesture=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(testing)]; //Testing

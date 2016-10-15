@@ -15,7 +15,7 @@ typedef enum {KYCDocumentStatusEmpty, KYCDocumentStatusUploaded, KYCDocumentStat
 
 @interface LWKYCDocumentsModel : NSObject
 
--(id) initWithArray:(NSArray *) array;
+-(void) setArrayOfDocuments:(NSArray *) array;
 
 -(KYCDocumentStatus) statusForDocument:(KYCDocumentType) type;
 -(void) setDocumentStatus:(KYCDocumentStatus) status forDocument:(KYCDocumentType) type;
@@ -25,5 +25,11 @@ typedef enum {KYCDocumentStatusEmpty, KYCDocumentStatusUploaded, KYCDocumentStat
 -(UIImage *) imageForType:(KYCDocumentType) type;
 
 -(NSString *) commentForType:(KYCDocumentType) type;
+
+-(BOOL) isUploadingImage;
+
+-(void) logout;
+
++(LWKYCDocumentsModel *) shared;
 
 @end

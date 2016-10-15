@@ -19,6 +19,8 @@
 
 @implementation LWSendImageManager
 
+
+
 -(void) sendImageWithData:(NSData *) data type:(KYCDocumentType) typeOfPost
 {
     self.type=typeOfPost;

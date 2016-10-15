@@ -32,6 +32,8 @@
 #import "LWRegisterHintPresenter.h"
 #import "LWGenerateKeyPresenter.h"
 #import "LWPINPresenter.h"
+#import "LWKYCDocumentsModel.h"
+#import "LWImageDownloader.h"
 
 #import "LWCache.h"
 #import "LWUtils.h"
@@ -291,6 +293,8 @@
     [[LWKeychainManager instance] clear];
     [activeSteps removeAllObjects];
     [[LWPrivateKeyManager shared] logoutUser];
+    [[LWKYCDocumentsModel shared] logout];
+    [[LWImageDownloader shared] logout];
     [self setRootAuthScreen];
 }
 

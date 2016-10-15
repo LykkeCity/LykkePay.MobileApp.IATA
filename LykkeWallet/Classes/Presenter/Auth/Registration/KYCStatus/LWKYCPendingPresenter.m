@@ -16,14 +16,20 @@
 #import "UIViewController+Loading.h"
 #import "UIViewController+Navigation.h"
 #import "LWProgressView.h"
+#import "LWKYCDocumentsModel.h"
+#import "LWCommonButton.h"
 
 
 @interface LWKYCPendingPresenter () {
     
 }
 
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *textLabel;
 @property (weak, nonatomic) IBOutlet LWProgressView *activity;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *buttonWidth;
+@property (weak, nonatomic) IBOutlet LWCommonButton *button;
+
 
 @end
 
@@ -33,15 +39,43 @@
 
 #pragma mark - LWAuthStepPresenter
 
+-(void) viewDidLoad
+{
+    [super viewDidLoad];
+    
+    if([UIScreen mainScreen].bounds.size.width==320)
+        _buttonWidth.constant=280;
+    _button.type=BUTTON_TYPE_CLEAR;
+    
+    NSDictionary *attr=@{NSKernAttributeName:@(1.5), NSForegroundColorAttributeName:[UIColor colorWithRed:63.0/255 green:77.0/255 blue:96.0/255 alpha:1], NSFontAttributeName:[UIFont fontWithName:@"ProximaNova-Semibold" size:17]};
+    _titleLabel.attributedText=[[NSAttributedString alloc] initWithString:@"YOUR DOCUMENTS HAVE BEEN SUBMITTED" attributes:attr];
+}
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    [self setBackButton];
-    [[LWAuthManager instance] requestKYCStatusGet];
-    [self.activity startAnimating];
+//    [self setBackButton];
     
-    [self.navigationController setNavigationBarHidden:NO animated:NO];
+    [self.activity startAnimating];
+    [self waitForImagesToUploadAndRequestKYCStatus];
+    
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
 
+}
+
+-(IBAction)buttonPressed:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+-(void) waitForImagesToUploadAndRequestKYCStatus
+{
+    if([[LWKYCDocumentsModel shared] isUploadingImage])
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self waitForImagesToUploadAndRequestKYCStatus];
+        });
+    else
+        [[LWAuthManager instance] requestKYCStatusGet];
 }
 
 - (void)localize {

@@ -41,6 +41,13 @@
     return shared;
 }
 
+-(void) logout
+{
+    images=[[NSMutableDictionary alloc] init];
+    completions=[[NSMutableDictionary alloc] init];
+
+}
+
 -(void) downloadImageFromURLString:(NSString *) urlString withCompletion:(void(^)(UIImage *)) completion
 {
     if(!urlString)
@@ -79,15 +86,16 @@
         if(image)
         {
             images[urlString]=image;
-            dispatch_async(dispatch_get_main_queue(), ^{
-                
-                for(void(^completionn)(UIImage *) in completions[urlString])
-                {
-                    completionn(image);
-                }
-                [completions removeObjectForKey:urlString];
-            });
         }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            for(void(^completionn)(UIImage *) in completions[urlString])
+            {
+                completionn(image);
+            }
+            [completions removeObjectForKey:urlString];
+        });
+        
     });
 }
 

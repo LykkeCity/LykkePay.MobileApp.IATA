@@ -13,5 +13,12 @@
 
 @property (strong, nonatomic) LWKYCDocumentsModel *documentsStatuses;
 
+@property id delegate;
+
+@end
+
+@protocol LWKYCNewPresenterDelegate
+
+-(void) kycPresenterUserSubmitted:(LWKYCNewPresenter *) presenter;
 
 @end

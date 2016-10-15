@@ -19,11 +19,21 @@
 
 @implementation LWKYCDocumentsModel
 
--(id) initWithArray:(NSArray *) array
++ (instancetype)shared
 {
-    self=[super init];
-    
-    docs=[[NSMutableDictionary alloc] init];
+    static LWKYCDocumentsModel *shared = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        shared = [[LWKYCDocumentsModel alloc] init];
+    });
+    return shared;
+}
+
+
+-(void) setArrayOfDocuments:(NSArray *)array
+{
+    if(!docs)
+        docs=[[NSMutableDictionary alloc] init];
     for(NSDictionary *d in array)
     {
         KYCDocumentType type;
@@ -34,7 +44,9 @@
         else if([d[@"Type"] isEqualToString:@"Selfie"])
             type=KYCDocumentTypeSelfie;
         
-        NSMutableDictionary *dict=[[NSMutableDictionary alloc] init];
+        NSMutableDictionary *dict=[docs[@(type)] mutableCopy];
+        if(!dict)
+            dict=[[NSMutableDictionary alloc] init];
         dict[@"ID"]=d[@"DocumentId"];
         if([d[@"DocumentState"] isEqualToString:@"Uploaded"])
             dict[@"Status"]=@(KYCDocumentStatusUploaded);
@@ -48,7 +60,6 @@
         docs[@(type)]=dict;
     }
     
-    return self;
 }
 
 -(KYCDocumentStatus) statusForDocument:(KYCDocumentType)type
@@ -77,7 +88,7 @@
         return docs[@(type)][@"Image"];
     else if(docs[@(type)][@"ID"])
     {
-        NSString *baseurl = [NSString stringWithFormat:@"https://%@/api/KycDocumentsBin/%@?width=640", [LWKeychainManager instance].address, docs[@(type)][@"ID"]];
+        NSString *baseurl = [NSString stringWithFormat:@"https://%@/api/KycDocumentsBin/%@?width=320", [LWKeychainManager instance].address, docs[@(type)][@"ID"]];
         
 
         return (UIImage *)baseurl;
@@ -112,6 +123,16 @@
     return docs[@(type)][@"Comment"];
 }
 
+-(BOOL) isUploadingImage
+{
+    for(NSMutableDictionary *d in docs.allValues)
+        if(d[@"Uploader"])
+        {
+            return YES;
+        }
+    return NO;
+}
+
 -(void) sendImageManagerSentImage:(LWSendImageManager *)manager
 {
     for(NSMutableDictionary *d in docs.allValues)
@@ -120,6 +141,12 @@
             [d removeObjectForKey:@"Uploader"];
             break;
         }
+}
+
+-(void) logout
+{
+    
+    docs=nil;
 }
 
 -(void) sendImageManager:(LWSendImageManager *)manager didFailWithErrorMessage:(NSString *)message

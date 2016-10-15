@@ -15,5 +15,6 @@
 + (instancetype)shared;
 -(void) downloadImageFromURLString:(NSString *) urlString withCompletion:(void(^)(UIImage *)) completion;
 
+-(void) logout;
 
 @end

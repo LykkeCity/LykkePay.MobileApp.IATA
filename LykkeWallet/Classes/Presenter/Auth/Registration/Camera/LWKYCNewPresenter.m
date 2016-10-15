@@ -11,9 +11,15 @@
 #import "LWCommonButton.h"
 #import "LWKYCPhotoContainerView.h"
 #import "LWKYCImagePickerController.h"
+#import "LWKYCLaterMessageView.h"
+#import "UIImage+Resize.h"
+#import "LWCameraMessageView.h"
+#import "LWCameraMessageView2.h"
+
+@import AVFoundation;
 
 
-@interface LWKYCNewPresenter () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface LWKYCNewPresenter () <UIImagePickerControllerDelegate, UINavigationControllerDelegate, LWKYCCameraTopBarViewDelegate, LWKYCLaterMessageViewDelegate>
 {
     UIImagePickerController *picker;
     
@@ -23,6 +29,8 @@
     
     KYCDocumentType activeType;
     
+    BOOL flagUploadedNewPhoto;
+    
 }
 
 @property (weak, nonatomic) IBOutlet LWKYCCameraTopBarView *topBarView;
@@ -31,6 +39,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *closeButton;
 @property (weak, nonatomic) IBOutlet UIButton *nextButton;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *actionButtonWidth;
 
 @end
 
@@ -38,14 +47,24 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    flagUploadedNewPhoto=NO;
+    
+    [_nextButton setTitleColor:[UIColor colorWithRed:63.0/255 green:77.0/255 blue:96.0/255 alpha:.2] forState:UIControlStateDisabled];
+    
     
     titles=@[@"Make a selfie", @"Make a photo of your passport or other ID", @"Make a photo of Proof of Address, e.g. utility bill"];
     
     photos=[[NSMutableDictionary alloc] init];
     
     activeType=KYCDocumentTypeSelfie;
-    
-//    _documentsStatuses=@{@(KYCDocumentTypeSelfie):@(KYCDocumentStatusEmpty), @(KYCDocumentTypePassport):@(KYCDocumentStatusEmpty), @(KYCDocumentTypeAddress):@(KYCDocumentStatusRejected), @"ActiveType":@(KYCDocumentTypeSelfie)};
+    for(KYCDocumentType t=KYCDocumentTypeSelfie;t<=KYCDocumentTypeProofOfAddress;t++)
+    {
+        if([_documentsStatuses statusForDocument:t]==KYCDocumentStatusEmpty || [_documentsStatuses statusForDocument:t]==KYCDocumentStatusRejected)
+        {
+            activeType=t;
+            break;
+        }
+    }
     
     
     [_actionButton addTarget:self action:@selector(shootPressed) forControlEvents:UIControlEventTouchUpInside];
@@ -67,9 +86,12 @@
     UISwipeGestureRecognizer *swipeRight=[[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipedRight)];
     swipeRight.direction=UISwipeGestureRecognizerDirectionRight;
     [self.view addGestureRecognizer:swipeRight];
+    
+    _topBarView.delegate=self;
+    
+    if([UIScreen mainScreen].bounds.size.width==320)
+        _actionButtonWidth.constant=280;
 
-
-    // Do any additional setup after loading the view from its nib.
 }
 
 -(void) viewWillAppear:(BOOL)animated
@@ -92,59 +114,21 @@
     if(activeType==KYCDocumentTypeProofOfAddress)
         return;
     
-    
-    LWKYCPhotoContainerView *prevContainer=[[LWKYCPhotoContainerView alloc] initWithFrame:_photoContainerView.frame];
+    [self stepToDirection:1];
 
-    prevContainer.status=[_documentsStatuses statusForDocument:activeType];
-    prevContainer.title=titles[activeType];
-    prevContainer.image=[_documentsStatuses imageForType:activeType];
-    prevContainer.failedDescription=[_documentsStatuses commentForType:activeType];
-
-    [self.view addSubview:prevContainer];
-    
-    _photoContainerView.hidden=YES;
-
-    
-    activeType++;
-
-    [_topBarView setActiveType:activeType];
-    LWKYCPhotoContainerView *tmpContainer=[[LWKYCPhotoContainerView alloc] initWithFrame:_photoContainerView.frame];
-    
-    tmpContainer.status=[_documentsStatuses statusForDocument:activeType];
-    tmpContainer.title=titles[activeType];
-    tmpContainer.image=[_documentsStatuses imageForType:activeType];
-    tmpContainer.failedDescription=[_documentsStatuses commentForType:activeType];
-
-    tmpContainer.center=CGPointMake(self.view.bounds.size.width*1.5, _photoContainerView.center.y);
-    [self.view addSubview:tmpContainer];
-    
-    
-//    self.view.translatesAutoresizingMaskIntoConstraints=NO;
-    [UIView animateWithDuration:0.5 animations:^{
-        prevContainer.center=CGPointMake(self.view.bounds.size.width*-0.5, _photoContainerView.center.y);
-        tmpContainer.center=CGPointMake(self.view.bounds.size.width*0.5, _photoContainerView.center.y);
-    
-    } completion:^(BOOL finished){
-        [tmpContainer removeFromSuperview];
-        [prevContainer removeFromSuperview];
-        _photoContainerView.hidden=NO;
-
-
-        _photoContainerView.status=[_documentsStatuses statusForDocument:activeType];
-        _photoContainerView.title=titles[activeType];
-        _photoContainerView.image=[_documentsStatuses imageForType:activeType];
-        _photoContainerView.failedDescription=[_documentsStatuses commentForType:activeType];
-
-    }];
-    
-    [self checkDocumentsStatuses];
 }
 
 -(void) swipedRight
 {
-    
     if(activeType==KYCDocumentTypeSelfie)
         return;
+
+    [self stepToDirection:-1];
+}
+
+-(void) stepToDirection:(int) step
+{
+    
     
     LWKYCPhotoContainerView *prevContainer=[[LWKYCPhotoContainerView alloc] initWithFrame:_photoContainerView.frame];
     
@@ -156,7 +140,7 @@
     [self.view addSubview:prevContainer];
     
     _photoContainerView.hidden=YES;
-    activeType--;
+    activeType+=step;
 
     _topBarView.documentsStatuses=_documentsStatuses;
     [_topBarView setActiveType:activeType];
@@ -167,10 +151,10 @@
     tmpContainer.image=[_documentsStatuses imageForType:activeType];
     tmpContainer.failedDescription=[_documentsStatuses commentForType:activeType];
     
-    tmpContainer.center=CGPointMake(self.view.bounds.size.width*-0.5, _photoContainerView.center.y);
+    tmpContainer.center=CGPointMake(self.view.bounds.size.width*(0.5+(step/abs(step))), _photoContainerView.center.y);
     [self.view addSubview:tmpContainer];
     [UIView animateWithDuration:0.5 animations:^{
-        prevContainer.center=CGPointMake(self.view.bounds.size.width*1.5, _photoContainerView.center.y);
+        prevContainer.center=CGPointMake(self.view.bounds.size.width*(0.5+(-step/abs(step))), _photoContainerView.center.y);
         tmpContainer.center=CGPointMake(self.view.bounds.size.width*0.5, _photoContainerView.center.y);
         
     } completion:^(BOOL finished){
@@ -189,66 +173,52 @@
 
 -(IBAction)crossPressed:(id)sender
 {
+    BOOL flagOK=YES;
+    for(KYCDocumentType t=KYCDocumentTypeSelfie;t<=KYCDocumentTypeProofOfAddress;t++)
+    {
+        if([_documentsStatuses statusForDocument:t]==KYCDocumentStatusRejected || [_documentsStatuses statusForDocument:t]==KYCDocumentStatusEmpty)
+        {
+            flagOK=NO;
+            break;
+        }
+    }
+
+    
+    if(flagUploadedNewPhoto==NO || flagOK)
+    {
+        [self laterMessageViewDismissed];
+        return;
+    }
+    LWKYCLaterMessageView *view=[[[NSBundle mainBundle] loadNibNamed:@"LWKYCLaterMessageView" owner:self options:nil] objectAtIndex:0];
+    view.delegate=self;
+    [view show];
+}
+
+-(void) laterMessageViewDismissed
+{
     [self.navigationController popViewControllerAnimated:YES];
 }
 
 
 -(void) shootPressed
 {
-    picker = [[LWKYCImagePickerController alloc] init];
-    picker.delegate = self;
-    picker.sourceType = UIImagePickerControllerSourceTypeCamera;
-    if(activeType==KYCDocumentTypeSelfie)
-        picker.cameraDevice = UIImagePickerControllerCameraDeviceFront;
-    else
-        picker.cameraDevice=UIImagePickerControllerCameraDeviceRear;
-    picker.showsCameraControls = YES;
-    
-    
-    
-//    UIView *overlay=[[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    [self showCameraView];
+//    picker = [[LWKYCImagePickerController alloc] init];
+//    picker.delegate = self;
+//    picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+//    if(activeType==KYCDocumentTypeSelfie)
+//        picker.cameraDevice = UIImagePickerControllerCameraDeviceFront;
+//    else
+//        picker.cameraDevice=UIImagePickerControllerCameraDeviceRear;
+//    picker.showsCameraControls = YES;
 //    
-//    picker.cameraOverlayView=overlay;
-    
-    
-//    CGSize screenSize = [[UIScreen mainScreen] bounds].size;
-//    float cameraAspectRatio = 4.0 / 3.0;
-//    float imageHeight = screenSize.width * cameraAspectRatio;
-//    float verticalAdjustment;
-//    if (screenSize.height - imageHeight <= 54.0f) {
-//        verticalAdjustment = 0;
-//    } else {
-//        verticalAdjustment = (screenSize.height - imageHeight) / 2.0f;
-//        verticalAdjustment /= 2.0f; // A little bit upper than centered
-//    }
-//    CGAffineTransform transform = picker.cameraViewTransform;
 //    
-//    verticalAdjustment=100;
 //    
-//    transform.ty += verticalAdjustment;
 //    
-//    picker.cameraViewTransform = CGAffineTransformTranslate(CGAffineTransformIdentity, 0, 200);
-    
-    
-//    CGSize screenBounds = [UIScreen mainScreen].bounds.size;
-//    
-//    CGFloat cameraAspectRatio = 4.0f/3.0f;
-//    
-//    CGFloat camViewHeight = screenBounds.width * cameraAspectRatio;
-//    CGFloat scale = screenBounds.height / camViewHeight;
-//    
-//    UIView *vvv=picker.view;
-//    picker.cameraViewTransform=CGAffineTransformMakeScale(2.0, 2.0);
-
-//    picker.cameraViewTransform = CGAffineTransformMakeTranslation(0, (screenBounds.height - camViewHeight) / 2.0);
-//    picker.cameraViewTransform = CGAffineTransformScale(picker.cameraViewTransform, scale, scale);
-    
-    
-    
-    [self presentViewController:picker animated:YES
-                     completion:^ {
-
-                     }];
+//    [self presentViewController:picker animated:YES
+//                     completion:^ {
+//
+//                     }];
 }
 
 -(void) imagePickerControllerDidCancel:(UIImagePickerController *)_picker
@@ -258,13 +228,14 @@
 
 -(void) imagePickerController:(UIImagePickerController *)_picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info
 {
-    UIImage *chosenImage = info[UIImagePickerControllerOriginalImage];
+    UIImage *chosenImage = [info[UIImagePickerControllerOriginalImage] correctImageOrientation];
 //    UIImage *flippedImage = [UIImage imageWithCGImage:chosenImage.CGImage scale:chosenImage.scale orientation:UIImageOrientationLeftMirrored];
     _photoContainerView.image=chosenImage;
     _photoContainerView.status=KYCDocumentStatusUploaded;
     
     [_documentsStatuses setDocumentStatus:KYCDocumentStatusUploaded forDocument:activeType];
     [_documentsStatuses saveImage:chosenImage forType:activeType];
+    flagUploadedNewPhoto=YES;
     
     [picker dismissViewControllerAnimated:YES completion:NULL];
     
@@ -297,41 +268,117 @@
     [_topBarView adjustStatuses];
 }
 
+-(void) kycTopBarViewPressedDocumentType:(KYCDocumentType)type
+{
+    if(type!=activeType)
+        [self stepToDirection:type-activeType];
+}
+
+-(IBAction) nextPressed:(id) sender
+{
+    BOOL flagOK=YES;
+    for(KYCDocumentType t=KYCDocumentTypeSelfie;t<=KYCDocumentTypeProofOfAddress;t++)
+    {
+        if([_documentsStatuses statusForDocument:t]==KYCDocumentStatusRejected || [_documentsStatuses statusForDocument:t]==KYCDocumentStatusEmpty)
+        {
+            flagOK=NO;
+            break;
+        }
+    }
+    if(flagOK)
+    {
+        [self.delegate kycPresenterUserSubmitted:self];
+        return;
+    }
+    
+    for(KYCDocumentType t=activeType;;t++)
+    {
+        if(t==3)
+            t=0;
+        if([_documentsStatuses statusForDocument:t]==KYCDocumentStatusRejected || [_documentsStatuses statusForDocument:t]==KYCDocumentStatusEmpty)
+        {
+            [self stepToDirection:t-activeType];
+            break;
+        }
+    }
+
+}
 
 
-
-
-//-(void) photoCaptured:(NSNotification *) notification
-//{
-//    if(picker.cameraDevice == UIImagePickerControllerCameraDeviceFront)
-//    {
-//        
-//        NSArray *arr=picker.view.subviews;
-//        id uuu=picker.cameraOverlayView;
-////        [picker dismissViewControllerAnimated:YES completion:nil];
-//        [[NSNotificationCenter defaultCenter] removeObserver:self];
-//        [picker takePicture];
-//        return;
-//        id ooo=notification.object;
-//        picker.cameraViewTransform = CGAffineTransformIdentity;
-//        picker.cameraViewTransform = CGAffineTransformScale(picker.cameraViewTransform, -1,     1);
-//    }
-//}
-//
-//- (void)cameraChanged:(NSNotification *)notification
-//{
-//    
-//    picker.cameraViewTransform = CGAffineTransformIdentity;
-//
-////    if(picker.cameraDevice == UIImagePickerControllerCameraDeviceFront)
-////    {
-////        picker.cameraViewTransform = CGAffineTransformIdentity;
-////        picker.cameraViewTransform = CGAffineTransformScale(picker.cameraViewTransform, -1,     1);
-////    } else {
-////        picker.cameraViewTransform = CGAffineTransformIdentity;
-////    }
-//}
-
+- (void)showCameraView {
+    
+    
+    void (^block)(void)=^{
+        
+        picker = [[LWKYCImagePickerController alloc] init];
+        picker.delegate = self;
+        picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+        if(activeType==KYCDocumentTypeSelfie)
+            picker.cameraDevice = UIImagePickerControllerCameraDeviceFront;
+        else
+            picker.cameraDevice=UIImagePickerControllerCameraDeviceRear;
+        picker.showsCameraControls = YES;
+        
+        
+        
+        
+        [self presentViewController:picker animated:YES
+                         completion:^ {
+                             
+                         }];
+    };
+    
+    void (^messageBlock)(void)=^{
+        
+        LWCameraMessageView *view=[[NSBundle mainBundle] loadNibNamed:@"LWCameraMessageView" owner:self options:nil][0];
+        UIWindow *window=[[UIApplication sharedApplication] keyWindow];
+        view.center=CGPointMake(window.bounds.size.width/2, window.bounds.size.height/2);
+        
+        [window addSubview:view];
+        
+        [view show];
+    };
+    
+    
+    AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
+    if(authStatus == AVAuthorizationStatusAuthorized) {
+        block();
+    } else if(authStatus == AVAuthorizationStatusDenied){
+        messageBlock();
+        
+    } else if(authStatus == AVAuthorizationStatusRestricted){
+        // restricted, normally won't happen
+    } else if(authStatus == AVAuthorizationStatusNotDetermined){
+        // not determined?!
+        
+        LWCameraMessageView2 *view=[[NSBundle mainBundle] loadNibNamed:@"LWCameraMessageView2" owner:self options:nil][0];
+        UIWindow *window=[[UIApplication sharedApplication] keyWindow];
+        view.center=CGPointMake(window.bounds.size.width/2, window.bounds.size.height/2);
+        
+        [window addSubview:view];
+        
+        [view showWithCompletion:^(BOOL result){
+            if(result)
+                [AVCaptureDevice requestAccessForMediaType:AVMediaTypeVideo completionHandler:^(BOOL granted) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        if(granted){
+                            block();
+                        } else {
+                            messageBlock();
+                        }
+                    });
+                }];
+        }];
+        
+        
+        
+    } else {
+        // impossible, unknown authorization status
+    }
+    
+    
+    
+}
 
 
 -(void) dealloc

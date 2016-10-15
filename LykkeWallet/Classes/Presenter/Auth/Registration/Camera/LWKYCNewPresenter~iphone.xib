@@ -14,6 +14,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LWKYCNewPresenter">
             <connections>
                 <outlet property="actionButton" destination="Ate-zf-VPQ" id="wl9-yl-iFg"/>
+                <outlet property="actionButtonWidth" destination="09x-cM-0qK" id="ugZ-9s-xqr"/>
                 <outlet property="closeButton" destination="CLd-Mf-fIF" id="qis-2e-jtj"/>
                 <outlet property="nextButton" destination="q11-AR-KM2" id="u8W-0N-skq"/>
                 <outlet property="photoContainerView" destination="3yk-BF-Bfg" id="uOE-xp-r1O"/>
@@ -59,6 +60,9 @@
                     <state key="normal" title="NEXT">
                         <color key="titleColor" red="0.6705882352941176" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
+                    <connections>
+                        <action selector="nextPressed:" destination="-2" eventType="touchUpInside" id="NwX-Zj-qfe"/>
+                    </connections>
                 </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q4P-OV-ens" customClass="LWKYCCameraTopBarView">
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -68,6 +72,7 @@
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ate-zf-VPQ" customClass="LWCommonButton">
                     <constraints>
+                        <constraint firstAttribute="width" constant="315" id="09x-cM-0qK"/>
                         <constraint firstAttribute="height" constant="45" id="Igw-Po-sai"/>
                     </constraints>
                     <state key="normal" title="Button"/>
@@ -81,12 +86,11 @@
                 <constraint firstItem="Ate-zf-VPQ" firstAttribute="top" secondItem="3yk-BF-Bfg" secondAttribute="bottom" constant="30" id="20d-Pa-ds2"/>
                 <constraint firstItem="itw-dK-vsT" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="2Pt-Bu-T2u"/>
                 <constraint firstItem="3yk-BF-Bfg" firstAttribute="top" secondItem="q4P-OV-ens" secondAttribute="bottom" constant="30" id="54S-V4-22X"/>
-                <constraint firstAttribute="trailing" secondItem="Ate-zf-VPQ" secondAttribute="trailing" constant="30" id="6xr-OC-9ZV"/>
                 <constraint firstItem="q11-AR-KM2" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="34" id="NFW-go-vOd"/>
                 <constraint firstItem="9oF-jT-VIF" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Qa7-cM-OLc"/>
                 <constraint firstItem="9oF-jT-VIF" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="32" id="U6t-6A-rKi"/>
-                <constraint firstItem="Ate-zf-VPQ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="30" id="W7w-x2-baR"/>
                 <constraint firstItem="CLd-Mf-fIF" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="bcR-nh-ASs"/>
+                <constraint firstItem="Ate-zf-VPQ" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="bx1-k2-Gmh"/>
                 <constraint firstAttribute="bottom" secondItem="Ate-zf-VPQ" secondAttribute="bottom" constant="30" id="d9O-Kn-XUz"/>
                 <constraint firstItem="q4P-OV-ens" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" id="hF2-Wk-hQe"/>
                 <constraint firstAttribute="trailing" secondItem="itw-dK-vsT" secondAttribute="trailing" id="iK9-LO-10Y"/>

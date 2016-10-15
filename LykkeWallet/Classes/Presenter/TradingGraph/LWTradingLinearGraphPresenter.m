@@ -382,7 +382,7 @@ static int const kNumberOfRows = 4;
 }
 
 - (void)authManager:(LWAuthManager *)manager didFailWithReject:(NSDictionary *)reject context:(GDXRESTContext *)context {
-    self.isValid = NO;
+//    self.isValid = NO;   //To prevent disabling when server returns error
     [self setLoading:NO];
     
     [self showReject:reject response:context.task.response];

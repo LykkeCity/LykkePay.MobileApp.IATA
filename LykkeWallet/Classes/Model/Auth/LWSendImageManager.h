@@ -20,6 +20,8 @@
 -(void) sendImageWithData:(NSData *) data type:(KYCDocumentType) type;
 -(void) stopUploading;
 
+
+
 @end
 
 

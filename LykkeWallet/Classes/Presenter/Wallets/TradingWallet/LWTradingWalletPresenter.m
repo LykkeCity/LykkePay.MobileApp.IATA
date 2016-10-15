@@ -199,21 +199,21 @@
     
     [[LWKYCManager sharedInstance] manageKYCStatusForAsset:self.assetId successBlock:^{
 
-        if([self.assetId isEqualToString:@"LKK"])
-        {
-            if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
-            {
-                LWMyLykkeBuyPresenter *presenter=[[LWMyLykkeBuyPresenter alloc] init];
-                [self.navigationController pushViewController:presenter animated:YES];
-            }
-            else
-            {
-                LWMyLykkeIpadController *presenter=[LWMyLykkeIpadController new];
-                [self.navigationController pushViewController:presenter animated:YES];
-                
-            }
-            return;
-        }
+//        if([self.assetId isEqualToString:@"LKK"])
+//        {
+//            if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
+//            {
+//                LWMyLykkeBuyPresenter *presenter=[[LWMyLykkeBuyPresenter alloc] init];
+//                [self.navigationController pushViewController:presenter animated:YES];
+//            }
+//            else
+//            {
+//                LWMyLykkeIpadController *presenter=[LWMyLykkeIpadController new];
+//                [self.navigationController pushViewController:presenter animated:YES];
+//                
+//            }
+//            return;
+//        }
 
     
     UIViewController *presenter;

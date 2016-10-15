@@ -7,11 +7,14 @@
 //
 
 #import "LWKYCPresenter.h"
+#import "LWKYCDocumentsModel.h"
 
 
 @interface LWKYCInvalidDocumentsPresenter : LWKYCPresenter {
     
 }
+
+@property (strong, nonatomic) LWKYCDocumentsModel *documentsStatuses;
 
 @property id delegate;
 
@@ -19,6 +22,6 @@
 
 @protocol LWKYCInvalidDocumentsPresenterDelegate
 
--(void) invalidDocumentsPresenterDismissed;
+-(void) invalidDocumentsPresenterDismissed:(LWKYCInvalidDocumentsPresenter *) presenter;
 
 @end

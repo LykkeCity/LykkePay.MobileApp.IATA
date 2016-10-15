@@ -23,7 +23,7 @@
 #import "LWKYCNewPresenter.h"
 #import "LWPacketKYCDocuments.h"
 
-@interface LWKYCManager() <LWAuthManagerDelegate, LWRegisterCameraPresenterDelegate, LWKYCSubmitPresenterDelegate, LWKYCPendingPresenterDelegate, LWKYCSuccessPresenterDelegate, LWKYCInvalidDocumentsPresenterDelegate>
+@interface LWKYCManager() <LWAuthManagerDelegate, LWRegisterCameraPresenterDelegate, LWKYCNewPresenterDelegate, LWKYCPendingPresenterDelegate, LWKYCSuccessPresenterDelegate, LWKYCInvalidDocumentsPresenterDelegate>
 {
     
     void (^completionBlock)(void);
@@ -51,6 +51,7 @@
 
 -(void) manageKYCStatusForAsset:(NSString *)assetId successBlock:(void(^)(void)) completion
 {
+    
     navigationController=self.viewController.navigationController;
     
     
@@ -63,23 +64,54 @@
     [self.viewController setLoading:YES];
     [LWAuthManager instance].delegate=self;
   
-    [[LWAuthManager instance] requestKYCStatusForAsset:assetId];
+//    [[LWAuthManager instance] requestKYCStatusForAsset:assetId];
+    [self waitForImagesToUploadAndRequestKYCStatus:assetId];
     
 //    [[LWAuthManager instance] requestKYCDocuments];
     
 }
 
+-(void) waitForImagesToUploadAndRequestKYCStatus:(NSString *) assetId
+{
+    if([[LWKYCDocumentsModel shared] isUploadingImage])
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self waitForImagesToUploadAndRequestKYCStatus:assetId];
+        });
+    else
+        [[LWAuthManager instance] requestKYCStatusForAsset:assetId];
+
+}
+
+
 -(void) authManager:(LWAuthManager *)manager didGetKYCDocuments:(LWPacketKYCDocuments *)packet
 {
     [self.viewController setLoading:NO];
     
-    LWKYCNewPresenter *vc=[LWKYCNewPresenter new];
-    vc.documentsStatuses=packet.documentsStatuses;
-//    vc.delegate=self;
+    BOOL flagRejected=NO;
+    for(int i=0;i<=3;i++)
+        if([packet.documentsStatuses statusForDocument:i]==KYCDocumentStatusRejected)
+        {
+            flagRejected=YES;
+            break;
+        }
     
-    [navigationController pushViewController:vc animated:YES];
+    
+    if(flagRejected==NO)
+    {
+        LWKYCNewPresenter *vc=[LWKYCNewPresenter new];
+        vc.documentsStatuses=packet.documentsStatuses;
+        vc.delegate=self;
+        [navigationController pushViewController:vc animated:YES];
 
-    
+    }
+    else
+    {
+        LWKYCInvalidDocumentsPresenter *pres=[[LWKYCInvalidDocumentsPresenter alloc] init];
+        pres.delegate=self;
+        pres.documentsStatuses=packet.documentsStatuses;
+        [navigationController presentViewController:pres animated:YES completion:nil];
+
+    }
 }
 
 
@@ -142,10 +174,11 @@
 {
     if([status isEqualToString:@"NeedToFillData"])
     {
-        [self.viewController setLoading:NO];
-        LWKYCInvalidDocumentsPresenter *pres=[[LWKYCInvalidDocumentsPresenter alloc] init];
-        pres.delegate=self;
-        [navigationController presentViewController:pres animated:YES completion:nil];
+        [[LWAuthManager instance] requestKYCDocuments];
+//        [self.viewController setLoading:NO];
+//        LWKYCInvalidDocumentsPresenter *pres=[[LWKYCInvalidDocumentsPresenter alloc] init];
+//        pres.delegate=self;
+//        [navigationController presentViewController:pres animated:YES completion:nil];
 
         return;
     }
@@ -168,49 +201,49 @@
     [self.viewController setLoading:NO];
     
     documentsStatus=status;
-    [self checkDocumentsStatus];
+//    [self checkDocumentsStatus];
 }
 
--(void) checkDocumentsStatus
-{
-    if(documentsStatus.isIdCardUploaded==NO || documentsStatus.isPOAUploaded==NO || documentsStatus.isSelfieUploaded==NO)
-    {
-        LWAuthStep step;
-        if(documentsStatus.isSelfieUploaded==NO)
-            step=LWAuthStepRegisterSelfie;
-        else if(documentsStatus.isIdCardUploaded==NO)
-            step=LWAuthStepRegisterIdentity;
-        else
-            step=LWAuthStepRegisterUtilityBill;
-        
-        [self showCameraWithStep:step];
-    }
-    else
-    {
-        LWKYCSubmitPresenter *presenter=[LWKYCSubmitPresenter new];
-        presenter.delegate=self;
-        [navigationController pushViewController:presenter animated:YES];
-        
-    }
+//-(void) checkDocumentsStatus
+//{
+//    if(documentsStatus.isIdCardUploaded==NO || documentsStatus.isPOAUploaded==NO || documentsStatus.isSelfieUploaded==NO)
+//    {
+//        LWAuthStep step;
+//        if(documentsStatus.isSelfieUploaded==NO)
+//            step=LWAuthStepRegisterSelfie;
+//        else if(documentsStatus.isIdCardUploaded==NO)
+//            step=LWAuthStepRegisterIdentity;
+//        else
+//            step=LWAuthStepRegisterUtilityBill;
+//        
+//        [self showCameraWithStep:step];
+//    }
+//    else
+//    {
+//        LWKYCSubmitPresenter *presenter=[LWKYCSubmitPresenter new];
+//        presenter.delegate=self;
+//        [navigationController pushViewController:presenter animated:YES];
+//        
+//    }
+//
+//}
 
-}
-
--(void) showCameraWithStep:(LWAuthStep) step
-{
-//    LWKYCNewPresenter *presenter=[LWKYCNewPresenter new];
-//    [navigationController pushViewController:presenter animated:YES];
-//    return;
-    
-    
-    LWRegisterCameraPresenter *camera=[LWRegisterCameraPresenter new];
-    camera.delegate=self;
-    //        camera.shouldHideBackButton=YES;
-    UIView *v=camera.view;
-    camera.currentStep=step;
-    camera.stepImageView.hidden=YES;
-    [navigationController pushViewController:camera animated:YES];
-
-}
+//-(void) showCameraWithStep:(LWAuthStep) step
+//{
+////    LWKYCNewPresenter *presenter=[LWKYCNewPresenter new];
+////    [navigationController pushViewController:presenter animated:YES];
+////    return;
+//    
+//    
+//    LWRegisterCameraPresenter *camera=[LWRegisterCameraPresenter new];
+//    camera.delegate=self;
+//    //        camera.shouldHideBackButton=YES;
+//    UIView *v=camera.view;
+//    camera.currentStep=step;
+//    camera.stepImageView.hidden=YES;
+//    [navigationController pushViewController:camera animated:YES];
+//
+//}
 
 -(void) showSuccess
 {
@@ -222,13 +255,15 @@
 
 }
 
--(void) cameraPresenterDidSendPhoto:(LWRegisterCameraPresenter *)presenter
-{
-    [self checkDocumentsStatus];
-    
-}
+//-(void) cameraPresenterDidSendPhoto:(LWRegisterCameraPresenter *)presenter
+//{
+//    [self checkDocumentsStatus];
+//    
+//}
 
--(void) submitPresenterUserSubmitted:(LWKYCSubmitPresenter *)presenter
+
+
+-(void) kycPresenterUserSubmitted:(LWKYCNewPresenter *)presenter
 {
     [navigationController popToViewController:lastViewController animated:NO];
     
@@ -251,22 +286,38 @@
 //    UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"LYKKE" message:@"Some of your documents were not accepted. Please retake." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
 //    [alert show];
     [navigationController popToViewController:lastViewController animated:NO];
+    
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-
-        LWKYCInvalidDocumentsPresenter *pres=[[LWKYCInvalidDocumentsPresenter alloc] init];
-        pres.delegate=self;
-        
-        [navigationController presentViewController:pres animated:YES completion:nil];
-        
-        
+    [self.viewController setLoading:YES];
+    [LWAuthManager instance].delegate=self;
+    
+    [[LWAuthManager instance] requestKYCDocuments];
     });
+
+    
+//    
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//
+//        LWKYCInvalidDocumentsPresenter *pres=[[LWKYCInvalidDocumentsPresenter alloc] init];
+//        pres.delegate=self;
+//        
+//        [navigationController presentViewController:pres animated:YES completion:nil];
+//        
+//        
+//    });
 }
 
--(void) invalidDocumentsPresenterDismissed
+-(void) invalidDocumentsPresenterDismissed:(LWKYCInvalidDocumentsPresenter *) presenter
 {
-    [self.viewController setLoading:YES];
-    [[LWAuthManager instance] requestDocumentsToUpload];
-    [LWAuthManager instance].delegate=self;
+//    [self.viewController setLoading:YES];
+    
+    LWKYCNewPresenter *vc=[LWKYCNewPresenter new];
+    vc.documentsStatuses=presenter.documentsStatuses;
+    vc.delegate=self;
+    [navigationController pushViewController:vc animated:YES];
+
+//    [[LWAuthManager instance] requestDocumentsToUpload];
+//    [LWAuthManager instance].delegate=self;
 
 }
 

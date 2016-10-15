@@ -653,7 +653,6 @@ static NSString *const WalletIcons[kNumberOfSections] = {
 - (void)authManager:(LWAuthManager *)manager didReceiveLykkeData:(LWLykkeWalletsData *)data {
     [refreshControl endRefreshing];
     [self setLoading:NO];
-    
 
     shouldShowError = NO;
 
@@ -700,6 +699,8 @@ static NSString *const WalletIcons[kNumberOfSections] = {
 
 - (void)authManager:(LWAuthManager *)manager didGetAssetPair:(LWAssetPairModel *)assetPair {
     [self setLoading:NO];
+    
+
     shouldShowError = NO;
     
     LWExchangeDealFormPresenter *controller = [LWExchangeDealFormPresenter new];
@@ -776,22 +777,22 @@ static NSString *const WalletIcons[kNumberOfSections] = {
                                      @"LKK":@"bitcoin"};
         
         if (data) {
-            if([data.identity isEqualToString:@"LKK"])
-            {
-                if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
-                {
-                    LWMyLykkeBuyPresenter *presenter=[[LWMyLykkeBuyPresenter alloc] init];
-                    [self.navigationController pushViewController:presenter animated:YES];
-                }
-                else
-                {
-                    LWMyLykkeIpadController *presenter=[LWMyLykkeIpadController new];
-                    [self.navigationController pushViewController:presenter animated:YES];
-                    
-                }
-                return;
-            }
-                
+//            if([data.identity isEqualToString:@"LKK"])
+//            {
+//                if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
+//                {
+//                    LWMyLykkeBuyPresenter *presenter=[[LWMyLykkeBuyPresenter alloc] init];
+//                    [self.navigationController pushViewController:presenter animated:YES];
+//                }
+//                else
+//                {
+//                    LWMyLykkeIpadController *presenter=[LWMyLykkeIpadController new];
+//                    [self.navigationController pushViewController:presenter animated:YES];
+//                    
+//                }
+//                return;
+//            }
+            
             
             UIViewController *presenter;
 

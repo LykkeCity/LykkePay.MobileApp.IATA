@@ -112,7 +112,21 @@
         [self adjustStatuses];
     [self adjustCurrentType];
     
+    for(LWKYCCameraTopBarElementView *v in views)
+    {
+        UITapGestureRecognizer *gesture=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(elementTapped:)];
+        [v addGestureRecognizer:gesture];
+    }
+    
 }
+
+-(void) elementTapped:(UITapGestureRecognizer *) gesture
+{
+    LWKYCCameraTopBarElementView *v=(LWKYCCameraTopBarElementView *)gesture.view;
+    [self.delegate kycTopBarViewPressedDocumentType:v.type];
+}
+
+
 
 
 
