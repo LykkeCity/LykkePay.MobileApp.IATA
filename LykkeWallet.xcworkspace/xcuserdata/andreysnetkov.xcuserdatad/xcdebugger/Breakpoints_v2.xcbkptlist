@@ -359,22 +359,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "LykkeWallet/Classes/Model/Core/LWURLProtocol.m"
-            timestampString = "493129604.106956"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "183"
-            endingLineNumber = "183"
-            landmarkName = "-requestServer"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "LykkeWallet/Classes/Model/Core/Network/LWPacketTransactions.m"
             timestampString = "492432133.340951"
             startingColumnNumber = "9223372036854775807"
@@ -446,7 +430,7 @@
             startingLineNumber = "16"
             endingLineNumber = "16"
             landmarkName = "-parseResponse:error:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -510,22 +494,6 @@
             startingLineNumber = "15"
             endingLineNumber = "15"
             landmarkName = "-parseResponse:error:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "LykkeWallet/Classes/Presenter/Wallets/WithdrawFunds/LWWithdrawCurrencyPresenter.m"
-            timestampString = "495626191.243189"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "197"
-            endingLineNumber = "197"
-            landmarkName = "-viewDidAppear:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -807,13 +775,29 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "LykkeWallet/Classes/Presenter/Utils/UIViewController+Loading.m"
-            timestampString = "498142794.556257"
+            filePath = "LykkeWallet/Classes/Presenter/Auth/Registration/Camera/LWKYCNewPresenter.m"
+            timestampString = "498452396.27276"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "88"
-            endingLineNumber = "88"
-            landmarkName = "-showReject:response:code:willNotify:"
+            startingLineNumber = "263"
+            endingLineNumber = "263"
+            landmarkName = "-checkDocumentsStatuses"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LykkeWallet/Classes/Model/LWKYCDocumentsModel.m"
+            timestampString = "498452464.020281"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "35"
+            endingLineNumber = "35"
+            landmarkName = "-setArrayOfDocuments:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

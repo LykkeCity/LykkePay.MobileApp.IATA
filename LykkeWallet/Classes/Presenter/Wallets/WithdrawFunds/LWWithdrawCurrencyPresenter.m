@@ -21,6 +21,8 @@
 #import "LWPacketCurrencyWithdraw.h"
 #import "LWWithdrawCurrencyCell.h"
 #import "LWIPadModalNavigationControllerViewController.h"
+#import "LWPINPresenter.h"
+#import "LWKeychainManager.h"
 
 #define BAR_GRAY_COLOR [UIColor colorWithRed:245.0/255 green:246.0/255 blue:248.0/255 alpha:1]
 
@@ -204,7 +206,7 @@
         
         _scrollView.contentSize=CGSizeMake(_scrollView.bounds.size.width, offset);
         
-        
+        [self.view setNeedsLayout];
  
     }
     
@@ -282,21 +284,53 @@
 //        packet.postCheck=[textCells[3] text];
         packet.amount=self.amount;
         packet.assetId=self.assetID;
+        CGRect rrr=self.view.frame;
+        [(UIViewController *)self.navigationController setLoading:YES];
         [[LWAuthManager instance] requestCurrencyWithdraw:packet];
-        [self setLoading:YES];};
+        };
     
     if(shouldSignOrder)
     {
-        LWAuthPINEnterPresenter *auth=[LWAuthPINEnterPresenter new];
-        
-        auth.isSuccess=^(BOOL success){
-            if(success)
-            {
+        LWPINPresenter *pin=[LWPINPresenter new];
+        pin.successBlock=^{
+            
+            //        [self.navigationController popViewControllerAnimated:YES];
+            [self.navigationController dismissViewControllerAnimated:YES completion:^{
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), requestBlock);
-            }
+            }];
+            
+            
+
+        };
+        pin.pinType=PIN_TYPE_CHECK;
+        pin.checkBlock = ^BOOL(NSString *pin_) {
+            
+            return [pin_ isEqualToString:[[LWKeychainManager instance] pin]];
+            
         };
         
-        [self.navigationController pushViewController:auth animated:YES];
+        
+        [self.navigationController presentViewController:pin animated:YES completion:nil];
+
+        
+        
+//        
+//        
+//        
+//        LWAuthPINEnterPresenter *auth=[LWAuthPINEnterPresenter new];
+//        
+//        auth.isSuccess=^(BOOL success){
+//            if(success)
+//            {
+//                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), requestBlock);
+//            }
+//        };
+//        if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
+//            [self.navigationController pushViewController:auth animated:YES];
+//        else
+//        {
+//            [(UINavigationController *)self.navigationController.presentingViewController pushViewController:auth animated:YES];
+//        }
     }
     else
         requestBlock();

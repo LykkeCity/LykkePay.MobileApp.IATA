@@ -21,6 +21,7 @@
         if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone || ([self.navigationController.viewControllers indexOfObject:self]>0))
         {
             UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"BackIcon"] style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(popViewControllerAnimated:)];
+            
             self.navigationItem.leftBarButtonItem = button;
         }
         else

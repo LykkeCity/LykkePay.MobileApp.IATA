@@ -19,6 +19,7 @@
 #import "LWCameraMessageView2.h"
 #import "LWKeychainManager.h"
 #import "LWPrivateWalletsManager.h"
+#import "LWCommonButton.h"
 
 @import AVFoundation;
 
@@ -37,13 +38,15 @@
 @property (weak, nonatomic) IBOutlet UITextField *walletNameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *privateKeyTextField;
 @property (weak, nonatomic) IBOutlet UILabel *addressLabel;
-@property (weak, nonatomic) IBOutlet UIButton *createUpdateButton;
+@property (weak, nonatomic) IBOutlet LWCommonButton *createUpdateButton;
 @property (weak, nonatomic) IBOutlet UIView *scanQRView;
 @property (weak, nonatomic) IBOutlet UIButton *padlockButton;
 @property (weak, nonatomic) IBOutlet UIView *modeButtonsContainer;
 @property (weak, nonatomic) IBOutlet UIButton *keyPasteButton;
 @property (weak, nonatomic) IBOutlet UIButton *keyCopyButton;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *createUpdateButtonWidth;
 
 @property (weak, nonatomic) IBOutlet UIView *privateKeyContainerView;
 
@@ -86,9 +89,9 @@
     
     self.lineViewHeightConstraint.constant=0.5;
 
-    createButtonEnabledAttributes=@{NSKernAttributeName:@(1), NSFontAttributeName:[UIFont fontWithName:@"ProximaNova-Semibold" size:15], NSForegroundColorAttributeName:[UIColor whiteColor]};
-
-     buttonDisabledAttributes= @{NSKernAttributeName:@(1), NSFontAttributeName:[UIFont fontWithName:@"ProximaNova-Semibold" size:15], NSForegroundColorAttributeName:TextColor};
+//    createButtonEnabledAttributes=@{NSKernAttributeName:@(1), NSFontAttributeName:[UIFont fontWithName:@"ProximaNova-Semibold" size:15], NSForegroundColorAttributeName:[UIColor whiteColor]};
+//
+//     buttonDisabledAttributes= @{NSKernAttributeName:@(1), NSFontAttributeName:[UIFont fontWithName:@"ProximaNova-Semibold" size:15], NSForegroundColorAttributeName:TextColor};
 
     NSString *createUpdateButtonTitle;
     
@@ -114,7 +117,8 @@
         
         
         createUpdateButtonTitle=@"UPDATE WALLET";
-        [LWValidator setButton:self.createUpdateButton enabled:YES];
+//        [LWValidator setButton:self.createUpdateButton enabled:YES];
+        _createUpdateButton.enabled=YES;
         
         self.walletNameTextField.text=self.wallet.name;
         self.addressLabel.text=self.wallet.address;
@@ -134,7 +138,8 @@
     else
     {
         createUpdateButtonTitle=@"CREATE WALLET";
-        [LWValidator setButton:self.createUpdateButton enabled:NO];
+//        [LWValidator setButton:self.createUpdateButton enabled:NO];
+        _createUpdateButton.enabled=NO;
         self.titleLabel.text=@"Enter details of new wallet";
         self.padlockWidthConstraint.active=YES;
         [self.walletNewButton setTitle:@"NEW"];
@@ -152,8 +157,11 @@
     [self.walletNewButton addTarget:self action:@selector(pressedWalletTypeButton:) forControlEvents:UIControlEventTouchUpInside];
     [self.walletExistingButton addTarget:self action:@selector(pressedWalletTypeButton:) forControlEvents:UIControlEventTouchUpInside];
     
-    [self.createUpdateButton setAttributedTitle:[[NSAttributedString alloc] initWithString:createUpdateButtonTitle attributes:createButtonEnabledAttributes] forState:UIControlStateNormal];
-    [self.createUpdateButton setAttributedTitle:[[NSAttributedString alloc] initWithString:createUpdateButtonTitle attributes:buttonDisabledAttributes] forState:UIControlStateDisabled];
+//    [self.createUpdateButton setAttributedTitle:[[NSAttributedString alloc] initWithString:createUpdateButtonTitle attributes:createButtonEnabledAttributes] forState:UIControlStateNormal];
+//    [self.createUpdateButton setAttributedTitle:[[NSAttributedString alloc] initWithString:createUpdateButtonTitle attributes:buttonDisabledAttributes] forState:UIControlStateDisabled];
+    
+    [_createUpdateButton setTitle:createUpdateButtonTitle forState:UIControlStateNormal];
+    
     if(self.editMode==NO)
         [self pressedWalletTypeButton:_walletNewButton];
     
@@ -164,6 +172,9 @@
     self.walletNameTextField.placeholder=@"Name of wallet";
     self.privateKeyTextField.placeholder=@"Private key";
     [self validateCreateUpdateButton];
+    
+    if([UIScreen mainScreen].bounds.size.width==320)
+        _createUpdateButtonWidth.constant=280;
 }
 
 -(void) viewWillAppear:(BOOL)animated
@@ -271,10 +282,10 @@
     
     _padlockWidthConstraint.active=YES;
     
-    [self.createUpdateButton setAttributedTitle:[[NSAttributedString alloc] initWithString:createUpdateButtonTitle attributes:createButtonEnabledAttributes] forState:UIControlStateNormal];
-    [self.createUpdateButton setAttributedTitle:[[NSAttributedString alloc] initWithString:createUpdateButtonTitle attributes:buttonDisabledAttributes] forState:UIControlStateDisabled];
+//    [self.createUpdateButton setAttributedTitle:[[NSAttributedString alloc] initWithString:createUpdateButtonTitle attributes:createButtonEnabledAttributes] forState:UIControlStateNormal];
+//    [self.createUpdateButton setAttributedTitle:[[NSAttributedString alloc] initWithString:createUpdateButtonTitle attributes:buttonDisabledAttributes] forState:UIControlStateDisabled];
 
-
+    [_createUpdateButton setTitle:createUpdateButtonTitle forState:UIControlStateNormal];
     
     [self.view endEditing:YES];
     
@@ -364,16 +375,21 @@
     if(self.editMode)
     {
         if([self.walletNameTextField.text isEqualToString:_wallet.name.lowercaseString])
-            [LWValidator setButton:self.createUpdateButton enabled:NO];
+        {
+//            [LWValidator setButton:self.createUpdateButton enabled:NO];
+            _createUpdateButton.enabled=NO;
+        }
         else if(self.walletNameTextField.text.length && [self.walletNameTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]].length)
         {
-            [LWValidator setButton:self.createUpdateButton enabled:YES];
+//            [LWValidator setButton:self.createUpdateButton enabled:YES];
+            _createUpdateButton.enabled=YES;
         }
         for(LWPrivateWalletModel *m in [LWPrivateWalletsManager shared].wallets)
         {
             if([[m.name lowercaseString] isEqualToString:walletName])
             {
-                [LWValidator setButton:self.createUpdateButton enabled:NO];
+//                [LWValidator setButton:self.createUpdateButton enabled:NO];
+                _createUpdateButton.enabled=NO;
                 break;
             }
         }
@@ -382,16 +398,21 @@
     {
         if(self.walletNameTextField.text.length && [self.walletNameTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]].length && self.addressLabel.text.length)
         {
-            [LWValidator setButton:self.createUpdateButton enabled:YES];
+//            [LWValidator setButton:self.createUpdateButton enabled:YES];
+            _createUpdateButton.enabled=YES;
         }
         else
-            [LWValidator setButton:self.createUpdateButton enabled:NO];
+        {
+//            [LWValidator setButton:self.createUpdateButton enabled:NO];
+            _createUpdateButton.enabled=NO;
+        }
         
         for(LWPrivateWalletModel *m in [LWPrivateWalletsManager shared].wallets)
         {
             if([[m.name lowercaseString] isEqualToString:walletName])
             {
-                [LWValidator setButton:self.createUpdateButton enabled:NO];
+//                [LWValidator setButton:self.createUpdateButton enabled:NO];
+                _createUpdateButton.enabled=NO;
                 break;
             }
         }

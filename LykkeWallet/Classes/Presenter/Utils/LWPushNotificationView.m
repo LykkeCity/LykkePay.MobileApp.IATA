@@ -12,6 +12,10 @@
 #import "LWKYCPendingPresenter.h"
 #import "LWAuthComplexPresenter.h"
 #import "LWMyLykkeSuccessViewController.h"
+#import "LWBackupNotificationView.h"
+#import "LWKYCSuccessPresenter.h"
+#import "LWKYCNewPresenter.h"
+#import "LWKYCRestrictedPresenter.h"
 
 
 
@@ -87,6 +91,8 @@
         imageView.image=[UIImage imageNamed:@"KYCSuccess"];
     else if(type==2 || type==4)
         imageView.image=[UIImage imageNamed:@"KYCFailed"];
+    else if(type==7)
+        imageView.image=[UIImage imageNamed:@"BackupNotificationIcon"];
     
     label=[[UILabel alloc] initWithFrame:CGRectMake(55, 0, self.bounds.size.width-55-70, self.bounds.size.height)];
     label.numberOfLines=0;
@@ -119,6 +125,15 @@
     {
         [self hide];
 //        [LWKYCManager sharedInstance].viewController=[[UIApplication sharedApplication].keyWindow visibleViewController];
+        
+        NSArray *controllers=@[[LWKYCInvalidDocumentsPresenter class],
+                               [LWKYCSuccessPresenter class],
+                               [LWKYCNewPresenter class],
+                               [LWKYCRestrictedPresenter class]];
+        for(Class c in controllers)
+            if([[keyWindow visibleViewController] isKindOfClass:c])
+                return;
+                
         [LWKYCManager sharedInstance].viewController=[keyWindow visibleViewController];
         
         [[LWKYCManager sharedInstance] manageKYCStatus];
@@ -131,6 +146,8 @@
     else if(type==6)
     {
         [self hide];
+        if([[keyWindow visibleViewController] isKindOfClass:[LWMyLykkeSuccessViewController class]])
+            return;
 
         //=[pushDict[@"aps"][@"Amount"] intValue];
         LWMyLykkeSuccessViewController *presenter=[LWMyLykkeSuccessViewController new];
@@ -138,6 +155,25 @@
         [presenter showInWindow:keyWindow];
         
     }
+    else if(type==7)
+    {
+//        [self removeFromSuperview];
+//        self.hidden=YES;
+//        window.hidden=YES;
+//        window=nil;
+//        keyWindow=nil;
+        [self hide];
+        LWBackupNotificationView *view = [[[NSBundle mainBundle] loadNibNamed:@"LWBackupNotificationView" owner:self options:nil] objectAtIndex:0];
+        
+        view.type=BackupRequestTypeOptional;
+        view.text=pushDict[@"aps"][@"alert"];
+        [view show];
+        return;
+    }
+
+    
+    
+    
 }
 
 -(void) invalidDocumentsPresenterDismissed
@@ -151,7 +187,6 @@
 //    UIWindow *window=[UIApplication sharedApplication].keyWindow;
     
     
- 
     
     self.center=CGPointMake(window.bounds.size.width/2, -self.bounds.size.height/2);
     [UIView animateWithDuration:0.5 animations:^{

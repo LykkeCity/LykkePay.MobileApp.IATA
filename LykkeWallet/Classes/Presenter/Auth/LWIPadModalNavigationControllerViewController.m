@@ -30,6 +30,12 @@
     
     self.view.autoresizingMask = UIViewAutoresizingNone;
     
+//    NSLayoutConstraint *width=[NSLayoutConstraint constraintWithItem:self.view attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:475];
+//    
+//    NSLayoutConstraint *height=[NSLayoutConstraint constraintWithItem:self.view attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:650];
+//    [self.view addConstraints:@[width, height]];
+
+    
 //    self.view.translatesAutoresizingMaskIntoConstraints=NO;
     
 }
@@ -64,6 +70,9 @@
         
         [v.view addConstraint:width];
         [v.view addConstraint:height];
+    
+//    v.view.frame=CGRectMake(0, 0, 475, 606);
+//    v.view.autoresizingMask=UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [super pushViewController:viewController animated:animated];
 }
 

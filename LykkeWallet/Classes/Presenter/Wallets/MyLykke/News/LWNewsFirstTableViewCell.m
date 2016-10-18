@@ -60,7 +60,7 @@
     UIColor *color2=[UIColor whiteColor];
 
     if(newsElement.imageURL)
-        [[LWImageDownloader shared] downloadImageFromURLString:newsElement.imageURL.absoluteString withCompletion:^(UIImage *image){
+        [[LWImageDownloader shared] downloadImageFromURLString:newsElement.imageURL.absoluteString shouldAuthenticate:NO withCompletion:^(UIImage *image){
             self.newsImageView.image=image;
         }];
     else
@@ -114,7 +114,7 @@
     if(_element2)
     {
         if(_element2.imageURL)
-            [[LWImageDownloader shared] downloadImageFromURLString:_element2.imageURL.absoluteString withCompletion:^(UIImage *image){
+            [[LWImageDownloader shared] downloadImageFromURLString:_element2.imageURL.absoluteString shouldAuthenticate:NO withCompletion:^(UIImage *image){
                 self.newsImageView2.image=image;
             }];
         self.title2.text=_element2.title;

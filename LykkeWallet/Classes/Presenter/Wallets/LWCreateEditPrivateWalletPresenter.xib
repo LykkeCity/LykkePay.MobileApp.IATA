@@ -229,9 +229,10 @@
                                 <constraint firstItem="8p2-rj-LMn" firstAttribute="top" secondItem="Soh-dg-LUV" secondAttribute="bottom" constant="17" id="vvA-0F-2ah"/>
                             </constraints>
                         </view>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zf0-rf-hlJ">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zf0-rf-hlJ" customClass="LWCommonButton">
                             <constraints>
                                 <constraint firstAttribute="height" constant="45" id="Ebo-C8-qPJ"/>
+                                <constraint firstAttribute="width" constant="315" id="hhB-Hg-6ro"/>
                             </constraints>
                             <state key="normal" title="Button">
                                 <color key="titleColor" red="0.24705882352941178" green="0.30196078431372547" blue="0.37647058823529411" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -268,9 +269,7 @@
                         <constraint firstItem="JKk-1L-wwZ" firstAttribute="top" secondItem="XkV-z2-RtP" secondAttribute="top" id="0Kw-c9-b57"/>
                         <constraint firstItem="Zf0-rf-hlJ" firstAttribute="top" secondItem="H5F-lz-JVS" secondAttribute="bottom" constant="22" id="2Xr-K0-idr"/>
                         <constraint firstItem="JKk-1L-wwZ" firstAttribute="centerX" secondItem="XkV-z2-RtP" secondAttribute="centerX" id="CFg-Ko-G5m"/>
-                        <constraint firstAttribute="trailing" secondItem="Zf0-rf-hlJ" secondAttribute="trailing" constant="30" id="EUh-Gq-Ta3"/>
                         <constraint firstAttribute="trailing" secondItem="JKk-1L-wwZ" secondAttribute="trailing" id="I5D-4O-sZh"/>
-                        <constraint firstItem="Zf0-rf-hlJ" firstAttribute="leading" secondItem="XkV-z2-RtP" secondAttribute="leading" constant="30" id="O8F-vw-j4F"/>
                         <constraint firstItem="JKk-1L-wwZ" firstAttribute="width" secondItem="XkV-z2-RtP" secondAttribute="width" id="Upb-I7-F7V"/>
                         <constraint firstItem="JKk-1L-wwZ" firstAttribute="leading" secondItem="XkV-z2-RtP" secondAttribute="leading" id="Xy7-0Q-IFc"/>
                         <constraint firstItem="Zf0-rf-hlJ" firstAttribute="centerX" secondItem="XkV-z2-RtP" secondAttribute="centerX" id="a7z-Ip-Oaf"/>

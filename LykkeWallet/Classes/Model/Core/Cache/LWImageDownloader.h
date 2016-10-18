@@ -13,7 +13,7 @@
 @interface LWImageDownloader : NSObject
 
 + (instancetype)shared;
--(void) downloadImageFromURLString:(NSString *) urlString withCompletion:(void(^)(UIImage *)) completion;
+-(void) downloadImageFromURLString:(NSString *) urlString shouldAuthenticate:(BOOL) flagNeedAuthentication withCompletion:(void(^)(UIImage *)) completion;
 
 -(void) logout;
 

@@ -36,7 +36,7 @@
     iconImageView=[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
     [self addSubview:iconImageView];
     
-    [[LWImageDownloader shared] downloadImageFromURLString:wallet.iconURL withCompletion:^(UIImage *image){
+    [[LWImageDownloader shared] downloadImageFromURLString:wallet.iconURL shouldAuthenticate:NO withCompletion:^(UIImage *image){
     
         iconImageView.image=image;
     }];

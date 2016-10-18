@@ -446,35 +446,35 @@
 
 -(void) submitPressed
 {
-    LWMyLykkeDepositBTCPresenter *presenter;
-    if([self.assetId isEqualToString:@"BTC"])
-    {
-        presenter=[LWMyLykkeDepositBTCPresenter new];
-        presenter.assetId=@"BTC";
-        presenter.lkkAmount=[self removePrefix:_lkkTextField.text].doubleValue;
-        presenter.price=_priceLabel.text.doubleValue;
-    }
-    else if([self.assetId isEqualToString:@"ETH"])
-    {
-        presenter=[LWMyLykkeDepositBTCPresenter new];
-        presenter.assetId=@"ETH";
-        presenter.lkkAmount=[self removePrefix:_lkkTextField.text].doubleValue;
-        presenter.price=_priceLabel.text.doubleValue;
-    }
-    else if([self.assetId isEqualToString:@"CHF"])
-    {
-        presenter=[LWMyLykkeDepositSwiftPresenter new];
-        
-    }
-    else if([self.assetId isEqualToString:@"USD"])
-    {
-        presenter=[LWMyLykkeCreditCardDepositPresenter new];
-        [(LWMyLykkeCreditCardDepositPresenter *)presenter setLkkAmountString:[self.lkkTextField.text stringByReplacingOccurrencesOfString:@"LKK" withString:@""]];
-    }
-    
-    presenter.amount=[self removePrefix:_btcTextField.text].doubleValue;
-    
-    [self.navigationController pushViewController:presenter animated:YES];
+//    LWMyLykkeDepositBTCPresenter *presenter;
+//    if([self.assetId isEqualToString:@"BTC"])
+//    {
+//        presenter=[LWMyLykkeDepositBTCPresenter new];
+//        presenter.assetId=@"BTC";
+//        presenter.lkkAmount=[self removePrefix:_lkkTextField.text].doubleValue;
+//        presenter.price=_priceLabel.text.doubleValue;
+//    }
+//    else if([self.assetId isEqualToString:@"ETH"])
+//    {
+//        presenter=[LWMyLykkeDepositBTCPresenter new];
+//        presenter.assetId=@"ETH";
+//        presenter.lkkAmount=[self removePrefix:_lkkTextField.text].doubleValue;
+//        presenter.price=_priceLabel.text.doubleValue;
+//    }
+//    else if([self.assetId isEqualToString:@"CHF"])
+//    {
+//        presenter=[LWMyLykkeDepositSwiftPresenter new];
+//        
+//    }
+//    else if([self.assetId isEqualToString:@"USD"])
+//    {
+//        presenter=[LWMyLykkeCreditCardDepositPresenter new];
+//        [(LWMyLykkeCreditCardDepositPresenter *)presenter setLkkAmountString:[self.lkkTextField.text stringByReplacingOccurrencesOfString:@"LKK" withString:@""]];
+//    }
+//    
+//    presenter.amount=[self removePrefix:_btcTextField.text].doubleValue;
+//    
+//    [self.navigationController pushViewController:presenter animated:YES];
 
 }
 

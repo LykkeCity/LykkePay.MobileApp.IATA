@@ -58,7 +58,8 @@
 {
     [super viewWillAppear:animated];
     [self.navigationItem setHidesBackButton:YES];
-    [self setLoading:YES];
+    if(!wallets.count)
+        [self setLoading:YES];
     [self reloadWallets];
 }
 

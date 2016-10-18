@@ -8,7 +8,10 @@
 
 #import "LWAuthPresenter.h"
 #import "LWMathKeyboardView.h"
-
+#import "UIViewController+Loading.h"
+#import "UIViewController+Navigation.h"
+#import "LWCache.h"
+#import "LWUtils.h"
 
 @interface LWAuthComplexPresenter : LWAuthPresenter {
     

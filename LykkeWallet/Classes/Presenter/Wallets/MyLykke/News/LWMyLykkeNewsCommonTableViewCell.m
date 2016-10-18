@@ -62,7 +62,7 @@
     if(!newsElement)
         return;
     if(newsElement.imageURL)
-        [[LWImageDownloader shared] downloadImageFromURLString:newsElement.imageURL.absoluteString withCompletion:^(UIImage *image){
+        [[LWImageDownloader shared] downloadImageFromURLString:newsElement.imageURL.absoluteString shouldAuthenticate:NO withCompletion:^(UIImage *image){
             self.newsImageView.image=image;
         }];
     
@@ -72,7 +72,7 @@
     if(_element2)
     {
         if(_element2.imageURL)
-            [[LWImageDownloader shared] downloadImageFromURLString:_element2.imageURL.absoluteString withCompletion:^(UIImage *image){
+            [[LWImageDownloader shared] downloadImageFromURLString:_element2.imageURL.absoluteString shouldAuthenticate:NO withCompletion:^(UIImage *image){
                 self.newsImageView2.image=image;
             }];
         
@@ -84,7 +84,7 @@
     if(_element3)
     {
         if(_element3.imageURL)
-            [[LWImageDownloader shared] downloadImageFromURLString:_element3.imageURL.absoluteString withCompletion:^(UIImage *image){
+            [[LWImageDownloader shared] downloadImageFromURLString:_element3.imageURL.absoluteString shouldAuthenticate:NO withCompletion:^(UIImage *image){
                 self.newsImageView3.image=image;
             }];
         

@@ -22,6 +22,7 @@
     NSArray *viewControllers;
     LWPrivateWalletAddView *plusView;
     UIBarButtonItem *itemPlus;
+    LWPrivateWalletsPresenter *privateWalletsPresenter;
 }
 
 @end
@@ -92,9 +93,10 @@
 
 -(void) walletsNavigationBarPressedPrivateWallets
 {
-    LWPrivateWalletsPresenter *presenter=[[LWPrivateWalletsPresenter alloc] init];
+    if(!privateWalletsPresenter)
+        privateWalletsPresenter=[[LWPrivateWalletsPresenter alloc] init];
     self.view.userInteractionEnabled=NO;
-    [super pushViewController:presenter animated:YES];
+    [super pushViewController:privateWalletsPresenter animated:YES];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         self.view.userInteractionEnabled=YES;
     });

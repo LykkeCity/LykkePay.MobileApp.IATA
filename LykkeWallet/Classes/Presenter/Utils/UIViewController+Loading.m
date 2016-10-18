@@ -72,7 +72,7 @@
     
     NSString *message = [reject objectForKey:kErrorMessage];    //Prevent showing error if connection to server was terminated when app was suspended
     NSNumber *code = [reject objectForKey:kErrorCode];
-    if(!message && !code)
+    if(!message && !code && [LWAuthManager isInternalServerError:response]==NO)
         return;
     
     if ([LWCache instance].debugMode) {  

@@ -106,6 +106,7 @@
     }
     else
     {
+//        if(_viewController)
         LWKYCInvalidDocumentsPresenter *pres=[[LWKYCInvalidDocumentsPresenter alloc] init];
         pres.delegate=self;
         pres.documentsStatuses=packet.documentsStatuses;

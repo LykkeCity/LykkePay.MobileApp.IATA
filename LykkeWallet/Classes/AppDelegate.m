@@ -128,10 +128,10 @@
     }
     
 //    [LWTransactionManager signTransactionRaw:@"01000000049c2cbf06bfee25c9041b7ccf474614e4de26f18abbd4cf0312c71ff99742f7570100000000ffffffff86701d6556c28f3ab528e11cad65439ff5980691f4e44ecc8023739bb42a559edb0100006a47304402206a4c389d6fd4faeec2dfa94853883b276d9b3f2cae646ad850802759fa6f78f3022006bd15223d4598ae084eac1a1c83587f326dd445a6582062fa26510d74833c40012103f50cb40deb9026745f2fcfe2a07457771732d0786f406575d6246d462109a908ffffffff86701d6556c28f3ab528e11cad65439ff5980691f4e44ecc8023739bb42a559e960200006b48304502210097cec5e508d4179c2ec696c705a7c8f687fca97eb13b76fc0d3f491732dd073502205d3c399cfd192c278e424bf1059f3551ae1ad2cbbe57f401801e266d0de77aff012103f50cb40deb9026745f2fcfe2a07457771732d0786f406575d6246d462109a908ffffffff86701d6556c28f3ab528e11cad65439ff5980691f4e44ecc8023739bb42a559e840300006a473044022023ed467a7156fc7ff34e4ae4d6c44d29b6496b3cdc317813441fa0b042f631c3022050fac0e5bb24ca20bdd2fd78304897d5e4237d90b701dbf93fae1e387c9da7fc012103f50cb40deb9026745f2fcfe2a07457771732d0786f406575d6246d462109a908ffffffff030000000000000000126a104f41010002c0a3a8b55a8094ebdc0300aa0a0000000000001976a91493c118725804e10e46f054b1d5d5b44b0657c00a88acaa0a0000000000001976a91493fac6c4129a999a045c62c49bb2000a32d4dd2788ac00000000" forModel:nil];   //Testing
-//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(20 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//    [LWPushNotificationView showPushNotification:@{@"aps":@{@"alert":@"Need to show sticker above action bar, so clock, network, battery etc icons won't overlap notification text", @"type":@(1)}} clickImmediately:NO];//Testing
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(30 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//    [LWPushNotificationView showPushNotification:@{@"aps":@{@"alert":@"Need to show sticker above action bar", @"type":@(3)}} clickImmediately:NO];//Testing
 //    });
-//
+
     
 //    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(30 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
 //        LWMyLykkeSuccessViewController *presenter=[[LWMyLykkeSuccessViewController alloc] init];//Testing

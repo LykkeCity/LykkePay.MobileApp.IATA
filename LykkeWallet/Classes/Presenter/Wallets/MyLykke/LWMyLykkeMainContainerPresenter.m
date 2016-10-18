@@ -75,7 +75,6 @@
     gesture=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(equityButtonPressed)];
     [_equityButtonView addGestureRecognizer:gesture];
     
-    _equityNewsHighlightView.layer.cornerRadius=_equityNewsHighlightView.bounds.size.height/2;
     
     _equityButtonLabel.textColor=[UIColor whiteColor];
     _newsButtonLabel.textColor=[UIColor colorWithRed:63.0/255 green:77.0/255 blue:96.0/255 alpha:1];
@@ -86,6 +85,9 @@
     
     topViewMinHeight=50;
     _equityButtonView.tag=1;
+    
+    [_equityNewsHighlightView layoutIfNeeded];
+    _equityNewsHighlightView.layer.cornerRadius=_equityNewsHighlightView.bounds.size.height/2;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -113,6 +115,14 @@
     else
         [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
 
+
+}
+
+-(void) viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+
+    
 }
 
 -(void) viewWillDisappear:(BOOL)animated

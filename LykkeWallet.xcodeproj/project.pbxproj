@@ -18,6 +18,12 @@
 		A10A95071D0E8F5F00557C87 /* SlashSign@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = A10A95051D0E8F5F00557C87 /* SlashSign@3x.png */; };
 		A10A950A1D0E9F3B00557C87 /* LWPacketAllAssets.m in Sources */ = {isa = PBXBuildFile; fileRef = A10A95091D0E9F3B00557C87 /* LWPacketAllAssets.m */; };
 		A10A950D1D0EA07B00557C87 /* LWPacketLastBaseAssets.m in Sources */ = {isa = PBXBuildFile; fileRef = A10A950C1D0EA07B00557C87 /* LWPacketLastBaseAssets.m */; };
+		A11358E41DB2867C00E66051 /* LWLykkeBuyTransferContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = A11358E21DB2867C00E66051 /* LWLykkeBuyTransferContainer.m */; };
+		A11358E51DB2867C00E66051 /* LWLykkeBuyTransferContainer.xib in Resources */ = {isa = PBXBuildFile; fileRef = A11358E31DB2867C00E66051 /* LWLykkeBuyTransferContainer.xib */; };
+		A11358EE1DB35EEF00E66051 /* LWBuyLykkeInContainerPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A11358EC1DB35EEF00E66051 /* LWBuyLykkeInContainerPresenter.m */; };
+		A11358EF1DB35EEF00E66051 /* LWBuyLykkeInContainerPresenter.xib in Resources */ = {isa = PBXBuildFile; fileRef = A11358ED1DB35EEF00E66051 /* LWBuyLykkeInContainerPresenter.xib */; };
+		A11358F31DB3657D00E66051 /* LWBuyLykkeInContainerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A11358F11DB3657D00E66051 /* LWBuyLykkeInContainerTableViewCell.m */; };
+		A11358F41DB3657D00E66051 /* LWBuyLykkeInContainerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A11358F21DB3657D00E66051 /* LWBuyLykkeInContainerTableViewCell.xib */; };
 		A11494591D476BA2000BD347 /* LWPacketGetPaymentUrl.m in Sources */ = {isa = PBXBuildFile; fileRef = A11494581D476BA2000BD347 /* LWPacketGetPaymentUrl.m */; };
 		A114945D1D477E1A000BD347 /* LWCreditCardDepositPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A114945B1D477E1A000BD347 /* LWCreditCardDepositPresenter.m */; };
 		A114945E1D477E1A000BD347 /* LWCreditCardDepositPresenter.xib in Resources */ = {isa = PBXBuildFile; fileRef = A114945C1D477E1A000BD347 /* LWCreditCardDepositPresenter.xib */; };
@@ -1758,6 +1764,15 @@
 		A10A95091D0E9F3B00557C87 /* LWPacketAllAssets.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWPacketAllAssets.m; sourceTree = "<group>"; };
 		A10A950B1D0EA07B00557C87 /* LWPacketLastBaseAssets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWPacketLastBaseAssets.h; sourceTree = "<group>"; };
 		A10A950C1D0EA07B00557C87 /* LWPacketLastBaseAssets.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWPacketLastBaseAssets.m; sourceTree = "<group>"; };
+		A11358E11DB2867C00E66051 /* LWLykkeBuyTransferContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWLykkeBuyTransferContainer.h; sourceTree = "<group>"; };
+		A11358E21DB2867C00E66051 /* LWLykkeBuyTransferContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWLykkeBuyTransferContainer.m; sourceTree = "<group>"; };
+		A11358E31DB2867C00E66051 /* LWLykkeBuyTransferContainer.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LWLykkeBuyTransferContainer.xib; sourceTree = "<group>"; };
+		A11358EB1DB35EEF00E66051 /* LWBuyLykkeInContainerPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWBuyLykkeInContainerPresenter.h; sourceTree = "<group>"; };
+		A11358EC1DB35EEF00E66051 /* LWBuyLykkeInContainerPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWBuyLykkeInContainerPresenter.m; sourceTree = "<group>"; };
+		A11358ED1DB35EEF00E66051 /* LWBuyLykkeInContainerPresenter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LWBuyLykkeInContainerPresenter.xib; sourceTree = "<group>"; };
+		A11358F01DB3657D00E66051 /* LWBuyLykkeInContainerTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWBuyLykkeInContainerTableViewCell.h; sourceTree = "<group>"; };
+		A11358F11DB3657D00E66051 /* LWBuyLykkeInContainerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWBuyLykkeInContainerTableViewCell.m; sourceTree = "<group>"; };
+		A11358F21DB3657D00E66051 /* LWBuyLykkeInContainerTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LWBuyLykkeInContainerTableViewCell.xib; sourceTree = "<group>"; };
 		A11494571D476BA2000BD347 /* LWPacketGetPaymentUrl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWPacketGetPaymentUrl.h; sourceTree = "<group>"; };
 		A11494581D476BA2000BD347 /* LWPacketGetPaymentUrl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWPacketGetPaymentUrl.m; sourceTree = "<group>"; };
 		A114945A1D477E1A000BD347 /* LWCreditCardDepositPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWCreditCardDepositPresenter.h; sourceTree = "<group>"; };
@@ -4029,6 +4044,15 @@
 				A14515761D7C77C600B4BED9 /* LWMyLykkeSuccessViewController.h */,
 				A14515771D7C77C600B4BED9 /* LWMyLykkeSuccessViewController.m */,
 				A14515781D7C77C600B4BED9 /* LWMyLykkeSuccessViewController.xib */,
+				A11358E11DB2867C00E66051 /* LWLykkeBuyTransferContainer.h */,
+				A11358E21DB2867C00E66051 /* LWLykkeBuyTransferContainer.m */,
+				A11358E31DB2867C00E66051 /* LWLykkeBuyTransferContainer.xib */,
+				A11358EB1DB35EEF00E66051 /* LWBuyLykkeInContainerPresenter.h */,
+				A11358EC1DB35EEF00E66051 /* LWBuyLykkeInContainerPresenter.m */,
+				A11358ED1DB35EEF00E66051 /* LWBuyLykkeInContainerPresenter.xib */,
+				A11358F01DB3657D00E66051 /* LWBuyLykkeInContainerTableViewCell.h */,
+				A11358F11DB3657D00E66051 /* LWBuyLykkeInContainerTableViewCell.m */,
+				A11358F21DB3657D00E66051 /* LWBuyLykkeInContainerTableViewCell.xib */,
 			);
 			name = MyLykke;
 			path = Wallets/MyLykke;
@@ -7396,6 +7420,7 @@
 				A1BCD2BB1D012D3C00CF42E4 /* 5-onboard-2x_00085.png in Resources */,
 				A1BCD1051D012D3C00CF42E4 /* 2-trade-2x_00005.png in Resources */,
 				A1BCD1B81D012D3C00CF42E4 /* 3-settle-2x_00065.png in Resources */,
+				A11358EF1DB35EEF00E66051 /* LWBuyLykkeInContainerPresenter.xib in Resources */,
 				A1D477731D050B9900438846 /* loader-color@2x_00067.png in Resources */,
 				A1743CBC1CEAECC600176F59 /* LWRegisterPasswordPresenter~ipad.xib in Resources */,
 				A1BCD2351D012D3C00CF42E4 /* 4-withdraw-2x_00070.png in Resources */,
@@ -7603,6 +7628,7 @@
 				A1BCD1211D012D3C00CF42E4 /* 2-trade-2x_00033.png in Resources */,
 				A1BCD0A21D012D3C00CF42E4 /* 1-deposit-2x_00026.png in Resources */,
 				A1BCD0E31D012D3C00CF42E4 /* 1-deposit-2x_00091.png in Resources */,
+				A11358E51DB2867C00E66051 /* LWLykkeBuyTransferContainer.xib in Resources */,
 				A1D65D4D1D5DCF1100828783 /* crypto_bar_00009.png in Resources */,
 				A1D4775B1D050B9900438846 /* loader-color@2x_00043.png in Resources */,
 				A1BCD2BA1D012D3C00CF42E4 /* 5-onboard-2x_00084.png in Resources */,
@@ -7884,6 +7910,7 @@
 				A145157A1D7C77C600B4BED9 /* LWMyLykkeSuccessViewController.xib in Resources */,
 				A1BCD1171D012D3C00CF42E4 /* 2-trade-2x_00023.png in Resources */,
 				A1BCD2A21D012D3C00CF42E4 /* 5-onboard-2x_00060.png in Resources */,
+				A11358F41DB3657D00E66051 /* LWBuyLykkeInContainerTableViewCell.xib in Resources */,
 				A1D65D911D5DCF1100828783 /* crypto_bar_00077.png in Resources */,
 				A1BCD1AE1D012D3C00CF42E4 /* 3-settle-2x_00055.png in Resources */,
 				A1BCD21D1D012D3C00CF42E4 /* 4-withdraw-2x_00046.png in Resources */,
@@ -8352,6 +8379,7 @@
 				A122B97A1CFEB0BC009DC795 /* LWAnimatedView.m in Sources */,
 				EC3CE8A61C3FCDBE00CAC3FE /* LWSettingsConfirmationPresenter.m in Sources */,
 				A1D65DD51D6073BA00828783 /* LWBackupSuccessPresenter.m in Sources */,
+				A11358F31DB3657D00E66051 /* LWBuyLykkeInContainerTableViewCell.m in Sources */,
 				CF6632701C175DF0004353F5 /* TKTableViewCell.m in Sources */,
 				CDCE884F1C26F6630039798B /* LWAuthenticationPresenter.m in Sources */,
 				CF6F69D11C2413F70016CFC5 /* ABPadLockScreenSetupViewController.m in Sources */,
@@ -8424,6 +8452,7 @@
 				EC57F46D1C3D452300E31746 /* LWAuthComplexPresenter.m in Sources */,
 				CF6A9CD31C18ED2400B69F53 /* LWValidator.m in Sources */,
 				CDCD5AE61C259587007BAD78 /* TKTablePresenter.m in Sources */,
+				A11358E41DB2867C00E66051 /* LWLykkeBuyTransferContainer.m in Sources */,
 				EC7A45CC1C3099F900926BB4 /* LWLykkeTableViewCell.m in Sources */,
 				CD10AAA31C1E0B530086634B /* LWPacketAuthentication.m in Sources */,
 				ECD114631CDDD7E2002B36C0 /* LWCountrySelectorPresenter.m in Sources */,
@@ -8515,6 +8544,7 @@
 				ECE435BE1CC049B200BA8485 /* LWTransferEmptyBlockchainPresenter.m in Sources */,
 				A1743CB31CE9CBB400176F59 /* LWPacketCurrencyWithdraw.m in Sources */,
 				A114945D1D477E1A000BD347 /* LWCreditCardDepositPresenter.m in Sources */,
+				A11358EE1DB35EEF00E66051 /* LWBuyLykkeInContainerPresenter.m in Sources */,
 				ECD1E8F41C3B10AE0064AAB3 /* LWPacketAssetPairRate.m in Sources */,
 				A18D25BC1D697DC3005CEF66 /* LWSMSCodeCheckPresenter.m in Sources */,
 				CF9EC8F11C17C38900F742A6 /* LWAuthNavigationController.m in Sources */,

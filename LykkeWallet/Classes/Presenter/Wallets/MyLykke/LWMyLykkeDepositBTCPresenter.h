@@ -12,9 +12,4 @@
 
 @interface LWMyLykkeDepositBTCPresenter : LWAuthComplexPresenter
 
-@property double amount;
-@property double lkkAmount;
-@property double price;
-@property (strong, nonatomic) NSString *assetId;
-
 @end

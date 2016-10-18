@@ -201,7 +201,7 @@
         imageView.image=nil;
         currentLoadingImageURLString=(NSString *) image;
         NSString *imageUrlString=(NSString *)image;
-        [[LWImageDownloader shared] downloadImageFromURLString:(NSString *) image withCompletion:^(UIImage *image){
+        [[LWImageDownloader shared] downloadImageFromURLString:(NSString *) image shouldAuthenticate:YES withCompletion:^(UIImage *image){
             if([currentLoadingImageURLString isEqualToString:imageUrlString])
             {
                 _image=image;

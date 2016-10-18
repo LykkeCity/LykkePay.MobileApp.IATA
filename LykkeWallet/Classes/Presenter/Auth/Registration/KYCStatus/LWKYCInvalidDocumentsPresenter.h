@@ -6,11 +6,11 @@
 //  Copyright © 2015 Lykkex. All rights reserved.
 //
 
-#import "LWKYCPresenter.h"
+#import "LWAuthComplexPresenter.h"
 #import "LWKYCDocumentsModel.h"
 
 
-@interface LWKYCInvalidDocumentsPresenter : LWKYCPresenter {
+@interface LWKYCInvalidDocumentsPresenter : LWAuthComplexPresenter {
     
 }
 

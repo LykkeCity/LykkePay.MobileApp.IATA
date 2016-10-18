@@ -39,37 +39,39 @@
     [super viewDidLoad];
     [self adjustThinLines];
 
-    if([self.assetId isEqualToString:@"BTC"])
-    {
-        [self setupQRCode];
-        self.titleLabel.text=@"To buy Lykke coins, send BTC to this address";
-        self.textLabel.text=@"Lykke coins will be transferred to your Lykke Wallet as soon as the BTC transaction is detected";
-    }
-    else
-    {
-        self.titleLabel.text=@"To buy Lykke coins, send ETH to this address";
-        self.textLabel.text=@"Lykke coins will be transferred to your Lykke Wallet as soon as the ETH transaction is detected";
-
-    }
+//    if([self.assetId isEqualToString:@"BTC"])
+//    {
+//        [self setupQRCode];
+//        self.titleLabel.text=@"To buy Lykke coins, send BTC to this address";
+//        self.textLabel.text=@"Lykke coins will be transferred to your Lykke Wallet as soon as the BTC transaction is detected";
+//    }
+//    else
+//    {
+//        self.titleLabel.text=@"To buy Lykke coins, send ETH to this address";
+//        self.textLabel.text=@"Lykke coins will be transferred to your Lykke Wallet as soon as the ETH transaction is detected";
+//
+//    }
+    
     self.emailButton.type=BUTTON_TYPE_COLORED;
     self.clipboardButton.type=BUTTON_TYPE_CLEAR;
     self.emailButton.enabled=YES;
     self.clipboardButton.enabled=YES;
     if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
         self.addressLabel.textColor=[UIColor colorWithRed:171.0/255 green:0 blue:1 alpha:1];
+    [self setupQRCode];
 }
 
 -(void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
-    {
-    [self setBackButton];
-    UIColor *color = [UIColor colorWithHexString:kMainGrayElementsColor];
-    [self.navigationController.navigationBar setBarTintColor:color];
-    }
-    else
-        [self.navigationController setNavigationBarHidden:YES];
+//    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
+//    {
+//    [self setBackButton];
+//    UIColor *color = [UIColor colorWithHexString:kMainGrayElementsColor];
+//    [self.navigationController.navigationBar setBarTintColor:color];
+//    }
+//    else
+//        [self.navigationController setNavigationBarHidden:YES];
 
 }
 
@@ -83,21 +85,6 @@
 -(void) viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
-        self.title=@"BUY LYKKE";
-    else
-    {
-        if([self.assetId isEqualToString:@"BTC"])
-            self.navigationController.title=@"PURCHASE LKK WITH BTC";
-        else if([self.assetId isEqualToString:@"ETH"])
-            self.navigationController.title=@"PURCHASE LKK WITH ETH";
-    }
-    
-    if([self.assetId isEqualToString:@"ETH"])
-    {
-        [self setLoading:YES];
-        [[LWAuthManager instance] requestEthereumAddress];
-    }
 
 }
 
@@ -112,8 +99,8 @@
 -(IBAction)emailClicked:(id)sender
 {
     [self setLoading:YES];
-//    [[LWAuthManager instance] requestEmailBlockchainForAssetId:@"LKK" address:[LWCache instance].btcConversionWalletAddress];
-    [[LWAuthManager instance] requestSendMyLykkeCashInEmail:@{@"AssetId":_assetId, @"Amount":@(_amount), @"LkkAmount":@(_lkkAmount), @"Price":@(_price)}];
+    [[LWAuthManager instance] requestEmailBlockchainForAssetId:@"LKK" address:[LWCache instance].coloredMultiSig];
+//    [[LWAuthManager instance] requestSendMyLykkeCashInEmail:@{@"AssetId":_assetId, @"Amount":@(_amount), @"LkkAmount":@(_lkkAmount), @"Price":@(_price)}];
 }
 
 - (void)authManager:(LWAuthManager *)manager didFailWithReject:(NSDictionary *)reject context:(GDXRESTContext *)context {
@@ -121,25 +108,25 @@
     [self showReject:reject response:context.task.response code:context.error.code willNotify:YES];
 }
 
-//- (void)authManagerDidSendBlockchainEmail:(LWAuthManager *)manager {
+- (void)authManagerDidSendBlockchainEmail:(LWAuthManager *)manager {
+    [self setLoading:NO];
+    
+    [self.navigationController.view makeToast:Localize(@"wallets.bitcoin.sendemail")];
+}
+
+//-(void) authManagerDidSendMyLykkeCashInEmail:(LWAuthManager *)manager
+//{
 //    [self setLoading:NO];
-//    
 //    [self.navigationController.view makeToast:Localize(@"wallets.bitcoin.sendemail")];
+//
 //}
 
--(void) authManagerDidSendMyLykkeCashInEmail:(LWAuthManager *)manager
-{
-    [self setLoading:NO];
-    [self.navigationController.view makeToast:Localize(@"wallets.bitcoin.sendemail")];
-
-}
-
--(void) authManagerDidGetEthereumAddress:(LWPacketGetEthereumAddress *)ethereumAddressPacket
-{
-    [self setLoading:NO];
-    etheriumAddress=ethereumAddressPacket.ethereumAddress;
-    [self setupQRCode];
-}
+//-(void) authManagerDidGetEthereumAddress:(LWPacketGetEthereumAddress *)ethereumAddressPacket
+//{
+//    [self setLoading:NO];
+//    etheriumAddress=ethereumAddressPacket.ethereumAddress;
+//    [self setupQRCode];
+//}
 
 
 - (void)setupQRCode {
@@ -148,10 +135,8 @@
     CIFilter *filter = [CIFilter filterWithName:@"CIQRCodeGenerator"];
     [filter setDefaults];
     
-    if([self.assetId isEqualToString:@"BTC"])
-        self.addressLabel.text = [LWCache instance].btcConversionWalletAddress;
-    else
-        self.addressLabel.text=etheriumAddress;
+    
+    self.addressLabel.text = [LWCache instance].coloredMultiSig;
     
     //    NSString *qrCodeString = [NSString stringWithFormat:@"%@%@", @"bitcoin:", bitcoinHash];
     NSString *qrCodeString = self.addressLabel.text;

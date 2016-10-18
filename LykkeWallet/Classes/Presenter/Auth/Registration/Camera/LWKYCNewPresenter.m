@@ -257,7 +257,10 @@
     else
     {
         _actionButton.type=BUTTON_TYPE_CLEAR;
+
     }
+    
+    _actionButton.hidden=[_documentsStatuses statusForDocument:activeType]==KYCDocumentStatusApproved;
     
     if([_documentsStatuses statusForDocument:activeType]==KYCDocumentStatusEmpty)
         [_actionButton setTitle:@"SHOOT" forState:UIControlStateNormal];

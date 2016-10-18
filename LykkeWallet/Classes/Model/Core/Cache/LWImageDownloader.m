@@ -48,7 +48,7 @@
 
 }
 
--(void) downloadImageFromURLString:(NSString *) urlString withCompletion:(void(^)(UIImage *)) completion
+-(void) downloadImageFromURLString:(NSString *) urlString shouldAuthenticate:(BOOL) flagNeedAuthentication withCompletion:(void(^)(UIImage *)) completion
 {
     if(!urlString)
         return;
@@ -74,9 +74,12 @@
         if(!url)
             return;
         
+        NSString *string=[urlString copy];
+        
         NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:url];
         [urlRequest setHTTPMethod: @"GET"];
-        [urlRequest setValue:[NSString stringWithFormat:@"Bearer %@", [LWKeychainManager instance].token] forHTTPHeaderField:@"Authorization"];
+        if(flagNeedAuthentication)
+            [urlRequest setValue:[NSString stringWithFormat:@"Bearer %@", [LWKeychainManager instance].token] forHTTPHeaderField:@"Authorization"];
         
 
         NSData *data=[NSURLConnection sendSynchronousRequest:urlRequest returningResponse:nil error:nil];
@@ -85,7 +88,11 @@
         UIImage *image=[UIImage imageWithData:data];
         if(image)
         {
-            images[urlString]=image;
+            images[string]=image;
+        }
+        else
+        {
+            NSString *str=[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
         }
         dispatch_async(dispatch_get_main_queue(), ^{
             
@@ -93,7 +100,7 @@
             {
                 completionn(image);
             }
-            [completions removeObjectForKey:urlString];
+            [completions removeObjectForKey:string];
         });
         
     });

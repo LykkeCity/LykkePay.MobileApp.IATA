@@ -109,6 +109,8 @@
         [view addSubview:[LWProgressView sharedInstance].squareBackground];
     
     [view addSubview:[LWProgressView sharedInstance]];
+        
+        CGRect rrr=view.frame;
     [LWProgressView sharedInstance].center=CGPointMake(view.bounds.size.width/2, view.bounds.size.height/2);
         
         [LWProgressView sharedInstance].squareBackground.center=CGPointMake(view.bounds.size.width/2, view.bounds.size.height/2);
