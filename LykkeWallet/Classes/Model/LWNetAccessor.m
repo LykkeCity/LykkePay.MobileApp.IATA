@@ -15,6 +15,10 @@
 #pragma mark - Common
 
 - (void)sendPacket:(LWPacket *)packet {
+
+    packet.caller=self.caller;
+    self.caller=nil;
+
     [self sendPacket:packet info:nil];
 }
 

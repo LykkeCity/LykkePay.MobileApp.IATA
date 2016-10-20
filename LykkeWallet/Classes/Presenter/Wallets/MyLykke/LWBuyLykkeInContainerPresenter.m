@@ -53,7 +53,7 @@
     [super viewWillAppear:animated];
     if(!wallets)
         [self setLoading:YES];
-    [LWAuthManager instance].delegate=self;
+    
     [[LWAuthManager instance] requestLykkeWallets];
 }
 

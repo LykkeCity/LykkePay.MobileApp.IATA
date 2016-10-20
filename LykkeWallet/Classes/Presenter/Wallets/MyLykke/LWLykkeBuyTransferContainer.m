@@ -46,6 +46,15 @@
     [_buyButtonLabel addGestureRecognizer:gest];
     _buyButtonLabel.userInteractionEnabled=YES;
     
+    transferPresenter=[LWMyLykkeDepositBTCPresenter new];
+    transferPresenter.view.autoresizingMask=UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    transferPresenter.view.frame=_container.bounds;
+    [_container addSubview:transferPresenter.view];
+    [transferPresenter.view layoutSubviews];
+    [_container layoutIfNeeded];
+    [self addChildViewController:transferPresenter];
+
+    
     buyPresenter=[LWBuyLykkeInContainerPresenter new];
     buyPresenter.view.autoresizingMask=UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     buyPresenter.view.frame=_container.bounds;
@@ -56,13 +65,6 @@
     _buyButtonLabel.tag=1;
 
     
-    transferPresenter=[LWMyLykkeDepositBTCPresenter new];
-    transferPresenter.view.autoresizingMask=UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    transferPresenter.view.frame=_container.bounds;
-    [_container insertSubview:transferPresenter.view belowSubview:buyPresenter.view];
-    [transferPresenter.view layoutSubviews];
-    [_container layoutIfNeeded];
-    [self addChildViewController:transferPresenter];
     
     NSDictionary *dict=@{NSKernAttributeName:@(1.2), NSFontAttributeName:[UIFont fontWithName:@"ProximaNova-Regular" size:14]};
     _buyButtonLabel.attributedText=[[NSAttributedString alloc] initWithString:@"BUY" attributes:dict];

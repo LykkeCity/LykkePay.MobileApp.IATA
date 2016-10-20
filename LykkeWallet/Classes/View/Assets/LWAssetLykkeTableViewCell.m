@@ -156,6 +156,7 @@
     [super layoutSubviews];
     self.assetPriceLabel.layer.cornerRadius=self.assetPriceLabel.bounds.size.height/2;
 
+//    CGRect rrr=self.bounds;
     
 }
 

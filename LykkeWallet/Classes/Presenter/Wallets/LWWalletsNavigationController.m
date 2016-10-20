@@ -56,6 +56,10 @@
 -(void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad)
+        [self.navigationController setNavigationBarHidden:NO animated:NO];
+
 
     if([[self.viewControllers lastObject] isKindOfClass:[LWPrivateWalletsPresenter class]])
     {

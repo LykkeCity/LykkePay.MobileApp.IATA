@@ -43,6 +43,7 @@
 #import "LWMyLykkeBuyPresenter.h"
 #import "LWMyLykkeIpadController.h"
 #import "LWEtheriumDepositPresenter.h"
+#import "LWLykkeBuyTransferContainer.h"
 
 
 #ifdef PROJECT_IATA
@@ -798,6 +799,12 @@ static NSString *const WalletIcons[kNumberOfSections] = {
 
             if([data.identity isEqualToString:@"ETH"])
                 presenter=[LWEtheriumDepositPresenter new];
+            else if([data.identity isEqualToString:@"LKK"])
+            {
+                presenter=[LWLykkeBuyTransferContainer new];
+                [self.navigationController pushViewController:presenter animated:YES];
+                return;
+            }
             else if([depositTypes[data.identity] isEqualToString:@"bitcoin"])
             {
                 presenter = [LWBitcoinDepositPresenter new];

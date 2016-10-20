@@ -167,7 +167,6 @@ SINGLETON_DECLARE
 @property (readonly, nonatomic) LWRegistrationData *registrationData;
 @property (readonly, nonatomic) LWDocumentsStatus  *documentsStatus;
 
-
 #pragma mark - Common
 
 - (void)requestEmailValidation:(NSString *)email;

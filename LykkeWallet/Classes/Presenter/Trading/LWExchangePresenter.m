@@ -18,6 +18,7 @@
 #import "LWPacketLastBaseAssets.h"
 #import "LWCache.h"
 #import "UIViewController+Loading.h"
+#import "LWExchangeTabContainer.h"
 
 #import "LWTradingLinearGraphPresenter.h"
 
@@ -160,6 +161,9 @@ static NSString *const AssetIcons[kNumberOfSections] = {
     self.headerView.backgroundColor = self.navigationController.navigationBar.barTintColor;
 #endif
     
+    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad)
+        [self.navigationController setNavigationBarHidden:YES animated:NO];
+    
 }
 
 -(void) viewDidAppear:(BOOL)animated
@@ -189,6 +193,14 @@ static NSString *const AssetIcons[kNumberOfSections] = {
 -(void) viewWillDisappear:(BOOL)animated
 {
     [timer invalidate];
+}
+
+-(void) viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    CGRect rrr=self.view.frame;
+    
+    
 }
 
 
@@ -290,6 +302,17 @@ static NSString *const AssetIcons[kNumberOfSections] = {
                 LWAssetPairRateModel *rate = pairRates[model.identity];
                 // validate rate
                 if (rate) {
+                    
+                    LWExchangeTabContainer *tabContainer=[LWExchangeTabContainer new];
+                    tabContainer.assetPair=model;
+                    tabContainer.tabToShow=TAB_ASSET;
+                    
+                    [self.navigationController pushViewController:tabContainer animated:YES];
+                    return;
+                    
+                    
+                    
+                    
                     LWExchangeFormPresenter *form = [LWExchangeFormPresenter new];
                     form.assetPair = model;
                     form.assetRate = rate;
@@ -453,35 +476,42 @@ static NSString *const AssetIcons[kNumberOfSections] = {
 #pragma mark - LWAssetLykkeTableViewCellDelegate
 
 - (void)graphClicked:(LWAssetLykkeTableViewCell *)cell {
-    
-    LWTradingLinearGraphPresenter *presenter=[[LWTradingLinearGraphPresenter alloc] init];
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+
     LWAssetPairModel *assetPair = (LWAssetPairModel *)self.assetPairs[indexPath.row - 1];
-    if (assetPair) {
-        
-        assetPair.inverted=[pairRates[assetPair.identity] inverted];
-        presenter.assetPair = assetPair;
-        if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
-            [self.navigationController pushViewController:presenter animated:YES];
-        else
-        {
-            LWIPadModalNavigationControllerViewController *navigationController =
-            [[LWIPadModalNavigationControllerViewController alloc] initWithRootViewController:presenter];
-            navigationController.modalPresentationStyle=UIModalPresentationOverCurrentContext;
-            navigationController.transitioningDelegate=navigationController;
-            [self.navigationController presentViewController:navigationController animated:YES completion:nil];
-        }
 
+    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
+    {
+    LWExchangeTabContainer *presenter=[LWExchangeTabContainer new];
+    presenter.assetPair=assetPair;
+    presenter.tabToShow=TAB_GRAPH;
+    [self.navigationController pushViewController:presenter animated:YES];
     }
-
-    
+    else
+    {
+        [self.delegate exchangePresenterChosenPair:assetPair tabToShow:TAB_GRAPH];
+    }
 //
-//    LWTradingGraphPresenter *presenter = [LWTradingGraphPresenter new];
+//    
+//    
+//    LWTradingLinearGraphPresenter *presenter=[[LWTradingLinearGraphPresenter alloc] init];
 //    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
 //    LWAssetPairModel *assetPair = (LWAssetPairModel *)self.assetPairs[indexPath.row - 1];
 //    if (assetPair) {
+//        
+//        assetPair.inverted=[pairRates[assetPair.identity] inverted];
 //        presenter.assetPair = assetPair;
-//        [self.navigationController pushViewController:presenter animated:YES];
+//        if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
+//            [self.navigationController pushViewController:presenter animated:YES];
+//        else
+//        {
+//            LWIPadModalNavigationControllerViewController *navigationController =
+//            [[LWIPadModalNavigationControllerViewController alloc] initWithRootViewController:presenter];
+//            navigationController.modalPresentationStyle=UIModalPresentationOverCurrentContext;
+//            navigationController.transitioningDelegate=navigationController;
+//            [self.navigationController presentViewController:navigationController animated:YES completion:nil];
+//        }
+//
 //    }
 }
 

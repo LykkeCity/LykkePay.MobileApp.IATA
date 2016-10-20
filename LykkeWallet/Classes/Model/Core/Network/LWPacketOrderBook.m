@@ -33,6 +33,8 @@
     
     _sellOrders=[[LWOrderBookElementModel alloc] initWithArray:result[@"BuyOrders"]];  //These orders are from robot. If robot buys then client sells
     _buyOrders=[[LWOrderBookElementModel alloc] initWithArray:result[@"SellOrders"]];
+    
+    
 
     [LWCache instance].cachedBuyOrders[_assetPairId]=_buyOrders;
     [LWCache instance].cachedSellOrders[_assetPairId]=_sellOrders;

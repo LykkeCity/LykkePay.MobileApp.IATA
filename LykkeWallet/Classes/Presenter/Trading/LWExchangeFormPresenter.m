@@ -67,7 +67,7 @@ static NSString *const DescriptionIdentifiers[kDescriptionRows] = {
     [super viewDidLoad];
     
     
-    [self setBackButton];
+//    [self setBackButton];
     
     [self registerCellWithIdentifier:@"LWAssetInfoTextTableViewCellIdentifier"
                                 name:@"LWAssetInfoTextTableViewCell"];
@@ -84,23 +84,32 @@ static NSString *const DescriptionIdentifiers[kDescriptionRows] = {
 -(void) viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    self.title = self.assetPair.name;
-    if(self.assetPair.inverted)
-    {
-        NSArray *arr=[self.assetPair.name componentsSeparatedByString:@"/"];
-        if(arr.count==2)
-        {
-            self.title=[NSString stringWithFormat:@"%@/%@", arr[1], arr[0]];
-        }
-    }
+    
+//    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
+//    {
+//        self.title = self.assetPair.name;
+//        if(self.assetPair.inverted)
+//        {
+//            NSArray *arr=[self.assetPair.name componentsSeparatedByString:@"/"];
+//            if(arr.count==2)
+//            {
+//                self.title=[NSString stringWithFormat:@"%@/%@", arr[1], arr[0]];
+//            }
+//        }
+//    }
 
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
+    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad)
+        [self.navigationController setNavigationBarHidden:NO animated:NO];
+
+    
     [self updateRate:self.assetRate];
 
+    [LWAuthManager instance].caller=self;
     if (!assetDetails) {
         [self setLoading:YES];
         
@@ -202,6 +211,7 @@ static NSString *const DescriptionIdentifiers[kDescriptionRows] = {
     [self.tableView reloadData];
     [self setLoading:NO];
     
+    [LWAuthManager instance].caller=self;
     [[LWAuthManager instance] requestAssetPairRate:self.assetPair.identity];
 }
 
@@ -211,6 +221,7 @@ static NSString *const DescriptionIdentifiers[kDescriptionRows] = {
     const NSInteger repeatSeconds = [LWCache instance].refreshTimer.integerValue / 1000;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(repeatSeconds * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         if (self.isVisible) {
+            [LWAuthManager instance].caller=self;
             [[LWAuthManager instance] requestAssetPairRate:self.assetPair.identity];
         }
     });

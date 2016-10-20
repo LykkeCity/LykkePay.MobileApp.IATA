@@ -379,6 +379,25 @@
 }
 
 
++(double) logarithmicValueFrom:(double)value min:(double)min max:(double)max length:(double)length
+{
+    
+    //http://stackoverflow.com/questions/846221/logarithmic-slider?tab=oldest#tab-top
+
+    double minp = 0;
+    double maxp = length;
+    
+    // The result should be between 100 an 10000000
+    double minv = log(min);//Math.log(100);
+    double maxv = log(max);
+    
+    // calculate adjustment factor
+    double scale = (maxv-minv) / (maxp-minp);
+    
+    
+    return (log(value)-minv) / scale + minp;
+}
+
 
 
 @end

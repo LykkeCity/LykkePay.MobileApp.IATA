@@ -94,6 +94,9 @@ static int const kNumberOfRows = 4;
     [self setBackButton];
     
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(orientationChanged) name:UIApplicationDidChangeStatusBarOrientationNotification object:nil];
+
+    
     //    LWTradingGraphLinearView *vvv=[[LWTradingGraphLinearView alloc] initWithFrame:CGRectZero];
     
     
@@ -102,44 +105,54 @@ static int const kNumberOfRows = 4;
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    if(self.assetPair.inverted)
-    {
-        NSArray *arr=[self.assetPair.name componentsSeparatedByString:@"/"];
-        if(arr.count==2)
-        {
-            self.title=[NSString stringWithFormat:@"%@/%@", arr[1], arr[0]];
-        }
-        else
-            self.title = self.assetPair.name;
+    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad)
+        [self.navigationController setNavigationBarHidden:NO animated:NO];
 
-    }
-    else
-        self.title = self.assetPair.name;
+    
+//    if(self.assetPair.inverted)
+//    {
+//        NSArray *arr=[self.assetPair.name componentsSeparatedByString:@"/"];
+//        if(arr.count==2)
+//        {
+//            self.title=[NSString stringWithFormat:@"%@/%@", arr[1], arr[0]];
+//        }
+//        else
+//            self.title = self.assetPair.name;
+//
+//    }
+//    else
+//        self.title = self.assetPair.name;
 
 }
 
 -(void) viewDidAppear:(BOOL)animated
 {
-    [self setupChart];
-    if(self.assetPair.inverted)
+    [super viewDidAppear:animated];
+    if(!graphPeriods)
     {
-        NSArray *arr=[self.assetPair.name componentsSeparatedByString:@"/"];
-        if(arr.count==2)
-        {
-            self.title=[NSString stringWithFormat:@"%@/%@", arr[1], arr[0]];
-        }
-        else
-            self.title = self.assetPair.name;
         
+        [self setupChart];
+//        if(self.assetPair.inverted)
+//        {
+//            NSArray *arr=[self.assetPair.name componentsSeparatedByString:@"/"];
+//            if(arr.count==2)
+//            {
+//                self.title=[NSString stringWithFormat:@"%@/%@", arr[1], arr[0]];
+//            }
+//            else
+//                self.title = self.assetPair.name;
+//            
+//        }
+//        else
+//            self.title = self.assetPair.name;
+        
+        [self setLoading:YES];
+        
+        [LWAuthManager instance].caller=self;
+        [[LWAuthManager instance] requestAssetPairRate:self.assetPair.identity];
+        [LWAuthManager instance].caller=self;
+        [[LWAuthManager instance] requestGraphPeriods];
     }
-    else
-        self.title = self.assetPair.name;
-
-    [self setLoading:YES];
-    
-    [[LWAuthManager instance] requestAssetPairRate:self.assetPair.identity];
-    [[LWAuthManager instance] requestGraphPeriods];
-
 }
 
 - (void)viewWillLayoutSubviews {
@@ -254,6 +267,7 @@ static int const kNumberOfRows = 4;
     button.selected=YES;
     selectedPeriod=graphPeriods.periods[[periodButtons indexOfObject:button]];
     [self setLoading:YES];
+    [LWAuthManager instance].caller=self;
     [[LWAuthManager instance] requestGraphDataForPeriod:selectedPeriod assetPairId:self.assetPair.identity];
 
 }
@@ -293,6 +307,7 @@ static int const kNumberOfRows = 4;
     int repeatSeconds=5;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(repeatSeconds * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         if (self.isVisible) {
+            [LWAuthManager instance].caller=self;
             [[LWAuthManager instance] requestAssetPairRate:self.assetPair.identity];
 //            if(selectedPeriod)
 //                [[LWAuthManager instance] requestGraphDataForPeriod:selectedPeriod];
@@ -346,6 +361,7 @@ static int const kNumberOfRows = 4;
 //                                   initWithFrame:self.graphView.bounds];
     
     linearGraphView=[[LWTradingLinearGraphViewTest alloc] initWithFrame:self.graphView.bounds];
+    linearGraphView.autoresizingMask=UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     
     graphStartDateLabel=[[UILabel alloc] initWithFrame:CGRectMake(10, 0, linearGraphView.bounds.size.width/2, 30)];
     graphStartDateLabel.font=[UIFont systemFontOfSize:14 weight:UIFontWeightMedium];
@@ -395,6 +411,7 @@ static int const kNumberOfRows = 4;
     graphPeriods=_graphPeriods;
     if(!selectedPeriod)
         selectedPeriod=graphPeriods.lastSelectedPeriod;
+    [LWAuthManager instance].caller=self;
     [[LWAuthManager instance] requestGraphDataForPeriod:selectedPeriod assetPairId:self.assetPair.identity];
     [self updatePeriodButtons];
 }
@@ -474,5 +491,18 @@ static int const kNumberOfRows = 4;
 
     [self.navigationController pushViewController:controller animated:YES];
 }
+
+-(void) orientationChanged
+{
+    
+    [linearGraphView setNeedsDisplay];
+}
+
+
+-(void) dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 
 @end

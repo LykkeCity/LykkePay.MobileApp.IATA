@@ -22,8 +22,30 @@
     self=[super init];
     
     NSMutableArray *newarr=[[NSMutableArray alloc] init];
+    
+    
+//    arr=@[@(10),
+//          @(15),
+//          @(30),
+//          @(100),
+//          @(300),
+//          @(1000),
+//          @(2000),
+//          @(10000),
+//          @(300000),
+//          @(400000),
+//          @(1000000),
+//          @(2000000)
+
+//          @(10),
+//          @(10),
+//          @(10),
+//          @(10),
+//          @(10),
+//          ];
     for(NSDictionary *d in arr)
     {
+//        [newarr addObject:@{@"Price":@(5.01), @"Volume":d}];
         [newarr addObject:@{@"Price":@([d[@"Price"] doubleValue]), @"Volume":@(fabs([d[@"Volume"] doubleValue]))}];
     }
     array=newarr;
@@ -129,7 +151,10 @@
     return m;
 }
 
-
+-(NSArray *) array
+{
+    return array;
+}
 
 
 @end

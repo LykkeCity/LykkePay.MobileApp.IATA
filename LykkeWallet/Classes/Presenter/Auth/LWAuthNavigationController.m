@@ -48,6 +48,8 @@
 #import "LWHistoryPresenter.h"
 #import "LWSettingsPresenter.h"
 
+#import "LWExchangeIPadContainerViewController.h"
+
 #import "LWMyLykkeMainContainerPresenter.h"
 
 #import "LWWalletsNavigationController.h"
@@ -323,9 +325,27 @@
     LWWalletsPresenter *pWallets = [LWWalletsPresenter new];
     pWallets.tabBarItem = [self createTabBarItemWithTitle:@"tab.wallets"
                                                 withImage:@"WalletsTab"];
-    LWExchangePresenter *pTrading = [LWExchangePresenter new];
+    
+    
+    UIViewController *pTrading;
+    
+    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
+    {
+        pTrading = [LWExchangePresenter new];
+    }
+    else
+        pTrading=[LWExchangeIPadContainerViewController new];
+    
     pTrading.tabBarItem = [self createTabBarItemWithTitle:@"tab.trading"
                                                 withImage:@"TradingTab"];
+    
+    
+//    pTrading=[LWExchangeTabContainer new];  //Testing
+//    pTrading.tabBarItem = [self createTabBarItemWithTitle:@"tab.trading"
+//                                                withImage:@"TradingTab"];
+
+    
+    
     LWHistoryPresenter *pHistory = [LWHistoryPresenter new];
     pHistory.title = Localize(@"tab.history");
     pHistory.tabBarItem = [self createTabBarItemWithTitle:@"tab.history"

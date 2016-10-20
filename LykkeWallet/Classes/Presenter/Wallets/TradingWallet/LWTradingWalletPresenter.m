@@ -27,6 +27,7 @@
 #import "LWEtheriumDepositPresenter.h"
 #import "LWUtils.h"
 #import "LWPacketGetHistory.h"
+#import "LWLykkeBuyTransferContainer.h"
 
 
 @interface LWTradingWalletPresenter()  {
@@ -221,6 +222,13 @@
     if([self.assetId isEqualToString:@"ETH"])
     {
             presenter = [LWEtheriumDepositPresenter new];
+    }
+    else if([self.assetId isEqualToString:@"LKK"])
+    {
+        presenter=[LWLykkeBuyTransferContainer new];
+        [self.navigationController pushViewController:presenter animated:YES];
+        return;
+        
     }
     else if([depositTypes[self.assetId] isEqualToString:@"bitcoin"])
     {

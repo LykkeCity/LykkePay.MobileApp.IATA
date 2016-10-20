@@ -38,5 +38,7 @@
 
 +(void) appendToLogFile:(NSString *)string;
 
++(double) logarithmicValueFrom:(double) value min:(double) min max:(double) max length:(double) length; //length: длина шкалы на которую надо уместить значения от min до max
+
 
 @end

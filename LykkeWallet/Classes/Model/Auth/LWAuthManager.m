@@ -741,6 +741,13 @@ SINGLETON_INIT {
         // return immediately
         return;
     }
+    
+    @synchronized (@"call_delegate") {
+        
+  
+    id delegate=self.delegate;
+    if(pack.caller)
+        self.delegate=pack.caller;
 
     // parse packet by class
     if (pack.class == LWPacketAccountExist.class) {
@@ -1152,6 +1159,8 @@ SINGLETON_INIT {
             [self.delegate authManager:self didGetKYCDocuments:(LWPacketKYCDocuments *)pack];
         }
     }
+        self.delegate=delegate;
+          }
 
 }
 

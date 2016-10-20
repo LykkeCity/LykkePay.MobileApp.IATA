@@ -45,7 +45,8 @@
 
 -(void) setTitle:(NSString *)title
 {
-    
+    if(!title)
+        return;
     UIFont *font = [UIFont fontWithName:kNavigationBarFontName size:kNavigationBarFontSize];
     
     NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -81,7 +82,7 @@
     
     self.observeKeyboardEvents = NO; // no keyboard observing by default
     
-    [self.navigationController setNavigationBarHidden:NO animated:NO];
+//    [self.navigationController setNavigationBarHidden:NO animated:NO];
     [self.navigationController.navigationBar setTranslucent:NO];
     
     [self localize];

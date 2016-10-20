@@ -20,4 +20,8 @@
 
 -(void) invert;
 
+-(NSArray *) array;
+
+
+
 @end

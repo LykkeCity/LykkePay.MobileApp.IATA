@@ -44,9 +44,9 @@
 		A11494901D509238000BD347 /* LWResultPresenter.xib in Resources */ = {isa = PBXBuildFile; fileRef = A114948E1D509238000BD347 /* LWResultPresenter.xib */; };
 		A1165D1C1CF55B530017A725 /* LWIPadModalNavigationControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A1165D1B1CF55B530017A725 /* LWIPadModalNavigationControllerViewController.m */; };
 		A1165D1E1CF5703F0017A725 /* LWTradingWalletPresenter~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1165D1D1CF5703F0017A725 /* LWTradingWalletPresenter~ipad.xib */; };
-		A1165D221CF577CB0017A725 /* LWAssetLykkeTableViewCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1165D211CF577CB0017A725 /* LWAssetLykkeTableViewCell~ipad.xib */; };
-		A1165D241CF580630017A725 /* LWAssetTableViewCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1165D231CF580630017A725 /* LWAssetTableViewCell~ipad.xib */; };
-		A1165D261CF583100017A725 /* LWExchangePresenter~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1165D251CF583100017A725 /* LWExchangePresenter~ipad.xib */; };
+		A1165D221CF577CB0017A725 /* LWAssetLykkeTableViewCell_ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1165D211CF577CB0017A725 /* LWAssetLykkeTableViewCell_ipad.xib */; };
+		A1165D241CF580630017A725 /* LWAssetTableViewCell_ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1165D231CF580630017A725 /* LWAssetTableViewCell_ipad.xib */; };
+		A1165D261CF583100017A725 /* LWExchangePresenter_ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1165D251CF583100017A725 /* LWExchangePresenter_ipad.xib */; };
 		A1165D271CF586BF0017A725 /* LWHistoryPresenter~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC89231F1CC3DAC700201BE7 /* LWHistoryPresenter~ipad.xib */; };
 		A1165D291CF5CC420017A725 /* LWSettingsPresenter~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC8923231CC3DCAB00201BE7 /* LWSettingsPresenter~ipad.xib */; };
 		A1165D2D1CF5DB5C0017A725 /* LWChooseAssetTableViewCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1165D2C1CF5DB5C0017A725 /* LWChooseAssetTableViewCell~ipad.xib */; };
@@ -1132,6 +1132,13 @@
 		A1F78C891D365DF300BCFF03 /* LWWalletsNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = A1F78C881D365DF300BCFF03 /* LWWalletsNavigationController.m */; };
 		A1F78C8C1D3664B900BCFF03 /* LWWalletsNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = A1F78C8B1D3664B900BCFF03 /* LWWalletsNavigationBar.m */; };
 		A1F78C8F1D366CA200BCFF03 /* LWWalletsTypeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = A1F78C8E1D366CA200BCFF03 /* LWWalletsTypeButton.m */; };
+		A1FC0B931DB72A9B002B0ED7 /* LWExchangeTabContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = A1FC0B911DB72A9B002B0ED7 /* LWExchangeTabContainer.m */; };
+		A1FC0B941DB72A9B002B0ED7 /* LWExchangeTabContainer.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1FC0B921DB72A9B002B0ED7 /* LWExchangeTabContainer.xib */; };
+		A1FC0B981DB730EF002B0ED7 /* LWExchangeOrderPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A1FC0B961DB730EF002B0ED7 /* LWExchangeOrderPresenter.m */; };
+		A1FC0B991DB730EF002B0ED7 /* LWExchangeOrderPresenter.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1FC0B971DB730EF002B0ED7 /* LWExchangeOrderPresenter.xib */; };
+		A1FC0B9C1DB775A3002B0ED7 /* LWOrderGraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = A1FC0B9B1DB775A3002B0ED7 /* LWOrderGraphView.m */; };
+		A1FC0BA01DB8E0BF002B0ED7 /* LWExchangeIPadContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A1FC0B9E1DB8E0BF002B0ED7 /* LWExchangeIPadContainerViewController.m */; };
+		A1FC0BA11DB8E0BF002B0ED7 /* LWExchangeIPadContainerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1FC0B9F1DB8E0BF002B0ED7 /* LWExchangeIPadContainerViewController.xib */; };
 		A87C81BA1C7356E1D9BA3A28 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B1A20FEBD41AE93CA79087B5 /* libPods.a */; };
 		CD10AAA31C1E0B530086634B /* LWPacketAuthentication.m in Sources */ = {isa = PBXBuildFile; fileRef = CD10AAA21C1E0B530086634B /* LWPacketAuthentication.m */; };
 		CD10AAA61C1E0C560086634B /* LWAuthenticationData.m in Sources */ = {isa = PBXBuildFile; fileRef = CD10AAA51C1E0C560086634B /* LWAuthenticationData.m */; };
@@ -1687,11 +1694,11 @@
 		ECD1E8FF1C3B21300064AAB3 /* LWMath.m in Sources */ = {isa = PBXBuildFile; fileRef = ECD1E8FE1C3B21300064AAB3 /* LWMath.m */; };
 		ECD1E9021C3BC8B40064AAB3 /* LWAuthPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = ECD1E9011C3BC8B40064AAB3 /* LWAuthPresenter.m */; };
 		ECD1E9051C3BCAE30064AAB3 /* LWExchangePresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = ECD1E9041C3BCAE30064AAB3 /* LWExchangePresenter.m */; };
-		ECD1E9071C3BCAF60064AAB3 /* LWExchangePresenter~iphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECD1E9061C3BCAF60064AAB3 /* LWExchangePresenter~iphone.xib */; };
+		ECD1E9071C3BCAF60064AAB3 /* LWExchangePresenter.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECD1E9061C3BCAF60064AAB3 /* LWExchangePresenter.xib */; };
 		ECD1E90B1C3BDEA70064AAB3 /* LWAssetTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ECD1E90A1C3BDEA70064AAB3 /* LWAssetTableViewCell.m */; };
-		ECD1E90D1C3BDEB60064AAB3 /* LWAssetTableViewCell~iphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECD1E90C1C3BDEB60064AAB3 /* LWAssetTableViewCell~iphone.xib */; };
+		ECD1E90D1C3BDEB60064AAB3 /* LWAssetTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECD1E90C1C3BDEB60064AAB3 /* LWAssetTableViewCell.xib */; };
 		ECD1E9101C3BDED40064AAB3 /* LWAssetLykkeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ECD1E90F1C3BDED40064AAB3 /* LWAssetLykkeTableViewCell.m */; };
-		ECD1E9121C3BDEE40064AAB3 /* LWAssetLykkeTableViewCell~iphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECD1E9111C3BDEE40064AAB3 /* LWAssetLykkeTableViewCell~iphone.xib */; };
+		ECD1E9121C3BDEE40064AAB3 /* LWAssetLykkeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECD1E9111C3BDEE40064AAB3 /* LWAssetLykkeTableViewCell.xib */; };
 		ECD1E9151C3BE3180064AAB3 /* LWAssetEmptyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ECD1E9141C3BE3180064AAB3 /* LWAssetEmptyTableViewCell.m */; };
 		ECD1E9171C3BE4050064AAB3 /* LWAssetEmptyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECD1E9161C3BE4050064AAB3 /* LWAssetEmptyTableViewCell.xib */; };
 		ECD76BC41C2EA81100E1D3DA /* LWPacketPersonalData.m in Sources */ = {isa = PBXBuildFile; fileRef = ECD76BC31C2EA81100E1D3DA /* LWPacketPersonalData.m */; };
@@ -1808,9 +1815,9 @@
 		A1165D1A1CF55B530017A725 /* LWIPadModalNavigationControllerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWIPadModalNavigationControllerViewController.h; sourceTree = "<group>"; };
 		A1165D1B1CF55B530017A725 /* LWIPadModalNavigationControllerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWIPadModalNavigationControllerViewController.m; sourceTree = "<group>"; };
 		A1165D1D1CF5703F0017A725 /* LWTradingWalletPresenter~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "LWTradingWalletPresenter~ipad.xib"; path = "TradingWallet/LWTradingWalletPresenter~ipad.xib"; sourceTree = "<group>"; };
-		A1165D211CF577CB0017A725 /* LWAssetLykkeTableViewCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "LWAssetLykkeTableViewCell~ipad.xib"; path = "Assets/LWAssetLykkeTableViewCell~ipad.xib"; sourceTree = "<group>"; };
-		A1165D231CF580630017A725 /* LWAssetTableViewCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "LWAssetTableViewCell~ipad.xib"; path = "Assets/LWAssetTableViewCell~ipad.xib"; sourceTree = "<group>"; };
-		A1165D251CF583100017A725 /* LWExchangePresenter~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "LWExchangePresenter~ipad.xib"; sourceTree = "<group>"; };
+		A1165D211CF577CB0017A725 /* LWAssetLykkeTableViewCell_ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LWAssetLykkeTableViewCell_ipad.xib; path = Assets/LWAssetLykkeTableViewCell_ipad.xib; sourceTree = "<group>"; };
+		A1165D231CF580630017A725 /* LWAssetTableViewCell_ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LWAssetTableViewCell_ipad.xib; path = Assets/LWAssetTableViewCell_ipad.xib; sourceTree = "<group>"; };
+		A1165D251CF583100017A725 /* LWExchangePresenter_ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LWExchangePresenter_ipad.xib; sourceTree = "<group>"; };
 		A1165D2C1CF5DB5C0017A725 /* LWChooseAssetTableViewCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "LWChooseAssetTableViewCell~ipad.xib"; path = "Settings/Assets/LWChooseAssetTableViewCell~ipad.xib"; sourceTree = "<group>"; };
 		A1165D2E1CF5E4DA0017A725 /* CheckMark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CheckMark.png; sourceTree = "<group>"; };
 		A1165D301CF5E76A0017A725 /* LWRadioTableViewCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "LWRadioTableViewCell~ipad.xib"; path = "TableCells/LWRadioTableViewCell~ipad.xib"; sourceTree = "<group>"; };
@@ -3157,6 +3164,17 @@
 		A1F78C8B1D3664B900BCFF03 /* LWWalletsNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWWalletsNavigationBar.m; sourceTree = "<group>"; };
 		A1F78C8D1D366CA200BCFF03 /* LWWalletsTypeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWWalletsTypeButton.h; sourceTree = "<group>"; };
 		A1F78C8E1D366CA200BCFF03 /* LWWalletsTypeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWWalletsTypeButton.m; sourceTree = "<group>"; };
+		A1FC0B901DB72A9B002B0ED7 /* LWExchangeTabContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWExchangeTabContainer.h; sourceTree = "<group>"; };
+		A1FC0B911DB72A9B002B0ED7 /* LWExchangeTabContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWExchangeTabContainer.m; sourceTree = "<group>"; };
+		A1FC0B921DB72A9B002B0ED7 /* LWExchangeTabContainer.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LWExchangeTabContainer.xib; sourceTree = "<group>"; };
+		A1FC0B951DB730EF002B0ED7 /* LWExchangeOrderPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWExchangeOrderPresenter.h; sourceTree = "<group>"; };
+		A1FC0B961DB730EF002B0ED7 /* LWExchangeOrderPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWExchangeOrderPresenter.m; sourceTree = "<group>"; };
+		A1FC0B971DB730EF002B0ED7 /* LWExchangeOrderPresenter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LWExchangeOrderPresenter.xib; sourceTree = "<group>"; };
+		A1FC0B9A1DB775A3002B0ED7 /* LWOrderGraphView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWOrderGraphView.h; sourceTree = "<group>"; };
+		A1FC0B9B1DB775A3002B0ED7 /* LWOrderGraphView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWOrderGraphView.m; sourceTree = "<group>"; };
+		A1FC0B9D1DB8E0BF002B0ED7 /* LWExchangeIPadContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWExchangeIPadContainerViewController.h; sourceTree = "<group>"; };
+		A1FC0B9E1DB8E0BF002B0ED7 /* LWExchangeIPadContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWExchangeIPadContainerViewController.m; sourceTree = "<group>"; };
+		A1FC0B9F1DB8E0BF002B0ED7 /* LWExchangeIPadContainerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LWExchangeIPadContainerViewController.xib; sourceTree = "<group>"; };
 		B1A20FEBD41AE93CA79087B5 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD10AAA11C1E0B530086634B /* LWPacketAuthentication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWPacketAuthentication.h; sourceTree = "<group>"; };
 		CD10AAA21C1E0B530086634B /* LWPacketAuthentication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWPacketAuthentication.m; sourceTree = "<group>"; };
@@ -3665,13 +3683,13 @@
 		ECD1E9011C3BC8B40064AAB3 /* LWAuthPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWAuthPresenter.m; sourceTree = "<group>"; };
 		ECD1E9031C3BCAE30064AAB3 /* LWExchangePresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWExchangePresenter.h; sourceTree = "<group>"; };
 		ECD1E9041C3BCAE30064AAB3 /* LWExchangePresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWExchangePresenter.m; sourceTree = "<group>"; };
-		ECD1E9061C3BCAF60064AAB3 /* LWExchangePresenter~iphone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "LWExchangePresenter~iphone.xib"; sourceTree = "<group>"; };
+		ECD1E9061C3BCAF60064AAB3 /* LWExchangePresenter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LWExchangePresenter.xib; sourceTree = "<group>"; };
 		ECD1E9091C3BDEA70064AAB3 /* LWAssetTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LWAssetTableViewCell.h; path = Assets/LWAssetTableViewCell.h; sourceTree = "<group>"; };
 		ECD1E90A1C3BDEA70064AAB3 /* LWAssetTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LWAssetTableViewCell.m; path = Assets/LWAssetTableViewCell.m; sourceTree = "<group>"; };
-		ECD1E90C1C3BDEB60064AAB3 /* LWAssetTableViewCell~iphone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "LWAssetTableViewCell~iphone.xib"; path = "Assets/LWAssetTableViewCell~iphone.xib"; sourceTree = "<group>"; };
+		ECD1E90C1C3BDEB60064AAB3 /* LWAssetTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LWAssetTableViewCell.xib; path = Assets/LWAssetTableViewCell.xib; sourceTree = "<group>"; };
 		ECD1E90E1C3BDED40064AAB3 /* LWAssetLykkeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LWAssetLykkeTableViewCell.h; path = Assets/LWAssetLykkeTableViewCell.h; sourceTree = "<group>"; };
 		ECD1E90F1C3BDED40064AAB3 /* LWAssetLykkeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LWAssetLykkeTableViewCell.m; path = Assets/LWAssetLykkeTableViewCell.m; sourceTree = "<group>"; };
-		ECD1E9111C3BDEE40064AAB3 /* LWAssetLykkeTableViewCell~iphone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "LWAssetLykkeTableViewCell~iphone.xib"; path = "Assets/LWAssetLykkeTableViewCell~iphone.xib"; sourceTree = "<group>"; };
+		ECD1E9111C3BDEE40064AAB3 /* LWAssetLykkeTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LWAssetLykkeTableViewCell.xib; path = Assets/LWAssetLykkeTableViewCell.xib; sourceTree = "<group>"; };
 		ECD1E9131C3BE3180064AAB3 /* LWAssetEmptyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LWAssetEmptyTableViewCell.h; path = Assets/LWAssetEmptyTableViewCell.h; sourceTree = "<group>"; };
 		ECD1E9141C3BE3180064AAB3 /* LWAssetEmptyTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LWAssetEmptyTableViewCell.m; path = Assets/LWAssetEmptyTableViewCell.m; sourceTree = "<group>"; };
 		ECD1E9161C3BE4050064AAB3 /* LWAssetEmptyTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LWAssetEmptyTableViewCell.xib; path = Assets/LWAssetEmptyTableViewCell.xib; sourceTree = "<group>"; };
@@ -5557,6 +5575,12 @@
 			children = (
 				EC9EC2421C8EE57600C986DD /* IATA */,
 				EC9EC2431C8EE57B00C986DD /* Lykke */,
+				A1FC0B901DB72A9B002B0ED7 /* LWExchangeTabContainer.h */,
+				A1FC0B911DB72A9B002B0ED7 /* LWExchangeTabContainer.m */,
+				A1FC0B921DB72A9B002B0ED7 /* LWExchangeTabContainer.xib */,
+				A1FC0B9D1DB8E0BF002B0ED7 /* LWExchangeIPadContainerViewController.h */,
+				A1FC0B9E1DB8E0BF002B0ED7 /* LWExchangeIPadContainerViewController.m */,
+				A1FC0B9F1DB8E0BF002B0ED7 /* LWExchangeIPadContainerViewController.xib */,
 				ECD1E9031C3BCAE30064AAB3 /* LWExchangePresenter.h */,
 				ECD1E9041C3BCAE30064AAB3 /* LWExchangePresenter.m */,
 				A1C5AF471D08035E0056DC53 /* LWExchangeBaseAssetsView.h */,
@@ -5573,6 +5597,11 @@
 				EC7F05061C3EC54B0079ECD0 /* LWExchangeResultPresenter.m */,
 				EC3CE8AE1C4014D600CAC3FE /* LWExchangeBlockchainPresenter.h */,
 				EC3CE8AF1C4014D600CAC3FE /* LWExchangeBlockchainPresenter.m */,
+				A1FC0B951DB730EF002B0ED7 /* LWExchangeOrderPresenter.h */,
+				A1FC0B961DB730EF002B0ED7 /* LWExchangeOrderPresenter.m */,
+				A1FC0B971DB730EF002B0ED7 /* LWExchangeOrderPresenter.xib */,
+				A1FC0B9A1DB775A3002B0ED7 /* LWOrderGraphView.h */,
+				A1FC0B9B1DB775A3002B0ED7 /* LWOrderGraphView.m */,
 			);
 			path = Trading;
 			sourceTree = "<group>";
@@ -6624,8 +6653,8 @@
 		EC9EC2431C8EE57B00C986DD /* Lykke */ = {
 			isa = PBXGroup;
 			children = (
-				ECD1E9061C3BCAF60064AAB3 /* LWExchangePresenter~iphone.xib */,
-				A1165D251CF583100017A725 /* LWExchangePresenter~ipad.xib */,
+				ECD1E9061C3BCAF60064AAB3 /* LWExchangePresenter.xib */,
+				A1165D251CF583100017A725 /* LWExchangePresenter_ipad.xib */,
 				EC57F4531C3C3DD900E31746 /* LWExchangeFormPresenter.xib */,
 				EC57F4691C3D400600E31746 /* LWExchangeDealFormPresenter.xib */,
 				EC7F04FA1C3E75E00079ECD0 /* LWExchangeConfirmationView.xib */,
@@ -6638,10 +6667,10 @@
 		EC9EC2561C8EF51600C986DD /* Lykke */ = {
 			isa = PBXGroup;
 			children = (
-				ECD1E90C1C3BDEB60064AAB3 /* LWAssetTableViewCell~iphone.xib */,
-				A1165D231CF580630017A725 /* LWAssetTableViewCell~ipad.xib */,
-				ECD1E9111C3BDEE40064AAB3 /* LWAssetLykkeTableViewCell~iphone.xib */,
-				A1165D211CF577CB0017A725 /* LWAssetLykkeTableViewCell~ipad.xib */,
+				ECD1E90C1C3BDEB60064AAB3 /* LWAssetTableViewCell.xib */,
+				A1165D231CF580630017A725 /* LWAssetTableViewCell_ipad.xib */,
+				ECD1E9111C3BDEE40064AAB3 /* LWAssetLykkeTableViewCell.xib */,
+				A1165D211CF577CB0017A725 /* LWAssetLykkeTableViewCell_ipad.xib */,
 				ECD1E9161C3BE4050064AAB3 /* LWAssetEmptyTableViewCell.xib */,
 				EC57F45C1C3C557E00E31746 /* LWAssetInfoTextTableViewCell.xib */,
 				A17069881D25FBFB0044D7FA /* LWAssetURLTableViewCell.xib */,
@@ -7102,9 +7131,10 @@
 				A14515631D793E5200B4BED9 /* LWPrivateWalletsPresenter.xib in Resources */,
 				A1BCD2A01D012D3C00CF42E4 /* 5-onboard-2x_00058.png in Resources */,
 				A1BCD2B51D012D3C00CF42E4 /* 5-onboard-2x_00079.png in Resources */,
-				A1165D221CF577CB0017A725 /* LWAssetLykkeTableViewCell~ipad.xib in Resources */,
+				A1165D221CF577CB0017A725 /* LWAssetLykkeTableViewCell_ipad.xib in Resources */,
 				A1BCD1E91D012D3C00CF42E4 /* 3-settle-2x_00114.png in Resources */,
 				A1BCD10F1D012D3C00CF42E4 /* 2-trade-2x_00015.png in Resources */,
+				A1FC0B991DB730EF002B0ED7 /* LWExchangeOrderPresenter.xib in Resources */,
 				A1D477381D050B9900438846 /* loader-color@2x_00008.png in Resources */,
 				A1743CC01CEAF97400176F59 /* LWRegisterFullNamePresenter~ipad.xib in Resources */,
 				A1BCD12E1D012D3C00CF42E4 /* 2-trade-2x_00046.png in Resources */,
@@ -7189,11 +7219,12 @@
 				A1D65DA91D5DCF1100828783 /* crypto_bar_00101.png in Resources */,
 				A12DB5521D741C2300319EA7 /* Proxima Nova Semibold.otf in Resources */,
 				A1BCD1EE1D012D3C00CF42E4 /* 3-settle-2x_00119.png in Resources */,
+				A1FC0B941DB72A9B002B0ED7 /* LWExchangeTabContainer.xib in Resources */,
 				A1BCD1C91D012D3C00CF42E4 /* 3-settle-2x_00082.png in Resources */,
 				A1BCD1B91D012D3C00CF42E4 /* 3-settle-2x_00066.png in Resources */,
 				A1BCD1A91D012D3C00CF42E4 /* 3-settle-2x_00050.png in Resources */,
 				A1D65DB21D5DCF1100828783 /* crypto_bar_00110.png in Resources */,
-				ECD1E9071C3BCAF60064AAB3 /* LWExchangePresenter~iphone.xib in Resources */,
+				ECD1E9071C3BCAF60064AAB3 /* LWExchangePresenter.xib in Resources */,
 				A1BCD0B81D012D3C00CF42E4 /* 1-deposit-2x_00048.png in Resources */,
 				A1BCD1BF1D012D3C00CF42E4 /* 3-settle-2x_00072.png in Resources */,
 				A10A95061D0E8F5F00557C87 /* SlashSign@2x.png in Resources */,
@@ -7208,7 +7239,7 @@
 				A1BCD2741D012D3C00CF42E4 /* 5-onboard-2x_00014.png in Resources */,
 				A1BCD0B91D012D3C00CF42E4 /* 1-deposit-2x_00049.png in Resources */,
 				A188DA131D6EB33800AA6D8A /* LWPrivateWalletEmptyHistoryPresenter.xib in Resources */,
-				ECD1E90D1C3BDEB60064AAB3 /* LWAssetTableViewCell~iphone.xib in Resources */,
+				ECD1E90D1C3BDEB60064AAB3 /* LWAssetTableViewCell.xib in Resources */,
 				A1BCD0D61D012D3C00CF42E4 /* 1-deposit-2x_00078.png in Resources */,
 				A145157C1D7D1C9200B4BED9 /* LWNewsFirstTableViewCell~ipad.xib in Resources */,
 				A1BCD2DA1D012D3C00CF42E4 /* 5-onboard-2x_00116.png in Resources */,
@@ -7527,7 +7558,7 @@
 				A1BCD0921D012D3C00CF42E4 /* 1-deposit-2x_00010.png in Resources */,
 				A1F3ADBF1DB0FC1B00DEC320 /* LWKYCInvalidDocumentsPresenter_iphone5.xib in Resources */,
 				A1BCD17A1D012D3C00CF42E4 /* 3-settle-2x_00003.png in Resources */,
-				A1165D261CF583100017A725 /* LWExchangePresenter~ipad.xib in Resources */,
+				A1165D261CF583100017A725 /* LWExchangePresenter_ipad.xib in Resources */,
 				A1BCD1EC1D012D3C00CF42E4 /* 3-settle-2x_00117.png in Resources */,
 				EC24CC7A1C39786C00C2FDAA /* LWWalletConfirmPresenter.xib in Resources */,
 				A1BCD10E1D012D3C00CF42E4 /* 2-trade-2x_00014.png in Resources */,
@@ -7579,7 +7610,7 @@
 				A1BCD27F1D012D3C00CF42E4 /* 5-onboard-2x_00025.png in Resources */,
 				A1D65D781D5DCF1100828783 /* crypto_bar_00052.png in Resources */,
 				A1BCD1471D012D3C00CF42E4 /* 2-trade-2x_00071.png in Resources */,
-				A1165D241CF580630017A725 /* LWAssetTableViewCell~ipad.xib in Resources */,
+				A1165D241CF580630017A725 /* LWAssetTableViewCell_ipad.xib in Resources */,
 				A1BCD2811D012D3C00CF42E4 /* 5-onboard-2x_00027.png in Resources */,
 				A1BCD1A81D012D3C00CF42E4 /* 3-settle-2x_00049.png in Resources */,
 				A1BCD0FF1D012D3C00CF42E4 /* 1-deposit-2x_00119.png in Resources */,
@@ -7900,6 +7931,7 @@
 				A1165D401CF6CF940017A725 /* DisclosureIndicator.png in Resources */,
 				A1BCD2981D012D3C00CF42E4 /* 5-onboard-2x_00050.png in Resources */,
 				A1BCD27D1D012D3C00CF42E4 /* 5-onboard-2x_00023.png in Resources */,
+				A1FC0BA11DB8E0BF002B0ED7 /* LWExchangeIPadContainerViewController.xib in Resources */,
 				A1BCD2061D012D3C00CF42E4 /* 4-withdraw-2x_00023.png in Resources */,
 				A1D477481D050B9900438846 /* loader-color@2x_00024.png in Resources */,
 				A1D65D7B1D5DCF1100828783 /* crypto_bar_00055.png in Resources */,
@@ -7951,7 +7983,7 @@
 				A1BCD2731D012D3C00CF42E4 /* 5-onboard-2x_00013.png in Resources */,
 				EC9AE06E1CAC7C830047DF0D /* LWWithdrawInputPresenter.xib in Resources */,
 				A1BCD2781D012D3C00CF42E4 /* 5-onboard-2x_00018.png in Resources */,
-				ECD1E9121C3BDEE40064AAB3 /* LWAssetLykkeTableViewCell~iphone.xib in Resources */,
+				ECD1E9121C3BDEE40064AAB3 /* LWAssetLykkeTableViewCell.xib in Resources */,
 				A1BCD0981D012D3C00CF42E4 /* 1-deposit-2x_00016.png in Resources */,
 				A1BCD22C1D012D3C00CF42E4 /* 4-withdraw-2x_00061.png in Resources */,
 				A1BCD22E1D012D3C00CF42E4 /* 4-withdraw-2x_00063.png in Resources */,
@@ -8284,11 +8316,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1FC0BA01DB8E0BF002B0ED7 /* LWExchangeIPadContainerViewController.m in Sources */,
 				ECA23FA21CBD754500B4D58D /* LWTransactionTransferModel.m in Sources */,
 				EC51D1931C30514200550EF2 /* LWLykkeWalletsData.m in Sources */,
 				CDCD5B111C26C92A007BAD78 /* LWRegisterFullNamePresenter.m in Sources */,
 				A1165D471CF70CED0017A725 /* LWRegisterHintPresenter.m in Sources */,
 				A15B3EB91D12E21B00A6B506 /* LWPacketKYCForAsset.m in Sources */,
+				A1FC0B981DB730EF002B0ED7 /* LWExchangeOrderPresenter.m in Sources */,
 				ECECAB511C98ACF30020E050 /* LWBitcoinDepositPresenter.m in Sources */,
 				ECD76BCD1C2EC50700E1D3DA /* LWPacketWallets.m in Sources */,
 				CF6632861C176A63004353F5 /* LWWalletsPresenter.m in Sources */,
@@ -8480,6 +8514,7 @@
 				A1D107121DAE18DC0016506B /* LWPacketKYCDocuments.m in Sources */,
 				A17CF1DC1D41D08400EDBF2E /* LWPrivateWalletsManager.m in Sources */,
 				A189C8001DA8B4E0001EF6BA /* LWKYCImagePickerController.m in Sources */,
+				A1FC0B931DB72A9B002B0ED7 /* LWExchangeTabContainer.m in Sources */,
 				ECD76BCA1C2EBE9C00E1D3DA /* LWPersonalDataPacket.m in Sources */,
 				ECD114551CDD4758002B36C0 /* LWPacketClientFullNameSet.m in Sources */,
 				A14515791D7C77C600B4BED9 /* LWMyLykkeSuccessViewController.m in Sources */,
@@ -8609,6 +8644,7 @@
 				ECA23F9D1CBD733300B4D58D /* LWTransactionCashInOutModel.m in Sources */,
 				A12DB5441D72F4B400319EA7 /* LWPacketAllAssetPairs.m in Sources */,
 				ECA80B651C2E0E47001C4E8F /* LWCameraOverlayPresenter.m in Sources */,
+				A1FC0B9C1DB775A3002B0ED7 /* LWOrderGraphView.m in Sources */,
 				A102CF021D8A55B100089A92 /* LWPacketEmailHint.m in Sources */,
 				ECD1147C1CDE2362002B36C0 /* LWPacketPhoneVerificationSet.m in Sources */,
 				CFD60E571C18C80C000BF83C /* LWTipsView.m in Sources */,
