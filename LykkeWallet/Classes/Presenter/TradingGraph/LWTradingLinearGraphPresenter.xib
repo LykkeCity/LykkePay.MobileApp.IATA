@@ -38,7 +38,7 @@
                 </tableView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ha1-rr-0ID">
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LaN-Ft-cv9" customClass="TKButton">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LaN-Ft-cv9" customClass="LWCommonButton">
                             <constraints>
                                 <constraint firstAttribute="width" constant="304" id="UiB-gV-BY6"/>
                                 <constraint firstAttribute="height" constant="45" id="l01-rW-uol"/>
@@ -51,7 +51,7 @@
                                 <action selector="sellClicked:" destination="-1" eventType="touchUpInside" id="3op-ec-X1f"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R0D-Yt-V6l" customClass="TKButton">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R0D-Yt-V6l" customClass="LWCommonButton">
                             <constraints>
                                 <constraint firstAttribute="height" constant="45" id="6Td-VH-wSr"/>
                             </constraints>

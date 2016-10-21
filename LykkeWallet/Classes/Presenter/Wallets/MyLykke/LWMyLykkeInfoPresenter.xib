@@ -28,7 +28,7 @@
                     <frame key="frameInset" width="600" height="477"/>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 </tableView>
-                <button hidden="YES" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IPe-oW-gdz" customClass="LWCommonButton">
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IPe-oW-gdz" customClass="LWCommonButton">
                     <frame key="frameInset" minX="277" minY="528" width="46" height="30"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="315" id="WpK-0f-NnB"/>
@@ -36,7 +36,7 @@
                     </constraints>
                     <state key="normal" title="BUY LYKKE"/>
                 </button>
-                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wVy-5w-GLm">
+                <view hidden="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wVy-5w-GLm">
                     <frame key="frameInset" minX="41" minY="504" width="262" height="152"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" alpha="0.60000002384185791" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="To buy LKK, go to Exchange. There you can buy LKK for the assets available in your wallet." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bae-At-u48">

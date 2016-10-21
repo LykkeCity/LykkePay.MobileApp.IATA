@@ -19,6 +19,8 @@
                 <outlet property="orderLabel" destination="mWg-6p-B5j" id="VMR-kt-bwU"/>
                 <outlet property="selectorLeftConstraint" destination="Mc6-Dn-2sD" id="AgI-bC-JU6"/>
                 <outlet property="selectorView" destination="of6-AO-mHP" id="geo-Ht-mFp"/>
+                <outlet property="titleLabel" destination="uWL-kD-0Lc" id="AdS-GT-mvu"/>
+                <outlet property="topBarTitleView" destination="EOM-2v-zZN" id="Bgv-UN-ZSm"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -75,7 +77,7 @@
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4cP-3C-HMB">
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="ORDER" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mWg-6p-B5j">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="ORDERS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mWg-6p-B5j">
                                     <frame key="frameInset" minX="29" minY="7" width="43" height="16"/>
                                     <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="13"/>
                                     <color key="textColor" red="0.2470588235" green="0.30196078430000001" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -125,5 +127,58 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="15" y="58.5"/>
         </view>
+        <view contentMode="scaleToFill" id="EOM-2v-zZN">
+            <rect key="frame" x="0.0" y="0.0" width="772" height="64"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AEi-c6-MTT">
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u13-lu-NmF">
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IconLogo" translatesAutoresizingMaskIntoConstraints="NO" id="MkS-j2-Nrb">
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="30" id="l2Y-3o-EoT"/>
+                                        <constraint firstAttribute="height" constant="30" id="nPy-QO-3g9"/>
+                                    </constraints>
+                                </imageView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uWL-kD-0Lc">
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="uWL-kD-0Lc" secondAttribute="trailing" id="8LX-nt-5Mi"/>
+                                <constraint firstAttribute="bottom" secondItem="uWL-kD-0Lc" secondAttribute="bottom" id="DTP-nR-GKJ"/>
+                                <constraint firstItem="MkS-j2-Nrb" firstAttribute="centerY" secondItem="u13-lu-NmF" secondAttribute="centerY" id="W9g-wX-WjX"/>
+                                <constraint firstItem="MkS-j2-Nrb" firstAttribute="leading" secondItem="u13-lu-NmF" secondAttribute="leading" id="hSD-QE-pQY"/>
+                                <constraint firstAttribute="height" constant="30" id="lVV-0J-dcc"/>
+                                <constraint firstItem="uWL-kD-0Lc" firstAttribute="top" secondItem="u13-lu-NmF" secondAttribute="top" id="upi-qU-99a"/>
+                                <constraint firstItem="uWL-kD-0Lc" firstAttribute="leading" secondItem="MkS-j2-Nrb" secondAttribute="trailing" constant="10" id="wr2-3A-MUI"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="u13-lu-NmF" firstAttribute="centerX" secondItem="AEi-c6-MTT" secondAttribute="centerX" id="KJ2-jK-KIr"/>
+                        <constraint firstAttribute="bottom" secondItem="u13-lu-NmF" secondAttribute="bottom" constant="7" id="bYO-4I-3IA"/>
+                        <constraint firstAttribute="width" constant="150" id="boM-Zl-bpW"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="AEi-c6-MTT" secondAttribute="bottom" id="BDR-Vw-U91"/>
+                <constraint firstItem="AEi-c6-MTT" firstAttribute="centerX" secondItem="EOM-2v-zZN" secondAttribute="centerX" id="drl-qe-HmC"/>
+                <constraint firstItem="AEi-c6-MTT" firstAttribute="top" secondItem="EOM-2v-zZN" secondAttribute="top" id="u2a-FH-j5K"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="35" y="810.5"/>
+        </view>
     </objects>
+    <resources>
+        <image name="IconLogo" width="95" height="60"/>
+    </resources>
 </document>

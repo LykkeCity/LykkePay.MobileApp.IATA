@@ -98,6 +98,21 @@
         buttonEnabledAttributes=@{NSKernAttributeName:@(1), NSFontAttributeName:[UIFont fontWithName:@"ProximaNova-Semibold" size:15], NSForegroundColorAttributeName:[UIColor whiteColor]};
         
     }
+    else if(myType==BUTTON_TYPE_YELLOW)
+    {
+        self.backgroundColor=[UIColor colorWithRed:255.0/255 green:174.0/255 blue:44.0/255 alpha:1];
+        buttonEnabledAttributes=@{NSKernAttributeName:@(1), NSFontAttributeName:[UIFont fontWithName:@"ProximaNova-Semibold" size:15], NSForegroundColorAttributeName:[UIColor whiteColor]};
+        buttonDisabledAttributes= @{NSKernAttributeName:@(1), NSFontAttributeName:[UIFont fontWithName:@"ProximaNova-Semibold" size:15], NSForegroundColorAttributeName:[UIColor whiteColor]};
+
+        
+    }
+    else if(myType==BUTTON_TYPE_VIOLET)
+    {
+        self.backgroundColor=[UIColor colorWithRed:171.0/255 green:0.0/255 blue:255.0/255 alpha:1];
+        buttonEnabledAttributes=@{NSKernAttributeName:@(1), NSFontAttributeName:[UIFont fontWithName:@"ProximaNova-Semibold" size:15], NSForegroundColorAttributeName:[UIColor whiteColor]};
+        buttonDisabledAttributes= @{NSKernAttributeName:@(1), NSFontAttributeName:[UIFont fontWithName:@"ProximaNova-Semibold" size:15], NSForegroundColorAttributeName:[UIColor whiteColor]};
+
+    }
 
     
     

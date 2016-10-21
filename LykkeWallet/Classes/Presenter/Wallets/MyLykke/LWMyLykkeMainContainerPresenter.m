@@ -114,6 +114,7 @@
         [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:246.0/255 green:247.0/255 blue:248.0/255 alpha:1]];
     else
         [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
+    [self.navigationController setNavigationBarHidden:NO animated:NO];
 
 
 }

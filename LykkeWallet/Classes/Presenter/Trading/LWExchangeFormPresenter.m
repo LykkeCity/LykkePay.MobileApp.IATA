@@ -24,6 +24,7 @@
 #import "UIViewController+Navigation.h"
 #import "NSString+Utils.h"
 #import "LWIPadModalNavigationControllerViewController.h"
+#import "LWCommonButton.h"
 
 
 @interface LWExchangeFormPresenter () {
@@ -33,8 +34,8 @@
 
 #pragma mark - Outlets
 
-@property (weak, nonatomic) IBOutlet UIButton *buyButton;
-@property (weak, nonatomic) IBOutlet UIButton *sellButton;
+@property (weak, nonatomic) IBOutlet LWCommonButton *buyButton;
+@property (weak, nonatomic) IBOutlet LWCommonButton *sellButton;
 
 
 #pragma mark - Utils
@@ -78,7 +79,14 @@ static NSString *const DescriptionIdentifiers[kDescriptionRows] = {
     
     [self registerCellWithIdentifier:@"LWAssetURLTableViewCellIdentifier"
                                 name:@"LWAssetURLTableViewCell"];
+    
+    _buyButton.type=BUTTON_TYPE_YELLOW;
+    _sellButton.type=BUTTON_TYPE_VIOLET;
 
+//    self.tableView.tableHeaderView = ({UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 1 / UIScreen.mainScreen.scale)];
+//        line.backgroundColor = self.tableView.separatorColor;
+//        line;
+//    });
     
 }
 
@@ -104,9 +112,6 @@ static NSString *const DescriptionIdentifiers[kDescriptionRows] = {
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad)
-        [self.navigationController setNavigationBarHidden:YES animated:NO];
-
     
     [self updateRate:self.assetRate];
 
@@ -170,6 +175,17 @@ static NSString *const DescriptionIdentifiers[kDescriptionRows] = {
         textCell.titleLabel.text = DescriptionNames[indexPath.row];
         
         textCell.descriptionLabel.text = [self description:assetDetails forRow:indexPath.row];
+    }
+    if(indexPath.row==0)
+    {
+        UIView *line;
+        if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
+            line= [[UIView alloc] initWithFrame:CGRectMake(25, 0, self.tableView.frame.size.width-50, 1 / UIScreen.mainScreen.scale)];
+        else
+            line= [[UIView alloc] initWithFrame:CGRectMake(0, 0, 800, 1 / UIScreen.mainScreen.scale)];
+        
+        line.backgroundColor = self.tableView.separatorColor;
+        [cell addSubview:line];
     }
 
     return cell;
@@ -313,8 +329,10 @@ static NSString *const DescriptionIdentifiers[kDescriptionRows] = {
     
     self.assetRate = rate;
     
-    [LWValidator setBuyButton:self.buyButton enabled:(rate != nil)];
-    [LWValidator setSellButton:self.sellButton enabled:(rate != nil)];
+    self.buyButton.enabled=rate != nil;
+    self.sellButton.enabled=rate!=nil;
+//    [LWValidator setBuyButton:self.buyButton enabled:(rate != nil)];
+//    [LWValidator setSellButton:self.sellButton enabled:(rate != nil)];
     
     NSString *priceSellRateString = @". . .";
     NSString *priceBuyRateString = @". . .";
@@ -343,14 +361,16 @@ static NSString *const DescriptionIdentifiers[kDescriptionRows] = {
 //
 //    NSDictionary *attributesSell=@{NSKernAttributeName:@(1), NSFontAttributeName:self.sellButton.titleLabel.font, NSForegroundColorAttributeName:rate==nil?self.sellButton.currentTitleColor:[UIColor whiteColor]};
     
-        NSDictionary *attributesBuy = @{NSFontAttributeName:self.buyButton.titleLabel.font, NSForegroundColorAttributeName:rate==nil?self.buyButton.currentTitleColor:[UIColor whiteColor]};
-    
-        NSDictionary *attributesSell=@{NSFontAttributeName:self.sellButton.titleLabel.font, NSForegroundColorAttributeName:rate==nil?self.sellButton.currentTitleColor:[UIColor whiteColor]};
+//        NSDictionary *attributesBuy = @{NSFontAttributeName:self.buyButton.titleLabel.font, NSForegroundColorAttributeName:rate==nil?self.buyButton.currentTitleColor:[UIColor whiteColor]};
+//    
+//        NSDictionary *attributesSell=@{NSFontAttributeName:self.sellButton.titleLabel.font, NSForegroundColorAttributeName:rate==nil?self.sellButton.currentTitleColor:[UIColor whiteColor]};
 
     
-    [self.buyButton setAttributedTitle:[[NSAttributedString alloc] initWithString:priceBuyRateString attributes:attributesBuy] forState:UIControlStateNormal];
-    [self.sellButton setAttributedTitle:[[NSAttributedString alloc] initWithString:priceSellRateString attributes:attributesSell] forState:UIControlStateNormal];
-    
+//    [self.buyButton setAttributedTitle:[[NSAttributedString alloc] initWithString:priceBuyRateString attributes:attributesBuy] forState:UIControlStateNormal];
+//    [self.sellButton setAttributedTitle:[[NSAttributedString alloc] initWithString:priceSellRateString attributes:attributesSell] forState:UIControlStateNormal];
+
+    [self.buyButton setTitle:priceBuyRateString forState:UIControlStateNormal];
+    [self.sellButton setTitle:priceSellRateString forState:UIControlStateNormal];
     
 //    [self.sellButton setTitle:priceSellRateString forState:UIControlStateNormal];
 //    [self.buyButton setTitle:priceBuyRateString forState:UIControlStateNormal];

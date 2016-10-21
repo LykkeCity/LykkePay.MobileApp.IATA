@@ -13,6 +13,7 @@
 #import "LWExchangeDealFormPresenter.h"
 #import "LWAssetPairModel.h"
 #import "LWIPadModalNavigationControllerViewController.h"
+#import "LWRefreshControlView.h"
 
 
 
@@ -20,6 +21,7 @@
 {
     
     NSMutableArray *wallets;
+    UIRefreshControl  *refreshControl;
 }
 
 @end
@@ -41,6 +43,8 @@
     // Do any additional setup after loading the view from its nib.
     
     self.hideKeyboardOnTap=NO;
+    
+    [self setRefreshControl];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -53,7 +57,7 @@
     [super viewWillAppear:animated];
     if(!wallets)
         [self setLoading:YES];
-    
+    [LWAuthManager instance].caller=self;
     [[LWAuthManager instance] requestLykkeWallets];
 }
 
@@ -61,6 +65,26 @@
 {
     [super viewDidAppear:animated];
 }
+
+- (void)setRefreshControl
+{
+    UIView *refreshView = [[UIView alloc] initWithFrame:CGRectMake(0, 5, 0, 0)];
+    [self.tableView insertSubview:refreshView atIndex:0];
+    
+    refreshControl = [[LWRefreshControlView alloc] init];
+    //    refreshControl.tintColor = [UIColor blackColor];
+    [refreshControl addTarget:self action:@selector(reloadWallets)
+             forControlEvents:UIControlEventValueChanged];
+    [refreshView addSubview:refreshControl];
+}
+
+-(void) reloadWallets
+{
+    [LWAuthManager instance].caller=self;
+    [[LWAuthManager instance] requestLykkeWallets];
+
+}
+
 
 -(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -156,6 +180,7 @@
 -(void) authManager:(LWAuthManager *)manager didReceiveLykkeData:(LWLykkeWalletsData *)data
 {
     [self setLoading:NO];
+    [refreshControl endRefreshing];
     wallets=[[NSMutableArray alloc] init];
     for(LWLykkeAssetsData *d in data.lykkeData.assets)
         if(d.balance.doubleValue>0 && [d.identity isEqualToString:@"LKK"]==NO)
@@ -169,6 +194,7 @@
 -(void) authManager:(LWAuthManager *)manager didFailWithReject:(NSDictionary *)reject context:(GDXRESTContext *)context
 {
     [self setLoading:NO];
+    [refreshControl endRefreshing];
     [self showReject:reject response:context.task.response];
 }
 

@@ -28,7 +28,7 @@
     self=[super init];
     price=_price;
     volume=_volume;
-    _graphStartOffset=100;
+    _graphStartOffset=115;
     depthStartX=187;
     
     
@@ -40,7 +40,7 @@
     _assetPair=assetPair;
     priceLabel=[[UILabel alloc] init];
     
-    NSString *formatString=[NSString stringWithFormat:@"%d",[LWCache accuracyForAssetId:assetPair.baseAssetId]];
+    NSString *formatString=[NSString stringWithFormat:@"%d",[self.assetPair.accuracy intValue]];
     formatString=[[@"%." stringByAppendingString:formatString] stringByAppendingString:@"lf"];
     NSString *priceString=[NSString stringWithFormat:formatString, price];
     priceLabel.text=priceString;
@@ -81,7 +81,7 @@
 {
     [super layoutSubviews];
     priceLabel.frame=CGRectMake(30, 0, priceLabel.bounds.size.width, self.bounds.size.height);
-    volumeLabel.frame=CGRectMake(115, 0, volumeLabel.bounds.size.width, self.bounds.size.height);
+    volumeLabel.frame=CGRectMake(130, 0, volumeLabel.bounds.size.width, self.bounds.size.height);
 }
 
 -(void) drawRect:(CGRect)rect
@@ -106,7 +106,10 @@
     int startX=(width/self.bounds.size.width)*_graphStartOffset;
     int endX;//=(width/self.bounds.size.width)*(depthStartX+(self.bounds.size.width-depthStartX-30)*(volume/_graphMaxVolume));
     
-    endX=([LWUtils logarithmicValueFrom:volume min:_graphMinVolume max:_graphMaxVolume length:self.bounds.size.width-depthStartX-30]+depthStartX)*(width/self.bounds.size.width);
+    if(_graphMaxVolume==_graphMinVolume)
+        endX=(width/self.bounds.size.width)*((self.bounds.size.width-30)+depthStartX)/2;
+    else
+        endX=([LWUtils logarithmicValueFrom:volume min:_graphMinVolume max:_graphMaxVolume length:self.bounds.size.width-depthStartX-30]+depthStartX)*(width/self.bounds.size.width);
     
     CGFloat *components2 = CGColorGetComponents(_volumeColor.CGColor);
     float r2=components2[0]*255;

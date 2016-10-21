@@ -48,6 +48,8 @@
 
     
     UIWindow *parentView=[UIApplication sharedApplication].keyWindow;
+    if(parentView.bounds.size.height<300)
+        parentView=[UIApplication sharedApplication].windows[1];
     
     wallets=[LWPrivateWalletsManager shared].wallets;
     

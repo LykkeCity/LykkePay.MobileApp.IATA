@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LykkeWallet/Classes/Presenter/TradingGraph/LWTradingLinearGraphPresenter.m"
-            timestampString = "498730594.360934"
+            timestampString = "498766923.23153"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "684"
-            endingLineNumber = "684">
+            startingLineNumber = "689"
+            endingLineNumber = "689">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -56,11 +56,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LykkeWallet/Classes/Presenter/TradingGraph/LWTradingLinearGraphPresenter.m"
-            timestampString = "498730594.360934"
+            timestampString = "498766923.23153"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "666"
-            endingLineNumber = "666">
+            startingLineNumber = "671"
+            endingLineNumber = "671">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -248,11 +248,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LykkeWallet/Classes/Presenter/Trading/LWExchangeFormPresenter.m"
-            timestampString = "498730305.621055"
+            timestampString = "498772446.35945"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "203"
-            endingLineNumber = "203"
+            startingLineNumber = "219"
+            endingLineNumber = "219"
             landmarkName = "-tableView:didSelectRowAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
@@ -798,22 +798,6 @@
             startingLineNumber = "35"
             endingLineNumber = "35"
             landmarkName = "-setArrayOfDocuments:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "LykkeWallet/Classes/Model/Core/Network/LWPacketOrderBook.m"
-            timestampString = "498733088.532641"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "16"
-            endingLineNumber = "16"
-            landmarkName = "-parseResponse:error:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

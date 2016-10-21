@@ -15,12 +15,17 @@
     LWExchangePresenter *exchangePresenter;
     LWExchangeTabContainer *tabContainer;
     NSDictionary *titleAttributes;
+    
 }
 
 @property (weak,nonatomic) IBOutlet UIView *leftContainer;
 @property (weak, nonatomic) IBOutlet UIView *rightContainer;
 @property (weak, nonatomic) IBOutlet UILabel *leftTitle;
 @property (weak, nonatomic) IBOutlet UILabel *rightTitle;
+
+@property (strong, nonatomic) IBOutlet UIView *topNavView;
+
+@property (weak, nonatomic) IBOutlet UIImageView *topIconImageView;
 
 @end
 
@@ -29,8 +34,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+
+    
     _leftContainer.clipsToBounds=YES;
     _rightContainer.clipsToBounds=YES;
+    self.view.clipsToBounds=NO;
     
     exchangePresenter=[LWExchangePresenter new];
     exchangePresenter.delegate=self;
@@ -50,6 +58,7 @@
 
 -(void) exchangePresenterChosenPair:(LWAssetPairModel *)pair tabToShow:(TAB_TO_SHOW)tabToShow
 {
+    _topIconImageView.hidden=NO;
     [tabContainer removeFromParentViewController];
     [tabContainer.view removeFromSuperview];
     
@@ -78,15 +87,36 @@
 -(void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:YES animated:NO];
+//    [self.navigationController setNavigationBarHidden:NO animated:NO];
+    
+ 
+    
+    
     
 //    [self setWantsFullScreenLayout:YES];
     
 //    [self.navigationController.view setNeedsLayout];
-    if(!tabContainer)
-        self.view.frame=CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.bounds.size.width, self.view.bounds.size.height+64);
+    
+//    self.navigationController.navigationBar.backgroundColor=nil;
+//    self.navigationController.navigationBar.opaque=NO;
+    
+    [self.navigationController.view addSubview:_topNavView];
+    CGRect rrr=CGRectMake(0, 0, self.navigationController.view.bounds.size.width, _topNavView.bounds.size.height);
+    _topNavView.frame=rrr;
+    _topNavView.autoresizingMask=UIViewAutoresizingFlexibleWidth;
+    
+    
+//    if(!tabContainer)
+//        self.view.frame=CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y-64, self.view.bounds.size.width, self.view.bounds.size.height+64);
 //    [self.view layoutIfNeeded];
 //    [self.navigationController layoutSubviews];
+}
+
+-(void) viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:NO];
+    [_topNavView removeFromSuperview];
 }
 
 -(void) viewDidAppear:(BOOL)animated

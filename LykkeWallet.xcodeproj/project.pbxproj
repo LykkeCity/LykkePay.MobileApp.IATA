@@ -1141,6 +1141,7 @@
 		A1FC0BA11DB8E0BF002B0ED7 /* LWExchangeIPadContainerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1FC0B9F1DB8E0BF002B0ED7 /* LWExchangeIPadContainerViewController.xib */; };
 		A1FC0BA51DB9FABB002B0ED7 /* LWTradingLinearGraphTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A1FC0BA31DB9FABB002B0ED7 /* LWTradingLinearGraphTableViewCell.m */; };
 		A1FC0BA61DB9FABB002B0ED7 /* LWTradingLinearGraphTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1FC0BA41DB9FABB002B0ED7 /* LWTradingLinearGraphTableViewCell.xib */; };
+		A1FC0BA91DBA25E7002B0ED7 /* LWMainTabPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A1FC0BA81DBA25E7002B0ED7 /* LWMainTabPresenter.m */; };
 		A87C81BA1C7356E1D9BA3A28 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B1A20FEBD41AE93CA79087B5 /* libPods.a */; };
 		CD10AAA31C1E0B530086634B /* LWPacketAuthentication.m in Sources */ = {isa = PBXBuildFile; fileRef = CD10AAA21C1E0B530086634B /* LWPacketAuthentication.m */; };
 		CD10AAA61C1E0C560086634B /* LWAuthenticationData.m in Sources */ = {isa = PBXBuildFile; fileRef = CD10AAA51C1E0C560086634B /* LWAuthenticationData.m */; };
@@ -3180,6 +3181,8 @@
 		A1FC0BA21DB9FABB002B0ED7 /* LWTradingLinearGraphTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LWTradingLinearGraphTableViewCell.h; path = TradingGraph/LWTradingLinearGraphTableViewCell.h; sourceTree = "<group>"; };
 		A1FC0BA31DB9FABB002B0ED7 /* LWTradingLinearGraphTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LWTradingLinearGraphTableViewCell.m; path = TradingGraph/LWTradingLinearGraphTableViewCell.m; sourceTree = "<group>"; };
 		A1FC0BA41DB9FABB002B0ED7 /* LWTradingLinearGraphTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LWTradingLinearGraphTableViewCell.xib; path = TradingGraph/LWTradingLinearGraphTableViewCell.xib; sourceTree = "<group>"; };
+		A1FC0BA71DBA25E7002B0ED7 /* LWMainTabPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWMainTabPresenter.h; sourceTree = "<group>"; };
+		A1FC0BA81DBA25E7002B0ED7 /* LWMainTabPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWMainTabPresenter.m; sourceTree = "<group>"; };
 		B1A20FEBD41AE93CA79087B5 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD10AAA11C1E0B530086634B /* LWPacketAuthentication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWPacketAuthentication.h; sourceTree = "<group>"; };
 		CD10AAA21C1E0B530086634B /* LWPacketAuthentication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWPacketAuthentication.m; sourceTree = "<group>"; };
@@ -5480,6 +5483,8 @@
 				ECD1E9011C3BC8B40064AAB3 /* LWAuthPresenter.m */,
 				EC57F46B1C3D452300E31746 /* LWAuthComplexPresenter.h */,
 				EC57F46C1C3D452300E31746 /* LWAuthComplexPresenter.m */,
+				A1FC0BA71DBA25E7002B0ED7 /* LWMainTabPresenter.h */,
+				A1FC0BA81DBA25E7002B0ED7 /* LWMainTabPresenter.m */,
 				ECE902BF1C353F5600F52971 /* LWAuthenticatedTablePresenter.h */,
 				ECE902C01C353F5600F52971 /* LWAuthenticatedTablePresenter.m */,
 				CF6632881C176AB1004353F5 /* LWTabController.h */,
@@ -8633,6 +8638,7 @@
 				CD3CCDDD1C2B3DD400DDCE46 /* LWDeviceInfo.m in Sources */,
 				EC3CE8B11C4014D600CAC3FE /* LWExchangeBlockchainPresenter.m in Sources */,
 				CDCD5B131C26C92A007BAD78 /* LWRegisterPhonePresenter.m in Sources */,
+				A1FC0BA91DBA25E7002B0ED7 /* LWMainTabPresenter.m in Sources */,
 				A1BB07BF1D378E2000924804 /* LWPrivateWalletAddView.m in Sources */,
 				EC57F4601C3C55D700E31746 /* LWAssetInfoIconTableViewCell.m in Sources */,
 				EC9AE05A1CAC70EA0047DF0D /* LWQrCodeScannerPresenter.m in Sources */,
@@ -9080,7 +9086,7 @@
 					"$(PROJECT_DIR)/LykkeWallet/Classes/Model/Core/Security",
 					"$(PROJECT_DIR)/LykkeWallet/Classes/Model/Core/CoreBitcoin",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.lykkex.Lykke-Wallet-test";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.lykkex.Lykke-Wallet";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "96eb2237-97fb-4c42-8f0a-01c59c31ce30";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -9112,7 +9118,7 @@
 					"$(PROJECT_DIR)/LykkeWallet/Classes/Model/Core/Security",
 					"$(PROJECT_DIR)/LykkeWallet/Classes/Model/Core/CoreBitcoin",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.lykkex.Lykke-Wallet-test";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.lykkex.Lykke-Wallet";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "739d1803-3e6a-45f6-a16e-304ce210d1a9";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -9194,7 +9200,7 @@
 					"$(PROJECT_DIR)/LykkeWallet/Classes/Model/Core/Security",
 					"$(PROJECT_DIR)/LykkeWallet/Classes/Model/Core/CoreBitcoin",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.lykkex.Lykke-Wallet-test";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.lykkex.Lykke-Wallet";
 				PRODUCT_NAME = "$(TARGET_NAME).Test";
 				PROVISIONING_PROFILE = "d31a3b1a-86ee-4c63-b9c3-c5d76a81bcb5";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -9270,7 +9276,7 @@
 					"$(PROJECT_DIR)/LykkeWallet/Classes/Model/Core/Security",
 					"$(PROJECT_DIR)/LykkeWallet/Classes/Model/Core/CoreBitcoin",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.lykkex.Lykke-Wallet-test";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.lykkex.Lykke-Wallet";
 				PRODUCT_NAME = "$(TARGET_NAME).Test";
 				PROVISIONING_PROFILE = "bbdaf056-de2a-4164-9ce4-87ca11a1a1cb";
 				TARGETED_DEVICE_FAMILY = "1,2";

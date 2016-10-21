@@ -12,6 +12,7 @@
 #import "UIViewController+Navigation.h"
 #import "LWAssetDescriptionModel.h"
 #import "LWMyLykkeBuyPresenter.h"
+#import "LWLykkeBuyTransferContainer.h"
 
 #import "UIViewController+Loading.h"
 @interface LWMyLykkeInfoPresenter () <UITableViewDelegate, UITableViewDataSource>
@@ -129,8 +130,37 @@
 
 -(void) buyPressed
 {
-    LWMyLykkeBuyPresenter *presenter=[[LWMyLykkeBuyPresenter alloc] init];
-    [self.navigationController pushViewController:presenter animated:YES];
+//    LWMyLykkeBuyPresenter *presenter=[[LWMyLykkeBuyPresenter alloc] init];
+//    [self.navigationController pushViewController:presenter animated:YES];
+//    
+    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
+    {
+        
+        LWLykkeBuyTransferContainer *presenter=[LWLykkeBuyTransferContainer new];
+        [self.navigationController pushViewController:presenter animated:YES];
+        
+        //        LWBuyLykkeInContainerPresenter *presenter=[LWBuyLykkeInContainerPresenter new];
+        //        [self.navigationController pushViewController:presenter animated:YES];
+        
+        //
+        //
+        //    LWMyLykkeBuyPresenter *presenter=[[LWMyLykkeBuyPresenter alloc] init];
+        //    [self.navigationController pushViewController:presenter animated:YES];
+        
+        
+        
+        
+    }
+    else
+    {
+        //        LWMyLykkeIpadController *presenter=[LWMyLykkeIpadController new];
+        //        [self.navigationController pushViewController:presenter animated:YES];
+        
+        LWLykkeBuyTransferContainer *presenter=[LWLykkeBuyTransferContainer new];
+        [self.navigationController pushViewController:presenter animated:YES];
+        
+    }
+
 
 }
 

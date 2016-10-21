@@ -18,7 +18,7 @@
 #import "LWCache.h"
 #import "LWUtils.h"
 #import "LWMath.h"
-#import "TKButton.h"
+#import "LWCommonButton.h"
 #import "UIViewController+Loading.h"
 #import "UIViewController+Navigation.h"
 #import "LWIPadModalNavigationControllerViewController.h"
@@ -61,8 +61,8 @@
 @property (assign, nonatomic) BOOL isValid;
 @property (strong, nonatomic) LWAssetPairRateModel *pairRateModel;
 
-@property (weak, nonatomic) IBOutlet TKButton *sellButton;
-@property (weak, nonatomic) IBOutlet TKButton *buyButton;
+@property (weak, nonatomic) IBOutlet LWCommonButton *sellButton;
+@property (weak, nonatomic) IBOutlet LWCommonButton *buyButton;
 @property (weak, nonatomic) IBOutlet UIView   *graphView;
 @property (weak, nonatomic) IBOutlet UIView   *bottomView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *graphHeightConstraint;
@@ -109,7 +109,8 @@ static int const kNumberOfRows = 4;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(orientationChanged) name:UIApplicationDidChangeStatusBarOrientationNotification object:nil];
 
     
-    //    LWTradingGraphLinearView *vvv=[[LWTradingGraphLinearView alloc] initWithFrame:CGRectZero];
+    self.buyButton.type=BUTTON_TYPE_YELLOW;
+    self.sellButton.type=BUTTON_TYPE_VIOLET;
     
     
 }
@@ -117,9 +118,6 @@ static int const kNumberOfRows = 4;
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad)
-        [self.navigationController setNavigationBarHidden:YES animated:NO];
-
     
 //    if(self.assetPair.inverted)
 //    {
@@ -351,8 +349,11 @@ static int const kNumberOfRows = 4;
 }
 
 - (void)updatePrices {
-    [LWValidator setBuyButton:self.buyButton enabled:self.isValid];
-    [LWValidator setSellButton:self.sellButton enabled:self.isValid];
+//    [LWValidator setBuyButton:self.buyButton enabled:self.isValid];
+//    [LWValidator setSellButton:self.sellButton enabled:self.isValid];
+    
+    self.buyButton.enabled=self.isValid;
+    self.sellButton.enabled=self.isValid;
     
     NSString *priceSellRateString = @". . .";
     NSString *priceBuyRateString = @". . .";
@@ -385,8 +386,12 @@ static int const kNumberOfRows = 4;
 }
 
 - (void)invalidPrices {
-    [LWValidator setBuyButton:self.buyButton enabled:self.isValid];
-    [LWValidator setSellButton:self.sellButton enabled:self.isValid];
+//    [LWValidator setBuyButton:self.buyButton enabled:self.isValid];
+//    [LWValidator setSellButton:self.sellButton enabled:self.isValid];
+    
+    self.buyButton.enabled=self.isValid;
+    self.sellButton.enabled=self.isValid;
+
     
 //    [self.tableView reloadData];
 }

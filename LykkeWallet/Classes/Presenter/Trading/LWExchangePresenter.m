@@ -117,7 +117,7 @@ static NSString *const AssetIcons[kNumberOfSections] = {
 
 //    self.title = Localize(@"tab.trading");
     
-    [self setTitle:Localize(@"tab.trading")];
+//    [self setTitle:Localize(@"tab.trading")];
     
     expandedSections = [NSMutableIndexSet new];
     pairRates = [NSMutableDictionary new];
@@ -152,25 +152,26 @@ static NSString *const AssetIcons[kNumberOfSections] = {
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self setTitle:Localize(@"tab.trading")];
+//    [self setTitle:Localize(@"tab.trading")];
 
-    if (self.tabBarController && self.navigationItem) {
-        self.tabBarController.title = [self.navigationItem.title uppercaseString];
-    }
+//    if (self.tabBarController && self.navigationItem) {
+//        self.tabBarController.title = [self.navigationItem.title uppercaseString];
+//    }
     
 #ifdef PROJECT_IATA
     self.headerView.backgroundColor = self.navigationController.navigationBar.barTintColor;
 #endif
     
-    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad)
-        [self.navigationController setNavigationBarHidden:YES animated:NO];
+//    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad)
+//        [self.navigationController setNavigationBarHidden:YES animated:NO];
     
 }
 
 -(void) viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self setTitle:Localize(@"tab.trading")];
+    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
+        [self setTitle:Localize(@"tab.trading")];
     [self.baseAssetsView checkCurrentBaseAsset];
     
 
@@ -184,7 +185,9 @@ static NSString *const AssetIcons[kNumberOfSections] = {
     {
         [self setLoading:YES];
     }
+    [LWAuthManager instance].caller=self;
     [[LWAuthManager instance] requestAssetPairs];
+    [LWAuthManager instance].caller=self;
     [[LWAuthManager instance] requestLastBaseAssets];
 
     
@@ -403,6 +406,7 @@ static NSString *const AssetIcons[kNumberOfSections] = {
 - (void)authManager:(LWAuthManager *)manager didGetAssetPairs:(NSArray *)assetPairs {
     _assetPairs = assetPairs;
     
+    [LWAuthManager instance].caller=self;
     [[LWAuthManager instance] requestAssetPairRates];
     
     [self.tableView reloadData];
@@ -469,7 +473,9 @@ static NSString *const AssetIcons[kNumberOfSections] = {
     _assetPairs=nil;
     [pairRates removeAllObjects];
     [self setLoading:YES];
+    [LWAuthManager instance].caller=self;
     [[LWAuthManager instance] requestAssetPairs];
+    [LWAuthManager instance].caller=self;
     [[LWAuthManager instance] requestLastBaseAssets];
 }
 
@@ -543,6 +549,7 @@ static NSString *const AssetIcons[kNumberOfSections] = {
 {
     [self setLoading:YES];
     _assetPairs=nil;
+    [LWAuthManager instance].caller=self;
     [[LWAuthManager instance] requestBaseAssetSet:assetId];
     [LWCache instance].baseAssetId=assetId;
 }
