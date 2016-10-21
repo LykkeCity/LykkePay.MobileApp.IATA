@@ -78,6 +78,8 @@
                 <constraint firstAttribute="bottom" secondItem="lXH-wZ-W1e" secondAttribute="bottom" id="fkK-d4-1Wn"/>
                 <constraint firstItem="ig2-Ih-6ZR" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="z0V-bf-ijv"/>
             </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <nil key="simulatedTopBarMetrics"/>
             <point key="canvasLocation" x="176" y="169"/>
         </view>
     </objects>

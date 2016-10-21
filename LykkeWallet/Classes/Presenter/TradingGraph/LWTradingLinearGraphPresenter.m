@@ -21,12 +21,14 @@
 #import "TKButton.h"
 #import "UIViewController+Loading.h"
 #import "UIViewController+Navigation.h"
+#import "LWIPadModalNavigationControllerViewController.h"
 
 #import "LWTradingLinearGraphPresenter.h"
 #import "LWPacketGraphPeriods.h"
 #import "LWPacketGraphData.h"
 #import "LWGraphPeriodModel.h"
 #import "LWTradingLinearGraphViewTest.h"
+#import "LWTradingLinearGraphTableViewCell.h"
 
 
 //#import <stockchart/stockchart.h>
@@ -40,7 +42,7 @@
 
 
 @interface LWTradingLinearGraphPresenter () {
-    LWTradingLinearGraphViewTest *linearGraphView;
+    
     LWPacketGraphPeriods *graphPeriods;
     LWGraphPeriodModel *selectedPeriod;
     UILabel *fixingTimeLabel;
@@ -50,9 +52,9 @@
     UIView *periodsButtonsView;
     NSMutableArray *periodButtons;
     
-    UILabel *graphStartDateLabel;
-    UILabel *graphEndDateLabel;
-    UILabel *fixedPriceOnGraphLabel;
+//    UILabel *graphStartDateLabel;
+    
+    
     
 }
 
@@ -64,6 +66,15 @@
 @property (weak, nonatomic) IBOutlet UIView   *graphView;
 @property (weak, nonatomic) IBOutlet UIView   *bottomView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *graphHeightConstraint;
+
+@property (weak, nonatomic) IBOutlet UILabel *graphStartDateLabel;
+@property (weak, nonatomic) IBOutlet UILabel *graphEndDateLabel;
+@property (weak, nonatomic) IBOutlet UILabel *fixedPriceOnGraphLabel;
+@property (weak, nonatomic) IBOutlet LWTradingLinearGraphViewTest *linearGraphView;
+
+
+
+
 
 #pragma mark - Utils
 - (void)updateTitleCell:(LWLeftDetailTableViewCell *)cell row:(NSInteger)row;
@@ -90,6 +101,7 @@ static int const kNumberOfRows = 4;
     
     [self registerCellWithIdentifier:kLeftDetailTableViewCellIdentifier
                                 name:kLeftDetailTableViewCell];
+    [self registerCellWithIdentifier:@"LWTradingLinearGraphCellId" name:@"LWTradingLinearGraphTableViewCell"];
     
     [self setBackButton];
     
@@ -106,7 +118,7 @@ static int const kNumberOfRows = 4;
     [super viewWillAppear:animated];
     
     if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad)
-        [self.navigationController setNavigationBarHidden:NO animated:NO];
+        [self.navigationController setNavigationBarHidden:YES animated:NO];
 
     
 //    if(self.assetPair.inverted)
@@ -187,21 +199,34 @@ static int const kNumberOfRows = 4;
         Localize(@"graph.cell.change")
     };
 
-    UITableViewCell *cell=[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+    LWTradingLinearGraphTableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:@"LWTradingLinearGraphCellId"];
+    if(!cell)
+        cell=[[LWTradingLinearGraphTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"LWTradingLinearGraphCellId"];
     
     UIView *view=[[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, [self tableView:tableView heightForRowAtIndexPath:indexPath])];
+    view.autoresizingMask=UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+
+    cell.frame=view.bounds;
+    
+
     if(indexPath.row<3)
     {
-        UILabel *label=[[UILabel alloc] initWithFrame:CGRectMake(30, 0, view.bounds.size.width, view.bounds.size.height)];
+//        UILabel *label=[[UILabel alloc] initWithFrame:CGRectMake(30, 0, view.bounds.size.width, view.bounds.size.height)];
+        UILabel *label=cell.leftLabel;
         label.text=titles[indexPath.row];
         label.font=[UIFont systemFontOfSize:13];
         label.textColor=[UIColor lightGrayColor];
-        [view addSubview:label];
+//        [view addSubview:label];
         
-        label=[[UILabel alloc] initWithFrame:CGRectMake(30, 0, view.bounds.size.width-60, view.bounds.size.height)];
+//        label=[[UILabel alloc] initWithFrame:CGRectMake(30, 0, view.bounds.size.width-60, view.bounds.size.height)];
+        label=cell.rightLabel;
         label.textAlignment=NSTextAlignmentRight;
         label.font=[UIFont systemFontOfSize:16];
-        [view addSubview:label];
+        label.frame=cell.bounds;
+        
+//        label.autoresizingMask=UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleRightMargin;
+
+//        [view addSubview:label];
         
         if(indexPath.row==0)
             fixingTimeLabel=label;
@@ -230,6 +255,10 @@ static int const kNumberOfRows = 4;
 
 -(void) updatePeriodButtons
 {
+    for(UIView *v in periodButtons)
+        [v removeFromSuperview];
+    
+    CGRect rrr=periodsButtonsView.frame;
     periodButtons=[[NSMutableArray alloc] init];
     CGFloat width=periodsButtonsView.bounds.size.width/graphPeriods.periods.count;
     for(LWGraphPeriodModel *m in graphPeriods.periods)
@@ -254,6 +283,12 @@ static int const kNumberOfRows = 4;
         
     }
     
+}
+
+-(void) viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    [self updatePeriodButtons];
 }
 
 -(void) periodButtonPressed:(UIButton *) button
@@ -337,7 +372,7 @@ static int const kNumberOfRows = 4;
         priceBuyRateString = [LWUtils priceForAsset:self.assetPair forValue:@(priceBuy.doubleValue) withFormat:@"BUY"];
 
         lastPriceLabel.text=priceBuy;
-        fixedPriceOnGraphLabel.text=priceBuy;
+        _fixedPriceOnGraphLabel.text=priceBuy;
  //       [self.tableView reloadData];
     }
     
@@ -360,29 +395,29 @@ static int const kNumberOfRows = 4;
 //    SCHStockChartViewPro *chart = [[SCHStockChartViewPro alloc]
 //                                   initWithFrame:self.graphView.bounds];
     
-    linearGraphView=[[LWTradingLinearGraphViewTest alloc] initWithFrame:self.graphView.bounds];
-    linearGraphView.autoresizingMask=UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+//    linearGraphView=[[LWTradingLinearGraphViewTest alloc] initWithFrame:self.graphView.bounds];
+//    linearGraphView.autoresizingMask=UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     
-    graphStartDateLabel=[[UILabel alloc] initWithFrame:CGRectMake(10, 0, linearGraphView.bounds.size.width/2, 30)];
-    graphStartDateLabel.font=[UIFont systemFontOfSize:14 weight:UIFontWeightMedium];
-    graphStartDateLabel.textColor=[UIColor lightGrayColor];
-    [linearGraphView addSubview:graphStartDateLabel];
+//    graphStartDateLabel=[[UILabel alloc] initWithFrame:CGRectMake(10, 0, linearGraphView.bounds.size.width/2, 30)];
+    _graphStartDateLabel.font=[UIFont systemFontOfSize:14 weight:UIFontWeightMedium];
+    _graphStartDateLabel.textColor=[UIColor lightGrayColor];
+//    [linearGraphView addSubview:graphStartDateLabel];
     
-    graphEndDateLabel=[[UILabel alloc] initWithFrame:CGRectMake(linearGraphView.bounds.size.width/2, 0, linearGraphView.bounds.size.width/2-10, 30)];
-    graphEndDateLabel.font=graphStartDateLabel.font;
-    graphEndDateLabel.textColor=graphStartDateLabel.textColor;
-    graphEndDateLabel.textAlignment=NSTextAlignmentRight;
-    [linearGraphView addSubview:graphEndDateLabel];
+//    graphEndDateLabel=[[UILabel alloc] initWithFrame:CGRectMake(linearGraphView.bounds.size.width/2, 0, linearGraphView.bounds.size.width/2-10, 30)];
+    _graphEndDateLabel.font=_graphStartDateLabel.font;
+    _graphEndDateLabel.textColor=_graphStartDateLabel.textColor;
+    _graphEndDateLabel.textAlignment=NSTextAlignmentRight;
+//    [linearGraphView addSubview:graphEndDateLabel];
     
-    fixedPriceOnGraphLabel=[[UILabel alloc] initWithFrame:CGRectMake(linearGraphView.bounds.size.width/2, 30, linearGraphView.bounds.size.width/2-10, 25)];
-    fixedPriceOnGraphLabel.font=[UIFont systemFontOfSize:20];
-    fixedPriceOnGraphLabel.textColor=GRAPH_GREEN_COLOR;
+//    fixedPriceOnGraphLabel=[[UILabel alloc] initWithFrame:CGRectMake(linearGraphView.bounds.size.width/2, 30, linearGraphView.bounds.size.width/2-10, 25)];
+    _fixedPriceOnGraphLabel.font=[UIFont systemFontOfSize:20];
+    _fixedPriceOnGraphLabel.textColor=GRAPH_GREEN_COLOR;
     
-    fixedPriceOnGraphLabel.textAlignment=NSTextAlignmentRight;
-    fixedPriceOnGraphLabel.hidden=YES;
-    [linearGraphView addSubview:fixedPriceOnGraphLabel];
+    _fixedPriceOnGraphLabel.textAlignment=NSTextAlignmentRight;
+    _fixedPriceOnGraphLabel.hidden=YES;
+//    [linearGraphView addSubview:fixedPriceOnGraphLabel];
     
-    [self.graphView addSubview:linearGraphView];
+//    [self.graphView addSubview:linearGraphView];
 
 }
 
@@ -418,8 +453,8 @@ static int const kNumberOfRows = 4;
 
 -(void) authManager:(LWAuthManager *) manager didGetGraphData:(LWPacketGraphData *)graphData
 {
-    linearGraphView.changes=graphData.graphValues;
-    [linearGraphView setNeedsDisplay];
+    _linearGraphView.changes=graphData.graphValues;
+    [_linearGraphView setNeedsDisplay];
     
     float absChange=[graphData.graphValues.lastObject floatValue]-[graphData.graphValues[0] floatValue];
     NSString *changeString=@"";
@@ -444,21 +479,21 @@ static int const kNumberOfRows = 4;
     if(graphData.percentChange.floatValue>=0)
     {
         changeLabel.textColor=GRAPH_GREEN_COLOR;
-        fixedPriceOnGraphLabel.textColor=GRAPH_GREEN_COLOR;
+        _fixedPriceOnGraphLabel.textColor=GRAPH_GREEN_COLOR;
     }
     else
     {
         changeLabel.textColor=GRAPH_RED_COLOR;
-        fixedPriceOnGraphLabel.textColor=GRAPH_RED_COLOR;
+        _fixedPriceOnGraphLabel.textColor=GRAPH_RED_COLOR;
     }
-    fixedPriceOnGraphLabel.hidden=NO;
+    _fixedPriceOnGraphLabel.hidden=NO;
     
 //    lastPriceLabel.text=[LWUtils formatVolumeNumber:graphData.lastPrice currencySign:@"" accuracy:self.assetPair.accuracy.intValue removeExtraZeroes:YES];
     
     
  //   lastPriceLabel.text=[LWUtils stringFromNumber:graphData.lastPrice];
     
-    fixedPriceOnGraphLabel.text=lastPriceLabel.text;
+    _fixedPriceOnGraphLabel.text=lastPriceLabel.text;
     NSDateFormatter *formatter=[[NSDateFormatter alloc] init];
     formatter.timeZone=[NSTimeZone defaultTimeZone];
     [formatter setDateFormat:@"HH:mm a"];
@@ -466,8 +501,8 @@ static int const kNumberOfRows = 4;
     fixingTimeLabel.text=[formatter stringFromDate:graphData.fixingTime];
     
     [formatter setDateFormat:@"MMM dd, HH:mm a"];
-    graphStartDateLabel.text=[[formatter stringFromDate:graphData.startDate] uppercaseString];
-    graphEndDateLabel.text=[[formatter stringFromDate:graphData.endDate] uppercaseString];
+    _graphStartDateLabel.text=[[formatter stringFromDate:graphData.startDate] uppercaseString];
+    _graphEndDateLabel.text=[[formatter stringFromDate:graphData.endDate] uppercaseString];
 
     [self setLoading:NO];
 }
@@ -480,7 +515,21 @@ static int const kNumberOfRows = 4;
     controller.assetPair = self.assetPair;
     controller.assetDealType = LWAssetDealTypeSell;
     controller.assetRate=self.pairRateModel;
-    [self.navigationController pushViewController:controller animated:YES];
+//    [self.navigationController pushViewController:controller animated:YES];
+    
+    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
+        [self.navigationController pushViewController:controller animated:YES];
+    else
+    {
+        LWIPadModalNavigationControllerViewController *navigationController =
+        [[LWIPadModalNavigationControllerViewController alloc] initWithRootViewController:controller];
+        navigationController.modalPresentationStyle=UIModalPresentationOverCurrentContext;
+        navigationController.transitioningDelegate=navigationController;
+        [self.navigationController presentViewController:navigationController animated:YES completion:nil];
+    }
+
+    
+    
 }
 
 - (IBAction)buyClicked:(id)sender {
@@ -489,13 +538,26 @@ static int const kNumberOfRows = 4;
     controller.assetDealType = LWAssetDealTypeBuy;
     controller.assetRate=self.pairRateModel;
 
-    [self.navigationController pushViewController:controller animated:YES];
+//    [self.navigationController pushViewController:controller animated:YES];
+    
+    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
+        [self.navigationController pushViewController:controller animated:YES];
+    else
+    {
+        LWIPadModalNavigationControllerViewController *navigationController =
+        [[LWIPadModalNavigationControllerViewController alloc] initWithRootViewController:controller];
+        navigationController.modalPresentationStyle=UIModalPresentationOverCurrentContext;
+        navigationController.transitioningDelegate=navigationController;
+        [self.navigationController presentViewController:navigationController animated:YES completion:nil];
+    }
+
 }
 
 -(void) orientationChanged
 {
     
-    [linearGraphView setNeedsDisplay];
+    [_linearGraphView setNeedsDisplay];
+//    [self updatePeriodButtons];
 }
 
 

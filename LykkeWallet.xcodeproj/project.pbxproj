@@ -1139,6 +1139,8 @@
 		A1FC0B9C1DB775A3002B0ED7 /* LWOrderGraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = A1FC0B9B1DB775A3002B0ED7 /* LWOrderGraphView.m */; };
 		A1FC0BA01DB8E0BF002B0ED7 /* LWExchangeIPadContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A1FC0B9E1DB8E0BF002B0ED7 /* LWExchangeIPadContainerViewController.m */; };
 		A1FC0BA11DB8E0BF002B0ED7 /* LWExchangeIPadContainerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1FC0B9F1DB8E0BF002B0ED7 /* LWExchangeIPadContainerViewController.xib */; };
+		A1FC0BA51DB9FABB002B0ED7 /* LWTradingLinearGraphTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A1FC0BA31DB9FABB002B0ED7 /* LWTradingLinearGraphTableViewCell.m */; };
+		A1FC0BA61DB9FABB002B0ED7 /* LWTradingLinearGraphTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1FC0BA41DB9FABB002B0ED7 /* LWTradingLinearGraphTableViewCell.xib */; };
 		A87C81BA1C7356E1D9BA3A28 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B1A20FEBD41AE93CA79087B5 /* libPods.a */; };
 		CD10AAA31C1E0B530086634B /* LWPacketAuthentication.m in Sources */ = {isa = PBXBuildFile; fileRef = CD10AAA21C1E0B530086634B /* LWPacketAuthentication.m */; };
 		CD10AAA61C1E0C560086634B /* LWAuthenticationData.m in Sources */ = {isa = PBXBuildFile; fileRef = CD10AAA51C1E0C560086634B /* LWAuthenticationData.m */; };
@@ -3175,6 +3177,9 @@
 		A1FC0B9D1DB8E0BF002B0ED7 /* LWExchangeIPadContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWExchangeIPadContainerViewController.h; sourceTree = "<group>"; };
 		A1FC0B9E1DB8E0BF002B0ED7 /* LWExchangeIPadContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWExchangeIPadContainerViewController.m; sourceTree = "<group>"; };
 		A1FC0B9F1DB8E0BF002B0ED7 /* LWExchangeIPadContainerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LWExchangeIPadContainerViewController.xib; sourceTree = "<group>"; };
+		A1FC0BA21DB9FABB002B0ED7 /* LWTradingLinearGraphTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LWTradingLinearGraphTableViewCell.h; path = TradingGraph/LWTradingLinearGraphTableViewCell.h; sourceTree = "<group>"; };
+		A1FC0BA31DB9FABB002B0ED7 /* LWTradingLinearGraphTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LWTradingLinearGraphTableViewCell.m; path = TradingGraph/LWTradingLinearGraphTableViewCell.m; sourceTree = "<group>"; };
+		A1FC0BA41DB9FABB002B0ED7 /* LWTradingLinearGraphTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LWTradingLinearGraphTableViewCell.xib; path = TradingGraph/LWTradingLinearGraphTableViewCell.xib; sourceTree = "<group>"; };
 		B1A20FEBD41AE93CA79087B5 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD10AAA11C1E0B530086634B /* LWPacketAuthentication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWPacketAuthentication.h; sourceTree = "<group>"; };
 		CD10AAA21C1E0B530086634B /* LWPacketAuthentication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWPacketAuthentication.m; sourceTree = "<group>"; };
@@ -6776,6 +6781,9 @@
 				A1E4EAA41CE4588C00293282 /* LWTradingLinearGraphView.m */,
 				A1AB307C1CE5F3A3009AF37B /* LWTradingLinearGraphViewTest.h */,
 				A1AB307D1CE5F3A3009AF37B /* LWTradingLinearGraphViewTest.m */,
+				A1FC0BA21DB9FABB002B0ED7 /* LWTradingLinearGraphTableViewCell.h */,
+				A1FC0BA31DB9FABB002B0ED7 /* LWTradingLinearGraphTableViewCell.m */,
+				A1FC0BA41DB9FABB002B0ED7 /* LWTradingLinearGraphTableViewCell.xib */,
 				ECC526FF1C9C1F3700022382 /* LWTradingGraphPresenter.xib */,
 				A1E4EA9E1CE4485E00293282 /* LWTradingLinearGraphPresenter.xib */,
 			);
@@ -8015,6 +8023,7 @@
 				A1D477531D050B9900438846 /* loader-color@2x_00035.png in Resources */,
 				CFF758471C202C8E00BC7658 /* LWKYCRestrictedPresenter.xib in Resources */,
 				A1D65D701D5DCF1100828783 /* crypto_bar_00044.png in Resources */,
+				A1FC0BA61DB9FABB002B0ED7 /* LWTradingLinearGraphTableViewCell.xib in Resources */,
 				CDA69FE01C281E1C00BE4DCA /* LWAuthValidationPresenter~iphone.xib in Resources */,
 				A1BCD1991D012D3C00CF42E4 /* 3-settle-2x_00034.png in Resources */,
 				A1BCD16E1D012D3C00CF42E4 /* 2-trade-2x_00110.png in Resources */,
@@ -8673,6 +8682,7 @@
 				CDA69FDF1C281E1C00BE4DCA /* LWAuthValidationPresenter.m in Sources */,
 				A1743CAE1CE8A59400176F59 /* LWSuccessPresenterView.m in Sources */,
 				ECEC40E41C44253D00B22BEE /* LWPacketMarketOrder.m in Sources */,
+				A1FC0BA51DB9FABB002B0ED7 /* LWTradingLinearGraphTableViewCell.m in Sources */,
 				CF66326F1C175DF0004353F5 /* TKImageView.m in Sources */,
 				ECD1E90B1C3BDEA70064AAB3 /* LWAssetTableViewCell.m in Sources */,
 				A120FE771D72C61D00D710B1 /* LWMyLykkeInfoPresenter.m in Sources */,

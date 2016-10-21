@@ -97,7 +97,7 @@
     if(data)
     {
         NSDictionary *dict=[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-        if(dict && dict[@"Result"])
+        if(dict && dict[@"Result"] && [dict[@"Result"] isKindOfClass:[NSDictionary class]])
         {
             LWPersonalDataModel *personalData = [[LWPersonalDataModel alloc]
                                             initWithJSON:[dict[@"Result"] objectForKey:@"PersonalData"]];

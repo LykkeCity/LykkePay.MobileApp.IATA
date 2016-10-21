@@ -27,6 +27,7 @@
 @implementation LWAssetLykkeTableViewCell {
     
     UITapGestureRecognizer *tapGestureRecognizer;
+    
 }
 
 
@@ -37,6 +38,10 @@
     UITapGestureRecognizer *gesture=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(reverse)];
     [_touchCatchView addGestureRecognizer:gesture];
     
+    
+    gesture=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(priceClicked)];
+    _assetPriceLabel.userInteractionEnabled=YES;
+    [_assetPriceLabel addGestureRecognizer:gesture];
     
     self.leftAssetNameLabel.text=nil;
     self.rightAssetNameLabel.text=nil;
@@ -168,6 +173,14 @@
     if (self.rate) {
         [self.delegate graphClicked:self];
     }
+}
+
+-(void) priceClicked
+{
+    if (self.rate) {
+        [self.delegate priceClicked:self];
+    }
+
 }
 
 @end

@@ -34,7 +34,7 @@
 {
     [super viewWillAppear:animated];
     if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad)
-        [self.navigationController setNavigationBarHidden:NO animated:NO];
+        [self.navigationController setNavigationBarHidden:YES animated:NO];
 
 }
 
@@ -98,11 +98,16 @@
 
 -(void) fillBottomScrollView
 {
+    
+    
+    NSSortDescriptor *descriptor=[[NSSortDescriptor alloc] initWithKey:@"Price" ascending:YES];
+    NSArray *sortDescriptors=[NSArray arrayWithObject:descriptor];
+    NSArray *array=[_orderBookSell.array sortedArrayUsingDescriptors:sortDescriptors];
     CGFloat height=(35.0+1)*_orderBookSell.array.count;
     
     double max=0;
     double min=MAXFLOAT;
-    for(NSDictionary *d in _orderBookSell.array)
+    for(NSDictionary *d in array)
     {
         if([d[@"Volume"] doubleValue]>max)
             max=[d[@"Volume"] doubleValue];
@@ -112,7 +117,7 @@
     }
     
     
-    for(NSDictionary *d in _orderBookSell.array)
+    for(NSDictionary *d in array)
     {
         LWOrderGraphView *view=[[LWOrderGraphView alloc] initWithPrice:[d[@"Price"] doubleValue] volume:[d[@"Volume"] doubleValue]];
         view.graphMaxVolume=max;
@@ -121,7 +126,7 @@
         view.volumeColor=[UIColor colorWithRed:171.0/255 green:0 blue:1 alpha:1];
         view.assetPair=self.assetPair;
         view.autoresizingMask=UIViewAutoresizingFlexibleWidth;
-        view.frame=CGRectMake(0, (35.0+1)*([_orderBookSell.array indexOfObject:d]), _bottomScrollView.bounds.size.width, 35.0);
+        view.frame=CGRectMake(0, (35.0+1)*([array indexOfObject:d]), _bottomScrollView.bounds.size.width, 35.0);
         [_bottomScrollView addSubview:view];
         
     }

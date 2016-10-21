@@ -11,11 +11,15 @@
         </array>
     </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LWTradingGraphPresenter">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LWTradingLinearGraphPresenter">
             <connections>
                 <outlet property="bottomView" destination="ha1-rr-0ID" id="2hA-Sy-wZf"/>
                 <outlet property="buyButton" destination="R0D-Yt-V6l" id="UQr-BL-mKy"/>
+                <outlet property="fixedPriceOnGraphLabel" destination="ewM-4L-it6" id="2Gu-eu-Yv4"/>
+                <outlet property="graphEndDateLabel" destination="lSg-W7-QfE" id="Dz2-rV-j0T"/>
+                <outlet property="graphStartDateLabel" destination="pb1-RD-sVn" id="MEW-l2-Abv"/>
                 <outlet property="graphView" destination="KoJ-SA-PUj" id="Xlc-o9-vyh"/>
+                <outlet property="linearGraphView" destination="KoJ-SA-PUj" id="3UY-Tj-Xt8"/>
                 <outlet property="sellButton" destination="LaN-Ft-cv9" id="P5M-Ix-ofs"/>
                 <outlet property="tableView" destination="D1i-ES-0kV" id="CEL-gX-P7G"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -26,8 +30,7 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" scrollEnabled="NO" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="24" sectionFooterHeight="24" translatesAutoresizingMaskIntoConstraints="NO" id="D1i-ES-0kV">
-                    <frame key="frameInset" width="320" height="130"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="24" sectionFooterHeight="24" translatesAutoresizingMaskIntoConstraints="NO" id="D1i-ES-0kV">
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="180" id="i9E-do-AZC"/>
@@ -35,8 +38,7 @@
                 </tableView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ha1-rr-0ID">
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LaN-Ft-cv9" customClass="TKButton">
-                            <frame key="frameInset" minX="8" minY="25" width="304" height="45"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LaN-Ft-cv9" customClass="TKButton">
                             <constraints>
                                 <constraint firstAttribute="width" constant="304" id="UiB-gV-BY6"/>
                                 <constraint firstAttribute="height" constant="45" id="l01-rW-uol"/>
@@ -49,8 +51,7 @@
                                 <action selector="sellClicked:" destination="-1" eventType="touchUpInside" id="3op-ec-X1f"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R0D-Yt-V6l" customClass="TKButton">
-                            <frame key="frameInset" minX="8" minY="80" width="304" height="45"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R0D-Yt-V6l" customClass="TKButton">
                             <constraints>
                                 <constraint firstAttribute="height" constant="45" id="6Td-VH-wSr"/>
                             </constraints>
@@ -73,9 +74,36 @@
                         <constraint firstItem="R0D-Yt-V6l" firstAttribute="top" secondItem="LaN-Ft-cv9" secondAttribute="bottom" constant="10" id="sxQ-Wh-23T"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KoJ-SA-PUj">
-                    <frame key="frameInset" minY="130" width="320" height="286"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KoJ-SA-PUj" customClass="LWTradingLinearGraphViewTest">
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pb1-RD-sVn">
+                            <frame key="frameInset" minX="126" minY="147" width="42" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lSg-W7-QfE">
+                            <frame key="frameInset" minX="275" minY="82" width="42" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ewM-4L-it6">
+                            <frame key="frameInset" minX="275" minY="124" width="42" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstItem="pb1-RD-sVn" firstAttribute="top" secondItem="KoJ-SA-PUj" secondAttribute="top" constant="11" id="7YK-7F-8O4"/>
+                        <constraint firstAttribute="trailing" secondItem="ewM-4L-it6" secondAttribute="trailing" constant="15" id="AQU-4W-35E"/>
+                        <constraint firstItem="ewM-4L-it6" firstAttribute="top" secondItem="lSg-W7-QfE" secondAttribute="bottom" constant="7" id="OlK-g7-CHC"/>
+                        <constraint firstItem="lSg-W7-QfE" firstAttribute="top" secondItem="KoJ-SA-PUj" secondAttribute="top" constant="11" id="WuJ-6Y-IQw"/>
+                        <constraint firstAttribute="trailing" secondItem="lSg-W7-QfE" secondAttribute="trailing" constant="15" id="cBI-Rg-ay2"/>
+                        <constraint firstItem="pb1-RD-sVn" firstAttribute="leading" secondItem="KoJ-SA-PUj" secondAttribute="leading" constant="15" id="xK2-bd-9Cm"/>
+                    </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

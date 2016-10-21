@@ -112,6 +112,7 @@ static NSString *const AssetIcons[kNumberOfSections] = {
     self.headerTopLineHeight.constant=0.5f;
     self.headerBottomLineHeight.constant=0.5f;
     
+     
     isLoadingRatesNow=NO;
 
 //    self.title = Localize(@"tab.trading");
@@ -513,6 +514,26 @@ static NSString *const AssetIcons[kNumberOfSections] = {
 //        }
 //
 //    }
+}
+
+-(void) priceClicked:(LWAssetLykkeTableViewCell *) cell
+{
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    
+    LWAssetPairModel *assetPair = (LWAssetPairModel *)self.assetPairs[indexPath.row - 1];
+    
+    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
+    {
+        LWExchangeTabContainer *presenter=[LWExchangeTabContainer new];
+        presenter.assetPair=assetPair;
+        presenter.tabToShow=TAB_ASSET;
+        [self.navigationController pushViewController:presenter animated:YES];
+    }
+    else
+    {
+        [self.delegate exchangePresenterChosenPair:assetPair tabToShow:TAB_ASSET];
+    }
+
 }
 
 

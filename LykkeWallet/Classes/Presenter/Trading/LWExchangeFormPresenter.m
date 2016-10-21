@@ -23,6 +23,7 @@
 #import "UIViewController+Loading.h"
 #import "UIViewController+Navigation.h"
 #import "NSString+Utils.h"
+#import "LWIPadModalNavigationControllerViewController.h"
 
 
 @interface LWExchangeFormPresenter () {
@@ -104,7 +105,7 @@ static NSString *const DescriptionIdentifiers[kDescriptionRows] = {
     [super viewWillAppear:animated];
     
     if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad)
-        [self.navigationController setNavigationBarHidden:NO animated:NO];
+        [self.navigationController setNavigationBarHidden:YES animated:NO];
 
     
     [self updateRate:self.assetRate];
@@ -237,21 +238,71 @@ static NSString *const DescriptionIdentifiers[kDescriptionRows] = {
 
 - (IBAction)buyClicked:(id)sender {
     if (self.assetPair && self.assetRate) {
+        
+//        LWExchangeFormPresenter *form = [LWExchangeFormPresenter new];
+//        form.assetPair = model;
+//        form.assetRate = rate;
+//        
+//        if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
+//            [self.navigationController pushViewController:form animated:YES];
+//        else
+//        {
+//            LWIPadModalNavigationControllerViewController *navigationController =
+//            [[LWIPadModalNavigationControllerViewController alloc] initWithRootViewController:form];
+//            navigationController.modalPresentationStyle=UIModalPresentationOverCurrentContext;
+//            navigationController.transitioningDelegate=navigationController;
+//            [self.navigationController presentViewController:navigationController animated:YES completion:nil];
+//        }
+//
+//        
+//        
+        
+        
         LWExchangeDealFormPresenter *controller = [LWExchangeDealFormPresenter new];
         controller.assetPair = self.assetPair;
         controller.assetRate = self.assetRate;
         controller.assetDealType = LWAssetDealTypeBuy;
-        [self.navigationController pushViewController:controller animated:YES];
+        
+        if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
+            [self.navigationController pushViewController:controller animated:YES];
+        else
+        {
+            LWIPadModalNavigationControllerViewController *navigationController =
+            [[LWIPadModalNavigationControllerViewController alloc] initWithRootViewController:controller];
+            navigationController.modalPresentationStyle=UIModalPresentationOverCurrentContext;
+            navigationController.transitioningDelegate=navigationController;
+            [self.navigationController presentViewController:navigationController animated:YES completion:nil];
+        }
+
+        
+//        [self.navigationController pushViewController:controller animated:YES];
     }
 }
 
 - (IBAction)sellClicked:(id)sender {
     if (self.assetPair && self.assetRate) {
+        
         LWExchangeDealFormPresenter *controller = [LWExchangeDealFormPresenter new];
         controller.assetPair = self.assetPair;
         controller.assetRate = self.assetRate;
         controller.assetDealType = LWAssetDealTypeSell;
-        [self.navigationController pushViewController:controller animated:YES];
+        
+        if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
+            [self.navigationController pushViewController:controller animated:YES];
+        else
+        {
+            LWIPadModalNavigationControllerViewController *navigationController =
+            [[LWIPadModalNavigationControllerViewController alloc] initWithRootViewController:controller];
+            navigationController.modalPresentationStyle=UIModalPresentationOverCurrentContext;
+            navigationController.transitioningDelegate=navigationController;
+            [self.navigationController presentViewController:navigationController animated:YES completion:nil];
+        }
+
+//        LWExchangeDealFormPresenter *controller = [LWExchangeDealFormPresenter new];
+//        controller.assetPair = self.assetPair;
+//        controller.assetRate = self.assetRate;
+//        controller.assetDealType = LWAssetDealTypeSell;
+//        [self.navigationController pushViewController:controller animated:YES];
     }
 }
 

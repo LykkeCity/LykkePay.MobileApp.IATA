@@ -14,10 +14,13 @@
 {
     LWExchangePresenter *exchangePresenter;
     LWExchangeTabContainer *tabContainer;
+    NSDictionary *titleAttributes;
 }
 
 @property (weak,nonatomic) IBOutlet UIView *leftContainer;
 @property (weak, nonatomic) IBOutlet UIView *rightContainer;
+@property (weak, nonatomic) IBOutlet UILabel *leftTitle;
+@property (weak, nonatomic) IBOutlet UILabel *rightTitle;
 
 @end
 
@@ -36,8 +39,10 @@
     [_leftContainer insertSubview:exchangePresenter.view atIndex:0];
     [self addChildViewController:exchangePresenter];
     
+    titleAttributes=@{NSKernAttributeName:@(1.5), NSFontAttributeName:[UIFont fontWithName:@"ProximaNova-Semibold" size:17], NSForegroundColorAttributeName:[UIColor colorWithRed:63.0/255 green:77.0/255 blue:96.0/255 alpha:1]};
+    _leftTitle.attributedText=[[NSAttributedString alloc] initWithString:@"EXCHANGE" attributes:titleAttributes];
     
-    
+    _rightTitle.attributedText=[[NSAttributedString alloc] initWithString:@"" attributes:titleAttributes];
     
     // Do any additional setup after loading the view from its nib.
 }
@@ -54,6 +59,15 @@
     tabContainer.view.frame=_rightContainer.bounds;
     [_rightContainer addSubview:tabContainer.view];
     [self addChildViewController:tabContainer];
+    
+    NSString *name=pair.name;
+    if(pair.inverted)
+    {
+        NSArray *arr=[name componentsSeparatedByString:@"/"];
+        if(arr.count==2)
+            name=[NSString stringWithFormat:@"%@/%@", arr[1], arr[0]];
+    }
+    _rightTitle.attributedText=[[NSAttributedString alloc] initWithString:name attributes:titleAttributes];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -69,8 +83,8 @@
 //    [self setWantsFullScreenLayout:YES];
     
 //    [self.navigationController.view setNeedsLayout];
-
-    self.view.frame=CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.bounds.size.width, self.view.bounds.size.height+64);
+    if(!tabContainer)
+        self.view.frame=CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.bounds.size.width, self.view.bounds.size.height+64);
 //    [self.view layoutIfNeeded];
 //    [self.navigationController layoutSubviews];
 }

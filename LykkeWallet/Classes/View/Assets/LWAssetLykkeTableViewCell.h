@@ -19,6 +19,7 @@
 
 @required
 - (void)graphClicked:(LWAssetLykkeTableViewCell *)cell;
+-(void) priceClicked:(LWAssetLykkeTableViewCell *)cell;
 
 @end
 

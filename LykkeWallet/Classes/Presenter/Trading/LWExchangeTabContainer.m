@@ -11,6 +11,7 @@
 #import "LWTradingLinearGraphPresenter.h"
 #import "LWExchangeOrderPresenter.h"
 #import "LWPacketOrderBook.h"
+#import "LWAssetPairModel.h"
 
 
 @interface LWExchangeTabContainer ()
@@ -98,14 +99,25 @@
 {
     [super viewDidAppear:animated];
     [LWAuthManager instance].caller=self;
-    [[LWAuthManager instance] requestOrderBook:@"LKKUSD"];
+    [[LWAuthManager instance] requestOrderBook:self.assetPair.identity];
 }
 
 
 -(void) authManager:(LWAuthManager *)manager didGetOrderBook:(LWPacketOrderBook *)packet
 {
-    order.orderBookBuy=packet.buyOrders;
-    order.orderBookSell=packet.sellOrders;
+    if(self.assetPair.inverted)
+    {
+        [packet.buyOrders invert];
+        [packet.sellOrders invert];
+        order.orderBookBuy=packet.sellOrders;
+        order.orderBookSell=packet.buyOrders;
+        
+    }
+    else
+    {
+        order.orderBookBuy=packet.buyOrders;
+        order.orderBookSell=packet.sellOrders;
+    }
 }
 
 - (void)didReceiveMemoryWarning {
