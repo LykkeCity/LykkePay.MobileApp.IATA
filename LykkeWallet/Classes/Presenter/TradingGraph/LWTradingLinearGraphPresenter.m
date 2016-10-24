@@ -46,15 +46,20 @@
     LWPacketGraphPeriods *graphPeriods;
     LWGraphPeriodModel *selectedPeriod;
     UILabel *fixingTimeLabel;
-    UILabel *lastPriceLabel;
+    UILabel *bidPriceLabel;
+    UILabel *askPriceLabel;
     UILabel *changeLabel;
     
-    UIView *periodsButtonsView;
+    
     NSMutableArray *periodButtons;
+    
+    NSDictionary *graphDateAttributes;
     
 //    UILabel *graphStartDateLabel;
     
-    
+    NSString *priceSellRateString;
+    NSString *priceBuyRateString;
+
     
 }
 
@@ -69,8 +74,15 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *graphStartDateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *graphEndDateLabel;
-@property (weak, nonatomic) IBOutlet UILabel *fixedPriceOnGraphLabel;
+@property (weak, nonatomic) IBOutlet UILabel *askPriceOnGraphLabel;
+@property (weak, nonatomic) IBOutlet UILabel *bidPriceOnGraphLabel;
+
 @property (weak, nonatomic) IBOutlet LWTradingLinearGraphViewTest *linearGraphView;
+
+@property (weak, nonatomic) IBOutlet UIView *periodsButtonsView;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *periodsViewWidth;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewWidth;
 
 
 
@@ -78,7 +90,7 @@
 
 #pragma mark - Utils
 - (void)updateTitleCell:(LWLeftDetailTableViewCell *)cell row:(NSInteger)row;
-- (void)updateValueCell:(LWLeftDetailTableViewCell *)cell row:(NSInteger)row;
+
 - (void)requestPrices;
 - (void)updatePrices;
 - (void)invalidPrices;
@@ -89,11 +101,15 @@
 
 @implementation LWTradingLinearGraphPresenter
 
-static int const kNumberOfRows = 4;
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self adjustThinLines];
+    priceSellRateString = @". . .";
+    priceBuyRateString = @". . .";
+
     self.title = self.assetPair.name;
     
     self.isValid = NO;
@@ -109,9 +125,26 @@ static int const kNumberOfRows = 4;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(orientationChanged) name:UIApplicationDidChangeStatusBarOrientationNotification object:nil];
 
     
-    self.buyButton.type=BUTTON_TYPE_YELLOW;
-    self.sellButton.type=BUTTON_TYPE_VIOLET;
+    self.buyButton.type=BUTTON_TYPE_VIOLET;
+    self.sellButton.type=BUTTON_TYPE_YELLOW;
     
+    [self.sellButton setTitle:@"SELL" forState:UIControlStateNormal];
+    [self.buyButton setTitle:@"BUY" forState:UIControlStateNormal];
+    
+    graphDateAttributes=@{NSKernAttributeName:@(1.0), NSFontAttributeName:[UIFont fontWithName:@"ProximaNova-Regular" size:14], NSForegroundColorAttributeName:[UIColor colorWithRed:63.0/255 green:77.0/255 blue:96.0/255 alpha:0.6]};
+
+
+    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
+    {
+        _tableViewWidth.constant=[UIScreen mainScreen].bounds.size.width-60;
+        _periodsViewWidth.constant=[UIScreen mainScreen].bounds.size.width;
+    }
+    else
+    {
+        _periodsViewWidth.constant=375;
+        [self orientationChanged];
+//        if([UIApplication sharedApplication].statusBarOrientation)
+    }
     
 }
 
@@ -185,16 +218,17 @@ static int const kNumberOfRows = 4;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return kNumberOfRows;
+    return 4;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    NSString *const titles[kNumberOfRows] = {
-        Localize(@"graph.cell.time"),
-        Localize(@"graph.cell.price"),
-        Localize(@"graph.cell.change")
+    NSString *titles[4] = {
+        @"Fixing time",
+        @"Bid price",
+        @"Ask price",
+        @"Change"
     };
 
     LWTradingLinearGraphTableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:@"LWTradingLinearGraphCellId"];
@@ -207,19 +241,18 @@ static int const kNumberOfRows = 4;
     cell.frame=view.bounds;
     
 
-    if(indexPath.row<3)
-    {
 //        UILabel *label=[[UILabel alloc] initWithFrame:CGRectMake(30, 0, view.bounds.size.width, view.bounds.size.height)];
         UILabel *label=cell.leftLabel;
         label.text=titles[indexPath.row];
-        label.font=[UIFont systemFontOfSize:13];
-        label.textColor=[UIColor lightGrayColor];
+        label.font=[UIFont fontWithName:@"ProximaNova-Regular" size:14];
+        label.textColor=[UIColor colorWithRed:140.0/255 green:148.0/255 blue:160.0/255 alpha:1];
 //        [view addSubview:label];
         
 //        label=[[UILabel alloc] initWithFrame:CGRectMake(30, 0, view.bounds.size.width-60, view.bounds.size.height)];
         label=cell.rightLabel;
         label.textAlignment=NSTextAlignmentRight;
-        label.font=[UIFont systemFontOfSize:16];
+        label.font=[UIFont fontWithName:@"ProximaNova-Regular" size:17];;
+    label.textColor=[UIColor colorWithRed:63.0/255 green:77.0/255 blue:96.0/255 alpha:1];
         label.frame=cell.bounds;
         
 //        label.autoresizingMask=UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleRightMargin;
@@ -229,15 +262,12 @@ static int const kNumberOfRows = 4;
         if(indexPath.row==0)
             fixingTimeLabel=label;
         else if(indexPath.row==1)
-            lastPriceLabel=label;
+            bidPriceLabel=label;
         else if(indexPath.row==2)
+            askPriceLabel=label;
+        else if(indexPath.row==3)
             changeLabel=label;
-    }
-    if(indexPath.row==3)
-    {
-        periodsButtonsView=view;
-        [self updatePeriodButtons];
-    }
+    
     
     [cell addSubview:view];
     
@@ -256,20 +286,20 @@ static int const kNumberOfRows = 4;
     for(UIView *v in periodButtons)
         [v removeFromSuperview];
     
-    CGRect rrr=periodsButtonsView.frame;
+    
     periodButtons=[[NSMutableArray alloc] init];
-    CGFloat width=periodsButtonsView.bounds.size.width/graphPeriods.periods.count;
+    CGFloat width=_periodsButtonsView.bounds.size.width/graphPeriods.periods.count;
     for(LWGraphPeriodModel *m in graphPeriods.periods)
     {
         UIButton *button=[UIButton buttonWithType:UIButtonTypeCustom];
-        button.frame=CGRectMake(width*([graphPeriods.periods indexOfObject:m]), 0, width, periodsButtonsView.bounds.size.height);
+        button.frame=CGRectMake(width*([graphPeriods.periods indexOfObject:m]), 0, width, _periodsButtonsView.bounds.size.height);
         button.titleLabel.font=[UIFont systemFontOfSize:14];
         [button setTitle:m.name forState:UIControlStateNormal];
         [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [button setTitleColor:[UIColor colorWithRed:170.0/255 green:38.0/255 blue:252.0/255 alpha:1] forState:UIControlStateSelected];
         [button addTarget:self action:@selector(periodButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
         [periodButtons addObject:button];
-        [periodsButtonsView addSubview:button];
+        [_periodsButtonsView addSubview:button];
         
         
         if([m.value isEqualToString:selectedPeriod.value])
@@ -306,34 +336,6 @@ static int const kNumberOfRows = 4;
 }
 
 
-- (void)updateValueCell:(LWLeftDetailTableViewCell *)cell row:(NSInteger)row {
-    
-    NSString *values[kNumberOfRows] = {
-        @" - ",
-        @" - ",
-        @" - "
-    };
-    
-    NSArray *arr=@[fixingTimeLabel, lastPriceLabel, changeLabel];
-    
-    if (self.isValid) {
-        values[0] = @"4:30 PM EST";
-        
- //       values[1]=[LWUtils formatVolumeString:self.pairRateModel.ask.stringValue currencySign:@"" accuracy:self.assetPair.accuracy.intValue removeExtraZeroes:YES];
-        
-        values[1]=[LWUtils formatFairVolume:self.pairRateModel.ask.doubleValue accuracy:self.assetPair.accuracy.intValue roundToHigher:YES];
-        
-//        values[1] = [LWMath makeStringByNumber:self.pairRateModel.ask
-//                                 withPrecision:self.assetPair.accuracy.integerValue];
-        values[2] = @"-21,06 -1,08%";
-    }
-    if(row<3)
-    {
-        UILabel *label=arr[row];
-        label.text=values[row];
-    }
-//    cell.detailLabel.text = values[row];
-}
 
 - (void)requestPrices {
 //    const NSInteger repeatSeconds = [LWCache instance].refreshTimer.integerValue / 1000;
@@ -355,8 +357,6 @@ static int const kNumberOfRows = 4;
     self.buyButton.enabled=self.isValid;
     self.sellButton.enabled=self.isValid;
     
-    NSString *priceSellRateString = @". . .";
-    NSString *priceBuyRateString = @". . .";
     if (self.pairRateModel) {
 //        priceSellRateString = [LWUtils priceForAsset:self.assetPair forValue:self.pairRateModel.bid withFormat:Localize(@"graph.button.sell")];
 //        
@@ -372,17 +372,25 @@ static int const kNumberOfRows = 4;
         
         priceBuyRateString = [LWUtils priceForAsset:self.assetPair forValue:@(priceBuy.doubleValue) withFormat:@"BUY"];
 
-        lastPriceLabel.text=priceBuy;
-        _fixedPriceOnGraphLabel.text=priceBuy;
+        bidPriceLabel.text=priceSell;
+        askPriceLabel.text=priceBuy;
+        _askPriceOnGraphLabel.text=priceBuy;
+        _bidPriceOnGraphLabel.text=priceSell;
  //       [self.tableView reloadData];
     }
     
     
-    
+    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad && UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation))
+    {
     [self.sellButton setTitle:priceSellRateString forState:UIControlStateNormal];
     [self.buyButton setTitle:priceBuyRateString forState:UIControlStateNormal];
-    
-//    [self.tableView reloadData];
+    }
+    else
+    {
+    [self.sellButton setTitle:@"SELL" forState:UIControlStateNormal];
+    [self.buyButton setTitle:@"BUY" forState:UIControlStateNormal];
+    }
+
 }
 
 - (void)invalidPrices {
@@ -404,22 +412,35 @@ static int const kNumberOfRows = 4;
 //    linearGraphView.autoresizingMask=UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     
 //    graphStartDateLabel=[[UILabel alloc] initWithFrame:CGRectMake(10, 0, linearGraphView.bounds.size.width/2, 30)];
-    _graphStartDateLabel.font=[UIFont systemFontOfSize:14 weight:UIFontWeightMedium];
-    _graphStartDateLabel.textColor=[UIColor lightGrayColor];
+//    _graphStartDateLabel.font=[UIFont systemFontOfSize:14 weight:UIFontWeightMedium];
+//    _graphStartDateLabel.textColor=[UIColor lightGrayColor];
+    
+//    _graphStartDateLabel.attributedText=[[NSAttributedString alloc] initWithString:@"GJHS" attributes:graphDateAttributes];
+    
 //    [linearGraphView addSubview:graphStartDateLabel];
     
 //    graphEndDateLabel=[[UILabel alloc] initWithFrame:CGRectMake(linearGraphView.bounds.size.width/2, 0, linearGraphView.bounds.size.width/2-10, 30)];
-    _graphEndDateLabel.font=_graphStartDateLabel.font;
-    _graphEndDateLabel.textColor=_graphStartDateLabel.textColor;
+//    _graphEndDateLabel.font=_graphStartDateLabel.font;
+//    _graphEndDateLabel.textColor=_graphStartDateLabel.textColor;
     _graphEndDateLabel.textAlignment=NSTextAlignmentRight;
+    
+//    _graphEndDateLabel.attributedText=[[NSAttributedString alloc] initWithString:@"DJHJHD" attributes:graphDateAttributes];
 //    [linearGraphView addSubview:graphEndDateLabel];
     
 //    fixedPriceOnGraphLabel=[[UILabel alloc] initWithFrame:CGRectMake(linearGraphView.bounds.size.width/2, 30, linearGraphView.bounds.size.width/2-10, 25)];
-    _fixedPriceOnGraphLabel.font=[UIFont systemFontOfSize:20];
-    _fixedPriceOnGraphLabel.textColor=GRAPH_GREEN_COLOR;
+    _askPriceOnGraphLabel.font=[UIFont fontWithName:@"ProximaNova-Regular" size:21];
+    _askPriceOnGraphLabel.textColor=[UIColor colorWithRed:1 green:174.0/255 blue:44.0/255 alpha:1];
     
-    _fixedPriceOnGraphLabel.textAlignment=NSTextAlignmentRight;
-    _fixedPriceOnGraphLabel.hidden=YES;
+    _askPriceOnGraphLabel.textAlignment=NSTextAlignmentRight;
+    _askPriceOnGraphLabel.hidden=YES;
+    
+    _bidPriceOnGraphLabel.font=[UIFont fontWithName:@"ProximaNova-Regular" size:21];
+    _bidPriceOnGraphLabel.textColor=[UIColor colorWithRed:171.0/255 green:0 blue:1 alpha:1];
+    
+    _bidPriceOnGraphLabel.textAlignment=NSTextAlignmentRight;
+    _bidPriceOnGraphLabel.hidden=YES;
+
+    
 //    [linearGraphView addSubview:fixedPriceOnGraphLabel];
     
 //    [self.graphView addSubview:linearGraphView];
@@ -461,7 +482,7 @@ static int const kNumberOfRows = 4;
     _linearGraphView.changes=graphData.graphValues;
     [_linearGraphView setNeedsDisplay];
     
-    float absChange=[graphData.graphValues.lastObject floatValue]-[graphData.graphValues[0] floatValue];
+    float absChange=[graphData.graphValues.lastObject[@"Ask"] floatValue]-[graphData.graphValues[0][@"Ask"] floatValue];
     NSString *changeString=@"";
     if(absChange>0)
     {
@@ -484,21 +505,23 @@ static int const kNumberOfRows = 4;
     if(graphData.percentChange.floatValue>=0)
     {
         changeLabel.textColor=GRAPH_GREEN_COLOR;
-        _fixedPriceOnGraphLabel.textColor=GRAPH_GREEN_COLOR;
+        
     }
     else
     {
         changeLabel.textColor=GRAPH_RED_COLOR;
-        _fixedPriceOnGraphLabel.textColor=GRAPH_RED_COLOR;
+        
     }
-    _fixedPriceOnGraphLabel.hidden=NO;
+    _askPriceOnGraphLabel.hidden=NO;
+    _bidPriceOnGraphLabel.hidden=NO;
     
 //    lastPriceLabel.text=[LWUtils formatVolumeNumber:graphData.lastPrice currencySign:@"" accuracy:self.assetPair.accuracy.intValue removeExtraZeroes:YES];
     
     
  //   lastPriceLabel.text=[LWUtils stringFromNumber:graphData.lastPrice];
     
-    _fixedPriceOnGraphLabel.text=lastPriceLabel.text;
+    _bidPriceOnGraphLabel.text=bidPriceLabel.text;
+    _askPriceOnGraphLabel.text=askPriceLabel.text;
     NSDateFormatter *formatter=[[NSDateFormatter alloc] init];
     formatter.timeZone=[NSTimeZone defaultTimeZone];
     [formatter setDateFormat:@"HH:mm a"];
@@ -506,8 +529,8 @@ static int const kNumberOfRows = 4;
     fixingTimeLabel.text=[formatter stringFromDate:graphData.fixingTime];
     
     [formatter setDateFormat:@"MMM dd, HH:mm a"];
-    _graphStartDateLabel.text=[[formatter stringFromDate:graphData.startDate] uppercaseString];
-    _graphEndDateLabel.text=[[formatter stringFromDate:graphData.endDate] uppercaseString];
+    _graphStartDateLabel.attributedText=[[NSAttributedString alloc] initWithString:[[formatter stringFromDate:graphData.startDate] uppercaseString] attributes:graphDateAttributes];
+    _graphEndDateLabel.attributedText=[[NSAttributedString alloc] initWithString:[[formatter stringFromDate:graphData.endDate] uppercaseString] attributes:graphDateAttributes];
 
     [self setLoading:NO];
 }
@@ -558,10 +581,40 @@ static int const kNumberOfRows = 4;
 
 }
 
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    if ([tableView respondsToSelector:@selector(setSeparatorInset:)]) {
+        [tableView setSeparatorInset:UIEdgeInsetsZero];
+    }
+    
+    if ([tableView respondsToSelector:@selector(setLayoutMargins:)]) {
+        [tableView setLayoutMargins:UIEdgeInsetsZero];
+    }
+    
+    if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
+        [cell setLayoutMargins:UIEdgeInsetsZero];
+    }
+}
+
 -(void) orientationChanged
 {
     
     [_linearGraphView setNeedsDisplay];
+    
+    if(UIInterfaceOrientationIsPortrait([UIApplication sharedApplication].statusBarOrientation))
+    {
+        _tableViewWidth.constant=384;
+        [_buyButton setTitle:@"BUY" forState:UIControlStateNormal];
+        [_sellButton setTitle:@"SELL" forState:UIControlStateNormal];
+    }
+    else
+    {
+        _tableViewWidth.constant=516;
+        [_buyButton setTitle:priceBuyRateString forState:UIControlStateNormal];
+        [_sellButton setTitle:priceSellRateString forState:UIControlStateNormal];
+
+    }
+    
 //    [self updatePeriodButtons];
 }
 

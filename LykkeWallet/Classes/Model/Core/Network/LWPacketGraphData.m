@@ -55,11 +55,14 @@
     
     for(NSString *s in result[@"Rate"][@"ChngGrph"])
     {
+        NSNumber *num=[NSNumber numberWithDouble:[s doubleValue]];
         if(flagReverted)
-            [arr addObject:[NSNumber numberWithDouble:1/[s doubleValue]]];
-        else
-            [arr addObject:[NSNumber numberWithDouble:[s doubleValue]]];
+            num=[NSNumber numberWithDouble:1/[s doubleValue]];
         
+        
+            //Testing
+        NSNumber *num1=@(num.doubleValue/100+num.doubleValue);
+        [arr addObject:@{@"Bid":num, @"Ask":num1}];
     }
     
     self.graphValues=arr;
@@ -76,7 +79,7 @@
 
 -(NSDictionary *) params
 {
-    return @{@"period":self.period.value, @"assetId":self.assetId, @"points":@(300)};
+    return @{@"period":self.period.value, @"assetId":self.assetId, @"points":@(160)};
 }
 
 - (GDXRESTPacketType)type {
