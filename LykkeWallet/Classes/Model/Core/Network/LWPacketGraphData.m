@@ -53,16 +53,25 @@
     NSMutableArray *arr=[[NSMutableArray alloc] init];
     
     
-    for(NSString *s in result[@"Rate"][@"ChngGrph"])
+    for(NSDictionary *s in result[@"Rate"][@"AskBidGraph"])
     {
-        NSNumber *num=[NSNumber numberWithDouble:[s doubleValue]];
+        double ask=[s[@"A"] doubleValue];
+        double bid=[s[@"B"] doubleValue];
         if(flagReverted)
-            num=[NSNumber numberWithDouble:1/[s doubleValue]];
+        {
+            double tmp=1/ask;
+            ask=1/bid;
+            bid=tmp;
+        }
+        
+//        NSNumber *num=[NSNumber numberWithDouble:[s doubleValue]];
+//        if(flagReverted)
+//            num=[NSNumber numberWithDouble:1/[s doubleValue]];
+//        
         
         
-            //Testing
-        NSNumber *num1=@(num.doubleValue/100+num.doubleValue);
-        [arr addObject:@{@"Bid":num, @"Ask":num1}];
+//        NSNumber *num1=@(num.doubleValue/100+num.doubleValue);
+        [arr addObject:@{@"Bid":@(bid), @"Ask":@(ask)}];
     }
     
     self.graphValues=arr;
@@ -74,7 +83,7 @@
 
 
 - (NSString *)urlRelative {
-    return @"AssetPairDetailedRates";
+    return @"AssetPairDetailedRates?withBid=true";
 }
 
 -(NSDictionary *) params

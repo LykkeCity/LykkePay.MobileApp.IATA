@@ -31,7 +31,6 @@
     _graphStartOffset=115;
     depthStartX=187;
     
-    
     return self;
 }
 

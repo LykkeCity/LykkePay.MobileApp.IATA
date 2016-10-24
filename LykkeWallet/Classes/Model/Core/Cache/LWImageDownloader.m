@@ -78,7 +78,7 @@
         
         NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:url];
         [urlRequest setHTTPMethod: @"GET"];
-        if(flagNeedAuthentication)
+        if(flagNeedAuthentication && [LWKeychainManager instance].token)
             [urlRequest setValue:[NSString stringWithFormat:@"Bearer %@", [LWKeychainManager instance].token] forHTTPHeaderField:@"Authorization"];
         
 
