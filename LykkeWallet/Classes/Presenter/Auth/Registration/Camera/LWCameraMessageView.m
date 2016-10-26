@@ -23,6 +23,8 @@
 
 -(void) awakeFromNib
 {
+    [super awakeFromNib];
+    self.autoresizingMask=UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     self.alpha=0;
     self.cameraDisconnectedLabel.textColor=[UIColor colorWithRed:31.0/255 green:149.0/255 blue:1 alpha:1];
     UIColor *textColor=[UIColor colorWithRed:140.0/255 green:148.0/255 blue:160.0/255 alpha:1];
@@ -30,6 +32,27 @@
     self.settingsLabel.textColor=textColor;
     self.lykkeLabel.textColor=textColor;
     self.setCameraLabel.textColor=textColor;
+    [self checkLinesInView:self];
+}
+
+-(void) checkLinesInView:(UIView *) view
+{
+    for(UIView *v in view.subviews)
+    {
+        if([v isKindOfClass:[UIView class]])
+        {
+            for(NSLayoutConstraint *c in v.constraints)
+            {
+                if(c.firstAttribute==NSLayoutAttributeWidth && c.constant==1)
+                    c.constant=0.5;
+                if(c.firstAttribute==NSLayoutAttributeHeight && c.constant==1)
+                    c.constant=0.5;
+            }
+            
+        }
+        [self checkLinesInView:v];
+        
+    }
 }
 
 

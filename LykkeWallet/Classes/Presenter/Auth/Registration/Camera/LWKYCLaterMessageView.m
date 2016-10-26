@@ -32,8 +32,30 @@
         _widthConstraint.constant=280;
     
     _titleLabel.textColor=[UIColor colorWithRed:31.0/255 green:149.0/255 blue:1 alpha:1];
+    [self checkLinesInView:self];
 
 }
+
+-(void) checkLinesInView:(UIView *) view
+{
+    for(UIView *v in view.subviews)
+    {
+        if([v isKindOfClass:[UIView class]])
+        {
+            for(NSLayoutConstraint *c in v.constraints)
+            {
+                if(c.firstAttribute==NSLayoutAttributeWidth && c.constant==1)
+                    c.constant=0.5;
+                if(c.firstAttribute==NSLayoutAttributeHeight && c.constant==1)
+                    c.constant=0.5;
+            }
+            
+        }
+        [self checkLinesInView:v];
+        
+    }
+}
+
 
 -(void) show
 {

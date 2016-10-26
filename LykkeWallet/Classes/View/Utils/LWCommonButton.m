@@ -66,6 +66,7 @@
 
 -(void) update
 {
+    self.adjustsImageWhenHighlighted=NO;
     self.clipsToBounds=YES;
     self.flagModified=YES;
     self.layer.borderColor=[UIColor colorWithRed:229.0/255 green:239.0/255 blue:233.0/255 alpha:1].CGColor;

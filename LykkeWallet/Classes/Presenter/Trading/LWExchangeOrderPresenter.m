@@ -19,6 +19,7 @@
     CGFloat distToPopWindow;
     
     CGFloat origTopScrollOffset;
+    CGFloat origBottomScrollOffset;
     
     NSTimer *timer;
     
@@ -29,6 +30,8 @@
     int prevSameCount;
     
     BOOL flagStartedScroll;
+    BOOL flagScrollingTop;
+    
 }
 
 @property (weak, nonatomic) IBOutlet UIScrollView *topScrollView;
@@ -46,16 +49,16 @@
     prevSameCount=0;
     
     _topScrollView.delegate=self;
+    _bottomScrollView.delegate=self;
+    
     _topScrollView.layer.shouldRasterize=YES;
     _topScrollView.layer.rasterizationScale= [UIScreen mainScreen].scale;
     
+    _bottomScrollView.layer.shouldRasterize=YES;
+    _bottomScrollView.layer.rasterizationScale=[UIScreen mainScreen].scale;
+    
     topScrollViewFilled=NO;
     
-//    self.view.layer.shouldRasterize = YES;
-//    self.view.layer.rasterizationScale = [UIScreen mainScreen].scale;
-    
-
-//    _topScrollView.bounces=NO;
     
     
     // Do any additional setup after loading the view from its nib.
@@ -65,20 +68,12 @@
 {
     [super viewWillAppear:animated];
     flagStartedScroll=NO;
-//    if(_orderBookBuy)
-//    {
-//        CGFloat height=(35.0+1)*_orderBookBuy.array.count;
-//        [_topScrollView setContentOffset:CGPointMake(0, height-_topScrollView.bounds.size.height) animated:NO];
-////        [self.view setNeedsLayout];
-//        [_topScrollView.layer removeAllAnimations];
-//    }
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(orientationChanged) name:UIApplicationDidChangeStatusBarOrientationNotification object:nil];
-
-//    topScrollViewFilled=NO;
-    
     distToPopWindow=0;
-//    [self.view layoutIfNeeded];
+
+    flagScrollingTop=NO;
+    
 }
 
 -(void) viewDidAppear:(BOOL)animated
@@ -102,7 +97,8 @@
     [scrollView.layer removeAllAnimations];
     [_bottomScrollView.layer removeAllAnimations];
     [timer invalidate];
-
+    flagScrollingTop=(scrollView==_topScrollView);
+        
 }
 
 -(void) viewWillDisappear:(BOOL)animated
@@ -124,8 +120,6 @@
     [super viewDidLayoutSubviews];
     CGFloat hhh=(self.view.bounds.size.height-40-10)/2;
     
-//    CGFloat hhh1=[self topScrollHeight];
-//    if(distToPopWindow!=0)
     if(!topScrollViewFilled)
     {
         _topScrollViewHeight.constant=hhh;
@@ -157,14 +151,14 @@
         }
 
 
-//        [self fillTopSubview];
+
         topScrollViewFilled=YES;
         
         for(UIView *v in _topScrollView.subviews)
         {
             [v removeFromSuperview];
         }
-        //        [self.view layoutIfNeeded];
+        
         [self fillTopSubview];
         
         for(UIView *v in _bottomScrollView.subviews)
@@ -173,13 +167,6 @@
         }
         
         [self fillBottomScrollView];
-
-//        [self fillBottomScrollView];
-        
-//    }
-//    
-//    if(_orderBookBuy)
-//    {
         CGFloat height=(35.0+1)*_orderBookBuy.array.count;
         if(_orderBookBuy.array.count==1)
             height=hhh;
@@ -199,13 +186,6 @@
         _topScrollView.contentSize=CGSizeMake(_topScrollView.bounds.size.width, height);
         
         _bottomScrollView.contentSize=CGSizeMake(_bottomScrollView.bounds.size.width, (35.0+1)*_orderBookBuy.array.count);
-
-        
-//        [_topScrollView setContentOffset:CGPointMake(0, height-_topScrollView.bounds.size.height) animated:NO];
-        //        [self.view setNeedsLayout];
-        
-        
-//        [self.topScrollView setNeedsDisplay];
         [_topScrollView.layer removeAllAnimations];
         [_bottomScrollView.layer removeAllAnimations];
 //        [self.view layoutIfNeeded];
@@ -218,45 +198,85 @@
 -(void) scrollTimerFired
 {
     [_topScrollView.layer removeAllAnimations];
+    [_bottomScrollView.layer removeAllAnimations];
 
-    CGFloat y=_topScrollView.contentOffset.y;
-    
-    NSLog(@"%f %f %f", y, _topScrollViewHeight.constant, velocity);
-    
-    y-=velocity/50;
-    if(y<0)
+    if(flagScrollingTop)
     {
-        y=0;
-        [timer invalidate];
-        NSLog(@"invalidate 1");
-    }
-    else if(y>_topScrollView.contentSize.height-_topScrollView.bounds.size.height && _topScrollViewHeight.constant<=normalTopScrollViewHeight)
-    {
+        CGFloat y=_topScrollView.contentOffset.y;
         
-        y=_topScrollView.contentSize.height-_topScrollView.bounds.size.height;
-        [timer invalidate];
-        NSLog(@"invalidate 2");
-
+        NSLog(@"%f %f %f", y, _topScrollViewHeight.constant, velocity);
+        
+        y+=velocity/50;
+        if(y<0)
+        {
+            y=0;
+            [timer invalidate];
+            NSLog(@"invalidate 1");
+        }
+        else if(y>_topScrollView.contentSize.height-_topScrollView.bounds.size.height && _topScrollViewHeight.constant<=normalTopScrollViewHeight)
+        {
+            
+            y=_topScrollView.contentSize.height-_topScrollView.bounds.size.height;
+            [timer invalidate];
+            NSLog(@"invalidate 2");
+            
+        }
+        [_topScrollView setContentOffset:CGPointMake(0, y) animated:NO];
+        NSLog(@"Timer y=%f", y);
+        velocity=velocity-velocity/20;
+        if(fabs(velocity)<100)
+            [timer invalidate];
     }
-    [_topScrollView setContentOffset:CGPointMake(0, y) animated:NO];
-    NSLog(@"Timer y=%f", y);
-    velocity=velocity-velocity/20;
-    if(fabs(velocity)<10)
-        [timer invalidate];
+    else
+    {
+        UIWindow *window=[UIApplication sharedApplication].keyWindow;
+        CGPoint point=[self.view convertPoint:CGPointMake(0, 0) toView:window];
+        point.y=point.y-20;
+
+        CGFloat y=_bottomScrollView.contentOffset.y;
+        
+//        NSLog(@"%f %f %f", y, _topScrollViewHeight.constant, velocity);
+        
+        y+=velocity/50;
+        if(y>_bottomScrollView.contentSize.height-_bottomScrollView.bounds.size.height && (distToPopWindow==point.y || [UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad) && _topScrollViewHeight.constant==0)
+        {
+            y=_bottomScrollView.contentSize.height-_bottomScrollView.bounds.size.height;
+            [timer invalidate];
+            NSLog(@"invalidate2 1");
+        }
+        else if((y<0 || _bottomScrollView.contentOffset.y<0) && (distToPopWindow==0 || [UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad) && _topScrollViewHeight.constant==normalTopScrollViewHeight)
+        {
+            
+            y=0;
+            [timer invalidate];
+            NSLog(@"invalidate2 2");
+            
+        }
+        [_bottomScrollView setContentOffset:CGPointMake(0, y) animated:NO];
+        NSLog(@"Timer2 y=%f", y);
+        velocity=velocity-velocity/20;
+        if(fabs(velocity)<100)
+            [timer invalidate];
+    }
+
 }
 
--(void) scrollViewWillBeginDecelerating:(UIScrollView *)scrollView
+- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)scrollVelocity targetContentOffset:(inout CGPoint *)targetContentOffset
 {
+//    if(scrollView==_bottomScrollView)
+//        return;
     NSLog(@"Began decelerating");
+    
+
+    [scrollView.layer removeAllAnimations];
+    
+    scrollView.scrollEnabled = NO;
+    scrollView.scrollEnabled = YES;
+    
     [timer invalidate];
-    CGPoint scrollVelocity = [[scrollView panGestureRecognizer] velocityInView:scrollView];
-//    if(scrollVelocity.y>0)
-//    {
-        velocity=scrollVelocity.y;
+        velocity=scrollVelocity.y*300;
         timer=[NSTimer timerWithTimeInterval:1.0/60 target:self selector:@selector(scrollTimerFired) userInfo:nil repeats:YES];
         [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
-
-//    }
     
 }
 
@@ -264,15 +284,31 @@
 {
     if(flagStartedScroll==NO)
         return;
-//    return;
-    CGSize screenSize=[UIScreen mainScreen].bounds.size;
 
+
+    if(scrollView==_bottomScrollView && flagScrollingTop==NO)
+    {
+        [self bottomScrollViewScrolled];
+        return;
+    }
+    if(flagScrollingTop==NO)
+    {
+        origTopScrollOffset=_topScrollView.contentOffset.y;
+        return;
+    }
+    
     UIWindow *window=[UIApplication sharedApplication].keyWindow;
     CGPoint point=[self.view convertPoint:CGPointMake(0, 0) toView:window];
     point.y=point.y-20;
     
     CGFloat maxTopScrollViewHeight=[UIScreen mainScreen].bounds.size.height-point.y+13;
     normalTopScrollViewHeight=([UIScreen mainScreen].bounds.size.height-10-40-point.y-20)/2;
+    
+    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad)
+    {
+        maxTopScrollViewHeight=self.view.bounds.size.height-40-10;
+        normalTopScrollViewHeight=(self.view.bounds.size.height-40-10)/2;
+    }
     
     CGFloat heightScrolled=origTopScrollOffset-_topScrollView.contentOffset.y;
     if(fabs(heightScrolled)<0.00001)
@@ -290,7 +326,7 @@
     }
 
     
-    if(_topScrollView.contentOffset.y<0 || (_topScrollView.contentOffset.y>_topScrollView.contentSize.height-_topScrollView.bounds.size.height && distToPopWindow==0 && _topScrollViewHeight.constant==normalTopScrollViewHeight))
+    if(_topScrollView.contentOffset.y<0 || (_topScrollView.contentOffset.y>_topScrollView.contentSize.height-_topScrollView.bounds.size.height && (distToPopWindow==0 || [UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad) && _topScrollViewHeight.constant==normalTopScrollViewHeight))
     {
         origTopScrollOffset=_topScrollView.contentOffset.y;
         return;
@@ -324,7 +360,7 @@
     
     NSLog(@"%f", heightScrolled);
     
-    if(distToPopWindow<point.y && heightScrolled>0)
+    if(distToPopWindow<point.y && heightScrolled>0 && [UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
     {
         
         distToPopWindow=distToPopWindow+heightScrolled;
@@ -337,16 +373,8 @@
         }
         
         origTopScrollOffset-=delta*2;
-//        delta=heightScrolled;
         
         _topScrollViewHeight.constant+=delta*2;
-//        if(_topScrollViewHeight.constant>maxTopScrollViewHeight)
-//        {
-//            delta=_topScrollViewHeight.constant-maxTopScrollViewHeight;
-//            _topScrollViewHeight.constant=maxTopScrollViewHeight;
-//        }
-        
-        
         
         [_topScrollView setContentOffset:CGPointMake(_topScrollView.contentOffset.x, origTopScrollOffset ) animated:NO];
         
@@ -372,17 +400,16 @@
         }
 
     }
-    else if(heightScrolled<0 && distToPopWindow>0 && _topScrollView.contentOffset.y>_topScrollView.contentSize.height-_topScrollView.bounds.size.height)
+    else if(heightScrolled<0 && distToPopWindow>0 && _topScrollView.contentOffset.y>_topScrollView.contentSize.height-_topScrollView.bounds.size.height && [UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
     {
         distToPopWindow=distToPopWindow+heightScrolled;
         CGFloat delta=heightScrolled;
         if(distToPopWindow<0)
         {
             delta=heightScrolled-distToPopWindow;
-//            origTopScrollOffset-=distToPopWindow;
+
             distToPopWindow=0;
         }
-        CGFloat tomove=delta;
         
          origTopScrollOffset-=delta*2;
         
@@ -393,8 +420,6 @@
             delta=_topScrollViewHeight.constant-normalTopScrollViewHeight;
             _topScrollViewHeight.constant=normalTopScrollViewHeight;
         }
-
-//        origTopScrollOffset-=delta;
         
         [_topScrollView setContentOffset:CGPointMake(_topScrollView.contentOffset.x, origTopScrollOffset ) animated:NO];
 
@@ -414,7 +439,6 @@
                 _topScrollViewHeight.constant=normalTopScrollViewHeight;
             }
 
-//            origTopScrollOffset-=delta;
             origTopScrollOffset=_topScrollView.contentSize.height-_topScrollViewHeight.constant;
             [_topScrollView setContentOffset:CGPointMake(_topScrollView.contentOffset.x, origTopScrollOffset ) animated:NO];
             
@@ -424,101 +448,205 @@
     else
         origTopScrollOffset=_topScrollView.contentOffset.y;
     
-//    distToPopWindow+=heightScrolled;
-//    if(distToPopWindow<0)
-//        distToPopWindow=0;
-//    if(distToPopWindow>point.y)
-//        distToPopWindow=point.y;
-    
-    
-    CGRect rrr=[UIScreen mainScreen].bounds;
-    rrr.origin.y=-distToPopWindow;
-    
-    rrr.size.height=[UIScreen mainScreen].bounds.size.height+distToPopWindow;
-    window.frame=rrr;
-    
-    statusBarView.frame=CGRectMake(0, distToPopWindow, window.bounds.size.width, 20);
-
-    
-    return;
-    
-    
-    
-    
-    
-//    if(heightScrolled<0 && distToPopWindow==0)
-//        return;
-//    if(heightScrolled==0)
-//        return;
-//    distToPopWindow+=heightScrolled;
-//    if(heightScrolled>point.y && NO)
-//    {
-////        return;
-//        distToPopWindow=point.y;
-//    }
-//    else
-//    {
-//        CGFloat prev=_topScrollView.contentOffset.y;
-//        NSLog(@"%d prev", (int)prev);
-////        CGFloat next=
-//        [_topScrollView setContentOffset:CGPointMake(_topScrollView.contentOffset.x, origTopScrollOffset ) animated:NO];
-//    }
-//    
-//    CGRect rrr=window.frame;
-//    rrr.origin.y=-distToPopWindow;
-//
-//    rrr.size.height=[UIScreen mainScreen].bounds.size.height+distToPopWindow;
-//    window.frame=rrr;
-//    
-//    statusBarView.frame=CGRectMake(0, distToPopWindow, window.bounds.size.width, 20);
-//    
-//    
-//    CGFloat ccc=(screenSize.height-point.y-10)/2+heightScrolled;
-//    if(ccc>screenSize.height-point.y)
-//        ccc=screenSize.height-point.y;
-    
-//    NSLog(@"%d, %d, %d, %d", (int)heightScrolled, (int)distToPopWindow, (int)point.y, (int)ccc);
-//
-    _topScrollViewHeight.constant+=(heightScrolled*2);
+    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
+    {
+        CGRect rrr=[UIScreen mainScreen].bounds;
+        rrr.origin.y=-distToPopWindow;
+        
+        rrr.size.height=[UIScreen mainScreen].bounds.size.height+distToPopWindow;
+        window.frame=rrr;
+        
+        statusBarView.frame=CGRectMake(0, distToPopWindow, window.bounds.size.width, 20);
+    }
     
 }
 
-//-(CGFloat) topScrollHeight
-//{
-//    CGSize screenSize=[UIScreen mainScreen].bounds.size;
-//    
-//    UIWindow *window=[UIApplication sharedApplication].keyWindow;
-//    CGPoint point=[self.view convertPoint:CGPointMake(0, 0) toView:window];
-//    
-//    CGFloat heightScrolled=(_topScrollView.contentSize.height-_topScrollView.bounds.size.height)-_topScrollView.contentOffset.y;
-//    if(heightScrolled<0)
-//        return 0;
-//    CGFloat distToPopWindow=heightScrolled;
-//    if(heightScrolled>point.y)
-//        distToPopWindow=point.y;
-//    
-//    CGFloat ccc=(screenSize.height-point.y-10)/2+heightScrolled;
-//    if(ccc>screenSize.height-point.y)
-//        ccc=screenSize.height-point.y;
-//    
-//    NSLog(@"%d, %d, %d, %d", (int)heightScrolled, (int)distToPopWindow, (int)point.y, (int)ccc);
-//    
-////    _topScrollViewHeight.constant=ccc;
-//    return ccc;
-//}
-
-//-(void) viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
-//{
-//    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
-//    if(_orderBookBuy)
+//BOTTOM SCROLL VIEW
+-(void) bottomScrollViewScrolled
+{
+    UIWindow *window=[UIApplication sharedApplication].keyWindow;
+    CGPoint point=[self.view convertPoint:CGPointMake(0, 0) toView:window];
+    point.y=point.y-20;
+    
+    CGFloat maxTopScrollViewHeight=[UIScreen mainScreen].bounds.size.height-point.y+13;
+    normalTopScrollViewHeight=([UIScreen mainScreen].bounds.size.height-10-40-point.y-20)/2;
+    
+    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad)
+    {
+        maxTopScrollViewHeight=self.view.bounds.size.height-40-10;
+        normalTopScrollViewHeight=(self.view.bounds.size.height-40-10)/2;
+    }
+    
+    CGFloat heightScrolled=origBottomScrollOffset-_bottomScrollView.contentOffset.y;
+    if(fabs(heightScrolled)<0.00001)
+        return;
+    if(fabs(heightScrolled)>100 && _topScrollViewHeight.constant==normalTopScrollViewHeight)
+    {
+        origBottomScrollOffset=_bottomScrollView.contentOffset.y;
+        return;
+    }
+    
+    if(heightScrolled<0 && _topScrollViewHeight.constant==0 && (distToPopWindow==point.y || [UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad))
+    {
+        origBottomScrollOffset=_bottomScrollView.contentOffset.y;
+        return;
+    }
+    
+    if((_bottomScrollView.contentOffset.y<0 || origBottomScrollOffset<0) && _topScrollViewHeight.constant==normalTopScrollViewHeight && (distToPopWindow==0 || [UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad) )
+    {
+        origBottomScrollOffset=_bottomScrollView.contentOffset.y;
+        return;
+    }
+    
+//    if([timer isValid] && velocity<0 && _bottomScrollView.contentOffset.y<0)
 //    {
-//        CGFloat height=(35.0+1)*_orderBookBuy.array.count;
-//        [_topScrollView setContentOffset:CGPointMake(0, height-(size.height-40-10)/2) animated:NO];
-//        //        [self.view setNeedsLayout];
-//        [_topScrollView.layer removeAllAnimations];
+//        origBottomScrollOffset=_bottomScrollView.contentOffset.y;
+//        return;
 //    }
-//
-//}
+  
+
+    
+    
+//    if(_bottomScrollView.contentOffset.y<0 || (_topScrollView.contentOffset.y>_topScrollView.contentSize.height-_topScrollView.bounds.size.height && (distToPopWindow==0 || [UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad) && _topScrollViewHeight.constant==normalTopScrollViewHeight))
+//    {
+//        origTopScrollOffset=_topScrollView.contentOffset.y;
+//        return;
+//    }
+//    
+//    if(heightScrolled>0 && _topScrollView.contentOffset.y>_topScrollView.contentSize.height-_topScrollView.bounds.size.height)
+//    {
+//        origTopScrollOffset=_topScrollView.contentOffset.y;
+//        
+//        return;
+//        
+//    }
+    
+    if(prevMove==heightScrolled)
+    {
+        prevSameCount++;
+        if(prevSameCount==2)
+        {
+            NSLog(@"BEGAN");
+            [timer invalidate];
+            origBottomScrollOffset=_bottomScrollView.contentOffset.y;
+            prevSameCount--;
+            return;
+            
+        }
+    }
+    else
+    {
+        prevMove=heightScrolled;
+        prevSameCount=0;
+    }
+    
+    NSLog(@"%f", heightScrolled);
+    
+    if(distToPopWindow<point.y && heightScrolled<0 && [UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
+    {
+        
+        distToPopWindow=distToPopWindow-heightScrolled;
+        CGFloat delta=heightScrolled;
+        
+        if(distToPopWindow>point.y)
+        {
+            delta=distToPopWindow-point.y;
+            distToPopWindow=point.y;
+        }
+        
+//        origTopScrollOffset-=delta;
+        
+//        _topScrollViewHeight.constant+=delta*2;
+        
+//        [_topScrollView setContentOffset:CGPointMake(_topScrollView.contentOffset.x, origTopScrollOffset ) animated:NO];
+        [_bottomScrollView setContentOffset:CGPointMake(_bottomScrollView.contentOffset.x, origBottomScrollOffset) animated:NO];
+        
+        
+    }
+    else if(heightScrolled<0)
+    {
+        if(_topScrollViewHeight.constant==0)
+            origBottomScrollOffset=_bottomScrollView.contentOffset.y;
+        else
+        {
+            _topScrollViewHeight.constant+=heightScrolled;
+            CGFloat delta=heightScrolled;
+            if(_topScrollViewHeight.constant<0)
+            {
+                delta=-_topScrollViewHeight.constant;
+                _topScrollViewHeight.constant=0;
+            }
+            
+            origTopScrollOffset-=delta*2;
+            [_topScrollView setContentOffset:CGPointMake(_topScrollView.contentOffset.x, origTopScrollOffset ) animated:NO];
+            [_bottomScrollView setContentOffset:CGPointMake(_bottomScrollView.contentOffset.x, origBottomScrollOffset) animated:NO];
+
+        }
+        
+    }
+    else if(heightScrolled>0 && distToPopWindow>0 && _bottomScrollView.contentOffset.y<0 && [UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
+    {
+        distToPopWindow=distToPopWindow-heightScrolled;
+        CGFloat delta=heightScrolled;
+        if(distToPopWindow<0)
+        {
+            delta=heightScrolled-distToPopWindow;
+            
+            distToPopWindow=0;
+        }
+        
+//        origTopScrollOffset-=delta*2;
+        
+        
+//        _topScrollViewHeight.constant+=delta*2;
+//        if(_topScrollViewHeight.constant>normalTopScrollViewHeight)
+//        {
+//            delta=_topScrollViewHeight.constant-normalTopScrollViewHeight;
+//            _topScrollViewHeight.constant=normalTopScrollViewHeight;
+//        }
+        
+//        [_topScrollView setContentOffset:CGPointMake(_topScrollView.contentOffset.x, origTopScrollOffset ) animated:NO];
+        [_bottomScrollView setContentOffset:CGPointMake(_bottomScrollView.contentOffset.x, 0)];
+        
+    }
+    else if(heightScrolled>0 && (distToPopWindow==0 || [UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad) && _bottomScrollView.contentOffset.y<0)
+    {
+        if(_topScrollViewHeight.constant==normalTopScrollViewHeight)
+            origBottomScrollOffset=_bottomScrollView.contentOffset.y;
+        else
+        {
+            _topScrollViewHeight.constant+=heightScrolled;
+            CGFloat delta=heightScrolled;
+            if(_topScrollViewHeight.constant>normalTopScrollViewHeight)
+            {
+                delta=heightScrolled-(_topScrollViewHeight.constant-normalTopScrollViewHeight);
+                _topScrollViewHeight.constant=normalTopScrollViewHeight;
+            }
+            
+            origTopScrollOffset-=delta;
+            [_topScrollView setContentOffset:CGPointMake(_topScrollView.contentOffset.x, origTopScrollOffset ) animated:NO];
+            [_bottomScrollView setContentOffset:CGPointMake(_bottomScrollView.contentOffset.x, 0)];
+
+        }
+        
+    }
+    else
+        origBottomScrollOffset=_bottomScrollView.contentOffset.y;
+    
+    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
+    {
+        CGRect rrr=[UIScreen mainScreen].bounds;
+        rrr.origin.y=-distToPopWindow;
+        
+        rrr.size.height=[UIScreen mainScreen].bounds.size.height+distToPopWindow;
+        window.frame=rrr;
+        
+        statusBarView.frame=CGRectMake(0, distToPopWindow, window.bounds.size.width, 20);
+    }
+    
+}
+
+
 
 -(void) setOrderBookSell:(LWOrderBookElementModel *)orderBookSell
 {
@@ -554,7 +682,7 @@
         
     }
     _topScrollView.contentSize=CGSizeMake(_topScrollView.bounds.size.width, height);
-//    _topScrollView.contentOffset=CGPointMake(0, height-_topScrollView.bounds.size.height);
+
 }
 
 -(void) fillBottomScrollView
@@ -598,12 +726,14 @@
 
 -(void) orientationChanged
 {
+    [timer invalidate];
     topScrollViewFilled=NO;
 }
 
 -(void) dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [timer invalidate];
 }
 
 @end

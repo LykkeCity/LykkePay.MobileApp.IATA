@@ -250,7 +250,7 @@
 {
     if([UIScreen mainScreen].bounds.size.width==320)
         return @"LWPINPresenter_iphone5";
-    else if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad)
+    else if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad && _flagIPadPopup.boolValue==NO)
         return @"LWPINPresenter_ipad";
     else
         return @"LWPINPresenter";
@@ -258,6 +258,8 @@
 
 -(void) orientationChanged
 {
+    if(_flagIPadPopup.boolValue)
+        return;
     if(UIInterfaceOrientationIsPortrait([UIApplication sharedApplication].statusBarOrientation))
     {
         _ipadTopConstraint.constant=250;

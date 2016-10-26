@@ -7,7 +7,7 @@
 //
 
 #import "LWPrivateWalletTransferPresenter.h"
-#import "LWValidator.h"
+
 #import "BTCAddress.h"
 #import "LWPrivateKeyManager.h"
 #import "UIViewController+Loading.h"
@@ -19,6 +19,7 @@
 #import "LWPrivateWalletModel.h"
 #import "LWPrivateWalletTransferInputPresenter.h"
 #import "LWPKTransferModel.h"
+#import "LWCommonButton.h"
 
 @import AVFoundation;
 
@@ -29,9 +30,10 @@
     UIButton *pasteButton;
     UIButton *scanQRCodeButton;
     UIButton *selectWalletButton;
-    UIButton *proceedButton;
-    NSDictionary *proceedEnabledAttributes;
-    NSDictionary *proceedDisabledAttributes;
+    LWCommonButton *proceedButton;
+    
+//    NSDictionary *proceedEnabledAttributes;
+//    NSDictionary *proceedDisabledAttributes;
     UILabel *selectedWalletNameLabel;
     
 }
@@ -79,15 +81,19 @@
     [selectWalletButton addTarget:self action:@selector(selectWalletPressed) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:selectWalletButton];
 
-    proceedButton=[UIButton buttonWithType:UIButtonTypeCustom];
+    proceedButton=[LWCommonButton buttonWithType:UIButtonTypeCustom];
+    [proceedButton setTitle:@"PROCEED" forState:UIControlStateNormal];
+
+    proceedButton.type=BUTTON_TYPE_COLORED;
     [proceedButton addTarget:self action:@selector(proceedPressed) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:proceedButton];
     
-    proceedEnabledAttributes=@{NSKernAttributeName:@(1), NSFontAttributeName:[UIFont fontWithName:@"ProximaNova-Semibold" size:15], NSForegroundColorAttributeName:[UIColor whiteColor]};
-    proceedDisabledAttributes=@{NSKernAttributeName:@(1), NSFontAttributeName:[UIFont fontWithName:@"ProximaNova-Semibold" size:15], NSForegroundColorAttributeName:[UIColor colorWithRed:63.0/255 green:77.0/255 blue:96.0/255 alpha:0.2]};
+//    proceedEnabledAttributes=@{NSKernAttributeName:@(1), NSFontAttributeName:[UIFont fontWithName:@"ProximaNova-Semibold" size:15], NSForegroundColorAttributeName:[UIColor whiteColor]};
+//    proceedDisabledAttributes=@{NSKernAttributeName:@(1), NSFontAttributeName:[UIFont fontWithName:@"ProximaNova-Semibold" size:15], NSForegroundColorAttributeName:[UIColor colorWithRed:63.0/255 green:77.0/255 blue:96.0/255 alpha:0.2]};
     
-    [proceedButton setAttributedTitle:[[NSAttributedString alloc] initWithString:@"PROCEED" attributes:proceedDisabledAttributes] forState:UIControlStateDisabled];
-    [proceedButton setAttributedTitle:[[NSAttributedString alloc] initWithString:@"PROCEED" attributes:proceedEnabledAttributes] forState:UIControlStateNormal];
+//    [proceedButton setAttributedTitle:[[NSAttributedString alloc] initWithString:@"PROCEED" attributes:proceedDisabledAttributes] forState:UIControlStateDisabled];
+//    [proceedButton setAttributedTitle:[[NSAttributedString alloc] initWithString:@"PROCEED" attributes:proceedEnabledAttributes] forState:UIControlStateNormal];
+    
     proceedButton.adjustsImageWhenHighlighted=NO;
     
     pasteButton=[UIButton buttonWithType:UIButtonTypeCustom];
@@ -135,7 +141,7 @@
     selectWalletButton.center=CGPointMake(self.view.bounds.size.width/2+10+selectWalletButton.bounds.size.width/2, scanQRCodeButton.center.y);
     
     proceedButton.frame=CGRectMake(30, 134, self.view.bounds.size.width-60, 45);
-    [LWValidator setButton:proceedButton enabled:proceedButton.enabled];
+//    [LWValidator setButton:proceedButton enabled:proceedButton.enabled];
     pasteButton.frame=CGRectMake(addressBackground.bounds.size.width-pasteButton.bounds.size.width-15, 0, pasteButton.bounds.size.width, addressBackground.bounds.size.height);
 
 }
@@ -153,7 +159,7 @@
                 proceedButton.enabled=YES;
         }
     }
-        [LWValidator setButton:proceedButton enabled:proceedButton.enabled];
+//        [LWValidator setButton:proceedButton enabled:proceedButton.enabled];
     if(addressTextField.text.length)
         pasteButton.hidden=YES;
     else
@@ -249,7 +255,8 @@
         [self.view endEditing:YES];
         LWCameraMessageView *view=[[NSBundle mainBundle] loadNibNamed:@"LWCameraMessageView" owner:self options:nil][0];
         UIWindow *window=[[UIApplication sharedApplication] keyWindow];
-        view.center=CGPointMake(window.bounds.size.width/2, window.bounds.size.height/2);
+        view.frame=window.bounds;
+
         
         [window addSubview:view];
         

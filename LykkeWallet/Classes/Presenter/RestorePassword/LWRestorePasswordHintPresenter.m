@@ -91,6 +91,7 @@
 {
     self.recModel.hint=self.textField.text;
     LWPINPresenter *pin=[[LWPINPresenter alloc] init];
+    pin.flagIPadPopup=@(YES);
     pin.pinType=PIN_TYPE_ENTER;
     pinBlock=pin;
     pin.pinEnteredBlock=^(NSString *selectedPin){
@@ -101,7 +102,8 @@
         [self.navigationController pushViewController:presenter animated:YES];
         
     };
-    [self.navigationController pushViewController:pin animated:YES];
+
+        [self.navigationController pushViewController:pin animated:YES];
     
 }
 

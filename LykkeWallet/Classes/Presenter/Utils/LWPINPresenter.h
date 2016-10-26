@@ -19,4 +19,6 @@ typedef enum {PIN_TYPE_CHECK, PIN_TYPE_ENTER} PIN_TYPE;
 
 @property (nonatomic, copy) void (^successBlock)(void);
 
+@property (strong, nonatomic) NSNumber *flagIPadPopup;
+
 @end

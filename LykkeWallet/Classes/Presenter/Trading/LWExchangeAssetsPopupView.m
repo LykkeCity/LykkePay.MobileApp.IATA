@@ -170,6 +170,7 @@
     label.font=[UIFont fontWithName:@"ProximaNova-Regular" size:17];
     label.textColor=[UIColor colorWithRed:63.0/255 green:77.0/255 blue:96.0/255 alpha:1];
     [cell addSubview:label];
+    cell.selectionStyle=UITableViewCellSelectionStyleNone;
     
     if(indexPath.row==activeAssetNum)
     {

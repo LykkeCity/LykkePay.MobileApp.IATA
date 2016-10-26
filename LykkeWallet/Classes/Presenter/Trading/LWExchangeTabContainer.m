@@ -222,7 +222,8 @@
     }
     
     [labels[index] setAttributedText:[[NSAttributedString alloc] initWithString:labelTitles[index] attributes:tabLabelActiveAttributes]];
-//    [labels[index] setTextColor:[UIColor whiteColor]];
+    
+    [labels[index] setTextColor:[UIColor whiteColor]];
     
     
 //    _transferButtonLabel.textColor=[UIColor colorWithRed:63.0/255 green:77.0/255 blue:96.0/255 alpha:1];

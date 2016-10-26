@@ -204,6 +204,7 @@
         else
         {
             LWCommonButton *button=[LWCommonButton buttonWithType:UIButtonTypeCustom];
+            button.adjustsImageWhenHighlighted=NO;
             button.enabled=YES;
             button.frame=view.bounds;
             [view addSubview:button];

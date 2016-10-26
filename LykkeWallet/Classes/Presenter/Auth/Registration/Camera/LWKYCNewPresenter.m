@@ -335,7 +335,7 @@
         
         LWCameraMessageView *view=[[NSBundle mainBundle] loadNibNamed:@"LWCameraMessageView" owner:self options:nil][0];
         UIWindow *window=[[UIApplication sharedApplication] keyWindow];
-        view.center=CGPointMake(window.bounds.size.width/2, window.bounds.size.height/2);
+        view.frame=window.bounds;
         
         [window addSubview:view];
         
