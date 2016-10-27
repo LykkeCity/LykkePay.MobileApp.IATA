@@ -123,6 +123,14 @@
 {
     [super viewDidAppear:animated];
     self.title=@"TRANSFER";
+    
+}
+
+-(void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self validateProceedButton];
+
 }
 
 -(void) viewDidLayoutSubviews

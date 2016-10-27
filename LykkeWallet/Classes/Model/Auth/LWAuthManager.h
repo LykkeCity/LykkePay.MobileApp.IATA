@@ -57,6 +57,7 @@
 @class LWWalletMigrationModel;
 @class LWPacketOrderBook;
 @class LWPacketKYCDocuments;
+@class LWPacketCategories;
 
 
 @protocol LWAuthManagerDelegate<NSObject>
@@ -151,6 +152,8 @@
 
 -(void) authManager:(LWAuthManager *)manager didGetOrderBook:(LWPacketOrderBook *)packet;
 -(void) authManager:(LWAuthManager *)manager didGetKYCDocuments:(LWPacketKYCDocuments *)packet;
+
+-(void) authManager:(LWAuthManager *) manager didGetAssetCategories:(LWPacketCategories *) packet;
 
 @end
 
@@ -278,6 +281,8 @@ SINGLETON_DECLARE
 
 -(void) requestOrderBook:(NSString *) assetPairId;
 -(void) requestKYCDocuments;
+
+-(void) requestAssetCategories;
 
 
 //PubkeyAddressValidation

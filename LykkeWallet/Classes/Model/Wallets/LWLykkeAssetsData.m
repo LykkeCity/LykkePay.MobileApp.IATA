@@ -36,6 +36,8 @@
         
         double balance=[LWUtils fairVolume:_balance.doubleValue accuracy:_accuracy.intValue roundToHigher:NO];
         _balance=[NSNumber numberWithDouble:balance];
+        
+        _categoryId=json[@"CategoryId"];
 
     }
     return self;

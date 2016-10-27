@@ -125,8 +125,8 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(orientationChanged) name:UIApplicationDidChangeStatusBarOrientationNotification object:nil];
 
     
-    self.buyButton.type=BUTTON_TYPE_VIOLET;
-    self.sellButton.type=BUTTON_TYPE_YELLOW;
+    self.buyButton.type=BUTTON_TYPE_YELLOW;
+    self.sellButton.type=BUTTON_TYPE_VIOLET;
     
     [self.sellButton setTitle:@"SELL" forState:UIControlStateNormal];
     [self.buyButton setTitle:@"BUY" forState:UIControlStateNormal];

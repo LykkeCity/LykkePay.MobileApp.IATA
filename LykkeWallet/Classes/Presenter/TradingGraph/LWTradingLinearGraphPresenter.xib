@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -16,14 +16,14 @@
                 <outlet property="askPriceOnGraphLabel" destination="ewM-4L-it6" id="dtn-eF-756"/>
                 <outlet property="bidPriceOnGraphLabel" destination="ZAE-FD-SSD" id="MnZ-kz-MwL"/>
                 <outlet property="bottomView" destination="ha1-rr-0ID" id="2hA-Sy-wZf"/>
-                <outlet property="buyButton" destination="R0D-Yt-V6l" id="UQr-BL-mKy"/>
+                <outlet property="buyButton" destination="LaN-Ft-cv9" id="eNJ-YY-w2O"/>
                 <outlet property="graphEndDateLabel" destination="lSg-W7-QfE" id="Dz2-rV-j0T"/>
                 <outlet property="graphStartDateLabel" destination="pb1-RD-sVn" id="MEW-l2-Abv"/>
                 <outlet property="graphView" destination="KoJ-SA-PUj" id="Xlc-o9-vyh"/>
                 <outlet property="linearGraphView" destination="KoJ-SA-PUj" id="3UY-Tj-Xt8"/>
                 <outlet property="periodsButtonsView" destination="T6U-Te-yDl" id="tAD-9I-jWD"/>
                 <outlet property="periodsViewWidth" destination="qWy-dO-BOt" id="Gmp-hy-sno"/>
-                <outlet property="sellButton" destination="LaN-Ft-cv9" id="P5M-Ix-ofs"/>
+                <outlet property="sellButton" destination="R0D-Yt-V6l" id="vwv-6y-NVi"/>
                 <outlet property="tableView" destination="D1i-ES-0kV" id="CEL-gX-P7G"/>
                 <outlet property="tableViewWidth" destination="cdU-3b-RMs" id="XWF-0a-hv9"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -55,7 +55,7 @@
                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                             <connections>
-                                <action selector="sellClicked:" destination="-1" eventType="touchUpInside" id="3op-ec-X1f"/>
+                                <action selector="buyClicked:" destination="-2" eventType="touchUpInside" id="F85-Hi-hHU"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R0D-Yt-V6l" customClass="LWCommonButton">
@@ -68,7 +68,7 @@
                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                             <connections>
-                                <action selector="buyClicked:" destination="-1" eventType="touchUpInside" id="Oat-QH-7SI"/>
+                                <action selector="sellClicked:" destination="-2" eventType="touchUpInside" id="gW4-Ie-BWx"/>
                             </connections>
                         </button>
                     </subviews>

@@ -24,6 +24,11 @@
 -(id) initWithDict:(NSDictionary *) d
 {
     self=[super init];
+    
+    if([d isKindOfClass:[NSDictionary class]]==NO || !d[@"Address"] || [d[@"Address"] isKindOfClass:[NSString class]]==NO)
+        return nil;
+    
+    
     _isExternalWallet=NO;
     
     self.address=d[@"Address"];

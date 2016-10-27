@@ -22,4 +22,6 @@
 @property (readonly, assign)    BOOL      hideIfZero;
 @property (readonly, assign) NSNumber *accuracy;
 
+@property (readonly, assign) NSString *categoryId;
+
 @end

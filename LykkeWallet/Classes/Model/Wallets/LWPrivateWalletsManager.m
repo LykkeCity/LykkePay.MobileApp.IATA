@@ -63,7 +63,8 @@
             for(NSDictionary *d in dict[@"Wallets"])
             {
                 LWPrivateWalletModel *wallet=[[LWPrivateWalletModel alloc] initWithDict:d];
-                [array addObject:wallet];
+                if(wallet)
+                    [array addObject:wallet];
             }
             
             self.wallets=array;
@@ -107,7 +108,7 @@
         NSDictionary *dict=[self sendRequest:request];
         
         NSLog(@"%@", dict);
-        if(completion)
+        if(completion && [dict isKindOfClass:[NSDictionary class]])
         {
             NSMutableArray *assets=[[NSMutableArray alloc] init];
             for(NSDictionary *d in dict[@"Balances"])

@@ -119,6 +119,7 @@
     [super viewWillAppear:animated];
     
     [self updatePasteButtonStatus];
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -346,6 +347,7 @@
 
 - (void)updatePasteButtonStatus {
         BTCAddress *addr=[BTCAddress addressWithString:bitcoinTextField.text];
+    _proceedButton.enabled=NO;
         _proceedButton.enabled=addr!=nil;
     [self hideShowPasteButton:bitcoinTextField.text.length];
 }
