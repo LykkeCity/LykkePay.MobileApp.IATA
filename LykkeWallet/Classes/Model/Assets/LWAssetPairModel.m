@@ -41,6 +41,8 @@
         _name=[NSString stringWithFormat:@"%@/%@", [LWUtils baseAssetTitle:self], [LWUtils quotedAssetTitle:self]];
         
         self.inverted=[[json objectForKey:@"Inverted"] boolValue];
+        
+        
 
         
     }

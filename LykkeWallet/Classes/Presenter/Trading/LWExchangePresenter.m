@@ -68,24 +68,6 @@
 @implementation LWExchangePresenter
 
 
-#ifdef PROJECT_IATA
-static NSInteger const kNumberOfSections = 1;
-static NSInteger const kSectionLykkeAssets = 0;
-
-static NSString *cellIdentifier = @"LWAssetTableViewCellIdentifier";
-
-static NSString *const AssetIdentifiers[kNumberOfSections] = {
-    @"LWAssetLykkeTableViewCellIdentifier"
-};
-
-static NSString *const AssetNames[kNumberOfSections] = {
-    @"IATA"
-};
-
-static NSString *const AssetIcons[kNumberOfSections] = {
-    @"IATAWallet"
-};
-#else
 static NSInteger const kNumberOfSections = 1;
 static NSInteger const kSectionLykkeAssets = 0;
 
@@ -102,7 +84,7 @@ static NSString *const AssetNames[kNumberOfSections] = {
 static NSString *const AssetIcons[kNumberOfSections] = {
     @"WalletLykke"
 };
-#endif
+
 
 #pragma mark - Lifecycle
 

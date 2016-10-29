@@ -25,7 +25,10 @@
         [arr addObject:c];
     }
     
+    
+    
     _categories=arr;
+    
  }
 
 - (GDXRESTPacketType)type {

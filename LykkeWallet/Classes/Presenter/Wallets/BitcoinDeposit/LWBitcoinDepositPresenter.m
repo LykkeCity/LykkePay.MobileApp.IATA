@@ -10,12 +10,12 @@
 #import "LWAuthManager.h"
 #import "LWConstants.h"
 #import "LWCache.h"
-#import "TKButton.h"
+#import "LWCommonButton.h"
 #import "UIViewController+Navigation.h"
 #import "UIViewController+Loading.h"
 #import "UIView+Toast.h"
 #import "UIImage+Resize.h"
-#import "LWValidator.h"
+//#import "LWValidator.h"
 
 
 @interface LWBitcoinDepositPresenter () {
@@ -25,8 +25,8 @@
 @property (nonatomic, weak) IBOutlet UILabel *titleLabel;
 @property (nonatomic, weak) IBOutlet UILabel *bitcoinHashLabel;
 @property (nonatomic, weak) IBOutlet UIImageView *bitcoinQRImageView;
-@property (nonatomic, weak) IBOutlet TKButton *copyingButton;
-@property (nonatomic, weak) IBOutlet TKButton *emailButton;
+@property (nonatomic, weak) IBOutlet LWCommonButton *copyingButton;
+@property (nonatomic, weak) IBOutlet LWCommonButton *emailButton;
 
 
 #pragma mark - Utils
@@ -45,21 +45,22 @@
     [self setupQRCode];
     [self setBackButton];
     
-    self.emailButton.layer.cornerRadius=self.emailButton.bounds.size.height/2;
-    self.emailButton.clipsToBounds=YES;
+//    self.emailButton.layer.cornerRadius=self.emailButton.bounds.size.height/2;
+//    self.emailButton.clipsToBounds=YES;
+    
+    
+    _copyingButton.type=BUTTON_TYPE_CLEAR;
+    _emailButton.type=BUTTON_TYPE_COLORED;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-#ifdef PROJECT_IATA
-#else
-    [self.copyingButton setGrayPalette];
-    [self.bitcoinHashLabel setTextColor:[UIColor colorWithHexString:kMainElementsColor]];
-#endif
+//    [self.copyingButton setGrayPalette];
+//    [self.bitcoinHashLabel setTextColor:[UIColor colorWithHexString:kMainElementsColor]];
     
     [self updateView];
     
-    [LWValidator setButtonWithClearBackground:self.copyingButton enabled:YES];
+//    [LWValidator setButtonWithClearBackground:self.copyingButton enabled:YES];
 
 }
 
@@ -73,11 +74,8 @@
 - (void)colorize {
     navigationTintColor = self.navigationController.navigationBar.barTintColor;
     
-#ifdef PROJECT_IATA
-#else
     UIColor *color = [UIColor colorWithHexString:kMainGrayElementsColor];
     [self.navigationController.navigationBar setBarTintColor:color];
-#endif
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -98,7 +96,8 @@
 
 - (IBAction)emailClicked:(id)sender {
     [self setLoading:YES];
-    [[LWAuthManager instance] requestEmailBlockchainForAssetId:self.assetID?self.assetID:self.issuerId address:nil];
+    
+    [[LWAuthManager instance] requestEmailBlockchainForAssetId:self.assetID?self.assetID:self.issuerId address:self.bitcoinHashLabel.text];
 }
 
 
@@ -125,6 +124,10 @@
     NSString *bitcoinHash = [self isColoredMultisig]
     ? [LWCache instance].coloredMultiSig
     : [LWCache instance].multiSig;
+    
+    if([self.assetID isEqualToString:@"SLR"])
+        bitcoinHash=[LWCache instance].solarCoinAddress;
+    
     
     self.bitcoinHashLabel.text = bitcoinHash;
     

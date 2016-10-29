@@ -182,6 +182,8 @@
 
 +(NSString *) formatVolumeString:(NSString *) volumee currencySign:(NSString *) currency accuracy:(int) accuracy removeExtraZeroes:(BOOL) flagRemoveZeroes
 {
+    if(!currency)
+        currency=@"";
     NSString *volume=[volumee stringByReplacingOccurrencesOfString:@" " withString:@""];
     double v=volume.doubleValue;
     long leftPart=labs((long)v);

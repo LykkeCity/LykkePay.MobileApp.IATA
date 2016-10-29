@@ -82,7 +82,10 @@
         _chartLabel.attributedText=[[NSAttributedString alloc] initWithString:labelTitles[1] attributes:tabLabelActiveAttributes];
         _chartLabel.textColor=[UIColor whiteColor];
 
-        _selectorLeftConstraint.constant=107;
+        if([UIScreen mainScreen].bounds.size.width==320)
+            _selectorLeftConstraint.constant=86+6;
+        else
+            _selectorLeftConstraint.constant=107;
     }
     [self.view layoutSubviews];
     _selectorView.layer.cornerRadius=_selectorView.bounds.size.height/2;
@@ -185,7 +188,7 @@
     
     self.view.userInteractionEnabled=NO;
     
-    [self transitionFromViewController:currentController toViewController:controller duration:0.5 options:0 animations:^{
+    [self transitionFromViewController:currentController toViewController:controller duration:0.3 options:0 animations:^{
         controller.view.frame=_container.bounds;
         currentController.view.center=CGPointMake(self.view.bounds.size.width*(0.5-direction), currentController.view.center.y);
     } completion:^(BOOL finished){
@@ -200,17 +203,14 @@
 //    _transferButtonLabel.alpha=0;
 //
     
-    _selectorLeftConstraint.constant=[controllers indexOfObject:controller]*(101+6);
     
-    [UIView animateWithDuration:0.3 animations:^{
+    _selectorLeftConstraint.constant=[controllers indexOfObject:controller]*(_selectorView.bounds.size.width+6);
+    
+    [UIView animateWithDuration:0.2 animations:^{
 //        _buyButtonLabel.alpha=1;
 //        _transferButtonLabel.alpha=1;
         [self.view layoutIfNeeded];
     } completion:^(BOOL finished){
-//        _selectorLeftConstraint.constant=[controllers indexOfObject:controller]*(101+6);
-//        [UIView animateWithDuration:0.2 animations:^{
-//            [self.view layoutIfNeeded];
-//        }];
         
     }];
     
@@ -229,6 +229,14 @@
 //    _transferButtonLabel.textColor=[UIColor colorWithRed:63.0/255 green:77.0/255 blue:96.0/255 alpha:1];
 //    _buyButtonLabel.textColor=[UIColor whiteColor];
     
+}
+
+-(NSString *) nibName
+{
+    if([UIScreen mainScreen].bounds.size.width==320)
+        return @"LWExchangeTabContainer_iphone5";
+    else
+        return @"LWExchangeTabContainer";
 }
 
 

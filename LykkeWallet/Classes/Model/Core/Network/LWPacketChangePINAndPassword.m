@@ -9,6 +9,7 @@
 #import "LWPacketChangePINAndPassword.h"
 #import "LWRecoveryPasswordModel.h"
 #import "LWPrivateKeyManager.h"
+#import "LWCache.h"
 
 @implementation LWPacketChangePINAndPassword
 
@@ -27,7 +28,11 @@
 
 -(NSDictionary *) params
 {
-    NSDictionary *params=@{@"Email":self.recModel.email, @"SignedOwnershipMsg":self.recModel.signature2, @"SmsCode":self.recModel.smsCode, @"NewPin":self.recModel.pin, @"NewPassword":self.recModel.password, @"NewHint":self.recModel.hint, @"EncodedPrivateKey":[[LWPrivateKeyManager shared] encryptKey:[LWPrivateKeyManager shared].wifPrivateKeyLykke password:self.recModel.password]};
+    
+    NSString *pass=[LWCache instance].passwordIsHashed?[LWPrivateKeyManager hashForString:self.recModel.password]:self.recModel.password;
+                                                        
+                                                        
+    NSDictionary *params=@{@"Email":self.recModel.email, @"SignedOwnershipMsg":self.recModel.signature2, @"SmsCode":self.recModel.smsCode, @"NewPin":self.recModel.pin, @"NewPassword": pass, @"NewHint":self.recModel.hint, @"EncodedPrivateKey":[[LWPrivateKeyManager shared] encryptKey:[LWPrivateKeyManager shared].wifPrivateKeyLykke password:self.recModel.password]};
     NSLog(@"%@", params);
     return params;
 }

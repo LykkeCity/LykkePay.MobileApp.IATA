@@ -84,6 +84,11 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *periodsViewWidth;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewWidth;
 
+@property (weak, nonatomic) IBOutlet UILabel *changeLabel_iPhone5;
+
+@property (weak, nonatomic) IBOutlet UILabel *askLabel_iPhone5;
+@property (weak, nonatomic) IBOutlet UILabel *bidLabel_iPhone5;
+
 
 
 
@@ -146,6 +151,16 @@
 //        if([UIApplication sharedApplication].statusBarOrientation)
     }
     
+
+    if([UIScreen mainScreen].bounds.size.width==320)
+    {
+        changeLabel=_changeLabel_iPhone5;
+        _askLabel_iPhone5.textColor=[UIColor colorWithRed:1 green:174.0/255 blue:44.0/255 alpha:1];
+        _bidLabel_iPhone5.textColor=[UIColor colorWithRed:171.0/255 green:0 blue:1 alpha:1];
+        _askLabel_iPhone5.hidden=YES;
+        _bidLabel_iPhone5.hidden=YES;
+    }
+
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -283,6 +298,7 @@
 
 -(void) updatePeriodButtons
 {
+    
     for(UIView *v in periodButtons)
         [v removeFromSuperview];
     
@@ -316,7 +332,7 @@
 -(void) viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
-    [self updatePeriodButtons];
+//    [self updatePeriodButtons];
 }
 
 -(void) periodButtonPressed:(UIButton *) button
@@ -376,6 +392,16 @@
         askPriceLabel.text=priceBuy;
         _askPriceOnGraphLabel.text=priceBuy;
         _bidPriceOnGraphLabel.text=priceSell;
+        
+        _askPriceOnGraphLabel.hidden=NO;
+        _bidPriceOnGraphLabel.hidden=NO;
+
+        if([UIScreen mainScreen].bounds.size.width==320 && priceBuy.length)
+        {
+            _askLabel_iPhone5.hidden=NO;
+            _bidLabel_iPhone5.hidden=NO;
+        }
+
  //       [self.tableView reloadData];
     }
     
@@ -515,13 +541,18 @@
     _askPriceOnGraphLabel.hidden=NO;
     _bidPriceOnGraphLabel.hidden=NO;
     
+
+    
 //    lastPriceLabel.text=[LWUtils formatVolumeNumber:graphData.lastPrice currencySign:@"" accuracy:self.assetPair.accuracy.intValue removeExtraZeroes:YES];
     
     
  //   lastPriceLabel.text=[LWUtils stringFromNumber:graphData.lastPrice];
     
+    if(askPriceLabel.text.length)
+    {
     _bidPriceOnGraphLabel.text=bidPriceLabel.text;
     _askPriceOnGraphLabel.text=askPriceLabel.text;
+    }
     NSDateFormatter *formatter=[[NSDateFormatter alloc] init];
     formatter.timeZone=[NSTimeZone defaultTimeZone];
     [formatter setDateFormat:@"HH:mm a"];
@@ -616,6 +647,16 @@
     }
     
 //    [self updatePeriodButtons];
+}
+
+-(NSString *) nibName
+{
+    if([UIScreen mainScreen].bounds.size.width==320)
+    {
+        return @"LWTradingLinearGraphPresenter_iphone5";
+    }
+    else
+        return @"LWTradingLinearGraphPresenter";
 }
 
 

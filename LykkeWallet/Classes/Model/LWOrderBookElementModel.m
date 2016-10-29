@@ -55,6 +55,8 @@
 
 -(void) invert
 {
+    if(!array.count)
+        return;
     NSMutableArray *newarr=[[NSMutableArray alloc] init];
     for(NSDictionary *d in array)
     {
@@ -66,6 +68,10 @@
 
 -(double) priceForVolume:(double)volumeOrig
 {
+    
+    if(!array.count)
+        return 0;
+
     if(volumeOrig==0)
         return [array[0][@"Price"] doubleValue];
     double amount=0;
@@ -97,6 +103,9 @@
 
 -(double) priceForResult:(double)volumeOrig
 {
+    if(!array.count)
+        return 0;
+
     if(volumeOrig==0)
         return [array[0][@"Price"] doubleValue];
 

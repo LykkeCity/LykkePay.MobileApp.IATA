@@ -36,6 +36,7 @@
     BOOL flagReturningToCenter;
     
     BOOL flagScrollIsWorkingNow;
+    int flagHeaderDirectionShowing;
     
 }
 
@@ -50,6 +51,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.multipleTouchEnabled=NO;
+    _topScrollView.multipleTouchEnabled=NO;
+    _bottomScrollView.multipleTouchEnabled=NO;
     [self adjustThinLines];
     prevSameCount=0;
     
@@ -140,6 +144,10 @@
 
 -(void) scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {
+    if(scrollView==_topScrollView)
+        _bottomScrollView.userInteractionEnabled=NO;
+    else
+        _topScrollView.userInteractionEnabled=NO;
     [timer invalidate];
 
     [_topScrollView.layer removeAllAnimations];
@@ -161,6 +169,13 @@
 //    scrollView.scrollEnabled = NO;
 //    scrollView.scrollEnabled = YES;
 
+    _topScrollView.userInteractionEnabled=YES;
+    _bottomScrollView.userInteractionEnabled=YES;
+    
+    if(decelerate==NO)
+    {
+        [self showHideHeaderIfNeeded];
+    }
 }
 
 -(void) viewWillDisappear:(BOOL)animated
@@ -320,6 +335,9 @@
         if(fabs(velocity)<100)
             [timer invalidate];
     }
+    
+    if(timer.isValid==NO)
+        [self showHideHeaderIfNeeded];
 
 }
 
@@ -356,7 +374,7 @@
     if(flagStartedScroll==NO || flagReturningToCenter || flagScrollIsWorkingNow)
         return;
 
-    
+    CGFloat prevDistToPopWindow=distToPopWindow;
     flagScrollIsWorkingNow=YES;
     if(scrollView==_bottomScrollView && flagScrollingTop==NO)
     {
@@ -387,6 +405,16 @@
 
         flagScrollIsWorkingNow=NO;
     }
+    if(prevDistToPopWindow==distToPopWindow)
+        flagHeaderDirectionShowing=0;
+    else if(prevDistToPopWindow>distToPopWindow)
+        flagHeaderDirectionShowing=1;
+    else
+        flagHeaderDirectionShowing=-1;
+        
+//    flagHeaderDirectionShowing=prevDistToPopWindow>distToPopWindow;
+    
+    NSLog(@"Showing header %d", (int)flagHeaderDirectionShowing);
     
 //    [self.view layoutIfNeeded];
     
@@ -417,6 +445,11 @@
     }
     
     CGFloat heightScrolled=origTopScrollOffset-_topScrollView.contentOffset.y;
+    
+    CGRect a=_topScrollView.frame;
+    CGSize b=_topScrollView.contentSize;
+    CGPoint c=_topScrollView.contentOffset;
+    
     if(fabs(heightScrolled)<0.00001)
         return;
     if(fabs(heightScrolled)>100 && _topScrollViewHeight.constant==normalTopScrollViewHeight)
@@ -432,7 +465,7 @@
     }
 
     
-    if(_topScrollView.contentOffset.y<0 || (_topScrollView.contentOffset.y>_topScrollView.contentSize.height-_topScrollView.bounds.size.height && (distToPopWindow==0 || [UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad) && _topScrollViewHeight.constant==normalTopScrollViewHeight))
+    if(_topScrollView.contentOffset.y<0 || (_topScrollView.contentOffset.y>=_topScrollView.contentSize.height-_topScrollView.bounds.size.height && (distToPopWindow==0 || [UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad) && _topScrollViewHeight.constant==normalTopScrollViewHeight))
     {
         origTopScrollOffset=_topScrollView.contentOffset.y;
         return;
@@ -839,6 +872,61 @@
         
     }
     _bottomScrollView.contentSize=CGSizeMake(_bottomScrollView.bounds.size.width, height);
+
+}
+
+-(void) showHideHeaderIfNeeded
+{
+    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad)
+        return;
+    UIWindow *window=self.view.window;
+    CGPoint point=[self.view convertPoint:CGPointMake(0, 0) toView:window];
+    point.y=point.y-20;
+    
+    if((flagHeaderDirectionShowing==1 && distToPopWindow>0) || (flagHeaderDirectionShowing==0 && distToPopWindow>0 && distToPopWindow<point.y))
+    {
+        self.view.userInteractionEnabled=NO;
+        [UIView animateWithDuration:0.3 animations:^{
+            CGRect rrr=[UIScreen mainScreen].bounds;
+            distToPopWindow=0;
+            rrr.origin.y=distToPopWindow;
+            rrr.size.height=[UIScreen mainScreen].bounds.size.height+distToPopWindow;
+            window.frame=rrr;
+            statusBarView.frame=CGRectMake(0, distToPopWindow, window.bounds.size.width, 20);
+        } completion:^(BOOL finished){
+            if(_bottomScrollView.bounds.size.height<ONE_LINE_HEIGHT)
+            {
+                [self.view layoutIfNeeded];
+                _topScrollViewHeight.constant=self.view.bounds.size.height-44-10-ONE_LINE_HEIGHT;
+                [UIView animateWithDuration:0.2 animations:^{
+                [self.view layoutIfNeeded];
+                } completion:^(BOOL finished){
+                    self.view.userInteractionEnabled=YES;
+
+                }];
+            }
+            else
+                self.view.userInteractionEnabled=YES;
+        }
+         ];
+
+    }
+    else if(flagHeaderDirectionShowing==-1 && distToPopWindow<point.y)
+    {
+        self.view.userInteractionEnabled=NO;
+
+        [UIView animateWithDuration:0.3 animations:^{
+            CGRect rrr=[UIScreen mainScreen].bounds;
+            distToPopWindow=point.y;
+            rrr.origin.y=-distToPopWindow;
+            rrr.size.height=[UIScreen mainScreen].bounds.size.height+distToPopWindow;
+            window.frame=rrr;
+            statusBarView.frame=CGRectMake(0, distToPopWindow, window.bounds.size.width, 20);
+        } completion:^(BOOL finished){
+            self.view.userInteractionEnabled=YES;
+        }];
+
+    }
 
 }
 

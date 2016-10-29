@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -89,7 +89,7 @@
                                 <constraint firstAttribute="height" constant="1" id="zRn-ca-Wl4"/>
                             </constraints>
                         </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Azx-J2-OiG">
+                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Azx-J2-OiG">
                             <color key="backgroundColor" red="0.82745098039215681" green="0.83921568627450982" blue="0.85882352941176465" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="1" id="oQD-14-azD"/>
@@ -112,13 +112,13 @@
                 </view>
                 <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BitcoinQrCode" translatesAutoresizingMaskIntoConstraints="NO" id="ElN-PC-wgO">
                     <constraints>
-                        <constraint firstAttribute="height" constant="173" id="tT4-Ep-XPL"/>
-                        <constraint firstAttribute="width" constant="173" id="xHk-Uj-HHI"/>
+                        <constraint firstAttribute="height" constant="120" id="tT4-Ep-XPL"/>
+                        <constraint firstAttribute="width" constant="120" id="xHk-Uj-HHI"/>
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9TK-9N-G3l">
                     <constraints>
-                        <constraint firstAttribute="width" constant="300" id="JeB-G7-763"/>
+                        <constraint firstAttribute="width" constant="260" id="JeB-G7-763"/>
                         <constraint firstAttribute="height" constant="50" id="hVp-Zr-Wk0"/>
                     </constraints>
                     <string key="text">1CsawdTDfZEvJJVtDWsAqx
@@ -131,13 +131,13 @@ nvJfzWN6cH2</string>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="OfA-dq-F0h" secondAttribute="bottom" id="07u-TX-9OX"/>
-                <constraint firstItem="ElN-PC-wgO" firstAttribute="top" secondItem="pbi-6S-LVx" secondAttribute="bottom" constant="26" id="0JW-xu-Ykb"/>
+                <constraint firstItem="ElN-PC-wgO" firstAttribute="top" secondItem="pbi-6S-LVx" secondAttribute="bottom" constant="22" id="0JW-xu-Ykb"/>
                 <constraint firstItem="pbi-6S-LVx" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="E9t-Mh-2zF"/>
                 <constraint firstItem="9TK-9N-G3l" firstAttribute="top" secondItem="2Ph-9Z-syT" secondAttribute="bottom" constant="9" id="EdE-U9-blG"/>
                 <constraint firstItem="2Ph-9Z-syT" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="I6j-Ql-5uw"/>
                 <constraint firstItem="9TK-9N-G3l" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="VCC-qX-Gzk"/>
                 <constraint firstItem="OfA-dq-F0h" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="hQ1-Zw-271"/>
-                <constraint firstItem="2Ph-9Z-syT" firstAttribute="top" secondItem="ElN-PC-wgO" secondAttribute="bottom" constant="25" id="k9x-vF-8dn"/>
+                <constraint firstItem="2Ph-9Z-syT" firstAttribute="top" secondItem="ElN-PC-wgO" secondAttribute="bottom" constant="22" id="k9x-vF-8dn"/>
                 <constraint firstAttribute="trailing" secondItem="pbi-6S-LVx" secondAttribute="trailing" id="oax-sQ-ozc"/>
                 <constraint firstItem="pbi-6S-LVx" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="pcs-Gh-a8H"/>
                 <constraint firstAttribute="trailing" secondItem="OfA-dq-F0h" secondAttribute="trailing" id="xmP-b1-Edd"/>

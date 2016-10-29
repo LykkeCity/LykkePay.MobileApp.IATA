@@ -44,6 +44,9 @@
 #import "LWMyLykkeIpadController.h"
 #import "LWEtheriumDepositPresenter.h"
 #import "LWLykkeBuyTransferContainer.h"
+#import "LWPacketCategories.h"
+#import "LWAssetCategoryModel.h"
+#import "LWImageDownloader.h"
 
 
 static NSInteger const kSectionBankCards      = 0;
@@ -61,6 +64,8 @@ static NSInteger const kSectionBitcoinWallets = 2;
     UIImageView *screenshot;
     NSNumber *balanceToSellCompletely;
     NSArray *categories;
+    
+    
 }
 
 
@@ -68,16 +73,13 @@ static NSInteger const kSectionBitcoinWallets = 2;
 
 @property (readonly, nonatomic) LWLykkeWalletsData *data;
 
-@property (readonly, nonatomic) NSMutableArray     *btcWallets;
-@property (readonly, nonatomic) NSMutableArray     *lkeWallets;
-
 
 
 #pragma mark - Utils
 
 - (void)expandTable:(UITableView *)tableView indexPath:(NSIndexPath *)indexPath;
 - (NSString *)assetIdentifyForIndexPath:(NSIndexPath *)indexPath;
-- (LWLykkeAssetsData *)assetDataForIndexPath:(NSIndexPath *)indexPath;
+
 - (void)showDealFormForIndexPath:(NSIndexPath *)indexPath;
 - (void)setRefreshControl;
 - (void)reloadWallets;
@@ -89,36 +91,6 @@ static NSInteger const kSectionBitcoinWallets = 2;
 
 
 @implementation LWWalletsPresenter
-
-
-static NSInteger const kNumberOfSections = 3;//6;
-
-static NSString *const WalletIdentifiers[kNumberOfSections] = {
-    kBanksTableViewCellIdentifier,
-    kLykkeTableViewCellIdentifier,
-    kBitcoinTableViewCellIdentifier
-
-    /*, kWalletEmptyTableViewCell,
-        kWalletEmptyTableViewCell,
-        kWalletEmptyTableViewCell,
-        kWalletEmptyTableViewCell */
-};
-
-static NSString *const WalletNames[kNumberOfSections] = {
-    @"VISA/MASTERCARD",
-    @"LYKKE",
-    @"BITCOIN"
-    /*, @"PAYPAL", @"WEBMONEY", @"MONETAS", @"QIWI"*/
-};
-
-static NSString *const WalletIcons[kNumberOfSections] = {
-    @"WalletBanks",
-    @"WalletLykke",
-    @"WalletBitcoin"
-
-    /*, @"WalletPaypal", @"WalletWebmoney", @"WalletMonetas", @"WalletQiwi"*/
-};
-
 
 
 
@@ -160,35 +132,14 @@ static NSString *const WalletIcons[kNumberOfSections] = {
     [super viewDidLoad];
     
     self.title = Localize(@"tab.wallets");
-    
-    _lkeWallets = [NSMutableArray array];
-    _btcWallets = [NSMutableArray array];
-
-    expandedSections = [[NSMutableIndexSet alloc] init];
-    for (int i = 0; i < kNumberOfSections; ++i) {
-        [expandedSections addIndex:i];
-    }
-    
     [self registerCellWithIdentifier:kWalletTableViewCellIdentifier
                              name:kWalletTableViewCell];
-    
-    [self registerCellWithIdentifier:kBanksTableViewCellIdentifier
-                             name:kBanksTableViewCell];
-    
     [self registerCellWithIdentifier:kLykkeTableViewCellIdentifier
                              name:kLykkeTableViewCell];
-    
-    [self registerCellWithIdentifier:kWalletEmptyTableViewCellIdentifier
-                             name:kWalletEmptyTableViewCell];
     
     [self registerCellWithIdentifier:kLykkeEmptyTableViewCellIdentifier
                              name:kLykkeEmptyTableViewCell];
 
-    [self registerCellWithIdentifier:kBitcoinTableViewCellIdentifier
-                             name:kBitcoinTableViewCell];
-    
-    [self registerCellWithIdentifier:kLoadingTableViewCellIdentifier
-                             name:kLoadingTableViewCell];
     
     UIEdgeInsets insets = UIEdgeInsetsMake(0, 0, CGRectGetHeight(self.tabBarController.tabBar.frame), 0);
     self.tableView.contentInset = insets;
@@ -239,10 +190,11 @@ static NSString *const WalletIcons[kNumberOfSections] = {
 
 -(void) requestWallets
 {
-    if(![LWCache instance].allAssets)
+    if(![LWCache instance].allAssets || !categories)
         [self performSelector:@selector(requestWallets) withObject:nil afterDelay:1];
     else
     {
+        [LWAuthManager instance].caller=self;
         [[LWAuthManager instance] requestLykkeWallets];
         
     }
@@ -251,14 +203,19 @@ static NSString *const WalletIcons[kNumberOfSections] = {
 
 -(void) authManager:(LWAuthManager *)manager didGetAssetCategories:(LWPacketCategories *)packet
 {
+    categories=packet.categories;
     
+    expandedSections = [[NSMutableIndexSet alloc] init];
+    for (int i = 0; i < categories.count; i++)
+        [expandedSections addIndex:i];
+
 }
 
 
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return kNumberOfSections;
+    return categories.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -266,27 +223,7 @@ static NSString *const WalletIcons[kNumberOfSections] = {
     if ([expandedSections containsIndex:section])
     {
         if (self.data) {
-            int const rowCell = 1;
-            if (section == kSectionLykkeWallets) {
-                return MAX(1, self.lkeWallets.count) + rowCell;
-            }
-            else if (section == kSectionBitcoinWallets) {
-                return MAX(1, self.btcWallets.count) + rowCell;
-            }
-            else if (section == kSectionBankCards && self.data.bankCards) {
-                return MAX(1, self.data.bankCards.count) + rowCell;
-            }
-            else {
-                return 2; // general + empty
-            }
-        }
-        else {
-            // loading indicator cell
-            if (section == kSectionLykkeWallets
-                || section == kSectionBankCards
-                || section == kSectionBitcoinWallets) {
-                return 2;
-            }
+            return [[categories[section] assets] count]+1;
         }
     }
     return 1;
@@ -315,32 +252,38 @@ static NSString *const WalletIcons[kNumberOfSections] = {
 
         NSDictionary *attributes = @{NSKernAttributeName:@(1.9)};
 
-        int sss=indexPath.section;
         
-//        wallet.walletLabel.text = WalletNames[indexPath.section];
-        wallet.walletLabel.attributedText = [[NSAttributedString alloc] initWithString:WalletNames[indexPath.section] attributes:attributes];
-       
-        wallet.walletImageView.image = [UIImage imageNamed:WalletIcons[indexPath.section]];
+        LWAssetCategoryModel *cat=categories[indexPath.section];
         
-        // Hide plus button for bitcoin
-        wallet.addWalletButton.hidden =
-        (indexPath.section == kSectionBitcoinWallets
-         || indexPath.section == kSectionLykkeWallets);
+        wallet.walletLabel.attributedText = [[NSAttributedString alloc] initWithString:cat.name attributes:attributes];
+       if(!cat.iconImage)
+       {
+           [[LWImageDownloader shared] downloadImageFromURLString:cat.iconUrl shouldAuthenticate:NO withCompletion:^(UIImage *image){
+               if(image)
+               {
+                   cat.iconImage=image;
+                   wallet.walletImageView.image=image;
+               }
+           }];
+       }
+        else
+            wallet.walletImageView.image = cat.iconImage;
+        
+        
+        wallet.addWalletButton.hidden=YES;
 
     }
     // Show wallets for category
     else {
-        NSString *identifier = WalletIdentifiers[indexPath.section];
-        // Lykke cells
-        if (indexPath.section == kSectionLykkeWallets) {
+        NSString *identifier = kLykkeTableViewCellIdentifier;
             if (self.data) {
                 // Show Lykke Wallets
-                if (self.lkeWallets.count > 0) {
+ 
                     cell = [tableView dequeueReusableCellWithIdentifier:identifier];
                     LWLykkeTableViewCell *lykke = (LWLykkeTableViewCell *)cell;
                     lykke.cellDelegate = self;
                     
-                    LWLykkeAssetsData *asset = [self assetDataForIndexPath:indexPath];
+                    LWLykkeAssetsData *asset = [[categories[indexPath.section] assets] objectAtIndex:indexPath.row-1];
                     NSInteger const accuracy = [LWAssetsDictionaryItem assetAccuracyById:asset.identity];
                     NSString *balance = [LWMath historyPriceString:asset.balance
                                                               precision:accuracy
@@ -363,103 +306,14 @@ static NSString *const WalletIcons[kNumberOfSections] = {
                     }
                     else
                         lykke.rightUtilityButtons=nil;
-                }
-                // Show Empty
-                else {
-                    cell = [tableView dequeueReusableCellWithIdentifier:kLykkeEmptyTableViewCellIdentifier];
-                    LWLykkeEmptyTableViewCell *emptyCell = (LWLykkeEmptyTableViewCell *)cell;
-                    emptyCell.titleLabel.text = Localize(@"wallets.lykke.empty");
-                    emptyCell.delegate = self;
-                    emptyCell.addWalletButton.hidden = ![[LWCache instance] isMultisigAvailable];
-                    emptyCell.issuerId = @"LKE";
-                }
             }
             else {
                 // loading indicator cell
                              cell=[[LWWalletsLoadingTableViewCell alloc] init];
-          //      cell = [tableView dequeueReusableCellWithIdentifier:kLoadingTableViewCellIdentifier];
+          
             }
         }
-        // Bitcoin cells
-        else if (indexPath.section == kSectionBitcoinWallets) {
-            if (self.data) {
-                // Show Bitcoin Wallets
-                if (self.btcWallets.count > 0) {
-                    cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-                    LWBitcoinTableViewCell *bitcoin = (LWBitcoinTableViewCell *)cell;
-                    bitcoin.cellDelegate = self;
-                    
-                    LWLykkeAssetsData *asset = [self assetDataForIndexPath:indexPath];
-                    NSInteger const accuracy = [LWAssetsDictionaryItem assetAccuracyById:asset.identity];
-                    NSString *balance = [LWMath historyPriceString:asset.balance
-                                                         precision:accuracy
-                                                        withPrefix:@""];
-                    bitcoin.bitcoinLabel.text = asset.name;
-                    bitcoin.bitcoinBalance.text = [NSString stringWithFormat:@"%@ %@",
-                                                   asset.symbol, balance];
-                    bitcoin.bitcoinAddButton.hidden = ![[LWCache instance] isMultisigAvailable];
-                    
-                    bitcoin.bitcoinAddButton.hidden=[LWCache shouldHideDepositForAssetId:asset.identity];
 
-                    
-                    // validate for base asset and balance
-                    if ((![asset.identity isEqualToString:[LWCache instance].baseAssetId] && asset.balance.doubleValue > 0.0)) {
-                        CGFloat const buttonWidth = 120.0;
-                        NSMutableArray *rightUtilityButtons = [NSMutableArray new];
-                        [rightUtilityButtons sw_addUtilityButton:[self createUtilsButton]];
-                        [bitcoin setRightUtilityButtons:rightUtilityButtons WithButtonWidth:buttonWidth];
-                        
-                        bitcoin.delegate = self;
-                    }
-                    else
-                    {
-                        bitcoin.rightUtilityButtons=nil;
-                    }
-                }
-                // Show Empty
-                else {
-                    cell = [tableView dequeueReusableCellWithIdentifier:kLykkeEmptyTableViewCellIdentifier];
-                    LWLykkeEmptyTableViewCell *emptyCell = (LWLykkeEmptyTableViewCell *)cell;
-                    emptyCell.titleLabel.text = Localize(@"wallets.lykke.empty");
-                    emptyCell.delegate = self;
-                    emptyCell.addWalletButton.hidden = ![[LWCache instance] isMultisigAvailable];
-                    emptyCell.issuerId = @"BTC";
-                }
-            }
-            else {
-                // loading indicator cell
-                cell=[[LWWalletsLoadingTableViewCell alloc] init];
-//                cell = [tableView dequeueReusableCellWithIdentifier:kLoadingTableViewCellIdentifier];
-            }
-        }
-        // Banks cells
-        else if (indexPath.section == kSectionBankCards) {
-            if (self.data && self.data.bankCards) {
-                // Show Banks Wallets
-                if (self.data.bankCards.count > 0) {
-                    cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-                    LWBanksTableViewCell *lykke = (LWBanksTableViewCell *)cell;
-                    LWBankCardsData *card = (LWBankCardsData *)self.data.bankCards[indexPath.row - 1];
-                    lykke.cardNameLabel.text = @"Visa";
-                    lykke.cardDigitsLabel.text = [NSString stringWithFormat:@".... %@", card.lastDigits];
-                }
-                // Show Empty
-                else {
-                    cell = [tableView dequeueReusableCellWithIdentifier:kWalletEmptyTableViewCellIdentifier];
-                    LWWalletEmptyTableViewCell *emptyCell = (LWWalletEmptyTableViewCell *)cell;
-                    emptyCell.titleLabel.text = Localize(@"wallets.cards.empty");
-                }
-            }
-            else {
-                // loading indicator cell
-                cell = [tableView dequeueReusableCellWithIdentifier:kLoadingTableViewCellIdentifier];
-            }
-        }
-        // Show empty cells
-        else {
-            cell = [tableView dequeueReusableCellWithIdentifier:kWalletEmptyTableViewCellIdentifier];
-        }
-    }
     
     return cell;
 }
@@ -471,30 +325,10 @@ static NSString *const WalletIcons[kNumberOfSections] = {
 
     // show history for selected asset
     if (indexPath.row != 0) {
-        if (indexPath.section == kSectionBankCards) {
-            if (self.data && self.data.bankCards) {
-                if (self.data.bankCards.count > 0) {
-                    LWBitcoinDepositPresenter *presenter = [LWBitcoinDepositPresenter new];
-                    LWLykkeAssetsData *data = [self assetDataForIndexPath:indexPath];
-                    if (data) {
-                        
-                        presenter.assetName = data.name;
-                        presenter.issuerId = data.issuerId;
-                        [self.navigationController pushViewController:presenter animated:YES];
-                    }
-                }
-            }
-        }
-        else if (indexPath.section == kSectionLykkeWallets) {
-            if (self.data && self.lkeWallets.count > 0) {
-                [self showTradingWallet:indexPath];
-            }
-        }
-        else if (indexPath.section == kSectionBitcoinWallets) {
-            if (self.data && self.btcWallets.count > 0) {
-                [self showTradingWallet:indexPath];
-            }
-        }
+        
+        
+        [self showTradingWallet:indexPath];
+
     }
     // expand / close wallet
     else {
@@ -503,10 +337,10 @@ static NSString *const WalletIcons[kNumberOfSections] = {
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if(indexPath.row==0 && [[categories[indexPath.section] assets] count]==0)
+        return 0;
+        
     CGFloat const kStandardHeight = 50.0;
-    if (indexPath.section == kSectionBankCards) {
-        return 0.0;
-    }
     return kStandardHeight;
 }
 
@@ -535,26 +369,30 @@ static NSString *const WalletIcons[kNumberOfSections] = {
     shouldShowError = NO;
 
     _data = data;
-    _lkeWallets = [NSMutableArray array];
-    _btcWallets = [NSMutableArray array];
-
-    for (LWLykkeAssetsData *asset in data.lykkeData.assets) {
-        // Hide if zero
+    
+    for(LWAssetCategoryModel *m in categories)
+    {
+        m.assets=[[NSMutableArray alloc] init];
+    }
+    
+    for(LWLykkeAssetsData *asset in data.lykkeData.assets)
+    {
         if (asset.hideIfZero && asset.balance.doubleValue <= 0.0) {
             continue;
         }
-        
-        
-        if([asset.issuerId isKindOfClass:[NSString class]]==NO)
-            continue;
-        if ([asset.issuerId isEqualToString:@"BTC"]) {
-            [_btcWallets addObject:asset];
-        }
-        else if ([asset.issuerId isEqualToString:@"LKE"]) {
-            [_lkeWallets addObject:asset];
-        }
 
+        for(LWAssetCategoryModel *m in categories)
+        {
+            if([m.identity isEqualToString:asset.categoryId])
+            {
+                [m.assets addObject:asset];
+                break;
+            }
+        }
     }
+    
+    
+    
     [self.tableView reloadData];
     
     [screenshot removeFromSuperview];
@@ -626,38 +464,24 @@ static NSString *const WalletIcons[kNumberOfSections] = {
     
     
     NSIndexPath *path = [self.tableView indexPathForCell:cell];
-    LWLykkeAssetsData *data = [self assetDataForIndexPath:path];
+    LWLykkeAssetsData *data = [[categories[path.section] assets] objectAtIndex:path.row-1];
 
     [LWKYCManager sharedInstance].viewController=self;;
     
     [[LWKYCManager sharedInstance] manageKYCStatusForAsset:data.identity successBlock:^{
     
     
-        NSDictionary *depositTypes=@{@"EUR":@"currency",
-                                     @"USD":@"currency",
-                                     @"CHF":@"currency",
-                                     @"BTC":@"bitcoin",
-                                     @"LKK":@"bitcoin"};
+//        NSDictionary *depositTypes=@{@"EUR":@"currency",
+//                                     @"USD":@"currency",
+//                                     @"CHF":@"currency",
+//                                     @"BTC":@"bitcoin",
+//                                     @"LKK":@"bitcoin"};
         
         if (data) {
-//            if([data.identity isEqualToString:@"LKK"])
-//            {
-//                if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
-//                {
-//                    LWMyLykkeBuyPresenter *presenter=[[LWMyLykkeBuyPresenter alloc] init];
-//                    [self.navigationController pushViewController:presenter animated:YES];
-//                }
-//                else
-//                {
-//                    LWMyLykkeIpadController *presenter=[LWMyLykkeIpadController new];
-//                    [self.navigationController pushViewController:presenter animated:YES];
-//                    
-//                }
-//                return;
-//            }
             
             
             UIViewController *presenter;
+            
 
             if([data.identity isEqualToString:@"ETH"])
                 presenter=[LWEtheriumDepositPresenter new];
@@ -667,7 +491,7 @@ static NSString *const WalletIcons[kNumberOfSections] = {
                 [self.navigationController pushViewController:presenter animated:YES];
                 return;
             }
-            else if([depositTypes[data.identity] isEqualToString:@"bitcoin"])
+            else if([LWCache isBlockchainDepositEnabledForAssetId:data.identity])
             {
                 presenter = [LWBitcoinDepositPresenter new];
             }
@@ -675,11 +499,12 @@ static NSString *const WalletIcons[kNumberOfSections] = {
             {
                 if([LWCache isBankCardDepositEnabledForAssetId:data.identity])
                     presenter=[LWCreditCardDepositPresenter new];
-                else
+                else if([LWCache isSwiftDepositEnabledForAssetId:data.identity])
                     presenter=[LWCurrencyDepositPresenter new];
             }
             
-            
+            if(!presenter)
+                return;
             
             ((LWCurrencyDepositPresenter *)presenter).assetName=data.name;
             ((LWCurrencyDepositPresenter *)presenter).assetID=data.identity;
@@ -746,7 +571,7 @@ static NSString *const WalletIcons[kNumberOfSections] = {
 
 - (void)addBitcoinClicked:(LWBitcoinTableViewCell *)cell {
     NSIndexPath *path = [self.tableView indexPathForCell:cell];
-    LWLykkeAssetsData *data = [self assetDataForIndexPath:path];
+    LWLykkeAssetsData *data = [categories[path.section] assets][path.row-1];
     if (data) {
         [LWKYCManager sharedInstance].viewController=self;;
         
@@ -818,50 +643,50 @@ static NSString *const WalletIcons[kNumberOfSections] = {
 
 - (NSString *)assetIdentifyForIndexPath:(NSIndexPath *)indexPath {
     // Lykke cells
-    if (indexPath.section == kSectionLykkeWallets) {
-        LWLykkeAssetsData *data = [self assetDataForIndexPath:indexPath];
+//    if (indexPath.section == kSectionLykkeWallets) {
+        LWLykkeAssetsData *data = [categories[indexPath.section] assets][indexPath.row-1];
         return (data ? data.identity : nil);
-    }
-    // Banks cells
-    else if (indexPath.section == kSectionBankCards) {
-        if (self.data && self.data.bankCards) {
-            // Show Banks Wallets
-            if (self.data.bankCards.count > 0) {
-                LWBankCardsData *card = (LWBankCardsData *)self.data.bankCards[indexPath.row - 1];
-                return card.identity;
-            }
-            else {
-                return nil;
-            }
-        }
-    }
+//    }
+//    // Banks cells
+//    else if (indexPath.section == kSectionBankCards) {
+//        if (self.data && self.data.bankCards) {
+//            // Show Banks Wallets
+//            if (self.data.bankCards.count > 0) {
+//                LWBankCardsData *card = (LWBankCardsData *)self.data.bankCards[indexPath.row - 1];
+//                return card.identity;
+//            }
+//            else {
+//                return nil;
+//            }
+//        }
+//    }
 
     return nil;
 }
 
-- (LWLykkeAssetsData *)assetDataForIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == kSectionLykkeWallets) {
-        if (self.data) {
-            if (self.lkeWallets.count > 0 && indexPath.row > 0) {
-                LWLykkeAssetsData *asset = (LWLykkeAssetsData *)self.lkeWallets[indexPath.row - 1];
-                return asset;
-            }
-        }
-    }
-    else if (indexPath.section == kSectionBitcoinWallets) {
-        if (self.data) {
-            if (self.btcWallets.count > 0 && indexPath.row > 0) {
-                LWLykkeAssetsData *asset = (LWLykkeAssetsData *)self.btcWallets[indexPath.row - 1];
-                return asset;
-            }
-        }
-    }
-    return nil;
-}
+//- (LWLykkeAssetsData *)assetDataForIndexPath:(NSIndexPath *)indexPath {
+//    if (indexPath.section == kSectionLykkeWallets) {
+//        if (self.data) {
+//            if (self.lkeWallets.count > 0 && indexPath.row > 0) {
+//                LWLykkeAssetsData *asset = (LWLykkeAssetsData *)self.lkeWallets[indexPath.row - 1];
+//                return asset;
+//            }
+//        }
+//    }
+//    else if (indexPath.section == kSectionBitcoinWallets) {
+//        if (self.data) {
+//            if (self.btcWallets.count > 0 && indexPath.row > 0) {
+//                LWLykkeAssetsData *asset = (LWLykkeAssetsData *)self.btcWallets[indexPath.row - 1];
+//                return asset;
+//            }
+//        }
+//    }
+//    return nil;
+//}
 
 - (void)showDealFormForIndexPath:(NSIndexPath *)indexPath {
     [self setLoading:YES];
-    LWLykkeAssetsData *data = [self assetDataForIndexPath:indexPath];
+    LWLykkeAssetsData *data = [categories[indexPath.section] assets][indexPath.row-1];
     balanceToSellCompletely=data.balance;
     [[LWAuthManager instance] requestAssetPair:data.assetPairId];
 }
@@ -898,7 +723,7 @@ static NSString *const WalletIcons[kNumberOfSections] = {
 - (void)showTradingWallet:(NSIndexPath *)indexPath {
     LWTradingWalletPresenter *presenter = [LWTradingWalletPresenter new];
     
-    LWLykkeAssetsData *data = [self assetDataForIndexPath:indexPath];
+    LWLykkeAssetsData *data = [categories[indexPath.section] assets][indexPath.row-1];
     if (data) {
         presenter.assetId = [NSString stringWithString:data.identity];
         presenter.assetName = data.name;

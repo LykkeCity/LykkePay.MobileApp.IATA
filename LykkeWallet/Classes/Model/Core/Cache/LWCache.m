@@ -108,6 +108,19 @@ SINGLETON_INIT {
     return NO;
 }
 
++(BOOL) isBlockchainDepositEnabledForAssetId:(NSString *) assetID
+{
+    for(LWAssetModel *asset in [LWCache instance].allAssets)
+    {
+        if([asset.identity isEqualToString:assetID])
+        {
+            return asset.blockchainDepositEnabled;
+        }
+    }
+    return NO;
+
+}
+
 +(NSString *) currentAppVersion
 {
     

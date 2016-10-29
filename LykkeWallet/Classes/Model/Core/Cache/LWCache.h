@@ -75,6 +75,7 @@ SINGLETON_DECLARE
 @property (copy, nonatomic) NSString *depositUrl;
 @property (copy, nonatomic) NSString *multiSig;
 @property (copy, nonatomic) NSString *coloredMultiSig;
+@property (copy, nonatomic) NSString *solarCoinAddress;
 
 @property (copy, nonatomic) NSString *refundAddress;
 @property BOOL refundSendAutomatically;
@@ -96,6 +97,7 @@ SINGLETON_DECLARE
 
 +(BOOL) isBankCardDepositEnabledForAssetId:(NSString *) assetID;
 +(BOOL) isSwiftDepositEnabledForAssetId:(NSString *) assetID;
++(BOOL) isBlockchainDepositEnabledForAssetId:(NSString *) assetID;
 
 
 +(BOOL) isBaseAsset:(NSString *) assetId;

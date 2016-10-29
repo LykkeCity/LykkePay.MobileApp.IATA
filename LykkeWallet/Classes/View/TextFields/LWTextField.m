@@ -148,8 +148,8 @@
 
 - (void)setViewMode:(UITextFieldViewMode)viewMode {
     _viewMode = viewMode;
-    
-    [self.textField setClearButtonMode:self.viewMode];
+    [self.textField setClearButtonMode:UITextFieldViewModeNever]; //Andrey
+//    [self.textField setClearButtonMode:self.viewMode];
 }
 
 - (void)setLeftOffset:(NSInteger)leftOffset {

@@ -46,6 +46,12 @@
     minGraphY=40;
     maxGraphY=self.bounds.size.height-70;
     
+    if([UIScreen mainScreen].bounds.size.width==320)
+    {
+        minGraphY=55;
+        maxGraphY=self.bounds.size.height-95;
+    }
+    
     minValue=10000000;
     maxValue=0;
     
@@ -69,6 +75,13 @@
     CGSize size=self.frame.size;
     minGraphY=40;
     maxGraphY=self.bounds.size.height-70;
+    
+    if([UIScreen mainScreen].bounds.size.width==320)
+    {
+        minGraphY=55;
+        maxGraphY=self.bounds.size.height-95;
+    }
+
 
     yellowDot.hidden=NO;
     purpleDot.hidden=NO;

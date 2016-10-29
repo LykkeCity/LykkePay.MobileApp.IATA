@@ -30,6 +30,7 @@
 #pragma mark - Common
 
 - (void)attach:(TKView *)view {
+    
     // clear subviews
     if (self.contentView) {
         [self.contentView removeFromSuperview];

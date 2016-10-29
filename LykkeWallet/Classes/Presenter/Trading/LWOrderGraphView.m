@@ -9,13 +9,14 @@
 #import "LWOrderGraphView.h"
 #import "LWUtils.h"
 #import "LWCache.h"
+#import "LWGraphLabel.h"
 
 @interface LWOrderGraphView()
 {
     double volume;
     double price;
-    UILabel *priceLabel;
-    UILabel *volumeLabel;
+    LWGraphLabel *priceLabel;
+    LWGraphLabel *volumeLabel;
     CGFloat depthStartX;
 }
 
@@ -37,7 +38,7 @@
 -(void) setAssetPair:(LWAssetPairModel *)assetPair
 {
     _assetPair=assetPair;
-    priceLabel=[[UILabel alloc] init];
+    priceLabel=[[LWGraphLabel alloc] init];
     
     NSString *formatString=[NSString stringWithFormat:@"%d",[self.assetPair.accuracy intValue]];
     formatString=[[@"%." stringByAppendingString:formatString] stringByAppendingString:@"lf"];
@@ -48,29 +49,47 @@
     [priceLabel sizeToFit];
     [self addSubview:priceLabel];
     
-    volumeLabel=[[UILabel alloc] init];
+    volumeLabel=[[LWGraphLabel alloc] init];
     volumeLabel.font=priceLabel.font;
     volumeLabel.textColor=_volumeColor;
     
-    NSString *volumeString=@"";
-    int left=volume;;
-    while(1)
-    {
-        int ii=left/1000;
-        NSString *s=[NSString stringWithFormat:@"%d", left-ii*1000];
-        if(ii==0)
-        {
-            volumeString=[s stringByAppendingString:volumeString];
-            break;
-        }
 
-        while(s.length<3)
-            s=[@"0" stringByAppendingString:s];
-        volumeString=[[@"," stringByAppendingString:s] stringByAppendingString:volumeString];
-        left=ii;
-    }
+    
+    NSString *volumeString=@"";
+    
+    volumeString=[LWUtils formatFairVolume:volume accuracy:[LWCache accuracyForAssetId:assetPair.baseAssetId] roundToHigher:NO];
+    volumeString=[volumeString stringByReplacingOccurrencesOfString:@" " withString:@","];
+//    int left=volume;
+//    while(1)
+//    {
+//        int ii=left/1000;
+//        NSString *s=[NSString stringWithFormat:@"%d", left-ii*1000];
+//        if(ii==0)
+//        {
+//            volumeString=[s stringByAppendingString:volumeString];
+//            break;
+//        }
+//
+//        while(s.length<3)
+//            s=[@"0" stringByAppendingString:s];
+//        volumeString=[[@"," stringByAppendingString:s] stringByAppendingString:volumeString];
+//        left=ii;
+//    }
     
     volumeLabel.text=volumeString;
+    
+    
+    
+//    volumeLabel.layer.shadowColor=[UIColor redColor].CGColor;
+//    volumeLabel.layer.shadowRadius=10;
+//    volumeLabel.layer.shadowOpacity=1;
+//    volumeLabel.layer.shadowOffset=CGSizeMake(0, 1);
+    
+    
+//    volumeLabel.attributedText=[[NSAttributedString alloc] initWithString:volumeString attributes:attr];
+    
+    
+    
     [self addSubview:volumeLabel];
     [volumeLabel sizeToFit];
 

@@ -17,8 +17,10 @@
 @property (strong, nonatomic) NSString *iconUrl;
 @property (strong, nonatomic) NSString *identity;
 @property (strong, nonatomic) NSString *name;
-@property int sortOrder;
+
 
 @property (strong, nonatomic) UIImage *iconImage;
+
+@property (strong, nonatomic) NSMutableArray *assets;
 
 @end

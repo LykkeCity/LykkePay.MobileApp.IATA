@@ -458,7 +458,7 @@
 //    {
 //        presenter=[LWMyLykkeDepositBTCPresenter new];
 //        presenter.assetId=@"ETH";
-//        presenter.lkkAmount=[self removePrefix:_lkkTextField.text].doubleValue;
+//        presenter.lkkAmount=[self removePrefix:_lkkTextField.text].dfoubleValue;
 //        presenter.price=_priceLabel.text.doubleValue;
 //    }
 //    else if([self.assetId isEqualToString:@"CHF"])

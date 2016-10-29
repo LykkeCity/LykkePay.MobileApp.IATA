@@ -21,7 +21,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>156.4</string>
+	<string>156.7</string>
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>
@@ -48,7 +48,7 @@
 	<key>NSCameraUsageDescription</key>
 	<string>Lykke needs to make selfie</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Lykke needs to make selfie</string>
+	<string>Camera access is required to make documents photos</string>
 	<key>TestEnvironmentDefinition</key>
 	<string>$(TEST_ENVIRONMENT)</string>
 	<key>UIAppFonts</key>

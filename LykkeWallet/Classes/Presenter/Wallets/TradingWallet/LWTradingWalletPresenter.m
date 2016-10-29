@@ -189,58 +189,38 @@
 
 - (IBAction)depositClicked:(id)sender {
     
-    NSDictionary *depositTypes=@{@"EUR":@"currency",
-                                 @"USD":@"currency",
-                                 @"CHF":@"currency",
-                                 @"GBP":@"currency",
-                                 @"BTC":@"bitcoin",
-                                 @"LKK":@"bitcoin"};
     
     [LWKYCManager sharedInstance].viewController=self;;
     
     [[LWKYCManager sharedInstance] manageKYCStatusForAsset:self.assetId successBlock:^{
 
-//        if([self.assetId isEqualToString:@"LKK"])
-//        {
-//            if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
-//            {
-//                LWMyLykkeBuyPresenter *presenter=[[LWMyLykkeBuyPresenter alloc] init];
-//                [self.navigationController pushViewController:presenter animated:YES];
-//            }
-//            else
-//            {
-//                LWMyLykkeIpadController *presenter=[LWMyLykkeIpadController new];
-//                [self.navigationController pushViewController:presenter animated:YES];
-//                
-//            }
-//            return;
-//        }
 
     
-    UIViewController *presenter;
+        UIViewController *presenter;
         
-    if([self.assetId isEqualToString:@"ETH"])
-    {
-            presenter = [LWEtheriumDepositPresenter new];
-    }
-    else if([self.assetId isEqualToString:@"LKK"])
-    {
-        presenter=[LWLykkeBuyTransferContainer new];
-        [self.navigationController pushViewController:presenter animated:YES];
-        return;
         
-    }
-    else if([depositTypes[self.assetId] isEqualToString:@"bitcoin"])
-    {
-        presenter = [LWBitcoinDepositPresenter new];
-    }
-    else
-    {
-        if([LWCache isBankCardDepositEnabledForAssetId:self.assetId])
-            presenter=[LWCreditCardDepositPresenter new];
+        if([self.assetId isEqualToString:@"ETH"])
+            presenter=[LWEtheriumDepositPresenter new];
+        else if([self.assetId isEqualToString:@"LKK"])
+        {
+            presenter=[LWLykkeBuyTransferContainer new];
+            [self.navigationController pushViewController:presenter animated:YES];
+            return;
+        }
+        else if([LWCache isBlockchainDepositEnabledForAssetId:self.assetId])
+        {
+            presenter = [LWBitcoinDepositPresenter new];
+        }
         else
-            presenter=[LWCurrencyDepositPresenter new];
-    }
+        {
+            if([LWCache isBankCardDepositEnabledForAssetId:self.assetId])
+                presenter=[LWCreditCardDepositPresenter new];
+            else if([LWCache isSwiftDepositEnabledForAssetId:self.assetId])
+                presenter=[LWCurrencyDepositPresenter new];
+        }
+        
+        if(!presenter)
+            return;
     
     ((LWCurrencyDepositPresenter *)presenter).assetName=self.assetName;
     ((LWCurrencyDepositPresenter *)presenter).issuerId=self.issuerId;

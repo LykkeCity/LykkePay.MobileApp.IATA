@@ -92,6 +92,8 @@ typedef NS_ENUM(NSInteger, LWAuthEntryPointNextStep) {
     keyboardHeight=0;
     // init email field
     emailTextField = [LWTextField new];
+    [emailTextField setViewMode:UITextFieldViewModeNever];
+    
     emailTextField.delegate = self;
     emailTextField.keyboardType = UIKeyboardTypeEmailAddress;
     emailTextField.placeholder = @"Your email";

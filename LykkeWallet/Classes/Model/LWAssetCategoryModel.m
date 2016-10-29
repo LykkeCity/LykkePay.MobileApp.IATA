@@ -14,10 +14,12 @@
 {
     self=[super init];
     
-    _name=dict[@"Name"];
-    _sortOrder=[dict[@"SortOrder"] intValue];
+    _name=[dict[@"Name"] uppercaseString];
+    
     _iconUrl=dict[@"IosIconUrl"];
     _identity=dict[@"Id"];
+    
+    _assets=[[NSMutableArray alloc] init];
     
     
     return self;
