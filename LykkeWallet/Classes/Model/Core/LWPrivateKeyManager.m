@@ -134,6 +134,7 @@
     self=[super init];
     
     
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(testMethod:) name:@"ColdStorageBackupFinished" object:nil];
     
     
 //    NSString *sss=[self encryptExternalWalletKey:nil];
@@ -1075,6 +1076,11 @@
 {
     privateKeyForLykke=nil;
 }
+
+//-(void) testMethod:(NSNotification *) notification
+//{
+//    NSLog(@"Notification received");
+//}
 
 
 @end

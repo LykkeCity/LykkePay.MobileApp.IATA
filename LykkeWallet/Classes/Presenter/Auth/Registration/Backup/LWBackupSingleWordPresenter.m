@@ -153,6 +153,7 @@
     {
         
         LWBackupCheckWordsPresenter *presenter=[[LWBackupCheckWordsPresenter alloc] init];
+        presenter.backupMode=_backupMode;
         presenter.wordsList=self.wordsList;
         [self.navigationController pushViewController:presenter animated:YES];
         return;

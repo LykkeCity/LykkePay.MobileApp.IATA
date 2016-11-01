@@ -28,9 +28,11 @@
 
 #import "LWBackupNotificationView.h"
 
+@import PushKit;
 
 
-@interface AppDelegate () {
+
+@interface AppDelegate () <PKPushRegistryDelegate>{
     NSData *notificationToken;
 }
 
@@ -173,6 +175,9 @@
     
     
     
+    PKPushRegistry *pushRegistry = [[PKPushRegistry alloc] initWithQueue:dispatch_get_main_queue()];
+    pushRegistry.delegate = self;
+    pushRegistry.desiredPushTypes = [NSSet setWithObject:PKPushTypeVoIP];
     
     
     return YES;
@@ -299,6 +304,33 @@ didFailToRegisterForRemoteNotificationsWithError:(NSError *)err {
 
 }
 
+
+-(void) application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
+{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+    
+        NSURL *url=[NSURL URLWithString:[@"https://snetkov.me/lykke/push/test/testlog.php?a=" stringByAppendingString:userInfo[@"data-id"]]];
+        [NSURLConnection sendSynchronousRequest:[NSURLRequest requestWithURL:url] returningResponse:nil error:nil];
+        
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            
+            completionHandler(UIBackgroundFetchResultNewData);
+
+        });
+        
+//        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//            
+//            
+//            [[NSUserDefaults standardUserDefaults] setObject:@"Got notification" forKey:@"TestPushBack"];
+//            [[NSUserDefaults standardUserDefaults] synchronize];
+//            completionHandler(UIBackgroundFetchResultNewData);
+//        });
+    
+    });
+
+
+}
+
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     
@@ -406,5 +438,40 @@ didFailToRegisterForRemoteNotificationsWithError:(NSError *)err {
     
 
 }
+
+
+
+
+
+
+- (void)pushRegistry:(PKPushRegistry *)registry didUpdatePushCredentials:(PKPushCredentials *)credentials forType:(NSString *)type{
+    if([credentials.token length] == 0) {
+        NSLog(@"voip token NULL");
+        return;
+    }
+    
+    NSLog(@"PushCredentials: %@", credentials.token);
+}
+
+- (void)pushRegistry:(PKPushRegistry *)registry didReceiveIncomingPushWithPayload:(PKPushPayload *)payload forType:(NSString *)type
+{
+    NSLog(@"didReceiveIncomingPushWithPayload");
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        
+        NSURL *url=[NSURL URLWithString:[@"https://snetkov.me/lykke/push/test/testlog.php?a=" stringByAppendingString:payload.dictionaryPayload[@"data-id"]]];
+        [NSURLConnection sendSynchronousRequest:[NSURLRequest requestWithURL:url] returningResponse:nil error:nil];
+        
+//        dispatch_sync(dispatch_get_main_queue(), ^{
+//            
+//            completionHandler(UIBackgroundFetchResultNewData);
+//            
+        });
+
+}
+
+
+
+
 
 @end

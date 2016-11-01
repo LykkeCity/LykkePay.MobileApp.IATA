@@ -54,6 +54,7 @@
     LWGenerateKeyPresenter *presenter=[[LWGenerateKeyPresenter alloc] init];
     presenter.delegate=self;
     presenter.flagSkipIntro=YES;
+
     [self.navigationController pushViewController:presenter animated:YES];
     
 }
@@ -69,6 +70,7 @@
     [arr removeLastObject];
     [arr removeLastObject];
     LWBackupGetStartedPresenter *presenter=[[LWBackupGetStartedPresenter alloc] init];
+    presenter.backupMode=BACKUP_MODE_PRIVATE_KEY;
     
     
     if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)

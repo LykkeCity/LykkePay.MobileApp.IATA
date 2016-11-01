@@ -20,12 +20,16 @@
 #import "LWKeychainManager.h"
 #import "LWPrivateWalletsManager.h"
 #import "LWCommonButton.h"
+#import "LWGenerateKeyPresenter.h"
+#import "LWBackupGetStartedPresenter.h"
+#import "LWIPadModalNavigationControllerViewController.h"
+#import "LWBackupCheckWordsPresenter.h"
 
 @import AVFoundation;
 
 #define TextColor [UIColor colorWithRed:63.0/255 green:77.0/255 blue:96.0/255 alpha:0.2]
 
-@interface LWCreateEditPrivateWalletPresenter () <UITextFieldDelegate>
+@interface LWCreateEditPrivateWalletPresenter () <UITextFieldDelegate, LWGenerateKeyPresenterDelegate>
 {
     NSDictionary *createButtonEnabledAttributes;
     NSDictionary *buttonDisabledAttributes;
@@ -35,6 +39,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet LWWalletsTypeButton *walletNewButton;
 @property (weak, nonatomic) IBOutlet LWWalletsTypeButton *walletExistingButton;
+@property (weak, nonatomic) IBOutlet LWWalletsTypeButton *walletColdButton;
 @property (weak, nonatomic) IBOutlet UITextField *walletNameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *privateKeyTextField;
 @property (weak, nonatomic) IBOutlet UILabel *addressLabel;
@@ -45,6 +50,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *keyPasteButton;
 @property (weak, nonatomic) IBOutlet UIButton *keyCopyButton;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+
+@property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *createUpdateButtonWidth;
 
@@ -142,8 +149,9 @@
         _createUpdateButton.enabled=NO;
         self.titleLabel.text=@"Enter details of new wallet";
         self.padlockWidthConstraint.active=YES;
-        [self.walletNewButton setTitle:@"NEW"];
+        [self.walletNewButton setTitle:@"PRIVATE"];
         [self.walletExistingButton setTitle:@"EXISTING"];
+        [self.walletColdButton setTitle:@"COLD"];
 
     }
     
@@ -156,6 +164,7 @@
     
     [self.walletNewButton addTarget:self action:@selector(pressedWalletTypeButton:) forControlEvents:UIControlEventTouchUpInside];
     [self.walletExistingButton addTarget:self action:@selector(pressedWalletTypeButton:) forControlEvents:UIControlEventTouchUpInside];
+    [self.walletColdButton addTarget:self action:@selector(pressedWalletTypeButton:) forControlEvents:UIControlEventTouchUpInside];
     
 //    [self.createUpdateButton setAttributedTitle:[[NSAttributedString alloc] initWithString:createUpdateButtonTitle attributes:createButtonEnabledAttributes] forState:UIControlStateNormal];
 //    [self.createUpdateButton setAttributedTitle:[[NSAttributedString alloc] initWithString:createUpdateButtonTitle attributes:buttonDisabledAttributes] forState:UIControlStateDisabled];
@@ -175,6 +184,9 @@
     
     if([UIScreen mainScreen].bounds.size.width==320)
         _createUpdateButtonWidth.constant=280;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(coldStorageBackupFinished:) name:@"ColdStorageBackupFinished" object:nil];
+    
 }
 
 -(void) viewWillAppear:(BOOL)animated
@@ -183,12 +195,17 @@
     self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:245.0/255 green:246.0/255 blue:247.0/255 alpha:1];;
     [self setBackButton];
     self.observeKeyboardEvents=YES;
+    
+    
 }
 
 -(void) viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
     self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(coldStorageBackupFinished:) name:@"ColdStorageBackupFinished" object:nil];
+    
 
 }
 
@@ -213,6 +230,7 @@
     self.createUpdateButton.layer.cornerRadius=self.createUpdateButton.bounds.size.height/2;
     self.walletNewButton.layer.cornerRadius=self.walletNewButton.bounds.size.height/2;
     self.walletExistingButton.layer.cornerRadius=self.walletExistingButton.bounds.size.height/2;
+    self.walletColdButton.layer.cornerRadius=self.walletColdButton.bounds.size.height/2;
     
 }
 
@@ -223,6 +241,7 @@
     
     self.walletNewButton.selected=NO;
     self.walletExistingButton.selected=NO;
+    self.walletColdButton.selected=NO;
     button.selected=YES;
 
     if(self.editMode)
@@ -262,9 +281,11 @@
         
                 createUpdateButtonTitle=@"CREATE WALLET";
         
+        _descriptionLabel.text=@"This is a private wallet, a secure backup of the private key and its is guaranteed with 12 words from a backup";
+        
         NSLog(@"%@", sss);
     }
-    else
+    else if(button==self.walletExistingButton)
     {
         self.addressLabel.text=@"";
         self.privateKeyTextField.text=@"";
@@ -277,8 +298,30 @@
         
         self.keyPasteWidthConstraint.active=NO;
         createUpdateButtonTitle=@"ADD WALLET";
+        
+        _descriptionLabel.text=@"Import any external personal wallet, use your private key for transfers and reference to Lykke Wallet";
+        
+
 
     }
+    else
+    {
+        self.privateKeyTextField.text=@"";
+        self.addressLabel.text=@"";
+        self.privateKeyTextField.userInteractionEnabled=NO;
+        
+        self.scanQRView.hidden=YES;
+        self.scanQRHeightConstraint.constant=10;
+        _privateKeyContainerView.hidden=YES;
+        _privateKeyContainerHeightConstraint.constant=0;
+        self.keyPasteWidthConstraint.active=YES;
+
+        createUpdateButtonTitle=@"PROCEED";
+
+        
+        _descriptionLabel.text=@"The private key will be generated you, but will not be stored in Lykke Wallet";
+    }
+    
     
     _padlockWidthConstraint.active=YES;
     
@@ -396,7 +439,7 @@
     }
     else
     {
-        if(self.walletNameTextField.text.length && [self.walletNameTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]].length && self.addressLabel.text.length)
+        if(self.walletNameTextField.text.length && (([self.walletNameTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]].length && self.addressLabel.text.length) || _walletColdButton.selected==YES))
         {
 //            [LWValidator setButton:self.createUpdateButton enabled:YES];
             _createUpdateButton.enabled=YES;
@@ -618,6 +661,17 @@
     [self.view endEditing:YES];
     if(self.editMode==NO)
     {
+        if(_walletColdButton.selected)
+        {
+            LWGenerateKeyPresenter *presenter=[[LWGenerateKeyPresenter alloc] init];
+            presenter.flagSkipIntro=NO;
+            presenter.delegate=self;
+            [self.navigationController pushViewController:presenter animated:YES];
+            
+            return;
+        }
+        
+        
         LWPrivateWalletModel *wallet=[[LWPrivateWalletModel alloc] init];
         wallet.address=self.addressLabel.text;
         wallet.privateKey=self.privateKeyTextField.text;
@@ -673,8 +727,50 @@
     self.scrollViewBottomConstraint.constant=0;
 }
 
+-(void) generateKeyPresenterFinished:(LWGenerateKeyPresenter *)vc
+{
+    [self.navigationController popViewControllerAnimated:NO];
+    
+    LWBackupGetStartedPresenter *presenter=[[LWBackupGetStartedPresenter alloc] init];
+    presenter.backupMode=BACKUP_MODE_COLD_STORAGE;
+    
+    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
+        [self.navigationController pushViewController:presenter animated:YES];
+    else
+    {
+        LWIPadModalNavigationControllerViewController *navigationController =
+        [[LWIPadModalNavigationControllerViewController alloc] initWithRootViewController:presenter];
+        navigationController.modalPresentationStyle=UIModalPresentationOverCurrentContext;
+        navigationController.transitioningDelegate=navigationController;
+        [self.navigationController presentViewController:navigationController animated:YES completion:nil];
+    }
+}
+
+-(void) coldStorageBackupFinished:(NSNotification *) notification
+{
+    LWBackupCheckWordsPresenter *vc=notification.object;
+    NSArray *words=vc.wordsList;
+    NSLog(@"%@", words);
+    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
+    {
+    NSMutableArray *controllers=[self.navigationController.viewControllers mutableCopy];
+    while(controllers.lastObject!=self)
+    {
+        [controllers removeLastObject];
+    }
+    [self.navigationController setViewControllers:controllers];
+    }
+    else
+    {
+        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+    }
+}
 
 
+-(void) dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 
 /*
 #pragma mark - Navigation

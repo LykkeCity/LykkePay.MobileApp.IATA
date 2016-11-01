@@ -8,6 +8,7 @@
 
 #import "LWAuthComplexPresenter.h"
 
+
 @interface LWGenerateKeyPresenter : LWAuthComplexPresenter
 
 @property BOOL flagSkipIntro;

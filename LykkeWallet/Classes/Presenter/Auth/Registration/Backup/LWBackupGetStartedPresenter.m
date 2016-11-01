@@ -107,65 +107,12 @@
 
 -(IBAction)getStartedPressed:(id)sender
 {
-//    if([self checkPrivateKey]==NO)
-//        return;
-//    if(![LWKeychainManager instance].login)
-//        presenter.wordsList=[LWPrivateKeyManager generateSeedWords];
     LWBackupSingleWordPresenter *presenter=[[LWBackupSingleWordPresenter alloc] init];
-
+    presenter.backupMode=_backupMode;
     presenter.currentWordNum=0;
     presenter.wordsList=seedWords;
     [self.navigationController pushViewController:presenter animated:YES];
 }
-
-//-(BOOL) checkPrivateKey
-//{
-//    NSArray *words;
-//    if([LWPrivateKeyManager shared].privateKeyLykke)
-//    {
-//        words=[[LWPrivateKeyManager shared] privateKeyWords];
-//        if(words==nil)
-//        {
-//            
-//            [self setLoading:YES];
-//            oldEncodedPrivateKey=[LWPrivateKeyManager shared].encryptedKeyLykke;
-//            LWWalletMigrationModel *model=[[LWWalletMigrationModel alloc] init];
-//            model.fromPrivateKey=[[LWPrivateKeyManager shared] wifPrivateKeyLykke];
-//            
-//            [[LWPrivateKeyManager shared] savePrivateKeyLykkeFromSeedWords:[LWPrivateKeyManager generateSeedWords]];
-//            model.toPrivateKey=[[LWPrivateKeyManager shared] wifPrivateKeyLykke];
-//            model.toEncodedPrivateKey=[LWPrivateKeyManager shared].encryptedKeyLykke;
-//            model.toPubKey=[[LWPrivateKeyManager shared] publicKeyLykke];
-//            [[LWAuthManager instance] requestWalletMigration:model];
-//
-//            
-//            return NO;
-//        }
-//    }
-//    else
-//    {
-//        UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"ERROR" message:@"You have no private key" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
-//        [alert show];
-//        return NO;
-//    }
-//    return YES;
-//}
-
-
-//-(void) authManagerDidCompleteWalletMigration:(LWAuthManager *)manager
-//{
-//    [self setLoading:NO];
-//    UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"CONGRATULATIONS" message:@"Your wallets migration has been successfully completed. Now you can proceed with the backup of your private key." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-//    
-//    [alert show];
-//}
-
-//-(void) authManager:(LWAuthManager *)manager didFailWithReject:(NSDictionary *)reject context:(GDXRESTContext *)context
-//{
-//    [self setLoading:NO];
-//    [self showReject:reject response:context.task.response];
-//    [[LWPrivateKeyManager shared] decryptLykkePrivateKeyAndSave:oldEncodedPrivateKey];
-//}
 
 
 

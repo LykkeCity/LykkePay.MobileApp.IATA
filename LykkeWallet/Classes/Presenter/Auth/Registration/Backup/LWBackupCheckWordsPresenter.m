@@ -205,6 +205,12 @@
 
 -(void) submitButtonPressed
 {
+    if(_backupMode==BACKUP_MODE_COLD_STORAGE)
+    {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"ColdStorageBackupFinished" object:self userInfo:nil];
+        return;
+    }
+    
     if([LWPrivateKeyManager shared].wifPrivateKeyLykke && ![LWPrivateKeyManager shared].privateKeyWords)
     {
         [self setLoading:YES];
@@ -220,26 +226,7 @@
         return;
     }
     
-//    
-//    
-//    BOOL flagHasKey=[LWPrivateKeyManager shared].privateKeyLykke;
-//    BOOL result=YES;
-//    if(!flagHasKey)
-//        result=[[LWPrivateKeyManager shared] savePrivateKeyLykkeFromSeedWords:self.wordsList];
-//    if(!result)
-//    {
-//        UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"ERROR" message:@"Something went wrong" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-//        [alert show];
-//        return;
-//    }
-//    
-//    if(flagHasKey==NO)
-//    {
-//        [self setLoading:YES];
-//        [[LWAuthManager instance] requestSaveClientKeysWithPubKey:[LWPrivateKeyManager shared].publicKeyLykke encodedPrivateKey:[LWPrivateKeyManager shared].encryptedKeyLykke];
-//    }
-//    else
-        [self saveBackupStateAndShowSuccess];
+    [self saveBackupStateAndShowSuccess];
 
 }
 

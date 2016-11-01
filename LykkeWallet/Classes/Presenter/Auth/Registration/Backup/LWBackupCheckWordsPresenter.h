@@ -7,9 +7,12 @@
 //
 
 #import "LWBackupTemplatePresenterViewController.h"
+#import "LWPrivateKeyManager.h"
 
 @interface LWBackupCheckWordsPresenter : LWBackupTemplatePresenterViewController
 
 @property (strong, nonatomic) NSArray *wordsList;
+
+@property BACKUP_MODE backupMode;
 
 @end

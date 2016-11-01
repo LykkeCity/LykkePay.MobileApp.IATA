@@ -247,7 +247,7 @@
                         LWResultPresenter *presenter=[[LWResultPresenter alloc] init];
                         presenter.image=[UIImage imageNamed:@"WithdrawSuccessFlag.png"];
                         presenter.titleString=@"SUCCESSFUL!";
-                        presenter.textString=@"Your transfer transaction has been successfuly broadcasted to Blockchain. We will notify you when it will be confirmed.";
+                        presenter.textString=@"Your transfer transaction has been successfully broadcasted to Blockchain. We will notify you when it will be confirmed.";
                         
                         presenter.delegate=self;
                         [self.navigationController presentViewController:presenter animated:YES completion:nil];

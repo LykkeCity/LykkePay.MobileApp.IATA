@@ -13,6 +13,9 @@
 #import <Foundation/Foundation.h>
 #import "BTCKey.h"
 
+typedef enum {BACKUP_MODE_PRIVATE_KEY, BACKUP_MODE_COLD_STORAGE} BACKUP_MODE;
+
+
 @interface LWPrivateKeyManager : NSObject
 
 

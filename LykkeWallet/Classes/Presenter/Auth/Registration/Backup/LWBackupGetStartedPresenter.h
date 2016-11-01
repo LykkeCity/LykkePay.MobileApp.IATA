@@ -7,7 +7,10 @@
 //
 
 #import "LWBackupTemplatePresenterViewController.h"
+#import "LWPrivateKeyManager.h"
 
 @interface LWBackupGetStartedPresenter : LWBackupTemplatePresenterViewController
+
+@property BACKUP_MODE backupMode;
 
 @end
