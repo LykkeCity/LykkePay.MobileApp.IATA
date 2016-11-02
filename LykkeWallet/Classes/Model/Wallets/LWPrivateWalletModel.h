@@ -19,5 +19,6 @@
 @property (strong, nonatomic) NSString *iconURL;
 @property (strong, nonatomic) NSString *encryptedKey;
 @property BOOL isExternalWallet;
+@property BOOL isColdStorageWallet;
 
 @end

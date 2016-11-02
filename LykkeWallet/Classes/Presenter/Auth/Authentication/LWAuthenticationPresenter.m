@@ -22,7 +22,7 @@
 
 #import "LWCache.h"
 
-#import "LWRestorePasswordWordsPresenter.h"
+#import "LWRestoreFromSeedPresenter.h"
 #import "LWIPadModalNavigationControllerViewController.h"
 
 
@@ -178,7 +178,8 @@
 
 -(IBAction)restorePasswordClicked:(id)sender
 {
-    LWRestorePasswordWordsPresenter *presenter=[[LWRestorePasswordWordsPresenter alloc] init];
+    LWRestoreFromSeedPresenter *presenter=[[LWRestoreFromSeedPresenter alloc] init];
+    presenter.backupMode=BACKUP_MODE_PRIVATE_KEY;
     presenter.email=self.email;
 //    [self.navigationController pushViewController:presenter animated:YES];
     

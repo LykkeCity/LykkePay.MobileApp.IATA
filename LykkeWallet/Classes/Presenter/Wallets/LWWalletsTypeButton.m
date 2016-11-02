@@ -22,7 +22,25 @@
 -(void) awakeFromNib
 {
     [super awakeFromNib];
-    self.frame=CGRectMake(0, 0, 99, 30);
+    
+    if([UIScreen mainScreen].bounds.size.width==320)
+    {
+        for(NSLayoutConstraint *c in self.constraints)
+        {
+            if(c.firstAttribute==NSLayoutAttributeWidth)
+            {
+                c.constant=85;
+                break;
+            }
+        }
+        self.frame=CGRectMake(0, 0, 85, 30);
+
+    }
+    else
+        self.frame=CGRectMake(0, 0, 99, 30);
+
+    [self setTitle:self.titleLabel.text];
+
 }
 
 -(id) initWithTitle:(NSString *) title

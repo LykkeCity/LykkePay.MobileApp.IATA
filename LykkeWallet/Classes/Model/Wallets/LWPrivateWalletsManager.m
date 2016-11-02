@@ -129,7 +129,7 @@
 
 -(void) addNewWallet:(LWPrivateWalletModel *) wallet   withCompletion:(void (^)(BOOL))completion
 {
-    NSMutableDictionary *params=[@{@"Address":wallet.address, @"Name":wallet.name} mutableCopy];
+    NSMutableDictionary *params=[@{@"Address":wallet.address, @"Name":wallet.name, @"IsColdStorage":@(wallet.isColdStorageWallet)} mutableCopy];
     if(wallet.encryptedKey)
         params[@"EncodedPrivateKey"]=wallet.encryptedKey;
     NSMutableURLRequest *request=[self createRequestWithAPI:@"PrivateWallet" httpMethod:@"POST" getParameters:nil postParameters:params];
@@ -249,6 +249,31 @@
         }
         
     });
+}
+
+-(void) defrostColdStorageWallet:(LWPrivateWalletModel *)wallet withCompletion:(void (^)(BOOL))completion
+{
+    NSDictionary *params=@{@"Address":wallet.address, @"EncodedKey":wallet.encryptedKey};
+    NSMutableURLRequest *request=[self createRequestWithAPI:@"privateWallet/key" httpMethod:@"POST" getParameters:nil postParameters:params];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        NSDictionary *dict=[self sendRequest:request];
+        
+        NSLog(@"%@", dict);
+        if(completion)
+        {
+            
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if([dict isKindOfClass:[NSError class]])
+                    completion(NO);
+                else
+                    completion(YES);
+            });
+        }
+        
+    });
+
 }
 
 

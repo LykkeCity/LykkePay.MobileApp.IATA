@@ -12,5 +12,6 @@
 @interface LWBackupGetStartedPresenter : LWBackupTemplatePresenterViewController
 
 @property BACKUP_MODE backupMode;
+@property (strong, nonatomic) NSArray *seedWords;
 
 @end

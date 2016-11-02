@@ -12,7 +12,7 @@
 #import "LWPrivateWalletsPresenter.h"
 #import "LWPrivateWalletAddView.h"
 #import "LWAddPrivateWalletPresenter.h"
-#import "LWCreateEditPrivateWalletPresenter.h"
+#import "LWCreatePrivateWalletPresenter.h"
 #import "LWAuthNavigationController.h"
 #import "LWBackupNotificationView.h"
 #import "LWPrivateKeyManager.h"
@@ -133,7 +133,7 @@
     }
     
     
-    LWCreateEditPrivateWalletPresenter *presenter=[[LWCreateEditPrivateWalletPresenter alloc] init];
+    LWCreatePrivateWalletPresenter *presenter=[[LWCreatePrivateWalletPresenter alloc] init];
     [self.navigationController pushViewController:presenter animated:YES];
 }
 

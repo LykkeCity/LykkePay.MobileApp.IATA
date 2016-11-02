@@ -58,6 +58,10 @@
     _headerLabel.text=_titleString;
     _textLabel.text=_textString;
     _imageView.image=_image;
+    if(_buttonTitle)
+        [self.okButton setTitle:_buttonTitle forState:UIControlStateNormal];
+
+    [self.navigationController setNavigationBarHidden:YES];
 }
 
 
@@ -98,6 +102,17 @@
         
     }];
     
+}
+
+-(NSString *) nibName
+{
+    if([UIScreen mainScreen].bounds.size.width==320)
+        return @"LWResultPresenter_iphone5";
+    else if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad)
+        return @"LWResultPresenter_ipad";
+    else
+        return @"LWResultPresenter";
+
 }
 
 

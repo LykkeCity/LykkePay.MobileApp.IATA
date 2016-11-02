@@ -18,6 +18,7 @@
 {
     self=[super init];
     _isExternalWallet=NO;
+    _isColdStorageWallet=NO;
     return self;
 }
 
@@ -28,7 +29,8 @@
     if([d isKindOfClass:[NSDictionary class]]==NO || !d[@"Address"] || [d[@"Address"] isKindOfClass:[NSString class]]==NO)
         return nil;
     
-    
+    _isColdStorageWallet=NO;
+
     _isExternalWallet=NO;
     
     self.address=d[@"Address"];
@@ -42,6 +44,8 @@
     {
         self.privateKey=[[LWPrivateKeyManager shared] secondaryPrivateKeyFromPrivateWalletAddress:self.address];
     }
+    
+    self.isColdStorageWallet=[d[@"IsColdStorage"] boolValue];
     
     self.encryptedKey=d[@"EncodedPrivateKey"];
     if(!self.privateKey && self.encryptedKey)

@@ -19,7 +19,7 @@
 @interface LWBackupGetStartedPresenter () <UIAlertViewDelegate>
 {
 //    NSString *oldEncodedPrivateKey;
-    NSArray *seedWords;
+    
 }
 
 @property (weak, nonatomic) IBOutlet UIButton *getStartedButton;
@@ -41,9 +41,12 @@
     if([UIScreen mainScreen].bounds.size.width==320)
         _getStartedWidthConstraint.constant=280;
     
-    seedWords=[[LWPrivateKeyManager shared] privateKeyWords];
-    if(!seedWords)
-        seedWords=[LWPrivateKeyManager generateSeedWords];
+    if(_backupMode==BACKUP_MODE_PRIVATE_KEY)
+    {
+        _seedWords=[[LWPrivateKeyManager shared] privateKeyWords];
+        if(!_seedWords)
+            _seedWords=[LWPrivateKeyManager generateSeedWords12];
+    }
 
     // Do any additional setup after loading the view.
 }
@@ -110,7 +113,7 @@
     LWBackupSingleWordPresenter *presenter=[[LWBackupSingleWordPresenter alloc] init];
     presenter.backupMode=_backupMode;
     presenter.currentWordNum=0;
-    presenter.wordsList=seedWords;
+    presenter.wordsList=_seedWords;
     [self.navigationController pushViewController:presenter animated:YES];
 }
 

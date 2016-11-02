@@ -133,6 +133,13 @@
 {
     self=[super init];
     
+//    NSArray *aaaa=[LWPrivateKeyManager generateSeedWords24];
+//    NSData *data=[LWPrivateKeyManager keyDataFromSeedWords:aaaa];
+//    NSArray *bbb=[LWPrivateKeyManager wordsFromKeyData:data];
+    
+    
+    
+    
     
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(testMethod:) name:@"ColdStorageBackupFinished" object:nil];
     
@@ -212,7 +219,7 @@
 
 -(BOOL) savePrivateKeyLykkeFromSeedWords:(NSArray *) words
 {
-    NSData *privateKeyData=[self keyDataFromSeedWords:words];
+    NSData *privateKeyData=[LWPrivateKeyManager keyDataFromSeedWords:words];
     if(!privateKeyData)
         return NO;
     
@@ -258,24 +265,30 @@
     return str;
 }
 
-+(NSArray *) generateWords
++(NSArray *) wordsFromKeyData:(NSData *) keyData
 {
 //    NSMutableArray *arr=[[NSMutableArray alloc] init];
     
+    int numOfBytes=keyData.length;
+//    if(numOfWords==12)
+//        numOfBytes=16;
+//    else if(numOfWords==24)
+//        numOfBytes=32;
+//    else
+//        return nil;
     
     NSData *data=[NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"english_words_list" ofType:@"txt"]];
     NSString *string=[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     NSArray *lines=[string componentsSeparatedByString:@"\n"];
     
-    uint8_t randKeyBytes[16];
+//    uint8_t *randKeyBytes=malloc(numOfBytes);
     
-    SecRandomCopyBytes (kSecRandomDefault, 16, randKeyBytes);
+//    SecRandomCopyBytes (kSecRandomDefault, numOfBytes, randKeyBytes);
     
     
-    NSData *seedData=[[NSData alloc] initWithBytes:randKeyBytes length:16];
+    NSData *seedData=keyData;
+//    free(randKeyBytes);
     NSLog(@"%@", seedData);
-
-//    NSData *seedData = [seed ny_dataFromHexString];
     
     // Calculate the sha256 hash to use with a checksum
     NSMutableData *hash = [NSMutableData dataWithLength:CC_SHA256_DIGEST_LENGTH];
@@ -312,25 +325,59 @@
     return words;
 }
 
-+(NSArray *) generateSeedWords
++(NSArray *) generateSeedWords12
 {
     while(1)
     {
-        NSArray *arr=[LWPrivateKeyManager generateWords];
-        BOOL flag=YES;
-        for(int i=0;i<arr.count-1;i++)
-        {
-            NSString *word=arr[i];
-            if([[arr subarrayWithRange:NSMakeRange(i+1, arr.count-i-1)] containsObject:word])
-            {
-                flag=NO;
-                break;
-            }
-            
-        }
-        if(flag)
+        uint8_t *randKeyBytes=malloc(16);
+        
+        SecRandomCopyBytes (kSecRandomDefault, 16, randKeyBytes);
+        NSData *keyData=[[NSData alloc] initWithBytes:randKeyBytes length:16];
+        free(randKeyBytes);
+
+        NSLog(@"%@", keyData);
+        
+        NSArray *arr=[LWPrivateKeyManager wordsFromKeyData:keyData];
+        if([LWPrivateKeyManager isWordListUnique:arr])
             return arr;
     }
+}
+
++(NSArray *) generateSeedWords24
+{
+    while(1)
+    {
+        uint8_t *randKeyBytes=malloc(32);
+        
+        SecRandomCopyBytes (kSecRandomDefault, 32, randKeyBytes);
+        NSData *keyData=[[NSData alloc] initWithBytes:randKeyBytes length:32];
+        free(randKeyBytes);
+        
+        NSLog(@"%@", keyData);
+        
+        NSArray *arr=[LWPrivateKeyManager wordsFromKeyData:keyData];
+        if([LWPrivateKeyManager isWordListUnique:arr])
+            return arr;
+    }
+}
+
+
++(BOOL) isWordListUnique:(NSArray *) words
+{
+    BOOL flag=YES;
+    for(int i=0;i<words.count-1;i++)
+    {
+        NSString *word=words[i];
+        if([[words subarrayWithRange:NSMakeRange(i+1, words.count-i-1)] containsObject:word])
+        {
+            flag=NO;
+            break;
+        }
+        
+    }
+    
+    return flag;
+
 }
 
 -(NSArray *) privateKeyWords
@@ -348,49 +395,13 @@
         }
     }
     
-    NSData *dataWords=[NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"english_words_list" ofType:@"txt"]];
-    NSString *string=[[NSString alloc] initWithData:dataWords encoding:NSUTF8StringEncoding];
-    NSArray *lines=[string componentsSeparatedByString:@"\n"];
-
-    
-    NSData *seedData=[data subdataWithRange:NSMakeRange(16, 16)];
-    NSLog(@"%@", seedData);
-    
-    //    NSData *seedData = [seed ny_dataFromHexString];
-    
-    // Calculate the sha256 hash to use with a checksum
-    NSMutableData *hash = [NSMutableData dataWithLength:CC_SHA256_DIGEST_LENGTH];
-    CC_SHA256(seedData.bytes, (int)seedData.length, hash.mutableBytes);
-    
-    NSMutableArray *checksumBits = [NSMutableArray
-                                    arrayWithArray:[[NSData dataWithData:hash] ny_hexToBitArray]];
-    NSMutableArray *seedBits =
-    [NSMutableArray arrayWithArray:[seedData ny_hexToBitArray]];
-    
-    // Append the appropriate checksum bits to the seed
-    for (int i = 0; i < (int)seedBits.count / 32; i++) {
-        [seedBits addObject: checksumBits[i]];
-    }
-    
-    
-    NSMutableArray *words=[[NSMutableArray alloc] init];
-    for (int i = 0; i < (int)seedBits.count / 11; i++) {
-        NSUInteger wordNumber =
-        strtol(
-               [[[seedBits subarrayWithRange: NSMakeRange(i * 11, 11)] componentsJoinedByString: @""] UTF8String],
-               NULL,
-               2);
-        
-        [words addObject: lines[wordNumber]];
-    }
-
-    
-    
-    return words;
+    return [LWPrivateKeyManager wordsFromKeyData:[data subdataWithRange:NSMakeRange(16, 16)]];
 }
 
--(NSData *) keyDataFromSeedWords:(NSArray *) words
++(NSData *) keyDataFromSeedWords:(NSArray *) words
 {
+    if(words.count!=12 && words.count!=24)
+        return nil;
     NSData *data=[NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"english_words_list" ofType:@"txt"]];
     NSString *string=[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     NSArray *lines=[string componentsSeparatedByString:@"\n"];
@@ -398,7 +409,7 @@
     NSMutableArray *dataBits=[[NSMutableArray alloc] init];
     for(NSString *s in words)
     {
-        if([lines indexOfObject:s]==NSNotFound)
+        if(s.length==0 || [lines indexOfObject:s]==NSNotFound)
         {
             return nil;
         }
@@ -413,16 +424,24 @@
         NSLog(@"%@", [dataBits componentsJoinedByString:@""]);
     }
     
-    char bytes[17];
-    for(int i=0;i<17;i++)
+    int numOfBytes;
+    if(words.count==12)
+        numOfBytes=17;
+    else
+        numOfBytes=33;
+    
+    char *bytes=malloc(numOfBytes);
+    for(int i=0;i<numOfBytes;i++)
         bytes[i]=0x0;
     
-    for(int i=0;i<17;i++)
+    for(int i=0;i<numOfBytes;i++)
     {
         for(int j=0;j<8;j++)
         {
-            if(i==16 && j==4)
+            if(i==16 && j==4 && numOfBytes==17)
                 break;
+//            if(i==32 && j==7)
+//                break;
             char byte=bytes[i];
             byte=byte<<1;
             char mul=(char)[dataBits[i*8+j] intValue];
@@ -431,31 +450,43 @@
         }
     }
     
-    NSData *keyData=[NSData dataWithBytes:bytes length:16];
+    NSData *keyData=[NSData dataWithBytes:bytes length:numOfBytes-1];
+    
     NSLog(@"%@", keyData);
     
     NSMutableData *hash = [NSMutableData dataWithLength:CC_SHA256_DIGEST_LENGTH];
     CC_SHA256(keyData.bytes, (int)keyData.length, hash.mutableBytes);
     
     char *checksum=(char *)hash.mutableBytes;
-    *checksum=*checksum>>4;
-    *checksum=*checksum&0x0f;
+    if(numOfBytes==17)
+    {
+        *checksum=*checksum>>4;
+        *checksum=*checksum&0x0f;
+    }
     
-    if(*checksum!=bytes[16])
+    if(*checksum!=bytes[numOfBytes-1])
         return nil;
 
+    free(bytes);
+
     NSMutableData *finalData=[[NSMutableData alloc] init];
-    for(int i=0;i<16;i++)
+    if(numOfBytes==17)
     {
-        char byte=0x0;
-        [finalData appendBytes:&byte length:1];
+        for(int i=0;i<16;i++)
+        {
+            char byte=0x0;
+            [finalData appendBytes:&byte length:1];
+        }
     }
     [finalData appendData:keyData];
     
-    
-
-    
     return finalData;
+}
+
++(NSString *) wifKeyFromData:(NSData *)data
+{
+    BTCKey *key=[[BTCKey alloc] initWithPrivateKey:data];
+    return [[LWPrivateKeyManager shared] isDevServer]?key.WIFTestnet:key.WIF;
 }
 
 +(NSString *) hashForString:(NSString *) string

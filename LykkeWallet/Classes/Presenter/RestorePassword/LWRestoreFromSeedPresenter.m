@@ -1,12 +1,12 @@
 //
-//  LWRestorePasswordWordsPresenter.m
+//  LWRestoreFromSeedPresenter.m
 //  LykkeWallet
 //
 //  Created by Andrey Snetkov on 18/08/16.
 //  Copyright © 2016 Lykkex. All rights reserved.
 //
 
-#import "LWRestorePasswordWordsPresenter.h"
+#import "LWRestoreFromSeedPresenter.h"
 #import "LWCommonButton.h"
 #import "LWPrivateKeyManager.h"
 #import "LWEnterNewPasswordPresenter.h"
@@ -17,7 +17,7 @@
 #import "UIViewController+Loading.h"
 #import "LWResultPresenter.h"
 
-@interface LWRestorePasswordWordsPresenter () <UITextFieldDelegate>
+@interface LWRestoreFromSeedPresenter () <UITextFieldDelegate>
 {
     
     
@@ -31,7 +31,7 @@
 
 @end
 
-@implementation LWRestorePasswordWordsPresenter
+@implementation LWRestoreFromSeedPresenter
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -58,7 +58,10 @@
 -(void) viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    self.title=@"RESET PASSWORD";
+    if(_backupMode==BACKUP_MODE_PRIVATE_KEY)
+        self.title=@"RESET PASSWORD";
+    else if(_backupMode==BACKUP_MODE_COLD_STORAGE)
+        self.title=@"DEFROST COLD WALLET";
     
 //    if(presenter)
 //        return;
@@ -78,6 +81,14 @@
     [super viewWillDisappear:animated];
     self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
 
+}
+
+-(void) crossCloseButtonPressed
+{
+    if(_backupMode==BACKUP_MODE_COLD_STORAGE)
+        [self.navigationController popViewControllerAnimated:NO];
+    else
+        [super crossCloseButtonPressed];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -101,16 +112,19 @@
 //        self.iconInvalid.hidden=YES;
     
     NSArray *arr=[textField.text componentsSeparatedByString:@" "];
-    if(arr.count==12 && [arr.lastObject length])
+    if((arr.count==12 || arr.count==24) && [arr.lastObject length] && [LWPrivateKeyManager keyDataFromSeedWords:arr])
     {
-        if([[LWPrivateKeyManager shared] savePrivateKeyLykkeFromSeedWords:[_textField.text componentsSeparatedByString:@" "]])
+        if(_backupMode==BACKUP_MODE_PRIVATE_KEY)
         {
-            self.proceedButton.enabled=YES;
-
-            [textField resignFirstResponder];
-
-            self.iconInvalid.hidden=NO;
+            [[LWPrivateKeyManager shared] savePrivateKeyLykkeFromSeedWords:[_textField.text componentsSeparatedByString:@" "]];
         }
+        
+        self.proceedButton.enabled=YES;
+        
+        [textField resignFirstResponder];
+        
+        self.iconInvalid.hidden=NO;
+
 
     }
     else
@@ -132,8 +146,22 @@
 {
 //    if([[LWPrivateKeyManager shared] savePrivateKeyLykkeFromSeedWords:[_textField.text componentsSeparatedByString:@" "]])
 //    {
+    if(_backupMode==BACKUP_MODE_PRIVATE_KEY)
+    {
         [self setLoading:YES];
         [[LWAuthManager instance] requestPrivateKeyOwnershipMessage:self.email];
+
+    }
+    else if(_backupMode==BACKUP_MODE_COLD_STORAGE && [self.delegate respondsToSelector:@selector(restoreFromSeed:restoredKey:)])
+    {
+        NSData *key=[LWPrivateKeyManager keyDataFromSeedWords:[_textField.text componentsSeparatedByString:@" "]];
+        NSString *wifKey=[LWPrivateKeyManager wifKeyFromData:key];
+        
+        [self.delegate restoreFromSeed:self restoredKey:wifKey];
+
+    }
+    
+    
  
 //    }
 //    else

@@ -1,20 +1,16 @@
 //
-//  LWCreateEditPrivateWalletPresenter.h
+//  LWPrivateWalletAddressPresenter.h
 //  LykkeWallet
 //
-//  Created by Andrey Snetkov on 16/08/16.
+//  Created by Andrey Snetkov on 01/11/2016.
 //  Copyright © 2016 Lykkex. All rights reserved.
 //
 
 #import "LWAuthComplexPresenter.h"
 
-
 @class LWPrivateWalletModel;
 
-@interface LWCreateEditPrivateWalletPresenter : LWAuthComplexPresenter
-
-
-@property BOOL editMode;
+@interface LWPrivateWalletAddressPresenter : LWAuthComplexPresenter
 
 @property (strong, nonatomic) LWPrivateWalletModel *wallet;
 

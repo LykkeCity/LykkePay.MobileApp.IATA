@@ -17,7 +17,7 @@
 #import "LWAddPrivateWalletPresenter.h"
 #import "UIViewController+Loading.h"
 #import "LWRefreshControlView.h"
-#import "LWCreateEditPrivateWalletPresenter.h"
+#import "LWEditPrivateWalletPresenter.h"
 
 @interface LWPrivateWalletsPresenter () <UITableViewDelegate, UITableViewDataSource>
 {
@@ -61,6 +61,7 @@
     if(!wallets.count)
         [self setLoading:YES];
     [self reloadWallets];
+    [self.tableView reloadData];
 }
 
 -(void) viewDidAppear:(BOOL)animated
@@ -146,15 +147,15 @@
     id presenter;
     if(row==0)
     {
-        presenter=[[LWCreateEditPrivateWalletPresenter alloc] init];
-        [(LWCreateEditPrivateWalletPresenter *)presenter setEditMode:YES];
-        [(LWCreateEditPrivateWalletPresenter *)presenter setWallet:wallets[section]];
+        presenter=[[LWEditPrivateWalletPresenter alloc] init];
+
+        [(LWEditPrivateWalletPresenter *)presenter setWallet:wallets[section]];
         
     }
     else
     {
         presenter=[[LWPrivateWalletHistoryPresenter alloc] init];
-        [(LWCreateEditPrivateWalletPresenter *)presenter setWallet:wallets[section]];
+        [(LWPrivateWalletHistoryPresenter *)presenter setWallet:wallets[section]];
         [(LWPrivateWalletHistoryPresenter *)presenter setAsset:[wallets[section] assets][row-1]];
         
     }

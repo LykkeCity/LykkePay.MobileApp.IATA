@@ -45,11 +45,6 @@ typedef enum {BACKUP_MODE_PRIVATE_KEY, BACKUP_MODE_COLD_STORAGE} BACKUP_MODE;
 +(NSString *) encodedPrivateKeyWif:(NSString *) key withPassPhrase:(NSString *) passPhrase;
 +(NSString *) decodedPrivateKeyWif:(NSString *) encodedKey withPassPhrase:(NSString *) passPhrase;
 
-+(NSArray *) generateSeedWords;
-
--(NSArray *) privateKeyWords;
-
--(BOOL) savePrivateKeyLykkeFromSeedWords:(NSArray *) words;
 
 -(NSString *) availableSecondaryPrivateKey;
 -(NSString *) secondaryPrivateKeyFromPrivateWalletAddress:(NSString *) addressOfPrivateWallet;
@@ -58,6 +53,16 @@ typedef enum {BACKUP_MODE_PRIVATE_KEY, BACKUP_MODE_COLD_STORAGE} BACKUP_MODE;
 -(NSString *) coloredAddressFromBitcoinAddress:(NSString *) address;
 
 +(NSString *) hashForString:(NSString *) string;
+
+
++(NSArray *) generateSeedWords12;
++(NSArray *) generateSeedWords24;
+-(NSArray *) privateKeyWords;
+-(BOOL) savePrivateKeyLykkeFromSeedWords:(NSArray *) words;
++(NSData *) keyDataFromSeedWords:(NSArray *) words;
+
++(NSString *) wifKeyFromData:(NSData *) data;
+
 
 -(void) logoutUser;
 

@@ -1,12 +1,12 @@
 //
-//  LWCreateEditPrivateWalletPresenter.m
+//  LWCreatePrivateWalletPresenter.m
 //  LykkeWallet
 //
 //  Created by Andrey Snetkov on 16/08/16.
 //  Copyright © 2016 Lykkex. All rights reserved.
 //
 
-#import "LWCreateEditPrivateWalletPresenter.h"
+#import "LWCreatePrivateWalletPresenter.h"
 #import "LWValidator.h"
 #import "LWWalletsTypeButton.h"
 #import "LWPrivateKeyManager.h"
@@ -24,16 +24,15 @@
 #import "LWBackupGetStartedPresenter.h"
 #import "LWIPadModalNavigationControllerViewController.h"
 #import "LWBackupCheckWordsPresenter.h"
+#import "LWColdWalletKeyTypePresenter.h"
 
 @import AVFoundation;
 
 #define TextColor [UIColor colorWithRed:63.0/255 green:77.0/255 blue:96.0/255 alpha:0.2]
 
-@interface LWCreateEditPrivateWalletPresenter () <UITextFieldDelegate, LWGenerateKeyPresenterDelegate>
+@interface LWCreatePrivateWalletPresenter () <UITextFieldDelegate, LWGenerateKeyPresenterDelegate>
 {
-    NSDictionary *createButtonEnabledAttributes;
-    NSDictionary *buttonDisabledAttributes;
-    BOOL flagColoredAddress;
+    LWColdWalletKeyTypePresenter *coldWalletKeyTypePresenter;
 }
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
@@ -50,6 +49,10 @@
 @property (weak, nonatomic) IBOutlet UIButton *keyPasteButton;
 @property (weak, nonatomic) IBOutlet UIButton *keyCopyButton;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+
+@property (weak, nonatomic) IBOutlet UIView *privateKeyTypeView;
+@property (weak, nonatomic) IBOutlet UILabel *privateKeyTypeLabel;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *privateKeyTypeContainerHeightConstraint;
 
 @property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
 
@@ -74,11 +77,11 @@
 
 @end
 
-@implementation LWCreateEditPrivateWalletPresenter
+@implementation LWCreatePrivateWalletPresenter
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    flagColoredAddress=NO;
+    
     
     
     UIView *grayView=[[UIView alloc] initWithFrame:CGRectMake(0, -500, 1024, 500)];
@@ -102,48 +105,7 @@
 
     NSString *createUpdateButtonTitle;
     
-    if(self.editMode)
-    {
-        self.scanQRView.hidden=YES;
-        self.scanQRHeightConstraint.constant=25;
-        
-        if(_wallet.isExternalWallet==NO)
-        {
-            _privateKeyContainerView.hidden=YES;
-            _privateKeyContainerHeightConstraint.constant=0;
-            _scanQRHeightConstraint.constant=15;
-        }
-//        self.modeButtonsContainer.hidden=YES;
-//        self.walletNameTopConstraint.constant=20;
-        
-        [_walletNewButton setTitle:@"BITCOIN"];
-        [_walletExistingButton setTitle:@"COLORED"];
-        [self pressedWalletTypeButton:_walletNewButton];
 
-        
-        
-        
-        createUpdateButtonTitle=@"UPDATE WALLET";
-//        [LWValidator setButton:self.createUpdateButton enabled:YES];
-        _createUpdateButton.enabled=YES;
-        
-        self.walletNameTextField.text=self.wallet.name;
-        self.addressLabel.text=self.wallet.address;
-        self.privateKeyTextField.text=self.wallet.privateKey;
-        self.privateKeyTextField.secureTextEntry=YES;
-        
-        if([self.wallet.privateKey isEqualToString:[LWPrivateKeyManager shared].wifPrivateKeyLykke])
-        {
-            self.walletNameTextField.userInteractionEnabled=NO;
-            self.createUpdateButton.hidden=YES;
-            self.titleLabel.hidden=YES;
-        }
-        else
-            self.titleLabel.text=@"Change wallet name";
-        self.padlockWidthConstraint.active=NO;
-    }
-    else
-    {
         createUpdateButtonTitle=@"CREATE WALLET";
 //        [LWValidator setButton:self.createUpdateButton enabled:NO];
         _createUpdateButton.enabled=NO;
@@ -153,7 +115,7 @@
         [self.walletExistingButton setTitle:@"EXISTING"];
         [self.walletColdButton setTitle:@"COLD"];
 
-    }
+    
     
 //    self.keyPasteWidthConstraint.constant=0;
 
@@ -171,11 +133,12 @@
     
     [_createUpdateButton setTitle:createUpdateButtonTitle forState:UIControlStateNormal];
     
-    if(self.editMode==NO)
-        [self pressedWalletTypeButton:_walletNewButton];
     
     UITapGestureRecognizer *gesture=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(addressViewPressedScanQRCode)];
     [self.scanQRView addGestureRecognizer:gesture];
+    
+    gesture=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(coldWalletKeyTypePressed)];
+    [_privateKeyTypeView addGestureRecognizer:gesture];
     
     
     self.walletNameTextField.placeholder=@"Name of wallet";
@@ -187,6 +150,10 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(coldStorageBackupFinished:) name:@"ColdStorageBackupFinished" object:nil];
     
+    [self pressedWalletTypeButton:_walletNewButton];
+    
+    [self adjustThinLines];
+    
 }
 
 -(void) viewWillAppear:(BOOL)animated
@@ -196,7 +163,13 @@
     [self setBackButton];
     self.observeKeyboardEvents=YES;
     
-    
+    if(coldWalletKeyTypePresenter)
+    {
+        if(coldWalletKeyTypePresenter.is256Bit)
+            _privateKeyTypeLabel.text=@"256 bit / 24 words";
+        else
+            _privateKeyTypeLabel.text=@"128 bit / 12 words";
+    }
 }
 
 -(void) viewWillDisappear:(BOOL)animated
@@ -212,10 +185,7 @@
 -(void) viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    if(self.editMode)
-        self.title=@"EDIT WALLET";
-    else
-        self.title=@"ADD NEW WALLET";
+    self.title=@"ADD NEW WALLET";
     
 }
 
@@ -243,23 +213,6 @@
     self.walletExistingButton.selected=NO;
     self.walletColdButton.selected=NO;
     button.selected=YES;
-
-    if(self.editMode)
-    {
-        if(button==self.walletNewButton)
-        {
-            _addressTitleLabel.text=@"Wallet address";
-            _addressLabel.text=[LWPrivateKeyManager addressFromPrivateKeyWIF:self.privateKeyTextField.text];
-            
-        }
-        else
-        {
-            _addressTitleLabel.text=@"Private wallet colored address";
-            _addressLabel.text=[[LWPrivateKeyManager shared] coloredAddressFromBitcoinAddress:[LWPrivateKeyManager addressFromPrivateKeyWIF:self.privateKeyTextField.text]];
-
-        }
-        return;
-    }
     
     
     NSString *createUpdateButtonTitle;
@@ -275,6 +228,9 @@
         _privateKeyContainerView.hidden=YES;
         _privateKeyContainerHeightConstraint.constant=0;
         self.keyPasteWidthConstraint.active=YES;
+        
+        _privateKeyTypeView.hidden=YES;
+        _privateKeyTypeContainerHeightConstraint.constant=0;
         
         NSString *sss=self.addressLabel.text;
         
@@ -296,6 +252,10 @@
         _privateKeyContainerView.hidden=NO;
         _privateKeyContainerHeightConstraint.constant=45;
         
+        _privateKeyTypeView.hidden=YES;
+        _privateKeyTypeContainerHeightConstraint.constant=0;
+
+        
         self.keyPasteWidthConstraint.active=NO;
         createUpdateButtonTitle=@"ADD WALLET";
         
@@ -315,11 +275,15 @@
         _privateKeyContainerView.hidden=YES;
         _privateKeyContainerHeightConstraint.constant=0;
         self.keyPasteWidthConstraint.active=YES;
+        
+        _privateKeyTypeView.hidden=NO;
+        _privateKeyTypeContainerHeightConstraint.constant=70;
+
 
         createUpdateButtonTitle=@"PROCEED";
 
         
-        _descriptionLabel.text=@"The private key will be generated you, but will not be stored in Lykke Wallet";
+        _descriptionLabel.text=@"The private key will be generated but will not be stored in Lykke Wallet";
     }
     
     
@@ -345,23 +309,6 @@
     [self showCopied];
 }
 
--(IBAction)padlockPressed:(id)sender
-{
-    if(self.editMode)
-    {
-        self.padlockButton.selected=!self.padlockButton.selected;
-        if(self.padlockButton.selected)
-        {
-            self.privateKeyTextField.secureTextEntry=NO;
-            self.keyCopyWidthConstraint.active=NO;
-        }
-        else
-        {
-            self.privateKeyTextField.secureTextEntry=YES;
-            self.keyCopyWidthConstraint.active=YES;
-        }
-    }
-}
 
 -(IBAction)pasteButtonPressed:(id)sender
 {
@@ -415,30 +362,6 @@
 -(void) validateCreateUpdateButton
 {
     NSString *walletName=[self.walletNameTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]].lowercaseString;
-    if(self.editMode)
-    {
-        if([self.walletNameTextField.text isEqualToString:_wallet.name.lowercaseString])
-        {
-//            [LWValidator setButton:self.createUpdateButton enabled:NO];
-            _createUpdateButton.enabled=NO;
-        }
-        else if(self.walletNameTextField.text.length && [self.walletNameTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]].length)
-        {
-//            [LWValidator setButton:self.createUpdateButton enabled:YES];
-            _createUpdateButton.enabled=YES;
-        }
-        for(LWPrivateWalletModel *m in [LWPrivateWalletsManager shared].wallets)
-        {
-            if([[m.name lowercaseString] isEqualToString:walletName])
-            {
-//                [LWValidator setButton:self.createUpdateButton enabled:NO];
-                _createUpdateButton.enabled=NO;
-                break;
-            }
-        }
-    }
-    else
-    {
         if(self.walletNameTextField.text.length && (([self.walletNameTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]].length && self.addressLabel.text.length) || _walletColdButton.selected==YES))
         {
 //            [LWValidator setButton:self.createUpdateButton enabled:YES];
@@ -461,7 +384,6 @@
         }
 
         
-    }
     
     if(_addressLabel.text.length)
         _addressTitleLabel.text=@"Wallet address";
@@ -659,9 +581,7 @@
 {
     [self setLoading:YES];
     [self.view endEditing:YES];
-    if(self.editMode==NO)
-    {
-        if(_walletColdButton.selected)
+        if(_walletColdButton.selected && _addressLabel.text.length==0)
         {
             LWGenerateKeyPresenter *presenter=[[LWGenerateKeyPresenter alloc] init];
             presenter.flagSkipIntro=NO;
@@ -682,6 +602,11 @@
             wallet.isExternalWallet=YES;
             wallet.encryptedKey=[[LWPrivateKeyManager shared] encryptExternalWalletKey:wallet.privateKey];
         }
+        else if(_walletColdButton.selected)
+        {
+            wallet.isExternalWallet=YES;
+            wallet.isColdStorageWallet=YES;
+        }
 //        wallet.encryptedKey=[[LWPrivateKeyManager shared] encryptKey:wallet.privateKey password:[LWKeychainManager instance].password];
         [[LWPrivateWalletsManager shared] addNewWallet:wallet withCompletion:^(BOOL success){
             [self setLoading:NO];
@@ -692,21 +617,6 @@
                 [self.navigationController popViewControllerAnimated:YES];
             }
         }];
-    }
-    else
-    {
-        self.wallet.name=self.walletNameTextField.text;
-//        if(!self.wallet.encryptedKey)
-//            self.wallet.encryptedKey=[[LWPrivateKeyManager shared] encryptKey:_wallet.privateKey password:[LWKeychainManager instance].password];
-        [[LWPrivateWalletsManager shared] updateWallet:self.wallet withCompletion:^(BOOL success){
-            [self setLoading:NO];
-            if(success)
-            {
-                [self.navigationController popViewControllerAnimated:YES];
-            }
-        }];
-
-    }
 
 }
 
@@ -722,6 +632,16 @@
     
 }
 
+-(void) coldWalletKeyTypePressed
+{
+    if(!coldWalletKeyTypePresenter)
+    {
+        coldWalletKeyTypePresenter=[LWColdWalletKeyTypePresenter new];
+        coldWalletKeyTypePresenter.is256Bit=YES;
+    }
+    [self.navigationController pushViewController:coldWalletKeyTypePresenter animated:YES];
+}
+
 -(void) observeKeyboardWillHideNotification:(NSNotification *)notification
 {
     self.scrollViewBottomConstraint.constant=0;
@@ -733,6 +653,10 @@
     
     LWBackupGetStartedPresenter *presenter=[[LWBackupGetStartedPresenter alloc] init];
     presenter.backupMode=BACKUP_MODE_COLD_STORAGE;
+    if(!coldWalletKeyTypePresenter || coldWalletKeyTypePresenter.is256Bit)
+        presenter.seedWords=[LWPrivateKeyManager generateSeedWords24];
+    else
+        presenter.seedWords=[LWPrivateKeyManager generateSeedWords12];
     
     if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
         [self.navigationController pushViewController:presenter animated:YES];
@@ -764,6 +688,22 @@
     {
         [self.navigationController dismissViewControllerAnimated:YES completion:nil];
     }
+    
+    BTCKey *key=[[BTCKey alloc] initWithPrivateKey:[LWPrivateKeyManager keyDataFromSeedWords:words]];
+    
+    if([LWPrivateKeyManager shared].isDevServer)
+    {
+        
+        BTCAddress *address=key.addressTestnet;
+        self.addressLabel.text=address.string;
+    }
+    else
+    {
+        BTCAddress *address=key.address;
+        self.addressLabel.text=address.string;
+    }
+    [self validateCreateUpdateButton];
+    [_createUpdateButton setTitle:@"CREATE WALLET" forState:UIControlStateNormal];
 }
 
 

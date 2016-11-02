@@ -23,6 +23,7 @@
 
 -(void) addNewWallet:(LWPrivateWalletModel *) wallet   withCompletion:(void (^)(BOOL))completion;
 -(void) updateWallet:(LWPrivateWalletModel *) wallet withCompletion:(void (^)(BOOL))completion;
+-(void) defrostColdStorageWallet:(LWPrivateWalletModel *) wallet withCompletion:(void (^)(BOOL))completion;
 
 -(void) deleteWallet:(NSString *) address withCompletion:(void (^)(BOOL))completion;
 

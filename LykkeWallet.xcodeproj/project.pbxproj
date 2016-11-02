@@ -18,6 +18,8 @@
 		A10A95071D0E8F5F00557C87 /* SlashSign@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = A10A95051D0E8F5F00557C87 /* SlashSign@3x.png */; };
 		A10A950A1D0E9F3B00557C87 /* LWPacketAllAssets.m in Sources */ = {isa = PBXBuildFile; fileRef = A10A95091D0E9F3B00557C87 /* LWPacketAllAssets.m */; };
 		A10A950D1D0EA07B00557C87 /* LWPacketLastBaseAssets.m in Sources */ = {isa = PBXBuildFile; fileRef = A10A950C1D0EA07B00557C87 /* LWPacketLastBaseAssets.m */; };
+		A10C38751DC84BE90080BF14 /* LWEditPrivateWalletPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A10C38731DC84BE90080BF14 /* LWEditPrivateWalletPresenter.m */; };
+		A10C38761DC84BE90080BF14 /* LWEditPrivateWalletPresenter.xib in Resources */ = {isa = PBXBuildFile; fileRef = A10C38741DC84BE90080BF14 /* LWEditPrivateWalletPresenter.xib */; };
 		A11358E41DB2867C00E66051 /* LWLykkeBuyTransferContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = A11358E21DB2867C00E66051 /* LWLykkeBuyTransferContainer.m */; };
 		A11358E51DB2867C00E66051 /* LWLykkeBuyTransferContainer.xib in Resources */ = {isa = PBXBuildFile; fileRef = A11358E31DB2867C00E66051 /* LWLykkeBuyTransferContainer.xib */; };
 		A11358EE1DB35EEF00E66051 /* LWBuyLykkeInContainerPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A11358EC1DB35EEF00E66051 /* LWBuyLykkeInContainerPresenter.m */; };
@@ -59,6 +61,14 @@
 		A1165D481CF70CED0017A725 /* LWRegisterHintPresenter~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1165D451CF70CED0017A725 /* LWRegisterHintPresenter~ipad.xib */; };
 		A1165D491CF70CED0017A725 /* LWRegisterHintPresenter~iphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1165D461CF70CED0017A725 /* LWRegisterHintPresenter~iphone.xib */; };
 		A1165D4E1CF9838F0017A725 /* UINavigationItem+Kerning.m in Sources */ = {isa = PBXBuildFile; fileRef = A1165D4D1CF9838F0017A725 /* UINavigationItem+Kerning.m */; };
+		A11C86ED1DC86B170013922A /* LWPrivateWalletAddressPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A11C86EB1DC86B170013922A /* LWPrivateWalletAddressPresenter.m */; };
+		A11C86EE1DC86B170013922A /* LWPrivateWalletAddressPresenter.xib in Resources */ = {isa = PBXBuildFile; fileRef = A11C86EC1DC86B170013922A /* LWPrivateWalletAddressPresenter.xib */; };
+		A11C86F21DC9C80C0013922A /* LWSuccessPresenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A11C86F01DC9C80C0013922A /* LWSuccessPresenterViewController.m */; };
+		A11C86F31DC9C80C0013922A /* LWSuccessPresenterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A11C86F11DC9C80C0013922A /* LWSuccessPresenterViewController.xib */; };
+		A11C86F51DC9CB760013922A /* LWResultPresenter_iphone5.xib in Resources */ = {isa = PBXBuildFile; fileRef = A11C86F41DC9CB760013922A /* LWResultPresenter_iphone5.xib */; };
+		A11C86F71DC9CD990013922A /* LWResultPresenter_ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A11C86F61DC9CD990013922A /* LWResultPresenter_ipad.xib */; };
+		A11C86FB1DCA28610013922A /* LWColdWalletKeyTypePresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A11C86F91DCA28610013922A /* LWColdWalletKeyTypePresenter.m */; };
+		A11C86FC1DCA28610013922A /* LWColdWalletKeyTypePresenter.xib in Resources */ = {isa = PBXBuildFile; fileRef = A11C86FA1DCA28610013922A /* LWColdWalletKeyTypePresenter.xib */; };
 		A11D0F3D1D3761A800BFDE4D /* LWPrivateWalletsPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A11D0F3C1D3761A800BFDE4D /* LWPrivateWalletsPresenter.m */; };
 		A11D0F401D3761EB00BFDE4D /* LWPrivateWalletModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A11D0F3F1D3761EB00BFDE4D /* LWPrivateWalletModel.m */; };
 		A11D0F431D3766A200BFDE4D /* LWPrivateWalletAssetModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A11D0F421D3766A200BFDE4D /* LWPrivateWalletAssetModel.m */; };
@@ -112,8 +122,8 @@
 		A1312B251D184047009726FF /* LWCameraMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A1312B241D184047009726FF /* LWCameraMessageView.m */; };
 		A1312B271D184062009726FF /* LWCameraMessageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1312B261D184062009726FF /* LWCameraMessageView.xib */; };
 		A1312B2A1D19027F009726FF /* NewDecodeBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = A1312B291D19027F009726FF /* NewDecodeBase64.m */; };
-		A135977B1D6360A70021228E /* LWCreateEditPrivateWalletPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A13597791D6360A70021228E /* LWCreateEditPrivateWalletPresenter.m */; };
-		A135977C1D6360A70021228E /* LWCreateEditPrivateWalletPresenter.xib in Resources */ = {isa = PBXBuildFile; fileRef = A135977A1D6360A70021228E /* LWCreateEditPrivateWalletPresenter.xib */; };
+		A135977B1D6360A70021228E /* LWCreatePrivateWalletPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A13597791D6360A70021228E /* LWCreatePrivateWalletPresenter.m */; };
+		A135977C1D6360A70021228E /* LWCreatePrivateWalletPresenter.xib in Resources */ = {isa = PBXBuildFile; fileRef = A135977A1D6360A70021228E /* LWCreatePrivateWalletPresenter.xib */; };
 		A1369BA31D90E9F5003CAC09 /* LWRequestCallMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A1369BA11D90E9F5003CAC09 /* LWRequestCallMessageView.m */; };
 		A1369BA41D90E9F5003CAC09 /* LWRequestCallMessageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1369BA21D90E9F5003CAC09 /* LWRequestCallMessageView.xib */; };
 		A13C31E01DACD3A40042F325 /* LWBackupSuccessPresenter~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A13C31DF1DACD3A40042F325 /* LWBackupSuccessPresenter~ipad.xib */; };
@@ -217,8 +227,8 @@
 		A188DA2C1D716C2700AA6D8A /* LWMyLykkeBuyAssetPresenter~iphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = A188DA2A1D716C2700AA6D8A /* LWMyLykkeBuyAssetPresenter~iphone.xib */; };
 		A188DA331D71C05B00AA6D8A /* LWPacketAllAssetPairsRates.m in Sources */ = {isa = PBXBuildFile; fileRef = A188DA321D71C05B00AA6D8A /* LWPacketAllAssetPairsRates.m */; };
 		A189C8001DA8B4E0001EF6BA /* LWKYCImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = A189C7FF1DA8B4E0001EF6BA /* LWKYCImagePickerController.m */; };
-		A18D259E1D65CA22005CEF66 /* LWRestorePasswordWordsPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A18D259C1D65CA22005CEF66 /* LWRestorePasswordWordsPresenter.m */; };
-		A18D259F1D65CA22005CEF66 /* LWRestorePasswordWordsPresenter.xib in Resources */ = {isa = PBXBuildFile; fileRef = A18D259D1D65CA22005CEF66 /* LWRestorePasswordWordsPresenter.xib */; };
+		A18D259E1D65CA22005CEF66 /* LWRestoreFromSeedPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A18D259C1D65CA22005CEF66 /* LWRestoreFromSeedPresenter.m */; };
+		A18D259F1D65CA22005CEF66 /* LWRestoreFromSeedPresenter.xib in Resources */ = {isa = PBXBuildFile; fileRef = A18D259D1D65CA22005CEF66 /* LWRestoreFromSeedPresenter.xib */; };
 		A18D25A21D6710A6005CEF66 /* LWCommonButton.m in Sources */ = {isa = PBXBuildFile; fileRef = A18D25A11D6710A6005CEF66 /* LWCommonButton.m */; };
 		A18D25A61D680869005CEF66 /* LWEnterNewPasswordPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A18D25A41D680869005CEF66 /* LWEnterNewPasswordPresenter.m */; };
 		A18D25A71D680869005CEF66 /* LWEnterNewPasswordPresenter.xib in Resources */ = {isa = PBXBuildFile; fileRef = A18D25A51D680869005CEF66 /* LWEnterNewPasswordPresenter.xib */; };
@@ -1779,6 +1789,9 @@
 		A10A95091D0E9F3B00557C87 /* LWPacketAllAssets.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWPacketAllAssets.m; sourceTree = "<group>"; };
 		A10A950B1D0EA07B00557C87 /* LWPacketLastBaseAssets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWPacketLastBaseAssets.h; sourceTree = "<group>"; };
 		A10A950C1D0EA07B00557C87 /* LWPacketLastBaseAssets.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWPacketLastBaseAssets.m; sourceTree = "<group>"; };
+		A10C38721DC84BE90080BF14 /* LWEditPrivateWalletPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWEditPrivateWalletPresenter.h; sourceTree = "<group>"; };
+		A10C38731DC84BE90080BF14 /* LWEditPrivateWalletPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWEditPrivateWalletPresenter.m; sourceTree = "<group>"; };
+		A10C38741DC84BE90080BF14 /* LWEditPrivateWalletPresenter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LWEditPrivateWalletPresenter.xib; sourceTree = "<group>"; };
 		A11358E11DB2867C00E66051 /* LWLykkeBuyTransferContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWLykkeBuyTransferContainer.h; sourceTree = "<group>"; };
 		A11358E21DB2867C00E66051 /* LWLykkeBuyTransferContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWLykkeBuyTransferContainer.m; sourceTree = "<group>"; };
 		A11358E31DB2867C00E66051 /* LWLykkeBuyTransferContainer.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LWLykkeBuyTransferContainer.xib; sourceTree = "<group>"; };
@@ -1838,6 +1851,17 @@
 		A1165D461CF70CED0017A725 /* LWRegisterHintPresenter~iphone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "LWRegisterHintPresenter~iphone.xib"; path = "FirstRegistrationStep/LWRegisterHintPresenter~iphone.xib"; sourceTree = "<group>"; };
 		A1165D4C1CF9838F0017A725 /* UINavigationItem+Kerning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationItem+Kerning.h"; sourceTree = "<group>"; };
 		A1165D4D1CF9838F0017A725 /* UINavigationItem+Kerning.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationItem+Kerning.m"; sourceTree = "<group>"; };
+		A11C86EA1DC86B170013922A /* LWPrivateWalletAddressPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWPrivateWalletAddressPresenter.h; sourceTree = "<group>"; };
+		A11C86EB1DC86B170013922A /* LWPrivateWalletAddressPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWPrivateWalletAddressPresenter.m; sourceTree = "<group>"; };
+		A11C86EC1DC86B170013922A /* LWPrivateWalletAddressPresenter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LWPrivateWalletAddressPresenter.xib; sourceTree = "<group>"; };
+		A11C86EF1DC9C80C0013922A /* LWSuccessPresenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWSuccessPresenterViewController.h; sourceTree = "<group>"; };
+		A11C86F01DC9C80C0013922A /* LWSuccessPresenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWSuccessPresenterViewController.m; sourceTree = "<group>"; };
+		A11C86F11DC9C80C0013922A /* LWSuccessPresenterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LWSuccessPresenterViewController.xib; sourceTree = "<group>"; };
+		A11C86F41DC9CB760013922A /* LWResultPresenter_iphone5.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LWResultPresenter_iphone5.xib; sourceTree = "<group>"; };
+		A11C86F61DC9CD990013922A /* LWResultPresenter_ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LWResultPresenter_ipad.xib; sourceTree = "<group>"; };
+		A11C86F81DCA28610013922A /* LWColdWalletKeyTypePresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWColdWalletKeyTypePresenter.h; sourceTree = "<group>"; };
+		A11C86F91DCA28610013922A /* LWColdWalletKeyTypePresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWColdWalletKeyTypePresenter.m; sourceTree = "<group>"; };
+		A11C86FA1DCA28610013922A /* LWColdWalletKeyTypePresenter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LWColdWalletKeyTypePresenter.xib; sourceTree = "<group>"; };
 		A11D0F3B1D3761A800BFDE4D /* LWPrivateWalletsPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWPrivateWalletsPresenter.h; sourceTree = "<group>"; };
 		A11D0F3C1D3761A800BFDE4D /* LWPrivateWalletsPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWPrivateWalletsPresenter.m; sourceTree = "<group>"; };
 		A11D0F3E1D3761EB00BFDE4D /* LWPrivateWalletModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LWPrivateWalletModel.h; path = Wallets/LWPrivateWalletModel.h; sourceTree = "<group>"; };
@@ -1916,9 +1940,9 @@
 		A1312B261D184062009726FF /* LWCameraMessageView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LWCameraMessageView.xib; sourceTree = "<group>"; };
 		A1312B281D19027F009726FF /* NewDecodeBase64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewDecodeBase64.h; path = Security/NewDecodeBase64.h; sourceTree = "<group>"; };
 		A1312B291D19027F009726FF /* NewDecodeBase64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewDecodeBase64.m; path = Security/NewDecodeBase64.m; sourceTree = "<group>"; };
-		A13597781D6360A70021228E /* LWCreateEditPrivateWalletPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWCreateEditPrivateWalletPresenter.h; sourceTree = "<group>"; };
-		A13597791D6360A70021228E /* LWCreateEditPrivateWalletPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWCreateEditPrivateWalletPresenter.m; sourceTree = "<group>"; };
-		A135977A1D6360A70021228E /* LWCreateEditPrivateWalletPresenter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LWCreateEditPrivateWalletPresenter.xib; sourceTree = "<group>"; };
+		A13597781D6360A70021228E /* LWCreatePrivateWalletPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWCreatePrivateWalletPresenter.h; sourceTree = "<group>"; };
+		A13597791D6360A70021228E /* LWCreatePrivateWalletPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWCreatePrivateWalletPresenter.m; sourceTree = "<group>"; };
+		A135977A1D6360A70021228E /* LWCreatePrivateWalletPresenter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LWCreatePrivateWalletPresenter.xib; sourceTree = "<group>"; };
 		A1369BA01D90E9F5003CAC09 /* LWRequestCallMessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWRequestCallMessageView.h; sourceTree = "<group>"; };
 		A1369BA11D90E9F5003CAC09 /* LWRequestCallMessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWRequestCallMessageView.m; sourceTree = "<group>"; };
 		A1369BA21D90E9F5003CAC09 /* LWRequestCallMessageView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LWRequestCallMessageView.xib; sourceTree = "<group>"; };
@@ -2090,9 +2114,9 @@
 		A188DA321D71C05B00AA6D8A /* LWPacketAllAssetPairsRates.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWPacketAllAssetPairsRates.m; sourceTree = "<group>"; };
 		A189C7FE1DA8B4E0001EF6BA /* LWKYCImagePickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWKYCImagePickerController.h; sourceTree = "<group>"; };
 		A189C7FF1DA8B4E0001EF6BA /* LWKYCImagePickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWKYCImagePickerController.m; sourceTree = "<group>"; };
-		A18D259B1D65CA22005CEF66 /* LWRestorePasswordWordsPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWRestorePasswordWordsPresenter.h; sourceTree = "<group>"; };
-		A18D259C1D65CA22005CEF66 /* LWRestorePasswordWordsPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWRestorePasswordWordsPresenter.m; sourceTree = "<group>"; };
-		A18D259D1D65CA22005CEF66 /* LWRestorePasswordWordsPresenter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LWRestorePasswordWordsPresenter.xib; sourceTree = "<group>"; };
+		A18D259B1D65CA22005CEF66 /* LWRestoreFromSeedPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWRestoreFromSeedPresenter.h; sourceTree = "<group>"; };
+		A18D259C1D65CA22005CEF66 /* LWRestoreFromSeedPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWRestoreFromSeedPresenter.m; sourceTree = "<group>"; };
+		A18D259D1D65CA22005CEF66 /* LWRestoreFromSeedPresenter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LWRestoreFromSeedPresenter.xib; sourceTree = "<group>"; };
 		A18D25A01D6710A6005CEF66 /* LWCommonButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWCommonButton.h; sourceTree = "<group>"; };
 		A18D25A11D6710A6005CEF66 /* LWCommonButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWCommonButton.m; sourceTree = "<group>"; };
 		A18D25A31D680869005CEF66 /* LWEnterNewPasswordPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWEnterNewPasswordPresenter.h; sourceTree = "<group>"; };
@@ -4100,9 +4124,9 @@
 		A18D259A1D65C9E0005CEF66 /* RestorePassword */ = {
 			isa = PBXGroup;
 			children = (
-				A18D259B1D65CA22005CEF66 /* LWRestorePasswordWordsPresenter.h */,
-				A18D259C1D65CA22005CEF66 /* LWRestorePasswordWordsPresenter.m */,
-				A18D259D1D65CA22005CEF66 /* LWRestorePasswordWordsPresenter.xib */,
+				A18D259B1D65CA22005CEF66 /* LWRestoreFromSeedPresenter.h */,
+				A18D259C1D65CA22005CEF66 /* LWRestoreFromSeedPresenter.m */,
+				A18D259D1D65CA22005CEF66 /* LWRestoreFromSeedPresenter.xib */,
 				A18D25A31D680869005CEF66 /* LWEnterNewPasswordPresenter.h */,
 				A18D25A41D680869005CEF66 /* LWEnterNewPasswordPresenter.m */,
 				A18D25A51D680869005CEF66 /* LWEnterNewPasswordPresenter.xib */,
@@ -4263,9 +4287,18 @@
 				A1B6A0F31D3A5C2100FE02E1 /* LWBackupMessageView.h */,
 				A1B6A0F41D3A5C2100FE02E1 /* LWBackupMessageView.m */,
 				A1B6A0F51D3A5C2100FE02E1 /* LWBackupMessageView.xib */,
-				A13597781D6360A70021228E /* LWCreateEditPrivateWalletPresenter.h */,
-				A13597791D6360A70021228E /* LWCreateEditPrivateWalletPresenter.m */,
-				A135977A1D6360A70021228E /* LWCreateEditPrivateWalletPresenter.xib */,
+				A13597781D6360A70021228E /* LWCreatePrivateWalletPresenter.h */,
+				A13597791D6360A70021228E /* LWCreatePrivateWalletPresenter.m */,
+				A135977A1D6360A70021228E /* LWCreatePrivateWalletPresenter.xib */,
+				A10C38721DC84BE90080BF14 /* LWEditPrivateWalletPresenter.h */,
+				A10C38731DC84BE90080BF14 /* LWEditPrivateWalletPresenter.m */,
+				A10C38741DC84BE90080BF14 /* LWEditPrivateWalletPresenter.xib */,
+				A11C86EA1DC86B170013922A /* LWPrivateWalletAddressPresenter.h */,
+				A11C86EB1DC86B170013922A /* LWPrivateWalletAddressPresenter.m */,
+				A11C86EC1DC86B170013922A /* LWPrivateWalletAddressPresenter.xib */,
+				A11C86F81DCA28610013922A /* LWColdWalletKeyTypePresenter.h */,
+				A11C86F91DCA28610013922A /* LWColdWalletKeyTypePresenter.m */,
+				A11C86FA1DCA28610013922A /* LWColdWalletKeyTypePresenter.xib */,
 			);
 			name = AddNewPrivateWallet;
 			sourceTree = "<group>";
@@ -5519,6 +5552,8 @@
 				A114948C1D509238000BD347 /* LWResultPresenter.h */,
 				A114948D1D509238000BD347 /* LWResultPresenter.m */,
 				A114948E1D509238000BD347 /* LWResultPresenter.xib */,
+				A11C86F41DC9CB760013922A /* LWResultPresenter_iphone5.xib */,
+				A11C86F61DC9CD990013922A /* LWResultPresenter_ipad.xib */,
 				A18D25C11D69FD45005CEF66 /* LWNumbersKeyboardView.h */,
 				A18D25C21D69FD45005CEF66 /* LWNumbersKeyboardView.m */,
 				A18D25C41D6A0A68005CEF66 /* LWNumbersKeyboardViewCell.h */,
@@ -6523,6 +6558,9 @@
 				A1743CB51CE9D8F500176F59 /* LWWithdrawCurrencyCell.m */,
 				A1743CAC1CE8A59400176F59 /* LWSuccessPresenterView.h */,
 				A1743CAD1CE8A59400176F59 /* LWSuccessPresenterView.m */,
+				A11C86EF1DC9C80C0013922A /* LWSuccessPresenterViewController.h */,
+				A11C86F01DC9C80C0013922A /* LWSuccessPresenterViewController.m */,
+				A11C86F11DC9C80C0013922A /* LWSuccessPresenterViewController.xib */,
 				A114945F1D47B9B7000BD347 /* LWFailedPresenterView.h */,
 				A11494601D47B9B7000BD347 /* LWFailedPresenterView.m */,
 			);
@@ -7250,6 +7288,7 @@
 				A1BCD15C1D012D3C00CF42E4 /* 2-trade-2x_00092.png in Resources */,
 				A1BCD0D81D012D3C00CF42E4 /* 1-deposit-2x_00080.png in Resources */,
 				A1BCD10D1D012D3C00CF42E4 /* 2-trade-2x_00013.png in Resources */,
+				A11C86F71DC9CD990013922A /* LWResultPresenter_ipad.xib in Resources */,
 				A1D65D951D5DCF1100828783 /* crypto_bar_00081.png in Resources */,
 				A1BCD2971D012D3C00CF42E4 /* 5-onboard-2x_00049.png in Resources */,
 				A1BCD1F71D012D3C00CF42E4 /* 4-withdraw-2x_00008.png in Resources */,
@@ -7268,7 +7307,7 @@
 				A14515A61D828EBC00B4BED9 /* LWMyLykkeMainContainerPresenter.xib in Resources */,
 				A18F892C1CE85B0A00399850 /* LWWithdrawCurrencyPresenter.xib in Resources */,
 				A1D65D801D5DCF1100828783 /* crypto_bar_00060.png in Resources */,
-				A135977C1D6360A70021228E /* LWCreateEditPrivateWalletPresenter.xib in Resources */,
+				A135977C1D6360A70021228E /* LWCreatePrivateWalletPresenter.xib in Resources */,
 				A1BCD25A1D012D3C00CF42E4 /* 4-withdraw-2x_00107.png in Resources */,
 				A1BCD1BE1D012D3C00CF42E4 /* 3-settle-2x_00071.png in Resources */,
 				A1BCD0FA1D012D3C00CF42E4 /* 1-deposit-2x_00114.png in Resources */,
@@ -7285,6 +7324,7 @@
 				A1BCD1701D012D3C00CF42E4 /* 2-trade-2x_00112.png in Resources */,
 				A1D65D631D5DCF1100828783 /* crypto_bar_00031.png in Resources */,
 				A1BCD0C61D012D3C00CF42E4 /* 1-deposit-2x_00062.png in Resources */,
+				A11C86EE1DC86B170013922A /* LWPrivateWalletAddressPresenter.xib in Resources */,
 				A1D4773D1D050B9900438846 /* loader-color@2x_00013.png in Resources */,
 				A1D65D5E1D5DCF1100828783 /* crypto_bar_00026.png in Resources */,
 				A1BCD1161D012D3C00CF42E4 /* 2-trade-2x_00022.png in Resources */,
@@ -7349,6 +7389,7 @@
 				A1D65D7A1D5DCF1100828783 /* crypto_bar_00054.png in Resources */,
 				A1BCD14A1D012D3C00CF42E4 /* 2-trade-2x_00074.png in Resources */,
 				A1BCD1021D012D3C00CF42E4 /* 2-trade-2x_00002.png in Resources */,
+				A11C86FC1DCA28610013922A /* LWColdWalletKeyTypePresenter.xib in Resources */,
 				A1D65D7F1D5DCF1100828783 /* crypto_bar_00059.png in Resources */,
 				A1BCD1D11D012D3C00CF42E4 /* 3-settle-2x_00090.png in Resources */,
 				A1BCD0FB1D012D3C00CF42E4 /* 1-deposit-2x_00115.png in Resources */,
@@ -7364,6 +7405,7 @@
 				A1BCD0F21D012D3C00CF42E4 /* 1-deposit-2x_00106.png in Resources */,
 				A1D477721D050B9900438846 /* loader-color@2x_00066.png in Resources */,
 				A188DA271D71414D00AA6D8A /* LWMyLykkeBuyPresenter.xib in Resources */,
+				A10C38761DC84BE90080BF14 /* LWEditPrivateWalletPresenter.xib in Resources */,
 				A1BCD11A1D012D3C00CF42E4 /* 2-trade-2x_00026.png in Resources */,
 				A1BCD1951D012D3C00CF42E4 /* 3-settle-2x_00030.png in Resources */,
 				A1BCD1431D012D3C00CF42E4 /* 2-trade-2x_00067.png in Resources */,
@@ -7510,6 +7552,7 @@
 				A1BCD1891D012D3C00CF42E4 /* 3-settle-2x_00018.png in Resources */,
 				A1BCD1B31D012D3C00CF42E4 /* 3-settle-2x_00060.png in Resources */,
 				A1BCD1C21D012D3C00CF42E4 /* 3-settle-2x_00075.png in Resources */,
+				A11C86F31DC9C80C0013922A /* LWSuccessPresenterViewController.xib in Resources */,
 				A1D65D9F1D5DCF1100828783 /* crypto_bar_00091.png in Resources */,
 				A1BCD13B1D012D3C00CF42E4 /* 2-trade-2x_00059.png in Resources */,
 				A1BCD1E61D012D3C00CF42E4 /* 3-settle-2x_00111.png in Resources */,
@@ -7941,10 +7984,11 @@
 				A1BCD0E21D012D3C00CF42E4 /* 1-deposit-2x_00090.png in Resources */,
 				A1BCD2011D012D3C00CF42E4 /* 4-withdraw-2x_00018.png in Resources */,
 				A1BCD0961D012D3C00CF42E4 /* 1-deposit-2x_00014.png in Resources */,
-				A18D259F1D65CA22005CEF66 /* LWRestorePasswordWordsPresenter.xib in Resources */,
+				A18D259F1D65CA22005CEF66 /* LWRestoreFromSeedPresenter.xib in Resources */,
 				A1BCD2041D012D3C00CF42E4 /* 4-withdraw-2x_00021.png in Resources */,
 				A1BCD17B1D012D3C00CF42E4 /* 3-settle-2x_00004.png in Resources */,
 				A1BCD1CE1D012D3C00CF42E4 /* 3-settle-2x_00087.png in Resources */,
+				A11C86F51DC9CB760013922A /* LWResultPresenter_iphone5.xib in Resources */,
 				A1BCD1DA1D012D3C00CF42E4 /* 3-settle-2x_00099.png in Resources */,
 				A1BCD27C1D012D3C00CF42E4 /* 5-onboard-2x_00022.png in Resources */,
 				A1BCD25D1D012D3C00CF42E4 /* 4-withdraw-2x_00110.png in Resources */,
@@ -8395,9 +8439,10 @@
 				EC57F4501C3C377300E31746 /* LWAssetDescriptionModel.m in Sources */,
 				CF6632631C175DE5004353F5 /* TKNavigationPresenter.m in Sources */,
 				A11D0F461D37676E00BFDE4D /* LWPrivateWalletTitleCell.m in Sources */,
-				A18D259E1D65CA22005CEF66 /* LWRestorePasswordWordsPresenter.m in Sources */,
+				A18D259E1D65CA22005CEF66 /* LWRestoreFromSeedPresenter.m in Sources */,
 				A14515AF1D82E91800B4BED9 /* LWMyLykkeTransferLKKPresenter.m in Sources */,
 				EC7A45DC1C309A9F00926BB4 /* LWWalletEmptyTableViewCell.m in Sources */,
+				A11C86FB1DCA28610013922A /* LWColdWalletKeyTypePresenter.m in Sources */,
 				A14515691D7A89CB00B4BED9 /* LWMyLykkeIpadController.m in Sources */,
 				CFD9B7031C1C932B00F717FE /* LWPacketCheckDocumentsToUpload.m in Sources */,
 				CF6A9CD21C18ED2400B69F53 /* LWColorizer.m in Sources */,
@@ -8520,6 +8565,7 @@
 				EC51D1991C30573200550EF2 /* LWLykkeData.m in Sources */,
 				EC7519BD1C3735CA00CDDF5B /* LWSettingsLogOutTableViewCell.m in Sources */,
 				A1D4322B1D1001AA0060866F /* LWRefundAfterView.m in Sources */,
+				A10C38751DC84BE90080BF14 /* LWEditPrivateWalletPresenter.m in Sources */,
 				A14515821D7DAC0000B4BED9 /* LWWebViewDocumentPresenter.m in Sources */,
 				EC5AE4951CD8A7000079DDFA /* LWBaseHistoryPresenter.m in Sources */,
 				A1E4EAA51CE4588C00293282 /* LWTradingLinearGraphView.m in Sources */,
@@ -8570,6 +8616,7 @@
 				EC7519C21C3739D300CDDF5B /* LWPacketBaseAssetGet.m in Sources */,
 				A1C99D181D4372E200833C4E /* LWDoubleButtonView.m in Sources */,
 				A1D4322E1D1019F80060866F /* LWRefundAddressView.m in Sources */,
+				A11C86ED1DC86B170013922A /* LWPrivateWalletAddressPresenter.m in Sources */,
 				CF9EC8BB1C17C02F00F742A6 /* LWAuthEntryPointPresenter.m in Sources */,
 				A15AAF7E1D96462800324F97 /* LWPacketWalletMigration.m in Sources */,
 				CFF7583C1C202C6500BC7658 /* LWKYCPendingPresenter.m in Sources */,
@@ -8605,7 +8652,7 @@
 				A18D25A61D680869005CEF66 /* LWEnterNewPasswordPresenter.m in Sources */,
 				A1C99D2A1D45150B00833C4E /* LWChoosePrivateWalletView.m in Sources */,
 				CF86B37B1C1B693B006D5488 /* LWPacketRegistration.m in Sources */,
-				A135977B1D6360A70021228E /* LWCreateEditPrivateWalletPresenter.m in Sources */,
+				A135977B1D6360A70021228E /* LWCreatePrivateWalletPresenter.m in Sources */,
 				A1B6A1001D3CF56900FE02E1 /* LWPacketClientKeys.m in Sources */,
 				A15B3F0D1D13FE5B00A6B506 /* LWPacketSetRefundAddress.m in Sources */,
 				ECD1E8F11C3B10170064AAB3 /* LWPacketAssetPairRates.m in Sources */,
@@ -8730,6 +8777,7 @@
 				EC3CE8C01C402FE400CAC3FE /* LWAssetBlockchainIconTableViewCell.m in Sources */,
 				A12DB5661D75DA0A00319EA7 /* LWMyLykkeNewsListPresenter.m in Sources */,
 				EC3CE8B51C401CD200CAC3FE /* LWAssetBlockchainModel.m in Sources */,
+				A11C86F21DC9C80C0013922A /* LWSuccessPresenterViewController.m in Sources */,
 				A18D25CF1D6AC381005CEF66 /* LWPacketRecoverySMSConfirmation.m in Sources */,
 				A188DA261D71414D00AA6D8A /* LWMyLykkeBuyPresenter.m in Sources */,
 				A145158A1D7FD66400B4BED9 /* LWPacketMyLykkeCashInEmail.m in Sources */,
