@@ -107,14 +107,17 @@
         
         NSDictionary *dict=[self sendRequest:request];
         
-        NSLog(@"%@", dict);
+//        NSLog(@"%@", dict);
         if(completion && [dict isKindOfClass:[NSDictionary class]])
         {
             NSMutableArray *assets=[[NSMutableArray alloc] init];
-            for(NSDictionary *d in dict[@"Balances"])
+            if([dict[@"Balances"] isKindOfClass:[NSArray class]])
             {
-                LWPrivateWalletAssetModel *model=[[LWPrivateWalletAssetModel alloc] initWithDict:d];
-                [assets addObject:model];
+                for(NSDictionary *d in dict[@"Balances"])
+                {
+                    LWPrivateWalletAssetModel *model=[[LWPrivateWalletAssetModel alloc] initWithDict:d];
+                    [assets addObject:model];
+                }
             }
 
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -292,6 +295,8 @@
     {
         
         result=[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+        if([result isKindOfClass:[NSDictionary class]]==NO)
+            return nil;
         if(result && result[@"Result"] && [result[@"Result"] isKindOfClass:[NSNull class]]==NO)
         {
             result=result[@"Result"];
