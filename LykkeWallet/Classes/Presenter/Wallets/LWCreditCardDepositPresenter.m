@@ -98,7 +98,6 @@
     [self.swiftButton setAttributedTitle:[[NSAttributedString alloc] initWithString:@"SWIFT" attributes:@{NSKernAttributeName:@(1.1), NSFontAttributeName:[UIFont fontWithName:@"ProximaNova-Regular" size:13], NSForegroundColorAttributeName:[UIColor colorWithRed:63.0/255 green:77.0/255 blue:96.0/255 alpha:1]}] forState:UIControlStateNormal];
     self.creditCardButton.backgroundColor=[UIColor colorWithRed:171.0/255 green:0 blue:1 alpha:1];
     self.creditCardButton.clipsToBounds=YES;
-    self.creditCardButton.layer.cornerRadius=self.creditCardButton.bounds.size.height/2;
 
     [LWValidator setButton:self.cachInButton enabled:YES];
     
@@ -140,6 +139,10 @@
 -(void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    [self.view layoutIfNeeded];
+    self.creditCardButton.layer.cornerRadius=self.creditCardButton.bounds.size.height/2;
+
     
     self.navigationController.navigationBar.barTintColor = BAR_GRAY_COLOR;
     self.navigationController.navigationBar.translucent = NO;

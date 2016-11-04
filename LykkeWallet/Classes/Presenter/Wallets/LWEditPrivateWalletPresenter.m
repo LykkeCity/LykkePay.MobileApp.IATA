@@ -28,7 +28,7 @@
 
 #define TextColor [UIColor colorWithRed:63.0/255 green:77.0/255 blue:96.0/255 alpha:0.2]
 
-@interface LWEditPrivateWalletPresenter () <UITextFieldDelegate, LWRestoreFromSeedDelegate>
+@interface LWEditPrivateWalletPresenter () <UITextFieldDelegate, LWRestoreFromSeedDelegate, LWResultPresenterDelegate>
 {
     NSDictionary *createButtonEnabledAttributes;
     NSDictionary *buttonDisabledAttributes;
@@ -94,25 +94,14 @@
     NSString *createUpdateButtonTitle;
     
     
-        if(_wallet.isExternalWallet==NO || _wallet.isColdStorageWallet)
-        {
-            _privateKeyContainerView.hidden=YES;
-            _privateKeyContainerHeightConstraint.constant=0;
-            _distBetweenTextContainersConstraint.constant=0;
-            
-        }
-    
     if([_wallet.address isEqualToString:[LWPrivateKeyManager addressFromPrivateKeyWIF:[LWPrivateKeyManager shared].wifPrivateKeyLykke]])
     {
         _walletNameTextField.userInteractionEnabled=NO;
         _titleLabel.text=@"";
     }
     
-    if(_wallet.isColdStorageWallet==NO)
-    {
-        _defrostButton.hidden=YES;
-        _defrostLabel.hidden=YES;
-    }
+//    [self adjustView];
+
     
         self.walletNameTextField.text=self.wallet.name;
     
@@ -154,6 +143,38 @@
     
 }
 
+-(void) adjustView
+{
+    if(_wallet.isExternalWallet==NO || _wallet.isColdStorageWallet)
+    {
+        _privateKeyContainerView.hidden=YES;
+        _privateKeyContainerHeightConstraint.constant=0;
+        _distBetweenTextContainersConstraint.constant=0;
+        
+    }
+    else
+    {
+        _privateKeyContainerView.hidden=NO;
+        _privateKeyContainerHeightConstraint.constant=45;
+        _distBetweenTextContainersConstraint.constant=10;
+        
+
+    }
+    
+    
+    if(_wallet.isColdStorageWallet==NO)
+    {
+        _defrostButton.hidden=YES;
+        _defrostLabel.hidden=YES;
+    }
+    else
+    {
+        _defrostLabel.hidden=NO;
+        _defrostButton.hidden=NO;
+    }
+
+}
+
 -(void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -161,7 +182,7 @@
     [self setBackButton];
     self.observeKeyboardEvents=YES;
     
-    
+    [self adjustView];
     
 }
 
@@ -286,17 +307,6 @@
 {
     
     
-    LWResultPresenter *ppp=[LWResultPresenter new];
-    ppp.titleString=@"SUCCESSFULL!";
-    ppp.textString=@"Your cold reserve can now be used as a private wallet (Deposit and withdraw)";
-    ppp.image=[UIImage imageNamed:@"SuccessIcon"];
-    ppp.buttonTitle=@"BACK TO WALLETS";
-    [self.navigationController pushViewController:ppp animated:YES];
-    
-    return;
-    
-    
-    
     LWRestoreFromSeedPresenter *presenter=[LWRestoreFromSeedPresenter new];
     presenter.delegate=self;
     presenter.backupMode=BACKUP_MODE_COLD_STORAGE;
@@ -317,6 +327,8 @@
     _wallet.privateKey=keyWif;
     _wallet.encryptedKey=[[LWPrivateKeyManager shared] encryptExternalWalletKey:keyWif];
     _wallet.isColdStorageWallet=NO;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        
     
     [self setLoading:YES];
     [[LWPrivateWalletsManager shared] defrostColdStorageWallet:_wallet withCompletion:^(BOOL success){
@@ -325,11 +337,25 @@
         if(success)
         {
             _wallet.isColdStorageWallet=NO;
-            [self.navigationController popViewControllerAnimated:YES];
+            
+            LWResultPresenter *ppp=[LWResultPresenter new];
+            ppp.titleString=@"SUCCESSFULL!";
+            ppp.textString=@"Your cold reserve can now be used as a private wallet (Deposit and withdraw)";
+            ppp.image=[UIImage imageNamed:@"SuccessfulIcon"];
+            ppp.buttonTitle=@"EDIT WALLET";
+            ppp.delegate=self;
+            
+            [self.navigationController pushViewController:ppp animated:YES];
 
         }
     
     }];
+        });
+}
+
+-(void) resultPresenterWillDismiss
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 

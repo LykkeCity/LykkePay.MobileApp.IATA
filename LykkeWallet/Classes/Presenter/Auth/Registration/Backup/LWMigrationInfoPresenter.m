@@ -54,6 +54,8 @@
     LWGenerateKeyPresenter *presenter=[[LWGenerateKeyPresenter alloc] init];
     presenter.delegate=self;
     presenter.flagSkipIntro=YES;
+    presenter.backupMode=BACKUP_MODE_PRIVATE_KEY;
+
 
     [self.navigationController pushViewController:presenter animated:YES];
     

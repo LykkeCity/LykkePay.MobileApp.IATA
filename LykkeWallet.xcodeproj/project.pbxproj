@@ -1143,6 +1143,8 @@
 		A1E4EAAE1CE4657900293282 /* LWCurrencyDepositPresenter.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1E4EAAD1CE4657900293282 /* LWCurrencyDepositPresenter.xib */; };
 		A1E4EAAF1CE4662700293282 /* LWCurrencyDepositPresenter.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1E4EAAD1CE4657900293282 /* LWCurrencyDepositPresenter.xib */; };
 		A1F3ADBF1DB0FC1B00DEC320 /* LWKYCInvalidDocumentsPresenter_iphone5.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1F3ADBE1DB0FC1B00DEC320 /* LWKYCInvalidDocumentsPresenter_iphone5.xib */; };
+		A1F4D4A41DCAFE3C002EF855 /* LWEthereumSignManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A1F4D4A31DCAFE3C002EF855 /* LWEthereumSignManager.m */; };
+		A1F4D4A71DCAFF50002EF855 /* lykke-ethereum.html in Resources */ = {isa = PBXBuildFile; fileRef = A1F4D4A61DCAFF50002EF855 /* lykke-ethereum.html */; };
 		A1F78C891D365DF300BCFF03 /* LWWalletsNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = A1F78C881D365DF300BCFF03 /* LWWalletsNavigationController.m */; };
 		A1F78C8C1D3664B900BCFF03 /* LWWalletsNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = A1F78C8B1D3664B900BCFF03 /* LWWalletsNavigationBar.m */; };
 		A1F78C8F1D366CA200BCFF03 /* LWWalletsTypeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = A1F78C8E1D366CA200BCFF03 /* LWWalletsTypeButton.m */; };
@@ -3196,6 +3198,9 @@
 		A1E4EAAB1CE4654200293282 /* LWCurrencyDepositPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWCurrencyDepositPresenter.m; sourceTree = "<group>"; };
 		A1E4EAAD1CE4657900293282 /* LWCurrencyDepositPresenter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LWCurrencyDepositPresenter.xib; sourceTree = "<group>"; };
 		A1F3ADBE1DB0FC1B00DEC320 /* LWKYCInvalidDocumentsPresenter_iphone5.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LWKYCInvalidDocumentsPresenter_iphone5.xib; sourceTree = "<group>"; };
+		A1F4D4A21DCAFE3C002EF855 /* LWEthereumSignManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWEthereumSignManager.h; sourceTree = "<group>"; };
+		A1F4D4A31DCAFE3C002EF855 /* LWEthereumSignManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWEthereumSignManager.m; sourceTree = "<group>"; };
+		A1F4D4A61DCAFF50002EF855 /* lykke-ethereum.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "lykke-ethereum.html"; sourceTree = "<group>"; };
 		A1F78C871D365DF300BCFF03 /* LWWalletsNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWWalletsNavigationController.h; sourceTree = "<group>"; };
 		A1F78C881D365DF300BCFF03 /* LWWalletsNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWWalletsNavigationController.m; sourceTree = "<group>"; };
 		A1F78C8A1D3664B900BCFF03 /* LWWalletsNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWWalletsNavigationBar.h; sourceTree = "<group>"; };
@@ -5301,6 +5306,14 @@
 			path = CurrencyDeposit;
 			sourceTree = "<group>";
 		};
+		A1F4D4A51DCAFF4F002EF855 /* Scripts */ = {
+			isa = PBXGroup;
+			children = (
+				A1F4D4A61DCAFF50002EF855 /* lykke-ethereum.html */,
+			);
+			path = Scripts;
+			sourceTree = "<group>";
+		};
 		A1F78C861D365D8A00BCFF03 /* ExchangeWallet */ = {
 			isa = PBXGroup;
 			children = (
@@ -5487,6 +5500,7 @@
 		CF6632421C175B54004353F5 /* Resources_Lykke */ = {
 			isa = PBXGroup;
 			children = (
+				A1F4D4A51DCAFF4F002EF855 /* Scripts */,
 				A12DB5541D741C2A00319EA7 /* Fonts */,
 				A1D65DD01D602B0100828783 /* WordsLists */,
 				A14B7D2C1CE3233D00820084 /* Images */,
@@ -5563,6 +5577,8 @@
 				A14515811D7DAC0000B4BED9 /* LWWebViewDocumentPresenter.xib */,
 				A145E3071D90B58D00248575 /* LWSMSTimerView.h */,
 				A145E3081D90B58D00248575 /* LWSMSTimerView.m */,
+				A1F4D4A21DCAFE3C002EF855 /* LWEthereumSignManager.h */,
+				A1F4D4A31DCAFE3C002EF855 /* LWEthereumSignManager.m */,
 				A18D25B81D6963F2005CEF66 /* PIN */,
 				A122B97B1CFEB2E4009DC795 /* FLAnimatedImage */,
 				ECAACF371C9F3BCD000227E0 /* LWErrorView.xib */,
@@ -8022,6 +8038,7 @@
 				A1BCD2D21D012D3C00CF42E4 /* 5-onboard-2x_00108.png in Resources */,
 				A1D65DAC1D5DCF1100828783 /* crypto_bar_00104.png in Resources */,
 				EC9C947D1C899019006FD46B /* LaunchScreen.storyboard in Resources */,
+				A1F4D4A71DCAFF50002EF855 /* lykke-ethereum.html in Resources */,
 				A145157A1D7C77C600B4BED9 /* LWMyLykkeSuccessViewController.xib in Resources */,
 				A1BCD1171D012D3C00CF42E4 /* 2-trade-2x_00023.png in Resources */,
 				A1BCD2A21D012D3C00CF42E4 /* 5-onboard-2x_00060.png in Resources */,
@@ -8554,6 +8571,7 @@
 				CD10AAAC1C1E10F60086634B /* LWPacketPinSecuritySet.m in Sources */,
 				A1E4EA9A1CE42D5800293282 /* LWPacketGraphData.m in Sources */,
 				ECE902BD1C3537B700F52971 /* LWWalletFormPresenter.m in Sources */,
+				A1F4D4A41DCAFE3C002EF855 /* LWEthereumSignManager.m in Sources */,
 				A15B3EB61D12CA1500A6B506 /* LWKYCManager.m in Sources */,
 				A1A7D3521D62393A00026576 /* LWTestBackupWordsPresenter.m in Sources */,
 				A12DB56B1D75DB0400319EA7 /* LWNewsFirstTableViewCell.m in Sources */,

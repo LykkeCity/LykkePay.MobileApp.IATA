@@ -23,6 +23,7 @@
 }
 
 @property (weak, nonatomic) IBOutlet UIButton *getStartedButton;
+@property (weak, nonatomic) IBOutlet UILabel *textLabel;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *getStartedWidthConstraint;
 
@@ -47,6 +48,7 @@
         if(!_seedWords)
             _seedWords=[LWPrivateKeyManager generateSeedWords12];
     }
+    _textLabel.text=[NSString stringWithFormat:@"You are about to back up your wallet. You will see a series of %d words for you to write down. Anyone who knows this sequence of words can access and spend all the funds in your wallet, so be sure to keep it in a safe place.", (int)_seedWords.count];
 
     // Do any additional setup after loading the view.
 }

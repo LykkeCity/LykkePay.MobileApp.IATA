@@ -33,6 +33,7 @@
 @interface LWCreatePrivateWalletPresenter () <UITextFieldDelegate, LWGenerateKeyPresenterDelegate>
 {
     LWColdWalletKeyTypePresenter *coldWalletKeyTypePresenter;
+    BOOL currentIs256ColdFlag;
 }
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
@@ -165,11 +166,20 @@
     
     if(coldWalletKeyTypePresenter)
     {
+        if(coldWalletKeyTypePresenter.is256Bit!=currentIs256ColdFlag)
+        {
+            _addressLabel.text=@"";
+            [self validateCreateUpdateButton];
+            [_createUpdateButton setTitle:@"PROCEED" forState:UIControlStateNormal];
+        }
         if(coldWalletKeyTypePresenter.is256Bit)
             _privateKeyTypeLabel.text=@"256 bit / 24 words";
         else
             _privateKeyTypeLabel.text=@"128 bit / 12 words";
+        currentIs256ColdFlag=coldWalletKeyTypePresenter.is256Bit;
     }
+    else
+        currentIs256ColdFlag=YES;
 }
 
 -(void) viewWillDisappear:(BOOL)animated
@@ -586,6 +596,8 @@
             LWGenerateKeyPresenter *presenter=[[LWGenerateKeyPresenter alloc] init];
             presenter.flagSkipIntro=NO;
             presenter.delegate=self;
+            presenter.backupMode=BACKUP_MODE_COLD_STORAGE;
+
             [self.navigationController pushViewController:presenter animated:YES];
             
             return;

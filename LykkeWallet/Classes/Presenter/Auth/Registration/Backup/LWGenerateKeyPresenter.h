@@ -7,12 +7,14 @@
 //
 
 #import "LWAuthComplexPresenter.h"
+#import "LWPrivateKeyManager.h"
 
 
 @interface LWGenerateKeyPresenter : LWAuthComplexPresenter
 
 @property BOOL flagSkipIntro;
 @property id delegate;
+@property BACKUP_MODE backupMode;
 
 @end
 

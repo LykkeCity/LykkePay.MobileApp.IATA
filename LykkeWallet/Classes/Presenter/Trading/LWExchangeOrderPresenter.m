@@ -100,6 +100,8 @@
     if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
     {
         UIWindow *window=self.view.window;
+        if(statusBarView)
+            [statusBarView removeFromSuperview];
         statusBarView=[[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.window.bounds.size.width, 20)];
         statusBarView.backgroundColor=[UIColor whiteColor];
         [window addSubview:statusBarView];

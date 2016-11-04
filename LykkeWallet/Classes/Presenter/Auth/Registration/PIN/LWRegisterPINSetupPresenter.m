@@ -147,6 +147,8 @@
     [[LWAuthManager instance] requestMyLykkeSettings];
     LWGenerateKeyPresenter *presenter=[[LWGenerateKeyPresenter alloc] init];
     presenter.flagSkipIntro=NO;
+    presenter.backupMode=BACKUP_MODE_PRIVATE_KEY;
+
     [self.navigationController pushViewController:presenter animated:YES];
     
 }

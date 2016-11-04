@@ -177,7 +177,7 @@
 
 -(void) switchToController:(UIViewController *) controller
 {
-    if(controller==currentController)
+    if(controller==currentController || !controller)
         return;
     
     int index=[controllers indexOfObject:controller];

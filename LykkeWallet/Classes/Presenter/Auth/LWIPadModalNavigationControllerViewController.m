@@ -115,8 +115,16 @@
 -(void) shadowPressed
 {
     LWAuthComplexPresenter *vc=[self.viewControllers lastObject];
-    if([vc shouldDismissIpadModalViewController])
+    if([vc respondsToSelector:@selector(shouldDismissIpadModalViewController)])
+    {
+        if([vc shouldDismissIpadModalViewController])
+            [self dismissAnimated:YES];
+    }
+    else
+    {
         [self dismissAnimated:YES];
+
+    }
 }
 
 

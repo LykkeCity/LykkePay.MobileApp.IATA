@@ -38,10 +38,22 @@
     [self.animationContainer addSubview:animationView];
     shakeCount=0;
     
-    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
-        self.textLabel.text=@"Shake your iPhone to generate the private key to your Lykke Wallet";
-    else
-        self.textLabel.text=@"Shake your iPad to generate the private key to your Lykke Wallet";
+    if(_backupMode==BACKUP_MODE_PRIVATE_KEY)
+    {
+        if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
+            self.textLabel.text=@"Shake your iPhone to generate the private key to your Lykke Wallet";
+        else
+            self.textLabel.text=@"Shake your iPad to generate the private key to your Lykke Wallet";
+    }
+    else if(_backupMode==BACKUP_MODE_COLD_STORAGE)
+    {
+        if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
+            self.textLabel.text=@"Shake your iPhone to generate the private key to your Cold Storage Wallet. This key will be immediately deleted after backup.";
+        else
+            self.textLabel.text=@"Shake your iPad to generate the private key to your Cold Storage Wallet. This key will be immediately deleted after backup.";
+
+    }
+    
 
     
 //    UITapGestureRecognizer *gesture=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(testing)]; //Testing

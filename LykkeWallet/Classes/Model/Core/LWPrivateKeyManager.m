@@ -13,6 +13,7 @@
 #import <CommonCrypto/CommonDigest.h>
 #import "BTCAddress.h"
 #import "BTCBase58.h"
+#import "LWEthereumSignManager.h"
 
 #import "LWPrivateWalletsManager.h"
 #import "LWPrivateWalletModel.h"
@@ -26,6 +27,13 @@
 
 
 @import Security;
+
+@interface LWPrivateKeyManager()
+{
+    LWEthereumSignManager *ethManager;
+}
+
+@end
 
 @implementation NSData (NYMnemonic)
 - (NSString *)ny_hexString {
@@ -132,6 +140,13 @@
 -(id) init
 {
     self=[super init];
+//    ethManager=[[LWEthereumSignManager alloc] initWithEthPrivateKey:@"0x4085dde01ea641a0f4fd6586ca11fc1f5df38e1bdcbef501da970cad9335b389"];
+//    
+//    [ethManager createAddress];
+//    [ethManager signHash:@"0x67e547e0e11e33396f53ce559f089124cc12e54f936a166dd14798bf1677b5e8" withCompletion:^(NSString *hash){
+//        NSLog(@"%@", hash);
+//    
+//    }];
     
 //    NSArray *aaaa=[LWPrivateKeyManager generateSeedWords24];
 //    NSData *data=[LWPrivateKeyManager keyDataFromSeedWords:aaaa];
