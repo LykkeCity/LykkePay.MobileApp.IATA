@@ -100,7 +100,8 @@
     
     NSDictionary *titleAttributes=@{NSKernAttributeName:@(1.5), NSFontAttributeName:[UIFont fontWithName:@"ProximaNova-Semibold" size:17], NSForegroundColorAttributeName:[UIColor colorWithRed:63.0/255 green:77.0/255 blue:96.0/255 alpha:1]};
 
-    _titleLabel.attributedText=[[NSAttributedString alloc] initWithString:name attributes:titleAttributes];
+    if(name)
+        _titleLabel.attributedText=[[NSAttributedString alloc] initWithString:name attributes:titleAttributes];
 
     _selectorView.backgroundColor=[UIColor colorWithRed:171.0/255 green:0 blue:255 alpha:1];
     
