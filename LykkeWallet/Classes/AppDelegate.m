@@ -246,6 +246,10 @@
 - (void)application:(UIApplication *)application didReceiveRemoteNotification: (NSDictionary *)userInfo {
     NSLog(@"%@", userInfo);
     
+//    UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"Notification" message:@"Got notification" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+//    [alert show]; //Testing
+//    return;
+    
 //    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:userInfo
 //                                                       options:NSJSONWritingPrettyPrinted
 //                                                         error:nil];
@@ -264,6 +268,14 @@
 //        TransactionConfirmed = 4
 //    }
     
+    int type=[userInfo[@"aps"][@"type"] intValue];
+    if(type==8)
+    {
+        [[LWAuthManager instance] requestPendingTransactions];
+        return;
+    }
+    
+    
     UIApplicationState state = [application applicationState];
     // user tapped notification while app was in background
     if (state == UIApplicationStateInactive || state == UIApplicationStateBackground) {
@@ -275,8 +287,6 @@
     
     
     
-//    UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"Notification" message:[[userInfo objectForKey:@"aps"] valueForKey:@"alert"] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
-//    [alert show];
 
 }
 
@@ -307,6 +317,19 @@ didFailToRegisterForRemoteNotificationsWithError:(NSError *)err {
 
 -(void) application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
 {
+//    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:userInfo
+//                                                       options:NSJSONWritingPrettyPrinted // Pass 0 if you don't care about the readability of the generated string
+//                                                         error:nil];
+//    
+//        NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    
+    [LWPrivateKeyManager shared].backgroudFetchCompletionHandler=completionHandler;
+    [[LWAuthManager instance] requestPendingTransactions];
+    
+//    UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"Notification" message:[NSString stringWithFormat:@"Got SILENT notification:\n%@", jsonString] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+//    [alert show];
+    return;//Testing
+
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
     
         NSURL *url=[NSURL URLWithString:[@"https://snetkov.me/lykke/push/test/testlog.php?a=" stringByAppendingString:userInfo[@"data-id"]]];

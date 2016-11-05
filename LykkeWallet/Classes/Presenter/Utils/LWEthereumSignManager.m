@@ -13,71 +13,64 @@
 @interface LWEthereumSignManager() <UIWebViewDelegate>
 {
     NSString *key;
-    NSString *hash;
     UIWebView *webView;
     
-    void(^completion)(NSString *);
+    
+    void(^completionOfInit)(void);
+//    void(^completionHashes)(NSArray *);
+//    void(^completionAddress)(NSString *address, NSString *publicKey);
+
 }
 
 @end
 
 @implementation LWEthereumSignManager
 
--(id) initWithEthPrivateKey:(NSString *) _key
+-(id) initWithEthPrivateKey:(NSString *) _key withCompletion:(void(^)(void)) completion
 {
     self=[super init];
-    webView=[[UIWebView alloc] init];
-    webView.delegate=self;
-
+    completionOfInit=completion;
     
     key=_key;
+
+    webView=[[UIWebView alloc] init];
+    webView.delegate=self;
+    
+    NSString *path;
+    NSBundle *thisBundle = [NSBundle mainBundle];
+    path = [thisBundle pathForResource:@"lykke-ethereum" ofType:@"html"];
+    NSURL *instructionsURL = [NSURL fileURLWithPath:path];
+    [webView loadRequest:[NSURLRequest requestWithURL:instructionsURL]];
+
+
+    
     return self;
 }
 
--(void) signHash:(NSString *) _hash withCompletion:(void(^)(NSString *)) _completion
+-(NSString *) signHash:(NSString *) hash
 {
-    hash=_hash;
-    completion=_completion;
 
-    NSString *path;
-    NSBundle *thisBundle = [NSBundle mainBundle];
-    path = [thisBundle pathForResource:@"lykke-ethereum" ofType:@"html"];
-    NSURL *instructionsURL = [NSURL fileURLWithPath:path];
-    [webView loadRequest:[NSURLRequest requestWithURL:instructionsURL]];
-    
+    NSString *request=[NSString stringWithFormat:@"window.ethereumjs.signHash(\'%@\', \'%@\')", hash, key];
+    return [webView stringByEvaluatingJavaScriptFromString:request];
     
 }
 
 
--(void) createAddress
+-(NSDictionary *) createAddressAndPubKey
 {
-    NSString *path;
-    NSBundle *thisBundle = [NSBundle mainBundle];
-    path = [thisBundle pathForResource:@"lykke-ethereum" ofType:@"html"];
-    NSURL *instructionsURL = [NSURL fileURLWithPath:path];
-    [webView loadRequest:[NSURLRequest requestWithURL:instructionsURL]];
+    NSString *sss=[webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"window.ethereumjs.createAddress(\'0x%@\')", key]];
+    NSArray *arr=[sss componentsSeparatedByString:@"-"];
 
-    
-//    NSString *sss=[webView stringByEvaluatingJavaScriptFromString:@"window.ethereumjs.createAddress()"];
-//    NSLog(@"%@", sss);
-
+    if(arr.count==2)
+        return @{@"Address":arr[0], @"PubKey":arr[1]};
+    return nil;
 }
 
+    
 -(void) webViewDidFinishLoad:(UIWebView *)we
 {
-    NSString *sss=[webView stringByEvaluatingJavaScriptFromString:@"window.ethereumjs.createAddress(\'0x00000000000000000000000000000000c0e8d32ef6744d801987bc3ecb6a0953\')"];
-
-//    NSString *sss=[webView stringByEvaluatingJavaScriptFromString:@"window.ethereumjs.createAddress(\'0xba1488fd638adc2e9f62fc70d41ff0ffc0e8d32ef6744d801987bc3ecb6a0953\')"];
-
-    NSString *pub=[webView stringByEvaluatingJavaScriptFromString:@"window.ethereumjs.privateKeyExport(\'0x4085dde01ea641a0f4fd6586ca11fc1f5df38e1bdcbef501da970cad9335b389\',1)"];
-    NSLog(@"%@", sss);
+    completionOfInit();
     
-    
-    
-//    NSString *request=[NSString stringWithFormat:@"window.ethereumjs.signHash(\'%@\', \'%@\')", hash, key];
-//    
-//    NSString *sss=[webView stringByEvaluatingJavaScriptFromString:request];
-//    completion(sss);
 }
 
 

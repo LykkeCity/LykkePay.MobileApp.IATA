@@ -88,6 +88,9 @@
 #import "LWPacketOrderBook.h"
 #import "LWPacketKYCDocuments.h"
 #import "LWPacketCategories.h"
+#import "LWPacketGetPendingTransactions.h"
+#import "LWPacketSendSignedTransaction.h"
+#import "LWPacketGetEthereumContract.h"
 
 
 #import "LWLykkeWalletsData.h"
@@ -737,6 +740,28 @@ SINGLETON_INIT {
     [self sendPacket:pack];
 }
 
+-(void) requestPendingTransactions
+{
+    LWPacketGetPendingTransactions *pack=[LWPacketGetPendingTransactions new];
+    [self sendPacket:pack];
+}
+
+-(void) requestSendSignedTransaction:(LWSignRequestModel *)signRequest
+{
+    LWPacketSendSignedTransaction *pack=[LWPacketSendSignedTransaction new];
+    pack.signRequest=signRequest;
+    [self sendPacket:pack];
+    
+}
+
+-(void) requestEthereumContractForAddress:(NSString *)address pubKey:(NSString *)pubKey
+{
+    LWPacketGetEthereumContract *pack=[LWPacketGetEthereumContract new];
+    pack.address=address;
+    pack.pubKey=pubKey;
+    [self sendPacket:pack];
+}
+
 #pragma mark - Observing
 
 - (void)observeGDXNetAdapterDidReceiveResponseNotification:(NSNotification *)notification {
@@ -1169,6 +1194,11 @@ SINGLETON_INIT {
     else if (pack.class == LWPacketCategories.class) {
         if ([self.delegate respondsToSelector:@selector(authManager:didGetAssetCategories:)]) {
             [self.delegate authManager:self didGetAssetCategories:(LWPacketCategories *)pack];
+        }
+    }
+    else if(pack.class==LWPacketGetEthereumContract.class) {
+        if ([self.delegate respondsToSelector:@selector(authManager:didGetEthereumContract:)]) {
+            [self.delegate authManager:self didGetEthereumContract:(LWPacketGetEthereumContract *) pack];
         }
     }
 

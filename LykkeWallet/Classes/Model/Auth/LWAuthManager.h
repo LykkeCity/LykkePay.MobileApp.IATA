@@ -14,6 +14,7 @@
 
 
 
+
 @class LWAuthManager;
 @class LWLykkeWalletsData;
 @class LWBankCardsAdd;
@@ -58,6 +59,9 @@
 @class LWPacketOrderBook;
 @class LWPacketKYCDocuments;
 @class LWPacketCategories;
+@class LWPacketGetPendingTransactions;
+@class LWSignRequestModel;
+@class LWPacketGetEthereumContract;
 
 
 @protocol LWAuthManagerDelegate<NSObject>
@@ -154,6 +158,10 @@
 -(void) authManager:(LWAuthManager *)manager didGetKYCDocuments:(LWPacketKYCDocuments *)packet;
 
 -(void) authManager:(LWAuthManager *) manager didGetAssetCategories:(LWPacketCategories *) packet;
+
+-(void) authManager:(LWAuthManager *)manager didGetEthereumContract:(LWPacketGetEthereumContract *) packet;
+
+
 
 @end
 
@@ -283,6 +291,11 @@ SINGLETON_DECLARE
 -(void) requestKYCDocuments;
 
 -(void) requestAssetCategories;
+
+-(void) requestPendingTransactions;
+-(void) requestSendSignedTransaction:(LWSignRequestModel *) signRequest;
+
+-(void) requestEthereumContractForAddress:(NSString *) address pubKey:(NSString *) pubKey;
 
 
 //PubkeyAddressValidation

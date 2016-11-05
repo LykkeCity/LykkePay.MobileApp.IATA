@@ -16,10 +16,13 @@
 #import "UIView+Toast.h"
 #import "UIImage+Resize.h"
 #import "LWValidator.h"
+#import "LWPrivateKeyManager.h"
+#import "LWPacketGetEthereumContract.h"
 
 
 @interface LWEtheriumDepositPresenter () {
     UIColor *navigationTintColor;
+    NSString *ethereumContract;
 }
 
 @property (nonatomic, weak) IBOutlet UILabel *titleLabel;
@@ -32,7 +35,7 @@
 #pragma mark - Utils
 
 - (void)updateView;
-- (BOOL)isColoredMultisig;
+
 
 @end
 
@@ -42,7 +45,7 @@
     [super viewDidLoad];
     
     
-    [self setupQRCode];
+//    [self setupQRCode];
     [self setBackButton];
     
     self.emailButton.layer.cornerRadius=self.emailButton.bounds.size.height/2;
@@ -51,22 +54,26 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-#ifdef PROJECT_IATA
-#else
     [self.copyingButton setGrayPalette];
     [self.bitcoinHashLabel setTextColor:[UIColor colorWithHexString:kMainElementsColor]];
-#endif
     
     [self updateView];
     
     [LWValidator setButtonWithClearBackground:self.copyingButton enabled:YES];
+    
+    [self setLoading:YES];
+    [[LWPrivateKeyManager shared] createETHAddressAndPubKeyWithCompletion:^(NSDictionary *dict){
+        [[LWAuthManager instance] requestEthereumContractForAddress:dict[@"Address"] pubKey:dict[@"PubKey"]];
+    
+    }];
+    
 
 }
 
 -(void) viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    self.title = [NSString stringWithFormat:@"ETHEREUM DEPOSIT", self.assetName];
+    self.title = @"ETHEREUM DEPOSIT";
 
 }
 
@@ -104,6 +111,13 @@
 
 #pragma mark - LWAuthManagerDelegate
 
+-(void) authManager:(LWAuthManager *)manager didGetEthereumContract:(LWPacketGetEthereumContract *)packet
+{
+    [self setLoading:NO];
+    ethereumContract=packet.contract;
+    [self setupQRCode];
+}
+
 - (void)authManager:(LWAuthManager *)manager didFailWithReject:(NSDictionary *)reject context:(GDXRESTContext *)context {
     [self setLoading:NO];
     [self showReject:reject response:context.task.response code:context.error.code willNotify:YES];
@@ -122,9 +136,7 @@
     CIFilter *filter = [CIFilter filterWithName:@"CIQRCodeGenerator"];
     [filter setDefaults];
     
-    NSString *bitcoinHash = [self isColoredMultisig]
-    ? [LWCache instance].coloredMultiSig
-    : [LWCache instance].multiSig;
+    NSString *bitcoinHash = ethereumContract;
     
     self.bitcoinHashLabel.text = bitcoinHash;
     
@@ -157,14 +169,5 @@
     
 }
 
-- (BOOL)isColoredMultisig {
-    if ([self.issuerId isEqualToString:@"BTC"]) {
-        return NO;
-    }
-    else if ([self.issuerId isEqualToString:@"LKE"]) {
-        return YES;
-    }
-    return NO;
-}
 
 @end

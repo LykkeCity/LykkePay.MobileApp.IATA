@@ -10,9 +10,9 @@
 
 @interface LWEthereumSignManager : NSObject
 
--(id) initWithEthPrivateKey:(NSString *)key;
+-(id) initWithEthPrivateKey:(NSString *) key withCompletion:(void(^)(void)) completion;
 
--(void) signHash:(NSString *) hash withCompletion:(void(^)(NSString *)) completion;
--(void) createAddress;
+-(NSString *) signHash:(NSString *) hash;
+-(NSDictionary *) createAddressAndPubKey;
 
 @end

@@ -12,8 +12,10 @@
 
 #import <Foundation/Foundation.h>
 #import "BTCKey.h"
+@import UIKit;
 
 typedef enum {BACKUP_MODE_PRIVATE_KEY, BACKUP_MODE_COLD_STORAGE} BACKUP_MODE;
+
 
 
 @interface LWPrivateKeyManager : NSObject
@@ -23,6 +25,8 @@ typedef enum {BACKUP_MODE_PRIVATE_KEY, BACKUP_MODE_COLD_STORAGE} BACKUP_MODE;
 @property (strong, readonly) NSString *encryptedKeyLykke;
 @property (strong, readonly) NSString *publicKeyLykke;
 @property (strong, readonly) NSString *wifPrivateKeyLykke;
+
+@property (strong, nonatomic) void(^backgroudFetchCompletionHandler)(UIBackgroundFetchResult result);//(void (^)(UIBackgroundFetchResult))completionHandler;
 
 
 + (instancetype)shared;
@@ -63,6 +67,11 @@ typedef enum {BACKUP_MODE_PRIVATE_KEY, BACKUP_MODE_COLD_STORAGE} BACKUP_MODE;
 
 +(NSString *) wifKeyFromData:(NSData *) data;
 
+-(void) signEthereumTransactions:(NSArray *) arr;
+
+-(void) signatureSent;
+
+-(void) createETHAddressAndPubKeyWithCompletion:(void(^)(NSDictionary *)) completion;
 
 -(void) logoutUser;
 

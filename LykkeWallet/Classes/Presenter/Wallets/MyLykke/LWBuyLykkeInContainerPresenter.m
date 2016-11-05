@@ -15,6 +15,8 @@
 #import "LWIPadModalNavigationControllerViewController.h"
 #import "LWRefreshControlView.h"
 
+#import "LWEmptyBuyLykkeInContainerPresenter.h"
+
 
 
 @interface LWBuyLykkeInContainerPresenter () <UITableViewDataSource, UITableViewDelegate>
@@ -22,6 +24,7 @@
     
     NSMutableArray *wallets;
     UIRefreshControl  *refreshControl;
+    LWEmptyBuyLykkeInContainerPresenter *emptyPresenter;
 }
 
 @end
@@ -45,6 +48,7 @@
     self.hideKeyboardOnTap=NO;
     
     [self setRefreshControl];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -59,6 +63,9 @@
         [self setLoading:YES];
     [LWAuthManager instance].caller=self;
     [[LWAuthManager instance] requestLykkeWallets];
+    
+    
+    
 }
 
 -(void) viewDidAppear:(BOOL)animated
@@ -187,8 +194,28 @@
             [wallets addObject:d];
 
     
+    if(wallets.count)
+    {
+        if(emptyPresenter)
+        {
+            [emptyPresenter.view removeFromSuperview];
+            [emptyPresenter removeFromParentViewController];
+            emptyPresenter=nil;
+        }
+        [self.tableView reloadData];
+    }
+    else
+    {
+        if(!emptyPresenter)
+        {
+            emptyPresenter=[LWEmptyBuyLykkeInContainerPresenter new];
+            emptyPresenter.view.frame=self.view.bounds;
+            [self.view addSubview:emptyPresenter.view];
+            emptyPresenter.view.autoresizingMask=UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+            [self addChildViewController:emptyPresenter];
+        }
+    }
     
-    [self.tableView reloadData];
 }
 
 -(void) authManager:(LWAuthManager *)manager didFailWithReject:(NSDictionary *)reject context:(GDXRESTContext *)context

@@ -14,6 +14,8 @@
 #import "BTCAddress.h"
 #import "BTCBase58.h"
 #import "LWEthereumSignManager.h"
+#import "LWSignRequestModel.h"
+#import "LWAuthManager.h"
 
 #import "LWPrivateWalletsManager.h"
 #import "LWPrivateWalletModel.h"
@@ -31,6 +33,7 @@
 @interface LWPrivateKeyManager()
 {
     LWEthereumSignManager *ethManager;
+    int numberOfSignedTransactionsSent;
 }
 
 @end
@@ -1117,6 +1120,73 @@
 //
 //}
 
+-(void) signEthereumTransactions:(NSArray *) arr
+{
+    if(!arr.count || !privateKeyForLykke)
+    {
+        if(_backgroudFetchCompletionHandler)
+        {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                _backgroudFetchCompletionHandler(UIBackgroundFetchResultNoData);
+                _backgroudFetchCompletionHandler=nil;
+            });
+        }
+        return;
+    }
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        ethManager=[[LWEthereumSignManager alloc] initWithEthPrivateKey:[LWUtils hexStringFromData:privateKeyForLykke.privateKey] withCompletion:^{
+        
+            numberOfSignedTransactionsSent=arr.count;
+            for(LWSignRequestModel *d in arr)
+            {
+                NSString *signature=[ethManager signHash:d.hashString];
+                d.signature=signature;
+                
+//                d.requestId=@"ksjdhksjhdkjh";
+//                d.address=@"snmenm";
+                [[LWAuthManager instance] requestSendSignedTransaction:d];
+                
+            }
+         }];
+         });
+}
+
+-(void) signatureSent
+{
+    numberOfSignedTransactionsSent--;
+    if(numberOfSignedTransactionsSent==0 && _backgroudFetchCompletionHandler)
+    {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"SIGN" message:@"Transactions signed" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+            [alert show];
+        _backgroudFetchCompletionHandler(UIBackgroundFetchResultNewData);
+        _backgroudFetchCompletionHandler=nil;
+        });
+    }
+}
+
+-(void) createETHAddressAndPubKeyWithCompletion:(void (^)(NSDictionary *))completion
+{
+    void (^block)(void)=^{
+        
+        NSDictionary *dict=[ethManager createAddressAndPubKey];
+        completion(dict);
+    };
+
+    if(ethManager)
+    {
+        block();
+    }
+    else
+    {
+        ethManager=[[LWEthereumSignManager alloc] initWithEthPrivateKey:[LWUtils hexStringFromData:privateKeyForLykke.privateKey] withCompletion:^{
+            block();
+        }];
+    }
+    
+}
 
 -(void) logoutUser
 {

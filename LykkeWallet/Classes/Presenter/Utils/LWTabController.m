@@ -14,6 +14,7 @@
 @interface LWTabController ()<LWAuthManagerDelegate> {
  
     UIView *lineView;
+    BOOL flagInitiallyLoaded;
 }
 
 @end
@@ -30,27 +31,35 @@
     lineView.backgroundColor=[UIColor colorWithRed:211.0/255 green:214.0/255 blue:219.0/255 alpha:1];
     [self.tabBar addSubview:lineView];
     
+    flagInitiallyLoaded=NO;
     [LWAuthManager instance].delegate = self;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
  
-    [[LWAuthManager instance] requestAppSettings];
-    [[LWAuthManager instance] requestDictionaries];
-    [[LWAuthManager instance] requestAllAssets];
-    [[LWAuthManager instance] requestBaseAssets];
-    [[LWAuthManager instance] requestGetPushSettings];
-    [[LWAuthManager instance] requestGetRefundAddress];
-    [[LWAuthManager instance] requestAPIVersion];
-    [[LWAuthManager instance] requestPrevCardPayment];
-    [[LWAuthManager instance] requestAllAssetPairs];
-    
-    [[LWAuthManager instance] requestOrderBook:@"BTCLKK"];
-    [[LWAuthManager instance] requestOrderBook:@"ETHLKK"];
-    [[LWAuthManager instance] requestOrderBook:@"LKKUSD"];
-    [[LWAuthManager instance] requestOrderBook:@"LKKCHF"];
-    
+    if(!flagInitiallyLoaded)
+    {
+        flagInitiallyLoaded=YES;
+        [[LWAuthManager instance] requestAppSettings];
+        [[LWAuthManager instance] requestDictionaries];
+        [[LWAuthManager instance] requestAllAssets];
+        [[LWAuthManager instance] requestBaseAssets];
+        [[LWAuthManager instance] requestGetPushSettings];
+        [[LWAuthManager instance] requestGetRefundAddress];
+        [[LWAuthManager instance] requestAPIVersion];
+        [[LWAuthManager instance] requestPrevCardPayment];
+        [[LWAuthManager instance] requestAllAssetPairs];
+        
+        [[LWAuthManager instance] requestPendingTransactions];
+
+        
+        
+        [[LWAuthManager instance] requestOrderBook:@"BTCLKK"];
+        [[LWAuthManager instance] requestOrderBook:@"ETHLKK"];
+        [[LWAuthManager instance] requestOrderBook:@"LKKUSD"];
+        [[LWAuthManager instance] requestOrderBook:@"LKKCHF"];
+    }
     
     [self.navigationController setNavigationBarHidden:NO animated:NO];
 }

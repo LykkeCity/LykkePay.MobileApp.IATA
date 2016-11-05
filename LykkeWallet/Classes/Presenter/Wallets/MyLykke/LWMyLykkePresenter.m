@@ -196,6 +196,9 @@
     else
         [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
 
+    
+    [[LWAuthManager instance] requestEthereumAddress];//Testing
+    
 }
 
 

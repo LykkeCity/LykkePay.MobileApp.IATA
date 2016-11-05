@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html>
-<head>
-<script>
-
+    <head>
+        <script>
 
 
 (function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.ethereumjs = f()}})(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
@@ -22193,9 +22192,6 @@ var guidRegexp = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0
  * @return {String}
  */
 exports.signHash = function(hash, privateKey) {
- 
-// return 'test signed hash';
- 
     var bufferHash = ethUtil.toBuffer(ethUtil.addHexPrefix(hash)),
         bufferPrivateKey = ethUtil.toBuffer(ethUtil.addHexPrefix(privateKey));
 
@@ -22231,21 +22227,13 @@ exports.getHash = function(var_args) {
 }
 
 /**
- * Creates new ethereum wallet and returns private key, public key and address
- * @return {{privateKey: string, publicKey: string, address: string}}
+ * Creates new ethereum wallet and returns address and public key
+ * @param {String} privateKey (hex string)
+ * @return {String} "<address>-<public key>"
  */
-exports.createAddress = function(privKey) {
- 
- return ethUtil.bufferToHex(ethUtil.privateToAddress(privKey))+'*****'+ethUtil.bufferToHex(ethUtil.privateToPublic(privKey));
- 
- return 'Test eth address';
- 
-    var wallet = ethWallet.generate();
-    return {
-        privateKey: ethUtil.bufferToHex(wallet.privKey),
-        publicKey: ethUtil.bufferToHex(wallet.pubKey),
-        address: ethUtil.bufferToHex(ethUtil.privateToAddress(wallet.privKey))
-    }
+exports.createAddress = function(privateKey) {
+    var key = ethUtil.addHexPrefix(privateKey);
+    return ethUtil.bufferToHex(ethUtil.privateToAddress(key)) + '-' + ethUtil.bufferToHex(ethUtil.privateToPublic(key));
 }
 
 function guidToBuffer(guid) {
@@ -25939,10 +25927,9 @@ module.exports={
 });
 
 
-
-</script>
-</head>
-                          
-<body>
-</body>
+            </script>
+    </head>
+    
+    <body>
+    </body>
 </html>
