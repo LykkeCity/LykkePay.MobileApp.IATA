@@ -73,7 +73,7 @@
     
     if(self.recModel.phoneNumber)
     {
-        self.textLabel.text=[NSString stringWithFormat:@"Please enter the 4-digit code that we just sent to your phone %@", self.recModel.phoneNumber];
+        self.textLabel.text=[NSString stringWithFormat:@"Please enter the 4-digit code that just have been sent to your mobile phone %@", self.recModel.phoneNumber];
     }
     // Do any additional setup after loading the view from its nib.
 }
@@ -279,7 +279,7 @@
     
     if(self.recModel.phoneNumber)
     {
-        self.textLabel.text=[NSString stringWithFormat:@"Please enter the 4-digit code that we just sent to your phone %@", self.recModel.phoneNumber];
+        self.textLabel.text=[NSString stringWithFormat:@"Please enter the 4-digit code that just have been sent to your mobile phone %@", self.recModel.phoneNumber];
     }
     
 

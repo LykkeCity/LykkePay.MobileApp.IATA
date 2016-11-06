@@ -96,7 +96,7 @@
     if([LWCache instance].smsRetriesLeft==0)
         titleLabel.text=@"Request voice call";
     else
-        titleLabel.text=@"Haven't receive the code?";
+        titleLabel.text=@"Haven't received the code?";
 
     [self setNeedsLayout];
 }

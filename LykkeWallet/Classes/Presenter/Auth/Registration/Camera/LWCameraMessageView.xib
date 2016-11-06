@@ -78,7 +78,7 @@
                                         <constraint firstAttribute="width" constant="55" id="Xbt-TZ-N2C"/>
                                     </constraints>
                                 </imageView>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap Lykke App" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H5e-ha-WhU">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap the Lykke app" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H5e-ha-WhU">
                                     <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="14"/>
                                     <color key="textColor" red="0.54901960780000003" green="0.58039215690000001" blue="0.62745098040000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
@@ -103,7 +103,7 @@
                                         <constraint firstAttribute="width" constant="55" id="wj0-fG-Fb2"/>
                                     </constraints>
                                 </imageView>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set &quot;Camera&quot; to On" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hmU-IY-gTL">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set the Camera slider to On" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hmU-IY-gTL">
                                     <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="14"/>
                                     <color key="textColor" red="0.54901960780000003" green="0.58039215690000001" blue="0.62745098040000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
@@ -114,7 +114,7 @@
                                 <constraint firstAttribute="height" constant="55" id="DTi-e1-NON"/>
                                 <constraint firstItem="hmU-IY-gTL" firstAttribute="leading" secondItem="973-Xu-Arr" secondAttribute="trailing" constant="7" id="HIB-9w-6w6"/>
                                 <constraint firstItem="973-Xu-Arr" firstAttribute="leading" secondItem="F0b-zY-6DF" secondAttribute="leading" id="PCf-oV-3KO"/>
-                                <constraint firstAttribute="width" constant="192" id="Tte-cM-aNc"/>
+                                <constraint firstAttribute="width" constant="200" id="Tte-cM-aNc"/>
                                 <constraint firstItem="hmU-IY-gTL" firstAttribute="centerY" secondItem="F0b-zY-6DF" secondAttribute="centerY" id="WK5-mt-R2k"/>
                                 <constraint firstItem="973-Xu-Arr" firstAttribute="top" secondItem="F0b-zY-6DF" secondAttribute="top" id="XOI-z3-nqo"/>
                                 <constraint firstAttribute="trailing" secondItem="hmU-IY-gTL" secondAttribute="trailing" id="iFD-sU-JcT"/>
@@ -149,7 +149,6 @@
                     </subviews>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstItem="F0b-zY-6DF" firstAttribute="centerX" secondItem="pRy-SD-xsX" secondAttribute="centerX" id="1Mn-7b-wKI"/>
                         <constraint firstAttribute="bottom" secondItem="Btt-jc-s37" secondAttribute="bottom" id="3RP-Qr-Pog"/>
                         <constraint firstItem="Qba-v0-HVF" firstAttribute="bottom" secondItem="hmU-IY-gTL" secondAttribute="top" constant="-8" id="3rY-9F-Crg"/>
                         <constraint firstItem="2AA-OZ-B3i" firstAttribute="centerX" secondItem="pRy-SD-xsX" secondAttribute="centerX" id="8OI-eS-TTd"/>
@@ -170,6 +169,7 @@
                         <constraint firstItem="xSp-ES-bvx" firstAttribute="centerX" secondItem="pRy-SD-xsX" secondAttribute="centerX" id="cGF-VW-IQC"/>
                         <constraint firstAttribute="trailing" secondItem="Btt-jc-s37" secondAttribute="trailing" id="dNS-OU-13q"/>
                         <constraint firstItem="fdd-fF-9Me" firstAttribute="centerX" secondItem="pRy-SD-xsX" secondAttribute="centerX" id="iWa-ep-iDL"/>
+                        <constraint firstItem="F0b-zY-6DF" firstAttribute="leading" secondItem="fdd-fF-9Me" secondAttribute="leading" id="mUF-Bq-A7H"/>
                         <constraint firstItem="zAw-g2-8nc" firstAttribute="width" secondItem="pRy-SD-xsX" secondAttribute="width" id="oa3-97-8qP"/>
                         <constraint firstItem="NWv-y9-pso" firstAttribute="top" secondItem="2AA-OZ-B3i" secondAttribute="bottom" constant="18" id="rQ8-0i-ftx"/>
                         <constraint firstItem="2AA-OZ-B3i" firstAttribute="top" secondItem="HXQ-5S-Fhl" secondAttribute="bottom" constant="9" id="spd-ov-ggf"/>

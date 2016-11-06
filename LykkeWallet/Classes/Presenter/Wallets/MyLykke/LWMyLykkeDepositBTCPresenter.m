@@ -16,7 +16,7 @@
 #import "UIView+Toast.h"
 #import "UIViewController+Loading.h"
 #import "LWCache.h"
-#import "LWPacketGetEthereumAddress.h"
+
 
 @interface LWMyLykkeDepositBTCPresenter ()
 {

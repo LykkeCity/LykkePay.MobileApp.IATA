@@ -236,7 +236,7 @@
     if(self.pinType==PIN_TYPE_ENTER)
     {
         if(flagRepeat==NO)
-            self.titleLabel.text=@"Enter a new PIN";
+            self.titleLabel.text=@"Create a new PIN to secure your transactions";
         else
             self.titleLabel.text=@"Verify your PIN";
     }

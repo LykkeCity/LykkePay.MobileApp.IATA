@@ -14,6 +14,7 @@
 #import "LWAssetPairModel.h"
 #import "LWIPadModalNavigationControllerViewController.h"
 #import "LWRefreshControlView.h"
+#import "LWOrderBookElementModel.h"
 
 #import "LWEmptyBuyLykkeInContainerPresenter.h"
 
@@ -25,6 +26,7 @@
     NSMutableArray *wallets;
     UIRefreshControl  *refreshControl;
     LWEmptyBuyLykkeInContainerPresenter *emptyPresenter;
+    NSTimer *timer;
 }
 
 @end
@@ -71,6 +73,18 @@
 -(void) viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    if(!timer)
+    {
+        timer=[NSTimer timerWithTimeInterval:5 target:self selector:@selector(reloadWallets) userInfo:nil repeats:YES];
+        [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
+    }
+}
+
+-(void) viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [timer invalidate];
+    timer=nil;
 }
 
 - (void)setRefreshControl
@@ -95,7 +109,7 @@
 
 -(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 50;
+    return 60;
 }
 
 -(NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
@@ -123,6 +137,26 @@
     LWLykkeAssetsData *wallet=wallets[indexPath.row];
     NSString *assetId=wallet.identity;
     cell.balanceLabel.text=[NSString stringWithFormat:@"%@ %@", [[LWCache instance] currencySymbolForAssetId:assetId], [LWUtils formatFairVolume:wallet.balance.doubleValue accuracy:[LWCache accuracyForAssetId:assetId] roundToHigher:NO]];
+    
+    
+    
+    LWOrderBookElementModel *orderBook=[LWCache instance].cachedBuyOrders[wallet.assetPairId];
+    if(orderBook)
+    {
+        NSString *anotherAsset=[wallet.assetPairId stringByReplacingOccurrencesOfString:@"LKK" withString:@""];
+        double price=[orderBook priceForVolume:1];
+        NSString *rate=[LWUtils formatFairVolume:price accuracy:[LWUtils accuracyForAssetId:anotherAsset].intValue roundToHigher:NO];
+        cell.rateLabel.text=[NSString stringWithFormat:@"1 Ŀ = %@ %@", [[LWCache instance] currencySymbolForAssetId:anotherAsset], rate];
+        
+        NSString *volume=[LWUtils formatFairVolume:wallet.balance.doubleValue/price accuracy:0 roundToHigher:NO];
+        cell.volumeLabel.text=[NSString stringWithFormat:@"≈ %@ Ŀ", volume];
+
+        cell.volumeLabel.hidden=NO;
+        cell.rateLabel.hidden=NO;
+    }
+    
+    
+    
     return cell;
     
 }
@@ -183,6 +217,10 @@
     
 }
 
+-(void) authManager:(LWAuthManager *)manager didGetOrderBook:(LWPacketOrderBook *)packet
+{
+    [self.tableView reloadData];
+}
 
 -(void) authManager:(LWAuthManager *)manager didReceiveLykkeData:(LWLykkeWalletsData *)data
 {
@@ -191,7 +229,11 @@
     wallets=[[NSMutableArray alloc] init];
     for(LWLykkeAssetsData *d in data.lykkeData.assets)
         if(d.balance.doubleValue>0 && [d.identity isEqualToString:@"LKK"]==NO)
+        {
+            [LWAuthManager instance].caller=self;
+            [[LWAuthManager instance] requestOrderBook:d.assetPairId];
             [wallets addObject:d];
+        }
 
     
     if(wallets.count)
@@ -223,6 +265,11 @@
     [self setLoading:NO];
     [refreshControl endRefreshing];
     [self showReject:reject response:context.task.response];
+}
+
+-(void) dealloc
+{
+    [timer invalidate];
 }
 
 

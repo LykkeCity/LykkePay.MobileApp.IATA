@@ -52,7 +52,7 @@
     [_nextButton setTitleColor:[UIColor colorWithRed:63.0/255 green:77.0/255 blue:96.0/255 alpha:.2] forState:UIControlStateDisabled];
     
     
-    titles=@[@"Make a selfie", @"Make a photo of your passport or other ID", @"Make a photo of Proof of Address, e.g. utility bill"];
+    titles=@[@"Take a selfie", @"Take a photo of your passport or another ID", @"Take a photo of your proof of address, such as a utility bill"];
     
     photos=[[NSMutableDictionary alloc] init];
     

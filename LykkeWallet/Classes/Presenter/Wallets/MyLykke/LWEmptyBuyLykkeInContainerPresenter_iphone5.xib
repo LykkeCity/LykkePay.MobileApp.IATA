@@ -16,6 +16,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LWEmptyBuyLykkeInContainerPresenter">
             <connections>
+                <outlet property="textlabel" destination="tMb-q8-UNO" id="8bE-LV-Ewi"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -41,22 +42,11 @@
                     <color key="textColor" red="0.24705882352941178" green="0.30196078431372547" blue="0.37647058823529411" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" alpha="0.59999999999999998" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Once you make your first deposit, it will appear on the screen. Follow the history of your trade in your wallet!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tMb-q8-UNO">
+                <label opaque="NO" userInteractionEnabled="NO" alpha="0.59999999999999998" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sorry, your wallet is empty and you cannot buy LKK. Please click here to make a deposit in your wallet" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tMb-q8-UNO">
                     <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="14"/>
                     <color key="textColor" red="0.24705882352941178" green="0.30196078431372547" blue="0.37647058823529411" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cqj-V9-9J5" customClass="LWCommonButton">
-                    <constraints>
-                        <constraint firstAttribute="height" constant="45" id="Ili-Sz-OzC"/>
-                    </constraints>
-                    <state key="normal" title="DEPOSIT">
-                        <color key="titleColor" red="0.24705882352941178" green="0.30196078431372547" blue="0.37647058823529411" alpha="1" colorSpace="calibratedRGB"/>
-                    </state>
-                    <connections>
-                        <action selector="depositButtonPressed:" destination="-1" eventType="touchUpInside" id="rfm-2D-7S9"/>
-                    </connections>
-                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
@@ -65,13 +55,10 @@
                 <constraint firstItem="tMb-q8-UNO" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="70" id="Br8-ct-ecc"/>
                 <constraint firstItem="eJd-6Y-8Pz" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="33" id="GoK-md-anx"/>
                 <constraint firstItem="BQb-ml-wdH" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Gsg-vh-bWI"/>
-                <constraint firstAttribute="bottom" secondItem="cqj-V9-9J5" secondAttribute="bottom" constant="25" id="V0e-qz-hOJ"/>
                 <constraint firstAttribute="trailing" secondItem="eJd-6Y-8Pz" secondAttribute="trailing" constant="99" id="XHF-A4-QyT"/>
-                <constraint firstAttribute="trailing" secondItem="cqj-V9-9J5" secondAttribute="trailing" constant="25" id="fVI-85-ZHL"/>
                 <constraint firstItem="BQb-ml-wdH" firstAttribute="top" secondItem="eJd-6Y-8Pz" secondAttribute="bottom" constant="31" id="grx-wk-1Hc"/>
                 <constraint firstItem="tMb-q8-UNO" firstAttribute="top" secondItem="BQb-ml-wdH" secondAttribute="bottom" constant="15" id="jp8-gC-2EK"/>
-                <constraint firstAttribute="bottom" secondItem="pCA-BA-3aW" secondAttribute="bottom" constant="25" id="xQS-aH-qHb"/>
-                <constraint firstItem="cqj-V9-9J5" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="25" id="zGl-R5-HQF"/>
+                <constraint firstAttribute="bottom" secondItem="pCA-BA-3aW" secondAttribute="bottom" id="xQS-aH-qHb"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

@@ -1006,6 +1006,7 @@
 		A1D6003B1DCD94D300451D48 /* LWSignRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A1D6003A1DCD94D300451D48 /* LWSignRequestModel.m */; };
 		A1D6003E1DCD991900451D48 /* LWPacketSendSignedTransaction.m in Sources */ = {isa = PBXBuildFile; fileRef = A1D6003D1DCD991900451D48 /* LWPacketSendSignedTransaction.m */; };
 		A1D600411DCDB8FD00451D48 /* LWPacketGetEthereumContract.m in Sources */ = {isa = PBXBuildFile; fileRef = A1D600401DCDB8FD00451D48 /* LWPacketGetEthereumContract.m */; };
+		A1D600441DCEC4B600451D48 /* FRHyperLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A1D600431DCEC4B600451D48 /* FRHyperLabel.m */; };
 		A1D65CC01D5A17DE00828783 /* LWEmptyHistoryPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A1D65CBE1D5A17DE00828783 /* LWEmptyHistoryPresenter.m */; };
 		A1D65CC11D5A17DE00828783 /* LWEmptyHistoryPresenter.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1D65CBF1D5A17DE00828783 /* LWEmptyHistoryPresenter.xib */; };
 		A1D65CC51D5DB09700828783 /* LWGenerateKeyPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A1D65CC31D5DB09700828783 /* LWGenerateKeyPresenter.m */; };
@@ -1141,6 +1142,7 @@
 		A1D65DD21D602B0100828783 /* english_words_list.txt in Resources */ = {isa = PBXBuildFile; fileRef = A1D65DD11D602B0100828783 /* english_words_list.txt */; };
 		A1D65DD51D6073BA00828783 /* LWBackupSuccessPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A1D65DD41D6073BA00828783 /* LWBackupSuccessPresenter.m */; };
 		A1D65DD71D60741100828783 /* LWBackupSuccessPresenter~iphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1D65DD61D60741100828783 /* LWBackupSuccessPresenter~iphone.xib */; };
+		A1D85B151DCED98700C061BF /* LWEmptyBuyLykkeInContainerPresenter_ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1D85B141DCED98700C061BF /* LWEmptyBuyLykkeInContainerPresenter_ipad.xib */; };
 		A1E4EA931CE424D800293282 /* LWPacketGraphPeriods.m in Sources */ = {isa = PBXBuildFile; fileRef = A1E4EA921CE424D800293282 /* LWPacketGraphPeriods.m */; };
 		A1E4EA971CE4283100293282 /* LWGraphPeriodModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A1E4EA961CE4283100293282 /* LWGraphPeriodModel.m */; };
 		A1E4EA9A1CE42D5800293282 /* LWPacketGraphData.m in Sources */ = {isa = PBXBuildFile; fileRef = A1E4EA991CE42D5800293282 /* LWPacketGraphData.m */; };
@@ -3062,6 +3064,8 @@
 		A1D6003D1DCD991900451D48 /* LWPacketSendSignedTransaction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWPacketSendSignedTransaction.m; sourceTree = "<group>"; };
 		A1D6003F1DCDB8FD00451D48 /* LWPacketGetEthereumContract.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWPacketGetEthereumContract.h; sourceTree = "<group>"; };
 		A1D600401DCDB8FD00451D48 /* LWPacketGetEthereumContract.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWPacketGetEthereumContract.m; sourceTree = "<group>"; };
+		A1D600421DCEC4B600451D48 /* FRHyperLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FRHyperLabel.h; sourceTree = "<group>"; };
+		A1D600431DCEC4B600451D48 /* FRHyperLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FRHyperLabel.m; sourceTree = "<group>"; };
 		A1D65CBD1D5A17DE00828783 /* LWEmptyHistoryPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LWEmptyHistoryPresenter.h; path = History/LWEmptyHistoryPresenter.h; sourceTree = "<group>"; };
 		A1D65CBE1D5A17DE00828783 /* LWEmptyHistoryPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LWEmptyHistoryPresenter.m; path = History/LWEmptyHistoryPresenter.m; sourceTree = "<group>"; };
 		A1D65CBF1D5A17DE00828783 /* LWEmptyHistoryPresenter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LWEmptyHistoryPresenter.xib; path = History/LWEmptyHistoryPresenter.xib; sourceTree = "<group>"; };
@@ -3204,6 +3208,7 @@
 		A1D65DD31D6073BA00828783 /* LWBackupSuccessPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LWBackupSuccessPresenter.h; path = Backup/LWBackupSuccessPresenter.h; sourceTree = "<group>"; };
 		A1D65DD41D6073BA00828783 /* LWBackupSuccessPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LWBackupSuccessPresenter.m; path = Backup/LWBackupSuccessPresenter.m; sourceTree = "<group>"; };
 		A1D65DD61D60741100828783 /* LWBackupSuccessPresenter~iphone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "LWBackupSuccessPresenter~iphone.xib"; path = "Backup/LWBackupSuccessPresenter~iphone.xib"; sourceTree = "<group>"; };
+		A1D85B141DCED98700C061BF /* LWEmptyBuyLykkeInContainerPresenter_ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LWEmptyBuyLykkeInContainerPresenter_ipad.xib; sourceTree = "<group>"; };
 		A1E4EA911CE424D800293282 /* LWPacketGraphPeriods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWPacketGraphPeriods.h; sourceTree = "<group>"; };
 		A1E4EA921CE424D800293282 /* LWPacketGraphPeriods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWPacketGraphPeriods.m; sourceTree = "<group>"; };
 		A1E4EA951CE4283100293282 /* LWGraphPeriodModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWGraphPeriodModel.h; sourceTree = "<group>"; };
@@ -4144,6 +4149,7 @@
 				A14FF3341DCC3B6F00C2DD71 /* LWEmptyBuyLykkeInContainerPresenter.m */,
 				A14FF3351DCC3B6F00C2DD71 /* LWEmptyBuyLykkeInContainerPresenter.xib */,
 				A1670D2B1DCD883600F79CCB /* LWEmptyBuyLykkeInContainerPresenter_iphone5.xib */,
+				A1D85B141DCED98700C061BF /* LWEmptyBuyLykkeInContainerPresenter_ipad.xib */,
 			);
 			name = MyLykke;
 			path = Wallets/MyLykke;
@@ -5602,6 +5608,8 @@
 				A145E3081D90B58D00248575 /* LWSMSTimerView.m */,
 				A1F4D4A21DCAFE3C002EF855 /* LWEthereumSignManager.h */,
 				A1F4D4A31DCAFE3C002EF855 /* LWEthereumSignManager.m */,
+				A1D600421DCEC4B600451D48 /* FRHyperLabel.h */,
+				A1D600431DCEC4B600451D48 /* FRHyperLabel.m */,
 				A18D25B81D6963F2005CEF66 /* PIN */,
 				A122B97B1CFEB2E4009DC795 /* FLAnimatedImage */,
 				ECAACF371C9F3BCD000227E0 /* LWErrorView.xib */,
@@ -7307,6 +7315,7 @@
 				A1D65DAE1D5DCF1100828783 /* crypto_bar_00106.png in Resources */,
 				A1D65DC51D5EC18600828783 /* LWBackupGetStartedPresenter.xib in Resources */,
 				A1BCD2571D012D3C00CF42E4 /* 4-withdraw-2x_00104.png in Resources */,
+				A1D85B151DCED98700C061BF /* LWEmptyBuyLykkeInContainerPresenter_ipad.xib in Resources */,
 				A1BCD12F1D012D3C00CF42E4 /* 2-trade-2x_00047.png in Resources */,
 				A1D477651D050B9900438846 /* loader-color@2x_00053.png in Resources */,
 				A1BCD2991D012D3C00CF42E4 /* 5-onboard-2x_00051.png in Resources */,
@@ -8631,6 +8640,7 @@
 				CD10AAA31C1E0B530086634B /* LWPacketAuthentication.m in Sources */,
 				ECD114631CDDD7E2002B36C0 /* LWCountrySelectorPresenter.m in Sources */,
 				A18D25C61D6A0A68005CEF66 /* LWNumbersKeyboardViewCell.m in Sources */,
+				A1D600441DCEC4B600451D48 /* FRHyperLabel.m in Sources */,
 				A12BEEAB1D2E8FA200045916 /* LWPushNotificationView.m in Sources */,
 				A11494721D49E1E8000BD347 /* LWPKBackupPresenter.m in Sources */,
 				EC59526C1C31ED6C0036240C /* LWKYCCheckDocumentsPresenter.m in Sources */,

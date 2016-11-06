@@ -340,7 +340,7 @@
             
             LWResultPresenter *ppp=[LWResultPresenter new];
             ppp.titleString=@"SUCCESSFULL!";
-            ppp.textString=@"Your cold reserve can now be used as a private wallet (Deposit and withdraw)";
+            ppp.textString=@"Your cold reserve can now be used for deposit, withdrawal, and transfer.";
             ppp.image=[UIImage imageNamed:@"SuccessfulIcon"];
             ppp.buttonTitle=@"EDIT WALLET";
             ppp.delegate=self;

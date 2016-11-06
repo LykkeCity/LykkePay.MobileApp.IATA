@@ -12,6 +12,8 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *assetLabel;
 @property (weak, nonatomic) IBOutlet UILabel *balanceLabel;
+@property (weak, nonatomic) IBOutlet UILabel *rateLabel;
+@property (weak, nonatomic) IBOutlet UILabel *volumeLabel;
 
 @end
 

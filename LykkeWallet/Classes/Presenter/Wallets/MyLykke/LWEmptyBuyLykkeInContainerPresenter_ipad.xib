@@ -16,19 +16,20 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LWEmptyBuyLykkeInContainerPresenter">
             <connections>
+                <outlet property="ipadIconTopConstraint" destination="gNS-XU-oGI" id="9Js-gq-Dyh"/>
                 <outlet property="textlabel" destination="tMb-q8-UNO" id="6qt-Oa-DUt"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="491" height="713"/>
+            <rect key="frame" x="0.0" y="0.0" width="675" height="713"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HistoryEmptyWithLine" translatesAutoresizingMaskIntoConstraints="NO" id="eJd-6Y-8Pz">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HistoryEmptyIpadBottomLine" translatesAutoresizingMaskIntoConstraints="NO" id="xiI-y2-yym">
                     <constraints>
-                        <constraint firstAttribute="height" constant="121" id="Pqs-cn-Tac"/>
-                        <constraint firstAttribute="width" constant="246" id="X0r-Gc-DQS"/>
+                        <constraint firstAttribute="height" constant="377" id="KHa-fO-LJJ"/>
+                        <constraint firstAttribute="width" constant="394" id="qlf-zy-yFP"/>
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You haven't got any assets yet…" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BQb-ml-wdH">
@@ -37,37 +38,47 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" alpha="0.59999999999999998" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sorry, your wallet is empty and you cannot buy LKK. Please click here to make a deposit in your wallet" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tMb-q8-UNO">
+                    <constraints>
+                        <constraint firstAttribute="width" constant="390" id="M7h-CT-f0W"/>
+                    </constraints>
                     <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="14"/>
                     <color key="textColor" red="0.24705882352941178" green="0.30196078431372547" blue="0.37647058823529411" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="HistoryEmptyBottomLine" translatesAutoresizingMaskIntoConstraints="NO" id="pCA-BA-3aW">
-                    <frame key="frameInset" minX="307" minY="460" width="184" height="178"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HistoryEmptyIpad" translatesAutoresizingMaskIntoConstraints="NO" id="A9q-Ma-nd0">
                     <constraints>
-                        <constraint firstAttribute="height" constant="178" id="O3R-gG-uwN"/>
-                        <constraint firstAttribute="width" constant="184" id="SZ5-9G-sc4"/>
+                        <constraint firstAttribute="height" constant="121" id="Ol5-2I-ZQ1"/>
+                        <constraint firstAttribute="width" constant="93" id="tS8-eP-ZnE"/>
+                    </constraints>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HistoryEmptyIpadTopLine" translatesAutoresizingMaskIntoConstraints="NO" id="TX5-UM-a1b">
+                    <constraints>
+                        <constraint firstAttribute="height" constant="140" id="BCu-0t-lnV"/>
+                        <constraint firstAttribute="width" constant="500" id="VZn-3w-XTZ"/>
                     </constraints>
                 </imageView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="tMb-q8-UNO" secondAttribute="trailing" constant="70" id="0gF-bx-TAo"/>
-                <constraint firstAttribute="trailing" secondItem="pCA-BA-3aW" secondAttribute="trailing" id="3JJ-oJ-JGn"/>
-                <constraint firstAttribute="bottom" secondItem="pCA-BA-3aW" secondAttribute="bottom" id="4wS-yo-AuM"/>
-                <constraint firstItem="tMb-q8-UNO" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="70" id="Br8-ct-ecc"/>
-                <constraint firstItem="eJd-6Y-8Pz" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="EeQ-pp-grb"/>
-                <constraint firstItem="eJd-6Y-8Pz" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="66" id="GoK-md-anx"/>
+                <constraint firstAttribute="trailing" secondItem="xiI-y2-yym" secondAttribute="trailing" id="3xb-aI-AEn"/>
+                <constraint firstItem="tMb-q8-UNO" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="BAb-ou-xie"/>
+                <constraint firstItem="TX5-UM-a1b" firstAttribute="top" secondItem="A9q-Ma-nd0" secondAttribute="top" constant="25" id="Fc7-3E-Deu"/>
                 <constraint firstItem="BQb-ml-wdH" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Gsg-vh-bWI"/>
-                <constraint firstItem="BQb-ml-wdH" firstAttribute="top" secondItem="eJd-6Y-8Pz" secondAttribute="bottom" constant="31" id="grx-wk-1Hc"/>
+                <constraint firstItem="BQb-ml-wdH" firstAttribute="top" secondItem="A9q-Ma-nd0" secondAttribute="bottom" constant="32" id="OHk-gA-858"/>
+                <constraint firstItem="A9q-Ma-nd0" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="93" id="gNS-XU-oGI"/>
+                <constraint firstAttribute="bottom" secondItem="xiI-y2-yym" secondAttribute="bottom" id="jmn-Q1-70G"/>
                 <constraint firstItem="tMb-q8-UNO" firstAttribute="top" secondItem="BQb-ml-wdH" secondAttribute="bottom" constant="15" id="jp8-gC-2EK"/>
+                <constraint firstItem="A9q-Ma-nd0" firstAttribute="leading" secondItem="TX5-UM-a1b" secondAttribute="trailing" id="mMB-zQ-Rat"/>
+                <constraint firstItem="A9q-Ma-nd0" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="oNE-pt-RwV"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="2" y="125"/>
+            <point key="canvasLocation" x="93.5" y="124.5"/>
         </view>
     </objects>
     <resources>
-        <image name="HistoryEmptyBottomLine" width="185" height="178"/>
-        <image name="HistoryEmptyWithLine" width="247" height="122"/>
+        <image name="HistoryEmptyIpad" width="94" height="122"/>
+        <image name="HistoryEmptyIpadBottomLine" width="391" height="377"/>
+        <image name="HistoryEmptyIpadTopLine" width="500" height="140"/>
     </resources>
 </document>

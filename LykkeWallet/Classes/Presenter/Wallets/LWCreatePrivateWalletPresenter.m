@@ -247,7 +247,7 @@
         
                 createUpdateButtonTitle=@"CREATE WALLET";
         
-        _descriptionLabel.text=@"This is a private wallet, a secure backup of the private key and its is guaranteed with 12 words from a backup";
+        _descriptionLabel.text=@"To create a new deterministic wallet whose private key derived from a twelve-word seed, please enter a name for the wallet.";
         
         NSLog(@"%@", sss);
     }
@@ -269,7 +269,7 @@
         self.keyPasteWidthConstraint.active=NO;
         createUpdateButtonTitle=@"ADD WALLET";
         
-        _descriptionLabel.text=@"Import any external personal wallet, use your private key for transfers and reference to Lykke Wallet";
+        _descriptionLabel.text=@"Already have a wallet? Great! To make transactions with the Lykke Wallet app, enter the wallet’s existing private key. We will create an encrypted, server-side backup of the key (as long as it’s encrypted with your master private key).";
         
 
 
@@ -293,7 +293,7 @@
         createUpdateButtonTitle=@"PROCEED";
 
         
-        _descriptionLabel.text=@"The private key will be generated but will not be stored in Lykke Wallet";
+        _descriptionLabel.text=@"A wallet in cold storage has a private key that isn’t stored online; it’s stored offline only. You can’t make transactions with it until you enter the correct twelve-word seed. Only the wallet’s public address is saved.";
     }
     
     
