@@ -13,7 +13,6 @@
 #import "LWAssetDescriptionModel.h"
 #import "LWAssetInfoTextTableViewCell.h"
 #import "LWAssetInfoIconTableViewCell.h"
-#import "LWAssetURLTableViewCell.h"
 #import "LWAssetModel.h"
 #import "LWValidator.h"
 #import "LWConstants.h"
@@ -23,8 +22,6 @@
 #import "UIViewController+Loading.h"
 #import "UIViewController+Navigation.h"
 #import "NSString+Utils.h"
-#import "LWIPadModalNavigationControllerViewController.h"
-#import "LWCommonButton.h"
 
 
 @interface LWExchangeFormPresenter () {
@@ -34,8 +31,8 @@
 
 #pragma mark - Outlets
 
-@property (weak, nonatomic) IBOutlet LWCommonButton *buyButton;
-@property (weak, nonatomic) IBOutlet LWCommonButton *sellButton;
+@property (weak, nonatomic) IBOutlet UIButton *buyButton;
+@property (weak, nonatomic) IBOutlet UIButton *sellButton;
 
 
 #pragma mark - Utils
@@ -51,81 +48,51 @@
 
 
 CGFloat const kDefaultRowHeight = 50.0;
-static NSInteger const kDescriptionRows = 8;
+static NSInteger const kDescriptionRows = 6;
 
 static NSString *const DescriptionIdentifiers[kDescriptionRows] = {
-    @"LWAssetInfoTextTableViewCellIdentifier",
     @"LWAssetInfoTextTableViewCellIdentifier",
     @"LWAssetInfoIconTableViewCellIdentifier",
     @"LWAssetInfoTextTableViewCellIdentifier",
     @"LWAssetInfoTextTableViewCellIdentifier",
     @"LWAssetInfoTextTableViewCellIdentifier",
-    @"LWAssetInfoTextTableViewCellIdentifier",
-    @"LWAssetURLTableViewCellIdentifier"
+    @"LWAssetInfoTextTableViewCellIdentifier"
 };
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.title = self.assetPair.name;
     
-//    [self setBackButton];
+    [self setBackButton];
     
     [self registerCellWithIdentifier:@"LWAssetInfoTextTableViewCellIdentifier"
                                 name:@"LWAssetInfoTextTableViewCell"];
     
     [self registerCellWithIdentifier:@"LWAssetInfoIconTableViewCellIdentifier"
                                 name:@"LWAssetInfoIconTableViewCell"];
-    
-    [self registerCellWithIdentifier:@"LWAssetURLTableViewCellIdentifier"
-                                name:@"LWAssetURLTableViewCell"];
-    
-    _buyButton.type=BUTTON_TYPE_YELLOW;
-    _sellButton.type=BUTTON_TYPE_VIOLET;
-
-//    self.tableView.tableHeaderView = ({UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 1 / UIScreen.mainScreen.scale)];
-//        line.backgroundColor = self.tableView.separatorColor;
-//        line;
-//    });
-    
-}
-
--(void) viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    
-//    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
-//    {
-//        self.title = self.assetPair.name;
-//        if(self.assetPair.inverted)
-//        {
-//            NSArray *arr=[self.assetPair.name componentsSeparatedByString:@"/"];
-//            if(arr.count==2)
-//            {
-//                self.title=[NSString stringWithFormat:@"%@/%@", arr[1], arr[0]];
-//            }
-//        }
-//    }
-
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    
     [self updateRate:self.assetRate];
 
-    [LWAuthManager instance].caller=self;
     if (!assetDetails) {
         [self setLoading:YES];
-        
-        [[LWAuthManager instance] requestAssetDescription:self.assetPair.quotingAssetId];
+        [[LWAuthManager instance] requestAssetDescription:self.assetPair.identity];
     }
     else {
         [[LWAuthManager instance] requestAssetPairRate:self.assetPair.identity];
     }
 }
 
+-(void) viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+}
 
 
 #pragma mark - UITableViewDataSource
@@ -135,57 +102,35 @@ static NSString *const DescriptionIdentifiers[kDescriptionRows] = {
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-//    int const kDescriptionRows = 7;
+    int const kDescriptionRows = 6;
     return kDescriptionRows;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *const DescriptionNames[kDescriptionRows] = {
-        @"Full name",
         Localize(@"exchange.assets.form.assetclass"),
         Localize(@"exchange.assets.form.popularity"),
         Localize(@"exchange.assets.form.description"),
         Localize(@"exchange.assets.form.issuername"),
         Localize(@"exchange.assets.form.coinsnumber"),
-        Localize(@"exchange.assets.form.capitalization"),
-        Localize(@"exchange.assets.form.description_url")
+        Localize(@"exchange.assets.form.capitalization")
     };
     
     NSString *identifier = DescriptionIdentifiers[indexPath.row];
-    
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     // show popularity row
-    if (indexPath.row == 2) {
+    if (indexPath.row == 1) {
         LWAssetInfoIconTableViewCell *iconCell = (LWAssetInfoIconTableViewCell *)cell;
         iconCell.titleLabel.text = DescriptionNames[indexPath.row];
         NSString *imageName = [NSString stringWithFormat:@"AssetPopularity%@", assetDetails.popIndex];
         iconCell.popularityImageView.image = [UIImage imageNamed:imageName];
     }
-    else if(indexPath.row==7)
-    {
-        LWAssetURLTableViewCell *urlCell = (LWAssetURLTableViewCell *)cell;
-        urlCell.titleLabel.text = DescriptionNames[indexPath.row];
-        [urlCell.urlButton setTitle:[self description:assetDetails forRow:indexPath.row] forState:UIControlStateNormal];
-
-    }
     // show description rows
     else {
         LWAssetInfoTextTableViewCell *textCell = (LWAssetInfoTextTableViewCell *)cell;
         textCell.titleLabel.text = DescriptionNames[indexPath.row];
-        
         textCell.descriptionLabel.text = [self description:assetDetails forRow:indexPath.row];
-    }
-    if(indexPath.row==0)
-    {
-        UIView *line;
-        if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
-            line= [[UIView alloc] initWithFrame:CGRectMake(25, 0, self.tableView.frame.size.width-50, 1 / UIScreen.mainScreen.scale)];
-        else
-            line= [[UIView alloc] initWithFrame:CGRectMake(0, 0, 800, 1 / UIScreen.mainScreen.scale)];
-        
-        line.backgroundColor = self.tableView.separatorColor;
-        [cell addSubview:line];
     }
 
     return cell;
@@ -207,16 +152,11 @@ static NSString *const DescriptionIdentifiers[kDescriptionRows] = {
     }
     
     // calculate height just for text cells
-    if (indexPath.row != 2) {
+    if (indexPath.row != 1) {
         return [self calculateRowHeightForText:text];
     }
     
     return kDefaultRowHeight;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    
 }
 
 
@@ -228,7 +168,6 @@ static NSString *const DescriptionIdentifiers[kDescriptionRows] = {
     [self.tableView reloadData];
     [self setLoading:NO];
     
-    [LWAuthManager instance].caller=self;
     [[LWAuthManager instance] requestAssetPairRate:self.assetPair.identity];
 }
 
@@ -238,7 +177,6 @@ static NSString *const DescriptionIdentifiers[kDescriptionRows] = {
     const NSInteger repeatSeconds = [LWCache instance].refreshTimer.integerValue / 1000;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(repeatSeconds * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         if (self.isVisible) {
-            [LWAuthManager instance].caller=self;
             [[LWAuthManager instance] requestAssetPairRate:self.assetPair.identity];
         }
     });
@@ -254,71 +192,21 @@ static NSString *const DescriptionIdentifiers[kDescriptionRows] = {
 
 - (IBAction)buyClicked:(id)sender {
     if (self.assetPair && self.assetRate) {
-        
-//        LWExchangeFormPresenter *form = [LWExchangeFormPresenter new];
-//        form.assetPair = model;
-//        form.assetRate = rate;
-//        
-//        if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
-//            [self.navigationController pushViewController:form animated:YES];
-//        else
-//        {
-//            LWIPadModalNavigationControllerViewController *navigationController =
-//            [[LWIPadModalNavigationControllerViewController alloc] initWithRootViewController:form];
-//            navigationController.modalPresentationStyle=UIModalPresentationOverCurrentContext;
-//            navigationController.transitioningDelegate=navigationController;
-//            [self.navigationController presentViewController:navigationController animated:YES completion:nil];
-//        }
-//
-//        
-//        
-        
-        
         LWExchangeDealFormPresenter *controller = [LWExchangeDealFormPresenter new];
         controller.assetPair = self.assetPair;
         controller.assetRate = self.assetRate;
         controller.assetDealType = LWAssetDealTypeBuy;
-        
-        if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
-            [self.navigationController pushViewController:controller animated:YES];
-        else
-        {
-            LWIPadModalNavigationControllerViewController *navigationController =
-            [[LWIPadModalNavigationControllerViewController alloc] initWithRootViewController:controller];
-            navigationController.modalPresentationStyle=UIModalPresentationOverCurrentContext;
-            navigationController.transitioningDelegate=navigationController;
-            [self.navigationController presentViewController:navigationController animated:YES completion:nil];
-        }
-
-        
-//        [self.navigationController pushViewController:controller animated:YES];
+        [self.navigationController pushViewController:controller animated:YES];
     }
 }
 
 - (IBAction)sellClicked:(id)sender {
     if (self.assetPair && self.assetRate) {
-        
         LWExchangeDealFormPresenter *controller = [LWExchangeDealFormPresenter new];
         controller.assetPair = self.assetPair;
         controller.assetRate = self.assetRate;
         controller.assetDealType = LWAssetDealTypeSell;
-        
-        if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
-            [self.navigationController pushViewController:controller animated:YES];
-        else
-        {
-            LWIPadModalNavigationControllerViewController *navigationController =
-            [[LWIPadModalNavigationControllerViewController alloc] initWithRootViewController:controller];
-            navigationController.modalPresentationStyle=UIModalPresentationOverCurrentContext;
-            navigationController.transitioningDelegate=navigationController;
-            [self.navigationController presentViewController:navigationController animated:YES completion:nil];
-        }
-
-//        LWExchangeDealFormPresenter *controller = [LWExchangeDealFormPresenter new];
-//        controller.assetPair = self.assetPair;
-//        controller.assetRate = self.assetRate;
-//        controller.assetDealType = LWAssetDealTypeSell;
-//        [self.navigationController pushViewController:controller animated:YES];
+        [self.navigationController pushViewController:controller animated:YES];
     }
 }
 
@@ -329,51 +217,18 @@ static NSString *const DescriptionIdentifiers[kDescriptionRows] = {
     
     self.assetRate = rate;
     
-    self.buyButton.enabled=rate != nil;
-    self.sellButton.enabled=rate!=nil;
-//    [LWValidator setBuyButton:self.buyButton enabled:(rate != nil)];
-//    [LWValidator setSellButton:self.sellButton enabled:(rate != nil)];
+    [LWValidator setBuyButton:self.buyButton enabled:(rate != nil)];
+    [LWValidator setSellButton:self.sellButton enabled:(rate != nil)];
     
     NSString *priceSellRateString = @". . .";
     NSString *priceBuyRateString = @". . .";
-    
-    
-    NSString *priceSell=[LWUtils formatFairVolume:rate.bid.doubleValue accuracy:self.assetPair.accuracy.intValue roundToHigher:NO];
-    priceSell=[priceSell stringByReplacingOccurrencesOfString:@" " withString:@""];
-    NSString *priceBuy=[LWUtils formatFairVolume:rate.ask.doubleValue accuracy:self.assetPair.accuracy.intValue roundToHigher:YES];
-    priceBuy=[priceBuy stringByReplacingOccurrencesOfString:@" " withString:@""];
-    
-    if(rate)
-    {
-        priceSellRateString = [LWUtils priceForAsset:self.assetPair forValue:@(priceSell.doubleValue) withFormat:@"SELL"];
-        priceBuyRateString = [LWUtils priceForAsset:self.assetPair forValue:@(priceBuy.doubleValue) withFormat:@"BUY"];
+    if (rate) {
+        priceSellRateString = [LWUtils priceForAsset:self.assetPair forValue:rate.bid withFormat:Localize(@"graph.button.sell")];
+        priceBuyRateString = [LWUtils priceForAsset:self.assetPair forValue:rate.ask withFormat:Localize(@"graph.button.buy")];
     }
     
-//    if (rate) {
-//        priceSellRateString = [LWUtils priceForAsset:self.assetPair forValue:rate.bid withFormat:@"SELL"];
-//        priceBuyRateString = [LWUtils priceForAsset:self.assetPair forValue:rate.ask withFormat:@"BUY"];
-//    }
-    
-    
-//    NSDictionary *attributes = @{NSKernAttributeName:@(1), NSFontAttributeName:self.buyButton.titleLabel.font, NSForegroundColorAttributeName:rate==nil?self.buyButton.currentTitleColor:[UIColor whiteColor]};
-
-//    NSDictionary *attributesBuy = @{NSKernAttributeName:@(1), NSFontAttributeName:self.buyButton.titleLabel.font, NSForegroundColorAttributeName:rate==nil?self.buyButton.currentTitleColor:[UIColor whiteColor]};
-//
-//    NSDictionary *attributesSell=@{NSKernAttributeName:@(1), NSFontAttributeName:self.sellButton.titleLabel.font, NSForegroundColorAttributeName:rate==nil?self.sellButton.currentTitleColor:[UIColor whiteColor]};
-    
-//        NSDictionary *attributesBuy = @{NSFontAttributeName:self.buyButton.titleLabel.font, NSForegroundColorAttributeName:rate==nil?self.buyButton.currentTitleColor:[UIColor whiteColor]};
-//    
-//        NSDictionary *attributesSell=@{NSFontAttributeName:self.sellButton.titleLabel.font, NSForegroundColorAttributeName:rate==nil?self.sellButton.currentTitleColor:[UIColor whiteColor]};
-
-    
-//    [self.buyButton setAttributedTitle:[[NSAttributedString alloc] initWithString:priceBuyRateString attributes:attributesBuy] forState:UIControlStateNormal];
-//    [self.sellButton setAttributedTitle:[[NSAttributedString alloc] initWithString:priceSellRateString attributes:attributesSell] forState:UIControlStateNormal];
-
-    [self.buyButton setTitle:priceBuyRateString forState:UIControlStateNormal];
     [self.sellButton setTitle:priceSellRateString forState:UIControlStateNormal];
-    
-//    [self.sellButton setTitle:priceSellRateString forState:UIControlStateNormal];
-//    [self.buyButton setTitle:priceBuyRateString forState:UIControlStateNormal];
+    [self.buyButton setTitle:priceBuyRateString forState:UIControlStateNormal];
 }
 
 - (NSString *)description:(LWAssetDescriptionModel *)model forRow:(NSInteger)row {
@@ -383,29 +238,23 @@ static NSString *const DescriptionIdentifiers[kDescriptionRows] = {
     }
     
     switch (row) {
-            case 0:
-            text=model.fullName;
-            break;
-        case 1:
+        case 0:
             text = model.assetClass;
             break;
-        case 2:
+        case 1:
             text = (model.popIndex == nil) ? @"" : [model.popIndex stringValue];
             break;
-        case 3:
+        case 2:
             text = model.details;
             break;
-        case 4:
+        case 3:
             text = model.issuerName;
             break;
-        case 5:
+        case 4:
             text = model.numberOfCoins;
             break;
-        case 6:
+        case 5:
             text = model.marketCapitalization;
-            break;
-        case 7:
-            text = model.assetDescriptionURL;
             break;
     }
     return text;

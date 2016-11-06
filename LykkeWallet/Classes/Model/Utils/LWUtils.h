@@ -24,21 +24,4 @@
 + (NSString *)priceForAsset:(LWAssetPairModel *)assetPair forValue:(NSNumber *)value;
 + (NSString *)priceForAsset:(LWAssetPairModel *)assetPair forValue:(NSNumber *)value withFormat:(NSString *)format;
 
-+(double) fairVolume:(double) volume accuracy:(int) accuracy roundToHigher:(BOOL) flagRoundHigher;
-
-+(NSString *) formatFairVolume:(double) volume accuracy:(int) accuracy roundToHigher:(BOOL) flagRoundHigher;
-+(NSString *) formatVolumeString:(NSString *) volume currencySign:(NSString *) currency accuracy:(int) accuracy removeExtraZeroes:(BOOL) flagRemoveZeroes;
-+(NSString *) formatVolumeNumber:(NSNumber *) volumee currencySign:(NSString *) currency accuracy:(int) accuracy removeExtraZeroes:(BOOL) flagRemoveZeroes;
-
-+(NSString *) stringFromDouble:(double) number;
-+(NSString *) stringFromNumber:(NSNumber *) number;
-+(NSNumber *) accuracyForAssetId:(NSString *) assetID;
-+(NSString *) hexStringFromData:(NSData *) data;
-+(NSData *) dataFromHexString:(NSString *) command;
-
-+(void) appendToLogFile:(NSString *)string;
-
-+(double) logarithmicValueFrom:(double) value min:(double) min max:(double) max length:(double) length; //length: длина шкалы на которую надо уместить значения от min до max
-
-
 @end

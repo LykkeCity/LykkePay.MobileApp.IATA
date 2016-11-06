@@ -23,9 +23,8 @@
 #import "UIViewController+Loading.h"
 
 
-@interface LWTransferEmptyBlockchainPresenter () <LWLeftDetailTableViewCellDelegate> {
-    NSArray *titles;
-    NSArray *values;
+@interface LWTransferEmptyBlockchainPresenter () {
+    
 }
 
 
@@ -38,6 +37,7 @@
 
 @implementation LWTransferEmptyBlockchainPresenter
 
+static int const kNumberOfRows = 3;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -45,34 +45,18 @@
     [self registerCellWithIdentifier:kLeftDetailTableViewCellIdentifier
                                 name:kLeftDetailTableViewCell];
     
+    NSString *type = (self.model.volume.doubleValue >= 0
+                      ? Localize(@"history.transfer.in")
+                      : Localize(@"history.transfer.out"));
+    
+    NSString *base = [LWAssetModel
+                      assetByIdentity:self.model.asset
+                      fromList:[LWCache instance].baseAssets];
+    
+    self.title = [NSString stringWithFormat:@"%@ %@", base, type];
     
     [self setBackButton];
-//    [self setRefreshControl];
-    
-    titles= @[
-        Localize(@"history.cash.asset"),
-        Localize(@"history.transfer.volume"),
-        Localize(@"history.cash.blockchain"),
-        @"Address from",
-        @"Address to"
-    ];
-    
-    NSInteger const precision = [LWAssetsDictionaryItem assetAccuracyById:self.model.asset];
-    NSString *volumeString = [LWMath historyPriceString:self.model.volume
-                                              precision:precision
-                                             withPrefix:@""];
-
-    values = @[
-        self.model.asset,
-        volumeString,
-        Localize(@"history.cash.progress"),
-        self.model.addressFrom?self.model.addressFrom:@"",
-        self.model.addressTo?self.model.addressTo:@""
-    ];
-    
-    self.tableView.rowHeight = UITableViewAutomaticDimension;
-    self.tableView.estimatedRowHeight = kLeftDetailTableViewCellHeight;
-
+    [self setRefreshControl];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -81,56 +65,21 @@
     [self setHideKeyboardOnTap:NO]; // gesture recognizer deletion
 }
 
--(void) viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    NSString *type = (self.model.volume.doubleValue >= 0
-                      ? Localize(@"history.transfer.in")
-                      : Localize(@"history.transfer.out"));
-    
-    NSString *base = [LWAssetModel
-                      assetByIdentity:self.model.asset
-                      fromList:[LWCache instance].allAssets];
-    
-    self.title = [NSString stringWithFormat:@"%@ %@", base, type];
-
-}
-
--(void) leftDetailCellCopyPressed:(LWLeftDetailTableViewCell *) cell
-{
-    UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
-    [pasteboard setString:cell.detailLabel.text];
-    [self showCopied];
-}
-
 
 #pragma mark - UITableViewDataSource
-
--(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if([values[indexPath.row] length]==0)
-        return 0;
-//    LWLeftDetailTableViewCell *cell=(LWLeftDetailTableViewCell *)[self tableView:tableView cellForRowAtIndexPath:indexPath];
-//    return [cell heightWithTableViewWidth:tableView.bounds.size.width];
-    
-    return UITableViewAutomaticDimension;
-}
-
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return titles.count;
+    return kNumberOfRows;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     LWLeftDetailTableViewCell *cell = (LWLeftDetailTableViewCell *)[tableView dequeueReusableCellWithIdentifier:kLeftDetailTableViewCellIdentifier];
-    cell.delegate=self;
-    if(indexPath.row>2)
-        cell.showCopyButton=YES;
+    
     [self updateTitleCell:cell row:indexPath.row];
     [self updateValueCell:cell row:indexPath.row];
     
@@ -148,12 +97,26 @@
 #pragma mark - Utils
 
 - (void)updateTitleCell:(LWLeftDetailTableViewCell *)cell row:(NSInteger)row {
-    
+    NSString *const titles[kNumberOfRows] = {
+        Localize(@"history.cash.asset"),
+        Localize(@"history.transfer.volume"),
+        Localize(@"history.cash.blockchain")
+    };
     cell.titleLabel.text = titles[row];
 }
 
 - (void)updateValueCell:(LWLeftDetailTableViewCell *)cell row:(NSInteger)row {
     
+    NSInteger const precision = [LWAssetsDictionaryItem assetAccuracyById:self.model.asset];
+    NSString *volumeString = [LWMath historyPriceString:self.model.volume
+                                              precision:precision
+                                             withPrefix:@""];
+    
+    NSString *const values[kNumberOfRows] = {
+        self.model.asset,
+        volumeString,
+        Localize(@"history.cash.progress")
+    };
     
     cell.detailLabel.text = values[row];
     [cell.detailLabel setTextColor:[UIColor colorWithHexString:kMainDarkElementsColor]];

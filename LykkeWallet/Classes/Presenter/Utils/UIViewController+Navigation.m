@@ -8,47 +8,16 @@
 
 #import "UIViewController+Navigation.h"
 #import "LWConstants.h"
-#import "LWAuthManager.h"
-#import "LWIPadModalNavigationControllerViewController.h"
-
-
 
 
 @implementation UIViewController (Navigation)
 
 - (void)setBackButton {
     if (self.navigationController && self.navigationItem) {
-        if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone || ([self.navigationController.viewControllers indexOfObject:self]>0))
-        {
-            UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"BackIcon"] style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(popViewControllerAnimated:)];
-            
-            self.navigationItem.leftBarButtonItem = button;
-        }
-        else
-        {
-            [self setCancelButtonWithTitle:Localize(@"register.phone.cancel") target:self.navigationController selector:@selector(popViewControllerAnimated:)];
- 
-        }
-    }
-}
-
-- (void)setCrossCloseButton {
-    if (self.navigationController && self.navigationItem) {
-             UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"CloseCross"] style:UIBarButtonItemStylePlain target:self action:@selector(crossCloseButtonPressed)];
-            self.navigationItem.leftBarButtonItem = button;
-    }
-}
-
--(void) setCrossCloseButtonOnlyOne
-{
-    if (self.navigationController && self.navigationItem) {
-        UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"CloseCross"] style:UIBarButtonItemStylePlain target:self action:@selector(crossCloseOnlyOne)];
+        UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"BackIcon"] style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(popViewControllerAnimated:)];
         self.navigationItem.leftBarButtonItem = button;
     }
-
 }
-
-
 
 - (void)setCancelButtonWithTitle:(NSString *)title target:(id)target selector:(SEL)action {
     if (self.navigationItem && self.navigationController) {
@@ -66,21 +35,6 @@
         
         self.navigationItem.leftBarButtonItem = cancelButton;
     }
-}
-
--(void) crossCloseButtonPressed
-{
-    if([self.navigationController isKindOfClass:[LWIPadModalNavigationControllerViewController class]])
-    {
-        [self.navigationController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
-    }
-    else
-        [self.navigationController popToRootViewControllerAnimated:YES];
-}
-
--(void) crossCloseOnlyOne
-{
-    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end

@@ -7,8 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "LWPacketBuySellAsset.h"
-
 
 
 @class LWAssetPairModel;
@@ -16,10 +14,6 @@
 
 
 @protocol LWExchangeConfirmationViewDelegate <NSObject>
-
-@optional
-
--(void) exchangeConfirmationViewPressedFingerPrint;
 
 @required
 - (void)cancelClicked;
@@ -42,9 +36,6 @@
 @property (copy, nonatomic) NSString *rateString;
 @property (copy, nonatomic) NSString *volumeString;
 @property (copy, nonatomic) NSString *totalString;
-@property LWAssetDealType assetDealType;
-
-@property (strong, nonatomic) UIView *iPadNavShadowView;
 
 #pragma mark - General
 
@@ -52,10 +43,6 @@
 
 
 #pragma mark - Utils
-
-
--(void) show;
--(void) hide;
 
 - (void)requestOperation;
 - (void)pinRejected;

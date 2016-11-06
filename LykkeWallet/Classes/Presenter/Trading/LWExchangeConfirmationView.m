@@ -18,13 +18,11 @@
 #import "LWCache.h"
 #import "Macro.h"
 #import "UIView+Navigation.h"
-#import "LWKeychainManager.h"
 
-@interface LWExchangeConfirmationView () <UITableViewDataSource, UITableViewDelegate, LWPinKeyboardViewDelegate> {
+
+@interface LWExchangeConfirmationView () <UITableViewDataSource, LWPinKeyboardViewDelegate> {
     LWPinKeyboardView *pinKeyboardView;
     BOOL               isRequested;
-    
-    UIView *shadowView;
 }
 
 #pragma mark - Outlets
@@ -37,8 +35,6 @@
 @property (weak, nonatomic) IBOutlet UIButton         *placeOrderButton;
 @property (weak, nonatomic) IBOutlet UILabel          *waitingLabel;
 @property (weak, nonatomic) IBOutlet LWLoadingIndicatorView *waitingImageView;
-
-@property (weak, nonatomic) IBOutlet UIView *touchCatchView;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *topViewHeightConstraint;
 
@@ -63,21 +59,10 @@
 
 static int const kDescriptionRows = 3;
 static float const kPinProtectionHeight = 488;
-static float const kNoPinProtectionHeight = 360;
+static float const kNoPinProtectionHeight = 300;
 
 
 #pragma mark - General
-
--(void) awakeFromNib
-{
-    UITapGestureRecognizer *gesture=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cancelOperation)];
-    [self.touchCatchView addGestureRecognizer:gesture];
-    self.tableView.delegate=self;
-    if([UIScreen mainScreen].bounds.size.width==320)
-    {
-        _topViewHeightConstraint.constant=520;
-    }
-}
 
 + (LWExchangeConfirmationView *)modalViewWithDelegate:(id<LWExchangeConfirmationViewDelegate>)delegate {
 
@@ -120,40 +105,16 @@ static float const kNoPinProtectionHeight = 360;
 
 - (void)cancelOperation {
     [self.delegate cancelClicked];
-    [self hide];
-}
-
--(void) pinKeyboardViewPressedFingerPrint
-{
-    [self hide];
-    if([self.delegate respondsToSelector:@selector(exchangeConfirmationViewPressedFingerPrint)])
-        [self.delegate exchangeConfirmationViewPressedFingerPrint];
-    
-        
-}
-
--(void) show
-{
-    shadowView=[[UIView alloc] initWithFrame:self.superview.bounds];
-    shadowView.backgroundColor=[UIColor colorWithWhite:0 alpha:0.5];
-    shadowView.alpha=0;
-    shadowView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-    [self.superview insertSubview:shadowView belowSubview:self];
-
-    [UIView animateWithDuration:0.5 animations:^{
-        shadowView.alpha=1;
-        self.iPadNavShadowView.alpha=1;
-    }];
+    [self removeFromSuperview];
 }
 
 - (void)updateView {
-//    [UIView setAnimationsEnabled:NO];
+    [UIView setAnimationsEnabled:NO];
     
-//    self.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5f];
+    self.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5f];
     
     self.topView.backgroundColor = [UIColor whiteColor];
     self.topView.opaque = NO;
-    self.backgroundColor=nil;
     
     BOOL const shouldSignOrder = [LWCache instance].shouldSignOrder;
     if (shouldSignOrder) {
@@ -162,8 +123,6 @@ static float const kNoPinProtectionHeight = 360;
         pinKeyboardView.hidden = !shouldSignOrder;
         [pinKeyboardView updateView];
         [self.bottomView addSubview:pinKeyboardView];
-        pinKeyboardView.frame=self.bottomView.bounds;
-        pinKeyboardView.autoresizingMask=UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     }
     else {
         if (pinKeyboardView) {
@@ -172,28 +131,21 @@ static float const kNoPinProtectionHeight = 360;
         }
     }
     
-    if(shouldSignOrder==NO)
-        self.topViewHeightConstraint.constant=kNoPinProtectionHeight;
-//    self.topViewHeightConstraint.constant = (shouldSignOrder ? kPinProtectionHeight : kNoPinProtectionHeight);
+    self.topViewHeightConstraint.constant = (shouldSignOrder ? kPinProtectionHeight : kNoPinProtectionHeight);
     self.placeOrderButton.hidden = shouldSignOrder;
     
     self.waitingLabel.text = Localize(@"exchange.assets.modal.waiting");
-    UILabel *label=[[UILabel alloc] init];
-    label.attributedText=[[NSAttributedString alloc] initWithString:@"ORDER SUMMARY" attributes:@{NSKernAttributeName:@(1.5), NSFontAttributeName:[UIFont fontWithName:@"ProximaNova-Semibold" size:17], NSForegroundColorAttributeName:[UIColor colorWithRed:63.0/255 green:77.0/255 blue:96.0/255 alpha:1]}];
-    [label sizeToFit];
-    [self.navigationItem setTitleView:label];
-//    [self.navigationItem setTitle:Localize(@"exchange.assets.modal.title")];
+    [self.navigationItem setTitle:Localize(@"exchange.assets.modal.title")];
     [self.placeOrderButton setTitle:Localize(@"exchange.assets.modal.button")
                            forState:UIControlStateNormal];
     
-    NSString *cancelTitle = @" CANCEL";
+    NSString *cancelTitle = Localize(@"exchange.assets.modal.cancel");
     [self setCancelButtonWithTitle:cancelTitle
                         navigation:self.navigationItem
                             target:self
                           selector:@selector(cancelClicked:)];
     
     self.placeOrderButton.hidden = NO;
-    [LWValidator setButton:self.placeOrderButton enabled:YES];
     
     [self registerCellWithIdentifier:kDetailTableViewCellIdentifier
                                 name:kDetailTableViewCell];
@@ -239,24 +191,12 @@ static float const kNoPinProtectionHeight = 360;
     return kDescriptionRows;
 }
 
--(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return 50;
-}
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    BOOL flagReverse=self.assetPair.inverted;
-    if((self.assetDealType==LWAssetDealTypeSell && flagReverse) || (self.assetDealType==LWAssetDealTypeBuy && !flagReverse))
-        flagReverse=!flagReverse;
-    
     NSString *const titles[kDescriptionRows] = {
-        flagReverse?Localize(@"exchange.assets.buy.sum"):Localize(@"exchange.assets.buy.total"),
-//        Localize(@"exchange.assets.buy.sum"),
+        Localize(@"exchange.assets.buy.sum"),
         Localize(@"exchange.assets.buy.price"),
-        flagReverse?Localize(@"exchange.assets.buy.total"):Localize(@"exchange.assets.buy.sum"),
-
-//        Localize(@"exchange.assets.buy.total")
+        Localize(@"exchange.assets.buy.total")
     };
     
     NSString *const values[kDescriptionRows] = {
@@ -305,36 +245,16 @@ static float const kNoPinProtectionHeight = 360;
 #pragma mark - LWPinKeyboardViewDelegate
 
 - (void)pinEntered:(NSString *)pin {
-    if([[LWKeychainManager instance].pin isEqualToString:pin])
-        [self requestOperation];
-    else
-        [self pinRejected];
-    
-    
-//    [self.delegate checkPin:pin];
-}
-
--(void) hide
-{
-    [UIView animateWithDuration:0.5 animations:^{
-        shadowView.alpha=0;
-        self.iPadNavShadowView.alpha=0;
-        self.center=CGPointMake(self.bounds.size.width/2, self.bounds.size.height*1.5);
-    } completion:^(BOOL finished){
-        [self.iPadNavShadowView removeFromSuperview];
-        [shadowView removeFromSuperview];
-            [self removeFromSuperview];
-        
-    }];
+    [self.delegate checkPin:pin];
 }
 
 - (void)pinCanceled {
-    [self hide];
+    [self removeFromSuperview];
     [self.delegate cancelClicked];
 }
 
 - (void)pinAttemptEnds {
-    [self hide];
+    [self removeFromSuperview];
     [self.delegate noAttemptsForPin];
 }
 

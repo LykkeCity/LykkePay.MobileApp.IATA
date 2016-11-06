@@ -7,6 +7,7 @@
 //
 
 #import "LWPacketCountryCodes.h"
+#import "LWCountryModel.h"
 
 
 @implementation LWPacketCountryCodes
@@ -22,23 +23,15 @@
     }
     
     // read assets
-    
-    NSString *current=result[@"Current"];
-
     NSMutableArray *countries = [NSMutableArray new];
     for (NSDictionary *item in result[@"CountriesList"]) {
-        LWCountryModel *country=[[LWCountryModel alloc] initWithJSON:item];
-        [countries addObject: country];
-        if([country.identity isEqualToString:current])
-            _ipLocatedCountry=country;
-        
+        [countries addObject:[[LWCountryModel alloc] initWithJSON:item]];
     }
-    _countries=countries;
-    
+    _countries = countries;
 }
 
 - (NSString *)urlRelative {
-    return @"CountryPhoneCodes";
+    return @"GetCountryPhoneCodes";
 }
 
 - (GDXRESTPacketType)type {

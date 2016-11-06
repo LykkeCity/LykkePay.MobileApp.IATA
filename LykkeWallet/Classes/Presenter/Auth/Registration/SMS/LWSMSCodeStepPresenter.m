@@ -15,25 +15,19 @@
 #import "LWConstants.h"
 #import "TKButton.h"
 #import "UIViewController+Loading.h"
-#import "UIView+Toast.h"
-#import "LWGenerateKeyPresenter.h"
-#import "LWCommonButton.h"
 
 
 @interface LWSMSCodeStepPresenter ()<LWTextFieldDelegate> {
     LWTextField *codeTextField;
-    CGFloat keyboardHeight;
 }
 
 #pragma mark - Outlets
 
 @property (weak, nonatomic) IBOutlet UILabel     *titleLabel;
 @property (weak, nonatomic) IBOutlet TKContainer *codeContainer;
-@property (weak, nonatomic) IBOutlet LWCommonButton    *confirmButton;
-@property (weak, nonatomic) IBOutlet UILabel *infoLabel;
+@property (weak, nonatomic) IBOutlet TKButton    *confirmButton;
+@property (weak, nonatomic) IBOutlet UILabel     *infoLabel;
 @property (weak, nonatomic) IBOutlet UIButton    *pasteButton;
-
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *confirmButtonWidthConstraint;
 
 @end
 
@@ -42,8 +36,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    keyboardHeight=0;
-    
+
+    self.title = Localize(@"register.title");
     
     // init email field
     codeTextField = [LWTextField new];
@@ -58,58 +52,25 @@
     
 #ifdef PROJECT_IATA
 #else
-//    [self.confirmButton setGrayPalette];
+    [self.confirmButton setGrayPalette];
 #endif
     
     UITapGestureRecognizer* gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(infoClicked:)];
     [self.infoLabel setUserInteractionEnabled:YES];
     [self.infoLabel addGestureRecognizer:gesture];
-    
-    if([UIScreen mainScreen].bounds.size.width==320)
-        _confirmButtonWidthConstraint.constant=280;
-    
-    _infoLabel.textColor=[UIColor colorWithRed:171.0/255 green:0 blue:1 alpha:1];
-    
 }
 
--(void) viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad)
-    {
-        CGRect rect=self.view.frame;
-        rect.origin.y=0;
-        self.view.frame=rect;
-    }
-
-}
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
     [self updatePasteButtonStatus];
-
-
-//    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad)
-        self.observeKeyboardEvents=YES;
-    
-}
-
--(void) viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    self.title = Localize(@"register.title");
-    
     
     [self setLoading:YES];
     [[LWAuthManager instance] requestVerificationEmail:self.email];
-
-    
-//    LWGenerateKeyPresenter *presenter=[[LWGenerateKeyPresenter alloc] init]; //Testing
-//    [self.navigationController pushViewController:presenter animated:YES];
 }
 
 - (void)localize {
-//    self.infoLabel.text = Localize(@"register.sms.help.info");
+    self.infoLabel.text = Localize(@"register.sms.help.info");
     self.titleLabel.text = [NSString stringWithFormat:Localize(@"register.sms.title"), self.email];
 
     
@@ -121,18 +82,9 @@
 }
 
 - (void)colorize {
-//    UIColor *color = [UIColor colorWithHexString:kMainElementsColor];
-//    [self.infoLabel setTextColor:color];
+    UIColor *color = [UIColor colorWithHexString:kMainElementsColor];
+    [self.infoLabel setTextColor:color];
 }
-
-
--(void) infoPressed
-{
-    [self setLoading:YES];
-    [[LWAuthManager instance] requestVerificationEmail:self.email];
-    
-}
-
 
 #pragma mark - LWTextFieldDelegate
 
@@ -162,11 +114,6 @@
 }
 
 - (void)infoClicked:(id)sender {
-    [self setLoading:YES];
-    [[LWAuthManager instance] requestVerificationEmail:self.email];
-
-
-
 }
 
 
@@ -190,40 +137,9 @@
 
 - (void)updatePasteButtonStatus {
     // check button state
-    self.confirmButton.enabled=[self canProceed];
-    
+    [LWValidator setButton:self.confirmButton enabled:[self canProceed]];
     self.pasteButton.hidden = [self canProceed];
 }
-
-- (void)observeKeyboardWillShowNotification:(NSNotification *)notification {
-    CGRect const frame = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
-    keyboardHeight=frame.size.height;
-    
-    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad && ([UIApplication sharedApplication].statusBarOrientation==UIInterfaceOrientationLandscapeLeft || [UIApplication sharedApplication].statusBarOrientation==UIInterfaceOrientationLandscapeRight))
-    {
-        CGRect rect=self.view.frame;
-        rect.origin.y=-80;
-        self.view.frame=rect;
-    }
-    
-    [self animateConstraintChanges];
-}
-
-- (void)observeKeyboardWillHideNotification:(NSNotification *)notification {
-    
-    keyboardHeight=0;
-    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad)
-    {
-        CGRect rect=self.view.frame;
-        rect.origin.y=self.navigationController.navigationBar.bounds.size.height+20;
-        self.view.frame=rect;
-    }
-    
-    
-    [self animateConstraintChanges];
-}
-
-
 
 
 #pragma mark - LWAuthManagerDelegate
@@ -231,8 +147,6 @@
 - (void)authManagerDidSendValidationEmail:(LWAuthManager *)manager {
     [self setLoading:NO];
     self.titleLabel.text = [NSString stringWithFormat:Localize(@"register.sms.title"), self.email];
-    [self.view makeToast:@"Code sent" duration:2 position:[NSValue valueWithCGPoint:CGPointMake(self.view.bounds.size.width/2, self.view.bounds.size.height-keyboardHeight-30)]];
-
 }
 
 - (void)authManagerDidCheckValidationEmail:(LWAuthManager *)manager passed:(BOOL)passed {

@@ -10,47 +10,31 @@
 #import "LWAuthNavigationController.h"
 #import "LWWithdrawConfirmationView.h"
 #import "LWFingerprintHelper.h"
+#import "LWAssetPairModel.h"
 #import "LWAssetBuySumTableViewCell.h"
 #import "LWAuthManager.h"
 #import "LWConstants.h"
 #import "LWValidator.h"
 #import "LWCache.h"
+#import "LWUtils.h"
 #import "LWMath.h"
 #import "TKButton.h"
 #import "UITextField+Validation.h"
 #import "UIViewController+Loading.h"
 #import "UIViewController+Navigation.h"
 #import "NSString+Utils.h"
-#import "LWWithdrawCurrencyPresenter.h"
-#import "LWLykkeAssetsData.h"
-#import "LWLykkeWalletsData.h"
-#import "LWMathKeyboardView.h"
-#import "LWUtils.h"
-#import "LWKeychainManager.h"
 
 
-
-
-@interface LWWithdrawInputPresenter () <UITextFieldDelegate, LWWithdrawConfirmationViewDelegate, LWMathKeyboardViewDelegate> {
+@interface LWWithdrawInputPresenter () <UITextFieldDelegate, LWWithdrawConfirmationViewDelegate> {
     
     LWWithdrawConfirmationView *confirmationView;
     UITextField *sumTextField;
     NSString    *volumeString;
-//    NSArray *predefinedSums;
-//    UIView *predefinedSumsView;
-    
-    UILabel *balance;
-    
-    NSNumber *accountBalance;
-    
-//    LWMathKeyboardView *keyboardView;
-    int accuracy;
-    
 }
 
 @property (weak, nonatomic) IBOutlet TKButton *operationButton;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomConstraint;
-@property (weak, nonatomic) IBOutlet UIView *operationView;
+
 
 #pragma mark - Utils
 
@@ -63,7 +47,7 @@
 @implementation LWWithdrawInputPresenter
 
 
-static NSInteger const kFormRows = 2;
+static NSInteger const kFormRows = 1;
 
 static NSString *const FormIdentifiers[kFormRows] = {
     @"LWAssetBuySumTableViewCellIdentifier"
@@ -73,9 +57,8 @@ float const kMathHeightKeyboard = 239.0;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.tableView.scrollEnabled=NO;
-    
-    accuracy=-1;
+
+    self.title = Localize(@"withdraw.funds.title");
     
     [self setHideKeyboardOnTap:NO]; // gesture recognizer deletion
     
@@ -98,20 +81,11 @@ float const kMathHeightKeyboard = 239.0;
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    self.title = Localize(@"withdraw.funds.title");
-
+    
     if (sumTextField) {
         [sumTextField becomeFirstResponder];
     }
-    
-    [[LWAuthManager instance] requestLykkeWallets];
-    if([LWCache instance].walletsData)
-    {
-        [self showBalanceWithLykkeData:[LWCache instance].walletsData];
-    }
-
 }
-
 
 
 #pragma mark - UITableViewDataSource
@@ -124,94 +98,40 @@ float const kMathHeightKeyboard = 239.0;
     return kFormRows;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-
-    return 50;
-}
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(indexPath.row==0)
-    {
-        UITableViewCell *cell=[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
-        cell.backgroundColor=[UIColor whiteColor];
-        balance=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 300, 15)];
-        balance.text=@"";
-        balance.font=[UIFont fontWithName:@"ProximaNova-Regular" size:16];
-        balance.textColor=[UIColor colorWithRed:63.0/255 green:77.0/255 blue:96.0/255 alpha:1];
-        balance.textAlignment=NSTextAlignmentCenter;
-        balance.center=CGPointMake(self.tableView.bounds.size.width/2, balance.center.y);
-        cell.userInteractionEnabled=NO;
-        [cell addSubview:balance];
-        return cell;
-        
-    }
-
-    NSString *identifier = FormIdentifiers[indexPath.row-1];
+    NSString *identifier = FormIdentifiers[indexPath.row];
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-    if (indexPath.row == 1) {
+    if (indexPath.row == 0) {
+        LWAssetPairModel *assetPair = [LWAssetPairModel assetPairById:self.assetPairId];
         LWAssetBuySumTableViewCell *sumCell = (LWAssetBuySumTableViewCell *)cell;
         sumCell.titleLabel.text = Localize(@"withdraw.funds.amount");
-        sumCell.assetLabel.text=self.assetId;
+        sumCell.assetLabel.text = [LWUtils baseAssetTitle:assetPair];
+        
         sumTextField = sumCell.sumTextField;
         sumTextField.delegate = self;
         sumTextField.placeholder = Localize(@"withdraw.funds.placeholder");
         sumTextField.keyboardType = UIKeyboardTypeDecimalPad;
+        sumTextField.accuracy=[[LWCache instance] accuracyForAssetId:self.assetId];
         
         [sumTextField setTintColor:[UIColor colorWithHexString:kDefaultTextFieldPlaceholder]];
-        
+        [sumTextField addTarget:self
+                         action:@selector(textFieldDidChange:)
+               forControlEvents:UIControlEventEditingChanged];
     }
     
     return cell;
 }
 
--(void) mathKeyboardDonePressed:(LWMathKeyboardView *)keyboardView
-{
-    [self hideCustomKeyboard];
-}
-
-
-
--(void) showCustomKeyboard
-{
-    [super showCustomKeyboard];
-    self.keyboardView.targetTextField=sumTextField;
-    
-    [self.keyboardView setAccuracy:[LWUtils accuracyForAssetId:self.assetId]];
-    
-    [self.keyboardView setText:volumeString];
-    
-    self.operationView.translatesAutoresizingMaskIntoConstraints = YES;
-    [UIView animateWithDuration:0.5 animations:^{
-        self.operationView.center=CGPointMake(self.operationView.center.x, self.operationView.center.y-self.keyboardView.bounds.size.height);
-    }];
-}
-
-
--(void) hideCustomKeyboard
-{
-    [super hideCustomKeyboard];
-    
-    [UIView animateWithDuration:0.5 animations:^{
-        self.operationView.center=CGPointMake(self.operationView.center.x, self.operationView.center.y+self.keyboardView.bounds.size.height);
-    } completion:^(BOOL finished){
-        self.operationView.translatesAutoresizingMaskIntoConstraints = NO;
-        
-    }];
-    
-}
-
 
 #pragma mark - UITextFieldDelegate
 
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    return [textField isNumberValidForRange:range replacementString:string];
+}
 
--(BOOL) textFieldShouldBeginEditing:(UITextField *)textField
-{
-    if(!self.keyboardView || (self.keyboardView && self.keyboardView.isVisible==NO))
-        [self showCustomKeyboard];
-
-    return NO;
+- (void)textFieldDidChange:(UITextField *)sender {
+    [self volumeChanged:sender.text withValidState:[sender isNumberValid]];
 }
 
 
@@ -222,7 +142,7 @@ float const kMathHeightKeyboard = 239.0;
     
     if (confirmationView) {
         [confirmationView setLoading:NO withReason:@""];
-        [confirmationView hide];
+        [confirmationView removeFromSuperview];
     }
     
     UIAlertController *ctrl = [UIAlertController alertControllerWithTitle:Localize(@"withdraw.funds.confirm.title") message:Localize(@"withdraw.funds.confirm.desc")
@@ -236,16 +156,16 @@ float const kMathHeightKeyboard = 239.0;
     [self presentViewController:ctrl animated:YES completion:nil];
 }
 
-//- (void)authManager:(LWAuthManager *)manager didValidatePin:(BOOL)isValid {
-//    if (confirmationView) {
-//        if (isValid) {
-//            [confirmationView requestOperation];
-//        }
-//        else {
-//            [confirmationView pinRejected];
-//        }
-//    }
-//}
+- (void)authManager:(LWAuthManager *)manager didValidatePin:(BOOL)isValid {
+    if (confirmationView) {
+        if (isValid) {
+            [confirmationView requestOperation];
+        }
+        else {
+            [confirmationView pinRejected];
+        }
+    }
+}
 
 - (void)authManager:(LWAuthManager *)manager didFailWithReject:(NSDictionary *)reject context:(GDXRESTContext *)context {
     
@@ -253,54 +173,26 @@ float const kMathHeightKeyboard = 239.0;
     
     if (confirmationView) {
         [confirmationView setLoading:NO withReason:@""];
-        [confirmationView hide];
+        [confirmationView removeFromSuperview];
     }
-        [self showReject:reject response:context.task.response
+    
+    [self showReject:reject response:context.task.response
                 code:context.error.code willNotify:YES];
 }
-
--(void) authManager:(LWAuthManager *)manager didReceiveLykkeData:(LWLykkeWalletsData *)data
-{
-    [self showBalanceWithLykkeData:data.lykkeData];
-}
-            
--(void) showBalanceWithLykkeData:(LWLykkeData *) data
-{
-    NSString *balanceAsset=self.assetId;
-    
-    NSString *symbol;
-    
-    for(LWLykkeAssetsData *d in data.assets)
-    {
-        if([d.identity isEqualToString:balanceAsset])
-        {
-            accountBalance=d.balance;
-            accuracy=d.accuracy.intValue;
-            symbol=d.symbol;
-        }
-    }
-    
-    balance.text=[NSString stringWithFormat:@"%@ available", [LWUtils formatVolumeNumber:accountBalance currencySign:symbol accuracy:accuracy removeExtraZeroes:YES]];
-}
-
 
 
 #pragma mark - TKPresenter
 
-//- (void)observeKeyboardWillShowNotification:(NSNotification *)notification {
-//    CGRect frame = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
-//    [self.bottomConstraint setConstant:frame.size.height+predefinedSumsView.bounds.size.height];
-//
-//    predefinedSumsView.center=CGPointMake(self.view.bounds.size.width/2, self.view.bounds.size.height-frame.size.height-predefinedSumsView.bounds.size.height/2);
-//    [self animateConstraintChanges];
-//}
-//
-//- (void)observeKeyboardWillHideNotification:(NSNotification *)notification {
-//    [self.bottomConstraint setConstant:0];
-//    predefinedSumsView.center=CGPointMake(self.view.bounds.size.width/2, self.view.bounds.size.height+predefinedSumsView.bounds.size.height/2);
-//
-//    [self animateConstraintChanges];
-//}
+- (void)observeKeyboardWillShowNotification:(NSNotification *)notification {
+    CGRect frame = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    [self.bottomConstraint setConstant:frame.size.height];
+    [self animateConstraintChanges];
+}
+
+- (void)observeKeyboardWillHideNotification:(NSNotification *)notification {
+    [self.bottomConstraint setConstant:0];
+    [self animateConstraintChanges];
+}
 
 
 #pragma mark - Actions
@@ -308,15 +200,6 @@ float const kMathHeightKeyboard = 239.0;
 - (IBAction)purchaseClicked:(id)sender {
     
     [self.view endEditing:YES];
-    
-    if(!self.bitcoinString)
-    {
-        LWWithdrawCurrencyPresenter *presenter=[LWWithdrawCurrencyPresenter new];
-        presenter.assetID=self.assetId;
-        presenter.amount=@([sumTextField.text floatValue]);
-        [self.navigationController pushViewController:presenter animated:YES];
-        return;
-    }
     
     // if fingerprint available - show confirmation view
     BOOL const shouldSignOrder = [LWCache instance].shouldSignOrder;
@@ -333,16 +216,8 @@ float const kMathHeightKeyboard = 239.0;
 
 - (void)checkPin:(NSString *)pin {
     if (confirmationView) {
-        
-        if([[LWKeychainManager instance].pin isEqualToString:pin])
-            [confirmationView requestOperation];
-        else
-            [confirmationView pinRejected];
-        
-//        
-//        
-//        [confirmationView setLoading:YES withReason:Localize(@"withdraw.funds.validatepin")];
-//        [[LWAuthManager instance] requestPinSecurityGet:pin];
+        [confirmationView setLoading:YES withReason:Localize(@"withdraw.funds.validatepin")];
+        [[LWAuthManager instance] requestPinSecurityGet:pin];
     }
 }
 
@@ -364,10 +239,8 @@ float const kMathHeightKeyboard = 239.0;
         [self setLoading:YES];
     }
     
-    
-    NSNumber *amount=[NSNumber numberWithDouble:sumTextField.text.doubleValue];
-    
-    
+    NSDecimalNumber *decimalAmount = [LWMath numberWithString:volumeString];
+    NSNumber *amount = [NSNumber numberWithDouble:decimalAmount.doubleValue];
     [[LWAuthManager instance] requestCashOut:amount
                                      assetId:self.assetId
                                     multiSig:self.bitcoinString];
@@ -377,42 +250,8 @@ float const kMathHeightKeyboard = 239.0;
     if (isValid) {
         volumeString = volume;
     }
-    if(volume.floatValue<=accountBalance.floatValue && isValid)
-        isValid=YES;
-    else
-        isValid=NO;
     
-    sumTextField.text=volume;
     [LWValidator setButton:self.operationButton enabled:isValid];
-}
-
--(void) mathKeyboardView:(LWMathKeyboardView *)view volumeStringChangedTo:(NSString *)volume
-{
-    BOOL valid=YES;
-    if([volume rangeOfString:@"-"].location!=NSNotFound)
-        valid=NO;
-    if(volume.floatValue==0)
-        valid=NO;
-    
-    volumeString=volume;
-    
-    
-    [self volumeChanged:volume withValidState:valid];
-}
-
--(void) pressedFingerPrint
-{
-    [LWFingerprintHelper
-     validateFingerprintTitle:Localize(@"withdraw.funds.modal.fingerpring")
-     ok:^(void) {
-         [confirmationView requestOperation];
-     }
-     bad:^(void) {
-//         [self showConfirmationView];
-     }
-     unavailable:^(void) {
-//         [self showConfirmationView];
-     }];
 }
 
 - (void)validateUser {
@@ -433,14 +272,9 @@ float const kMathHeightKeyboard = 239.0;
 - (void)showConfirmationView {
     // preparing modal view
     confirmationView = [LWWithdrawConfirmationView modalViewWithDelegate:self];
-    confirmationView.assetId=self.assetId;
     
-//    NSDecimalNumber *amount = [volumeString isEmpty] ? [NSDecimalNumber zero] : [LWMath numberWithString:volumeString];
-//    NSString *amountText = [LWMath makeStringByDecimal:amount withPrecision:2];
-    
-//    NSNumber *amount=@(volumeString.floatValue);
-    NSString *volume=[volumeString stringByReplacingOccurrencesOfString:@" " withString:@""];
-    NSString *amountText=[LWUtils formatVolumeNumber:@(volume.floatValue) currencySign:@"" accuracy:accuracy removeExtraZeroes:YES];
+    NSDecimalNumber *amount = [volumeString isEmpty] ? [NSDecimalNumber zero] : [LWMath numberWithString:volumeString];
+    NSString *amountText = [LWMath makeStringByDecimal:amount withPrecision:2];
     
     confirmationView.bitcoinString = self.bitcoinString;
     confirmationView.amountString = amountText;
@@ -455,26 +289,7 @@ float const kMathHeightKeyboard = 239.0;
     [confirmationView.layer addAnimation:transition forKey:nil];
     
     // showing modal view
-    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad)
-    {
-        
-         [confirmationView setFrame:self.view.bounds];
-        [self.view addSubview:confirmationView];
-        
-        
-        confirmationView.iPadNavShadowView=[[UIView alloc] initWithFrame:self.navigationController.navigationBar.bounds];
-        confirmationView.iPadNavShadowView.backgroundColor=[UIColor colorWithWhite:0 alpha:0.5];
-        confirmationView.iPadNavShadowView.alpha=0;
-        [self.navigationController.navigationBar addSubview:confirmationView.iPadNavShadowView];
-        
-    }
-    else
-    {
-        [self.navigationController.view addSubview:confirmationView];
-    }
-    
-    [confirmationView show];
-
+    [self.navigationController.view addSubview:confirmationView];
 }
 
 @end

@@ -7,19 +7,10 @@
 //
 
 #import "LWAuthComplexPresenter.h"
-#import "LWAssetPairModel.h"
-#import "LWExchangeTabContainer.h"
+
 
 @interface LWExchangePresenter : LWAuthComplexPresenter {
     
 }
-
-@property id delegate;
-@end
-
-
-@protocol LWExchangePresenterDelegate
-
--(void) exchangePresenterChosenPair:(LWAssetPairModel *) pair tabToShow:(TAB_TO_SHOW) tabToShow;
 
 @end

@@ -22,18 +22,9 @@
     }
 }
 
-- (NSString *)urlRelative {
-    
-    return @"EmailMeWalletAddress";
-}
 
--(NSDictionary *) params
-{
-    NSMutableDictionary *dict=[@{@"AssetId":self.assetId} mutableCopy];
-    if(self.address)
-        dict[@"BcnAddress"]=self.address;
-    
-    return dict;
+- (NSString *)urlRelative {
+    return [NSString stringWithFormat:@"SendBlockchainEmail?assetId=%@", self.assetId];
 }
 
 @end

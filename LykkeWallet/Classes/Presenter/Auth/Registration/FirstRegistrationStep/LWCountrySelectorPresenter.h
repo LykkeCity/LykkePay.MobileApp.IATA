@@ -19,8 +19,6 @@
     
 }
 
-@property (strong, nonatomic) NSArray *countries;
-
 @property (nonatomic, weak) id<LWCountrySelectorPresenterDelegate> delegate;
 
 @end

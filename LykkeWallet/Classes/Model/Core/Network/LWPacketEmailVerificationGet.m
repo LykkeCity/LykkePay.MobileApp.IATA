@@ -16,19 +16,14 @@
 
 - (void)parseResponse:(id)response error:(NSError *)error {
     [super parseResponse:response error:error];
-
+    
     if (self.isRejected) {
         return;
     }
-    
     _isPassed = [result[@"Passed"] boolValue];
-
 }
 
 - (NSString *)urlRelative {
-    
-    NSString *sss=[NSString stringWithFormat:@"EmailVerification?email=%@&code=%@", self.email, self.code];
-    NSLog(@"%@", sss);
     return [NSString stringWithFormat:@"EmailVerification?email=%@&code=%@", self.email, self.code];
 }
 

@@ -28,14 +28,5 @@ typedef NS_ENUM(NSInteger, LWHistoryItemType) {
 @property (copy,   nonatomic) NSString          *identity;
 @property (copy,   nonatomic) NSString          *asset;
 @property (copy,   nonatomic) NSDate            *dateTime;
-@property (copy, nonatomic) NSString *blockchainHash;
-@property (copy, nonatomic) NSString *iconId;
-
-@property (copy, nonatomic) NSString *addressFrom;
-@property (copy, nonatomic) NSString *addressTo;
-
-@property (copy, nonatomic) NSNumber *volume;
-
-@property BOOL isSettled;
 
 @end

@@ -15,16 +15,12 @@
 #import "LWConstants.h"
 #import "LWCache.h"
 #import "LWMath.h"
-#import "LWUtils.h"
 #import "LWAuthManager.h"
 #import "UIViewController+Navigation.h"
 #import "UIViewController+Loading.h"
-#import "LWBaseHistoryItemType.h"
 
-@interface LWExchangeEmptyBlockchainPresenter () <LWLeftDetailTableViewCellDelegate>{
+@interface LWExchangeEmptyBlockchainPresenter () {
 
-    NSArray *titles;
-    NSArray *values;
 }
 
 #pragma mark - Utils
@@ -38,73 +34,33 @@
 #warning TODO: refactoring because of copying LWExchangeResultPresenter
 @implementation LWExchangeEmptyBlockchainPresenter
 
-
-
+static int const kNumberOfRows = 5;
+static int const kBlockchainRow = 4;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    NSString *base = [LWAssetModel
+                      assetByIdentity:self.asset
+                      fromList:[LWCache instance].baseAssets];
+    
+    NSString *type = (self.model.volume.doubleValue >= 0
+                      ? Localize(@"history.market.buy")
+                      : Localize(@"history.market.sell"));
+    self.title = [NSString stringWithFormat:@"%@ %@", base, type];
     
 
     [self registerCellWithIdentifier:kLeftDetailTableViewCellIdentifier
                                 name:kLeftDetailTableViewCell];
     
     [self setBackButton];
-//    [self setRefreshControl];
-    
-    titles= @[
-        Localize(@"exchange.assets.result.assetname"),
-        Localize(@"exchange.assets.result.units"),
-        Localize(@"exchange.assets.result.price"),
-        //Localize(@"exchange.assets.result.commission"),
-        Localize(@"exchange.assets.result.cost"),
-        Localize(@"exchange.assets.result.blockchain"),
-        @"Address from",
-        @"Address to"
-        //Localize(@"exchange.assets.result.position")
-    ];
-    
-    values= @[
-        self.model.assetPair,
-        [LWUtils stringFromNumber:self.model.volume],
-        [LWUtils stringFromNumber:self.model.price],
-        [LWUtils stringFromNumber:self.model.totalCost],
-        self.model.blockchainId ? self.model.blockchainId : Localize(@"exchange.assets.result.blockchain.progress"),
-        self.historyItem.addressFrom?self.historyItem.addressFrom:@"",
-        self.historyItem.addressTo?self.historyItem.addressTo:@""
-    ];
-    
-    self.tableView.rowHeight = UITableViewAutomaticDimension;
-    self.tableView.estimatedRowHeight = kLeftDetailTableViewCellHeight;
-
-
+    [self setRefreshControl];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-
-
-    [self setHideKeyboardOnTap:NO]; // gesture recognizer deletion
-}
--(void) viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    NSString *base = [LWAssetModel
-                      assetByIdentity:self.asset
-                      fromList:[LWCache instance].allAssets];
     
-    NSString *type = (self.model.position.doubleValue >= 0
-                      ? Localize(@"history.market.buy")
-                      : Localize(@"history.market.sell"));
-    self.title = [NSString stringWithFormat:@"%@ %@", base, type];
-
-}
-
--(void) leftDetailCellCopyPressed:(LWLeftDetailTableViewCell *) cell
-{
-    UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
-    [pasteboard setString:cell.detailLabel.text];
-    [self showCopied];
+    [self setHideKeyboardOnTap:NO]; // gesture recognizer deletion
 }
 
 
@@ -115,15 +71,13 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return titles.count;
+    return kNumberOfRows;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     LWLeftDetailTableViewCell *cell = (LWLeftDetailTableViewCell *)[tableView dequeueReusableCellWithIdentifier:kLeftDetailTableViewCellIdentifier];
-    cell.delegate=self;
-    if(indexPath.row>4)
-        cell.showCopyButton=YES;
+    
     [self updateTitleCell:cell row:indexPath.row];
     [self updateValueCell:cell row:indexPath.row];
     
@@ -137,12 +91,9 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSString *text = values[indexPath.row];
-    if (text.length) {
-        
-        return UITableViewAutomaticDimension;
-//        LWLeftDetailTableViewCell *cell=(LWLeftDetailTableViewCell *)[self tableView:tableView cellForRowAtIndexPath:indexPath];
-//        return [cell heightWithTableViewWidth:tableView.bounds.size.width];
+    NSString *text = [self dataByCellRow:indexPath.row];
+    if (text) {
+        return kLeftDetailTableViewCellHeight;
     }
     return 0.0;
 }
@@ -151,19 +102,41 @@
 #pragma mark - Utils
 
 - (void)updateTitleCell:(LWLeftDetailTableViewCell *)cell row:(NSInteger)row {
+    NSString *const titles[kNumberOfRows] = {
+        Localize(@"exchange.assets.result.assetname"),
+        Localize(@"exchange.assets.result.units"),
+        Localize(@"exchange.assets.result.price"),
+        //Localize(@"exchange.assets.result.commission"),
+        Localize(@"exchange.assets.result.cost"),
+        Localize(@"exchange.assets.result.blockchain")
+        //Localize(@"exchange.assets.result.position")
+    };
     cell.titleLabel.text = titles[row];
 }
 
 - (void)updateValueCell:(LWLeftDetailTableViewCell *)cell row:(NSInteger)row {
-    cell.detailLabel.text = values[row];
-//    if (kBlockchainRow == row) {
-//        UIColor *blockchainColor = self.model.blockchainSettled
-//        ? [UIColor colorWithHexString:kMainElementsColor]
-//        : [UIColor colorWithHexString:kMainDarkElementsColor];
-//        [cell.detailLabel setTextColor:blockchainColor];
-//    }
+    cell.detailLabel.text = [self dataByCellRow:row];
+    if (kBlockchainRow == row) {
+        UIColor *blockchainColor = self.model.blockchainSettled
+        ? [UIColor colorWithHexString:kMainElementsColor]
+        : [UIColor colorWithHexString:kMainDarkElementsColor];
+        [cell.detailLabel setTextColor:blockchainColor];
+    }
 }
 
+- (NSString *)dataByCellRow:(NSInteger)row {
+    NSString *const values[kNumberOfRows] = {
+        self.model.assetPair,
+        [LWMath makeStringByNumber:self.model.volume withPrecision:0],
+        [LWMath makeStringByNumber:self.model.price withPrecision:self.model.accuracy.integerValue],
+        //[LWMath makeStringByNumber:self.model.commission withPrecision:2],
+        [LWMath makeStringByNumber:self.model.totalCost withPrecision:2],
+        self.model.blockchainSettled ? self.model.blockchainId : Localize(@"exchange.assets.result.blockchain.progress")
+        //[LWMath makeStringByNumber:self.model.position withPrecision:0]
+    };
+    
+    return values[row];
+}
 
 - (void)startRefreshControl {
     [super startRefreshControl];

@@ -8,7 +8,6 @@
 
 #import "LWBaseHistoryPresenter.h"
 
-@class LWEmptyHistoryPresenter;
 
 @interface LWTradingWalletPresenter : LWBaseHistoryPresenter {
     
@@ -19,12 +18,5 @@
 
 @property (copy,   nonatomic) NSString *assetName;
 @property (copy,   nonatomic) NSString *issuerId;
-@property (copy, nonatomic) NSString *currencySymbol;
-
-@property (copy, nonatomic) NSNumber *balance;
-
-
-
-
 
 @end

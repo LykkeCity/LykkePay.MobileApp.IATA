@@ -9,7 +9,7 @@
 #import "TKTablePresenter.h"
 
 
-@interface TKTablePresenter ()  {
+@interface TKTablePresenter () {
     
 }
 
@@ -20,7 +20,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -29,22 +28,10 @@
     if (self.tabBarController && self.navigationItem) {
         self.tabBarController.title = [self.navigationItem.title uppercaseString];
     }
-    
- }
+}
 
 - (void)setTitle:(NSString *)title {
     [super setTitle:[title uppercaseString]];
 }
-
-
-
--(void) viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
-{
-    
-    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
-}
-
-
-
 
 @end

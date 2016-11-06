@@ -9,6 +9,9 @@
 #import "LWAuthComplexPresenter.h"
 
 
+@class LWAssetPairModel;
+
+
 @interface LWWithdrawInputPresenter : LWAuthComplexPresenter {
     
 }
@@ -16,9 +19,8 @@
 
 #pragma mark - Properties
 
-@property (copy, nonatomic) NSString *assetId;
-@property (copy, nonatomic) NSString *bitcoinString;
-@property (copy, nonatomic) NSString *assetSymbol;
-
+@property (copy,   nonatomic) NSString *assetId;
+@property (copy,   nonatomic) NSString *assetPairId;
+@property (copy,   nonatomic) NSString *bitcoinString;
 
 @end

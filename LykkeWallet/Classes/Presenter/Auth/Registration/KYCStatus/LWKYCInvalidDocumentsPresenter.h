@@ -6,22 +6,11 @@
 //  Copyright © 2015 Lykkex. All rights reserved.
 //
 
-#import "LWAuthComplexPresenter.h"
-#import "LWKYCDocumentsModel.h"
+#import "LWKYCPresenter.h"
 
 
-@interface LWKYCInvalidDocumentsPresenter : LWAuthComplexPresenter {
+@interface LWKYCInvalidDocumentsPresenter : LWKYCPresenter {
     
 }
-
-@property (strong, nonatomic) LWKYCDocumentsModel *documentsStatuses;
-
-@property id delegate;
-
-@end
-
-@protocol LWKYCInvalidDocumentsPresenterDelegate
-
--(void) invalidDocumentsPresenterDismissed:(LWKYCInvalidDocumentsPresenter *) presenter;
 
 @end

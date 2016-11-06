@@ -13,36 +13,26 @@
 #import "LWErrorView.h"
 #import "Macro.h"
 #import "UIView+Toast.h"
-#import "LWProgressView.h"
-#import "LWBackupNotificationView.h"
 
 
 @implementation UIViewController (Loading)
-
 
 
 - (void)setLoading:(BOOL)loading {
     if (loading) {
         [self.view endEditing:YES];
         
-//        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
-//        hud.dimBackground = YES;
-//        hud.mode = MBProgressHUDModeIndeterminate;
-        
-//        [LWProgressView showInView:self.navigationController.view];
-        [LWProgressView showInView:self.view];
-        
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+        hud.dimBackground = YES;
+        hud.mode = MBProgressHUDModeIndeterminate;
     }
     else {
-        
-        [LWProgressView hide];
-//        MBProgressHUD *hud = [self hud];
-//        if (hud) {
-//            [hud hide:YES];
-//        }
+        MBProgressHUD *hud = [self hud];
+        if (hud) {
+            [hud hide:YES];
+        }
     }
 }
-
 
 - (MBProgressHUD *)hud {
     return [MBProgressHUD HUDForView:self.navigationController.view];
@@ -50,32 +40,8 @@
 
 - (void)showReject:(NSDictionary *)reject response:(NSURLResponse *)response {
     [self setLoading:NO];
-
     
-    if([reject[@"Code"] intValue]==6)
-    {
-        [self showNeedUpdateError:reject[@"Message"]];
-        return;
-    }
-    
-    if([reject[@"Code"] intValue]==9 || [reject[@"Code"] intValue]==10)
-    {
-        LWBackupNotificationView *view = [[[NSBundle mainBundle] loadNibNamed:@"LWBackupNotificationView" owner:self options:nil] objectAtIndex:0];
-        if([reject[@"Code"] intValue]==9)
-            view.type=BackupRequestTypeOptional;
-        else
-            view.type=BackupRequestTypeRequired;
-        view.text=reject[@"Message"];
-        [view show];
-        return;
-    }
-    
-    NSString *message = [reject objectForKey:kErrorMessage];    //Prevent showing error if connection to server was terminated when app was suspended
-    NSNumber *code = [reject objectForKey:kErrorCode];
-    if(!message && !code && [LWAuthManager isInternalServerError:response]==NO)
-        return;
-    
-    if ([LWCache instance].debugMode) {  
+    if ([LWCache instance].debugMode) {
         [self showDebugError:reject response:response];
     }
     else {
@@ -115,8 +81,6 @@
 - (void)showDebugError:(NSDictionary *)reject response:(NSURLResponse *)response {
     NSString *message = [reject objectForKey:kErrorMessage];
     NSNumber *code = [reject objectForKey:kErrorCode];
-    
-    
     NSString *email = [[LWKeychainManager instance] login];
     NSString *time = [self currentUTC];
     
@@ -130,7 +94,7 @@
         code = [NSNumber numberWithInteger:urlResponse.statusCode];
     }
     
-    NSString *error = [NSString stringWithFormat:@"Error: %@. Code: %@. Login: %@. DateTime: %@. %@", message, code, email, time, [LWCache currentAppVersion]];
+    NSString *error = [NSString stringWithFormat:@"Error: %@. Code: %@. Login: %@. DateTime: %@", message, code, email, time];
     
     UIAlertController *ctrl = [UIAlertController
                                alertControllerWithTitle:Localize(@"utils.error")
@@ -149,15 +113,12 @@
 - (void)showReleaseError:(NSDictionary *)reject response:(NSURLResponse *)response {
     NSString *message = [reject objectForKey:kErrorMessage];
     
-    UIWindow *window=self.view.window;
-    
     if (response && [LWAuthManager isInternalServerError:response]) {
         message = [NSString stringWithFormat:Localize(@"errors.server.problems")];
     }
-    if(!message)
-        message=@"Unknown server error";
+    
     LWErrorView *errorView = [LWErrorView modalViewWithDescription:message];
-    [errorView setFrame:window.bounds];
+    [errorView setFrame:self.navigationController.view.bounds];
     
     // animation
     CATransition *transition = [CATransition animation];
@@ -168,45 +129,7 @@
     [errorView.layer addAnimation:transition forKey:nil];
     
     // showing modal view
-    [window addSubview:errorView];
+    [self.navigationController.view addSubview:errorView];
 }
-
--(void) showNeedUpdateError:(NSString *) message
-{
-    UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"LYKKE" message:message delegate:self cancelButtonTitle:nil otherButtonTitles:@"Update", nil];
-    [alert show];
-}
-
--(void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"itms://itunes.apple.com/us/app/lykke-wallet/id1112839581"]];
-    
-}
-
--(void) adjustThinLines
-{
-    [self checkLinesInView:self.view];
-}
-
--(void) checkLinesInView:(UIView *) view
-{
-    for(UIView *v in view.subviews)
-    {
-        if([v isKindOfClass:[UIView class]])
-        {
-            for(NSLayoutConstraint *c in v.constraints)
-            {
-                if(c.firstAttribute==NSLayoutAttributeWidth && c.constant==1)
-                    c.constant=0.5;
-                if(c.firstAttribute==NSLayoutAttributeHeight && c.constant==1)
-                    c.constant=0.5;
-            }
-            
-        }
-        [self checkLinesInView:v];
-            
-    }
-}
-
 
 @end

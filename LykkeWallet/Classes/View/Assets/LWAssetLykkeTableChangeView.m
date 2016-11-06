@@ -19,27 +19,19 @@
 
 @implementation LWAssetLykkeTableChangeView
 
-
 - (void)drawRect:(CGRect)rect {
     
     if (self.changes && self.changes.count >= 2) {
         // calculation preparation
-        
-        
-        
-        
         CGFloat xPosition = 0.0;
         CGFloat xMargin = 5.0;
         CGSize const size = self.frame.size;
-        
-        
-        
         CGFloat const xStep = (size.width - xMargin) / (self.changes.count - 1);
         NSNumber *firstPoint = self.changes[0];
         NSNumber *lastPoint = self.changes[self.changes.count - 1];
         
         UIBezierPath *path = [UIBezierPath bezierPath];
-        path.lineWidth = 1;
+        path.lineWidth = 0.5;
         [path moveToPoint:CGPointMake(xPosition, [self point:firstPoint forSize:size])];
         
         // prepare drawing data
@@ -51,20 +43,19 @@
         
         UIColor *color = nil;
         // set negative or positive color
-        if (firstPoint.doubleValue > lastPoint.doubleValue) {
-            color = [UIColor colorWithRed:1 green:62.0/255 blue:45.0/255 alpha:1];
+        if (firstPoint.doubleValue >= lastPoint.doubleValue) {
+            color = [UIColor colorWithHexString:kAssetChangeMinusColor];
         }
         else {
-            color = [UIColor colorWithRed:18.0/255 green:183.0/255 blue:42.0/255 alpha:1];
+            color = [UIColor colorWithHexString:kAssetChangePlusColor];
         }
         // draw
         [color setStroke];
         [path stroke];
         
         // draw last point
-        CGRect rect = CGRectMake(xPosition - xStep - 1.5, [self point:lastPoint forSize:size] - 1.5, 3.0, 3.0);
+        CGRect rect = CGRectMake(xPosition - xStep - 1.0, [self point:lastPoint forSize:size] - 1.0, 2.0, 2.0);
         UIBezierPath *cicle = [UIBezierPath bezierPathWithOvalInRect:rect];
-        
         
         [color set];
         [cicle fill];
@@ -72,10 +63,9 @@
 }
 
 - (CGFloat)point:(NSNumber *)point forSize:(CGSize)size {
-    
-    CGFloat result=size.height-(2+(size.height-4)*point.floatValue);
-    
-    
+    CGFloat const yMargin = 4.0;
+    CGFloat const yMarginPercantage = 1.0 + yMargin * 0.01;
+    CGFloat result = (size.height - yMargin) * (yMarginPercantage - point.doubleValue);
     return result;
 }
 

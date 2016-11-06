@@ -8,6 +8,7 @@
 
 #import "LWTradingGraphPresenter.h"
 #import "LWExchangeDealFormPresenter.h"
+#import "LWGraphPeriodRatesModel.h"
 #import "LWAssetPairRateModel.h"
 #import "LWAssetPairModel.h"
 #import "LWLeftDetailTableViewCell.h"
@@ -21,16 +22,13 @@
 #import "UIViewController+Loading.h"
 #import "UIViewController+Navigation.h"
 
-#import "LWTradingLinearGraphPresenter.h"
-#import "LWPacketGraphPeriods.h"
-
 #import <stockchart/stockchart.h>
 
 
 
 
 @interface LWGenPointStockAdapter : NSObject <SCHSeriesPointAdapter>
-@property NSArray *generatedPoints;
+@property NSArray       *generatedPoints;
 @property SCHStockPoint *point;
 
 - (instancetype)initWithGeneratedPoints:(NSArray *)points;
@@ -72,7 +70,7 @@
 
 
 @interface LWTradingGraphPresenter () {
-
+    LWGraphPeriodRatesModel *periodRateModel;
 }
 
 @property (assign, nonatomic) BOOL isValid;
@@ -112,18 +110,12 @@ static int const kNumberOfRows = 3;
     
     [self setupChart];
     [self setBackButton];
-    
-    
-//    LWTradingGraphLinearView *vvv=[[LWTradingGraphLinearView alloc] initWithFrame:CGRectZero];
-    
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 
     [[LWAuthManager instance] requestAssetPairRate:self.assetPair.identity];
-    [[LWAuthManager instance] requestGraphPeriods];
 }
 
 - (void)viewWillLayoutSubviews {
@@ -175,6 +167,7 @@ static int const kNumberOfRows = 3;
     };
     
     if (self.isValid) {
+#warning TODO: update from periodRateModel model
         values[0] = @"4:30 PM EST";
         values[1] = [LWMath makeStringByNumber:self.pairRateModel.ask
                                  withPrecision:self.assetPair.accuracy.integerValue];
@@ -188,7 +181,12 @@ static int const kNumberOfRows = 3;
     const NSInteger repeatSeconds = [LWCache instance].refreshTimer.integerValue / 1000;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(repeatSeconds * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         if (self.isVisible) {
-            [[LWAuthManager instance] requestAssetPairRate:self.assetPair.identity];
+            NSNumber *points = [NSNumber numberWithInt:10];
+            NSString *assetId = self.assetPair.identity;
+#warning TODO: change period to selected
+            [[LWAuthManager instance] requestGraphPeriodRates:@"M1"
+                                                      assetId:assetId
+                                                       points:points];
         }
     });
 }
@@ -245,7 +243,7 @@ static int const kNumberOfRows = 3;
     price.name = @"price";
     price.yAxisSide = SCHAxisSideRight;
     SCHStockDataGenerator *gen = [[SCHStockDataGenerator alloc] init];
-    NSArray *points = [gen getNext:50];
+    NSArray *points = [gen getNext:20];
     price.pointAdapter = [[LWGenPointStockAdapter alloc] initWithGeneratedPoints:points];
     
     [chart setAutoresizingMask:(UIViewAutoresizingFlexibleWidth
@@ -264,16 +262,15 @@ static int const kNumberOfRows = 3;
     [self requestPrices];
 }
 
+- (void)authManager:(LWAuthManager *)manager didGetGraphPeriodRates:(LWGraphPeriodRatesModel *)periodRates {
+    periodRateModel = [periodRates copy];
+}
+
 - (void)authManager:(LWAuthManager *)manager didFailWithReject:(NSDictionary *)reject context:(GDXRESTContext *)context {
     self.isValid = NO;
     
     [self invalidPrices];
     [self requestPrices];
-}
-
--(void) authManager:(LWAuthManager *)manager didGetGraphPeriods:(LWPacketGraphPeriods *)graphPeriods
-{
-    [[LWAuthManager instance] requestGraphDataForPeriod:graphPeriods.lastSelectedPeriod assetPairId:self.assetPair.identity];
 }
 
 

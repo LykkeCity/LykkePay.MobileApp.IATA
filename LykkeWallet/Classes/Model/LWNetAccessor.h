@@ -16,8 +16,6 @@
     
 }
 
-@property (strong, nonatomic) id caller;
-
 #pragma mark - Common
 
 - (void)sendPacket:(LWPacket *)packet;

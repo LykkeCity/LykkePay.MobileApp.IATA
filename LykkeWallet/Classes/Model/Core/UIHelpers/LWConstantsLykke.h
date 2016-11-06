@@ -21,9 +21,9 @@
 
 #define kProductionServer  @"api.lykkex.com"
 
-#define kStagingTestServer @"lykke-api-staging.azurewebsites.net"
-#define kDevelopTestServer @"lykke-api-dev.azurewebsites.net"
-#define kTestingTestServer    @"lykke-api-test.azurewebsites.net"
+#define kStagingTestServer @"lykke-api-test.azurewebsites.net"
+#define kDevelopTestServer @"iata-api-dev.azurewebsites.net"
+#define kDemoTestServer    @"lykke-api-demo.azurewebsites.net"
 
 
 #pragma mark - General Constants
@@ -44,7 +44,7 @@
 #define kErrorTextColor         @"FF2E2E"
 
 #define kMaxImageServerSize  1980
-#define kMaxImageServerBytes 5000000
+#define kMaxImageServerBytes 3145728
 
 #pragma mark - ABPadView
 
@@ -90,7 +90,7 @@ static NSString *const kNavigationBarTintColor  = @"AB00FF";
 static NSString *const kNavigationBarGrayColor  = kMainGrayElementsColor;
 static NSString *const kNavigationBarWhiteColor = kMainWhiteElementsColor;
 
-static float     const kNavigationBarFontSize   = 16.0;
+static float     const kNavigationBarFontSize   = 17.0;
 static NSString *const kNavigationBarFontColor  = kMainDarkElementsColor;
 static NSString *const kNavigationBarFontName   = kFontSemibold;
 

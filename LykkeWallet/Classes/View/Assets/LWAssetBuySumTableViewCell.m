@@ -11,9 +11,4 @@
 
 @implementation LWAssetBuySumTableViewCell
 
--(void) setBackgroundColor:(UIColor *)backgroundColor
-{
-    [super setBackgroundColor:backgroundColor];
-}
-
 @end

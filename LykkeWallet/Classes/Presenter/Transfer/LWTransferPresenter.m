@@ -10,10 +10,13 @@
 #import "LWReceiverPresenter.h"
 #import "LWTransferTableViewCell.h"
 #import "LWCache.h"
+#import "LWKeychainManager.h"
 
 
 @interface LWTransferPresenter () {
-    
+    NSMutableArray *RecipientNames;
+    NSMutableArray *RecipientIcons;
+    NSMutableArray *RecipientCodes;
 }
 
 @property (weak, nonatomic) IBOutlet UIView      *headerView;
@@ -25,25 +28,39 @@
 @implementation LWTransferPresenter
 
 
-static NSInteger const kNumberOfRows = 5;
-static NSString *const RecipientNames[kNumberOfRows] = {
-    @"EMIRATES", @"QATAR", @"BRITISH AIRWAYS", @"DELTA AIR LINES", @"IATA"
-};
-static NSString *const RecipientIcons[kNumberOfRows] = {
-    @"EmiratesIcon", @"QatarIcon", @"BritishAirwaysIcon", @"DeltaAirLinesIcon", @"IATAIcon"
-};
-
-static NSString *const RecipientCodes[kNumberOfRows] = {
-    @"EK", @"QR", @"BA", @"DL", @"IT"
-};
+//static NSInteger const kNumberOfRows = 5;
+//static NSString *const RecipientNames[kNumberOfRows] = {
+//    @"EMIRATES", @"QATAR", @"BRITISH AIRWAYS", @"DELTA AIR LINES", @"IATA"
+//};
+//static NSString *const RecipientIcons[kNumberOfRows] = {
+//    @"EmiratesIcon", @"QatarIcon", @"BritishAirwaysIcon", @"DeltaAirLinesIcon", @"IATAIcon"
+//};
+//
+//static NSString *const RecipientCodes[kNumberOfRows] = {
+//    @"EK", @"QR", @"BA", @"DL", @"IT"
+//};
 
 
 #pragma mark - Lifecycle
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = Localize(@"tab.transfer");
+    RecipientNames=[@[@"EMIRATES", @"QATAR", @"BRITISH AIRWAYS", @"DELTA AIR LINES", @"IATA"] mutableCopy];
+    RecipientIcons=[@[@"EmiratesIcon", @"QatarIcon", @"BritishAirwaysIcon", @"DeltaAirLinesIcon", @"IATAIcon"] mutableCopy];
+    RecipientCodes=[@[@"EK", @"QR", @"BA", @"DL", @"IT"] mutableCopy];
+    
+    NSString *clientCompany=[LWKeychainManager instance].aviaCompanyId;
+    if(clientCompany && [RecipientCodes containsObject:clientCompany])
+    {
+        NSInteger index=[RecipientCodes indexOfObject:clientCompany];
+        [RecipientCodes removeObjectAtIndex:index];
+        [RecipientIcons removeObjectAtIndex:index];
+        [RecipientNames removeObjectAtIndex:index];
+    }
+    
+    self.navigationItem.title = Localize(@"tab.transfer");
     
     [self registerCellWithIdentifier:kTransferTableViewCellIdentifier
                                 name:kTransferTableViewCell];
@@ -60,6 +77,7 @@ static NSString *const RecipientCodes[kNumberOfRows] = {
     
 #ifdef PROJECT_IATA
     self.headerView.backgroundColor = self.navigationController.navigationBar.barTintColor;
+
 #endif
 }
 
@@ -78,7 +96,7 @@ static NSString *const RecipientCodes[kNumberOfRows] = {
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return kNumberOfRows;
+    return RecipientNames.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -97,6 +115,9 @@ static NSString *const RecipientCodes[kNumberOfRows] = {
 
     return cell;
 }
+
+
+
 
 
 #pragma mark - UITableViewDelegate

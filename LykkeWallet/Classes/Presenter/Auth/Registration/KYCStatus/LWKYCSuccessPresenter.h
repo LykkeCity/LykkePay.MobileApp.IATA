@@ -12,13 +12,5 @@
 @interface LWKYCSuccessPresenter : LWKYCPresenter {
     
 }
-@property id delegate;
-
-@end
-
-
-@protocol LWKYCSuccessPresenterDelegate
-
--(void) successPresenterGetStarted:(LWKYCSuccessPresenter *) presenter;
 
 @end

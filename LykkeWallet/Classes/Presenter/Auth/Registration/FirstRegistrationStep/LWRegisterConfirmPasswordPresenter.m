@@ -9,11 +9,9 @@
 #import "LWRegisterConfirmPasswordPresenter.h"
 #import "LWAuthNavigationController.h"
 #import "LWRegisterCameraPresenter.h"
-
 #import "LWPersonalDataModel.h"
 #import "LWTextField.h"
 #import "LWValidator.h"
-#import "LWPrivateKeyManager.h"
 #import "UIViewController+Loading.h"
 
 
@@ -21,7 +19,6 @@
     
 }
 
-@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @end
 
 
@@ -32,7 +29,6 @@
 
 - (void)proceedToNextStep {
     [self setLoading:YES];
-
     [[LWAuthManager instance] requestRegistration:self.registrationInfo];
 }
 
@@ -49,45 +45,18 @@
     textField.secure = YES;
 }
 
-- (void)observeKeyboardWillShowNotification:(NSNotification *)notification {
-    
-    if([UIDevice currentDevice].userInterfaceIdiom!=UIUserInterfaceIdiomPad)
-    {
-        [super observeKeyboardWillShowNotification:notification];
-        return;
-    }
-    
-        self.scrollView.contentOffset=CGPointMake(0, 120);
-        self.scrollView.scrollEnabled=NO;
-}
-
-- (void)observeKeyboardWillHideNotification:(NSNotification *)notification {
-    if([UIDevice currentDevice].userInterfaceIdiom!=UIUserInterfaceIdiomPad)
-    {
-        [super observeKeyboardWillShowNotification:notification];
-        return;
-    }
-    self.scrollView.contentOffset=CGPointMake(0, 0);
-    
-    self.scrollView.contentInset = UIEdgeInsetsZero;
-    self.scrollView.scrollEnabled=YES;
-}
-
-
 
 #pragma mark - LWAuthStepPresenter
 
-//- (LWAuthStep)stepId {
-//    return LWAuthStepRegisterConfirmPassword;
-//}
+- (LWAuthStep)stepId {
+    return LWAuthStepRegisterConfirmPassword;
+}
 
 
 #pragma mark - LWAuthManagerDelegate
 
 - (void)authManagerDidRegister:(LWAuthManager *)manager {
     [[LWAuthManager instance] requestPersonalData];
-    
-    
 }
 
 - (void)authManager:(LWAuthManager *)manager didReceivePersonalData:(LWPersonalDataModel *)data {

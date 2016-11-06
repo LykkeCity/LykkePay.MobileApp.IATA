@@ -49,12 +49,6 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-}
-
--(void) viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    
     if (![self isCameraAvailable]) {
         [self setupNoCameraView];
     }
@@ -62,7 +56,6 @@
         [self setupScanner];
         [self startScanning];
     }
-
 }
 
 - (void)touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event

@@ -7,17 +7,11 @@
 //
 
 #import "TKPresenter.h"
-#import "LWIPadModalNavigationControllerViewController.h"
-#import "LWConstants.h"
-#import "LWWalletsNavigationController.h"
 
 
 @interface TKPresenter () {
     UITapGestureRecognizer *tapKeyboardClose;
-    
-    UIView *modalTopBar;
 }
-
 
 #pragma mark - Private
 
@@ -32,39 +26,7 @@
 #pragma mark - Lifecycle
 
 - (instancetype)init {
-    
-    NSString *classString=NSStringFromClass(self.class);
-//    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad)
-//    {
-//        if([[NSBundle mainBundle] pathForResource:[classString stringByAppendingString:@"_iPad"] ofType:@"nib"])
-//            classString=[classString stringByAppendingString:@"_iPad"];
-//    }
-    
-    return [super initWithNibName:classString bundle:[NSBundle mainBundle]];
-}
-
--(void) setTitle:(NSString *)title
-{
-    if(!title)
-        return;
-    UIFont *font = [UIFont fontWithName:kNavigationBarFontName size:kNavigationBarFontSize];
-    
-    NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:
-                                [UIColor colorWithHexString:kNavigationBarFontColor], NSForegroundColorAttributeName,
-                                font, NSFontAttributeName,
-                                @(1.5f), NSKernAttributeName,
-                                nil];
-    UILabel *titleLabel=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 120, 30)];
-    titleLabel.attributedText=[[NSAttributedString alloc] initWithString:[title uppercaseString] attributes:attributes];
-    [titleLabel sizeToFit];
-    
-    if([self.navigationController isKindOfClass:[LWWalletsNavigationController class]])
-    {
-        self.navigationController.navigationController.navigationBar.topItem.titleView=titleLabel;
-    }
-    else
-        self.navigationController.navigationBar.topItem.titleView=titleLabel;
-    
+    return [super initWithNibName:NSStringFromClass(self.class) bundle:[NSBundle mainBundle]];
 }
 
 - (void)dealloc {
@@ -82,7 +44,7 @@
     
     self.observeKeyboardEvents = NO; // no keyboard observing by default
     
-    [self.navigationController setNavigationBarHidden:NO animated:NO];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
     [self.navigationController.navigationBar setTranslucent:NO];
     
     [self localize];
@@ -105,6 +67,10 @@
     [self unsubscribeAll];
 }
 
+
+- (void)setTitle:(NSString *)title {
+    [super setTitle:[title uppercaseString]];
+}
 
 
 #pragma mark - Setup
@@ -186,66 +152,10 @@
 }
 
 
-
-
 #pragma mark - Rotation
 
--(BOOL) shouldAutorotate
-{
-    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad)
-        return YES;
-    
-    return NO;
+- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+    // ...
 }
-
-- (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
-{
-    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad)
-        return YES;
-
-    return NO;
-}
-
--(UIInterfaceOrientationMask)supportedInterfaceOrientations
-{
-    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad)
-        return UIInterfaceOrientationMaskAll;
-    
-    return UIInterfaceOrientationMaskPortrait;
-}
-
-//- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
-//    // ...
-//}
-
--(void) viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
-{
-    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
-    
-//    LWIPadModalNavigationControllerViewController *parent=(LWIPadModalNavigationControllerViewController *)self.navigationController;
-//    if([parent isKindOfClass:[LWIPadModalNavigationControllerViewController class]])
-//    {
-//        CGSize sss=parent.view.bounds.size;
-//        
-////        CGRect sss1=[(LWIPadModalNavigationControllerViewController *)parent view].frame;
-////        [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
-////        [coordinator animateAlongsideTransition:^(id <UIViewControllerTransitionCoordinatorContext> context){
-////        
-////            self.view.frame=CGRectMake((size.width-sss.width)/2, (size.height-sss.height)/2, sss.width, sss.height);
-////        
-////        } completion:^(id <UIViewControllerTransitionCoordinatorContext> context){}];
-//        
-//        parent.view.frame=CGRectMake((size.width-sss.width)/2, (size.height-sss.height)/2, sss.width, sss.height);
-//
-//    }
-}
-
-
-
-
-
-
-
-
 
 @end

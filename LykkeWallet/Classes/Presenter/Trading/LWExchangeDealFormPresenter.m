@@ -17,6 +17,8 @@
 #import "LWAssetPairModel.h"
 #import "LWAssetModel.h"
 #import "LWAssetPairRateModel.h"
+#import "LWLykkeAssetsData.h"
+#import "LWLykkeWalletsData.h"
 #import "LWCache.h"
 #import "LWUtils.h"
 #import "LWMath.h"
@@ -28,25 +30,15 @@
 #import "UIViewController+Loading.h"
 #import "UITextField+Validation.h"
 #import "NSString+Utils.h"
-#import "LWLykkeWalletsData.h"
-#import "LWLykkeAssetsData.h"
-#import "LWMathKeyboardView.h"
-#import "LWAssetDealModel.h"
-#import "LWPINPresenter.h"
-#import "LWPacketOrderBook.h"
-
-#import "LWOrderBookElementModel.h"
-
 
 typedef enum {
     LastInput_Volume = 1,
     LastInput_Result = 2
 } LastInputs;
 
-@interface LWExchangeDealFormPresenter () <UITextFieldDelegate, LWExchangeConfirmationViewDelegate, LWMathKeyboardViewDelegate> {
+@interface LWExchangeDealFormPresenter () <UITextFieldDelegate, LWExchangeConfirmationViewDelegate> {
     
     LWExchangeConfirmationView *confirmationView;
-    
     UITextField                *sumTextField;
     UITextField                *resultTextField;
     
@@ -55,24 +47,7 @@ typedef enum {
     NSString *resultString;
     LastInputs lastInput;
     
-    UILabel *balance;
-    
-    NSArray *predefinedSums;
-    UIView *predefinedSumsView;
     NSNumber *balanceOfAccount;
-    NSString *balanceCurrencySymbol;
-    int balanceAccuracy;
-    
-    
-    LWAssetPairRateModel *rateToSend;
-    NSNumber *volumeToSend;
-    NSString *volumeStringToSend;
-    NSString *resultStringToSend;
-    
-    LWOrderBookElementModel *buyOrders;
-    LWOrderBookElementModel *sellOrders;
-    
-    NSString *currentPrice;
 }
 
 
@@ -82,8 +57,6 @@ typedef enum {
 @property (weak, nonatomic) IBOutlet UILabel            *descriptionLabel;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomHeightConstraint;
-
-@property (weak, nonatomic) IBOutlet UIView *buyButtonContainer;
 
 
 #pragma mark - Utils
@@ -101,7 +74,7 @@ typedef enum {
 
 @implementation LWExchangeDealFormPresenter
 
-static NSInteger const kFormRows = 4;
+static NSInteger const kFormRows = 3;
 
 static NSString *const FormIdentifiers[kFormRows] = {
     @"LWAssetBuySumTableViewCellIdentifier",
@@ -114,21 +87,16 @@ static NSString *const FormIdentifiers[kFormRows] = {
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.tableView.scrollEnabled=NO;
-    
     NSAssert(self.assetDealType != LWAssetDealTypeUnknown, @"Incorrect deal type!");
     
-//    [self updateTitle];
+    [self updateTitle];
     [self updateDescription];
     
     [self setHideKeyboardOnTap:NO]; // gesture recognizer deletion
     
     volumeString = @"";
     resultString = @"";
-    
-    [LWValidator setButton:self.buyButton enabled:NO];
-    
-//    [self volumeChanged:volumeString withValidState:NO];
+    [self volumeChanged:volumeString withValidState:NO];
     
     [self registerCellWithIdentifier:@"LWAssetBuySumTableViewCellIdentifier"
                                 name:@"LWAssetBuySumTableViewCell"];
@@ -143,21 +111,6 @@ static NSString *const FormIdentifiers[kFormRows] = {
                     forState:UIControlStateNormal];
     
     [self setBackButton];
-    
-    if(self.balanceToSell)
-    {
-        
-        if([self.assetPair.originalBaseAsset isEqualToString:[LWCache instance].baseAssetId])
-        {
-            [self.assetPair setInverted:YES];
-        }
-        else
-            [self.assetPair setInverted:NO];
-        
-        lastInput=LastInput_Volume;
-        volumeString=[[LWUtils formatFairVolume:self.balanceToSell.doubleValue accuracy:[[LWUtils accuracyForAssetId:self.assetPair.baseAssetId] intValue]  roundToHigher:NO] stringByReplacingOccurrencesOfString:@" " withString:@""];
-    }
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -166,61 +119,34 @@ static NSString *const FormIdentifiers[kFormRows] = {
     self.observeKeyboardEvents = YES;
     
     [[LWAuthManager instance] requestAssetPairRate:self.assetPair.identity];
-    
+
     [[LWAuthManager instance] requestLykkeWallets];
+
     
     [self updatePrice];
-
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
-    
-    [self updateTitle];
-//    predefinedSumsView=[self predefinedSumsEnterView];
-//    [self.view addSubview:predefinedSumsView];
-//    
-//    predefinedSumsView.center=CGPointMake(self.view.bounds.size.width/2, self.view.bounds.size.height+predefinedSumsView.bounds.size.height/2);
-    if(!buyOrders && self.balanceToSell)
-    {
-        sumTextField.text=volumeString;
-    }
     if (sumTextField) {
         [sumTextField becomeFirstResponder];
     }
-    
-    if([LWCache instance].walletsData)
-        [self showBalanceFromLykkeData:[LWCache instance].walletsData];
-
-    [[LWAuthManager instance] requestOrderBook:self.assetPair.identity];
-    
-
 }
-
-
-
-
 
 
 #pragma mark - TKPresenter
 
-//- (void)observeKeyboardWillShowNotification:(NSNotification *)notification {
-//    CGRect frame = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
-//    
-//    [self.bottomConstraint setConstant:frame.size.height+predefinedSumsView.bounds.size.height];
-//    
-//    predefinedSumsView.center=CGPointMake(self.view.bounds.size.width/2, self.view.bounds.size.height-frame.size.height-predefinedSumsView.bounds.size.height/2);
-//
-//    
-//    [self animateConstraintChanges];
-//}
-//
-//- (void)observeKeyboardWillHideNotification:(NSNotification *)notification {
-//    [self.bottomConstraint setConstant:0];
-//    predefinedSumsView.center=CGPointMake(self.view.bounds.size.width/2, self.view.bounds.size.height+predefinedSumsView.bounds.size.height/2);
-//    [self animateConstraintChanges];
-//}
+- (void)observeKeyboardWillShowNotification:(NSNotification *)notification {
+    CGRect frame = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    [self.bottomConstraint setConstant:frame.size.height];
+    [self animateConstraintChanges];
+}
+
+- (void)observeKeyboardWillHideNotification:(NSNotification *)notification {
+    [self.bottomConstraint setConstant:0];
+    [self animateConstraintChanges];
+}
 
 
 #pragma mark - UITableViewDataSource
@@ -235,283 +161,94 @@ static NSString *const FormIdentifiers[kFormRows] = {
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(indexPath.row==0)
-    {
-        UITableViewCell *cell=[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
-        cell.backgroundColor=[UIColor whiteColor];
-        balance=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 300, 15)];
-        balance.text=@"";
-        if(balanceOfAccount)
-        {
-            balance.text=[NSString stringWithFormat:@"%@ available", [LWUtils formatVolumeNumber:balanceOfAccount currencySign:balanceCurrencySymbol accuracy:balanceAccuracy removeExtraZeroes:YES]];
-
-        }
-        balance.font=[UIFont fontWithName:@"ProximaNova-Regular" size:16];
-        balance.textColor=[UIColor colorWithRed:63.0/255 green:77.0/255 blue:96.0/255 alpha:1];
-        balance.textAlignment=NSTextAlignmentCenter;
-        balance.center=CGPointMake(self.tableView.bounds.size.width/2, balance.center.y);
-        [cell addSubview:balance];
-        return cell;
-        
-    }
-    
-    
-    NSString *identifier = FormIdentifiers[indexPath.row-1];
+    NSString *identifier = FormIdentifiers[indexPath.row];
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-    if (indexPath.row == 1) {
+    if (indexPath.row == 0) {
         LWAssetBuySumTableViewCell *sumCell = (LWAssetBuySumTableViewCell *)cell;
-        
-        sumCell.titleLabel.text = (self.assetDealType == LWAssetDealTypeBuy)
-        ? Localize(@"exchange.assets.buy.sum")
-        : Localize(@"exchange.assets.buy.total");
-
-//        sumCell.titleLabel.text = Localize(@"exchange.assets.buy.sum");
+        sumCell.titleLabel.text = Localize(@"exchange.assets.buy.sum");
         sumCell.assetLabel.text = [LWUtils baseAssetTitle:self.assetPair];
-        
 
         sumTextField = sumCell.sumTextField;
         sumTextField.delegate = self;
         sumTextField.placeholder = Localize(@"exchange.assets.buy.placeholder");
         sumTextField.keyboardType = UIKeyboardTypeDecimalPad;
+        
+        NSString *baseAsset=[LWCache instance].baseAssetId;
+        NSString *quoting=[self.assetPair.identity stringByReplacingOccurrencesOfString:baseAsset withString:@""];
+
+        
+        sumTextField.accuracy=[[LWCache instance] accuracyForAssetId:quoting];
 
         [sumTextField setTintColor:[UIColor colorWithHexString:kDefaultTextFieldPlaceholder]];
-        
-//        [sumTextField addTarget:self
-//                         action:@selector(textFieldDidChange:)
-//               forControlEvents:UIControlEventEditingChanged];
+        [sumTextField addTarget:self
+                         action:@selector(textFieldDidChange:)
+               forControlEvents:UIControlEventEditingChanged];
     }
-    else if (indexPath.row == 2) {
+    else if (indexPath.row == 1) {
         LWAssetBuyPriceTableViewCell *priceCell = (LWAssetBuyPriceTableViewCell *)cell;
         priceCell.titleLabel.text = Localize(@"exchange.assets.buy.price");
     }
-    else if (indexPath.row == 3) {
+    else if (indexPath.row == 2) {
         LWAssetBuyTotalTableViewCell *totalCell = (LWAssetBuyTotalTableViewCell *)cell;
-        totalCell.titleLabel.text = (self.assetDealType == LWAssetDealTypeBuy)
-        ? Localize(@"exchange.assets.buy.total")
-        : Localize(@"exchange.assets.buy.sum");
-//        totalCell.titleLabel.text = Localize(@"exchange.assets.buy.total");
+        totalCell.titleLabel.text = Localize(@"exchange.assets.buy.total");
         totalCell.assetLabel.text = [LWUtils quotedAssetTitle:self.assetPair];
         
-        
-        BOOL flagNeedRefresh=resultTextField==nil;
-
         resultTextField = totalCell.totalTextField;
         resultTextField.delegate = self;
         resultTextField.placeholder = Localize(@"exchange.assets.result.placeholder");
         resultTextField.keyboardType = UIKeyboardTypeDecimalPad;
         
+        resultTextField.accuracy=[[LWCache instance] accuracyForAssetId:[LWCache instance].baseAssetId];
+        
         [resultTextField setTintColor:[UIColor colorWithHexString:kDefaultTextFieldPlaceholder]];
-    
-        if(flagNeedRefresh)
-            [self updatePrice];
-
-
-//        [resultTextField addTarget:self
-//                         action:@selector(textFieldDidChange:)
-//               forControlEvents:UIControlEventEditingChanged];
+        [resultTextField addTarget:self
+                         action:@selector(textFieldDidChange:)
+               forControlEvents:UIControlEventEditingChanged];
     }
     
     return cell;
 }
 
--(void) mathKeyboardDonePressed:(LWMathKeyboardView *)keyboardView
-{
-    [self hideCustomKeyboard];
-}
-
-
-
--(void) showCustomKeyboard
-{
-    [super showCustomKeyboard];
-    
-    
-    self.buyButtonContainer.translatesAutoresizingMaskIntoConstraints=YES;
-    
-    [UIView animateWithDuration:0.5 animations:^{
-        
-        self.buyButtonContainer.center=CGPointMake(self.buyButtonContainer.center.x, self.buyButtonContainer.center.y-self.keyboardView.bounds.size.height);
-    }];
-}
-
-
--(void) hideCustomKeyboard
-{
-    [super hideCustomKeyboard];
-    
-    [UIView animateWithDuration:0.5 animations:^{
-        self.buyButtonContainer.center=CGPointMake(self.buyButtonContainer.center.x, self.buyButtonContainer.center.y+self.keyboardView.bounds.size.height);
-
-    } completion:^(BOOL finished){
-        self.buyButtonContainer.translatesAutoresizingMaskIntoConstraints=NO;
-    }];
-    
-}
-
-- (void)mathKeyboardView:(LWMathKeyboardView *) view volumeStringChangedTo:(NSString *) string
-{
-    double price;
-
-    LWOrderBookElementModel *model;
-    if (self.assetDealType == LWAssetDealTypeBuy) {
-        model=buyOrders;
-    }
-    else {
-        model=sellOrders;
-    }
-
-
-    if(view.targetTextField==sumTextField)
-    {
-        
-        price=[model priceForVolume:string.doubleValue];
-
-        if(string.doubleValue>=10000000000 || price*string.doubleValue>=10000000000)
-        {
-            [view setText:volumeString];
-            return;
-        }
-        
-        volumeString=string;
-        lastInput=LastInput_Volume;
-        
-    }
-    else
-    {
-        
-        price=[model priceForResult:string.doubleValue];
-
-        if(string.doubleValue>=10000000000 || string.doubleValue/price>=10000000000)
-        {
-            [view setText:resultString];
-            return;
-        }
-
-        resultString=string;
-        lastInput=LastInput_Result;
-    }
-    
-    isInputValid=string.doubleValue!=0;
-    [self updatePrice];
-}
-
-
-
-
 
 #pragma mark - UITextFieldDelegate
 
--(BOOL) textFieldShouldBeginEditing:(UITextField *)textField
-{
-    if(!self.keyboardView || (self.keyboardView && self.keyboardView.isVisible==NO))
-        [self showCustomKeyboard];
-    
-    self.keyboardView.targetTextField=textField;
-    
-    
-    if(textField==sumTextField)
-    {
-        self.keyboardView.accuracy=[self accuracyForBaseAsset];
-       [self.keyboardView setText:[sumTextField.text stringByReplacingOccurrencesOfString:@" " withString:@""]];
-    }
-    else if(textField==resultTextField)
-    {
-        self.keyboardView.accuracy=[self accuracyForQuotingAsset];
-        [self.keyboardView setText:[resultTextField.text stringByReplacingOccurrencesOfString:@" " withString:@""]];
-    }
-    
-    return NO;
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    return [textField isNumberValidForRange:range replacementString:string];
 }
 
-
-//- (void)textFieldDidChange:(UITextField *)sender {
-//    if (sender == sumTextField) {
-//        [self volumeChanged:sender.text
-//             withValidState:[sender isNumberValid]];
-//    }
-//    else if (sender == resultTextField) {
-//        [self resultChanged:sender.text
-//             withValidState:[sender isNumberValid]];
-//    }
-//    [self updatePrice];
-//}
+- (void)textFieldDidChange:(UITextField *)sender {
+    if (sender == sumTextField) {
+        [self volumeChanged:sender.text
+             withValidState:[sender isNumberValid]];
+    }
+    else if (sender == resultTextField) {
+        [self resultChanged:sender.text
+             withValidState:[sender isNumberValid]];
+    }
+    if(sender.text.length==0)
+    {
+        resultTextField.text=@"";
+        sumTextField.text=@"";
+    }
+    
+    [self updatePrice];
+}
 
 
 #pragma mark - LWAuthManagerDelegate
 
 - (void)authManager:(LWAuthManager *)manager didGetAssetPairRate:(LWAssetPairRateModel *)assetPairRate {
     
-    
-//    
-//    
-//    self.assetRate = assetPairRate;
-//    if(self.balanceToSell && self.assetPair.inverted!=self.assetRate.inverted)
-//        [self.assetRate invert];
-//    
-//    [self updatePrice];
-//    
-//    const NSInteger repeatSeconds = [LWCache instance].refreshTimer.integerValue / 1000;
-//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(repeatSeconds * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//        if (self.isVisible) {
-//            [[LWAuthManager instance] requestAssetPairRate:self.assetPair.identity];
-//        }
-//    });
-}
-
--(void) authManager:(LWAuthManager *)manager didGetOrderBook:(LWPacketOrderBook *)packet
-{
-    buyOrders = packet.buyOrders;
-    sellOrders=packet.sellOrders;
-    
-    if(self.assetPair.inverted)
-    {
-        id tmp=buyOrders;
-        buyOrders=sellOrders;
-        sellOrders=tmp;
-        [buyOrders invert];
-        [sellOrders invert];
-    }
+    self.assetRate = assetPairRate;
     
     [self updatePrice];
     
     const NSInteger repeatSeconds = [LWCache instance].refreshTimer.integerValue / 1000;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(repeatSeconds * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         if (self.isVisible) {
-            [[LWAuthManager instance] requestOrderBook:self.assetPair.identity];
+            [[LWAuthManager instance] requestAssetPairRate:self.assetPair.identity];
         }
     });
-
-}
-
--(void) authManager:(LWAuthManager *)manager didReceiveLykkeData:(LWLykkeWalletsData *)data
-{
-    [self showBalanceFromLykkeData:data.lykkeData];
-}
-
--(void) showBalanceFromLykkeData:(LWLykkeData *) data
-{
-    NSString *balanceAsset;
-    if(self.assetDealType==LWAssetDealTypeSell)
-        balanceAsset=self.assetPair.baseAssetId;
-    else if(self.assetDealType==LWAssetDealTypeBuy)
-        balanceAsset=self.assetPair.quotingAssetId;
-    
-    balanceOfAccount=@(0);
-    
-    balanceAccuracy=2;
-    for(LWLykkeAssetsData *d in data.assets)
-    {
-        if([d.identity isEqualToString:balanceAsset])
-        {
-            balanceOfAccount=@([LWUtils fairVolume:d.balance.doubleValue accuracy:d.accuracy.intValue roundToHigher:NO]);
-            balanceAccuracy=d.accuracy.intValue;
-            balanceCurrencySymbol=d.symbol;
-        }
-    }
-    if(!balanceCurrencySymbol)      //Fixed according to crash in Crashlytics
-        balanceCurrencySymbol=@"";
-    balance.text=[NSString stringWithFormat:@"%@ available", [LWUtils formatVolumeNumber:balanceOfAccount currencySign:balanceCurrencySymbol accuracy:balanceAccuracy removeExtraZeroes:YES]];
-
 }
 
 - (void)authManager:(LWAuthManager *)manager didReceiveDealResponse:(LWAssetDealModel *)purchase {
@@ -520,14 +257,11 @@ static NSString *const FormIdentifiers[kFormRows] = {
     
     if (confirmationView) {
         [confirmationView setLoading:NO withReason:@""];
-        [confirmationView hide];
+        [confirmationView removeFromSuperview];
     }
-    
-    
+
     LWExchangeResultPresenter *controller = [LWExchangeResultPresenter new];
     controller.purchase = purchase;
-    controller.assetPair=self.assetPair;
-    
     [self.navigationController pushViewController:controller animated:YES];
 }
 
@@ -542,6 +276,31 @@ static NSString *const FormIdentifiers[kFormRows] = {
     }
 }
 
+-(void) authManager:(LWAuthManager *)manager didReceiveLykkeData:(LWLykkeWalletsData *)data
+{
+    NSString *baseAsset=[LWCache instance].baseAssetId;
+    NSString *quoting=[self.assetPair.identity stringByReplacingOccurrencesOfString:baseAsset withString:@""];
+
+    NSString *assetId;
+    
+    if(self.assetDealType==LWAssetDealTypeBuy)
+        assetId=baseAsset;
+    else
+        assetId=quoting;
+    
+    balanceOfAccount=@(0);
+    
+    
+    for(LWLykkeAssetsData *d in data.lykkeData.assets)
+    {
+        if([d.identity isEqualToString:assetId])
+        {
+            balanceOfAccount=d.balance;
+        }
+    }
+    
+    
+}
 
 
 - (void)authManager:(LWAuthManager *)manager didFailWithReject:(NSDictionary *)reject context:(GDXRESTContext *)context {
@@ -552,13 +311,11 @@ static NSString *const FormIdentifiers[kFormRows] = {
         [confirmationView setLoading:NO withReason:@""];
         [self showReject:reject response:context.task.response code:context.error.code willNotify:YES];
         
-        [confirmationView hide];
-    }
-    else
-    {
-        [self showReject:reject response:context.task.response code:context.error.code willNotify:YES];
+        [confirmationView removeFromSuperview];
     }
 }
+
+
 
 
 #pragma mark - Actions
@@ -566,13 +323,6 @@ static NSString *const FormIdentifiers[kFormRows] = {
 - (IBAction)purchaseClicked:(id)sender {
     
     [self.view endEditing:YES];
-    
-//    rateToSend=self.assetRate;
-    volumeToSend=[self volumeFromField];
-    resultStringToSend=resultString;
-    volumeStringToSend=volumeString;
-    
-    NSLog(@"%f", volumeToSend.doubleValue);
     
     // if fingerprint available - show confirmation view
     BOOL const shouldSignOrder = [LWCache instance].shouldSignOrder;
@@ -595,21 +345,7 @@ static NSString *const FormIdentifiers[kFormRows] = {
 }
 
 - (void)noAttemptsForPin {
-    if([self.navigationController isKindOfClass:[LWAuthNavigationController class]])
-        [(LWAuthNavigationController *)self.navigationController logout];
-    else
-    {
-        
-        [(LWAuthNavigationController *)self.navigationController.presentingViewController logout];//iPad
-    }
-
-    
-    
-}
-
--(void) exchangeConfirmationViewPressedFingerPrint
-{
-    [self validateUser];
+    [(LWAuthNavigationController *)self.navigationController logout];
 }
 
 - (void)cancelClicked {
@@ -626,33 +362,68 @@ static NSString *const FormIdentifiers[kFormRows] = {
         [self setLoading:YES];
     }
     
-    NSString *baseAssetId=[LWCache instance].baseAssetId;
-    
-    baseAssetId=self.assetPair.baseAssetId;
-    if(lastInput==LastInput_Result)
-        baseAssetId=self.assetPair.quotingAssetId;
+    NSString *baseAsset=[LWCache instance].baseAssetId;
+    NSString *quoting=[self.assetPair.identity stringByReplacingOccurrencesOfString:baseAsset withString:@""];
     
     if (self.assetDealType == LWAssetDealTypeBuy) {
-        
-        NSString *rate=[LWUtils formatVolumeNumber:@(currentPrice.doubleValue) currencySign:@"" accuracy:self.assetPair.accuracy.intValue removeExtraZeroes:YES];
-        rate=[rate stringByReplacingOccurrencesOfString:@" " withString:@""];
-        
-        [[LWAuthManager instance] requestPurchaseAsset: baseAssetId
+        [[LWAuthManager instance] requestPurchaseAsset:quoting
                                              assetPair:self.assetPair.identity
-                                                volume:volumeToSend
-                                                  rate:rate];
+                                                volume:[self volumeFromField]
+                                                  rate:self.assetRate.ask];
     }
     else {
-        
-        NSString *rate=[LWUtils formatVolumeNumber:@(currentPrice.doubleValue) currencySign:@"" accuracy:self.assetPair.accuracy.intValue removeExtraZeroes:YES];
-        rate=[rate stringByReplacingOccurrencesOfString:@" " withString:@""];
-        [[LWAuthManager instance] requestSellAsset:baseAssetId
+        [[LWAuthManager instance] requestSellAsset:quoting
                                          assetPair:self.assetPair.identity
-                                            volume:volumeToSend
-                                              rate:rate];
+                                            volume:[self volumeFromField]
+                                              rate:self.assetRate.bid];
     }
 }
 
+- (void)volumeChanged:(NSString *)volume withValidState:(BOOL)isValid {
+    isInputValid = isValid;
+    lastInput = LastInput_Volume;
+    if(volume.length==0)
+        volumeString=@"";
+    if (isInputValid) {
+        volumeString = volume;
+        [self updatePrice];
+    }
+    else {
+        self.descriptionLabel.text = @"";
+    }
+    
+    if([self balanceIsNotEnough])
+        isValid=NO;
+    
+    [LWValidator setButton:self.buyButton enabled:isValid];
+}
+
+- (void)resultChanged:(NSString *)input withValidState:(BOOL)isValid {
+    isInputValid = isValid;
+    lastInput = LastInput_Result;
+    if(input.length==0)
+        resultString=@"";
+    if (isInputValid) {
+        resultString = input;
+        [self updatePrice];
+    }
+    else {
+        self.descriptionLabel.text = @"";
+    }
+    
+    if([self balanceIsNotEnough])
+        isValid=NO;
+
+    
+    [LWValidator setButton:self.buyButton enabled:isValid];
+}
+
+-(BOOL) balanceIsNotEnough
+{
+    NSString *volume=[volumeString stringByReplacingOccurrencesOfString:@"," withString:@"."];
+    NSString *result=[resultString stringByReplacingOccurrencesOfString:@"," withString:@"."];
+    return ((self.assetDealType==LWAssetDealTypeSell && volume.doubleValue>balanceOfAccount.doubleValue) || (self.assetDealType==LWAssetDealTypeBuy && result.doubleValue>balanceOfAccount.doubleValue));
+}
 
 
 #pragma mark - Utils
@@ -669,13 +440,13 @@ static NSString *const FormIdentifiers[kFormRows] = {
 
 - (void)updateDescription {
     if (lastInput == LastInput_Volume) {
-        if (!volumeString || [volumeString isEqualToString:@""] || volumeString.floatValue==0) {
+        if (!volumeString || [volumeString isEqualToString:@""]) {
             self.descriptionLabel.text = @"";
             return;
         }
     }
     else {
-        if (!resultString || [resultString isEqualToString:@""] || resultString.floatValue==0) {
+        if (!resultString || [resultString isEqualToString:@""]) {
             self.descriptionLabel.text = @"";
             return;
         }
@@ -692,16 +463,14 @@ static NSString *const FormIdentifiers[kFormRows] = {
     : Localize(@"exchange.assets.description.sell");
     
     // build description
-    volumeString=[volumeString stringByReplacingOccurrencesOfString:@" " withString:@""];
-    resultString=[resultString stringByReplacingOccurrencesOfString:@" " withString:@""];
-    NSString *volume = [LWUtils formatVolumeString:volumeString currencySign:@"" accuracy:[self accuracyForBaseAsset].intValue removeExtraZeroes:YES];
-    NSString *result = [LWUtils formatVolumeString:resultString currencySign:@"" accuracy:[self accuracyForQuotingAsset].intValue removeExtraZeroes:YES];
-    if([volume isEqualToString:@"0"] || [result isEqualToString:@"0"])
-    {
-        self.descriptionLabel.text=@"";
-        return;
+    NSString *volume = volumeString;
+    NSString *result = resultString;
+    if (lastInput == LastInput_Volume) {
+        result = [self totalString];
     }
-
+    else {
+        volume = [self volumeString];
+    }
     NSString *description = [NSString stringWithFormat:operation,
                              volume,
                              [LWUtils baseAssetTitle:self.assetPair],
@@ -713,336 +482,161 @@ static NSString *const FormIdentifiers[kFormRows] = {
 
 - (void)updatePrice {
     
-    if (!buyOrders) {
+    if (!self.assetRate) {
         return;
     }
     
     // update price cell
-    LWAssetBuyPriceTableViewCell *priceCell = (LWAssetBuyPriceTableViewCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:0]];
+    LWAssetBuyPriceTableViewCell *priceCell = (LWAssetBuyPriceTableViewCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
 
     NSString *priceText = nil;
-    int priceAccuracy;
-    if(self.assetPair.inverted)
-        priceAccuracy=self.assetPair.invertedAccuracy.intValue;
-    else
-        priceAccuracy=self.assetPair.accuracy.intValue;
-    
-//    if (self.assetDealType == LWAssetDealTypeBuy) {
-//        priceText=[LWUtils formatFairVolume:self.assetRate.ask.doubleValue accuracy:priceAccuracy roundToHigher:YES];
-//    }
-//    else {
-//        priceText=[LWUtils formatFairVolume:self.assetRate.bid.doubleValue accuracy:priceAccuracy roundToHigher:NO];
-//    }
-    
+    if (self.assetDealType == LWAssetDealTypeBuy) {
+        priceText = [LWUtils priceForAsset:self.assetPair forValue:self.assetRate.ask];
+    }
+    else {
+        priceText = [LWUtils priceForAsset:self.assetPair forValue:self.assetRate.bid];
+    }
+    priceCell.priceLabel.text = priceText;
     
     // update total cell
-    NSString *volume = [volumeString stringByReplacingOccurrencesOfString:@" " withString:@""];
-    NSString *total = [resultString stringByReplacingOccurrencesOfString:@" " withString:@""];
+    NSString *volume = volumeString;
+    NSString *total = resultString;
     if (lastInput == LastInput_Volume) {
-        LWAssetBuyTotalTableViewCell *totalCell = (LWAssetBuyTotalTableViewCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:0]];
+        LWAssetBuyTotalTableViewCell *totalCell = (LWAssetBuyTotalTableViewCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:0]];
         total = [self totalString];
-        totalCell.totalTextField.text = total;
-        sumTextField.text=[LWUtils formatVolumeString:volume currencySign:@"" accuracy:[self accuracyForQuotingAsset].intValue removeExtraZeroes:NO];
-        
-        if (self.assetDealType == LWAssetDealTypeBuy) {
-            priceText=[LWUtils formatFairVolume:[buyOrders priceForVolume:volume.doubleValue] accuracy:priceAccuracy roundToHigher:YES];
-        }
-        else {
-            priceText=[LWUtils formatFairVolume:[sellOrders priceForVolume:volume.doubleValue] accuracy:priceAccuracy roundToHigher:NO];
-        }
-
-        
+        resultString=total;
+        [totalCell.totalTextField setTextWithAccuracy: total];
     }
     else if (lastInput == LastInput_Result) {
-        LWAssetBuySumTableViewCell *sumCell = (LWAssetBuySumTableViewCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
+        LWAssetBuySumTableViewCell *sumCell = (LWAssetBuySumTableViewCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
         volume = [self volumeString];
-        sumCell.sumTextField.text = volume;
+        volumeString=volume;
         
-        LWAssetBuyTotalTableViewCell *totalCell = (LWAssetBuyTotalTableViewCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:0]];
-        totalCell.totalTextField.text=[LWUtils formatVolumeString:total currencySign:@"" accuracy:[self accuracyForBaseAsset].intValue removeExtraZeroes:NO];
-        
-        if (self.assetDealType == LWAssetDealTypeBuy) {
-            priceText=[LWUtils formatFairVolume:[buyOrders priceForResult:total.doubleValue] accuracy:priceAccuracy roundToHigher:YES];
-        }
-        else {
-            priceText=[LWUtils formatFairVolume:[sellOrders priceForResult:total.doubleValue] accuracy:priceAccuracy roundToHigher:NO];
-        }
-
+        [sumCell.sumTextField setTextWithAccuracy:volume];
+//        sumCell.sumTextField.text = volume;
     }
-    else
-    {
-        if(self.assetDealType==LWAssetDealTypeBuy)
-            priceText=[LWUtils formatFairVolume:[buyOrders priceForVolume:0] accuracy:priceAccuracy roundToHigher:YES];
-        else
-            priceText=[LWUtils formatFairVolume:[sellOrders priceForVolume:0] accuracy:priceAccuracy roundToHigher:NO];
-    }
-    
-    currentPrice=priceText;
-    currentPrice=[currentPrice stringByReplacingOccurrencesOfString:@" " withString:@""];
-    currentPrice=[currentPrice stringByReplacingOccurrencesOfString:@"," withString:@""];
-    priceCell.priceLabel.text = priceText;
 
-    
-    volumeString=[volume stringByReplacingOccurrencesOfString:@" " withString:@""];
-    resultString=[total stringByReplacingOccurrencesOfString:@" " withString:@""];
-
-
-    
     if (confirmationView) {
         confirmationView.rateString = priceText;
-        confirmationView.volumeString = volumeString;
-        confirmationView.totalString = resultString;
-    }
-    if(self.assetDealType==LWAssetDealTypeBuy)
-    {
-        if(resultString.doubleValue>balanceOfAccount.doubleValue || (resultString.doubleValue==0 || volumeString.doubleValue==0) || [buyOrders isVolumeOK:volumeString.doubleValue]==NO)
-            [LWValidator setButton:self.buyButton enabled:NO];
-        else if(volumeString.doubleValue>0)
-            [LWValidator setButton:self.buyButton enabled:YES];
-    }
-    else
-    {
-        if(volumeString.doubleValue>balanceOfAccount.doubleValue || (resultString.doubleValue==0 || volumeString.doubleValue==0) || [sellOrders isVolumeOK:volumeString.doubleValue]==NO)
-            [LWValidator setButton:self.buyButton enabled:NO];
-        else if(volumeString.doubleValue>0)
-            [LWValidator setButton:self.buyButton enabled:YES];
-
+        confirmationView.volumeString = volume;
+        confirmationView.totalString = total;
     }
     
     [self updateDescription];
 }
 
 - (NSNumber *)volumeFromField {
-
+    NSDecimalNumber *volume = [volumeString isEmpty] ? [NSDecimalNumber zero] : [LWMath numberWithString:volumeString];
     
-    
-    double volume;//=volumeString.doubleValue;
-    
-    double result;// = self.assetDealType == LWAssetDealTypeBuy ? volume : -volume;
-    
-    if(lastInput==LastInput_Volume)
-    {
-        volume=volumeString.doubleValue;
-        result= self.assetDealType == LWAssetDealTypeBuy ? volume : -volume;
-    }
-    else
-    {
-        volume=resultString.doubleValue;
-        result= self.assetDealType == LWAssetDealTypeSell ? volume : -volume;
-    }
+    double const result = self.assetDealType == LWAssetDealTypeBuy ? volume.doubleValue : -volume.doubleValue;
     
     return [NSNumber numberWithDouble:result];
 }
 
 - (void)validateUser {
     
-    self.view.userInteractionEnabled=NO;
     [LWFingerprintHelper
      validateFingerprintTitle:Localize(@"exchange.assets.modal.fingerpring")
      ok:^(void) {
-         self.view.userInteractionEnabled=YES;
-
          [self requestOperationWithHud:YES];
      }
      bad:^(void) {
-         self.view.userInteractionEnabled=YES;
-
          [self showConfirmationView];
      }
      unavailable:^(void) {
-         self.view.userInteractionEnabled=YES;
-
          [self showConfirmationView];
      }];
 }
 
 - (void)showConfirmationView {
-    
     // preparing modal view
     confirmationView = [LWExchangeConfirmationView modalViewWithDelegate:self];
     confirmationView.assetPair = self.assetPair;
     [confirmationView setFrame:self.navigationController.view.bounds];
     
-    
-    CGRect rrr=self.navigationController.view.bounds;
     // animation
     CATransition *transition = [CATransition animation];
     transition.duration = 0.5;
     transition.type = kCATransitionPush;
     transition.subtype = kCATransitionFromTop;
     [transition setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
-    
-    
-    
     [confirmationView.layer addAnimation:transition forKey:nil];
     
-    
     // showing modal view
-    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad)
-    {
-        [confirmationView setFrame:self.view.bounds];
-
-    [self.view addSubview:confirmationView];
-    
-    
-    confirmationView.iPadNavShadowView=[[UIView alloc] initWithFrame:self.navigationController.navigationBar.bounds];
-    confirmationView.iPadNavShadowView.backgroundColor=[UIColor colorWithWhite:0 alpha:0.5];
-    confirmationView.iPadNavShadowView.alpha=0;
-    [self.navigationController.navigationBar addSubview:confirmationView.iPadNavShadowView];
-        
-    }
-    else
-    {
-        [self.navigationController.view addSubview:confirmationView];
-    }
-    
-    [confirmationView show];
-    
+    [self.navigationController.view addSubview:confirmationView];
     [self updatePrice];
-    NSString *priceText;
-    
-
-    
-//    if (self.assetDealType == LWAssetDealTypeBuy) {
-//        priceText = [LWUtils priceForAsset:self.assetPair forValue:rateToSend.ask];
-//    }
-//    else {
-//        priceText = [LWUtils priceForAsset:self.assetPair forValue:rateToSend.bid];
-//    }
-
-    priceText=currentPrice;
-    
-    priceText=[priceText stringByReplacingOccurrencesOfString:@"," withString:@"."];
-
-    confirmationView.rateString = priceText;
-    confirmationView.volumeString = volumeStringToSend;
-    confirmationView.totalString = resultStringToSend;
-    confirmationView.assetDealType=self.assetDealType;
-
 }
 
 // if (invert): total = volume / price
 // else: total = volume * price
 - (NSString *)totalString {
-
-    
     NSString *baseAssetId = [LWCache instance].baseAssetId;
-    
-    double priceValue;
-    int priceAccuracy;
-    if(self.assetPair.inverted)
-        priceAccuracy=self.assetPair.invertedAccuracy.intValue;
-    else
-        priceAccuracy=self.assetPair.accuracy.intValue;
-    
+    NSDecimalNumber *decimalPrice = nil;
     if (self.assetDealType == LWAssetDealTypeBuy) {
-        priceValue=[LWUtils fairVolume:[buyOrders priceForVolume:volumeString.doubleValue] accuracy:priceAccuracy roundToHigher:YES];
+        decimalPrice = [NSDecimalNumber decimalNumberWithDecimal:[self.assetRate.ask decimalValue]];
     }
     else {
-        priceValue=[LWUtils fairVolume:[sellOrders priceForVolume:volumeString.doubleValue] accuracy:priceAccuracy roundToHigher:NO];
+        decimalPrice = [NSDecimalNumber decimalNumberWithDecimal:[self.assetRate.bid decimalValue]];
     }
-    double result=volumeString.doubleValue*priceValue;
+    NSDecimalNumber *volume = [volumeString isEmpty] ? [NSDecimalNumber zero] : [LWMath numberWithString:volumeString];
     
-    NSString *str;
-    if(self.assetDealType == LWAssetDealTypeBuy)
-        str=[LWUtils formatFairVolume:result accuracy:[self accuracyForQuotingAsset].intValue roundToHigher:YES];
-    else
-        str=[LWUtils formatFairVolume:result accuracy:[self accuracyForQuotingAsset].intValue roundToHigher:NO];
-
-    if([str isEqualToString:@"0"])
-        str=@"";
-    return str;
+    NSDecimalNumber *result = [NSDecimalNumber zero];
+    if ([baseAssetId isEqualToString:self.assetPair.baseAssetId]) {
+        if (![LWMath isDecimalEqualToZero:decimalPrice]) {
+            result = [volume decimalNumberByDividingBy:decimalPrice];
+        }
+    }
+    else {
+        result = [volume decimalNumberByMultiplyingBy:decimalPrice];
+    }
     
-
+    NSInteger const accuracy = self.assetPair.accuracy.integerValue;
+    NSNumber *number = [NSNumber numberWithDouble:result.doubleValue];
+    NSString *totalText = [LWMath historyPriceString:number
+                                           precision:accuracy
+                                          withPrefix:@""];
+    
+    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+    NSString *groupSymbol = [formatter groupingSeparator];
+    totalText = [totalText stringByReplacingOccurrencesOfString:groupSymbol withString:@""];
+    return totalText;
 }
 
 // if (invert): volume = total * price
 // else: volume = total / price
 - (NSString *)volumeString {
-
     NSString *baseAssetId = [LWCache instance].baseAssetId;
-//    NSDecimalNumber *decimalPrice = nil;
-    
-    double priceValue;
-    int priceAccuracy;
-    if(self.assetPair.inverted)
-        priceAccuracy=self.assetPair.invertedAccuracy.intValue;
-    else
-        priceAccuracy=self.assetPair.accuracy.intValue;
-    
+    NSDecimalNumber *decimalPrice = nil;
     if (self.assetDealType == LWAssetDealTypeBuy) {
-        priceValue=[LWUtils fairVolume:[buyOrders priceForResult:resultString.doubleValue] accuracy:priceAccuracy roundToHigher:YES];
+        decimalPrice = [NSDecimalNumber decimalNumberWithDecimal:[self.assetRate.ask decimalValue]];
     }
     else {
-        priceValue=[LWUtils fairVolume:[sellOrders priceForResult:resultString.doubleValue] accuracy:priceAccuracy roundToHigher:NO];
+        decimalPrice = [NSDecimalNumber decimalNumberWithDecimal:[self.assetRate.bid decimalValue]];
     }
     
-
-    double volume=0;
+    NSDecimalNumber *total = [resultString isEmpty] ? [NSDecimalNumber zero] : [LWMath numberWithString:resultString];
     
-    if(priceValue!=0)
-        volume=resultString.doubleValue/priceValue;
-    else
-        volumeString=0;
-
-    NSString *str;
-    
-    if(self.assetDealType == LWAssetDealTypeBuy)
-        str=[LWUtils formatFairVolume:volume accuracy:[self accuracyForBaseAsset].intValue roundToHigher:NO];
-    else
-        str=[LWUtils formatFairVolume:volume accuracy:[self accuracyForBaseAsset].intValue roundToHigher:YES];
-
-    
-//    NSString *rrr=[LWUtils formatVolumeNumber:@(volume) currencySign:@"" accuracy:[self accuracyForBaseAsset].intValue removeExtraZeroes:YES];
-    if([str isEqualToString:@"0"])
-        str=@"";
-    
-    return str;
-
-
-}
-
--(NSNumber *) accuracyForBaseAsset
-{
-    NSArray *assets=[LWCache instance].allAssets;
-    
-//    NSString *identity=[LWCache instance].baseAssetId;
-    NSString *identity=self.assetPair.baseAssetId;
-    NSNumber *accuracy=@(0);
-    for(LWAssetModel *m in assets)
-    {
-        if([m.identity isEqualToString:identity])
-        {
-            accuracy=m.accuracy;
-            break;
+    NSDecimalNumber *volume = [NSDecimalNumber zero];
+    if ([baseAssetId isEqualToString:self.assetPair.baseAssetId]) {
+        volume = [total decimalNumberByMultiplyingBy:decimalPrice];
+    }
+    else {
+        if (![LWMath isDecimalEqualToZero:decimalPrice]) {
+            volume = [total decimalNumberByDividingBy:decimalPrice];
         }
     }
     
-    return accuracy;
-}
-
--(NSNumber *) accuracyForQuotingAsset
-{
-    NSArray *assets=[LWCache instance].allAssets;
-//    NSString *identity=[LWCache instance].baseAssetId;
-//    if([self.assetPair.baseAssetId isEqualToString:identity]==NO)
-//    {
-//        identity=self.assetPair.baseAssetId;
-//    }
+    NSInteger const accuracy = self.assetPair.accuracy.integerValue;
+    NSNumber *number = [NSNumber numberWithDouble:volume.doubleValue];
+    NSString *volumeText = [LWMath historyPriceString:number
+                                           precision:accuracy
+                                          withPrefix:@""];
     
-    NSString *identity=self.assetPair.quotingAssetId;
-    NSNumber *accuracy=@(0);
-    for(LWAssetModel *m in assets)
-    {
-        if([m.identity isEqualToString:identity])
-        {
-            accuracy=m.accuracy;
-            break;
-        }
-    }
+    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+    NSString *groupSymbol = [formatter groupingSeparator];
+    volumeText = [volumeText stringByReplacingOccurrencesOfString:groupSymbol withString:@""];
     
-    return accuracy;
-
+    return volumeText;
 }
 
 @end

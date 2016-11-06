@@ -11,7 +11,6 @@
 #import "LWTextField.h"
 #import "LWValidator.h"
 #import "LWDeviceInfo.h"
-#import "LWCommonButton.h"
 
 
 @interface LWRegisterBasePresenter () <LWTextFieldDelegate> {
@@ -35,6 +34,7 @@
     self.registrationInfo = [LWRegistrationData new];
     self.registrationInfo.clientInfo = [[LWDeviceInfo instance] clientInfo];
     
+    self.title = Localize(@"title.register");
 
     textField = [LWTextField createTextFieldForContainer:self.textContainer
                                          withPlaceholder:self.fieldPlaceholder];
@@ -42,27 +42,16 @@
     textField.delegate = self;
     [self configureTextField:textField];
     
+    [textField becomeFirstResponder];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 
     // check button state
-    if([self.nextButton isKindOfClass:[LWCommonButton class]])
-        self.nextButton.enabled=[self canProceed];
-    else
-        [LWValidator setButton:self.nextButton enabled:[self canProceed]];
+    [LWValidator setButton:self.nextButton enabled:[self canProceed]];
 
     self.observeKeyboardEvents = YES;
-}
-
--(void) viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    
-    [textField becomeFirstResponder];
-    self.title = Localize(@"title.register");
-
 }
 
 - (IBAction)nextClicked:(id)sender {
@@ -79,15 +68,7 @@
                        + self.nextButton.frame.origin.y
                        + self.nextButton.frame.size.height
                        + bottomMargin);
-    
-    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad)
-    {
-        self.scrollView.contentInset = UIEdgeInsetsMake(0, 0, rect.size.height, 0);
-//        self.scrollView.contentOffset = CGPointMake(0, self.scrollView.contentInset.bottom);
-//        self.scrollView.scrollEnabled=NO;
-
-    }
-    else if (bottomX > rect.size.height) {
+    if (bottomX > rect.size.height) {
         self.scrollView.contentInset = UIEdgeInsetsMake(0, 0, bottomX - rect.size.height, 0);
         self.scrollView.contentOffset = CGPointMake(0, self.scrollView.contentInset.bottom);
     }
@@ -95,8 +76,6 @@
 
 - (void)observeKeyboardWillHideNotification:(NSNotification *)notification {
     self.scrollView.contentInset = UIEdgeInsetsZero;
-    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad)
-        self.scrollView.scrollEnabled=YES;
 }
 
 
@@ -157,11 +136,7 @@
     }
     textField.valid = [self validateInput:textField.text];
     // check button state
-    if([self.nextButton isKindOfClass:[LWCommonButton class]])
-        self.nextButton.enabled=[self canProceed];
-    else
-        [LWValidator setButton:self.nextButton enabled:[self canProceed]];
-
+    [LWValidator setButton:self.nextButton enabled:self.canProceed];
 }
 
 @end

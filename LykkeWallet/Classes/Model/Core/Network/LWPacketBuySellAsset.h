@@ -26,7 +26,7 @@ typedef NS_ENUM(NSInteger, LWAssetDealType) {
 @property (copy, nonatomic) NSString *baseAsset;
 @property (copy, nonatomic) NSString *assetPair;
 @property (copy, nonatomic) NSNumber *volume;
-@property (copy, nonatomic) NSString *rate;
+@property (copy, nonatomic) NSNumber *rate;
 // out
 @property (readonly, nonatomic) LWAssetDealModel *deal;
 

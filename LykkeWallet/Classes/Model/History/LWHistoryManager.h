@@ -16,8 +16,6 @@
     
 }
 
-+(NSArray *) convertHistoryToArrayOfArrays:(NSArray *) history;
-
 + (NSDictionary *)convertNetworkModel:(LWTransactionsModel *)model;
 + (NSArray *)sortKeys:(NSDictionary *)dictionary;
 

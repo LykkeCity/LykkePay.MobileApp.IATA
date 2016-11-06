@@ -21,6 +21,5 @@
 #pragma mark - Properties
 
 @property (strong, nonatomic) LWAssetDealModel *purchase;
-@property (strong, nonatomic) LWAssetPairModel *assetPair;
 
 @end

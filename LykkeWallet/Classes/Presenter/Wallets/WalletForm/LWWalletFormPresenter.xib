@@ -140,8 +140,8 @@
                                 <action selector="submitClicked:" destination="-1" eventType="touchUpInside" id="B1a-Uy-sFu"/>
                             </connections>
                         </button>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Your wallet will not be charged until you authorize this transaction." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DGp-0A-G1h">
-                            <rect key="frame" x="-42" y="437" width="404" height="44"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The funds from this card will be charged only for the transaction" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DGp-0A-G1h">
+                            <rect key="frame" x="20" y="437" width="280" height="44"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="280" id="0ot-z6-g4B"/>
                                 <constraint firstAttribute="height" constant="44" id="XnU-qt-7Cw"/>

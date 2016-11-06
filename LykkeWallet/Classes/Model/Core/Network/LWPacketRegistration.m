@@ -8,8 +8,6 @@
 
 #import "LWPacketRegistration.h"
 #import "LWKeychainManager.h"
-#import "AppDelegate.h"
-#import "LWPrivateKeyManager.h"
 
 
 @implementation LWPacketRegistration
@@ -26,21 +24,7 @@
     _token = result[@"Token"];
     
     [[LWKeychainManager instance] saveLogin:self.registrationData.email
-                                password:self.registrationData.password
                                       token:_token];
-    
-    if(result[@"NotificationsId"])
-    {
-        [[LWKeychainManager instance] saveNotificationsTag:result[@"NotificationsId"]];
-
-        AppDelegate *tmptmp=[UIApplication sharedApplication].delegate;
-        [tmptmp registerForNotificationsInAzureWithTag:result[@"NotificationsId"]];
-    }
-    
-    [[NSUserDefaults standardUserDefaults] setBool:[result[@"CanCashInViaBankCard"] boolValue] forKey:@"CanCashInViaBankCard"];
-    [[NSUserDefaults standardUserDefaults] setBool:[result[@"SwiftDepositEnabled"] boolValue] forKey:@"SwiftDepositEnabled"];
-
-
 }
 
 - (NSString *)urlRelative {
@@ -51,9 +35,8 @@
     return @{@"Email" : self.registrationData.email,
              //@"FullName" : self.registrationData.fullName,
              //@"ContactPhone" : self.registrationData.phone,
-             @"Password" : [LWPrivateKeyManager hashForString:self.registrationData.password],
-             @"ClientInfo" : self.registrationData.clientInfo,
-             @"Hint":self.registrationData.passwordHint};
+             @"Password" : self.registrationData.password,
+             @"ClientInfo" : self.registrationData.clientInfo};
 }
 
 @end

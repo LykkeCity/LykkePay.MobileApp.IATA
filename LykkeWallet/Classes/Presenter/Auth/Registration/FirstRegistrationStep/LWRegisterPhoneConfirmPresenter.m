@@ -14,89 +14,57 @@
 #import "LWConstants.h"
 #import "TKButton.h"
 #import "UIViewController+Loading.h"
-#import "UIView+Toast.h"
-#import "LWSMSTimerView.h"
-#import "LWRequestCallMessageView.h"
-#import "LWKeychainManager.h"
 
 
-
-@interface LWRegisterPhoneConfirmPresenter () <LWTextFieldDelegate, LWSMSTimerViewDelegate> {
+@interface LWRegisterPhoneConfirmPresenter () <LWTextFieldDelegate> {
     LWTextField *codeTextField;
-    CGFloat keyboardHeight;
 }
 
 
 #pragma mark - Outlets
 
-@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
-
 @property (weak, nonatomic) IBOutlet UILabel     *titleLabel;
 @property (weak, nonatomic) IBOutlet TKContainer *codeContainer;
 @property (weak, nonatomic) IBOutlet TKButton    *confirmButton;
 @property (weak, nonatomic) IBOutlet UILabel     *statusLabel;
-@property (weak, nonatomic) IBOutlet LWSMSTimerView *notReceivedSMSView;
-
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *proceedWidthConstraint;
+@property (weak, nonatomic) IBOutlet UILabel     *infoLabel;
 
 @end
 
 
 @implementation LWRegisterPhoneConfirmPresenter
 
--(void) viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    [_notReceivedSMSView viewWillAppear];
-}
-
--(void) viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    self.observeKeyboardEvents=YES;
-
-    [codeTextField becomeFirstResponder];
-    self.title = Localize(@"register.title");
-    
-    _notReceivedSMSView.delegate=self;
-    
-    if([_notReceivedSMSView isTimerRunnig]==NO && _flagHaveSentSMS==NO)
-    {
-        [self setLoading:YES];
-        [[LWAuthManager instance] requestVerificationPhone:self.phone];
-    }
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    if([UIScreen mainScreen].bounds.size.width==320)
-        _proceedWidthConstraint.constant=280;
-
-    
-    keyboardHeight=0;
-    
+    self.title = Localize(@"register.title");
     
     // init email field
     codeTextField = [LWTextField new];
     codeTextField.delegate = self;
-    codeTextField.keyboardType = UIKeyboardTypeNumberPad;
+    codeTextField.keyboardType = UIKeyboardTypeDefault;
     codeTextField.placeholder = Localize(@"register.phone.code.placeholder");
     codeTextField.viewMode = UITextFieldViewModeNever;
     [self.codeContainer attach:codeTextField];
     
+#ifdef PROJECT_IATA
+#else
+    [self.confirmButton setGrayPalette];
+#endif
     
-    
-    [LWValidator setButton:self.confirmButton enabled:NO];
-    
-    _flagHaveSentSMS=NO;
- 
-    
-    
+    UITapGestureRecognizer* gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(infoClicked:)];
+    [self.infoLabel setUserInteractionEnabled:YES];
+    [self.infoLabel addGestureRecognizer:gesture];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self updateButtonStatus];
 }
 
 - (void)localize {
-    
+    self.infoLabel.text = Localize(@"register.sms.help.info");
     self.statusLabel.text = [NSString stringWithFormat:Localize(@"register.phone.sent"), self.phone];
     
     
@@ -106,10 +74,8 @@
 
 - (void)colorize {
     UIColor *color = [UIColor colorWithHexString:kMainElementsColor];
-    
+    [self.infoLabel setTextColor:color];
 }
-
-
 
 #pragma mark - LWTextFieldDelegate
 
@@ -119,52 +85,21 @@
         return;
     }
     
-}
-
-
-
--(BOOL) textField:(LWTextField *)textField shouldChangeCharsInRange:(NSRange)range replacementString:(NSString *)string
-{
-    NSString *newString=[textField.text stringByReplacingCharactersInRange:range withString:string];
-    if(newString.length>4)
-        return NO;
-    if(newString.length==4)
-        self.confirmButton.enabled=YES;
-    else
-        self.confirmButton.enabled=NO;
-    
-    [LWValidator setButton:self.confirmButton enabled:self.confirmButton.enabled];
-    
-    return YES;
+    [self updateButtonStatus];
 }
 
 #pragma mark - Outlets
 
 - (IBAction)confirmClicked:(id)sender {
-    if (!(codeTextField.text == nil || codeTextField.text.length <= 0)) {
+    if ([self canProceed]) {
         [self setLoading:YES];
         [[LWAuthManager instance] requestVerificationPhone:self.phone forCode:codeTextField.text];
     }
 }
 
-- (void)smsTimerViewPressedResend:(LWSMSTimerView *)view
-{
-    _flagHaveSentSMS=YES;
-    [self setLoading:YES];
-    [[LWAuthManager instance] requestVerificationPhone:self.phone];
-
-
-    
-//    [self.navigationController popViewControllerAnimated:YES];
+- (void)infoClicked:(id)sender {
 }
 
-
--(void) smsTimerViewPressedRequestVoiceCall:(LWSMSTimerView *)view
-{
-    [self setLoading:YES];
-    [[LWAuthManager instance] requestVoiceCall:self.phone email:[LWKeychainManager instance].login];
-    
-}
 
 #pragma mark - LWAuthStepPresenter
 
@@ -184,66 +119,13 @@
     return canProceed;
 }
 
-- (void)observeKeyboardWillShowNotification:(NSNotification *)notification {
-    CGRect const frame = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
-    keyboardHeight=frame.size.height;
-
-    if([UIDevice currentDevice].userInterfaceIdiom!=UIUserInterfaceIdiomPad)
-    {
-        [super observeKeyboardWillShowNotification:notification];
-        return;
-    }
-    
-    if([UIApplication sharedApplication].statusBarOrientation==UIInterfaceOrientationLandscapeLeft || [UIApplication sharedApplication].statusBarOrientation==UIInterfaceOrientationLandscapeRight)
-    {
-        self.scrollView.contentOffset=CGPointMake(0, 100);
-        self.scrollView.scrollEnabled=NO;
-    }
-    
+- (void)updateButtonStatus {
+    // check button state
+    [LWValidator setButton:self.confirmButton enabled:[self canProceed]];
 }
-
-- (void)observeKeyboardWillHideNotification:(NSNotification *)notification {
-    keyboardHeight=0;
-    
-    if([UIDevice currentDevice].userInterfaceIdiom!=UIUserInterfaceIdiomPad)
-    {
-        [super observeKeyboardWillShowNotification:notification];
-        return;
-    }
-    self.scrollView.contentOffset=CGPointMake(0, 0);
-    
-    self.scrollView.contentInset = UIEdgeInsetsZero;
-    self.scrollView.scrollEnabled=YES;
-}
-
 
 
 #pragma mark - LWAuthManagerDelegate
-
--(void) authManagerDidRequestVoiceCall:(LWAuthManager *)manager
-{
-    [self setLoading:NO];
-    
-    LWRequestCallMessageView *vvv=[[NSBundle mainBundle] loadNibNamed:@"LWRequestCallMessageView" owner:self options:nil][0];
-    UIWindow *window=self.view.window;
-    vvv.frame=window.bounds;
-    [window addSubview:vvv];
-    [vvv showWithCompletion:nil];
-
-}
-
-- (void)authManagerDidSendValidationPhone:(LWAuthManager *)manager {
-    // copy data to model
-    [self setLoading:NO];
-    [self.view makeToast:@"SMS sent" duration:2 position:[NSValue valueWithCGPoint:CGPointMake(self.view.bounds.size.width/2, self.view.bounds.size.height-keyboardHeight-30)]];
-    if(_flagHaveSentSMS)
-        [_notReceivedSMSView startTimer];
-
-    _flagHaveSentSMS=YES;
-
-
-}
-
 
 - (void)authManagerDidCheckValidationPhone:(LWAuthManager *)manager passed:(BOOL)passed {
     if (passed) {
@@ -256,7 +138,6 @@
 }
 
 - (void)authManager:(LWAuthManager *)manager didFailWithReject:(NSDictionary *)reject context:(GDXRESTContext *)context {
-    [self setLoading:NO];
     [self showReject:reject response:context.task.response code:context.error.code willNotify:YES];
 }
 

@@ -17,6 +17,8 @@
 
 #import "LWAssetModel.h"
 #import "LWAuthManager.h"
+#import "LWLykkeWalletsData.h"
+#import "LWLykkeAssetsData.h"
 #import "LWCache.h"
 #import "LWUtils.h"
 #import "LWMath.h"
@@ -36,6 +38,7 @@
     UITextField                *sumTextField;
     
     NSString *volumeString;
+    NSArray *assets;
 }
 
 
@@ -99,6 +102,8 @@ static NSString *const TransferIdentifiers[kTransferRows] = {
     self.observeKeyboardEvents = YES;
     
     [self updatePrice];
+    [[LWAuthManager instance] requestLykkeWallets];
+
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -108,6 +113,15 @@ static NSString *const TransferIdentifiers[kTransferRows] = {
         [sumTextField becomeFirstResponder];
     }
 }
+
+-(void) authManager:(LWAuthManager *)manager didReceiveLykkeData:(LWLykkeWalletsData *)data
+{
+    NSString *baseAsset=[LWCache instance].baseAssetId;
+    assets=data.lykkeData.assets;
+    
+    
+}
+
 
 
 #pragma mark - TKPresenter
@@ -141,7 +155,7 @@ static NSString *const TransferIdentifiers[kTransferRows] = {
     if (indexPath.row == 0) {
         LWSettingsAssetTableViewCell *baseAssetCell = (LWSettingsAssetTableViewCell *)cell;
         baseAssetCell.titleLabel.text = Localize(@"transfer.receiver.currency");
-        baseAssetCell.assetLabel.text = [LWAssetModel assetByIdentity:self.selectedAssetId fromList:[LWCache instance].allAssets];
+        baseAssetCell.assetLabel.text = [LWAssetModel assetByIdentity:self.selectedAssetId fromList:[LWCache instance].baseAssets];
     }
     else if (indexPath.row == 1) {
         LWAssetBuySumTableViewCell *sumCell = (LWAssetBuySumTableViewCell *)cell;
@@ -151,6 +165,7 @@ static NSString *const TransferIdentifiers[kTransferRows] = {
         sumTextField.delegate = self;
         sumTextField.placeholder = Localize(@"transfer.receiver.placeholder");
         sumTextField.keyboardType = UIKeyboardTypeDecimalPad;
+        sumTextField.accuracy=[[LWCache instance] accuracyForAssetId:self.selectedAssetId];
         
         [sumTextField setTintColor:[UIColor colorWithHexString:kDefaultTextFieldPlaceholder]];
         [sumTextField addTarget:self
@@ -176,6 +191,7 @@ static NSString *const TransferIdentifiers[kTransferRows] = {
 #pragma mark - UITextFieldDelegate
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    
     return [textField isNumberValidForRange:range replacementString:string];
 }
 
@@ -288,6 +304,22 @@ static NSString *const TransferIdentifiers[kTransferRows] = {
         volumeString = volume;
         [self updatePrice];
     }
+    
+    NSString *vol=[volumeString stringByReplacingOccurrencesOfString:@"," withString:@"."];
+    
+    for(LWLykkeAssetsData *d in assets)
+    {
+        if([d.identity isEqualToString:self.selectedAssetId])
+        {
+            if(vol.doubleValue>d.balance.doubleValue)
+            {
+                isValid=NO;
+            }
+            break;
+        }
+    }
+
+    
     [LWValidator setButton:self.buyButton enabled:isValid];
 }
 
@@ -307,11 +339,9 @@ static NSString *const TransferIdentifiers[kTransferRows] = {
 }
 
 - (NSNumber *)volumeFromField {
-//    NSDecimalNumber *volume = [volumeString isEmpty] ? [NSDecimalNumber zero] : [LWMath numberWithString:volumeString];
-//    
-//    double const result = volume.doubleValue;
+    NSDecimalNumber *volume = [volumeString isEmpty] ? [NSDecimalNumber zero] : [LWMath numberWithString:volumeString];
     
-    double result=volumeString.doubleValue;
+    double const result = volume.doubleValue;
     
     return [NSNumber numberWithDouble:result];
 }

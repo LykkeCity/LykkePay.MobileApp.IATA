@@ -1,4 +1,4 @@
-    //
+//
 //  LWNetAccessor.m
 //  LykkeWallet
 //
@@ -15,17 +15,11 @@
 #pragma mark - Common
 
 - (void)sendPacket:(LWPacket *)packet {
-
-    packet.caller=self.caller;
-    self.caller=nil;
-
     [self sendPacket:packet info:nil];
 }
 
 - (void)sendPacket:(LWPacket *)packet info:(NSDictionary *)userInfo {
-    NSDictionary *dict=[[GDXNet instance] send:packet userInfo:userInfo method:GDXNetSendMethodREST];
-    
-    NSLog(@"Send packet returned dict: %@", dict);
+    [[GDXNet instance] send:packet userInfo:userInfo method:GDXNetSendMethodREST];
 }
 
 @end

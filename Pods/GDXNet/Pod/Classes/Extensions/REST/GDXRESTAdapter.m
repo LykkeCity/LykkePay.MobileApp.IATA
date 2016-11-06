@@ -209,7 +209,6 @@
 #import "AFHTTPSessionManager.h"
 
 
-
 @implementation GDXRESTAdapter
 
 
@@ -217,15 +216,8 @@
 
 - (NSString *)send:(GDXNetPacket *)packet userInfo:(NSDictionary *)userInfo {
     [super send:packet userInfo:userInfo];
-    
-    
     // configure context
     id<GDXRESTPacket> pack = (id<GDXRESTPacket>)packet;
-    NSString *sss=pack.urlRelative;//Andrey
-    NSDictionary *params=pack.params;
-    
-    NSLog(@"Sending request: %@", sss);
-    
     __block GDXRESTContext *ctx = [[GDXRESTContext alloc] initWithPacket:pack userInfo:userInfo];
     // save context
     [self addContext:ctx];
@@ -245,14 +237,6 @@
     }
     // set headers
     NSDictionary *headers = [pack headers];
-    
-    dispatch_async(dispatch_get_main_queue(), ^{    //Testing
-        
-        NSString *str=[NSString stringWithFormat:@"Method: %@\nHeaders: %@\nParams: ", sss, headers.description, params.description];
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"PacketHeadersToLog" object:str];
-    
-    });
-    
     for (NSString *key in headers.allKeys) {
         [manager.requestSerializer setValue:headers[key] forHTTPHeaderField:key];
     }

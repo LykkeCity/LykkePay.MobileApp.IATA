@@ -13,14 +13,4 @@
     
 }
 
-@property id delegate;
-
-@end
-
-@protocol LWKYCPendingPresenterDelegate
-
--(void) pendingPresenterDidReceiveConfirm:(LWKYCPendingPresenter *) presenter;
--(void) pendingPresenterDidReceiveNeedToFillData:(LWKYCPendingPresenter *) presenter;
--(void) pendingPresenterDidReceiveRestrictedArea:(LWKYCPendingPresenter *) presenter;
-
 @end

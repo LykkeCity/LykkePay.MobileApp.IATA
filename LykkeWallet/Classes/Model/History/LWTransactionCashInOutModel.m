@@ -24,12 +24,6 @@
         _dateTime = [date toDate];
         _asset    = [json objectForKey:@"Asset"];
         _iconId   = [json objectForKey:@"IconId"];
-        _blockchainHash=[json objectForKey:@"BlockChainHash"];
-        _isRefund=[[json objectForKey:@"IsRefund"] boolValue];
-        
-        _addressFrom=json[@"AddressFrom"];
-        _addressTo=json[@"AddressTo"];
-        _isSettled=[json[@"IsSettled"] boolValue];
     }
     return self;
 }

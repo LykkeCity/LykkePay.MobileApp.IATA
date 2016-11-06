@@ -7,14 +7,7 @@
 //
 
 #import "LWAssetPairModel.h"
-#import "LWUtils.h"
-
-@interface LWAssetPairModel()
-{
-    BOOL isInverted;
-}
-
-@end
+#import "LWCache.h"
 
 
 @implementation LWAssetPairModel
@@ -25,48 +18,26 @@
 - (instancetype)initWithJSON:(id)json {
     self = [super initWithJSON:json];
     if (self) {
-        isInverted=NO;
-        
         _identity = [json objectForKey:@"Id"];
         _group    = [json objectForKey:@"Group"];
-//        _name     = [json objectForKey:@"Name"];
+        _name     = [json objectForKey:@"Name"];
         _accuracy = [json objectForKey:@"Accuracy"];
         _baseAssetId    = [json objectForKey:@"BaseAssetId"];
-        _originalBaseAsset=_baseAssetId;
         _quotingAssetId = [json objectForKey:@"QuotingAssetId"];
-        
-        _normalAccuracy=_accuracy;
-        _invertedAccuracy = [json objectForKey:@"InvertedAccuracy"];
-
-        _name=[NSString stringWithFormat:@"%@/%@", [LWUtils baseAssetTitle:self], [LWUtils quotedAssetTitle:self]];
-        
-        self.inverted=[[json objectForKey:@"Inverted"] boolValue];
-        
-        
-
-        
     }
     return self;
 }
 
--(void) setInverted:(BOOL)inverted
-{
-    if(isInverted!=inverted)
-    {
-        isInverted=inverted;
-        id tmpID=_baseAssetId;
-        _baseAssetId=_quotingAssetId;
-        _quotingAssetId=tmpID;
-        if(isInverted)
-            _accuracy=_invertedAccuracy;
-        else
-            _accuracy=_normalAccuracy;
++ (LWAssetPairModel *)assetPairById:(NSString *)identity {
+    NSArray *list = [LWCache instance].assetPairs;
+    if (list && list.count > 0) {
+        for (LWAssetPairModel *item in list) {
+            if ([item.identity isEqualToString:identity]) {
+                return item;
+            }
+        }
     }
-}
-
--(BOOL) inverted
-{
-    return isInverted;
+    return nil;
 }
 
 @end

@@ -12,10 +12,8 @@
 #import "LWPersonalDataModel.h"
 #import "LWKeychainManager.h"
 #import "UIViewController+Loading.h"
-#import "LWCommonButton.h"
+#import "TKButton.h"
 #import "LWConstants.h"
-#import "LWValidator.h"
-#import "LWKYCManager.h"
 
 
 @interface LWKYCInvalidDocumentsPresenter () {
@@ -24,17 +22,7 @@
 
 @property (weak, nonatomic) IBOutlet UILabel  *headerLabel;
 @property (weak, nonatomic) IBOutlet UILabel  *textLabel;
-@property (weak, nonatomic) IBOutlet LWCommonButton *okButton;
-
-@property (weak, nonatomic) IBOutlet UIImageView *selfieStatusImage;
-@property (weak, nonatomic) IBOutlet UIImageView *passportStatusImage;
-@property (weak, nonatomic) IBOutlet UIImageView *addressStatusImage;
-
-@property (weak, nonatomic) IBOutlet UILabel *selfieDescriptionLabel;
-@property (weak, nonatomic) IBOutlet UILabel *passportDescriptionLabel;
-@property (weak, nonatomic) IBOutlet UILabel *addressDescriptionLabel;
-
-
+@property (weak, nonatomic) IBOutlet TKButton *okButton;
 
 
 #pragma mark - Actions
@@ -46,63 +34,81 @@
 
 @implementation LWKYCInvalidDocumentsPresenter
 
--(void) viewDidLoad
-{
-    [super viewDidLoad];
-    NSArray *imageViews=@[_selfieStatusImage, _passportStatusImage, _addressStatusImage];
-    NSArray *labels=@[_selfieDescriptionLabel, _passportDescriptionLabel, _addressDescriptionLabel];
-    for(KYCDocumentType t=KYCDocumentTypeSelfie;t<=KYCDocumentTypeProofOfAddress;t++)
-    {
-        KYCDocumentStatus status=[_documentsStatuses statusForDocument:t];
-        UILabel *label=labels[t];
 
-        if(status==KYCDocumentStatusRejected)
-        {
-            [(UIImageView *)imageViews[t] setImage:[UIImage imageNamed:@"IconInvalid"]];
-            label.text=[_documentsStatuses commentForType:t];
-        }
-        else
-        {
-            [(UIImageView *)imageViews[t] setImage:[UIImage imageNamed:@"IconValid"]];
-            NSLayoutConstraint *constraint=[NSLayoutConstraint constraintWithItem:label attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:0];
-            [label addConstraint:constraint];
-        }
-        
-        
-    }
-    
-    [self adjustThinLines];
-}
+#pragma mark - LWAuthStepPresenter
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
+    [self.okButton setTitleFont:[UIFont fontWithName:kFontSemibold size:kButtonFontSize]];
+    [self.okButton setTitleColor:[UIColor colorWithHexString:kMainDarkElementsColor] forState:UIControlStateNormal];
+    
+    [self setLoading:YES];
 
-
-
+    [[LWAuthManager instance] requestPersonalData];
 }
 
+- (void)localize {
+    self.headerLabel.text = Localize(@"register.kyc.invalidDocuments.header");
+    self.textLabel.text = [NSString stringWithFormat:Localize(@"register.kyc.invalidDocuments"),
+                           [LWKeychainManager instance].fullName];
+    [self.okButton setTitle:[Localize(@"register.kyc.invalidDocuments.okButton") uppercaseString]
+                   forState:UIControlStateNormal];
+}
+
+- (LWAuthStep)stepId {
+    return LWAuthStepRegisterKYCInvalidDocuments;
+}
 
 
 #pragma mark - Actions
 
 - (IBAction)okButtonClick:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:^{
-        if([self.delegate respondsToSelector:@selector(invalidDocumentsPresenterDismissed:)])
-            [self.delegate invalidDocumentsPresenterDismissed:self];
-        
-    }];
+    [((LWAuthNavigationController *)self.navigationController) navigateWithDocumentStatus:[LWAuthManager instance].documentsStatus hideBackButton:YES];
+}
+
+
+#pragma mark - LWAuthManagerDelegate
+
+- (void)authManager:(LWAuthManager *)manager didReceivePersonalData:(LWPersonalDataModel *)data {
+    if ([data isFullNameEmpty]) {
+        [self setLoading:NO];
+        LWAuthNavigationController *navigation = (LWAuthNavigationController *)self.navigationController;
+        [navigation navigateToStep:LWAuthStepRegisterFullName
+                  preparationBlock:^(LWAuthStepPresenter *presenter) {
+                  }];
+    }
+    else if ([data isPhoneEmpty]) {
+        [self setLoading:NO];
+        LWAuthNavigationController *navigation = (LWAuthNavigationController *)self.navigationController;
+        [navigation navigateToStep:LWAuthStepRegisterPhone
+                  preparationBlock:^(LWAuthStepPresenter *presenter) {
+                  }];
+    }
+    else {
+        [[LWAuthManager instance] requestDocumentsToUpload];
+    }
+}
+
+- (void)authManager:(LWAuthManager *)manager didCheckDocumentsStatus:(LWDocumentsStatus *)status {
+    [self setLoading:NO];
+
+    nextStep = [LWAuthSteps getNextDocumentByStatus:status];
+}
+
+- (void)authManager:(LWAuthManager *)manager didFailWithReject:(NSDictionary *)reject context:(GDXRESTContext *)context {
     
+    if (reject) {
+        [self showReject:reject response:context.task.response];
+    }
+    else {
+        // some server error? Then just repeat request after some delay
+        const NSInteger repeatSeconds = 5;
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(repeatSeconds * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [[LWAuthManager instance] requestDocumentsToUpload];
+        });
+    }
 }
-
--(NSString *) nibName
-{
-    if([UIScreen mainScreen].bounds.size.width==320)
-        return @"LWKYCInvalidDocumentsPresenter_iphone5";
-    else
-        return @"LWKYCInvalidDocumentsPresenter";
-}
-
-
 
 @end

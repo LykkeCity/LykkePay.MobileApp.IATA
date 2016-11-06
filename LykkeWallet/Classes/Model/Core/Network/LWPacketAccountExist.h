@@ -16,6 +16,5 @@
 @property (copy, nonatomic) NSString *email;
 // out
 @property (readonly, nonatomic) BOOL isRegistered;
-@property (readonly, nonatomic) BOOL hasHint;
 
 @end

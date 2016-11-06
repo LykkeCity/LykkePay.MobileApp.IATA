@@ -17,10 +17,6 @@
 #import "LWAuthManager.h"
 #import "TKButton.h"
 #import "UIViewController+Loading.h"
-#import "LWValidator.h"
-#import "LWUtils.h"
-#import "LWCache.h"
-#import "LWAssetModel.h"
 
 
 @interface LWExchangeResultPresenter () {
@@ -64,43 +60,15 @@ static int const kBlockchainRow = 4;
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    NSString *oper;
-
-    if([self.purchase.orderType isEqualToString:@"Buy"] != [self.purchase.baseAsset isEqualToString:self.assetPair.baseAssetId]==NO)
-        oper=Localize(@"exchange.assets.result.boughtfor");
-    else
-        oper=Localize(@"exchange.assets.result.soldfor");
-    
-    
-    NSString *base=self.purchase.baseAsset;
-    NSString *quoting;
-    if([base isEqualToString:self.assetPair.baseAssetId])
-        quoting=self.assetPair.quotingAssetId;
-    else
-        quoting=self.assetPair.baseAssetId;
-    
-    if([self.purchase.baseAsset isEqualToString:self.assetPair.baseAssetId]==NO)
-    {
-        NSString *tmp=quoting;
-        quoting=base;
-        base=tmp;
-    }
-    
-    
-    self.titleLabel.text=[NSString stringWithFormat:@"%@ %@ %@", base, oper, quoting];
-    
-//    self.titleLabel.text = [NSString stringWithFormat:@"%@%@",
-//                            self.purchase.assetPair,
-//                            Localize(@"exchange.assets.result.title")];
+    self.titleLabel.text = [NSString stringWithFormat:@"%@%@",
+                            self.purchase.assetPair,
+                            Localize(@"exchange.assets.result.title")];
     
     [self.closeButton setTitle:Localize(@"exchange.assets.result.close")
                       forState:UIControlStateNormal];
     
     [self.shareButton setTitle:Localize(@"exchange.assets.result.share")
                       forState:UIControlStateNormal];
-    
-    [LWValidator setButtonWithClearBackground:self.closeButton enabled:YES];
-    [LWValidator setButton:self.shareButton enabled:YES];
     
 #ifdef PROJECT_IATA
 #else
@@ -110,13 +78,6 @@ static int const kBlockchainRow = 4;
     [self setHideKeyboardOnTap:NO]; // gesture recognizer deletion
 
     [self.navigationController setNavigationBarHidden:YES animated:NO];
-}
-
--(void) viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    
-    
 }
 
 #ifdef PROJECT_IATA
@@ -195,120 +156,17 @@ static int const kBlockchainRow = 4;
 }
 
 - (NSString *)dataByCellRow:(NSInteger)row {
-    
-    
-    NSString *assetName=self.assetPair.name;
-    NSArray *arr=[assetName componentsSeparatedByString:@"/"];
-    
-    
-    
-    if(self.assetPair.inverted)
-    if(!([self.assetPair.baseAssetId isEqualToString:_purchase.baseAsset] && self.assetPair.inverted))
-    {
-        if(arr.count==2)
-        {
-            assetName=[NSString stringWithFormat:@"%@/%@", arr[1], arr[0]];
-        }
-    }
-    if(arr.count!=2)
-        arr=@[@"",@""];
-    
-    
-//    if((self.assetPair.inverted && [self.purchase.orderType isEqualToString:@"Buy"]) || (self.assetPair.inverted==NO && [self.purchase.orderType isEqualToString:@"Sell"]))
-//    if(!([self.assetPair.baseAssetId isEqualToString:_purchase.baseAsset] && self.assetPair.inverted))
-//    {
-//        arr=@[arr[1], arr[0]];
-//   
-//    }
-    
-    NSString *buyAssetId=self.purchase.baseAsset;
-    NSString *sellAssetId;
-    if([buyAssetId isEqualToString:self.assetPair.baseAssetId])
-    {
-        sellAssetId=self.assetPair.quotingAssetId;
-    }
-    else
-        sellAssetId=self.assetPair.baseAssetId;
-
-    
-//    if((self.assetPair.inverted && [self.purchase.orderType isEqualToString:@"Sell"]) || (self.assetPair.inverted==NO && [self.purchase.orderType isEqualToString:@"Sell"]))
-    if([self.purchase.orderType isEqualToString:@"Sell"])
-    {
-        NSString *tmp=buyAssetId;
-        buyAssetId=sellAssetId;
-        sellAssetId=tmp;
-    }
-    
-    NSNumber *price=self.purchase.price;
-    
-    if([self.purchase.baseAsset isEqualToString:self.assetPair.originalBaseAsset]==NO != self.assetPair.inverted)
-    {
-        price=@((double)1/price.doubleValue);
-    }
-    
-    NSString *priceString;
-    if(self.assetPair.inverted)
-        priceString=[LWUtils formatVolumeNumber:price currencySign:@"" accuracy:self.assetPair.invertedAccuracy.intValue removeExtraZeroes:YES];
-    else
-        priceString=[LWUtils formatVolumeNumber:price currencySign:@"" accuracy:self.assetPair.accuracy.intValue removeExtraZeroes:YES];
-    
-
-    
-    
     NSString *const values[kNumberOfRows] = {
-        assetName,
-        
-        
-        [[LWUtils stringFromDouble:self.purchase.volume.doubleValue] stringByAppendingFormat:@" %@", [LWCache nameForAsset:buyAssetId]],
-        priceString,
-        [[LWUtils stringFromDouble:self.purchase.totalCost.doubleValue] stringByAppendingFormat:@" %@", [LWCache nameForAsset:sellAssetId]],
-
+        self.purchase.assetPair,
+        [LWMath makeStringByNumber:self.purchase.volume withPrecision:self.purchase.accuracy.integerValue],
+        [LWMath makeStringByNumber:self.purchase.price withPrecision:self.purchase.accuracy.integerValue],
+        //[LWMath makeStringByNumber:self.purchase.commission withPrecision:2],
+        [LWMath makeStringByNumber:self.purchase.totalCost withPrecision:2],
         self.purchase.blockchainSettled ? self.purchase.blockchainId : Localize(@"exchange.assets.result.blockchain.progress")
-        
+        //[LWMath makeStringByNumber:self.purchase.position withPrecision:0]
     };
     
     return values[row];
-}
-
-#pragma mark - Need to refactor (copied from LWExchangeDealFormPresenter
-
--(NSNumber *) accuracyForBaseAsset
-{
-    NSArray *assets=[LWCache instance].allAssets;
-    NSString *identity=[LWCache instance].baseAssetId;
-    NSNumber *accuracy=@(0);
-    for(LWAssetModel *m in assets)
-    {
-        if([m.identity isEqualToString:identity])
-        {
-            accuracy=m.accuracy;
-            break;
-        }
-    }
-    
-    return accuracy;
-}
-
--(NSNumber *) accuracyForQuotingAsset
-{
-    NSArray *assets=[LWCache instance].allAssets;
-    NSString *identity=[LWCache instance].baseAssetId;
-    if([self.purchase.baseAsset isEqualToString:identity]==NO)
-    {
-        identity=self.purchase.baseAsset;
-    }
-    NSNumber *accuracy=@(0);
-    for(LWAssetModel *m in assets)
-    {
-        if([m.identity isEqualToString:identity])
-        {
-            accuracy=m.accuracy;
-            break;
-        }
-    }
-    
-    return accuracy;
-    
 }
 
 - (void)startRefreshControl {

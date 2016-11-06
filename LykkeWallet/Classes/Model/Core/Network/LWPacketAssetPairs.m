@@ -7,6 +7,7 @@
 //
 
 #import "LWPacketAssetPairs.h"
+#import "LWCache.h"
 #import "LWAssetPairModel.h"
 
 @implementation LWPacketAssetPairs
@@ -25,6 +26,9 @@
     for (NSDictionary *item in result[@"AssetPairs"]) {
         [list addObject:[[LWAssetPairModel alloc] initWithJSON:item]];
     }
+    
+    [LWCache instance].assetPairs = [list copy];
+    
     _assetPairs = list;
 }
 

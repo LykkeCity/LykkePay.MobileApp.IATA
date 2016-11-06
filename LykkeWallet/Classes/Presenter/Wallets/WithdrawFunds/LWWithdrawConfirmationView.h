@@ -16,8 +16,6 @@
 - (void)requestOperationWithHud:(BOOL)isHudActivated;
 - (void)checkPin:(NSString *)pin;
 - (void)noAttemptsForPin;
--(void) pressedFingerPrint;
-
 
 @end
 
@@ -27,15 +25,10 @@
 }
 
 
-
 #pragma mark - Properties
 
 @property (copy, nonatomic) NSString *amountString;
 @property (copy, nonatomic) NSString *bitcoinString;
-
-@property (strong, nonatomic) NSString *assetId;
-
-@property (strong, nonatomic) UIView *iPadNavShadowView;
 
 
 #pragma mark - General
@@ -48,9 +41,5 @@
 - (void)requestOperation;
 - (void)pinRejected;
 - (void)setLoading:(BOOL)loading withReason:(NSString *)reason;
-
-
--(void) show;
--(void) hide;
 
 @end

@@ -7,7 +7,6 @@
 //
 
 #import "LWPacketAccountExist.h"
-#import "LWCache.h"
 
 
 @implementation LWPacketAccountExist
@@ -21,16 +20,11 @@
     if (self.isRejected) {
         return;
     }
-    _isRegistered = [result[@"IsRegistered"] boolValue];
-    _hasHint=[result[@"HasPwdHint"] boolValue];
-    [LWCache instance].passwordIsHashed=[result[@"IsPwdHashed"] boolValue];
-    [[NSUserDefaults standardUserDefaults] setBool:[result[@"HasBackup"] boolValue] forKey:@"UserHasBackupOfPrivateKey"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-    
+    _isRegistered = [result[@"IsEmailRegistered"] boolValue];
 }
 
 - (NSString *)urlRelative {
-    return @"ClientState";
+    return @"AccountExist";
 }
 
 - (NSDictionary *)params {

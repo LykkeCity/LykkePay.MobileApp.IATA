@@ -9,15 +9,13 @@
 #import "LWKYCCheckDocumentsPresenter.h"
 #import "LWRegisterCameraPresenter.h"
 #import "LWPersonalDataModel.h"
-#import "LWProgressView.h"
-#import "LWUtils.h"
+
 
 @interface LWKYCCheckDocumentsPresenter () {
     
 }
 
 @property (weak, nonatomic) IBOutlet UILabel *textLabel;
-@property (weak, nonatomic) IBOutlet LWProgressView *activity;
 
 @end
 
@@ -29,7 +27,6 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self.activity startAnimating];
     
     [self.navigationController setNavigationBarHidden:YES animated:NO];
     
@@ -79,7 +76,6 @@
 
 - (void)authManager:(LWAuthManager *)manager didFailWithReject:(NSDictionary *)reject context:(GDXRESTContext *)context {
     
-    [LWUtils appendToLogFile:@"KYCCheckDocuments rejected and logged out"];
     [((LWAuthNavigationController *)self.navigationController) logout];
 }
 

@@ -9,7 +9,6 @@
 #import "LWCameraOverlayPresenter.h"
 
 #import <Fabric/Fabric.h>
-#import "LWConstants.h"
 
 
 @interface LWCameraOverlayPresenter () <UIImagePickerControllerDelegate, UINavigationControllerDelegate> {
@@ -62,21 +61,7 @@
 
 - (void)localize {
     
-//    self.navigationBar.topItem.title = [Localize(@"register.title") uppercaseString];
-    UIFont *font = [UIFont fontWithName:kNavigationBarFontName size:kNavigationBarFontSize];
-    
-    NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:
-                                [UIColor colorWithHexString:kNavigationBarFontColor], NSForegroundColorAttributeName,
-                                font, NSFontAttributeName,
-                                @(1.5f), NSKernAttributeName,
-                                nil];
-    UILabel *titleLabel=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 120, 30)];
-    titleLabel.attributedText=[[NSAttributedString alloc] initWithString:[Localize(@"register.title") uppercaseString] attributes:attributes];
-    [titleLabel sizeToFit];
-    
-    self.navigationBar.topItem.titleView=titleLabel;
-    
-    
+    self.navigationBar.topItem.title = [Localize(@"register.title") uppercaseString];
     self.subtitleLabel.text = Localize([LWAuthSteps titleByStep:self.step]);
 }
 
@@ -92,8 +77,6 @@
     UIImagePickerController *picker = [[UIImagePickerController alloc] init];
     picker.delegate = self;
     picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    picker.navigationBar.translucent=NO;
-
     
     [self presentViewController:picker animated:YES completion:nil];
     
@@ -137,10 +120,10 @@
             image = [UIImage imageNamed:@"RegisterLineStep2"];
             break;
         case LWAuthStepRegisterIdentity:
-            image = [UIImage imageNamed:@"RegisterLineStep2"];
+            image = [UIImage imageNamed:@"RegisterLineStep3"];
             break;
         case LWAuthStepRegisterUtilityBill:
-            image = [UIImage imageNamed:@"RegisterLineStep2"];
+            image = [UIImage imageNamed:@"RegisterLineStep4"];
             break;
         default:
             break;

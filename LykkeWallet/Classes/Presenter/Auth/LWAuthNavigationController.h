@@ -18,7 +18,6 @@ typedef void (^LWAuthStepPushPreparationBlock)(LWAuthStepPresenter *presenter);
 
 @property (readonly, nonatomic) LWAuthStep currentStep;
 
--(void) showNeedNewVersion:(NSString *) message;
 
 #pragma mark - Common
 

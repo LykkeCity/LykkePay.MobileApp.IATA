@@ -10,12 +10,13 @@
 #import "LWAuthManager.h"
 #import "LWConstants.h"
 #import "LWCache.h"
-#import "LWCommonButton.h"
+#import "TKButton.h"
 #import "UIViewController+Navigation.h"
 #import "UIViewController+Loading.h"
 #import "UIView+Toast.h"
 #import "UIImage+Resize.h"
-//#import "LWValidator.h"
+
+#import "LWAssetModel.h"
 
 
 @interface LWBitcoinDepositPresenter () {
@@ -25,8 +26,8 @@
 @property (nonatomic, weak) IBOutlet UILabel *titleLabel;
 @property (nonatomic, weak) IBOutlet UILabel *bitcoinHashLabel;
 @property (nonatomic, weak) IBOutlet UIImageView *bitcoinQRImageView;
-@property (nonatomic, weak) IBOutlet LWCommonButton *copyingButton;
-@property (nonatomic, weak) IBOutlet LWCommonButton *emailButton;
+@property (nonatomic, weak) IBOutlet TKButton *copyingButton;
+@property (nonatomic, weak) IBOutlet TKButton *emailButton;
 
 
 #pragma mark - Utils
@@ -41,41 +42,31 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.title = [NSString stringWithFormat:Localize(@"wallets.bitcoin.deposit"), self.assetName];
     
     [self setupQRCode];
     [self setBackButton];
-    
-//    self.emailButton.layer.cornerRadius=self.emailButton.bounds.size.height/2;
-//    self.emailButton.clipsToBounds=YES;
-    
-    
-    _copyingButton.type=BUTTON_TYPE_CLEAR;
-    _emailButton.type=BUTTON_TYPE_COLORED;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-//    [self.copyingButton setGrayPalette];
-//    [self.bitcoinHashLabel setTextColor:[UIColor colorWithHexString:kMainElementsColor]];
+#ifdef PROJECT_IATA
+#else
+    [self.copyingButton setGrayPalette];
+    [self.bitcoinHashLabel setTextColor:[UIColor colorWithHexString:kMainElementsColor]];
+#endif
     
     [self updateView];
-    
-//    [LWValidator setButtonWithClearBackground:self.copyingButton enabled:YES];
-
-}
-
--(void) viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    self.title = [NSString stringWithFormat:Localize(@"wallets.bitcoin.deposit"), self.assetName];
-
 }
 
 - (void)colorize {
     navigationTintColor = self.navigationController.navigationBar.barTintColor;
     
+#ifdef PROJECT_IATA
+#else
     UIColor *color = [UIColor colorWithHexString:kMainGrayElementsColor];
     [self.navigationController.navigationBar setBarTintColor:color];
+#endif
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -97,14 +88,25 @@
 - (IBAction)emailClicked:(id)sender {
     [self setLoading:YES];
     
-    [[LWAuthManager instance] requestEmailBlockchainForAssetId:self.assetID?self.assetID:self.issuerId address:self.bitcoinHashLabel.text];
+    NSString *assetId=@"";
+    for(LWAssetModel *model in [LWCache instance].baseAssets)
+    {
+        if([model.name isEqualToString:self.assetName])
+        {
+            assetId=model.identity;
+            break;
+        }
+        
+    }
+
+    
+    [[LWAuthManager instance] requestEmailBlockchain:assetId];
 }
 
 
 #pragma mark - LWAuthManagerDelegate
 
 - (void)authManager:(LWAuthManager *)manager didFailWithReject:(NSDictionary *)reject context:(GDXRESTContext *)context {
-    [self setLoading:NO];
     [self showReject:reject response:context.task.response code:context.error.code willNotify:YES];
 }
 
@@ -125,14 +127,9 @@
     ? [LWCache instance].coloredMultiSig
     : [LWCache instance].multiSig;
     
-    if([self.assetID isEqualToString:@"SLR"])
-        bitcoinHash=[LWCache instance].solarCoinAddress;
-    
-    
     self.bitcoinHashLabel.text = bitcoinHash;
     
-//    NSString *qrCodeString = [NSString stringWithFormat:@"%@%@", @"bitcoin:", bitcoinHash];
-    NSString *qrCodeString = bitcoinHash;
+    NSString *qrCodeString = [NSString stringWithFormat:@"%@%@", @"bitcoin:", bitcoinHash];
     NSData *data = [qrCodeString dataUsingEncoding:NSUTF8StringEncoding];
     [filter setValue:data forKey:@"inputMessage"];
     

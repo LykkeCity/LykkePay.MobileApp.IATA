@@ -34,7 +34,7 @@
     
     NSString *assetName = [LWAssetModel
                            assetByIdentity:self.assetId
-                           fromList:[LWCache instance].allAssets];
+                           fromList:[LWCache instance].baseAssets];
     
     NSString *title = [NSString stringWithFormat:Localize(@"wallets.funds.title"), assetName];
     self.title = title;
@@ -78,7 +78,7 @@
     self.indicatorView.hidden = YES;
 }
 
-- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(nullable NSError *)error {
     [self.indicatorView stopAnimating];
     self.indicatorView.hidden = YES;
 }

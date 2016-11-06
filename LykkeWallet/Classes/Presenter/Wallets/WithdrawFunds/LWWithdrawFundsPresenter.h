@@ -6,14 +6,14 @@
 //  Copyright © 2016 Lykkex. All rights reserved.
 //
 
-#import "LWAuthComplexPresenter.h"
+#import "LWAuthPresenter.h"
 
 
-@interface LWWithdrawFundsPresenter : LWAuthComplexPresenter {
+@interface LWWithdrawFundsPresenter : LWAuthPresenter {
     
 }
 
 @property (copy, nonatomic) NSString *assetId;
-@property (copy, nonatomic) NSString *assetSymbol;
+@property (copy, nonatomic) NSString *assetPairId;
 
 @end

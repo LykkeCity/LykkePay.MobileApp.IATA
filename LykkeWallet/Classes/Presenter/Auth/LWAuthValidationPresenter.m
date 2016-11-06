@@ -10,12 +10,8 @@
 #import "LWRegisterCameraPresenter.h"
 #import "LWAuthNavigationController.h"
 #import "LWAuthManager.h"
-#import "LWPersonalDataModel.h"
+#import "LWPersonalData.h"
 #import "UIViewController+Loading.h"
-#import "LWCache.h"
-#import "LWProgressView.h"
-#import "LWKeychainManager.h"
-#import "LWUtils.h"
 
 
 @interface LWAuthValidationPresenter () {
@@ -23,10 +19,6 @@
 }
 
 @property (weak, nonatomic) IBOutlet UILabel *textLabel;
-
-@property (weak, nonatomic) IBOutlet UILabel *versionLabel;
-
-@property (weak, nonatomic) IBOutlet LWProgressView *activity;
 
 @end
 
@@ -39,15 +31,10 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    [self.activity startAnimating];
     [self.navigationController setNavigationBarHidden:YES animated:NO];
     
     [[LWAuthManager instance] requestRegistrationGet];
-    
-    self.versionLabel.text=[LWCache currentAppVersion];
 }
-
-
 
 - (LWAuthStep)stepId {
     return LWAuthStepValidation;
@@ -65,13 +52,13 @@
 }
 
 
-
 #pragma mark - LWAuthManagerDelegate
 
-- (void)authManagerDidRegisterGet:(LWAuthManager *)manager KYCStatus:(NSString *)status isPinEntered:(BOOL)isPinEntered personalData:(LWPersonalDataModel *)personalData {
+- (void)authManagerDidRegisterGet:(LWAuthManager *)manager KYCStatus:(NSString *)status isPinEntered:(BOOL)isPinEntered personalData:(LWPersonalData *)personalData {
+
     LWAuthNavigationController *navController = (LWAuthNavigationController *)self.navigationController;
     
-    if ([status isEqualToString:@"NeedToFillData"] && isPinEntered==NO) {
+    if ([status isEqualToString:@"NeedToFillData"]) {
         // request documents to upload
         self.textLabel.text = [NSString stringWithFormat:Localize(@"register.check.documents.label")];
         
@@ -97,7 +84,7 @@
         }
     }
     else {
-        [navController navigateKYCStatus:@"Ok"
+        [navController navigateKYCStatus:status
                             isPinEntered:isPinEntered
                         isAuthentication:YES];
     }
@@ -108,7 +95,7 @@
 }
 
 - (void)authManager:(LWAuthManager *)manager didFailWithReject:(NSDictionary *)reject context:(GDXRESTContext *)context {
-    [LWUtils appendToLogFile:[NSString stringWithFormat:@"Validation rejected %@", context.task.response.description]];
+    
     [((LWAuthNavigationController *)self.navigationController) logout];
 }
 

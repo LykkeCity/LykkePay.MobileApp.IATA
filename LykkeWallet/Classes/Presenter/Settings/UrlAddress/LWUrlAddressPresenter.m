@@ -15,9 +15,6 @@
 
 
 @interface LWUrlAddressPresenter ()
-{
-    
-}
 
 @end
 
@@ -25,35 +22,17 @@
 @implementation LWUrlAddressPresenter
 
 static NSInteger const kAddressesCount = 3;
-
 static NSString *const addresses[kAddressesCount] = {
-    kDevelopTestServer,
     kStagingTestServer,
-    kTestingTestServer
-    
+    kDevelopTestServer,
+    kDemoTestServer
 };
-
-static NSString *const titles[kAddressesCount] = {
-    @"DEV",
-    @"STAGING",
-    @"TEST"
-    
-};
-
-
-
-
-//static NSString *const addresses[kAddressesCount] = {
-//    kStagingTestServer,
-//    kDevelopTestServer,
-//    kDemoTestServer
-//};
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = @"Server addresses";
+    self.navigationItem.title = @"Server addresses";
     [self setBackButton];
     
     [self registerCellWithIdentifier:kDetailTableViewCellIdentifier
@@ -77,12 +56,11 @@ static NSString *const titles[kAddressesCount] = {
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+    LWDetailTableViewCell *cell = (LWDetailTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
     NSString *address = [LWKeychainManager instance].address;
-    NSString *newAddress=addresses[indexPath.row];
     
-    if (![address isEqualToString:newAddress]) {
-        [[LWKeychainManager instance] saveAddress:newAddress];
+    if (![cell.titleLabel.text isEqualToString:address]) {
+        [[LWKeychainManager instance] saveAddress:cell.titleLabel.text];
         [(LWAuthNavigationController *)self.navigationController logout];
     }
     else {
@@ -97,12 +75,9 @@ static NSString *const titles[kAddressesCount] = {
     LWDetailTableViewCell *itemCell = (LWDetailTableViewCell *)cell;
     if (itemCell) {
         NSString *address = [LWKeychainManager instance].address;
-        
-        itemCell.titleLabel.font=[UIFont boldSystemFontOfSize:14];
-        itemCell.detailLabel.font=[UIFont systemFontOfSize:12];
-        itemCell.titleLabel.text = titles[indexPath.row];
-        itemCell.detailLabel.text = addresses[indexPath.row];
-        itemCell.titleConstraint.constant = 60;
+        itemCell.titleLabel.text = addresses[indexPath.row];
+        itemCell.detailLabel.text = @"";
+        itemCell.titleConstraint.constant = 200;
         
         // set checkmark for selected item
         if ([addresses[indexPath.row] isEqualToString:address]) {

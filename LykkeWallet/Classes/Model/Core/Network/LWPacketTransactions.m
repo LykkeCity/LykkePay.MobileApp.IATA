@@ -8,7 +8,6 @@
 
 #import "LWPacketTransactions.h"
 #import "LWTransactionsModel.h"
-#import "LWHistoryManager.h"
 
 
 @implementation LWPacketTransactions
@@ -22,9 +21,6 @@
     if (self.isRejected) {
         return;
     }
-    
-//    NSDictionary *dict=[LWHistoryManager convertHistoryArrayToDict:result];
-    
     _model = [[LWTransactionsModel alloc] initWithJSON:result];
 }
 
@@ -34,14 +30,6 @@
     }
     return @"Transactions?assetId=null";
 }
-
-//- (NSString *)urlRelative {
-//    if (self.assetId && ![self.assetId isKindOfClass:[NSNull class]]) {
-//        return [NSString stringWithFormat:@"History?assetId=%@", self.assetId];
-//    }
-//    return @"History?assetId=null";
-//}
-
 
 - (GDXRESTPacketType)type {
     return GDXRESTPacketTypeGET;

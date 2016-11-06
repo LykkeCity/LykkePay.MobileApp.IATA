@@ -10,8 +10,6 @@
 #import "LWAuthNavigationController.h"
 #import "LWKeychainManager.h"
 #import "UIViewController+Loading.h"
-#import "UIViewController+Navigation.h"
-#import "LWValidator.h"
 
 
 @interface LWKYCSubmitPresenter () {
@@ -34,12 +32,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self setBackButton];
-    
-    [LWValidator setButton:self.submitButton enabled:YES];
     
     self.title = Localize(@"register.kyc.submit.title");
-    
 }
 
 #pragma mark - LWAuthStepPresenter
@@ -53,8 +47,6 @@
 - (LWAuthStep)stepId {
     return LWAuthStepRegisterKYCSubmit;
 }
-
-
 
 
 #pragma mark - Actions
@@ -78,12 +70,8 @@
 - (void)authManagerDidSetKYCStatus:(LWAuthManager *)manager {
     [self setLoading:NO];
     
-    if([self.delegate respondsToSelector:@selector(submitPresenterUserSubmitted:)])
-    {
-        [self.delegate submitPresenterUserSubmitted:self];
-    }
-//    [((LWAuthNavigationController *)self.navigationController) navigateToStep:LWAuthStepRegisterKYCPending
-//                                                             preparationBlock:nil];
+    [((LWAuthNavigationController *)self.navigationController) navigateToStep:LWAuthStepRegisterKYCPending
+                                                             preparationBlock:nil];
 }
 
 @end

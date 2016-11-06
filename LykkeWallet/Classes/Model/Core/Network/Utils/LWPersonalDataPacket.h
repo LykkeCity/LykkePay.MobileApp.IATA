@@ -9,12 +9,12 @@
 #import "LWAuthorizePacket.h"
 
 
-@class LWPersonalDataModel;
+@class LWPersonalData;
 
 @interface LWPersonalDataPacket : LWAuthorizePacket {
     
 }
 // out
-@property (readonly, nonatomic) LWPersonalDataModel *personalData;
+@property (readonly, nonatomic) LWPersonalData *personalData;
 
 @end

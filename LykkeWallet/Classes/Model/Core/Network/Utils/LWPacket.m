@@ -24,7 +24,6 @@
     result = [response objectForKey:@"Result"];
     _reject = response[@"Error"];
     
-    
     if ([LWCache instance].debugMode) {
         if (_reject && ![_reject isKindOfClass:[NSNull class]]) {
             _reject = [response[@"Error"] mutableCopy];
@@ -40,7 +39,7 @@
     {
         result=nil;
     }
-    else if([result isKindOfClass:[NSDictionary class]])
+    else
     {
         
         
@@ -48,20 +47,9 @@
         [self checkResult:checkedResult];
         result=checkedResult;
     }
-    else if([result isKindOfClass:[NSArray class]])
-    {
-        result=[self checkArrayResult:result];
-    }
+
     
     _isRejected = (self.reject != nil) && ![self.reject isKindOfClass:NSNull.class];
-}
-
--(NSArray *) checkArrayResult:(NSArray *) resArray
-{
-    NSMutableDictionary *dict=[[NSMutableDictionary alloc] init];
-    dict[@"array"]=resArray;
-    [self checkResult:dict];
-    return dict[@"array"];
 }
 
 -(void) checkResult:(NSMutableDictionary *) resultDict
@@ -96,21 +84,18 @@
                     NSMutableDictionary *newDict=[arrElement mutableCopy];
                     [self checkResult:newDict];
                     [newArr replaceObjectAtIndex:i withObject:newDict];
-
-                }
                     
+                }
+                
             }
             resultDict[k]=newArr;
         }
     }
 }
 
-
-
 - (NSString *)urlBase {
     NSString *address = [LWKeychainManager instance].address;
     NSString *addr = [NSString stringWithFormat:@"https://%@/api/", address];
-    NSLog(@"%@", addr);//Andrey
     return addr;
 }
 
@@ -120,13 +105,7 @@
 }
 
 - (NSDictionary *)headers {
-    NSString *device;
-    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
-        device=@"iPhone";
-    else
-        device=@"iPad";
-    NSString *userAgent=[NSString stringWithFormat:@"DeviceType=%@;AppVersion=%@;ClientFeatures=1", device, [[NSBundle mainBundle] objectForInfoDictionaryKey:(NSString *)kCFBundleVersionKey]];
-    return @{@"User-Agent":userAgent}; // no headers by default
+    return @{}; // no headers by default
 }
 
 - (NSDictionary *)params {

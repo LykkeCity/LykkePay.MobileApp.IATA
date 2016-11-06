@@ -20,6 +20,4 @@
 @property (readonly, nonatomic) id   reject;
 @property (readonly, nonatomic) BOOL isRejected;
 
-@property (weak, nonatomic) id caller;
-
 @end

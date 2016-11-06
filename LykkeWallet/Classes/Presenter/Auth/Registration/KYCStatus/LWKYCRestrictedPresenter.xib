@@ -1,24 +1,20 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
-        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="Proxima Nova Regular.otf">
+        <mutableArray key="Proxima Nova Regular.otf">
             <string>ProximaNova-Regular</string>
-        </array>
-        <array key="Proxima Nova Semibold.otf">
+        </mutableArray>
+        <mutableArray key="Proxima Nova Semibold.otf">
             <string>ProximaNova-Semibold</string>
-        </array>
+        </mutableArray>
     </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LWKYCRestrictedPresenter">
             <connections>
-                <outlet property="button" destination="4Ob-c8-pd9" id="RzS-hY-EeG"/>
-                <outlet property="buttonWidthConstraint" destination="6ap-bw-dqk" id="7ov-y2-QTJ"/>
                 <outlet property="headerLabel" destination="xbZ-6S-Y8D" id="8ha-T5-xg1"/>
                 <outlet property="textLabel" destination="T8T-yv-ZzL" id="aMl-qc-VQi"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -26,57 +22,46 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="RegisterFailed" translatesAutoresizingMaskIntoConstraints="NO" id="H2e-tH-24k">
-                    <frame key="frameInset" minX="111" minY="129" width="153" height="153"/>
+                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="RegisterFailed" translatesAutoresizingMaskIntoConstraints="NO" id="H2e-tH-24k">
+                    <rect key="frame" x="62" y="60" width="197" height="206"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="153" id="0xo-I0-2Gw"/>
-                        <constraint firstAttribute="height" constant="153" id="uoo-t4-cyK"/>
+                        <constraint firstAttribute="width" constant="197" id="0xo-I0-2Gw"/>
+                        <constraint firstAttribute="height" constant="206" id="uoo-t4-cyK"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="OOPS!" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xbZ-6S-Y8D">
-                    <frame key="frameInset" minX="50" minY="329" width="275" height="35"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OOPS!" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xbZ-6S-Y8D">
+                    <rect key="frame" x="23" y="271" width="275" height="35"/>
                     <constraints>
+                        <constraint firstAttribute="height" constant="35" id="Xp0-gs-kIk"/>
                         <constraint firstAttribute="width" constant="275" id="q8B-12-h5f"/>
                     </constraints>
                     <fontDescription key="fontDescription" name="ProximaNova-Semibold" family="Proxima Nova" pointSize="17"/>
-                    <color key="textColor" red="0.2470588235" green="0.30196078430000001" blue="0.37647058820000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="textColor" red="0.2470588235" green="0.30196078430000001" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" alpha="0.59999999999999998" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T8T-yv-ZzL">
-                    <frame key="frameInset" minX="50" minY="369" width="275" height="69"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T8T-yv-ZzL">
+                    <rect key="frame" x="23" y="311" width="275" height="69"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="275" id="UUu-rD-pVp"/>
+                        <constraint firstAttribute="height" constant="69" id="a1j-QK-LVh"/>
                     </constraints>
                     <string key="text">Dear Christian P. Clements, we're terribly sorry, but Lykke Wallet can't be created based on the KYC information that you have provided.</string>
                     <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="14"/>
-                    <color key="textColor" red="0.56470588239999997" green="0.58431372550000005" blue="0.61176470589999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="textColor" red="0.56470588239999997" green="0.58431372550000005" blue="0.61176470589999998" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Ob-c8-pd9" customClass="LWCommonButton">
-                    <frame key="frameInset" minX="164" minY="589" width="46" height="30"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="315" id="6ap-bw-dqk"/>
-                        <constraint firstAttribute="height" constant="45" id="fmd-PA-ryo"/>
-                    </constraints>
-                    <state key="normal" title="OKAY, I UNDERSTOOD"/>
-                    <connections>
-                        <action selector="buttonPressed:" destination="-2" eventType="touchUpInside" id="TrM-Ys-65m"/>
-                    </connections>
-                </button>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="H2e-tH-24k" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="02M-nr-j3n"/>
-                <constraint firstItem="4Ob-c8-pd9" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="6Ru-yf-7GZ"/>
-                <constraint firstItem="T8T-yv-ZzL" firstAttribute="top" secondItem="xbZ-6S-Y8D" secondAttribute="bottom" constant="15" id="6ea-zt-Bpy"/>
+                <constraint firstItem="T8T-yv-ZzL" firstAttribute="top" secondItem="xbZ-6S-Y8D" secondAttribute="bottom" constant="5" id="6ea-zt-Bpy"/>
                 <constraint firstItem="T8T-yv-ZzL" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="NIX-8F-6WV"/>
-                <constraint firstAttribute="bottom" secondItem="4Ob-c8-pd9" secondAttribute="bottom" constant="30" id="Nrb-VN-8hA"/>
-                <constraint firstItem="xbZ-6S-Y8D" firstAttribute="top" secondItem="H2e-tH-24k" secondAttribute="bottom" constant="35" id="Pmq-bt-iOt"/>
+                <constraint firstItem="xbZ-6S-Y8D" firstAttribute="top" secondItem="H2e-tH-24k" secondAttribute="bottom" constant="5" id="Pmq-bt-iOt"/>
+                <constraint firstItem="H2e-tH-24k" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="60" id="eoR-2G-uy9"/>
                 <constraint firstItem="xbZ-6S-Y8D" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="jJj-j1-DVc"/>
-                <constraint firstItem="H2e-tH-24k" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" multiplier="0.6" id="w6h-PU-Izx"/>
             </constraints>
             <point key="canvasLocation" x="207" y="260"/>
         </view>
@@ -84,9 +69,4 @@
     <resources>
         <image name="RegisterFailed" width="178" height="178"/>
     </resources>
-    <simulatedMetricsContainer key="defaultSimulatedMetrics">
-        <simulatedStatusBarMetrics key="statusBar"/>
-        <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4_7.fullscreen"/>
-    </simulatedMetricsContainer>
 </document>

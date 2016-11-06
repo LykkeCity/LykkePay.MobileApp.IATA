@@ -14,6 +14,5 @@
 }
 
 @property (copy, nonatomic) NSString *assetId;
-@property (copy, nonatomic) NSString *address;
 
 @end

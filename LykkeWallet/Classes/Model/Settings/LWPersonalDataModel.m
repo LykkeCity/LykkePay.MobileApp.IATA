@@ -15,31 +15,15 @@
 #pragma mark - LWJSONObject
 
 - (instancetype)initWithJSON:(id)json {
-    if([json isKindOfClass:[NSDictionary class]]==NO)
-        return nil;
     self = [super initWithJSON:json];
     if (self) {
-        _fullName = json[@"FullName"]==nil?@"":json[@"FullName"];
-        _email    = json[@"Email"]==nil?@"":json[@"Email"];
-        _phone    = json[@"Phone"]==nil?@"":json[@"Phone"];
-        _country  = json[@"Country"]==nil?@"":json[@"Country"];
-        _address  = json[@"Address"]==nil?@"":json[@"Address"];
-        _city     = json[@"City"]==nil?@"":json[@"City"];
-        _zip      = json[@"Zip"]==nil?@"":json[@"Zip"];
-        _firstName=json[@"FirstName"]==nil?@"":json[@"FirstName"];
-        _lastName=json[@"LastName"]==nil?@"":json[@"LastName"];
-        
-        NSError *error;
-        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:json
-                                                           options:NSJSONWritingPrettyPrinted
-                                                             error:&error];
-        
-        if (! jsonData) {
-            NSLog(@"Got an error: %@", error);
-        } else {
-            _jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-        }
-        
+        _fullName = json[@"FullName"];
+        _email    = json[@"Email"];
+        _phone    = json[@"Phone"];
+        _country  = json[@"Country"];
+        _address  = json[@"Address"];
+        _city     = json[@"City"];
+        _zip      = json[@"Zip"];
     }
     return self;
 }

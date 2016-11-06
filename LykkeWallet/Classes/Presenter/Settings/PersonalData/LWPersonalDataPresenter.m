@@ -32,7 +32,7 @@
 @implementation LWPersonalDataPresenter
 
 
-static NSInteger const kDescriptionRows = 5;
+static NSInteger const kDescriptionRows = 7;
 
 static NSString *const DescriptionIdentifiers[kDescriptionRows] = {
     kPersonalItemTableViewCellIdentifier,
@@ -40,8 +40,8 @@ static NSString *const DescriptionIdentifiers[kDescriptionRows] = {
     kPersonalItemTableViewCellIdentifier,
     kPersonalItemTableViewCellIdentifier,
     kPersonalItemTableViewCellIdentifier,
-//    kPersonalItemTableViewCellIdentifier,
-//    kPersonalItemTableViewCellIdentifier
+    kPersonalItemTableViewCellIdentifier,
+    kPersonalItemTableViewCellIdentifier
 };
 
 
@@ -50,6 +50,7 @@ static NSString *const DescriptionIdentifiers[kDescriptionRows] = {
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.title = Localize(@"personal.data.title");
 
     [self setBackButton];
     
@@ -64,14 +65,6 @@ static NSString *const DescriptionIdentifiers[kDescriptionRows] = {
     [self setLoading:YES];
 
     [[LWAuthManager instance] requestPersonalData];
-
-}
-
--(void) viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    self.title = Localize(@"personal.data.title");
-
 }
 
 
@@ -106,9 +99,9 @@ static NSString *const DescriptionIdentifiers[kDescriptionRows] = {
         Localize(@"personal.data.email"),
         Localize(@"personal.data.phone"),
         Localize(@"personal.data.country"),
-//        Localize(@"personal.data.zip"),
+        Localize(@"personal.data.zip"),
         Localize(@"personal.data.city"),
-//        Localize(@"personal.data.address")
+        Localize(@"personal.data.address")
     };
     
     UIColor *dark = [UIColor colorWithHexString:kMainDarkElementsColor];
@@ -118,8 +111,8 @@ static NSString *const DescriptionIdentifiers[kDescriptionRows] = {
         dark,
         dark,
         dark,
-//        dark,
-//        dark
+        dark,
+        dark
     };
     
     NSString *identifier = DescriptionIdentifiers[indexPath.row];
@@ -128,34 +121,7 @@ static NSString *const DescriptionIdentifiers[kDescriptionRows] = {
     dataCell.titleLabel.text = Descriptions[indexPath.row];
     dataCell.detailLabel.text = [self dataByCellRow:indexPath.row];
     dataCell.detailLabel.textColor = Colors[indexPath.row];
-    
-    if(indexPath.row==0)
-    {
-        UIView *lineView=[[UIView alloc] initWithFrame:CGRectMake(0, 0, 1024, 0.5)];
-        lineView.backgroundColor=[UIColor colorWithRed:211.0/255 green:214.0/255 blue:219.0/255 alpha:1];
-        [cell addSubview:lineView];
-    }
-
-    
     return cell;
-}
-
--(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Remove seperator inset
-    if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
-        [cell setSeparatorInset:UIEdgeInsetsZero];
-    }
-    
-    // Prevent the cell from inheriting the Table View's margin settings
-    if ([cell respondsToSelector:@selector(setPreservesSuperviewLayoutMargins:)]) {
-        [cell setPreservesSuperviewLayoutMargins:NO];
-    }
-    
-    // Explictly set your cell's layout margins
-    if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
-        [cell setLayoutMargins:UIEdgeInsetsZero];
-    }
 }
 
 
@@ -178,7 +144,7 @@ static NSString *const DescriptionIdentifiers[kDescriptionRows] = {
 }
 
 - (CGFloat)calculateRowHeightForText:(NSString *)text {
-    if (text == nil || text.length==0) {
+    if (text == nil) {
         return 0.0;
     }
     
@@ -205,9 +171,9 @@ static NSString *const DescriptionIdentifiers[kDescriptionRows] = {
         [self stringFromData:personalData.email],
         [self stringFromData:personalData.phone],
         [self stringFromData:personalData.country],
-//        [self stringFromData:personalData.zip],
+        [self stringFromData:personalData.zip],
         [self stringFromData:personalData.city],
-//        [self stringFromData:personalData.address]
+        [self stringFromData:personalData.address]
     };
     return values[row];
 }

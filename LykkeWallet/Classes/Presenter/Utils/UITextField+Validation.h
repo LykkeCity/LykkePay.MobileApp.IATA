@@ -10,10 +10,14 @@
 
 @interface UITextField (Validation)
 
+@property int accuracy;
+
 - (BOOL)shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string forMaxLength:(NSInteger)maxLength;
 
 - (BOOL)isNumberValidForRange:(NSRange)range replacementString:(NSString *)string;
 
 - (BOOL)isNumberValid;
+
+-(void) setTextWithAccuracy:(NSString *)text;
 
 @end

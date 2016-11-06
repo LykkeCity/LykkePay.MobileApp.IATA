@@ -14,7 +14,6 @@
 - (void)pinEntered:(NSString *)pin;
 - (void)pinCanceled;
 - (void)pinAttemptEnds;
--(void) pinKeyboardViewPressedFingerPrint;
 
 @end
 

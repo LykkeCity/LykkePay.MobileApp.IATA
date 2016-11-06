@@ -1,123 +1,130 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
-        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="Proxima Nova Regular.otf">
+        <mutableArray key="Proxima Nova Regular.otf">
             <string>ProximaNova-Regular</string>
-        </array>
+            <string>ProximaNova-Regular</string>
+            <string>ProximaNova-Regular</string>
+        </mutableArray>
     </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="LWAssetLykkeTableViewCellIdentifier" rowHeight="48" id="SGz-Gb-01x" customClass="LWAssetLykkeTableViewCell">
-            <rect key="frame" x="0.0" y="0.0" width="628" height="50"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="LWAssetLykkeTableViewCellIdentifier" rowHeight="50" id="SGz-Gb-01x" customClass="LWAssetLykkeTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SGz-Gb-01x" id="WW6-dd-IMW">
-                <frame key="frameInset" width="628" height="49"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8rT-58-bqx" customClass="LWAssetLykkeTableChangeView">
-                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-0.5%" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dZV-DO-I3D">
+                        <rect key="frame" x="254" y="8" width="50" height="33"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="17" id="c01-g9-7Tv"/>
-                            <constraint firstAttribute="width" constant="60" id="hQa-TU-6Gs"/>
+                            <constraint firstAttribute="height" constant="33" id="JhA-6r-m9U"/>
+                            <constraint firstAttribute="width" constant="50" id="K1p-Sl-a2t"/>
                         </constraints>
-                    </view>
+                        <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="14"/>
+                        <color key="textColor" red="0.2470588235" green="0.30196078430000001" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="JhA-6r-m9U"/>
+                            </mask>
+                        </variation>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AssetPriceArea" translatesAutoresizingMaskIntoConstraints="NO" id="PRu-Xk-opH">
+                        <rect key="frame" x="166" y="10" width="81" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="81" id="1jr-8V-Sm8"/>
+                            <constraint firstAttribute="height" constant="30" id="ycl-WX-AO1"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=". . ." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Ts-TG-rzO">
+                        <rect key="frame" x="166" y="8" width="81" height="33"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="81" id="bMl-e8-YPj"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="14"/>
+                        <color key="textColor" red="0.2470588235" green="0.30196078430000001" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kme-pX-a5L">
+                        <rect key="frame" x="18" y="8" width="141" height="33"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qp2-NH-mcm">
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EUR/USD" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LAC-T4-zjb">
+                                <rect key="frame" x="0.0" y="0.0" width="71" height="33"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="120" id="HQG-8e-OiB"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="17"/>
-                                <color key="textColor" red="0.2470588235" green="0.30196078430000001" blue="0.37647058820000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" red="0.2470588235" green="0.30196078430000001" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ExchangeSwitchAssets" translatesAutoresizingMaskIntoConstraints="NO" id="yUr-ll-hXM">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AssetInfoIcon" translatesAutoresizingMaskIntoConstraints="NO" id="UpM-l1-XrJ">
+                                <rect key="frame" x="76" y="9" width="16" height="16"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="12" id="O4r-vR-Wbc"/>
-                                    <constraint firstAttribute="width" constant="15" id="xSk-4V-wLv"/>
-                                </constraints>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WVN-Fv-hkf">
-                                <color key="backgroundColor" red="0.96078431372549022" green="0.96470588235294119" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="rwp-96-4qY"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="17"/>
-                                <color key="textColor" red="0.24705882352941178" green="0.30196078431372547" blue="0.37647058823529411" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AssetInfoIconFade" translatesAutoresizingMaskIntoConstraints="NO" id="UpM-l1-XrJ">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="Dpo-Kl-14H"/>
-                                    <constraint firstAttribute="width" constant="57" id="y1b-1F-hWK"/>
+                                    <constraint firstAttribute="height" constant="16" id="Dpo-Kl-14H"/>
+                                    <constraint firstAttribute="width" constant="16" id="y1b-1F-hWK"/>
                                 </constraints>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="yUr-ll-hXM" firstAttribute="leading" secondItem="LAC-T4-zjb" secondAttribute="trailing" constant="7" id="4tr-no-iZl"/>
                             <constraint firstItem="LAC-T4-zjb" firstAttribute="centerY" secondItem="Kme-pX-a5L" secondAttribute="centerY" id="7fB-Ic-WmQ"/>
                             <constraint firstItem="LAC-T4-zjb" firstAttribute="top" secondItem="Kme-pX-a5L" secondAttribute="top" id="882-im-dci"/>
-                            <constraint firstItem="qp2-NH-mcm" firstAttribute="centerY" secondItem="Kme-pX-a5L" secondAttribute="centerY" id="Aft-XU-L8u"/>
-                            <constraint firstItem="UpM-l1-XrJ" firstAttribute="leading" secondItem="WVN-Fv-hkf" secondAttribute="trailing" id="Gal-dO-ZlG"/>
-                            <constraint firstItem="UpM-l1-XrJ" firstAttribute="leading" secondItem="qp2-NH-mcm" secondAttribute="trailing" id="O0H-Eu-ZT4"/>
-                            <constraint firstItem="qp2-NH-mcm" firstAttribute="leading" secondItem="Kme-pX-a5L" secondAttribute="leading" id="PV6-Vf-CfP"/>
+                            <constraint firstItem="UpM-l1-XrJ" firstAttribute="leading" secondItem="LAC-T4-zjb" secondAttribute="trailing" constant="5" id="Y6z-ke-xKQ"/>
                             <constraint firstItem="LAC-T4-zjb" firstAttribute="leading" secondItem="Kme-pX-a5L" secondAttribute="leading" id="kOS-6H-19J"/>
                             <constraint firstAttribute="bottom" secondItem="LAC-T4-zjb" secondAttribute="bottom" id="kvn-bU-IPS"/>
-                            <constraint firstItem="yUr-ll-hXM" firstAttribute="centerY" secondItem="Kme-pX-a5L" secondAttribute="centerY" id="l0f-HB-bxl"/>
-                            <constraint firstItem="WVN-Fv-hkf" firstAttribute="leading" secondItem="yUr-ll-hXM" secondAttribute="trailing" constant="7" id="oK3-Ko-MND"/>
-                            <constraint firstItem="qp2-NH-mcm" firstAttribute="height" secondItem="Kme-pX-a5L" secondAttribute="height" id="xAG-vg-l9t"/>
-                            <constraint firstItem="WVN-Fv-hkf" firstAttribute="centerY" secondItem="Kme-pX-a5L" secondAttribute="centerY" id="xJR-oC-dip"/>
                             <constraint firstItem="UpM-l1-XrJ" firstAttribute="centerY" secondItem="Kme-pX-a5L" secondAttribute="centerY" id="xmX-Vm-fnq"/>
                         </constraints>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=". . ." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Ts-TG-rzO">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8rT-58-bqx" customClass="LWAssetLykkeTableChangeView">
+                        <rect key="frame" x="254" y="8" width="58" height="33"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="98" id="bMl-e8-YPj"/>
+                            <constraint firstAttribute="height" constant="33" id="c01-g9-7Tv"/>
+                            <constraint firstAttribute="width" constant="58" id="hQa-TU-6Gs"/>
                         </constraints>
-                        <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="14"/>
-                        <color key="textColor" red="0.2470588235" green="0.30196078430000001" blue="0.37647058820000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
+                    </view>
                 </subviews>
-                <color key="backgroundColor" red="0.95686274509803915" green="0.96470588235294119" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
+                    <constraint firstItem="8rT-58-bqx" firstAttribute="trailing" secondItem="WW6-dd-IMW" secondAttribute="trailingMargin" id="1Bo-Kb-Vbh"/>
+                    <constraint firstItem="8Ts-TG-rzO" firstAttribute="leading" secondItem="Kme-pX-a5L" secondAttribute="trailing" constant="7" id="2oy-oT-xMJ"/>
                     <constraint firstItem="8rT-58-bqx" firstAttribute="centerY" secondItem="WW6-dd-IMW" secondAttribute="centerY" id="3RL-c5-D47"/>
+                    <constraint firstItem="dZV-DO-I3D" firstAttribute="centerY" secondItem="WW6-dd-IMW" secondAttribute="centerY" id="6fS-65-2yx"/>
+                    <constraint firstItem="dZV-DO-I3D" firstAttribute="leading" secondItem="8Ts-TG-rzO" secondAttribute="trailing" constant="7" id="7xx-tb-wvy"/>
+                    <constraint firstItem="dZV-DO-I3D" firstAttribute="top" secondItem="WW6-dd-IMW" secondAttribute="topMargin" id="8jx-lz-K3m"/>
                     <constraint firstItem="8Ts-TG-rzO" firstAttribute="top" secondItem="WW6-dd-IMW" secondAttribute="topMargin" id="FNk-cS-gnF"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="8Ts-TG-rzO" secondAttribute="trailing" id="UbH-kY-ZiD"/>
+                    <constraint firstItem="8rT-58-bqx" firstAttribute="leading" secondItem="8Ts-TG-rzO" secondAttribute="trailing" constant="7" id="GXu-ke-ec2"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="dZV-DO-I3D" secondAttribute="trailing" constant="8" id="NOg-wA-OYH"/>
                     <constraint firstItem="Kme-pX-a5L" firstAttribute="top" secondItem="WW6-dd-IMW" secondAttribute="topMargin" id="b5E-T1-oXu"/>
                     <constraint firstItem="8Ts-TG-rzO" firstAttribute="bottom" secondItem="WW6-dd-IMW" secondAttribute="bottomMargin" id="boh-Yl-y4y"/>
-                    <constraint firstItem="8rT-58-bqx" firstAttribute="leading" secondItem="Kme-pX-a5L" secondAttribute="trailing" constant="7" id="hCp-Kv-rQC"/>
-                    <constraint firstItem="8Ts-TG-rzO" firstAttribute="leading" secondItem="8rT-58-bqx" secondAttribute="trailing" constant="7" id="jtn-zh-kpU"/>
+                    <constraint firstItem="dZV-DO-I3D" firstAttribute="bottom" secondItem="WW6-dd-IMW" secondAttribute="bottomMargin" id="fxq-lo-Rqq"/>
+                    <constraint firstItem="PRu-Xk-opH" firstAttribute="centerY" secondItem="WW6-dd-IMW" secondAttribute="centerY" id="fyI-cY-dQx"/>
+                    <constraint firstItem="dZV-DO-I3D" firstAttribute="leading" secondItem="PRu-Xk-opH" secondAttribute="trailing" constant="7" id="lrv-C3-mLg"/>
                     <constraint firstItem="Kme-pX-a5L" firstAttribute="leading" secondItem="WW6-dd-IMW" secondAttribute="leadingMargin" constant="10" id="sHu-KX-fKQ"/>
                     <constraint firstItem="Kme-pX-a5L" firstAttribute="bottom" secondItem="WW6-dd-IMW" secondAttribute="bottomMargin" id="tpP-oJ-oOj"/>
                 </constraints>
             </tableViewCellContentView>
-            <color key="backgroundColor" red="0.96078431372549022" green="0.96470588235294119" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" red="0.91764705879999997" green="0.92941176469999998" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
             <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
             <connections>
+                <outlet property="assetChangeLabel" destination="dZV-DO-I3D" id="DE0-RP-fxv"/>
                 <outlet property="assetChangeView" destination="8rT-58-bqx" id="JZA-H0-Jd5"/>
+                <outlet property="assetNameLabel" destination="LAC-T4-zjb" id="khb-T9-fu5"/>
+                <outlet property="assetPriceImageView" destination="PRu-Xk-opH" id="Anm-qC-7NC"/>
                 <outlet property="assetPriceLabel" destination="8Ts-TG-rzO" id="kxI-n5-M6v"/>
-                <outlet property="assetReverseImageView" destination="yUr-ll-hXM" id="fnY-f8-wCV"/>
-                <outlet property="leftAssetNameLabel" destination="LAC-T4-zjb" id="TH8-aR-6pV"/>
-                <outlet property="rightAssetNameLabel" destination="WVN-Fv-hkf" id="7Rd-YT-a7b"/>
-                <outlet property="touchCatchView" destination="qp2-NH-mcm" id="Plh-U0-oh6"/>
             </connections>
-            <point key="canvasLocation" x="356" y="189"/>
+            <point key="canvasLocation" x="202" y="190"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="AssetInfoIconFade" width="57" height="50"/>
-        <image name="ExchangeSwitchAssets" width="31" height="26"/>
+        <image name="AssetInfoIcon" width="17" height="17"/>
+        <image name="AssetPriceArea" width="81" height="30"/>
     </resources>
 </document>

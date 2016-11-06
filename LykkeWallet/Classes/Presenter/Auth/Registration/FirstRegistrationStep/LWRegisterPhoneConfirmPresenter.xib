@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="Proxima Nova Regular.otf">
+            <string>ProximaNova-Regular</string>
+            <string>ProximaNova-Regular</string>
+            <string>ProximaNova-Regular</string>
+        </mutableArray>
+        <mutableArray key="Proxima Nova Semibold.otf">
+            <string>ProximaNova-Semibold</string>
+        </mutableArray>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LWRegisterPhoneConfirmPresenter">
+            <connections>
+                <outlet property="codeContainer" destination="9bM-Qa-akT" id="JVT-7T-8hB"/>
+                <outlet property="confirmButton" destination="zfm-MU-Ghg" id="4cH-Xd-Vbb"/>
+                <outlet property="infoLabel" destination="XNX-vK-411" id="2Q5-aW-egn"/>
+                <outlet property="statusLabel" destination="VlG-77-cV8" id="9F2-a6-tGq"/>
+                <outlet property="titleLabel" destination="3a2-oh-15P" id="vMe-rR-Kww"/>
+                <outlet property="view" destination="Ysh-Gz-Prh" id="6F8-It-d5l"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="Ysh-Gz-Prh">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" alpha="0.59999999999999998" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We've sent the code on number +79031234567" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VlG-77-cV8">
+                    <rect key="frame" x="10" y="227" width="300" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="NuN-VG-5M4"/>
+                        <constraint firstAttribute="width" constant="300" id="wmg-ns-Tpd"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="15"/>
+                    <color key="textColor" red="0.2470588235" green="0.30196078430000001" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9bM-Qa-akT" customClass="TKContainer">
+                    <rect key="frame" x="0.0" y="77" width="320" height="64"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="320" id="Oj9-U7-8Ym"/>
+                        <constraint firstAttribute="height" constant="64" id="gCS-w5-ZEF"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zfm-MU-Ghg" customClass="TKButton">
+                    <rect key="frame" x="8" y="161" width="304" height="45"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="304" id="QkA-yv-n3X"/>
+                        <constraint firstAttribute="height" constant="45" id="kFc-Ug-TlO"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="ProximaNova-Semibold" family="Proxima Nova" pointSize="17"/>
+                    <state key="normal" title="CONFIRM" backgroundImage="ButtonOKInactive">
+                        <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="confirmClicked:" destination="-1" eventType="touchUpInside" id="oxV-fh-cui"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Haven't received the code?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XNX-vK-411">
+                    <rect key="frame" x="0.0" y="285" width="320" height="25"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="25" id="Gid-KH-MIG"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="14"/>
+                    <color key="textColor" red="0.6705882353" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Complete your profile" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3a2-oh-15P">
+                    <rect key="frame" x="8" y="0.0" width="304" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="E9P-Pv-Jtc"/>
+                        <constraint firstAttribute="width" constant="304" id="cF8-bC-Hzb"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="16"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="RegisterLineStep1" translatesAutoresizingMaskIntoConstraints="NO" id="eFT-yL-H5f">
+                    <rect key="frame" x="0.0" y="29" width="320" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="320" id="I42-LL-XYW"/>
+                        <constraint firstAttribute="height" constant="40" id="qAU-rr-Tu3"/>
+                    </constraints>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="9bM-Qa-akT" firstAttribute="centerX" secondItem="Ysh-Gz-Prh" secondAttribute="centerX" id="7oB-20-GF0"/>
+                <constraint firstItem="zfm-MU-Ghg" firstAttribute="top" secondItem="9bM-Qa-akT" secondAttribute="bottom" constant="20" id="8aV-JN-0oF"/>
+                <constraint firstItem="3a2-oh-15P" firstAttribute="centerX" secondItem="Ysh-Gz-Prh" secondAttribute="centerX" id="HI6-Hh-a8H"/>
+                <constraint firstItem="XNX-vK-411" firstAttribute="top" secondItem="VlG-77-cV8" secondAttribute="bottom" constant="8" id="OFI-ov-um3"/>
+                <constraint firstItem="9bM-Qa-akT" firstAttribute="top" secondItem="eFT-yL-H5f" secondAttribute="bottom" constant="8" id="Pwz-li-FDy"/>
+                <constraint firstAttribute="trailing" secondItem="XNX-vK-411" secondAttribute="trailing" id="Rvj-0n-JpX"/>
+                <constraint firstItem="zfm-MU-Ghg" firstAttribute="centerX" secondItem="Ysh-Gz-Prh" secondAttribute="centerX" id="UGb-XN-hUT"/>
+                <constraint firstItem="XNX-vK-411" firstAttribute="leading" secondItem="Ysh-Gz-Prh" secondAttribute="leading" id="VnI-aD-RFC"/>
+                <constraint firstItem="VlG-77-cV8" firstAttribute="top" secondItem="zfm-MU-Ghg" secondAttribute="bottom" constant="21" id="fiC-bm-c0S"/>
+                <constraint firstItem="eFT-yL-H5f" firstAttribute="top" secondItem="3a2-oh-15P" secondAttribute="bottom" constant="8" id="hqw-47-y4i"/>
+                <constraint firstItem="3a2-oh-15P" firstAttribute="top" secondItem="Ysh-Gz-Prh" secondAttribute="top" id="olj-Gs-jIS"/>
+                <constraint firstItem="VlG-77-cV8" firstAttribute="centerX" secondItem="Ysh-Gz-Prh" secondAttribute="centerX" id="qr3-gK-ngh"/>
+                <constraint firstItem="eFT-yL-H5f" firstAttribute="centerX" secondItem="Ysh-Gz-Prh" secondAttribute="centerX" id="x2q-fd-f2j"/>
+            </constraints>
+            <point key="canvasLocation" x="266" y="202"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="ButtonOKInactive" width="320" height="51"/>
+        <image name="RegisterLineStep1" width="296" height="23"/>
+    </resources>
+</document>

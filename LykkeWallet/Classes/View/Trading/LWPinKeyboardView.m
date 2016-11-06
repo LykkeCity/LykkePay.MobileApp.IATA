@@ -10,7 +10,6 @@
 #import "LWConstants.h"
 #import "Macro.h"
 #import "UIColor+Generic.h"
-#import "LWFingerprintHelper.h"
 
 
 @interface LWPinKeyboardView () {
@@ -26,11 +25,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *statusImageView;
 @property (weak, nonatomic) IBOutlet UIButton *cancelButton;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *numpadButtons;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *fingerPrintWidthConstraint;
-
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *statusImageWidthConstraint;
-
-@property (weak, nonatomic) IBOutlet UIView *fingerPrintView;
 
 
 #pragma mark - Actions
@@ -52,28 +46,13 @@
 static NSInteger const kPinLength = 4;
 static NSInteger const kAttemptsAvailable = 3;
 
--(void) awakeFromNib
-{
-    if([UIScreen mainScreen].bounds.size.width==320)
-    {
-        for(UIButton *b in _numpadButtons)
-        {
-            b.titleLabel.font=[UIFont fontWithName:@"ProximaNovaT-Thin" size:32];
-        }
-        _fingerPrintWidthConstraint.constant=32;
-        _statusImageWidthConstraint.constant=93;
-    }
-    
-    if([LWFingerprintHelper isFingerprintAvailable]==NO)
-        self.fingerPrintView.hidden=YES;
-}
 
 - (void)updateView {
     attemptsRemaining = kAttemptsAvailable;
     
     [self.cancelButton setTitleColor:[UIColor colorWithHexString:kMainDarkElementsColor] forState:UIControlStateNormal];
     
-    [self setTitle:@"Confirm order with your PIN"];
+    [self setTitle:Localize(@"ABPadLockScreen.pin.enter")];
     [self.cancelButton setTitle:Localize(@"exchange.assets.modal.cancel")
                        forState:UIControlStateNormal];
     
@@ -87,18 +66,13 @@ static NSInteger const kAttemptsAvailable = 3;
 - (void)pinRejected {
     --attemptsRemaining;
     if (attemptsRemaining > 0) {
-        
-        
-        [self animateFailureNotificationDirection:30];
-        
-        
-//        NSString *attempts = Localize(@"ABPadLockScreen.pin.attempts.left.one");
-//        if (attemptsRemaining != 1) {
-//            attempts = Localize(@"ABPadLockScreen.pin.attempts.left.several");
-//        }
-//
-//        NSString *title = [NSString stringWithFormat:@"%d %@", attemptsRemaining, attempts];
-//        [self setTitle:title];
+        NSString *attempts = Localize(@"ABPadLockScreen.pin.attempts.left.one");
+        if (attemptsRemaining != 1) {
+            attempts = Localize(@"ABPadLockScreen.pin.attempts.left.several");
+        }
+
+        NSString *title = [NSString stringWithFormat:@"%d %@", attemptsRemaining, attempts];
+        [self setTitle:title];
     }
     else {
         [self.delegate pinAttemptEnds];
@@ -128,11 +102,6 @@ static NSInteger const kAttemptsAvailable = 3;
         pin = [pin stringByAppendingString:number];
         [self updatePinStatus];
     }
-}
-
--(IBAction)fingerprintPressed:(id)sender
-{
-    [self.delegate pinKeyboardViewPressedFingerPrint];
 }
 
 
@@ -174,25 +143,5 @@ static NSInteger const kAttemptsAvailable = 3;
         [self.delegate pinEntered:pin];
     }
 }
-
-- (void) animateFailureNotificationDirection:(CGFloat)direction
-{
-    [UIView setAnimationsEnabled:YES];
-    [UIView animateWithDuration:0.08 animations:^{
-        
-        CGAffineTransform transform = CGAffineTransformMakeTranslation(direction, 0);
-        
-        self.statusImageView.layer.affineTransform = transform;
-        
-        
-    } completion:^(BOOL finished) {
-        if(fabs(direction) < 1) {
-            self.statusImageView.layer.affineTransform = CGAffineTransformIdentity;
-            return;
-        }
-        [self animateFailureNotificationDirection:-1 * direction / 2];
-    }];
-}
-
 
 @end

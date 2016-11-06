@@ -9,23 +9,13 @@
 #import "LWRegisterPINSetupPresenter.h"
 #import "LWAuthNavigationController.h"
 #import "ABPadLockScreen.h"
-#import "LWValidator.h"
-#import "UIViewController+Loading.h"
-#import "LWGenerateKeyPresenter.h"
-
-#import "LWPINPresenter.h"
-
-
-#import "LWKeychainManager.h"
 
 
 @interface LWRegisterPINSetupPresenter ()<ABPadLockScreenSetupViewControllerDelegate> {
-//    ABPadLockScreenSetupViewController *pinController;
-  
-    LWPINPresenter *pinController;
+    ABPadLockScreenSetupViewController *pinController;
+    
     NSString *pin;
     BOOL     pinDidSendToServer;
-    UIImageView *progressView;
 }
 
 @property (weak, nonatomic) IBOutlet UIView  *maskingView;
@@ -47,54 +37,18 @@
     [self.navigationController setNavigationBarHidden:YES animated:NO];
     // set masking view visibility
     self.maskingView.hidden = pinDidSendToServer;
-//    [self setLoading:!pinDidSendToServer];
-
     // adjust pin controller frame
     if (!pinController) {
+        pinController = [[ABPadLockScreenSetupViewController alloc] initWithDelegate:self
+                                                                          complexPin:NO];
+        [pinController cancelButtonDisabled:YES];
         
-        pinController=[LWPINPresenter new];
-        pinController.pinType=PIN_TYPE_ENTER;
-        pinController.view.autoresizingMask=UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-
-        pinController.pinEnteredBlock=^(NSString *pin_){
-            pin=pin_;
-            [self setLoading:YES];
-            [[LWAuthManager instance] requestPinSecuritySet:pin_];
-            
-            
-        
-        };
-//        pinController = [[ABPadLockScreenSetupViewController alloc] initWithDelegate:self
-//                                                                          complexPin:NO];
-//        [pinController cancelButtonDisabled:YES];
-//        
-//        pinController.modalPresentationStyle = UIModalPresentationFullScreen;
-//        pinController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-//        progressView=[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 37)];
-//        progressView.image=[UIImage imageNamed:@"RegisterLineStep4.png"];
-//        progressView.contentMode=UIViewContentModeCenter;
-//        progressView.hidden=YES;
-//        [pinController.view addSubview:progressView];
-        
-        
+        pinController.modalPresentationStyle = UIModalPresentationFullScreen;
+        pinController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     }
     if (!pin) {
-//        [self presentViewController:pinController animated:YES completion:nil];
-        pinController.view.frame=self.view.bounds;
-        [self.view addSubview:pinController.view];
-        [self addChildViewController:pinController];
+        [self presentViewController:pinController animated:YES completion:nil];
     }
-    
-    
-}
-
--(void) viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    progressView.center=CGPointMake(self.view.bounds.size.width/2, 40);
-    progressView.hidden=NO;
-    [LWValidator setButton:self.okButton enabled:YES];
-
 }
 
 - (void)localize {
@@ -124,16 +78,14 @@
 
 #pragma mark - ABPadLockScreenSetupViewControllerDelegate
 
-//- (void)padLockScreenSetupViewController:(ABPadLockScreenSetupViewController *)controller didSetPin:(NSString *)pin_ {
-//    [controller dismissViewControllerAnimated:YES completion:nil]; // dismiss
-//    [pinController clearPin]; // don't forget to clear PIN data
-//    // save pin
-//    
-//    pin = [pin_ copy];
-//    
-//    // request PIN setup
-//    [[LWAuthManager instance] requestPinSecuritySet:pin];
-//}
+- (void)padLockScreenSetupViewController:(ABPadLockScreenSetupViewController *)controller didSetPin:(NSString *)pin_ {
+    [controller dismissViewControllerAnimated:YES completion:nil]; // dismiss
+    [pinController clearPin]; // don't forget to clear PIN data
+    // save pin
+    pin = [pin_ copy];
+    // request PIN setup
+    [[LWAuthManager instance] requestPinSecuritySet:pin];
+}
 
 
 #pragma mark - LWAuthManagerDelegate
@@ -141,22 +93,7 @@
 - (void)authManagerDidSetPin:(LWAuthManager *)manager {
     pinDidSendToServer = YES;
     // hide masking view
-//    self.maskingView.hidden = YES;
-    [self setLoading:NO];
-    
-    [[LWAuthManager instance] requestMyLykkeSettings];
-    LWGenerateKeyPresenter *presenter=[[LWGenerateKeyPresenter alloc] init];
-    presenter.flagSkipIntro=NO;
-    presenter.backupMode=BACKUP_MODE_PRIVATE_KEY;
-
-    [self.navigationController pushViewController:presenter animated:YES];
-    
-}
-
--(void) authManager:(LWAuthManager *)manager didFailWithReject:(NSDictionary *)reject context:(GDXRESTContext *)context
-{
-    [self setLoading:NO];
-    [self showReject:reject response:context.task.response];
+    self.maskingView.hidden = YES;
 }
 
 @end

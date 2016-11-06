@@ -7,9 +7,8 @@
 //
 
 #import "LWKeychainManager.h"
-#import "LWPersonalDataModel.h"
+#import "LWPersonalData.h"
 #import "LWConstants.h"
-#import "LWPrivateKeyManager.h"
 #import <Valet/Valet.h>
 
 static NSString *const kKeychainManagerAppId    = @"LykkeWallet";
@@ -18,16 +17,7 @@ static NSString *const kKeychainManagerLogin    = @"Login";
 static NSString *const kKeychainManagerPhone    = @"Phone";
 static NSString *const kKeychainManagerFullName = @"FullName";
 static NSString *const kKeychainManagerAddress  = @"Address";
-static NSString *const kKeychainManagerPassword  = @"Password";
-static NSString *const kKeychainManagerPIN  = @"Pin";
-
-static NSString *const kKeychainManagerNotificationsTag  = @"NotificationsTag";
-
-static NSString *const kKeychainManagerUserPrivateWalletsAddresses=@"UserWalletsAddresses";
-
-static NSString *const kKeychainManagerPersonalData = @"PersonalData";
-
-
+static NSString *const kKeychainManagerAviaCompany=@"AviaCompanyId";
 
 
 @interface LWKeychainManager () {
@@ -45,11 +35,8 @@ static NSString *const kKeychainManagerPersonalData = @"PersonalData";
 SINGLETON_INIT {
     self = [super init];
     if (self) {
-//        valet = [[VALValet alloc] initWithIdentifier:kKeychainManagerAppId
-//                                       accessibility:VALAccessibilityWhenUnlocked];
         valet = [[VALValet alloc] initWithIdentifier:kKeychainManagerAppId
-                                       accessibility:VALAccessibilityAlways];
-//        [self clear]; //Andrey
+                                       accessibility:VALAccessibilityWhenUnlocked];
     }
     return self;
 }
@@ -57,16 +44,12 @@ SINGLETON_INIT {
 
 #pragma mark - Common
 
-
-- (void)saveLogin:(NSString *)login password:(NSString *)password token:(NSString *)token
-{
+- (void)saveLogin:(NSString *)login token:(NSString *)token {
     [valet setString:token forKey:kKeychainManagerToken];
     [valet setString:login forKey:kKeychainManagerLogin];
-    [valet setString:password forKey:kKeychainManagerPassword];
-    
 }
 
-- (void)savePersonalData:(LWPersonalDataModel *)personalData {
+- (void)savePersonalData:(LWPersonalData *)personalData {
     if (personalData) {
         if (personalData.phone
             && ![personalData.phone isKindOfClass:[NSNull class]]) {
@@ -76,91 +59,23 @@ SINGLETON_INIT {
             && ![personalData.fullName isKindOfClass:[NSNull class]]) {
             [valet setString:personalData.fullName forKey:kKeychainManagerFullName];
         }
-        
-        if(personalData.jsonString)
-            [valet setString:personalData.jsonString forKey:kKeychainManagerPersonalData];
+        if(personalData.aviaCompanyId)
+        {
+            [valet setString:personalData.aviaCompanyId forKey:kKeychainManagerAviaCompany];
+        }
     }
-}
-
--(void) saveFullName:(NSString *)fullName
-{
-    [valet setString:fullName forKey:kKeychainManagerFullName];
-
-}
-
--(LWPersonalDataModel *) personalData
-{
-    NSString *json=[valet stringForKey:kKeychainManagerPersonalData];
-    if(!json)
-        return nil;
-    
-    
-    NSDictionary *dict=[NSJSONSerialization JSONObjectWithData:[json dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingMutableContainers error:nil];
-    
-    LWPersonalDataModel *model=[[LWPersonalDataModel alloc] initWithJSON:dict];
-    return model;
 }
 
 - (void)saveAddress:(NSString *)address {
     [valet setString:address forKey:kKeychainManagerAddress];
 }
 
-
-
--(void) saveNotificationsTag:(NSString *)tag
-{
-    [valet setString:tag forKey:kKeychainManagerNotificationsTag];
-}
-
-
 - (void)clear {
     [valet removeObjectForKey:kKeychainManagerToken];
     [valet removeObjectForKey:kKeychainManagerLogin];
     [valet removeObjectForKey:kKeychainManagerPhone];
     [valet removeObjectForKey:kKeychainManagerFullName];
-    [valet removeObjectForKey:kKeychainManagerPassword];
-    [valet removeObjectForKey:kKeychainManagerNotificationsTag];
-    [valet removeObjectForKey:kKeychainManagerPersonalData];
-    [valet removeObjectForKey:kKeychainManagerPIN];
-}
-
--(void) saveEncodedLykkePrivateKey:(NSString *)privateKey
-{
-    if(![self login])
-        return;
-    [valet setString:privateKey forKey:[self login]];
-}
-
--(NSString *) encodedPrivateKeyForEmail:(NSString *)email
-{
-    return [valet stringForKey:email];
-}
-
-//-(void) savePrivateKey:(NSString *)privateKey forWalletAddress:(NSString *)address
-//{
-//    NSData *data=[valet objectForKey:kKeychainManagerUserPrivateWalletsAddresses];
-//    NSMutableArray *wallets;// = [[NSKeyedUnarchiver unarchiveObjectWithData:data] mutableCopy];
-//    if(data)
-//        wallets=[[NSKeyedUnarchiver unarchiveObjectWithData:data] mutableCopy];
-//    else
-//        wallets=[[NSMutableArray alloc] init];
-//    if([wallets containsObject:address]==NO)
-//    {
-//        [wallets addObject:address];
-//        data = [NSKeyedArchiver archivedDataWithRootObject:wallets];
-//        [valet setObject:data forKey:kKeychainManagerUserPrivateWalletsAddresses];
-//    }
-//    [valet setString:privateKey forKey:address];
-//}
-
--(void) savePIN:(NSString *) pin
-{
-    [valet setString:pin forKey:kKeychainManagerPIN];
-}
-
--(NSString *) pin
-{
-    return [valet stringForKey:kKeychainManagerPIN];
+    [valet removeObjectForKey:kKeychainManagerAviaCompany];
 }
 
 
@@ -174,37 +89,12 @@ SINGLETON_INIT {
     return [valet stringForKey:kKeychainManagerToken];
 }
 
--(NSString *) password
+-(NSString *) aviaCompanyId
 {
-    return [valet stringForKey:kKeychainManagerPassword];
+    return [valet stringForKey:kKeychainManagerAviaCompany];
 }
-
--(NSString *) notificationsTag
-{
-    return [valet stringForKey:kKeychainManagerNotificationsTag];
-}
-
--(NSString *) encodedPrivateKeyLykke
-{
-    
-    return [valet stringForKey:[self login]];
-}
-
-//-(NSString *) privateKeyForWalletAddress:(NSString *) address
-//{
-//    return [valet stringForKey:address];
-//}
-
-
-
 
 - (NSString *)address {
-    
-//    return kProductionServer;//Testing
-    
-//    return @"http://testtestest.me";//Andrey
-    
-//    return kStagingTestServer;
 
 #ifdef PROJECT_IATA
     return kDevelopTestServer;
@@ -214,14 +104,14 @@ SINGLETON_INIT {
     NSString *result = [valet stringForKey:kKeychainManagerAddress];
     // validate for nil, empty or non-existing addresses
     if (!result || [result isEqualToString:@""]) {
-        [self saveAddress:kDevelopTestServer];
-        return kDevelopTestServer;
+        [self saveAddress:kDemoTestServer];
+        return kDemoTestServer;
     }
-    else if (![result isEqualToString:kTestingTestServer] &&
+    else if (![result isEqualToString:kDemoTestServer] &&
              ![result isEqualToString:kDevelopTestServer] &&
              ![result isEqualToString:kStagingTestServer]) {
-        [self saveAddress:kDevelopTestServer];
-        return kDevelopTestServer;
+        [self saveAddress:kDemoTestServer];
+        return kDemoTestServer;
     }
     return result;
 #else
@@ -232,7 +122,7 @@ SINGLETON_INIT {
 }
 
 - (BOOL)isAuthenticated {
-    return (self.token && ![self.token isEqualToString:@""] && [LWPrivateKeyManager shared].privateKeyLykke);
+    return (self.token && ![self.token isEqualToString:@""]);
 }
 
 - (NSString *)fullName {

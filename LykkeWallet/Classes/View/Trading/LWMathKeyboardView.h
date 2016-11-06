@@ -12,24 +12,18 @@
 
 @protocol LWMathKeyboardViewDelegate
 @required
-- (void)mathKeyboardView:(LWMathKeyboardView *) view volumeStringChangedTo:(NSString *) string;
--(void) mathKeyboardDonePressed:(LWMathKeyboardView *) keyboardView;
+- (void)volumeChanged:(NSString *)volume withValidState:(BOOL)isValid;
+- (void)mathKeyboardViewDidRaiseMathException:(LWMathKeyboardView *)view;
 
 @end
 
 
-@interface LWMathKeyboardView : UIView {
+@interface LWMathKeyboardView : TKView {
     
 }
 
-
--(void) setText:(NSString *) text;
-
-@property BOOL isVisible;
 @property (weak, nonatomic) UITextField *targetTextField;
-@property (weak, nonatomic) id delegate;
-@property (strong, nonatomic) NSNumber *accuracy;
-
+@property (weak, nonatomic) id<LWMathKeyboardViewDelegate> delegate;
 
 - (void)updateView;
 

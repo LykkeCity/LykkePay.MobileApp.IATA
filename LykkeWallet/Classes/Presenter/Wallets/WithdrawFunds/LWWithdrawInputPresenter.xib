@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="Proxima Nova Semibold.otf">
@@ -14,7 +14,6 @@
             <connections>
                 <outlet property="bottomConstraint" destination="XPS-o8-0Fx" id="aeK-Kn-VQC"/>
                 <outlet property="operationButton" destination="Z5R-Hl-Cff" id="XsC-hE-fub"/>
-                <outlet property="operationView" destination="nNt-XG-MTV" id="ZG6-ec-0QX"/>
                 <outlet property="tableView" destination="agb-IQ-SfU" id="1xb-YS-Bcv"/>
                 <outlet property="view" destination="nvu-Pj-hzH" id="X4I-Zb-Qwp"/>
             </connections>

@@ -13,7 +13,7 @@
     
 }
 // in
-@property (strong, nonatomic) NSString *email;
+@property (copy, nonatomic) NSString *email;
 @property (copy, nonatomic) NSString *code;
 // out
 @property (readonly, nonatomic) BOOL isPassed;

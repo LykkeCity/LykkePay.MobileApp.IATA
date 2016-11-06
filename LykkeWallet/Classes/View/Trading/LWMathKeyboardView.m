@@ -7,11 +7,11 @@
 //
 
 #import "LWMathKeyboardView.h"
-#import "LWMathKeyboardCursorView.h"
+#import "LWMath.h"
+#import "GCMathParser.h"
 
 typedef NS_ENUM(NSInteger, LWMathKeyboardViewNumpad) {
-    LWMathKeyboardViewNumpad0=0,
-    LWMathKeyboardViewNumpad1,
+    LWMathKeyboardViewNumpad1 = 1,
     LWMathKeyboardViewNumpad2,
     LWMathKeyboardViewNumpad3,
     LWMathKeyboardViewNumpad4,
@@ -20,12 +20,13 @@ typedef NS_ENUM(NSInteger, LWMathKeyboardViewNumpad) {
     LWMathKeyboardViewNumpad7,
     LWMathKeyboardViewNumpad8,
     LWMathKeyboardViewNumpad9,
+    LWMathKeyboardViewNumpad0,
     LWMathKeyboardViewNumpadDot,
     LWMathKeyboardViewNumpadBackspace
 };
 
 typedef NS_ENUM(NSInteger, LWMathKeyboardViewSign) {
-    LWMathKeyboardViewSignDivide=1,
+    LWMathKeyboardViewSignDivide,
     LWMathKeyboardViewSignMultiply,
     LWMathKeyboardViewSignSubtract,
     LWMathKeyboardViewSignAdd,
@@ -35,23 +36,12 @@ typedef NS_ENUM(NSInteger, LWMathKeyboardViewSign) {
 
 @interface LWMathKeyboardView () {
     
-    NSInteger previousSign;
-    NSNumber *previousNumber;
-    NSNumber *currentOperNumber;
-    UIButton *highlightedSignButton;
-    
-    NSString *textFieldString;
-    
-    LWMathKeyboardCursorView *cursorView;
-    
-    BOOL isVisibleNow;
 }
 
 @property (weak, nonatomic) IBOutlet UIButton *delimiterButton;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *snippetButtons;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *numpadButtons;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *signButtons;
-@property (weak, nonatomic) IBOutlet UIButton *doneButton;
 
 
 #pragma mark - Actions
@@ -61,7 +51,12 @@ typedef NS_ENUM(NSInteger, LWMathKeyboardViewSign) {
 - (IBAction)signButtonClick:(UIButton *)sender;
 
 
+#pragma mark - Utils
 
+- (NSString *)decimalSeparator;
+- (NSString *)groupSeparator;
+- (void)calculate:(BOOL)shouldRaiseException shouldValidate:(BOOL)shouldValidate;
+- (BOOL)isSymbolsExists:(NSString *)symbols forString:(NSString *)string;
 
 @end
 
@@ -71,95 +66,27 @@ typedef NS_ENUM(NSInteger, LWMathKeyboardViewSign) {
 
 #pragma mark - Root
 
-
-
--(void) awakeFromNib
-{
-    [super awakeFromNib];
-    
-    self.isVisible=NO;
-    [self checkView:self];
-    
-}
-
--(void) checkView:(UIView *) view
-{
-    for(UIView *v in view.subviews)
-    {
-        v.translatesAutoresizingMaskIntoConstraints=YES;
-        [self checkView:v];
-    }
-}
-
--(void) setIsVisible:(BOOL)isVisible
-{
-    isVisibleNow=isVisible;
-    cursorView.hidden=!isVisibleNow;
-}
-
--(BOOL) isVisible
-{
-    return isVisibleNow;
-}
-
--(void) setTargetTextField:(UITextField *)targetTextField
-{
-    textFieldString=targetTextField.text;
-    _targetTextField=targetTextField;
-    [cursorView removeFromSuperview];
-    
-    cursorView=[[LWMathKeyboardCursorView alloc] init];
-    [targetTextField addSubview:cursorView];
-    cursorView.center=CGPointMake(targetTextField.bounds.size.width-cursorView.bounds.size.width/2, targetTextField.bounds.size.height/2);
-}
-
--(void) setText:(NSString *)text
-{
-    if(text.length==0)
-        text=@"0";
-    textFieldString=text;
-    previousSign=0;
-    previousNumber=nil;
-    currentOperNumber=nil;
-    [self highlightSign:nil];
-}
-
 - (void)updateView {
-    NSArray *SnippedValues = @[@(100),@(1000),@(10000)];
+    NSInteger const SnippedValues[] = { 100, 1000, 10000 };
     
     int item = 0;
     for (UIButton *button in self.snippetButtons) {
-        NSString *value = [NSString stringWithFormat:@"%d", [SnippedValues[item] intValue]];
+        NSString *value = [LWMath stringWithInteger:SnippedValues[item]];
         [button setTitle:value forState:UIControlStateNormal];
         ++item;
     }
 }
 
--(void) setFrame:(CGRect)frame
-{
-    [super setFrame:frame];
-}
-
 - (void)layoutSubviews {
     [super layoutSubviews];
     
-    
-    if(self.bounds.size.width==320)
-    {
-        for(UIButton *b in _numpadButtons)
-        {
-            b.titleLabel.font=[UIFont fontWithName:@"ProximaNova-Light" size:25];
-        }
-    }
-    
-    CGFloat whLine = 1; // 1px between elements
+    const CGFloat whLine = 1; // 1px between elements
     
     CGFloat wTotal = self.frame.size.width;
-//    CGFloat wSign = [self.signButtons.firstObject frame].size.width;
-    CGFloat wSign=wTotal/4-whLine*3;;
+    CGFloat wSign = [self.signButtons.firstObject frame].size.width;
     CGFloat wNumpadArea = wTotal - wSign - whLine;
     CGFloat wNumpad = (wNumpadArea - whLine * 2) / 3;
-    CGFloat wSnippet = wNumpadArea/3;//(wTotal - whLine * 2) / 3;
+    CGFloat wSnippet = (wTotal - whLine * 2) / 3;
     
     CGFloat hTotal = self.frame.size.height;
     CGFloat hSnippet = [self.snippetButtons.firstObject frame].size.height;
@@ -169,10 +96,8 @@ typedef NS_ENUM(NSInteger, LWMathKeyboardViewSign) {
     
     for (NSInteger i = 0; i < self.snippetButtons.count; i++) {
         UIButton *button = self.snippetButtons[i];
-        button.frame = CGRectMake(i * (wSnippet ), 0, wSnippet, hSnippet);
+        button.frame = CGRectMake(i * (wSnippet + whLine), 0, wSnippet, hSnippet);
     }
-    
-    self.doneButton.frame=CGRectMake(wSnippet*self.snippetButtons.count, 0, self.bounds.size.width-(wSnippet*self.snippetButtons.count), hSnippet);
     for (NSInteger i = 0; i < self.signButtons.count; i++) {
         UIButton *button = self.signButtons[i];
         button.frame = CGRectMake(wNumpadArea + whLine, hSnippet + whLine + i * hSign, wSign, hSign);
@@ -191,232 +116,149 @@ typedef NS_ENUM(NSInteger, LWMathKeyboardViewSign) {
                                   hNumpad);
     }
     
-    [self.delimiterButton setTitle:@"." forState:UIControlStateNormal];
-    
+    [self.delimiterButton setTitle:[self decimalSeparator]
+                          forState:UIControlStateNormal];
 }
-
-
-
 
 
 #pragma mark - Actions
 
 - (IBAction)snippetButtonClick:(UIButton *)sender {
-    
     NSString *str = sender.titleLabel.text;
-    textFieldString = str;
-    previousSign=0;
-    previousNumber=nil;
-    currentOperNumber=nil;
-    [self highlightSign:nil];
-    
-    if([self.delegate respondsToSelector:@selector(mathKeyboardView:volumeStringChangedTo:)])
-        [self.delegate mathKeyboardView:self volumeStringChangedTo:textFieldString];
+    self.targetTextField.text = str;
+    [self calculate:NO shouldValidate:YES];
 }
 
 - (IBAction)numpadButtonClick:(UIButton *)sender {
-    
-    if(highlightedSignButton || currentOperNumber)
-    {
-        previousSign=highlightedSignButton.tag;
-        [self highlightSign:nil];
-        previousNumber=@(textFieldString.floatValue);
-        currentOperNumber=nil;
-        textFieldString=@"0";
-    }
-    
-    
-    if(sender.tag==LWMathKeyboardViewNumpadBackspace)
-    {
-            NSRange range = NSMakeRange(textFieldString.length - 1, 1);
-            textFieldString = [textFieldString
-                                         stringByReplacingCharactersInRange:range
-                                         withString:@""];
-            if(textFieldString.length==0)
-                textFieldString=@"0";
- 
-    }
-    else if(sender.tag==LWMathKeyboardViewNumpadDot)
-    {
-            if([textFieldString rangeOfString:@"."].location==NSNotFound && self.accuracy.intValue>0)
-                textFieldString = [textFieldString stringByAppendingString:@"."];
-    }
-    else
-    {
-        
-        if([textFieldString isEqualToString:@"0"])
-        {
-            textFieldString=[NSString stringWithFormat:@"%d", (int)sender.tag];
-        }
-        else
-        {
-            BOOL flagCanAdd=YES;
-            if([textFieldString rangeOfString:@"."].location!=NSNotFound)
-            {
-                NSArray *arr=[textFieldString componentsSeparatedByString:@"."];
-                if([arr[1] length]>=self.accuracy.intValue)
-                    flagCanAdd=NO;
-            }
-            if(flagCanAdd)
-                textFieldString=[textFieldString stringByAppendingFormat:@"%d", (int)sender.tag];
-        }
-    }
-    
-    if([self.delegate respondsToSelector:@selector(mathKeyboardView:volumeStringChangedTo:)])
-        [self.delegate mathKeyboardView:self volumeStringChangedTo:textFieldString];
-
-}
-
-- (IBAction)signButtonClick:(UIButton *)sender
-{
-    NSInteger tag=sender.tag;
-    
-    if(textFieldString.length>=2)
-    {
-        NSString *lastSymbol=[textFieldString substringFromIndex:textFieldString.length-1];
-        if([lastSymbol isEqualToString:@"."])
-            textFieldString=[textFieldString substringToIndex:textFieldString.length-1];
-        
-    }
-    
-    if([self.delegate respondsToSelector:@selector(mathKeyboardView:volumeStringChangedTo:)])
-        [self.delegate mathKeyboardView:self volumeStringChangedTo:textFieldString];
-
-    if(previousSign==0 && tag!=LWMathKeyboardViewSignEquals)
-    {
-        previousNumber=@(textFieldString.floatValue);
-        currentOperNumber=nil;
-        [self highlightSign:sender];
-        return;
-    }
-    
-    if(previousSign>0 && tag!=LWMathKeyboardViewSignEquals && currentOperNumber!=nil)
-    {
-        previousSign=0;
-        previousNumber=@(textFieldString.floatValue);
-        currentOperNumber=nil;
-        [self highlightSign:sender];
-        return;
-    }
-    if(previousSign>0 && tag!=LWMathKeyboardViewSignEquals && highlightedSignButton==nil && previousNumber && currentOperNumber==nil)
-    {
-       
-        float nextValue=[self makeAriphmeticOperation:previousSign val1:previousNumber.floatValue val2:textFieldString.floatValue];
-        textFieldString=[self stringFromNumber:nextValue];
-        [self highlightSign:sender];
-        previousSign=0;
-        previousNumber=nil;
-        
-        if([self.delegate respondsToSelector:@selector(mathKeyboardView:volumeStringChangedTo:)])
-            [self.delegate mathKeyboardView:self volumeStringChangedTo:textFieldString];
-
-        return;
-    }
-    
-    
-    if(tag==LWMathKeyboardViewSignEquals)
-    {
-        if(highlightedSignButton)
-        {
-            previousSign=highlightedSignButton.tag;
-            previousNumber=@(textFieldString.floatValue);
-            [self highlightSign:nil];
-        }
-        if(previousSign==0)
-            return;
-        
-        
-        float nextValue;
-        if(!currentOperNumber)
-        {
-            nextValue=[self makeAriphmeticOperation:previousSign val1:previousNumber.floatValue val2:textFieldString.floatValue];
-            currentOperNumber=@(textFieldString.floatValue);
-        }
-        else
-            nextValue=[self makeAriphmeticOperation:previousSign val1:textFieldString.floatValue val2:currentOperNumber.floatValue];
-        
-        
-        textFieldString=[self stringFromNumber:nextValue];
-
-        if([self.delegate respondsToSelector:@selector(mathKeyboardView:volumeStringChangedTo:)])
-            [self.delegate mathKeyboardView:self volumeStringChangedTo:textFieldString];
-
-    }
-}
-
--(NSString *) stringFromNumber:(float) number
-{
-    NSString *string;
-    
-    if(number==(int)number)
-        string=[NSString stringWithFormat:@"%d", (int)number];
-    else
-        string=[NSString stringWithFormat:@"%f", number];
-    
-    if(string.length>10)
-    {
-        string=[string substringToIndex:10];
-    }
-    if([string rangeOfString:@"."].location!=NSNotFound)
-    {
-        while(1)
-        {
-            if(string.length==1)
-                break;
-            NSString *lastSymbol=[string substringFromIndex:string.length-1];
-            if([lastSymbol isEqualToString:@"0"])
-            {
-                string=[string substringToIndex:string.length-1];
-                continue;
-            }
-            if([lastSymbol isEqualToString:@"."])
-            {
-                string=[string substringToIndex:string.length-1];
+    switch (sender.tag) {
+        case LWMathKeyboardViewNumpadBackspace: {
+            if (self.targetTextField.text.length > 0) {
+                NSRange range = NSMakeRange(self.targetTextField.text.length - 1, 1);
+                self.targetTextField.text = [self.targetTextField.text
+                                             stringByReplacingCharactersInRange:range
+                                             withString:@""];
+                [self calculate:NO shouldValidate:YES];
             }
             break;
         }
+        case LWMathKeyboardViewNumpadDot: {
+            NSString *separator = [self decimalSeparator];
+            self.targetTextField.text = [self.targetTextField.text
+                                         stringByAppendingString:separator];
+            [self calculate:NO shouldValidate:YES];
+            break;
+        }
+        default: {
+            self.targetTextField.text = [self.targetTextField.text
+                                         stringByAppendingString:sender.titleLabel.text];
+            [self calculate:NO shouldValidate:YES];
+        }
     }
-    return string;
 }
 
--(float) makeAriphmeticOperation:(NSInteger) oper val1:(float) val1 val2:(float) val2
-{
-    if(oper==LWMathKeyboardViewSignAdd)
-        return val1+val2;
-    else if(oper==LWMathKeyboardViewSignDivide)
-    {
-        if(val1==0 || val2==0)
-            return 0;
-        return val1/val2;
+- (IBAction)signButtonClick:(UIButton *)sender {
+    BOOL equals = NO;
+    NSString *str = nil;
+    switch (sender.tag) {
+        case LWMathKeyboardViewSignDivide: {
+            str = @"/";
+            break;
+        }
+        case LWMathKeyboardViewSignMultiply: {
+            str = @"*";
+            break;
+        }
+        case LWMathKeyboardViewSignSubtract: {
+            str = @"-";
+            break;
+        }
+        case LWMathKeyboardViewSignAdd: {
+            str = @"+";
+            break;
+        }
+        case LWMathKeyboardViewSignEquals: {
+            equals = YES;
+            break;
+        }
+        case LWMathKeyboardViewNumpadDot: {
+            str = [self decimalSeparator];
+            break;
+        }
     }
-    else if(oper==LWMathKeyboardViewSignMultiply)
-        return val1*val2;
-    else if(oper==LWMathKeyboardViewSignSubtract)
-        return val1-val2;
-    
-    return 0;
-}
-
-
--(IBAction)doneClicked:(id)sender
-{
-    if([self.delegate respondsToSelector:@selector(mathKeyboardDonePressed:)])
-        [self.delegate mathKeyboardDonePressed:self];
-}
-
--(void) highlightSign:(UIButton *) button
-{
-    for(UIButton *b in _signButtons)
-    {
-        b.backgroundColor=[UIColor whiteColor];
+    if (!equals) {
+        self.targetTextField.text = [self.targetTextField.text stringByAppendingString:str];
+        [self calculate:NO shouldValidate:YES];
     }
-    button.backgroundColor=[UIColor colorWithRed:247.0/255 green:248.0/255 blue:249.0/255 alpha:1];
-    
-    highlightedSignButton=button;
+    else {
+        [self calculate:YES shouldValidate:NO];
+    }
 }
 
 
+#pragma mark - Utils
 
+- (NSString *)decimalSeparator {
+    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+    NSString *decimalSymbol = [formatter decimalSeparator];
+    return decimalSymbol;
+}
 
+- (NSString *)groupSeparator {
+    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+    NSString *groupingSymbol = [formatter groupingSeparator];
+    return groupingSymbol;
+}
+
+- (void)calculate:(BOOL)shouldRaiseException shouldValidate:(BOOL)shouldValidate {
+    // calculate
+    @try {
+        NSString *separator = [self decimalSeparator];
+        NSString *groupSeparator = [self groupSeparator];
+        NSString *text = self.targetTextField.text;
+        
+        // remove group separator
+        text = [text stringByReplacingOccurrencesOfString:groupSeparator withString:@""];
+
+        // will not calculate if have extra symbols
+        if ([self isSymbolsExists:@"+-/*" forString:text] && shouldValidate) {
+            [self.delegate volumeChanged:@"" withValidState:NO];
+            return;
+        }
+        
+        NSString *result = [text copy];
+
+        // set '.' as decimal separator for evaluation
+        text = [text stringByReplacingOccurrencesOfString:separator withString:@"."];
+        double evaluation = [text evaluateMath];
+        NSNumber *number = [NSNumber numberWithDouble:evaluation];
+        if (number.doubleValue <= 0.0) {
+            [self.delegate volumeChanged:text withValidState:NO];
+            return;
+        }
+        
+        NSDecimalNumber *resultChecker = [LWMath numberWithString:text];
+        if (resultChecker.doubleValue != evaluation) {
+            result = [LWMath makeEditStringByNumber:number];
+        }
+
+        self.targetTextField.text = result;
+        [self.delegate volumeChanged:result withValidState:evaluation > 0.0];
+    }
+    @catch (NSException *exception) {
+        if (shouldRaiseException) {
+            [self.delegate mathKeyboardViewDidRaiseMathException:self];
+        }
+        [self.delegate volumeChanged:@"" withValidState:NO];
+    }
+}
+
+- (BOOL)isSymbolsExists:(NSString *)symbols forString:(NSString *)string {
+    NSCharacterSet *cset = [NSCharacterSet characterSetWithCharactersInString:symbols];
+    NSRange range = [string rangeOfCharacterFromSet:cset];
+    if (range.location == NSNotFound) {
+        return NO;
+    }
+    return YES;
+}
 
 @end

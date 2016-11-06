@@ -26,8 +26,6 @@
 @property (assign, nonatomic) BOOL showCameraImmediately;
 @property (assign, nonatomic) LWAuthStep currentStep;
 
-@property id delegate;
-
 #pragma mark - Actions
 
 - (IBAction)cancelButtonClick:(id)sender;
@@ -37,11 +35,5 @@
 #pragma mark - Utils
 
 - (void)clearImage;
-
-@end
-
-@protocol LWRegisterCameraPresenterDelegate
-
--(void) cameraPresenterDidSendPhoto:(LWRegisterCameraPresenter *) presenter;
 
 @end

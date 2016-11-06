@@ -7,18 +7,12 @@
 //
 
 #import "LWAuthPresenter.h"
-#import "LWMathKeyboardView.h"
-#import "UIViewController+Loading.h"
-#import "UIViewController+Navigation.h"
-#import "LWCache.h"
-#import "LWUtils.h"
+
 
 @interface LWAuthComplexPresenter : LWAuthPresenter {
     
 }
 
-
-@property (strong, nonatomic) LWMathKeyboardView *keyboardView;
 
 #pragma mark - Outlets
 
@@ -27,17 +21,10 @@
 
 #pragma mark - Utils
 
--(void) showCustomKeyboard;
--(void) hideCustomKeyboard;
-
 - (void)registerCellWithIdentifier:(NSString *)identifier name:(NSString *)name;
 - (void)configureCell:(UITableViewCell *)cell indexPath:(NSIndexPath *)indexPath;
 - (void)setRefreshControl;
 - (void)startRefreshControl;
 - (void)stopRefreshControl;
-
--(BOOL) shouldDismissIpadModalViewController;
-
--(void) showCopied;
 
 @end

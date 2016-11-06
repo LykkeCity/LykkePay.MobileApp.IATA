@@ -25,6 +25,4 @@
 @property (strong, nonatomic) LWAssetPairRateModel *assetRate;
 @property (assign, nonatomic) LWAssetDealType       assetDealType;
 
-@property (strong, nonatomic) NSNumber *balanceToSell;
-
 @end

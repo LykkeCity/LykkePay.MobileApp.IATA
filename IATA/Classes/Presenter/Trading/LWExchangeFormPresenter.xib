@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <customFonts key="customFonts">
-        <mutableArray key="GothaProMed.otf">
-            <string>GothamPro-Medium</string>
+        <mutableArray key="Proxima Nova Semibold.otf">
+            <string>ProximaNova-Semibold</string>
+            <string>ProximaNova-Semibold</string>
         </mutableArray>
     </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LWExchangeFormPresenter">
             <connections>
-                <outlet property="buyButton" destination="CnQ-NH-i6e" id="Cfx-Hj-0ZA"/>
+                <outlet property="buyButton" destination="CnQ-NH-i6e" id="I9k-3o-qfe"/>
+                <outlet property="sellButton" destination="fos-2B-Kaq" id="y7p-Ns-Zd8"/>
                 <outlet property="tableView" destination="ig2-Ih-6ZR" id="9nL-GC-Snj"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -23,18 +25,19 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ig2-Ih-6ZR">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="523"/>
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="418"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </tableView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lXH-wZ-W1e">
-                    <rect key="frame" x="0.0" y="523" width="320" height="45"/>
+                    <rect key="frame" x="0.0" y="418" width="320" height="150"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CnQ-NH-i6e" customClass="TKButton">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="45"/>
+                            <rect key="frame" x="8" y="80" width="304" height="45"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="45" id="QZB-j7-t12"/>
+                                <constraint firstAttribute="width" constant="304" id="hdY-Gg-lVk"/>
                             </constraints>
-                            <fontDescription key="fontDescription" name="GothamPro-Medium" family="Gotham Pro" pointSize="16"/>
+                            <fontDescription key="fontDescription" name="ProximaNova-Semibold" family="Proxima Nova" pointSize="15"/>
                             <state key="normal" title=". . ." backgroundImage="ButtonOKGreen">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -42,14 +45,28 @@
                                 <action selector="buyClicked:" destination="-1" eventType="touchUpInside" id="kch-uf-zca"/>
                             </connections>
                         </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fos-2B-Kaq" customClass="TKButton">
+                            <rect key="frame" x="8" y="25" width="304" height="45"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="304" id="JCv-6o-pCv"/>
+                                <constraint firstAttribute="height" constant="45" id="aEH-WI-GOr"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="ProximaNova-Semibold" family="Proxima Nova" pointSize="15"/>
+                            <state key="normal" title=". . ." backgroundImage="ButtonOKGreen">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="sellClicked:" destination="-1" eventType="touchUpInside" id="iSc-bU-CuP"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="45" id="9jD-sD-etI"/>
-                        <constraint firstItem="CnQ-NH-i6e" firstAttribute="centerY" secondItem="lXH-wZ-W1e" secondAttribute="centerY" id="Zwm-Su-AuP"/>
-                        <constraint firstItem="CnQ-NH-i6e" firstAttribute="centerX" secondItem="lXH-wZ-W1e" secondAttribute="centerX" id="hn3-NI-Bak"/>
-                        <constraint firstItem="CnQ-NH-i6e" firstAttribute="leading" secondItem="lXH-wZ-W1e" secondAttribute="leading" id="mqw-5p-hKC"/>
-                        <constraint firstAttribute="trailing" secondItem="CnQ-NH-i6e" secondAttribute="trailing" id="mv7-wV-Irt"/>
+                        <constraint firstAttribute="height" constant="150" id="9jD-sD-etI"/>
+                        <constraint firstAttribute="bottom" secondItem="CnQ-NH-i6e" secondAttribute="bottom" constant="25" id="Jrj-Kz-cTq"/>
+                        <constraint firstItem="fos-2B-Kaq" firstAttribute="top" secondItem="lXH-wZ-W1e" secondAttribute="top" constant="25" id="Ykv-l8-QEy"/>
+                        <constraint firstItem="fos-2B-Kaq" firstAttribute="centerX" secondItem="lXH-wZ-W1e" secondAttribute="centerX" id="e1Z-pk-B1E"/>
+                        <constraint firstItem="CnQ-NH-i6e" firstAttribute="centerX" secondItem="lXH-wZ-W1e" secondAttribute="centerX" id="fap-IH-Zma"/>
                     </constraints>
                 </view>
             </subviews>

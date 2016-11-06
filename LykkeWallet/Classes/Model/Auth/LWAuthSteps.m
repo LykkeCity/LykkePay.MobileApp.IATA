@@ -17,27 +17,22 @@
     
     LWAuthStep nextStep = LWAuthStepRegisterKYCInvalidDocuments;
     
-//    if (!status.isSelfieUploaded) {  //Andrey
-//        // to selfie
-//        nextStep = LWAuthStepRegisterSelfie;
-//    }
-//    else if (!status.isIdCardUploaded) {
-//        // to identity card
-//        nextStep = LWAuthStepRegisterIdentity;
-//    }
-//    else if (!status.isPOAUploaded) {
-//        // to POA
-//        nextStep = LWAuthStepRegisterUtilityBill;
-//    }
-//    else {
-//        // to LWAuthStepRegisterKYCSubmit
-//        nextStep = LWAuthStepRegisterKYCSubmit;
-//    }
-//    
-//    else {
-        nextStep=LWAuthStepRegisterPINSetup;
-//    }
-    
+    if (!status.isSelfieUploaded) {
+        // to selfie
+        nextStep = LWAuthStepRegisterSelfie;
+    }
+    else if (!status.isIdCardUploaded) {
+        // to identity card
+        nextStep = LWAuthStepRegisterIdentity;
+    }
+    else if (!status.isPOAUploaded) {
+        // to POA
+        nextStep = LWAuthStepRegisterUtilityBill;
+    }
+    else {
+        // to LWAuthStepRegisterKYCSubmit
+        nextStep = LWAuthStepRegisterKYCSubmit;
+    }
     return nextStep;
 }
 

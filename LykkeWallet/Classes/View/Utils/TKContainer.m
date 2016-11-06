@@ -16,8 +16,8 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-        self.backgroundColor = [UIColor clearColor];
     
+    self.backgroundColor = [UIColor clearColor];
 }
 
 - (void)layoutSubviews {
@@ -30,7 +30,6 @@
 #pragma mark - Common
 
 - (void)attach:(TKView *)view {
-    
     // clear subviews
     if (self.contentView) {
         [self.contentView removeFromSuperview];

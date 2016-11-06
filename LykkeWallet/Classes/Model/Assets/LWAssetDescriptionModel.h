@@ -23,7 +23,5 @@
 @property (readonly, nonatomic) NSString *issuerName;
 @property (readonly, nonatomic) NSString *numberOfCoins;
 @property (readonly, nonatomic) NSString *marketCapitalization;
-@property (readonly, nonatomic) NSString *assetDescriptionURL;
-@property (readonly, nonatomic) NSString *fullName;
 
 @end

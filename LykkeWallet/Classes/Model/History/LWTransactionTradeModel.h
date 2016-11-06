@@ -19,10 +19,5 @@
 @property (readonly, nonatomic) NSString *asset;
 @property (readonly, nonatomic) NSNumber *volume;
 @property (readonly, nonatomic) NSString *iconId;
-@property (readonly, nonatomic) NSString *blockchainHash;
-@property BOOL isSettled;
-
-@property (readonly, nonatomic) NSString *addressFrom;
-@property (readonly, nonatomic) NSString *addressTo;
 
 @end

@@ -9,7 +9,6 @@
 #import "LWKYCSuccessPresenter.h"
 #import "LWRegistrationData.h"
 #import "LWKeychainManager.h"
-#import "LWValidator.h"
 
 
 @interface LWKYCSuccessPresenter () {
@@ -30,12 +29,6 @@
 
 @implementation LWKYCSuccessPresenter
 
--(void) viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    [LWValidator setButton:self.okButton enabled:YES];
-}
-
 
 #pragma mark - LWAuthStepPresenter
 
@@ -55,15 +48,9 @@
 #pragma mark - Actions
 
 - (IBAction)okButtonClick:(id)sender {
-    
-    if([self.delegate respondsToSelector:@selector(successPresenterGetStarted:)])
-    {
-        [self.delegate successPresenterGetStarted:self];
-    }
-    
-//    [((LWAuthNavigationController *)self.navigationController)
-//     navigateToStep:LWAuthStepRegisterPINSetup
-//     preparationBlock:nil];
+    [((LWAuthNavigationController *)self.navigationController)
+     navigateToStep:LWAuthStepRegisterPINSetup
+     preparationBlock:nil];
 }
 
 @end

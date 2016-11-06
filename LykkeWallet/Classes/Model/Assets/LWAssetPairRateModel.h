@@ -13,7 +13,6 @@
     
 }
 
--(void) invert;
 
 #pragma mark - Properties
 
@@ -23,6 +22,5 @@
 @property (readonly, nonatomic) NSNumber *pchng;
 @property (readonly, nonatomic) NSNumber *expTimeout;
 @property (readonly, nonatomic) NSArray  *lastChanges;
-@property BOOL inverted;
 
 @end

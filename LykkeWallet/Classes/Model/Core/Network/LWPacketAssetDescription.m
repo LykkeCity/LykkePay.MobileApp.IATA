@@ -22,12 +22,11 @@
         return;
     }
     
-    
     _assetDescription = [[LWAssetDescriptionModel alloc] initWithJSON:result];
 }
 
 - (NSString *)urlRelative {
-    return [NSString stringWithFormat:@"AllAssetDescription/%@", self.identity];
+    return [NSString stringWithFormat:@"AssetDescription/%@", self.identity];
 }
 
 - (GDXRESTPacketType)type {

@@ -8,7 +8,6 @@
 
 #import "LWValidator.h"
 #import <UIKit/UIImage.h>
-#import <QuartzCore/QuartzCore.h>
 
 
 @interface LWValidator () {
@@ -89,78 +88,43 @@ static int const PasswordLength = 6;
 }
 
 + (void)setButton:(UIButton *)button enabled:(BOOL)enabled {
-    
-    
     [LWValidator updateButton:button
-                  activeImage:@"ButtonOK_square"
-                inactiveImage:nil
-              backgroundColor:nil
+                  activeImage:@"ButtonOK"
+                inactiveImage:@"ButtonOKInactive"
                       enabled:enabled];
-}
-
-+(void) setButtonWithClearBackground:(UIButton *) button enabled:(BOOL) enabled
-{
-    [LWValidator updateButton:button
-                  activeImage:nil
-                inactiveImage:nil
-              backgroundColor:nil
-                      enabled:NO];
-    button.enabled=enabled;
-    
 }
 
 + (void)setPriceButton:(UIButton *)button enabled:(BOOL)enabled {
     [LWValidator updateButton:button
-                  activeImage:nil
-                inactiveImage:nil
-              backgroundColor:[UIColor colorWithRed:18.0/255 green:183.0/255 blue:42.0/255 alpha:1]
+                  activeImage:@"ButtonOKGreen"
+                inactiveImage:@"ButtonOKInactive"
                       enabled:enabled];
 }
 
 + (void)setSellButton:(UIButton *)button enabled:(BOOL)enabled {
     [LWValidator updateButton:button
-                  activeImage:nil
-                inactiveImage:nil
-              backgroundColor:[UIColor colorWithRed:1 green:62.0/255 blue:45.0/255 alpha:1]
+                  activeImage:@"ButtonOKRed"
+                inactiveImage:@"ButtonOKInactive"
                       enabled:enabled];
 }
 
 + (void)setBuyButton:(UIButton *)button enabled:(BOOL)enabled {
     [LWValidator updateButton:button
-                  activeImage:nil
-                inactiveImage:nil
-              backgroundColor:[UIColor colorWithRed:18.0/255 green:183.0/255 blue:42.0/255 alpha:1]
+                  activeImage:@"ButtonOKGreen"
+                inactiveImage:@"ButtonOKInactive"
                       enabled:enabled];
 }
 
 
 #pragma mark - Utils
 
-+ (void)updateButton:(UIButton *)button activeImage:(NSString *)activeImage inactiveImage:(NSString *)inactiveImage backgroundColor:(UIColor *) backColor enabled:(BOOL)enabled {
++ (void)updateButton:(UIButton *)button activeImage:(NSString *)activeImage inactiveImage:(NSString *)inactiveImage enabled:(BOOL)enabled {
     NSString *proceedImage = (enabled) ? activeImage : inactiveImage;
     UIColor *proceedColor = (enabled) ? [UIColor whiteColor] : [UIColor lightGrayColor];
     
     [button setBackgroundImage:[UIImage imageNamed:proceedImage] forState:UIControlStateNormal];
-    
     [button setTitleColor:proceedColor forState:UIControlStateNormal];
     button.enabled = enabled;
-    button.layer.cornerRadius=button.bounds.size.height/2;
-    button.clipsToBounds=YES;
-    
-    
-    if(button.enabled==NO)
-    {
-        button.layer.borderWidth=1;
-        button.layer.borderColor=[UIColor colorWithWhite:0.80 alpha:1].CGColor;
-        button.backgroundColor=nil;
-    }
-    else
-    {
-        button.layer.borderWidth=0;
-        button.backgroundColor=backColor;
-    }
-
-    
 }
 
 @end

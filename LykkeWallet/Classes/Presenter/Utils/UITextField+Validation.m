@@ -8,9 +8,19 @@
 
 #import "UITextField+Validation.h"
 #import "LWMath.h"
+#import <objc/runtime.h>
 
+static void const *key;
 
 @implementation UITextField (Validation)
+
+- (int)accuracy {
+    return [objc_getAssociatedObject(self, key) intValue];
+}
+
+- (void)setAccuracy:(int)accuracy {
+    objc_setAssociatedObject(self, key, @(accuracy), OBJC_ASSOCIATION_RETAIN);
+}
 
 - (BOOL)shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string forMaxLength:(NSInteger)maxLength {
     
@@ -38,9 +48,12 @@
         NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
         NSString *decimalSymbol = [formatter decimalSeparator];
         NSString *groupSymbol = [formatter groupingSeparator];
-        if ([candidate componentsSeparatedByString:decimalSymbol].count > 2) {
+        NSArray *components=[candidate componentsSeparatedByString:decimalSymbol];
+        if (components.count > 2 || (components.count==2 && self.accuracy==0)) {
             return NO;
         }
+        if(components.count==2 && [components[1] length]>self.accuracy)  //Andrey
+            return NO;
         
         NSString *validChars = [NSString stringWithFormat:@"0123456789%@%@", decimalSymbol, groupSymbol];
         if ([candidate stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:validChars]].length) {
@@ -49,6 +62,24 @@
         return YES;
     }
     return NO;
+}
+
+-(void) setTextWithAccuracy:(NSString *)text
+{
+    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+    NSString *decimalSymbol = [formatter decimalSeparator];
+   NSArray *components=[text componentsSeparatedByString:decimalSymbol];
+    if (components.count<2 || [components[1] length]==0 || [components[1] length]<=self.accuracy) {
+        
+        self.text=text;
+        
+        return;
+    }
+    
+   self.text=[NSString stringWithFormat:@"%@%@%@", components[0], decimalSymbol, [components[1] substringToIndex:self.accuracy]];
+    
+ 
+
 }
 
 - (BOOL)isNumberValid {

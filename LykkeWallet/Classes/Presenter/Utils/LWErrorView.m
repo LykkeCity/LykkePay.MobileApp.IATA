@@ -54,7 +54,7 @@
     
     self.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5f];
     
-    self.titleLabel.textColor = [UIColor colorWithRed:1 green:174.0/255 blue:44.0/255 alpha:1];
+    self.titleLabel.textColor = [UIColor colorWithHexString:kErrorTextColor];
     
     self.topView.backgroundColor = [UIColor whiteColor];
     self.topView.opaque = NO;

@@ -13,6 +13,4 @@
 
 - (NSString *)toShortFormat;
 
--(NSString *) timePassedFromDate:(NSDate *) date;
-
 @end

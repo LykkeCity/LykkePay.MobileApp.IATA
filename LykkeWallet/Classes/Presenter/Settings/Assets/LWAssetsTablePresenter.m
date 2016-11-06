@@ -30,19 +30,12 @@
 @implementation LWAssetsTablePresenter
 
 
--(void) awakeFromNib
-{
-    
-
-}
-
 #pragma mark - Lifecycle
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
-    self.title = Localize(@"settings.assets.title");
+    self.navigationItem.title = Localize(@"settings.assets.title");
     
     [self setBackButton];
     
@@ -64,11 +57,6 @@
 
 #pragma mark - LWAuthManagerDelegate
 
--(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return 50;
-}
-
 - (void)authManager:(LWAuthManager *)manager didGetBaseAssets:(NSArray *)assets {
     [self setLoading:NO];
     
@@ -78,7 +66,6 @@
 
 - (void)authManagerDidSetAsset:(LWAuthManager *)manager {
     [self setLoading:NO];
-    [LWCache instance].baseAssetId=self.baseAssetId;
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -100,13 +87,7 @@
     NSString *identifier = @"LWChooseAssetTableViewCellIdentifier";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     [self configureCell:cell indexPath:indexPath];
-    if(indexPath.row==0)
-    {
-        UIView *lineView=[[UIView alloc] initWithFrame:CGRectMake(0, 0, 1024, 0.5)];
-        lineView.backgroundColor=[UIColor colorWithRed:211.0/255 green:214.0/255 blue:219.0/255 alpha:1];
-        [cell addSubview:lineView];
-    }
-
+    
     return cell;
 }
 
@@ -120,7 +101,7 @@
         }
         else {
             [[LWAuthManager instance] requestBaseAssetSet:cell.assetId];
-            self.baseAssetId=cell.assetId;
+            
             [self setLoading:YES];
         }
     }

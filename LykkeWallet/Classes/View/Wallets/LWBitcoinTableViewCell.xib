@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="Proxima Nova Regular.otf">
+            <string>ProximaNova-Regular</string>
+            <string>ProximaNova-Regular</string>
+        </mutableArray>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="LWBitcoinTableViewCellIdentifier" rowHeight="50" id="09s-BD-LGD" customClass="LWBitcoinTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="09s-BD-LGD" id="j4v-Db-1yR">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BTC" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4zp-Mx-J9r">
+                        <rect key="frame" x="20" y="8" width="100" height="34"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="100" id="eEX-R5-27W"/>
+                            <constraint firstAttribute="height" constant="34" id="f9g-vb-z3k"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="17"/>
+                        <color key="textColor" red="0.2470588235" green="0.30196078430000001" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.59999999999999998" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="voH-U4-iRY">
+                        <rect key="frame" x="128" y="8" width="130" height="34"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="34" id="gq2-25-X0K"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="14"/>
+                        <color key="textColor" red="0.2470588235" green="0.30196078430000001" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P89-9q-sIb">
+                        <rect key="frame" x="268" y="8" width="34" height="34"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="34" id="Iko-J1-Ili"/>
+                            <constraint firstAttribute="width" constant="34" id="l1G-e7-ew5"/>
+                        </constraints>
+                        <state key="normal" image="AddWalletIcon"/>
+                        <connections>
+                            <action selector="onPlusClicked:" destination="09s-BD-LGD" eventType="touchUpInside" id="3cE-2h-Mc1"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="4zp-Mx-J9r" firstAttribute="leading" secondItem="j4v-Db-1yR" secondAttribute="leadingMargin" constant="12" id="9Vt-p1-lMl"/>
+                    <constraint firstItem="voH-U4-iRY" firstAttribute="leading" secondItem="4zp-Mx-J9r" secondAttribute="trailing" constant="8" id="D1e-8e-iXQ"/>
+                    <constraint firstItem="4zp-Mx-J9r" firstAttribute="centerY" secondItem="j4v-Db-1yR" secondAttribute="centerY" id="Owo-c9-rsG"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="P89-9q-sIb" secondAttribute="trailing" constant="10" id="Plc-Rw-LUS"/>
+                    <constraint firstItem="P89-9q-sIb" firstAttribute="leading" secondItem="voH-U4-iRY" secondAttribute="trailing" constant="10" id="lfJ-7v-lbz"/>
+                    <constraint firstItem="voH-U4-iRY" firstAttribute="centerY" secondItem="j4v-Db-1yR" secondAttribute="centerY" id="mmk-9i-JSZ"/>
+                    <constraint firstItem="P89-9q-sIb" firstAttribute="centerY" secondItem="j4v-Db-1yR" secondAttribute="centerY" id="nxP-JX-nZQ"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" red="0.91764705879999997" green="0.92941176469999998" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
+            <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+            <connections>
+                <outlet property="bitcoinAddButton" destination="P89-9q-sIb" id="gft-P1-psY"/>
+                <outlet property="bitcoinBalance" destination="voH-U4-iRY" id="kwx-c9-OL0"/>
+                <outlet property="bitcoinLabel" destination="4zp-Mx-J9r" id="Nz5-Qq-c2W"/>
+            </connections>
+            <point key="canvasLocation" x="202" y="190"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="AddWalletIcon" width="34" height="34"/>
+    </resources>
+</document>

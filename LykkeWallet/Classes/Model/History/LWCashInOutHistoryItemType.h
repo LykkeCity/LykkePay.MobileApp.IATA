@@ -16,8 +16,8 @@
     
 }
 
-
-@property BOOL isRefund;
+@property (copy, nonatomic) NSNumber *amount;
+@property (copy, nonatomic) NSString *iconId;
 
 + (LWCashInOutHistoryItemType *)convertFromNetworkModel:(LWTransactionCashInOutModel *)model;
 

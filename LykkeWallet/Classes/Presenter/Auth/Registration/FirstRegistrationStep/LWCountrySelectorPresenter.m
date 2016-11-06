@@ -16,7 +16,7 @@
 
 
 @interface LWCountrySelectorPresenter () <UISearchBarDelegate, UISearchResultsUpdating, UISearchControllerDelegate> {
-//    NSArray *countries;
+    NSArray *countries;
     NSArray *searchCountries;
     NSArray *sections;
 }
@@ -39,27 +39,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.navigationItem.title = Localize(@"register.phone.country.title");
     
-    
-    self.title = Localize(@"register.phone.country.title");
-    
-    UIButton *cancelButton=[UIButton buttonWithType:UIButtonTypeCustom];
-    cancelButton.titleLabel.font=[UIFont systemFontOfSize:15];
-    [cancelButton setTitle:@"CANCEL" forState:UIControlStateNormal];
-    [cancelButton setTitleColor:[UIColor colorWithRed:170.0/255 green:38.0/255 blue:252.0/255 alpha:1] forState:UIControlStateNormal];
-    cancelButton.frame=CGRectMake(0, 0, 70, 25);
-    [cancelButton addTarget:self action:@selector(cancelButtonPressed) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *cancelItem=[[UIBarButtonItem alloc] initWithCustomView:cancelButton];
-    self.navigationItem.leftBarButtonItem=cancelItem;
-    
-    
-    
-//    countries = [NSArray array];
+    countries = [NSArray array];
     sections = [NSArray arrayWithObjects:@"A", @"B", @"C", @"D", @"E", @"F", @"G", @"H", @"I", @"J", @"K", @"L", @"M", @"N", @"O", @"P", @"Q", @"R", @"S", @"T", @"U", @"V", @"W", @"X", @"Y", @"Z", nil];
     
-//    [self setCancelButtonWithTitle:Localize(@"register.phone.cancel")
-//                            target:self
-//                          selector:@selector(cancelClicked)];
+    [self setCancelButtonWithTitle:Localize(@"register.phone.cancel")
+                            target:self
+                          selector:@selector(cancelClicked)];
     
     self.searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
     self.searchController.searchResultsUpdater = self;
@@ -67,16 +54,11 @@
     self.searchController.searchBar.delegate = self;
     self.searchController.dimsBackgroundDuringPresentation = NO;
     
-    self.searchController.hidesNavigationBarDuringPresentation = NO;
-    self.definesPresentationContext = NO;
-    self.navigationController.navigationBar.translucent=NO;
-    
     NSString *searchText = Localize(@"register.phone.country.placeholder");
     [self.searchController.searchBar setKeyboardType:UIKeyboardTypeDefault];
     [self.searchController.searchBar setPlaceholder:searchText];
     [self.searchController.searchBar setBarStyle:UIBarStyleDefault];
     [self.searchController.searchBar setAutocorrectionType:UITextAutocorrectionTypeNo];
-    
     
     [self.searchController.searchBar setBackgroundImage:[UIImage new]];
     [self.searchController.searchBar sizeToFit];
@@ -86,15 +68,14 @@
     
     self.tableView.sectionIndexColor = [UIColor colorWithHexString:kMainElementsColor];
     self.tableView.tableHeaderView = self.searchController.searchBar;
-    self.searchController.searchBar.backgroundColor=[UIColor whiteColor];
     
+    self.navigationController.navigationBar.translucent = NO;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    self.navigationController.navigationBar.translucent = NO;
-
-//    [self setLoading:YES];
+    
+    [self setLoading:YES];
     
     //self.definesPresentationContext = YES;
     //self.extendedLayoutIncludesOpaqueBars = YES;
@@ -102,14 +83,7 @@
     //self.tableView.contentOffset = CGPointMake(0, 44.0);
     //self.tableView.contentInset = UIEdgeInsetsMake(44.0, 0.0, 0.0, 0.0);
     
-//    [[LWAuthManager instance] requestCountyCodes];
-}
-
--(void) setCountries:(NSArray *)countries
-{
-    _countries=countries;
-    [self.tableView reloadData];
-    
+    [[LWAuthManager instance] requestCountyCodes];
 }
 
 - (void)dealloc {
@@ -118,34 +92,25 @@
 
 - (void)cancelClicked {
     [self.searchController setActive:NO];
-//    [self dismissViewControllerAnimated:YES completion:nil];
-    [self.navigationController popViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)willPresentSearchController:(UISearchController *)searchController {
-//    self.navigationController.navigationBar.translucent = YES;
+    self.navigationController.navigationBar.translucent = YES;
 }
 
 - (void)didDismissSearchController:(UISearchController *)searchController {
     self.navigationController.navigationBar.translucent = NO;
 }
 
--(void) cancelButtonPressed
-{
-//    if(self.searchController.isActive)
-//        [self dismissViewControllerAnimated:NO completion:nil];
-//    [self dismissViewControllerAnimated:YES completion:nil];
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
 
 #pragma mark - LWAuthManagerDelegate
 
-//- (void)authManager:(LWAuthManager *)manager didGetCountryCodes:(NSArray *)countryCodes { //Andrey
-//    [self setLoading:NO];
-//    countries = [countryCodes copy];
-//    [self.tableView reloadData];
-//}
+- (void)authManager:(LWAuthManager *)manager didGetCountryCodes:(NSArray *)countryCodes {
+    [self setLoading:NO];
+    countries = [countryCodes copy];
+    [self.tableView reloadData];
+}
 
 - (void)authManager:(LWAuthManager *)manager didFailWithReject:(NSDictionary *)reject context:(GDXRESTContext *)context {
     [self showReject:reject response:context.task.response code:context.error.code willNotify:YES];
@@ -259,11 +224,11 @@
     if (searchText == nil ||
         [searchText isKindOfClass:[NSNull class]] ||
         searchText.length <= 0) {
-        searchCountries = _countries;
+        searchCountries = countries;
     }
     else {
         NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"name beginswith[c] %@", searchText];
-        searchCountries = [_countries filteredArrayUsingPredicate:resultPredicate];
+        searchCountries = [countries filteredArrayUsingPredicate:resultPredicate];
     }
 }
 
@@ -272,34 +237,8 @@
 
 - (NSArray *)countriesBySection:(NSInteger)section {
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name beginswith[cd] %@", [sections objectAtIndex:section]];
-    NSArray *sectionArray = [_countries filteredArrayUsingPredicate:predicate];
+    NSArray *sectionArray = [countries filteredArrayUsingPredicate:predicate];
     return sectionArray;
 }
-
-
--(BOOL) shouldAutorotate
-{
-    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad)
-        return YES;
-    
-    return NO;
-}
-
-- (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
-{
-    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad)
-        return YES;
-    
-    return NO;
-}
-
--(UIInterfaceOrientationMask)supportedInterfaceOrientations
-{
-    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad)
-        return UIInterfaceOrientationMaskAll;
-    
-    return UIInterfaceOrientationMaskPortrait;
-}
-
 
 @end

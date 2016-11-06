@@ -84,13 +84,7 @@
 		
 		_contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, MIN(frame.size.height, 568.0f))];
 		_contentView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
-        
-        _contentView.center = self.center;
-
-//        if(frame.size.height==568)  //Andrey
-//        {
-//            _contentView.center=CGPointMake(_contentView.center.x, _contentView.center.y+40);
-//        }
+		_contentView.center = self.center;
 		[self addSubview:_contentView];
         
         _requiresRotationCorrection = NO;

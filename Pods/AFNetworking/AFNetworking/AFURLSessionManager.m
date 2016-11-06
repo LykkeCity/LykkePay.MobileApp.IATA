@@ -324,9 +324,6 @@ didCompleteWithError:(NSError *)error
     didReceiveData:(NSData *)data
 {
     [self.mutableData appendData:data];
-    
-//    NSString *string=[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];//Testing
-//    NSLog(@"%@", string);
 }
 
 #pragma mark - NSURLSessionDownloadTaskDelegate

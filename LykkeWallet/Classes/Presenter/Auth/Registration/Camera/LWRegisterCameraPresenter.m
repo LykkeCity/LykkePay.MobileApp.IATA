@@ -12,24 +12,13 @@
 #import "LWCameraOverlayPresenter.h"
 
 #import "UIViewController+Loading.h"
-#import "UIViewController+Navigation.h"
-
 #import "UIImage+Resize.h"
 
 #import <AFNetworking/AFNetworking.h>
 #import <MBProgressHUD/MBProgressHUD.h>
 
-#import "LWSendImageManager.h"
-#import "LWValidator.h"
-#import "UIAlertView+Blocks.h"
 
-#import "LWCameraMessageView.h"
-#import "LWCameraMessageView2.h"
-
-@import AVFoundation;
-
-
-@interface LWRegisterCameraPresenter ()<LWAuthManagerDelegate, LWCameraOverlayDelegate, LWSendImageManagerDelegate, UIAlertViewDelegate> {
+@interface LWRegisterCameraPresenter ()<LWAuthManagerDelegate, LWCameraOverlayDelegate> {
     LWCameraOverlayPresenter *cameraOverlayPresenter;
 
     MBProgressHUD        *hud;
@@ -37,8 +26,6 @@
     
     UIImage *serverImage;
     UIImage *previewImage;
-    
-    LWSendImageManager *sendImageManager;
     
     //UIImage *lastUploadedImage;
 }
@@ -66,19 +53,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.showCameraImmediately=YES;
-    [LWValidator setButtonWithClearBackground:self.cancelButton enabled:YES];
-    [LWValidator setButton:self.okButton enabled:YES];
-
+    
+    self.title = Localize(@"register.title");
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
-    self.title = Localize(@"register.title");
-
-    
-    [self setBackButton];
     
     [self checkButtonsState];
     
@@ -88,14 +68,12 @@
     // hide back button if necessary
     if (self.shouldHideBackButton) {
         self.navigationItem.hidesBackButton = YES;
-        self.navigationItem.leftBarButtonItem=nil;
     }
     
     // if show camera view - reset flag for uploads
     KYCDocumentType type = [LWAuthSteps getDocumentTypeByStep:self.stepId];
     BOOL const croppedStatus = [[LWAuthManager instance].documentsStatus croppedStatus:type];
-    if(!serverImage)
-        serverImage = [[LWAuthManager instance].documentsStatus lastUploadedImageForType:type];
+    serverImage = [[LWAuthManager instance].documentsStatus lastUploadedImageForType:type];
     [self setupPreviewImageFromServerImage:serverImage shouldCropImage:croppedStatus];
 
     [[LWAuthManager instance].documentsStatus resetTypeUploaded:type];
@@ -105,14 +83,6 @@
     }
     
     [self updateStep:type];
-}
-
--(void) viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    
-    self.title = Localize(@"register.title");
-
 }
 
 - (LWAuthStep)stepId {
@@ -155,128 +125,55 @@
     if (serverImage) {
         [self.okButton setTitle:[Localize(@"register.camera.photo.ok") uppercaseString]
                        forState:UIControlStateNormal];
-        self.cancelButton.hidden=NO;
     }
     else {
         [self.okButton setTitle:[Localize(@"register.camera.photo.take") uppercaseString]
                        forState:UIControlStateNormal];
-        self.cancelButton.hidden=YES;
     }
 }
 
 - (void)showCameraView {
     
-    
-    void (^block)(void)=^{
-
     // configure overlay
-        if (!cameraOverlayPresenter) {
-            cameraOverlayPresenter = [LWCameraOverlayPresenter new];
-        }
-        
-        UIImagePickerController *picker = [UIImagePickerController new];
-        // if camera is unavailable - set photo library
-        if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-            
-            // configure image picker
-            picker.sourceType = UIImagePickerControllerSourceTypeCamera;
-            picker.cameraCaptureMode = UIImagePickerControllerCameraCaptureModePhoto;
-            picker.cameraDevice = ((self.stepId == LWAuthStepRegisterSelfie)
-                                   ? UIImagePickerControllerCameraDeviceFront
-                                   : UIImagePickerControllerCameraDeviceRear);
-            picker.allowsEditing = YES;
-            
-            if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
-            {
-                picker.showsCameraControls = NO;
-                picker.modalPresentationStyle = UIModalPresentationCurrentContext;
-                
-                picker.toolbarHidden = YES;
-                
-                cameraOverlayPresenter.pickerReference = picker;
-                cameraOverlayPresenter.view.frame = picker.cameraOverlayView.frame;
-                cameraOverlayPresenter.step = self.stepId;
-                cameraOverlayPresenter.delegate = self;
-                
-                picker.cameraViewTransform=CGAffineTransformMakeTranslation(0, 100);
-                picker.cameraOverlayView = cameraOverlayPresenter.view;
-            }
-            else
-            {
-                picker.showsCameraControls = YES;
-                picker.toolbarHidden=YES;
-                picker.modalPresentationStyle=UIModalPresentationOverFullScreen;
-            }
-        }
-        else {
-            picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-        }
-        picker.delegate = self;
-        
-        self.imagePickerController = picker;
-        //    [self presentViewController:picker animated:YES completion:nil];
-        
-        [self.navigationController presentViewController:self.imagePickerController animated:NO completion:^{
-            [cameraOverlayPresenter updateView];
-        }];
-        
-        [self checkButtonsState];
-    };
-    
-    void (^messageBlock)(void)=^{
-        
-        LWCameraMessageView *view=[[NSBundle mainBundle] loadNibNamed:@"LWCameraMessageView" owner:self options:nil][0];
-        UIWindow *window=[[UIApplication sharedApplication] keyWindow];
-        view.frame=window.bounds;
-
-        
-        [window addSubview:view];
-        
-        [view show];
-    };
-
-    
-    AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
-    if(authStatus == AVAuthorizationStatusAuthorized) {
-        block();
-    } else if(authStatus == AVAuthorizationStatusDenied){
-        messageBlock();
-        
-    } else if(authStatus == AVAuthorizationStatusRestricted){
-        // restricted, normally won't happen
-    } else if(authStatus == AVAuthorizationStatusNotDetermined){
-        // not determined?!
-        
-        LWCameraMessageView2 *view=[[NSBundle mainBundle] loadNibNamed:@"LWCameraMessageView2" owner:self options:nil][0];
-        UIWindow *window=[[UIApplication sharedApplication] keyWindow];
-        view.center=CGPointMake(window.bounds.size.width/2, window.bounds.size.height/2);
-        
-        [window addSubview:view];
-        
-        [view showWithCompletion:^(BOOL result){
-            if(result)
-                [AVCaptureDevice requestAccessForMediaType:AVMediaTypeVideo completionHandler:^(BOOL granted) {
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        if(granted){
-                            block();
-                        } else {
-                            messageBlock();
-                        }
-                    });
-                }];
-        }];
-
-        
-        
-     } else {
-        // impossible, unknown authorization status
+    if (!cameraOverlayPresenter) {
+        cameraOverlayPresenter = [LWCameraOverlayPresenter new];
     }
+    
+    UIImagePickerController *picker = [UIImagePickerController new];
+    picker.navigationBar.translucent = NO;
+    // if camera is unavailable - set photo library
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        
+        // configure image picker
+        picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+        picker.cameraCaptureMode = UIImagePickerControllerCameraCaptureModePhoto;
+        picker.showsCameraControls = NO;
+        picker.cameraDevice = ((self.stepId == LWAuthStepRegisterSelfie)
+                                    ? UIImagePickerControllerCameraDeviceFront
+                                    : UIImagePickerControllerCameraDeviceRear);
+        picker.toolbarHidden = YES;
+        picker.allowsEditing = YES;
+        picker.modalPresentationStyle = UIModalPresentationCurrentContext;
 
+        cameraOverlayPresenter.pickerReference = picker;
+        cameraOverlayPresenter.view.frame = picker.cameraOverlayView.frame;
+        cameraOverlayPresenter.step = self.stepId;
+        cameraOverlayPresenter.delegate = self;
+
+        picker.cameraOverlayView = cameraOverlayPresenter.view;
+    }
+    else {
+        picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    }
+    picker.delegate = self;
+
+    self.imagePickerController = picker;
+    [self.navigationController presentViewController:self.imagePickerController animated:NO completion:^{
+        [cameraOverlayPresenter updateView];
+    }];
     
-    
+    [self checkButtonsState];
 }
-
-
 
 - (void)setupServerImage {
     if (serverImage == nil) {
@@ -285,6 +182,21 @@
     
     serverImage = [serverImage correctImageOrientation];
     
+    NSInteger const maxSize = MAX((NSInteger)serverImage.size.height, (NSInteger)serverImage.size.width);
+    // validate if image is too large
+    if (maxSize > kMaxImageServerSize) {
+        // calculate coefficient
+        if (maxSize == (NSInteger)serverImage.size.height) {
+            CGFloat coeff = serverImage.size.height / kMaxImageServerSize;
+            CGSize size = CGSizeMake(serverImage.size.width / coeff, kMaxImageServerSize);
+            serverImage = [serverImage resizedImage:size interpolationQuality:kCGInterpolationDefault];
+        }
+        else if (maxSize == (NSInteger)serverImage.size.width) {
+            CGFloat coeff = serverImage.size.width / kMaxImageServerSize;
+            CGSize size = CGSizeMake(kMaxImageServerSize, serverImage.size.height / coeff);
+            serverImage = [serverImage resizedImage:size interpolationQuality:kCGInterpolationDefault];
+        }
+    }
     
     NSInteger imageSize = 0;
     double compression = 1.0;
@@ -302,7 +214,6 @@
 
 - (void)setupPreviewImageFromServerImage:(UIImage *)image shouldCropImage:(BOOL)shouldCropImage {
 
-    [self checkButtonsState];
     if (image == nil) {
         self.photoImageView.image = nil;
         return;
@@ -310,19 +221,18 @@
     
     // resize to our view
     previewImage = [serverImage copy];
-//    CGFloat coeff = self.view.frame.size.width / previewImage.size.width;
-//    CGSize size = CGSizeMake(previewImage.size.width * coeff, previewImage.size.height * coeff);
-//    previewImage = [previewImage resizedImage:size interpolationQuality:kCGInterpolationDefault];
-    self.photoImageView.clipsToBounds=YES;
-    self.photoImageView.contentMode=UIViewContentModeScaleAspectFill;
+    CGFloat coeff = self.view.frame.size.width / previewImage.size.width;
+    CGSize size = CGSizeMake(previewImage.size.width * coeff, previewImage.size.height * coeff);
+    previewImage = [previewImage resizedImage:size interpolationQuality:kCGInterpolationDefault];
+    
     // crop image for selfie
-//    if (shouldCropImage) {
-//        CGRect cropRect = self.photoImageView.frame;
-//        // hidden navigation bar
-//        CGFloat const navHeight = 56;
-//        cropRect.origin.y += navHeight;
-//        previewImage = [previewImage croppedImage:cropRect];
-//    }
+    if (shouldCropImage) {
+        CGRect cropRect = self.photoImageView.frame;
+        // hidden navigation bar
+        CGFloat const navHeight = 56;
+        cropRect.origin.y += navHeight;
+        previewImage = [previewImage croppedImage:cropRect];
+    }
     
     self.photoImageView.image = previewImage;
 }
@@ -341,43 +251,34 @@
 
 - (void)uploadImage:(UIImage *)image docType:(KYCDocumentType)docType {
     
-    
     UIImage *lastImage = [[LWAuthManager instance].documentsStatus lastUploadedImageForType:docType];
     if (lastImage == serverImage) {
         // modify self documents status
         [[LWAuthManager instance].documentsStatus setTypeUploaded:docType withImage:image];
         
-        
-        if(self.delegate)
-        {
-            [self.delegate cameraPresenterDidSendPhoto:self];
-        }
-        else
-        {
-            // navigate to next step
-            LWAuthNavigationController *navController = (LWAuthNavigationController *)self.navigationController;
-            [navController navigateWithDocumentStatus:[LWAuthManager instance].documentsStatus hideBackButton:NO];
-        }
+        // navigate to next step
+        LWAuthNavigationController *navController = (LWAuthNavigationController *)self.navigationController;
+        [navController navigateWithDocumentStatus:[LWAuthManager instance].documentsStatus hideBackButton:NO];
     }
     else {
-//        __block UIViewController *mainController = self;
+        __block UIViewController *mainController = self;
         
-//        LWPacketKYCSendDocument *pack = [LWPacketKYCSendDocument new];
-//        pack.docType = docType;
-//
-//        // set document compression
-//        double const compression = [[LWAuthManager instance].documentsStatus compression:docType];
-//        pack.imageJPEGRepresentation = UIImageJPEGRepresentation(image, compression);
+        LWPacketKYCSendDocument *pack = [LWPacketKYCSendDocument new];
+        pack.docType = docType;
+
+        // set document compression
+        double const compression = [[LWAuthManager instance].documentsStatus compression:docType];
+        pack.imageJPEGRepresentation = UIImageJPEGRepresentation(image, compression);
         
-//        NSURL *url = [NSURL URLWithString:pack.urlBase];
-//        AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc]
-//                                         initWithBaseURL:url];
-//        manager.requestSerializer = [AFJSONRequestSerializer serializer];
-//        
-//        NSDictionary *headers = [pack headers];
-//        for (NSString *key in headers.allKeys) {
-//            [manager.requestSerializer setValue:headers[key] forHTTPHeaderField:key];
-//        }
+        NSURL *url = [NSURL URLWithString:pack.urlBase];
+        AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc]
+                                         initWithBaseURL:url];
+        manager.requestSerializer = [AFJSONRequestSerializer serializer];
+        
+        NSDictionary *headers = [pack headers];
+        for (NSString *key in headers.allKeys) {
+            [manager.requestSerializer setValue:headers[key] forHTTPHeaderField:key];
+        }
         
         hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
         hud.mode = MBProgressHUDModeAnnularDeterminate;
@@ -388,11 +289,40 @@
                                            action:@selector(uploadCanceled)];
         [hud addGestureRecognizer:gesture];
         
-        sendImageManager=[[LWSendImageManager alloc] init];
-        sendImageManager.type=docType;
-        sendImageManager.delegate=self;
-        [sendImageManager sendImageWithData:UIImageJPEGRepresentation(image, 0.9) type:docType];
-
+        uploadTask = [manager POST:pack.urlRelative parameters:pack.params
+                          progress:^(NSProgress * _Nonnull uploadProgress) {
+                              dispatch_async(dispatch_get_main_queue(), ^{
+                                  hud.progress = uploadProgress.fractionCompleted;
+                              });
+                          }
+                           success:^(NSURLSessionTask *task, id responseObject) {
+                               dispatch_async(dispatch_get_main_queue(), ^{
+                                   [hud hide:YES];
+                                   
+                                   [pack parseResponse:responseObject error:nil];
+                                   
+                                   // set photo to last image
+                                   //lastUploadedImage = photo;
+                                   
+                                   // modify self documents status
+                                   KYCDocumentType docType = ((LWPacketKYCSendDocument *)pack).docType;
+                                   [[LWAuthManager instance].documentsStatus setTypeUploaded:docType withImage:serverImage];
+                                   
+                                   // navigate to next step
+                                   LWAuthNavigationController *navController = (LWAuthNavigationController *)mainController.navigationController;
+                                   [navController navigateWithDocumentStatus:[LWAuthManager instance].documentsStatus hideBackButton:NO];
+                               });
+                           }
+                           failure:^(NSURLSessionTask *operation, NSError *error) {
+                               dispatch_async(dispatch_get_main_queue(), ^{
+                                   [hud hide:YES];
+                                   
+                                   if (error && error.code != NSURLErrorCancelled) {
+                                       NSMutableDictionary *errorInfo = [[NSMutableDictionary alloc] initWithObjects:@[ error.localizedDescription, [NSNumber numberWithInt:-1]] forKeys:@[ @"Message", @"Code" ]];
+                                       [mainController showReject:errorInfo response:operation.response];
+                                   }
+                               });
+                           }];
     }
 }
 
@@ -403,10 +333,10 @@
             image = [UIImage imageNamed:@"RegisterLineStep2"];
             break;
         case KYCDocumentTypeIdCard:
-            image = [UIImage imageNamed:@"RegisterLineStep2"];
+            image = [UIImage imageNamed:@"RegisterLineStep3"];
             break;
         case KYCDocumentTypeProofOfAddress:
-            image = [UIImage imageNamed:@"RegisterLineStep2"];
+            image = [UIImage imageNamed:@"RegisterLineStep4"];
             break;
         default:
             break;
@@ -418,47 +348,9 @@
     if (hud) {
         [hud hide:YES];
     }
-    
-    [sendImageManager stopUploading];
-}
-
-#pragma mark - LWSendImageManagerDelegate
-
--(void) sendImageManager:(LWSendImageManager *)manager didFailWithErrorMessage:(NSString *)message
-{
-    [hud hide:YES];
-    
-    
-        NSMutableDictionary *errorInfo=[@{@"Message":message, @"Code":@(-1)} mutableCopy];
-        [self showReject:errorInfo response:nil];
-
-
-}
-
--(void) sendImageManagerSentImage:(LWSendImageManager *)manager
-{
-    [hud hide:YES];
-    
-    // modify self documents status
-    KYCDocumentType docType = manager.type;
-    [[LWAuthManager instance].documentsStatus setTypeUploaded:docType withImage:serverImage];
-    
-    if(self.delegate)
-    {
-        [self.delegate cameraPresenterDidSendPhoto:self];
+    if (uploadTask) {
+        [uploadTask cancel];
     }
-    else
-    {
-        // navigate to next step
-        LWAuthNavigationController *navController = (LWAuthNavigationController *)self.navigationController;
-        [navController navigateWithDocumentStatus:[LWAuthManager instance].documentsStatus hideBackButton:NO];
-    }
-
-}
-
--(void) sendImageManager:(LWSendImageManager *)manager changedProgress:(float)progress
-{
-    hud.progress = progress;
 }
 
 
@@ -473,11 +365,8 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
 
     UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
-    
-    [self setupImage:image shouldCropImage:YES];
-
     [picker dismissViewControllerAnimated:NO completion:^{
-//        [self setupImage:image shouldCropImage:YES];
+        [self setupImage:image shouldCropImage:YES];
     }];
     
     [self checkButtonsState];

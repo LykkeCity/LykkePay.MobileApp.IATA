@@ -7,7 +7,6 @@
 //
 
 #import "LWLykkeAssetsData.h"
-#import "LWUtils.h"
 
 
 @implementation LWLykkeAssetsData {
@@ -23,22 +22,10 @@
         _identity    = [json objectForKey:@"Id"];
         _name        = [json objectForKey:@"Name"];
         _symbol      = [json objectForKey:@"Symbol"];
-        
-        
         _balance     = [json objectForKey:@"Balance"];
-        
-
-        
         _assetPairId = [json objectForKey:@"AssetPairId"];
         _issuerId    = [json objectForKey:@"IssuerId"];
         _hideIfZero  = [[json objectForKey:@"HideIfZero"] boolValue];
-        _accuracy=[json objectForKey:@"Accuracy"];
-        
-        double balance=[LWUtils fairVolume:_balance.doubleValue accuracy:_accuracy.intValue roundToHigher:NO];
-        _balance=[NSNumber numberWithDouble:balance];
-        
-        _categoryId=json[@"CategoryId"];
-
     }
     return self;
 }

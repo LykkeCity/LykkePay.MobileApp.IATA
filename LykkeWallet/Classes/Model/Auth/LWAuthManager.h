@@ -12,9 +12,6 @@
 #import "LWPacketKYCSendDocument.h"
 #import "LWAuthSteps.h"
 
-
-
-
 @class LWAuthManager;
 @class LWLykkeWalletsData;
 @class LWBankCardsAdd;
@@ -30,44 +27,13 @@
 @class LWPersonalDataModel;
 @class LWTransactionMarketOrderModel;
 @class LWExchangeInfoModel;
-@class LWPacketGraphPeriods;
-@class LWPacketCountryCodes;
-@class LWPacketGraphData;
-@class LWGraphPeriodModel;
-@class LWPacketCurrencyDeposit;
-@class LWPacketCurrencyWithdraw;
-@class LWPacketApplicationInfo;
-@class LWPacketBitcoinAddressValidation;
-@class LWPacketLastBaseAssets;
-@class LWPacketKYCForAsset;
-@class LWPacketGetRefundAddress;
-@class LWPacketSetRefundAddress;
-@class LWPacketAuthentication;
-@class LWPacketPushSettingsGet;
-@class LWPacketGetPaymentUrl;
-@class LWPacketPrevCardPayment;
-@class LWPacketGetHistory;
-@class LWPacketClientKeys;
-@class LWPrivateKeyOwnershipMessage;
-@class LWRecoveryPasswordModel;
-@class LWPacketAllAssetPairsRates;
-@class LWPacketMyLykkeInfo;
-@class LWPacketGetNews;
-@class LWPacketSwiftCredentials;
-@class LWPacketGetEthereumAddress;
-@class LWWalletMigrationModel;
-@class LWPacketOrderBook;
-@class LWPacketKYCDocuments;
-@class LWPacketCategories;
-@class LWPacketGetPendingTransactions;
-@class LWSignRequestModel;
-@class LWPacketGetEthereumContract;
+@class LWGraphPeriodRatesModel;
 
 
 @protocol LWAuthManagerDelegate<NSObject>
 @optional
 - (void)authManager:(LWAuthManager *)manager didFailWithReject:(NSDictionary *)reject context:(GDXRESTContext *)context;
-- (void)authManager:(LWAuthManager *)manager didCheckRegistration:(BOOL)isRegistered hasHint:(BOOL) userHasHint email:(NSString *)email;
+- (void)authManager:(LWAuthManager *)manager didCheckRegistration:(BOOL)isRegistered email:(NSString *)email;
 - (void)authManagerDidRegister:(LWAuthManager *)manager;
 - (void)authManagerDidRegisterGet:(LWAuthManager *)manager KYCStatus:(NSString *)status isPinEntered:(BOOL)isPinEntered personalData:(LWPersonalData *)personalData;
 - (void)authManagerDidAuthenticate:(LWAuthManager *)manager KYCStatus:(NSString *)status isPinEntered:(BOOL)isPinEntered;
@@ -109,59 +75,9 @@
 - (void)authManagerDidSendValidationPhone:(LWAuthManager *)manager;
 - (void)authManagerDidCheckValidationPhone:(LWAuthManager *)manager passed:(BOOL)passed;
 - (void)authManagerDidSetFullName:(LWAuthManager *)manager;
-- (void)authManager:(LWAuthManager *)manager didGetCountryCodes:(LWPacketCountryCodes *) countryCodes;
-- (void)authManager:(LWAuthManager *)manager didGetGraphPeriods:(LWPacketGraphPeriods *) graphPeriods;
--(void) authManager:(LWAuthManager *)manager didGetGraphData:(LWPacketGraphData *)graphData;
--(void) authManager:(LWAuthManager *) manager didGetCurrencyDeposit:(LWPacketCurrencyDeposit *) deposit;
-
--(void) authManager:(LWAuthManager *) manager didSendWithdraw:(LWPacketCurrencyWithdraw *) withdraw;
-
--(void) authManager:(LWAuthManager *)manager didGetAPIVersion:(LWPacketApplicationInfo *) apiVersion;
--(void) authManager:(LWAuthManager *) manager didValidateBitcoinAddress:(LWPacketBitcoinAddressValidation *) bitconAddress;
-
--(void) authManager:(LWAuthManager *) manager didGetLastBaseAssets:(LWPacketLastBaseAssets *) lastAssets;
-
--(void) authManager:(LWAuthManager *) manager didGetAssetKYCStatusForAsset:(LWPacketKYCForAsset *) status;
-
--(void) authManager:(LWAuthManager *) manager didGetRefundAddress:(LWPacketGetRefundAddress *) address;
--(void) authManagerDidSetRefundAddress:(LWAuthManager *) manager;
-
--(void) authManager:(LWAuthManager *) manager didGetPushSettings:(LWPacketPushSettingsGet *) status;
--(void) authManagerDidSetPushSettings;
-
--(void) authManager:(LWAuthManager *)manager didGetPaymentUrl:(LWPacketGetPaymentUrl *) packet;
-
--(void) authManager:(LWAuthManager *)manager didGetLastCardPaymentData:(LWPacketPrevCardPayment *) packet;
--(void) authManager:(LWAuthManager *)manager didGetHistory:(LWPacketGetHistory *) packet;
-
--(void) authManagerDidSendClientKeys:(LWAuthManager *) manager;
-
--(void) authManager:(LWAuthManager *) manager didGetPrivateKeyOwnershipMessage:(LWPrivateKeyOwnershipMessage *) packet;
--(void) authManagerDidGetRecoverySMSConfirmation:(LWAuthManager *) manager;
--(void) authManagerDidChangePINAndPassword:(LWAuthManager *) manager;
-
--(void) authManager:(LWAuthManager *) manager didGetAllAssetPairsRate:(LWPacketAllAssetPairsRates *) packet;
--(void) authManager:(LWAuthManager *)manager didGetMyLykkeInfo:(LWPacketMyLykkeInfo *) packet;
-
--(void) authManagerDidSendMyLykkeCashInEmail:(LWAuthManager *)manager;
--(void) authManagerDidGetSwiftCredentials:(LWPacketSwiftCredentials *) packet;
-
--(void) authManagerDidGetEthereumAddress:(LWPacketGetEthereumAddress *) ethereumAddress;
-
--(void) authManagerDidGetEncodedPrivateKey:(LWAuthManager *) manager;
--(void) authManagerDidSendEmailHint:(LWAuthManager *) manager;
-
--(void) authManagerDidRequestVoiceCall:(LWAuthManager *) manager;
--(void) authManagerDidCompleteWalletMigration:(LWAuthManager *) manager;
-
--(void) authManager:(LWAuthManager *)manager didGetOrderBook:(LWPacketOrderBook *)packet;
--(void) authManager:(LWAuthManager *)manager didGetKYCDocuments:(LWPacketKYCDocuments *)packet;
-
--(void) authManager:(LWAuthManager *) manager didGetAssetCategories:(LWPacketCategories *) packet;
-
--(void) authManager:(LWAuthManager *)manager didGetEthereumContract:(LWPacketGetEthereumContract *) packet;
-
-
+- (void)authManager:(LWAuthManager *)manager didGetCountryCodes:(NSArray *)countryCodes;
+- (void)authManager:(LWAuthManager *)manager didGetGraphPeriods:(NSArray *)graphPeriods;
+- (void)authManager:(LWAuthManager *)manager didGetGraphPeriodRates:(LWGraphPeriodRatesModel *)periodRates;
 
 @end
 
@@ -177,6 +93,7 @@ SINGLETON_DECLARE
 @property (readonly, nonatomic) BOOL               isAuthorized;
 @property (readonly, nonatomic) LWRegistrationData *registrationData;
 @property (readonly, nonatomic) LWDocumentsStatus  *documentsStatus;
+
 
 #pragma mark - Common
 
@@ -197,18 +114,16 @@ SINGLETON_DECLARE
 - (void)requestSendLog:(NSString *)log;
 - (void)requestAddBankCard:(LWBankCardsAdd *)card;
 - (void)requestBaseAssets;
--(void) requestAllAssets;
 - (void)requestBaseAssetGet;
 - (void)requestBaseAssetSet:(NSString *)assetId;
--(void) requestLastBaseAssets;
 - (void)requestAssetPair:(NSString *)pairId;
 - (void)requestAssetPairs;
 - (void)requestAssetPairRate:(NSString *)pairId;
 - (void)requestAssetPairRates;
 - (void)requestAssetDescription:(NSString *)assetId;
 - (void)requestAppSettings;
-- (void)requestPurchaseAsset:(NSString *)asset assetPair:(NSString *)assetPair volume:(NSNumber *)volume rate:(NSString *)rate;
-- (void)requestSellAsset:(NSString *)asset assetPair:(NSString *)assetPair volume:(NSNumber *)volume rate:(NSString *)rate;
+- (void)requestPurchaseAsset:(NSString *)asset assetPair:(NSString *)assetPair volume:(NSNumber *)volume rate:(NSNumber *)rate;
+- (void)requestSellAsset:(NSString *)asset assetPair:(NSString *)assetPair volume:(NSNumber *)volume rate:(NSNumber *)rate;
 - (void)requestSignOrders:(BOOL)shouldSignOrders;
 - (void)requestBlockchainOrderTransaction:(NSString *)orderId;
 - (void)requestBlockchainCashTransaction:(NSString *)cashOperationId;
@@ -216,7 +131,7 @@ SINGLETON_DECLARE
 - (void)requestBlockchainTransferTrnasaction:(NSString *)transferOperationId;
 - (void)requestTransactions:(NSString *)assetId;
 - (void)requestMarketOrder:(NSString *)orderId;
-- (void)requestEmailBlockchainForAssetId:(NSString *) assetId address:(NSString *) address;
+- (void)requestEmailBlockchain:(NSString *) assetId;
 - (void)requestExchangeInfo:(NSString *)exchangeId;
 - (void)requestDictionaries;
 - (void)requestCashOut:(NSNumber *)amount assetId:(NSString *)assetId multiSig:(NSString *)multiSig;
@@ -227,78 +142,8 @@ SINGLETON_DECLARE
 - (void)requestVerificationPhone:(NSString *)phone forCode:(NSString *)code;
 - (void)requestSetFullName:(NSString *)fullName;
 - (void)requestCountyCodes;
-
--(void) requestGraphPeriods;
--(void) requestGraphDataForPeriod:(LWGraphPeriodModel *) period assetPairId:(NSString *) assetPairId;
--(void) requestCurrencyDepositForAsset:(NSString *) assetId changeValue:(NSNumber *) changeValue;
--(void) requestCurrencyWithdraw:(LWPacketCurrencyWithdraw *) withdraw;
-
--(void) requestAPIVersion;
--(void) validateBitcoinAddress:(NSString *) address;
-
--(void) requestSetReverted:(BOOL) reverted  assetPairId:(NSString *) assetPairId;
-
--(void) requestKYCStatusForAsset:(NSString *)assetId;
-
--(void) requestGetRefundAddress;
--(void) requestSetRefundAddress:(NSDictionary *) dict;
-
--(void) requestGetPushSettings;
--(void) requestSetPushEnabled:(BOOL) isEnabled;
-
--(void) requestEncodedPrivateKey;
--(void) requestSaveClientKeysWithPubKey:(NSString *) pubKey encodedPrivateKey:(NSString *) encodedPrivateKey;
-
--(void) requestGetPaymentUrlWithParameters:(NSDictionary *) params;
-
--(void) requestPrevCardPayment;
-
--(void) requestGetHistory:(NSString *) assetId;
-
--(void) requestPrivateKeyOwnershipMessage:(NSString *) email;
--(void) requestCheckPrivateKeyOwnershipMessageSignature:(NSString *) signature email:(NSString *) email;
-
--(void) requestRecoverySMSConfirmation:(LWRecoveryPasswordModel *) recModel;
-
--(void) requestChangePINAndPassword:(LWRecoveryPasswordModel *) recModel;
-
--(void) requestAllAssetPairsRates:(NSString *) assetId;
-
--(void) requestMyLykkeInfo;
-
--(void) requestAllAssetPairs;
-
--(void) requestLykkeNewsWithCompletion:(void(^)(NSArray *)) completion;
-
--(void) requestSendMyLykkeCashInEmail:(NSDictionary *) params;
-
--(void) requestSwiftCredentials;
-
--(void) requestEthereumAddress;
-
--(void) requestMyLykkeSettings;
-
--(void) requestSendHintForEmail:(NSString *) email;
-
--(void) requestSaveBackupState;
-
--(void) requestVoiceCall:(NSString *) phone email:(NSString *) email;
-
--(void) requestWalletMigration:(LWWalletMigrationModel *) migration;
--(void) requestSetPasswordHash:(NSString *) hash;
-
--(void) requestOrderBook:(NSString *) assetPairId;
--(void) requestKYCDocuments;
-
--(void) requestAssetCategories;
-
--(void) requestPendingTransactions;
--(void) requestSendSignedTransaction:(LWSignRequestModel *) signRequest;
-
--(void) requestEthereumContractForAddress:(NSString *) address pubKey:(NSString *) pubKey;
-
-
-//PubkeyAddressValidation
+- (void)requestGraphPeriods;
+- (void)requestGraphPeriodRates:(NSString *)period assetId:(NSString *)assetId points:(NSNumber *)points;
 
 #pragma mark - Static methods
 

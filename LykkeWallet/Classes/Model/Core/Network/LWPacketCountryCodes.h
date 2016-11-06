@@ -7,7 +7,6 @@
 //
 
 #import "LWAuthorizePacket.h"
-#import "LWCountryModel.h"
 
 
 @interface LWPacketCountryCodes : LWAuthorizePacket {
@@ -17,6 +16,5 @@
 
 // out
 @property (readonly, nonatomic) NSArray *countries;
-@property (readonly, nonatomic) LWCountryModel *ipLocatedCountry;
 
 @end

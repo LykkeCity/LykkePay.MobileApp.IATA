@@ -7,7 +7,7 @@
 //
 
 #import "LWPersonalDataPacket.h"
-#import "LWPersonalDataModel.h"
+#import "LWPersonalData.h"
 #import "LWKeychainManager.h"
 
 
@@ -25,7 +25,7 @@
         return;
     }
     
-    _personalData = [[LWPersonalDataModel alloc]
+    _personalData = [[LWPersonalData alloc]
                      initWithJSON:[result objectForKey:@"PersonalData"]];
     [[LWKeychainManager instance] savePersonalData:_personalData];
 }

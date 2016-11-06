@@ -42,19 +42,4 @@
     [super setTitle:[title uppercaseString]];
 }
 
-- (UIInterfaceOrientationMask)supportedInterfaceOrientations
-{
-    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad)
-        return UIInterfaceOrientationMaskAll;
-    return UIInterfaceOrientationMaskPortrait;
-    
-}
--(BOOL) shouldAutorotate
-{
-    if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad)
-        return YES;
-    return NO;
-
-}
-
 @end

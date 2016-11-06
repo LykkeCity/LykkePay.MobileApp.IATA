@@ -159,12 +159,12 @@
     if (self.selfie && !self.isSelfieUploaded) {
         return @(KYCDocumentTypeSelfie);
     }
-//    if (self.idCard && !self.isIdCardUploaded) {
-//        return @(KYCDocumentTypeIdCard);
-//    }
-//    if (self.proofOfAddress && !self.isPOAUploaded) {
-//        return @(KYCDocumentTypeProofOfAddress);
-//    }
+    if (self.idCard && !self.isIdCardUploaded) {
+        return @(KYCDocumentTypeIdCard);
+    }
+    if (self.proofOfAddress && !self.isPOAUploaded) {
+        return @(KYCDocumentTypeProofOfAddress);
+    }
     return nil;
 }
 

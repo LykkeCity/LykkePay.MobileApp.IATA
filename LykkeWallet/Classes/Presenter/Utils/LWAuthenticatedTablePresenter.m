@@ -38,7 +38,6 @@
 
 - (void)viewDidLayoutSubviews
 {
-    [super viewDidLayoutSubviews];
     if ([self.tableView respondsToSelector:@selector(setSeparatorInset:)]) {
         [self.tableView setSeparatorInset:UIEdgeInsetsZero];
     }

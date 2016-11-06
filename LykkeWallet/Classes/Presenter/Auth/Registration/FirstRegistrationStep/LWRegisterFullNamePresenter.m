@@ -12,17 +12,11 @@
 #import "LWTextField.h"
 #import "LWValidator.h"
 #import "UIViewController+Loading.h"
-#import "LWKeychainManager.h"
 
 
 @interface LWRegisterFullNamePresenter ()  {
     
 }
-
-
-
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *proceedWidthConstraint;
-@property (weak, nonatomic) IBOutlet UITextField *lastName;
 
 @end
 
@@ -33,57 +27,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.hidesBackButton = YES;
-    if([UIScreen mainScreen].bounds.size.width==320)
-        _proceedWidthConstraint.constant=280;
-
-    _lastName.placeholder=@"Surname";
-    
-    
 }
-
-//- (void)observeKeyboardWillShowNotification:(NSNotification *)notification {
-//    
-//    if([UIDevice currentDevice].userInterfaceIdiom!=UIUserInterfaceIdiomPad)
-//    {
-//        [super observeKeyboardWillShowNotification:notification];
-//        return;
-//    }
-//    
-//    self.scrollView.contentOffset=CGPointMake(0, 120);
-//    self.scrollView.scrollEnabled=NO;
-//    
-//}
-//
-//- (void)observeKeyboardWillHideNotification:(NSNotification *)notification {
-//    if([UIDevice currentDevice].userInterfaceIdiom!=UIUserInterfaceIdiomPad)
-//    {
-//        [super observeKeyboardWillShowNotification:notification];
-//        return;
-//    }
-//    self.scrollView.contentOffset=CGPointMake(0, 0);
-//    
-//    self.scrollView.contentInset = UIEdgeInsetsZero;
-//    self.scrollView.scrollEnabled=YES;
-//}
-
-
--(BOOL) canProceed
-{
-    return [[self textFieldString] length];
-        
-}
-
 
 
 #pragma mark - LWRegisterBasePresenter
 
 
 - (void)proceedToNextStep {
-    NSString *fullName = [[self textFieldString] stringByAppendingFormat:@" %@",_lastName.text];
+    NSString *fullName = [self textFieldString];
     if (![fullName isEqualToString:@""]) {
         [self setLoading:YES];
         [[LWAuthManager instance] requestSetFullName:fullName];
-        [[LWKeychainManager instance] saveFullName:fullName];
     }
 }
 
@@ -91,16 +45,16 @@
     self.registrationInfo.fullName = input;
 }
 
-//- (BOOL)validateInput:(NSString *)input {
-//    return [LWValidator validateFullName:input];
-//}
+- (BOOL)validateInput:(NSString *)input {
+    return [LWValidator validateFullName:input];
+}
 
 - (void)configureTextField:(LWTextField *)textField {
     [textField setAutocapitalizationType:UITextAutocapitalizationTypeWords];
 }
 
 - (NSString *)fieldPlaceholder {
-    return @"Name";
+    return Localize(@"register.fullName");
 }
 
 

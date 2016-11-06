@@ -15,5 +15,4 @@
 
 @property (copy, nonatomic) NSString *baseAssetId;
 
-
 @end

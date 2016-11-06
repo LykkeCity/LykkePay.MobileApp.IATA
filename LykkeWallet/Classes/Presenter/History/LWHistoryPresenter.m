@@ -15,13 +15,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = Localize(@"tab.history");
+    self.navigationItem.title = Localize(@"tab.history");
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-
-    self.title = Localize(@"tab.history");
 
     if (self.shouldGoBack) {
         [self setBackButton];
@@ -31,13 +29,8 @@
         self.tabBarController.title = [self.navigationItem.title uppercaseString];
     }
     
-}
-
--(void) viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    self.title = Localize(@"tab.history");
- 
+    [self setLoading:YES];
+    [[LWAuthManager instance] requestTransactions:self.assetId];
 }
 
 @end

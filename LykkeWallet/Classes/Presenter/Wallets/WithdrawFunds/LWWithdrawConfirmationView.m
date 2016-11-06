@@ -21,7 +21,6 @@
 @interface LWWithdrawConfirmationView ()<UITableViewDataSource, LWPinKeyboardViewDelegate> {
     LWPinKeyboardView *pinKeyboardView;
     BOOL               isRequested;
-        UIView *shadowView;
 }
 
 
@@ -35,8 +34,6 @@
 @property (weak, nonatomic) IBOutlet UIButton         *placeOrderButton;
 @property (weak, nonatomic) IBOutlet UILabel          *waitingLabel;
 @property (weak, nonatomic) IBOutlet LWLoadingIndicatorView *waitingImageView;
-
-@property (weak, nonatomic) IBOutlet UIView *touchCatchView;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *topViewHeightConstraint;
 
@@ -61,18 +58,6 @@
 static int const kDescriptionRows = 2;
 static float const kPinProtectionHeight = 444;
 static float const kNoPinProtectionHeight = 356;
-
-
--(void) awakeFromNib
-{
-    UITapGestureRecognizer *gesture=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cancelClicked:)];
-    [self.touchCatchView addGestureRecognizer:gesture];
-    if([UIScreen mainScreen].bounds.size.width==320)
-    {
-        _topViewHeightConstraint.constant=520;
-    }
-
-}
 
 #pragma mark - General
 
@@ -117,14 +102,13 @@ static float const kNoPinProtectionHeight = 356;
 
 - (void)cancelOperation {
     [self.delegate cancelClicked];
-    [self hide];
+    [self removeFromSuperview];
 }
 
 - (void)updateView {
-
+    [UIView setAnimationsEnabled:NO];
     
-//    self.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5f];
-    self.backgroundColor=nil;
+    self.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5f];
     
     self.topView.backgroundColor = [UIColor whiteColor];
     self.topView.opaque = NO;
@@ -136,8 +120,6 @@ static float const kNoPinProtectionHeight = 356;
         pinKeyboardView.hidden = !shouldSignOrder;
         [pinKeyboardView updateView];
         [self.bottomView addSubview:pinKeyboardView];
-        pinKeyboardView.frame=self.bottomView.bounds;
-        pinKeyboardView.autoresizingMask=UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     }
     else {
         if (pinKeyboardView) {
@@ -145,19 +127,12 @@ static float const kNoPinProtectionHeight = 356;
             pinKeyboardView = nil;
         }
     }
-  
-    if(shouldSignOrder==NO)
-        self.topViewHeightConstraint.constant=kNoPinProtectionHeight;
-
-//    self.topViewHeightConstraint.constant = (shouldSignOrder ? kPinProtectionHeight : kNoPinProtectionHeight);
+    
+    self.topViewHeightConstraint.constant = (shouldSignOrder ? kPinProtectionHeight : kNoPinProtectionHeight);
     self.placeOrderButton.hidden = shouldSignOrder;
     
     self.waitingLabel.text = Localize(@"withdraw.funds.modal.waiting");
     [self.navigationItem setTitle:Localize(@"withdraw.funds.modal.title")];
-    
-//    [LWValidator setButton:self.placeOrderButton enabled:YES];
-    self.placeOrderButton.enabled=YES;
-    
     [self.placeOrderButton setTitle:Localize(@"withdraw.funds.modal.button")
                            forState:UIControlStateNormal];
 
@@ -225,35 +200,6 @@ static float const kNoPinProtectionHeight = 356;
     return values[row];
 }
 
--(void) hide
-{
-    [UIView animateWithDuration:0.5 animations:^{
-        shadowView.alpha=0;
-        self.iPadNavShadowView.alpha=0;
-        self.center=CGPointMake(self.bounds.size.width/2, self.bounds.size.height*1.5);
-    } completion:^(BOOL finished){
-            [self.iPadNavShadowView removeFromSuperview];
-            [shadowView removeFromSuperview];
-        [self removeFromSuperview];
-    }];
-}
-
--(void) show
-{
-    shadowView=[[UIView alloc] initWithFrame:self.superview.bounds];
-    shadowView.backgroundColor=[UIColor colorWithWhite:0 alpha:0.5];
-    shadowView.alpha=0;
-    shadowView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-    [self.superview insertSubview:shadowView belowSubview:self];
-    
-    [UIView animateWithDuration:0.5 animations:^{
-        shadowView.alpha=1;
-        self.iPadNavShadowView.alpha=1;
-    }];
-}
-
-
-
 
 #pragma mark - UITableViewDataSource
 
@@ -265,15 +211,10 @@ static float const kNoPinProtectionHeight = 356;
     return kDescriptionRows;
 }
 
--(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return 50;
-}
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *const titles[kDescriptionRows] = {
-        [self.assetId isEqualToString:@"BTC"]?@"Bitcoin address":@"Colored coin address",//     Localize(@"withdraw.funds.modal.cell.address"),
+        Localize(@"withdraw.funds.modal.cell.address"),
         Localize(@"withdraw.funds.modal.cell.amount")
     };
     
@@ -295,21 +236,16 @@ static float const kNoPinProtectionHeight = 356;
     return cell;
 }
 
--(void) pinKeyboardViewPressedFingerPrint
-{
-    [self.delegate pressedFingerPrint];
-}
-
 
 #pragma mark - UITableViewDelegate
 
-//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    NSString *text = [self dataByCellRow:indexPath.row - 1];
-//    if (text) {
-//        return [self calculateRowHeightForText:text];
-//    }
-//    return 0.0;
-//}
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSString *text = [self dataByCellRow:indexPath.row - 1];
+    if (text) {
+        return [self calculateRowHeightForText:text];
+    }
+    return 0.0;
+}
 
 
 #pragma mark - LWPinKeyboardViewDelegate
@@ -319,18 +255,13 @@ static float const kNoPinProtectionHeight = 356;
 }
 
 - (void)pinCanceled {
-    [self hide];
+    [self removeFromSuperview];
     [self.delegate cancelClicked];
 }
 
 - (void)pinAttemptEnds {
-    [self hide];
+    [self removeFromSuperview];
     [self.delegate noAttemptsForPin];
-}
-
--(void) dealloc
-{
-    
 }
 
 @end

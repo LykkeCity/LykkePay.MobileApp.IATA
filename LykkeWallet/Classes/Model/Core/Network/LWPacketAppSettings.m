@@ -20,7 +20,7 @@
 - (void)parseResponse:(id)response error:(NSError *)error {
     [super parseResponse:response error:error];
     
-    if (self.isRejected || !response) {
+    if (self.isRejected) {
         return;
     }
     

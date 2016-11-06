@@ -30,7 +30,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = Localize(@"settings.assets.title");
+    self.navigationItem.title = Localize(@"settings.assets.title");
     
     [self setBackButton];
     
@@ -41,7 +41,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    self.assets = [[LWCache instance].allAssets copy];
+    self.assets = [[LWCache instance].baseAssets copy];
 }
 
 

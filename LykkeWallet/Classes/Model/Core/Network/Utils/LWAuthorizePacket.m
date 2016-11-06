@@ -18,15 +18,10 @@
 - (NSDictionary *)headers {
     NSString *token = [LWKeychainManager instance].token;
     
-    
-    NSMutableDictionary *dict=[[super headers] mutableCopy];
-    
-    
     if (token) {
-        dict[@"Authorization"]=[NSString stringWithFormat:@"Bearer %@", token];
-//        return @{@"Authorization" : [NSString stringWithFormat:@"Bearer %@", token]};
+        return @{@"Authorization" : [NSString stringWithFormat:@"Bearer %@", token]};
     }
-    return dict;
+    return [super headers];
 }
 
 @end

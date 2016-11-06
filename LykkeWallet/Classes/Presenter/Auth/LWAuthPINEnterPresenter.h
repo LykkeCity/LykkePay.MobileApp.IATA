@@ -10,7 +10,4 @@
 
 @interface LWAuthPINEnterPresenter : LWAuthStepPresenter
 
-@property (strong, nonatomic) void (^isSuccess) (BOOL success);
-
-
 @end

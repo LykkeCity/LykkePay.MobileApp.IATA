@@ -8,16 +8,6 @@
 
 #import "LWLykkeTableViewCell.h"
 
-@interface LWLykkeTableViewCell()
-{
-}
-
-@property (weak, nonatomic) IBOutlet UIView *containerView;
-
-@property (weak, nonatomic) IBOutlet UIView *contView;
-
-@end
-
 
 @implementation LWLykkeTableViewCell {
     
@@ -25,7 +15,6 @@
 
 
 #pragma mark - Identity
-
 
 + (NSString *)reuseIdentifier {
     return NSStringFromClass(self.class);
@@ -38,7 +27,5 @@
 - (IBAction)addItemClicked:(id)sender {
     [self.cellDelegate addLykkeItemClicked:self];
 }
-
-
 
 @end

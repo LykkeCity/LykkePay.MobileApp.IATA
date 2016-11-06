@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="Proxima Nova Light.otf">
+            <string>ProximaNova-Light</string>
+        </mutableArray>
+        <mutableArray key="Proxima Nova Regular.otf">
+            <string>ProximaNova-Regular</string>
+            <string>ProximaNova-Regular</string>
+        </mutableArray>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="LWHistoryTableViewCellIdentifier" rowHeight="60" id="Mhe-7n-A1c" customClass="LWHistoryTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="443" height="60"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Mhe-7n-A1c" id="Io2-VZ-swK">
+                <rect key="frame" x="0.0" y="0.0" width="443" height="59"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="b21-y8-HfB">
+                        <rect key="frame" x="38" y="12" width="36" height="36"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="36" id="7jg-JO-wtf"/>
+                            <constraint firstAttribute="width" constant="36" id="BDP-51-aMZ"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wallet cash in" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G6z-yU-TyH">
+                        <rect key="frame" x="82" y="12" width="200" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="Inq-Ta-iHj"/>
+                            <constraint firstAttribute="width" constant="200" id="Kbm-FM-mqH"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="14"/>
+                        <color key="textColor" red="0.2470588235" green="0.30196078430000001" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="08.12.2015 11:28 AM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QDg-xx-tUS">
+                        <rect key="frame" x="82" y="33" width="200" height="15"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="200" id="JQw-PR-xU6"/>
+                            <constraint firstAttribute="height" constant="15" id="oOM-bV-NCm"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="12"/>
+                        <color key="textColor" red="0.2470588235" green="0.30196078430000001" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="18888888.88" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qvU-XO-S9H">
+                        <rect key="frame" x="290" y="12" width="115" height="36"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="36" id="OO6-qV-xjC"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="ProximaNova-Light" family="Proxima Nova" pointSize="14"/>
+                        <color key="textColor" red="0.32549019607843138" green="0.66666666666666663" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailingMargin" secondItem="qvU-XO-S9H" secondAttribute="trailing" constant="30" id="7be-EP-6w1"/>
+                    <constraint firstItem="G6z-yU-TyH" firstAttribute="top" secondItem="Io2-VZ-swK" secondAttribute="topMargin" constant="4" id="ArT-5C-AqB"/>
+                    <constraint firstItem="QDg-xx-tUS" firstAttribute="top" secondItem="G6z-yU-TyH" secondAttribute="bottom" id="DUa-Rz-Qdk"/>
+                    <constraint firstItem="b21-y8-HfB" firstAttribute="leading" secondItem="Io2-VZ-swK" secondAttribute="leadingMargin" constant="30" id="IpN-ts-bhx"/>
+                    <constraint firstItem="G6z-yU-TyH" firstAttribute="leading" secondItem="b21-y8-HfB" secondAttribute="trailing" constant="8" id="Jc4-O7-OwR"/>
+                    <constraint firstItem="qvU-XO-S9H" firstAttribute="top" secondItem="Io2-VZ-swK" secondAttribute="topMargin" constant="4" id="O9J-Zn-hxJ"/>
+                    <constraint firstItem="b21-y8-HfB" firstAttribute="centerY" secondItem="Io2-VZ-swK" secondAttribute="centerY" id="OTV-KY-Mos"/>
+                    <constraint firstItem="qvU-XO-S9H" firstAttribute="leading" secondItem="QDg-xx-tUS" secondAttribute="trailing" constant="8" id="XdX-1V-Lgu"/>
+                    <constraint firstItem="QDg-xx-tUS" firstAttribute="leading" secondItem="b21-y8-HfB" secondAttribute="trailing" constant="8" id="rNq-Iv-E53"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="dateLabel" destination="QDg-xx-tUS" id="DXc-gc-DHD"/>
+                <outlet property="operationImageView" destination="b21-y8-HfB" id="bHb-qb-wZC"/>
+                <outlet property="typeLabel" destination="G6z-yU-TyH" id="WFq-eF-KKy"/>
+                <outlet property="valueLabel" destination="qvU-XO-S9H" id="SKb-0g-2As"/>
+            </connections>
+            <point key="canvasLocation" x="223.5" y="174"/>
+        </tableViewCell>
+    </objects>
+</document>

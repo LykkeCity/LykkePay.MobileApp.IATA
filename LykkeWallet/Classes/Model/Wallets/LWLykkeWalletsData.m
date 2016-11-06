@@ -34,8 +34,6 @@
 
         _coloredMultiSig = [json objectForKey:@"ColoredMultiSig"];
         [LWCache instance].coloredMultiSig = [_coloredMultiSig copy];
-        
-        [LWCache instance].solarCoinAddress=[json[@"SolarCoinAddress"] copy];
     }
     return self;
 }
