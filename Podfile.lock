@@ -1,52 +1,60 @@
 PODS:
-  - AFNetworking (3.0.4):
-    - AFNetworking/NSURLSession (= 3.0.4)
-    - AFNetworking/Reachability (= 3.0.4)
-    - AFNetworking/Security (= 3.0.4)
-    - AFNetworking/Serialization (= 3.0.4)
-    - AFNetworking/UIKit (= 3.0.4)
-  - AFNetworking/NSURLSession (3.0.4):
-    - AFNetworking/Reachability
-    - AFNetworking/Security
-    - AFNetworking/Serialization
-  - AFNetworking/Reachability (3.0.4)
-  - AFNetworking/Security (3.0.4)
-  - AFNetworking/Serialization (3.0.4)
-  - AFNetworking/UIKit (3.0.4):
-    - AFNetworking/NSURLSession
-  - Crashlytics (3.7.0):
-    - Fabric (~> 1.6.3)
-  - Fabric (1.6.7)
-  - GDXNet (1.1.4):
-    - AFNetworking
-  - GDXObserver (1.0.1)
-  - MBProgressHUD (0.9.2)
-  - SWTableViewCell (0.3.7)
-  - Toast (3.0)
-  - UIDeviceIdentifier (1.0.1)
-  - Valet (2.2.1)
+  - Alamofire (4.7.2)
+  - AlamofireObjectMapper (5.0.0):
+    - Alamofire (~> 4.1)
+    - ObjectMapper (~> 3.0)
+  - CryptoSwift (0.10.0)
+  - IQKeyboardManagerSwift (6.0.3)
+  - JGProgressHUD (2.0.3)
+  - KeychainAccess (3.1.1)
+  - MaterialTextField (0.2.1)
+  - ObjectMapper (3.2.0)
+  - PromiseKit (4.5.2):
+    - PromiseKit/Foundation (= 4.5.2)
+    - PromiseKit/QuartzCore (= 4.5.2)
+    - PromiseKit/UIKit (= 4.5.2)
+  - PromiseKit/CorePromise (4.5.2)
+  - PromiseKit/Foundation (4.5.2):
+    - PromiseKit/CorePromise
+  - PromiseKit/QuartzCore (4.5.2):
+    - PromiseKit/CorePromise
+  - PromiseKit/UIKit (4.5.2):
+    - PromiseKit/CorePromise
 
 DEPENDENCIES:
-  - Crashlytics
-  - Fabric
-  - GDXNet
-  - GDXObserver
-  - MBProgressHUD
-  - SWTableViewCell
-  - Toast
-  - UIDeviceIdentifier
-  - Valet
+  - Alamofire
+  - AlamofireObjectMapper
+  - CryptoSwift
+  - IQKeyboardManagerSwift
+  - JGProgressHUD
+  - KeychainAccess
+  - MaterialTextField (~> 0.2)
+  - ObjectMapper
+  - PromiseKit (~> 4.5.0)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - AlamofireObjectMapper
+    - CryptoSwift
+    - IQKeyboardManagerSwift
+    - JGProgressHUD
+    - KeychainAccess
+    - MaterialTextField
+    - ObjectMapper
+    - PromiseKit
 
 SPEC CHECKSUMS:
-  AFNetworking: a0075feb321559dc78d9d85b55d11caa19eabb93
-  Crashlytics: c3a2333dea9e2733d2777f730910321fc9e25c0d
-  Fabric: caf7580c725e64db144f610ac65cd60956911dc7
-  GDXNet: 9c6bb3511239e09b360d37118dc75431160e5902
-  GDXObserver: a0d1d614eb40a78f56fa2739ae2bdef529b9642b
-  MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
-  SWTableViewCell: 2a94aadc9d47b2b611fa064566bf57948b95b579
-  Toast: 32c59229abfcf41850162b83bb9259dc84372473
-  UIDeviceIdentifier: 0baf4b37264b56f45f547eecb6f438824e1a691f
-  Valet: 8873c1f797822a513b5b3b18d19955fc39b22aab
+  Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
+  AlamofireObjectMapper: 5fafc816351cbbc0d486611aaeba7461c0cbad49
+  CryptoSwift: 6c778d69282bed3b4e975ff97a79d074f20bb011
+  IQKeyboardManagerSwift: 04e8679f85e496bb2c474eeb9284052f1b3c391c
+  JGProgressHUD: 12b20a8f4ffe05258f8635c1ab92816e451f904d
+  KeychainAccess: 7bd430028059754a3debab3cfc0bd1fc7fb85df3
+  MaterialTextField: f876a39d571eeece872af6a4da421e3bd065fe0b
+  ObjectMapper: 5cccd2de6f253eda859df8116a5a554d9769e859
+  PromiseKit: 743e497a5f505a470d3bbbf4ce0663c1268af0a4
 
-COCOAPODS: 0.39.0
+PODFILE CHECKSUM: 955e573fd5c0eef48a820d9b5962fd97d8ad330c
+
+COCOAPODS: 1.5.3

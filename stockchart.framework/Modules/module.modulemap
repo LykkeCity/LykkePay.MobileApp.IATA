@@ -1,6 +1,0 @@
-framework module stockchart {
-  umbrella header "stockchart.h"
-
-  export *
-  module * { export * }
-}

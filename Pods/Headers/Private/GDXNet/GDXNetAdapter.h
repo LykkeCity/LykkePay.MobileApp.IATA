@@ -1,1 +1,0 @@
-../../../GDXNet/Pod/Classes/GDXNetAdapter.h
