@@ -20,6 +20,7 @@ PODS:
     - PromiseKit/CorePromise
   - PromiseKit/UIKit (4.5.2):
     - PromiseKit/CorePromise
+  - SmileLock (3.0.3)
 
 DEPENDENCIES:
   - Alamofire
@@ -31,6 +32,7 @@ DEPENDENCIES:
   - MaterialTextField (~> 0.2)
   - ObjectMapper
   - PromiseKit (~> 4.5.0)
+  - SmileLock
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -43,6 +45,7 @@ SPEC REPOS:
     - MaterialTextField
     - ObjectMapper
     - PromiseKit
+    - SmileLock
 
 SPEC CHECKSUMS:
   Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
@@ -54,7 +57,8 @@ SPEC CHECKSUMS:
   MaterialTextField: f876a39d571eeece872af6a4da421e3bd065fe0b
   ObjectMapper: 5cccd2de6f253eda859df8116a5a554d9769e859
   PromiseKit: 743e497a5f505a470d3bbbf4ce0663c1268af0a4
+  SmileLock: 247b62849cedca324e70ccfad5d01714602d739e
 
-PODFILE CHECKSUM: 955e573fd5c0eef48a820d9b5962fd97d8ad330c
+PODFILE CHECKSUM: 495857dbf5b987042e37fb66e553c68e49509db4
 
 COCOAPODS: 1.5.3

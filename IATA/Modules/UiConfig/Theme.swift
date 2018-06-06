@@ -10,6 +10,7 @@ class Theme: NSObject {
     public let tintTextFieldColor = Utils.rgb(44, 183, 1)
     public let textFieldColor = Utils.rgb(8, 42, 76)
     public let placeholderTextFieldColor = Utils.rgb(169, 175, 184)
+    public let dotColor = Utils.rgb(230, 232, 234)
     
     public private(set) lazy var buttonsFont = boldFontOfSize(16)
     public private(set) lazy var linksFont = boldFontOfSize(15)

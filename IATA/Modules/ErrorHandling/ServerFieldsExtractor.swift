@@ -16,7 +16,11 @@ class ServerFieldsErrorExtractor: NSObject {
         var dic1 = getEmailMessageError(jsonDict)
         let dic2 = getPasswordMessageError(jsonDict)
         dic1.merge(dict: dic2)
-        return IATAOpError.validation(map: dic1)
+        if (!dic1.isEmpty) {
+            return IATAOpError.validation(map: dic1)
+        } else {
+            return nil
+        }
     }
     
     private func getEmailMessageError(_ jsonDict: [String: Any]) ->  Dictionary<String, [String]> {

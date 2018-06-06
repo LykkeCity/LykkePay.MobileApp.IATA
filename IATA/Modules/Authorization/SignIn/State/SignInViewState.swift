@@ -1,6 +1,6 @@
 import PromiseKit
 
-protocol SignInViewState {
+protocol SignInViewState: BaseViewState{
     
     func getHashPass(email: String, password: String) -> String
     func signIn(email: String, password: String) -> Promise<TokenObject>

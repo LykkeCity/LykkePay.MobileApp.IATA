@@ -14,6 +14,8 @@ class SignInViewController: UIViewController {
         super.viewDidLoad()
         Theme.shared.configureTextFieldStyle(emailTextField)
         Theme.shared.configureTextFieldStyle(passwordField)
+        passwordField.isSecureTextEntry = true
+        
         btnLogin.addTarget(self, action: #selector(self.buttonClicked), for: .touchUpInside)
     }
     
@@ -24,20 +26,12 @@ class SignInViewController: UIViewController {
     private func signIn(email: String, password: String) {
         state.signIn(email: email, password: password)
             .withSpinner(in: view)
-            .always { [weak self] in
-                guard let strongSelf = self else {
-                    return
-                }
-                
-                //  strongSelf.credential = Credential(username: username, password: password)
-            }
             .then(execute: { [weak self] (tokenObject: TokenObject) -> Void in
                 guard let strongSelf = self else {
-                    return
+                return
                 }
-                
-                //     strongSelf.saveCredential(tokenObject: tokenObject)
-                //   SessionController.shared.onSignIn(isTermsAccepted: tokenObject.hasAcceptTermsAndConditions)
+                CredentialManager.shared.saveTokenObject(tokenObject)
+                strongSelf.openValidationPinController()
             }).catch(execute: { [weak self] error -> Void in
                 guard let strongSelf = self else {
                     return
@@ -48,6 +42,10 @@ class SignInViewController: UIViewController {
                     strongSelf.handleSingInError(error: error)
                 }
             })
+    }
+    
+    private func openValidationPinController() {
+         self.navigationController?.pushViewController(PinViewController(), animated: true)
     }
     
     private func handleSingInError(error : Error) {

@@ -93,37 +93,7 @@ class Network {
     internal func refreshTokenRequest() -> Promise<Void> {
         return Promise<Void> { (success, failed) in
             self.syncQueue.async {
-                /*let refreshTokenPromise = self.refreshTokenPromise
-                    ?? self.manager.request(NetworkUtil.makeFullUrl(baseUrl: self.serverBaseURL,
-                                                                     path: NetworkConfig.shared.tokenSignIn),
-                                            method: HTTPMethod.post,
-                                            parameters: self.makeRefreshTokenParams(),
-                                            encoding: URLEncoding.default,
-                                            headers: self.makeHeaders())
-                        .validate()
-                        .responseJSON()
-                        .then(execute: { (json: Any) throws -> TokenObject in
-                            return try self.mapJSON(json: json)
-                        })
-                        .then(execute: { (tokenObject: TokenObject) -> Void in
-                            self.saveTokenObject(tokenObject)
-                        }).always {
-                            self.syncQueue.async {
-                                self.refreshTokenPromise = nil
-                            }
-                }
-                
-                refreshTokenPromise
-                    .then(execute: { _ -> Void in
-                        success(())
-                    }).catch(execute: { error in
-                        failed(error)
-                        SessionController.shared.logout()
-                    })
-                
-                if self.refreshTokenPromise == nil {
-                    self.refreshTokenPromise = refreshTokenPromise
-                }*/
+            
             }
         }
     }
@@ -135,14 +105,7 @@ class Network {
         return nil
     }
     
-    private func makeRefreshTokenParams() -> [String: Any] {
-        return ["grant_type": "refresh_token",
-                "refresh_token": CredentialManager.shared.getRefreshToken() ?? "",
-                "client_id": "1"]
-    }
-    
     private func saveTokenObject(_ tokenObject: TokenObject) {
-      //  LogManager.shared.userName = tokenObject.userName
         if CredentialManager.shared.tokenObject == nil {
             CredentialManager.shared.saveTokenObject(tokenObject)
         } else {

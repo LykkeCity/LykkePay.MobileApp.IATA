@@ -42,13 +42,13 @@
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Authorization" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xPn-eG-rW0">
-                    <rect key="frame" x="48" y="212" width="279" height="20"/>
+                    <rect key="frame" x="48" y="212" width="279" height="23.5"/>
                     <fontDescription key="fontDescription" name="Gotham-Bold" family="Gotham" pointSize="20"/>
                     <color key="textColor" red="0.035294117647058823" green="0.26666666666666666" blue="0.45882352941176469" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hT8-Kf-Gck">
-                    <rect key="frame" x="48" y="248" width="193.5" height="40"/>
+                    <rect key="frame" x="48" y="251.5" width="193.5" height="40"/>
                     <string key="text">Welcome back! Sign in to
 continue to IATA</string>
                     <fontDescription key="fontDescription" name="Gotham-Light" family="Gotham" pointSize="17"/>
@@ -56,7 +56,7 @@ continue to IATA</string>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mR8-eV-pPH">
-                    <rect key="frame" x="48" y="396" width="279" height="48"/>
+                    <rect key="frame" x="48" y="399.5" width="279" height="48"/>
                     <color key="backgroundColor" red="0.17254901960784313" green="0.71764705882352942" blue="0.0039215686274509803" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="48" id="TR5-YQ-a4h"/>
@@ -73,15 +73,15 @@ continue to IATA</string>
                     </userDefinedRuntimeAttributes>
                 </button>
                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jnn-ZT-33H" customClass="MFTextField">
-                    <rect key="frame" x="48" y="304" width="279" height="30"/>
+                    <rect key="frame" x="48" y="307.5" width="279" height="30"/>
                     <color key="tintColor" red="0.17254901960784313" green="0.71764705882352942" blue="0.0039215686274509803" alpha="1" colorSpace="calibratedRGB"/>
                     <accessibility key="accessibilityConfiguration" hint="Email"/>
                     <color key="textColor" red="0.031372549019607843" green="0.16470588235294117" blue="0.29803921568627451" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" name="Gotham-Light" family="Gotham" pointSize="17"/>
-                    <textInputTraits key="textInputTraits" autocapitalizationType="words" textContentType="email"/>
+                    <textInputTraits key="textInputTraits" keyboardType="emailAddress" textContentType="email"/>
                 </textField>
                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ska-xM-lkl" customClass="MFTextField">
-                    <rect key="frame" x="48" y="342" width="279" height="30"/>
+                    <rect key="frame" x="48" y="345.5" width="279" height="30"/>
                     <accessibility key="accessibilityConfiguration" hint="Password"/>
                     <color key="textColor" red="0.031372549019607843" green="0.16470588235294117" blue="0.29803921568627451" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" name="Gotham-Light" family="Gotham" pointSize="17"/>

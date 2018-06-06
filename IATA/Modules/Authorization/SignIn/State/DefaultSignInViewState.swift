@@ -1,16 +1,14 @@
 import PromiseKit
 import Foundation
 
-class DefaultSignInViewState : SignInViewState {
-    public lazy var service: AuthenticationService = DefaultAuthenticationService()
+class DefaultSignInViewState : DefaultBaseViewState, SignInViewState {
     
     func signIn(email: String, password: String) -> Promise<TokenObject> {
         return service.signIn(email: email, password: password)
     }
     
-
     func getHashPass(email: String, password: String) -> String {
-        return ((password + email).sha1().data(using: .bytesHexLiteral)?.base64EncodedString())!
+        return self.getHashPass(value: password + email)
     }
     
     func getError(_ name:String, values: [String]) -> NSError {
