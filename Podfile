@@ -12,6 +12,8 @@
       pod 'MaterialTextField', '~> 0.2'
       pod 'JGProgressHUD'
       pod 'CryptoSwift'
+      pod 'Fabric'
+      pod 'Crashlytics'
 
   target 'IATATests' do
     inherit! :search_paths

@@ -3,7 +3,10 @@ PODS:
   - AlamofireObjectMapper (5.0.0):
     - Alamofire (~> 4.1)
     - ObjectMapper (~> 3.0)
+  - Crashlytics (3.10.2):
+    - Fabric (~> 1.7.7)
   - CryptoSwift (0.10.0)
+  - Fabric (1.7.7)
   - IQKeyboardManagerSwift (6.0.3)
   - JGProgressHUD (2.0.3)
   - KeychainAccess (3.1.1)
@@ -20,45 +23,47 @@ PODS:
     - PromiseKit/CorePromise
   - PromiseKit/UIKit (4.5.2):
     - PromiseKit/CorePromise
-  - SmileLock (3.0.3)
 
 DEPENDENCIES:
   - Alamofire
   - AlamofireObjectMapper
+  - Crashlytics
   - CryptoSwift
+  - Fabric
   - IQKeyboardManagerSwift
   - JGProgressHUD
   - KeychainAccess
   - MaterialTextField (~> 0.2)
   - ObjectMapper
   - PromiseKit (~> 4.5.0)
-  - SmileLock
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
     - AlamofireObjectMapper
+    - Crashlytics
     - CryptoSwift
+    - Fabric
     - IQKeyboardManagerSwift
     - JGProgressHUD
     - KeychainAccess
     - MaterialTextField
     - ObjectMapper
     - PromiseKit
-    - SmileLock
 
 SPEC CHECKSUMS:
   Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
   AlamofireObjectMapper: 5fafc816351cbbc0d486611aaeba7461c0cbad49
+  Crashlytics: 0360624eea1c978a743feddb2fb1ef8b37fb7a0d
   CryptoSwift: 6c778d69282bed3b4e975ff97a79d074f20bb011
+  Fabric: bda89e242bce1b7b8ab264248cf3407774ce0095
   IQKeyboardManagerSwift: 04e8679f85e496bb2c474eeb9284052f1b3c391c
   JGProgressHUD: 12b20a8f4ffe05258f8635c1ab92816e451f904d
   KeychainAccess: 7bd430028059754a3debab3cfc0bd1fc7fb85df3
   MaterialTextField: f876a39d571eeece872af6a4da421e3bd065fe0b
   ObjectMapper: 5cccd2de6f253eda859df8116a5a554d9769e859
   PromiseKit: 743e497a5f505a470d3bbbf4ce0663c1268af0a4
-  SmileLock: 247b62849cedca324e70ccfad5d01714602d739e
 
-PODFILE CHECKSUM: 495857dbf5b987042e37fb66e553c68e49509db4
+PODFILE CHECKSUM: de8366d295aaa7f74d135eb36d5a5e941a1dd46b
 
 COCOAPODS: 1.5.3

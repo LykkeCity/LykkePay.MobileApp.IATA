@@ -2,7 +2,7 @@
 import UIKit
 import MaterialTextField
 
-class SignInViewController: UIViewController {
+class SignInViewController: BaseAuthViewController {
     
     @IBOutlet private weak var emailTextField: MFTextField!
     @IBOutlet private weak var passwordField: MFTextField!
@@ -13,7 +13,7 @@ class SignInViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         Theme.shared.configureTextFieldStyle(emailTextField)
-        Theme.shared.configureTextFieldStyle(passwordField)
+        Theme.shared.configureTextFieldPasswordStyle(passwordField)
         passwordField.isSecureTextEntry = true
         
         btnLogin.addTarget(self, action: #selector(self.buttonClicked), for: .touchUpInside)
@@ -28,9 +28,11 @@ class SignInViewController: UIViewController {
             .withSpinner(in: view)
             .then(execute: { [weak self] (tokenObject: TokenObject) -> Void in
                 guard let strongSelf = self else {
-                return
+                    return
                 }
-                CredentialManager.shared.saveTokenObject(tokenObject)
+                CredentialManager.shared.saveTokenObject(tokenObject, userName: strongSelf.emailTextField.text)
+                UserPreference.shared.saveForceUpdatePassword(tokenObject.forcePasswordUpdate)
+                UserPreference.shared.saveForceUpdatePin(tokenObject.forcePasswordUpdate! ? true : tokenObject.forceUpdatePin)
                 strongSelf.openValidationPinController()
             }).catch(execute: { [weak self] error -> Void in
                 guard let strongSelf = self else {
@@ -45,16 +47,20 @@ class SignInViewController: UIViewController {
     }
     
     private func openValidationPinController() {
-         self.navigationController?.pushViewController(PinViewController(), animated: true)
+        var viewController = UIViewController()
+        if (UserPreference.shared.getUpdatePassword()!) {
+            viewController =  ChangePasswordViewController()
+        } else {
+            viewController = PinViewController()
+            if (UserPreference.shared.getUpdatePin())! {
+                (viewController as! PinViewController).isValidation = false
+            }
+        }
+        self.navigationController?.pushViewController(viewController, animated: true)
     }
     
     private func handleSingInError(error : Error) {
-        if (error is IATAOpError) {
-            let uiAlert = UIAlertController(title: "Common.Title.Error".localize(), message: (error as! IATAOpError).localizedDescription, preferredStyle: UIAlertControllerStyle.alert)
-            self.present(uiAlert, animated: true, completion: nil)
-            
-            uiAlert.addAction(UIAlertAction(title: "Common.PositiveButton.Ok".localize(), style: .default, handler: nil))
-        }
+        showErrorAlert(error: error)
     }
     
     private func handleSignInValidationError(_ listOfError: Dictionary<String, [String]>) {

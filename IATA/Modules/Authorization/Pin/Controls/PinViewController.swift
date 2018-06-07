@@ -4,40 +4,80 @@ import UIKit
 class PinViewController: UIViewController {
     
     @IBOutlet weak var passwordStackView: UIStackView!
+    @IBOutlet weak var labelTitle: UILabel!
     
-     private var state: PinViewState = DefaultPinViewState() as PinViewState
+    private var state: PinViewState = DefaultPinViewState() as PinViewState
     
     //MARK: Property
     var passwordContainerView: PasswordContainerView!
     let kPasswordDigit = 4
+    var isValidation = true
+    var countOfTry = 0
+    var pinCode = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        UINavigationBar.appearance().shadowImage = UIImage()
+        UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
         
         //create PasswordContainerView
-        passwordContainerView = PasswordContainerView.create(in: passwordStackView, digit: kPasswordDigit)
-        passwordContainerView.delegate = self as PasswordInputCompleteProtocol
-        passwordContainerView.deleteButtonLocalizedTitle = "delete"
+        self.passwordContainerView = PasswordContainerView.create(in: passwordStackView, digit: kPasswordDigit)
+        self.passwordContainerView.delegate = self as PasswordInputCompleteProtocol
+        self.passwordContainerView.touchAuthenticationEnabled = isValidation
+        
+        self.labelTitle.text = self.isValidation ? "Pin.Validation.Title".localize() : "Pin.Setup.Title".localize()
+    }
+    
+    @IBAction func clickCancel(_ sender: Any) {
+        self.openSignIn()
+    }
+    
+    func openSignIn() {
+        CredentialManager.shared.clearSavedData()
+        self.navigationController?.pushViewController(SignInViewController(), animated: true)
     }
 }
 
 extension PinViewController: PasswordInputCompleteProtocol {
     func passwordInputComplete(_ passwordContainerView: PasswordContainerView, input: String) {
-       validation(input)
+        self.isValidation ? validation(input) : savePin(input)
     }
     
     func touchAuthenticationComplete(_ passwordContainerView: PasswordContainerView, success: Bool, error: Error?) {
         if success {
             self.validationSuccess()
         } else {
-            passwordContainerView.clearInput()
+            self.passwordContainerView.clearInput()
         }
     }
 }
 
 private extension PinViewController {
+    
+    func savePin(_ input: String) -> Void {
+        if (pinCode.isEmpty) {
+            self.pinCode = input
+            self.reset()
+        } else if (pinCode.elementsEqual(input)) {
+            self.state.savePin(pin: input)
+                .withSpinner(in: view)
+                .then(execute: { [weak self] (result: Void) -> Void in
+                    guard let strongSelf = self else {
+                        return
+                    }
+                    UserPreference.shared.saveForceUpdatePin(false)
+                    strongSelf.validationSuccess()
+                }).catch(execute: { [weak self] error -> Void in
+                    guard let strongSelf = self else {
+                        return
+                    }
+                    strongSelf.validationFail()
+                })
+        }
+    }
+    
     func validation(_ input: String) -> Void {
-        state.validatePin(pin: state.getHashPass(value: input))
+        self.state.validatePin(pin: input)
             .withSpinner(in: view)
             .then(execute: { [weak self] (result: PinValidationResponse) -> Void in
                 guard let strongSelf = self else {
@@ -57,13 +97,22 @@ private extension PinViewController {
     }
     
     func validationSuccess() {
-        print("*️⃣ success!")
+        self.navigationController?.pushViewController(DashboardViewController(), animated: true)
+        
         dismiss(animated: true, completion: nil)
     }
     
     func validationFail() {
-        print("*️⃣ failure!")
-        passwordContainerView.wrongPassword()
+        self.countOfTry += 1
+        self.passwordContainerView.wrongPassword()
+        if (countOfTry > 3) {
+            self.openSignIn()
+        }
+    }
+    
+    func reset() {
+        self.passwordContainerView.clearInput()
+        self.labelTitle.text = "Pin.Resubmit.Title".localize()
     }
 }
 

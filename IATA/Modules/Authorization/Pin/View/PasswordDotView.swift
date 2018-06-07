@@ -20,14 +20,14 @@ open class PasswordDotView: UIView {
     }
     
     @IBInspectable
-    open var strokeColor = Utils.rgb(230, 232, 234) {
+    open var strokeColor = Theme.shared.dotColor {
         didSet {
             setNeedsDisplay()
         }
     }
     
     @IBInspectable
-    open var fillColor = Utils.rgb(44, 183, 1) {
+    open var fillColor = Theme.shared.dotFillColor {
         didSet {
             setNeedsDisplay()
         }

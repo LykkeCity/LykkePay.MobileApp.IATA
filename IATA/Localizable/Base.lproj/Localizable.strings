@@ -1,2 +1,9 @@
 "Common.Title.Error" = "Error";
 "Common.PositiveButton.Ok" = "Ok";
+
+"ChangePassword.FieldEmpty.Error" = "The CurrentPasssword field is required.";
+"ChangePassword.FieldNotEquals.Error" = "Fields are not equal";
+
+"Pin.Validation.Title" = "Please enter your PIN code";
+"Pin.Setup.Title" = "Setup your PIN code";
+"Pin.Resubmit.Title" = "Submit your PIN code again";

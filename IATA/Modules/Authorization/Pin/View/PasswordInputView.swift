@@ -44,17 +44,14 @@ open class PasswordInputView: UIView {
     }
     
     @IBInspectable
-    open var textColor = Utils.rgb(51, 51, 51) {
+    open var textColor = Theme.shared.textPinColor {
         didSet {
             label.textColor = textColor
         }
     }
     
     @IBInspectable
-    open var highlightBackgroundColor = UIColor(red: CGFloat(230) / 255.0,
-                                                green: CGFloat(232) / 255.0,
-                                                blue: CGFloat(234) / 255.0,
-                                                alpha: 0.5)
+    open var highlightBackgroundColor = Theme.shared.shadowPinColor
     
     @IBInspectable
     open var highlightTextColor = UIColor.white

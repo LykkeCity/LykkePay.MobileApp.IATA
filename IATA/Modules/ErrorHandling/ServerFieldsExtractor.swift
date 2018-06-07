@@ -15,7 +15,9 @@ class ServerFieldsErrorExtractor: NSObject {
         }
         var dic1 = getEmailMessageError(jsonDict)
         let dic2 = getPasswordMessageError(jsonDict)
+        let dic3 = getCurrentPasswordMessageError(jsonDict)
         dic1.merge(dict: dic2)
+        dic1.merge(dict: dic3)
         if (!dic1.isEmpty) {
             return IATAOpError.validation(map: dic1)
         } else {
@@ -29,6 +31,10 @@ class ServerFieldsErrorExtractor: NSObject {
     
     private func getPasswordMessageError(_ jsonDict: [String: Any]) ->  Dictionary<String, [String]> {
         return getListOfMessageError(key: PropertyValidationKey.password.rawValue, jsonDict: jsonDict)
+    }
+    
+    private func getCurrentPasswordMessageError(_ jsonDict: [String: Any]) ->  Dictionary<String, [String]> {
+        return getListOfMessageError(key: PropertyValidationKey.currentPasssword.rawValue, jsonDict: jsonDict)
     }
     
     private func getListOfMessageError(key: String, jsonDict: [String: Any]) ->  Dictionary<String, [String]> {
