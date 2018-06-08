@@ -14,7 +14,7 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
         var walletsVC = WalletsViewController(nibName: "WalletsViewController", bundle: nil)
         var exchangeVC = WalletsViewController(nibName: "WalletsViewController", bundle: nil)
         var historyVC = WalletsViewController(nibName: "WalletsViewController", bundle: nil)
-        var settingsVC = WalletsViewController(nibName: "WalletsViewController", bundle: nil)
+        var settingsVC = SettingsViewController()
 
         invoicesVC = generateTabBarItem(for: invoicesVC, normalImage: "invoicesNormal", activeImage: "invoicesActive",
                                         title:"TabItem.Invoices.Title".localize())

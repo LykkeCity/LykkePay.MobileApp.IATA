@@ -36,7 +36,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             return navigationWas
         }
         let navigationController = UINavigationController(rootViewController: makeRootViewController())
-        navigationController.isNavigationBarHidden = true
+        navigationController.isNavigationBarHidden = false //set false for testing
+        navigationController.navigationBar.isTranslucent = false
         navigationController.navigationBar.barTintColor = Theme.init().navigationBarColor
         navigationController.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
         window?.rootViewController = navigationController
