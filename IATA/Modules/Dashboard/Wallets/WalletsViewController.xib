@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina5_5" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="GothamProBold.ttf">
+            <string>GothamPro-Bold</string>
+        </array>
+        <array key="GothamProLight.ttf">
+            <string>GothamPro-Light</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WalletsViewController" customModule="IATA" customModuleProvider="target">
+            <connections>
+                <outlet property="tableView" destination="qt9-eY-MSu" id="HBa-bf-gVv"/>
+                <outlet property="totalBalanceLabel" destination="iQ7-ER-KQ3" id="lgk-2v-F51"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="7FD-is-FuJ"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" restorationIdentifier="WalletsView" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" verticalHuggingPriority="249" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" image="logoSmallIcn" translatesAutoresizingMaskIntoConstraints="NO" id="IhM-x8-v1X">
+                    <rect key="frame" x="330" y="84" width="64" height="64"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="IhM-x8-v1X" secondAttribute="height" multiplier="1:1" id="jgp-gE-v5v"/>
+                        <constraint firstAttribute="height" constant="64" id="mTC-SX-lGw"/>
+                    </constraints>
+                </imageView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HEX-KF-biQ">
+                    <rect key="frame" x="20" y="94" width="302" height="40"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="TOTAL BALANCE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vx6-VC-GCi">
+                            <rect key="frame" x="0.0" y="1" width="79" height="10.333333333333334"/>
+                            <fontDescription key="fontDescription" name="GothamPro-Light" family="Gotham Pro" pointSize="9"/>
+                            <color key="textColor" red="0.66274509803921566" green="0.68627450980392157" blue="0.72156862745098038" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="3611,931.56 $" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iQ7-ER-KQ3">
+                            <rect key="frame" x="0.0" y="23.333333333333329" width="159" height="21"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="21" id="qWS-Zq-yvb"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="GothamPro-Bold" family="Gotham Pro" pointSize="24"/>
+                            <color key="textColor" red="0.074509803921568626" green="0.26666666666666666" blue="0.45882352941176469" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="748" verticalCompressionResistancePriority="748" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q3Z-1f-1pb" userLabel="walletsSettingsButton">
+                            <rect key="frame" x="161" y="21.333333333333329" width="21" height="21"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="Q3Z-1f-1pb" secondAttribute="height" multiplier="1:1" id="gwO-ro-K0T"/>
+                            </constraints>
+                            <state key="normal" image="bodySettingsIcn"/>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="Q3Z-1f-1pb" firstAttribute="centerY" secondItem="iQ7-ER-KQ3" secondAttribute="centerY" constant="-1.75" id="0hS-PB-Pih"/>
+                        <constraint firstItem="iQ7-ER-KQ3" firstAttribute="top" secondItem="vx6-VC-GCi" secondAttribute="bottom" constant="12" id="C6M-pF-D1m"/>
+                        <constraint firstItem="vx6-VC-GCi" firstAttribute="top" secondItem="HEX-KF-biQ" secondAttribute="top" constant="1" id="Khv-hl-Mwc"/>
+                        <constraint firstItem="vx6-VC-GCi" firstAttribute="leading" secondItem="HEX-KF-biQ" secondAttribute="leading" id="Ymh-iq-0y3"/>
+                        <constraint firstItem="iQ7-ER-KQ3" firstAttribute="leading" secondItem="HEX-KF-biQ" secondAttribute="leading" id="eao-NO-2d5"/>
+                        <constraint firstItem="Q3Z-1f-1pb" firstAttribute="leading" secondItem="iQ7-ER-KQ3" secondAttribute="trailing" constant="2" id="emg-ZK-hhK"/>
+                        <constraint firstAttribute="height" constant="40" id="m8x-lc-Eu5"/>
+                        <constraint firstItem="Q3Z-1f-1pb" firstAttribute="height" secondItem="iQ7-ER-KQ3" secondAttribute="height" id="oAZ-g7-10P"/>
+                    </constraints>
+                </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qt9-eY-MSu">
+                    <rect key="frame" x="20" y="156" width="374" height="580"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="bOT-2G-Bxr"/>
+                        <outlet property="delegate" destination="-1" id="qZc-J0-UOe"/>
+                    </connections>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="qt9-eY-MSu" secondAttribute="trailing" constant="20" id="6dE-Xg-e3j"/>
+                <constraint firstItem="IhM-x8-v1X" firstAttribute="leading" secondItem="HEX-KF-biQ" secondAttribute="trailing" constant="8" id="9NG-wh-i8x"/>
+                <constraint firstItem="HEX-KF-biQ" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="FcJ-rf-XfX"/>
+                <constraint firstItem="qt9-eY-MSu" firstAttribute="top" secondItem="IhM-x8-v1X" secondAttribute="bottom" constant="8" id="LFf-h8-tPT"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="IhM-x8-v1X" secondAttribute="trailing" constant="20" id="Num-Py-Pxy"/>
+                <constraint firstItem="HEX-KF-biQ" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="30" id="XsC-cP-Sc5"/>
+                <constraint firstItem="IhM-x8-v1X" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="aoQ-r0-yBt"/>
+                <constraint firstItem="qt9-eY-MSu" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="mET-Bn-Wcg"/>
+                <constraint firstItem="qt9-eY-MSu" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="pKq-wO-uhU"/>
+            </constraints>
+            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="25" y="51"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="bodySettingsIcn" width="48" height="48"/>
+        <image name="logoSmallIcn" width="128" height="128"/>
+    </resources>
+</document>
