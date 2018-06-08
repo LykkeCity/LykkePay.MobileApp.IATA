@@ -4,28 +4,28 @@ import UIKit
 
 class TabBarController: UITabBarController, UITabBarControllerDelegate {
 
-    private let color = Theme.init()
+    private let theme = Theme.shared
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.delegate = self
         tabBarSettings()
-        var invoicesVC = WalletsViewController(nibName: "WalletsViewController", bundle: nil)
-        var walletsVC = WalletsViewController(nibName: "WalletsViewController", bundle: nil)
-        var exchangeVC = WalletsViewController(nibName: "WalletsViewController", bundle: nil)
-        var historyVC = WalletsViewController(nibName: "WalletsViewController", bundle: nil)
+        var invoicesVC = WalletsViewController()
+        var walletsVC = WalletsViewController()
+        var exchangeVC = WalletsViewController()
+        var historyVC = WalletsViewController()
         var settingsVC = SettingsViewController()
 
         invoicesVC = generateTabBarItem(for: invoicesVC, normalImage: "invoicesNormal", activeImage: "invoicesActive",
-                                        title:"TabItem.Invoices.Title".localize())
+                                        title:"TabBar.InvoicesItem.Title".localize())
         walletsVC = generateTabBarItem(for: walletsVC, normalImage: "walletsNormal", activeImage: "walletsActive",
-                                       title: "TabItem.Wallets.Title".localize())
+                                       title: "TabBar.WalletsItem.Title".localize())
         exchangeVC = generateTabBarItem(for: exchangeVC, normalImage: "exchangeNormal", activeImage: "exchangeActive",
-                                        title: "TabItem.Exchange.Title".localize())
+                                        title: "TabBar.ExchangeItem.Title".localize())
         historyVC = generateTabBarItem(for: historyVC, normalImage: "historyNormal", activeImage: "historyActive",
-                                       title: "TabItem.History.Title".localize())
+                                       title: "TabBar.HistoryItem.Title".localize())
         settingsVC = generateTabBarItem(for: settingsVC, normalImage: "settingsNormal", activeImage: "settingsActive",
-                                        title: "TabItem.Settings.Title".localize())
+                                        title: "TabBar.SettingsItem.Title".localize())
         self.viewControllers = [invoicesVC, walletsVC, exchangeVC, historyVC, settingsVC]
     }
 
@@ -33,7 +33,7 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
         viewController.tabBarItem.title = title
         viewController.tabBarItem.image = UIImage(named: normalImage)
         viewController.tabBarItem.selectedImage = UIImage(named: activeImage)
-        viewController.tabBarItem.setTitleTextAttributes([NSAttributedStringKey.foregroundColor: color.tabBarItemUnselectedColor], for: .normal)
+        viewController.tabBarItem.setTitleTextAttributes([NSAttributedStringKey.foregroundColor: theme.tabBarItemUnselectedColor], for: .normal)
         viewController.tabBarItem.setTitleTextAttributes([NSAttributedStringKey.foregroundColor: UIColor.white], for: .selected)
         viewController.tabBarItem.titlePositionAdjustment = UIOffsetMake(0, -5)
         return viewController
@@ -44,7 +44,7 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
     }
 
     private func tabBarSettings(){
-        self.tabBar.barTintColor = color.tabBarBackgroundColor
+        self.tabBar.barTintColor = theme.tabBarBackgroundColor
         self.tabBar.isTranslucent = false
     }
 }

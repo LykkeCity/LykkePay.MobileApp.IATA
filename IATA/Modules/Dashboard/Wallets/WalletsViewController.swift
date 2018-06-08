@@ -2,10 +2,12 @@
 import UIKit
 
 class WalletsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+
     @IBOutlet weak var totalBalanceLabel: UILabel!
     
     @IBOutlet weak var tableView: UITableView!
-    private var testData = ["ivanov", "petrov", "sidorov", "ivanov", "petrov", "sidorov", "ivanov", "petrov", "sidorov", "ivanov", "petrov", "sidorov", "ivanov", "petrov", "sidorov", "ivanov", "petrov", "sidorov", "ivanov", "petrov", "sidorov", "ivanov", "petrov", "sidorov", "ivanov", "petrov", "sidorov"]
+
+    private var testData = ["IATA USD", "IATA USD", "IATA USD"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,8 +31,6 @@ class WalletsViewController: UIViewController, UITableViewDelegate, UITableViewD
         cell.walletsNameLabel.text = testData[indexPath.row]
         cell.nationalFlagImage.image = UIImage(named: "usFlagMediumIcn")
         return cell
-
-
     }
 
 
