@@ -17,6 +17,9 @@ class Theme: NSObject {
                                         green: CGFloat(232) / 255.0,
                                         blue: CGFloat(234) / 255.0,
                                         alpha: 0.5)
+    public let navigationBarColor = Utils.rgb(19, 68, 117)
+    public let tabBarBackgroundColor = Utils.rgb(19, 68, 117)
+    public let tabBarItemUnselectedColor = Utils.rgb(113, 142, 172)
     
     public private(set) lazy var buttonsFont = boldFontOfSize(16)
     public private(set) lazy var linksFont = boldFontOfSize(15)

@@ -75,6 +75,14 @@
 		0AF1C3B220C91B9A00AFD286 /* DashboardViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0AF1C3B020C91B9A00AFD286 /* DashboardViewController.xib */; };
 		123C1779CC315CC3F3D1AD7D /* Pods_IATATests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7527B2B91103E6B38EFEF340 /* Pods_IATATests.framework */; };
 		5BD8D3E6E74FDC2B2AAEBD74 /* Pods_IATA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FC260316A6015639FD5E1F0 /* Pods_IATA.framework */; };
+		D7DEFC8C20C97148005FB9EF /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7DEFC8A20C97147005FB9EF /* TabBarController.swift */; };
+		D7DEFC8D20C97148005FB9EF /* TabBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D7DEFC8B20C97147005FB9EF /* TabBarView.xib */; };
+		D7DEFC9420C97459005FB9EF /* WalletsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D7DEFC9020C97458005FB9EF /* WalletsViewController.xib */; };
+		D7DEFC9520C97459005FB9EF /* WalletsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D7DEFC9120C97458005FB9EF /* WalletsTableViewCell.xib */; };
+		D7DEFC9620C97459005FB9EF /* WalletsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7DEFC9220C97458005FB9EF /* WalletsTableViewCell.swift */; };
+		D7DEFC9720C97459005FB9EF /* WalletsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7DEFC9320C97458005FB9EF /* WalletsViewController.swift */; };
+		D7DEFC9A20C97B9E005FB9EF /* GothamProBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D7DEFC9820C97B9E005FB9EF /* GothamProBold.ttf */; };
+		D7DEFC9B20C97B9E005FB9EF /* GothamProLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D7DEFC9920C97B9E005FB9EF /* GothamProLight.ttf */; };
 		EF4B843175B4CC2AF6DB5E2D /* Pods_IATAUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B528F3D3DF6E9ED72F4A529 /* Pods_IATAUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -176,6 +184,14 @@
 		C7BD0B79BA7FF0CED5C9BD4E /* Pods-IATA.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IATA.release.xcconfig"; path = "Pods/Target Support Files/Pods-IATA/Pods-IATA.release.xcconfig"; sourceTree = "<group>"; };
 		C8A0C12C7C882A320B399E93 /* Pods-IATAUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IATAUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-IATAUITests/Pods-IATAUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		D295B81107990C89EA142783 /* Pods-IATATests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IATATests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-IATATests/Pods-IATATests.debug.xcconfig"; sourceTree = "<group>"; };
+		D7DEFC8A20C97147005FB9EF /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		D7DEFC8B20C97147005FB9EF /* TabBarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TabBarView.xib; sourceTree = "<group>"; };
+		D7DEFC9020C97458005FB9EF /* WalletsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WalletsViewController.xib; sourceTree = "<group>"; };
+		D7DEFC9120C97458005FB9EF /* WalletsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WalletsTableViewCell.xib; sourceTree = "<group>"; };
+		D7DEFC9220C97458005FB9EF /* WalletsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletsTableViewCell.swift; sourceTree = "<group>"; };
+		D7DEFC9320C97458005FB9EF /* WalletsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletsViewController.swift; sourceTree = "<group>"; };
+		D7DEFC9820C97B9E005FB9EF /* GothamProBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GothamProBold.ttf; sourceTree = "<group>"; };
+		D7DEFC9920C97B9E005FB9EF /* GothamProLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GothamProLight.ttf; sourceTree = "<group>"; };
 		FBCD1B2F0AEEDCE28F8A0492 /* Pods-IATAUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IATAUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-IATAUITests/Pods-IATAUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -289,6 +305,9 @@
 		0A0D4B8420C5440F009B73E9 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				D7DEFC8E20C97154005FB9EF /* Dashboard */,
+				D7DEFC8A20C97147005FB9EF /* TabBarController.swift */,
+				D7DEFC8B20C97147005FB9EF /* TabBarView.xib */,
 				0A37EF6820C58B5C00201907 /* UiConfig */,
 				0A37EF4920C578B900201907 /* Controls */,
 				0A6DB5D320C553BC00BC1127 /* Authorization */,
@@ -358,6 +377,8 @@
 		0A37EF7620C69D9E00201907 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				D7DEFC9820C97B9E005FB9EF /* GothamProBold.ttf */,
+				D7DEFC9920C97B9E005FB9EF /* GothamProLight.ttf */,
 				0A37EF8920C6A2C600201907 /* Gotham-Thin.otf */,
 				0A37EF8820C6A1BA00201907 /* Gotham-Medium.otf */,
 				0A37EF8620C6A17E00201907 /* Gotham-Ultra.otf */,
@@ -574,6 +595,33 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		D7DEFC8E20C97154005FB9EF /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				D7DEFC9C20CA7B8B005FB9EF /* Settings */,
+				D7DEFC8F20C97430005FB9EF /* Wallets */,
+			);
+			path = Dashboard;
+			sourceTree = "<group>";
+		};
+		D7DEFC8F20C97430005FB9EF /* Wallets */ = {
+			isa = PBXGroup;
+			children = (
+				D7DEFC9220C97458005FB9EF /* WalletsTableViewCell.swift */,
+				D7DEFC9120C97458005FB9EF /* WalletsTableViewCell.xib */,
+				D7DEFC9320C97458005FB9EF /* WalletsViewController.swift */,
+				D7DEFC9020C97458005FB9EF /* WalletsViewController.xib */,
+			);
+			path = Wallets;
+			sourceTree = "<group>";
+		};
+		D7DEFC9C20CA7B8B005FB9EF /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -683,18 +731,23 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D7DEFC9520C97459005FB9EF /* WalletsTableViewCell.xib in Resources */,
 				0A0D4B5820C53364009B73E9 /* LaunchScreen.storyboard in Resources */,
 				0AF1C3B220C91B9A00AFD286 /* DashboardViewController.xib in Resources */,
 				0A37EFFA20C8044200201907 /* ChangePasswordViewController.xib in Resources */,
 				0A37EF8A20C6A32000201907 /* Gotham-Thin.otf in Resources */,
 				0A37EF5620C5835300201907 /* SignInViewController.xib in Resources */,
+				D7DEFC9420C97459005FB9EF /* WalletsViewController.xib in Resources */,
 				0A37EF8120C69F2400201907 /* Gotham-Light.otf in Resources */,
+				D7DEFC9B20C97B9E005FB9EF /* GothamProLight.ttf in Resources */,
 				0A0D4B5520C53364009B73E9 /* Assets.xcassets in Resources */,
 				0A37EFA020C6DC5100201907 /* Localizable.strings in Resources */,
 				0A37EF8C20C6A32400201907 /* Gotham-Ultra.otf in Resources */,
+				D7DEFC9A20C97B9E005FB9EF /* GothamProBold.ttf in Resources */,
 				0A37EF8020C69F1F00201907 /* Gotham-Black.otf in Resources */,
 				0A37EFE520C7D67F00201907 /* PinViewController.xib in Resources */,
 				0A37EF8B20C6A32200201907 /* Gotham-Medium.otf in Resources */,
+				D7DEFC8D20C97148005FB9EF /* TabBarView.xib in Resources */,
 				0A37EFD820C7D63D00201907 /* PasswordContainerView.xib in Resources */,
 				0A37EF7820C69DAB00201907 /* Gotham-Bold.otf in Resources */,
 			);
@@ -831,6 +884,7 @@
 				0A37EF9020C6C01300201907 /* PropertyValidationKey.swift in Sources */,
 				0A37F00520C80A7500201907 /* AuthNetworkConfig.swift in Sources */,
 				0AB8E20E20C56FF500C13361 /* DefaultAuthenticationService.swift in Sources */,
+				D7DEFC8C20C97148005FB9EF /* TabBarController.swift in Sources */,
 				0A37EF6220C588F400201907 /* ErrorHandler.swift in Sources */,
 				0A62F56520C545F700A51D63 /* NetworkUtil.swift in Sources */,
 				0A0D4B7C20C53593009B73E9 /* APIManager.swift in Sources */,
@@ -841,6 +895,7 @@
 				0A37EF6020C5881200201907 /* UIView+SpinnerController.swift in Sources */,
 				0A37EF5420C5816B00201907 /* SignInViewController.swift in Sources */,
 				0A37EF6520C589FD00201907 /* UIViewExtension.swift in Sources */,
+				D7DEFC9720C97459005FB9EF /* WalletsViewController.swift in Sources */,
 				0A37EF8E20C6AC8900201907 /* ServerFieldsExtractor.swift in Sources */,
 				0AF1C3B120C91B9A00AFD286 /* DashboardViewController.swift in Sources */,
 				0AB8E21020C5708300C13361 /* AuthenticationService.swift in Sources */,
@@ -856,6 +911,7 @@
 				0A37EFDD20C7D65100201907 /* PasswordInputView.swift in Sources */,
 				0A37EF7020C59C6F00201907 /* SingInRequest.swift in Sources */,
 				0A37EFF920C8044200201907 /* ChangePasswordViewController.swift in Sources */,
+				D7DEFC9620C97459005FB9EF /* WalletsTableViewCell.swift in Sources */,
 				0AF1C3AB20C832DB00AFD286 /* SavePinRequest.swift in Sources */,
 				0A37EFE020C7D65100201907 /* PasswordDotView.swift in Sources */,
 				0A37EF6720C58A9100201907 /* SpinnerController.swift in Sources */,

@@ -37,11 +37,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         let navigationController = UINavigationController(rootViewController: makeRootViewController())
         navigationController.isNavigationBarHidden = true
+        navigationController.navigationBar.barTintColor = Theme.init().navigationBarColor
+        navigationController.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
         window?.rootViewController = navigationController
         return navigationController
     }
-    
-    private func configureKeyboardManager() {
+        private func configureKeyboardManager() {
         IQKeyboardManager.shared.enable = true
         IQKeyboardManager.shared.shouldShowToolbarPlaceholder = false
     }

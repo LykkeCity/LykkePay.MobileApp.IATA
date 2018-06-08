@@ -97,8 +97,11 @@ private extension PinViewController {
     }
     
     func validationSuccess() {
-        self.navigationController?.pushViewController(DashboardViewController(), animated: true)
-        
+        //self.navigationController?.pushViewController(DashboardViewController(), animated: true)
+        self.navigationController?.pushViewController(TabBarController(), animated: true)
+        self.navigationController?.navigationBar.barTintColor = Theme.init().navigationBarColor
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
+
         dismiss(animated: true, completion: nil)
     }
     
