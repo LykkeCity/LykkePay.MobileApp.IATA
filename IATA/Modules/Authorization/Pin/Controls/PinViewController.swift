@@ -97,7 +97,7 @@ private extension PinViewController {
     }
     
     func validationSuccess() {
-        self.navigationController?.pushViewController(DashboardViewController(), animated: true)
+        self.navigationController?.pushViewController(InvoiceSettingsViewController(), animated: true)
         
         dismiss(animated: true, completion: nil)
     }

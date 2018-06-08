@@ -14,6 +14,7 @@
       pod 'CryptoSwift'
       pod 'Fabric'
       pod 'Crashlytics'
+      pod 'WARangeSlider'
 
   target 'IATATests' do
     inherit! :search_paths

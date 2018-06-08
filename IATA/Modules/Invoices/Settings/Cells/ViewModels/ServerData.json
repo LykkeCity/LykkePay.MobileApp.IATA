@@ -1,0 +1,43 @@
+{
+    "data": {
+        "airlines": [
+                     {
+                     "name": "Huckleberry Finn",
+                     "logo": "finn"
+                     },
+                     {
+                     "name": "Becky Thatcher",
+                     "logo": "becky"
+                     },
+                     {
+                     "name": "Celeste Holm",
+                     "logo": "holm"
+                     }
+                     ],
+        "billingCategories": [ {
+                              "name": "Huckleberry Finn"
+                              },
+                              {
+                              "name": "Huckleberry Finn"
+                              }
+                              ],
+        "currencies": [
+                       {
+                       "name": "Huckleberry Finn"
+                       },
+                       {
+                       "name": "Huckleberry Finn"
+                       }
+                       ],
+        
+        "settlementPeriod": [{
+                             "name": "Huckleberry Finn"
+                             },
+                             {
+                             "name": "Huckleberry Finn"
+                             }
+                             ]
+    },
+    "error": 0,
+    "message": "Success"
+}
