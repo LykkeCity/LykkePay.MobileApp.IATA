@@ -36,7 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             return navigationWas
         }
         let navigationController = UINavigationController(rootViewController: makeRootViewController())
-        navigationController.isNavigationBarHidden = false
+        navigationController.isNavigationBarHidden = true
         window?.rootViewController = navigationController
         return navigationController
     }

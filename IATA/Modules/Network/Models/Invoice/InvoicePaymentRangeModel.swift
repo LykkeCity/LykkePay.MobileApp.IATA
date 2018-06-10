@@ -1,19 +1,19 @@
 import ObjectMapper
 
-class InvoicePaymentRangeItemModel: Mappable {
+class InvoiceSettingPaymentRangeItemModel: Mappable {
     
     private enum PropertyKey: String {
         case min
         case max
     }
     
-    internal var min: Int32?
-    internal var max: Int32?
+    internal var min: Int?
+    internal var max: Int?
     
     internal required init?(map: Map) {
     }
     
-    internal init(min: Int32?, max: Int32?) {
+    internal init(min: Int?, max: Int?) {
         self.min = min
         self.max = max
     }

@@ -9,6 +9,11 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="GothaProReg.otf">
+            <string>GothamPro</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PinViewController" customModule="IATA" customModuleProvider="target">
             <connections>
@@ -56,26 +61,16 @@
                         <constraint firstItem="MgR-5H-JGF" firstAttribute="centerY" secondItem="PwD-ti-L8V" secondAttribute="centerY" id="a9j-zf-cYv"/>
                     </constraints>
                 </view>
-                <navigationBar contentMode="scaleToFill" fixedFrame="YES" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pfD-AM-18a">
-                    <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                    <color key="barTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                    <items>
-                        <navigationItem id="qBY-2d-la2">
-                            <barButtonItem key="leftBarButtonItem" style="plain" id="P9f-3Z-UZZ">
-                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="lLE-1o-4BX">
-                                    <rect key="frame" x="16" y="7" width="83" height="30"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <state key="normal" title="Cancel"/>
-                                    <connections>
-                                        <action selector="clickCancel:" destination="-1" eventType="touchUpInside" id="cft-ib-cuH"/>
-                                    </connections>
-                                </button>
-                            </barButtonItem>
-                        </navigationItem>
-                    </items>
-                </navigationBar>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T2y-ZV-raB">
+                    <rect key="frame" x="16" y="36" width="57" height="28"/>
+                    <fontDescription key="fontDescription" name="GothamPro" family="Gotham Pro" pointSize="17"/>
+                    <state key="normal" title="Cancel">
+                        <color key="titleColor" red="0.066666666666666666" green="0.066666666666666666" blue="0.066666666666666666" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="cancel:" destination="-1" eventType="touchUpInside" id="C5e-7e-9Vy"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
@@ -85,7 +80,9 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="PwD-ti-L8V" secondAttribute="trailing" id="I8k-as-ii5"/>
                 <constraint firstItem="PwD-ti-L8V" firstAttribute="top" secondItem="oY7-VE-eOM" secondAttribute="bottom" constant="24" id="K1t-FH-aen"/>
                 <constraint firstItem="oY7-VE-eOM" firstAttribute="top" secondItem="iHK-bQ-e2Q" secondAttribute="bottom" constant="24" id="Rjt-Dj-8B9"/>
+                <constraint firstItem="T2y-ZV-raB" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="16" id="YH5-aA-jfb"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="PwD-ti-L8V" secondAttribute="bottom" id="gIC-EK-K8W"/>
+                <constraint firstItem="T2y-ZV-raB" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="lYJ-Te-QY6"/>
                 <constraint firstItem="iHK-bQ-e2Q" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="24" id="oyM-og-T0m"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>

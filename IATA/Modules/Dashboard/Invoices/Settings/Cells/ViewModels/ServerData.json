@@ -1,0 +1,55 @@
+{
+    "data": {
+        "airlines": [
+                     {
+                     "name": "Noname",
+                     "logo": "finn"
+                     },
+                     {
+                     "name": "Air Astana",
+                     "logo": "becky"
+                     },
+                     {
+                     "name": "Air China",
+                     "logo": "holm"
+                     },
+                     {"name": "Air France",
+                     "logo": "test"
+                     }
+                     ],
+        "billingCategories": [ {
+                              "name": "Miscellaneous"
+                              },
+                              {
+                              "name": "Fuel"
+                              },
+                              {
+                              "name": "Mainteinance"
+                              }
+                              ],
+        "currencies": [
+                       {
+                       "name": "USD"
+                       },
+                       {
+                       "name": "EUR"
+                       }
+                       ],
+        
+        "settlementPeriod": [{
+                             "name": "PI"
+                             },
+                             {
+                             "name": "PII"
+                             },
+                             {
+                             "name": "PIII"
+                             },
+                             {
+                             "name": "PIV"
+                             }
+                             ]
+    },
+    "error": 0,
+    "message": "Success"
+}

@@ -2,9 +2,10 @@ import UIKit
 import MaterialTextField
 
 class Theme: NSObject {
+    public let navBarAdditionalColor = Utils.rgb(243, 244, 245)
     public let buttonsColor = Utils.rgb(239, 82, 86)
-    public let disabledButtonsColor = Utils.rgb(44, 183, 1)
-    public let tabBarItemSelectedColor = Utils.rgb(243, 88, 92)
+    public let greenColor = Utils.rgb(44, 183, 1)
+    public let tabBarItemSelectedColor = Utils.rgb(113, 142, 172)
     public let tabBarItemColor = Utils.rgb(100, 100, 110)
     public let munsellColor = Utils.rgb(243, 242, 248)
     public let tintTextFieldColor = Utils.rgb(44, 183, 1)
@@ -17,6 +18,9 @@ class Theme: NSObject {
                                         green: CGFloat(232) / 255.0,
                                         blue: CGFloat(234) / 255.0,
                                         alpha: 0.5)
+    public let navigationBarColor = Utils.rgb(19, 68, 117)
+    public let tabBarBackgroundColor = Utils.rgb(19, 68, 117)
+    public let tabBarItemUnselectedColor = Utils.rgb(113, 142, 172)
     
     public private(set) lazy var buttonsFont = boldFontOfSize(16)
     public private(set) lazy var linksFont = boldFontOfSize(15)
@@ -30,7 +34,7 @@ class Theme: NSObject {
     
     public func configureSolidButton(_ button: UIButton) {
         Utils.setButtonBackground(button, havingColor: buttonsColor, for: .normal)
-        Utils.setButtonBackground(button, havingColor: disabledButtonsColor, for: .disabled)
+        Utils.setButtonBackground(button, havingColor: greenColor, for: .disabled)
         
         button.layer.masksToBounds = true
         button.layer.cornerRadius = 0.5 * button.intrinsicContentSize.height

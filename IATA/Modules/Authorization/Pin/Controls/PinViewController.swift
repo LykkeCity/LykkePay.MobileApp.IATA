@@ -28,7 +28,7 @@ class PinViewController: UIViewController {
         self.labelTitle.text = self.isValidation ? "Pin.Validation.Title".localize() : "Pin.Setup.Title".localize()
     }
     
-    @IBAction func clickCancel(_ sender: Any) {
+    @IBAction func cancel(_ sender: Any) {
         self.openSignIn()
     }
     
@@ -97,8 +97,10 @@ private extension PinViewController {
     }
     
     func validationSuccess() {
-        self.navigationController?.pushViewController(InvoiceSettingsViewController(), animated: true)
-        
+        self.navigationController?.pushViewController(TabBarController(), animated: true)
+        self.navigationController?.navigationBar.barTintColor = Theme.init().navigationBarColor
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
+
         dismiss(animated: true, completion: nil)
     }
     

@@ -73,6 +73,7 @@ class Network {
                 failed(error)
             })
     }
+
     
     private func handleRequestError<TResult>(error: Error,
                                              createRequest: @escaping (() -> Promise<TResult>),
@@ -83,17 +84,17 @@ class Network {
             code == 401 else {
                 failed(error)
                 return
+
         }
         
         request(initialRequest: self.refreshTokenRequest(), createRequest: createRequest,
                 success: success, failed: failed)
     }
     
-    // swiftlint:disable function_body_length
+    //swiftlint:disable function_body_length
     internal func refreshTokenRequest() -> Promise<Void> {
         return Promise<Void> { (success, failed) in
             self.syncQueue.async {
-            
             }
         }
     }
