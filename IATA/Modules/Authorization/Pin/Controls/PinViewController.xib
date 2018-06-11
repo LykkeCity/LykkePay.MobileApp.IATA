@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="GothaProReg.otf">
+        <array key="GothamProReg.otf">
             <string>GothamPro</string>
         </array>
     </customFonts>
@@ -35,16 +35,16 @@
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please enter your PIN code" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oY7-VE-eOM">
-                    <rect key="frame" x="99.5" y="188" width="175" height="17"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <rect key="frame" x="80" y="188" width="215" height="14.5"/>
+                    <fontDescription key="fontDescription" name="GothamPro" family="Gotham Pro" pointSize="16"/>
                     <color key="textColor" red="0.66274509803921566" green="0.68627450980392157" blue="0.72156862745098038" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PwD-ti-L8V">
-                    <rect key="frame" x="0.0" y="229.5" width="375" height="437.5"/>
+                    <rect key="frame" x="0.0" y="227" width="375" height="440"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="MgR-5H-JGF">
-                            <rect key="frame" x="162" y="193.5" width="50" height="50"/>
+                            <rect key="frame" x="162" y="195" width="50" height="50"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Xh-7S-HGl">
                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>

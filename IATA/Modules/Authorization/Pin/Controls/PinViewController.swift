@@ -26,6 +26,15 @@ class PinViewController: UIViewController {
         self.passwordContainerView.touchAuthenticationEnabled = isValidation
         
         self.labelTitle.text = self.isValidation ? "Pin.Validation.Title".localize() : "Pin.Setup.Title".localize()
+        
+        for family: String in UIFont.familyNames
+        {
+            print("\(family)")
+            for names: String in UIFont.fontNames(forFamilyName: family)
+            {
+                print("== \(names)")
+            }
+        }
     }
     
     @IBAction func cancel(_ sender: Any) {

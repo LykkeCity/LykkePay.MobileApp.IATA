@@ -2,6 +2,7 @@ import UIKit
 import MaterialTextField
 
 class Theme: NSObject {
+    
     public let navBarAdditionalColor = Utils.rgb(243, 244, 245)
     public let buttonsColor = Utils.rgb(239, 82, 86)
     public let greenColor = Utils.rgb(44, 183, 1)
@@ -21,12 +22,14 @@ class Theme: NSObject {
     public let navigationBarColor = Utils.rgb(19, 68, 117)
     public let tabBarBackgroundColor = Utils.rgb(19, 68, 117)
     public let tabBarItemUnselectedColor = Utils.rgb(113, 142, 172)
+    public let navBarTitle = Utils.rgb(17, 17, 17)
     
     public private(set) lazy var buttonsFont = boldFontOfSize(16)
     public private(set) lazy var linksFont = boldFontOfSize(15)
     
-    public private(set) lazy var fontTextSizeTextField = boldFontOfSize(14)
-    public private(set) lazy var fontPlaceholderSizeTextField = lightFontOfSize(12)
+    public private(set) lazy var fontTextSizeTextField = regularFontOfSize(16)
+    public private(set) lazy var fontPlaceholderSizeTextField = regularFontOfSize(10)
+    public private(set) lazy var fontCurrencyTextField = regularFontOfSize(24)
     
     override init() {
         super.init()
@@ -51,15 +54,46 @@ class Theme: NSObject {
     }
     
     private func boldFontOfSize(_ size: CGFloat) -> UIFont? {
-        return UIFont(name: "Gotham-Bold", size: size)
+        return UIFont(name: "GothamPro-Bold", size: size)
     }
     
     private func lightFontOfSize(_ size: CGFloat) -> UIFont? {
-        return UIFont(name: "Gotham-Light", size: size)
+        return UIFont(name: "GothamPro-Light", size: size)
     }
     
     private func mediumFontOfSize(_ size: CGFloat) -> UIFont? {
-        return UIFont(name: "Gotham-Medium", size: size)
+        return UIFont(name: "GothamPro-Medium", size: size)
+    }
+    
+    private func regularFontOfSize(_ size: CGFloat) -> UIFont? {
+        return UIFont(name: "GothamPro", size: size)
+    }
+    
+    public func getTitle(title: String!, color: UIColor) -> UILabel {
+        let titleLabel = UILabel()
+        titleLabel.text = title
+        titleLabel.font =  UIFont(name: "GothamPro-Bold", size: 17)
+        titleLabel.tintColor = color
+        titleLabel.textColor = color
+        return titleLabel
+    }
+    
+    public func getCancel(title: String!, color: UIColor) -> UIButton {
+        let backButton = UIButton()
+        backButton.setTitle(title, for: .normal)
+        backButton.titleLabel?.font =  UIFont(name: "GothamPro", size: 17)
+        backButton.tintColor = color
+        backButton.setTitleColor(color, for: .normal)
+        return backButton
+    }
+    
+    public func getRightButton(title: String!, color: UIColor) -> UIButton {
+        let backButton = UIButton()
+        backButton.setTitle(title, for: .normal)
+        backButton.titleLabel?.font =  UIFont(name: "GothamPro-Bold", size: 17)
+        backButton.tintColor = color
+        backButton.setTitleColor(color, for: .normal)
+        return backButton
     }
     
     public func configureTextFieldStyle(_ textField: MFTextField){
@@ -70,6 +104,13 @@ class Theme: NSObject {
         textField.defaultPlaceholderColor = placeholderTextFieldColor
         textField.placeholderFont  = fontPlaceholderSizeTextField
         textField.font = fontTextSizeTextField
+    }
+    
+    
+    public func configureTextFieldCurrencyStyle(_ textField: MFTextField){
+        configureTextFieldStyle(textField)
+        textField.font = fontCurrencyTextField
+        textField.textColor = navBarTitle
     }
     
     public func configureTextFieldPasswordStyle(_ textField: MFTextField){

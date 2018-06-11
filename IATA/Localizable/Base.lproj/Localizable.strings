@@ -1,8 +1,11 @@
 "Common.Title.Error" = "Error";
 "Common.PositiveButton.Ok" = "Ok";
+"Common.NavBar.Cancel" = "Cancel";
+"Common.NavBar.Done" = "Done";
 
 "ChangePassword.FieldEmpty.Error" = "The CurrentPasssword field is required.";
 "ChangePassword.FieldNotEquals.Error" = "Fields are not equal";
+"ChangePassword.NavBar.Title" = "Change password";
 
 "Pin.Validation.Title" = "Please enter your PIN code";
 "Pin.Setup.Title" = "Setup your PIN code";
@@ -13,6 +16,7 @@
 "Invoice.Settings.Currencies.Title" = "Currencies";
 "Invoice.Settings.PaymentRange.Title" = "Payment Range";
 "Invoice.Settings.SettlementPeriod.Title" = "Settlement Period";
+"Invoice.Settings.Filter.Title" = "Filters";
 
 "Invoice.Navigation.Filtering.Title.AllInvoices" = "All invoices";
 "Invoice.Navigation.Filtering.Title.UnPaidInvoices" = "Unpaid invoices";

@@ -1,6 +1,7 @@
 import CryptoSwift
 
 extension String {
+    
     func sha1() -> Data {
         let bytes: Array<UInt8> = self.bytes
         let data = Data(bytes)

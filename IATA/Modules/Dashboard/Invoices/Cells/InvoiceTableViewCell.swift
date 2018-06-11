@@ -13,7 +13,7 @@ class InvoiceTableViewCell: UITableViewCell {
     @IBOutlet weak var logoInvoice: UIImageView!
     
     weak var delegate: OnChangeStateSelected?
-    private let checkBox = Checkbox(frame: CGRect(x: 5 , y: 5, width: 15, height: 15))
+    let checkBox = Checkbox(frame: CGRect(x: 5 , y: 5, width: 15, height: 15))
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -23,7 +23,7 @@ class InvoiceTableViewCell: UITableViewCell {
     }
     
     @objc func checkboxValueChanged(sender: Checkbox) {
-        delegate?.onItemSelected(isSelected: sender.isChecked, index: 1)
+        delegate?.onItemSelected(isSelected: sender.isChecked, index: Int32(sender.tag))
     }
     
     internal func initStatus(color: UIColor, status: String) {

@@ -7,6 +7,8 @@ class InvoiceViewController: UIViewController,
     
     @IBOutlet weak var tabView: UITableView!
     @IBOutlet weak var downView: UIView!
+    @IBOutlet weak var sumTextField: DesignableUITextField!
+    
     
     let items = ["Invoice.Navigation.Filtering.Title.AllInvoices".localize(), "Invoice.Navigation.Filtering.Title.UnPaidInvoices".localize(), "Invoice.Navigation.Filtering.Title.Dispute".localize()]
     
@@ -36,6 +38,7 @@ class InvoiceViewController: UIViewController,
         
         downView.isHidden = true
         initMenu()
+        Theme.shared.configureTextFieldCurrencyStyle(self.sumTextField)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -63,8 +66,8 @@ class InvoiceViewController: UIViewController,
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: "InvoiceTableViewCell", for: indexPath) as! InvoiceTableViewCell
+        cell.checkBox.tag = indexPath.row
         cell.delegate = self
         cell.selectionStyle = .none
         let dict = usersArray[indexPath.row]
