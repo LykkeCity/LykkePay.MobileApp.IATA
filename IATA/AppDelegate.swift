@@ -1,5 +1,3 @@
-
-import IQKeyboardManagerSwift
 import UIKit
 import CoreData
 import Fabric
@@ -14,7 +12,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Fabric.with([Crashlytics.self])
         initWindow()
         _ = switchToNavigationControllerIfNeed()
-        configureKeyboardManager();
         return true
     }
     
@@ -40,12 +37,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return navigationController
     }
     
-    private func configureKeyboardManager() {
-        IQKeyboardManager.shared.enable = true
-        IQKeyboardManager.shared.shouldShowToolbarPlaceholder = false
-    }
-    
     private func makeRootViewController() -> UIViewController {
+        CredentialManager.shared.clearSavedData()
         var viewController = UIViewController()
         if (!CredentialManager.shared.isLogged) {
             viewController = SignInViewController()

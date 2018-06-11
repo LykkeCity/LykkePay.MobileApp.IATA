@@ -1,5 +1,5 @@
 import Foundation
 
 protocol OnChangeStateSelected: class {
-    func onItemSelected(isSelected: Bool, index: Int32)
+    func onItemSelected(isSelected: Bool, index: Int)
 }

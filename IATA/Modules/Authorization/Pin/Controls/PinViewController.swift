@@ -116,7 +116,7 @@ private extension PinViewController {
     func validationFail() {
         self.countOfTry += 1
         self.passwordContainerView.wrongPassword()
-        if (countOfTry > 3) {
+        if (countOfTry > 2) {
             self.openSignIn()
         }
     }

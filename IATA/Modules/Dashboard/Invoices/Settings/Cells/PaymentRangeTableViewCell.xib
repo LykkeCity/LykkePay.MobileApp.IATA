@@ -27,7 +27,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="yPh-er-qzA">
-                        <rect key="frame" x="16" y="-26" width="288" height="183.5"/>
+                        <rect key="frame" x="16" y="-26" width="288" height="207.5"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="ZUn-V6-fxl">
                                 <rect key="frame" x="0.0" y="0.0" width="288" height="35.5"/>
@@ -53,7 +53,7 @@
                                 </constraints>
                             </stackView>
                             <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uUB-jY-flZ" customClass="RangeSlider" customModule="WARangeSlider">
-                                <rect key="frame" x="0.0" y="35.5" width="288" height="128"/>
+                                <rect key="frame" x="0.0" y="59.5" width="288" height="128"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="RSf-ib-ycz"/>
@@ -66,7 +66,7 @@
                                         <real key="value" value="0.0"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="maximumValue">
-                                        <real key="value" value="50000"/>
+                                        <real key="value" value="1000000"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="lowerValue">
                                         <real key="value" value="5000"/>
@@ -77,7 +77,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eEJ-dD-UbA">
-                                <rect key="frame" x="0.0" y="163.5" width="288" height="20"/>
+                                <rect key="frame" x="0.0" y="187.5" width="288" height="20"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NGB-Tc-GYb">
                                         <rect key="frame" x="0.0" y="0.0" width="253.5" height="20"/>

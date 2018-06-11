@@ -15,6 +15,14 @@ class InvoiceTableViewCell: UITableViewCell {
     weak var delegate: OnChangeStateSelected?
     let checkBox = Checkbox(frame: CGRect(x: 5 , y: 5, width: 15, height: 15))
     
+    static var nib:UINib {
+        return UINib(nibName: identifier, bundle: nil)
+    }
+    
+    static var identifier: String {
+        return String(describing: self)
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         //fot test
@@ -23,7 +31,7 @@ class InvoiceTableViewCell: UITableViewCell {
     }
     
     @objc func checkboxValueChanged(sender: Checkbox) {
-        delegate?.onItemSelected(isSelected: sender.isChecked, index: Int32(sender.tag))
+        delegate?.onItemSelected(isSelected: sender.isChecked, index: sender.tag)
     }
     
     internal func initStatus(color: UIColor, status: String) {
@@ -38,6 +46,7 @@ class InvoiceTableViewCell: UITableViewCell {
         initStatus(color: Theme.shared.greenColor, status: "paid")
         initCheckBox(color: Theme.shared.greenColor)
     }
+    
     
     private func initCheckBox(color: UIColor) {
         self.checkBox.borderStyle = .circle

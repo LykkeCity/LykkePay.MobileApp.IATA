@@ -7,7 +7,6 @@ PODS:
     - Fabric (~> 1.7.7)
   - CryptoSwift (0.10.0)
   - Fabric (1.7.7)
-  - IQKeyboardManagerSwift (6.0.3)
   - JGProgressHUD (2.0.3)
   - KeychainAccess (3.1.1)
   - MaterialTextField (0.2.1)
@@ -31,7 +30,6 @@ DEPENDENCIES:
   - Crashlytics
   - CryptoSwift
   - Fabric
-  - IQKeyboardManagerSwift
   - JGProgressHUD
   - KeychainAccess
   - MaterialTextField (~> 0.2)
@@ -46,7 +44,6 @@ SPEC REPOS:
     - Crashlytics
     - CryptoSwift
     - Fabric
-    - IQKeyboardManagerSwift
     - JGProgressHUD
     - KeychainAccess
     - MaterialTextField
@@ -60,7 +57,6 @@ SPEC CHECKSUMS:
   Crashlytics: 0360624eea1c978a743feddb2fb1ef8b37fb7a0d
   CryptoSwift: 6c778d69282bed3b4e975ff97a79d074f20bb011
   Fabric: bda89e242bce1b7b8ab264248cf3407774ce0095
-  IQKeyboardManagerSwift: 04e8679f85e496bb2c474eeb9284052f1b3c391c
   JGProgressHUD: 12b20a8f4ffe05258f8635c1ab92816e451f904d
   KeychainAccess: 7bd430028059754a3debab3cfc0bd1fc7fb85df3
   MaterialTextField: f876a39d571eeece872af6a4da421e3bd065fe0b
@@ -68,6 +64,6 @@ SPEC CHECKSUMS:
   PromiseKit: 743e497a5f505a470d3bbbf4ce0663c1268af0a4
   WARangeSlider: 54b3e0853b8d16c444fd539005901aecee86837d
 
-PODFILE CHECKSUM: 27d12a4455adca5273f21be65af7ec35aacc3992
+PODFILE CHECKSUM: dc8cd53e37815e8b7f82fdca86f740df0f573553
 
 COCOAPODS: 1.5.3

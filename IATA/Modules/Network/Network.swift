@@ -169,6 +169,7 @@ class Network {
         return request(path: path, method: .get, params: params)
     }
     
+   
     public func get(path: String, params: [String: Any]) -> Promise<Data> {
         return request(path: path, method: .get, params: params)
     }
@@ -240,6 +241,7 @@ class Network {
             throw error
         }
         if let jsonDict = json as? [String: Any] {
+           
             if let result = ResultType(JSON: jsonDict) {
                 return result
             } else {

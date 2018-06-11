@@ -92,6 +92,13 @@
 		0A4CD14720CD901600EF4A17 /* OnSwitchStateChanged.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4CD14620CD901600EF4A17 /* OnSwitchStateChanged.swift */; };
 		0A4CD15120CE79F700EF4A17 /* LetterImageGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4CD15020CE79F700EF4A17 /* LetterImageGenerator.swift */; };
 		0A4CD15320CE7E7900EF4A17 /* VerticalAlignedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4CD15220CE7E7900EF4A17 /* VerticalAlignedLabel.swift */; };
+		0A4CD15820CEC96100EF4A17 /* DefaultPaymentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4CD15720CEC96100EF4A17 /* DefaultPaymentService.swift */; };
+		0A4CD15A20CEC96E00EF4A17 /* PaymentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4CD15920CEC96E00EF4A17 /* PaymentService.swift */; };
+		0A4CD15C20CECA2100EF4A17 /* PaymentConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4CD15B20CECA2100EF4A17 /* PaymentConfig.swift */; };
+		0A4CD15E20CECC4900EF4A17 /* ListInvoiceModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4CD15D20CECC4900EF4A17 /* ListInvoiceModels.swift */; };
+		0A4CD16120CF073800EF4A17 /* InvoiceState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4CD16020CF073800EF4A17 /* InvoiceState.swift */; };
+		0A4CD16320CF074500EF4A17 /* DefaultInvoiceState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4CD16220CF074500EF4A17 /* DefaultInvoiceState.swift */; };
+		0A4CD16720CF135300EF4A17 /* TextFieldUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4CD16620CF135300EF4A17 /* TextFieldUtils.swift */; };
 		0A62F56520C545F700A51D63 /* NetworkUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A62F56420C545F700A51D63 /* NetworkUtil.swift */; };
 		0A62F56720C546E100A51D63 /* ServerErrorExtractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A62F56620C546E100A51D63 /* ServerErrorExtractor.swift */; };
 		0A62F56920C5473600A51D63 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A62F56820C5473600A51D63 /* Errors.swift */; };
@@ -104,8 +111,6 @@
 		0AB8E21020C5708300C13361 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB8E20F20C5708300C13361 /* AuthenticationService.swift */; };
 		0AF1C3AB20C832DB00AFD286 /* SavePinRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF1C3AA20C832DB00AFD286 /* SavePinRequest.swift */; };
 		0AF1C3AD20C9164E00AFD286 /* UserPreference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF1C3AC20C9164E00AFD286 /* UserPreference.swift */; };
-		0AF1C3B120C91B9A00AFD286 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF1C3AF20C91B9A00AFD286 /* DashboardViewController.swift */; };
-		0AF1C3B220C91B9A00AFD286 /* DashboardViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0AF1C3B020C91B9A00AFD286 /* DashboardViewController.xib */; };
 		0AF6119D20C992AC00957348 /* Checkbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF6119C20C992AC00957348 /* Checkbox.swift */; };
 		0AF6119F20C9980500957348 /* UiStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF6119E20C9980500957348 /* UiStatusView.swift */; };
 		0AF611A220C9A4D700957348 /* InvoiceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF611A020C9A4D700957348 /* InvoiceTableViewCell.swift */; };
@@ -239,6 +244,13 @@
 		0A4CD14620CD901600EF4A17 /* OnSwitchStateChanged.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnSwitchStateChanged.swift; sourceTree = "<group>"; };
 		0A4CD15020CE79F700EF4A17 /* LetterImageGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetterImageGenerator.swift; sourceTree = "<group>"; };
 		0A4CD15220CE7E7900EF4A17 /* VerticalAlignedLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalAlignedLabel.swift; sourceTree = "<group>"; };
+		0A4CD15720CEC96100EF4A17 /* DefaultPaymentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultPaymentService.swift; sourceTree = "<group>"; };
+		0A4CD15920CEC96E00EF4A17 /* PaymentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentService.swift; sourceTree = "<group>"; };
+		0A4CD15B20CECA2100EF4A17 /* PaymentConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentConfig.swift; sourceTree = "<group>"; };
+		0A4CD15D20CECC4900EF4A17 /* ListInvoiceModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListInvoiceModels.swift; sourceTree = "<group>"; };
+		0A4CD16020CF073800EF4A17 /* InvoiceState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvoiceState.swift; sourceTree = "<group>"; };
+		0A4CD16220CF074500EF4A17 /* DefaultInvoiceState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultInvoiceState.swift; sourceTree = "<group>"; };
+		0A4CD16620CF135300EF4A17 /* TextFieldUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldUtils.swift; sourceTree = "<group>"; };
 		0A62F56420C545F700A51D63 /* NetworkUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkUtil.swift; sourceTree = "<group>"; };
 		0A62F56620C546E100A51D63 /* ServerErrorExtractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerErrorExtractor.swift; sourceTree = "<group>"; };
 		0A62F56820C5473600A51D63 /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
@@ -251,8 +263,6 @@
 		0AB8E20F20C5708300C13361 /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
 		0AF1C3AA20C832DB00AFD286 /* SavePinRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavePinRequest.swift; sourceTree = "<group>"; };
 		0AF1C3AC20C9164E00AFD286 /* UserPreference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPreference.swift; sourceTree = "<group>"; };
-		0AF1C3AF20C91B9A00AFD286 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
-		0AF1C3B020C91B9A00AFD286 /* DashboardViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DashboardViewController.xib; sourceTree = "<group>"; };
 		0AF6119C20C992AC00957348 /* Checkbox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Checkbox.swift; sourceTree = "<group>"; };
 		0AF6119E20C9980500957348 /* UiStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UiStatusView.swift; sourceTree = "<group>"; };
 		0AF611A020C9A4D700957348 /* InvoiceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvoiceTableViewCell.swift; sourceTree = "<group>"; };
@@ -404,7 +414,6 @@
 			children = (
 				D7DEFC8E20C97154005FB9EF /* Dashboard */,
 				0A37EF6820C58B5C00201907 /* UiConfig */,
-				0A37EF4920C578B900201907 /* Controls */,
 				0A6DB5D320C553BC00BC1127 /* Authorization */,
 				0A0D4B8920C5450C009B73E9 /* ErrorHandling */,
 				0A0D4B8520C54435009B73E9 /* NetworkConfig */,
@@ -418,6 +427,7 @@
 			children = (
 				0A0D4B8620C54446009B73E9 /* NetworkConfig.swift */,
 				0A37F00420C80A7500201907 /* AuthNetworkConfig.swift */,
+				0A4CD15B20CECA2100EF4A17 /* PaymentConfig.swift */,
 			);
 			path = NetworkConfig;
 			sourceTree = "<group>";
@@ -437,6 +447,7 @@
 		0A13F65A20C974D3001BA302 /* Invoices */ = {
 			isa = PBXGroup;
 			children = (
+				0A4CD15F20CF072500EF4A17 /* State */,
 				0AF611AB20CA736100957348 /* Cells */,
 				0AF611A420CA727300957348 /* Settings */,
 				0A13F65B20C974EC001BA302 /* InvoiceViewController.swift */,
@@ -481,10 +492,11 @@
 		0A286A6C20CA803E00D93693 /* Invoice */ = {
 			isa = PBXGroup;
 			children = (
-				0A286A9420CA8B5000D93693 /* InvoiceSettingAirlinesModel.swift */,
+				0A4CD15520CE89EF00EF4A17 /* Requeste */,
+				0A4CD15420CE89E200EF4A17 /* Response */,
 				0A286A9820CA8F2A00D93693 /* InvoiceSettingModel.swift */,
+				0A286A9420CA8B5000D93693 /* InvoiceSettingAirlinesModel.swift */,
 				0A08C11B20CABC7800342A3E /* InvoicePaymentRangeModel.swift */,
-				0A4CD11F20CD5B5300EF4A17 /* InvoiceModel.swift */,
 			);
 			path = Invoice;
 			sourceTree = "<group>";
@@ -502,13 +514,6 @@
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
-		0A37EF4920C578B900201907 /* Controls */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Controls;
-			sourceTree = "<group>";
-		};
 		0A37EF5B20C587B900201907 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -517,6 +522,7 @@
 				0A37EF5C20C587C600201907 /* Promise+Spinner.swift */,
 				0A37EF6B20C58BA000201907 /* Utils.swift */,
 				0A4CD15020CE79F700EF4A17 /* LetterImageGenerator.swift */,
+				0A4CD16620CF135300EF4A17 /* TextFieldUtils.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -584,7 +590,7 @@
 			path = Controls;
 			sourceTree = "<group>";
 		};
-		0A37EFE620C7E44A00201907 /* request */ = {
+		0A37EFE620C7E44A00201907 /* Request */ = {
 			isa = PBXGroup;
 			children = (
 				0A37EF6F20C59C6F00201907 /* SingInRequest.swift */,
@@ -592,23 +598,23 @@
 				0A37F00020C809DC00201907 /* ChangePasswordRequest.swift */,
 				0AF1C3AA20C832DB00AFD286 /* SavePinRequest.swift */,
 			);
-			path = request;
+			path = Request;
 			sourceTree = "<group>";
 		};
-		0A37EFE720C7E45800201907 /* response */ = {
+		0A37EFE720C7E45800201907 /* Response */ = {
 			isa = PBXGroup;
 			children = (
 				0A6DB5D120C5537000BC1127 /* TokenObject.swift */,
 				0A37EFEB20C7EE0200201907 /* PinValidationResponse.swift */,
 			);
-			path = response;
+			path = Response;
 			sourceTree = "<group>";
 		};
 		0A37EFEA20C7E55600201907 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
-				0A37EFE620C7E44A00201907 /* request */,
-				0A37EFE720C7E45800201907 /* response */,
+				0A37EFE620C7E44A00201907 /* Request */,
+				0A37EFE720C7E45800201907 /* Response */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -669,11 +675,44 @@
 			path = Switcher;
 			sourceTree = "<group>";
 		};
+		0A4CD15420CE89E200EF4A17 /* Response */ = {
+			isa = PBXGroup;
+			children = (
+				0A4CD11F20CD5B5300EF4A17 /* InvoiceModel.swift */,
+				0A4CD15D20CECC4900EF4A17 /* ListInvoiceModels.swift */,
+			);
+			path = Response;
+			sourceTree = "<group>";
+		};
+		0A4CD15520CE89EF00EF4A17 /* Requeste */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Requeste;
+			sourceTree = "<group>";
+		};
+		0A4CD15620CEC94E00EF4A17 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				0A4CD15720CEC96100EF4A17 /* DefaultPaymentService.swift */,
+				0A4CD15920CEC96E00EF4A17 /* PaymentService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		0A4CD15F20CF072500EF4A17 /* State */ = {
+			isa = PBXGroup;
+			children = (
+				0A4CD16020CF073800EF4A17 /* InvoiceState.swift */,
+				0A4CD16220CF074500EF4A17 /* DefaultInvoiceState.swift */,
+			);
+			path = State;
+			sourceTree = "<group>";
+		};
 		0A6DB5D020C5535F00BC1127 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				0A286A6C20CA803E00D93693 /* Invoice */,
-				0AF1C3AE20C91B8300AFD286 /* Dashboard */,
 				0A37EFEA20C7E55600201907 /* Auth */,
 			);
 			path = Models;
@@ -739,15 +778,6 @@
 				0AB8E20F20C5708300C13361 /* AuthenticationService.swift */,
 			);
 			path = Service;
-			sourceTree = "<group>";
-		};
-		0AF1C3AE20C91B8300AFD286 /* Dashboard */ = {
-			isa = PBXGroup;
-			children = (
-				0AF1C3AF20C91B9A00AFD286 /* DashboardViewController.swift */,
-				0AF1C3B020C91B9A00AFD286 /* DashboardViewController.xib */,
-			);
-			path = Dashboard;
 			sourceTree = "<group>";
 		};
 		0AF611A420CA727300957348 /* Settings */ = {
@@ -828,6 +858,7 @@
 		D7DEFC8E20C97154005FB9EF /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
+				0A4CD15620CEC94E00EF4A17 /* Service */,
 				D7DEFC8A20C97147005FB9EF /* TabBarController.swift */,
 				D7DEFC8B20C97147005FB9EF /* TabBarView.xib */,
 				0A13F65A20C974D3001BA302 /* Invoices */,
@@ -969,7 +1000,6 @@
 				D7DEFC9520C97459005FB9EF /* WalletsTableViewCell.xib in Resources */,
 				0A0D4B5820C53364009B73E9 /* LaunchScreen.storyboard in Resources */,
 				0A286AA720CAA2F600D93693 /* SimpleTableViewCell.xib in Resources */,
-				0AF1C3B220C91B9A00AFD286 /* DashboardViewController.xib in Resources */,
 				0A37EFFA20C8044200201907 /* ChangePasswordViewController.xib in Resources */,
 				0A4CD13E20CD840700EF4A17 /* InvoiceHeaderView.xib in Resources */,
 				0A08C11820CAB5B900342A3E /* PaymentRangeTableViewCell.xib in Resources */,
@@ -1069,7 +1099,6 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/JGProgressHUD/JGProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework",
 				"${BUILT_PRODUCTS_DIR}/MaterialTextField/MaterialTextField.framework",
@@ -1082,7 +1111,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CryptoSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JGProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MaterialTextField.framework",
@@ -1133,13 +1161,16 @@
 				0AB8E20E20C56FF500C13361 /* DefaultAuthenticationService.swift in Sources */,
 				0A4CD13F20CD840700EF4A17 /* InvoiceHeaderView.swift in Sources */,
 				0A1AF41520CADB7B0009595C /* BTTableViewCell.swift in Sources */,
+				0A4CD15E20CECC4900EF4A17 /* ListInvoiceModels.swift in Sources */,
 				0A08C10220CAA78300342A3E /* InvoiceSettlementPeriodViewModeItem.swift in Sources */,
 				D7DEFC8C20C97148005FB9EF /* TabBarController.swift in Sources */,
 				0A37EF6220C588F400201907 /* ErrorHandler.swift in Sources */,
 				0A62F56520C545F700A51D63 /* NetworkUtil.swift in Sources */,
 				0A08C10620CAA7E300342A3E /* InvoiceCurrenciesViewModeItem.swift in Sources */,
 				0A286A9920CA8F2A00D93693 /* InvoiceSettingModel.swift in Sources */,
+				0A4CD15C20CECA2100EF4A17 /* PaymentConfig.swift in Sources */,
 				0A08C11720CAB5B900342A3E /* PaymentRangeTableViewCell.swift in Sources */,
+				0A4CD15820CEC96100EF4A17 /* DefaultPaymentService.swift in Sources */,
 				0A37EFDE20C7D65100201907 /* PasswordContainerView.swift in Sources */,
 				0A0D4B8720C54446009B73E9 /* NetworkConfig.swift in Sources */,
 				0A286A9520CA8B5000D93693 /* InvoiceSettingAirlinesModel.swift in Sources */,
@@ -1153,10 +1184,10 @@
 				D7DEFC9720C97459005FB9EF /* WalletsViewController.swift in Sources */,
 				0A37EF8E20C6AC8900201907 /* ServerFieldsExtractor.swift in Sources */,
 				0A4CD15320CE7E7900EF4A17 /* VerticalAlignedLabel.swift in Sources */,
-				0AF1C3B120C91B9A00AFD286 /* DashboardViewController.swift in Sources */,
 				0AB8E21020C5708300C13361 /* AuthenticationService.swift in Sources */,
 				0A4CD12F20CD6DAF00EF4A17 /* BigThumbnailSwither.swift in Sources */,
 				0A37F00820C81A5600201907 /* BaseAuthViewController.swift in Sources */,
+				0A4CD16320CF074500EF4A17 /* DefaultInvoiceState.swift in Sources */,
 				0A1AF40E20CADB670009595C /* UIView+Extension.swift in Sources */,
 				0A0D4B5320C53362009B73E9 /* IATA.xcdatamodeld in Sources */,
 				0A286AA620CAA2F600D93693 /* SimpleTableViewCell.swift in Sources */,
@@ -1165,6 +1196,7 @@
 				0A62F56D20C5499400A51D63 /* ArrayEncoding.swift in Sources */,
 				0A37EF6C20C58BA000201907 /* Utils.swift in Sources */,
 				0A37EF9220C6C97000201907 /* DictionaryExtension.swift in Sources */,
+				0A4CD16120CF073800EF4A17 /* InvoiceState.swift in Sources */,
 				0A37EF6A20C58B6B00201907 /* Theme.swift in Sources */,
 				0A62F56720C546E100A51D63 /* ServerErrorExtractor.swift in Sources */,
 				0A4CD11E20CD57AA00EF4A17 /* DesignableUITextField.swift in Sources */,
@@ -1202,10 +1234,12 @@
 				0A37EFFF20C808FB00201907 /* DefaultChangePasswordViewState.swift in Sources */,
 				0A4CD14120CD894900EF4A17 /* FilterPreference.swift in Sources */,
 				0A37EF9720C6D2B200201907 /* DefaultSignInViewState.swift in Sources */,
+				0A4CD15A20CEC96E00EF4A17 /* PaymentService.swift in Sources */,
 				0A08C11C20CABC7800342A3E /* InvoicePaymentRangeModel.swift in Sources */,
 				0A37EFFD20C808E400201907 /* ChangePasswordViewState.swift in Sources */,
 				0A4CD14720CD901600EF4A17 /* OnSwitchStateChanged.swift in Sources */,
 				0A08C0FD20CAA70400342A3E /* InvoiceViewModelExtensition.swift in Sources */,
+				0A4CD16720CF135300EF4A17 /* TextFieldUtils.swift in Sources */,
 				0A37EF5D20C587C600201907 /* Promise+Spinner.swift in Sources */,
 				0AF1C3AD20C9164E00AFD286 /* UserPreference.swift in Sources */,
 				0A37EFEC20C7EE0200201907 /* PinValidationResponse.swift in Sources */,

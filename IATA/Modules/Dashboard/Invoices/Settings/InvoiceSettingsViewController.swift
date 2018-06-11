@@ -40,6 +40,7 @@ class InvoiceSettingsViewController: UIViewController {
         self.navigationController?.navigationBar.tintColor = Theme.shared.navBarTitle
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: Theme.shared.navBarTitle]
         self.navigationController?.navigationBar.isTranslucent = false
+        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
         
         initBackButton()
         initRightButton()

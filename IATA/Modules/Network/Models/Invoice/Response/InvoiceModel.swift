@@ -28,7 +28,7 @@ class InvoiceModel: Mappable {
     internal var number: String?
     internal var clientName: String?
     internal var clientEmail: String?
-    internal var amount: Int32?
+    internal var amount: Double?
     internal var dueDate: String?
     internal var settlementAssetId: String?
     internal var paidAmount: Int32?

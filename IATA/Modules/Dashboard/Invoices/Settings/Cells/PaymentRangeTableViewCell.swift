@@ -47,8 +47,10 @@ class PaymentRangeTableViewCell: UITableViewCell, UITextFieldDelegate {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
         Theme.shared.configureTextFieldStyle(self.minValueTextField)
         Theme.shared.configureTextFieldStyle(self.maxValueTextField)
+        
         self.minValueTextField.placeholder = "Invoice.Settings.Range.From".localize()
         self.maxValueTextField.placeholder = "Invoice.Settings.Range.To".localize()
         
@@ -61,5 +63,21 @@ class PaymentRangeTableViewCell: UITableViewCell, UITextFieldDelegate {
     @objc func rangeSliderValueChanged(sender: Any?) {
         self.minValueTextField.text = String(Int(round(rangeSlider.lowerValue)))
         self.maxValueTextField.text = String(Int(round(rangeSlider.upperValue)))
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        if(textField == self.minValueTextField) {
+            let newString = (textField.text! as NSString).replacingCharacters(in: range, with: string)
+            
+            return TextFieldUtil.validateMaxValue(textField: textField, maxValue: Double(self.maxValueTextField.text as! String)!, range: range, replacementString: string)
+        }
+        
+        if(textField == self.maxValueTextField) {
+            let newString = (textField.text! as NSString).replacingCharacters(in: range, with: string)
+            
+            return TextFieldUtil.validateMinValue(textField: textField, minValue:  Double(self.minValueTextField.text as! String)!, range: range, replacementString: string)
+        }
+        return true
     }
 }

@@ -1,44 +1,42 @@
 import UIKit
+import ObjectMapper
 
 class InvoiceViewController: UIViewController,
     UITableViewDelegate,
     UITableViewDataSource,
-    OnChangeStateSelected{
+    UITextFieldDelegate,
+    OnChangeStateSelected {
     
     @IBOutlet weak var tabView: UITableView!
     @IBOutlet weak var downView: UIView!
     @IBOutlet weak var sumTextField: DesignableUITextField!
     
-    
-    let items = ["Invoice.Navigation.Filtering.Title.AllInvoices".localize(), "Invoice.Navigation.Filtering.Title.UnPaidInvoices".localize(), "Invoice.Navigation.Filtering.Title.Dispute".localize()]
-    
-    var usersArray : Array = [["first_name": "michael", "last_name": "jackson"], ["first_name" : "bill", "last_name" : "gates"], ["first_name" : "steve", "last_name" : "jobs"], ["first_name" : "mark", "last_name" : "zuckerberg"], ["first_name" : "anthony", "last_name" : "quinn"]]
-    
-    fileprivate func initMenu() {
-        let menuView = BTNavigationDropdownMenu(title: BTTitle.index(1), items: items)
-        menuView.backgroundColor = Theme.shared.tabBarBackgroundColor
-        menuView.cellBackgroundColor = Theme.shared.tabBarBackgroundColor
-        menuView.cellTextLabelColor = UIColor.white
-        menuView.cellSeparatorColor = UIColor.clear
-        menuView.menuTitleColor = UIColor.white
-        menuView.cellSelectionColor = Theme.shared.tabBarBackgroundColor
-        menuView.selectedCellTextLabelColor = Theme.shared.tabBarItemSelectedColor
-        menuView.didSelectItemAtIndexHandler = {[weak self] (indexPath: Int) -> () in
-            //self.items.text = items[indexPath]
-        }
-        self.navigationItem.titleView = menuView
-    }
+    private var state: InvoiceState = DefaultInvoiceState() as InvoiceState
+    private var invoices = [InvoiceModel]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let nib = UINib.init(nibName: "InvoiceTableViewCell", bundle: nil)
-        self.tabView.register(nib, forCellReuseIdentifier: "InvoiceTableViewCell")
+        self.tabView.register(InvoiceTableViewCell.nib, forCellReuseIdentifier: InvoiceTableViewCell.identifier)
         self.tabView.delegate = self
         self.tabView.dataSource = self
-        
-        downView.isHidden = true
-        initMenu()
+       
         Theme.shared.configureTextFieldCurrencyStyle(self.sumTextField)
+        self.downView.isHidden = true
+        self.sumTextField.delegate = self
+        
+        initMenu()
+        self.state.getInvoiceStringJson()
+            .withSpinner(in: view)
+            .then(execute: { [weak self] (result: String) -> Void in
+                guard let strongSelf = self else {
+                    return
+                }
+                strongSelf.reloadTable(jsonString: result)
+            }).catch(execute: { [weak self] error -> Void in
+                guard let strongSelf = self else {
+                    return
+                }
+            })
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -56,9 +54,8 @@ class InvoiceViewController: UIViewController,
     }
     
     
-    // MARK: - UITableView delegate
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return usersArray.count
+        return invoices.count
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -66,18 +63,45 @@ class InvoiceViewController: UIViewController,
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "InvoiceTableViewCell", for: indexPath) as! InvoiceTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: InvoiceTableViewCell.identifier, for: indexPath) as! InvoiceTableViewCell
         cell.checkBox.tag = indexPath.row
         cell.delegate = self
         cell.selectionStyle = .none
-        let dict = usersArray[indexPath.row]
+        let dict = invoices[indexPath.row]
+        
+        cell.labelName.text = dict.clientName
         
         
         return cell
     }
     
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+           
+        }
+    }
     
-    func onItemSelected(isSelected: Bool, index: Int32) {
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let dispute = UITableViewRowAction(style: .normal, title: "dispute") { (action, indexPath) in
+            // share item at indexPath
+        }
+        
+        dispute.backgroundColor = UIColor.blue
+        
+        return [dispute]
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        if(textField == self.sumTextField) {
+            let newString = (textField.text! as NSString).replacingCharacters(in: range, with: string)
+            
+            return TextFieldUtil.validateMaxValue(textField: textField, maxValue: self.state.resultAmount(), range: range, replacementString: string)
+        }
+        return true
+    }
+    
+    func onItemSelected(isSelected: Bool, index: Int) {
         if (isSelected && downView.isHidden) {
             downView.alpha = 0
             downView.isHidden = false
@@ -91,5 +115,27 @@ class InvoiceViewController: UIViewController,
                 self.downView.isHidden = finished
             }
         }
+        
+        self.sumTextField.text = String(self.state.recalculateAmount(isSelected: isSelected, model: self.invoices[index]))
+    }
+    
+    private func initMenu() {
+        let menuView = BTNavigationDropdownMenu(title: BTTitle.index(1), items: state.getMenuItems())
+        menuView.backgroundColor = Theme.shared.tabBarBackgroundColor
+        menuView.cellBackgroundColor = Theme.shared.tabBarBackgroundColor
+        menuView.cellTextLabelColor = UIColor.white
+        menuView.cellSeparatorColor = UIColor.clear
+        menuView.menuTitleColor = UIColor.white
+        menuView.cellSelectionColor = Theme.shared.tabBarBackgroundColor
+        menuView.selectedCellTextLabelColor = Theme.shared.tabBarItemSelectedColor
+        menuView.didSelectItemAtIndexHandler = {[weak self] (indexPath: Int) -> () in
+            //self.items.text = items[indexPath]
+        }
+        self.navigationItem.titleView = menuView
+    }
+    
+    private func reloadTable(jsonString: String!) {
+        self.invoices = state.mapping(jsonString: jsonString)
+        self.tabView.reloadData()
     }
 }
