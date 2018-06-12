@@ -20,6 +20,8 @@ class Theme: NSObject {
     public let navigationBarColor = Utils.rgb(19, 68, 117)
     public let tabBarBackgroundColor = Utils.rgb(19, 68, 117)
     public let tabBarItemUnselectedColor = Utils.rgb(113, 142, 172)
+    public let selectedBaseCurrencyBorderCell = Utils.rgb(44, 183, 1)
+    public let unselectedBaseCurrencyBorderCell = Utils.rgb(205, 205, 210)
     
     public private(set) lazy var buttonsFont = boldFontOfSize(16)
     public private(set) lazy var linksFont = boldFontOfSize(15)

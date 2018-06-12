@@ -16,15 +16,15 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
         var historyVC = WalletsViewController()
         var settingsVC = SettingsViewController()
 
-        invoicesVC = generateTabBarItem(for: invoicesVC, normalImage: "invoicesNormal", activeImage: "invoicesActive",
+        invoicesVC = generateTabBarItem(for: invoicesVC, normalImage: "ic_invoicesNormal", activeImage: "ic_invoicesActive",
                                         title:"TabBar.InvoicesItem.Title".localize())
-        walletsVC = generateTabBarItem(for: walletsVC, normalImage: "walletsNormal", activeImage: "walletsActive",
+        walletsVC = generateTabBarItem(for: walletsVC, normalImage: "ic_walletsNormal", activeImage: "ic_walletsActive",
                                        title: "TabBar.WalletsItem.Title".localize())
-        exchangeVC = generateTabBarItem(for: exchangeVC, normalImage: "exchangeNormal", activeImage: "exchangeActive",
+        exchangeVC = generateTabBarItem(for: exchangeVC, normalImage: "ic_exchangeNormal", activeImage: "ic_exchangeActive",
                                         title: "TabBar.ExchangeItem.Title".localize())
-        historyVC = generateTabBarItem(for: historyVC, normalImage: "historyNormal", activeImage: "historyActive",
+        historyVC = generateTabBarItem(for: historyVC, normalImage: "ic_historyNormal", activeImage: "ic_historyActive",
                                        title: "TabBar.HistoryItem.Title".localize())
-        settingsVC = generateTabBarItem(for: settingsVC, normalImage: "settingsNormal", activeImage: "settingsActive",
+        settingsVC = generateTabBarItem(for: settingsVC, normalImage: "ic_settingsNormal", activeImage: "ic_settingsActive",
                                         title: "TabBar.SettingsItem.Title".localize())
         self.viewControllers = [invoicesVC, walletsVC, exchangeVC, historyVC, settingsVC]
     }

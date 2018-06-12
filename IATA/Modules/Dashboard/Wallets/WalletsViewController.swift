@@ -29,7 +29,7 @@ class WalletsViewController: UIViewController, UITableViewDelegate, UITableViewD
         totalBalanceLabel.text = "123,234.61 $"
         cell.balanceLabel.text = "1231231 $"
         cell.walletsNameLabel.text = testData[indexPath.row]
-        cell.nationalFlagImage.image = UIImage(named: "usFlagMediumIcn")
+        cell.nationalFlagImage.image = UIImage(named: "ic_usFlagMediumIcn")
         return cell
     }
 
