@@ -17,8 +17,7 @@ class PinViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        UINavigationBar.appearance().shadowImage = UIImage()
-        UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
+        self.initNavBar()
         
         //create PasswordContainerView
         self.passwordContainerView = PasswordContainerView.create(in: passwordStackView, digit: kPasswordDigit)
@@ -26,24 +25,35 @@ class PinViewController: UIViewController {
         self.passwordContainerView.touchAuthenticationEnabled = isValidation
         
         self.labelTitle.text = self.isValidation ? "Pin.Validation.Title".localize() : "Pin.Setup.Title".localize()
-        
-        for family: String in UIFont.familyNames
-        {
-            print("\(family)")
-            for names: String in UIFont.fontNames(forFamilyName: family)
-            {
-                print("== \(names)")
-            }
-        }
     }
     
-    @IBAction func cancel(_ sender: Any) {
+    private func initNavBar() {
+        UINavigationBar.appearance().shadowImage = UIImage()
+        UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.isNavigationBarHidden = false
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.navigationController?.navigationBar.barTintColor = UIColor.white
+        self.navigationController?.navigationBar.tintColor = Theme.shared.navBarTitle
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: Theme.shared.navBarTitle]
+        
+        self.initBackButton()
+    }
+    
+    private func initBackButton() {
+        let backButton = Theme.shared.getCancel(title: "Common.NavBar.Cancel".localize(), color: Theme.shared.navBarTitle)
+        backButton.addTarget(self, action: #selector(cancel), for: .touchUpInside)
+        
+        let backItem = UIBarButtonItem(customView: backButton)
+        self.navigationItem.leftBarButtonItem = backItem
+    }
+    
+    @objc func cancel(_ sender: Any) {
         self.openSignIn()
     }
     
     func openSignIn() {
         CredentialManager.shared.clearSavedData()
-        self.navigationController?.pushViewController(SignInViewController(), animated: true)
+        self.navigationController?.present(SignInViewController(), animated: true, completion: nil)
     }
 }
 
@@ -106,11 +116,10 @@ private extension PinViewController {
     }
     
     func validationSuccess() {
-        self.navigationController?.pushViewController(TabBarController(), animated: true)
+        self.navigationController?.isNavigationBarHidden = true
+        self.navigationController?.present(TabBarController(), animated: true, completion: nil)
         self.navigationController?.navigationBar.barTintColor = Theme.init().navigationBarColor
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
-
-        dismiss(animated: true, completion: nil)
     }
     
     func validationFail() {

@@ -10,6 +10,9 @@ class InvoiceViewController: UIViewController,
     @IBOutlet weak var tabView: UITableView!
     @IBOutlet weak var downView: UIView!
     @IBOutlet weak var sumTextField: DesignableUITextField!
+    @IBOutlet weak var selectedItemTextField: UILabel!
+    @IBOutlet weak var downViewHeightConstraint: NSLayoutConstraint!
+    
     
     private var state: InvoiceState = DefaultInvoiceState() as InvoiceState
     private var invoices = [InvoiceModel]()
@@ -19,24 +22,12 @@ class InvoiceViewController: UIViewController,
         self.tabView.register(InvoiceTableViewCell.nib, forCellReuseIdentifier: InvoiceTableViewCell.identifier)
         self.tabView.delegate = self
         self.tabView.dataSource = self
-       
+        self.tabView.tableFooterView = UIView()
+        
         Theme.shared.configureTextFieldCurrencyStyle(self.sumTextField)
         self.downView.isHidden = true
         self.sumTextField.delegate = self
-        
-        initMenu()
-        self.state.getInvoiceStringJson()
-            .withSpinner(in: view)
-            .then(execute: { [weak self] (result: String) -> Void in
-                guard let strongSelf = self else {
-                    return
-                }
-                strongSelf.reloadTable(jsonString: result)
-            }).catch(execute: { [weak self] error -> Void in
-                guard let strongSelf = self else {
-                    return
-                }
-            })
+        self.initMenu()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -47,6 +38,7 @@ class InvoiceViewController: UIViewController,
         self.navigationController?.navigationBar.isTranslucent = false
         
         self.navigationItem.leftBarButtonItem  = UIBarButtonItem(image: UIImage(named: "ic_filter"), style: .plain, target: self, action: #selector(self.clickFilter(sender:)))
+         self.loadData()
     }
     
     @objc func clickFilter(sender: Any?) {
@@ -69,9 +61,7 @@ class InvoiceViewController: UIViewController,
         cell.selectionStyle = .none
         let dict = invoices[indexPath.row]
         
-        cell.labelName.text = dict.clientName
-        
-        
+        cell.initModel(model: dict)
         return cell
     }
     
@@ -102,25 +92,28 @@ class InvoiceViewController: UIViewController,
     }
     
     func onItemSelected(isSelected: Bool, index: Int) {
-        if (isSelected && downView.isHidden) {
+        self.sumTextField.text = String(self.state.recalculateAmount(isSelected: isSelected, model: self.invoices[index]))
+        self.selectedItemTextField.text = String(format: "Invoice.Screen.Items.CountSelected".localize(), String(self.state.getCountSelected()))
+        if (isSelected && self.downView.isHidden) {
             downView.alpha = 0
-            downView.isHidden = false
             UIView.animate(withDuration: 0.3) {
                 self.downView.alpha = 1
             }
-        } else if (!isSelected && !downView.isHidden) {
+            self.downView.isHidden = false
+            self.downViewHeightConstraint.constant = 110
+        } else if (!isSelected && !self.downView.isHidden && self.state.getCountSelected() == 0) {
             UIView.animate(withDuration: 0.3, animations: {
                 self.downView.alpha = 0
             }) { (finished) in
                 self.downView.isHidden = finished
             }
+            downViewHeightConstraint.constant = 0
         }
         
-        self.sumTextField.text = String(self.state.recalculateAmount(isSelected: isSelected, model: self.invoices[index]))
     }
     
     private func initMenu() {
-        let menuView = BTNavigationDropdownMenu(title: BTTitle.index(1), items: state.getMenuItems())
+        let menuView = BTNavigationDropdownMenu(title: BTTitle.index(FilterPreference.shared.getIndexOfStatus()), items: state.getMenuItems())
         menuView.backgroundColor = Theme.shared.tabBarBackgroundColor
         menuView.cellBackgroundColor = Theme.shared.tabBarBackgroundColor
         menuView.cellTextLabelColor = UIColor.white
@@ -129,9 +122,24 @@ class InvoiceViewController: UIViewController,
         menuView.cellSelectionColor = Theme.shared.tabBarBackgroundColor
         menuView.selectedCellTextLabelColor = Theme.shared.tabBarItemSelectedColor
         menuView.didSelectItemAtIndexHandler = {[weak self] (indexPath: Int) -> () in
-            //self.items.text = items[indexPath]
+            FilterPreference.shared.saveIndexOfStatus(indexPath)
+            self?.state.selectedStatus(index: indexPath)
+            self?.loadData()
         }
         self.navigationItem.titleView = menuView
+    }
+    
+    private func loadData() {
+        self.state.getInvoiceStringJson()
+            .withSpinner(in: view)
+            .then(execute: { [weak self] (result: String) -> Void in
+                guard let strongSelf = self else {
+                    return
+                }
+                strongSelf.reloadTable(jsonString: result)
+            }).catch(execute: { [weak self] error -> Void in
+                
+            })
     }
     
     private func reloadTable(jsonString: String!) {

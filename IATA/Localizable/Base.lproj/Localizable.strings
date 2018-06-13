@@ -18,13 +18,23 @@
 "Invoice.Settings.PaymentRange.Title" = "Payment Range";
 "Invoice.Settings.SettlementPeriod.Title" = "Settlement Period";
 "Invoice.Settings.Filter.Title" = "Filters";
+"Invoice.Settings.Range.From" = "From";
+"Invoice.Settings.Range.To" = "To";
 
 "Invoice.Navigation.Filtering.Title.AllInvoices" = "All invoices";
 "Invoice.Navigation.Filtering.Title.UnPaidInvoices" = "Unpaid invoices";
 "Invoice.Navigation.Filtering.Title.Dispute" = "Dispute";
 
-"Invoice.Settings.Range.From" = "From";
-"Invoice.Settings.Range.To" = "To";
+"Invoice.Screen.Items.CountSelected" = "%@ invoices selected";
+
+"Invoice.Status.Items.InProgress" = "IN PROGRESS";
+"Invoice.Status.Items.Paid" = "PAID";
+"Invoice.Status.Items.Underpaid" = "PARTIALLY PAID";
+"Invoice.Status.Items.Overpaid" = "ERROR";
+"Invoice.Status.Items.Latepaid" = "LATE PAID";
+"Invoice.Status.Items.InternalError" = "ERROR";
+"Invoice.Status.Items.PastDue" = "PAST DUE";
+"Invoice.Status.Items.Dispute" = "DISPUTE";
 
 "TabBar.InvoicesItem.Title" = "INVOICES";
 "TabBar.WalletsItem.Title" = "WALLETS";

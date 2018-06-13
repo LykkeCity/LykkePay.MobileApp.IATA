@@ -7,13 +7,24 @@ class DefaultInvoiceState: InvoiceState {
     private let menuItems = ["Invoice.Navigation.Filtering.Title.AllInvoices".localize(), "Invoice.Navigation.Filtering.Title.UnPaidInvoices".localize(), "Invoice.Navigation.Filtering.Title.Dispute".localize()]
     private var selectedItems = Array<InvoiceModel>()
     public lazy var service: PaymentService = DefaultPaymentService()
+    private var invoiceParams = InvoiceRequest()
     
     func mapping(jsonString: String!) ->  Array<InvoiceModel> {
-        return Mapper<InvoiceModel>().mapArray(JSONObject: jsonString.toJSON())!
+        return !jsonString.isEmpty ? Mapper<InvoiceModel>().mapArray(JSONObject: jsonString.toJSON())! : Array<InvoiceModel>()
     }
     
     func getInvoiceStringJson() -> Promise<String> {
-        return self.service.getInVoices()
+        selectedStatus(index: FilterPreference.shared.getIndexOfStatus())
+        invoiceParams?.billingCategories = FilterPreference.shared.getBillingChecked()!
+        invoiceParams?.clientMerchantIds = FilterPreference.shared.getAirlines()!
+        invoiceParams?.lessThan = FilterPreference.shared.getMaxValue()
+        invoiceParams?.greaterThan = FilterPreference.shared.getMinValue()
+        
+        return self.service.getInVoices(invoceParams: invoiceParams!)
+    }
+    
+    func getCountSelected() -> Int {
+        return self.selectedItems.count
     }
     
     func getMenuItems() -> [String] {
@@ -30,8 +41,29 @@ class DefaultInvoiceState: InvoiceState {
         var resultAmount = 0.0
         for invoice in self.selectedItems {
             resultAmount += invoice.amount!
+            resultAmount -= invoice.paidAmount!
         }
         return resultAmount
+    }
+    
+    func selectedStatus(index: Int) {
+        switch index {
+        case 0:
+            invoiceParams?.statuses = InvoiceStatuses.all.rawValue
+            invoiceParams?.dispute = nil
+            break
+        case 1:
+            invoiceParams?.statuses = InvoiceStatuses.Unpaid.rawValue
+            invoiceParams?.dispute = nil
+            break
+        case 2:
+            invoiceParams?.statuses = InvoiceStatuses.all.rawValue
+            invoiceParams?.dispute = true
+            break
+        default:
+            break
+        }
+        
     }
     
     private func addNewSelectedModel(model: InvoiceModel) {

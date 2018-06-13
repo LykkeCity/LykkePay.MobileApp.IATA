@@ -8,4 +8,6 @@ protocol InvoiceState {
     func getMenuItems() -> [String]
     func recalculateAmount(isSelected: Bool, model: InvoiceModel) -> Double
     func resultAmount() -> Double
+    func getCountSelected() -> Int
+    func selectedStatus(index: Int)
 }

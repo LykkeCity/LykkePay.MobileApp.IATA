@@ -90,6 +90,8 @@ public class Checkbox: UIControl {
     public var isChecked: Bool = false {
         didSet { setNeedsDisplay() }
     }
+    
+    public var isCanBeChanged = true
 
     // MARK: - Lifecycle
 
@@ -231,9 +233,11 @@ public class Checkbox: UIControl {
     // MARK: - Touch
 
     @objc private func handleTapGesture(recognizer: UITapGestureRecognizer) {
-        isChecked = !isChecked
-        valueChanged?(isChecked)
-        sendActions(for: .valueChanged)
+        if (isCanBeChanged) {
+            isChecked = !isChecked
+            valueChanged?(isChecked)
+            sendActions(for: .valueChanged)
+        }
     }
 
     override public func point(inside point: CGPoint, with event: UIEvent?) -> Bool {

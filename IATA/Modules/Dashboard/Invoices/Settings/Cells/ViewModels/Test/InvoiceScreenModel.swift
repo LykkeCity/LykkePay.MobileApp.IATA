@@ -14,7 +14,7 @@ class InvoiceScreenModel {
     var airlines = [InvoiceSettingAirlinesModel]()
     var billingCategories = [InvoiceSettingModel]()
     var currencies = [InvoiceSettingModel]()
-    var paymentRange = InvoiceSettingPaymentRangeItemModel(min: 1000, max: 10000)
+    var paymentRange = InvoiceSettingPaymentRangeItemModel(min: FilterPreference.shared.getMinValue(), max: FilterPreference.shared.getMaxValue())
     var settlementPeriod = [InvoiceSettingModel]()
     
     init?(data: Data) {
