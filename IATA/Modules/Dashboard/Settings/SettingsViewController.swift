@@ -66,10 +66,10 @@ class SettingsViewController: UIViewController, UICollectionViewDelegate, UIColl
 
     @objc private func logoutButtonTapped() {
         let logoutSheet = UIAlertController(title: nil, message: nil, preferredStyle:  .actionSheet)
-        let logoutAction = UIAlertAction(title: "Log out", style: .default, handler: nil)
+        let logoutAction = UIAlertAction(title: "Setting.Logout.Item.Logout".localize(), style: .default, handler: nil)
         logoutAction.setValue(Theme.shared.logoutTitle, forKey: "titleTextColor")
         logoutSheet.addAction(logoutAction)
-        logoutSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        logoutSheet.addAction(UIAlertAction(title: "Setting.Logout.Item.Cancel".localize(), style: .cancel, handler: nil))
         self.present(logoutSheet, animated: true, completion: nil)
     }
 
