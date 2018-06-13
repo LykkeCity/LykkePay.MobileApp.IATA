@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 
-enum InvoiceViewModelItemType {
+enum InvoiceViewModelItemType: String {
     case airlines
     case currencies
     case paymentRange

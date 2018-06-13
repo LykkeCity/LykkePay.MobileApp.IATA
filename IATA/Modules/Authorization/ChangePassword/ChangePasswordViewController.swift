@@ -26,7 +26,7 @@ class ChangePasswordViewController: BaseAuthViewController, UITextFieldDelegate 
     }
     
     private func initView() {
-        initNavBar()
+        self.initNavBar()
         Theme.shared.configureTextFieldPasswordStyle(oldPasswordField)
         Theme.shared.configureTextFieldPasswordStyle(newPasswordField)
         Theme.shared.configureTextFieldPasswordStyle(newPasswordAgainField)

@@ -136,7 +136,7 @@ open class PasswordContainerView: UIView {
         if #available(iOS 11, *) {
             self.touchAuthenticationButton.isHidden = self.touchIDContext.biometryType == .faceID
         } else {
-            self.touchAuthenticationButton.isHidden = true
+            self.touchAuthenticationButton.isHidden = !touchIDContext.canEvaluatePolicy(LAPolicy.deviceOwnerAuthentication, error: nil)
         }
        
     }
@@ -169,7 +169,12 @@ open class PasswordContainerView: UIView {
     
     @IBAction func touchAuthenticationAction(_ sender: UIButton) {
         guard isTouchAuthenticationAvailable else { return }
-        self.touchIDContext.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: touchAuthenticationReason) { (success, error) in
+        
+        var policy = LAPolicy.deviceOwnerAuthentication
+        if #available(iOS 11.0, *) {
+            policy = .deviceOwnerAuthenticationWithBiometrics
+        }
+        self.touchIDContext.evaluatePolicy(policy, localizedReason: touchAuthenticationReason) { (success, error) in
             DispatchQueue.main.async {
                 if success {
                     self.passwordDotView.inputDotCount = self.passwordDotView.totalDotCount

@@ -4,7 +4,7 @@ class AirlinesTableViewCell: UITableViewCell, OnSwitchStateChanged {
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var picture: UIImage!
     @IBOutlet weak var switchOnOffFilter: BigThumbnailSwither!
-    
+     weak var delegate: OnSwitchStateChangedDelegate?
     
     var item: InvoiceSettingAirlinesModel? {
         didSet {
@@ -17,7 +17,7 @@ class AirlinesTableViewCell: UITableViewCell, OnSwitchStateChanged {
             }
             
             self.name?.text = item.name
-            self.switchOnOffFilter.setChecked(isChecked: FilterPreference.shared.getChecked(key: item.name, type: item.type))
+            self.switchOnOffFilter.setChecked(isChecked: self.item?.checked == nil ? false : self.item?.checked)
         }
     }
     
@@ -32,10 +32,10 @@ class AirlinesTableViewCell: UITableViewCell, OnSwitchStateChanged {
     override func awakeFromNib() {
         super.awakeFromNib()
         self.switchOnOffFilter.delegate = self
-        self.switchOnOffFilter.setChecked(isChecked: FilterPreference.shared.getChecked(key: item?.name, type: item?.type))
     }
     
     func stateChanged(isSelected: Bool) {
-        FilterPreference.shared.saveFilteredKey(isSelected, key: item?.name, type: item?.type)
+        self.item?.checked = isSelected
+        self.delegate?.stateChanged(isSelected: isSelected, item: self.item)
     }
 }

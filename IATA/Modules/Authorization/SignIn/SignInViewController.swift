@@ -7,6 +7,7 @@ class SignInViewController: BaseAuthViewController {
     @IBOutlet private weak var emailTextField: MFTextField!
     @IBOutlet private weak var passwordField: MFTextField!
     @IBOutlet private weak var btnLogin: UIButton!
+    @IBOutlet weak var logoImg: UIImageView!
     
     private var state: SignInViewState = DefaultSignInViewState() as SignInViewState
     
@@ -19,9 +20,28 @@ class SignInViewController: BaseAuthViewController {
         passwordField.isSecureTextEntry = true
         
         btnLogin.addTarget(self, action: #selector(self.buttonClicked), for: .touchUpInside)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            if (!self.logoImg.isHidden) {
+                self.view.frame.origin.y -= keyboardSize.height/2
+                self.logoImg.isHidden = true
+            }
+        }
+    }
+    
+    @objc func keyboardWillHide(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            self.view.frame.origin.y += keyboardSize.height/2
+            self.logoImg.isHidden = false
+        }
     }
     
     @objc private func buttonClicked() {
+        self.view.endEditing(true)
         self.signIn(email: emailTextField.text!, password: state.getHashPass(email: emailTextField.text!, password: passwordField.text!))
     }
     

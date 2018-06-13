@@ -27,6 +27,11 @@ class Theme: NSObject {
     public let navBarTitle = Utils.rgb(17, 17, 17)
     public let logoutTitle = Utils.rgb(239, 23, 63)
     
+    
+    public let blueProgressStatusColor = Utils.rgb(53, 153, 254)
+    public let redErrorStatusColor = Utils.rgb(254, 53, 96)
+    public let greyStatusColor = Utils.rgb(178, 184, 191)
+    
     public private(set) lazy var buttonsFont = boldFontOfSize(16)
     public private(set) lazy var linksFont = boldFontOfSize(15)
     
@@ -78,6 +83,11 @@ class Theme: NSObject {
         titleLabel.font =  UIFont(name: "GothamPro-Bold", size: 17)
         titleLabel.tintColor = color
         titleLabel.textColor = color
+        titleLabel.frame = CGRect(x: 0.0,
+                                  y: 0.0,
+                                  width: titleLabel.intrinsicContentSize.width,
+                                  height: titleLabel.intrinsicContentSize.height)
+        
         return titleLabel
     }
     
@@ -87,16 +97,24 @@ class Theme: NSObject {
         backButton.titleLabel?.font =  UIFont(name: "GothamPro", size: 17)
         backButton.tintColor = color
         backButton.setTitleColor(color, for: .normal)
+        backButton.frame = CGRect(x: 0.0,
+                                  y: 0.0,
+                                  width: backButton.intrinsicContentSize.width,
+                                  height: backButton.intrinsicContentSize.height)
         return backButton
     }
     
     public func getRightButton(title: String!, color: UIColor) -> UIButton {
-        let backButton = UIButton()
-        backButton.setTitle(title, for: .normal)
-        backButton.titleLabel?.font =  UIFont(name: "GothamPro-Bold", size: 17)
-        backButton.tintColor = color
-        backButton.setTitleColor(color, for: .normal)
-        return backButton
+        let rightButton = UIButton()
+        rightButton.setTitle(title, for: .normal)
+        rightButton.titleLabel?.font =  UIFont(name: "GothamPro-Bold", size: 17)
+        rightButton.tintColor = color
+        rightButton.setTitleColor(color, for: .normal)
+        rightButton.frame = CGRect(x: 0.0,
+                                  y: 0.0,
+                                  width: rightButton.intrinsicContentSize.width,
+                                  height: rightButton.intrinsicContentSize.height)
+        return rightButton
     }
     
     public func configureTextFieldStyle(_ textField: MFTextField){

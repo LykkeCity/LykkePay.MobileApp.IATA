@@ -21,6 +21,8 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="InvoiceViewController" customModule="IATA" customModuleProvider="target">
             <connections>
                 <outlet property="downView" destination="Boz-OM-wSA" id="sXc-bd-gRZ"/>
+                <outlet property="downViewHeightConstraint" destination="ozl-4g-oOw" id="8DP-Ii-Yif"/>
+                <outlet property="selectedItemTextField" destination="phI-Vh-W4l" id="j6U-6G-G8k"/>
                 <outlet property="sumTextField" destination="283-hj-k8z" id="Ve9-h4-lVr"/>
                 <outlet property="tabView" destination="aHq-O3-Lfw" id="z1c-aH-8zp"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -32,23 +34,23 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="aHq-O3-Lfw">
-                    <rect key="frame" x="0.0" y="28" width="367" height="521"/>
+                    <rect key="frame" x="0.0" y="28" width="367" height="631"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </tableView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Boz-OM-wSA">
-                    <rect key="frame" x="0.0" y="557" width="375" height="110"/>
+                    <rect key="frame" x="0.0" y="667" width="375" height="0.0"/>
                     <subviews>
                         <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="283-hj-k8z" customClass="DesignableUITextField" customModule="IATA" customModuleProvider="target">
-                            <rect key="frame" x="16" y="9" width="30" height="45"/>
+                            <rect key="frame" x="16" y="9" width="15" height="45"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="33i-QX-piU"/>
                                 <constraint firstAttribute="height" constant="45" id="Z7j-U4-Htw"/>
-                                <constraint firstAttribute="width" relation="lessThanOrEqual" constant="200" id="kiv-fT-N59"/>
+                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="cwz-l2-5yM"/>
+                                <constraint firstAttribute="width" relation="lessThanOrEqual" constant="150" id="vfE-IX-aJc"/>
                             </constraints>
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Mi-CE-o9S">
-                            <rect key="frame" x="225" y="31" width="130" height="48"/>
+                            <rect key="frame" x="225" y="-24" width="130" height="48"/>
                             <color key="backgroundColor" red="0.17254901960784313" green="0.71764705882352942" blue="0.0039215686274509803" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="130" id="2CC-Yk-Cqi"/>
@@ -90,18 +92,18 @@
                         <constraint firstAttribute="trailing" secondItem="koP-il-pIp" secondAttribute="trailing" constant="16" id="XfD-NV-3tG"/>
                         <constraint firstAttribute="trailing" secondItem="9Mi-CE-o9S" secondAttribute="trailing" constant="20" id="evY-jL-Nte"/>
                         <constraint firstItem="283-hj-k8z" firstAttribute="leading" secondItem="Boz-OM-wSA" secondAttribute="leading" constant="16" id="nOF-e6-Urd"/>
-                        <constraint firstAttribute="height" constant="110" id="ozl-4g-oOw"/>
+                        <constraint firstAttribute="height" id="ozl-4g-oOw"/>
                     </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
             <constraints>
+                <constraint firstItem="Boz-OM-wSA" firstAttribute="top" secondItem="aHq-O3-Lfw" secondAttribute="bottom" constant="8" id="0lT-KT-weX"/>
                 <constraint firstItem="Boz-OM-wSA" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="bo5-ZY-U0M"/>
                 <constraint firstItem="Boz-OM-wSA" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="fDM-IO-1WY"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Boz-OM-wSA" secondAttribute="trailing" id="mjd-mb-Ztp"/>
                 <constraint firstAttribute="trailing" secondItem="aHq-O3-Lfw" secondAttribute="trailing" constant="8" id="nnn-bl-VDx"/>
                 <constraint firstItem="aHq-O3-Lfw" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="pEO-9d-IL9"/>
-                <constraint firstItem="Boz-OM-wSA" firstAttribute="top" secondItem="aHq-O3-Lfw" secondAttribute="bottom" constant="8" id="tKH-lU-GhC"/>
                 <constraint firstItem="aHq-O3-Lfw" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="8" id="ukB-0G-uG6"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>

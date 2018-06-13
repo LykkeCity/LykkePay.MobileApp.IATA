@@ -18,7 +18,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func applicationDidBecomeActive(_ application: UIApplication) {
         let navigationController = switchToNavigationControllerIfNeed()
-        navigationController.pushViewController(makeRootViewController(), animated: true)
+        let viewController = makeRootViewController()
+        let name = String(describing: navigationController.visibleViewController?.classForCoder)
+        let newName = String(describing: viewController.classForCoder)
+        if (!name.contains(newName)) {
+            navigationController.pushViewController(makeRootViewController(), animated: true)
+        }
     }
     
     private func initWindow() {

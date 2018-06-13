@@ -12,7 +12,7 @@ class PaymentRangeTableViewCell: UITableViewCell, UITextFieldDelegate {
         if let valueString = self.minValueTextField.text as? String {
             if var value = Int(valueString) {
                 self.rangeSlider.lowerValue = Double(value)
-                FilterPreference.shared.saveMinValue(value)
+                item?.min = value
             }
         }
     }
@@ -21,7 +21,7 @@ class PaymentRangeTableViewCell: UITableViewCell, UITextFieldDelegate {
         if let valueString = self.maxValueTextField.text as? String {
             if var value = Int(valueString) {
                 self.rangeSlider.upperValue = Double(value)
-                FilterPreference.shared.saveMaxValue(value)
+                item?.max = value
             }
         }
     }
@@ -68,14 +68,10 @@ class PaymentRangeTableViewCell: UITableViewCell, UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
         if(textField == self.minValueTextField) {
-            let newString = (textField.text! as NSString).replacingCharacters(in: range, with: string)
-            
             return TextFieldUtil.validateMaxValue(textField: textField, maxValue: Double(self.maxValueTextField.text as! String)!, range: range, replacementString: string)
         }
         
         if(textField == self.maxValueTextField) {
-            let newString = (textField.text! as NSString).replacingCharacters(in: range, with: string)
-            
             return TextFieldUtil.validateMinValue(textField: textField, minValue:  Double(self.minValueTextField.text as! String)!, range: range, replacementString: string)
         }
         return true

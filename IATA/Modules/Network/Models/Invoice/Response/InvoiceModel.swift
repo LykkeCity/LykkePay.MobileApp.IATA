@@ -20,10 +20,13 @@ class InvoiceModel: Mappable {
         case createdDate
         case billingCategory
         case dispute
+        
+        case logo
+        case settlementPeriod
        
     }
     
-    internal var status: String?
+    internal var status: InvoiceStatuses?
     internal var id: String?
     internal var number: String?
     internal var clientName: String?
@@ -31,7 +34,7 @@ class InvoiceModel: Mappable {
     internal var amount: Double?
     internal var dueDate: String?
     internal var settlementAssetId: String?
-    internal var paidAmount: Int32?
+    internal var paidAmount: Double?
     internal var paymentAssetId: String?
     internal var paymentRequestId: String?
     internal var merchantId: String?
@@ -40,6 +43,9 @@ class InvoiceModel: Mappable {
     internal var createdDate: String?
     internal var billingCategory: String?
     internal var dispute: Bool?
+    //TODO still not ready in server
+    internal var logo: String?
+    internal var settlementPeriod: String?
     
     internal required init?(map: Map) {
     }
@@ -62,5 +68,7 @@ class InvoiceModel: Mappable {
         note <- map[PropertyKey.note.rawValue]
         billingCategory <- map[PropertyKey.billingCategory.rawValue]
         dispute <- map[PropertyKey.dispute.rawValue]
+        logo <- map[PropertyKey.logo.rawValue]
+        settlementPeriod <- map[PropertyKey.settlementPeriod.rawValue]
     }
 }

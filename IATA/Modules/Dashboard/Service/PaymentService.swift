@@ -3,5 +3,5 @@ import PromiseKit
 
 protocol PaymentService {
     
-    func getInVoices() -> Promise<String>
+    func getInVoices(invoceParams: InvoiceRequest)-> Promise<String>
 }

@@ -7,7 +7,6 @@ class InvoiceSettingsViewController: UIViewController {
     fileprivate let viewModel = InvoiceViewModel()
     
     @IBAction func clickCancel(_ sender: Any) {
-        CredentialManager.shared.clearSavedData()
         self.navigationController?.popViewController(animated: true)
     }
     
@@ -20,9 +19,7 @@ class InvoiceSettingsViewController: UIViewController {
         self.tableView?.rowHeight = UITableViewAutomaticDimension
         self.tableView?.estimatedRowHeight = 55
         
-        
-        let headerNib = UINib.init(nibName: "InvoiceHeaderView", bundle: Bundle.main)
-        tableView.register(headerNib, forHeaderFooterViewReuseIdentifier: "InvoiceHeaderView")
+        tableView.register(InvoiceHeaderView.nib, forHeaderFooterViewReuseIdentifier: InvoiceHeaderView.identifier)
         
         tableView?.register(PaymentRangeTableViewCell.nib, forCellReuseIdentifier: PaymentRangeTableViewCell.identifier)
         tableView?.register(SimpleTableViewCell.nib, forCellReuseIdentifier: SimpleTableViewCell.identifier)
@@ -57,7 +54,7 @@ class InvoiceSettingsViewController: UIViewController {
     
     private func initRightButton() {
         let rightButton = Theme.shared.getRightButton(title: "Common.NavBar.Done".localize(), color: Theme.shared.textFieldColor)
-        rightButton.addTarget(self, action: #selector(clickCancel), for: .touchUpInside)
+        rightButton.addTarget(self, action: #selector(clickDone), for: .touchUpInside)
         
         let rightItem = UIBarButtonItem(customView: rightButton)
         self.navigationItem.rightBarButtonItem = rightItem
@@ -66,5 +63,10 @@ class InvoiceSettingsViewController: UIViewController {
     private func initTitle() {
         let titleLabel = Theme.shared.getTitle(title: "Invoice.Settings.Filter.Title".localize(), color: Theme.shared.navBarTitle)
         self.navigationItem.titleView = titleLabel
+    }
+    
+    @objc func clickDone() {
+        viewModel.state.clickDone()
+        self.navigationController?.popViewController(animated: true)
     }
 }
