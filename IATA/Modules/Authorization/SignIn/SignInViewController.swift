@@ -12,6 +12,8 @@ class SignInViewController: BaseAuthViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationController?.isNavigationBarHidden = true
         Theme.shared.configureTextFieldStyle(emailTextField)
         Theme.shared.configureTextFieldPasswordStyle(passwordField)
         passwordField.isSecureTextEntry = true

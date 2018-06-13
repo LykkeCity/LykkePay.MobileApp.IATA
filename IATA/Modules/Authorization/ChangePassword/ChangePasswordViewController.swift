@@ -19,16 +19,14 @@ class ChangePasswordViewController: BaseAuthViewController, UITextFieldDelegate 
         self.navigationController?.pushViewController(SignInViewController(), animated: true)
     }
     
-   
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.initView()
     }
     
-    fileprivate func initView() {
-        UINavigationBar.appearance().shadowImage = UIImage()
-        UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
-        
+    private func initView() {
+        initNavBar()
         Theme.shared.configureTextFieldPasswordStyle(oldPasswordField)
         Theme.shared.configureTextFieldPasswordStyle(newPasswordField)
         Theme.shared.configureTextFieldPasswordStyle(newPasswordAgainField)
@@ -39,6 +37,31 @@ class ChangePasswordViewController: BaseAuthViewController, UITextFieldDelegate 
         
         self.changeButton.addTarget(self, action: #selector(self.buttonClicked), for: .touchUpInside)
         self.changeState(state: false)
+    }
+    
+    private func initNavBar() {
+        self.navigationController?.isNavigationBarHidden = false
+        self.navigationController?.navigationBar.barTintColor = UIColor.white
+        self.navigationController?.navigationBar.tintColor = Theme.shared.navBarTitle
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: Theme.shared.navBarTitle]
+        self.navigationController?.navigationBar.isTranslucent = false
+        
+        initBackButton()
+        initTitle()
+        
+    }
+    
+    private func initBackButton() {
+        let backButton = Theme.shared.getCancel(title: "Common.NavBar.Cancel".localize(), color: Theme.shared.navBarTitle)
+        backButton.addTarget(self, action: #selector(clickCancel), for: .touchUpInside)
+        
+        let backItem = UIBarButtonItem(customView: backButton)
+        self.navigationItem.leftBarButtonItem = backItem
+    }
+    
+    private func initTitle() {
+        let titleLabel = Theme.shared.getTitle(title: "ChangePassword.NavBar.Title".localize(), color: Theme.shared.navBarTitle)
+        self.navigationItem.titleView = titleLabel
     }
     
     @objc private func buttonClicked() {
@@ -89,14 +112,14 @@ class ChangePasswordViewController: BaseAuthViewController, UITextFieldDelegate 
             let userInfo = [NSLocalizedDescriptionKey: "ChangePassword.FieldNotEquals.Error".localize()]
             let error = NSError(domain: "", code: 123, userInfo: userInfo)
             self.newPasswordAgainField.setError(error, animated: true)
-        
+            
         } else {
-             self.newPasswordAgainField.setError(nil, animated: true)
+            self.newPasswordAgainField.setError(nil, animated: true)
         }
     }
     
     fileprivate func isReady() -> Bool {
-      return !self.oldPasswordField.text!.isEmpty && self.isHasError()
+        return !self.oldPasswordField.text!.isEmpty && self.isHasError()
     }
     
     fileprivate func isHasError() -> Bool {

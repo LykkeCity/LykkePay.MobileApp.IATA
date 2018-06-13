@@ -26,9 +26,18 @@ class PinViewController: UIViewController {
         self.passwordContainerView.touchAuthenticationEnabled = isValidation
         
         self.labelTitle.text = self.isValidation ? "Pin.Validation.Title".localize() : "Pin.Setup.Title".localize()
+        
+        for family: String in UIFont.familyNames
+        {
+            print("\(family)")
+            for names: String in UIFont.fontNames(forFamilyName: family)
+            {
+                print("== \(names)")
+            }
+        }
     }
     
-    @IBAction func clickCancel(_ sender: Any) {
+    @IBAction func cancel(_ sender: Any) {
         self.openSignIn()
     }
     
@@ -97,7 +106,6 @@ private extension PinViewController {
     }
     
     func validationSuccess() {
-        //self.navigationController?.pushViewController(DashboardViewController(), animated: true)
         self.navigationController?.pushViewController(TabBarController(), animated: true)
         self.navigationController?.navigationBar.barTintColor = Theme.init().navigationBarColor
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
@@ -108,7 +116,7 @@ private extension PinViewController {
     func validationFail() {
         self.countOfTry += 1
         self.passwordContainerView.wrongPassword()
-        if (countOfTry > 3) {
+        if (countOfTry > 2) {
             self.openSignIn()
         }
     }

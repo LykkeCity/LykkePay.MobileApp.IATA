@@ -36,5 +36,13 @@ class BaseCurrencyCollectionViewCell: UICollectionViewCell {
         self.layer.cornerRadius = cornerRadius
         self.layer.borderColor = borderColor
     }
+
+    static var nib:UINib {
+        return UINib(nibName: identifier, bundle: nil)
+    }
+
+    static var identifier: String {
+        return String(describing: self)
+    }
 }
 

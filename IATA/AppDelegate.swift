@@ -1,5 +1,3 @@
-
-import IQKeyboardManagerSwift
 import UIKit
 import CoreData
 import Fabric
@@ -7,15 +5,13 @@ import Crashlytics
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    
     var window: UIWindow?
-
-
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        Fabric.with([Crashlytics.self])
+        // Fabric.with([Crashlytics.self])
         initWindow()
         _ = switchToNavigationControllerIfNeed()
-        configureKeyboardManager();
         return true
     }
     
@@ -37,15 +33,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         let navigationController = UINavigationController(rootViewController: makeRootViewController())
         navigationController.isNavigationBarHidden = true
-        navigationController.navigationBar.isTranslucent = false
-        navigationController.navigationBar.barTintColor = Theme.init().navigationBarColor
-        navigationController.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
         window?.rootViewController = navigationController
         return navigationController
-    }
-        private func configureKeyboardManager() {
-        IQKeyboardManager.shared.enable = true
-        IQKeyboardManager.shared.shouldShowToolbarPlaceholder = false
     }
     
     private func makeRootViewController() -> UIViewController {
@@ -75,12 +64,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         })
         return container
     }()
-
+    
     // MARK: - Core Data Saving support
-
+    
     func saveContext () {
         
     }
-
+    
 }
 

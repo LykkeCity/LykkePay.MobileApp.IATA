@@ -8,12 +8,12 @@
       pod 'ObjectMapper'
       pod 'AlamofireObjectMapper'
       pod 'KeychainAccess'
-      pod 'IQKeyboardManagerSwift'
       pod 'MaterialTextField', '~> 0.2'
       pod 'JGProgressHUD'
       pod 'CryptoSwift'
       pod 'Fabric'
       pod 'Crashlytics'
+      pod 'WARangeSlider'
 
   target 'IATATests' do
     inherit! :search_paths
