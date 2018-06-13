@@ -38,17 +38,13 @@ extension InvoiceViewModel: UITableViewDataSource, UITableViewDelegate, OnSwitch
             return self.initAirlineCell(item, indexPath: indexPath, tableView)
         case .currencies:
             return self.initCurrencyCell(item, indexPath: indexPath, tableView)
-            break
         case .settlementPeriod:
             return self.initSettlementCell(item, indexPath: indexPath, tableView)
-            break
         case .paymentRange:
             return self.initPaymentRangeCell(item, indexPath: indexPath, tableView)
-            break
         case .billingCategories:
             return self.initBillingCell(item, indexPath: indexPath, tableView)
         }
-        return UITableViewCell()
     }
     
     

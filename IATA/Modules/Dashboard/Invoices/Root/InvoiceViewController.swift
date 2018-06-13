@@ -85,14 +85,14 @@ class InvoiceViewController: UIViewController,
                 // share item at indexPath
             }
             
-            dispute.backgroundColor = Theme.shared.grayDisputeColor
+            dispute.backgroundColor = Theme.shared.pinkDisputeColor
             return [dispute]
         } else if (self.state.isCanBeClosedDispute(model: self.invoices[indexPath.row])) {
             let dispute = UITableViewRowAction(style: .normal, title: "Invoice.Screen.Items.CancelDispute".localize()) { (action, indexPath) in
                 // share item at indexPath
             }
             
-            dispute.backgroundColor = Theme.shared.pinkDisputeColor
+            dispute.backgroundColor = Theme.shared.grayDisputeColor
             return [dispute]
         }
         return nil

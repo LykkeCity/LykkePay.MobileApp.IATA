@@ -42,6 +42,20 @@
 		0A26FC8920D0FBEF0097A8F6 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A26FC8720D0FBEF0097A8F6 /* ViewController.xib */; };
 		0A26FC8D20D117410097A8F6 /* InvoiceSettingsState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A26FC8C20D117410097A8F6 /* InvoiceSettingsState.swift */; };
 		0A26FC8F20D117500097A8F6 /* DefaultInvoiceSettingsState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A26FC8E20D117500097A8F6 /* DefaultInvoiceSettingsState.swift */; };
+		0A26FC9420D15AC70097A8F6 /* DisputeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A26FC9220D15AC70097A8F6 /* DisputeViewController.swift */; };
+		0A26FC9520D15AC70097A8F6 /* DisputeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A26FC9320D15AC70097A8F6 /* DisputeViewController.xib */; };
+		0A26FC9920D15B7F0097A8F6 /* DisputeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A26FC9720D15B7F0097A8F6 /* DisputeTableViewCell.swift */; };
+		0A26FC9A20D15B7F0097A8F6 /* DisputeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A26FC9820D15B7F0097A8F6 /* DisputeTableViewCell.xib */; };
+		0A26FC9F20D160F00097A8F6 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A26FC9D20D160F00097A8F6 /* HistoryViewController.swift */; };
+		0A26FCA020D160F00097A8F6 /* HistoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A26FC9E20D160F00097A8F6 /* HistoryViewController.xib */; };
+		0A26FCA620D161640097A8F6 /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A26FCA420D161640097A8F6 /* HistoryTableViewCell.swift */; };
+		0A26FCA720D161640097A8F6 /* HistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A26FCA520D161640097A8F6 /* HistoryTableViewCell.xib */; };
+		0A26FCB120D1658D0097A8F6 /* TransactionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A26FCAF20D1658D0097A8F6 /* TransactionTableViewCell.swift */; };
+		0A26FCB220D1658D0097A8F6 /* TransactionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A26FCB020D1658D0097A8F6 /* TransactionTableViewCell.xib */; };
+		0A26FCB420D165AC0097A8F6 /* TransactionTableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A26FCB320D165AC0097A8F6 /* TransactionTableViewHeader.swift */; };
+		0A26FCB720D166F00097A8F6 /* TransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A26FCB520D166F00097A8F6 /* TransactionViewController.swift */; };
+		0A26FCB820D166F00097A8F6 /* TransactionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A26FCB620D166F00097A8F6 /* TransactionViewController.xib */; };
+		0A26FCBA20D16CF70097A8F6 /* TransactionTableViewHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A26FCB920D16CF70097A8F6 /* TransactionTableViewHeader.xib */; };
 		0A286A9120CA88F700D93693 /* InvoiceScreenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A286A8E20CA88F700D93693 /* InvoiceScreenModel.swift */; };
 		0A286A9220CA88F700D93693 /* InvoiceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A286A8F20CA88F700D93693 /* InvoiceViewModel.swift */; };
 		0A286A9320CA88F700D93693 /* ServerData.json in Resources */ = {isa = PBXBuildFile; fileRef = 0A286A9020CA88F700D93693 /* ServerData.json */; };
@@ -199,6 +213,20 @@
 		0A26FC8720D0FBEF0097A8F6 /* ViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ViewController.xib; sourceTree = "<group>"; };
 		0A26FC8C20D117410097A8F6 /* InvoiceSettingsState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvoiceSettingsState.swift; sourceTree = "<group>"; };
 		0A26FC8E20D117500097A8F6 /* DefaultInvoiceSettingsState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultInvoiceSettingsState.swift; sourceTree = "<group>"; };
+		0A26FC9220D15AC70097A8F6 /* DisputeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisputeViewController.swift; sourceTree = "<group>"; };
+		0A26FC9320D15AC70097A8F6 /* DisputeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DisputeViewController.xib; sourceTree = "<group>"; };
+		0A26FC9720D15B7F0097A8F6 /* DisputeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisputeTableViewCell.swift; sourceTree = "<group>"; };
+		0A26FC9820D15B7F0097A8F6 /* DisputeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DisputeTableViewCell.xib; sourceTree = "<group>"; };
+		0A26FC9D20D160F00097A8F6 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
+		0A26FC9E20D160F00097A8F6 /* HistoryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HistoryViewController.xib; sourceTree = "<group>"; };
+		0A26FCA420D161640097A8F6 /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
+		0A26FCA520D161640097A8F6 /* HistoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HistoryTableViewCell.xib; sourceTree = "<group>"; };
+		0A26FCAF20D1658D0097A8F6 /* TransactionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionTableViewCell.swift; sourceTree = "<group>"; };
+		0A26FCB020D1658D0097A8F6 /* TransactionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TransactionTableViewCell.xib; sourceTree = "<group>"; };
+		0A26FCB320D165AC0097A8F6 /* TransactionTableViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionTableViewHeader.swift; sourceTree = "<group>"; };
+		0A26FCB520D166F00097A8F6 /* TransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionViewController.swift; sourceTree = "<group>"; };
+		0A26FCB620D166F00097A8F6 /* TransactionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TransactionViewController.xib; sourceTree = "<group>"; };
+		0A26FCB920D16CF70097A8F6 /* TransactionTableViewHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TransactionTableViewHeader.xib; sourceTree = "<group>"; };
 		0A286A8E20CA88F700D93693 /* InvoiceScreenModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvoiceScreenModel.swift; sourceTree = "<group>"; };
 		0A286A8F20CA88F700D93693 /* InvoiceViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvoiceViewModel.swift; sourceTree = "<group>"; };
 		0A286A9020CA88F700D93693 /* ServerData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ServerData.json; sourceTree = "<group>"; };
@@ -457,6 +485,7 @@
 		0A13F65A20C974D3001BA302 /* Invoices */ = {
 			isa = PBXGroup;
 			children = (
+				0A26FC9120D15AB10097A8F6 /* Dispute */,
 				0A26FC8A20D1162E0097A8F6 /* Root */,
 				0AF611A420CA727300957348 /* Settings */,
 			);
@@ -523,6 +552,74 @@
 				0A286A8E20CA88F700D93693 /* InvoiceScreenModel.swift */,
 			);
 			path = Test;
+			sourceTree = "<group>";
+		};
+		0A26FC9120D15AB10097A8F6 /* Dispute */ = {
+			isa = PBXGroup;
+			children = (
+				0A26FC9620D15B650097A8F6 /* Cell */,
+				0A26FC9220D15AC70097A8F6 /* DisputeViewController.swift */,
+				0A26FC9320D15AC70097A8F6 /* DisputeViewController.xib */,
+			);
+			path = Dispute;
+			sourceTree = "<group>";
+		};
+		0A26FC9620D15B650097A8F6 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				0A26FC9720D15B7F0097A8F6 /* DisputeTableViewCell.swift */,
+				0A26FC9820D15B7F0097A8F6 /* DisputeTableViewCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		0A26FC9B20D160C80097A8F6 /* History */ = {
+			isa = PBXGroup;
+			children = (
+				0A26FCA920D1653E0097A8F6 /* Root */,
+				0A26FCA820D165360097A8F6 /* Transaction */,
+			);
+			path = History;
+			sourceTree = "<group>";
+		};
+		0A26FCA120D160FF0097A8F6 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				0A26FCA420D161640097A8F6 /* HistoryTableViewCell.swift */,
+				0A26FCA520D161640097A8F6 /* HistoryTableViewCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		0A26FCA820D165360097A8F6 /* Transaction */ = {
+			isa = PBXGroup;
+			children = (
+				0A26FCAE20D1656D0097A8F6 /* Cell */,
+				0A26FCB520D166F00097A8F6 /* TransactionViewController.swift */,
+				0A26FCB620D166F00097A8F6 /* TransactionViewController.xib */,
+			);
+			path = Transaction;
+			sourceTree = "<group>";
+		};
+		0A26FCA920D1653E0097A8F6 /* Root */ = {
+			isa = PBXGroup;
+			children = (
+				0A26FCA120D160FF0097A8F6 /* Cell */,
+				0A26FC9D20D160F00097A8F6 /* HistoryViewController.swift */,
+				0A26FC9E20D160F00097A8F6 /* HistoryViewController.xib */,
+			);
+			path = Root;
+			sourceTree = "<group>";
+		};
+		0A26FCAE20D1656D0097A8F6 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				0A26FCAF20D1658D0097A8F6 /* TransactionTableViewCell.swift */,
+				0A26FCB020D1658D0097A8F6 /* TransactionTableViewCell.xib */,
+				0A26FCB320D165AC0097A8F6 /* TransactionTableViewHeader.swift */,
+				0A26FCB920D16CF70097A8F6 /* TransactionTableViewHeader.xib */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		0A286A6C20CA803E00D93693 /* Invoice */ = {
@@ -895,6 +992,7 @@
 		D7DEFC8E20C97154005FB9EF /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
+				0A26FC9B20D160C80097A8F6 /* History */,
 				0A4CD15620CEC94E00EF4A17 /* Service */,
 				0A13F65A20C974D3001BA302 /* Invoices */,
 				D7DEFC9C20CA7B8B005FB9EF /* Settings */,
@@ -1042,23 +1140,30 @@
 				0A37EFFA20C8044200201907 /* ChangePasswordViewController.xib in Resources */,
 				0A4CD13E20CD840700EF4A17 /* InvoiceHeaderView.xib in Resources */,
 				0A08C11820CAB5B900342A3E /* PaymentRangeTableViewCell.xib in Resources */,
+				0A26FC9520D15AC70097A8F6 /* DisputeViewController.xib in Resources */,
 				0A37EF5620C5835300201907 /* SignInViewController.xib in Resources */,
 				D7DEFC9420C97459005FB9EF /* WalletsViewController.xib in Resources */,
 				D7DEFC9B20C97B9E005FB9EF /* GothamProLight.ttf in Resources */,
+				0A26FCB220D1658D0097A8F6 /* TransactionTableViewCell.xib in Resources */,
 				0A0D4B5520C53364009B73E9 /* Assets.xcassets in Resources */,
 				0A26FC8920D0FBEF0097A8F6 /* ViewController.xib in Resources */,
 				0A37EFA020C6DC5100201907 /* Localizable.strings in Resources */,
 				0A286A9320CA88F700D93693 /* ServerData.json in Resources */,
+				0A26FCA020D160F00097A8F6 /* HistoryViewController.xib in Resources */,
 				0AF611A320C9A4D700957348 /* InvoiceTableViewCell.xib in Resources */,
 				D7DEFC9A20C97B9E005FB9EF /* GothamProBold.ttf in Resources */,
 				D7D177A020CADB5700985F05 /* GothamProReg.otf in Resources */,
 				0A286AA320CAA1CD00D93693 /* AirlinesTableViewCell.xib in Resources */,
+				0A26FC9A20D15B7F0097A8F6 /* DisputeTableViewCell.xib in Resources */,
 				0A13F65E20C974EC001BA302 /* InvoiceViewController.xib in Resources */,
 				0A37EFE520C7D67F00201907 /* PinViewController.xib in Resources */,
+				0A26FCB820D166F00097A8F6 /* TransactionViewController.xib in Resources */,
 				D7D177A120CADB5700985F05 /* GothamProMed.otf in Resources */,
 				0AF611A820CA72DA00957348 /* InvoiceSettingsViewController.xib in Resources */,
+				0A26FCBA20D16CF70097A8F6 /* TransactionTableViewHeader.xib in Resources */,
 				D7DEFC8D20C97148005FB9EF /* TabBarView.xib in Resources */,
 				0A37EFD820C7D63D00201907 /* PasswordContainerView.xib in Resources */,
+				0A26FCA720D161640097A8F6 /* HistoryTableViewCell.xib in Resources */,
 				D70DE14F20CA9E6B00644281 /* SettingsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1195,9 +1300,13 @@
 				0AF6119F20C9980500957348 /* UiStatusView.swift in Sources */,
 				0A0D4B7F20C542DE009B73E9 /* Network.swift in Sources */,
 				0A37EF9020C6C01300201907 /* PropertyValidationKey.swift in Sources */,
+				0A26FC9420D15AC70097A8F6 /* DisputeViewController.swift in Sources */,
 				0A08C11A20CABC2300342A3E /* InvoicePaymentRangeModelItem.swift in Sources */,
+				0A26FCA620D161640097A8F6 /* HistoryTableViewCell.swift in Sources */,
 				0AF611A220C9A4D700957348 /* InvoiceTableViewCell.swift in Sources */,
+				0A26FCB120D1658D0097A8F6 /* TransactionTableViewCell.swift in Sources */,
 				0A26FC8F20D117500097A8F6 /* DefaultInvoiceSettingsState.swift in Sources */,
+				0A26FCB420D165AC0097A8F6 /* TransactionTableViewHeader.swift in Sources */,
 				0A37F00520C80A7500201907 /* AuthNetworkConfig.swift in Sources */,
 				0AB8E20E20C56FF500C13361 /* DefaultAuthenticationService.swift in Sources */,
 				0A4CD13F20CD840700EF4A17 /* InvoiceHeaderView.swift in Sources */,
@@ -1215,6 +1324,7 @@
 				0A0D4B8720C54446009B73E9 /* NetworkConfig.swift in Sources */,
 				0A286A9520CA8B5000D93693 /* InvoiceSettingAirlinesModel.swift in Sources */,
 				0A13F65D20C974EC001BA302 /* InvoiceViewController.swift in Sources */,
+				0A26FCB720D166F00097A8F6 /* TransactionViewController.swift in Sources */,
 				0A6DB5D220C5537000BC1127 /* TokenObject.swift in Sources */,
 				0A62F56B20C5497200A51D63 /* EncodingType.swift in Sources */,
 				0A26FC7F20CFF8140097A8F6 /* InvoiceStatuses.swift in Sources */,
@@ -1237,6 +1347,7 @@
 				0A1AF40820CADB450009595C /* BTTitle.swift in Sources */,
 				0A62F56D20C5499400A51D63 /* ArrayEncoding.swift in Sources */,
 				0A37EF6C20C58BA000201907 /* Utils.swift in Sources */,
+				0A26FC9920D15B7F0097A8F6 /* DisputeTableViewCell.swift in Sources */,
 				0A37EF9220C6C97000201907 /* DictionaryExtension.swift in Sources */,
 				0A26FC8820D0FBEF0097A8F6 /* ViewController.swift in Sources */,
 				0A4CD16120CF073800EF4A17 /* InvoiceState.swift in Sources */,
@@ -1281,6 +1392,7 @@
 				0A4CD15A20CEC96E00EF4A17 /* PaymentService.swift in Sources */,
 				0A08C11C20CABC7800342A3E /* InvoicePaymentRangeModel.swift in Sources */,
 				0A37EFFD20C808E400201907 /* ChangePasswordViewState.swift in Sources */,
+				0A26FC9F20D160F00097A8F6 /* HistoryViewController.swift in Sources */,
 				0A4CD14720CD901600EF4A17 /* OnSwitchStateChanged.swift in Sources */,
 				0A08C0FD20CAA70400342A3E /* InvoiceViewModelExtensition.swift in Sources */,
 				0A4CD16720CF135300EF4A17 /* TextFieldUtils.swift in Sources */,
