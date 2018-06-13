@@ -44,8 +44,8 @@ class InvoiceTableViewCell: UITableViewCell {
         additionalStatus.insets = UIEdgeInsetsMake(2, 3, 2, 3)
     }
     
-    internal func initModel(model: InvoiceModel) {
-        initFullCheckBoxStatus(model)
+    internal func initModel(model: InvoiceModel, isChecked: Bool) {
+        initFullCheckBoxStatus(model, isChecked: isChecked)
       
         self.labelName.text = model.clientName
         self.labelPrice.text = String(model.amount!) + getCurrency(currency: model.settlementAssetId)
@@ -64,12 +64,12 @@ class InvoiceTableViewCell: UITableViewCell {
         }
     }
     
-    private func initCheckBoxAndStatus(color: UIColor, isCanBePaid: Bool, titleStatus: String) {
-        self.initCheckBox(color: color, isCanBePaid: isCanBePaid)
-        self.initStatus(color: color,  status: titleStatus)
+    private func initCheckBoxAndStatus(structInfo: InvoiceStatusesStruct, isChecked: Bool) {
+        self.initCheckBox(color: structInfo.color!, isCanBePaid: structInfo.isCanBePaid!, isChecked: isChecked)
+        self.initStatus(color: structInfo.color!,  status: structInfo.title!)
     }
     
-    private func initCheckBox(color: UIColor, isCanBePaid: Bool) {
+    private func initCheckBox(color: UIColor, isCanBePaid: Bool, isChecked: Bool) {
         self.checkBox.borderStyle = .circle
         self.checkBox.checkmarkStyle = .circle
         self.checkBox.borderWidth = 1
@@ -77,49 +77,22 @@ class InvoiceTableViewCell: UITableViewCell {
         self.checkBox.checkedBorderColor = color
         self.checkBox.checkmarkSize = 0.6
         self.checkBox.checkmarkColor = color
-        self.checkBox.isChecked = true
+        self.checkBox.isChecked = isCanBePaid ? isChecked : true
         if (isCanBePaid) {
             self.checkBox.addTarget(self, action: #selector(checkboxValueChanged(sender:)), for: .valueChanged)
         }
-        self.checkBox.isCanBeChanged = true
+        self.checkBox.isCanBeChanged = isCanBePaid
         self.viewBox.addSubview(checkBox)
         self.checkBox.alpha = isCanBePaid ? 1.0 : 0.4
     }
     
-    private func initFullCheckBoxStatus(_ model: InvoiceModel) {
-        switch model.status {
-        case .Unpaid?:
-            if (model.dispute)! {
-                initCheckBoxAndStatus(color: Theme.shared.greyStatusColor, isCanBePaid: true, titleStatus: "Invoice.Status.Items.Dispute".localize())
-            } else {
+    private func initFullCheckBoxStatus(_ model: InvoiceModel, isChecked: Bool) {
+        let structInfo = InvoiceStatusesStruct(type: model.status!)
+        initCheckBoxAndStatus(structInfo: structInfo, isChecked: isChecked)
+        if (model.status ==  InvoiceStatuses.Unpaid && !model.dispute!) {
+            if (!model.dispute!) {
                 self.additionalStatus.isHidden = true
             }
-            break
-        case .InProgress?:
-            initCheckBoxAndStatus(color: Theme.shared.blueProgressStatusColor, isCanBePaid: false, titleStatus: "Invoice.Status.Items.InProgress".localize())
-            break
-        case .Paid?:
-            initCheckBoxAndStatus(color: Theme.shared.greenColor, isCanBePaid: false, titleStatus: "Invoice.Status.Items.Paid".localize())
-            break
-        case .Underpaid?:
-            initCheckBoxAndStatus(color: Theme.shared.greenColor, isCanBePaid: true, titleStatus: "Invoice.Status.Items.Underpaid".localize())
-            break
-        case .Overpaid?:
-            initCheckBoxAndStatus(color: Theme.shared.redErrorStatusColor, isCanBePaid: false, titleStatus: "Invoice.Status.Items.Overpaid".localize())
-            break
-        case .LatePaid?:
-            initCheckBoxAndStatus(color: Theme.shared.redErrorStatusColor, isCanBePaid: false, titleStatus:"Invoice.Status.Items.Latepaid".localize())
-            break
-        case .InternalError?:
-            initCheckBoxAndStatus(color: Theme.shared.redErrorStatusColor, isCanBePaid: false, titleStatus:"Invoice.Status.Items.InternalError".localize())
-            break
-        case .PastDue?:
-            initCheckBoxAndStatus(color: Theme.shared.redErrorStatusColor, isCanBePaid: false, titleStatus: "Invoice.Status.Items.PastDue".localize())
-            break
-        default:
-            self.additionalStatus.isHidden = true
-            self.checkBox.isHidden = true
-            break
         }
         
     }

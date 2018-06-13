@@ -61,7 +61,7 @@ class InvoiceViewController: UIViewController,
         cell.selectionStyle = .none
         let dict = invoices[indexPath.row]
         
-        cell.initModel(model: dict)
+        cell.initModel(model: dict, isChecked: self.state.isChecked(model: dict))
         return cell
     }
     
@@ -71,24 +71,47 @@ class InvoiceViewController: UIViewController,
         }
     }
     
-    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let dispute = UITableViewRowAction(style: .normal, title: "dispute") { (action, indexPath) in
-            // share item at indexPath
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        if (self.state.isCanBeOpenDispute(model: self.invoices[indexPath.row]) || self.state.isCanBeClosedDispute(model: self.invoices[indexPath.row])) {
+            return true
+        } else {
+            return false
         }
-        
-        dispute.backgroundColor = UIColor.blue
-        
-        return [dispute]
+    }
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        if (self.state.isCanBeOpenDispute(model: self.invoices[indexPath.row])) {
+            let dispute = UITableViewRowAction(style: .normal, title: "Invoice.Screen.Items.Dispute".localize()) { (action, indexPath) in
+                // share item at indexPath
+            }
+            
+            dispute.backgroundColor = Theme.shared.grayDisputeColor
+            return [dispute]
+        } else if (self.state.isCanBeClosedDispute(model: self.invoices[indexPath.row])) {
+            let dispute = UITableViewRowAction(style: .normal, title: "Invoice.Screen.Items.CancelDispute".localize()) { (action, indexPath) in
+                // share item at indexPath
+            }
+            
+            dispute.backgroundColor = Theme.shared.pinkDisputeColor
+            return [dispute]
+        }
+        return nil
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
         if(textField == self.sumTextField) {
-            let newString = (textField.text! as NSString).replacingCharacters(in: range, with: string)
-            
             return TextFieldUtil.validateMaxValue(textField: textField, maxValue: self.state.resultAmount(), range: range, replacementString: string)
         }
         return true
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let currentCell = self.tabView.cellForRow(at: indexPath) as! InvoiceTableViewCell
+        if (currentCell.checkBox.isCanBeChanged) {
+            currentCell.checkBox.isChecked = !currentCell.checkBox.isChecked
+            onItemSelected(isSelected: currentCell.checkBox.isChecked, index: indexPath.row)
+        }
     }
     
     func onItemSelected(isSelected: Bool, index: Int) {

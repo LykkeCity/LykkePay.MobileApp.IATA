@@ -10,4 +10,7 @@ protocol InvoiceState {
     func resultAmount() -> Double
     func getCountSelected() -> Int
     func selectedStatus(index: Int)
+    func isCanBeOpenDispute(model: InvoiceModel) -> Bool
+    func isCanBeClosedDispute(model: InvoiceModel) -> Bool
+    func isChecked(model: InvoiceModel) -> Bool
 }

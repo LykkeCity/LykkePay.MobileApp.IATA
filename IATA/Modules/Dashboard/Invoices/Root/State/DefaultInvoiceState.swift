@@ -66,6 +66,18 @@ class DefaultInvoiceState: InvoiceState {
         
     }
     
+    func isChecked(model: InvoiceModel) -> Bool {
+        return (self.selectedItems.index(where: {$0 === model}) != nil)
+    }
+    
+    func isCanBeOpenDispute(model: InvoiceModel) -> Bool {
+        return ((model.status?.rawValue.elementsEqual(InvoiceStatuses.Unpaid.rawValue))! && !model.dispute!)
+    }
+    
+    func isCanBeClosedDispute(model: InvoiceModel) -> Bool {
+        return ((model.status?.rawValue.elementsEqual(InvoiceStatuses.Unpaid.rawValue))! && model.dispute!)
+    }
+    
     private func addNewSelectedModel(model: InvoiceModel) {
         self.selectedItems.append(model)
     }
@@ -75,5 +87,6 @@ class DefaultInvoiceState: InvoiceState {
             self.selectedItems.remove(at: index)
         }
     }
+    
     
 }

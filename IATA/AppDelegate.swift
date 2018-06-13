@@ -43,6 +43,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     private func makeRootViewController() -> UIViewController {
+        //CredentialManager.shared.clearSavedData()
         var viewController = UIViewController()
         if (!CredentialManager.shared.isLogged) {
             viewController = SignInViewController()
@@ -54,7 +55,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 (viewController as! PinViewController).isValidation = false
             }
         }
-        return viewController
+        return TabBarController()
     }
     
     
