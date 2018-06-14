@@ -38,6 +38,8 @@
 "Invoice.Status.Items.PastDue" = "PAST DUE";
 "Invoice.Status.Items.Dispute" = "DISPUTE";
 
+"Invoice.Dispute.Title" = "Dispute";
+
 "History.Screen.Title" = "History";
 "History.Transaction.Details.SoldBy" = "Sold By";
 "History.Transaction.Details.TimeStamp" = "TimeStamp";
@@ -50,6 +52,9 @@
 "History.Transaction.Details.Status" = "Status";
 "History.Transaction.Details.PaidBy" = "Paid By";
 
+
+"Setting.Logout.Item.Logout" = "Log out";
+"Setting.Logout.Item.Cancel" = "Cancel";
 
 "TabBar.InvoicesItem.Title" = "INVOICES";
 "TabBar.WalletsItem.Title" = "WALLETS";

@@ -9,14 +9,29 @@
 /* Begin PBXBuildFile section */
 		0A08C0FD20CAA70400342A3E /* InvoiceViewModelExtensition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A08C0FC20CAA70400342A3E /* InvoiceViewModelExtensition.swift */; };
 		0A08C0FF20CAA75000342A3E /* InvoiceViewModelItemType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A08C0FE20CAA75000342A3E /* InvoiceViewModelItemType.swift */; };
-		0A08C10220CAA78300342A3E /* InvoiceSettlementPeriodViewModeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A08C10120CAA78300342A3E /* InvoiceSettlementPeriodViewModeItem.swift */; };
-		0A08C10420CAA7B600342A3E /* InvoiceBillingCategoriesItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A08C10320CAA7B600342A3E /* InvoiceBillingCategoriesItem.swift */; };
-		0A08C10620CAA7E300342A3E /* InvoiceCurrenciesViewModeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A08C10520CAA7E300342A3E /* InvoiceCurrenciesViewModeItem.swift */; };
-		0A08C10820CAA80500342A3E /* InvoiceViewModelAirlinesItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A08C10720CAA80500342A3E /* InvoiceViewModelAirlinesItem.swift */; };
 		0A08C11720CAB5B900342A3E /* PaymentRangeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A08C11520CAB5B900342A3E /* PaymentRangeTableViewCell.swift */; };
 		0A08C11820CAB5B900342A3E /* PaymentRangeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A08C11620CAB5B900342A3E /* PaymentRangeTableViewCell.xib */; };
 		0A08C11A20CABC2300342A3E /* InvoicePaymentRangeModelItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A08C11920CABC2300342A3E /* InvoicePaymentRangeModelItem.swift */; };
 		0A08C11C20CABC7800342A3E /* InvoicePaymentRangeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A08C11B20CABC7800342A3E /* InvoicePaymentRangeModel.swift */; };
+		0A0B118B20D270D200021E2D /* SettingsState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0B118A20D270D200021E2D /* SettingsState.swift */; };
+		0A0B118D20D270DD00021E2D /* DefaultSettingsState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0B118C20D270DD00021E2D /* DefaultSettingsState.swift */; };
+		0A0B118F20D2714000021E2D /* SettingsViewControllerExtenstions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0B118E20D2714000021E2D /* SettingsViewControllerExtenstions.swift */; };
+		0A0B119320D279C000021E2D /* LocalStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0B119220D279C000021E2D /* LocalStorage.swift */; };
+		0A0B119520D279E700021E2D /* DefaultLocalStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0B119420D279E700021E2D /* DefaultLocalStorage.swift */; };
+		0A0B119920D2889600021E2D /* DisputeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0B119820D2889600021E2D /* DisputeModel.swift */; };
+		0A0B119E20D2897700021E2D /* DefaultDisputeState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0B119D20D2897700021E2D /* DefaultDisputeState.swift */; };
+		0A0B11A120D28BAF00021E2D /* InvoiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0B11A020D28BAF00021E2D /* InvoiceView.swift */; };
+		0A0B11A320D28BBF00021E2D /* InvoiceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A0B11A220D28BBF00021E2D /* InvoiceView.xib */; };
+		0A0B11A620D2978D00021E2D /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0B11A520D2978D00021E2D /* BaseViewController.swift */; };
+		0A0B11AD20D29A7700021E2D /* DefaultBaseState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0B11AC20D29A7700021E2D /* DefaultBaseState.swift */; };
+		0A0B11AF20D29D6300021E2D /* Initializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0B11AE20D29D6300021E2D /* Initializer.swift */; };
+		0A0B11B220D2A3C900021E2D /* BaseNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0B11B120D2A3C900021E2D /* BaseNavController.swift */; };
+		0A0B11B620D2B4C400021E2D /* LabelExtensitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0B11B520D2B4C400021E2D /* LabelExtensitions.swift */; };
+		0A0B11B920D2B61900021E2D /* DefaultHistoryState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0B11B820D2B61900021E2D /* DefaultHistoryState.swift */; };
+		0A0B11BC20D2B66300021E2D /* HistoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0B11BB20D2B66300021E2D /* HistoryModel.swift */; };
+		0A0B11BF20D2C7EC00021E2D /* BaseInvoiceViewModelItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0B11BE20D2C7EC00021E2D /* BaseInvoiceViewModelItem.swift */; };
+		0A0B11C220D2E35300021E2D /* InvoiceSettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0B11C020D2E35300021E2D /* InvoiceSettingsTableViewCell.swift */; };
+		0A0B11C320D2E35300021E2D /* InvoiceSettingsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A0B11C120D2E35300021E2D /* InvoiceSettingsTableViewCell.xib */; };
 		0A0D4B4B20C53361009B73E9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0D4B4A20C53361009B73E9 /* AppDelegate.swift */; };
 		0A0D4B5320C53362009B73E9 /* IATA.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0A0D4B5120C53362009B73E9 /* IATA.xcdatamodeld */; };
 		0A0D4B5520C53364009B73E9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A0D4B5420C53364009B73E9 /* Assets.xcassets */; };
@@ -60,11 +75,6 @@
 		0A286A9220CA88F700D93693 /* InvoiceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A286A8F20CA88F700D93693 /* InvoiceViewModel.swift */; };
 		0A286A9320CA88F700D93693 /* ServerData.json in Resources */ = {isa = PBXBuildFile; fileRef = 0A286A9020CA88F700D93693 /* ServerData.json */; };
 		0A286A9520CA8B5000D93693 /* InvoiceSettingAirlinesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A286A9420CA8B5000D93693 /* InvoiceSettingAirlinesModel.swift */; };
-		0A286A9920CA8F2A00D93693 /* InvoiceSettingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A286A9820CA8F2A00D93693 /* InvoiceSettingModel.swift */; };
-		0A286AA220CAA1CD00D93693 /* AirlinesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A286AA020CAA1CD00D93693 /* AirlinesTableViewCell.swift */; };
-		0A286AA320CAA1CD00D93693 /* AirlinesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A286AA120CAA1CD00D93693 /* AirlinesTableViewCell.xib */; };
-		0A286AA620CAA2F600D93693 /* SimpleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A286AA420CAA2F600D93693 /* SimpleTableViewCell.swift */; };
-		0A286AA720CAA2F600D93693 /* SimpleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A286AA520CAA2F600D93693 /* SimpleTableViewCell.xib */; };
 		0A37EF5420C5816B00201907 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A37EF5220C5816B00201907 /* SignInViewController.swift */; };
 		0A37EF5620C5835300201907 /* SignInViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A37EF5820C5835300201907 /* SignInViewController.xib */; };
 		0A37EF5D20C587C600201907 /* Promise+Spinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A37EF5C20C587C600201907 /* Promise+Spinner.swift */; };
@@ -140,8 +150,10 @@
 		5BD8D3E6E74FDC2B2AAEBD74 /* Pods_IATA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FC260316A6015639FD5E1F0 /* Pods_IATA.framework */; };
 		D70DE14E20CA9E6B00644281 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70DE14C20CA9E6B00644281 /* SettingsViewController.swift */; };
 		D70DE14F20CA9E6B00644281 /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D70DE14D20CA9E6B00644281 /* SettingsViewController.xib */; };
-		D7D177A020CADB5700985F05 /* GothamProReg.otf in Resources */ = {isa = PBXBuildFile; fileRef = D7D1779E20CADB5400985F05 /* GothamProReg.otf */; };
-		D7D177A120CADB5700985F05 /* GothamProMed.otf in Resources */ = {isa = PBXBuildFile; fileRef = D7D1779F20CADB5500985F05 /* GothamProMed.otf */; };
+		D7894CFD20CFFC290069F68E /* GothamProMed.otf in Resources */ = {isa = PBXBuildFile; fileRef = D7894CFB20CFFC290069F68E /* GothamProMed.otf */; };
+		D7894CFE20CFFC290069F68E /* GothamProReg.otf in Resources */ = {isa = PBXBuildFile; fileRef = D7894CFC20CFFC290069F68E /* GothamProReg.otf */; };
+		D7D177A620CE3AFA00985F05 /* BaseCurrencyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D177A420CE3AFA00985F05 /* BaseCurrencyCollectionViewCell.swift */; };
+		D7D177A720CE3AFA00985F05 /* BaseCurrencyCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D7D177A520CE3AFA00985F05 /* BaseCurrencyCollectionViewCell.xib */; };
 		D7DEFC8C20C97148005FB9EF /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7DEFC8A20C97147005FB9EF /* TabBarController.swift */; };
 		D7DEFC8D20C97148005FB9EF /* TabBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D7DEFC8B20C97147005FB9EF /* TabBarView.xib */; };
 		D7DEFC9420C97459005FB9EF /* WalletsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D7DEFC9020C97458005FB9EF /* WalletsViewController.xib */; };
@@ -174,14 +186,29 @@
 		058CEEE5590F2BCD98BAD1F5 /* Pods-IATA.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IATA.debug.xcconfig"; path = "Pods/Target Support Files/Pods-IATA/Pods-IATA.debug.xcconfig"; sourceTree = "<group>"; };
 		0A08C0FC20CAA70400342A3E /* InvoiceViewModelExtensition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvoiceViewModelExtensition.swift; sourceTree = "<group>"; };
 		0A08C0FE20CAA75000342A3E /* InvoiceViewModelItemType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvoiceViewModelItemType.swift; sourceTree = "<group>"; };
-		0A08C10120CAA78300342A3E /* InvoiceSettlementPeriodViewModeItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvoiceSettlementPeriodViewModeItem.swift; sourceTree = "<group>"; };
-		0A08C10320CAA7B600342A3E /* InvoiceBillingCategoriesItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvoiceBillingCategoriesItem.swift; sourceTree = "<group>"; };
-		0A08C10520CAA7E300342A3E /* InvoiceCurrenciesViewModeItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvoiceCurrenciesViewModeItem.swift; sourceTree = "<group>"; };
-		0A08C10720CAA80500342A3E /* InvoiceViewModelAirlinesItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvoiceViewModelAirlinesItem.swift; sourceTree = "<group>"; };
 		0A08C11520CAB5B900342A3E /* PaymentRangeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentRangeTableViewCell.swift; sourceTree = "<group>"; };
 		0A08C11620CAB5B900342A3E /* PaymentRangeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PaymentRangeTableViewCell.xib; sourceTree = "<group>"; };
 		0A08C11920CABC2300342A3E /* InvoicePaymentRangeModelItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvoicePaymentRangeModelItem.swift; sourceTree = "<group>"; };
 		0A08C11B20CABC7800342A3E /* InvoicePaymentRangeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvoicePaymentRangeModel.swift; sourceTree = "<group>"; };
+		0A0B118A20D270D200021E2D /* SettingsState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsState.swift; sourceTree = "<group>"; };
+		0A0B118C20D270DD00021E2D /* DefaultSettingsState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultSettingsState.swift; sourceTree = "<group>"; };
+		0A0B118E20D2714000021E2D /* SettingsViewControllerExtenstions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewControllerExtenstions.swift; sourceTree = "<group>"; };
+		0A0B119220D279C000021E2D /* LocalStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStorage.swift; sourceTree = "<group>"; };
+		0A0B119420D279E700021E2D /* DefaultLocalStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultLocalStorage.swift; sourceTree = "<group>"; };
+		0A0B119820D2889600021E2D /* DisputeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisputeModel.swift; sourceTree = "<group>"; };
+		0A0B119D20D2897700021E2D /* DefaultDisputeState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultDisputeState.swift; sourceTree = "<group>"; };
+		0A0B11A020D28BAF00021E2D /* InvoiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvoiceView.swift; sourceTree = "<group>"; };
+		0A0B11A220D28BBF00021E2D /* InvoiceView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InvoiceView.xib; sourceTree = "<group>"; };
+		0A0B11A520D2978D00021E2D /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		0A0B11AC20D29A7700021E2D /* DefaultBaseState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultBaseState.swift; sourceTree = "<group>"; };
+		0A0B11AE20D29D6300021E2D /* Initializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Initializer.swift; sourceTree = "<group>"; };
+		0A0B11B120D2A3C900021E2D /* BaseNavController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNavController.swift; sourceTree = "<group>"; };
+		0A0B11B520D2B4C400021E2D /* LabelExtensitions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelExtensitions.swift; sourceTree = "<group>"; };
+		0A0B11B820D2B61900021E2D /* DefaultHistoryState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultHistoryState.swift; sourceTree = "<group>"; };
+		0A0B11BB20D2B66300021E2D /* HistoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryModel.swift; sourceTree = "<group>"; };
+		0A0B11BE20D2C7EC00021E2D /* BaseInvoiceViewModelItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseInvoiceViewModelItem.swift; sourceTree = "<group>"; };
+		0A0B11C020D2E35300021E2D /* InvoiceSettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvoiceSettingsTableViewCell.swift; sourceTree = "<group>"; };
+		0A0B11C120D2E35300021E2D /* InvoiceSettingsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InvoiceSettingsTableViewCell.xib; sourceTree = "<group>"; };
 		0A0D4B4720C53361009B73E9 /* IATA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IATA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A0D4B4A20C53361009B73E9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0A0D4B5220C53362009B73E9 /* IATA.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = IATA.xcdatamodel; sourceTree = "<group>"; };
@@ -231,11 +258,6 @@
 		0A286A8F20CA88F700D93693 /* InvoiceViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvoiceViewModel.swift; sourceTree = "<group>"; };
 		0A286A9020CA88F700D93693 /* ServerData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ServerData.json; sourceTree = "<group>"; };
 		0A286A9420CA8B5000D93693 /* InvoiceSettingAirlinesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvoiceSettingAirlinesModel.swift; sourceTree = "<group>"; };
-		0A286A9820CA8F2A00D93693 /* InvoiceSettingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvoiceSettingModel.swift; sourceTree = "<group>"; };
-		0A286AA020CAA1CD00D93693 /* AirlinesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirlinesTableViewCell.swift; sourceTree = "<group>"; };
-		0A286AA120CAA1CD00D93693 /* AirlinesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AirlinesTableViewCell.xib; sourceTree = "<group>"; };
-		0A286AA420CAA2F600D93693 /* SimpleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleTableViewCell.swift; sourceTree = "<group>"; };
-		0A286AA520CAA2F600D93693 /* SimpleTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SimpleTableViewCell.xib; sourceTree = "<group>"; };
 		0A37EF5220C5816B00201907 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		0A37EF5720C5835300201907 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SignInViewController.xib; sourceTree = "<group>"; };
 		0A37EF5C20C587C600201907 /* Promise+Spinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Promise+Spinner.swift"; sourceTree = "<group>"; };
@@ -316,8 +338,10 @@
 		D295B81107990C89EA142783 /* Pods-IATATests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IATATests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-IATATests/Pods-IATATests.debug.xcconfig"; sourceTree = "<group>"; };
 		D70DE14C20CA9E6B00644281 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		D70DE14D20CA9E6B00644281 /* SettingsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
-		D7D1779E20CADB5400985F05 /* GothamProReg.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GothamProReg.otf; sourceTree = "<group>"; };
-		D7D1779F20CADB5500985F05 /* GothamProMed.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GothamProMed.otf; sourceTree = "<group>"; };
+		D7894CFB20CFFC290069F68E /* GothamProMed.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GothamProMed.otf; sourceTree = "<group>"; };
+		D7894CFC20CFFC290069F68E /* GothamProReg.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GothamProReg.otf; sourceTree = "<group>"; };
+		D7D177A420CE3AFA00985F05 /* BaseCurrencyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCurrencyCollectionViewCell.swift; sourceTree = "<group>"; };
+		D7D177A520CE3AFA00985F05 /* BaseCurrencyCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BaseCurrencyCollectionViewCell.xib; sourceTree = "<group>"; };
 		D7DEFC8A20C97147005FB9EF /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		D7DEFC8B20C97147005FB9EF /* TabBarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TabBarView.xib; sourceTree = "<group>"; };
 		D7DEFC9020C97458005FB9EF /* WalletsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WalletsViewController.xib; sourceTree = "<group>"; };
@@ -370,13 +394,105 @@
 		0A08C10020CAA77400342A3E /* ViewMolderItems */ = {
 			isa = PBXGroup;
 			children = (
-				0A08C10120CAA78300342A3E /* InvoiceSettlementPeriodViewModeItem.swift */,
-				0A08C10320CAA7B600342A3E /* InvoiceBillingCategoriesItem.swift */,
-				0A08C10520CAA7E300342A3E /* InvoiceCurrenciesViewModeItem.swift */,
-				0A08C10720CAA80500342A3E /* InvoiceViewModelAirlinesItem.swift */,
 				0A08C11920CABC2300342A3E /* InvoicePaymentRangeModelItem.swift */,
+				0A0B11BE20D2C7EC00021E2D /* BaseInvoiceViewModelItem.swift */,
 			);
 			path = ViewMolderItems;
+			sourceTree = "<group>";
+		};
+		0A0B118920D270C300021E2D /* State */ = {
+			isa = PBXGroup;
+			children = (
+				0A0B118A20D270D200021E2D /* SettingsState.swift */,
+				0A0B118C20D270DD00021E2D /* DefaultSettingsState.swift */,
+			);
+			path = State;
+			sourceTree = "<group>";
+		};
+		0A0B119020D2717000021E2D /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				D7D177A420CE3AFA00985F05 /* BaseCurrencyCollectionViewCell.swift */,
+				D7D177A520CE3AFA00985F05 /* BaseCurrencyCollectionViewCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		0A0B119120D279AE00021E2D /* State */ = {
+			isa = PBXGroup;
+			children = (
+				0A0B119220D279C000021E2D /* LocalStorage.swift */,
+				0A0B119420D279E700021E2D /* DefaultLocalStorage.swift */,
+			);
+			path = State;
+			sourceTree = "<group>";
+		};
+		0A0B119620D2886B00021E2D /* Dispute */ = {
+			isa = PBXGroup;
+			children = (
+				0A0B119720D2887300021E2D /* Response */,
+			);
+			path = Dispute;
+			sourceTree = "<group>";
+		};
+		0A0B119720D2887300021E2D /* Response */ = {
+			isa = PBXGroup;
+			children = (
+				0A0B119820D2889600021E2D /* DisputeModel.swift */,
+			);
+			path = Response;
+			sourceTree = "<group>";
+		};
+		0A0B119A20D2895A00021E2D /* State */ = {
+			isa = PBXGroup;
+			children = (
+				0A0B119D20D2897700021E2D /* DefaultDisputeState.swift */,
+			);
+			path = State;
+			sourceTree = "<group>";
+		};
+		0A0B119F20D28B9100021E2D /* Invoice */ = {
+			isa = PBXGroup;
+			children = (
+				0A0B11A020D28BAF00021E2D /* InvoiceView.swift */,
+				0A0B11A220D28BBF00021E2D /* InvoiceView.xib */,
+			);
+			path = Invoice;
+			sourceTree = "<group>";
+		};
+		0A0B11A420D2977F00021E2D /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				0A0B11A520D2978D00021E2D /* BaseViewController.swift */,
+				0A0B11AC20D29A7700021E2D /* DefaultBaseState.swift */,
+				0A0B11AE20D29D6300021E2D /* Initializer.swift */,
+				0A0B11B120D2A3C900021E2D /* BaseNavController.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		0A0B11B720D2B60500021E2D /* State */ = {
+			isa = PBXGroup;
+			children = (
+				0A0B11B820D2B61900021E2D /* DefaultHistoryState.swift */,
+			);
+			path = State;
+			sourceTree = "<group>";
+		};
+		0A0B11BA20D2B62B00021E2D /* History */ = {
+			isa = PBXGroup;
+			children = (
+				0A0B11BD20D2B67200021E2D /* Response */,
+			);
+			path = History;
+			sourceTree = "<group>";
+		};
+		0A0B11BD20D2B67200021E2D /* Response */ = {
+			isa = PBXGroup;
+			children = (
+				0A0B11BB20D2B66300021E2D /* HistoryModel.swift */,
+			);
+			path = Response;
 			sourceTree = "<group>";
 		};
 		0A0D4B3E20C53361009B73E9 = {
@@ -557,6 +673,7 @@
 		0A26FC9120D15AB10097A8F6 /* Dispute */ = {
 			isa = PBXGroup;
 			children = (
+				0A0B119A20D2895A00021E2D /* State */,
 				0A26FC9620D15B650097A8F6 /* Cell */,
 				0A26FC9220D15AC70097A8F6 /* DisputeViewController.swift */,
 				0A26FC9320D15AC70097A8F6 /* DisputeViewController.xib */,
@@ -604,6 +721,7 @@
 		0A26FCA920D1653E0097A8F6 /* Root */ = {
 			isa = PBXGroup;
 			children = (
+				0A0B11B720D2B60500021E2D /* State */,
 				0A26FCA120D160FF0097A8F6 /* Cell */,
 				0A26FC9D20D160F00097A8F6 /* HistoryViewController.swift */,
 				0A26FC9E20D160F00097A8F6 /* HistoryViewController.xib */,
@@ -627,7 +745,6 @@
 			children = (
 				0A4CD15520CE89EF00EF4A17 /* Request */,
 				0A4CD15420CE89E200EF4A17 /* Response */,
-				0A286A9820CA8F2A00D93693 /* InvoiceSettingModel.swift */,
 				0A286A9420CA8B5000D93693 /* InvoiceSettingAirlinesModel.swift */,
 				0A08C11B20CABC7800342A3E /* InvoicePaymentRangeModel.swift */,
 			);
@@ -680,8 +797,8 @@
 		0A37EF7620C69D9E00201907 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				D7D1779F20CADB5500985F05 /* GothamProMed.otf */,
-				D7D1779E20CADB5400985F05 /* GothamProReg.otf */,
+				D7894CFB20CFFC290069F68E /* GothamProMed.otf */,
+				D7894CFC20CFFC290069F68E /* GothamProReg.otf */,
 				D7DEFC9820C97B9E005FB9EF /* GothamProBold.ttf */,
 				D7DEFC9920C97B9E005FB9EF /* GothamProLight.ttf */,
 			);
@@ -847,6 +964,8 @@
 		0A6DB5D020C5535F00BC1127 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				0A0B11BA20D2B62B00021E2D /* History */,
+				0A0B119620D2886B00021E2D /* Dispute */,
 				0A286A6C20CA803E00D93693 /* Invoice */,
 				0A37EFEA20C7E55600201907 /* Auth */,
 			);
@@ -869,6 +988,7 @@
 		0A6DB5D420C553C300BC1127 /* Credential */ = {
 			isa = PBXGroup;
 			children = (
+				0A0B119120D279AE00021E2D /* State */,
 				0A4CD14220CD89BC00EF4A17 /* FilterInvoices */,
 				0A6DB5D520C553D000BC1127 /* CredentialManager.swift */,
 				0AF1C3AC20C9164E00AFD286 /* UserPreference.swift */,
@@ -892,6 +1012,7 @@
 				0A37EF6420C589FD00201907 /* UIViewExtension.swift */,
 				0A37EF6D20C58C2500201907 /* StringsExtension.swift */,
 				0A37EF9120C6C97000201907 /* DictionaryExtension.swift */,
+				0A0B11B520D2B4C400021E2D /* LabelExtensitions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -918,6 +1039,7 @@
 		0AF611A420CA727300957348 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				0A286A6F20CA808500D93693 /* ViewModels */,
 				0AF611AC20CA737300957348 /* Cells */,
 				0AF611A520CA72DA00957348 /* InvoiceSettingsViewController.swift */,
 				0AF611A620CA72DA00957348 /* InvoiceSettingsViewController.xib */,
@@ -928,6 +1050,7 @@
 		0AF611A920CA72E200957348 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				0A0B119F20D28B9100021E2D /* Invoice */,
 				0A4CD14520CD8FFE00EF4A17 /* Switcher */,
 				0A1AF40220CADB240009595C /* NavigationDropDown */,
 				0AF611AA20CA72FE00957348 /* Pin */,
@@ -967,11 +1090,8 @@
 				0A4CD13C20CD840600EF4A17 /* InvoiceHeaderView.xib */,
 				0A08C11520CAB5B900342A3E /* PaymentRangeTableViewCell.swift */,
 				0A08C11620CAB5B900342A3E /* PaymentRangeTableViewCell.xib */,
-				0A286AA020CAA1CD00D93693 /* AirlinesTableViewCell.swift */,
-				0A286AA120CAA1CD00D93693 /* AirlinesTableViewCell.xib */,
-				0A286AA420CAA2F600D93693 /* SimpleTableViewCell.swift */,
-				0A286AA520CAA2F600D93693 /* SimpleTableViewCell.xib */,
-				0A286A6F20CA808500D93693 /* ViewModels */,
+				0A0B11C020D2E35300021E2D /* InvoiceSettingsTableViewCell.swift */,
+				0A0B11C120D2E35300021E2D /* InvoiceSettingsTableViewCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -992,6 +1112,7 @@
 		D7DEFC8E20C97154005FB9EF /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
+				0A0B11A420D2977F00021E2D /* Base */,
 				0A26FC9B20D160C80097A8F6 /* History */,
 				0A4CD15620CEC94E00EF4A17 /* Service */,
 				0A13F65A20C974D3001BA302 /* Invoices */,
@@ -1019,8 +1140,11 @@
 		D7DEFC9C20CA7B8B005FB9EF /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				0A0B119020D2717000021E2D /* Cell */,
+				0A0B118920D270C300021E2D /* State */,
 				D70DE14C20CA9E6B00644281 /* SettingsViewController.swift */,
 				D70DE14D20CA9E6B00644281 /* SettingsViewController.xib */,
+				0A0B118E20D2714000021E2D /* SettingsViewControllerExtenstions.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -1136,14 +1260,18 @@
 			files = (
 				D7DEFC9520C97459005FB9EF /* WalletsTableViewCell.xib in Resources */,
 				0A0D4B5820C53364009B73E9 /* LaunchScreen.storyboard in Resources */,
-				0A286AA720CAA2F600D93693 /* SimpleTableViewCell.xib in Resources */,
+				D7894CFD20CFFC290069F68E /* GothamProMed.otf in Resources */,
+				0A0B11A320D28BBF00021E2D /* InvoiceView.xib in Resources */,
 				0A37EFFA20C8044200201907 /* ChangePasswordViewController.xib in Resources */,
+				D7D177A720CE3AFA00985F05 /* BaseCurrencyCollectionViewCell.xib in Resources */,
+				D7894CFE20CFFC290069F68E /* GothamProReg.otf in Resources */,
 				0A4CD13E20CD840700EF4A17 /* InvoiceHeaderView.xib in Resources */,
 				0A08C11820CAB5B900342A3E /* PaymentRangeTableViewCell.xib in Resources */,
 				0A26FC9520D15AC70097A8F6 /* DisputeViewController.xib in Resources */,
 				0A37EF5620C5835300201907 /* SignInViewController.xib in Resources */,
 				D7DEFC9420C97459005FB9EF /* WalletsViewController.xib in Resources */,
 				D7DEFC9B20C97B9E005FB9EF /* GothamProLight.ttf in Resources */,
+				0A0B11C320D2E35300021E2D /* InvoiceSettingsTableViewCell.xib in Resources */,
 				0A26FCB220D1658D0097A8F6 /* TransactionTableViewCell.xib in Resources */,
 				0A0D4B5520C53364009B73E9 /* Assets.xcassets in Resources */,
 				0A26FC8920D0FBEF0097A8F6 /* ViewController.xib in Resources */,
@@ -1152,13 +1280,10 @@
 				0A26FCA020D160F00097A8F6 /* HistoryViewController.xib in Resources */,
 				0AF611A320C9A4D700957348 /* InvoiceTableViewCell.xib in Resources */,
 				D7DEFC9A20C97B9E005FB9EF /* GothamProBold.ttf in Resources */,
-				D7D177A020CADB5700985F05 /* GothamProReg.otf in Resources */,
-				0A286AA320CAA1CD00D93693 /* AirlinesTableViewCell.xib in Resources */,
 				0A26FC9A20D15B7F0097A8F6 /* DisputeTableViewCell.xib in Resources */,
 				0A13F65E20C974EC001BA302 /* InvoiceViewController.xib in Resources */,
 				0A37EFE520C7D67F00201907 /* PinViewController.xib in Resources */,
 				0A26FCB820D166F00097A8F6 /* TransactionViewController.xib in Resources */,
-				D7D177A120CADB5700985F05 /* GothamProMed.otf in Resources */,
 				0AF611A820CA72DA00957348 /* InvoiceSettingsViewController.xib in Resources */,
 				0A26FCBA20D16CF70097A8F6 /* TransactionTableViewHeader.xib in Resources */,
 				D7DEFC8D20C97148005FB9EF /* TabBarView.xib in Resources */,
@@ -1295,15 +1420,18 @@
 			files = (
 				0A1AF41720CADB7B0009595C /* BTConfiguration.swift in Sources */,
 				0A37EF6E20C58C2500201907 /* StringsExtension.swift in Sources */,
+				0A0B11AD20D29A7700021E2D /* DefaultBaseState.swift in Sources */,
 				0A37EFF320C7FC0300201907 /* DefaultBaseViewState.swift in Sources */,
 				0A1AF41820CADB7B0009595C /* BTTableCellContentView.swift in Sources */,
 				0AF6119F20C9980500957348 /* UiStatusView.swift in Sources */,
 				0A0D4B7F20C542DE009B73E9 /* Network.swift in Sources */,
+				0A0B118F20D2714000021E2D /* SettingsViewControllerExtenstions.swift in Sources */,
 				0A37EF9020C6C01300201907 /* PropertyValidationKey.swift in Sources */,
 				0A26FC9420D15AC70097A8F6 /* DisputeViewController.swift in Sources */,
 				0A08C11A20CABC2300342A3E /* InvoicePaymentRangeModelItem.swift in Sources */,
 				0A26FCA620D161640097A8F6 /* HistoryTableViewCell.swift in Sources */,
 				0AF611A220C9A4D700957348 /* InvoiceTableViewCell.swift in Sources */,
+				0A0B119E20D2897700021E2D /* DefaultDisputeState.swift in Sources */,
 				0A26FCB120D1658D0097A8F6 /* TransactionTableViewCell.swift in Sources */,
 				0A26FC8F20D117500097A8F6 /* DefaultInvoiceSettingsState.swift in Sources */,
 				0A26FCB420D165AC0097A8F6 /* TransactionTableViewHeader.swift in Sources */,
@@ -1311,16 +1439,15 @@
 				0AB8E20E20C56FF500C13361 /* DefaultAuthenticationService.swift in Sources */,
 				0A4CD13F20CD840700EF4A17 /* InvoiceHeaderView.swift in Sources */,
 				0A1AF41520CADB7B0009595C /* BTTableViewCell.swift in Sources */,
-				0A08C10220CAA78300342A3E /* InvoiceSettlementPeriodViewModeItem.swift in Sources */,
+				0A0B11B620D2B4C400021E2D /* LabelExtensitions.swift in Sources */,
 				D7DEFC8C20C97148005FB9EF /* TabBarController.swift in Sources */,
 				0A37EF6220C588F400201907 /* ErrorHandler.swift in Sources */,
 				0A62F56520C545F700A51D63 /* NetworkUtil.swift in Sources */,
-				0A08C10620CAA7E300342A3E /* InvoiceCurrenciesViewModeItem.swift in Sources */,
-				0A286A9920CA8F2A00D93693 /* InvoiceSettingModel.swift in Sources */,
 				0A4CD15C20CECA2100EF4A17 /* PaymentConfig.swift in Sources */,
 				0A08C11720CAB5B900342A3E /* PaymentRangeTableViewCell.swift in Sources */,
 				0A4CD15820CEC96100EF4A17 /* DefaultPaymentService.swift in Sources */,
 				0A37EFDE20C7D65100201907 /* PasswordContainerView.swift in Sources */,
+				0A0B11BC20D2B66300021E2D /* HistoryModel.swift in Sources */,
 				0A0D4B8720C54446009B73E9 /* NetworkConfig.swift in Sources */,
 				0A286A9520CA8B5000D93693 /* InvoiceSettingAirlinesModel.swift in Sources */,
 				0A13F65D20C974EC001BA302 /* InvoiceViewController.swift in Sources */,
@@ -1331,9 +1458,12 @@
 				0A37EF6020C5881200201907 /* UIView+SpinnerController.swift in Sources */,
 				0A1AF40920CADB450009595C /* BTNavigationDropdownMenu.swift in Sources */,
 				0A37EF5420C5816B00201907 /* SignInViewController.swift in Sources */,
+				0A0B119920D2889600021E2D /* DisputeModel.swift in Sources */,
+				0A0B11AF20D29D6300021E2D /* Initializer.swift in Sources */,
 				0A37EF6520C589FD00201907 /* UIViewExtension.swift in Sources */,
 				D7DEFC9720C97459005FB9EF /* WalletsViewController.swift in Sources */,
 				0A37EF8E20C6AC8900201907 /* ServerFieldsExtractor.swift in Sources */,
+				0A0B11B920D2B61900021E2D /* DefaultHistoryState.swift in Sources */,
 				0A4CD15320CE7E7900EF4A17 /* VerticalAlignedLabel.swift in Sources */,
 				0AB8E21020C5708300C13361 /* AuthenticationService.swift in Sources */,
 				0A4CD12F20CD6DAF00EF4A17 /* BigThumbnailSwither.swift in Sources */,
@@ -1341,7 +1471,6 @@
 				0A4CD16320CF074500EF4A17 /* DefaultInvoiceState.swift in Sources */,
 				0A1AF40E20CADB670009595C /* UIView+Extension.swift in Sources */,
 				0A0D4B5320C53362009B73E9 /* IATA.xcdatamodeld in Sources */,
-				0A286AA620CAA2F600D93693 /* SimpleTableViewCell.swift in Sources */,
 				0A6DB5DA20C5572E00BC1127 /* DataRequest.swift in Sources */,
 				0A26FC8D20D117410097A8F6 /* InvoiceSettingsState.swift in Sources */,
 				0A1AF40820CADB450009595C /* BTTitle.swift in Sources */,
@@ -1349,15 +1478,15 @@
 				0A37EF6C20C58BA000201907 /* Utils.swift in Sources */,
 				0A26FC9920D15B7F0097A8F6 /* DisputeTableViewCell.swift in Sources */,
 				0A37EF9220C6C97000201907 /* DictionaryExtension.swift in Sources */,
+				0A0B11C220D2E35300021E2D /* InvoiceSettingsTableViewCell.swift in Sources */,
 				0A26FC8820D0FBEF0097A8F6 /* ViewController.swift in Sources */,
 				0A4CD16120CF073800EF4A17 /* InvoiceState.swift in Sources */,
+				0A0B11B220D2A3C900021E2D /* BaseNavController.swift in Sources */,
 				0A37EF6A20C58B6B00201907 /* Theme.swift in Sources */,
 				0A62F56720C546E100A51D63 /* ServerErrorExtractor.swift in Sources */,
 				0A4CD11E20CD57AA00EF4A17 /* DesignableUITextField.swift in Sources */,
 				0A37EFE420C7D67F00201907 /* PinViewController.swift in Sources */,
 				0A37EFDD20C7D65100201907 /* PasswordInputView.swift in Sources */,
-				0A08C10820CAA80500342A3E /* InvoiceViewModelAirlinesItem.swift in Sources */,
-				0A286AA220CAA1CD00D93693 /* AirlinesTableViewCell.swift in Sources */,
 				0A1AF41620CADB7B0009595C /* BTTableView.swift in Sources */,
 				0A37EF7020C59C6F00201907 /* SingInRequest.swift in Sources */,
 				0A37EFF920C8044200201907 /* ChangePasswordViewController.swift in Sources */,
@@ -1371,15 +1500,18 @@
 				0A37EFE920C7E4A700201907 /* PinValidationRequest.swift in Sources */,
 				0A62F56920C5473600A51D63 /* Errors.swift in Sources */,
 				0A4CD11C20CD47A600EF4A17 /* OnChangeStateSelected.swift in Sources */,
-				0A08C10420CAA7B600342A3E /* InvoiceBillingCategoriesItem.swift in Sources */,
 				0A0D4B4B20C53361009B73E9 /* AppDelegate.swift in Sources */,
+				0A0B118D20D270DD00021E2D /* DefaultSettingsState.swift in Sources */,
 				0A37F00120C809DC00201907 /* ChangePasswordRequest.swift in Sources */,
 				0A37EF9520C6D1E500201907 /* SignInViewState.swift in Sources */,
 				0A08C0FF20CAA75000342A3E /* InvoiceViewModelItemType.swift in Sources */,
 				0A6DB5D620C553D000BC1127 /* CredentialManager.swift in Sources */,
 				0A286A9220CA88F700D93693 /* InvoiceViewModel.swift in Sources */,
 				0A37EFF520C7FD3700201907 /* DefaultPinViewState.swift in Sources */,
+				D7D177A620CE3AFA00985F05 /* BaseCurrencyCollectionViewCell.swift in Sources */,
 				0A286A9120CA88F700D93693 /* InvoiceScreenModel.swift in Sources */,
+				0A0B118B20D270D200021E2D /* SettingsState.swift in Sources */,
+				0A0B11A120D28BAF00021E2D /* InvoiceView.swift in Sources */,
 				0A37EFDF20C7D65100201907 /* PasswordUIValidation.swift in Sources */,
 				0A1AF40F20CADB670009595C /* UIViewController+Extension.swift in Sources */,
 				0A37EFEF20C7FB8A00201907 /* PinViewState.swift in Sources */,
@@ -1388,6 +1520,7 @@
 				0A4CD12020CD5B5300EF4A17 /* InvoiceModel.swift in Sources */,
 				0A37EFFF20C808FB00201907 /* DefaultChangePasswordViewState.swift in Sources */,
 				0A4CD14120CD894900EF4A17 /* FilterPreference.swift in Sources */,
+				0A0B11A620D2978D00021E2D /* BaseViewController.swift in Sources */,
 				0A37EF9720C6D2B200201907 /* DefaultSignInViewState.swift in Sources */,
 				0A4CD15A20CEC96E00EF4A17 /* PaymentService.swift in Sources */,
 				0A08C11C20CABC7800342A3E /* InvoicePaymentRangeModel.swift in Sources */,
@@ -1398,7 +1531,10 @@
 				0A4CD16720CF135300EF4A17 /* TextFieldUtils.swift in Sources */,
 				0A37EF5D20C587C600201907 /* Promise+Spinner.swift in Sources */,
 				0AF1C3AD20C9164E00AFD286 /* UserPreference.swift in Sources */,
+				0A0B119520D279E700021E2D /* DefaultLocalStorage.swift in Sources */,
 				0A37EFEC20C7EE0200201907 /* PinValidationResponse.swift in Sources */,
+				0A0B119320D279C000021E2D /* LocalStorage.swift in Sources */,
+				0A0B11BF20D2C7EC00021E2D /* BaseInvoiceViewModelItem.swift in Sources */,
 				0A37EFF120C7FBB300201907 /* BaseViewState.swift in Sources */,
 				D70DE14E20CA9E6B00644281 /* SettingsViewController.swift in Sources */,
 			);
@@ -1596,7 +1732,7 @@
 				PROVISIONING_PROFILE = "c3518fae-dadb-4f14-ba36-95ba9f9f5a0a";
 				PROVISIONING_PROFILE_SPECIFIER = IATA_TestDelivery_Liza_Release;
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1619,7 +1755,7 @@
 				PROVISIONING_PROFILE = "c3518fae-dadb-4f14-ba36-95ba9f9f5a0a";
 				PROVISIONING_PROFILE_SPECIFIER = IATA_TestDelivery_Liza_Release;
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

@@ -61,7 +61,7 @@
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="Q3Z-1f-1pb" secondAttribute="height" multiplier="1:1" id="gwO-ro-K0T"/>
                             </constraints>
-                            <state key="normal" image="bodySettingsIcn"/>
+                            <state key="normal" image="ic_bodySettingsIcn"/>
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -105,7 +105,7 @@
         </view>
     </objects>
     <resources>
-        <image name="bodySettingsIcn" width="48" height="48"/>
+        <image name="ic_bodySettingsIcn" width="48" height="48"/>
         <image name="logoSmallIcn" width="128" height="128"/>
     </resources>
 </document>

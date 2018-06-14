@@ -20,4 +20,8 @@ class HistoryTableViewCell: UITableViewCell {
         return String(describing: self)
     }
     
+    override func setSelected(_ selected: Bool, animated: Bool)  {
+        
+    }
+    
 }

@@ -1,0 +1,60 @@
+{
+    "data": {
+        "airlines": [
+                     {
+                     "name": "United",
+                     "logo": "finn",
+                     "id": "United"
+                     },
+                     {
+                     "name": "Emirates",
+                     "logo": "becky",
+                     "id": "Emirates"
+                     },
+                     {
+                     "name": "Etihad",
+                     "logo": "becky",
+                     "id": "Etihad"
+                     },
+                     {
+                     "name": "British Airways",
+                     "logo": "becky",
+                     "id": "British Airways"
+                     }
+                     ],
+        "billingCategories": [ {
+                              "name": "Miscellaneous"
+                              },
+                              {
+                              "name": "Fuel"
+                              },
+                              {
+                              "name": "Mainteinance"
+                              }
+                              ],
+        "currencies": [
+                       {
+                       "name": "USD"
+                       },
+                       {
+                       "name": "EUR"
+                       }
+                       ],
+        
+        "settlementPeriod": [{
+                             "name": "PI"
+                             },
+                             {
+                             "name": "PII"
+                             },
+                             {
+                             "name": "PIII"
+                             },
+                             {
+                             "name": "PIV"
+                             }
+                             ]
+    },
+    "error": 0,
+    "message": "Success"
+}

@@ -22,7 +22,10 @@ class Theme: NSObject {
     public let navigationBarColor = Utils.rgb(19, 68, 117)
     public let tabBarBackgroundColor = Utils.rgb(19, 68, 117)
     public let tabBarItemUnselectedColor = Utils.rgb(113, 142, 172)
+    public let selectedBaseCurrencyBorderCell = Utils.rgb(44, 183, 1)
+    public let unselectedBaseCurrencyBorderCell = Utils.rgb(205, 205, 210)
     public let navBarTitle = Utils.rgb(17, 17, 17)
+    public let logoutTitle = Utils.rgb(239, 23, 63)
     
     
     public let grayDisputeColor = Utils.rgb(101, 113, 128)
@@ -119,6 +122,8 @@ class Theme: NSObject {
     public func configureTextFieldStyle(_ textField: MFTextField){
         textField.placeholderAnimatesOnFocus = true
         
+        textField.underlineEditingHeight = 0.75
+        textField.underlineHeight = 0.75
         textField.tintColor = tintTextFieldColor
         textField.textColor = textFieldColor
         textField.defaultPlaceholderColor = placeholderTextFieldColor

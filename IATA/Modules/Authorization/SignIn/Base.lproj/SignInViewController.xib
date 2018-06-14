@@ -86,11 +86,17 @@
                                                 </userDefinedRuntimeAttribute>
                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="layert.clipsToBounds" value="YES"/>
                                             </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="login:" destination="-1" eventType="touchUpInside" id="EiQ-6v-Xx3"/>
+                                            </connections>
                                         </button>
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Login" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jnn-ZT-33H" customClass="MFTextField">
                                             <rect key="frame" x="48" y="293.5" width="279" height="30"/>
                                             <color key="tintColor" red="0.17254901960784313" green="0.71764705882352942" blue="0.0039215686274509803" alpha="1" colorSpace="calibratedRGB"/>
                                             <accessibility key="accessibilityConfiguration" hint="Email"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="40" id="I0i-Fl-oRK"/>
+                                            </constraints>
                                             <color key="textColor" red="0.031372549019607843" green="0.16470588235294117" blue="0.29803921568627451" alpha="1" colorSpace="calibratedRGB"/>
                                             <fontDescription key="fontDescription" name="Gotham-Light" family="Gotham" pointSize="17"/>
                                             <textInputTraits key="textInputTraits" keyboardType="emailAddress" textContentType="email"/>
@@ -98,6 +104,9 @@
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ska-xM-lkl" customClass="MFTextField">
                                             <rect key="frame" x="48" y="339.5" width="279" height="30"/>
                                             <accessibility key="accessibilityConfiguration" hint="Password"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="40" id="FPh-uG-bpC"/>
+                                            </constraints>
                                             <color key="textColor" red="0.031372549019607843" green="0.16470588235294117" blue="0.29803921568627451" alpha="1" colorSpace="calibratedRGB"/>
                                             <fontDescription key="fontDescription" name="Gotham-Light" family="Gotham" pointSize="17"/>
                                             <textInputTraits key="textInputTraits" textContentType="password"/>

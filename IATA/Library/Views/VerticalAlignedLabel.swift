@@ -3,8 +3,6 @@ import Foundation
 
 @IBDesignable class BottomAlignedLabel: UILabel {
     
-    // MARK: Lifecycle
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
     }

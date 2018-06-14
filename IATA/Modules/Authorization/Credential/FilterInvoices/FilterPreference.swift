@@ -144,42 +144,34 @@ class FilterPreference {
     internal func setChecked(type: InvoiceViewModelItemType, isChecked: Bool, name: String) {
         switch type {
         case .currencies:
-            var currencies = getCurrency()
-            if (isChecked) {
-                currencies?.append(name)
-            } else if let index = currencies?.index(where: {$0 == name}) {
-                currencies!.remove(at: index)
-            }
-            saveCurrency(currencies)
+            var list = getCurrency()
+            setUpChecked(isChecked: isChecked, list: &list, name: name)
+            saveCurrency(list)
             break
         case .billingCategories:
-            var billingCategories = getBillingChecked()
-            if (isChecked) {
-                billingCategories?.append(name)
-            } else if let index = billingCategories?.index(where: {$0 == name}) {
-                billingCategories!.remove(at: index)
-            }
-            saveBillingCategory(billingCategories)
+            var list = getBillingChecked()
+            setUpChecked(isChecked: isChecked, list: &list, name: name)
+            saveBillingCategory(list)
             break
         case .settlementPeriod:
-            var settlementPeriod = getSettlementPeriod()
-            if (isChecked) {
-                settlementPeriod?.append(name)
-            } else if let index = settlementPeriod?.index(where: {$0 == name}) {
-                settlementPeriod!.remove(at: index)
-            }
-            saveSettlementPeriod(settlementPeriod)
+            var list = getSettlementPeriod()
+            setUpChecked(isChecked: isChecked, list: &list, name: name)
+            saveSettlementPeriod(list)
             break
         case .airlines:
-            var airlines = getAirlines()
-            if (isChecked) {
-                airlines?.append(name)
-            } else if let index = airlines?.index(where: {$0 == name}) {
-                airlines!.remove(at: index)
-            }
-            saveAirlines(airlines)
+            var list = getAirlines()
+            setUpChecked(isChecked: isChecked, list: &list, name: name)
+            saveAirlines(list)
         default:
             break
+        }
+    }
+    
+    private func setUpChecked(isChecked: Bool, list: inout [String]?, name: String) {
+        if (isChecked && list?.index(where: {$0 == name}) == nil) {
+            list?.append(name)
+        } else if !isChecked, let index = list?.index(where: {$0 == name}) {
+            list?.remove(at: index)
         }
     }
 }

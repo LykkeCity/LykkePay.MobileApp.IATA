@@ -47,7 +47,11 @@ class InvoiceModel: Mappable {
     internal var logo: String?
     internal var settlementPeriod: String?
     
-    internal required init?(map: Map) {
+    internal required init?() {
+    }
+    
+    required init?(map: Map) {
+        
     }
     
     internal func mapping(map: Map) {

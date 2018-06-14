@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="GothamProBold.ttf">
+            <string>GothamPro-Bold</string>
+        </array>
+        <array key="GothamProReg.otf">
+            <string>GothamPro</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="InvoiceView" customModule="IATA" customModuleProvider="target">
+            <connections>
+                <outlet property="billingCategory" destination="2Ug-9P-uec" id="Yh1-FB-yN7"/>
+                <outlet property="contentView" destination="iN0-l3-epB" id="pvD-qb-pNl"/>
+                <outlet property="info" destination="fyW-az-52G" id="biI-41-kC6"/>
+                <outlet property="invoiceNumber" destination="pku-8m-12U" id="xnN-Tz-Gki"/>
+                <outlet property="logo" destination="5eL-jn-e0W" id="ZTg-h3-18K"/>
+                <outlet property="name" destination="SQW-wh-Aoa" id="Ugy-C6-yUC"/>
+                <outlet property="price" destination="fug-9l-elH" id="AYW-mP-nTr"/>
+                <outlet property="status" destination="Jw2-S9-r55" id="DOe-wP-VOn"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="yXU-yc-qv1">
+                    <rect key="frame" x="77" y="16" width="108.5" height="46.5"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="AIR CHINA" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SQW-wh-Aoa">
+                            <rect key="frame" x="0.0" y="0.0" width="108.5" height="12.5"/>
+                            <fontDescription key="fontDescription" name="GothamPro" family="Gotham Pro" pointSize="14"/>
+                            <color key="textColor" red="0.2470588235" green="0.30196078430000001" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="08.12.2015 | DEC-16 P1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fyW-az-52G">
+                            <rect key="frame" x="0.0" y="20.5" width="108.5" height="9"/>
+                            <fontDescription key="fontDescription" name="GothamPro" family="Gotham Pro" pointSize="10"/>
+                            <color key="textColor" red="0.54901960780000003" green="0.58039215690000001" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#0043482188" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pku-8m-12U">
+                            <rect key="frame" x="0.0" y="37.5" width="108.5" height="9"/>
+                            <fontDescription key="fontDescription" name="GothamPro" family="Gotham Pro" pointSize="10"/>
+                            <color key="textColor" red="0.2470588235" green="0.30196078430000001" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <viewLayoutGuide key="safeArea" id="JdV-bG-mZh"/>
+                </stackView>
+                <stackView opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="qAL-an-ysR">
+                    <rect key="frame" x="269" y="16" width="89.5" height="33"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="right" semanticContentAttribute="forceRightToLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2 000 $" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fug-9l-elH">
+                            <rect key="frame" x="0.0" y="0.0" width="89.5" height="12.5"/>
+                            <fontDescription key="fontDescription" name="GothamPro-Bold" family="Gotham Pro" pointSize="14"/>
+                            <color key="textColor" red="0.2470588235" green="0.30196078430000001" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" semanticContentAttribute="forceRightToLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MISCELLANEOUS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Ug-9P-uec">
+                            <rect key="frame" x="0.0" y="20.5" width="89.5" height="12.5"/>
+                            <fontDescription key="fontDescription" name="GothamPro" family="Gotham Pro" pointSize="10"/>
+                            <color key="textColor" red="0.54901960780000003" green="0.58039215690000001" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <viewLayoutGuide key="safeArea" id="BG3-Gf-qxM"/>
+                </stackView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="5eL-jn-e0W">
+                    <rect key="frame" x="8" y="16" width="36" height="36"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="36" id="kJf-aw-lqJ"/>
+                        <constraint firstAttribute="height" constant="36" id="sxj-7E-hzJ"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" semanticContentAttribute="forceRightToLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jw2-S9-r55" customClass="UiStatusView" customModule="IATA" customModuleProvider="target">
+                    <rect key="frame" x="337" y="57" width="22" height="7.5"/>
+                    <fontDescription key="fontDescription" name="GothamPro" family="Gotham Pro" pointSize="8"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="qAL-an-ysR" secondAttribute="trailing" constant="16" id="4x2-te-387"/>
+                <constraint firstItem="5eL-jn-e0W" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="16" id="9Do-ld-VsD"/>
+                <constraint firstItem="qAL-an-ysR" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="16" id="9GP-em-Cl5"/>
+                <constraint firstItem="Jw2-S9-r55" firstAttribute="top" secondItem="qAL-an-ysR" secondAttribute="bottom" constant="8" id="Y6l-uv-nFv"/>
+                <constraint firstItem="5eL-jn-e0W" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="8" id="a1f-22-9NY"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Jw2-S9-r55" secondAttribute="trailing" constant="16" id="ku8-eM-xjc"/>
+                <constraint firstItem="yXU-yc-qv1" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="16" id="q6i-fX-tTh"/>
+                <constraint firstItem="yXU-yc-qv1" firstAttribute="leading" secondItem="5eL-jn-e0W" secondAttribute="trailing" constant="33" id="vbR-ab-T9x"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="Logo" width="216" height="216"/>
+    </resources>
+</document>
