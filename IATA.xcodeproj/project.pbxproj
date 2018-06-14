@@ -126,6 +126,9 @@
 		5BD8D3E6E74FDC2B2AAEBD74 /* Pods_IATA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FC260316A6015639FD5E1F0 /* Pods_IATA.framework */; };
 		D70DE14E20CA9E6B00644281 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70DE14C20CA9E6B00644281 /* SettingsViewController.swift */; };
 		D70DE14F20CA9E6B00644281 /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D70DE14D20CA9E6B00644281 /* SettingsViewController.xib */; };
+		D784931820D25BC00060EAC6 /* WalletsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D784931720D25BC00060EAC6 /* WalletsModel.swift */; };
+		D784931B20D25EDD0060EAC6 /* WalletsState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D784931A20D25EDD0060EAC6 /* WalletsState.swift */; };
+		D784931D20D25F650060EAC6 /* DefaultWalletsState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D784931C20D25F650060EAC6 /* DefaultWalletsState.swift */; };
 		D7894CFD20CFFC290069F68E /* GothamProMed.otf in Resources */ = {isa = PBXBuildFile; fileRef = D7894CFB20CFFC290069F68E /* GothamProMed.otf */; };
 		D7894CFE20CFFC290069F68E /* GothamProReg.otf in Resources */ = {isa = PBXBuildFile; fileRef = D7894CFC20CFFC290069F68E /* GothamProReg.otf */; };
 		D7D177A620CE3AFA00985F05 /* BaseCurrencyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D177A420CE3AFA00985F05 /* BaseCurrencyCollectionViewCell.swift */; };
@@ -290,6 +293,9 @@
 		D295B81107990C89EA142783 /* Pods-IATATests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IATATests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-IATATests/Pods-IATATests.debug.xcconfig"; sourceTree = "<group>"; };
 		D70DE14C20CA9E6B00644281 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		D70DE14D20CA9E6B00644281 /* SettingsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
+		D784931720D25BC00060EAC6 /* WalletsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletsModel.swift; sourceTree = "<group>"; };
+		D784931A20D25EDD0060EAC6 /* WalletsState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletsState.swift; sourceTree = "<group>"; };
+		D784931C20D25F650060EAC6 /* DefaultWalletsState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultWalletsState.swift; sourceTree = "<group>"; };
 		D7894CFB20CFFC290069F68E /* GothamProMed.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GothamProMed.otf; sourceTree = "<group>"; };
 		D7894CFC20CFFC290069F68E /* GothamProReg.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GothamProReg.otf; sourceTree = "<group>"; };
 		D7D177A420CE3AFA00985F05 /* BaseCurrencyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCurrencyCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -754,6 +760,7 @@
 		0A6DB5D020C5535F00BC1127 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				D7459C4320D230D6007F4120 /* Wallets */,
 				0A286A6C20CA803E00D93693 /* Invoice */,
 				0A37EFEA20C7E55600201907 /* Auth */,
 			);
@@ -896,6 +903,31 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		D7459C4320D230D6007F4120 /* Wallets */ = {
+			isa = PBXGroup;
+			children = (
+				D7459C4520D23119007F4120 /* Response */,
+			);
+			path = Wallets;
+			sourceTree = "<group>";
+		};
+		D7459C4520D23119007F4120 /* Response */ = {
+			isa = PBXGroup;
+			children = (
+				D784931720D25BC00060EAC6 /* WalletsModel.swift */,
+			);
+			path = Response;
+			sourceTree = "<group>";
+		};
+		D784931920D25EA10060EAC6 /* State */ = {
+			isa = PBXGroup;
+			children = (
+				D784931A20D25EDD0060EAC6 /* WalletsState.swift */,
+				D784931C20D25F650060EAC6 /* DefaultWalletsState.swift */,
+			);
+			path = State;
+			sourceTree = "<group>";
+		};
 		D7DEFC8E20C97154005FB9EF /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
@@ -914,6 +946,7 @@
 		D7DEFC8F20C97430005FB9EF /* Wallets */ = {
 			isa = PBXGroup;
 			children = (
+				D784931920D25EA10060EAC6 /* State */,
 				D7DEFC9220C97458005FB9EF /* WalletsTableViewCell.swift */,
 				D7DEFC9120C97458005FB9EF /* WalletsTableViewCell.xib */,
 				D7DEFC9320C97458005FB9EF /* WalletsViewController.swift */,
@@ -1221,6 +1254,7 @@
 				0A37EFDE20C7D65100201907 /* PasswordContainerView.swift in Sources */,
 				0A0D4B8720C54446009B73E9 /* NetworkConfig.swift in Sources */,
 				0A286A9520CA8B5000D93693 /* InvoiceSettingAirlinesModel.swift in Sources */,
+				D784931B20D25EDD0060EAC6 /* WalletsState.swift in Sources */,
 				0A13F65D20C974EC001BA302 /* InvoiceViewController.swift in Sources */,
 				0A6DB5D220C5537000BC1127 /* TokenObject.swift in Sources */,
 				0A62F56B20C5497200A51D63 /* EncodingType.swift in Sources */,
@@ -1239,6 +1273,7 @@
 				0A1AF40E20CADB670009595C /* UIView+Extension.swift in Sources */,
 				0A0D4B5320C53362009B73E9 /* IATA.xcdatamodeld in Sources */,
 				0A286AA620CAA2F600D93693 /* SimpleTableViewCell.swift in Sources */,
+				D784931820D25BC00060EAC6 /* WalletsModel.swift in Sources */,
 				0A6DB5DA20C5572E00BC1127 /* DataRequest.swift in Sources */,
 				0A26FC8D20D117410097A8F6 /* InvoiceSettingsState.swift in Sources */,
 				0A1AF40820CADB450009595C /* BTTitle.swift in Sources */,
@@ -1271,6 +1306,7 @@
 				0A0D4B4B20C53361009B73E9 /* AppDelegate.swift in Sources */,
 				0A37F00120C809DC00201907 /* ChangePasswordRequest.swift in Sources */,
 				0A37EF9520C6D1E500201907 /* SignInViewState.swift in Sources */,
+				D784931D20D25F650060EAC6 /* DefaultWalletsState.swift in Sources */,
 				0A08C0FF20CAA75000342A3E /* InvoiceViewModelItemType.swift in Sources */,
 				0A6DB5D620C553D000BC1127 /* CredentialManager.swift in Sources */,
 				0A286A9220CA88F700D93693 /* InvoiceViewModel.swift in Sources */,

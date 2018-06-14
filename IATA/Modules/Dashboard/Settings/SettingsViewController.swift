@@ -1,7 +1,7 @@
 
 import UIKit
 
-class SettingsViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class SettingsViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
     @IBOutlet weak var profileImage: UIImageView!
 
@@ -31,11 +31,12 @@ class SettingsViewController: UIViewController, UICollectionViewDelegate, UIColl
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.barTintColor = Theme.shared.tabBarBackgroundColor
         self.navigationController?.navigationBar.tintColor = .white
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white, NSAttributedStringKey.font: UIFont(name: "GothamPro-Medium", size: 17)]
         self.navigationController?.navigationBar.isTranslucent = false
-        self.navigationItem.title = tabBarItem.title
+        self.navigationItem.title = tabBarItem.title?.capitalizingFirstLetter()
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "ic_bodyLogoutIcn"), style: .plain, target: self, action: #selector(logoutButtonTapped))
 
+        self.view.layoutIfNeeded()
         let defaultIndexPathForTesting = IndexPath(row: 0, section: 0)
         baseCurrencyCollectionView.selectItem(at: defaultIndexPathForTesting, animated: false, scrollPosition: .top)
     }
@@ -73,8 +74,6 @@ class SettingsViewController: UIViewController, UICollectionViewDelegate, UIColl
         self.present(logoutSheet, animated: true, completion: nil)
     }
 
-};
-    extension SettingsViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: baseCurrencyCollectionView.bounds.width/2 - 5 , height: 56)
     }

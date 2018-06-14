@@ -9,6 +9,8 @@ class WalletsTableViewCell: UITableViewCell {
 
     @IBOutlet weak var nationalFlagImage: UIImageView!
 
+    private var walletsNationalFlag = ""
+
     override func prepareForReuse() {
         super.prepareForReuse()
     }
@@ -23,5 +25,25 @@ class WalletsTableViewCell: UITableViewCell {
 
     static var identifier: String {
         return String(describing: self)
+    }
+    //TODO change this method when api will be return data
+    internal func fillCell(from model: WalletsModel) {
+        if let assetId = model.assetId, let baseAssetBalance = model.baseAssetBalance {
+            walletsNameLabel.text = assetId
+            balanceLabel.text = prepareBaseAssetBalanceValue(from: baseAssetBalance, and: assetId)
+            nationalFlagImage.image = UIImage(named: walletsNationalFlag)
+        }
+    }
+
+    private func prepareBaseAssetBalanceValue(from baseAssetBalance : Double, and assetId: String) -> String {
+        if assetId.contains("USD") {
+            walletsNationalFlag = "ic_usFlagMediumIcn"
+            return String(baseAssetBalance) + " $"
+        }
+        else if assetId.contains("EUR") {
+             walletsNationalFlag = "ic_eurFlagMediumIcn"
+            return String(baseAssetBalance) + " €"
+        }
+        return ""
     }
 }

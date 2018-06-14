@@ -3,8 +3,7 @@ import PromiseKit
 import ObjectMapper
 
 class DefaultPaymentService: NSObject, PaymentService {
-    
-    
+
     func getInVoices(invoceParams: InvoiceRequest)-> Promise<String> {
         var params = [String : String]()
        
@@ -27,6 +26,12 @@ class DefaultPaymentService: NSObject, PaymentService {
         }
       
         return Network.shared.get(path: PaymentConfig.shared.invoices , params: params)
+    }
+
+    func getWallets(convertAssetIdParams: String) -> Promise<String> {
+        var params = [String : String]()
+        params["convertAssetIdParams"] = convertAssetIdParams
+        return Network.shared.get(path: PaymentConfig.shared.wallets, params: params)
     }
     
 }
