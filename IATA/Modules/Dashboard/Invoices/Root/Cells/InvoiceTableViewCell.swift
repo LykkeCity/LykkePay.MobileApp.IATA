@@ -9,6 +9,7 @@ class InvoiceTableViewCell: UITableViewCell {
     
     weak var delegate: OnChangeStateSelected?
     let checkBox = Checkbox(frame: CGRect(x: 5 , y: 5, width: 15, height: 15))
+    var isCanBePaid = true
     
     static var nib:UINib {
         return UINib(nibName: identifier, bundle: nil)
@@ -20,6 +21,13 @@ class InvoiceTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+    }
+    
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        if (isCanBePaid) {
+            self.checkBox.isChecked = !self.checkBox.isChecked
+            delegate?.onItemSelected(isSelected: self.checkBox.isChecked, index: checkBox.tag)
+        }
     }
     
     @objc func clickSelected(sender: Any?) {
@@ -42,6 +50,7 @@ class InvoiceTableViewCell: UITableViewCell {
     }
     
     private func initCheckBox(color: UIColor, isCanBePaid: Bool, isChecked: Bool) {
+        self.isCanBePaid = isCanBePaid
         self.checkBox.borderStyle = .circle
         self.checkBox.checkmarkStyle = .circle
         self.checkBox.borderWidth = 1

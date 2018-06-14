@@ -50,7 +50,7 @@ class SignInViewController: BaseAuthViewController {
     
     private func buttonClicked() {
         self.view.endEditing(true)
-        self.signIn(email: emailTextField.text!, password: state.getHashPass(email: emailTextField.text!, password: passwordField.text!))
+        self.signIn(email: emailTextField.text!, password: passwordField.text!)//state.getHashPass(email: emailTextField.text!, password: passwordField.text!))
     }
     
    private func signIn(email: String, password: String) {

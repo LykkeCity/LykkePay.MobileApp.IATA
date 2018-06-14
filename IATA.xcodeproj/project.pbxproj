@@ -125,7 +125,6 @@
 		0A4CD15820CEC96100EF4A17 /* DefaultPaymentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4CD15720CEC96100EF4A17 /* DefaultPaymentService.swift */; };
 		0A4CD15A20CEC96E00EF4A17 /* PaymentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4CD15920CEC96E00EF4A17 /* PaymentService.swift */; };
 		0A4CD15C20CECA2100EF4A17 /* PaymentConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4CD15B20CECA2100EF4A17 /* PaymentConfig.swift */; };
-		0A4CD16120CF073800EF4A17 /* InvoiceState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4CD16020CF073800EF4A17 /* InvoiceState.swift */; };
 		0A4CD16320CF074500EF4A17 /* DefaultInvoiceState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4CD16220CF074500EF4A17 /* DefaultInvoiceState.swift */; };
 		0A4CD16720CF135300EF4A17 /* TextFieldUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4CD16620CF135300EF4A17 /* TextFieldUtils.swift */; };
 		0A62F56520C545F700A51D63 /* NetworkUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A62F56420C545F700A51D63 /* NetworkUtil.swift */; };
@@ -308,7 +307,6 @@
 		0A4CD15720CEC96100EF4A17 /* DefaultPaymentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultPaymentService.swift; sourceTree = "<group>"; };
 		0A4CD15920CEC96E00EF4A17 /* PaymentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentService.swift; sourceTree = "<group>"; };
 		0A4CD15B20CECA2100EF4A17 /* PaymentConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentConfig.swift; sourceTree = "<group>"; };
-		0A4CD16020CF073800EF4A17 /* InvoiceState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvoiceState.swift; sourceTree = "<group>"; };
 		0A4CD16220CF074500EF4A17 /* DefaultInvoiceState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultInvoiceState.swift; sourceTree = "<group>"; };
 		0A4CD16620CF135300EF4A17 /* TextFieldUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldUtils.swift; sourceTree = "<group>"; };
 		0A62F56420C545F700A51D63 /* NetworkUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkUtil.swift; sourceTree = "<group>"; };
@@ -955,7 +953,6 @@
 		0A4CD15F20CF072500EF4A17 /* State */ = {
 			isa = PBXGroup;
 			children = (
-				0A4CD16020CF073800EF4A17 /* InvoiceState.swift */,
 				0A4CD16220CF074500EF4A17 /* DefaultInvoiceState.swift */,
 			);
 			path = State;
@@ -1480,7 +1477,6 @@
 				0A37EF9220C6C97000201907 /* DictionaryExtension.swift in Sources */,
 				0A0B11C220D2E35300021E2D /* InvoiceSettingsTableViewCell.swift in Sources */,
 				0A26FC8820D0FBEF0097A8F6 /* ViewController.swift in Sources */,
-				0A4CD16120CF073800EF4A17 /* InvoiceState.swift in Sources */,
 				0A0B11B220D2A3C900021E2D /* BaseNavController.swift in Sources */,
 				0A37EF6A20C58B6B00201907 /* Theme.swift in Sources */,
 				0A62F56720C546E100A51D63 /* ServerErrorExtractor.swift in Sources */,

@@ -55,7 +55,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 (viewController as! PinViewController).isValidation = false
             }
         }
-        return TabBarController()
+        return viewController
     }
     
     

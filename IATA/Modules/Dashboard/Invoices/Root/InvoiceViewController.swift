@@ -133,20 +133,18 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
         self.sumTextField.text = self.state?.getSumString(isSelected: isSelected, index: index)
         self.selectedItemTextField.text = self.state?.getSelectedString()
         if (isSelected && self.downView.isHidden) {
-            UIView.animate(withDuration: 0.3) {
-                self.downView.alpha = 1
-            }
-            self.downView.isHidden = false
-            self.downViewHeightConstraint.constant = 110
+            animate(isShow: true)
         } else if (!isSelected && !self.downView.isHidden && self.state?.getCountSelected() == 0) {
-            UIView.animate(withDuration: 0.3, animations: {
-                self.downView.alpha = 0
-            }) { (finished) in
-                self.downView.isHidden = finished
-            }
-            downViewHeightConstraint.constant = 0
+           animate(isShow: false)
         }
-        
+    }
+    
+    private func animate(isShow: Bool) {
+        UIView.animate(withDuration: 0.3) {
+            self.downView.alpha = isShow ? 1 : 0
+        }
+        self.downView.isHidden = isShow ? false : true
+        self.downViewHeightConstraint.constant = isShow ? 110 : 0
     }
     
     override func getTitleView() -> UIView {
