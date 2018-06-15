@@ -15,6 +15,7 @@ target 'IATA' do
     pod 'Crashlytics'
     pod 'WARangeSlider'
     pod 'MaterialControls'
+    pod 'MaterialComponents/TextFields'
     
     target 'IATATests' do
         inherit! :search_paths

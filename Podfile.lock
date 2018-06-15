@@ -9,8 +9,21 @@ PODS:
   - Fabric (1.7.7)
   - JGProgressHUD (2.0.3)
   - KeychainAccess (3.1.1)
+  - MaterialComponents/AnimationTiming (55.3.0)
+  - MaterialComponents/Palettes (55.3.0)
+  - MaterialComponents/private/Application (55.3.0)
+  - MaterialComponents/private/Math (55.3.0)
+  - MaterialComponents/TextFields (55.3.0):
+    - MaterialComponents/AnimationTiming
+    - MaterialComponents/Palettes
+    - MaterialComponents/private/Math
+    - MaterialComponents/Typography
+    - MDFInternationalization
+  - MaterialComponents/Typography (55.3.0):
+    - MaterialComponents/private/Application
   - MaterialControls (1.2.2)
   - MaterialTextField (0.2.1)
+  - MDFInternationalization (1.0.4)
   - ObjectMapper (3.2.0)
   - PromiseKit (4.5.2):
     - PromiseKit/Foundation (= 4.5.2)
@@ -33,6 +46,7 @@ DEPENDENCIES:
   - Fabric
   - JGProgressHUD
   - KeychainAccess
+  - MaterialComponents/TextFields
   - MaterialControls
   - MaterialTextField (~> 0.2)
   - ObjectMapper
@@ -48,8 +62,10 @@ SPEC REPOS:
     - Fabric
     - JGProgressHUD
     - KeychainAccess
+    - MaterialComponents
     - MaterialControls
     - MaterialTextField
+    - MDFInternationalization
     - ObjectMapper
     - PromiseKit
     - WARangeSlider
@@ -62,12 +78,14 @@ SPEC CHECKSUMS:
   Fabric: bda89e242bce1b7b8ab264248cf3407774ce0095
   JGProgressHUD: 12b20a8f4ffe05258f8635c1ab92816e451f904d
   KeychainAccess: 7bd430028059754a3debab3cfc0bd1fc7fb85df3
+  MaterialComponents: 915f4e844400a35db3ea4c710a9af40aa8bcb093
   MaterialControls: 1c6b29e78d3a13d8dd6a67ed31b6d26eb5de8f72
   MaterialTextField: f876a39d571eeece872af6a4da421e3bd065fe0b
+  MDFInternationalization: e355b0cebecf53d60233bd267084e49366c82513
   ObjectMapper: 5cccd2de6f253eda859df8116a5a554d9769e859
   PromiseKit: 743e497a5f505a470d3bbbf4ce0663c1268af0a4
   WARangeSlider: 54b3e0853b8d16c444fd539005901aecee86837d
 
-PODFILE CHECKSUM: 9b176aa0cdb11b9890a58ee6be065236599f475f
+PODFILE CHECKSUM: b6cca8ed831a749d9fa33ff2b3f916b53afed231
 
 COCOAPODS: 1.5.3

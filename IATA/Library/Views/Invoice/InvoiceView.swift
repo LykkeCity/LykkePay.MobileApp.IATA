@@ -3,6 +3,7 @@ import UIKit
 
 open class InvoiceView: UIView {
     
+    @IBOutlet weak var icBodyDispute: UIImageView!
     @IBOutlet var contentView: UIView!
     @IBOutlet weak var status: UiStatusView!
     @IBOutlet weak var billingCategory: UILabel!
@@ -35,9 +36,15 @@ open class InvoiceView: UIView {
         self.billingCategory.text = model.billingCategory
         self.invoiceNumber.text = model.number
         if (model.status ==  InvoiceStatuses.Unpaid && !model.dispute!) {
-            if (!model.dispute!) {
-                self.status.isHidden = true
-            }
+            self.status.isHidden = true
+            self.icBodyDispute.isHidden = true
+        } else if (model.dispute!){
+            self.initStatus(color: Theme.shared.greyStatusColor, status: "Invoice.Status.Items.Dispute".localize())
+            self.icBodyDispute.isHidden = false
+            self.status.isHidden = false
+        } else {
+            self.icBodyDispute.isHidden = true
+            self.status.isHidden = false
         }
         //TODO add after api will be ready info =
     }
@@ -48,6 +55,7 @@ open class InvoiceView: UIView {
         self.status.color = color
         self.status.sizeToFit()
         self.status.insets = UIEdgeInsetsMake(2, 3, 2, 3)
+        self.icBodyDispute.isHidden = true
     }
     
     //TODO hope it's for some time, before improving api

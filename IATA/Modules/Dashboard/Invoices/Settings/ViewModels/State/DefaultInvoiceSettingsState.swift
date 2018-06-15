@@ -23,7 +23,7 @@ class DefaultInvoiceSettingsState: InvoiceSettingsState {
                     guard let typeInvoice = InvoiceViewModelItemType(rawValue: type) else {
                         return
                     }
-                    FilterPreference.shared.setChecked(type: typeInvoice, isChecked: item.checked == nil ? false : item.checked!, name: (item.name)!)
+                    FilterPreference.shared.setChecked(type: typeInvoice, isChecked: item.checked == nil ? false : item.checked!, id: (item.id)!)
                 }
             } else if (itemValues is InvoicePaymentRangeItem) {
                 let value = (itemValues as! InvoicePaymentRangeItem).paymentRange
@@ -73,7 +73,7 @@ class DefaultInvoiceSettingsState: InvoiceSettingsState {
     private func initCells(_ items: [InvoiceSettingAirlinesModel], type: InvoiceViewModelItemType) {
         let items = BaseInvoiceViewModelItem(items: items)
         for item in items.items {
-            item.checked = FilterPreference.shared.getChecked(name: item.name, type: type)
+            item.checked = FilterPreference.shared.getChecked(id: item.id, type: type)
             item.type = type.rawValue
         }
         items.setType(type: type)

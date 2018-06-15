@@ -60,6 +60,10 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
         }
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+    }
+    
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         guard let state = self.state else {
             return false
@@ -114,12 +118,13 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
     
     @objc func clickFilter(sender: Any?) {
         self.navigationController?.pushViewController(InvoiceSettingsViewController(), animated: true)
+        self.hideMenu()
     }
     
     @objc func clickDispute(sender: Any?) {
         self.navigationController?.pushViewController(DisputeViewController(), animated: true)
+        self.hideMenu()
     }
-    
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
@@ -183,5 +188,12 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
     private func reloadTable(jsonString: String!) {
         self.state?.mapping(jsonString: jsonString)
         self.tabView.reloadData()
+    }
+    
+    private func hideMenu() {
+        if (self.navigationItem.titleView is BTNavigationDropdownMenu) {
+            let menu = self.navigationItem.titleView as! BTNavigationDropdownMenu
+            menu.hideMenu()
+        }
     }
 }

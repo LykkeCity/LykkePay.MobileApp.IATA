@@ -12,11 +12,12 @@ class InvoiceRequest {
         case lessThan
     }
     
-    var clientMerchantIds: [String] = []
-    var billingCategories: [String] = []
+    var clientMerchantIds: [String]? = []
+    var billingCategories: [String]? = []
     var dispute: Bool?
     var greaterThan: Int?
     var lessThan: Int?
+    var settlementAssets: [String]? = []
     var statuses: String = InvoiceStatuses.all.rawValue
     
     internal required init?() {

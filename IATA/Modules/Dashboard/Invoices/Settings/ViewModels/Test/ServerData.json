@@ -19,41 +19,33 @@
                      {
                      "name": "British Airways",
                      "logo": "becky",
-                     "id": "British Airways"
+                     "id": "BritishAirways"
                      }
                      ],
         "billingCategories": [ {
-                              "name": "Miscellaneous"
+                              "name": "Miscellaneous",
+                              "id": "Miscellaneous"
                               },
                               {
-                              "name": "Fuel"
+                              "name": "Fuel",
+                              "id": "Fuel"
                               },
                               {
-                              "name": "Mainteinance"
+                              "name": "Mainteinance",
+                              "id": "Mainteinance"
                               }
                               ],
         "currencies": [
                        {
-                       "name": "USD"
+                       "name": "USD",
+                       "id": "IATAUSDT2"
+                       
                        },
                        {
-                       "name": "EUR"
+                       "name": "EUR",
+                       "id": "IATAEURT2"
                        }
-                       ],
-        
-        "settlementPeriod": [{
-                             "name": "PI"
-                             },
-                             {
-                             "name": "PII"
-                             },
-                             {
-                             "name": "PIII"
-                             },
-                             {
-                             "name": "PIV"
-                             }
-                             ]
+                       ]
     },
     "error": 0,
     "message": "Success"

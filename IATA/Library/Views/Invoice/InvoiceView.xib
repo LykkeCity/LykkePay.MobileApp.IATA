@@ -22,6 +22,7 @@
             <connections>
                 <outlet property="billingCategory" destination="2Ug-9P-uec" id="Yh1-FB-yN7"/>
                 <outlet property="contentView" destination="iN0-l3-epB" id="pvD-qb-pNl"/>
+                <outlet property="icBodyDispute" destination="b8E-op-mMS" id="a6x-pc-1os"/>
                 <outlet property="info" destination="fyW-az-52G" id="biI-41-kC6"/>
                 <outlet property="invoiceNumber" destination="pku-8m-12U" id="xnN-Tz-Gki"/>
                 <outlet property="logo" destination="5eL-jn-e0W" id="ZTg-h3-18K"/>
@@ -90,12 +91,21 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_body_dispute" translatesAutoresizingMaskIntoConstraints="NO" id="b8E-op-mMS">
+                    <rect key="frame" x="323" y="57" width="10" height="10"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="10" id="Y4A-x8-SEg"/>
+                        <constraint firstAttribute="height" constant="10" id="dIP-GF-Uhs"/>
+                    </constraints>
+                </imageView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="qAL-an-ysR" secondAttribute="trailing" constant="16" id="4x2-te-387"/>
                 <constraint firstItem="5eL-jn-e0W" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="16" id="9Do-ld-VsD"/>
                 <constraint firstItem="qAL-an-ysR" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="16" id="9GP-em-Cl5"/>
+                <constraint firstItem="b8E-op-mMS" firstAttribute="top" secondItem="qAL-an-ysR" secondAttribute="bottom" constant="8" id="OhR-ur-JXg"/>
+                <constraint firstItem="Jw2-S9-r55" firstAttribute="leading" secondItem="b8E-op-mMS" secondAttribute="trailing" constant="4" id="SAp-tc-1Xj"/>
                 <constraint firstItem="Jw2-S9-r55" firstAttribute="top" secondItem="qAL-an-ysR" secondAttribute="bottom" constant="8" id="Y6l-uv-nFv"/>
                 <constraint firstItem="5eL-jn-e0W" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="8" id="a1f-22-9NY"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Jw2-S9-r55" secondAttribute="trailing" constant="16" id="ku8-eM-xjc"/>
@@ -104,9 +114,11 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="33.5" y="157"/>
         </view>
     </objects>
     <resources>
         <image name="Logo" width="216" height="216"/>
+        <image name="ic_body_dispute" width="32" height="32"/>
     </resources>
 </document>

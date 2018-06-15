@@ -3,7 +3,30 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "closure #2 in Network.request(path:method:params:encoding:):Network.swift">
+      </ContextState>
+      <ContextState
+         contextName = "InvoiceView.initView(model:):InvoiceView.swift">
+      </ContextState>
+      <ContextState
+         contextName = "DefaultAuthenticationService.signIn(email:password:):DefaultAuthenticationService.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #1 in DataRequest.responseJSON(options:):DataRequest.swift">
+      </ContextState>
+      <ContextState
          contextName = "closure #1 in PinViewController.validation(_:):PinViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "CredentialManager.saveTokenObject(_:):CredentialManager.swift">
+      </ContextState>
+      <ContextState
+         contextName = "InvoiceViewController.reloadTable(jsonString:):InvoiceViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.state?.getItems()">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "PasswordContainerView.awakeFromNib():PasswordContainerView.swift">
@@ -14,13 +37,13 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "closure #1 in closure #1 in DataRequest.responseJSON(options:):DataRequest.swift">
-      </ContextState>
-      <ContextState
-         contextName = "DefaultAuthenticationService.signIn(email:password:):DefaultAuthenticationService.swift">
+         contextName = "closure #1 in SignInViewController.signIn(username:password:):SignInViewController.swift">
       </ContextState>
       <ContextState
          contextName = "closure #1 in SignInViewController.signIn(email:password:):SignInViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "InvoiceTableViewCell.initModel(model:isChecked:):InvoiceTableViewCell.swift">
       </ContextState>
       <ContextState
          contextName = "SignInViewController.viewDidLoad():SignInViewController.swift">
@@ -31,16 +54,7 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "closure #1 in SignInViewController.signIn(username:password:):SignInViewController.swift">
-      </ContextState>
-      <ContextState
-         contextName = "closure #2 in Network.request(path:method:params:encoding:):Network.swift">
-      </ContextState>
-      <ContextState
          contextName = "Network.request&lt;A&gt;(path:method:params:encoding:):Network.swift">
-      </ContextState>
-      <ContextState
-         contextName = "CredentialManager.saveTokenObject(_:):CredentialManager.swift">
       </ContextState>
    </ContextStates>
 </VariablesViewState>
