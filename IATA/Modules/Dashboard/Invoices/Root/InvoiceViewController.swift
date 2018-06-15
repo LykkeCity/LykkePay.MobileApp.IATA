@@ -61,7 +61,11 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        let currentCell = self.tabView.cellForRow(at: indexPath) as! InvoiceTableViewCell
+        if (currentCell.checkBox.isCanBeChanged) {
+            currentCell.checkBox.isChecked = !currentCell.checkBox.isChecked
+            onItemSelected(isSelected: currentCell.checkBox.isChecked, index: indexPath.row)
+        }
     }
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -191,6 +195,8 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
     }
     
     private func hideMenu() {
+        self.state?.clearSelectedItems()
+        self.animate(isShow: false)
         if (self.navigationItem.titleView is BTNavigationDropdownMenu) {
             let menu = self.navigationItem.titleView as! BTNavigationDropdownMenu
             menu.hideMenu()

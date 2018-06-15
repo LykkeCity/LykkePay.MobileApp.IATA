@@ -13,6 +13,10 @@ class DefaultInvoiceState: DefaultBaseState<InvoiceModel> {
         self.items = !jsonString.isEmpty ? Mapper<InvoiceModel>().mapArray(JSONObject: jsonString.toJSON())! : Array<InvoiceModel>()
     }
     
+    func clearSelectedItems() {
+        self.selectedItems = []
+    }
+    
     func getInvoiceStringJson() -> Promise<String> {
         selectedStatus(index: FilterPreference.shared.getIndexOfStatus())
         invoiceParams?.billingCategories = FilterPreference.shared.getBillingChecked()
