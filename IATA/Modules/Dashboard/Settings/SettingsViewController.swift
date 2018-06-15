@@ -67,11 +67,17 @@ class SettingsViewController: UIViewController, UICollectionViewDelegate, UIColl
 
     @objc private func logoutButtonTapped() {
         let logoutSheet = UIAlertController(title: nil, message: nil, preferredStyle:  .actionSheet)
-        let logoutAction = UIAlertAction(title: "Setting.Logout.Item.Logout".localize(), style: .default, handler: nil)
+        let logoutAction = UIAlertAction(title: "Setting.Logout.Item.Logout".localize(), style: .default, handler: logout)
         logoutAction.setValue(Theme.shared.logoutTitle, forKey: "titleTextColor")
         logoutSheet.addAction(logoutAction)
         logoutSheet.addAction(UIAlertAction(title: "Setting.Logout.Item.Cancel".localize(), style: .cancel, handler: nil))
         self.present(logoutSheet, animated: true, completion: nil)
+    }
+
+    private func logout(action: UIAlertAction) {
+        CredentialManager.shared.clearSavedData()
+        self.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(SignInViewController(), animated: false)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

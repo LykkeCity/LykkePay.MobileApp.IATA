@@ -35,8 +35,10 @@ class SignInViewController: BaseAuthViewController {
     
     @objc func keyboardWillHide(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+             if (self.logoImg.isHidden) {
             self.view.frame.origin.y += keyboardSize.height/2
             self.logoImg.isHidden = false
+            }
         }
     }
     
