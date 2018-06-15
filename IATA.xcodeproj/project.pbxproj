@@ -32,6 +32,8 @@
 		0A0B11BF20D2C7EC00021E2D /* BaseInvoiceViewModelItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0B11BE20D2C7EC00021E2D /* BaseInvoiceViewModelItem.swift */; };
 		0A0B11C220D2E35300021E2D /* InvoiceSettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0B11C020D2E35300021E2D /* InvoiceSettingsTableViewCell.swift */; };
 		0A0B11C320D2E35300021E2D /* InvoiceSettingsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A0B11C120D2E35300021E2D /* InvoiceSettingsTableViewCell.xib */; };
+		0A0B11C720D3158500021E2D /* ExhangeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0B11C520D3158500021E2D /* ExhangeViewController.swift */; };
+		0A0B11C820D3158500021E2D /* ExhangeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A0B11C620D3158500021E2D /* ExhangeViewController.xib */; };
 		0A0D4B4B20C53361009B73E9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0D4B4A20C53361009B73E9 /* AppDelegate.swift */; };
 		0A0D4B5320C53362009B73E9 /* IATA.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0A0D4B5120C53362009B73E9 /* IATA.xcdatamodeld */; };
 		0A0D4B5520C53364009B73E9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A0D4B5420C53364009B73E9 /* Assets.xcassets */; };
@@ -42,6 +44,8 @@
 		0A0D4B8720C54446009B73E9 /* NetworkConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0D4B8620C54446009B73E9 /* NetworkConfig.swift */; };
 		0A13F65D20C974EC001BA302 /* InvoiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A13F65B20C974EC001BA302 /* InvoiceViewController.swift */; };
 		0A13F65E20C974EC001BA302 /* InvoiceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A13F65C20C974EC001BA302 /* InvoiceViewController.xib */; };
+		0A175D4F20D3B116000E3C83 /* RSFloatInputViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A175D4D20D3B116000E3C83 /* RSFloatInputViewUtils.swift */; };
+		0A175D5020D3B116000E3C83 /* RSFloatInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A175D4E20D3B116000E3C83 /* RSFloatInputView.swift */; };
 		0A1AF40820CADB450009595C /* BTTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1AF40420CADB450009595C /* BTTitle.swift */; };
 		0A1AF40920CADB450009595C /* BTNavigationDropdownMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1AF40520CADB450009595C /* BTNavigationDropdownMenu.swift */; };
 		0A1AF40E20CADB670009595C /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1AF40C20CADB670009595C /* UIView+Extension.swift */; };
@@ -208,6 +212,8 @@
 		0A0B11BE20D2C7EC00021E2D /* BaseInvoiceViewModelItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseInvoiceViewModelItem.swift; sourceTree = "<group>"; };
 		0A0B11C020D2E35300021E2D /* InvoiceSettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvoiceSettingsTableViewCell.swift; sourceTree = "<group>"; };
 		0A0B11C120D2E35300021E2D /* InvoiceSettingsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InvoiceSettingsTableViewCell.xib; sourceTree = "<group>"; };
+		0A0B11C520D3158500021E2D /* ExhangeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExhangeViewController.swift; sourceTree = "<group>"; };
+		0A0B11C620D3158500021E2D /* ExhangeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExhangeViewController.xib; sourceTree = "<group>"; };
 		0A0D4B4720C53361009B73E9 /* IATA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IATA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A0D4B4A20C53361009B73E9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0A0D4B5220C53362009B73E9 /* IATA.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = IATA.xcdatamodel; sourceTree = "<group>"; };
@@ -224,6 +230,8 @@
 		0A0D4B8620C54446009B73E9 /* NetworkConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConfig.swift; sourceTree = "<group>"; };
 		0A13F65B20C974EC001BA302 /* InvoiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvoiceViewController.swift; sourceTree = "<group>"; };
 		0A13F65C20C974EC001BA302 /* InvoiceViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InvoiceViewController.xib; sourceTree = "<group>"; };
+		0A175D4D20D3B116000E3C83 /* RSFloatInputViewUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSFloatInputViewUtils.swift; sourceTree = "<group>"; };
+		0A175D4E20D3B116000E3C83 /* RSFloatInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSFloatInputView.swift; sourceTree = "<group>"; };
 		0A1AF40420CADB450009595C /* BTTitle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BTTitle.swift; sourceTree = "<group>"; };
 		0A1AF40520CADB450009595C /* BTNavigationDropdownMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BTNavigationDropdownMenu.swift; sourceTree = "<group>"; };
 		0A1AF40C20CADB670009595C /* UIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
@@ -493,6 +501,15 @@
 			path = Response;
 			sourceTree = "<group>";
 		};
+		0A0B11C420D3156200021E2D /* Exhange */ = {
+			isa = PBXGroup;
+			children = (
+				0A0B11C520D3158500021E2D /* ExhangeViewController.swift */,
+				0A0B11C620D3158500021E2D /* ExhangeViewController.xib */,
+			);
+			path = Exhange;
+			sourceTree = "<group>";
+		};
 		0A0D4B3E20C53361009B73E9 = {
 			isa = PBXGroup;
 			children = (
@@ -604,6 +621,15 @@
 				0AF611A420CA727300957348 /* Settings */,
 			);
 			path = Invoices;
+			sourceTree = "<group>";
+		};
+		0A175D4C20D3B0F9000E3C83 /* RFFloatEdit */ = {
+			isa = PBXGroup;
+			children = (
+				0A175D4E20D3B116000E3C83 /* RSFloatInputView.swift */,
+				0A175D4D20D3B116000E3C83 /* RSFloatInputViewUtils.swift */,
+			);
+			path = RFFloatEdit;
 			sourceTree = "<group>";
 		};
 		0A1AF40220CADB240009595C /* NavigationDropDown */ = {
@@ -1047,6 +1073,7 @@
 		0AF611A920CA72E200957348 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				0A175D4C20D3B0F9000E3C83 /* RFFloatEdit */,
 				0A0B119F20D28B9100021E2D /* Invoice */,
 				0A4CD14520CD8FFE00EF4A17 /* Switcher */,
 				0A1AF40220CADB240009595C /* NavigationDropDown */,
@@ -1109,6 +1136,7 @@
 		D7DEFC8E20C97154005FB9EF /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
+				0A0B11C420D3156200021E2D /* Exhange */,
 				0A0B11A420D2977F00021E2D /* Base */,
 				0A26FC9B20D160C80097A8F6 /* History */,
 				0A4CD15620CEC94E00EF4A17 /* Service */,
@@ -1283,6 +1311,7 @@
 				0A26FCB820D166F00097A8F6 /* TransactionViewController.xib in Resources */,
 				0AF611A820CA72DA00957348 /* InvoiceSettingsViewController.xib in Resources */,
 				0A26FCBA20D16CF70097A8F6 /* TransactionTableViewHeader.xib in Resources */,
+				0A0B11C820D3158500021E2D /* ExhangeViewController.xib in Resources */,
 				D7DEFC8D20C97148005FB9EF /* TabBarView.xib in Resources */,
 				0A37EFD820C7D63D00201907 /* PasswordContainerView.xib in Resources */,
 				0A26FCA720D161640097A8F6 /* HistoryTableViewCell.xib in Resources */,
@@ -1368,6 +1397,7 @@
 				"${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/JGProgressHUD/JGProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework",
+				"${BUILT_PRODUCTS_DIR}/MaterialControls/MaterialControls.framework",
 				"${BUILT_PRODUCTS_DIR}/MaterialTextField/MaterialTextField.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/PromiseKit/PromiseKit.framework",
@@ -1380,6 +1410,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CryptoSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JGProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MaterialControls.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MaterialTextField.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PromiseKit.framework",
@@ -1436,6 +1467,7 @@
 				0AB8E20E20C56FF500C13361 /* DefaultAuthenticationService.swift in Sources */,
 				0A4CD13F20CD840700EF4A17 /* InvoiceHeaderView.swift in Sources */,
 				0A1AF41520CADB7B0009595C /* BTTableViewCell.swift in Sources */,
+				0A175D4F20D3B116000E3C83 /* RSFloatInputViewUtils.swift in Sources */,
 				0A0B11B620D2B4C400021E2D /* LabelExtensitions.swift in Sources */,
 				D7DEFC8C20C97148005FB9EF /* TabBarController.swift in Sources */,
 				0A37EF6220C588F400201907 /* ErrorHandler.swift in Sources */,
@@ -1492,12 +1524,14 @@
 				0A26FC8120D00B320097A8F6 /* InvoiceRequest.swift in Sources */,
 				0A37EFE020C7D65100201907 /* PasswordDotView.swift in Sources */,
 				0A26FC8320D0F0B00097A8F6 /* OnSwitchStateChangedDelegate.swift in Sources */,
+				0A0B11C720D3158500021E2D /* ExhangeViewController.swift in Sources */,
 				0A37EF6720C58A9100201907 /* SpinnerController.swift in Sources */,
 				0A37EFE920C7E4A700201907 /* PinValidationRequest.swift in Sources */,
 				0A62F56920C5473600A51D63 /* Errors.swift in Sources */,
 				0A4CD11C20CD47A600EF4A17 /* OnChangeStateSelected.swift in Sources */,
 				0A0D4B4B20C53361009B73E9 /* AppDelegate.swift in Sources */,
 				0A0B118D20D270DD00021E2D /* DefaultSettingsState.swift in Sources */,
+				0A175D5020D3B116000E3C83 /* RSFloatInputView.swift in Sources */,
 				0A37F00120C809DC00201907 /* ChangePasswordRequest.swift in Sources */,
 				0A37EF9520C6D1E500201907 /* SignInViewState.swift in Sources */,
 				0A08C0FF20CAA75000342A3E /* InvoiceViewModelItemType.swift in Sources */,
@@ -1719,10 +1753,7 @@
 				DEVELOPMENT_TEAM = NCJC54GM5Z;
 				INFOPLIST_FILE = IATA/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = lykke.IATA.test.delivery;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "c3518fae-dadb-4f14-ba36-95ba9f9f5a0a";
@@ -1742,10 +1773,7 @@
 				DEVELOPMENT_TEAM = NCJC54GM5Z;
 				INFOPLIST_FILE = IATA/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = lykke.IATA.test.delivery;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "c3518fae-dadb-4f14-ba36-95ba9f9f5a0a";
@@ -1763,11 +1791,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = IATATests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = lykke.IATATests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -1784,11 +1808,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = IATATests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = lykke.IATATests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -1804,11 +1824,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = IATAUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = lykke.IATAUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -1824,11 +1840,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = IATAUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = lykke.IATAUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;

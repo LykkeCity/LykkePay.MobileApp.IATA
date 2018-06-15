@@ -3,10 +3,21 @@ import UIKit
 class TransactionViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var tabView: UITableView!
-    private var items:[String] = ["",""]
+    private var items:[HistoryModel] = []
+    private var itemsValues: [String: Any] = [:]
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let model = HistoryModel()
+        model.amount = 1
+        model.logo = "djk"
+        model.name = "kde"
+        model.settlementPeriod = "dkelkd"
+        model.soldBy = "eded"
+        model.timeStamp = "kdeokde"
+        items.append(model)
+        itemsValues = (items.first?.valueFor())!
+        
         self.tabView.delegate = self
         self.tabView.dataSource = self
         self.tabView.tableFooterView = UIView()
@@ -17,7 +28,7 @@ class TransactionViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return items.count
+        return itemsValues.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

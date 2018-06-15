@@ -23,13 +23,6 @@ class InvoiceTableViewCell: UITableViewCell {
         super.awakeFromNib()
     }
     
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        if (isCanBePaid) {
-            self.checkBox.isChecked = !self.checkBox.isChecked
-            delegate?.onItemSelected(isSelected: self.checkBox.isChecked, index: checkBox.tag)
-        }
-    }
-    
     @objc func clickSelected(sender: Any?) {
         checkBox.isChecked = !checkBox.isChecked
     }

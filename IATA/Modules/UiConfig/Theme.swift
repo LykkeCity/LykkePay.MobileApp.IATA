@@ -131,6 +131,7 @@ class Theme: NSObject {
         textField.font = fontTextSizeTextField
     }
     
+   
     
     public func configureTextFieldCurrencyStyle(_ textField: MFTextField){
         configureTextFieldStyle(textField)
