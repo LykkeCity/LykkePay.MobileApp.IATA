@@ -43,7 +43,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     private func makeRootViewController() -> UIViewController {
-        CredentialManager.shared.clearSavedData()
         var viewController = UIViewController()
         if (!CredentialManager.shared.isLogged) {
             viewController = SignInViewController()
