@@ -84,10 +84,14 @@ class ChangePasswordViewController: BaseAuthViewController {
                 guard let strongSelf = self else {
                     return
                 }
-                if (!(error as! IATAOpError).validationError.isEmpty) {
-                    strongSelf.handleSignInValidationError((error as! IATAOpError).validationError)
+                if (error is IATAOpError) {
+                    if (!(error as! IATAOpError).validationError.isEmpty) {
+                        strongSelf.handleSignInValidationError((error as! IATAOpError).validationError)
+                    } else {
+                        strongSelf.handleError(error: error)
+                    }
                 } else {
-                    strongSelf.handleError(error: error)
+                    strongSelf.showErrorAlert(error: error)
                 }
             })
     }
