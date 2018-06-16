@@ -17,8 +17,6 @@ class PinViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.initNavBar()
-        
         //create PasswordContainerView
         self.passwordContainerView = PasswordContainerView.create(in: passwordStackView, digit: kPasswordDigit)
         self.passwordContainerView.delegate = self as PasswordInputCompleteProtocol
@@ -27,7 +25,14 @@ class PinViewController: UIViewController {
         self.labelTitle.text = self.isValidation ? "Pin.Validation.Title".localize() : "Pin.Setup.Title".localize()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.initNavBar()
+    }
+    
     private func initNavBar() {
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.isNavigationBarHidden = false
         self.navigationController?.navigationBar.isTranslucent = false
         self.navigationController?.navigationBar.barTintColor = UIColor.white
