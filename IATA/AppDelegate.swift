@@ -54,7 +54,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 (viewController as! PinViewController).isValidation = false
             }
         }
-        return ChangePasswordViewController()
+        return viewController
     }
     
     

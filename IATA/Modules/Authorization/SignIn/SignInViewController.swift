@@ -47,16 +47,20 @@ class SignInViewController: BaseAuthViewController {
                 guard let strongSelf = self else {
                     return
                 }
-                if (error is IATAOpError) {
-                    if (!(error as! IATAOpError).validationError.isEmpty) {
-                        strongSelf.handleSignInValidationError((error as! IATAOpError).validationError)
-                    } else {
-                        strongSelf.handleSingInError(error: error)
-                    }
-                } else {
-                    strongSelf.showErrorAlert(error: error)
-                }
+                strongSelf.handleError(error: error)
             })
+    }
+    
+    private func handleError(error: Error) {
+        if (error is IATAOpError) {
+            if (!(error as! IATAOpError).validationError.isEmpty) {
+                self.handleSignInValidationError((error as! IATAOpError).validationError)
+            } else {
+                self.handleSingInError(error: error)
+            }
+        } else {
+            self.showErrorAlert(error: error)
+        }
     }
     
     private func openValidationPinController(tokenObject: TokenObject) {
