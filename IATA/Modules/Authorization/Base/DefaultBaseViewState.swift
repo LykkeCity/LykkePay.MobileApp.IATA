@@ -7,13 +7,17 @@ class DefaultBaseViewState : BaseViewState {
         return (value.sha1().data(using: .bytesHexLiteral)?.base64EncodedString())!
     }
     
-    func getError(_ name:String, values: [String]) -> NSError {
+    func getError(_ name:String, values: [String]) -> String {
         var resMessage = ""
         for message in values {
             resMessage.append(message)
             resMessage.append("\n")
         }
-        let userInfo = [NSLocalizedDescriptionKey: resMessage]
-        return NSError(domain: name, code: 123, userInfo: userInfo)
+        return resMessage
+    }
+    
+    func getError(_ message: String) -> NSError {
+        let userInfo = [NSLocalizedDescriptionKey: message]
+        return NSError(domain: message, code: 123, userInfo: userInfo)
     }
 }

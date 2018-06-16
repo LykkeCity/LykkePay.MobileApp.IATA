@@ -1,38 +1,19 @@
-import MaterialTextField
 import UIKit
 import WARangeSlider
 
 class PaymentRangeTableViewCell: UITableViewCell, UITextFieldDelegate {
     
-    @IBOutlet weak var rangeSlider: RangeSlider!
-    @IBOutlet weak var minValueTextField: MFTextField!
-    @IBOutlet weak var maxValueTextField: MFTextField!
-    
-    @IBAction func minValueChanged(_ sender: Any) {
-        if let valueString = self.minValueTextField.text {
-            if let value = Int(valueString) {
-                self.rangeSlider.lowerValue = Double(value)
-                self.item?.min = value
-            }
-        }
-    }
-    
-    @IBAction func maxValueChanged(_ sender: Any) {
-        if let valueString = self.maxValueTextField.text {
-            if let value = Int(valueString) {
-                self.rangeSlider.upperValue = Double(value)
-                self.item?.max = value
-            }
-        }
-    }
+    @IBOutlet weak var rangeSlider: RangeSlider?
+    @IBOutlet weak var minValueTextField: DesignableUITextField?
+    @IBOutlet weak var maxValueTextField: DesignableUITextField?
     
     var item: InvoiceSettingPaymentRangeItemModel? {
         didSet {
             guard let item = self.item else {
                 return
             }
-            self.minValueTextField.text = item.min?.description
-            self.maxValueTextField.text = item.max?.description
+            self.minValueTextField?.text = item.min?.description
+            self.maxValueTextField?.text = item.max?.description
             
         }
     }
@@ -48,24 +29,45 @@ class PaymentRangeTableViewCell: UITableViewCell, UITextFieldDelegate {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        self.minValueTextField.placeholder = "Invoice.Settings.Range.From".localize()
-        self.maxValueTextField.placeholder = "Invoice.Settings.Range.To".localize()
+        self.minValueTextField?.placeholder = "Invoice.Settings.Range.From".localize()
+        self.maxValueTextField?.placeholder = "Invoice.Settings.Range.To".localize()
         
-        self.minValueTextField.delegate = self
-        self.maxValueTextField.delegate = self
-        self.rangeSlider.addTarget(self, action: #selector(rangeSliderValueChanged(sender:)),
+        self.minValueTextField?.delegate = self
+        self.maxValueTextField?.delegate = self
+        self.rangeSlider?.addTarget(self, action: #selector(rangeSliderValueChanged(sender:)),
                                    for: .valueChanged)
     }
     
     @objc func rangeSliderValueChanged(sender: Any?) {
-        self.minValueTextField.text = String(Int(round(rangeSlider.lowerValue)))
-        self.maxValueTextField.text = String(Int(round(rangeSlider.upperValue)))
+        guard let min = self.rangeSlider?.lowerValue, let max = self.rangeSlider?.upperValue else {
+            return
+        }
+        self.minValueTextField?.text = String(Int(round(min)))
+        self.maxValueTextField?.text = String(Int(round(max)))
+    }
+    
+    @IBAction func minValueChanged(_ sender: Any) {
+        if let valueString = self.minValueTextField?.text {
+            if let value = Int(valueString) {
+                self.rangeSlider?.lowerValue = Double(value)
+                self.item?.min = value
+            }
+        }
+    }
+    
+    @IBAction func maxValueChanged(_ sender: Any) {
+        if let valueString = self.maxValueTextField?.text {
+            if let value = Int(valueString) {
+                self.rangeSlider?.upperValue = Double(value)
+                self.item?.max = value
+            }
+        }
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
         if(textField == self.minValueTextField) {
-            guard let valueString = self.maxValueTextField.text else {
+            guard let valueString = self.maxValueTextField?.text else {
                 return false
             }
             
@@ -78,7 +80,7 @@ class PaymentRangeTableViewCell: UITableViewCell, UITextFieldDelegate {
         }
         
         if(textField == self.maxValueTextField) {
-            guard let valueString = self.minValueTextField.text else {
+            guard let valueString = self.minValueTextField?.text else {
                 return false
             }
             

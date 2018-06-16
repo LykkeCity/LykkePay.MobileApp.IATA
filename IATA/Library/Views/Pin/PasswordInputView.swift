@@ -1,5 +1,5 @@
 
-
+import Foundation
 import UIKit
 
 public protocol PasswordInputViewTappedProtocol: class {
@@ -30,9 +30,9 @@ open class PasswordInputView: UIView {
     }
     
     @IBInspectable
-    open var borderColor = UIColor.clear {
+    open var bordColor = UIColor.clear {
         didSet {
-            backgroundColor = borderColor
+            backgroundColor = bordColor
         }
     }
     
@@ -135,7 +135,7 @@ open class PasswordInputView: UIView {
         layer.mask = maskLayer
         
         //update color
-        backgroundColor = borderColor
+        backgroundColor = bordColor
     }
 }
 
@@ -168,7 +168,7 @@ private extension PasswordInputView {
     func touchUpAction() {
         label.font = getLabelFont()
         label.textColor = textColor
-        backgroundColor = borderColor
+        backgroundColor = bordColor
         circleView.backgroundColor = circleBackgroundColor
     }
     

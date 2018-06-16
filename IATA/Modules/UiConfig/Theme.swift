@@ -1,5 +1,5 @@
 import UIKit
-import MaterialTextField
+import Material
 
 class Theme: NSObject {
     
@@ -119,29 +119,27 @@ class Theme: NSObject {
         return rightButton
     }
     
-    public func configureTextFieldStyle(_ textField: MFTextField){
-        textField.placeholderAnimatesOnFocus = true
-        
-        textField.underlineEditingHeight = 0.75
-        textField.underlineHeight = 0.75
-        textField.tintColor = tintTextFieldColor
-        textField.textColor = textFieldColor
-        textField.defaultPlaceholderColor = placeholderTextFieldColor
-        textField.placeholderFont  = fontPlaceholderSizeTextField
-        textField.font = fontTextSizeTextField
+    public func configureTextFieldStyle(_ textField: ErrorTextField?, title: String){
+        textField?.placeholder = title.localize()
+        textField?.isPlaceholderUppercasedWhenEditing = true
+        textField?.dividerActiveColor = Theme.shared.greenColor
+        textField?.placeholderActiveColor = Theme.shared.greenColor
     }
     
-   
-    
-    public func configureTextFieldCurrencyStyle(_ textField: MFTextField){
-        configureTextFieldStyle(textField)
-        textField.font = fontCurrencyTextField
-        textField.textColor = navBarTitle
+    public func configureTextFieldCurrencyStyle(_ textField: ErrorTextField?, title: String){
+        configureTextFieldStyle(textField, title: title)
+        textField?.font = fontCurrencyTextField
+        textField?.textColor = navBarTitle
     }
     
-    public func configureTextFieldPasswordStyle(_ textField: MFTextField){
-        configureTextFieldStyle(textField)
-        textField.isSecureTextEntry = true
+    public func configureTextFieldPasswordStyle(_ textField: ErrorTextField?, title: String){
+        configureTextFieldStyle(textField, title: title)
+        textField?.isSecureTextEntry = true
+    }
+    
+    public func showError(_ textField: ErrorTextField?, _ message: String) {
+        textField?.detail = message
+        textField?.isErrorRevealed = true
     }
     
     public static private(set) var shared = Theme()

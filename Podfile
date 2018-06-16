@@ -8,13 +8,11 @@ target 'IATA' do
     pod 'ObjectMapper'
     pod 'AlamofireObjectMapper'
     pod 'KeychainAccess'
-    pod 'MaterialTextField', '~> 0.2'
     pod 'JGProgressHUD'
     pod 'CryptoSwift'
     pod 'Fabric'
     pod 'Crashlytics'
     pod 'WARangeSlider'
-    pod 'MaterialControls'
     pod 'Material'
     
     target 'IATATests' do

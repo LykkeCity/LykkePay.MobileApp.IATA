@@ -1,14 +1,22 @@
 import UIKit
-import MaterialTextField
+import Material
 
 class ChangePasswordViewController: BaseAuthViewController {
     
-    @IBOutlet weak var oldPasswordField: MFTextField!
-    @IBOutlet weak var newPasswordField: MFTextField!
-    @IBOutlet weak var newPasswordAgainField: MFTextField!
-    @IBOutlet weak var changeButton: UIButton!
+    @IBOutlet weak var oldPasswordField: ErrorTextField?
+    @IBOutlet weak var newPasswordField: ErrorTextField?
+    @IBOutlet weak var newPasswordAgainField: ErrorTextField?
+    @IBOutlet weak var changeButton: UIButton?
     
     private var state: ChangePasswordViewState = DefaultChangePasswordViewState() as ChangePasswordViewState
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.initView()
+        self.oldPasswordField?.delegate = self
+        self.newPasswordField?.delegate = self
+        self.newPasswordAgainField?.delegate = self
+    }
     
     @IBAction func textFieldChanged(_ sender: Any) {
         self.changeState(state: self.isReady())
@@ -20,26 +28,17 @@ class ChangePasswordViewController: BaseAuthViewController {
         self.navigationController?.pushViewController(SignInViewController(), animated: true)
     }
     
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.initView()
-        self.oldPasswordField.delegate = self
-        self.newPasswordField.delegate = self
-        self.newPasswordAgainField.delegate = self
-    }
-    
     private func initView() {
         self.initNavBar()
-        Theme.shared.configureTextFieldPasswordStyle(oldPasswordField)
-        Theme.shared.configureTextFieldPasswordStyle(newPasswordField)
-        Theme.shared.configureTextFieldPasswordStyle(newPasswordAgainField)
+        Theme.shared.configureTextFieldPasswordStyle(self.oldPasswordField, title: "ChangePassword.Placeholder.CurrentPassword")
+        Theme.shared.configureTextFieldPasswordStyle(self.newPasswordField, title: "ChangePassword.Placeholder.NewPassword")
+        Theme.shared.configureTextFieldPasswordStyle(self.newPasswordAgainField, title: "ChangePassword.Placeholder.NewPasswordAgain")
         
-        self.newPasswordField.delegate = self
-        self.newPasswordAgainField.delegate = self
-        self.oldPasswordField.delegate = self
+        self.newPasswordField?.delegate = self
+        self.newPasswordAgainField?.delegate = self
+        self.oldPasswordField?.delegate = self
         
-        self.changeButton.addTarget(self, action: #selector(self.buttonClicked), for: .touchUpInside)
+        self.changeButton?.addTarget(self, action: #selector(self.buttonClicked), for: .touchUpInside)
         self.changeState(state: false)
     }
     
@@ -70,7 +69,10 @@ class ChangePasswordViewController: BaseAuthViewController {
     
     @objc private func buttonClicked() {
         self.view.endEditing(true)
-        self.state.change(currentPassword: oldPasswordField.text!, newPassword: newPasswordField.text!)?
+        guard let oldPassword = self.oldPasswordField?.text, let newPassword = self.newPasswordField?.text else {
+            return
+        }
+        self.state.change(currentPassword: oldPassword, newPassword: newPassword)?
             .withSpinner(in: view)
             .then(execute: { [weak self] (ob: Void) -> Void in
                 guard let strongSelf = self else {
@@ -98,7 +100,7 @@ class ChangePasswordViewController: BaseAuthViewController {
         for item in listOfError {
             switch item.key {
             case PropertyValidationKey.currentPasssword.rawValue:
-                self.oldPasswordField.setError(state.getError(item.key, values: item.value), animated: true)
+                Theme.shared.showError(self.oldPasswordField, state.getError(item.key, values: item.value))
                 break
             default:
                 break;
@@ -112,29 +114,33 @@ class ChangePasswordViewController: BaseAuthViewController {
         self.navigationController?.pushViewController(viewController, animated: true)
     }
     
-    fileprivate func setUpTextFields() {
+    private func setUpTextFields() {
         if (self.isHasError()) {
-            let userInfo = [NSLocalizedDescriptionKey: "ChangePassword.FieldNotEquals.Error".localize()]
-            let error = NSError(domain: "", code: 123, userInfo: userInfo)
-            self.newPasswordAgainField.setError(error, animated: true)
-            
+            Theme.shared.showError(self.newPasswordAgainField, "ChangePassword.FieldNotEquals.Error".localize())
         } else {
-            self.newPasswordAgainField.setError(nil, animated: true)
+            self.newPasswordAgainField?.isErrorRevealed = false
         }
     }
     
-    fileprivate func isReady() -> Bool {
-        return !self.oldPasswordField.text!.isEmpty && self.isHasError()
+    private func isReady() -> Bool {
+        guard let currentPassword = self.oldPasswordField?.text else {
+            return false
+        }
+        return !currentPassword.isEmpty && !self.isHasError()
     }
     
-    fileprivate func isHasError() -> Bool {
-        return !self.newPasswordField.text!.isEmpty &&
-            self.newPasswordField.text!.elementsEqual(self.newPasswordAgainField.text!)
+    private func isHasError() -> Bool {
+        guard let newPass = self.newPasswordField?.text, let newPassAgain = self.newPasswordAgainField?.text else {
+            return false
+        }
+        return !newPass.isEmpty &&
+            !newPass.elementsEqual(newPassAgain)
     }
     
-    fileprivate func changeState(state: Bool) {
-        self.changeButton.alpha = state ? 1.0 : 0.5
-        self.changeButton.isEnabled = state
+    private func changeState(state: Bool) {
+        self.changeButton?.alpha = state ? 1.0 : 0.5
+        self.changeButton?.isEnabled = state
+        self.setUpTextFields()
     }
     
 }

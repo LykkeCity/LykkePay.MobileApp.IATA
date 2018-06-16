@@ -1,8 +1,8 @@
 import UIKit
-import MaterialTextField
+import Material
 
 @IBDesignable
-class DesignableUITextField: MFTextField {
+class DesignableUITextField: ErrorTextField {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
