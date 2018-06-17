@@ -16,7 +16,7 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
         initializer = self
         state = DefaultInvoiceState()
         super.viewDidLoad()
-       // Theme.shared.configureTextFieldCurrencyStyle(self.sumTextField)
+        Theme.shared.configureTextFieldCurrencyStyle(self.sumTextField, title: "")
         self.downView.isHidden = true
         self.sumTextField.delegate = self
     }

@@ -13,6 +13,9 @@ class BigThumbnailSwither : UISlider {
     override func awakeFromNib() {
         super.awakeFromNib()
         self.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTap(sender:))))
+        self.addTarget(self, action: #selector(sliderValueChanged(slider:)),
+                       for: UIControlEvents.valueChanged)
+
     }
     
     fileprivate func initThumbColor() {
@@ -26,6 +29,10 @@ class BigThumbnailSwither : UISlider {
     @objc func handleTap(sender:UISlider!) {
         self.setValue(self.value == 0 ?  1 : 0, animated: true)
         self.delegate?.stateChanged(isSelected: self.value == 1)
+        initThumbColor()
+    }
+    
+    @objc func sliderValueChanged(slider: UISlider!) {
         initThumbColor()
     }
     
