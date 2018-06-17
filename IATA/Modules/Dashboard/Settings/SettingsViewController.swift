@@ -57,8 +57,8 @@ class SettingsViewController: UIViewController, UICollectionViewDelegate, UIColl
     
     func logout(alert: UIAlertAction!) {
         CredentialManager.shared.clearSavedData()
+        self.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(SignInViewController(), animated: true)
-        self.tabBarController?.tabBar.isHidden = true
     }
     
     @objc private func logoutButtonTapped() {
