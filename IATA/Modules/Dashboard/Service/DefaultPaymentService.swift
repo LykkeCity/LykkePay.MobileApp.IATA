@@ -23,5 +23,5 @@ class DefaultPaymentService: NSObject, PaymentService {
         params[InvoiceRequest.InvoiceParamsKey.settlementAssets.rawValue] = invoceParams.settlementAssets
         
         return Network.shared.get(path: PaymentConfig.shared.invoices , params: params)
-    } 
+    }
 }

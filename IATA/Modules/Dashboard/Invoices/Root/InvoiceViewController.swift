@@ -3,8 +3,7 @@ import ObjectMapper
 
 class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceState>,
     Initializer,
-    UITextFieldDelegate,
-    OnChangeStateSelected {
+OnChangeStateSelected {
     
     @IBOutlet weak var tabView: UITableView!
     @IBOutlet weak var downView: UIView!
@@ -12,13 +11,29 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
     @IBOutlet weak var selectedItemTextField: UILabel!
     @IBOutlet weak var downViewHeightConstraint: NSLayoutConstraint!
     
+    @IBOutlet weak var bottomConstrain: NSLayoutConstraint!
     override func viewDidLoad() {
         initializer = self
         state = DefaultInvoiceState()
         super.viewDidLoad()
-        Theme.shared.configureTextFieldCurrencyStyle(self.sumTextField, title: "")
+        Theme.shared.configureTextFieldCurrencyStyle(self.sumTextField)
         self.downView.isHidden = true
         self.sumTextField.delegate = self
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: NSNotification.Name.UIKeyboardDidShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            UIView.animate(withDuration: 0.1, animations: { () -> Void in
+                self.bottomConstrain.constant = -keyboardSize.size.height/2 - 20
+            })
+        }
+    }
+    
+    @objc func keyboardWillHide(notification: NSNotification) {
+        self.bottomConstrain.constant = 0
     }
     
     override func getLeftButton() -> UIBarButtonItem? {
@@ -60,13 +75,14 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
         }
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let currentCell = self.tabView.cellForRow(at: indexPath) as! InvoiceTableViewCell
-        if (currentCell.checkBox.isCanBeChanged) {
-            currentCell.checkBox.isChecked = !currentCell.checkBox.isChecked
-            onItemSelected(isSelected: currentCell.checkBox.isChecked, index: indexPath.row)
-        }
-    }
+    /* Invoices are selected after tappinth the invoice, not radio button - qa asked
+     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+     let currentCell = self.tabView.cellForRow(at: indexPath) as! InvoiceTableViewCell
+     if (currentCell.checkBox.isCanBeChanged) {
+     currentCell.checkBox.isChecked = !currentCell.checkBox.isChecked
+     onItemSelected(isSelected: currentCell.checkBox.isChecked, index: indexPath.row)
+     }
+     }*/
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         guard let state = self.state else {
@@ -131,22 +147,39 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        
         if(textField == self.sumTextField) {
             return TextFieldUtil.validateMaxValue(textField: textField, maxValue: self.state!.resultAmount(), range: range, replacementString: string)
         }
         return true
     }
     
+    func getWidth(text: String) -> CGFloat {
+        let txtField = UITextField(frame: .zero)
+        txtField.text = text
+        txtField.sizeToFit()
+        return txtField.frame.size.width
+    }
+    
+    
     func onItemSelected(isSelected: Bool, index: Int) {
         self.sumTextField.text = self.state?.getSumString(isSelected: isSelected, index: index)
         self.selectedItemTextField.text = self.state?.getSelectedString()
+        
         if (isSelected && self.downView.isHidden) {
             animate(isShow: true)
         } else if (!isSelected && !self.downView.isHidden && self.state?.getCountSelected() == 0) {
-           animate(isShow: false)
+            animate(isShow: false)
         }
     }
+    
+    /*  private func initWidth() {
+     let width = getWidth(text: sumTextField.text!)
+     sumTextWidth.constant = 0.0
+     if width > sumTextWidth.constant {
+     sumTextWidth.constant = width
+     }
+     self.view.layoutIfNeeded()
+     }*/
     
     private func animate(isShow: Bool) {
         UIView.animate(withDuration: 0.3) {
@@ -202,4 +235,5 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
             menu.hideMenu()
         }
     }
+    
 }

@@ -39,7 +39,7 @@ class Theme: NSObject {
     
     public private(set) lazy var fontTextSizeTextField = regularFontOfSize(16)
     public private(set) lazy var fontPlaceholderSizeTextField = regularFontOfSize(10)
-    public private(set) lazy var fontCurrencyTextField = regularFontOfSize(24)
+    public private(set) lazy var fontCurrencyTextField = boldFontOfSize(14)
     
     override init() {
         super.init()
@@ -128,6 +128,15 @@ class Theme: NSObject {
     
     public func configureTextFieldCurrencyStyle(_ textField: ErrorTextField?, title: String){
         configureTextFieldStyle(textField, title: title)
+        textField?.font = fontCurrencyTextField
+        textField?.textColor = navBarTitle
+    }
+    
+    public func configureTextFieldCurrencyStyle(_ textField: ErrorTextField?){
+        configureTextFieldStyle(textField, title: "")
+        textField?.dividerActiveColor = UIColor.clear
+        textField?.dividerNormalColor = UIColor.clear
+        textField?.dividerColor = UIColor.clear
         textField?.font = fontCurrencyTextField
         textField?.textColor = navBarTitle
     }

@@ -5,7 +5,7 @@ import ObjectMapper
 class BaseViewController<T: Mappable, S: DefaultBaseState<T>>:
     BaseNavController,
     UITableViewDelegate,
-UITableViewDataSource {
+    UITableViewDataSource {
     
     var state: S?
     

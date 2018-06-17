@@ -2,12 +2,14 @@ import Foundation
 import UIKit
 
 
-class BaseNavController: UIViewController {
+class BaseNavController: UIViewController, UITextFieldDelegate {
     
     var initializer: Initializer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(appMovedToBackground), name: Notification.Name.UIApplicationWillResignActive, object: nil)
         setUp()
         initNavBar()
     }
@@ -44,4 +46,12 @@ class BaseNavController: UIViewController {
         return nil
     }
     
+    @objc func appMovedToBackground() {
+        self.view.endEditing(true)
+    }
+    
+     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
 }
