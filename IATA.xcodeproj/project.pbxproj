@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A01898620D6D55600CD5A79 /* BracketLessGetEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A01898520D6D55600CD5A79 /* BracketLessGetEncoding.swift */; };
 		0A08C0FD20CAA70400342A3E /* InvoiceViewModelExtensition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A08C0FC20CAA70400342A3E /* InvoiceViewModelExtensition.swift */; };
 		0A08C0FF20CAA75000342A3E /* InvoiceViewModelItemType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A08C0FE20CAA75000342A3E /* InvoiceViewModelItemType.swift */; };
 		0A08C11720CAB5B900342A3E /* PaymentRangeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A08C11520CAB5B900342A3E /* PaymentRangeTableViewCell.swift */; };
@@ -187,6 +188,7 @@
 
 /* Begin PBXFileReference section */
 		058CEEE5590F2BCD98BAD1F5 /* Pods-IATA.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IATA.debug.xcconfig"; path = "Pods/Target Support Files/Pods-IATA/Pods-IATA.debug.xcconfig"; sourceTree = "<group>"; };
+		0A01898520D6D55600CD5A79 /* BracketLessGetEncoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BracketLessGetEncoding.swift; sourceTree = "<group>"; };
 		0A08C0FC20CAA70400342A3E /* InvoiceViewModelExtensition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvoiceViewModelExtensition.swift; sourceTree = "<group>"; };
 		0A08C0FE20CAA75000342A3E /* InvoiceViewModelItemType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvoiceViewModelItemType.swift; sourceTree = "<group>"; };
 		0A08C11520CAB5B900342A3E /* PaymentRangeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentRangeTableViewCell.swift; sourceTree = "<group>"; };
@@ -574,6 +576,7 @@
 				0A62F56420C545F700A51D63 /* NetworkUtil.swift */,
 				0A62F56A20C5497200A51D63 /* EncodingType.swift */,
 				0A62F56C20C5499400A51D63 /* ArrayEncoding.swift */,
+				0A01898520D6D55600CD5A79 /* BracketLessGetEncoding.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -1499,6 +1502,7 @@
 				0A37F00820C81A5600201907 /* BaseAuthViewController.swift in Sources */,
 				0A4CD16320CF074500EF4A17 /* DefaultInvoiceState.swift in Sources */,
 				0A1AF40E20CADB670009595C /* UIView+Extension.swift in Sources */,
+				0A01898620D6D55600CD5A79 /* BracketLessGetEncoding.swift in Sources */,
 				0A0D4B5320C53362009B73E9 /* IATA.xcdatamodeld in Sources */,
 				0A6DB5DA20C5572E00BC1127 /* DataRequest.swift in Sources */,
 				0A26FC8D20D117410097A8F6 /* InvoiceSettingsState.swift in Sources */,
@@ -1753,7 +1757,10 @@
 				DEVELOPMENT_TEAM = NCJC54GM5Z;
 				INFOPLIST_FILE = IATA/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = lykke.IATA.test.delivery;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "c3518fae-dadb-4f14-ba36-95ba9f9f5a0a";
@@ -1773,7 +1780,10 @@
 				DEVELOPMENT_TEAM = NCJC54GM5Z;
 				INFOPLIST_FILE = IATA/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = lykke.IATA.test.delivery;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "c3518fae-dadb-4f14-ba36-95ba9f9f5a0a";
@@ -1791,7 +1801,11 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = IATATests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = lykke.IATATests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -1808,7 +1822,11 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = IATATests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = lykke.IATATests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -1824,7 +1842,11 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = IATAUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = lykke.IATAUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -1840,7 +1862,11 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = IATAUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = lykke.IATAUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;

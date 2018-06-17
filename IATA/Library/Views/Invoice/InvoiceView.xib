@@ -37,7 +37,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="yXU-yc-qv1">
-                    <rect key="frame" x="77" y="16" width="108.5" height="46.5"/>
+                    <rect key="frame" x="52" y="16" width="108.5" height="46.5"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="AIR CHINA" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SQW-wh-Aoa">
                             <rect key="frame" x="0.0" y="0.0" width="108.5" height="12.5"/>
@@ -110,7 +110,7 @@
                 <constraint firstItem="5eL-jn-e0W" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="8" id="a1f-22-9NY"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Jw2-S9-r55" secondAttribute="trailing" constant="16" id="ku8-eM-xjc"/>
                 <constraint firstItem="yXU-yc-qv1" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="16" id="q6i-fX-tTh"/>
-                <constraint firstItem="yXU-yc-qv1" firstAttribute="leading" secondItem="5eL-jn-e0W" secondAttribute="trailing" constant="33" id="vbR-ab-T9x"/>
+                <constraint firstItem="yXU-yc-qv1" firstAttribute="leading" secondItem="5eL-jn-e0W" secondAttribute="trailing" constant="8" id="vbR-ab-T9x"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>

@@ -162,11 +162,11 @@ class Network {
     }
     
     public func get<ResultType: BaseMappable>(path: String, params: [String: Any]) -> Promise<ResultType> {
-        return request(path: path, method: .get, params: params)
+        return request(path: path, method: .get, params: params, encoding: ArrayEncoding())
     }
     
     public func get(path: String, params: [String: Any]) -> Promise<String> {
-        return request(path: path, method: .get, params: params)
+        return request(path: path, method: .get, params: params, encoding: BrasketLessGetEncoding())
     }
     
    

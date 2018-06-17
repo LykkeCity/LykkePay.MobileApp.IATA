@@ -19,13 +19,13 @@ class DefaultInvoiceState: DefaultBaseState<InvoiceModel> {
     
     func getInvoiceStringJson() -> Promise<String> {
         selectedStatus(index: FilterPreference.shared.getIndexOfStatus())
-        invoiceParams?.billingCategories = FilterPreference.shared.getBillingChecked()
-        invoiceParams?.clientMerchantIds = FilterPreference.shared.getAirlines()
-        invoiceParams?.settlementAssets = FilterPreference.shared.getCurrency()
-        invoiceParams?.lessThan = FilterPreference.shared.getMaxValue()
-        invoiceParams?.greaterThan = FilterPreference.shared.getMinValue()
+        self.invoiceParams?.billingCategories = FilterPreference.shared.getBillingChecked()
+        self.invoiceParams?.clientMerchantIds = FilterPreference.shared.getAirlines()
+        self.invoiceParams?.settlementAssets = FilterPreference.shared.getCurrency()
+        self.invoiceParams?.lessThan = FilterPreference.shared.getMaxValue()
+        self.invoiceParams?.greaterThan = FilterPreference.shared.getMinValue()
         
-        return self.service.getInVoices(invoceParams: invoiceParams!)
+        return self.service.getInVoices(invoceParams: self.invoiceParams!)
     }
     
     func getCountSelected() -> Int {
