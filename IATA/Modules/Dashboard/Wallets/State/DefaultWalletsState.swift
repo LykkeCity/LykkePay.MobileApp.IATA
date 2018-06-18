@@ -7,26 +7,28 @@ class DefaultWalletsState: DefaultBaseState<WalletsModel> {
 
     public lazy var service: PaymentService = DefaultPaymentService()
 
-    private var wallets: [WalletsViewModel] = []
-
     private let convertAssetIdParams = "convertAssetIdParams"
-
-    func mapping(jsonString: String!) -> [WalletsModel] {
-        return !jsonString.isEmpty ? Mapper<WalletsModel>().mapArray(JSONObject: jsonString.toJSON())! : Array<WalletsModel>()
-    }
 
     func getWalletsStringJson() -> Promise<String> {
         return self.service.getWallets(convertAssetIdParams: convertAssetIdParams)
     }
 
-    func generateTestWalletsData() -> [WalletsViewModel] {
+    func mapping(jsonString: String!) -> [WalletsViewModel] {
+        let walletsModels = !jsonString.isEmpty ? Mapper<WalletsModel>().mapArray(JSONObject: jsonString.toJSON())! : Array<WalletsModel>()
+        let walletsViewModels = prepareWalletsViewModels(from: walletsModels)
+        return walletsViewModels
+    }
+
+    func prepareWalletsViewModels(from walletsModels: [WalletsModel]) -> [WalletsViewModel] {
         var walletsForPresent: [WalletsViewModel] = []
-        var walletViewModel = WalletsViewModel()
-        let testWallets = generateData()
-        let walletsDictionary = prepareWalletsDictionary(wallets:testWallets)
+        var walletsForTest = walletsModels
+        if walletsModels.count == 0 {
+            walletsForTest = generateData()
+        }
+        let walletsDictionary = prepareWalletsDictionary(wallets: walletsForTest)
         for (key, _) in walletsDictionary {
             if let wallet = walletsDictionary[key] {
-                walletViewModel = WalletsViewModel(wallets: wallet)
+                let walletViewModel = WalletsViewModel(wallets: wallet)
                 walletsForPresent.append(walletViewModel)
             }
         }
@@ -88,4 +90,6 @@ class DefaultWalletsState: DefaultBaseState<WalletsModel> {
 
         return [testWallets1, testWallets2, testWallets3,testWallets4, testWallets6]
     }
+
+    
 }

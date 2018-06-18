@@ -7,25 +7,19 @@ class WalletsViewController: BaseViewController<WalletsModel, DefaultWalletsStat
     
     @IBOutlet weak var tableView: UITableView!
 
-    private var wallets: [WalletsModel] = []
-
     private var walletsViewModel: [WalletsViewModel] = []
-
-    private var totalBalance: String?
 
     override func viewDidLoad() {
         initializer = self
         state = DefaultWalletsState()
         super.viewDidLoad()
         loadData()
-        if let testData = state?.generateTestWalletsData() {
-            walletsViewModel = testData
-        }
-        totalBalance = state?.getTotalBalance(from:walletsViewModel)
     }
-    //todo
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        loadData()
+        totalBalanceLabel.text = state?.getTotalBalance(from:walletsViewModel)
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -36,7 +30,6 @@ class WalletsViewController: BaseViewController<WalletsModel, DefaultWalletsStat
         guard let cell = tableView.dequeueReusableCell(withIdentifier: WalletsTableViewCell.identifier) as?  WalletsTableViewCell else {
             return WalletsTableViewCell()
         }
-        totalBalanceLabel.text = totalBalance
         cell.fillCell(from: walletsViewModel[indexPath.row])
         return cell
     }
@@ -55,7 +48,8 @@ class WalletsViewController: BaseViewController<WalletsModel, DefaultWalletsStat
     }
 
     private func reloadTable(jsonString: String!) {
-        self.wallets = (state?.mapping(jsonString: jsonString))!
+        self.walletsViewModel = (state?.mapping(jsonString: jsonString))!
+        totalBalanceLabel.text = state?.getTotalBalance(from:walletsViewModel)
         self.tableView.reloadData()
     }
 
