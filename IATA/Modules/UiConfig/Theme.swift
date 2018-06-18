@@ -82,7 +82,7 @@ class Theme: NSObject {
     public func getTitle(title: String!, color: UIColor) -> UILabel {
         let titleLabel = UILabel()
         titleLabel.text = title
-        titleLabel.font =  UIFont(name: "GothamPro-Bold", size: 17)
+        titleLabel.font =  UIFont(name: "GothamPro-Medium", size: 17)
         titleLabel.tintColor = color
         titleLabel.textColor = color
         titleLabel.frame = CGRect(x: 0.0,

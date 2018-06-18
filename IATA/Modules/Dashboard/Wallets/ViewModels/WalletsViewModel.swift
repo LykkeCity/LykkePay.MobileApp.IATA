@@ -1,7 +1,8 @@
 
 import Foundation
+import ObjectMapper
 
-class WalletsViewModel {
+class WalletsViewModel: Mappable {
 
     internal var totalBalance: Double?
 
@@ -40,5 +41,13 @@ class WalletsViewModel {
         self.totalBalance = totalBalance
         self.totalConvertedBalance = totalConvertedBalance
         self.assetId = preparedWallets.first?.assetId
+    }
+
+    required init?(map: Map) {
+
+    }
+
+    func mapping(map: Map) {
+        
     }
 }

@@ -19,10 +19,7 @@ class BaseNavController: UIViewController {
     func initNavBar() {
         self.navigationController?.navigationBar.barTintColor = Theme.shared.tabBarBackgroundColor
         self.navigationController?.navigationBar.tintColor = .white
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white,
-                                                                        NSAttributedStringKey.font: UIFont(name: "GothamPro-Medium", size: 17)]
         self.navigationController?.navigationBar.isTranslucent = false
-        
         self.navigationItem.titleView = getTitleView()
         self.navigationItem.leftBarButtonItem  = getLeftButton()
         self.navigationItem.rightBarButtonItem  = getRightButton()

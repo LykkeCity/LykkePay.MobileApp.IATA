@@ -1,13 +1,12 @@
 
 import UIKit
 
-class WalletsViewController: BaseViewController<WalletsModel, DefaultWalletsState> , Initializer {
+class WalletsViewController: BaseViewController<WalletsViewModel, DefaultWalletsState> , Initializer {
 
     @IBOutlet weak var totalBalanceLabel: UILabel!
     
     @IBOutlet weak var tableView: UITableView!
 
-    private var walletsViewModel: [WalletsViewModel] = []
 
     override func viewDidLoad() {
         initializer = self
@@ -19,18 +18,22 @@ class WalletsViewController: BaseViewController<WalletsModel, DefaultWalletsStat
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         loadData()
-        totalBalanceLabel.text = state?.getTotalBalance(from:walletsViewModel)
+        totalBalanceLabel.text = state?.getTotalBalance()
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return walletsViewModel.count
+        if let count = self.state?.items.count {
+            return count
+        } else {
+            return 0
+        }
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: WalletsTableViewCell.identifier) as?  WalletsTableViewCell else {
             return WalletsTableViewCell()
         }
-        cell.fillCell(from: walletsViewModel[indexPath.row])
+        cell.fillCell(from: (self.state?.getItems() [indexPath.row])!)
         return cell
     }
 
@@ -48,8 +51,8 @@ class WalletsViewController: BaseViewController<WalletsModel, DefaultWalletsStat
     }
 
     private func reloadTable(jsonString: String!) {
-        self.walletsViewModel = (state?.mapping(jsonString: jsonString))!
-        totalBalanceLabel.text = state?.getTotalBalance(from:walletsViewModel)
+        self.state?.mapping(jsonString: jsonString)
+        self.totalBalanceLabel.text = state?.getTotalBalance()
         self.tableView.reloadData()
     }
 

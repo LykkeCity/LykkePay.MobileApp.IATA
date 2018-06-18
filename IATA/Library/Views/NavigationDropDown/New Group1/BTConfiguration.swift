@@ -57,8 +57,8 @@ final class BTConfiguration {
         self.cellSeparatorColor = UIColor.darkGray
         self.cellTextLabelColor = UIColor.darkGray
         self.selectedCellTextLabelColor = UIColor.darkGray
-        self.cellTextLabelFont = UIFont(name: "GothamPro-Bold", size: 17)
-        self.navigationBarTitleFont = UIFont(name: "GothamPro-Bold", size: 17)
+        self.cellTextLabelFont = UIFont(name: "GothamPro-Medium", size: 17)
+        self.navigationBarTitleFont = UIFont(name: "GothamPro-Medium", size: 17)
         self.cellTextLabelAlignment = NSTextAlignment.center
         self.cellSelectionColor = UIColor.lightGray
         self.checkMarkImage = nil

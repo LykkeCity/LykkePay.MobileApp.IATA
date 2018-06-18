@@ -3,7 +3,7 @@ import PromiseKit
 import ObjectMapper
 
 
-class DefaultWalletsState: DefaultBaseState<WalletsModel> {
+class DefaultWalletsState: DefaultBaseState<WalletsViewModel> {
 
     public lazy var service: PaymentService = DefaultPaymentService()
 
@@ -13,15 +13,16 @@ class DefaultWalletsState: DefaultBaseState<WalletsModel> {
         return self.service.getWallets(convertAssetIdParams: convertAssetIdParams)
     }
 
-    func mapping(jsonString: String!) -> [WalletsViewModel] {
+    func mapping(jsonString: String!) {
         let walletsModels = !jsonString.isEmpty ? Mapper<WalletsModel>().mapArray(JSONObject: jsonString.toJSON())! : Array<WalletsModel>()
         let walletsViewModels = prepareWalletsViewModels(from: walletsModels)
-        return walletsViewModels
+        self.items = walletsViewModels
     }
 
     func prepareWalletsViewModels(from walletsModels: [WalletsModel]) -> [WalletsViewModel] {
         var walletsForPresent: [WalletsViewModel] = []
         var walletsForTest = walletsModels
+        //For test data
         if walletsModels.count == 0 {
             walletsForTest = generateData()
         }
@@ -45,16 +46,16 @@ class DefaultWalletsState: DefaultBaseState<WalletsModel> {
         return dictionaryOfWallets
     }
 
-    func getTotalBalance(from wallets: [WalletsViewModel]) -> String {
+    func getTotalBalance() -> String {
         var totaBalance = 0.0
-        for wallet in wallets {
+        for wallet in items {
             if let convertedBalance = wallet.totalConvertedBalance {
                 totaBalance += convertedBalance
             }
         }
         return String(totaBalance) + " $"
     }
-
+    //For test data
     private func generateData() -> [WalletsModel] {
         let testWallets1 = WalletsModel()
         let testWallets2 = WalletsModel()
