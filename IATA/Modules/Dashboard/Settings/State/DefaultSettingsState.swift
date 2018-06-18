@@ -8,12 +8,14 @@ class DefaultSettingsState: SettingsState {
         let model1 = InvoiceSettingAirlinesModel()
         model1?.logo = "ic_usFlagSmallIcn"
         model1?.name = "USD"
+        model1?.id = "USD"
         model1?.initSymbol()
         UserPreference.shared.saveCurrentCurrency(model1!)
         
         let model2 = InvoiceSettingAirlinesModel()
         model2?.logo = "ic_eurFlagSmallIcn"
         model2?.name = "EURO"
+        model2?.id = "EURO"
         model2?.initSymbol()
         guard let currencies = [model1, model2] as? [InvoiceSettingAirlinesModel] else {
             return

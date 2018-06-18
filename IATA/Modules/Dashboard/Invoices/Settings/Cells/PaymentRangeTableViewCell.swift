@@ -32,8 +32,8 @@ class PaymentRangeTableViewCell: UITableViewCell, UITextFieldDelegate {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        self.minValueTextField?.placeholder = "Invoice.Settings.Range.From".localize()
-        self.maxValueTextField?.placeholder = "Invoice.Settings.Range.To".localize()
+        Theme.shared.configureTextFieldStyle(self.minValueTextField, title: "Invoice.Settings.Range.From".localize())
+          Theme.shared.configureTextFieldStyle(self.maxValueTextField, title: "Invoice.Settings.Range.To".localize())
         
         self.minValueTextField?.delegate = self
         self.maxValueTextField?.delegate = self

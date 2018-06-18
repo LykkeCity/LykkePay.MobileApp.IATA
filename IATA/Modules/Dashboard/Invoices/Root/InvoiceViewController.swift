@@ -284,6 +284,8 @@ OnChangeStateSelected {
     }
     
     private func hideMenu() {
+        self.view.endEditing(true)
+        self.tabView.reloadData()
         self.state?.clearSelectedItems()
         self.animate(isShow: false)
         if (self.navigationItem.titleView is BTNavigationDropdownMenu) {

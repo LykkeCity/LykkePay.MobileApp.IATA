@@ -17,7 +17,6 @@ class DefaultInvoiceSettingsState: InvoiceSettingsState {
             if (item is InvoicePaymentRangeItem) {
                 let value = (item as! InvoicePaymentRangeItem).paymentRange
                 value.min = min
-                FilterPreference.shared.saveMinValue(value.max)
             }
         }
     }
@@ -27,7 +26,6 @@ class DefaultInvoiceSettingsState: InvoiceSettingsState {
             if (item is InvoicePaymentRangeItem) {
                 let value = (item as! InvoicePaymentRangeItem).paymentRange
                 value.max = max
-                FilterPreference.shared.saveMaxValue(value.max)
             }
         }
     }
