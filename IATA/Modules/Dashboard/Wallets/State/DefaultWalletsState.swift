@@ -55,6 +55,7 @@ class DefaultWalletsState: DefaultBaseState<WalletsViewModel> {
         }
         return String(totaBalance) + " $"
     }
+    
     //For test data
     private func generateData() -> [WalletsModel] {
         let testWallets1 = WalletsModel()

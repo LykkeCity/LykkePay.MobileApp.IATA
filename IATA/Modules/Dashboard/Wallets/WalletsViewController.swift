@@ -45,8 +45,6 @@ class WalletsViewController: BaseViewController<WalletsViewModel, DefaultWallets
                     return
                 }
                 strongSelf.reloadTable(jsonString: result)
-            }).catch(execute: { [weak self] error -> Void in
-
             })
     }
 

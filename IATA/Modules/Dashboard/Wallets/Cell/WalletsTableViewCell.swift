@@ -35,6 +35,7 @@ class WalletsTableViewCell: UITableViewCell {
         }
     }
 
+    //for test - as api isn't ready
     private func prepareBaseAssetBalanceValue(from baseAssetBalance : Double, and assetId: String) -> String {
         if assetId.contains("USD") {
             walletsNationalFlag = "ic_usFlagMediumIcn"
