@@ -11,13 +11,18 @@ class WalletsViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     private var wallets: [WalletsModel] = []
 
+    private var walletsViewModel: [WalletsViewModel] = []
+
+    private var totalBalance: String?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(WalletsTableViewCell.nib, forCellReuseIdentifier: WalletsTableViewCell.identifier)
         tableView.tableFooterView = UIView(frame: .zero)
-        wallets = state.generateTestWalletsData()
+        walletsViewModel = state.generateTestWalletsData()
+        totalBalance = state.getTotalBalance(from:walletsViewModel)
         //loadData()
 
     }
@@ -32,15 +37,15 @@ class WalletsViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return wallets.count
+        return walletsViewModel.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: WalletsTableViewCell.identifier) as?  WalletsTableViewCell else {
             return WalletsTableViewCell()
         }
-        totalBalanceLabel.text = state.getTotalBalance(from: wallets)
-        cell.fillCell(from: wallets[indexPath.row])
+        totalBalanceLabel.text = totalBalance
+        cell.fillCell(from: walletsViewModel[indexPath.row])
         return cell
     }
 

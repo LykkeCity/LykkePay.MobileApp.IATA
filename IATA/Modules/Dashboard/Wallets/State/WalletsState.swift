@@ -7,8 +7,8 @@ protocol WalletsState {
 
     func getWalletsStringJson() -> Promise<String>
 
-    func generateTestWalletsData() -> [WalletsModel]
+    func generateTestWalletsData() -> [WalletsViewModel]
 
-    func getTotalBalance(from wallets: [WalletsModel]) -> String
+    func getTotalBalance(from wallets: [WalletsViewModel]) -> String
     
 }

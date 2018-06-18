@@ -129,6 +129,7 @@
 		D784931820D25BC00060EAC6 /* WalletsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D784931720D25BC00060EAC6 /* WalletsModel.swift */; };
 		D784931B20D25EDD0060EAC6 /* WalletsState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D784931A20D25EDD0060EAC6 /* WalletsState.swift */; };
 		D784931D20D25F650060EAC6 /* DefaultWalletsState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D784931C20D25F650060EAC6 /* DefaultWalletsState.swift */; };
+		D78589A320D3DF1800E3C3FB /* WalletsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D78589A220D3DF1800E3C3FB /* WalletsViewModel.swift */; };
 		D7894CFD20CFFC290069F68E /* GothamProMed.otf in Resources */ = {isa = PBXBuildFile; fileRef = D7894CFB20CFFC290069F68E /* GothamProMed.otf */; };
 		D7894CFE20CFFC290069F68E /* GothamProReg.otf in Resources */ = {isa = PBXBuildFile; fileRef = D7894CFC20CFFC290069F68E /* GothamProReg.otf */; };
 		D7D177A620CE3AFA00985F05 /* BaseCurrencyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D177A420CE3AFA00985F05 /* BaseCurrencyCollectionViewCell.swift */; };
@@ -296,6 +297,7 @@
 		D784931720D25BC00060EAC6 /* WalletsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletsModel.swift; sourceTree = "<group>"; };
 		D784931A20D25EDD0060EAC6 /* WalletsState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletsState.swift; sourceTree = "<group>"; };
 		D784931C20D25F650060EAC6 /* DefaultWalletsState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultWalletsState.swift; sourceTree = "<group>"; };
+		D78589A220D3DF1800E3C3FB /* WalletsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletsViewModel.swift; sourceTree = "<group>"; };
 		D7894CFB20CFFC290069F68E /* GothamProMed.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GothamProMed.otf; sourceTree = "<group>"; };
 		D7894CFC20CFFC290069F68E /* GothamProReg.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GothamProReg.otf; sourceTree = "<group>"; };
 		D7D177A420CE3AFA00985F05 /* BaseCurrencyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCurrencyCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -928,6 +930,14 @@
 			path = State;
 			sourceTree = "<group>";
 		};
+		D78589A120D3DE6D00E3C3FB /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				D78589A220D3DF1800E3C3FB /* WalletsViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		D7DEFC8E20C97154005FB9EF /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
@@ -946,6 +956,7 @@
 		D7DEFC8F20C97430005FB9EF /* Wallets */ = {
 			isa = PBXGroup;
 			children = (
+				D78589A120D3DE6D00E3C3FB /* ViewModels */,
 				D784931920D25EA10060EAC6 /* State */,
 				D7DEFC9220C97458005FB9EF /* WalletsTableViewCell.swift */,
 				D7DEFC9120C97458005FB9EF /* WalletsTableViewCell.xib */,
@@ -1299,6 +1310,7 @@
 				0A37EFE020C7D65100201907 /* PasswordDotView.swift in Sources */,
 				0A26FC8320D0F0B00097A8F6 /* OnSwitchStateChangedDelegate.swift in Sources */,
 				0A37EF6720C58A9100201907 /* SpinnerController.swift in Sources */,
+				D78589A320D3DF1800E3C3FB /* WalletsViewModel.swift in Sources */,
 				0A37EFE920C7E4A700201907 /* PinValidationRequest.swift in Sources */,
 				0A62F56920C5473600A51D63 /* Errors.swift in Sources */,
 				0A4CD11C20CD47A600EF4A17 /* OnChangeStateSelected.swift in Sources */,

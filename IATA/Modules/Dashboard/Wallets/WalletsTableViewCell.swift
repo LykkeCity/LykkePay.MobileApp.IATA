@@ -26,9 +26,9 @@ class WalletsTableViewCell: UITableViewCell {
     static var identifier: String {
         return String(describing: self)
     }
-    //TODO change this method when api will be return data
-    internal func fillCell(from model: WalletsModel) {
-        if let assetId = model.assetId, let baseAssetBalance = model.baseAssetBalance {
+
+    internal func fillCell(from model: WalletsViewModel) {
+        if let assetId = model.assetId, let baseAssetBalance = model.totalBalance {
             walletsNameLabel.text = assetId
             balanceLabel.text = prepareBaseAssetBalanceValue(from: baseAssetBalance, and: assetId)
             nationalFlagImage.image = UIImage(named: walletsNationalFlag)
