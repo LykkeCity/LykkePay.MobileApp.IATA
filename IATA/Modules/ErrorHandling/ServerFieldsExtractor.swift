@@ -2,20 +2,11 @@ import UIKit
 
 class ServerFieldsErrorExtractor: NSObject {
     
-    internal func extract(from responseBody: String) -> IATAOpError? {
-        guard let json = convertToDictionary(text: responseBody) else {
-            return nil
-        }
-        return extract(from: json)
-    }
     
-    internal func extract(from responseBody: Any) -> IATAOpError? {
-        guard let jsonDict = responseBody as? [String: Any] else {
-            return nil
-        }
-        var dic1 = getEmailMessageError(jsonDict)
-        let dic2 = getPasswordMessageError(jsonDict)
-        let dic3 = getCurrentPasswordMessageError(jsonDict)
+    internal func extract(model: ModelErrors) -> IATAOpError? {
+        var dic1 = getEmailMessageError(model.email)
+        let dic2 = getPasswordMessageError(model.password)
+        let dic3 = getCurrentPasswordMessageError(model.currentPassword)
         dic1.merge(dict: dic2)
         dic1.merge(dict: dic3)
         if (!dic1.isEmpty) {
@@ -25,30 +16,21 @@ class ServerFieldsErrorExtractor: NSObject {
         }
     }
     
-    private func getEmailMessageError(_ jsonDict: [String: Any]) ->  Dictionary<String, [String]> {
-        return getListOfMessageError(key: PropertyValidationKey.email.rawValue, jsonDict: jsonDict)
+    private func getEmailMessageError(_ dict: [String]?) ->  Dictionary<String, [String]> {
+        return getListOfMessageError(key: PropertyValidationKey.email.rawValue, dict: dict)
     }
     
-    private func getPasswordMessageError(_ jsonDict: [String: Any]) ->  Dictionary<String, [String]> {
-        return getListOfMessageError(key: PropertyValidationKey.password.rawValue, jsonDict: jsonDict)
+    private func getPasswordMessageError(_ dict: [String]?) ->  Dictionary<String, [String]> {
+        return getListOfMessageError(key: PropertyValidationKey.password.rawValue, dict: dict)
     }
     
-    private func getCurrentPasswordMessageError(_ jsonDict: [String: Any]) ->  Dictionary<String, [String]> {
-        return getListOfMessageError(key: PropertyValidationKey.currentPasssword.rawValue, jsonDict: jsonDict)
+    private func getCurrentPasswordMessageError(_ dict: [String]?) ->  Dictionary<String, [String]> {
+        return getListOfMessageError(key: PropertyValidationKey.currentPasssword.rawValue, dict: dict)
     }
     
-    private func getListOfMessageError(key: String, jsonDict: [String: Any]) ->  Dictionary<String, [String]> {
-        guard let list = jsonDict[key] as? [String] else {
-            return Dictionary<String, [String]>()
-        }
-        
-        var preResult = [String]()
-        for message in list {
-            preResult.append(message)
-        }
-        
+    private func getListOfMessageError(key: String, dict: [String]?) ->  Dictionary<String, [String]> {
         var result = Dictionary<String, [String]>()
-        result[key] = preResult
+        result[key] = dict
         return result
     }
     

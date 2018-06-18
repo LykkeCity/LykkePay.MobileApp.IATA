@@ -117,6 +117,7 @@
 		0A37F00120C809DC00201907 /* ChangePasswordRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A37F00020C809DC00201907 /* ChangePasswordRequest.swift */; };
 		0A37F00520C80A7500201907 /* AuthNetworkConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A37F00420C80A7500201907 /* AuthNetworkConfig.swift */; };
 		0A37F00820C81A5600201907 /* BaseAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A37F00720C81A5600201907 /* BaseAuthViewController.swift */; };
+		0A3F58D720D8378400F78856 /* ModelErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3F58D620D8378400F78856 /* ModelErrors.swift */; };
 		0A4CD11C20CD47A600EF4A17 /* OnChangeStateSelected.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4CD11B20CD47A600EF4A17 /* OnChangeStateSelected.swift */; };
 		0A4CD11E20CD57AA00EF4A17 /* DesignableUITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4CD11D20CD57AA00EF4A17 /* DesignableUITextField.swift */; };
 		0A4CD12020CD5B5300EF4A17 /* InvoiceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4CD11F20CD5B5300EF4A17 /* InvoiceModel.swift */; };
@@ -306,6 +307,7 @@
 		0A37F00020C809DC00201907 /* ChangePasswordRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordRequest.swift; sourceTree = "<group>"; };
 		0A37F00420C80A7500201907 /* AuthNetworkConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthNetworkConfig.swift; sourceTree = "<group>"; };
 		0A37F00720C81A5600201907 /* BaseAuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAuthViewController.swift; sourceTree = "<group>"; };
+		0A3F58D620D8378400F78856 /* ModelErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelErrors.swift; sourceTree = "<group>"; };
 		0A4CD11B20CD47A600EF4A17 /* OnChangeStateSelected.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnChangeStateSelected.swift; sourceTree = "<group>"; };
 		0A4CD11D20CD57AA00EF4A17 /* DesignableUITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignableUITextField.swift; sourceTree = "<group>"; };
 		0A4CD11F20CD5B5300EF4A17 /* InvoiceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvoiceModel.swift; sourceTree = "<group>"; };
@@ -938,6 +940,14 @@
 			path = Base;
 			sourceTree = "<group>";
 		};
+		0A3F58D520D8377300F78856 /* Errors */ = {
+			isa = PBXGroup;
+			children = (
+				0A3F58D620D8378400F78856 /* ModelErrors.swift */,
+			);
+			path = Errors;
+			sourceTree = "<group>";
+		};
 		0A4CD14220CD89BC00EF4A17 /* FilterInvoices */ = {
 			isa = PBXGroup;
 			children = (
@@ -996,6 +1006,7 @@
 		0A6DB5D020C5535F00BC1127 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				0A3F58D520D8377300F78856 /* Errors */,
 				0A0B11BA20D2B62B00021E2D /* History */,
 				0A0B119620D2886B00021E2D /* Dispute */,
 				0A286A6C20CA803E00D93693 /* Invoice */,
@@ -1534,6 +1545,7 @@
 				0A26FC8120D00B320097A8F6 /* InvoiceRequest.swift in Sources */,
 				0A37EFE020C7D65100201907 /* PasswordDotView.swift in Sources */,
 				0A26FC8320D0F0B00097A8F6 /* OnSwitchStateChangedDelegate.swift in Sources */,
+				0A3F58D720D8378400F78856 /* ModelErrors.swift in Sources */,
 				0A0B11C720D3158500021E2D /* ExhangeViewController.swift in Sources */,
 				0A37EF6720C58A9100201907 /* SpinnerController.swift in Sources */,
 				0A37EFE920C7E4A700201907 /* PinValidationRequest.swift in Sources */,
