@@ -14,7 +14,7 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
         var invoicesVC = InvoiceViewController()
         var walletsVC = WalletsViewController()
         var exchangeVC = WalletsViewController()
-        var historyVC = WalletsViewController()
+        var historyVC = HistoryViewController()
         var settingsVC = SettingsViewController()
 
         invoicesVC = generateTabBarItem(for: invoicesVC, normalImage: "ic_invoicesNormal", activeImage: "ic_invoicesActive",
@@ -50,6 +50,7 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
     private func tabBarSettings(){
         self.tabBar.barTintColor = theme.tabBarBackgroundColor
         self.tabBar.isTranslucent = false
+        self.tabBarController?.tabBar.isHidden = false
     }
 
     

@@ -122,64 +122,56 @@ class FilterPreference {
         return UserPreference.preferences.integer(forKey: PropertyKey.maxValue.rawValue)
     }
     
-    internal func getChecked(name: String!, type: InvoiceViewModelItemType) -> Bool {
+    internal func getChecked(id: String!, type: InvoiceViewModelItemType) -> Bool {
         switch type {
         case .billingCategories:
             let billingCategories = getBillingChecked()
-            return (billingCategories?.contains(name))!
+            return (billingCategories?.contains(id))!
         case .currencies:
             let currencies = getCurrency()
-            return (currencies?.contains(name))!
+            return (currencies?.contains(id))!
         case .settlementPeriod:
             let settlementPeriods = getSettlementPeriod()
-            return (settlementPeriods?.contains(name))!
+            return (settlementPeriods?.contains(id))!
         case .airlines:
             let airlines = getAirlines()
-            return (airlines?.contains(name))!
+            return (airlines?.contains(id))!
         default:
             return false
         }
     }
     
-    internal func setChecked(type: InvoiceViewModelItemType, isChecked: Bool, name: String) {
+    internal func setChecked(type: InvoiceViewModelItemType, isChecked: Bool, id: String) {
         switch type {
         case .currencies:
-            var currencies = getCurrency()
-            if (isChecked) {
-                currencies?.append(name)
-            } else if let index = currencies?.index(where: {$0 == name}) {
-                currencies!.remove(at: index)
-            }
-            saveCurrency(currencies)
+            var list = getCurrency()
+            setUpChecked(isChecked: isChecked, list: &list, id: id)
+            saveCurrency(list)
             break
         case .billingCategories:
-            var billingCategories = getBillingChecked()
-            if (isChecked) {
-                billingCategories?.append(name)
-            } else if let index = billingCategories?.index(where: {$0 == name}) {
-                billingCategories!.remove(at: index)
-            }
-            saveBillingCategory(billingCategories)
+            var list = getBillingChecked()
+            setUpChecked(isChecked: isChecked, list: &list, id: id)
+            saveBillingCategory(list)
             break
         case .settlementPeriod:
-            var settlementPeriod = getSettlementPeriod()
-            if (isChecked) {
-                settlementPeriod?.append(name)
-            } else if let index = settlementPeriod?.index(where: {$0 == name}) {
-                settlementPeriod!.remove(at: index)
-            }
-            saveSettlementPeriod(settlementPeriod)
+            var list = getSettlementPeriod()
+            setUpChecked(isChecked: isChecked, list: &list, id: id)
+            saveSettlementPeriod(list)
             break
         case .airlines:
-            var airlines = getAirlines()
-            if (isChecked) {
-                airlines?.append(name)
-            } else if let index = airlines?.index(where: {$0 == name}) {
-                airlines!.remove(at: index)
-            }
-            saveAirlines(airlines)
+            var list = getAirlines()
+            setUpChecked(isChecked: isChecked, list: &list, id: id)
+            saveAirlines(list)
         default:
             break
+        }
+    }
+    
+    private func setUpChecked(isChecked: Bool, list: inout [String]?, id: String) {
+        if (isChecked && list?.index(where: {$0 == id}) == nil) {
+            list?.append(id)
+        } else if !isChecked, let index = list?.index(where: {$0 == id}) {
+            list?.remove(at: index)
         }
     }
 }

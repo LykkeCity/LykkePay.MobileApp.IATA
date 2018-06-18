@@ -17,12 +17,22 @@ class DefaultPaymentService: NSObject, PaymentService {
         params[InvoiceRequest.InvoiceParamsKey.lessThan.rawValue] = String(invoceParams.lessThan!)
         params[InvoiceRequest.InvoiceParamsKey.greaterThan.rawValue] = String(invoceParams.greaterThan!)
         
-        for clientMerchantId in invoceParams.clientMerchantIds {
-            params[InvoiceRequest.InvoiceParamsKey.clientMerchantIds.rawValue] = String(clientMerchantId)
+        if let values = invoceParams.clientMerchantIds {
+            for clientMerchantId in values {
+                params[InvoiceRequest.InvoiceParamsKey.clientMerchantIds.rawValue] = String(clientMerchantId)
+            }
         }
         
-        for billingCategory in invoceParams.billingCategories {
-            params[InvoiceRequest.InvoiceParamsKey.billingCategories.rawValue] = String(billingCategory)
+        if let values = invoceParams.billingCategories {
+            for billingCategory in values {
+                params[InvoiceRequest.InvoiceParamsKey.billingCategories.rawValue] = String(billingCategory)
+            }
+        }
+        
+        if let values = invoceParams.settlementAssets {
+            for settlementAssets in values {
+                params[InvoiceRequest.InvoiceParamsKey.settlementAssets.rawValue] = String(settlementAssets)
+            }
         }
       
         return Network.shared.get(path: PaymentConfig.shared.invoices , params: params)

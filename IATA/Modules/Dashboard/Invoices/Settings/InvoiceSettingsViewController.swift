@@ -4,11 +4,11 @@ class InvoiceSettingsViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
-    fileprivate let viewModel = InvoiceViewModel()
-    
     @IBAction func clickCancel(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
+    
+    private let viewModel = InvoiceViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,16 +19,15 @@ class InvoiceSettingsViewController: UIViewController {
         self.tableView?.rowHeight = UITableViewAutomaticDimension
         self.tableView?.estimatedRowHeight = 55
         
-        tableView.register(InvoiceHeaderView.nib, forHeaderFooterViewReuseIdentifier: InvoiceHeaderView.identifier)
+        self.tableView.register(InvoiceHeaderView.nib, forHeaderFooterViewReuseIdentifier: InvoiceHeaderView.identifier)
         
-        tableView?.register(PaymentRangeTableViewCell.nib, forCellReuseIdentifier: PaymentRangeTableViewCell.identifier)
-        tableView?.register(SimpleTableViewCell.nib, forCellReuseIdentifier: SimpleTableViewCell.identifier)
-        tableView?.register(AirlinesTableViewCell.nib, forCellReuseIdentifier: AirlinesTableViewCell.identifier)
+        self.tableView?.register(PaymentRangeTableViewCell.nib, forCellReuseIdentifier: PaymentRangeTableViewCell.identifier)
+        self.tableView?.register(InvoiceSettingsTableViewCell.nib, forCellReuseIdentifier: InvoiceSettingsTableViewCell.identifier)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        initNavBar()
+        self.initNavBar()
     }
     
     private func initNavBar() {
@@ -39,9 +38,9 @@ class InvoiceSettingsViewController: UIViewController {
         self.navigationController?.navigationBar.isTranslucent = false
         self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
         
-        initBackButton()
-        initRightButton()
-        initTitle()
+        self.initBackButton()
+        self.initRightButton()
+        self.initTitle()
     }
     
     private func initBackButton() {
@@ -66,7 +65,7 @@ class InvoiceSettingsViewController: UIViewController {
     }
     
     @objc func clickDone() {
-        viewModel.state.clickDone()
+        self.viewModel.state.clickDone()
         self.navigationController?.popViewController(animated: true)
     }
 }

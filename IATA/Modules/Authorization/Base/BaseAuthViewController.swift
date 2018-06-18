@@ -1,7 +1,12 @@
 import Foundation
 import UIKit
 
-class BaseAuthViewController: UIViewController {
+class BaseAuthViewController: UIViewController, UITextFieldDelegate {
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(appMovedToBackground), name: Notification.Name.UIApplicationWillResignActive, object: nil)
+    }
     
     func showErrorAlert(error : Error) {
         if (error is IATAOpError) {
@@ -10,6 +15,15 @@ class BaseAuthViewController: UIViewController {
             
             uiAlert.addAction(UIAlertAction(title: "Common.PositiveButton.Ok".localize(), style: .default, handler: nil))
         }
+    }
+    
+    @objc func appMovedToBackground() {
+        self.view.endEditing(true)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
     }
     
 }

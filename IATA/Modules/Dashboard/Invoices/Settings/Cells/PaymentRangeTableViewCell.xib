@@ -32,14 +32,14 @@
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="ZUn-V6-fxl">
                                 <rect key="frame" x="0.0" y="0.0" width="288" height="35.5"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zwo-cK-Zmv" customClass="MFTextField">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zwo-cK-Zmv" customClass="DesignableUITextField" customModule="IATA" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="136" height="35.5"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <action selector="minValueChanged:" destination="KGk-i7-Jjw" eventType="editingChanged" id="UnP-Ae-Yji"/>
                                         </connections>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MHf-MG-vOG" customClass="MFTextField">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MHf-MG-vOG" customClass="DesignableUITextField" customModule="IATA" customModuleProvider="target">
                                         <rect key="frame" x="152" y="0.0" width="136" height="35.5"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>

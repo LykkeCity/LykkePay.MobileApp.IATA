@@ -28,8 +28,6 @@ class PinViewController: UIViewController {
     }
     
     private func initNavBar() {
-        UINavigationBar.appearance().shadowImage = UIImage()
-        UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.isNavigationBarHidden = false
         self.navigationController?.navigationBar.isTranslucent = false
         self.navigationController?.navigationBar.barTintColor = UIColor.white
@@ -53,7 +51,7 @@ class PinViewController: UIViewController {
     
     func openSignIn() {
         CredentialManager.shared.clearSavedData()
-        self.navigationController?.present(SignInViewController(), animated: true, completion: nil)
+        self.navigationController?.pushViewController(SignInViewController(), animated: true)
     }
 }
 

@@ -11,4 +11,12 @@ class DefaultSignInViewState : DefaultBaseViewState, SignInViewState {
         return self.getHashPass(value: password + email)
     }
     
+    func savePreference(tokenObject: TokenObject, email: String) {
+        CredentialManager.shared.saveTokenObject(tokenObject, userName: email)
+        UserPreference.shared.saveForceUpdatePassword(tokenObject.forcePasswordUpdate)
+        UserPreference.shared.saveForceUpdatePin(tokenObject.forcePasswordUpdate! ? true : tokenObject.forceUpdatePin)
+        FilterPreference.shared.saveMinValue(0)
+        FilterPreference.shared.saveMaxValue(1000000)
+    }
+    
 }

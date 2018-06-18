@@ -12,11 +12,14 @@ class InvoiceSettingAirlinesModel: Mappable {
     
     internal var name: String?
     internal var logo: String?
-    internal var checked: Bool?
+    internal var checked: Bool? = false
     internal var type: String?
     internal var id: String?
     
     internal required init?(map: Map) {
+    }
+    
+    internal required init?() {
     }
     
     init(json: [String: Any]) {

@@ -76,5 +76,6 @@ class CredentialManager {
     internal func clearSavedData() {
         saveTokenObject(nil)
         tokenObject = nil
+        UserPreference.shared.clearSaveData()
     }
 }

@@ -9,30 +9,30 @@ class PaymentRangeTableViewCell: UITableViewCell, UITextFieldDelegate {
     @IBOutlet weak var maxValueTextField: MFTextField!
     
     @IBAction func minValueChanged(_ sender: Any) {
-        if let valueString = self.minValueTextField.text as? String {
-            if var value = Int(valueString) {
+        if let valueString = self.minValueTextField.text {
+            if let value = Int(valueString) {
                 self.rangeSlider.lowerValue = Double(value)
-                item?.min = value
+                self.item?.min = value
             }
         }
     }
     
     @IBAction func maxValueChanged(_ sender: Any) {
-        if let valueString = self.maxValueTextField.text as? String {
-            if var value = Int(valueString) {
+        if let valueString = self.maxValueTextField.text {
+            if let value = Int(valueString) {
                 self.rangeSlider.upperValue = Double(value)
-                item?.max = value
+                self.item?.max = value
             }
         }
     }
     
     var item: InvoiceSettingPaymentRangeItemModel? {
         didSet {
-            guard let item = item else {
+            guard let item = self.item else {
                 return
             }
-            minValueTextField.text = item.min?.description
-            maxValueTextField.text = item.max?.description
+            self.minValueTextField.text = item.min?.description
+            self.maxValueTextField.text = item.max?.description
             
         }
     }
@@ -47,9 +47,6 @@ class PaymentRangeTableViewCell: UITableViewCell, UITextFieldDelegate {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
-        Theme.shared.configureTextFieldStyle(self.minValueTextField)
-        Theme.shared.configureTextFieldStyle(self.maxValueTextField)
         
         self.minValueTextField.placeholder = "Invoice.Settings.Range.From".localize()
         self.maxValueTextField.placeholder = "Invoice.Settings.Range.To".localize()
@@ -68,11 +65,28 @@ class PaymentRangeTableViewCell: UITableViewCell, UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
         if(textField == self.minValueTextField) {
-            return TextFieldUtil.validateMaxValue(textField: textField, maxValue: Double(self.maxValueTextField.text as! String)!, range: range, replacementString: string)
+            guard let valueString = self.maxValueTextField.text else {
+                return false
+            }
+            
+            guard let value = Double(valueString) else {
+                return false
+            }
+            
+            return TextFieldUtil.validateMaxValue(textField: textField, maxValue: value, range: range, replacementString: string)
+            
         }
         
         if(textField == self.maxValueTextField) {
-            return TextFieldUtil.validateMinValue(textField: textField, minValue:  Double(self.minValueTextField.text as! String)!, range: range, replacementString: string)
+            guard let valueString = self.minValueTextField.text else {
+                return false
+            }
+            
+            guard let value = Double(valueString) else {
+                return false
+            }
+            
+            return TextFieldUtil.validateMinValue(textField: textField, minValue:  value, range: range, replacementString: string)
         }
         return true
     }

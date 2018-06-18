@@ -5,12 +5,19 @@ class UserPreference {
     private enum PropertyKey: String {
         case forceUpdatePassword
         case forceUpdatePin
+        case currentCurrency
     }
     
+    private let localStorage: LocalStorage = DefaultLocalStorage()
     static internal let shared = UserPreference()
     static let preferences = UserDefaults.standard
     
     private init() {
+    }
+    
+    internal func clearSaveData() {
+        let appDomain = Bundle.main.bundleIdentifier!
+        UserDefaults.standard.removePersistentDomain(forName: appDomain)
     }
     
     internal func saveForceUpdatePassword(_ forceUpdatePassword: Bool?) {
@@ -37,5 +44,13 @@ class UserPreference {
     
     internal func getUpdatePin() -> Bool? {
         return UserPreference.preferences.bool(forKey: PropertyKey.forceUpdatePin.rawValue)
+    }
+    
+    internal func saveCurrentCurrency(_ currentCurrency: InvoiceSettingAirlinesModel) {
+        localStorage.set(value: currentCurrency, for: PropertyKey.currentCurrency.rawValue)
+    }
+    
+    internal func getCurrentCurrency() -> InvoiceSettingAirlinesModel? {
+        return UserPreference.preferences.object(forKey: PropertyKey.currentCurrency.rawValue) as? InvoiceSettingAirlinesModel
     }
 }

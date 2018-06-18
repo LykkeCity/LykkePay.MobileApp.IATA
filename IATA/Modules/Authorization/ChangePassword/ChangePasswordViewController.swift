@@ -1,7 +1,7 @@
 import UIKit
 import MaterialTextField
 
-class ChangePasswordViewController: BaseAuthViewController, UITextFieldDelegate {
+class ChangePasswordViewController: BaseAuthViewController {
     
     @IBOutlet weak var oldPasswordField: MFTextField!
     @IBOutlet weak var newPasswordField: MFTextField!
@@ -15,6 +15,7 @@ class ChangePasswordViewController: BaseAuthViewController, UITextFieldDelegate 
     }
     
     @IBAction func clickCancel(_ sender: Any) {
+        self.view.endEditing(true)
         CredentialManager.shared.clearSavedData()
         self.navigationController?.pushViewController(SignInViewController(), animated: true)
     }
@@ -23,6 +24,9 @@ class ChangePasswordViewController: BaseAuthViewController, UITextFieldDelegate 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.initView()
+        self.oldPasswordField.delegate = self
+        self.newPasswordField.delegate = self
+        self.newPasswordAgainField.delegate = self
     }
     
     private func initView() {
@@ -65,6 +69,7 @@ class ChangePasswordViewController: BaseAuthViewController, UITextFieldDelegate 
     }
     
     @objc private func buttonClicked() {
+        self.view.endEditing(true)
         self.state.change(currentPassword: oldPasswordField.text!, newPassword: newPasswordField.text!)?
             .withSpinner(in: view)
             .then(execute: { [weak self] (ob: Void) -> Void in

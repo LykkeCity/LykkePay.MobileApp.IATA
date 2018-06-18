@@ -28,6 +28,8 @@ class Theme: NSObject {
     public let logoutTitle = Utils.rgb(239, 23, 63)
     
     
+    public let grayDisputeColor = Utils.rgb(101, 113, 128)
+    public let pinkDisputeColor = Utils.rgb(254, 53, 96)
     public let blueProgressStatusColor = Utils.rgb(53, 153, 254)
     public let redErrorStatusColor = Utils.rgb(254, 53, 96)
     public let greyStatusColor = Utils.rgb(178, 184, 191)
@@ -120,6 +122,8 @@ class Theme: NSObject {
     public func configureTextFieldStyle(_ textField: MFTextField){
         textField.placeholderAnimatesOnFocus = true
         
+        textField.underlineEditingHeight = 0.75
+        textField.underlineHeight = 0.75
         textField.tintColor = tintTextFieldColor
         textField.textColor = textFieldColor
         textField.defaultPlaceholderColor = placeholderTextFieldColor
@@ -127,6 +131,7 @@ class Theme: NSObject {
         textField.font = fontTextSizeTextField
     }
     
+   
     
     public func configureTextFieldCurrencyStyle(_ textField: MFTextField){
         configureTextFieldStyle(textField)
