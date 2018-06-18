@@ -26,7 +26,13 @@ class ServerErrorExtractor: NSObject {
     }
     
     private func getServerValidationError(_ jsonDict: [String: Any]) -> IATAOpError? {
-        return serverValidationErrorExtractor.extract(from: jsonDict)
+        guard let jsonDict = jsonDict[PropertyKey.modelErrors.rawValue] as? [String: Any] else {
+            return nil
+        }
+        if let keys = ModelErrors(json: jsonDict) {
+            return serverValidationErrorExtractor.extract(model: keys)
+        }
+        return nil
     }
     
     private func getMessageError(_ jsonDict: [String: Any]) -> IATAOpError? {
