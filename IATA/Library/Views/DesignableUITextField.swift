@@ -15,10 +15,10 @@ class DesignableUITextField: ErrorTextField {
     }
     
     private func initRightView() {
-        let label = BottomAlignedLabel(frame: CGRect(x: 0, y: 0, width: 25, height: 20))
+        let label = BottomAlignedLabel(frame: CGRect(x: 0, y: 0, width: 25, height: 30))
         label.contentMode = .bottom
         label.text = "$"
-        label.backgroundColor = .white
+        label.backgroundColor = .clear
         label.font = Theme.shared.fontCurrencyTextField
         label.textColor = Theme.shared.navBarTitle
         label.textAlignment = .center

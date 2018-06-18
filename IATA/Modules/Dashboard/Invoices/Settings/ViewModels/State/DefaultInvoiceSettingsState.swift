@@ -12,6 +12,26 @@ class DefaultInvoiceSettingsState: InvoiceSettingsState {
         self.check(isSelected: isSelected, item: item, index: 3)
     }
     
+    func updatePaymentRangeMin(min: Int?) {
+        for item in items {
+            if (item is InvoicePaymentRangeItem) {
+                let value = (item as! InvoicePaymentRangeItem).paymentRange
+                value.min = min
+                FilterPreference.shared.saveMinValue(value.max)
+            }
+        }
+    }
+    
+    func updatePaymentRangeMax(max: Int?) {
+        for item in items {
+            if (item is InvoicePaymentRangeItem) {
+                let value = (item as! InvoicePaymentRangeItem).paymentRange
+                value.max = max
+                FilterPreference.shared.saveMaxValue(value.max)
+            }
+        }
+    }
+    
     func clickDone() {
         for itemValues in items {
             if (itemValues is BaseInvoiceViewModelItem) {

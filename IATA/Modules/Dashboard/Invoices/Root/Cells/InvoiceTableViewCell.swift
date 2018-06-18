@@ -61,7 +61,11 @@ class InvoiceTableViewCell: UITableViewCell {
     }
     
     private func initFullCheckBoxStatus(_ model: InvoiceModel, isChecked: Bool) {
-        let structInfo = InvoiceStatusesStruct(type: model.status!)
+        var structInfo = InvoiceStatusesStruct(type: model.status!)
+        if (model.dispute)! {
+            structInfo.isCanBePaid = false
+            structInfo.color = Theme.shared.redErrorStatusColor
+        }
         initCheckBoxAndStatus(structInfo: structInfo, isChecked: isChecked)
     }
     

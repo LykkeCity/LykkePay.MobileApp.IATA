@@ -5,13 +5,14 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
     Initializer,
 OnChangeStateSelected {
     
+    @IBOutlet weak var sumTextFieldWidth: NSLayoutConstraint!
     @IBOutlet weak var tabView: UITableView!
     @IBOutlet weak var downView: UIView!
     @IBOutlet weak var sumTextField: DesignableUITextField!
     @IBOutlet weak var selectedItemTextField: UILabel!
     @IBOutlet weak var downViewHeightConstraint: NSLayoutConstraint!
-    
     @IBOutlet weak var bottomConstrain: NSLayoutConstraint!
+    
     override func viewDidLoad() {
         initializer = self
         state = DefaultInvoiceState()
@@ -22,6 +23,15 @@ OnChangeStateSelected {
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: NSNotification.Name.UIKeyboardDidShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
+    
+    @IBAction func sumEditingEnd(_ sender: Any) {
+        sumTextField.sizeToFit()
+        self.sumTextFieldWidth.constant = sumTextField.frame.size.width
+    }
+    
+    @IBAction func sumChanged(_ sender: Any) {
+        sumTextField.sizeToFit()
     }
     
     @objc func keyboardWillShow(notification: NSNotification) {
@@ -154,17 +164,16 @@ OnChangeStateSelected {
     }
     
     func getWidth(text: String) -> CGFloat {
-        let txtField = UITextField(frame: .zero)
-        txtField.text = text
-        txtField.sizeToFit()
-        return txtField.frame.size.width
+        sumTextField.text = text
+        sumTextField.sizeToFit()
+        return sumTextField.frame.size.width
     }
     
     
     func onItemSelected(isSelected: Bool, index: Int) {
         self.sumTextField.text = self.state?.getSumString(isSelected: isSelected, index: index)
         self.selectedItemTextField.text = self.state?.getSelectedString()
-        
+        self.sumEditingEnd(self.sumTextField)
         if (isSelected && self.downView.isHidden) {
             animate(isShow: true)
         } else if (!isSelected && !self.downView.isHidden && self.state?.getCountSelected() == 0) {
@@ -172,14 +181,14 @@ OnChangeStateSelected {
         }
     }
     
-    /*  private func initWidth() {
-     let width = getWidth(text: sumTextField.text!)
-     sumTextWidth.constant = 0.0
-     if width > sumTextWidth.constant {
-     sumTextWidth.constant = width
-     }
-     self.view.layoutIfNeeded()
-     }*/
+    private func initWidth() {
+        let width = getWidth(text: sumTextField.text!)
+        sumTextFieldWidth.constant = 0.0
+        if width > sumTextFieldWidth.constant {
+            sumTextFieldWidth.constant = width
+        }
+        self.view.layoutIfNeeded()
+    }
     
     private func animate(isShow: Bool) {
         UIView.animate(withDuration: 0.3) {
@@ -204,6 +213,7 @@ OnChangeStateSelected {
         menuView.didSelectItemAtIndexHandler = {[weak self] (indexPath: Int) -> () in
             FilterPreference.shared.saveIndexOfStatus(indexPath)
             self?.state?.selectedStatus(index: indexPath)
+            self?.hideMenu()
             self?.loadData()
         }
         return menuView

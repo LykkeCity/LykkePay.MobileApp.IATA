@@ -3,6 +3,15 @@ import UIKit
 
 extension InvoiceViewModel: UITableViewDataSource, UITableViewDelegate, OnSwitchStateChangedDelegate {
     
+    func updatePaymentRangeMin(min: Int?) {
+        self.state.updatePaymentRangeMin(min: min)
+    }
+    
+    func updatePaymentRangeMax(max: Int?) {
+         self.state.updatePaymentRangeMax(max: max)
+    }
+    
+    
     func stateChanged(isSelected: Bool, item: Any) {
         self.state.stateChanged(isSelected: isSelected, item: item)
     }
@@ -84,6 +93,7 @@ extension InvoiceViewModel: UITableViewDataSource, UITableViewDelegate, OnSwitch
         if let item = item as? InvoicePaymentRangeItem, let cell = tableView.dequeueReusableCell(withIdentifier: PaymentRangeTableViewCell.identifier, for: indexPath) as? PaymentRangeTableViewCell {
             let paymentRange = item.paymentRange
             cell.item = paymentRange
+            cell.delegate = self
             cell.selectionStyle = UITableViewCellSelectionStyle.none
             return cell
         }

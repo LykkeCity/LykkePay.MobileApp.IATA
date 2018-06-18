@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="InvoiceSettingsViewController" customModule="IATA" customModuleProvider="target">
             <connections>
+                <outlet property="bottomConstraint" destination="dGo-EN-KT9" id="5sU-4y-LG0"/>
                 <outlet property="tableView" destination="ObV-w7-Jd4" id="aVN-1E-Uyi"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>

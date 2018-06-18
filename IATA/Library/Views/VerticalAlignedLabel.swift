@@ -19,6 +19,6 @@ import Foundation
         
         let height = self.sizeThatFits(rect.size).height
         let y = rect.origin.y + rect.height - height
-        super.drawText(in: CGRect(x: 0, y: y, width: rect.width, height: height-12))
+        super.drawText(in: CGRect(x: 0, y: y, width: rect.width-15, height: height-19))
     }
 }

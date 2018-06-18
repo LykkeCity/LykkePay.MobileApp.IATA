@@ -6,6 +6,7 @@ class PaymentRangeTableViewCell: UITableViewCell, UITextFieldDelegate {
     @IBOutlet weak var rangeSlider: RangeSlider?
     @IBOutlet weak var minValueTextField: DesignableUITextField?
     @IBOutlet weak var maxValueTextField: DesignableUITextField?
+    weak var delegate: OnSwitchStateChangedDelegate?
     
     var item: InvoiceSettingPaymentRangeItemModel? {
         didSet {
@@ -15,6 +16,8 @@ class PaymentRangeTableViewCell: UITableViewCell, UITextFieldDelegate {
             self.minValueTextField?.text = item.min?.description
             self.maxValueTextField?.text = item.max?.description
             
+            self.minValueChanged(self.minValueTextField)
+            self.maxValueChanged(self.maxValueTextField)
         }
     }
     
@@ -35,15 +38,32 @@ class PaymentRangeTableViewCell: UITableViewCell, UITextFieldDelegate {
         self.minValueTextField?.delegate = self
         self.maxValueTextField?.delegate = self
         self.rangeSlider?.addTarget(self, action: #selector(rangeSliderValueChanged(sender:)),
-                                   for: .valueChanged)
+                                    for: .valueChanged)
+        
+         NotificationCenter.default.addObserver(self, selector: #selector(appMovedToBackground), name: Notification.Name.UIApplicationWillResignActive, object: nil)
+        
+    }
+    
+    @objc func appMovedToBackground() {
+        self.contentView.endEditing(true)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.contentView.endEditing(true)
+        return false
     }
     
     @objc func rangeSliderValueChanged(sender: Any?) {
         guard let min = self.rangeSlider?.lowerValue, let max = self.rangeSlider?.upperValue else {
             return
         }
+        self.item?.min = Int(round(min))
+        self.item?.max = Int(round(max))
         self.minValueTextField?.text = String(Int(round(min)))
         self.maxValueTextField?.text = String(Int(round(max)))
+        self.delegate?.updatePaymentRangeMax(max: self.item?.max)
+        self.delegate?.updatePaymentRangeMin(min: self.item?.min)
+        self.contentView.endEditing(true)
     }
     
     @IBAction func minValueChanged(_ sender: Any) {
@@ -53,6 +73,7 @@ class PaymentRangeTableViewCell: UITableViewCell, UITextFieldDelegate {
                 self.item?.min = value
             }
         }
+        self.delegate?.updatePaymentRangeMin(min: self.item?.min)
     }
     
     @IBAction func maxValueChanged(_ sender: Any) {
@@ -62,6 +83,7 @@ class PaymentRangeTableViewCell: UITableViewCell, UITextFieldDelegate {
                 self.item?.max = value
             }
         }
+        self.delegate?.updatePaymentRangeMax(max: self.item?.max)
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {

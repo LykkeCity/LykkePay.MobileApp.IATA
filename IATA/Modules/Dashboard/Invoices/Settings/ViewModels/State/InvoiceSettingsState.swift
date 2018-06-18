@@ -7,4 +7,6 @@ protocol InvoiceSettingsState {
     func getItems() -> [InvoiceViewModelItem]
     func initItems(model: InvoiceScreenModel)
     func getHeight(indexPath: IndexPath) -> CGFloat!
+    func updatePaymentRangeMax(max: Int?)
+    func updatePaymentRangeMin(min: Int?) 
 }
