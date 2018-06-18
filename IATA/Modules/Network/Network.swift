@@ -169,6 +169,9 @@ class Network {
         return request(path: path, method: .get, params: params, encoding: BrasketLessGetEncoding())
     }
     
+    public func getWithBrasket<ResultType: BaseMappable>(path: String, params: [String: Any]) -> Promise<ResultType> {
+        return request(path: path, method: .get, params: params, encoding: BrasketLessGetEncoding())
+    }
    
     public func get(path: String, params: [String: Any]) -> Promise<Data> {
         return request(path: path, method: .get, params: params)

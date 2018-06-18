@@ -6,8 +6,10 @@ class DefaultInvoiceState: DefaultBaseState<InvoiceModel> {
     
     private let menuItems = ["Invoice.Navigation.Filtering.Title.AllInvoices".localize(), "Invoice.Navigation.Filtering.Title.UnPaidInvoices".localize(), "Invoice.Navigation.Filtering.Title.Dispute".localize()]
     private var selectedItems = Array<InvoiceModel>()
-    public lazy var service: PaymentService = DefaultPaymentService()
     private var invoiceParams = InvoiceRequest()
+    public lazy var service: PaymentService = DefaultPaymentService()
+    public var amount = 0
+    
     
     func mapping(jsonString: String!)  {
         self.items = !jsonString.isEmpty ? Mapper<InvoiceModel>().mapArray(JSONObject: jsonString.toJSON())! : Array<InvoiceModel>()
@@ -26,6 +28,18 @@ class DefaultInvoiceState: DefaultBaseState<InvoiceModel> {
         self.invoiceParams?.greaterThan = FilterPreference.shared.getMinValue()
         
         return self.service.getInVoices(invoceParams: self.invoiceParams!)
+    }
+    
+    func makePayment() -> Promise<Void> {
+        let model = PaymentRequest()
+        model?.invoicesIds = getItemsId()
+        model?.amountInBaseAsset = amount
+        return self.service.makePayment(model: model!)
+    }
+    
+    func getAmount() -> Promise<PaymentAmount> {
+        let items = getItemsId()
+        return self.service.getAmount(invoicesIds: items)
     }
     
     func getCountSelected() -> Int {
@@ -113,6 +127,16 @@ class DefaultInvoiceState: DefaultBaseState<InvoiceModel> {
     
     func getSelectedString() -> String {
         return String(format: "Invoice.Screen.Items.CountSelected".localize(), String(self.getCountSelected()))
+    }
+    
+    private func getItemsId() -> [String] {
+        var items = [String]()
+        for item in selectedItems {
+            if let id = item.id {
+                items.append(id)
+            }
+        }
+        return items
     }
     
 }

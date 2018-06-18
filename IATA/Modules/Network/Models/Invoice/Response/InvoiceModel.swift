@@ -23,6 +23,7 @@ class InvoiceModel: Mappable {
         
         case logo
         case settlementPeriod
+        case symbol
        
     }
     
@@ -46,6 +47,7 @@ class InvoiceModel: Mappable {
     //TODO still not ready in server
     internal var logo: String?
     internal var settlementPeriod: String?
+    internal var symbol: String?
     
     internal required init?() {
     }
@@ -74,5 +76,10 @@ class InvoiceModel: Mappable {
         dispute <- map[PropertyKey.dispute.rawValue]
         logo <- map[PropertyKey.logo.rawValue]
         settlementPeriod <- map[PropertyKey.settlementPeriod.rawValue]
+        if let idValue = settlementAssetId, idValue.contains("USD") {
+            self.symbol = "$"
+        } else {
+            self.symbol = "€"
+        }
     }
 }

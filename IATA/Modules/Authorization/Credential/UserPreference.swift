@@ -51,6 +51,6 @@ class UserPreference {
     }
     
     internal func getCurrentCurrency() -> InvoiceSettingAirlinesModel? {
-        return UserPreference.preferences.object(forKey: PropertyKey.currentCurrency.rawValue) as? InvoiceSettingAirlinesModel
+        return localStorage.get(for: PropertyKey.currentCurrency.rawValue)
     }
 }

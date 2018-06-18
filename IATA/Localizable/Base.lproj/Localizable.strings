@@ -29,6 +29,10 @@
 "Invoice.Settings.Range.From" = "From";
 "Invoice.Settings.Range.To" = "To";
 
+"Invoice.Screen.PaymentMessage" = "Pay %@ against the selected invoices?";
+"Invoice.Screen.PleaseConfirmPayment" = "Please confirm";
+"Invoice.Screen.Pay" = "Pay";
+
 "Invoice.Navigation.Filtering.Title.AllInvoices" = "All invoices";
 "Invoice.Navigation.Filtering.Title.UnPaidInvoices" = "Unpaid invoices";
 "Invoice.Navigation.Filtering.Title.Dispute" = "Dispute";

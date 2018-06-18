@@ -10,6 +10,7 @@ class InvoiceRequest {
         case settlementAssets
         case greaterThan
         case lessThan
+        case invoicesIds
     }
     
     var clientMerchantIds: [String]? = []
@@ -19,6 +20,7 @@ class InvoiceRequest {
     var lessThan: Int?
     var settlementAssets: [String]? = []
     var statuses: String = InvoiceStatuses.all.rawValue
+    var invoicesIds: [String]? = []
     
     internal required init?() {
     }

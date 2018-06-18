@@ -140,6 +140,8 @@
 		0A6DB5D220C5537000BC1127 /* TokenObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6DB5D120C5537000BC1127 /* TokenObject.swift */; };
 		0A6DB5D620C553D000BC1127 /* CredentialManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6DB5D520C553D000BC1127 /* CredentialManager.swift */; };
 		0A6DB5DA20C5572E00BC1127 /* DataRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6DB5D920C5572E00BC1127 /* DataRequest.swift */; };
+		0AAE96BE20D7F68600F97768 /* PaymentAmount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE96BD20D7F68600F97768 /* PaymentAmount.swift */; };
+		0AAE96C020D7F94500F97768 /* PaymentRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE96BF20D7F94500F97768 /* PaymentRequest.swift */; };
 		0AB8E20E20C56FF500C13361 /* DefaultAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB8E20D20C56FF500C13361 /* DefaultAuthenticationService.swift */; };
 		0AB8E21020C5708300C13361 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB8E20F20C5708300C13361 /* AuthenticationService.swift */; };
 		0AF1C3AB20C832DB00AFD286 /* SavePinRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF1C3AA20C832DB00AFD286 /* SavePinRequest.swift */; };
@@ -327,6 +329,8 @@
 		0A6DB5D120C5537000BC1127 /* TokenObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenObject.swift; sourceTree = "<group>"; };
 		0A6DB5D520C553D000BC1127 /* CredentialManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialManager.swift; sourceTree = "<group>"; };
 		0A6DB5D920C5572E00BC1127 /* DataRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataRequest.swift; sourceTree = "<group>"; };
+		0AAE96BD20D7F68600F97768 /* PaymentAmount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentAmount.swift; sourceTree = "<group>"; };
+		0AAE96BF20D7F94500F97768 /* PaymentRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentRequest.swift; sourceTree = "<group>"; };
 		0AB8E20D20C56FF500C13361 /* DefaultAuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultAuthenticationService.swift; sourceTree = "<group>"; };
 		0AB8E20F20C5708300C13361 /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
 		0AF1C3AA20C832DB00AFD286 /* SavePinRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavePinRequest.swift; sourceTree = "<group>"; };
@@ -958,6 +962,7 @@
 			children = (
 				0A26FC7E20CFF8140097A8F6 /* InvoiceStatuses.swift */,
 				0A4CD11F20CD5B5300EF4A17 /* InvoiceModel.swift */,
+				0AAE96BD20D7F68600F97768 /* PaymentAmount.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -966,6 +971,7 @@
 			isa = PBXGroup;
 			children = (
 				0A26FC8020D00B320097A8F6 /* InvoiceRequest.swift */,
+				0AAE96BF20D7F94500F97768 /* PaymentRequest.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -1543,6 +1549,7 @@
 				0A286A9220CA88F700D93693 /* InvoiceViewModel.swift in Sources */,
 				0A37EFF520C7FD3700201907 /* DefaultPinViewState.swift in Sources */,
 				D7D177A620CE3AFA00985F05 /* BaseCurrencyCollectionViewCell.swift in Sources */,
+				0AAE96C020D7F94500F97768 /* PaymentRequest.swift in Sources */,
 				0A286A9120CA88F700D93693 /* InvoiceScreenModel.swift in Sources */,
 				0A0B118B20D270D200021E2D /* SettingsState.swift in Sources */,
 				0A0B11A120D28BAF00021E2D /* InvoiceView.swift in Sources */,
@@ -1553,6 +1560,7 @@
 				0AF611A720CA72DA00957348 /* InvoiceSettingsViewController.swift in Sources */,
 				0A4CD12020CD5B5300EF4A17 /* InvoiceModel.swift in Sources */,
 				0A37EFFF20C808FB00201907 /* DefaultChangePasswordViewState.swift in Sources */,
+				0AAE96BE20D7F68600F97768 /* PaymentAmount.swift in Sources */,
 				0A4CD14120CD894900EF4A17 /* FilterPreference.swift in Sources */,
 				0A0B11A620D2978D00021E2D /* BaseViewController.swift in Sources */,
 				0A37EF9720C6D2B200201907 /* DefaultSignInViewState.swift in Sources */,

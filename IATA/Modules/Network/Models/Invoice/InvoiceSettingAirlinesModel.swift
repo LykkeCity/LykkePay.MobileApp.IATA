@@ -8,6 +8,7 @@ class InvoiceSettingAirlinesModel: Mappable {
         case checked
         case type
         case id
+        case symbol
     }
     
     internal var name: String?
@@ -15,6 +16,7 @@ class InvoiceSettingAirlinesModel: Mappable {
     internal var checked: Bool? = false
     internal var type: String?
     internal var id: String?
+    internal var symbol: String?
     
     internal required init?(map: Map) {
     }
@@ -28,6 +30,7 @@ class InvoiceSettingAirlinesModel: Mappable {
         self.checked = json[PropertyKey.checked.rawValue] as? Bool
         self.type = json[PropertyKey.type.rawValue] as? String
         self.id = json[PropertyKey.id.rawValue] as? String
+        initSymbol()
     }
     
     internal func mapping(map: Map) {
@@ -36,5 +39,14 @@ class InvoiceSettingAirlinesModel: Mappable {
         checked <- map[PropertyKey.checked.rawValue]
         type <- map[PropertyKey.type.rawValue]
         id <- map[PropertyKey.id.rawValue]
+        initSymbol()
+    }
+    
+    internal func initSymbol() {
+        if let idValue = id, idValue.contains("USD") {
+            self.symbol = "$"
+        } else {
+            self.symbol = "€"
+        }
     }
 }

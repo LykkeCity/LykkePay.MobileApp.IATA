@@ -32,7 +32,9 @@ open class InvoiceView: UIView {
     
     internal func initView(model: InvoiceModel) {
         self.name.text = model.clientName
-        self.price.text = String(model.amount!) + getCurrency(currency: model.settlementAssetId)
+        if let amount = model.amount, let symbol = model.symbol {
+            self.price.text = String(amount) + symbol
+        }
         self.billingCategory.text = model.billingCategory
         self.invoiceNumber.text = model.number
         if (model.status ==  InvoiceStatuses.Unpaid && !model.dispute!) {
@@ -58,12 +60,4 @@ open class InvoiceView: UIView {
         self.icBodyDispute.isHidden = true
     }
     
-    //TODO hope it's for some time, before improving api
-    private func getCurrency(currency: String!) -> String {
-        if (currency.contains("USD")) {
-            return "$"
-        } else {
-            return "€"
-        }
-    }
 }
