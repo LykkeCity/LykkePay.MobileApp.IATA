@@ -153,7 +153,6 @@
 		5BD8D3E6E74FDC2B2AAEBD74 /* Pods_IATA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FC260316A6015639FD5E1F0 /* Pods_IATA.framework */; };
 		D70DE14E20CA9E6B00644281 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70DE14C20CA9E6B00644281 /* SettingsViewController.swift */; };
 		D70DE14F20CA9E6B00644281 /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D70DE14D20CA9E6B00644281 /* SettingsViewController.xib */; };
-		D784931B20D25EDD0060EAC6 /* WalletsState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D784931A20D25EDD0060EAC6 /* WalletsState.swift */; };
 		D784931D20D25F650060EAC6 /* DefaultWalletsState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D784931C20D25F650060EAC6 /* DefaultWalletsState.swift */; };
 		D78589A320D3DF1800E3C3FB /* WalletsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D78589A220D3DF1800E3C3FB /* WalletsViewModel.swift */; };
 		D7894CFD20CFFC290069F68E /* GothamProMed.otf in Resources */ = {isa = PBXBuildFile; fileRef = D7894CFB20CFFC290069F68E /* GothamProMed.otf */; };
@@ -348,7 +347,6 @@
 		D295B81107990C89EA142783 /* Pods-IATATests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IATATests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-IATATests/Pods-IATATests.debug.xcconfig"; sourceTree = "<group>"; };
 		D70DE14C20CA9E6B00644281 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		D70DE14D20CA9E6B00644281 /* SettingsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
-		D784931A20D25EDD0060EAC6 /* WalletsState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletsState.swift; sourceTree = "<group>"; };
 		D784931C20D25F650060EAC6 /* DefaultWalletsState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultWalletsState.swift; sourceTree = "<group>"; };
 		D78589A220D3DF1800E3C3FB /* WalletsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletsViewModel.swift; sourceTree = "<group>"; };
 		D7894CFB20CFFC290069F68E /* GothamProMed.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GothamProMed.otf; sourceTree = "<group>"; };
@@ -1146,7 +1144,6 @@
 		D784931920D25EA10060EAC6 /* State */ = {
 			isa = PBXGroup;
 			children = (
-				D784931A20D25EDD0060EAC6 /* WalletsState.swift */,
 				D784931C20D25F650060EAC6 /* DefaultWalletsState.swift */,
 			);
 			path = State;
@@ -1537,7 +1534,6 @@
 				0A0B11BC20D2B66300021E2D /* HistoryModel.swift in Sources */,
 				0A0D4B8720C54446009B73E9 /* NetworkConfig.swift in Sources */,
 				0A286A9520CA8B5000D93693 /* InvoiceSettingAirlinesModel.swift in Sources */,
-				D784931B20D25EDD0060EAC6 /* WalletsState.swift in Sources */,
 				0A13F65D20C974EC001BA302 /* InvoiceViewController.swift in Sources */,
 				0A26FCB720D166F00097A8F6 /* TransactionViewController.swift in Sources */,
 				0A6DB5D220C5537000BC1127 /* TokenObject.swift in Sources */,

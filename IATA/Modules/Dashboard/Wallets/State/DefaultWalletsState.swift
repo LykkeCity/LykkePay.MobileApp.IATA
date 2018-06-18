@@ -3,7 +3,7 @@ import PromiseKit
 import ObjectMapper
 
 
-class DefaultWalletsState: WalletsState {
+class DefaultWalletsState: DefaultBaseState<WalletsModel> {
 
     public lazy var service: PaymentService = DefaultPaymentService()
 

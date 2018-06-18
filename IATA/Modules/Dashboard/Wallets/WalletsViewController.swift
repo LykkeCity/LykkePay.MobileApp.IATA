@@ -1,13 +1,11 @@
 
 import UIKit
 
-class WalletsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class WalletsViewController: BaseViewController<WalletsModel, DefaultWalletsState> , Initializer {
 
     @IBOutlet weak var totalBalanceLabel: UILabel!
     
     @IBOutlet weak var tableView: UITableView!
-
-    private var state: WalletsState = DefaultWalletsState() as WalletsState
 
     private var wallets: [WalletsModel] = []
 
@@ -16,31 +14,25 @@ class WalletsViewController: UIViewController, UITableViewDelegate, UITableViewD
     private var totalBalance: String?
 
     override func viewDidLoad() {
+        initializer = self
+        state = DefaultWalletsState()
         super.viewDidLoad()
-        tableView.dataSource = self
-        tableView.delegate = self
-        tableView.register(WalletsTableViewCell.nib, forCellReuseIdentifier: WalletsTableViewCell.identifier)
-        tableView.tableFooterView = UIView(frame: .zero)
-        walletsViewModel = state.generateTestWalletsData()
-        totalBalance = state.getTotalBalance(from:walletsViewModel)
-        //loadData()
-
+        loadData()
+        if let testData = state?.generateTestWalletsData() {
+            walletsViewModel = testData
+        }
+        totalBalance = state?.getTotalBalance(from:walletsViewModel)
     }
     //todo
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController?.navigationBar.barTintColor = Theme.shared.tabBarBackgroundColor
-        self.navigationController?.navigationBar.tintColor = .white
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white, NSAttributedStringKey.font: UIFont(name: "GothamPro-Medium", size: 17)]
-        self.navigationController?.navigationBar.isTranslucent = false
-        self.navigationItem.title = tabBarItem.title?.capitalizingFirstLetter()
     }
-
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return walletsViewModel.count
     }
 
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: WalletsTableViewCell.identifier) as?  WalletsTableViewCell else {
             return WalletsTableViewCell()
         }
@@ -50,7 +42,7 @@ class WalletsViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
 
     private func loadData() {
-        self.state.getWalletsStringJson()
+        self.state?.getWalletsStringJson()
             .withSpinner(in: view)
             .then(execute: { [weak self] (result: String) -> Void in
                 guard let strongSelf = self else {
@@ -63,7 +55,19 @@ class WalletsViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
 
     private func reloadTable(jsonString: String!) {
-        self.wallets = state.mapping(jsonString: jsonString)
+        self.wallets = (state?.mapping(jsonString: jsonString))!
         self.tableView.reloadData()
+    }
+
+    func getTitle() -> String? {
+        return tabBarItem.title?.capitalizingFirstLetter()
+    }
+
+    func getTableView() -> UITableView {
+        return tableView
+    }
+
+    func registerCells() {
+        tableView.register(WalletsTableViewCell.nib, forCellReuseIdentifier: WalletsTableViewCell.identifier)
     }
 }
