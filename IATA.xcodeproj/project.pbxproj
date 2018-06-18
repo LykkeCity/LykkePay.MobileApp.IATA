@@ -1067,6 +1067,15 @@
 			path = Service;
 			sourceTree = "<group>";
 		};
+		0AC337D820D852A3006ACC22 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				D7DEFC9220C97458005FB9EF /* WalletsTableViewCell.swift */,
+				D7DEFC9120C97458005FB9EF /* WalletsTableViewCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		0AF611A420CA727300957348 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
@@ -1203,10 +1212,9 @@
 		D7DEFC8F20C97430005FB9EF /* Wallets */ = {
 			isa = PBXGroup;
 			children = (
+				0AC337D820D852A3006ACC22 /* Cell */,
 				D78589A120D3DE6D00E3C3FB /* ViewModels */,
 				D784931920D25EA10060EAC6 /* State */,
-				D7DEFC9220C97458005FB9EF /* WalletsTableViewCell.swift */,
-				D7DEFC9120C97458005FB9EF /* WalletsTableViewCell.xib */,
 				D7DEFC9320C97458005FB9EF /* WalletsViewController.swift */,
 				D7DEFC9020C97458005FB9EF /* WalletsViewController.xib */,
 			);

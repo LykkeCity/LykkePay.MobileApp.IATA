@@ -15,6 +15,14 @@
          contextName = "closure #1 in closure #1 in DataRequest.responseJSON(options:):DataRequest.swift">
       </ContextState>
       <ContextState
+         contextName = "DefaultWalletsState.getTotalBalance():DefaultWalletsState.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "items">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "closure #1 in PinViewController.validation(_:):PinViewController.swift">
       </ContextState>
       <ContextState
@@ -40,6 +48,17 @@
          contextName = "closure #1 in SignInViewController.signIn(username:password:):SignInViewController.swift">
       </ContextState>
       <ContextState
+         contextName = "InvoiceTableViewCell.initFullCheckBoxStatus(_:isChecked:):InvoiceTableViewCell.swift">
+      </ContextState>
+      <ContextState
+         contextName = "WalletsViewController.tableView(_:cellForRowAt:):WalletsViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.state?.getItems()">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "closure #1 in SignInViewController.signIn(email:password:):SignInViewController.swift">
       </ContextState>
       <ContextState
@@ -50,6 +69,14 @@
          <PersistentStrings>
             <PersistentString
                value = "&quot;111111cfo@ba.com&quot;.sha1()">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "InvoiceStatusesStruct.init(type:):InvoiceStatuses.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "type">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

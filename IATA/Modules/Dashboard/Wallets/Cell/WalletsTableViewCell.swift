@@ -39,11 +39,10 @@ class WalletsTableViewCell: UITableViewCell {
         if assetId.contains("USD") {
             walletsNationalFlag = "ic_usFlagMediumIcn"
             return String(baseAssetBalance) + " $"
-        }
-        else if assetId.contains("EUR") {
+        } else if assetId.contains("EUR") {
              walletsNationalFlag = "ic_eurFlagMediumIcn"
             return String(baseAssetBalance) + " €"
         }
-        return ""
+        return String(baseAssetBalance)
     }
 }

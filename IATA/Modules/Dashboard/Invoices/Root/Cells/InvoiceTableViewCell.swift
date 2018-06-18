@@ -61,7 +61,10 @@ class InvoiceTableViewCell: UITableViewCell {
     }
     
     private func initFullCheckBoxStatus(_ model: InvoiceModel, isChecked: Bool) {
-        let structInfo = InvoiceStatusesStruct(type: model.status!)
+        guard let status = model.status else {
+            return
+        }
+        let structInfo = InvoiceStatusesStruct(type: status)
         initCheckBoxAndStatus(structInfo: structInfo, isChecked: isChecked)
     }
     
