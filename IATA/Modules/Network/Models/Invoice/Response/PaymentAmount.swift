@@ -3,9 +3,10 @@ import ObjectMapper
 class PaymentAmount: Mappable {
     
     private enum PropertyKey: String {
-        case amountToPay    }
+        case amountToPay
+    }
     
-    internal var amountToPay: String?
+    internal var amountToPay: Int?
     
     internal required init?() {
     }

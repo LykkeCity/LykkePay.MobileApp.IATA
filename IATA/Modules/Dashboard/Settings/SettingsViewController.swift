@@ -45,7 +45,6 @@ class SettingsViewController: UIViewController, UICollectionViewDelegate, UIColl
             return BaseCurrencyCollectionViewCell()
         }
         let currency = self.state.getCurrencies()[indexPath.row]
-        UserPreference.shared.saveCurrentCurrency(currency)
         cell.initView(model: currency)
         return cell
     }

@@ -9,6 +9,7 @@ class DefaultSettingsState: SettingsState {
         model1?.logo = "ic_usFlagSmallIcn"
         model1?.name = "USD"
         model1?.initSymbol()
+        UserPreference.shared.saveCurrentCurrency(model1!)
         
         let model2 = InvoiceSettingAirlinesModel()
         model2?.logo = "ic_eurFlagSmallIcn"

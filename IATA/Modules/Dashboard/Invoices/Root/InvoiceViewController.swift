@@ -56,6 +56,7 @@ OnChangeStateSelected {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.hideMenu()
         self.loadData()
     }
     
@@ -179,8 +180,6 @@ OnChangeStateSelected {
                     return
                 }
                 strongSelf.saveAmount(amount: result.amountToPay)
-            }).catch(execute: { [weak self] error -> Void in
-                
             })
         self.sumEditingEnd(self.sumTextField)
         if (isSelected && self.downView.isHidden) {
@@ -188,6 +187,22 @@ OnChangeStateSelected {
         } else if (!isSelected && !self.downView.isHidden && self.state?.getCountSelected() == 0) {
             animate(isShow: false)
         }
+    }
+    
+    func makePayment(alert: UIAlertAction!) {
+        self.state?.makePayment()
+            .withSpinner(in: view)
+            .then(execute: { [weak self] (result:Void) -> Void in
+                guard let strongSelf = self else {
+                    return
+                }
+                strongSelf.paymentSuccess()
+            })
+    }
+    
+    func paymentSuccess() {
+        self.showToast(message: "Common.Success.Message".localize())
+        self.hideMenu()
     }
     
     @IBAction func makePay(_ sender: Any) {
@@ -202,14 +217,15 @@ OnChangeStateSelected {
         let uiAlert = UIAlertController(title: "Invoice.Screen.PleaseConfirmPayment".localize(), message: message, preferredStyle: UIAlertControllerStyle.alert)
         self.present(uiAlert, animated: true, completion: nil)
         
-        uiAlert.addAction(UIAlertAction(title: "Invoice.Screen.Pay".localize(), style: .default, handler: nil))
         uiAlert.addAction(UIAlertAction(title: "Common.NavBar.Cancel".localize(), style: .default, handler: nil))
+        uiAlert.addAction(UIAlertAction(title: "Invoice.Screen.Pay".localize(), style: .default, handler: makePayment))
+        
     }
     
-    private func saveAmount(amount: String?) {
+    private func saveAmount(amount: Int?) {
         if let amountValue = amount {
-            self.state?.amount = Int(amountValue)!
-            self.sumTextField.text = amount
+            self.state?.amount = amountValue
+            self.sumTextField.text = String(amountValue)
         }
     }
     
@@ -259,8 +275,6 @@ OnChangeStateSelected {
                     return
                 }
                 strongSelf.reloadTable(jsonString: result)
-            }).catch(execute: { [weak self] error -> Void in
-                
             })
     }
     
