@@ -68,7 +68,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mR8-eV-pPH">
-                                            <rect key="frame" x="48" y="431.5" width="279" height="48"/>
+                                            <rect key="frame" x="48" y="401.5" width="279" height="48"/>
                                             <color key="backgroundColor" red="0.17254901960784313" green="0.71764705882352942" blue="0.0039215686274509803" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="48" id="TR5-YQ-a4h"/>
@@ -104,7 +104,7 @@
                                             </userDefinedRuntimeAttributes>
                                         </textField>
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ska-xM-lkl" customClass="ErrorTextField" customModule="Material">
-                                            <rect key="frame" x="48" y="346.5" width="279" height="40"/>
+                                            <rect key="frame" x="48" y="331.5" width="279" height="40"/>
                                             <accessibility key="accessibilityConfiguration" hint="Password"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="40" id="FPh-uG-bpC"/>
@@ -124,7 +124,7 @@
                                         <constraint firstItem="jnn-ZT-33H" firstAttribute="top" secondItem="hT8-Kf-Gck" secondAttribute="bottom" constant="24" id="0P9-pD-ZXz"/>
                                         <constraint firstItem="xPn-eG-rW0" firstAttribute="top" secondItem="9qR-xI-Yiu" secondAttribute="bottom" constant="24" id="20O-38-Nre"/>
                                         <constraint firstItem="xPn-eG-rW0" firstAttribute="leading" secondItem="82L-dI-PCI" secondAttribute="leading" constant="48" id="8bg-Lk-vWg"/>
-                                        <constraint firstItem="Ska-xM-lkl" firstAttribute="top" secondItem="jnn-ZT-33H" secondAttribute="bottom" constant="45" id="LI7-hC-qlm"/>
+                                        <constraint firstItem="Ska-xM-lkl" firstAttribute="top" secondItem="jnn-ZT-33H" secondAttribute="bottom" constant="30" id="LI7-hC-qlm"/>
                                         <constraint firstItem="Ska-xM-lkl" firstAttribute="leading" secondItem="82L-dI-PCI" secondAttribute="leading" constant="48" id="NIY-5L-xnx"/>
                                         <constraint firstItem="mR8-eV-pPH" firstAttribute="leading" secondItem="82L-dI-PCI" secondAttribute="leading" constant="48" id="Ndm-Nu-eKp"/>
                                         <constraint firstItem="9qR-xI-Yiu" firstAttribute="top" secondItem="82L-dI-PCI" secondAttribute="top" constant="40" id="Ojy-E1-hGZ"/>
@@ -136,7 +136,7 @@
                                         <constraint firstAttribute="trailing" secondItem="mR8-eV-pPH" secondAttribute="trailing" constant="48" id="f32-Y7-Z8p"/>
                                         <constraint firstAttribute="trailing" secondItem="Ska-xM-lkl" secondAttribute="trailing" constant="48" id="sVW-7C-yxu"/>
                                         <constraint firstAttribute="height" constant="600" id="uke-aF-85h"/>
-                                        <constraint firstItem="mR8-eV-pPH" firstAttribute="top" secondItem="Ska-xM-lkl" secondAttribute="bottom" constant="45" id="uvb-Zy-oc1"/>
+                                        <constraint firstItem="mR8-eV-pPH" firstAttribute="top" secondItem="Ska-xM-lkl" secondAttribute="bottom" constant="30" id="uvb-Zy-oc1"/>
                                     </constraints>
                                 </view>
                             </subviews>
