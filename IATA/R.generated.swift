@@ -109,7 +109,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 27 images.
+  /// This `R.image` struct is generated, and contains static references to 28 images.
   struct image {
     /// Image `Logo`.
     static let logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "Logo")
@@ -119,6 +119,8 @@ struct R: Rswift.Validatable {
     static let arrow_down_icon = Rswift.ImageResource(bundle: R.hostingBundle, name: "arrow_down_icon")
     /// Image `checkmark_icon`.
     static let checkmark_icon = Rswift.ImageResource(bundle: R.hostingBundle, name: "checkmark_icon")
+    /// Image `ic_bodyInvertIcn`.
+    static let ic_bodyInvertIcn = Rswift.ImageResource(bundle: R.hostingBundle, name: "ic_bodyInvertIcn")
     /// Image `ic_bodyLogoutIcn`.
     static let ic_bodyLogoutIcn = Rswift.ImageResource(bundle: R.hostingBundle, name: "ic_bodyLogoutIcn")
     /// Image `ic_bodySettingsIcn`.
@@ -184,6 +186,11 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "checkmark_icon", bundle: ..., traitCollection: ...)`
     static func checkmark_icon(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.checkmark_icon, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "ic_bodyInvertIcn", bundle: ..., traitCollection: ...)`
+    static func ic_bodyInvertIcn(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.ic_bodyInvertIcn, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "ic_bodyLogoutIcn", bundle: ..., traitCollection: ...)`
@@ -1226,6 +1233,7 @@ struct _R: Rswift.Validatable {
       try _BaseCurrencyCollectionViewCell.validate()
       try _SignInViewController.validate()
       try _HistoryTableViewCell.validate()
+      try _ExhangeViewController.validate()
       try _PasswordContainerView.validate()
     }
     
@@ -1280,12 +1288,18 @@ struct _R: Rswift.Validatable {
       fileprivate init() {}
     }
     
-    struct _ExhangeViewController: Rswift.NibResourceType {
+    struct _ExhangeViewController: Rswift.NibResourceType, Rswift.Validatable {
       let bundle = R.hostingBundle
       let name = "ExhangeViewController"
       
       func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]? = nil) -> UIKit.UIView? {
         return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
+      }
+      
+      static func validate() throws {
+        if UIKit.UIImage(named: "ic_bodyInvertIcn", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'ic_bodyInvertIcn' is used in nib 'ExhangeViewController', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "ic_usFlagMediumIcn", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'ic_usFlagMediumIcn' is used in nib 'ExhangeViewController', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "ic_eurFlagMediumIcn", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'ic_eurFlagMediumIcn' is used in nib 'ExhangeViewController', but couldn't be loaded.") }
       }
       
       fileprivate init() {}
