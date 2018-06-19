@@ -1,5 +1,6 @@
 import Foundation
 import UIKit
+import Nuke
 
 open class InvoiceView: UIView {
     
@@ -48,7 +49,18 @@ open class InvoiceView: UIView {
             self.icBodyDispute.isHidden = true
             self.status.isHidden = false
         }
-        //TODO add after api will be ready info =
+        if let date = model.iataInvoiceDate, let settlement = model.settlementMonthPeriod {
+            self.info.text = date + " | " + settlement
+        } else {
+            self.info.text = ""
+        }
+        
+        if let logoUrl = model.logoUrl, let url = URL(string: logoUrl){
+            var request = ImageRequest(url: url)
+            request.memoryCacheOptions.isWriteAllowed = true
+            request.priority = .high
+            Nuke.loadImage(with: request, into: self.logo)
+        }
     }
     
     internal func initStatus(color: UIColor, status: String) {

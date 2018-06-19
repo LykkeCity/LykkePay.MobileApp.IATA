@@ -26,6 +26,7 @@
                 <outlet property="bottomConstrain" destination="bo5-ZY-U0M" id="4L2-SE-d8Z"/>
                 <outlet property="downView" destination="Boz-OM-wSA" id="sXc-bd-gRZ"/>
                 <outlet property="downViewHeightConstraint" destination="ozl-4g-oOw" id="8DP-Ii-Yif"/>
+                <outlet property="loading" destination="uiP-4Y-L2f" id="g5E-Me-XMA"/>
                 <outlet property="selectedItemTextField" destination="phI-Vh-W4l" id="j6U-6G-G8k"/>
                 <outlet property="sumTextField" destination="Xi0-s7-cse" id="ucX-4y-afN"/>
                 <outlet property="sumTextFieldWidth" destination="JFo-lG-bYg" id="MsP-xa-wPU"/>
@@ -39,14 +40,14 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="aHq-O3-Lfw">
-                    <rect key="frame" x="0.0" y="28" width="367" height="631"/>
+                    <rect key="frame" x="0.0" y="28" width="367" height="521"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </tableView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Boz-OM-wSA">
-                    <rect key="frame" x="0.0" y="667" width="375" height="0.0"/>
+                    <rect key="frame" x="0.0" y="557" width="375" height="110"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Mi-CE-o9S">
-                            <rect key="frame" x="225" y="-24" width="130" height="48"/>
+                            <rect key="frame" x="225" y="31" width="130" height="48"/>
                             <color key="backgroundColor" red="0.17254901960784313" green="0.71764705882352942" blue="0.0039215686274509803" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="130" id="2CC-Yk-Cqi"/>
@@ -74,7 +75,7 @@
                             </constraints>
                         </view>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2 invoices selected" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="phI-Vh-W4l">
-                            <rect key="frame" x="16" y="71" width="129.5" height="16"/>
+                            <rect key="frame" x="16" y="71" width="120" height="16"/>
                             <fontDescription key="fontDescription" name="GothamPro-Light" family="Gotham Pro" pointSize="14"/>
                             <color key="textColor" red="0.066666666666666666" green="0.066666666666666666" blue="0.066666666666666666" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
@@ -100,10 +101,15 @@
                                 <action selector="sumEditingEnd:" destination="-1" eventType="editingDidEnd" id="dzs-FJ-xfs"/>
                             </connections>
                         </textField>
+                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="uiP-4Y-L2f">
+                            <rect key="frame" x="36" y="45" width="20" height="20"/>
+                        </activityIndicatorView>
                     </subviews>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstItem="koP-il-pIp" firstAttribute="top" secondItem="Boz-OM-wSA" secondAttribute="top" constant="8" id="1zW-o3-ufh"/>
+                        <constraint firstItem="uiP-4Y-L2f" firstAttribute="leading" secondItem="Boz-OM-wSA" secondAttribute="leading" constant="36" id="3z3-xl-FvH"/>
+                        <constraint firstItem="uiP-4Y-L2f" firstAttribute="centerY" secondItem="Boz-OM-wSA" secondAttribute="centerY" id="Lon-f1-j9L"/>
                         <constraint firstItem="phI-Vh-W4l" firstAttribute="leading" secondItem="Boz-OM-wSA" secondAttribute="leading" constant="16" id="NBz-FD-rzB"/>
                         <constraint firstItem="9Mi-CE-o9S" firstAttribute="centerY" secondItem="Boz-OM-wSA" secondAttribute="centerY" id="OMd-5H-EjG"/>
                         <constraint firstItem="koP-il-pIp" firstAttribute="leading" secondItem="Boz-OM-wSA" secondAttribute="leading" constant="16" id="WWW-hS-w9T"/>
@@ -112,7 +118,7 @@
                         <constraint firstItem="9Mi-CE-o9S" firstAttribute="leading" relation="lessThanOrEqual" secondItem="Xi0-s7-cse" secondAttribute="trailing" constant="185" id="hBI-FM-Utc"/>
                         <constraint firstItem="Xi0-s7-cse" firstAttribute="top" secondItem="koP-il-pIp" secondAttribute="bottom" constant="16" id="nXL-DP-37c"/>
                         <constraint firstItem="phI-Vh-W4l" firstAttribute="top" secondItem="Xi0-s7-cse" secondAttribute="bottom" constant="16" id="ncS-Rw-5hx"/>
-                        <constraint firstAttribute="height" id="ozl-4g-oOw"/>
+                        <constraint firstAttribute="height" constant="110" id="ozl-4g-oOw"/>
                         <constraint firstItem="Xi0-s7-cse" firstAttribute="leading" secondItem="Boz-OM-wSA" secondAttribute="leading" constant="16" id="x7D-yM-Bd5"/>
                     </constraints>
                 </view>
