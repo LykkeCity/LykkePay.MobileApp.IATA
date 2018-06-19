@@ -26,7 +26,7 @@ class HistoryViewController: BaseViewController<HistoryModel, DefaultHistoryStat
     }
     
     func getTitle() -> String? {
-        return "History.Screen.Title".localize()
+        return R.string.localizable.historyScreenTitle()
     }
     
     func getTableView() -> UITableView {

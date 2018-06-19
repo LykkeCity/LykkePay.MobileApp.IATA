@@ -14,15 +14,17 @@ target 'IATA' do
     pod 'Crashlytics'
     pod 'WARangeSlider'
     pod 'Material'
+    pod 'R.swift'
+
     pod 'Nuke'
     
     target 'IATATests' do
         inherit! :search_paths
     end
-    
+
     target 'IATAUITests' do
         inherit! :search_paths
         # Pods for testing
     end
-    
+
 end

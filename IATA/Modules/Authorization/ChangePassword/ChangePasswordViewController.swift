@@ -55,7 +55,7 @@ class ChangePasswordViewController: BaseAuthViewController {
     }
     
     private func initBackButton() {
-        let backButton = Theme.shared.getCancel(title: "Common.NavBar.Cancel".localize(), color: Theme.shared.navBarTitle)
+        let backButton = Theme.shared.getCancel(title: R.string.localizable.commonNavBarCancel(), color: Theme.shared.navBarTitle)
         backButton.addTarget(self, action: #selector(clickCancel), for: .touchUpInside)
         
         let backItem = UIBarButtonItem(customView: backButton)
@@ -63,7 +63,7 @@ class ChangePasswordViewController: BaseAuthViewController {
     }
     
     private func initTitle() {
-        let titleLabel = Theme.shared.getTitle(title: "ChangePassword.NavBar.Title".localize(), color: Theme.shared.navBarTitle)
+        let titleLabel = Theme.shared.getTitle(title: R.string.localizable.changePasswordNavBarTitle(), color: Theme.shared.navBarTitle)
         self.navigationItem.titleView = titleLabel
     }
     
@@ -120,7 +120,7 @@ class ChangePasswordViewController: BaseAuthViewController {
     
     private func setUpTextFields() {
         if (self.isHasError()) {
-            Theme.shared.showError(self.newPasswordAgainField, "ChangePassword.FieldNotEquals.Error".localize())
+            Theme.shared.showError(self.newPasswordAgainField, R.string.localizable.changePasswordFieldNotEqualsError())
         } else {
             self.newPasswordAgainField?.isErrorRevealed = false
         }

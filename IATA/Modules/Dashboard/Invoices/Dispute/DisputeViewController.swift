@@ -25,7 +25,7 @@ class DisputeViewController: BaseViewController<DisputeModel, DefaultDisputeStat
     }
     
     func getTitle() -> String? {
-        return "Invoice.Dispute.Title".localize()
+        return R.string.localizable.invoiceDisputeTitle()
     }
     
     func getTableView() -> UITableView {

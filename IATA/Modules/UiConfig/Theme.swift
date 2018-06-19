@@ -64,25 +64,25 @@ class Theme: NSObject {
     }
     
     private func boldFontOfSize(_ size: CGFloat) -> UIFont? {
-        return UIFont(name: "GothamPro-Bold", size: size)
+        return R.font.gothamProBold(size: size)
     }
     
     private func lightFontOfSize(_ size: CGFloat) -> UIFont? {
-        return UIFont(name: "GothamPro-Light", size: size)
+        return R.font.gothamProLight(size: size)
     }
     
     private func mediumFontOfSize(_ size: CGFloat) -> UIFont? {
-        return UIFont(name: "GothamPro-Medium", size: size)
+        return R.font.gothamProMedium(size: size)
     }
     
     private func regularFontOfSize(_ size: CGFloat) -> UIFont? {
-        return UIFont(name: "GothamPro", size: size)
+        return R.font.gothamPro(size: size)
     }
     
     public func getTitle(title: String!, color: UIColor) -> UILabel {
         let titleLabel = UILabel()
         titleLabel.text = title
-        titleLabel.font =  UIFont(name: "GothamPro-Medium", size: 17)
+        titleLabel.font =  R.font.gothamProMedium(size: 17)
         titleLabel.tintColor = color
         titleLabel.textColor = color
         titleLabel.frame = CGRect(x: 0.0,
@@ -96,7 +96,7 @@ class Theme: NSObject {
     public func getCancel(title: String!, color: UIColor) -> UIButton {
         let backButton = UIButton()
         backButton.setTitle(title, for: .normal)
-        backButton.titleLabel?.font =  UIFont(name: "GothamPro", size: 17)
+        backButton.titleLabel?.font =  R.font.gothamPro(size: 17)
         backButton.tintColor = color
         backButton.setTitleColor(color, for: .normal)
         backButton.frame = CGRect(x: 0.0,
@@ -109,7 +109,7 @@ class Theme: NSObject {
     public func getRightButton(title: String!, color: UIColor) -> UIButton {
         let rightButton = UIButton()
         rightButton.setTitle(title, for: .normal)
-        rightButton.titleLabel?.font =  UIFont(name: "GothamPro-Bold", size: 17)
+        rightButton.titleLabel?.font =  R.font.gothamProBold(size: 17)
         rightButton.tintColor = color
         rightButton.setTitleColor(color, for: .normal)
         rightButton.frame = CGRect(x: 0.0,
@@ -120,7 +120,7 @@ class Theme: NSObject {
     }
     
     public func configureTextFieldStyle(_ textField: ErrorTextField?, title: String){
-        textField?.placeholder = title.localize()
+        textField?.placeholder = title.localize() 
         textField?.isPlaceholderUppercasedWhenEditing = true
         textField?.dividerActiveColor = Theme.shared.greenColor
         textField?.placeholderActiveColor = Theme.shared.greenColor

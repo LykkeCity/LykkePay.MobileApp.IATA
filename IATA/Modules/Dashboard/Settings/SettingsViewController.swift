@@ -30,10 +30,10 @@ class SettingsViewController: UIViewController, UICollectionViewDelegate, UIColl
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.barTintColor = Theme.shared.tabBarBackgroundColor
         self.navigationController?.navigationBar.tintColor = .white
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white, NSAttributedStringKey.font: UIFont(name: "GothamPro-Medium", size: 17)]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white, NSAttributedStringKey.font: R.font.gothamProMedium(size: 17)]
         self.navigationController?.navigationBar.isTranslucent = false
         self.navigationItem.title = tabBarItem.title?.capitalizingFirstLetter()
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "ic_bodyLogoutIcn"), style: .plain, target: self, action: #selector(logoutButtonTapped))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: R.image.ic_bodyLogoutIcn(), style: .plain, target: self, action: #selector(logoutButtonTapped))
 
         self.view.layoutIfNeeded()
         let defaultIndexPathForTesting = IndexPath(row: 0, section: 0)
@@ -72,10 +72,10 @@ class SettingsViewController: UIViewController, UICollectionViewDelegate, UIColl
     
     @objc private func logoutButtonTapped() {
         let logoutSheet = UIAlertController(title: nil, message: nil, preferredStyle:  .actionSheet)
-        let logoutAction = UIAlertAction(title: "Setting.Logout.Item.Logout".localize(), style: .default, handler: logout)
+        let logoutAction = UIAlertAction(title: R.string.localizable.settingLogoutItemLogout(), style: .default, handler: logout)
         logoutAction.setValue(Theme.shared.logoutTitle, forKey: "titleTextColor")
         logoutSheet.addAction(logoutAction)
-        logoutSheet.addAction(UIAlertAction(title: "Setting.Logout.Item.Cancel".localize(), style: .cancel, handler: nil))
+        logoutSheet.addAction(UIAlertAction(title: R.string.localizable.settingLogoutItemCancel(), style: .cancel, handler: nil))
         self.present(logoutSheet, animated: true, completion: nil)
     }
 

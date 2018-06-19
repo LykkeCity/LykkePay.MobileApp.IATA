@@ -33,19 +33,19 @@ extension InvoiceViewModel: UITableViewDataSource, UITableViewDelegate, OnSwitch
         
         switch type {
         case .airlines:
-            headerView.title.text = "Invoice.Settings.Airlines.Title".localize()
+            headerView.title.text = R.string.localizable.invoiceSettingsAirlinesTitle()
             break
         case .currencies:
-            headerView.title.text = "Invoice.Settings.Currencies.Title".localize()
+            headerView.title.text = R.string.localizable.invoiceSettingsCurrenciesTitle()
             break
         case .paymentRange:
-            headerView.title.text = "Invoice.Settings.PaymentRange.Title".localize()
+            headerView.title.text = R.string.localizable.invoiceSettingsPaymentRangeTitle()
             break
         case .billingCategories:
-            headerView.title.text = "Invoice.Settings.BillingCategories.Title".localize()
+            headerView.title.text = R.string.localizable.invoiceSettingsBillingCategoriesTitle()
             break
         case .settlementPeriod:
-            headerView.title.text = "Invoice.Settings.SettlementPeriod.Title".localize()
+            headerView.title.text = R.string.localizable.invoiceSettingsSettlementPeriodTitle()
             break
         }
         return headerView

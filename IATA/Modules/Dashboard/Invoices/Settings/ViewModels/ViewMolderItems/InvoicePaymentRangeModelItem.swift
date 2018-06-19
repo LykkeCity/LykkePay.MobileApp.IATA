@@ -13,7 +13,7 @@ class InvoicePaymentRangeItem: InvoiceViewModelItem {
     }
     
     func getSectionTitle() -> String? {
-        return "Invoice.Settings.PaymentRange.Title".localize()
+        return R.string.localizable.invoiceSettingsPaymentRangeTitle()
     }
     
     func rowCount() -> Int {

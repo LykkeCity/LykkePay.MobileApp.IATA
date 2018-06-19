@@ -22,7 +22,7 @@ class PinViewController: UIViewController {
         self.passwordContainerView.delegate = self as PasswordInputCompleteProtocol
         self.passwordContainerView.touchAuthenticationEnabled = isValidation
         
-        self.labelTitle.text = self.isValidation ? "Pin.Validation.Title".localize() : "Pin.Setup.Title".localize()
+        self.labelTitle.text = self.isValidation ? R.string.localizable.pinValidationTitle() : R.string.localizable.pinSetupTitle()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -43,7 +43,7 @@ class PinViewController: UIViewController {
     }
     
     private func initBackButton() {
-        let backButton = Theme.shared.getCancel(title: "Common.NavBar.Cancel".localize(), color: Theme.shared.navBarTitle)
+        let backButton = Theme.shared.getCancel(title: R.string.localizable.commonNavBarCancel(), color: Theme.shared.navBarTitle)
         backButton.addTarget(self, action: #selector(cancel), for: .touchUpInside)
         
         let backItem = UIBarButtonItem(customView: backButton)
@@ -135,7 +135,7 @@ private extension PinViewController {
     
     func reset() {
         self.passwordContainerView.clearInput()
-        self.labelTitle.text = "Pin.Resubmit.Title".localize()
+        self.labelTitle.text = R.string.localizable.pinResubmitTitle()
     }
 }
 

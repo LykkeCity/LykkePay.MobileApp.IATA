@@ -107,7 +107,7 @@ open class PasswordContainerView: UIView {
     //MARK: Init
     open class func create(withDigit digit: Int) -> PasswordContainerView {
         let bundle = Bundle(for: self)
-        let nib = UINib(nibName: "PasswordContainerView", bundle: bundle)
+        let nib = UINib(nibName: R.nib.passwordContainerView.name, bundle: bundle)
         let view = nib.instantiate(withOwner: self, options: nil).first as! PasswordContainerView
         view.passwordDotView.totalDotCount = digit
         return view
