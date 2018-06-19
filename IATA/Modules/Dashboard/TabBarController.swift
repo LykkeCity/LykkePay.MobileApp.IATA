@@ -17,16 +17,16 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
         var historyVC = HistoryViewController()
         var settingsVC = SettingsViewController()
 
-        invoicesVC = generateTabBarItem(for: invoicesVC, normalImage: "ic_invoicesNormal", activeImage: "ic_invoicesActive",
-                                        title:"TabBar.InvoicesItem.Title".localize())
-        walletsVC = generateTabBarItem(for: walletsVC, normalImage: "ic_walletsNormal", activeImage: "ic_walletsActive",
-                                       title: "TabBar.WalletsItem.Title".localize())
-        exchangeVC = generateTabBarItem(for: exchangeVC, normalImage: "ic_exchangeNormal", activeImage: "ic_exchangeActive",
-                                        title: "TabBar.ExchangeItem.Title".localize())
-        historyVC = generateTabBarItem(for: historyVC, normalImage: "ic_historyNormal", activeImage: "ic_historyActive",
-                                       title: "TabBar.HistoryItem.Title".localize())
-        settingsVC = generateTabBarItem(for: settingsVC, normalImage: "ic_settingsNormal", activeImage: "ic_settingsActive",
-                                        title: "TabBar.SettingsItem.Title".localize())
+        invoicesVC = generateTabBarItem(for: invoicesVC, normalImage: R.image.ic_invoicesNormal.name, activeImage: R.image.ic_invoicesActive.name,
+                                        title: R.string.localizable.tabBarInvoicesItemTitle())
+        walletsVC = generateTabBarItem(for: walletsVC, normalImage: R.image.ic_walletsNormal.name, activeImage: R.image.ic_walletsActive.name,
+                                       title: R.string.localizable.tabBarWalletsItemTitle())
+        exchangeVC = generateTabBarItem(for: exchangeVC, normalImage: R.image.ic_exchangeNormal.name, activeImage: R.image.ic_exchangeActive.name,
+                                        title: R.string.localizable.tabBarExchangeItemTitle())
+        historyVC = generateTabBarItem(for: historyVC, normalImage: R.image.ic_historyNormal.name, activeImage: R.image.ic_historyActive.name,
+                                       title: R.string.localizable.tabBarHistoryItemTitle())
+        settingsVC = generateTabBarItem(for: settingsVC, normalImage: R.image.ic_settingsNormal.name, activeImage: R.image.ic_settingsActive.name,
+                                        title: R.string.localizable.tabBarSettingsItemTitle())
         let controllers = [invoicesVC, walletsVC, exchangeVC, historyVC, settingsVC]
         
         self.viewControllers = controllers.map { UINavigationController(rootViewController: $0)}

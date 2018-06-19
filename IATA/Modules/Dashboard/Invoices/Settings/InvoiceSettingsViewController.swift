@@ -62,7 +62,7 @@ class InvoiceSettingsViewController: UIViewController {
     }
     
     private func initBackButton() {
-        let backButton = Theme.shared.getCancel(title: "Common.NavBar.Cancel".localize(), color: Theme.shared.navBarTitle)
+        let backButton = Theme.shared.getCancel(title: R.string.localizable.commonNavBarCancel(), color: Theme.shared.navBarTitle)
         backButton.addTarget(self, action: #selector(clickCancel), for: .touchUpInside)
         
         let backItem = UIBarButtonItem(customView: backButton)
@@ -70,7 +70,7 @@ class InvoiceSettingsViewController: UIViewController {
     }
     
     private func initRightButton() {
-        let rightButton = Theme.shared.getRightButton(title: "Common.NavBar.Done".localize(), color: Theme.shared.textFieldColor)
+        let rightButton = Theme.shared.getRightButton(title: R.string.localizable.commonNavBarDone(), color: Theme.shared.textFieldColor)
         rightButton.addTarget(self, action: #selector(clickDone), for: .touchUpInside)
         
         let rightItem = UIBarButtonItem(customView: rightButton)
@@ -78,7 +78,7 @@ class InvoiceSettingsViewController: UIViewController {
     }
     
     private func initTitle() {
-        let titleLabel = Theme.shared.getTitle(title: "Invoice.Settings.Filter.Title".localize(), color: Theme.shared.navBarTitle)
+        let titleLabel = Theme.shared.getTitle(title: R.string.localizable.invoiceSettingsFilterTitle(), color: Theme.shared.navBarTitle)
         self.navigationItem.titleView = titleLabel
     }
     

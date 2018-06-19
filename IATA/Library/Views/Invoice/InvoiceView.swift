@@ -24,7 +24,7 @@ open class InvoiceView: UIView {
     }
     
     private func setupDefaults() {
-        Bundle.main.loadNibNamed("InvoiceView", owner: self, options: nil)
+        Bundle.main.loadNibNamed(R.nib.invoiceView.name, owner: self, options: nil)
         addSubview(contentView)
         contentView.frame = self.bounds
         contentView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
@@ -41,7 +41,7 @@ open class InvoiceView: UIView {
             self.status.isHidden = true
             self.icBodyDispute.isHidden = true
         } else if (model.dispute!){
-            self.initStatus(color: Theme.shared.greyStatusColor, status: "Invoice.Status.Items.Dispute".localize())
+            self.initStatus(color: Theme.shared.greyStatusColor, status: R.string.localizable.invoiceStatusItemsDispute()) 
             self.icBodyDispute.isHidden = false
             self.status.isHidden = false
         } else {

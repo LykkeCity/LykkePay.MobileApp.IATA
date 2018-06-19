@@ -1,6 +1,7 @@
 
 import UIKit
 
+
 class WalletsViewController: BaseViewController<WalletsViewModel, DefaultWalletsState> , Initializer {
 
     @IBOutlet weak var totalBalanceLabel: UILabel!

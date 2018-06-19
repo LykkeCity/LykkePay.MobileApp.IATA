@@ -15,10 +15,10 @@ class BaseAuthViewController: UIViewController, UITextFieldDelegate {
         } else {
             message = error.localizedDescription
         }
-        let uiAlert = UIAlertController(title: "Common.Title.Error".localize(), message: message, preferredStyle: UIAlertControllerStyle.alert)
+        let uiAlert = UIAlertController(title: R.string.localizable.commonTitleError(), message: message, preferredStyle: UIAlertControllerStyle.alert)
             self.present(uiAlert, animated: true, completion: nil)
             
-            uiAlert.addAction(UIAlertAction(title: "Common.PositiveButton.Ok".localize(), style: .default, handler: nil))
+            uiAlert.addAction(UIAlertAction(title: R.string.localizable.commonPositiveButtonOk(), style: .default, handler: nil))
     }
     
     @objc func appMovedToBackground() {

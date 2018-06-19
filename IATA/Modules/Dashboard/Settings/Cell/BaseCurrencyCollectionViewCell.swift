@@ -24,7 +24,9 @@ class BaseCurrencyCollectionViewCell: UICollectionViewCell {
     }
     
     internal func initView(model: InvoiceSettingAirlinesModel) {
-        self.baseCurrencyFlagImage.image = UIImage(named: model.logo!)
+        if let logo = model.logo {
+            self.baseCurrencyFlagImage.image = UIImage(named: logo)
+        }
         self.baseCurrencyNameLabel.text = model.name
         self.isSelected = model.checked!
     }

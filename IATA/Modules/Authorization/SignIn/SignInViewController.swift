@@ -18,8 +18,8 @@ class SignInViewController: BaseAuthViewController {
         emailTextField?.delegate = self
         passwordField?.delegate = self
 
-        Theme.shared.configureTextFieldStyle(self.emailTextField!, title: "SignIn.Placeholder.Login")
-        Theme.shared.configureTextFieldPasswordStyle(self.passwordField!, title: "SignIn.Placeholder.Password")
+        Theme.shared.configureTextFieldStyle(self.emailTextField!, title: R.string.localizable.signInPlaceholderLogin())
+        Theme.shared.configureTextFieldPasswordStyle(self.passwordField!, title: R.string.localizable.signInPlaceholderPassword())
 
 
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
@@ -29,7 +29,7 @@ class SignInViewController: BaseAuthViewController {
     private func buttonClicked() {
         self.view.endEditing(true)
         guard let email = self.emailTextField?.text!, let password = self.passwordField?.text! else {
-            self.showErrorAlert(error: self.state.getError("Common.Error.Internal".localize()))
+            self.showErrorAlert(error: self.state.getError(R.string.localizable.commonErrorInternal()))
             return
         }
         self.signIn(email: email, password: state.getHashPass(email: email, password: password))
@@ -65,7 +65,7 @@ class SignInViewController: BaseAuthViewController {
 
     private func openValidationPinController(tokenObject: TokenObject) {
         guard let email = self.emailTextField?.text, tokenObject.token != nil else {
-            self.showErrorAlert(error: self.state.getError("Common.Error.Internal".localize()))
+            self.showErrorAlert(error: self.state.getError(R.string.localizable.commonErrorInternal()))
             return
         }
 

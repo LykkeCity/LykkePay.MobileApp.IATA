@@ -47,11 +47,11 @@ OnChangeStateSelected {
     }
     
     override func getLeftButton() -> UIBarButtonItem? {
-        return UIBarButtonItem(image: UIImage(named: "ic_filter"), style: .plain, target: self, action: #selector(self.clickFilter(sender:)))
+        return UIBarButtonItem(image: R.image.ic_filter(), style: .plain, target: self, action: #selector(self.clickFilter(sender:)))
     }
     
     override func getRightButton() -> UIBarButtonItem? {
-        return UIBarButtonItem(image: UIImage(named: "ic_dispute"), style: .plain, target: self, action: #selector(self.clickDispute(sender:)))
+        return UIBarButtonItem(image: R.image.ic_dispute(), style: .plain, target: self, action: #selector(self.clickDispute(sender:)))
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -118,14 +118,14 @@ OnChangeStateSelected {
         let stateCanBeClosedDispute = state.isCanBeClosedDispute(index: indexPath.row)
         
         if (stateCanBeOpenDispute) {
-            let dispute = UITableViewRowAction(style: .normal, title: "Invoice.Screen.Items.Dispute".localize()) { (action, indexPath) in
+            let dispute = UITableViewRowAction(style: .normal, title: R.string.localizable.invoiceScreenItemsDispute()) { (action, indexPath) in
                 
             }
             
             dispute.backgroundColor = Theme.shared.pinkDisputeColor
             return [dispute]
         } else if (stateCanBeClosedDispute) {
-            let dispute = UITableViewRowAction(style: .normal, title: "Invoice.Screen.Items.CancelDispute".localize()) { (action, indexPath) in
+            let dispute = UITableViewRowAction(style: .normal, title: R.string.localizable.invoiceScreenItemsCancelDispute()) { (action, indexPath) in
                 
             }
             
@@ -136,7 +136,7 @@ OnChangeStateSelected {
     }
     
     func getTitle() -> String? {
-        return "TabBar.InvoicesItem.Title".localize()
+        return R.string.localizable.tabBarInvoicesItemTitle()
     }
     
     func getTableView() -> UITableView {
@@ -201,7 +201,7 @@ OnChangeStateSelected {
     }
     
     func paymentSuccess() {
-        self.showToast(message: "Common.Success.Message".localize())
+        self.showToast(message: R.string.localizable.commonSuccessMessage())
         self.hideMenu()
     }
     
@@ -213,12 +213,12 @@ OnChangeStateSelected {
         guard let symbol = UserPreference.shared.getCurrentCurrency()?.symbol else {
             return
         }
-        let message = String(format: "Invoice.Screen.PaymentMessage".localize(), symbol + String(amount))
-        let uiAlert = UIAlertController(title: "Invoice.Screen.PleaseConfirmPayment".localize(), message: message, preferredStyle: UIAlertControllerStyle.alert)
+        let message = R.string.localizable.invoiceScreenPaymentMessage(symbol + String(amount))
+        let uiAlert = UIAlertController(title: R.string.localizable.invoiceScreenPleaseConfirmPayment(), message: message, preferredStyle: UIAlertControllerStyle.alert)
         self.present(uiAlert, animated: true, completion: nil)
         
-        uiAlert.addAction(UIAlertAction(title: "Common.NavBar.Cancel".localize(), style: .default, handler: nil))
-        uiAlert.addAction(UIAlertAction(title: "Invoice.Screen.Pay".localize(), style: .default, handler: makePayment))
+        uiAlert.addAction(UIAlertAction(title: R.string.localizable.commonNavBarCancel(), style: .default, handler: nil))
+        uiAlert.addAction(UIAlertAction(title: R.string.localizable.invoiceScreenPay(), style: .default, handler: makePayment))
         
     }
     

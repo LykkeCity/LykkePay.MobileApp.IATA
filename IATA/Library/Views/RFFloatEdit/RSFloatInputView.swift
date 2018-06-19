@@ -55,7 +55,7 @@ open class RSFloatInputView: UIView {
   }
   
   open func build() {
-    placeHolderLabel.contentsScale = UIScreen.main.scale
+    placeHolderLabel.contentsScale = UIScreen.main.scale 
     addSubview(textField)
     addSubview(iconImageView)
     addSubview(separatorView)

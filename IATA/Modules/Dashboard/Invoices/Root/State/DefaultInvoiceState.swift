@@ -4,7 +4,7 @@ import ObjectMapper
 
 class DefaultInvoiceState: DefaultBaseState<InvoiceModel> {
     
-    private let menuItems = ["Invoice.Navigation.Filtering.Title.AllInvoices".localize(), "Invoice.Navigation.Filtering.Title.UnPaidInvoices".localize(), "Invoice.Navigation.Filtering.Title.Dispute".localize()]
+    private let menuItems = [R.string.localizable.invoiceNavigationFilteringTitleAllInvoices(), R.string.localizable.invoiceNavigationFilteringTitleUnPaidInvoices(), R.string.localizable.invoiceNavigationFilteringTitleDispute()]
     private var selectedItems = Array<InvoiceModel>()
     private var invoiceParams = InvoiceRequest()
     public lazy var service: PaymentService = DefaultPaymentService()
@@ -126,7 +126,7 @@ class DefaultInvoiceState: DefaultBaseState<InvoiceModel> {
     }
     
     func getSelectedString() -> String {
-        return String(format: "Invoice.Screen.Items.CountSelected".localize(), String(self.getCountSelected()))
+        return R.string.localizable.invoiceScreenItemsCountSelected(String(self.getCountSelected()))
     }
     
     private func getItemsId() -> [String] {
