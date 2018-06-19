@@ -15,6 +15,14 @@ extension String {
     func localize() -> String {
         return NSLocalizedString(self, comment: "")
     }
+
+    func capitalizingFirstLetter() -> String {
+        return prefix(1).uppercased() + dropFirst().lowercased()
+    }
+
+    mutating func capitalizeFirstLetter() {
+        self = self.capitalizingFirstLetter()
+    }
     
     enum ExpandedEncoding {
         /// Hex string of bytes

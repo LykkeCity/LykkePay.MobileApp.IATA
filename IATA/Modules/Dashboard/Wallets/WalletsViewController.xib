@@ -76,8 +76,15 @@
                         <constraint firstItem="Q3Z-1f-1pb" firstAttribute="height" secondItem="iQ7-ER-KQ3" secondAttribute="height" id="oAZ-g7-10P"/>
                     </constraints>
                 </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w3R-iF-Yq2">
+                    <rect key="frame" x="20" y="156" width="374" height="1"/>
+                    <color key="backgroundColor" red="0.90196078431372551" green="0.90980392156862744" blue="0.91764705882352937" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="mo2-iv-igQ"/>
+                    </constraints>
+                </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qt9-eY-MSu">
-                    <rect key="frame" x="20" y="156" width="374" height="580"/>
+                    <rect key="frame" x="20" y="165" width="374" height="571"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                     <connections>
@@ -88,13 +95,16 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="w3R-iF-Yq2" secondAttribute="trailing" constant="20" id="5yi-ul-Shk"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="qt9-eY-MSu" secondAttribute="trailing" constant="20" id="6dE-Xg-e3j"/>
                 <constraint firstItem="IhM-x8-v1X" firstAttribute="leading" secondItem="HEX-KF-biQ" secondAttribute="trailing" constant="8" id="9NG-wh-i8x"/>
                 <constraint firstItem="HEX-KF-biQ" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="FcJ-rf-XfX"/>
-                <constraint firstItem="qt9-eY-MSu" firstAttribute="top" secondItem="IhM-x8-v1X" secondAttribute="bottom" constant="8" id="LFf-h8-tPT"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="IhM-x8-v1X" secondAttribute="trailing" constant="20" id="Num-Py-Pxy"/>
+                <constraint firstItem="qt9-eY-MSu" firstAttribute="top" secondItem="w3R-iF-Yq2" secondAttribute="bottom" constant="8" id="TZl-nz-7fS"/>
+                <constraint firstItem="w3R-iF-Yq2" firstAttribute="top" secondItem="IhM-x8-v1X" secondAttribute="bottom" constant="8" id="UEx-pb-pCJ"/>
                 <constraint firstItem="HEX-KF-biQ" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="30" id="XsC-cP-Sc5"/>
                 <constraint firstItem="IhM-x8-v1X" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="aoQ-r0-yBt"/>
+                <constraint firstItem="w3R-iF-Yq2" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="gRQ-Y4-vuA"/>
                 <constraint firstItem="qt9-eY-MSu" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="mET-Bn-Wcg"/>
                 <constraint firstItem="qt9-eY-MSu" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="pKq-wO-uhU"/>
             </constraints>

@@ -26,7 +26,7 @@
                             <constraint firstAttribute="height" constant="30" id="kIv-6h-aXp"/>
                         </constraints>
                     </view>
-
+<<<<<<< HEAD
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="orx-qc-urX">
                         <rect key="frame" x="50" y="14" width="36" height="36"/>
                         <constraints>
@@ -86,12 +86,12 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-
+=======
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7dX-g4-R2c" customClass="InvoiceView" customModule="IATA" customModuleProvider="target">
                         <rect key="frame" x="42" y="0.0" width="278" height="69.5"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
-
+>>>>>>> IATA2.0
                 </subviews>
                 <constraints>
                     <constraint firstItem="7dX-g4-R2c" firstAttribute="leading" secondItem="978-Sq-1qd" secondAttribute="trailing" id="LXS-Hc-gT3"/>

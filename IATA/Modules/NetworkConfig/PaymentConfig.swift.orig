@@ -5,9 +5,12 @@ class PaymentConfig {
     public static let shared = PaymentConfig()
     
     public let invoices = "/invoices/inbox"
+<<<<<<< HEAD
     public let makePayment = "/invoices/pay"
     public let amount = "/invoices/sum"
+=======
 
     public let wallets = "/merchantWallets"
+>>>>>>> feature/LPDEV-591
     
 }

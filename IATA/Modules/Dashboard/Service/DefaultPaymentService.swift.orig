@@ -3,12 +3,15 @@ import PromiseKit
 import ObjectMapper
 
 class DefaultPaymentService: NSObject, PaymentService {
+<<<<<<< HEAD
    
     func makePayment(model: PaymentRequest) -> Promise<Void> {
          return Network.shared.post(path: PaymentConfig.shared.makePayment, object: model)
     }
     
+=======
 
+>>>>>>> feature/LPDEV-591
     func getInVoices(invoceParams: InvoiceRequest)-> Promise<String> {
         var params: [String : Any] = [String : Any]()
         

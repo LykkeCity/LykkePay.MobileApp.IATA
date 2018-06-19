@@ -2,19 +2,10 @@
 "Common.PositiveButton.Ok" = "Ok";
 "Common.NavBar.Cancel" = "Cancel";
 "Common.NavBar.Done" = "Done";
-"Common.Error.Internal" = "Something is going wrong, please, try again.";
-"Common.Success.Message" = "Success";
-
-"SignIn.Placeholder.Login" = "Login";
-"SignIn.Placeholder.Password" = "Password";
 
 "ChangePassword.FieldEmpty.Error" = "The CurrentPasssword field is required.";
 "ChangePassword.FieldNotEquals.Error" = "Fields are not equal";
 "ChangePassword.NavBar.Title" = "Change password";
-
-"ChangePassword.Placeholder.CurrentPassword" = "Current password";
-"ChangePassword.Placeholder.NewPassword" = "New password";
-"ChangePassword.Placeholder.NewPasswordAgain" = "New password again";
 
 "Pin.Validation.Title" = "Please enter your PIN code";
 "Pin.Setup.Title" = "Setup your PIN code";
@@ -29,10 +20,6 @@
 "Invoice.Settings.Filter.Title" = "Filters";
 "Invoice.Settings.Range.From" = "From";
 "Invoice.Settings.Range.To" = "To";
-
-"Invoice.Screen.PaymentMessage" = "Pay %@ against the selected invoices?";
-"Invoice.Screen.PleaseConfirmPayment" = "Please confirm";
-"Invoice.Screen.Pay" = "Pay";
 
 "Invoice.Navigation.Filtering.Title.AllInvoices" = "All invoices";
 "Invoice.Navigation.Filtering.Title.UnPaidInvoices" = "Unpaid invoices";
