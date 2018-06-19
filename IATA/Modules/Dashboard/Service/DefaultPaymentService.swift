@@ -35,9 +35,13 @@ class DefaultPaymentService: NSObject, PaymentService {
         return Network.shared.get(path: PaymentConfig.shared.wallets, params: params)
     }
     
+
     func getAmount(invoicesIds: [String]) -> Promise<PaymentAmount> {
         var params: [String : Any] = [String : Any]()
         params[InvoiceRequest.InvoiceParamsKey.invoicesIds.rawValue] = invoicesIds
         return Network.shared.getWithBrasket(path: PaymentConfig.shared.amount, params: params)
+    }
+    func getHistory() -> Promise<String> {
+        return Network.shared.get(path: PaymentConfig.shared.historyIndex , params: [:])
     }
 }

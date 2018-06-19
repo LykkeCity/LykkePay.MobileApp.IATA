@@ -8,15 +8,6 @@ class TransactionViewController: UIViewController, UITableViewDataSource, UITabl
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let model = HistoryModel()
-        model.amount = 1
-        model.logo = "djk"
-        model.name = "kde"
-        model.settlementPeriod = "dkelkd"
-        model.soldBy = "eded"
-        model.timeStamp = "kdeokde"
-        items.append(model)
-        itemsValues = (items.first?.valueFor())!
         
         self.tabView.delegate = self
         self.tabView.dataSource = self
