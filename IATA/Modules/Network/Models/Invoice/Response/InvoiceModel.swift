@@ -20,10 +20,12 @@ class InvoiceModel: Mappable {
         case createdDate
         case billingCategory
         case dispute
-        
+        case settlementMonthPeriod
+        case iataInvoiceDate
         case logo
         case settlementPeriod
         case symbol
+        case logoUrl
        
     }
     
@@ -45,9 +47,12 @@ class InvoiceModel: Mappable {
     internal var billingCategory: String?
     internal var dispute: Bool?
     //TODO still not ready in server
-    internal var logo: String?
+    internal var logoUrl: String?
     internal var settlementPeriod: String?
     internal var symbol: String?
+    internal var settlementMonthPeriod: String?
+    internal var iataInvoiceDate: String?
+    
     
     internal required init?() {
     }
@@ -74,8 +79,11 @@ class InvoiceModel: Mappable {
         note <- map[PropertyKey.note.rawValue]
         billingCategory <- map[PropertyKey.billingCategory.rawValue]
         dispute <- map[PropertyKey.dispute.rawValue]
-        logo <- map[PropertyKey.logo.rawValue]
+        logoUrl <- map[PropertyKey.logoUrl.rawValue]
         settlementPeriod <- map[PropertyKey.settlementPeriod.rawValue]
+        settlementMonthPeriod <- map[PropertyKey.settlementMonthPeriod.rawValue]
+        iataInvoiceDate <- map[PropertyKey.iataInvoiceDate.rawValue]
+        iataInvoiceDate = DateUtils.formatDate(date: iataInvoiceDate)
         if let idValue = settlementAssetId, idValue.contains("USD") {
             self.symbol = "$"
         } else {
