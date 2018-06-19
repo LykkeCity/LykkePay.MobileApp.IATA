@@ -13,7 +13,7 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
         
         var invoicesVC = InvoiceViewController()
         var walletsVC = WalletsViewController()
-        var exchangeVC = WalletsViewController()
+        var exchangeVC = ExhangeViewController()
         var historyVC = HistoryViewController()
         var settingsVC = SettingsViewController()
 

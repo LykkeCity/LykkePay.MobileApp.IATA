@@ -33,6 +33,8 @@ class Theme: NSObject {
     public let blueProgressStatusColor = Utils.rgb(53, 153, 254)
     public let redErrorStatusColor = Utils.rgb(254, 53, 96)
     public let greyStatusColor = Utils.rgb(178, 184, 191)
+
+    public let exchangeTopViewBorderColor = Utils.rgb(205, 205, 210)
     
     public private(set) lazy var buttonsFont = boldFontOfSize(16)
     public private(set) lazy var linksFont = boldFontOfSize(15)
