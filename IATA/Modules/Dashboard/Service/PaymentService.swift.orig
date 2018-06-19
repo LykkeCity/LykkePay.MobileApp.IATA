@@ -1,0 +1,14 @@
+import Foundation
+import PromiseKit
+
+protocol PaymentService {
+    
+    func getInVoices(invoceParams: InvoiceRequest)-> Promise<String>
+<<<<<<< HEAD
+    func getAmount(invoicesIds: [String]) -> Promise<PaymentAmount> 
+    func makePayment(model: PaymentRequest) -> Promise<Void>
+=======
+
+    func getWallets(convertAssetIdParams: String)-> Promise<String>
+>>>>>>> feature/LPDEV-591
+}

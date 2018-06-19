@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="GothamProBold.ttf">
+            <string>GothamPro-Bold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="InvoiceHeaderView" customModule="IATA" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bmQ-vd-hNT">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dXQ-cU-EP8">
+                            <rect key="frame" x="16" y="39.5" width="67.5" height="21.5"/>
+                            <fontDescription key="fontDescription" name="GothamPro-Bold" family="Gotham Pro" pointSize="24"/>
+                            <color key="textColor" red="0.074509803921568626" green="0.26666666666666666" blue="0.45882352941176469" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CDV-ib-tqv">
+                            <rect key="frame" x="16" y="0.0" width="343" height="1"/>
+                            <color key="backgroundColor" red="0.90196078430000004" green="0.90980392160000001" blue="0.91764705879999997" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="lre-Tg-Hd2"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7ur-ib-LoU">
+                            <rect key="frame" x="16" y="99" width="343" height="1"/>
+                            <color key="backgroundColor" red="0.90196078431372551" green="0.90980392156862744" blue="0.91764705882352937" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="6Mr-8b-nYv"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="dXQ-cU-EP8" firstAttribute="leading" secondItem="bmQ-vd-hNT" secondAttribute="leading" constant="16" id="0Ag-a1-kxY"/>
+                        <constraint firstItem="CDV-ib-tqv" firstAttribute="leading" secondItem="bmQ-vd-hNT" secondAttribute="leading" constant="16" id="BTr-Hn-rnF"/>
+                        <constraint firstItem="CDV-ib-tqv" firstAttribute="top" secondItem="bmQ-vd-hNT" secondAttribute="top" id="CSj-oZ-yNX"/>
+                        <constraint firstAttribute="trailing" secondItem="7ur-ib-LoU" secondAttribute="trailing" constant="16" id="DPe-nK-xCy"/>
+                        <constraint firstItem="7ur-ib-LoU" firstAttribute="leading" secondItem="bmQ-vd-hNT" secondAttribute="leading" constant="16" id="F6k-03-iU3"/>
+                        <constraint firstItem="dXQ-cU-EP8" firstAttribute="centerY" secondItem="bmQ-vd-hNT" secondAttribute="centerY" id="fZh-Is-Wpt"/>
+                        <constraint firstAttribute="trailing" secondItem="CDV-ib-tqv" secondAttribute="trailing" constant="16" id="ovS-m7-6p7"/>
+                        <constraint firstAttribute="bottom" secondItem="7ur-ib-LoU" secondAttribute="bottom" id="u6n-0c-1Ho"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="bmQ-vd-hNT" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="1eS-2O-kMa"/>
+                <constraint firstItem="bmQ-vd-hNT" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="M59-a3-s0t"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="bmQ-vd-hNT" secondAttribute="trailing" id="jUt-6B-2g9"/>
+                <constraint firstItem="bmQ-vd-hNT" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="vIM-JT-Pm3"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="title" destination="dXQ-cU-EP8" id="rV3-Fb-cb4"/>
+            </connections>
+            <point key="canvasLocation" x="33.5" y="148"/>
+        </view>
+    </objects>
+</document>
