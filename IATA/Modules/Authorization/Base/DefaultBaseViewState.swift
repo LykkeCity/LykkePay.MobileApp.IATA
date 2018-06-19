@@ -11,7 +11,7 @@ class DefaultBaseViewState : BaseViewState {
         var resMessage = ""
         for message in values {
             resMessage.append(message)
-            resMessage.append("\n")
+            return resMessage
         }
         return resMessage
     }

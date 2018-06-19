@@ -45,8 +45,6 @@
 		0A0D4B8720C54446009B73E9 /* NetworkConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0D4B8620C54446009B73E9 /* NetworkConfig.swift */; };
 		0A13F65D20C974EC001BA302 /* InvoiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A13F65B20C974EC001BA302 /* InvoiceViewController.swift */; };
 		0A13F65E20C974EC001BA302 /* InvoiceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A13F65C20C974EC001BA302 /* InvoiceViewController.xib */; };
-		0A175D4F20D3B116000E3C83 /* RSFloatInputViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A175D4D20D3B116000E3C83 /* RSFloatInputViewUtils.swift */; };
-		0A175D5020D3B116000E3C83 /* RSFloatInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A175D4E20D3B116000E3C83 /* RSFloatInputView.swift */; };
 		0A1AF40820CADB450009595C /* BTTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1AF40420CADB450009595C /* BTTitle.swift */; };
 		0A1AF40920CADB450009595C /* BTNavigationDropdownMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1AF40520CADB450009595C /* BTNavigationDropdownMenu.swift */; };
 		0A1AF40E20CADB670009595C /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1AF40C20CADB670009595C /* UIView+Extension.swift */; };
@@ -58,8 +56,6 @@
 		0A26FC7F20CFF8140097A8F6 /* InvoiceStatuses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A26FC7E20CFF8140097A8F6 /* InvoiceStatuses.swift */; };
 		0A26FC8120D00B320097A8F6 /* InvoiceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A26FC8020D00B320097A8F6 /* InvoiceRequest.swift */; };
 		0A26FC8320D0F0B00097A8F6 /* OnSwitchStateChangedDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A26FC8220D0F0B00097A8F6 /* OnSwitchStateChangedDelegate.swift */; };
-		0A26FC8820D0FBEF0097A8F6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A26FC8620D0FBEF0097A8F6 /* ViewController.swift */; };
-		0A26FC8920D0FBEF0097A8F6 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A26FC8720D0FBEF0097A8F6 /* ViewController.xib */; };
 		0A26FC8D20D117410097A8F6 /* InvoiceSettingsState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A26FC8C20D117410097A8F6 /* InvoiceSettingsState.swift */; };
 		0A26FC8F20D117500097A8F6 /* DefaultInvoiceSettingsState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A26FC8E20D117500097A8F6 /* DefaultInvoiceSettingsState.swift */; };
 		0A26FC9420D15AC70097A8F6 /* DisputeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A26FC9220D15AC70097A8F6 /* DisputeViewController.swift */; };
@@ -80,6 +76,7 @@
 		0A286A9220CA88F700D93693 /* InvoiceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A286A8F20CA88F700D93693 /* InvoiceViewModel.swift */; };
 		0A286A9320CA88F700D93693 /* ServerData.json in Resources */ = {isa = PBXBuildFile; fileRef = 0A286A9020CA88F700D93693 /* ServerData.json */; };
 		0A286A9520CA8B5000D93693 /* InvoiceSettingAirlinesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A286A9420CA8B5000D93693 /* InvoiceSettingAirlinesModel.swift */; };
+		0A349FF420D8F98D00D0A1C2 /* DateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A349FF320D8F98D00D0A1C2 /* DateUtils.swift */; };
 		0A37EF5420C5816B00201907 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A37EF5220C5816B00201907 /* SignInViewController.swift */; };
 		0A37EF5620C5835300201907 /* SignInViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A37EF5820C5835300201907 /* SignInViewController.xib */; };
 		0A37EF5D20C587C600201907 /* Promise+Spinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A37EF5C20C587C600201907 /* Promise+Spinner.swift */; };
@@ -239,8 +236,6 @@
 		0A0D4B8620C54446009B73E9 /* NetworkConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConfig.swift; sourceTree = "<group>"; };
 		0A13F65B20C974EC001BA302 /* InvoiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvoiceViewController.swift; sourceTree = "<group>"; };
 		0A13F65C20C974EC001BA302 /* InvoiceViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InvoiceViewController.xib; sourceTree = "<group>"; };
-		0A175D4D20D3B116000E3C83 /* RSFloatInputViewUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSFloatInputViewUtils.swift; sourceTree = "<group>"; };
-		0A175D4E20D3B116000E3C83 /* RSFloatInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSFloatInputView.swift; sourceTree = "<group>"; };
 		0A1AF40420CADB450009595C /* BTTitle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BTTitle.swift; sourceTree = "<group>"; };
 		0A1AF40520CADB450009595C /* BTNavigationDropdownMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BTNavigationDropdownMenu.swift; sourceTree = "<group>"; };
 		0A1AF40C20CADB670009595C /* UIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
@@ -252,8 +247,6 @@
 		0A26FC7E20CFF8140097A8F6 /* InvoiceStatuses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvoiceStatuses.swift; sourceTree = "<group>"; };
 		0A26FC8020D00B320097A8F6 /* InvoiceRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvoiceRequest.swift; sourceTree = "<group>"; };
 		0A26FC8220D0F0B00097A8F6 /* OnSwitchStateChangedDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnSwitchStateChangedDelegate.swift; sourceTree = "<group>"; };
-		0A26FC8620D0FBEF0097A8F6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		0A26FC8720D0FBEF0097A8F6 /* ViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ViewController.xib; sourceTree = "<group>"; };
 		0A26FC8C20D117410097A8F6 /* InvoiceSettingsState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvoiceSettingsState.swift; sourceTree = "<group>"; };
 		0A26FC8E20D117500097A8F6 /* DefaultInvoiceSettingsState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultInvoiceSettingsState.swift; sourceTree = "<group>"; };
 		0A26FC9220D15AC70097A8F6 /* DisputeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisputeViewController.swift; sourceTree = "<group>"; };
@@ -274,6 +267,7 @@
 		0A286A8F20CA88F700D93693 /* InvoiceViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvoiceViewModel.swift; sourceTree = "<group>"; };
 		0A286A9020CA88F700D93693 /* ServerData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ServerData.json; sourceTree = "<group>"; };
 		0A286A9420CA8B5000D93693 /* InvoiceSettingAirlinesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvoiceSettingAirlinesModel.swift; sourceTree = "<group>"; };
+		0A349FF320D8F98D00D0A1C2 /* DateUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtils.swift; sourceTree = "<group>"; };
 		0A37EF5220C5816B00201907 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		0A37EF5720C5835300201907 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SignInViewController.xib; sourceTree = "<group>"; };
 		0A37EF5C20C587C600201907 /* Promise+Spinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Promise+Spinner.swift"; sourceTree = "<group>"; };
@@ -641,15 +635,6 @@
 			path = Invoices;
 			sourceTree = "<group>";
 		};
-		0A175D4C20D3B0F9000E3C83 /* RFFloatEdit */ = {
-			isa = PBXGroup;
-			children = (
-				0A175D4E20D3B116000E3C83 /* RSFloatInputView.swift */,
-				0A175D4D20D3B116000E3C83 /* RSFloatInputViewUtils.swift */,
-			);
-			path = RFFloatEdit;
-			sourceTree = "<group>";
-		};
 		0A1AF40220CADB240009595C /* NavigationDropDown */ = {
 			isa = PBXGroup;
 			children = (
@@ -815,6 +800,7 @@
 				0A37EF6B20C58BA000201907 /* Utils.swift */,
 				0A4CD15020CE79F700EF4A17 /* LetterImageGenerator.swift */,
 				0A4CD16620CF135300EF4A17 /* TextFieldUtils.swift */,
+				0A349FF320D8F98D00D0A1C2 /* DateUtils.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1113,7 +1099,6 @@
 		0AF611A920CA72E200957348 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				0A175D4C20D3B0F9000E3C83 /* RFFloatEdit */,
 				0A0B119F20D28B9100021E2D /* Invoice */,
 				0A4CD14520CD8FFE00EF4A17 /* Switcher */,
 				0A1AF40220CADB240009595C /* NavigationDropDown */,
@@ -1226,8 +1211,6 @@
 				D7DEFC8F20C97430005FB9EF /* Wallets */,
 				D7DEFC8A20C97147005FB9EF /* TabBarController.swift */,
 				D7DEFC8B20C97147005FB9EF /* TabBarView.xib */,
-				0A26FC8620D0FBEF0097A8F6 /* ViewController.swift */,
-				0A26FC8720D0FBEF0097A8F6 /* ViewController.xib */,
 			);
 			path = Dashboard;
 			sourceTree = "<group>";
@@ -1382,7 +1365,6 @@
 				0A0B11C320D2E35300021E2D /* InvoiceSettingsTableViewCell.xib in Resources */,
 				0A26FCB220D1658D0097A8F6 /* TransactionTableViewCell.xib in Resources */,
 				0A0D4B5520C53364009B73E9 /* Assets.xcassets in Resources */,
-				0A26FC8920D0FBEF0097A8F6 /* ViewController.xib in Resources */,
 				0A37EFA020C6DC5100201907 /* Localizable.strings in Resources */,
 				0A286A9320CA88F700D93693 /* ServerData.json in Resources */,
 				0A26FCA020D160F00097A8F6 /* HistoryViewController.xib in Resources */,
@@ -1482,6 +1464,7 @@
 				"${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework",
 				"${BUILT_PRODUCTS_DIR}/Material/Material.framework",
 				"${BUILT_PRODUCTS_DIR}/Motion/Motion.framework",
+				"${BUILT_PRODUCTS_DIR}/Nuke/Nuke.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/PromiseKit/PromiseKit.framework",
 				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
@@ -1496,6 +1479,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Material.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Motion.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nuke.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PromiseKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rswift.framework",
@@ -1565,7 +1549,6 @@
 				0AB8E20E20C56FF500C13361 /* DefaultAuthenticationService.swift in Sources */,
 				0A4CD13F20CD840700EF4A17 /* InvoiceHeaderView.swift in Sources */,
 				0A1AF41520CADB7B0009595C /* BTTableViewCell.swift in Sources */,
-				0A175D4F20D3B116000E3C83 /* RSFloatInputViewUtils.swift in Sources */,
 				0A0B11B620D2B4C400021E2D /* LabelExtensitions.swift in Sources */,
 				D7DEFC8C20C97148005FB9EF /* TabBarController.swift in Sources */,
 				0A37EF6220C588F400201907 /* ErrorHandler.swift in Sources */,
@@ -1608,8 +1591,8 @@
 				0A37EF6C20C58BA000201907 /* Utils.swift in Sources */,
 				0A26FC9920D15B7F0097A8F6 /* DisputeTableViewCell.swift in Sources */,
 				0A37EF9220C6C97000201907 /* DictionaryExtension.swift in Sources */,
+				0A349FF420D8F98D00D0A1C2 /* DateUtils.swift in Sources */,
 				0A0B11C220D2E35300021E2D /* InvoiceSettingsTableViewCell.swift in Sources */,
-				0A26FC8820D0FBEF0097A8F6 /* ViewController.swift in Sources */,
 				0A0B11B220D2A3C900021E2D /* BaseNavController.swift in Sources */,
 				0A37EF6A20C58B6B00201907 /* Theme.swift in Sources */,
 				0A62F56720C546E100A51D63 /* ServerErrorExtractor.swift in Sources */,
@@ -1634,7 +1617,6 @@
 				0A4CD11C20CD47A600EF4A17 /* OnChangeStateSelected.swift in Sources */,
 				0A0D4B4B20C53361009B73E9 /* AppDelegate.swift in Sources */,
 				0A0B118D20D270DD00021E2D /* DefaultSettingsState.swift in Sources */,
-				0A175D5020D3B116000E3C83 /* RSFloatInputView.swift in Sources */,
 				0A37F00120C809DC00201907 /* ChangePasswordRequest.swift in Sources */,
 				0A37EF9520C6D1E500201907 /* SignInViewState.swift in Sources */,
 				D784931D20D25F650060EAC6 /* DefaultWalletsState.swift in Sources */,
@@ -1859,10 +1841,7 @@
 				DEVELOPMENT_TEAM = NCJC54GM5Z;
 				INFOPLIST_FILE = IATA/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = lykke.IATA.test.delivery;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "c3518fae-dadb-4f14-ba36-95ba9f9f5a0a";
@@ -1882,10 +1861,7 @@
 				DEVELOPMENT_TEAM = NCJC54GM5Z;
 				INFOPLIST_FILE = IATA/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = lykke.IATA.test.delivery;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "c3518fae-dadb-4f14-ba36-95ba9f9f5a0a";
@@ -1903,11 +1879,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = IATATests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = lykke.IATATests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -1924,11 +1896,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = IATATests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = lykke.IATATests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -1944,11 +1912,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = IATAUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = lykke.IATAUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -1964,11 +1928,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = IATAUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = lykke.IATAUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;

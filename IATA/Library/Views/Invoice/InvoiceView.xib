@@ -37,7 +37,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="yXU-yc-qv1">
-                    <rect key="frame" x="52" y="16" width="108.5" height="46.5"/>
+                    <rect key="frame" x="48" y="16" width="108.5" height="46.5"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="AIR CHINA" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SQW-wh-Aoa">
                             <rect key="frame" x="0.0" y="0.0" width="108.5" height="12.5"/>
@@ -78,11 +78,11 @@
                     </subviews>
                     <viewLayoutGuide key="safeArea" id="BG3-Gf-qxM"/>
                 </stackView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="5eL-jn-e0W">
-                    <rect key="frame" x="8" y="16" width="36" height="36"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5eL-jn-e0W">
+                    <rect key="frame" x="8" y="16" width="32" height="26"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="36" id="kJf-aw-lqJ"/>
-                        <constraint firstAttribute="height" constant="36" id="sxj-7E-hzJ"/>
+                        <constraint firstAttribute="width" constant="32" id="kJf-aw-lqJ"/>
+                        <constraint firstAttribute="height" constant="26" id="sxj-7E-hzJ"/>
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" semanticContentAttribute="forceRightToLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jw2-S9-r55" customClass="UiStatusView" customModule="IATA" customModuleProvider="target">
@@ -118,7 +118,6 @@
         </view>
     </objects>
     <resources>
-        <image name="Logo" width="216" height="216"/>
         <image name="ic_body_dispute" width="32" height="32"/>
     </resources>
 </document>

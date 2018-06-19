@@ -5,6 +5,7 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
     Initializer,
 OnChangeStateSelected {
     
+    @IBOutlet weak var loading: UIActivityIndicatorView!
     @IBOutlet weak var sumTextFieldWidth: NSLayoutConstraint!
     @IBOutlet weak var tabView: UITableView!
     @IBOutlet weak var downView: UIView!
@@ -227,6 +228,9 @@ OnChangeStateSelected {
             self.state?.amount = amountValue
             self.sumTextField.text = String(amountValue)
         }
+        self.selectedItemTextField.isHidden = false
+        self.sumTextField.isHidden = false
+        self.loading.isHidden = true
     }
     
     private func initWidth() {
@@ -244,6 +248,10 @@ OnChangeStateSelected {
         }
         self.downView.isHidden = isShow ? false : true
         self.downViewHeightConstraint.constant = isShow ? 110 : 0
+        self.loading.isHidden = false
+        self.sumTextField.isHidden = true
+        self.selectedItemTextField.isHidden = true
+        self.loading.startAnimating()
     }
     
     override func getTitleView() -> UIView {

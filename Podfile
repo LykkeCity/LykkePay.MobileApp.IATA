@@ -16,6 +16,8 @@ target 'IATA' do
     pod 'Material'
     pod 'R.swift'
 
+    pod 'Nuke'
+    
     target 'IATATests' do
         inherit! :search_paths
     end
