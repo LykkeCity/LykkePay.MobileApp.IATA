@@ -39,4 +39,8 @@ class DefaultPaymentService: NSObject, PaymentService {
         return Network.shared.get(path: PaymentConfig.shared.invoices , params: params)
     }
     
+    func getHistory() -> Promise<String> {
+        return Network.shared.get(path: PaymentConfig.shared.historyIndex , params: [:])
+    }
+    
 }

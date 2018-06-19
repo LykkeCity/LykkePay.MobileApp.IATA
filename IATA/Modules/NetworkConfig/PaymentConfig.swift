@@ -6,4 +6,6 @@ class PaymentConfig {
     
     public let invoices = "/invoices/inbox"
     
+    public let historyIndex = "/history/Index"
+    
 }

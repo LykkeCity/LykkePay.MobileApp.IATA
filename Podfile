@@ -16,6 +16,7 @@ target 'IATA' do
     pod 'WARangeSlider'
     pod 'MaterialControls'
     pod 'Material'
+    pod 'Nuke'
     
     target 'IATATests' do
         inherit! :search_paths

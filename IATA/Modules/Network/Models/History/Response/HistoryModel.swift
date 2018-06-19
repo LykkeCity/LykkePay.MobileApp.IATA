@@ -18,7 +18,7 @@ class HistoryModel: Mappable, Reflectable {
     internal var id: String?
     internal var logo: String?
     internal var title: String?
-    internal var timeStamp: Int?
+    internal var timeStamp: String?
     internal var amount: String?
     internal var assetId: String?
     internal var symbol: String?
@@ -41,6 +41,10 @@ class HistoryModel: Mappable, Reflectable {
         self.amount <- map[PropertyKey.amount.rawValue]
         self.assetId <- map[PropertyKey.assetId.rawValue]
         
+        if let timeStamp = self.timeStamp {
+            self.timeStamp = DateUtils.formatDateFromFormat(dateString: timeStamp)
+        }
+        
         if let asset = assetId {
             if (asset.contains("USD")) {
                 self.symbol = "$"
@@ -48,20 +52,6 @@ class HistoryModel: Mappable, Reflectable {
                 self.symbol = "€"
             }
         }
-    }
-    
-    func valueFor() -> [String : Any] {
-        var params = [String : Any]()
-        let mirror = Mirror(reflecting: self)
-        for (name, value) in mirror.children {
-            guard let name = name else { continue }
-            let structInfo = PropertyKeyTitle(key: PropertyKey(rawValue: name)!)
-            if let title = structInfo.title {
-                params[title] = value
-            }
-            
-        }
-        return params
     }
 }
 

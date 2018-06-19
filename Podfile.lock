@@ -18,6 +18,7 @@ PODS:
   - Motion (1.3.5):
     - Motion/Core (= 1.3.5)
   - Motion/Core (1.3.5)
+  - Nuke (7.1)
   - ObjectMapper (3.2.0)
   - PromiseKit (4.5.2):
     - PromiseKit/Foundation (= 4.5.2)
@@ -43,6 +44,7 @@ DEPENDENCIES:
   - Material
   - MaterialControls
   - MaterialTextField (~> 0.2)
+  - Nuke
   - ObjectMapper
   - PromiseKit (~> 4.5.0)
   - WARangeSlider
@@ -60,6 +62,7 @@ SPEC REPOS:
     - MaterialControls
     - MaterialTextField
     - Motion
+    - Nuke
     - ObjectMapper
     - PromiseKit
     - WARangeSlider
@@ -76,10 +79,11 @@ SPEC CHECKSUMS:
   MaterialControls: 1c6b29e78d3a13d8dd6a67ed31b6d26eb5de8f72
   MaterialTextField: f876a39d571eeece872af6a4da421e3bd065fe0b
   Motion: 9f74d115d7f72bb5380a8e3cde2f8a1fc898ac36
+  Nuke: 922cb05945ed5c7980a3ad0bc9ae57fbbd12899f
   ObjectMapper: 5cccd2de6f253eda859df8116a5a554d9769e859
   PromiseKit: 743e497a5f505a470d3bbbf4ce0663c1268af0a4
   WARangeSlider: 54b3e0853b8d16c444fd539005901aecee86837d
 
-PODFILE CHECKSUM: 140f387334b4cc34deb10c0a1fee7de8f7c29faa
+PODFILE CHECKSUM: e9a5cc3a2d345a99e1f388e45e620557081755e3
 
 COCOAPODS: 1.5.3

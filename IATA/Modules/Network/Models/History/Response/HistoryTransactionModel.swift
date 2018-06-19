@@ -17,8 +17,6 @@ class HistoryTransactionModel: Mappable, Reflectable {
             switch key {
             case .logo:
                 return nil
-            case .settlementPeriod:
-                return "tses2"
             default:
                 return "tesp3"
             }
