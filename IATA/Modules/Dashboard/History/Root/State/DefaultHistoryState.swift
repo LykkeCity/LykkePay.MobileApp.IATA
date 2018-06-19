@@ -8,4 +8,6 @@ class DefaultHistoryState: DefaultBaseState<HistoryModel> {
         let model2 = HistoryModel()
         self.items = [model1, model2]
     }
+    
+    
 }

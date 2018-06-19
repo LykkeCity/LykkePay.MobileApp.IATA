@@ -139,6 +139,7 @@
 		0A6DB5D220C5537000BC1127 /* TokenObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6DB5D120C5537000BC1127 /* TokenObject.swift */; };
 		0A6DB5D620C553D000BC1127 /* CredentialManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6DB5D520C553D000BC1127 /* CredentialManager.swift */; };
 		0A6DB5DA20C5572E00BC1127 /* DataRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6DB5D920C5572E00BC1127 /* DataRequest.swift */; };
+		0A782D0320D91722000B5468 /* HistoryTransactionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A782D0220D91722000B5468 /* HistoryTransactionModel.swift */; };
 		0AB8E20E20C56FF500C13361 /* DefaultAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB8E20D20C56FF500C13361 /* DefaultAuthenticationService.swift */; };
 		0AB8E21020C5708300C13361 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB8E20F20C5708300C13361 /* AuthenticationService.swift */; };
 		0AF1C3AB20C832DB00AFD286 /* SavePinRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF1C3AA20C832DB00AFD286 /* SavePinRequest.swift */; };
@@ -325,6 +326,7 @@
 		0A6DB5D120C5537000BC1127 /* TokenObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenObject.swift; sourceTree = "<group>"; };
 		0A6DB5D520C553D000BC1127 /* CredentialManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialManager.swift; sourceTree = "<group>"; };
 		0A6DB5D920C5572E00BC1127 /* DataRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataRequest.swift; sourceTree = "<group>"; };
+		0A782D0220D91722000B5468 /* HistoryTransactionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTransactionModel.swift; sourceTree = "<group>"; };
 		0AB8E20D20C56FF500C13361 /* DefaultAuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultAuthenticationService.swift; sourceTree = "<group>"; };
 		0AB8E20F20C5708300C13361 /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
 		0AF1C3AA20C832DB00AFD286 /* SavePinRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavePinRequest.swift; sourceTree = "<group>"; };
@@ -497,6 +499,7 @@
 			isa = PBXGroup;
 			children = (
 				0A0B11BB20D2B66300021E2D /* HistoryModel.swift */,
+				0A782D0220D91722000B5468 /* HistoryTransactionModel.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -1537,6 +1540,7 @@
 				0A0B118D20D270DD00021E2D /* DefaultSettingsState.swift in Sources */,
 				0A175D5020D3B116000E3C83 /* RSFloatInputView.swift in Sources */,
 				0A37F00120C809DC00201907 /* ChangePasswordRequest.swift in Sources */,
+				0A782D0320D91722000B5468 /* HistoryTransactionModel.swift in Sources */,
 				0A37EF9520C6D1E500201907 /* SignInViewState.swift in Sources */,
 				0A08C0FF20CAA75000342A3E /* InvoiceViewModelItemType.swift in Sources */,
 				0A6DB5D620C553D000BC1127 /* CredentialManager.swift in Sources */,

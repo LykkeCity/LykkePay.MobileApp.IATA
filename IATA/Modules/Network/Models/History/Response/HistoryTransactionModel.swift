@@ -2,7 +2,28 @@ import Foundation
 import UIKit
 import ObjectMapper
 
-class HistoryModel: Mappable, Reflectable {
+class HistoryTransactionModel: Mappable, Reflectable {
+    
+    private struct PropertyKeyTitle {
+        var title: String?
+        var key: PropertyKey
+        
+        init(key: PropertyKey) {
+            self.key = key
+            self.title = self.getTitle()
+        }
+        
+        func getTitle() -> String? {
+            switch key {
+            case .logo:
+                return nil
+            case .settlementPeriod:
+                return "tses2"
+            default:
+                return "tesp3"
+            }
+        }
+    }
     
     private enum PropertyKey: String {
         case id
@@ -11,8 +32,10 @@ class HistoryModel: Mappable, Reflectable {
         case timeStamp
         case amount
         case assetId
-        
-        case symbol
+        case soldBy
+        case blockHeight
+        case blockConfirmations
+        case txHash
     }
     
     internal var id: String?
@@ -21,7 +44,10 @@ class HistoryModel: Mappable, Reflectable {
     internal var timeStamp: Int?
     internal var amount: String?
     internal var assetId: String?
-    internal var symbol: String?
+    internal var soldBy: String?
+    internal var blockHeight: String?
+    internal var blockConfirmations: String?
+    internal var txHash: String?
     
     
     internal required init?(map: Map) {
@@ -40,14 +66,10 @@ class HistoryModel: Mappable, Reflectable {
         self.timeStamp <- map[PropertyKey.timeStamp.rawValue]
         self.amount <- map[PropertyKey.amount.rawValue]
         self.assetId <- map[PropertyKey.assetId.rawValue]
-        
-        if let asset = assetId {
-            if (asset.contains("USD")) {
-                self.symbol = "$"
-            } else {
-                self.symbol = "€"
-            }
-        }
+        self.soldBy <- map[PropertyKey.soldBy.rawValue]
+        self.blockHeight <- map[PropertyKey.blockHeight.rawValue]
+        self.blockConfirmations <- map[PropertyKey.blockConfirmations.rawValue]
+        self.txHash <- map[PropertyKey.txHash.rawValue]
     }
     
     func valueFor() -> [String : Any] {
@@ -65,3 +87,18 @@ class HistoryModel: Mappable, Reflectable {
     }
 }
 
+protocol Reflectable {
+    func properties() -> [String]
+}
+
+extension Reflectable {
+    func properties() -> [String]{
+        var s = [String]()
+        for c in Mirror(reflecting: self).children {
+            if let name = c.label {
+                s.append(name)
+            }
+        }
+        return s
+    }
+}
