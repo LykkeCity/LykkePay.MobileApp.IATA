@@ -142,6 +142,9 @@
 		0AAE96C020D7F94500F97768 /* PaymentRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE96BF20D7F94500F97768 /* PaymentRequest.swift */; };
 		0AB8E20E20C56FF500C13361 /* DefaultAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB8E20D20C56FF500C13361 /* DefaultAuthenticationService.swift */; };
 		0AB8E21020C5708300C13361 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB8E20F20C5708300C13361 /* AuthenticationService.swift */; };
+		0ADA881820DA503100A332F0 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADA881720DA503100A332F0 /* R.generated.swift */; };
+		0ADA881A20DA530400A332F0 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADA881920DA530400A332F0 /* TextField.swift */; };
+		0ADA881D20DA774A00A332F0 /* NavPushingUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADA881C20DA774A00A332F0 /* NavPushingUtil.swift */; };
 		0AF1C3AB20C832DB00AFD286 /* SavePinRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF1C3AA20C832DB00AFD286 /* SavePinRequest.swift */; };
 		0AF1C3AD20C9164E00AFD286 /* UserPreference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF1C3AC20C9164E00AFD286 /* UserPreference.swift */; };
 		0AF6119D20C992AC00957348 /* Checkbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF6119C20C992AC00957348 /* Checkbox.swift */; };
@@ -154,7 +157,6 @@
 		5BD8D3E6E74FDC2B2AAEBD74 /* Pods_IATA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FC260316A6015639FD5E1F0 /* Pods_IATA.framework */; };
 		D70DE14E20CA9E6B00644281 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70DE14C20CA9E6B00644281 /* SettingsViewController.swift */; };
 		D70DE14F20CA9E6B00644281 /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D70DE14D20CA9E6B00644281 /* SettingsViewController.xib */; };
-		D77A082320D913F900CA86DA /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = D77A082220D913F900CA86DA /* R.generated.swift */; };
 		D784931D20D25F650060EAC6 /* DefaultWalletsState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D784931C20D25F650060EAC6 /* DefaultWalletsState.swift */; };
 		D78589A320D3DF1800E3C3FB /* WalletsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D78589A220D3DF1800E3C3FB /* WalletsViewModel.swift */; };
 		D7894CFD20CFFC290069F68E /* GothamProMed.otf in Resources */ = {isa = PBXBuildFile; fileRef = D7894CFB20CFFC290069F68E /* GothamProMed.otf */; };
@@ -333,6 +335,9 @@
 		0AAE96BF20D7F94500F97768 /* PaymentRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentRequest.swift; sourceTree = "<group>"; };
 		0AB8E20D20C56FF500C13361 /* DefaultAuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultAuthenticationService.swift; sourceTree = "<group>"; };
 		0AB8E20F20C5708300C13361 /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
+		0ADA881720DA503100A332F0 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = R.generated.swift; path = IATA/R.generated.swift; sourceTree = SOURCE_ROOT; };
+		0ADA881920DA530400A332F0 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
+		0ADA881C20DA774A00A332F0 /* NavPushingUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavPushingUtil.swift; sourceTree = "<group>"; };
 		0AF1C3AA20C832DB00AFD286 /* SavePinRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavePinRequest.swift; sourceTree = "<group>"; };
 		0AF1C3AC20C9164E00AFD286 /* UserPreference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPreference.swift; sourceTree = "<group>"; };
 		0AF6119C20C992AC00957348 /* Checkbox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Checkbox.swift; sourceTree = "<group>"; };
@@ -350,7 +355,6 @@
 		D295B81107990C89EA142783 /* Pods-IATATests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IATATests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-IATATests/Pods-IATATests.debug.xcconfig"; sourceTree = "<group>"; };
 		D70DE14C20CA9E6B00644281 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		D70DE14D20CA9E6B00644281 /* SettingsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
-		D77A082220D913F900CA86DA /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		D784931C20D25F650060EAC6 /* DefaultWalletsState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultWalletsState.swift; sourceTree = "<group>"; };
 		D78589A220D3DF1800E3C3FB /* WalletsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletsViewModel.swift; sourceTree = "<group>"; };
 		D7894CFB20CFFC290069F68E /* GothamProMed.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GothamProMed.otf; sourceTree = "<group>"; };
@@ -818,6 +822,7 @@
 			isa = PBXGroup;
 			children = (
 				0A37EF6920C58B6B00201907 /* Theme.swift */,
+				0ADA881C20DA774A00A332F0 /* NavPushingUtil.swift */,
 			);
 			path = UiConfig;
 			sourceTree = "<group>";
@@ -845,8 +850,8 @@
 		0A37EF9820C6DA8500201907 /* Localizable */ = {
 			isa = PBXGroup;
 			children = (
-				D77A082220D913F900CA86DA /* R.generated.swift */,
 				0A37EFA220C6DC5100201907 /* Localizable.strings */,
+				0ADA881720DA503100A332F0 /* R.generated.swift */,
 			);
 			path = Localizable;
 			sourceTree = "<group>";
@@ -1107,6 +1112,7 @@
 				0AF6119E20C9980500957348 /* UiStatusView.swift */,
 				0A4CD11D20CD57AA00EF4A17 /* DesignableUITextField.swift */,
 				0A4CD15220CE7E7900EF4A17 /* VerticalAlignedLabel.swift */,
+				0ADA881920DA530400A332F0 /* TextField.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1246,8 +1252,8 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0A0D4B7220C53364009B73E9 /* Build configuration list for PBXNativeTarget "IATA" */;
 			buildPhases = (
-				D77A082120D9137D00CA86DA /* ShellScript */,
 				C7A2715D41143EB8352E8213 /* [CP] Check Pods Manifest.lock */,
+				D77A082120D9137D00CA86DA /* ShellScript */,
 				0A0D4B4320C53361009B73E9 /* Sources */,
 				0A0D4B4420C53361009B73E9 /* Frameworks */,
 				0A0D4B4520C53361009B73E9 /* Resources */,
@@ -1555,6 +1561,7 @@
 				0A62F56520C545F700A51D63 /* NetworkUtil.swift in Sources */,
 				0A4CD15C20CECA2100EF4A17 /* PaymentConfig.swift in Sources */,
 				0A08C11720CAB5B900342A3E /* PaymentRangeTableViewCell.swift in Sources */,
+				0ADA881820DA503100A332F0 /* R.generated.swift in Sources */,
 				0A4CD15820CEC96100EF4A17 /* DefaultPaymentService.swift in Sources */,
 				0A37EFDE20C7D65100201907 /* PasswordContainerView.swift in Sources */,
 				0A0B11BC20D2B66300021E2D /* HistoryModel.swift in Sources */,
@@ -1565,7 +1572,6 @@
 				0A6DB5D220C5537000BC1127 /* TokenObject.swift in Sources */,
 				0A62F56B20C5497200A51D63 /* EncodingType.swift in Sources */,
 				0A26FC7F20CFF8140097A8F6 /* InvoiceStatuses.swift in Sources */,
-				D77A082320D913F900CA86DA /* R.generated.swift in Sources */,
 				0A37EF6020C5881200201907 /* UIView+SpinnerController.swift in Sources */,
 				0A1AF40920CADB450009595C /* BTNavigationDropdownMenu.swift in Sources */,
 				0A37EF5420C5816B00201907 /* SignInViewController.swift in Sources */,
@@ -1586,6 +1592,7 @@
 				0A0D4B5320C53362009B73E9 /* IATA.xcdatamodeld in Sources */,
 				0A6DB5DA20C5572E00BC1127 /* DataRequest.swift in Sources */,
 				0A26FC8D20D117410097A8F6 /* InvoiceSettingsState.swift in Sources */,
+				0ADA881D20DA774A00A332F0 /* NavPushingUtil.swift in Sources */,
 				0A1AF40820CADB450009595C /* BTTitle.swift in Sources */,
 				0A62F56D20C5499400A51D63 /* ArrayEncoding.swift in Sources */,
 				0A37EF6C20C58BA000201907 /* Utils.swift in Sources */,
@@ -1638,6 +1645,7 @@
 				0A37EFFF20C808FB00201907 /* DefaultChangePasswordViewState.swift in Sources */,
 				0AAE96BE20D7F68600F97768 /* PaymentAmount.swift in Sources */,
 				0A4CD14120CD894900EF4A17 /* FilterPreference.swift in Sources */,
+				0ADA881A20DA530400A332F0 /* TextField.swift in Sources */,
 				0A0B11A620D2978D00021E2D /* BaseViewController.swift in Sources */,
 				0A37EF9720C6D2B200201907 /* DefaultSignInViewState.swift in Sources */,
 				0A4CD15A20CEC96E00EF4A17 /* PaymentService.swift in Sources */,
@@ -1841,7 +1849,10 @@
 				DEVELOPMENT_TEAM = NCJC54GM5Z;
 				INFOPLIST_FILE = IATA/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = lykke.IATA.test.delivery;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "c3518fae-dadb-4f14-ba36-95ba9f9f5a0a";
@@ -1861,7 +1872,10 @@
 				DEVELOPMENT_TEAM = NCJC54GM5Z;
 				INFOPLIST_FILE = IATA/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = lykke.IATA.test.delivery;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "c3518fae-dadb-4f14-ba36-95ba9f9f5a0a";
@@ -1879,7 +1893,11 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = IATATests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = lykke.IATATests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -1896,7 +1914,11 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = IATATests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = lykke.IATATests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -1912,7 +1934,11 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = IATAUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = lykke.IATAUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -1928,7 +1954,11 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = IATAUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = lykke.IATAUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;

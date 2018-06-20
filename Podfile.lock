@@ -16,6 +16,7 @@ PODS:
   - Motion (1.3.5):
     - Motion/Core (= 1.3.5)
   - Motion/Core (1.3.5)
+  - Nuke (7.1)
   - ObjectMapper (3.2.0)
   - PromiseKit (4.5.2):
     - PromiseKit/Foundation (= 4.5.2)
@@ -42,6 +43,7 @@ DEPENDENCIES:
   - JGProgressHUD
   - KeychainAccess
   - Material
+  - Nuke
   - ObjectMapper
   - PromiseKit (~> 4.5.0)
   - R.swift
@@ -58,6 +60,7 @@ SPEC REPOS:
     - KeychainAccess
     - Material
     - Motion
+    - Nuke
     - ObjectMapper
     - PromiseKit
     - R.swift
@@ -74,12 +77,13 @@ SPEC CHECKSUMS:
   KeychainAccess: 7bd430028059754a3debab3cfc0bd1fc7fb85df3
   Material: 00e32bb5e61b3f749044897b2d93acd8bf33faa4
   Motion: 9f74d115d7f72bb5380a8e3cde2f8a1fc898ac36
+  Nuke: 922cb05945ed5c7980a3ad0bc9ae57fbbd12899f
   ObjectMapper: 5cccd2de6f253eda859df8116a5a554d9769e859
   PromiseKit: 743e497a5f505a470d3bbbf4ce0663c1268af0a4
   R.swift: d6a5ec2f55a8441dc0ed9f1f8b37d7d11ae85c66
   R.swift.Library: c3af34921024333546e23b70e70d0b4e0cffca75
   WARangeSlider: 54b3e0853b8d16c444fd539005901aecee86837d
 
-PODFILE CHECKSUM: 62f642bfed18e5c8aac0e8a62a311922717876a2
+PODFILE CHECKSUM: 9283f3a146cc8d221359a70c35a5d943947630c1
 
 COCOAPODS: 1.5.3

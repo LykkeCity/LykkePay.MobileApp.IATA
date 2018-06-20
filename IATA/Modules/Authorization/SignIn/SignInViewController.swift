@@ -1,10 +1,12 @@
-
+import UIKit
 import Material
 
 class SignInViewController: BaseAuthViewController {
     
-    @IBOutlet private weak var emailTextField: ErrorTextField?
-    @IBOutlet private weak var passwordField: ErrorTextField?
+    @IBOutlet weak var buildVersion: UILabel!
+    @IBOutlet weak var titleWelcome: UILabel!
+    @IBOutlet private weak var emailTextField: FloatTextField?
+    @IBOutlet private weak var passwordField: FloatTextField?
     @IBOutlet private weak var btnLogin: UIButton?
     @IBOutlet weak var logoImg: UIImageView?
     
@@ -15,9 +17,12 @@ class SignInViewController: BaseAuthViewController {
 
         self.navigationController?.isNavigationBarHidden = true
 
-        emailTextField?.delegate = self
-        passwordField?.delegate = self
+        self.titleWelcome.attributedText = Theme.shared.get2LineString(message: R.string.localizable.signInLabelWelcomeMessage())
+        
+        self.emailTextField?.delegate = self
+        self.passwordField?.delegate = self
 
+        self.buildVersion.text = version()
         Theme.shared.configureTextFieldStyle(self.emailTextField!, title: R.string.localizable.signInPlaceholderLogin())
         Theme.shared.configureTextFieldPasswordStyle(self.passwordField!, title: R.string.localizable.signInPlaceholderPassword())
 
@@ -25,9 +30,18 @@ class SignInViewController: BaseAuthViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
+    
+    private func version() -> String {
+        let dictionary = Bundle.main.infoDictionary!
+        let version = dictionary["CFBundleShortVersionString"] as! String
+        let build = dictionary["CFBundleVersion"] as! String
+        return "Build \(version) (version \(build))"
+    }
 
     private func buttonClicked() {
         self.view.endEditing(true)
+        self.emailTextField?.isErrorRevealed = false
+        self.passwordField?.isErrorRevealed = false
         guard let email = self.emailTextField?.text!, let password = self.passwordField?.text! else {
             self.showErrorAlert(error: self.state.getError(R.string.localizable.commonErrorInternal()))
             return
@@ -79,7 +93,8 @@ class SignInViewController: BaseAuthViewController {
                 (viewController as! PinViewController).isValidation = false
             }
         }
-        self.navigationController?.pushViewController(viewController, animated: true)
+        NavPushingUtil.shared.push(navigationController: self.navigationController,  controller: viewController)
+        self.navigationController?.isNavigationBarHidden = false
     }
 
     private func handleSingInError(error : Error) {

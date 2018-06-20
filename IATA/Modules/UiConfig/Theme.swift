@@ -1,5 +1,4 @@
 import UIKit
-import Material
 
 class Theme: NSObject {
     
@@ -39,7 +38,7 @@ class Theme: NSObject {
     public private(set) lazy var buttonsFont = boldFontOfSize(16)
     public private(set) lazy var linksFont = boldFontOfSize(15)
     
-    public private(set) lazy var fontTextSizeTextField = regularFontOfSize(16)
+    public private(set) lazy var fontTextSizeTextField = mediumFontOfSize(16)
     public private(set) lazy var fontPlaceholderSizeTextField = regularFontOfSize(10)
     public private(set) lazy var fontCurrencyTextField = boldFontOfSize(14)
     
@@ -69,15 +68,15 @@ class Theme: NSObject {
         return R.font.gothamProBold(size: size)
     }
     
-    private func lightFontOfSize(_ size: CGFloat) -> UIFont? {
+    public func lightFontOfSize(_ size: CGFloat) -> UIFont? {
         return R.font.gothamProLight(size: size)
     }
     
-    private func mediumFontOfSize(_ size: CGFloat) -> UIFont? {
+    public func mediumFontOfSize(_ size: CGFloat) -> UIFont? {
         return R.font.gothamProMedium(size: size)
     }
     
-    private func regularFontOfSize(_ size: CGFloat) -> UIFont? {
+    public func regularFontOfSize(_ size: CGFloat) -> UIFont? {
         return R.font.gothamPro(size: size)
     }
     
@@ -121,20 +120,33 @@ class Theme: NSObject {
         return rightButton
     }
     
-    public func configureTextFieldStyle(_ textField: ErrorTextField?, title: String){
-        textField?.placeholder = title.localize() 
-        textField?.isPlaceholderUppercasedWhenEditing = true
+    public func get2LineString(message: String) -> NSMutableAttributedString {
+        let attributedString = NSMutableAttributedString(string: message)
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = 5
+        paragraphStyle.paragraphSpacing = 5
+        paragraphStyle.lineHeightMultiple = 1.5
+        attributedString.addAttribute(kCTParagraphStyleAttributeName as NSAttributedStringKey, value:paragraphStyle, range:NSMakeRange(0, attributedString.length))
+        return attributedString
+    }
+    
+    public func configureTextFieldStyle(_ textField: FloatTextField?, title: String){
+        textField?.placeholder = title.localize()
+        textField?.font = fontTextSizeTextField
+        textField?.textColor = Theme.shared.textFieldColor
+        textField?.isPlaceholderUppercasedWhenEditing = false
         textField?.dividerActiveColor = Theme.shared.greenColor
         textField?.placeholderActiveColor = Theme.shared.greenColor
     }
     
-    public func configureTextFieldCurrencyStyle(_ textField: ErrorTextField?, title: String){
+    
+    public func configureTextFieldCurrencyStyle(_ textField: FloatTextField?, title: String){
         configureTextFieldStyle(textField, title: title)
         textField?.font = fontCurrencyTextField
         textField?.textColor = navBarTitle
     }
     
-    public func configureTextFieldCurrencyStyle(_ textField: ErrorTextField?){
+    public func configureTextFieldCurrencyStyle(_ textField: FloatTextField?){
         configureTextFieldStyle(textField, title: "")
         textField?.dividerActiveColor = UIColor.clear
         textField?.dividerNormalColor = UIColor.clear
@@ -143,12 +155,12 @@ class Theme: NSObject {
         textField?.textColor = navBarTitle
     }
     
-    public func configureTextFieldPasswordStyle(_ textField: ErrorTextField?, title: String){
+    public func configureTextFieldPasswordStyle(_ textField: FloatTextField?, title: String){
         configureTextFieldStyle(textField, title: title)
         textField?.isSecureTextEntry = true
     }
     
-    public func showError(_ textField: ErrorTextField?, _ message: String) {
+    public func showError(_ textField: FloatTextField?, _ message: String) {
         textField?.detail = message
         textField?.isErrorRevealed = true
     }

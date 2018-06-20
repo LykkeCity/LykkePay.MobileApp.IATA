@@ -21,9 +21,11 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SignInViewController" customModule="IATA" customModuleProvider="target">
             <connections>
                 <outlet property="btnLogin" destination="mR8-eV-pPH" id="BVZ-YQ-NcC"/>
+                <outlet property="buildVersion" destination="0Kp-bT-wgs" id="uZc-gc-iJv"/>
                 <outlet property="emailTextField" destination="jnn-ZT-33H" id="qN2-WM-IaJ"/>
                 <outlet property="logoImg" destination="9qR-xI-Yiu" id="Gtu-gX-pGS"/>
                 <outlet property="passwordField" destination="Ska-xM-lkl" id="WfW-Dl-UdM"/>
+                <outlet property="titleWelcome" destination="hT8-Kf-Gck" id="L02-2l-d00"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="QfJ-Cc-bbm"/>
             </connections>
         </placeholder>
@@ -48,27 +50,22 @@
                                                 <constraint firstAttribute="width" constant="110" id="kkM-r8-wu5"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome back!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xPn-eG-rW0">
-                                            <rect key="frame" x="48" y="174" width="187.5" height="21.5"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Authorization" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xPn-eG-rW0">
+                                            <rect key="frame" x="48" y="174" width="167.5" height="21.5"/>
                                             <fontDescription key="fontDescription" name="GothamPro-Bold" family="Gotham Pro" pointSize="24"/>
                                             <color key="textColor" red="0.035294117647058823" green="0.26666666666666666" blue="0.45882352941176469" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hT8-Kf-Gck">
-                                            <rect key="frame" x="48" y="219.5" width="186.5" height="18"/>
-                                            <attributedString key="attributedText">
-                                                <fragment content="Sign in to continue">
-                                                    <attributes>
-                                                        <color key="NSColor" red="0.24705882352941178" green="0.30196078431372547" blue="0.37647058823529411" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <font key="NSFont" size="20" name="GothamPro"/>
-                                                        <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                    </attributes>
-                                                </fragment>
-                                            </attributedString>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hT8-Kf-Gck">
+                                            <rect key="frame" x="48" y="219.5" width="252" height="36"/>
+                                            <string key="text">Welcome back! Sign in to
+continue to IATA</string>
+                                            <fontDescription key="fontDescription" name="GothamPro" family="Gotham Pro" pointSize="20"/>
+                                            <color key="textColor" red="0.2470588235" green="0.30196078430000001" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mR8-eV-pPH">
-                                            <rect key="frame" x="48" y="401.5" width="279" height="48"/>
+                                            <rect key="frame" x="48" y="419.5" width="279" height="48"/>
                                             <color key="backgroundColor" red="0.17254901960784313" green="0.71764705882352942" blue="0.0039215686274509803" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="48" id="TR5-YQ-a4h"/>
@@ -87,8 +84,8 @@
                                                 <action selector="login:" destination="-1" eventType="touchUpInside" id="EiQ-6v-Xx3"/>
                                             </connections>
                                         </button>
-                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jnn-ZT-33H" customClass="ErrorTextField" customModule="Material">
-                                            <rect key="frame" x="48" y="261.5" width="279" height="40"/>
+                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jnn-ZT-33H" customClass="FloatTextField" customModule="IATA" customModuleProvider="target">
+                                            <rect key="frame" x="48" y="279.5" width="279" height="40"/>
                                             <color key="tintColor" red="0.17254901960784313" green="0.71764705882352942" blue="0.0039215686274509803" alpha="1" colorSpace="calibratedRGB"/>
                                             <accessibility key="accessibilityConfiguration" hint="Email"/>
                                             <constraints>
@@ -103,8 +100,8 @@
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                         </textField>
-                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ska-xM-lkl" customClass="ErrorTextField" customModule="Material">
-                                            <rect key="frame" x="48" y="331.5" width="279" height="40"/>
+                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ska-xM-lkl" customClass="FloatTextField" customModule="IATA" customModuleProvider="target">
+                                            <rect key="frame" x="48" y="349.5" width="279" height="40"/>
                                             <accessibility key="accessibilityConfiguration" hint="Password"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="40" id="FPh-uG-bpC"/>
@@ -158,13 +155,21 @@
                         <constraint firstAttribute="bottom" secondItem="Jpa-iO-iMe" secondAttribute="bottom" id="v9z-0c-wIQ"/>
                     </constraints>
                 </scrollView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Kp-bT-wgs">
+                    <rect key="frame" x="171.5" y="640" width="33" height="11"/>
+                    <fontDescription key="fontDescription" name="GothamPro" family="Gotham Pro" pointSize="12"/>
+                    <color key="textColor" red="0.66274509803921566" green="0.68627450980392157" blue="0.72156862745098038" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="Yhj-rn-1Aq" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="D5R-x0-lDD"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Yhj-rn-1Aq" secondAttribute="trailing" id="FzS-kL-7Jg"/>
                 <constraint firstItem="Yhj-rn-1Aq" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Pwp-zV-isL"/>
+                <constraint firstItem="0Kp-bT-wgs" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="hlH-Uv-8Te"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Yhj-rn-1Aq" secondAttribute="bottom" id="sAr-wz-wqy"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="0Kp-bT-wgs" secondAttribute="bottom" constant="16" id="yTb-gQ-Yb6"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="209.5" y="217.5"/>

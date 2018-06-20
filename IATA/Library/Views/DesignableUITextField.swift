@@ -2,7 +2,7 @@ import UIKit
 import Material
 
 @IBDesignable
-class DesignableUITextField: ErrorTextField {
+class DesignableUITextField: FloatTextField {
     
     override init(frame: CGRect) {
         super.init(frame: frame)

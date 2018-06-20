@@ -311,7 +311,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.nib` struct is generated, and contains static references to 25 nibs.
+  /// This `R.nib` struct is generated, and contains static references to 24 nibs.
   struct nib {
     /// Nib `BaseCurrencyCollectionViewCell`.
     static let baseCurrencyCollectionViewCell = _R.nib._BaseCurrencyCollectionViewCell()
@@ -357,8 +357,6 @@ struct R: Rswift.Validatable {
     static let transactionTableViewHeader = _R.nib._TransactionTableViewHeader()
     /// Nib `TransactionViewController`.
     static let transactionViewController = _R.nib._TransactionViewController()
-    /// Nib `ViewController`.
-    static let viewController = _R.nib._ViewController()
     /// Nib `WalletsTableViewCell`.
     static let walletsTableViewCell = _R.nib._WalletsTableViewCell()
     /// Nib `WalletsViewController`.
@@ -474,11 +472,6 @@ struct R: Rswift.Validatable {
       return UIKit.UINib(resource: R.nib.transactionViewController)
     }
     
-    /// `UINib(name: "ViewController", in: bundle)`
-    static func viewController(_: Void = ()) -> UIKit.UINib {
-      return UIKit.UINib(resource: R.nib.viewController)
-    }
-    
     /// `UINib(name: "WalletsTableViewCell", in: bundle)`
     static func walletsTableViewCell(_: Void = ()) -> UIKit.UINib {
       return UIKit.UINib(resource: R.nib.walletsTableViewCell)
@@ -522,7 +515,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 61 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 62 localization keys.
     struct localizable {
       /// Base translation: %@ invoices selected
       /// 
@@ -564,10 +557,14 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: Base
       static let invoiceScreenItemsCancelDispute = Rswift.StringResource(key: "Invoice.Screen.Items.CancelDispute", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
-      /// Base translation: Change password
+      /// Base translation: Change a password
       /// 
       /// Locales: Base
       static let changePasswordNavBarTitle = Rswift.StringResource(key: "ChangePassword.NavBar.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
+      /// Base translation: Confirm your PIN code
+      /// 
+      /// Locales: Base
+      static let pinResubmitTitle = Rswift.StringResource(key: "Pin.Resubmit.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
       /// Base translation: Currencies
       /// 
       /// Locales: Base
@@ -736,10 +733,6 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: Base
       static let pinErrorTitle = Rswift.StringResource(key: "Pin.Error.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
-      /// Base translation: Submit your PIN code again
-      /// 
-      /// Locales: Base
-      static let pinResubmitTitle = Rswift.StringResource(key: "Pin.Resubmit.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
       /// Base translation: Success
       /// 
       /// Locales: Base
@@ -768,6 +761,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: Base
       static let tabBarWalletsItemTitle = Rswift.StringResource(key: "TabBar.WalletsItem.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
+      /// Base translation: Welcome back! Sign in to  continue to IATA
+      /// 
+      /// Locales: Base
+      static let signInLabelWelcomeMessage = Rswift.StringResource(key: "SignIn.Label.Welcome.Message", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
       
       /// Base translation: %@ invoices selected
       /// 
@@ -839,11 +836,18 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("Invoice.Screen.Items.CancelDispute", bundle: R.hostingBundle, value: "Cancel Dispute", comment: "")
       }
       
-      /// Base translation: Change password
+      /// Base translation: Change a password
       /// 
       /// Locales: Base
       static func changePasswordNavBarTitle(_: Void = ()) -> String {
-        return NSLocalizedString("ChangePassword.NavBar.Title", bundle: R.hostingBundle, value: "Change password", comment: "")
+        return NSLocalizedString("ChangePassword.NavBar.Title", bundle: R.hostingBundle, value: "Change a password", comment: "")
+      }
+      
+      /// Base translation: Confirm your PIN code
+      /// 
+      /// Locales: Base
+      static func pinResubmitTitle(_: Void = ()) -> String {
+        return NSLocalizedString("Pin.Resubmit.Title", bundle: R.hostingBundle, value: "Confirm your PIN code", comment: "")
       }
       
       /// Base translation: Currencies
@@ -1140,13 +1144,6 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("Pin.Error.Title", bundle: R.hostingBundle, value: "Submit your PIN code again", comment: "")
       }
       
-      /// Base translation: Submit your PIN code again
-      /// 
-      /// Locales: Base
-      static func pinResubmitTitle(_: Void = ()) -> String {
-        return NSLocalizedString("Pin.Resubmit.Title", bundle: R.hostingBundle, value: "Submit your PIN code again", comment: "")
-      }
-      
       /// Base translation: Success
       /// 
       /// Locales: Base
@@ -1196,6 +1193,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("TabBar.WalletsItem.Title", bundle: R.hostingBundle, value: "WALLETS", comment: "")
       }
       
+      /// Base translation: Welcome back! Sign in to  continue to IATA
+      /// 
+      /// Locales: Base
+      static func signInLabelWelcomeMessage(_: Void = ()) -> String {
+        return NSLocalizedString("SignIn.Label.Welcome.Message", bundle: R.hostingBundle, value: "Welcome back! Sign in to \ncontinue to IATA", comment: "")
+      }
+      
       fileprivate init() {}
     }
     
@@ -1223,18 +1227,17 @@ struct _R: Rswift.Validatable {
   
   struct nib: Rswift.Validatable {
     static func validate() throws {
-      try _TabBarView.validate()
-      try _InvoiceSettingsTableViewCell.validate()
-      try _InvoiceView.validate()
-      try _PinViewController.validate()
       try _SettingsViewController.validate()
       try _WalletsViewController.validate()
+      try _InvoiceSettingsTableViewCell.validate()
       try _TransactionTableViewHeader.validate()
+      try _InvoiceView.validate()
       try _BaseCurrencyCollectionViewCell.validate()
+      try _PinViewController.validate()
       try _SignInViewController.validate()
-      try _HistoryTableViewCell.validate()
       try _ExhangeViewController.validate()
       try _PasswordContainerView.validate()
+      try _TabBarView.validate()
     }
     
     struct _BaseCurrencyCollectionViewCell: Rswift.NibResourceType, Rswift.ReuseIdentifierType, Rswift.Validatable {
@@ -1305,16 +1308,12 @@ struct _R: Rswift.Validatable {
       fileprivate init() {}
     }
     
-    struct _HistoryTableViewCell: Rswift.NibResourceType, Rswift.Validatable {
+    struct _HistoryTableViewCell: Rswift.NibResourceType {
       let bundle = R.hostingBundle
       let name = "HistoryTableViewCell"
       
       func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]? = nil) -> HistoryTableViewCell? {
         return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? HistoryTableViewCell
-      }
-      
-      static func validate() throws {
-        if UIKit.UIImage(named: "Logo", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'Logo' is used in nib 'HistoryTableViewCell', but couldn't be loaded.") }
       }
       
       fileprivate init() {}
@@ -1388,7 +1387,6 @@ struct _R: Rswift.Validatable {
       }
       
       static func validate() throws {
-        if UIKit.UIImage(named: "Logo", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'Logo' is used in nib 'InvoiceView', but couldn't be loaded.") }
         if UIKit.UIImage(named: "ic_body_dispute", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'ic_body_dispute' is used in nib 'InvoiceView', but couldn't be loaded.") }
       }
       
@@ -1546,17 +1544,6 @@ struct _R: Rswift.Validatable {
     struct _TransactionViewController: Rswift.NibResourceType {
       let bundle = R.hostingBundle
       let name = "TransactionViewController"
-      
-      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]? = nil) -> UIKit.UIView? {
-        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
-      }
-      
-      fileprivate init() {}
-    }
-    
-    struct _ViewController: Rswift.NibResourceType {
-      let bundle = R.hostingBundle
-      let name = "ViewController"
       
       func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]? = nil) -> UIKit.UIView? {
         return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView

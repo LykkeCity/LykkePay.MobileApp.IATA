@@ -7,10 +7,11 @@
 
 "SignIn.Placeholder.Login" = "Login";
 "SignIn.Placeholder.Password" = "Password";
+"SignIn.Label.Welcome.Message" =  "Welcome back! Sign in to \ncontinue to IATA";
 
 "ChangePassword.FieldEmpty.Error" = "The CurrentPasssword field is required.";
 "ChangePassword.FieldNotEquals.Error" = "Fields are not equal";
-"ChangePassword.NavBar.Title" = "Change password";
+"ChangePassword.NavBar.Title" = "Change a password";
 
 "ChangePassword.Placeholder.CurrentPassword" = "Current password";
 "ChangePassword.Placeholder.NewPassword" = "New password";
@@ -18,7 +19,7 @@
 
 "Pin.Validation.Title" = "Please enter your PIN code";
 "Pin.Setup.Title" = "Setup your PIN code";
-"Pin.Resubmit.Title" = "Submit your PIN code again";
+"Pin.Resubmit.Title" = "Confirm your PIN code";
 "Pin.Error.Title" = "Submit your PIN code again";
 
 "Invoice.Settings.Airlines.Title" = "Airlines";

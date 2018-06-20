@@ -46,7 +46,7 @@ open class PasswordContainerView: UIView {
             self.touchAuthenticationButton.tintColor = tintColor
             self.passwordInputViews.forEach {
                 $0.textColor = tintColor
-                $0.borderColor = tintColor
+                //$0.borderColor = tintColor
             }
         }
     }
@@ -249,7 +249,7 @@ private extension PasswordContainerView {
         touchAuthenticationButton.tintColor = strokeColor
         self.passwordInputViews.forEach { passwordInputView in
             passwordInputView.circleBackgroundColor = circleBackgroundColor
-            passwordInputView.borderColor = borderColor
+          //  passwordInputView.borderColor = borderColor
             passwordInputView.textColor = textColor
             passwordInputView.highlightTextColor = highlightTextColor
             passwordInputView.highlightBackgroundColor = highlightBackgroundColor

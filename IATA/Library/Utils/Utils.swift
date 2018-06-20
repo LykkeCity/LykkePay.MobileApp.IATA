@@ -85,4 +85,5 @@ public class Utils: NSObject {
         }
         return !str.isEmpty
     }
+    
 }

@@ -3,9 +3,9 @@ import Material
 
 class ChangePasswordViewController: BaseAuthViewController {
     
-    @IBOutlet weak var oldPasswordField: ErrorTextField?
-    @IBOutlet weak var newPasswordField: ErrorTextField?
-    @IBOutlet weak var newPasswordAgainField: ErrorTextField?
+    @IBOutlet weak var oldPasswordField: FloatTextField?
+    @IBOutlet weak var newPasswordField: FloatTextField?
+    @IBOutlet weak var newPasswordAgainField: FloatTextField?
     @IBOutlet weak var changeButton: UIButton?
     
     private var state: ChangePasswordViewState = DefaultChangePasswordViewState() as ChangePasswordViewState
@@ -25,7 +25,7 @@ class ChangePasswordViewController: BaseAuthViewController {
     @IBAction func clickCancel(_ sender: Any) {
         self.view.endEditing(true)
         CredentialManager.shared.clearSavedData()
-        self.navigationController?.pushViewController(SignInViewController(), animated: true)
+        NavPushingUtil.shared.pushDown(navigationController: self.navigationController, controller: SignInViewController())
     }
     
     private func initView() {
@@ -69,31 +69,40 @@ class ChangePasswordViewController: BaseAuthViewController {
     
     @objc private func buttonClicked() {
         self.view.endEditing(true)
-        guard let oldPassword = self.oldPasswordField?.text, let newPassword = self.newPasswordField?.text else {
-            return
+        var isReady = false
+        if let newPass = self.newPasswordField?.text, let newPassAgain = self.newPasswordAgainField?.text {
+            isReady =  newPass.elementsEqual(newPassAgain)
         }
-        self.state.change(currentPassword: oldPassword, newPassword: newPassword)?
-            .withSpinner(in: view)
-            .then(execute: { [weak self] (ob: Void) -> Void in
-                guard let strongSelf = self else {
-                    return
-                }
-                UserPreference.shared.saveForceUpdatePassword(false)
-                strongSelf.openPinController()
-            }).catch(execute: { [weak self] error -> Void in
-                guard let strongSelf = self else {
-                    return
-                }
-                if (error is IATAOpError) {
-                    if (!(error as! IATAOpError).validationError.isEmpty) {
-                        strongSelf.handleSignInValidationError((error as! IATAOpError).validationError)
-                    } else {
-                        strongSelf.handleError(error: error)
+        
+        if (!isReady) {
+            Theme.shared.showError(self.newPasswordAgainField, R.string.localizable.changePasswordFieldNotEqualsError())
+        } else {
+            guard let oldPassword = self.oldPasswordField?.text, let newPassword = self.newPasswordField?.text else {
+                return
+            }
+            self.state.change(currentPassword: oldPassword, newPassword: newPassword)?
+                .withSpinner(in: view)
+                .then(execute: { [weak self] (ob: Void) -> Void in
+                    guard let strongSelf = self else {
+                        return
                     }
-                } else {
-                    strongSelf.showErrorAlert(error: error)
-                }
-            })
+                    UserPreference.shared.saveForceUpdatePassword(false)
+                    strongSelf.openPinController()
+                }).catch(execute: { [weak self] error -> Void in
+                    guard let strongSelf = self else {
+                        return
+                    }
+                    if (error is IATAOpError) {
+                        if (!(error as! IATAOpError).validationError.isEmpty) {
+                            strongSelf.handleSignInValidationError((error as! IATAOpError).validationError)
+                        } else {
+                            strongSelf.handleError(error: error)
+                        }
+                    } else {
+                        strongSelf.showErrorAlert(error: error)
+                    }
+                })
+        }
     }
     
     private func handleError(error: Error) {
@@ -119,9 +128,7 @@ class ChangePasswordViewController: BaseAuthViewController {
     }
     
     private func setUpTextFields() {
-        if (self.isHasError()) {
-            Theme.shared.showError(self.newPasswordAgainField, R.string.localizable.changePasswordFieldNotEqualsError())
-        } else {
+        if (!self.isHasError()) {
             self.newPasswordAgainField?.isErrorRevealed = false
         }
     }
@@ -137,8 +144,7 @@ class ChangePasswordViewController: BaseAuthViewController {
         guard let newPass = self.newPasswordField?.text, let newPassAgain = self.newPasswordAgainField?.text else {
             return false
         }
-        return !newPass.isEmpty &&
-            !newPass.elementsEqual(newPassAgain)
+        return newPass.isEmpty || newPassAgain.isEmpty
     }
     
     private func changeState(state: Bool) {

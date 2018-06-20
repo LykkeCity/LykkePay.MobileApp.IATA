@@ -337,38 +337,6 @@
             endingLineNumber = "218"
             landmarkName = "request(path:method:params:encoding:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "IATA.Network.(request in _3E5CB26264CDA01DE4C8422AE5392AA0)(path: Swift.String, method: Alamofire.HTTPMethod, params: Swift.Dictionary&lt;Swift.String, Any&gt;, encoding: Alamofire.ParameterEncoding) -&gt; PromiseKit.Promise&lt;Foundation.Data&gt;"
-                  moduleName = "IATA"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/lizmodern/Documents/project/lykkeIOS/IATA/Modules/Network/Network.swift"
-                  timestampString = "550757877.608314"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "218"
-                  endingLineNumber = "218"
-                  offsetFromSymbolStart = "232">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 (Foundation.Data) -&gt; Foundation.Data in IATA.Network.(request in _3E5CB26264CDA01DE4C8422AE5392AA0)(path: Swift.String, method: Alamofire.HTTPMethod, params: Swift.Dictionary&lt;Swift.String, Any&gt;, encoding: Alamofire.ParameterEncoding) -&gt; PromiseKit.Promise&lt;Foundation.Data&gt;"
-                  moduleName = "IATA"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/lizmodern/Documents/project/lykkeIOS/IATA/Modules/Network/Network.swift"
-                  timestampString = "550757877.6111079"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "219"
-                  endingLineNumber = "219"
-                  offsetFromSymbolStart = "16">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -2027,8 +1995,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "23"
             endingLineNumber = "23"
-            landmarkName = "maxValueChanged(_:)"
-            landmarkType = "7">
+            landmarkName = "PaymentRangeTableViewCell"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -2043,8 +2011,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "24"
             endingLineNumber = "24"
-            landmarkName = "maxValueChanged(_:)"
-            landmarkType = "7">
+            landmarkName = "nib"
+            landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -2486,7 +2454,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IATA/Library/Views/Pin/PasswordContainerView.swift"
-            timestampString = "550600384.964116"
+            timestampString = "551187986.489136"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "136"
@@ -2502,7 +2470,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IATA/Library/Views/Pin/PasswordContainerView.swift"
-            timestampString = "550600384.964377"
+            timestampString = "551187986.489236"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "139"
@@ -2518,7 +2486,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IATA/Library/Views/Pin/PasswordContainerView.swift"
-            timestampString = "550600384.9644279"
+            timestampString = "551187986.48931"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "138"
@@ -2534,7 +2502,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IATA/Library/Views/Pin/PasswordContainerView.swift"
-            timestampString = "550600384.964471"
+            timestampString = "551187986.4893759"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "137"
@@ -2550,7 +2518,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IATA/AppDelegate.swift"
-            timestampString = "550759225.7191221"
+            timestampString = "551187986.48944"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "20"
@@ -2566,7 +2534,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IATA/AppDelegate.swift"
-            timestampString = "550759225.719268"
+            timestampString = "551187986.489568"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "24"
@@ -2582,7 +2550,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IATA/AppDelegate.swift"
-            timestampString = "550759225.7193511"
+            timestampString = "551187986.489796"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "25"
@@ -2834,16 +2802,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IATA/Modules/Authorization/Pin/Controls/PinViewController.swift"
-            timestampString = "550613715.884209"
+            timestampString = "551190097.513034"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "53"
-            endingLineNumber = "53"
-            landmarkName = "openSignIn()"
+            startingLineNumber = "64"
+            endingLineNumber = "64"
+            landmarkName = "passwordInputComplete(_:input:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -2854,12 +2822,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IATA/Modules/Authorization/Pin/Controls/PinViewController.swift"
-            timestampString = "550613715.8842829"
+            timestampString = "551190097.513146"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "127"
-            endingLineNumber = "127"
-            landmarkName = "validationFail()"
+            startingLineNumber = "138"
+            endingLineNumber = "138"
+            landmarkName = "reset()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -3350,7 +3318,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IATA/AppDelegate.swift"
-            timestampString = "550759225.720911"
+            timestampString = "551187986.493618"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "58"
@@ -3366,7 +3334,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IATA/AppDelegate.swift"
-            timestampString = "550759225.721046"
+            timestampString = "551187986.493771"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "57"
@@ -3547,8 +3515,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "34"
             endingLineNumber = "34"
-            landmarkName = "item"
-            landmarkType = "24">
+            landmarkName = "awakeFromNib()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -3563,8 +3531,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "35"
             endingLineNumber = "35"
-            landmarkName = "item"
-            landmarkType = "24">
+            landmarkName = "awakeFromNib()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -4901,8 +4869,8 @@
                   symbolName = "IATA.FilterPreference.(setUpChecked in _040737CF0AFEAFC28F4EACEFBDCB5988)(isChecked: Swift.Bool, list: inout Swift.Optional&lt;Swift.Array&lt;Swift.String&gt;&gt;, id: Swift.String) -&gt; ()"
                   moduleName = "IATA"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/lizmodern/Documents/project/lykkeIOS/IATA/Modules/Authorization/Credential/FilterInvoices/FilterPreference.swift"
-                  timestampString = "550757877.748278"
+                  urlString = "file:///Users/lizmodern/Documents/project/LykkeIata/IATA/Modules/Authorization/Credential/FilterInvoices/FilterPreference.swift"
+                  timestampString = "551187861.450726"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "171"
@@ -4916,8 +4884,8 @@
                   symbolName = "closure #1 (Swift.String) -&gt; Swift.Bool in implicit closure #1 : @autoclosure () throws -&gt; Swift.Bool in IATA.FilterPreference.(setUpChecked in _040737CF0AFEAFC28F4EACEFBDCB5988)(isChecked: Swift.Bool, list: inout Swift.Optional&lt;Swift.Array&lt;Swift.String&gt;&gt;, id: Swift.String) -&gt; ()"
                   moduleName = "IATA"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/lizmodern/Documents/project/lykkeIOS/IATA/Modules/Authorization/Credential/FilterInvoices/FilterPreference.swift"
-                  timestampString = "550757877.751843"
+                  urlString = "file:///Users/lizmodern/Documents/project/LykkeIata/IATA/Modules/Authorization/Credential/FilterInvoices/FilterPreference.swift"
+                  timestampString = "551187861.453544"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "171"
@@ -5302,11 +5270,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IATA/Modules/Authorization/SignIn/SignInViewController.swift"
-            timestampString = "550759225.72474"
+            timestampString = "551187986.497198"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "109"
-            endingLineNumber = "109">
+            startingLineNumber = "124"
+            endingLineNumber = "124"
+            landmarkName = "keyboardWillShow(notification:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -5316,11 +5286,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IATA/Modules/Authorization/SignIn/SignInViewController.swift"
-            timestampString = "550759225.725141"
+            timestampString = "551187986.497296"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "109"
-            endingLineNumber = "109">
+            startingLineNumber = "124"
+            endingLineNumber = "124"
+            landmarkName = "keyboardWillShow(notification:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -5330,11 +5302,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IATA/Modules/Authorization/SignIn/SignInViewController.swift"
-            timestampString = "550759225.725356"
+            timestampString = "551187986.497358"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "109"
-            endingLineNumber = "109">
+            startingLineNumber = "124"
+            endingLineNumber = "124"
+            landmarkName = "keyboardWillShow(notification:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -5600,7 +5574,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Pods/Material/Sources/iOS/ErrorTextField.swift"
-            timestampString = "550757798.8336951"
+            timestampString = "551179617.7181931"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "38"
@@ -5616,7 +5590,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Pods/Material/Sources/iOS/ErrorTextField.swift"
-            timestampString = "550757798.83374"
+            timestampString = "551179617.7183729"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "45"
@@ -5632,7 +5606,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Pods/Material/Sources/iOS/ErrorTextField.swift"
-            timestampString = "550757812.164981"
+            timestampString = "551179617.718498"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "39"
@@ -5648,7 +5622,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Pods/Material/Sources/iOS/TextField.swift"
-            timestampString = "550759225.726508"
+            timestampString = "551183844.5186599"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "251"
@@ -5664,7 +5638,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Pods/Material/Sources/iOS/TextField.swift"
-            timestampString = "550759225.726585"
+            timestampString = "551183844.5187711"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "254"
@@ -5680,7 +5654,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Pods/Material/Sources/iOS/TextField.swift"
-            timestampString = "550759225.726651"
+            timestampString = "551183844.51887"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "255"
@@ -5692,17 +5666,449 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Pods/Material/Sources/iOS/TextField.swift"
-            timestampString = "550759225.726717"
+            timestampString = "551183844.518967"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "263"
             endingLineNumber = "263"
             landmarkName = "detailColor"
             landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Pods/Material/Sources/iOS/TextField.swift"
+            timestampString = "551183844.519062"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "198"
+            endingLineNumber = "198"
+            landmarkName = "placeholder"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Pods/Material/Sources/iOS/TextField.swift"
+            timestampString = "551183844.519159"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "201"
+            endingLineNumber = "201"
+            landmarkName = "placeholder"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Pods/Material/Sources/iOS/TextField.swift"
+            timestampString = "551183844.519249"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "514"
+            endingLineNumber = "514"
+            landmarkName = "updatePlaceholderLabelColor()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Pods/Material/Sources/iOS/TextField.swift"
+            timestampString = "551183844.519336"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "515"
+            endingLineNumber = "515"
+            landmarkName = "updatePlaceholderLabelColor()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Pods/Material/Sources/iOS/TextField.swift"
+            timestampString = "551183844.519519"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "615"
+            endingLineNumber = "615"
+            landmarkName = "handleEditingChanged(textField:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Pods/Material/Sources/iOS/TextField.swift"
+            timestampString = "551183844.519623"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "608"
+            endingLineNumber = "608"
+            landmarkName = "handleEditingDidBegin()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Pods/Material/Sources/iOS/TextField.swift"
+            timestampString = "551183844.519739"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "223"
+            endingLineNumber = "223"
+            landmarkName = "placeholderActiveColor"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IATA/Library/Views/TextField.swift"
+            timestampString = "551187986.498298"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "62"
+            endingLineNumber = "62"
+            landmarkName = "updatePlaceholderTextToActiveState()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Pods/Material/Sources/iOS/TextField.swift"
+            timestampString = "551183844.521044"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "382"
+            endingLineNumber = "382"
+            landmarkName = "isPlaceholderUppercasedWhenEditing"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IATA/Modules/UiConfig/Theme.swift"
+            timestampString = "551187986.498543"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "134"
+            endingLineNumber = "134"
+            landmarkName = "configureTextFieldStyle(_:title:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IATA/Library/Views/TextField.swift"
+            timestampString = "551187986.4986759"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "64"
+            endingLineNumber = "64"
+            landmarkName = "updatePlaceholderTextToActiveState()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IATA/Library/Views/TextField.swift"
+            timestampString = "551187986.498785"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "171"
+            endingLineNumber = "171"
+            landmarkName = "placeholderEditingDidEndAnimation()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IATA/Library/Views/TextField.swift"
+            timestampString = "551187986.4988869"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "175"
+            endingLineNumber = "175"
+            landmarkName = "placeholderEditingDidEndAnimation()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IATA/Library/Views/TextField.swift"
+            timestampString = "551187986.498973"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "56"
+            endingLineNumber = "56"
+            landmarkName = "updatePlaceholderLabelColor()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IATA/Library/Views/TextField.swift"
+            timestampString = "551187986.499056"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "172"
+            endingLineNumber = "172"
+            landmarkName = "placeholderEditingDidEndAnimation()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IATA/Library/Views/TextField.swift"
+            timestampString = "551187986.499194"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "170"
+            endingLineNumber = "170"
+            landmarkName = "placeholderEditingDidEndAnimation()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IATA/Library/Views/TextField.swift"
+            timestampString = "551187986.499259"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
+            landmarkName = "handleEditingChanged(textField:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IATA/Library/Views/TextField.swift"
+            timestampString = "551187986.499321"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "97"
+            endingLineNumber = "97"
+            landmarkName = "handleEditingDidEnd()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IATA/Modules/UiConfig/Theme.swift"
+            timestampString = "551187986.499385"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "135"
+            endingLineNumber = "135"
+            landmarkName = "configureTextFieldStyle(_:title:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IATA/Modules/Authorization/ChangePassword/ChangePasswordViewController.swift"
+            timestampString = "551190097.518102"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "144"
+            endingLineNumber = "144"
+            landmarkName = "isHasError()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IATA/Modules/Authorization/ChangePassword/ChangePasswordViewController.swift"
+            timestampString = "551190097.518615"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "147"
+            endingLineNumber = "147"
+            landmarkName = "isHasError()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IATA/Library/Views/TextField.swift"
+            timestampString = "551187986.4995821"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "176"
+            endingLineNumber = "176"
+            landmarkName = "placeholderEditingDidEndAnimation()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IATA/Modules/Authorization/ChangePassword/ChangePasswordViewController.swift"
+            timestampString = "551190097.518978"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "151"
+            endingLineNumber = "151"
+            landmarkName = "changeState(state:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IATA/Modules/Authorization/ChangePassword/ChangePasswordViewController.swift"
+            timestampString = "551190097.519317"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "22"
+            endingLineNumber = "22"
+            landmarkName = "textFieldChanged(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IATA/Modules/Authorization/ChangePassword/ChangePasswordViewController.swift"
+            timestampString = "551190097.519629"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "137"
+            endingLineNumber = "137"
+            landmarkName = "isReady()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IATA/Modules/Authorization/ChangePassword/ChangePasswordViewController.swift"
+            timestampString = "551190097.520577"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "140"
+            endingLineNumber = "140"
+            landmarkName = "isReady()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IATA/Modules/Authorization/Pin/Controls/PinViewController.swift"
+            timestampString = "551190097.52096"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "58"
+            endingLineNumber = "58"
+            landmarkName = "openSignIn()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
