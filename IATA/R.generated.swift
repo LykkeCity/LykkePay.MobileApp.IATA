@@ -311,7 +311,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.nib` struct is generated, and contains static references to 25 nibs.
+  /// This `R.nib` struct is generated, and contains static references to 24 nibs.
   struct nib {
     /// Nib `BaseCurrencyCollectionViewCell`.
     static let baseCurrencyCollectionViewCell = _R.nib._BaseCurrencyCollectionViewCell()
@@ -357,8 +357,6 @@ struct R: Rswift.Validatable {
     static let transactionTableViewHeader = _R.nib._TransactionTableViewHeader()
     /// Nib `TransactionViewController`.
     static let transactionViewController = _R.nib._TransactionViewController()
-    /// Nib `ViewController`.
-    static let viewController = _R.nib._ViewController()
     /// Nib `WalletsTableViewCell`.
     static let walletsTableViewCell = _R.nib._WalletsTableViewCell()
     /// Nib `WalletsViewController`.
@@ -472,11 +470,6 @@ struct R: Rswift.Validatable {
     /// `UINib(name: "TransactionViewController", in: bundle)`
     static func transactionViewController(_: Void = ()) -> UIKit.UINib {
       return UIKit.UINib(resource: R.nib.transactionViewController)
-    }
-    
-    /// `UINib(name: "ViewController", in: bundle)`
-    static func viewController(_: Void = ()) -> UIKit.UINib {
-      return UIKit.UINib(resource: R.nib.viewController)
     }
     
     /// `UINib(name: "WalletsTableViewCell", in: bundle)`
@@ -1223,18 +1216,17 @@ struct _R: Rswift.Validatable {
   
   struct nib: Rswift.Validatable {
     static func validate() throws {
-      try _TabBarView.validate()
-      try _InvoiceSettingsTableViewCell.validate()
-      try _InvoiceView.validate()
-      try _PinViewController.validate()
       try _SettingsViewController.validate()
       try _WalletsViewController.validate()
+      try _InvoiceSettingsTableViewCell.validate()
       try _TransactionTableViewHeader.validate()
+      try _InvoiceView.validate()
       try _BaseCurrencyCollectionViewCell.validate()
+      try _PinViewController.validate()
       try _SignInViewController.validate()
-      try _HistoryTableViewCell.validate()
       try _ExhangeViewController.validate()
       try _PasswordContainerView.validate()
+      try _TabBarView.validate()
     }
     
     struct _BaseCurrencyCollectionViewCell: Rswift.NibResourceType, Rswift.ReuseIdentifierType, Rswift.Validatable {
@@ -1305,16 +1297,12 @@ struct _R: Rswift.Validatable {
       fileprivate init() {}
     }
     
-    struct _HistoryTableViewCell: Rswift.NibResourceType, Rswift.Validatable {
+    struct _HistoryTableViewCell: Rswift.NibResourceType {
       let bundle = R.hostingBundle
       let name = "HistoryTableViewCell"
       
       func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]? = nil) -> HistoryTableViewCell? {
         return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? HistoryTableViewCell
-      }
-      
-      static func validate() throws {
-        if UIKit.UIImage(named: "Logo", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'Logo' is used in nib 'HistoryTableViewCell', but couldn't be loaded.") }
       }
       
       fileprivate init() {}
@@ -1388,7 +1376,6 @@ struct _R: Rswift.Validatable {
       }
       
       static func validate() throws {
-        if UIKit.UIImage(named: "Logo", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'Logo' is used in nib 'InvoiceView', but couldn't be loaded.") }
         if UIKit.UIImage(named: "ic_body_dispute", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'ic_body_dispute' is used in nib 'InvoiceView', but couldn't be loaded.") }
       }
       
@@ -1546,17 +1533,6 @@ struct _R: Rswift.Validatable {
     struct _TransactionViewController: Rswift.NibResourceType {
       let bundle = R.hostingBundle
       let name = "TransactionViewController"
-      
-      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]? = nil) -> UIKit.UIView? {
-        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
-      }
-      
-      fileprivate init() {}
-    }
-    
-    struct _ViewController: Rswift.NibResourceType {
-      let bundle = R.hostingBundle
-      let name = "ViewController"
       
       func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]? = nil) -> UIKit.UIView? {
         return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView

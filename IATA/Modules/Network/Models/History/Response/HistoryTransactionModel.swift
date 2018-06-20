@@ -4,26 +4,7 @@ import ObjectMapper
 
 class HistoryTransactionModel: Mappable, Reflectable {
     
-    private struct PropertyKeyTitle {
-        var title: String?
-        var key: PropertyKey
-        
-        init(key: PropertyKey) {
-            self.key = key
-            self.title = self.getTitle()
-        }
-        
-        func getTitle() -> String? {
-            switch key {
-            case .logo:
-                return nil
-            default:
-                return "tesp3"
-            }
-        }
-    }
-    
-    private enum PropertyKey: String {
+    public enum PropertyKey: String {
         case id
         case logo
         case title
@@ -39,7 +20,7 @@ class HistoryTransactionModel: Mappable, Reflectable {
     internal var id: String?
     internal var logo: String?
     internal var title: String?
-    internal var timeStamp: Int?
+    internal var timeStamp: String?
     internal var amount: String?
     internal var assetId: String?
     internal var soldBy: String?
@@ -70,18 +51,15 @@ class HistoryTransactionModel: Mappable, Reflectable {
         self.txHash <- map[PropertyKey.txHash.rawValue]
     }
     
-    func valueFor() -> [String : Any] {
-        var params = [String : Any]()
+    func valueFor() -> [PropertyKeyTransactionModel] {
+        var items = [PropertyKeyTransactionModel]()
         let mirror = Mirror(reflecting: self)
         for (name, value) in mirror.children {
-            guard let name = name else { continue }
-            let structInfo = PropertyKeyTitle(key: PropertyKey(rawValue: name)!)
-            if let title = structInfo.title {
-                params[title] = value
+            if let name = name, let structInfo = PropertyKeyTransactionModel(keyValue: name, value: value as? String), structInfo.title != nil {
+                items.append(structInfo)
             }
-            
         }
-        return params
+        return items
     }
 }
 

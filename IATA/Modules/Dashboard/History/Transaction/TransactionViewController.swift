@@ -1,50 +1,67 @@
 import UIKit
 
-class TransactionViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class TransactionViewController: BaseViewController<PropertyKeyTransactionModel, DefaultTransactionState>, Initializer {
     
     @IBOutlet weak var tabView: UITableView!
-    private var items:[HistoryModel] = []
-    private var itemsValues: [String: Any] = [:]
+    
+    var id = String()
     
     override func viewDidLoad() {
+        initializer = self
+        state = DefaultTransactionState()
         super.viewDidLoad()
-        
-        self.tabView.delegate = self
-        self.tabView.dataSource = self
-        self.tabView.tableFooterView = UIView()
-        
-        tabView.register(TransactionTableViewHeader.nib, forHeaderFooterViewReuseIdentifier: TransactionTableViewHeader.identifier)
-        
-        tabView.register(TransactionTableViewCell.nib, forCellReuseIdentifier: TransactionTableViewCell.identifier)
+        self.loadData()
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return itemsValues.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tabView.dequeueReusableCell(withIdentifier: TransactionTableViewCell.identifier, for: indexPath) as! TransactionTableViewCell
         
+        if let model = self.state?.getItems()[indexPath.row] {
+            cell.initCell(model: model)
+        }
         return cell
     }
     
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 50
         
-        let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: TransactionTableViewHeader.identifier) as! TransactionTableViewHeader
-      
-        return headerView
     }
     
-    internal func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 100
-    }
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-  func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80
+    override internal func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 100
+    }
     
+    func getTitle() -> String? {
+        return R.string.localizable.historyScreenTitle()
+    }
+    
+    func getTableView() -> UITableView {
+        return tabView
+    }
+    
+    func registerCells() {
+        self.tabView.register(TransactionTableViewHeader.nib, forHeaderFooterViewReuseIdentifier: TransactionTableViewHeader.identifier)
+        
+        self.tabView.register(TransactionTableViewCell.nib, forCellReuseIdentifier: TransactionTableViewCell.identifier)
+    }
+    
+    private func loadData() {
+        self.state?.getHistoryDetails(id: id)
+            .withSpinner(in: view)
+            .then(execute: { [weak self] (result: HistoryTransactionModel) -> Void in
+                guard let strongSelf = self else {
+                    return
+                }
+                strongSelf.reloadTable(item: result)
+            })
+    }
+    
+    private func reloadTable(item: HistoryTransactionModel) {
+        self.state?.initItems(item: item)
+        self.tabView.reloadData()
     }
 }

@@ -22,7 +22,11 @@ class HistoryViewController: BaseViewController<HistoryModel, DefaultHistoryStat
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.navigationController?.pushViewController(TransactionViewController(), animated: true)
+        var viewController = TransactionViewController()
+        if let id = self.state?.getItems()[indexPath.row].id {
+            viewController.id = id
+        }
+        self.navigationController?.pushViewController(viewController, animated: true)
     }
     
     func getTitle() -> String? {
