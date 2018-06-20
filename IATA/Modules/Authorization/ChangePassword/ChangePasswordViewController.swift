@@ -44,7 +44,7 @@ class ChangePasswordViewController: BaseAuthViewController {
     
     private func initNavBar() {
         self.navigationController?.isNavigationBarHidden = false
-        self.navigationController?.navigationBar.barTintColor = UIColor.white
+        self.navigationController?.navigationBar.barTintColor = Theme.shared.greyNavBar
         self.navigationController?.navigationBar.tintColor = Theme.shared.navBarTitle
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: Theme.shared.navBarTitle]
         self.navigationController?.navigationBar.isTranslucent = false

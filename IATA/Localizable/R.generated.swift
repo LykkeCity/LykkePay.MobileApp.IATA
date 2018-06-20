@@ -515,7 +515,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 62 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 63 localization keys.
     struct localizable {
       /// Base translation: %@ invoices selected
       /// 
@@ -681,6 +681,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: Base
       static let historyTransactionDetailsPaidBy = Rswift.StringResource(key: "History.Transaction.Details.PaidBy", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
+      /// Base translation: Paid invoices
+      /// 
+      /// Locales: Base
+      static let invoiceNavigationFilteringTitlePaid = Rswift.StringResource(key: "Invoice.Navigation.Filtering.Title.Paid", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
       /// Base translation: Password
       /// 
       /// Locales: Base
@@ -1051,6 +1055,13 @@ struct R: Rswift.Validatable {
       /// Locales: Base
       static func historyTransactionDetailsPaidBy(_: Void = ()) -> String {
         return NSLocalizedString("History.Transaction.Details.PaidBy", bundle: R.hostingBundle, value: "Paid By", comment: "")
+      }
+      
+      /// Base translation: Paid invoices
+      /// 
+      /// Locales: Base
+      static func invoiceNavigationFilteringTitlePaid(_: Void = ()) -> String {
+        return NSLocalizedString("Invoice.Navigation.Filtering.Title.Paid", bundle: R.hostingBundle, value: "Paid invoices", comment: "")
       }
       
       /// Base translation: Password

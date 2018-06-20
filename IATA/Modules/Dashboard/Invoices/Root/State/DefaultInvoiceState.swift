@@ -4,9 +4,10 @@ import ObjectMapper
 
 class DefaultInvoiceState: DefaultBaseState<InvoiceModel> {
     
-    private let menuItems = [R.string.localizable.invoiceNavigationFilteringTitleAllInvoices(), R.string.localizable.invoiceNavigationFilteringTitleUnPaidInvoices(), R.string.localizable.invoiceNavigationFilteringTitleDispute()]
+    private let menuItems = [R.string.localizable.invoiceNavigationFilteringTitleAllInvoices(), R.string.localizable.invoiceNavigationFilteringTitlePaid(), R.string.localizable.invoiceNavigationFilteringTitleUnPaidInvoices(), R.string.localizable.invoiceNavigationFilteringTitleDispute()]
     private var selectedItems = Array<InvoiceModel>()
     private var invoiceParams = InvoiceRequest()
+   
     public lazy var service: PaymentService = DefaultPaymentService()
     public var amount = 0
     
@@ -71,9 +72,12 @@ class DefaultInvoiceState: DefaultBaseState<InvoiceModel> {
             initStatus(status: InvoiceStatuses.all, dispute: nil)
             break
         case 1:
-            initStatus(status: InvoiceStatuses.Unpaid, dispute: nil)
+            initStatus(status: InvoiceStatuses.Paid, dispute: nil)
             break
         case 2:
+            initStatus(status: InvoiceStatuses.Unpaid, dispute: nil)
+            break
+        case 3:
             initStatus(status: InvoiceStatuses.all, dispute: true)
             break
         default:

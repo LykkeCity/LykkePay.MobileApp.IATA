@@ -27,7 +27,9 @@ class FloatTextField: TextField {
             } else{
                 dividerActiveColor = Theme.shared.greenColor
                 placeholderActiveColor = Theme.shared.greenColor
-                dividerColor = Theme.shared.greyStatusColor
+                dividerColor = Theme.shared.greenColor
+                dividerActiveColor = Theme.shared.greenColor
+                dividerNormalColor = Theme.shared.greyStatusColor
                 placeholderNormalColor = Theme.shared.greyStatusColor
             }
             layoutSubviews()
@@ -55,6 +57,7 @@ extension TextField {
     func updatePlaceholderLabelColor() {
         tintColor = placeholderActiveColor
         placeholderLabel.textColor = isEditing ? placeholderActiveColor : placeholderNormalColor
+        dividerColor = isEditing ? dividerActiveColor : dividerNormalColor
     }
     
     /// Update the placeholder text to the active state.

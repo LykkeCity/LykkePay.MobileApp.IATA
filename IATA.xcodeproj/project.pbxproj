@@ -130,6 +130,7 @@
 		0A4CD15C20CECA2100EF4A17 /* PaymentConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4CD15B20CECA2100EF4A17 /* PaymentConfig.swift */; };
 		0A4CD16320CF074500EF4A17 /* DefaultInvoiceState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4CD16220CF074500EF4A17 /* DefaultInvoiceState.swift */; };
 		0A4CD16720CF135300EF4A17 /* TextFieldUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4CD16620CF135300EF4A17 /* TextFieldUtils.swift */; };
+		0A4E4A2D20DA81DC00F1CA3A /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4E4A2C20DA81DB00F1CA3A /* R.generated.swift */; };
 		0A62F56520C545F700A51D63 /* NetworkUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A62F56420C545F700A51D63 /* NetworkUtil.swift */; };
 		0A62F56720C546E100A51D63 /* ServerErrorExtractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A62F56620C546E100A51D63 /* ServerErrorExtractor.swift */; };
 		0A62F56920C5473600A51D63 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A62F56820C5473600A51D63 /* Errors.swift */; };
@@ -142,7 +143,6 @@
 		0AAE96C020D7F94500F97768 /* PaymentRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE96BF20D7F94500F97768 /* PaymentRequest.swift */; };
 		0AB8E20E20C56FF500C13361 /* DefaultAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB8E20D20C56FF500C13361 /* DefaultAuthenticationService.swift */; };
 		0AB8E21020C5708300C13361 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB8E20F20C5708300C13361 /* AuthenticationService.swift */; };
-		0ADA881820DA503100A332F0 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADA881720DA503100A332F0 /* R.generated.swift */; };
 		0ADA881A20DA530400A332F0 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADA881920DA530400A332F0 /* TextField.swift */; };
 		0ADA881D20DA774A00A332F0 /* NavPushingUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADA881C20DA774A00A332F0 /* NavPushingUtil.swift */; };
 		0AF1C3AB20C832DB00AFD286 /* SavePinRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF1C3AA20C832DB00AFD286 /* SavePinRequest.swift */; };
@@ -323,6 +323,7 @@
 		0A4CD15B20CECA2100EF4A17 /* PaymentConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentConfig.swift; sourceTree = "<group>"; };
 		0A4CD16220CF074500EF4A17 /* DefaultInvoiceState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultInvoiceState.swift; sourceTree = "<group>"; };
 		0A4CD16620CF135300EF4A17 /* TextFieldUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldUtils.swift; sourceTree = "<group>"; };
+		0A4E4A2C20DA81DB00F1CA3A /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		0A62F56420C545F700A51D63 /* NetworkUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkUtil.swift; sourceTree = "<group>"; };
 		0A62F56620C546E100A51D63 /* ServerErrorExtractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerErrorExtractor.swift; sourceTree = "<group>"; };
 		0A62F56820C5473600A51D63 /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
@@ -335,7 +336,6 @@
 		0AAE96BF20D7F94500F97768 /* PaymentRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentRequest.swift; sourceTree = "<group>"; };
 		0AB8E20D20C56FF500C13361 /* DefaultAuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultAuthenticationService.swift; sourceTree = "<group>"; };
 		0AB8E20F20C5708300C13361 /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
-		0ADA881720DA503100A332F0 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = R.generated.swift; path = IATA/R.generated.swift; sourceTree = SOURCE_ROOT; };
 		0ADA881920DA530400A332F0 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		0ADA881C20DA774A00A332F0 /* NavPushingUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavPushingUtil.swift; sourceTree = "<group>"; };
 		0AF1C3AA20C832DB00AFD286 /* SavePinRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavePinRequest.swift; sourceTree = "<group>"; };
@@ -850,8 +850,8 @@
 		0A37EF9820C6DA8500201907 /* Localizable */ = {
 			isa = PBXGroup;
 			children = (
+				0A4E4A2C20DA81DB00F1CA3A /* R.generated.swift */,
 				0A37EFA220C6DC5100201907 /* Localizable.strings */,
-				0ADA881720DA503100A332F0 /* R.generated.swift */,
 			);
 			path = Localizable;
 			sourceTree = "<group>";
@@ -1525,7 +1525,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/IATA\"";
+			shellScript = "\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/IATA/Localizable\"";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1561,7 +1561,6 @@
 				0A62F56520C545F700A51D63 /* NetworkUtil.swift in Sources */,
 				0A4CD15C20CECA2100EF4A17 /* PaymentConfig.swift in Sources */,
 				0A08C11720CAB5B900342A3E /* PaymentRangeTableViewCell.swift in Sources */,
-				0ADA881820DA503100A332F0 /* R.generated.swift in Sources */,
 				0A4CD15820CEC96100EF4A17 /* DefaultPaymentService.swift in Sources */,
 				0A37EFDE20C7D65100201907 /* PasswordContainerView.swift in Sources */,
 				0A0B11BC20D2B66300021E2D /* HistoryModel.swift in Sources */,
@@ -1573,6 +1572,7 @@
 				0A62F56B20C5497200A51D63 /* EncodingType.swift in Sources */,
 				0A26FC7F20CFF8140097A8F6 /* InvoiceStatuses.swift in Sources */,
 				0A37EF6020C5881200201907 /* UIView+SpinnerController.swift in Sources */,
+				0A4E4A2D20DA81DC00F1CA3A /* R.generated.swift in Sources */,
 				0A1AF40920CADB450009595C /* BTNavigationDropdownMenu.swift in Sources */,
 				0A37EF5420C5816B00201907 /* SignInViewController.swift in Sources */,
 				D7D3012920D798D400A1AEB8 /* WalletsModel.swift in Sources */,
