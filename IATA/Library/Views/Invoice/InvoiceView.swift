@@ -34,10 +34,12 @@ open class InvoiceView: UIView {
     internal func initView(model: InvoiceModel) {
         self.name.text = model.clientName
         if let amount = model.amount, let symbol = model.symbol {
-            self.price.text = String(amount) + symbol
+            self.price.text = Double(amount).formattedWithSeparator + " " + symbol
         }
-        self.billingCategory.text = model.billingCategory
-        self.invoiceNumber.text = model.number
+        self.billingCategory.text = model.billingCategory?.uppercased()
+        if let number = model.number {
+            self.invoiceNumber.text = " #" + number
+        }
         if (model.status ==  InvoiceStatuses.Unpaid && !model.dispute!) {
             self.status.isHidden = true
             self.icBodyDispute.isHidden = true
@@ -68,7 +70,7 @@ open class InvoiceView: UIView {
         self.status.text = status.uppercased()
         self.status.color = color
         self.status.sizeToFit()
-        self.status.insets = UIEdgeInsetsMake(2, 3, 2, 3)
+        self.status.insets = UIEdgeInsetsMake(5, 7, 4, 7)
         self.icBodyDispute.isHidden = true
     }
     

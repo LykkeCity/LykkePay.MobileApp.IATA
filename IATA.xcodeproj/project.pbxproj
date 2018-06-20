@@ -130,7 +130,9 @@
 		0A4CD15C20CECA2100EF4A17 /* PaymentConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4CD15B20CECA2100EF4A17 /* PaymentConfig.swift */; };
 		0A4CD16320CF074500EF4A17 /* DefaultInvoiceState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4CD16220CF074500EF4A17 /* DefaultInvoiceState.swift */; };
 		0A4CD16720CF135300EF4A17 /* TextFieldUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4CD16620CF135300EF4A17 /* TextFieldUtils.swift */; };
-		0A4E4A2D20DA81DC00F1CA3A /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4E4A2C20DA81DB00F1CA3A /* R.generated.swift */; };
+		0A4E4A2F20DA8E7000F1CA3A /* MenuEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4E4A2E20DA8E7000F1CA3A /* MenuEnum.swift */; };
+		0A4E4A3120DAAC3A00F1CA3A /* FormatterExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4E4A3020DAAC3A00F1CA3A /* FormatterExtension.swift */; };
+		0A4E4A3720DACB1200F1CA3A /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4E4A3620DACB1100F1CA3A /* R.generated.swift */; };
 		0A62F56520C545F700A51D63 /* NetworkUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A62F56420C545F700A51D63 /* NetworkUtil.swift */; };
 		0A62F56720C546E100A51D63 /* ServerErrorExtractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A62F56620C546E100A51D63 /* ServerErrorExtractor.swift */; };
 		0A62F56920C5473600A51D63 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A62F56820C5473600A51D63 /* Errors.swift */; };
@@ -323,7 +325,9 @@
 		0A4CD15B20CECA2100EF4A17 /* PaymentConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentConfig.swift; sourceTree = "<group>"; };
 		0A4CD16220CF074500EF4A17 /* DefaultInvoiceState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultInvoiceState.swift; sourceTree = "<group>"; };
 		0A4CD16620CF135300EF4A17 /* TextFieldUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldUtils.swift; sourceTree = "<group>"; };
-		0A4E4A2C20DA81DB00F1CA3A /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
+		0A4E4A2E20DA8E7000F1CA3A /* MenuEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuEnum.swift; sourceTree = "<group>"; };
+		0A4E4A3020DAAC3A00F1CA3A /* FormatterExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormatterExtension.swift; sourceTree = "<group>"; };
+		0A4E4A3620DACB1100F1CA3A /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		0A62F56420C545F700A51D63 /* NetworkUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkUtil.swift; sourceTree = "<group>"; };
 		0A62F56620C546E100A51D63 /* ServerErrorExtractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerErrorExtractor.swift; sourceTree = "<group>"; };
 		0A62F56820C5473600A51D63 /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
@@ -850,7 +854,7 @@
 		0A37EF9820C6DA8500201907 /* Localizable */ = {
 			isa = PBXGroup;
 			children = (
-				0A4E4A2C20DA81DB00F1CA3A /* R.generated.swift */,
+				0A4E4A3620DACB1100F1CA3A /* R.generated.swift */,
 				0A37EFA220C6DC5100201907 /* Localizable.strings */,
 			);
 			path = Localizable;
@@ -1000,6 +1004,7 @@
 			isa = PBXGroup;
 			children = (
 				0A4CD16220CF074500EF4A17 /* DefaultInvoiceState.swift */,
+				0A4E4A2E20DA8E7000F1CA3A /* MenuEnum.swift */,
 			);
 			path = State;
 			sourceTree = "<group>";
@@ -1058,6 +1063,7 @@
 				0A37EF6D20C58C2500201907 /* StringsExtension.swift */,
 				0A37EF9120C6C97000201907 /* DictionaryExtension.swift */,
 				0A0B11B520D2B4C400021E2D /* LabelExtensitions.swift */,
+				0A4E4A3020DAAC3A00F1CA3A /* FormatterExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1547,6 +1553,7 @@
 				0A08C11A20CABC2300342A3E /* InvoicePaymentRangeModelItem.swift in Sources */,
 				0A26FCA620D161640097A8F6 /* HistoryTableViewCell.swift in Sources */,
 				0AF611A220C9A4D700957348 /* InvoiceTableViewCell.swift in Sources */,
+				0A4E4A2F20DA8E7000F1CA3A /* MenuEnum.swift in Sources */,
 				0A0B119E20D2897700021E2D /* DefaultDisputeState.swift in Sources */,
 				0A26FCB120D1658D0097A8F6 /* TransactionTableViewCell.swift in Sources */,
 				0A26FC8F20D117500097A8F6 /* DefaultInvoiceSettingsState.swift in Sources */,
@@ -1572,7 +1579,6 @@
 				0A62F56B20C5497200A51D63 /* EncodingType.swift in Sources */,
 				0A26FC7F20CFF8140097A8F6 /* InvoiceStatuses.swift in Sources */,
 				0A37EF6020C5881200201907 /* UIView+SpinnerController.swift in Sources */,
-				0A4E4A2D20DA81DC00F1CA3A /* R.generated.swift in Sources */,
 				0A1AF40920CADB450009595C /* BTNavigationDropdownMenu.swift in Sources */,
 				0A37EF5420C5816B00201907 /* SignInViewController.swift in Sources */,
 				D7D3012920D798D400A1AEB8 /* WalletsModel.swift in Sources */,
@@ -1612,6 +1618,7 @@
 				0AF6119D20C992AC00957348 /* Checkbox.swift in Sources */,
 				D7DEFC9620C97459005FB9EF /* WalletsTableViewCell.swift in Sources */,
 				0AF1C3AB20C832DB00AFD286 /* SavePinRequest.swift in Sources */,
+				0A4E4A3720DACB1200F1CA3A /* R.generated.swift in Sources */,
 				0A26FC8120D00B320097A8F6 /* InvoiceRequest.swift in Sources */,
 				0A37EFE020C7D65100201907 /* PasswordDotView.swift in Sources */,
 				0A26FC8320D0F0B00097A8F6 /* OnSwitchStateChangedDelegate.swift in Sources */,
@@ -1626,6 +1633,7 @@
 				0A0B118D20D270DD00021E2D /* DefaultSettingsState.swift in Sources */,
 				0A37F00120C809DC00201907 /* ChangePasswordRequest.swift in Sources */,
 				0A37EF9520C6D1E500201907 /* SignInViewState.swift in Sources */,
+				0A4E4A3120DAAC3A00F1CA3A /* FormatterExtension.swift in Sources */,
 				D784931D20D25F650060EAC6 /* DefaultWalletsState.swift in Sources */,
 				0A08C0FF20CAA75000342A3E /* InvoiceViewModelItemType.swift in Sources */,
 				0A6DB5D620C553D000BC1127 /* CredentialManager.swift in Sources */,

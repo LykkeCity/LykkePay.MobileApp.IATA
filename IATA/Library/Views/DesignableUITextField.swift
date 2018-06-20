@@ -6,20 +6,32 @@ class DesignableUITextField: FloatTextField {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        self.minimumFontSize = 24
+        self.adjustsFontSizeToFitWidth = false
         self.initRightView()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        self.minimumFontSize = 24
+        self.adjustsFontSizeToFitWidth = false
         self.initRightView()
     }
     
+    override func textRect(forBounds bounds: CGRect) -> CGRect {
+        return CGRect(x: bounds.origin.x, y: bounds.origin.y, width: bounds.width, height: bounds.height)
+    }
+    
+    override func editingRect(forBounds bounds: CGRect) -> CGRect {
+        return CGRect(x: bounds.origin.x, y: bounds.origin.y, width: bounds.width, height: bounds.height)
+    }
+
     private func initRightView() {
-        let label = BottomAlignedLabel(frame: CGRect(x: 0, y: 0, width: 25, height: 30))
-        label.contentMode = .bottom
+        let label = BottomAlignedLabel(frame: CGRect(x: 0, y: 0, width: 15, height: 26))
+        label.contentMode = .center
         label.text = UserPreference.shared.getCurrentCurrency()?.symbol
         label.backgroundColor = .clear
-        label.font = Theme.shared.fontCurrencyTextField
+        label.font = Theme.shared.regularFontOfSize(26)
         label.textColor = Theme.shared.navBarTitle
         label.textAlignment = .center
         

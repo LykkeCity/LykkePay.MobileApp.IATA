@@ -18,7 +18,10 @@ class BaseNavController: UIViewController, UITextFieldDelegate {
         initNavBar()
     }
     
+    
     func initNavBar() {
+        UINavigationBar.appearance().barStyle = .blackOpaque
+        self.navigationController?.navigationBar.barStyle = .blackOpaque
         self.navigationController?.navigationBar.barTintColor = Theme.shared.tabBarBackgroundColor
         self.navigationController?.navigationBar.tintColor = .white
         self.navigationController?.navigationBar.isTranslucent = false

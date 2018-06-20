@@ -26,19 +26,19 @@ OnChangeStateSelected {
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
+    
     @IBAction func sumEditingEnd(_ sender: Any) {
-        sumTextField.sizeToFit()
-        self.sumTextFieldWidth.constant = sumTextField.frame.size.width
+       self.sizeToFit()
     }
     
     @IBAction func sumChanged(_ sender: Any) {
-        sumTextField.sizeToFit()
+        self.sizeToFit()
     }
     
     @objc func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             UIView.animate(withDuration: 0.1, animations: { () -> Void in
-                self.bottomConstrain.constant = -keyboardSize.size.height/2 - 20
+                self.bottomConstrain.constant = -keyboardSize.size.height/2 - 50
             })
         }
     }
@@ -149,28 +149,26 @@ OnChangeStateSelected {
     }
     
     @objc func clickFilter(sender: Any?) {
-        self.navigationController?.pushViewController(InvoiceSettingsViewController(), animated: true)
+        self.hidesBottomBarWhenPushed = true
+        NavPushingUtil.shared.push(navigationController: self.navigationController, controller: InvoiceSettingsViewController())
         self.hideMenu()
     }
     
     @objc func clickDispute(sender: Any?) {
-        self.navigationController?.pushViewController(DisputeViewController(), animated: true)
+        self.hidesBottomBarWhenPushed = true
+        NavPushingUtil.shared.push(navigationController: self.navigationController, controller: DisputeViewController())
         self.hideMenu()
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if(textField == self.sumTextField) {
-            return TextFieldUtil.validateMaxValue(textField: textField, maxValue: self.state!.resultAmount(), range: range, replacementString: string)
+            if !(TextFieldUtil.validateMaxValue(textField: textField, maxValue: self.state!.resultAmount(), range: range, replacementString: string)) {
+                    showToast(message: R.string.localizable.invoiceScreenErrorChangingAmount())
+                return false
+            }
         }
         return true
     }
-    
-    func getWidth(text: String) -> CGFloat {
-        sumTextField.text = text
-        sumTextField.sizeToFit()
-        return sumTextField.frame.size.width
-    }
-    
     
     func onItemSelected(isSelected: Bool, index: Int) {
         self.sumTextField.text = self.state?.getSumString(isSelected: isSelected, index: index)
@@ -223,6 +221,11 @@ OnChangeStateSelected {
         
     }
     
+    private func sizeToFit() {
+        sumTextField.sizeToFit()
+        self.sumTextFieldWidth.constant = sumTextField.frame.size.width + 20
+    }
+    
     private func saveAmount(amount: Int?) {
         if let amountValue = amount {
             self.state?.amount = amountValue
@@ -231,15 +234,7 @@ OnChangeStateSelected {
         self.selectedItemTextField.isHidden = false
         self.sumTextField.isHidden = false
         self.loading.isHidden = true
-    }
-    
-    private func initWidth() {
-        let width = getWidth(text: sumTextField.text!)
-        sumTextFieldWidth.constant = 0.0
-        if width > sumTextFieldWidth.constant {
-            sumTextFieldWidth.constant = width
-        }
-        self.view.layoutIfNeeded()
+        self.sizeToFit()
     }
     
     private func animate(isShow: Bool) {
@@ -255,10 +250,11 @@ OnChangeStateSelected {
     }
     
     override func getTitleView() -> UIView {
-        guard let state = self.state else {
+        guard let state = self.state, let index = self.state?.getIndex() else {
             return Theme.shared.getTitle(title: getTitle(), color: UIColor.white)
         }
-        let menuView = BTNavigationDropdownMenu(title: BTTitle.index(FilterPreference.shared.getIndexOfStatus()), items: state.getMenuItems())
+        self.state?.initSelected()
+        let menuView = BTNavigationDropdownMenu(index: index, items: state.getMenuItems())
         menuView.backgroundColor = Theme.shared.tabBarBackgroundColor
         menuView.cellBackgroundColor = Theme.shared.tabBarBackgroundColor
         menuView.cellTextLabelColor = UIColor.white
@@ -266,10 +262,11 @@ OnChangeStateSelected {
         menuView.menuTitleColor = UIColor.white
         menuView.cellSelectionColor = Theme.shared.tabBarBackgroundColor
         menuView.selectedCellTextLabelColor = Theme.shared.tabBarItemSelectedColor
-        menuView.didSelectItemAtIndexHandler = {[weak self] (indexPath: Int) -> () in
-            FilterPreference.shared.saveIndexOfStatus(indexPath)
-            self?.state?.selectedStatus(index: indexPath)
+        menuView.didSelectItemAtIndexHandler = {[weak self] (menu: Menu) -> () in
+            FilterPreference.shared.saveIndexOfStatus(menu.type)
+            self?.state?.selectedStatus(type: menu.type)
             self?.hideMenu()
+            menuView.title = menu.title
             self?.loadData()
         }
         return menuView
@@ -299,6 +296,9 @@ OnChangeStateSelected {
         if (self.navigationItem.titleView is BTNavigationDropdownMenu) {
             let menu = self.navigationItem.titleView as! BTNavigationDropdownMenu
             menu.hideMenu()
+            if let items = self.state?.getMenuItems() {
+                menu.updateItems(items)
+            }
         }
     }
     

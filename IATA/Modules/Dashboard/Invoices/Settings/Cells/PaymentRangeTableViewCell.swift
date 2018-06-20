@@ -32,11 +32,11 @@ class PaymentRangeTableViewCell: UITableViewCell, UITextFieldDelegate {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        Theme.shared.configureTextFieldStyle(self.minValueTextField, title: R.string.localizable.invoiceSettingsRangeFrom())
-          Theme.shared.configureTextFieldStyle(self.maxValueTextField, title: R.string.localizable.invoiceSettingsRangeTo())
+        /*  Theme.shared.configureTextFieldStyle(self.minValueTextField, title: R.string.localizable.invoiceSettingsRangeFrom())
+          Theme.shared.configureTextFieldStyle(self.maxValueTextField, title: R.string.localizable.invoiceSettingsRangeTo())*/
         
-        self.minValueTextField?.delegate = self
-        self.maxValueTextField?.delegate = self
+        //self.minValueTextField?.delegate = self
+       // self.maxValueTextField?.delegate = self
         self.rangeSlider?.addTarget(self, action: #selector(rangeSliderValueChanged(sender:)),
                                     for: .valueChanged)
         

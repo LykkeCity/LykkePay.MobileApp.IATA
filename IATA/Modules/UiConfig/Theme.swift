@@ -41,7 +41,8 @@ class Theme: NSObject {
     
     public private(set) lazy var fontTextSizeTextField = mediumFontOfSize(16)
     public private(set) lazy var fontPlaceholderSizeTextField = regularFontOfSize(10)
-    public private(set) lazy var fontCurrencyTextField = boldFontOfSize(14)
+    public private(set) lazy var fontCurrencyTextField = boldFontOfSize(24)
+    public private(set) lazy var fontForTabBar = mediumFontOfSize(8)
     
     override init() {
         super.init()
@@ -65,7 +66,7 @@ class Theme: NSObject {
         button.setTitleColor(buttonsColor, for: .normal)
     }
     
-    private func boldFontOfSize(_ size: CGFloat) -> UIFont? {
+    public func boldFontOfSize(_ size: CGFloat) -> UIFont? {
         return R.font.gothamProBold(size: size)
     }
     
@@ -154,6 +155,7 @@ class Theme: NSObject {
         textField?.dividerColor = UIColor.clear
         textField?.font = fontCurrencyTextField
         textField?.textColor = navBarTitle
+        textField?.keyboardType = UIKeyboardType.decimalPad
     }
     
     public func configureTextFieldPasswordStyle(_ textField: FloatTextField?, title: String){

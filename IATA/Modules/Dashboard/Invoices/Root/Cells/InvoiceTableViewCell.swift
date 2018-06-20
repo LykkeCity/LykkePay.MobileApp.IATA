@@ -38,8 +38,8 @@ class InvoiceTableViewCell: UITableViewCell {
     }
     
     private func initCheckBoxAndStatus(structInfo: InvoiceStatusesStruct, isChecked: Bool) {
-        self.initCheckBox(color: structInfo.color!, isCanBePaid: structInfo.isCanBePaid!, isChecked: isChecked)
-        self.invoiceView.initStatus(color: structInfo.color!,  status: structInfo.title!)
+        self.initCheckBox(color: structInfo.color, isCanBePaid: structInfo.isCanBePaid, isChecked: isChecked)
+        self.invoiceView.initStatus(color: structInfo.colorStatus,  status: structInfo.title)
     }
     
     private func initCheckBox(color: UIColor, isCanBePaid: Bool, isChecked: Bool) {

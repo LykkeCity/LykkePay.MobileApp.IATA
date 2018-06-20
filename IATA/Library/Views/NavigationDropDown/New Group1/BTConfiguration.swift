@@ -57,7 +57,7 @@ final class BTConfiguration {
         self.cellSeparatorColor = UIColor.darkGray
         self.cellTextLabelColor = UIColor.darkGray
         self.selectedCellTextLabelColor = UIColor.darkGray
-        self.cellTextLabelFont = R.font.gothamProMedium(size: 17)
+        self.cellTextLabelFont = R.font.gothamPro(size: 17)
         self.navigationBarTitleFont = R.font.gothamProMedium(size: 17)
         self.cellTextLabelAlignment = NSTextAlignment.center
         self.cellSelectionColor = UIColor.lightGray
@@ -67,7 +67,7 @@ final class BTConfiguration {
         self.arrowImage = R.image.arrow_down_icon()
         self.arrowPadding = 15
         self.maskBackgroundColor = UIColor.black
-        self.maskBackgroundOpacity = 0.3
+        self.maskBackgroundOpacity = 0.0
         self.shouldChangeTitleText = true
     }
 }

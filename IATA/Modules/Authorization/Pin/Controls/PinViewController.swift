@@ -31,6 +31,7 @@ class PinViewController: UIViewController {
         self.initNavBar()
     }
     
+    
     private func initNavBar() {
         self.navigationController?.isNavigationBarHidden = false
         self.navigationItem.leftBarButtonItem = getBackButton()

@@ -515,12 +515,16 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 63 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 65 localization keys.
     struct localizable {
       /// Base translation: %@ invoices selected
       /// 
       /// Locales: Base
       static let invoiceScreenItemsCountSelected = Rswift.StringResource(key: "Invoice.Screen.Items.CountSelected", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
+      /// Base translation: 1 invoice selected
+      /// 
+      /// Locales: Base
+      static let invoiceScreenItemsOneSelected = Rswift.StringResource(key: "Invoice.Screen.Items.OneSelected", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
       /// Base translation: Airlines
       /// 
       /// Locales: Base
@@ -769,12 +773,23 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: Base
       static let signInLabelWelcomeMessage = Rswift.StringResource(key: "SignIn.Label.Welcome.Message", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
+      /// Base translation: You cannot pay more then required
+      /// 
+      /// Locales: Base
+      static let invoiceScreenErrorChangingAmount = Rswift.StringResource(key: "Invoice.Screen.Error.ChangingAmount", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
       
       /// Base translation: %@ invoices selected
       /// 
       /// Locales: Base
       static func invoiceScreenItemsCountSelected(_ value1: String) -> String {
         return String(format: NSLocalizedString("Invoice.Screen.Items.CountSelected", bundle: R.hostingBundle, value: "%@ invoices selected", comment: ""), locale: R.applicationLocale, value1)
+      }
+      
+      /// Base translation: 1 invoice selected
+      /// 
+      /// Locales: Base
+      static func invoiceScreenItemsOneSelected(_: Void = ()) -> String {
+        return NSLocalizedString("Invoice.Screen.Items.OneSelected", bundle: R.hostingBundle, value: "1 invoice selected", comment: "")
       }
       
       /// Base translation: Airlines
@@ -1209,6 +1224,13 @@ struct R: Rswift.Validatable {
       /// Locales: Base
       static func signInLabelWelcomeMessage(_: Void = ()) -> String {
         return NSLocalizedString("SignIn.Label.Welcome.Message", bundle: R.hostingBundle, value: "Welcome back! Sign in to \ncontinue to IATA", comment: "")
+      }
+      
+      /// Base translation: You cannot pay more then required
+      /// 
+      /// Locales: Base
+      static func invoiceScreenErrorChangingAmount(_: Void = ()) -> String {
+        return NSLocalizedString("Invoice.Screen.Error.ChangingAmount", bundle: R.hostingBundle, value: "You cannot pay more then required", comment: "")
       }
       
       fileprivate init() {}

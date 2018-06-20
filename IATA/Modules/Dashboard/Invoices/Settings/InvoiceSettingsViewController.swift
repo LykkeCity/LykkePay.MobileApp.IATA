@@ -5,10 +5,6 @@ class InvoiceSettingsViewController: UIViewController {
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var tableView: UITableView!
     
-    @IBAction func clickCancel(_ sender: Any) {
-        self.navigationController?.popViewController(animated: true)
-    }
-    
     private let viewModel = InvoiceViewModel()
     
     override func viewDidLoad() {
@@ -19,6 +15,11 @@ class InvoiceSettingsViewController: UIViewController {
         
         self.tableView?.rowHeight = UITableViewAutomaticDimension
         self.tableView?.estimatedRowHeight = 55
+        self.separatorColor = Theme.shared.dotColor
+        
+        let dummyViewHeight = CGFloat(80)
+        self.tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: self.tableView.bounds.size.width, height: dummyViewHeight))
+        self.tableView.contentInset = UIEdgeInsetsMake(-dummyViewHeight, 0, 0, 0)
         
         self.tableView.register(InvoiceHeaderView.nib, forHeaderFooterViewReuseIdentifier: InvoiceHeaderView.identifier)
         
@@ -29,6 +30,9 @@ class InvoiceSettingsViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
+    @IBAction func clickCancel(_ sender: Any) {
+        NavPushingUtil.shared.pop(navigationController: self.navigationController)
+    }
     
     @objc func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
@@ -84,6 +88,6 @@ class InvoiceSettingsViewController: UIViewController {
     
     @objc func clickDone() {
         self.viewModel.state.clickDone()
-        self.navigationController?.popViewController(animated: true)
+        NavPushingUtil.shared.pop(navigationController: self.navigationController)
     }
 }

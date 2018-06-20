@@ -4,7 +4,13 @@ import ObjectMapper
 
 class DefaultInvoiceState: DefaultBaseState<InvoiceModel> {
     
-    private let menuItems = [R.string.localizable.invoiceNavigationFilteringTitleAllInvoices(), R.string.localizable.invoiceNavigationFilteringTitlePaid(), R.string.localizable.invoiceNavigationFilteringTitleUnPaidInvoices(), R.string.localizable.invoiceNavigationFilteringTitleDispute()]
+    private var menuItems: [Menu] = [
+        Menu(type: MenuEnum.All, title: R.string.localizable.invoiceNavigationFilteringTitleAllInvoices(), isActive: false),
+        Menu(type: MenuEnum.Paid, title: R.string.localizable.invoiceNavigationFilteringTitlePaid(), isActive: false),
+        Menu(type: MenuEnum.Unpaid, title: R.string.localizable.invoiceNavigationFilteringTitleUnPaidInvoices(), isActive: false),
+        Menu(type: MenuEnum.Dispute, title: R.string.localizable.invoiceNavigationFilteringTitleDispute(), isActive: false)
+    ]
+    
     private var selectedItems = Array<InvoiceModel>()
     private var invoiceParams = InvoiceRequest()
    
@@ -20,8 +26,14 @@ class DefaultInvoiceState: DefaultBaseState<InvoiceModel> {
         self.selectedItems = []
     }
     
+    func initSelected() {
+        if let menuItem = FilterPreference.shared.getIndexOfStatus(), let menu = MenuEnum(rawValue: menuItem) {
+            selectedStatus(type: menu)
+        }
+    }
+    
     func getInvoiceStringJson() -> Promise<String> {
-        selectedStatus(index: FilterPreference.shared.getIndexOfStatus())
+        initSelected()
         self.invoiceParams?.billingCategories = FilterPreference.shared.getBillingChecked()
         self.invoiceParams?.clientMerchantIds = FilterPreference.shared.getAirlines()
         self.invoiceParams?.settlementAssets = FilterPreference.shared.getCurrency()
@@ -47,7 +59,7 @@ class DefaultInvoiceState: DefaultBaseState<InvoiceModel> {
         return self.selectedItems.count
     }
     
-    func getMenuItems() -> [String] {
+    func getMenuItems() -> [Menu] {
         return self.menuItems
     }
     
@@ -66,24 +78,38 @@ class DefaultInvoiceState: DefaultBaseState<InvoiceModel> {
         return resultAmount
     }
     
-    func selectedStatus(index: Int) {
-        switch index {
-        case 0:
+    func selectedStatus(type: MenuEnum) {
+        cleanUpActive(type: type)
+        switch type {
+        case .All:
             initStatus(status: InvoiceStatuses.all, dispute: nil)
             break
-        case 1:
+        case .Paid:
             initStatus(status: InvoiceStatuses.Paid, dispute: nil)
             break
-        case 2:
+        case .Unpaid:
             initStatus(status: InvoiceStatuses.Unpaid, dispute: nil)
             break
-        case 3:
+        case .Dispute:
             initStatus(status: InvoiceStatuses.all, dispute: true)
             break
-        default:
-            break
         }
-        
+    }
+    
+    func getIndex() -> Int{
+        if let menuItem = FilterPreference.shared.getIndexOfStatus(), let index = self.menuItems.index(where: {$0.type == MenuEnum(rawValue: menuItem)}) {
+            return index
+        }
+        return 0
+    }
+    
+    private func cleanUpActive(type: MenuEnum) {
+        var items = [Menu]()
+        for var item in menuItems {
+            item.isActive = item.type == type
+            items.append(item)
+        }
+        menuItems = items
     }
     
     private func initStatus(status: InvoiceStatuses, dispute: Bool?) {
@@ -130,7 +156,11 @@ class DefaultInvoiceState: DefaultBaseState<InvoiceModel> {
     }
     
     func getSelectedString() -> String {
-        return R.string.localizable.invoiceScreenItemsCountSelected(String(self.getCountSelected()))
+        if self.getCountSelected() == 1 {
+            return R.string.localizable.invoiceScreenItemsOneSelected()
+        } else {
+            return R.string.localizable.invoiceScreenItemsCountSelected(String(self.getCountSelected()))
+        }
     }
     
     private func getItemsId() -> [String] {

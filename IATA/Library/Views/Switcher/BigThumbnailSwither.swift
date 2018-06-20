@@ -12,6 +12,18 @@ class BigThumbnailSwither : UISlider {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        if let imageNormal = thumbImage(for: .normal) {
+            self.setThumbImage(self.scaleToSize(newSize:
+                CGSize(width: CGFloat(100), height: CGFloat(100)),
+                image: imageNormal), for: .normal)
+        }
+        
+        if let imageHighlighter = thumbImage(for: .highlighted) {
+            self.setThumbImage(self.scaleToSize(newSize:
+                CGSize(width: CGFloat(100), height: CGFloat(100)),
+                image: imageHighlighter), for: .highlighted)
+        }
+        
         self.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTap(sender:))))
         self.addTarget(self, action: #selector(sliderValueChanged(slider:)),
                        for: UIControlEvents.valueChanged)
@@ -39,5 +51,13 @@ class BigThumbnailSwither : UISlider {
     internal func setChecked(isChecked: Bool!) {
         self.value = isChecked ? 1 : 0
         self.initThumbColor()
+    }
+    
+    func scaleToSize(newSize: CGSize, image: UIImage) -> UIImage {
+        UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0)
+        image.draw(in: CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height))
+        let newImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext();
+        return newImage
     }
 }
