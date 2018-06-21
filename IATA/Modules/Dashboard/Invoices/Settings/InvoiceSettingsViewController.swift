@@ -9,13 +9,14 @@ class InvoiceSettingsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        UINavigationBar.appearance().barStyle = .black
         
         self.tableView?.dataSource = viewModel
         self.tableView?.delegate = viewModel
         
         self.tableView?.rowHeight = UITableViewAutomaticDimension
         self.tableView?.estimatedRowHeight = 55
-        self.separatorColor = Theme.shared.dotColor
+        self.tableView?.separatorColor = Theme.shared.dotColor
         
         let dummyViewHeight = CGFloat(80)
         self.tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: self.tableView.bounds.size.width, height: dummyViewHeight))

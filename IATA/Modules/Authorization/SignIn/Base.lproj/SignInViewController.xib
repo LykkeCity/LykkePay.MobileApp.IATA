@@ -25,6 +25,7 @@
                 <outlet property="emailTextField" destination="jnn-ZT-33H" id="qN2-WM-IaJ"/>
                 <outlet property="logoImg" destination="9qR-xI-Yiu" id="Gtu-gX-pGS"/>
                 <outlet property="passwordField" destination="Ska-xM-lkl" id="WfW-Dl-UdM"/>
+                <outlet property="scrollView" destination="Yhj-rn-1Aq" id="hjb-Gt-TNz"/>
                 <outlet property="titleWelcome" destination="hT8-Kf-Gck" id="L02-2l-d00"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="QfJ-Cc-bbm"/>
             </connections>

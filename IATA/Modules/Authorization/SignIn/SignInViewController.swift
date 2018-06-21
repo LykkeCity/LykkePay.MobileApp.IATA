@@ -3,6 +3,7 @@ import Material
 
 class SignInViewController: BaseAuthViewController {
     
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var buildVersion: UILabel!
     @IBOutlet weak var titleWelcome: UILabel!
     @IBOutlet private weak var emailTextField: FloatTextField?
@@ -10,6 +11,7 @@ class SignInViewController: BaseAuthViewController {
     @IBOutlet private weak var btnLogin: UIButton?
     @IBOutlet weak var logoImg: UIImageView?
     
+    private var isShown: Bool = false
     private var state: SignInViewState = DefaultSignInViewState() as SignInViewState
     
     override func viewDidLoad() {
@@ -122,17 +124,19 @@ class SignInViewController: BaseAuthViewController {
 
     @objc func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            if let isHidden = self.logoImg?.isHidden, !isHidden {
-                self.view.frame.origin.y -= keyboardSize.height/2
+            if let isHidden = self.logoImg?.isHidden, !isHidden, !isShown {
+                scrollView.setContentOffset(CGPoint(x: 0, y: keyboardSize.height/1.75), animated: true)
                 self.logoImg?.isHidden = true
+                self.isShown = true
             }
         }
     }
-
+    
     @objc func keyboardWillHide(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            self.view.frame.origin.y += keyboardSize.height/2
+        if let isHidden = self.logoImg?.isHidden, isHidden, isShown {
+            scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
             self.logoImg?.isHidden = false
+            self.isShown = false
         }
     }
     
