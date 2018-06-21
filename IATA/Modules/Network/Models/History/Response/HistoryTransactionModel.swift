@@ -1,12 +1,13 @@
 import Foundation
 import UIKit
 import ObjectMapper
+import Rswift
 
 class HistoryTransactionModel: Mappable, Reflectable {
     
     public enum PropertyKey: String {
         case id
-        case logo
+        case merchantLogoUrl
         case title
         case timeStamp
         case amount
@@ -15,10 +16,12 @@ class HistoryTransactionModel: Mappable, Reflectable {
         case blockHeight
         case blockConfirmations
         case txHash
+        case invoiceNumber
+        case billingCategory
     }
     
     internal var id: String?
-    internal var logo: String?
+    internal var merchantLogoUrl: String?
     internal var title: String?
     internal var timeStamp: String?
     internal var amount: String?
@@ -27,7 +30,9 @@ class HistoryTransactionModel: Mappable, Reflectable {
     internal var blockHeight: String?
     internal var blockConfirmations: String?
     internal var txHash: String?
-    
+    internal var invoiceNumber: String?
+    internal var billingCategory: String?
+
     
     internal required init?(map: Map) {
     }
@@ -40,7 +45,7 @@ class HistoryTransactionModel: Mappable, Reflectable {
     
     internal func mapping(map: Map) {
         self.id <- map[PropertyKey.id.rawValue]
-        self.logo <- map[PropertyKey.logo.rawValue]
+        self.merchantLogoUrl <- map[PropertyKey.merchantLogoUrl.rawValue]
         self.title <- map[PropertyKey.title.rawValue]
         self.timeStamp <- map[PropertyKey.timeStamp.rawValue]
         self.amount <- map[PropertyKey.amount.rawValue]
@@ -49,6 +54,8 @@ class HistoryTransactionModel: Mappable, Reflectable {
         self.blockHeight <- map[PropertyKey.blockHeight.rawValue]
         self.blockConfirmations <- map[PropertyKey.blockConfirmations.rawValue]
         self.txHash <- map[PropertyKey.txHash.rawValue]
+        self.invoiceNumber <- map[PropertyKey.invoiceNumber.rawValue]
+        self.billingCategory <- map[PropertyKey.billingCategory.rawValue]
     }
     
     func valueFor() -> [PropertyKeyTransactionModel] {
@@ -56,11 +63,23 @@ class HistoryTransactionModel: Mappable, Reflectable {
         let mirror = Mirror(reflecting: self)
         for (name, value) in mirror.children {
             if let name = name, let structInfo = PropertyKeyTransactionModel(keyValue: name, value: value as? String), structInfo.title != nil {
+                guard let value = value as? String, !value.isEmpty else {
+                    continue
+                }
+                structInfo.title = localizedTitles[name]
                 items.append(structInfo)
             }
         }
         return items
     }
+
+    let localizedTitles = [PropertyKey.timeStamp.rawValue : R.string.localizable.historyTransactionDetailsTimeStamp(),
+                           PropertyKey.amount.rawValue : R.string.localizable.historyTransactionDetailsAmount(),
+                           PropertyKey.soldBy.rawValue : R.string.localizable.historyTransactionDetailsSoldBy(),
+                           PropertyKey.blockHeight.rawValue : R.string.localizable.historyTransactionDetailsBlockHeight(),
+                           PropertyKey.txHash.rawValue : R.string.localizable.historyTransactionDetailsTxHash(),
+                           PropertyKey.invoiceNumber.rawValue : R.string.localizable.historyTransactionDetailsInvoiceNumber(),
+                           PropertyKey.billingCategory.rawValue : R.string.localizable.historyTransactionDetailsBillingCategory()]
 }
 
 protocol Reflectable {

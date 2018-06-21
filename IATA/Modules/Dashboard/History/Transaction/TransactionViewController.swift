@@ -3,6 +3,7 @@ import UIKit
 class TransactionViewController: BaseViewController<PropertyKeyTransactionModel, DefaultTransactionState>, Initializer {
     
     @IBOutlet weak var tabView: UITableView!
+    @IBOutlet weak var transactionHeaderView: TransactionTableViewHeader!
     
     var id = String()
     
@@ -24,15 +25,10 @@ class TransactionViewController: BaseViewController<PropertyKeyTransactionModel,
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50
-        
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
-    }
-    
-    override internal func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 100
     }
     
     func getTitle() -> String? {
@@ -44,8 +40,6 @@ class TransactionViewController: BaseViewController<PropertyKeyTransactionModel,
     }
     
     func registerCells() {
-        self.tabView.register(TransactionTableViewHeader.nib, forHeaderFooterViewReuseIdentifier: TransactionTableViewHeader.identifier)
-        
         self.tabView.register(TransactionTableViewCell.nib, forCellReuseIdentifier: TransactionTableViewCell.identifier)
     }
     
@@ -56,12 +50,17 @@ class TransactionViewController: BaseViewController<PropertyKeyTransactionModel,
                 guard let strongSelf = self else {
                     return
                 }
-                strongSelf.reloadTable(item: result)
+                strongSelf.reloadViews(item: result)
             })
     }
     
     private func reloadTable(item: HistoryTransactionModel) {
         self.state?.initItems(item: item)
         self.tabView.reloadData()
+    }
+
+    private func reloadViews(item: HistoryTransactionModel) {
+        reloadTable(item: item)
+        transactionHeaderView.model = item
     }
 }

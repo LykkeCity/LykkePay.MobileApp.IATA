@@ -18,9 +18,16 @@
         </array>
     </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TransactionTableViewHeader" customModule="IATA" customModuleProvider="target">
+            <connections>
+                <outlet property="contentView" destination="iN0-l3-epB" id="R5y-MY-fKd"/>
+                <outlet property="logo" destination="4uF-dY-UlN" id="64C-P0-S1V"/>
+                <outlet property="transactionSubtitle" destination="aY8-eF-Q5t" id="CzH-hA-43d"/>
+                <outlet property="transactionTitle" destination="xhI-Nh-CJX" id="n3y-eU-K9S"/>
+            </connections>
+        </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="TransactionTableViewHeader" customModule="IATA" customModuleProvider="target">
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
             <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>

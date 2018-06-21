@@ -22,7 +22,7 @@ class HistoryViewController: BaseViewController<HistoryModel, DefaultHistoryStat
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        var viewController = TransactionViewController()
+        let viewController = TransactionViewController()
         if let id = self.state?.getItems()[indexPath.row].id {
             viewController.id = id
         }

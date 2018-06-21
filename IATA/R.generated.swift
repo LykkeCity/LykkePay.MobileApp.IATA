@@ -515,7 +515,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 61 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 62 localization keys.
     struct localizable {
       /// Base translation: %@ invoices selected
       /// 
@@ -749,6 +749,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: Base
       static let invoiceSettingsRangeTo = Rswift.StringResource(key: "Invoice.Settings.Range.To", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
+      /// Base translation: Transaction
+      /// 
+      /// Locales: Base
+      static let historyTransactionScreenTitle = Rswift.StringResource(key: "History.Transaction.Screen.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
       /// Base translation: TxHash
       /// 
       /// Locales: Base
@@ -1168,6 +1172,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("Invoice.Settings.Range.To", bundle: R.hostingBundle, value: "To", comment: "")
       }
       
+      /// Base translation: Transaction
+      /// 
+      /// Locales: Base
+      static func historyTransactionScreenTitle(_: Void = ()) -> String {
+        return NSLocalizedString("History.Transaction.Screen.Title", bundle: R.hostingBundle, value: "Transaction", comment: "")
+      }
+      
       /// Base translation: TxHash
       /// 
       /// Locales: Base
@@ -1519,8 +1530,8 @@ struct _R: Rswift.Validatable {
       let bundle = R.hostingBundle
       let name = "TransactionTableViewHeader"
       
-      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]? = nil) -> TransactionTableViewHeader? {
-        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? TransactionTableViewHeader
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]? = nil) -> UIKit.UIView? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
       }
       
       static func validate() throws {

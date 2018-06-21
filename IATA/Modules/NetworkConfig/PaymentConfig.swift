@@ -12,5 +12,4 @@ class PaymentConfig {
     
     public let historyIndex = "/history/Index"
     public let historyDetails = "/history/Details"
-    
 }
