@@ -8,7 +8,7 @@ class PaymentRequest:  BaseMappable {
     }
     
     var invoicesIds: [String]? = []
-    var amountInBaseAsset: Int?
+    var amountInBaseAsset: Double?
     
     internal required init?() {
     }

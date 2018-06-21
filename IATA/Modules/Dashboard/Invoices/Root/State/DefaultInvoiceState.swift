@@ -15,7 +15,7 @@ class DefaultInvoiceState: DefaultBaseState<InvoiceModel> {
     private var invoiceParams = InvoiceRequest()
    
     public lazy var service: PaymentService = DefaultPaymentService()
-    public var amount = 0
+    public var amount = 0.0
     
     
     func mapping(jsonString: String!)  {
@@ -63,9 +63,9 @@ class DefaultInvoiceState: DefaultBaseState<InvoiceModel> {
         return self.menuItems
     }
     
-    func recalculateAmount(isSelected: Bool, model: InvoiceModel) -> Double {
+    func recalculateAmount(isSelected: Bool, model: InvoiceModel) {
         isSelected ? self.addNewSelectedModel(model: model) : self.removeSelectedModel(model: model)
-        return resultAmount()
+        self.amount = resultAmount()
     }
     
 
@@ -149,10 +149,6 @@ class DefaultInvoiceState: DefaultBaseState<InvoiceModel> {
         if let index = self.selectedItems.index(where: {$0 === model}) {
             self.selectedItems.remove(at: index)
         }
-    }
-    
-    func getSumString(isSelected: Bool, index: Int) -> String {
-        return String(self.recalculateAmount(isSelected: isSelected, model: self.items[index]))
     }
     
     func getSelectedString() -> String {

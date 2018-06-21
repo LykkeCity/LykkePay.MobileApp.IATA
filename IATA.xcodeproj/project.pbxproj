@@ -132,7 +132,6 @@
 		0A4CD16720CF135300EF4A17 /* TextFieldUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4CD16620CF135300EF4A17 /* TextFieldUtils.swift */; };
 		0A4E4A2F20DA8E7000F1CA3A /* MenuEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4E4A2E20DA8E7000F1CA3A /* MenuEnum.swift */; };
 		0A4E4A3120DAAC3A00F1CA3A /* FormatterExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4E4A3020DAAC3A00F1CA3A /* FormatterExtension.swift */; };
-		0A4E4A3720DACB1200F1CA3A /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4E4A3620DACB1100F1CA3A /* R.generated.swift */; };
 		0A62F56520C545F700A51D63 /* NetworkUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A62F56420C545F700A51D63 /* NetworkUtil.swift */; };
 		0A62F56720C546E100A51D63 /* ServerErrorExtractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A62F56620C546E100A51D63 /* ServerErrorExtractor.swift */; };
 		0A62F56920C5473600A51D63 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A62F56820C5473600A51D63 /* Errors.swift */; };
@@ -146,6 +145,35 @@
 		0AB8E20E20C56FF500C13361 /* DefaultAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB8E20D20C56FF500C13361 /* DefaultAuthenticationService.swift */; };
 		0AB8E21020C5708300C13361 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB8E20F20C5708300C13361 /* AuthenticationService.swift */; };
 		0ABED71420DBA94300AABCAD /* CurrencyUiTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABED71320DBA94300AABCAD /* CurrencyUiTextField.swift */; };
+		0ABED71620DBC87900AABCAD /* ViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABED71520DBC87900AABCAD /* ViewUtils.swift */; };
+		0ABED71820DBD9BF00AABCAD /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABED71720DBD9BF00AABCAD /* R.generated.swift */; };
+		0ABED71A20DBDA4D00AABCAD /* DisputeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABED71920DBDA4D00AABCAD /* DisputeView.swift */; };
+		0ABED71C20DBDA6300AABCAD /* DisputeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0ABED71B20DBDA6300AABCAD /* DisputeView.xib */; };
+		0ABED71E20DBDEF800AABCAD /* UIImageExtensition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABED71D20DBDEF800AABCAD /* UIImageExtensition.swift */; };
+		0ABED73D20DBFBC600AABCAD /* SwipeActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABED72520DBFBC400AABCAD /* SwipeActionButton.swift */; };
+		0ABED73E20DBFBC600AABCAD /* SwipeAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABED72620DBFBC400AABCAD /* SwipeAnimator.swift */; };
+		0ABED73F20DBFBC600AABCAD /* SwipeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABED72720DBFBC400AABCAD /* SwipeCollectionViewCell.swift */; };
+		0ABED74020DBFBC600AABCAD /* SwipeTransitionLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABED72920DBFBC400AABCAD /* SwipeTransitionLayout.swift */; };
+		0ABED74120DBFBC600AABCAD /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABED72A20DBFBC400AABCAD /* Extensions.swift */; };
+		0ABED74220DBFBC600AABCAD /* SwipeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABED72B20DBFBC400AABCAD /* SwipeController.swift */; };
+		0ABED74320DBFBC600AABCAD /* SwipeActionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABED72C20DBFBC400AABCAD /* SwipeActionsView.swift */; };
+		0ABED74420DBFBC600AABCAD /* SwipeCollectionViewCell+Accessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABED72D20DBFBC400AABCAD /* SwipeCollectionViewCell+Accessibility.swift */; };
+		0ABED74520DBFBC600AABCAD /* SwipeAccessibilityCustomAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABED72E20DBFBC400AABCAD /* SwipeAccessibilityCustomAction.swift */; };
+		0ABED74620DBFBC600AABCAD /* SwipeTableViewCell+Accessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABED72F20DBFBC400AABCAD /* SwipeTableViewCell+Accessibility.swift */; };
+		0ABED74720DBFBC600AABCAD /* SwipeTableViewCell+Display.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABED73020DBFBC500AABCAD /* SwipeTableViewCell+Display.swift */; };
+		0ABED74820DBFBC600AABCAD /* SwipeTableViewCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABED73120DBFBC500AABCAD /* SwipeTableViewCellDelegate.swift */; };
+		0ABED74920DBFBC600AABCAD /* Swipeable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABED73220DBFBC500AABCAD /* Swipeable.swift */; };
+		0ABED74B20DBFBC600AABCAD /* SwipeFeedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABED73420DBFBC500AABCAD /* SwipeFeedback.swift */; };
+		0ABED74C20DBFBC600AABCAD /* SwipeAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABED73520DBFBC500AABCAD /* SwipeAction.swift */; };
+		0ABED74D20DBFBC600AABCAD /* SwipeActionTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABED73620DBFBC500AABCAD /* SwipeActionTransitioning.swift */; };
+		0ABED74E20DBFBC600AABCAD /* SwipeCollectionViewCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABED73720DBFBC500AABCAD /* SwipeCollectionViewCellDelegate.swift */; };
+		0ABED74F20DBFBC600AABCAD /* SwipeCollectionViewCell+Display.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABED73820DBFBC500AABCAD /* SwipeCollectionViewCell+Display.swift */; };
+		0ABED75020DBFBC600AABCAD /* SwipeExpansionStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABED73920DBFBC500AABCAD /* SwipeExpansionStyle.swift */; };
+		0ABED75120DBFBC600AABCAD /* SwipeExpanding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABED73A20DBFBC600AABCAD /* SwipeExpanding.swift */; };
+		0ABED75220DBFBC600AABCAD /* SwipeOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABED73B20DBFBC600AABCAD /* SwipeOptions.swift */; };
+		0ABED75320DBFBC600AABCAD /* SwipeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABED73C20DBFBC600AABCAD /* SwipeTableViewCell.swift */; };
+		0ABED75520DBFBE100AABCAD /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 0ABED75420DBFBE000AABCAD /* LICENSE */; };
+		0ABED75720DC407000AABCAD /* NotificateDoneEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABED75620DC407000AABCAD /* NotificateDoneEnum.swift */; };
 		0ADA881A20DA530400A332F0 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADA881920DA530400A332F0 /* TextField.swift */; };
 		0ADA881D20DA774A00A332F0 /* NavPushingUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADA881C20DA774A00A332F0 /* NavPushingUtil.swift */; };
 		0AF1C3AB20C832DB00AFD286 /* SavePinRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF1C3AA20C832DB00AFD286 /* SavePinRequest.swift */; };
@@ -328,7 +356,6 @@
 		0A4CD16620CF135300EF4A17 /* TextFieldUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldUtils.swift; sourceTree = "<group>"; };
 		0A4E4A2E20DA8E7000F1CA3A /* MenuEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuEnum.swift; sourceTree = "<group>"; };
 		0A4E4A3020DAAC3A00F1CA3A /* FormatterExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormatterExtension.swift; sourceTree = "<group>"; };
-		0A4E4A3620DACB1100F1CA3A /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		0A62F56420C545F700A51D63 /* NetworkUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkUtil.swift; sourceTree = "<group>"; };
 		0A62F56620C546E100A51D63 /* ServerErrorExtractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerErrorExtractor.swift; sourceTree = "<group>"; };
 		0A62F56820C5473600A51D63 /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
@@ -342,6 +369,36 @@
 		0AB8E20D20C56FF500C13361 /* DefaultAuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultAuthenticationService.swift; sourceTree = "<group>"; };
 		0AB8E20F20C5708300C13361 /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
 		0ABED71320DBA94300AABCAD /* CurrencyUiTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyUiTextField.swift; sourceTree = "<group>"; };
+		0ABED71520DBC87900AABCAD /* ViewUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewUtils.swift; sourceTree = "<group>"; };
+		0ABED71720DBD9BF00AABCAD /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
+		0ABED71920DBDA4D00AABCAD /* DisputeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisputeView.swift; sourceTree = "<group>"; };
+		0ABED71B20DBDA6300AABCAD /* DisputeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DisputeView.xib; sourceTree = "<group>"; };
+		0ABED71D20DBDEF800AABCAD /* UIImageExtensition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtensition.swift; sourceTree = "<group>"; };
+		0ABED72520DBFBC400AABCAD /* SwipeActionButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwipeActionButton.swift; path = "../../../../../../../Downloads/SwipeCellKit-develop/Source/SwipeActionButton.swift"; sourceTree = "<group>"; };
+		0ABED72620DBFBC400AABCAD /* SwipeAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwipeAnimator.swift; path = "../../../../../../../Downloads/SwipeCellKit-develop/Source/SwipeAnimator.swift"; sourceTree = "<group>"; };
+		0ABED72720DBFBC400AABCAD /* SwipeCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwipeCollectionViewCell.swift; path = "../../../../../../../Downloads/SwipeCellKit-develop/Source/SwipeCollectionViewCell.swift"; sourceTree = "<group>"; };
+		0ABED72820DBFBC400AABCAD /* SwipeCellKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SwipeCellKit.h; path = "../../../../../../../Downloads/SwipeCellKit-develop/Source/SwipeCellKit.h"; sourceTree = "<group>"; };
+		0ABED72920DBFBC400AABCAD /* SwipeTransitionLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwipeTransitionLayout.swift; path = "../../../../../../../Downloads/SwipeCellKit-develop/Source/SwipeTransitionLayout.swift"; sourceTree = "<group>"; };
+		0ABED72A20DBFBC400AABCAD /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Extensions.swift; path = "../../../../../../../Downloads/SwipeCellKit-develop/Source/Extensions.swift"; sourceTree = "<group>"; };
+		0ABED72B20DBFBC400AABCAD /* SwipeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwipeController.swift; path = "../../../../../../../Downloads/SwipeCellKit-develop/Source/SwipeController.swift"; sourceTree = "<group>"; };
+		0ABED72C20DBFBC400AABCAD /* SwipeActionsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwipeActionsView.swift; path = "../../../../../../../Downloads/SwipeCellKit-develop/Source/SwipeActionsView.swift"; sourceTree = "<group>"; };
+		0ABED72D20DBFBC400AABCAD /* SwipeCollectionViewCell+Accessibility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SwipeCollectionViewCell+Accessibility.swift"; path = "../../../../../../../Downloads/SwipeCellKit-develop/Source/SwipeCollectionViewCell+Accessibility.swift"; sourceTree = "<group>"; };
+		0ABED72E20DBFBC400AABCAD /* SwipeAccessibilityCustomAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwipeAccessibilityCustomAction.swift; path = "../../../../../../../Downloads/SwipeCellKit-develop/Source/SwipeAccessibilityCustomAction.swift"; sourceTree = "<group>"; };
+		0ABED72F20DBFBC400AABCAD /* SwipeTableViewCell+Accessibility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SwipeTableViewCell+Accessibility.swift"; path = "../../../../../../../Downloads/SwipeCellKit-develop/Source/SwipeTableViewCell+Accessibility.swift"; sourceTree = "<group>"; };
+		0ABED73020DBFBC500AABCAD /* SwipeTableViewCell+Display.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SwipeTableViewCell+Display.swift"; path = "../../../../../../../Downloads/SwipeCellKit-develop/Source/SwipeTableViewCell+Display.swift"; sourceTree = "<group>"; };
+		0ABED73120DBFBC500AABCAD /* SwipeTableViewCellDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwipeTableViewCellDelegate.swift; path = "../../../../../../../Downloads/SwipeCellKit-develop/Source/SwipeTableViewCellDelegate.swift"; sourceTree = "<group>"; };
+		0ABED73220DBFBC500AABCAD /* Swipeable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Swipeable.swift; path = "../../../../../../../Downloads/SwipeCellKit-develop/Source/Swipeable.swift"; sourceTree = "<group>"; };
+		0ABED73420DBFBC500AABCAD /* SwipeFeedback.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwipeFeedback.swift; path = "../../../../../../../Downloads/SwipeCellKit-develop/Source/SwipeFeedback.swift"; sourceTree = "<group>"; };
+		0ABED73520DBFBC500AABCAD /* SwipeAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwipeAction.swift; path = "../../../../../../../Downloads/SwipeCellKit-develop/Source/SwipeAction.swift"; sourceTree = "<group>"; };
+		0ABED73620DBFBC500AABCAD /* SwipeActionTransitioning.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwipeActionTransitioning.swift; path = "../../../../../../../Downloads/SwipeCellKit-develop/Source/SwipeActionTransitioning.swift"; sourceTree = "<group>"; };
+		0ABED73720DBFBC500AABCAD /* SwipeCollectionViewCellDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwipeCollectionViewCellDelegate.swift; path = "../../../../../../../Downloads/SwipeCellKit-develop/Source/SwipeCollectionViewCellDelegate.swift"; sourceTree = "<group>"; };
+		0ABED73820DBFBC500AABCAD /* SwipeCollectionViewCell+Display.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SwipeCollectionViewCell+Display.swift"; path = "../../../../../../../Downloads/SwipeCellKit-develop/Source/SwipeCollectionViewCell+Display.swift"; sourceTree = "<group>"; };
+		0ABED73920DBFBC500AABCAD /* SwipeExpansionStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwipeExpansionStyle.swift; path = "../../../../../../../Downloads/SwipeCellKit-develop/Source/SwipeExpansionStyle.swift"; sourceTree = "<group>"; };
+		0ABED73A20DBFBC600AABCAD /* SwipeExpanding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwipeExpanding.swift; path = "../../../../../../../Downloads/SwipeCellKit-develop/Source/SwipeExpanding.swift"; sourceTree = "<group>"; };
+		0ABED73B20DBFBC600AABCAD /* SwipeOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwipeOptions.swift; path = "../../../../../../../Downloads/SwipeCellKit-develop/Source/SwipeOptions.swift"; sourceTree = "<group>"; };
+		0ABED73C20DBFBC600AABCAD /* SwipeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwipeTableViewCell.swift; path = "../../../../../../../Downloads/SwipeCellKit-develop/Source/SwipeTableViewCell.swift"; sourceTree = "<group>"; };
+		0ABED75420DBFBE000AABCAD /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE; path = "../../../../../../../Downloads/SwipeCellKit-develop/LICENSE"; sourceTree = "<group>"; };
+		0ABED75620DC407000AABCAD /* NotificateDoneEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificateDoneEnum.swift; sourceTree = "<group>"; };
 		0ADA881920DA530400A332F0 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		0ADA881C20DA774A00A332F0 /* NavPushingUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavPushingUtil.swift; sourceTree = "<group>"; };
 		0AF1C3AA20C832DB00AFD286 /* SavePinRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavePinRequest.swift; sourceTree = "<group>"; };
@@ -482,6 +539,8 @@
 			children = (
 				0A0B11A020D28BAF00021E2D /* InvoiceView.swift */,
 				0A0B11A220D28BBF00021E2D /* InvoiceView.xib */,
+				0ABED71920DBDA4D00AABCAD /* DisputeView.swift */,
+				0ABED71B20DBDA6300AABCAD /* DisputeView.xib */,
 			);
 			path = Invoice;
 			sourceTree = "<group>";
@@ -856,7 +915,7 @@
 		0A37EF9820C6DA8500201907 /* Localizable */ = {
 			isa = PBXGroup;
 			children = (
-				0A4E4A3620DACB1100F1CA3A /* R.generated.swift */,
+				0ABED71720DBD9BF00AABCAD /* R.generated.swift */,
 				0A37EFA220C6DC5100201907 /* Localizable.strings */,
 			);
 			path = Localizable;
@@ -1089,6 +1148,37 @@
 			path = Service;
 			sourceTree = "<group>";
 		};
+		0ABED72420DBFB8300AABCAD /* SwipeAction */ = {
+			isa = PBXGroup;
+			children = (
+				0ABED75420DBFBE000AABCAD /* LICENSE */,
+				0ABED72A20DBFBC400AABCAD /* Extensions.swift */,
+				0ABED73220DBFBC500AABCAD /* Swipeable.swift */,
+				0ABED72E20DBFBC400AABCAD /* SwipeAccessibilityCustomAction.swift */,
+				0ABED73520DBFBC500AABCAD /* SwipeAction.swift */,
+				0ABED72520DBFBC400AABCAD /* SwipeActionButton.swift */,
+				0ABED72C20DBFBC400AABCAD /* SwipeActionsView.swift */,
+				0ABED73620DBFBC500AABCAD /* SwipeActionTransitioning.swift */,
+				0ABED72620DBFBC400AABCAD /* SwipeAnimator.swift */,
+				0ABED72820DBFBC400AABCAD /* SwipeCellKit.h */,
+				0ABED72720DBFBC400AABCAD /* SwipeCollectionViewCell.swift */,
+				0ABED72D20DBFBC400AABCAD /* SwipeCollectionViewCell+Accessibility.swift */,
+				0ABED73820DBFBC500AABCAD /* SwipeCollectionViewCell+Display.swift */,
+				0ABED73720DBFBC500AABCAD /* SwipeCollectionViewCellDelegate.swift */,
+				0ABED72B20DBFBC400AABCAD /* SwipeController.swift */,
+				0ABED73A20DBFBC600AABCAD /* SwipeExpanding.swift */,
+				0ABED73920DBFBC500AABCAD /* SwipeExpansionStyle.swift */,
+				0ABED73420DBFBC500AABCAD /* SwipeFeedback.swift */,
+				0ABED73B20DBFBC600AABCAD /* SwipeOptions.swift */,
+				0ABED73C20DBFBC600AABCAD /* SwipeTableViewCell.swift */,
+				0ABED72F20DBFBC400AABCAD /* SwipeTableViewCell+Accessibility.swift */,
+				0ABED73020DBFBC500AABCAD /* SwipeTableViewCell+Display.swift */,
+				0ABED73120DBFBC500AABCAD /* SwipeTableViewCellDelegate.swift */,
+				0ABED72920DBFBC400AABCAD /* SwipeTransitionLayout.swift */,
+			);
+			path = SwipeAction;
+			sourceTree = "<group>";
+		};
 		0AC337D820D852A3006ACC22 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -1112,16 +1202,19 @@
 		0AF611A920CA72E200957348 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				0ABED72420DBFB8300AABCAD /* SwipeAction */,
 				0A0B119F20D28B9100021E2D /* Invoice */,
 				0A4CD14520CD8FFE00EF4A17 /* Switcher */,
 				0A1AF40220CADB240009595C /* NavigationDropDown */,
 				0AF611AA20CA72FE00957348 /* Pin */,
 				0AF6119C20C992AC00957348 /* Checkbox.swift */,
 				0AF6119E20C9980500957348 /* UiStatusView.swift */,
+				0ABED71D20DBDEF800AABCAD /* UIImageExtensition.swift */,
 				0A4CD11D20CD57AA00EF4A17 /* DesignableUITextField.swift */,
 				0A4CD15220CE7E7900EF4A17 /* VerticalAlignedLabel.swift */,
 				0ADA881920DA530400A332F0 /* TextField.swift */,
 				0ABED71320DBA94300AABCAD /* CurrencyUiTextField.swift */,
+				0ABED71520DBC87900AABCAD /* ViewUtils.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1156,6 +1249,7 @@
 				0A08C11620CAB5B900342A3E /* PaymentRangeTableViewCell.xib */,
 				0A0B11C020D2E35300021E2D /* InvoiceSettingsTableViewCell.swift */,
 				0A0B11C120D2E35300021E2D /* InvoiceSettingsTableViewCell.xib */,
+				0ABED75620DC407000AABCAD /* NotificateDoneEnum.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -1369,6 +1463,7 @@
 				D7894CFD20CFFC290069F68E /* GothamProMed.otf in Resources */,
 				0A0B11A320D28BBF00021E2D /* InvoiceView.xib in Resources */,
 				0A37EFFA20C8044200201907 /* ChangePasswordViewController.xib in Resources */,
+				0ABED71C20DBDA6300AABCAD /* DisputeView.xib in Resources */,
 				D7D177A720CE3AFA00985F05 /* BaseCurrencyCollectionViewCell.xib in Resources */,
 				D7894CFE20CFFC290069F68E /* GothamProReg.otf in Resources */,
 				0A4CD13E20CD840700EF4A17 /* InvoiceHeaderView.xib in Resources */,
@@ -1386,6 +1481,7 @@
 				0AF611A320C9A4D700957348 /* InvoiceTableViewCell.xib in Resources */,
 				D7DEFC9A20C97B9E005FB9EF /* GothamProBold.ttf in Resources */,
 				0A26FC9A20D15B7F0097A8F6 /* DisputeTableViewCell.xib in Resources */,
+				0ABED75520DBFBE100AABCAD /* LICENSE in Resources */,
 				0A13F65E20C974EC001BA302 /* InvoiceViewController.xib in Resources */,
 				0A37EFE520C7D67F00201907 /* PinViewController.xib in Resources */,
 				0A26FCB820D166F00097A8F6 /* TransactionViewController.xib in Resources */,
@@ -1545,9 +1641,11 @@
 			files = (
 				0A1AF41720CADB7B0009595C /* BTConfiguration.swift in Sources */,
 				0A37EF6E20C58C2500201907 /* StringsExtension.swift in Sources */,
+				0ABED75020DBFBC600AABCAD /* SwipeExpansionStyle.swift in Sources */,
 				0A0B11AD20D29A7700021E2D /* DefaultBaseState.swift in Sources */,
 				0A37EFF320C7FC0300201907 /* DefaultBaseViewState.swift in Sources */,
 				0A1AF41820CADB7B0009595C /* BTTableCellContentView.swift in Sources */,
+				0ABED74220DBFBC600AABCAD /* SwipeController.swift in Sources */,
 				0AF6119F20C9980500957348 /* UiStatusView.swift in Sources */,
 				0A0D4B7F20C542DE009B73E9 /* Network.swift in Sources */,
 				0A0B118F20D2714000021E2D /* SettingsViewControllerExtenstions.swift in Sources */,
@@ -1560,9 +1658,13 @@
 				0A0B119E20D2897700021E2D /* DefaultDisputeState.swift in Sources */,
 				0A26FCB120D1658D0097A8F6 /* TransactionTableViewCell.swift in Sources */,
 				0A26FC8F20D117500097A8F6 /* DefaultInvoiceSettingsState.swift in Sources */,
+				0ABED74020DBFBC600AABCAD /* SwipeTransitionLayout.swift in Sources */,
 				0A26FCB420D165AC0097A8F6 /* TransactionTableViewHeader.swift in Sources */,
 				0A37F00520C80A7500201907 /* AuthNetworkConfig.swift in Sources */,
+				0ABED73F20DBFBC600AABCAD /* SwipeCollectionViewCell.swift in Sources */,
+				0ABED74B20DBFBC600AABCAD /* SwipeFeedback.swift in Sources */,
 				0AB8E20E20C56FF500C13361 /* DefaultAuthenticationService.swift in Sources */,
+				0ABED74420DBFBC600AABCAD /* SwipeCollectionViewCell+Accessibility.swift in Sources */,
 				0A4CD13F20CD840700EF4A17 /* InvoiceHeaderView.swift in Sources */,
 				0A1AF41520CADB7B0009595C /* BTTableViewCell.swift in Sources */,
 				0A0B11B620D2B4C400021E2D /* LabelExtensitions.swift in Sources */,
@@ -1571,6 +1673,7 @@
 				0A62F56520C545F700A51D63 /* NetworkUtil.swift in Sources */,
 				0A4CD15C20CECA2100EF4A17 /* PaymentConfig.swift in Sources */,
 				0A08C11720CAB5B900342A3E /* PaymentRangeTableViewCell.swift in Sources */,
+				0ABED71620DBC87900AABCAD /* ViewUtils.swift in Sources */,
 				0A4CD15820CEC96100EF4A17 /* DefaultPaymentService.swift in Sources */,
 				0A37EFDE20C7D65100201907 /* PasswordContainerView.swift in Sources */,
 				0A0B11BC20D2B66300021E2D /* HistoryModel.swift in Sources */,
@@ -1595,19 +1698,24 @@
 				0AB8E21020C5708300C13361 /* AuthenticationService.swift in Sources */,
 				0A4CD12F20CD6DAF00EF4A17 /* BigThumbnailSwither.swift in Sources */,
 				0A37F00820C81A5600201907 /* BaseAuthViewController.swift in Sources */,
+				0ABED74120DBFBC600AABCAD /* Extensions.swift in Sources */,
 				0A4CD16320CF074500EF4A17 /* DefaultInvoiceState.swift in Sources */,
 				0A1AF40E20CADB670009595C /* UIView+Extension.swift in Sources */,
 				0A01898620D6D55600CD5A79 /* BracketLessGetEncoding.swift in Sources */,
 				0A0D4B5320C53362009B73E9 /* IATA.xcdatamodeld in Sources */,
 				0A6DB5DA20C5572E00BC1127 /* DataRequest.swift in Sources */,
 				0A26FC8D20D117410097A8F6 /* InvoiceSettingsState.swift in Sources */,
+				0ABED74320DBFBC600AABCAD /* SwipeActionsView.swift in Sources */,
+				0ABED75120DBFBC600AABCAD /* SwipeExpanding.swift in Sources */,
 				0ADA881D20DA774A00A332F0 /* NavPushingUtil.swift in Sources */,
+				0ABED74920DBFBC600AABCAD /* Swipeable.swift in Sources */,
 				0A1AF40820CADB450009595C /* BTTitle.swift in Sources */,
 				0A62F56D20C5499400A51D63 /* ArrayEncoding.swift in Sources */,
 				0A37EF6C20C58BA000201907 /* Utils.swift in Sources */,
 				0A26FC9920D15B7F0097A8F6 /* DisputeTableViewCell.swift in Sources */,
 				0A37EF9220C6C97000201907 /* DictionaryExtension.swift in Sources */,
 				0A349FF420D8F98D00D0A1C2 /* DateUtils.swift in Sources */,
+				0ABED74C20DBFBC600AABCAD /* SwipeAction.swift in Sources */,
 				0A0B11C220D2E35300021E2D /* InvoiceSettingsTableViewCell.swift in Sources */,
 				0A0B11B220D2A3C900021E2D /* BaseNavController.swift in Sources */,
 				0A37EF6A20C58B6B00201907 /* Theme.swift in Sources */,
@@ -1615,18 +1723,21 @@
 				0A4CD11E20CD57AA00EF4A17 /* DesignableUITextField.swift in Sources */,
 				0A37EFE420C7D67F00201907 /* PinViewController.swift in Sources */,
 				0A37EFDD20C7D65100201907 /* PasswordInputView.swift in Sources */,
+				0ABED74620DBFBC600AABCAD /* SwipeTableViewCell+Accessibility.swift in Sources */,
 				0A1AF41620CADB7B0009595C /* BTTableView.swift in Sources */,
 				0A37EF7020C59C6F00201907 /* SingInRequest.swift in Sources */,
 				0A37EFF920C8044200201907 /* ChangePasswordViewController.swift in Sources */,
 				0AF6119D20C992AC00957348 /* Checkbox.swift in Sources */,
+				0ABED74720DBFBC600AABCAD /* SwipeTableViewCell+Display.swift in Sources */,
 				D7DEFC9620C97459005FB9EF /* WalletsTableViewCell.swift in Sources */,
 				0AF1C3AB20C832DB00AFD286 /* SavePinRequest.swift in Sources */,
-				0A4E4A3720DACB1200F1CA3A /* R.generated.swift in Sources */,
 				0A26FC8120D00B320097A8F6 /* InvoiceRequest.swift in Sources */,
+				0ABED74820DBFBC600AABCAD /* SwipeTableViewCellDelegate.swift in Sources */,
 				0A37EFE020C7D65100201907 /* PasswordDotView.swift in Sources */,
 				0A26FC8320D0F0B00097A8F6 /* OnSwitchStateChangedDelegate.swift in Sources */,
 				0A3F58D720D8378400F78856 /* ModelErrors.swift in Sources */,
 				0A0B11C720D3158500021E2D /* ExhangeViewController.swift in Sources */,
+				0ABED74F20DBFBC600AABCAD /* SwipeCollectionViewCell+Display.swift in Sources */,
 				0A37EF6720C58A9100201907 /* SpinnerController.swift in Sources */,
 				D78589A320D3DF1800E3C3FB /* WalletsViewModel.swift in Sources */,
 				0A37EFE920C7E4A700201907 /* PinValidationRequest.swift in Sources */,
@@ -1638,9 +1749,12 @@
 				0A37EF9520C6D1E500201907 /* SignInViewState.swift in Sources */,
 				0A4E4A3120DAAC3A00F1CA3A /* FormatterExtension.swift in Sources */,
 				D784931D20D25F650060EAC6 /* DefaultWalletsState.swift in Sources */,
+				0ABED75320DBFBC600AABCAD /* SwipeTableViewCell.swift in Sources */,
 				0A08C0FF20CAA75000342A3E /* InvoiceViewModelItemType.swift in Sources */,
 				0A6DB5D620C553D000BC1127 /* CredentialManager.swift in Sources */,
 				0A286A9220CA88F700D93693 /* InvoiceViewModel.swift in Sources */,
+				0ABED75720DC407000AABCAD /* NotificateDoneEnum.swift in Sources */,
+				0ABED74520DBFBC600AABCAD /* SwipeAccessibilityCustomAction.swift in Sources */,
 				0A37EFF520C7FD3700201907 /* DefaultPinViewState.swift in Sources */,
 				D7D177A620CE3AFA00985F05 /* BaseCurrencyCollectionViewCell.swift in Sources */,
 				0AAE96C020D7F94500F97768 /* PaymentRequest.swift in Sources */,
@@ -1656,23 +1770,31 @@
 				0A4CD12020CD5B5300EF4A17 /* InvoiceModel.swift in Sources */,
 				0A37EFFF20C808FB00201907 /* DefaultChangePasswordViewState.swift in Sources */,
 				0AAE96BE20D7F68600F97768 /* PaymentAmount.swift in Sources */,
+				0ABED73E20DBFBC600AABCAD /* SwipeAnimator.swift in Sources */,
 				0A4CD14120CD894900EF4A17 /* FilterPreference.swift in Sources */,
 				0ADA881A20DA530400A332F0 /* TextField.swift in Sources */,
 				0A0B11A620D2978D00021E2D /* BaseViewController.swift in Sources */,
+				0ABED74E20DBFBC600AABCAD /* SwipeCollectionViewCellDelegate.swift in Sources */,
+				0ABED73D20DBFBC600AABCAD /* SwipeActionButton.swift in Sources */,
 				0A37EF9720C6D2B200201907 /* DefaultSignInViewState.swift in Sources */,
+				0ABED71E20DBDEF800AABCAD /* UIImageExtensition.swift in Sources */,
 				0A4CD15A20CEC96E00EF4A17 /* PaymentService.swift in Sources */,
 				0A08C11C20CABC7800342A3E /* InvoicePaymentRangeModel.swift in Sources */,
 				0A37EFFD20C808E400201907 /* ChangePasswordViewState.swift in Sources */,
+				0ABED71820DBD9BF00AABCAD /* R.generated.swift in Sources */,
 				0A26FC9F20D160F00097A8F6 /* HistoryViewController.swift in Sources */,
 				0A4CD14720CD901600EF4A17 /* OnSwitchStateChanged.swift in Sources */,
 				0A08C0FD20CAA70400342A3E /* InvoiceViewModelExtensition.swift in Sources */,
 				0A4CD16720CF135300EF4A17 /* TextFieldUtils.swift in Sources */,
 				0A37EF5D20C587C600201907 /* Promise+Spinner.swift in Sources */,
+				0ABED74D20DBFBC600AABCAD /* SwipeActionTransitioning.swift in Sources */,
 				0AF1C3AD20C9164E00AFD286 /* UserPreference.swift in Sources */,
 				0A0B119520D279E700021E2D /* DefaultLocalStorage.swift in Sources */,
 				0A37EFEC20C7EE0200201907 /* PinValidationResponse.swift in Sources */,
 				0A0B119320D279C000021E2D /* LocalStorage.swift in Sources */,
 				0A0B11BF20D2C7EC00021E2D /* BaseInvoiceViewModelItem.swift in Sources */,
+				0ABED71A20DBDA4D00AABCAD /* DisputeView.swift in Sources */,
+				0ABED75220DBFBC600AABCAD /* SwipeOptions.swift in Sources */,
 				0A37EFF120C7FBB300201907 /* BaseViewState.swift in Sources */,
 				D70DE14E20CA9E6B00644281 /* SettingsViewController.swift in Sources */,
 			);

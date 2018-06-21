@@ -40,11 +40,7 @@ class DesignableUITextField: FloatTextField {
         
         
         if let end = self.getOldText()?.count, (currentPosition > end - 2) {
-            DispatchQueue.main.async {
-                if let newPosition = self.position(from: self.beginningOfDocument, offset: end - 2) {
-                    self.selectedTextRange = self.textRange(from: newPosition, to: newPosition)
-                }
-            }
+            scrollToPosition(position: end - 2)
         }
     }
     
@@ -70,6 +66,14 @@ class DesignableUITextField: FloatTextField {
     
     override func editingRect(forBounds bounds: CGRect) -> CGRect {
         return CGRect(x: bounds.origin.x, y: bounds.origin.y, width: bounds.width, height: bounds.height)
+    }
+    
+    internal func scrollToPosition(position: Int) {
+        DispatchQueue.main.async {
+            if let newPosition = self.position(from: self.beginningOfDocument, offset: position) {
+                self.selectedTextRange = self.textRange(from: newPosition, to: newPosition)
+            }
+        }
     }
     
     private func initCommon() {

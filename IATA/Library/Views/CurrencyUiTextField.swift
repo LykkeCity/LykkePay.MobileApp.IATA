@@ -15,11 +15,14 @@ class CurrencyUiTextField: FloatTextField {
     }
     
     override func textRect(forBounds bounds: CGRect) -> CGRect {
-        return CGRect(x: bounds.origin.x, y: bounds.origin.y, width: bounds.width, height: bounds.height)
+        return CGRect(x: bounds.origin.x, y: bounds.origin.y, width: bounds.width - 10, height: bounds.height)
     }
     
     override func editingRect(forBounds bounds: CGRect) -> CGRect {
-        return CGRect(x: bounds.origin.x, y: bounds.origin.y, width: bounds.width, height: bounds.height)
+        if bounds.width >= 47 {
+            return CGRect(x: bounds.origin.x, y: bounds.origin.y, width: bounds.width - 10, height: bounds.height)
+        }
+         return CGRect(x: bounds.origin.x, y: bounds.origin.y, width: 47, height: bounds.height)
     }
     
     private func initCommon() {

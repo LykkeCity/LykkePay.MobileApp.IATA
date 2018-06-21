@@ -33,6 +33,7 @@ class Theme: NSObject {
     public let redErrorStatusColor = Utils.rgb(254, 53, 96)
     public let greyStatusColor = Utils.rgb(178, 184, 191)
     public let greyNavBar = Utils.rgb(243, 244, 245)
+     public let disbaledRightButton = Utils.rgb(205, 205, 210)
 
     public let exchangeTopViewBorderColor = Utils.rgb(205, 205, 210)
     

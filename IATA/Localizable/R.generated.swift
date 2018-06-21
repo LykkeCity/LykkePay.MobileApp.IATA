@@ -22,7 +22,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.file` struct is generated, and contains static references to 5 files.
+  /// This `R.file` struct is generated, and contains static references to 6 files.
   struct file {
     /// Resource file `GothamProBold.ttf`.
     static let gothamProBoldTtf = Rswift.FileResource(bundle: R.hostingBundle, name: "GothamProBold", pathExtension: "ttf")
@@ -32,6 +32,8 @@ struct R: Rswift.Validatable {
     static let gothamProMedOtf = Rswift.FileResource(bundle: R.hostingBundle, name: "GothamProMed", pathExtension: "otf")
     /// Resource file `GothamProReg.otf`.
     static let gothamProRegOtf = Rswift.FileResource(bundle: R.hostingBundle, name: "GothamProReg", pathExtension: "otf")
+    /// Resource file `LICENSE`.
+    static let licensE = Rswift.FileResource(bundle: R.hostingBundle, name: "LICENSE", pathExtension: "")
     /// Resource file `ServerData.json`.
     static let serverDataJson = Rswift.FileResource(bundle: R.hostingBundle, name: "ServerData", pathExtension: "json")
     
@@ -56,6 +58,12 @@ struct R: Rswift.Validatable {
     /// `bundle.url(forResource: "GothamProReg", withExtension: "otf")`
     static func gothamProRegOtf(_: Void = ()) -> Foundation.URL? {
       let fileResource = R.file.gothamProRegOtf
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+    
+    /// `bundle.url(forResource: "LICENSE", withExtension: "")`
+    static func licensE(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.licensE
       return fileResource.bundle.url(forResource: fileResource)
     }
     
@@ -311,7 +319,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.nib` struct is generated, and contains static references to 24 nibs.
+  /// This `R.nib` struct is generated, and contains static references to 25 nibs.
   struct nib {
     /// Nib `BaseCurrencyCollectionViewCell`.
     static let baseCurrencyCollectionViewCell = _R.nib._BaseCurrencyCollectionViewCell()
@@ -321,6 +329,8 @@ struct R: Rswift.Validatable {
     static let disputeTableViewCell = _R.nib._DisputeTableViewCell()
     /// Nib `DisputeViewController`.
     static let disputeViewController = _R.nib._DisputeViewController()
+    /// Nib `DisputeView`.
+    static let disputeView = _R.nib._DisputeView()
     /// Nib `ExhangeViewController`.
     static let exhangeViewController = _R.nib._ExhangeViewController()
     /// Nib `HistoryTableViewCell`.
@@ -375,6 +385,11 @@ struct R: Rswift.Validatable {
     /// `UINib(name: "DisputeTableViewCell", in: bundle)`
     static func disputeTableViewCell(_: Void = ()) -> UIKit.UINib {
       return UIKit.UINib(resource: R.nib.disputeTableViewCell)
+    }
+    
+    /// `UINib(name: "DisputeView", in: bundle)`
+    static func disputeView(_: Void = ()) -> UIKit.UINib {
+      return UIKit.UINib(resource: R.nib.disputeView)
     }
     
     /// `UINib(name: "DisputeViewController", in: bundle)`
@@ -515,7 +530,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 65 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 67 localization keys.
     struct localizable {
       /// Base translation: %@ invoices selected
       /// 
@@ -625,6 +640,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: Base
       static let invoiceSettingsRangeFrom = Rswift.StringResource(key: "Invoice.Settings.Range.From", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
+      /// Base translation: From Value cannot exceed To Value
+      /// 
+      /// Locales: Base
+      static let invoiceSettingsErrorFrom = Rswift.StringResource(key: "Invoice.Settings.Error.From", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
       /// Base translation: HISTORY
       /// 
       /// Locales: Base
@@ -757,6 +776,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: Base
       static let invoiceSettingsRangeTo = Rswift.StringResource(key: "Invoice.Settings.Range.To", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
+      /// Base translation: To Value cannot be less From Value
+      /// 
+      /// Locales: Base
+      static let invoiceSettingsErrorTo = Rswift.StringResource(key: "Invoice.Settings.Error.To", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
       /// Base translation: TxHash
       /// 
       /// Locales: Base
@@ -965,6 +988,13 @@ struct R: Rswift.Validatable {
       /// Locales: Base
       static func invoiceSettingsRangeFrom(_: Void = ()) -> String {
         return NSLocalizedString("Invoice.Settings.Range.From", bundle: R.hostingBundle, value: "From", comment: "")
+      }
+      
+      /// Base translation: From Value cannot exceed To Value
+      /// 
+      /// Locales: Base
+      static func invoiceSettingsErrorFrom(_: Void = ()) -> String {
+        return NSLocalizedString("Invoice.Settings.Error.From", bundle: R.hostingBundle, value: "From Value cannot exceed To Value", comment: "")
       }
       
       /// Base translation: HISTORY
@@ -1198,6 +1228,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("Invoice.Settings.Range.To", bundle: R.hostingBundle, value: "To", comment: "")
       }
       
+      /// Base translation: To Value cannot be less From Value
+      /// 
+      /// Locales: Base
+      static func invoiceSettingsErrorTo(_: Void = ()) -> String {
+        return NSLocalizedString("Invoice.Settings.Error.To", bundle: R.hostingBundle, value: "To Value cannot be less From Value", comment: "")
+      }
+      
       /// Base translation: TxHash
       /// 
       /// Locales: Base
@@ -1260,17 +1297,17 @@ struct _R: Rswift.Validatable {
   
   struct nib: Rswift.Validatable {
     static func validate() throws {
+      try _TabBarView.validate()
+      try _InvoiceSettingsTableViewCell.validate()
+      try _InvoiceView.validate()
+      try _PinViewController.validate()
       try _SettingsViewController.validate()
       try _WalletsViewController.validate()
-      try _InvoiceSettingsTableViewCell.validate()
       try _TransactionTableViewHeader.validate()
-      try _InvoiceView.validate()
       try _BaseCurrencyCollectionViewCell.validate()
-      try _PinViewController.validate()
       try _SignInViewController.validate()
       try _ExhangeViewController.validate()
       try _PasswordContainerView.validate()
-      try _TabBarView.validate()
     }
     
     struct _BaseCurrencyCollectionViewCell: Rswift.NibResourceType, Rswift.ReuseIdentifierType, Rswift.Validatable {
@@ -1308,6 +1345,17 @@ struct _R: Rswift.Validatable {
       
       func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]? = nil) -> DisputeTableViewCell? {
         return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? DisputeTableViewCell
+      }
+      
+      fileprivate init() {}
+    }
+    
+    struct _DisputeView: Rswift.NibResourceType {
+      let bundle = R.hostingBundle
+      let name = "DisputeView"
+      
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]? = nil) -> UIKit.UIView? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
       }
       
       fileprivate init() {}

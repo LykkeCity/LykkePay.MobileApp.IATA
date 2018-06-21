@@ -24,6 +24,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="InvoiceViewController" customModule="IATA" customModuleProvider="target">
             <connections>
                 <outlet property="bottomConstrain" destination="bo5-ZY-U0M" id="4L2-SE-d8Z"/>
+                <outlet property="btnPay" destination="9Mi-CE-o9S" id="TCe-9U-62c"/>
                 <outlet property="downView" destination="Boz-OM-wSA" id="sXc-bd-gRZ"/>
                 <outlet property="downViewHeightConstraint" destination="ozl-4g-oOw" id="8DP-Ii-Yif"/>
                 <outlet property="loading" destination="uiP-4Y-L2f" id="g5E-Me-XMA"/>
@@ -74,7 +75,7 @@
                                 <constraint firstAttribute="height" constant="1" id="Usk-5f-DAA"/>
                             </constraints>
                         </view>
-                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="Xi0-s7-cse" customClass="CurrencyUiTextField" customModule="IATA" customModuleProvider="target">
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="0" textAlignment="natural" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="Xi0-s7-cse" customClass="CurrencyUiTextField" customModule="IATA" customModuleProvider="target">
                             <rect key="frame" x="16" y="17" width="30" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="30" id="JFo-lG-bYg"/>
@@ -91,6 +92,7 @@
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
                             <connections>
+                                <action selector="editingDidBegin:" destination="-1" eventType="editingDidBegin" id="c1n-fg-hXC"/>
                                 <action selector="sumChanged:" destination="-1" eventType="editingChanged" id="ZHs-l3-YBR"/>
                                 <action selector="sumEditingEnd:" destination="-1" eventType="editingDidEnd" id="dzs-FJ-xfs"/>
                             </connections>
@@ -116,7 +118,6 @@
                         <constraint firstItem="koP-il-pIp" firstAttribute="leading" secondItem="Boz-OM-wSA" secondAttribute="leading" constant="16" id="WWW-hS-w9T"/>
                         <constraint firstAttribute="trailing" secondItem="koP-il-pIp" secondAttribute="trailing" constant="16" id="XfD-NV-3tG"/>
                         <constraint firstAttribute="trailing" secondItem="9Mi-CE-o9S" secondAttribute="trailing" constant="20" id="evY-jL-Nte"/>
-                        <constraint firstItem="9Mi-CE-o9S" firstAttribute="leading" relation="lessThanOrEqual" secondItem="Xi0-s7-cse" secondAttribute="trailing" constant="185" id="hBI-FM-Utc"/>
                         <constraint firstItem="Xi0-s7-cse" firstAttribute="top" secondItem="koP-il-pIp" secondAttribute="bottom" constant="16" id="nXL-DP-37c"/>
                         <constraint firstAttribute="height" constant="110" id="ozl-4g-oOw"/>
                         <constraint firstItem="Xi0-s7-cse" firstAttribute="leading" secondItem="Boz-OM-wSA" secondAttribute="leading" constant="16" id="x7D-yM-Bd5"/>

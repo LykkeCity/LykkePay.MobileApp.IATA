@@ -30,6 +30,8 @@
 "Invoice.Settings.Filter.Title" = "Filters";
 "Invoice.Settings.Range.From" = "From";
 "Invoice.Settings.Range.To" = "To";
+"Invoice.Settings.Error.To" = "To Value cannot be less From Value";
+"Invoice.Settings.Error.From" = "From Value cannot exceed To Value";
 
 "Invoice.Screen.PaymentMessage" = "Pay %@ against the selected invoices?";
 "Invoice.Screen.PleaseConfirmPayment" = "Please confirm";

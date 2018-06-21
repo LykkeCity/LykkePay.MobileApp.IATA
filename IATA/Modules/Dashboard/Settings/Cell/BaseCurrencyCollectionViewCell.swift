@@ -28,7 +28,7 @@ class BaseCurrencyCollectionViewCell: UICollectionViewCell {
             self.baseCurrencyFlagImage.image = UIImage(named: logo)
         }
         self.baseCurrencyNameLabel.text = model.name
-        self.isSelected = model.checked!
+       // self.isSelected = model.checked!
     }
 
     private func applySelectedCellTheme() {

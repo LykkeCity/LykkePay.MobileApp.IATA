@@ -78,7 +78,7 @@ class SignInViewController: BaseAuthViewController {
             self.showErrorAlert(error: error)
         }
     }
-
+    
     private func openValidationPinController(tokenObject: TokenObject) {
         guard let email = self.emailTextField?.text, tokenObject.token != nil else {
             self.showErrorAlert(error: self.state.getError(R.string.localizable.commonErrorInternal()))
