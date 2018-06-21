@@ -145,6 +145,7 @@
 		0AAE96C020D7F94500F97768 /* PaymentRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE96BF20D7F94500F97768 /* PaymentRequest.swift */; };
 		0AB8E20E20C56FF500C13361 /* DefaultAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB8E20D20C56FF500C13361 /* DefaultAuthenticationService.swift */; };
 		0AB8E21020C5708300C13361 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB8E20F20C5708300C13361 /* AuthenticationService.swift */; };
+		0ABED71420DBA94300AABCAD /* CurrencyUiTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABED71320DBA94300AABCAD /* CurrencyUiTextField.swift */; };
 		0ADA881A20DA530400A332F0 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADA881920DA530400A332F0 /* TextField.swift */; };
 		0ADA881D20DA774A00A332F0 /* NavPushingUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADA881C20DA774A00A332F0 /* NavPushingUtil.swift */; };
 		0AF1C3AB20C832DB00AFD286 /* SavePinRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF1C3AA20C832DB00AFD286 /* SavePinRequest.swift */; };
@@ -340,6 +341,7 @@
 		0AAE96BF20D7F94500F97768 /* PaymentRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentRequest.swift; sourceTree = "<group>"; };
 		0AB8E20D20C56FF500C13361 /* DefaultAuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultAuthenticationService.swift; sourceTree = "<group>"; };
 		0AB8E20F20C5708300C13361 /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
+		0ABED71320DBA94300AABCAD /* CurrencyUiTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyUiTextField.swift; sourceTree = "<group>"; };
 		0ADA881920DA530400A332F0 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		0ADA881C20DA774A00A332F0 /* NavPushingUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavPushingUtil.swift; sourceTree = "<group>"; };
 		0AF1C3AA20C832DB00AFD286 /* SavePinRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavePinRequest.swift; sourceTree = "<group>"; };
@@ -1119,6 +1121,7 @@
 				0A4CD11D20CD57AA00EF4A17 /* DesignableUITextField.swift */,
 				0A4CD15220CE7E7900EF4A17 /* VerticalAlignedLabel.swift */,
 				0ADA881920DA530400A332F0 /* TextField.swift */,
+				0ABED71320DBA94300AABCAD /* CurrencyUiTextField.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1646,6 +1649,7 @@
 				0A0B11A120D28BAF00021E2D /* InvoiceView.swift in Sources */,
 				0A37EFDF20C7D65100201907 /* PasswordUIValidation.swift in Sources */,
 				0A1AF40F20CADB670009595C /* UIViewController+Extension.swift in Sources */,
+				0ABED71420DBA94300AABCAD /* CurrencyUiTextField.swift in Sources */,
 				0A37EFEF20C7FB8A00201907 /* PinViewState.swift in Sources */,
 				0A4CD15120CE79F700EF4A17 /* LetterImageGenerator.swift in Sources */,
 				0AF611A720CA72DA00957348 /* InvoiceSettingsViewController.swift in Sources */,

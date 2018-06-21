@@ -112,7 +112,7 @@ class Theme: NSObject {
     public func getRightButton(title: String!, color: UIColor) -> UIButton {
         let rightButton = UIButton()
         rightButton.setTitle(title, for: .normal)
-        rightButton.titleLabel?.font =  R.font.gothamProBold(size: 17)
+        rightButton.titleLabel?.font =  R.font.gothamProMedium(size: 17)
         rightButton.tintColor = color
         rightButton.setTitleColor(color, for: .normal)
         rightButton.frame = CGRect(x: 0.0,

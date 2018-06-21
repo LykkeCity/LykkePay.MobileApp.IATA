@@ -33,12 +33,14 @@ extension InvoiceViewModel: UITableViewDataSource, UITableViewDelegate, OnSwitch
         
         switch type {
         case .airlines:
+            headerView.upDividerView.isHidden = true
             headerView.title.text = R.string.localizable.invoiceSettingsAirlinesTitle()
             break
         case .currencies:
             headerView.title.text = R.string.localizable.invoiceSettingsCurrenciesTitle()
             break
         case .paymentRange:
+            headerView.downDividerView.isHidden = true
             headerView.title.text = R.string.localizable.invoiceSettingsPaymentRangeTitle()
             break
         case .billingCategories:
@@ -52,7 +54,7 @@ extension InvoiceViewModel: UITableViewDataSource, UITableViewDelegate, OnSwitch
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 80
+        return 60
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

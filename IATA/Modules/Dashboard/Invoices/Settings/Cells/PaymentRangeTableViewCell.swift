@@ -13,8 +13,13 @@ class PaymentRangeTableViewCell: UITableViewCell, UITextFieldDelegate {
             guard let item = self.item else {
                 return
             }
-            self.minValueTextField?.text = item.min?.description
-            self.maxValueTextField?.text = item.max?.description
+            if let min = item.min, let symbol =  UserPreference.shared.getCurrentCurrency()?.symbol {
+                self.minValueTextField?.text = Double(min).formattedWithSeparator + " " + symbol
+            }
+            
+            if let max = item.max, let symbol =  UserPreference.shared.getCurrentCurrency()?.symbol {
+                self.maxValueTextField?.text = Double(max).formattedWithSeparator + " " + symbol
+            }
             
             self.minValueChanged(self.minValueTextField)
             self.maxValueChanged(self.maxValueTextField)
@@ -32,15 +37,15 @@ class PaymentRangeTableViewCell: UITableViewCell, UITextFieldDelegate {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        /*  Theme.shared.configureTextFieldStyle(self.minValueTextField, title: R.string.localizable.invoiceSettingsRangeFrom())
-          Theme.shared.configureTextFieldStyle(self.maxValueTextField, title: R.string.localizable.invoiceSettingsRangeTo())*/
+        Theme.shared.configureTextFieldStyle(self.minValueTextField, title: R.string.localizable.invoiceSettingsRangeFrom())
+        Theme.shared.configureTextFieldStyle(self.maxValueTextField, title: R.string.localizable.invoiceSettingsRangeTo())
         
-        //self.minValueTextField?.delegate = self
-       // self.maxValueTextField?.delegate = self
+        self.minValueTextField?.delegate = self
+        self.maxValueTextField?.delegate = self
         self.rangeSlider?.addTarget(self, action: #selector(rangeSliderValueChanged(sender:)),
                                     for: .valueChanged)
         
-         NotificationCenter.default.addObserver(self, selector: #selector(appMovedToBackground), name: Notification.Name.UIApplicationWillResignActive, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(appMovedToBackground), name: Notification.Name.UIApplicationWillResignActive, object: nil)
         
     }
     
@@ -59,8 +64,10 @@ class PaymentRangeTableViewCell: UITableViewCell, UITextFieldDelegate {
         }
         self.item?.min = Int(round(min))
         self.item?.max = Int(round(max))
-        self.minValueTextField?.text = String(Int(round(min)))
-        self.maxValueTextField?.text = String(Int(round(max)))
+        if let symbol = UserPreference.shared.getCurrentCurrency()?.symbol {
+            self.minValueTextField?.text = round(min).formattedWithSeparator + " " + symbol
+            self.maxValueTextField?.text = round(max).formattedWithSeparator + " " + symbol
+        }
         self.delegate?.updatePaymentRangeMax(max: self.item?.max)
         self.delegate?.updatePaymentRangeMin(min: self.item?.min)
         self.contentView.endEditing(true)
@@ -96,9 +103,10 @@ class PaymentRangeTableViewCell: UITableViewCell, UITextFieldDelegate {
             guard let value = Double(valueString) else {
                 return false
             }
-            
-            return TextFieldUtil.validateMaxValue(textField: textField, maxValue: value, range: range, replacementString: string)
-            
+            if let text = self.minValueTextField?.getOldText(), let textNsString = text as? NSString {
+                let newString =  textNsString.replacingCharacters(in: range, with: string)
+                return TextFieldUtil.validateMaxValue(newString: newString, maxValue: value, range: range, replacementString: string)
+            }
         }
         
         if(textField == self.maxValueTextField) {
@@ -109,8 +117,10 @@ class PaymentRangeTableViewCell: UITableViewCell, UITextFieldDelegate {
             guard let value = Double(valueString) else {
                 return false
             }
-            
-            return TextFieldUtil.validateMinValue(textField: textField, minValue:  value, range: range, replacementString: string)
+            if let text = self.maxValueTextField?.getOldText(), let textNsString = text as? NSString{
+                let newString =  textNsString.replacingCharacters(in: range, with: string)
+                return TextFieldUtil.validateMinValue(newString: newString, minValue:  value, range: range, replacementString: string)
+            }
         }
         return true
     }

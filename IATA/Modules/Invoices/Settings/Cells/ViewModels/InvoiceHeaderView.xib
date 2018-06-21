@@ -68,7 +68,9 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
+                <outlet property="downDividerView" destination="7ur-ib-LoU" id="k5g-gy-LwZ"/>
                 <outlet property="title" destination="dXQ-cU-EP8" id="rV3-Fb-cb4"/>
+                <outlet property="upDividerView" destination="CDV-ib-tqv" id="3ma-Qj-7e8"/>
             </connections>
             <point key="canvasLocation" x="33.5" y="148"/>
         </view>

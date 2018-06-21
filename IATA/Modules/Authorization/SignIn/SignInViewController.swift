@@ -125,7 +125,7 @@ class SignInViewController: BaseAuthViewController {
     @objc func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             if let isHidden = self.logoImg?.isHidden, !isHidden, !isShown {
-                scrollView.setContentOffset(CGPoint(x: 0, y: keyboardSize.height/1.75), animated: true)
+                self.view.frame.origin.y -= keyboardSize.height/2
                 self.logoImg?.isHidden = true
                 self.isShown = true
             }
@@ -136,6 +136,9 @@ class SignInViewController: BaseAuthViewController {
         if let isHidden = self.logoImg?.isHidden, isHidden, isShown {
             scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
             self.logoImg?.isHidden = false
+            if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+                self.view.frame.origin.y += keyboardSize.height/2
+            }
             self.isShown = false
         }
     }

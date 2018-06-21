@@ -9,8 +9,6 @@ class InvoiceSettingsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        UINavigationBar.appearance().barStyle = .black
-        
         self.tableView?.dataSource = viewModel
         self.tableView?.delegate = viewModel
         
@@ -18,7 +16,7 @@ class InvoiceSettingsViewController: UIViewController {
         self.tableView?.estimatedRowHeight = 55
         self.tableView?.separatorColor = Theme.shared.dotColor
         
-        let dummyViewHeight = CGFloat(80)
+        let dummyViewHeight = CGFloat(60)
         self.tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: self.tableView.bounds.size.width, height: dummyViewHeight))
         self.tableView.contentInset = UIEdgeInsetsMake(-dummyViewHeight, 0, 0, 0)
         
@@ -54,8 +52,9 @@ class InvoiceSettingsViewController: UIViewController {
     }
     
     private func initNavBar() {
+        UINavigationBar.appearance().barStyle = .black
         self.navigationController?.isNavigationBarHidden = false
-        self.navigationController?.navigationBar.barTintColor = UIColor.white
+        self.navigationController?.navigationBar.barTintColor = Theme.shared.greyNavBar
         self.navigationController?.navigationBar.tintColor = Theme.shared.navBarTitle
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: Theme.shared.navBarTitle]
         self.navigationController?.navigationBar.isTranslucent = false

@@ -9,7 +9,7 @@ OnChangeStateSelected {
     @IBOutlet weak var sumTextFieldWidth: NSLayoutConstraint!
     @IBOutlet weak var tabView: UITableView!
     @IBOutlet weak var downView: UIView!
-    @IBOutlet weak var sumTextField: DesignableUITextField!
+    @IBOutlet weak var sumTextField: CurrencyUiTextField!
     @IBOutlet weak var selectedItemTextField: UILabel!
     @IBOutlet weak var downViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var bottomConstrain: NSLayoutConstraint!
@@ -38,7 +38,7 @@ OnChangeStateSelected {
     @objc func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             UIView.animate(withDuration: 0.1, animations: { () -> Void in
-                self.bottomConstrain.constant = -keyboardSize.size.height/2 - 50
+                self.bottomConstrain.constant = -keyboardSize.size.height/2 - 70
             })
         }
     }
@@ -162,9 +162,12 @@ OnChangeStateSelected {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if(textField == self.sumTextField) {
-            if !(TextFieldUtil.validateMaxValue(textField: textField, maxValue: self.state!.resultAmount(), range: range, replacementString: string)) {
+            if let text = self.sumTextField.text, let textNsString = text as? NSString {
+                let newString = textNsString.replacingCharacters(in: range, with: string)
+                if !(TextFieldUtil.validateMaxValue(newString: newString, maxValue: self.state!.resultAmount(), range: range, replacementString: string)) {
                     showToast(message: R.string.localizable.invoiceScreenErrorChangingAmount())
-                return false
+                    return false
+                }
             }
         }
         return true

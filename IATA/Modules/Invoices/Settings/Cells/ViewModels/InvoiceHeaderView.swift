@@ -2,6 +2,8 @@ import UIKit
 
 class InvoiceHeaderView: UITableViewHeaderFooterView {
 
+    @IBOutlet weak var downDividerView: UIView!
+    @IBOutlet weak var upDividerView: UIView!
     @IBOutlet weak var title: UILabel!
     
     static var nib:UINib {

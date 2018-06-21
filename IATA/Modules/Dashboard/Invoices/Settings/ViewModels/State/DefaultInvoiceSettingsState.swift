@@ -54,9 +54,9 @@ class DefaultInvoiceSettingsState: InvoiceSettingsState {
     func getHeight(indexPath: IndexPath) -> CGFloat! {
         let item = items[indexPath.section]
         if (item.getType() ==  .paymentRange) {
-            return 130
+            return 150
         } else {
-            return 80
+            return 60
         }
     }
     
