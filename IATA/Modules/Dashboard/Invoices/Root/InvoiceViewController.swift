@@ -88,6 +88,8 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
         super.viewWillAppear(animated)
         self.hideMenu()
         self.loadData()
+        //we need it for loading right view (currency)
+        self.sumTextField.initRightView()
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

@@ -28,10 +28,9 @@ class CurrencyUiTextField: FloatTextField {
     private func initCommon() {
         self.minimumFontSize = 24
         self.adjustsFontSizeToFitWidth = false
-        self.initRightView()
     }
     
-    private func initRightView() {
+    internal func initRightView() {
         let label = BottomAlignedLabel(frame: CGRect(x: 0, y: 0, width: 15, height: 26))
         label.contentMode = .center
         label.text = UserPreference.shared.getCurrentCurrency()?.symbol

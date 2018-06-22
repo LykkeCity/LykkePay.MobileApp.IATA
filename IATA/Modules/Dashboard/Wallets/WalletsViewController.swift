@@ -16,6 +16,11 @@ class WalletsViewController: BaseViewController<WalletsViewModel, DefaultWallets
         loadData()
     }
 
+    @IBAction func clickWallets(_ sender: Any) {
+        //move to settings
+        self.tabBarController?.selectedIndex = 4
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         loadData()

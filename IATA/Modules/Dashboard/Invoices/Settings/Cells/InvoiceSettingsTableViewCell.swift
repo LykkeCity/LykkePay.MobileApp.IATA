@@ -10,12 +10,12 @@ class InvoiceSettingsTableViewCell: UITableViewCell, OnSwitchStateChanged {
    
     weak var delegate: OnSwitchStateChangedDelegate?
     
-    var item: InvoiceSettingAirlinesModel? {
+    var item: InvoiceFiltersModel? {
         didSet {
             guard let item = self.item else {
                 return
             }
-            self.name?.text = item.name
+            self.name?.text = item.value
             self.swithFilter.setChecked(isChecked: self.item?.checked == nil ? false : self.item?.checked)
             
             let type = item.type
