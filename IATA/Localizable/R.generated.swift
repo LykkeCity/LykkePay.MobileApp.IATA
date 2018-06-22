@@ -1309,7 +1309,6 @@ struct _R: Rswift.Validatable {
       try _InvoiceSettingsTableViewCell.validate()
       try _TransactionTableViewHeader.validate()
       try _InvoiceView.validate()
-      try _BaseCurrencyCollectionViewCell.validate()
       try _PinViewController.validate()
       try _SignInViewController.validate()
       try _ExhangeViewController.validate()
@@ -1317,7 +1316,7 @@ struct _R: Rswift.Validatable {
       try _TabBarView.validate()
     }
     
-    struct _BaseCurrencyCollectionViewCell: Rswift.NibResourceType, Rswift.ReuseIdentifierType, Rswift.Validatable {
+    struct _BaseCurrencyCollectionViewCell: Rswift.NibResourceType, Rswift.ReuseIdentifierType {
       typealias ReusableType = BaseCurrencyCollectionViewCell
       
       let bundle = R.hostingBundle
@@ -1326,10 +1325,6 @@ struct _R: Rswift.Validatable {
       
       func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]? = nil) -> BaseCurrencyCollectionViewCell? {
         return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? BaseCurrencyCollectionViewCell
-      }
-      
-      static func validate() throws {
-        if UIKit.UIImage(named: "ic_usFlagMediumIcn", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'ic_usFlagMediumIcn' is used in nib 'BaseCurrencyCollectionViewCell', but couldn't be loaded.") }
       }
       
       fileprivate init() {}
@@ -1533,7 +1528,6 @@ struct _R: Rswift.Validatable {
       
       static func validate() throws {
         if UIKit.UIImage(named: "ic_group2", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'ic_group2' is used in nib 'SettingsViewController', but couldn't be loaded.") }
-        if UIKit.UIImage(named: "ic_usFlagMediumIcn", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'ic_usFlagMediumIcn' is used in nib 'SettingsViewController', but couldn't be loaded.") }
       }
       
       fileprivate init() {}

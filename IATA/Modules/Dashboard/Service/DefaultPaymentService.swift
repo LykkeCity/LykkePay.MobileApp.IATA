@@ -44,4 +44,18 @@ class DefaultPaymentService: NSObject, PaymentService {
     func getHistory() -> Promise<String> {
         return Network.shared.get(path: PaymentConfig.shared.historyIndex , params: [:])
     }
+    
+    func getSettings() -> Promise<String> {
+        return Network.shared.get(path: PaymentConfig.shared.user, params: [:])
+    }
+    
+    func getBaseAssetsList() -> Promise<String> {
+        return Network.shared.get(path: PaymentConfig.shared.baseAssets, params: [:])
+    }
+    
+    func postBaseAssets(baseAsset: String) -> Promise<Void> {
+        var params = [String : String]()
+        params["baseAsset"] = baseAsset
+        return Network.shared.postWithQueryString(path: PaymentConfig.shared.baseAsset, params: params)
+    }
 }
