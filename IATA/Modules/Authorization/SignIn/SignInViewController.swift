@@ -1,13 +1,17 @@
-
+import UIKit
 import Material
 
 class SignInViewController: BaseAuthViewController {
     
-    @IBOutlet private weak var emailTextField: ErrorTextField?
-    @IBOutlet private weak var passwordField: ErrorTextField?
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var buildVersion: UILabel!
+    @IBOutlet weak var titleWelcome: UILabel!
+    @IBOutlet private weak var emailTextField: FloatTextField?
+    @IBOutlet private weak var passwordField: FloatTextField?
     @IBOutlet private weak var btnLogin: UIButton?
     @IBOutlet weak var logoImg: UIImageView?
     
+    private var isShown: Bool = false
     private var state: SignInViewState = DefaultSignInViewState() as SignInViewState
     
     override func viewDidLoad() {
@@ -15,9 +19,12 @@ class SignInViewController: BaseAuthViewController {
 
         self.navigationController?.isNavigationBarHidden = true
 
-        emailTextField?.delegate = self
-        passwordField?.delegate = self
+        self.titleWelcome.attributedText = Theme.shared.get2LineString(message: R.string.localizable.signInLabelWelcomeMessage())
+        
+        self.emailTextField?.delegate = self
+        self.passwordField?.delegate = self
 
+        self.buildVersion.text = version()
         Theme.shared.configureTextFieldStyle(self.emailTextField!, title: R.string.localizable.signInPlaceholderLogin())
         Theme.shared.configureTextFieldPasswordStyle(self.passwordField!, title: R.string.localizable.signInPlaceholderPassword())
 
@@ -25,9 +32,18 @@ class SignInViewController: BaseAuthViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
+    
+    private func version() -> String {
+        let dictionary = Bundle.main.infoDictionary!
+        let version = dictionary["CFBundleShortVersionString"] as! String
+        let build = dictionary["CFBundleVersion"] as! String
+        return "Build \(version) (version \(build))"
+    }
 
     private func buttonClicked() {
         self.view.endEditing(true)
+        self.emailTextField?.isErrorRevealed = false
+        self.passwordField?.isErrorRevealed = false
         guard let email = self.emailTextField?.text!, let password = self.passwordField?.text! else {
             self.showErrorAlert(error: self.state.getError(R.string.localizable.commonErrorInternal()))
             return
@@ -62,7 +78,7 @@ class SignInViewController: BaseAuthViewController {
             self.showErrorAlert(error: error)
         }
     }
-
+    
     private func openValidationPinController(tokenObject: TokenObject) {
         guard let email = self.emailTextField?.text, tokenObject.token != nil else {
             self.showErrorAlert(error: self.state.getError(R.string.localizable.commonErrorInternal()))
@@ -79,7 +95,8 @@ class SignInViewController: BaseAuthViewController {
                 (viewController as! PinViewController).isValidation = false
             }
         }
-        self.navigationController?.pushViewController(viewController, animated: true)
+        NavPushingUtil.shared.push(navigationController: self.navigationController,  controller: viewController)
+        self.navigationController?.isNavigationBarHidden = false
     }
 
     private func handleSingInError(error : Error) {
@@ -107,17 +124,22 @@ class SignInViewController: BaseAuthViewController {
 
     @objc func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            if let isHidden = self.logoImg?.isHidden, !isHidden {
+            if let isHidden = self.logoImg?.isHidden, !isHidden, !isShown {
                 self.view.frame.origin.y -= keyboardSize.height/2
                 self.logoImg?.isHidden = true
+                self.isShown = true
             }
         }
     }
-
+    
     @objc func keyboardWillHide(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            self.view.frame.origin.y += keyboardSize.height/2
+        if let isHidden = self.logoImg?.isHidden, isHidden, isShown {
+            scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
             self.logoImg?.isHidden = false
+            if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+                self.view.frame.origin.y += keyboardSize.height/2
+            }
+            self.isShown = false
         }
     }
     

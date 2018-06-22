@@ -1,6 +1,7 @@
 import CryptoSwift
 
 extension String {
+    
     func toJSON() -> Any? {
         guard let data = self.data(using: .utf8, allowLossyConversion: false) else { return nil }
         return try? JSONSerialization.jsonObject(with: data, options: .mutableContainers)
@@ -18,6 +19,14 @@ extension String {
 
     func capitalizingFirstLetter() -> String {
         return prefix(1).uppercased() + dropFirst().lowercased()
+    }
+    
+    func replace(target: String, withString: String) -> String {
+        return self.replacingOccurrences(of: target, with: withString, options: NSString.CompareOptions.literal, range: nil)
+    }
+    
+    func removingWhitespaces() -> String {
+        return components(separatedBy: .whitespaces).joined()
     }
 
     mutating func capitalizeFirstLetter() {

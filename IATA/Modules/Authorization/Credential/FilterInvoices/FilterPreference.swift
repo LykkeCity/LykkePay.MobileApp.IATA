@@ -18,8 +18,8 @@ class FilterPreference {
     private init() {
     }
     
-    internal func saveIndexOfStatus(_ indexOfStatus: Int!) {
-        UserPreference.preferences.set(indexOfStatus, forKey: PropertyKey.status.rawValue)
+    internal func saveIndexOfStatus(_ menu: MenuEnum) {
+        UserPreference.preferences.set(menu.rawValue, forKey: PropertyKey.status.rawValue)
         let didSave = UserPreference.preferences.synchronize()
         
         if !didSave {
@@ -27,8 +27,8 @@ class FilterPreference {
         }
     }
     
-    internal func getIndexOfStatus() -> Int! {
-        return UserPreference.preferences.integer(forKey: PropertyKey.status.rawValue)
+    internal func getIndexOfStatus() -> String? {
+        return UserPreference.preferences.string(forKey: PropertyKey.status.rawValue)
 
     }
     

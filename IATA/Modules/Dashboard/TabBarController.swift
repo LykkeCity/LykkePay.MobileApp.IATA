@@ -3,7 +3,7 @@
 import UIKit
 
 class TabBarController: UITabBarController, UITabBarControllerDelegate {
-
+    
     private let theme = Theme.shared
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -16,7 +16,7 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
         var exchangeVC = ExhangeViewController()
         var historyVC = HistoryViewController()
         var settingsVC = SettingsViewController()
-
+        
         invoicesVC = generateTabBarItem(for: invoicesVC, normalImage: R.image.ic_invoicesNormal.name, activeImage: R.image.ic_invoicesActive.name,
                                         title: R.string.localizable.tabBarInvoicesItemTitle())
         walletsVC = generateTabBarItem(for: walletsVC, normalImage: R.image.ic_walletsNormal.name, activeImage: R.image.ic_walletsActive.name,
@@ -30,28 +30,33 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
         let controllers = [invoicesVC, walletsVC, exchangeVC, historyVC, settingsVC]
         
         self.viewControllers = controllers.map { UINavigationController(rootViewController: $0)}
-       
+        
     }
-
+    
     private func generateTabBarItem<T: UIViewController>(for viewController: T, normalImage: String, activeImage: String, title: String) -> T {
         viewController.tabBarItem.title = title
+        
+        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedStringKey.foregroundColor: theme.tabBarItemUnselectedColor, NSAttributedStringKey.font: Theme.shared.fontForTabBar], for: .normal)
+        
         viewController.tabBarItem.image = UIImage(named: normalImage)
         viewController.tabBarItem.selectedImage = UIImage(named: activeImage)
-        viewController.tabBarItem.setTitleTextAttributes([NSAttributedStringKey.foregroundColor: theme.tabBarItemUnselectedColor], for: .normal)
         viewController.tabBarItem.setTitleTextAttributes([NSAttributedStringKey.foregroundColor: UIColor.white], for: .selected)
         viewController.tabBarItem.titlePositionAdjustment = UIOffsetMake(0, -5)
         return viewController
     }
-
+    
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         navigationItem.title = item.title
     }
-
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     private func tabBarSettings(){
         self.tabBar.barTintColor = theme.tabBarBackgroundColor
         self.tabBar.isTranslucent = false
         self.tabBarController?.tabBar.isHidden = false
     }
-
     
 }

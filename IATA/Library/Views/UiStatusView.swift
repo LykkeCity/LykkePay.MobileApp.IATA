@@ -71,7 +71,7 @@ class UiStatusView: UILabel {
     
     func commonInit(){
         self.layer.masksToBounds = true
-        self.layer.cornerRadius = 3
+        self.layer.cornerRadius = 2
         self.layer.borderColor = color.cgColor
         self.layer.borderWidth = 1
         self.textColor = UIColor.black

@@ -1,5 +1,4 @@
 import UIKit
-import Material
 
 class Theme: NSObject {
     
@@ -33,15 +32,18 @@ class Theme: NSObject {
     public let blueProgressStatusColor = Utils.rgb(53, 153, 254)
     public let redErrorStatusColor = Utils.rgb(254, 53, 96)
     public let greyStatusColor = Utils.rgb(178, 184, 191)
+    public let greyNavBar = Utils.rgb(243, 244, 245)
+     public let disbaledRightButton = Utils.rgb(205, 205, 210)
 
     public let exchangeTopViewBorderColor = Utils.rgb(205, 205, 210)
     
     public private(set) lazy var buttonsFont = boldFontOfSize(16)
     public private(set) lazy var linksFont = boldFontOfSize(15)
     
-    public private(set) lazy var fontTextSizeTextField = regularFontOfSize(16)
+    public private(set) lazy var fontTextSizeTextField = mediumFontOfSize(16)
     public private(set) lazy var fontPlaceholderSizeTextField = regularFontOfSize(10)
-    public private(set) lazy var fontCurrencyTextField = boldFontOfSize(14)
+    public private(set) lazy var fontCurrencyTextField = boldFontOfSize(24)
+    public private(set) lazy var fontForTabBar = mediumFontOfSize(8)
     
     override init() {
         super.init()
@@ -65,19 +67,19 @@ class Theme: NSObject {
         button.setTitleColor(buttonsColor, for: .normal)
     }
     
-    private func boldFontOfSize(_ size: CGFloat) -> UIFont? {
+    public func boldFontOfSize(_ size: CGFloat) -> UIFont? {
         return R.font.gothamProBold(size: size)
     }
     
-    private func lightFontOfSize(_ size: CGFloat) -> UIFont? {
+    public func lightFontOfSize(_ size: CGFloat) -> UIFont? {
         return R.font.gothamProLight(size: size)
     }
     
-    private func mediumFontOfSize(_ size: CGFloat) -> UIFont? {
+    public func mediumFontOfSize(_ size: CGFloat) -> UIFont? {
         return R.font.gothamProMedium(size: size)
     }
     
-    private func regularFontOfSize(_ size: CGFloat) -> UIFont? {
+    public func regularFontOfSize(_ size: CGFloat) -> UIFont? {
         return R.font.gothamPro(size: size)
     }
     
@@ -111,7 +113,7 @@ class Theme: NSObject {
     public func getRightButton(title: String!, color: UIColor) -> UIButton {
         let rightButton = UIButton()
         rightButton.setTitle(title, for: .normal)
-        rightButton.titleLabel?.font =  R.font.gothamProBold(size: 17)
+        rightButton.titleLabel?.font =  R.font.gothamProMedium(size: 17)
         rightButton.tintColor = color
         rightButton.setTitleColor(color, for: .normal)
         rightButton.frame = CGRect(x: 0.0,
@@ -121,34 +123,48 @@ class Theme: NSObject {
         return rightButton
     }
     
-    public func configureTextFieldStyle(_ textField: ErrorTextField?, title: String){
-        textField?.placeholder = title.localize() 
-        textField?.isPlaceholderUppercasedWhenEditing = true
+    public func get2LineString(message: String) -> NSMutableAttributedString {
+        let attributedString = NSMutableAttributedString(string: message)
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = 5
+        paragraphStyle.paragraphSpacing = 5
+        paragraphStyle.lineHeightMultiple = 1.5
+        attributedString.addAttribute(kCTParagraphStyleAttributeName as NSAttributedStringKey, value:paragraphStyle, range:NSMakeRange(0, attributedString.length))
+        return attributedString
+    }
+    
+    public func configureTextFieldStyle(_ textField: FloatTextField?, title: String){
+        textField?.placeholder = title.localize()
+        textField?.font = fontTextSizeTextField
+        textField?.textColor = Theme.shared.textFieldColor
+        textField?.isPlaceholderUppercasedWhenEditing = false
         textField?.dividerActiveColor = Theme.shared.greenColor
         textField?.placeholderActiveColor = Theme.shared.greenColor
     }
     
-    public func configureTextFieldCurrencyStyle(_ textField: ErrorTextField?, title: String){
+    
+    public func configureTextFieldCurrencyStyle(_ textField: FloatTextField?, title: String){
         configureTextFieldStyle(textField, title: title)
         textField?.font = fontCurrencyTextField
         textField?.textColor = navBarTitle
     }
     
-    public func configureTextFieldCurrencyStyle(_ textField: ErrorTextField?){
+    public func configureTextFieldCurrencyStyle(_ textField: FloatTextField?){
         configureTextFieldStyle(textField, title: "")
         textField?.dividerActiveColor = UIColor.clear
         textField?.dividerNormalColor = UIColor.clear
         textField?.dividerColor = UIColor.clear
         textField?.font = fontCurrencyTextField
         textField?.textColor = navBarTitle
+        textField?.keyboardType = UIKeyboardType.decimalPad
     }
     
-    public func configureTextFieldPasswordStyle(_ textField: ErrorTextField?, title: String){
+    public func configureTextFieldPasswordStyle(_ textField: FloatTextField?, title: String){
         configureTextFieldStyle(textField, title: title)
         textField?.isSecureTextEntry = true
     }
     
-    public func showError(_ textField: ErrorTextField?, _ message: String) {
+    public func showError(_ textField: FloatTextField?, _ message: String) {
         textField?.detail = message
         textField?.isErrorRevealed = true
     }

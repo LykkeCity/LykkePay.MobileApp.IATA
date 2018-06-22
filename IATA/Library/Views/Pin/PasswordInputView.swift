@@ -100,8 +100,7 @@ open class PasswordInputView: UIView {
         let width = bounds.width
         let height = bounds.height
         let radius = min(width, height) / 2
-        return UIFont.systemFont(ofSize: radius * fontSizeRatio,
-                                 weight: touchUpFlag ? UIFont.Weight.thin : UIFont.Weight.regular)
+        return Theme.shared.lightFontOfSize(32)!
     }
     
     fileprivate func updateUI() {

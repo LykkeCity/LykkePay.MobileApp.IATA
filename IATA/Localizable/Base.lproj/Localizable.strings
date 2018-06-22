@@ -7,10 +7,11 @@
 
 "SignIn.Placeholder.Login" = "Login";
 "SignIn.Placeholder.Password" = "Password";
+"SignIn.Label.Welcome.Message" =  "Welcome back! Sign in to \ncontinue to IATA";
 
 "ChangePassword.FieldEmpty.Error" = "The CurrentPasssword field is required.";
 "ChangePassword.FieldNotEquals.Error" = "Fields are not equal";
-"ChangePassword.NavBar.Title" = "Change password";
+"ChangePassword.NavBar.Title" = "Change a password";
 
 "ChangePassword.Placeholder.CurrentPassword" = "Current password";
 "ChangePassword.Placeholder.NewPassword" = "New password";
@@ -18,7 +19,7 @@
 
 "Pin.Validation.Title" = "Please enter your PIN code";
 "Pin.Setup.Title" = "Setup your PIN code";
-"Pin.Resubmit.Title" = "Submit your PIN code again";
+"Pin.Resubmit.Title" = "Confirm your PIN code";
 "Pin.Error.Title" = "Submit your PIN code again";
 
 "Invoice.Settings.Airlines.Title" = "Airlines";
@@ -29,18 +30,24 @@
 "Invoice.Settings.Filter.Title" = "Filters";
 "Invoice.Settings.Range.From" = "From";
 "Invoice.Settings.Range.To" = "To";
+"Invoice.Settings.Error.To" = "To Value cannot be less From Value";
+"Invoice.Settings.Error.From" = "From Value cannot exceed To Value";
 
 "Invoice.Screen.PaymentMessage" = "Pay %@ against the selected invoices?";
 "Invoice.Screen.PleaseConfirmPayment" = "Please confirm";
 "Invoice.Screen.Pay" = "Pay";
 
 "Invoice.Navigation.Filtering.Title.AllInvoices" = "All invoices";
+"Invoice.Navigation.Filtering.Title.Paid" = "Paid invoices";
 "Invoice.Navigation.Filtering.Title.UnPaidInvoices" = "Unpaid invoices";
 "Invoice.Navigation.Filtering.Title.Dispute" = "Dispute";
 
 "Invoice.Screen.Items.CountSelected" = "%@ invoices selected";
+"Invoice.Screen.Items.OneSelected" = "1 invoice selected";
 "Invoice.Screen.Items.Dispute" = "Dispute";
 "Invoice.Screen.Items.CancelDispute" = "Cancel Dispute";
+
+"Invoice.Screen.Error.ChangingAmount" = "You cannot pay more then required";
 
 "Invoice.Status.Items.InProgress" = "IN PROGRESS";
 "Invoice.Status.Items.Paid" = "PAID";

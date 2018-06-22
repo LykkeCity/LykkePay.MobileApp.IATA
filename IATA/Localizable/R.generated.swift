@@ -22,7 +22,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.file` struct is generated, and contains static references to 5 files.
+  /// This `R.file` struct is generated, and contains static references to 6 files.
   struct file {
     /// Resource file `GothamProBold.ttf`.
     static let gothamProBoldTtf = Rswift.FileResource(bundle: R.hostingBundle, name: "GothamProBold", pathExtension: "ttf")
@@ -32,6 +32,8 @@ struct R: Rswift.Validatable {
     static let gothamProMedOtf = Rswift.FileResource(bundle: R.hostingBundle, name: "GothamProMed", pathExtension: "otf")
     /// Resource file `GothamProReg.otf`.
     static let gothamProRegOtf = Rswift.FileResource(bundle: R.hostingBundle, name: "GothamProReg", pathExtension: "otf")
+    /// Resource file `LICENSE`.
+    static let licensE = Rswift.FileResource(bundle: R.hostingBundle, name: "LICENSE", pathExtension: "")
     /// Resource file `ServerData.json`.
     static let serverDataJson = Rswift.FileResource(bundle: R.hostingBundle, name: "ServerData", pathExtension: "json")
     
@@ -56,6 +58,12 @@ struct R: Rswift.Validatable {
     /// `bundle.url(forResource: "GothamProReg", withExtension: "otf")`
     static func gothamProRegOtf(_: Void = ()) -> Foundation.URL? {
       let fileResource = R.file.gothamProRegOtf
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+    
+    /// `bundle.url(forResource: "LICENSE", withExtension: "")`
+    static func licensE(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.licensE
       return fileResource.bundle.url(forResource: fileResource)
     }
     
@@ -109,7 +117,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 29 images.
+  /// This `R.image` struct is generated, and contains static references to 30 images.
   struct image {
     /// Image `Logo`.
     static let logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "Logo")
@@ -117,10 +125,10 @@ struct R: Rswift.Validatable {
     static let splash = Rswift.ImageResource(bundle: R.hostingBundle, name: "Splash")
     /// Image `arrow_down_icon`.
     static let arrow_down_icon = Rswift.ImageResource(bundle: R.hostingBundle, name: "arrow_down_icon")
-    /// Image `backIcon`.
-    static let backIcon = Rswift.ImageResource(bundle: R.hostingBundle, name: "backIcon")
     /// Image `checkmark_icon`.
     static let checkmark_icon = Rswift.ImageResource(bundle: R.hostingBundle, name: "checkmark_icon")
+    /// Image `ic_active_thumb`.
+    static let ic_active_thumb = Rswift.ImageResource(bundle: R.hostingBundle, name: "ic_active_thumb")
     /// Image `ic_bodyInvertIcn`.
     static let ic_bodyInvertIcn = Rswift.ImageResource(bundle: R.hostingBundle, name: "ic_bodyInvertIcn")
     /// Image `ic_bodyLogoutIcn`.
@@ -131,6 +139,8 @@ struct R: Rswift.Validatable {
     static let ic_body_dispute = Rswift.ImageResource(bundle: R.hostingBundle, name: "ic_body_dispute")
     /// Image `ic_delete`.
     static let ic_delete = Rswift.ImageResource(bundle: R.hostingBundle, name: "ic_delete")
+    /// Image `ic_disactive_thumb`.
+    static let ic_disactive_thumb = Rswift.ImageResource(bundle: R.hostingBundle, name: "ic_disactive_thumb")
     /// Image `ic_dispute`.
     static let ic_dispute = Rswift.ImageResource(bundle: R.hostingBundle, name: "ic_dispute")
     /// Image `ic_eurFlagMediumIcn`.
@@ -185,14 +195,14 @@ struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.arrow_down_icon, compatibleWith: traitCollection)
     }
     
-    /// `UIImage(named: "backIcon", bundle: ..., traitCollection: ...)`
-    static func backIcon(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.backIcon, compatibleWith: traitCollection)
-    }
-    
     /// `UIImage(named: "checkmark_icon", bundle: ..., traitCollection: ...)`
     static func checkmark_icon(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.checkmark_icon, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "ic_active_thumb", bundle: ..., traitCollection: ...)`
+    static func ic_active_thumb(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.ic_active_thumb, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "ic_bodyInvertIcn", bundle: ..., traitCollection: ...)`
@@ -218,6 +228,11 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "ic_delete", bundle: ..., traitCollection: ...)`
     static func ic_delete(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.ic_delete, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "ic_disactive_thumb", bundle: ..., traitCollection: ...)`
+    static func ic_disactive_thumb(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.ic_disactive_thumb, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "ic_dispute", bundle: ..., traitCollection: ...)`
@@ -522,12 +537,16 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 62 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 67 localization keys.
     struct localizable {
       /// Base translation: %@ invoices selected
       /// 
       /// Locales: Base
       static let invoiceScreenItemsCountSelected = Rswift.StringResource(key: "Invoice.Screen.Items.CountSelected", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
+      /// Base translation: 1 invoice selected
+      /// 
+      /// Locales: Base
+      static let invoiceScreenItemsOneSelected = Rswift.StringResource(key: "Invoice.Screen.Items.OneSelected", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
       /// Base translation: Airlines
       /// 
       /// Locales: Base
@@ -564,10 +583,14 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: Base
       static let invoiceScreenItemsCancelDispute = Rswift.StringResource(key: "Invoice.Screen.Items.CancelDispute", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
-      /// Base translation: Change password
+      /// Base translation: Change a password
       /// 
       /// Locales: Base
       static let changePasswordNavBarTitle = Rswift.StringResource(key: "ChangePassword.NavBar.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
+      /// Base translation: Confirm your PIN code
+      /// 
+      /// Locales: Base
+      static let pinResubmitTitle = Rswift.StringResource(key: "Pin.Resubmit.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
       /// Base translation: Currencies
       /// 
       /// Locales: Base
@@ -624,6 +647,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: Base
       static let invoiceSettingsRangeFrom = Rswift.StringResource(key: "Invoice.Settings.Range.From", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
+      /// Base translation: From Value cannot exceed To Value
+      /// 
+      /// Locales: Base
+      static let invoiceSettingsErrorFrom = Rswift.StringResource(key: "Invoice.Settings.Error.From", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
       /// Base translation: HISTORY
       /// 
       /// Locales: Base
@@ -684,6 +711,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: Base
       static let historyTransactionDetailsPaidBy = Rswift.StringResource(key: "History.Transaction.Details.PaidBy", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
+      /// Base translation: Paid invoices
+      /// 
+      /// Locales: Base
+      static let invoiceNavigationFilteringTitlePaid = Rswift.StringResource(key: "Invoice.Navigation.Filtering.Title.Paid", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
       /// Base translation: Password
       /// 
       /// Locales: Base
@@ -736,10 +767,6 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: Base
       static let pinErrorTitle = Rswift.StringResource(key: "Pin.Error.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
-      /// Base translation: Submit your PIN code again
-      /// 
-      /// Locales: Base
-      static let pinResubmitTitle = Rswift.StringResource(key: "Pin.Resubmit.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
       /// Base translation: Success
       /// 
       /// Locales: Base
@@ -756,10 +783,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: Base
       static let invoiceSettingsRangeTo = Rswift.StringResource(key: "Invoice.Settings.Range.To", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
-      /// Base translation: Transaction details
+      /// Base translation: To Value cannot be less From Value
       /// 
       /// Locales: Base
-      static let historyTransactionScreenTitle = Rswift.StringResource(key: "History.Transaction.Screen.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
+      static let invoiceSettingsErrorTo = Rswift.StringResource(key: "Invoice.Settings.Error.To", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
       /// Base translation: TxHash
       /// 
       /// Locales: Base
@@ -772,12 +799,27 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: Base
       static let tabBarWalletsItemTitle = Rswift.StringResource(key: "TabBar.WalletsItem.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
+      /// Base translation: Welcome back! Sign in to  continue to IATA
+      /// 
+      /// Locales: Base
+      static let signInLabelWelcomeMessage = Rswift.StringResource(key: "SignIn.Label.Welcome.Message", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
+      /// Base translation: You cannot pay more then required
+      /// 
+      /// Locales: Base
+      static let invoiceScreenErrorChangingAmount = Rswift.StringResource(key: "Invoice.Screen.Error.ChangingAmount", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
       
       /// Base translation: %@ invoices selected
       /// 
       /// Locales: Base
       static func invoiceScreenItemsCountSelected(_ value1: String) -> String {
         return String(format: NSLocalizedString("Invoice.Screen.Items.CountSelected", bundle: R.hostingBundle, value: "%@ invoices selected", comment: ""), locale: R.applicationLocale, value1)
+      }
+      
+      /// Base translation: 1 invoice selected
+      /// 
+      /// Locales: Base
+      static func invoiceScreenItemsOneSelected(_: Void = ()) -> String {
+        return NSLocalizedString("Invoice.Screen.Items.OneSelected", bundle: R.hostingBundle, value: "1 invoice selected", comment: "")
       }
       
       /// Base translation: Airlines
@@ -843,11 +885,18 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("Invoice.Screen.Items.CancelDispute", bundle: R.hostingBundle, value: "Cancel Dispute", comment: "")
       }
       
-      /// Base translation: Change password
+      /// Base translation: Change a password
       /// 
       /// Locales: Base
       static func changePasswordNavBarTitle(_: Void = ()) -> String {
-        return NSLocalizedString("ChangePassword.NavBar.Title", bundle: R.hostingBundle, value: "Change password", comment: "")
+        return NSLocalizedString("ChangePassword.NavBar.Title", bundle: R.hostingBundle, value: "Change a password", comment: "")
+      }
+      
+      /// Base translation: Confirm your PIN code
+      /// 
+      /// Locales: Base
+      static func pinResubmitTitle(_: Void = ()) -> String {
+        return NSLocalizedString("Pin.Resubmit.Title", bundle: R.hostingBundle, value: "Confirm your PIN code", comment: "")
       }
       
       /// Base translation: Currencies
@@ -946,6 +995,13 @@ struct R: Rswift.Validatable {
       /// Locales: Base
       static func invoiceSettingsRangeFrom(_: Void = ()) -> String {
         return NSLocalizedString("Invoice.Settings.Range.From", bundle: R.hostingBundle, value: "From", comment: "")
+      }
+      
+      /// Base translation: From Value cannot exceed To Value
+      /// 
+      /// Locales: Base
+      static func invoiceSettingsErrorFrom(_: Void = ()) -> String {
+        return NSLocalizedString("Invoice.Settings.Error.From", bundle: R.hostingBundle, value: "From Value cannot exceed To Value", comment: "")
       }
       
       /// Base translation: HISTORY
@@ -1053,6 +1109,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("History.Transaction.Details.PaidBy", bundle: R.hostingBundle, value: "Paid By", comment: "")
       }
       
+      /// Base translation: Paid invoices
+      /// 
+      /// Locales: Base
+      static func invoiceNavigationFilteringTitlePaid(_: Void = ()) -> String {
+        return NSLocalizedString("Invoice.Navigation.Filtering.Title.Paid", bundle: R.hostingBundle, value: "Paid invoices", comment: "")
+      }
+      
       /// Base translation: Password
       /// 
       /// Locales: Base
@@ -1144,13 +1207,6 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("Pin.Error.Title", bundle: R.hostingBundle, value: "Submit your PIN code again", comment: "")
       }
       
-      /// Base translation: Submit your PIN code again
-      /// 
-      /// Locales: Base
-      static func pinResubmitTitle(_: Void = ()) -> String {
-        return NSLocalizedString("Pin.Resubmit.Title", bundle: R.hostingBundle, value: "Submit your PIN code again", comment: "")
-      }
-      
       /// Base translation: Success
       /// 
       /// Locales: Base
@@ -1179,11 +1235,11 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("Invoice.Settings.Range.To", bundle: R.hostingBundle, value: "To", comment: "")
       }
       
-      /// Base translation: Transaction details
+      /// Base translation: To Value cannot be less From Value
       /// 
       /// Locales: Base
-      static func historyTransactionScreenTitle(_: Void = ()) -> String {
-        return NSLocalizedString("History.Transaction.Screen.Title", bundle: R.hostingBundle, value: "Transaction details", comment: "")
+      static func invoiceSettingsErrorTo(_: Void = ()) -> String {
+        return NSLocalizedString("Invoice.Settings.Error.To", bundle: R.hostingBundle, value: "To Value cannot be less From Value", comment: "")
       }
       
       /// Base translation: TxHash
@@ -1205,6 +1261,20 @@ struct R: Rswift.Validatable {
       /// Locales: Base
       static func tabBarWalletsItemTitle(_: Void = ()) -> String {
         return NSLocalizedString("TabBar.WalletsItem.Title", bundle: R.hostingBundle, value: "WALLETS", comment: "")
+      }
+      
+      /// Base translation: Welcome back! Sign in to  continue to IATA
+      /// 
+      /// Locales: Base
+      static func signInLabelWelcomeMessage(_: Void = ()) -> String {
+        return NSLocalizedString("SignIn.Label.Welcome.Message", bundle: R.hostingBundle, value: "Welcome back! Sign in to \ncontinue to IATA", comment: "")
+      }
+      
+      /// Base translation: You cannot pay more then required
+      /// 
+      /// Locales: Base
+      static func invoiceScreenErrorChangingAmount(_: Void = ()) -> String {
+        return NSLocalizedString("Invoice.Screen.Error.ChangingAmount", bundle: R.hostingBundle, value: "You cannot pay more then required", comment: "")
       }
       
       fileprivate init() {}
@@ -1234,7 +1304,6 @@ struct _R: Rswift.Validatable {
   
   struct nib: Rswift.Validatable {
     static func validate() throws {
-      try _HistoryTableViewCell.validate()
       try _SettingsViewController.validate()
       try _WalletsViewController.validate()
       try _InvoiceSettingsTableViewCell.validate()
@@ -1316,16 +1385,12 @@ struct _R: Rswift.Validatable {
       fileprivate init() {}
     }
     
-    struct _HistoryTableViewCell: Rswift.NibResourceType, Rswift.Validatable {
+    struct _HistoryTableViewCell: Rswift.NibResourceType {
       let bundle = R.hostingBundle
       let name = "HistoryTableViewCell"
       
       func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]? = nil) -> HistoryTableViewCell? {
         return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? HistoryTableViewCell
-      }
-      
-      static func validate() throws {
-        if UIKit.UIImage(named: "Logo", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'Logo' is used in nib 'HistoryTableViewCell', but couldn't be loaded.") }
       }
       
       fileprivate init() {}
@@ -1542,8 +1607,8 @@ struct _R: Rswift.Validatable {
       let bundle = R.hostingBundle
       let name = "TransactionTableViewHeader"
       
-      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]? = nil) -> UIKit.UIView? {
-        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]? = nil) -> TransactionTableViewHeader? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? TransactionTableViewHeader
       }
       
       static func validate() throws {

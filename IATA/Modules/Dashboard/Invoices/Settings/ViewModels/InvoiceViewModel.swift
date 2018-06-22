@@ -21,7 +21,7 @@ class InvoiceViewModel: NSObject {
     }
     
     func scrollToLastPosition(tableView: UITableView) {
-        let y = tableView.contentSize.height - tableView.frame.size.height + 200
+        let y = tableView.contentSize.height - tableView.frame.size.height + 250
         tableView.setContentOffset(CGPoint(x: 0, y: (y<0) ? 0 : y), animated: true)
     }
 }

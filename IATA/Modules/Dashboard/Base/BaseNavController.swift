@@ -12,19 +12,43 @@ class BaseNavController: UIViewController, UITextFieldDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(appMovedToBackground), name: Notification.Name.UIApplicationWillResignActive, object: nil)
         setUp()
         initNavBar()
+        self.setNeedsStatusBarAppearanceUpdate()
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
     
     override func viewWillAppear(_ animated: Bool) {
         initNavBar()
+        UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent
+    }
+    
+    func showErrorAlert(error : Error) {
+        var message = ""
+        if (error is IATAOpError) {
+            message = (error as! IATAOpError).localizedDescription
+        } else {
+            message = error.localizedDescription
+        }
+        let uiAlert = UIAlertController(title: R.string.localizable.commonTitleError(), message: message, preferredStyle: UIAlertControllerStyle.alert)
+        self.present(uiAlert, animated: true, completion: nil)
+        
+        uiAlert.addAction(UIAlertAction(title: R.string.localizable.commonPositiveButtonOk(), style: .default, handler: nil))
     }
     
     func initNavBar() {
+        self.setNeedsStatusBarAppearanceUpdate()
+        self.navigationController?.navigationBar.barStyle = .blackOpaque
         self.navigationController?.navigationBar.barTintColor = Theme.shared.tabBarBackgroundColor
         self.navigationController?.navigationBar.tintColor = .white
         self.navigationController?.navigationBar.isTranslucent = false
         self.navigationItem.titleView = getTitleView()
         self.navigationItem.leftBarButtonItem  = getLeftButton()
         self.navigationItem.rightBarButtonItem  = getRightButton()
+        UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent
+        self.navigationController?.navigationBar.layoutIfNeeded()
+        self.setNeedsStatusBarAppearanceUpdate()
     }
     
     func setUp() {
@@ -63,22 +87,5 @@ class BaseNavController: UIViewController, UITextFieldDelegate {
         self.view.endEditing(true)
         return false
     }
-    
-    func showToast(message : String) {
-        let toastLabel = UILabel(frame: CGRect(x: self.view.frame.size.width/2 - 75, y: self.view.frame.size.height-100, width: 150, height: 35))
-        toastLabel.backgroundColor = UIColor.black.withAlphaComponent(0.6)
-        toastLabel.textColor = UIColor.white
-        toastLabel.textAlignment = .center;
-        toastLabel.font = R.font.gothamProLight(size: 12)
-        toastLabel.text = message
-        toastLabel.alpha = 1.0
-        toastLabel.layer.cornerRadius = 10;
-        toastLabel.clipsToBounds  =  true
-        self.view.addSubview(toastLabel)
-        UIView.animate(withDuration: 4.0, delay: 0.1, options: .curveEaseOut, animations: {
-            toastLabel.alpha = 0.0
-        }, completion: {(isCompleted) in
-            toastLabel.removeFromSuperview()
-        })
-    }
+   
 }

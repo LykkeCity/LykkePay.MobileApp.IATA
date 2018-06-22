@@ -24,6 +24,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="InvoiceViewController" customModule="IATA" customModuleProvider="target">
             <connections>
                 <outlet property="bottomConstrain" destination="bo5-ZY-U0M" id="4L2-SE-d8Z"/>
+                <outlet property="btnPay" destination="9Mi-CE-o9S" id="TCe-9U-62c"/>
                 <outlet property="downView" destination="Boz-OM-wSA" id="sXc-bd-gRZ"/>
                 <outlet property="downViewHeightConstraint" destination="ozl-4g-oOw" id="8DP-Ii-Yif"/>
                 <outlet property="loading" destination="uiP-4Y-L2f" id="g5E-Me-XMA"/>
@@ -40,7 +41,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="aHq-O3-Lfw">
-                    <rect key="frame" x="0.0" y="28" width="367" height="521"/>
+                    <rect key="frame" x="0.0" y="28" width="367" height="529"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </tableView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Boz-OM-wSA">
@@ -68,20 +69,14 @@
                             </connections>
                         </button>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="koP-il-pIp">
-                            <rect key="frame" x="16" y="8" width="343" height="1"/>
+                            <rect key="frame" x="16" y="0.0" width="343" height="1"/>
                             <color key="backgroundColor" red="0.90196078430000004" green="0.90980392160000001" blue="0.91764705879999997" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="1" id="Usk-5f-DAA"/>
                             </constraints>
                         </view>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2 invoices selected" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="phI-Vh-W4l">
-                            <rect key="frame" x="16" y="71" width="120" height="16"/>
-                            <fontDescription key="fontDescription" name="GothamPro-Light" family="Gotham Pro" pointSize="14"/>
-                            <color key="textColor" red="0.066666666666666666" green="0.066666666666666666" blue="0.066666666666666666" alpha="1" colorSpace="calibratedRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="Xi0-s7-cse" customClass="DesignableUITextField" customModule="IATA" customModuleProvider="target">
-                            <rect key="frame" x="16" y="25" width="30" height="30"/>
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="0" textAlignment="natural" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="Xi0-s7-cse" customClass="CurrencyUiTextField" customModule="IATA" customModuleProvider="target">
+                            <rect key="frame" x="16" y="17" width="30" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="30" id="JFo-lG-bYg"/>
                             </constraints>
@@ -97,6 +92,7 @@
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
                             <connections>
+                                <action selector="editingDidBegin:" destination="-1" eventType="editingDidBegin" id="c1n-fg-hXC"/>
                                 <action selector="sumChanged:" destination="-1" eventType="editingChanged" id="ZHs-l3-YBR"/>
                                 <action selector="sumEditingEnd:" destination="-1" eventType="editingDidEnd" id="dzs-FJ-xfs"/>
                             </connections>
@@ -104,20 +100,25 @@
                         <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="uiP-4Y-L2f">
                             <rect key="frame" x="36" y="45" width="20" height="20"/>
                         </activityIndicatorView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2 invoices selected" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="phI-Vh-W4l">
+                            <rect key="frame" x="16" y="63" width="129.5" height="16"/>
+                            <fontDescription key="fontDescription" name="GothamPro-Light" family="Gotham Pro" pointSize="14"/>
+                            <color key="textColor" red="0.066666666666666666" green="0.066666666666666666" blue="0.066666666666666666" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstItem="koP-il-pIp" firstAttribute="top" secondItem="Boz-OM-wSA" secondAttribute="top" constant="8" id="1zW-o3-ufh"/>
+                        <constraint firstItem="koP-il-pIp" firstAttribute="top" secondItem="Boz-OM-wSA" secondAttribute="top" id="1zW-o3-ufh"/>
                         <constraint firstItem="uiP-4Y-L2f" firstAttribute="leading" secondItem="Boz-OM-wSA" secondAttribute="leading" constant="36" id="3z3-xl-FvH"/>
                         <constraint firstItem="uiP-4Y-L2f" firstAttribute="centerY" secondItem="Boz-OM-wSA" secondAttribute="centerY" id="Lon-f1-j9L"/>
                         <constraint firstItem="phI-Vh-W4l" firstAttribute="leading" secondItem="Boz-OM-wSA" secondAttribute="leading" constant="16" id="NBz-FD-rzB"/>
+                        <constraint firstItem="9Mi-CE-o9S" firstAttribute="bottom" secondItem="phI-Vh-W4l" secondAttribute="bottom" id="NQn-wL-0Ek"/>
                         <constraint firstItem="9Mi-CE-o9S" firstAttribute="centerY" secondItem="Boz-OM-wSA" secondAttribute="centerY" id="OMd-5H-EjG"/>
                         <constraint firstItem="koP-il-pIp" firstAttribute="leading" secondItem="Boz-OM-wSA" secondAttribute="leading" constant="16" id="WWW-hS-w9T"/>
                         <constraint firstAttribute="trailing" secondItem="koP-il-pIp" secondAttribute="trailing" constant="16" id="XfD-NV-3tG"/>
                         <constraint firstAttribute="trailing" secondItem="9Mi-CE-o9S" secondAttribute="trailing" constant="20" id="evY-jL-Nte"/>
-                        <constraint firstItem="9Mi-CE-o9S" firstAttribute="leading" relation="lessThanOrEqual" secondItem="Xi0-s7-cse" secondAttribute="trailing" constant="185" id="hBI-FM-Utc"/>
                         <constraint firstItem="Xi0-s7-cse" firstAttribute="top" secondItem="koP-il-pIp" secondAttribute="bottom" constant="16" id="nXL-DP-37c"/>
-                        <constraint firstItem="phI-Vh-W4l" firstAttribute="top" secondItem="Xi0-s7-cse" secondAttribute="bottom" constant="16" id="ncS-Rw-5hx"/>
                         <constraint firstAttribute="height" constant="110" id="ozl-4g-oOw"/>
                         <constraint firstItem="Xi0-s7-cse" firstAttribute="leading" secondItem="Boz-OM-wSA" secondAttribute="leading" constant="16" id="x7D-yM-Bd5"/>
                     </constraints>
@@ -125,7 +126,7 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
             <constraints>
-                <constraint firstItem="Boz-OM-wSA" firstAttribute="top" secondItem="aHq-O3-Lfw" secondAttribute="bottom" constant="8" id="0lT-KT-weX"/>
+                <constraint firstItem="Boz-OM-wSA" firstAttribute="top" secondItem="aHq-O3-Lfw" secondAttribute="bottom" id="0lT-KT-weX"/>
                 <constraint firstItem="Boz-OM-wSA" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="bo5-ZY-U0M"/>
                 <constraint firstItem="Boz-OM-wSA" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="fDM-IO-1WY"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Boz-OM-wSA" secondAttribute="trailing" id="mjd-mb-Ztp"/>

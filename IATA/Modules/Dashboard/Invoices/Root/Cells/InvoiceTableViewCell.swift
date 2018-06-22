@@ -1,13 +1,13 @@
 
 import UIKit
 
-class InvoiceTableViewCell: UITableViewCell {
+class InvoiceTableViewCell: SwipeTableViewCell {
     
     @IBOutlet weak var viewBox: UIView!
     @IBOutlet weak var rootView: UIView!
     @IBOutlet weak var invoiceView: InvoiceView!
     
-    weak var delegate: OnChangeStateSelected?
+    weak var delegateChanged: OnChangeStateSelected?
     let checkBox = Checkbox(frame: CGRect(x: 5 , y: 5, width: 15, height: 15))
     var isCanBePaid = true
     
@@ -28,7 +28,7 @@ class InvoiceTableViewCell: UITableViewCell {
     }
     
     @objc func checkboxValueChanged(sender: Checkbox) {
-        delegate?.onItemSelected(isSelected: sender.isChecked, index: sender.tag)
+        delegateChanged?.onItemSelected(isSelected: sender.isChecked, index: sender.tag)
     }
     
     
@@ -38,8 +38,8 @@ class InvoiceTableViewCell: UITableViewCell {
     }
     
     private func initCheckBoxAndStatus(structInfo: InvoiceStatusesStruct, isChecked: Bool) {
-        self.initCheckBox(color: structInfo.color!, isCanBePaid: structInfo.isCanBePaid!, isChecked: isChecked)
-        self.invoiceView.initStatus(color: structInfo.color!,  status: structInfo.title!)
+        self.initCheckBox(color: structInfo.color, isCanBePaid: structInfo.isCanBePaid, isChecked: isChecked)
+        self.invoiceView.initStatus(color: structInfo.colorStatus,  status: structInfo.title)
     }
     
     private func initCheckBox(color: UIColor, isCanBePaid: Bool, isChecked: Bool) {

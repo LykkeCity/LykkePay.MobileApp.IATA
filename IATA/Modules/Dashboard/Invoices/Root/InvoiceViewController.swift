@@ -1,18 +1,18 @@
 import UIKit
 import ObjectMapper
 
-class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceState>,
-    Initializer,
-OnChangeStateSelected {
+class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceState>, Initializer, OnChangeStateSelected, SwipeTableViewCellDelegate {
     
+    @IBOutlet weak var btnPay: UIButton!
     @IBOutlet weak var loading: UIActivityIndicatorView!
     @IBOutlet weak var sumTextFieldWidth: NSLayoutConstraint!
     @IBOutlet weak var tabView: UITableView!
     @IBOutlet weak var downView: UIView!
-    @IBOutlet weak var sumTextField: DesignableUITextField!
+    @IBOutlet weak var sumTextField: CurrencyUiTextField!
     @IBOutlet weak var selectedItemTextField: UILabel!
     @IBOutlet weak var downViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var bottomConstrain: NSLayoutConstraint!
+    
     
     override func viewDidLoad() {
         initializer = self
@@ -24,21 +24,50 @@ OnChangeStateSelected {
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: NSNotification.Name.UIKeyboardDidShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+
+    }
+    
+    @IBAction func makePay(_ sender: Any) {
+        guard let amount = self.state?.amount else {
+            return
+        }
+        
+        guard let symbol = UserPreference.shared.getCurrentCurrency()?.symbol else {
+            return
+        }
+        let message = R.string.localizable.invoiceScreenPaymentMessage(symbol + String(amount))
+        let uiAlert = UIAlertController(title: R.string.localizable.invoiceScreenPleaseConfirmPayment(), message: message, preferredStyle: UIAlertControllerStyle.alert)
+        self.present(uiAlert, animated: true, completion: nil)
+        
+        uiAlert.addAction(UIAlertAction(title: R.string.localizable.commonNavBarCancel(), style: .default, handler: nil))
+        uiAlert.addAction(UIAlertAction(title: R.string.localizable.invoiceScreenPay(), style: .default, handler: makePayment))
+        
     }
     
     @IBAction func sumEditingEnd(_ sender: Any) {
-        sumTextField.sizeToFit()
-        self.sumTextFieldWidth.constant = sumTextField.frame.size.width
+        self.sizeToFit()
+    }
+    
+    @IBAction func editingDidBegin(_ sender: Any) {
+        
     }
     
     @IBAction func sumChanged(_ sender: Any) {
-        sumTextField.sizeToFit()
+        self.sizeToFit()
+        if let text = self.sumTextField.text, let isEmpty = self.sumTextField.text?.isEmpty, isEmpty || (Int(text) == 0) {
+            self.sumTextField.text = ""
+            self.sumTextFieldWidth.constant = 47
+            setEnabledPay(isEnabled: false)
+        } else {
+            setEnabledPay(isEnabled: true)
+        }
     }
+    
     
     @objc func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             UIView.animate(withDuration: 0.1, animations: { () -> Void in
-                self.bottomConstrain.constant = -keyboardSize.size.height/2 - 20
+                self.bottomConstrain.constant = -keyboardSize.size.height/2 - 70
             })
         }
     }
@@ -64,8 +93,8 @@ OnChangeStateSelected {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: InvoiceTableViewCell.identifier, for: indexPath) as! InvoiceTableViewCell
         cell.checkBox.tag = indexPath.row
+        cell.delegateChanged = self
         cell.delegate = self
-        cell.selectionStyle = .none
         guard let dict = self.state?.getItems()[indexPath.row] else {
             return UITableViewCell()
         }
@@ -77,40 +106,10 @@ OnChangeStateSelected {
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80
-    }
     
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            
-        }
-    }
-    
-    /* Invoices are selected after tappinth the invoice, not radio button - qa asked
-     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-     let currentCell = self.tabView.cellForRow(at: indexPath) as! InvoiceTableViewCell
-     if (currentCell.checkBox.isCanBeChanged) {
-     currentCell.checkBox.isChecked = !currentCell.checkBox.isChecked
-     onItemSelected(isSelected: currentCell.checkBox.isChecked, index: indexPath.row)
-     }
-     }*/
-    
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        guard let state = self.state else {
-            return false
-        }
-        let stateCanBeOpenDispute = state.isCanBeOpenDispute(index: indexPath.row)
-        let stateCanBeClosedDispute = state.isCanBeClosedDispute(index: indexPath.row)
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
+        guard orientation == .right else { return nil }
         
-        if (stateCanBeOpenDispute || stateCanBeClosedDispute) {
-            return true
-        } else {
-            return false
-        }
-    }
-    
-    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         guard let state = self.state else {
             return nil
         }
@@ -119,70 +118,87 @@ OnChangeStateSelected {
         let stateCanBeClosedDispute = state.isCanBeClosedDispute(index: indexPath.row)
         
         if (stateCanBeOpenDispute) {
-            let dispute = UITableViewRowAction(style: .normal, title: R.string.localizable.invoiceScreenItemsDispute()) { (action, indexPath) in
-                
-            }
             
-            dispute.backgroundColor = Theme.shared.pinkDisputeColor
-            return [dispute]
+            return getTableAction(Theme.shared.pinkDisputeColor, R.string.localizable.invoiceScreenItemsDispute())
+            
         } else if (stateCanBeClosedDispute) {
-            let dispute = UITableViewRowAction(style: .normal, title: R.string.localizable.invoiceScreenItemsCancelDispute()) { (action, indexPath) in
-                
-            }
             
-            dispute.backgroundColor = Theme.shared.grayDisputeColor
-            return [dispute]
+            return getTableAction(Theme.shared.grayDisputeColor, R.string.localizable.invoiceScreenItemsCancelDispute())
+            
         }
         return nil
     }
     
-    override func getTitle() -> String? {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 80
+    }
+    
+    func getTitle() -> String? {
         return R.string.localizable.tabBarInvoicesItemTitle()
     }
     
-    override func getTableView() -> UITableView {
+    func getTableView() -> UITableView {
         return tabView
     }
     
-    override func registerCells() {
+    func registerCells() {
         self.tabView.register(InvoiceTableViewCell.nib, forCellReuseIdentifier: InvoiceTableViewCell.identifier)
     }
     
     @objc func clickFilter(sender: Any?) {
-        self.navigationController?.pushViewController(InvoiceSettingsViewController(), animated: true)
+        self.hidesBottomBarWhenPushed = true
+        let viewController = InvoiceSettingsViewController()
+        viewController.setNeedsStatusBarAppearanceUpdate()
+        NavPushingUtil.shared.push(navigationController: self.navigationController, controller: viewController)
+        self.hidesBottomBarWhenPushed = false
         self.hideMenu()
     }
     
     @objc func clickDispute(sender: Any?) {
-        self.navigationController?.pushViewController(DisputeViewController(), animated: true)
+        self.hidesBottomBarWhenPushed = true
+        NavPushingUtil.shared.push(navigationController: self.navigationController, controller: DisputeViewController())
         self.hideMenu()
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if(textField == self.sumTextField) {
-            return TextFieldUtil.validateMaxValue(textField: textField, maxValue: self.state!.resultAmount(), range: range, replacementString: string)
+            
+            if let text = self.sumTextField.text, let textNsString = text as? NSString {
+            
+                let newString = textNsString.replacingCharacters(in: range, with: string)
+                
+                if !(TextFieldUtil.validateMinValue(newString: newString, minValue:  0, range: range, replacementString: string, false)) {
+                    return false
+                }
+                if !(TextFieldUtil.validateMaxValue(newString: newString, maxValue: self.state!.resultAmount(), range: range, replacementString: string)){
+                    ViewUtils.showToast(message: R.string.localizable.invoiceScreenErrorChangingAmount(), view: self.view)
+                    return false
+                
+                }
+            }
+            
         }
         return true
     }
     
-    func getWidth(text: String) -> CGFloat {
-        sumTextField.text = text
-        sumTextField.sizeToFit()
-        return sumTextField.frame.size.width
-    }
-    
-    
     func onItemSelected(isSelected: Bool, index: Int) {
-        self.sumTextField.text = self.state?.getSumString(isSelected: isSelected, index: index)
+        if let model = self.state?.getItems()[index] {
+            self.state?.recalculateAmount(isSelected: isSelected, model: model)
+        }
         self.selectedItemTextField.text = self.state?.getSelectedString()
+        self.loadView(isShowLoading: false, isHiddenSelected: true)
         self.state?.getAmount()
-            .then(execute: { [weak self] (result:PaymentAmount) -> Void in
+            .then(execute: { [weak self] (result: PaymentAmount) -> Void in
                 guard let strongSelf = self else {
                     return
                 }
                 strongSelf.saveAmount(amount: result.amountToPay)
+            }).catch(execute: { [weak self] error -> Void in
+                guard let strongSelf = self else {
+                    return
+                }
+                strongSelf.handleError(error: error)
             })
-        self.sumEditingEnd(self.sumTextField)
         if (isSelected && self.downView.isHidden) {
             animate(isShow: true)
         } else if (!isSelected && !self.downView.isHidden && self.state?.getCountSelected() == 0) {
@@ -202,63 +218,79 @@ OnChangeStateSelected {
     }
     
     func paymentSuccess() {
-        self.showToast(message: R.string.localizable.commonSuccessMessage())
+        ViewUtils.showToast(message: R.string.localizable.commonSuccessMessage(), view: self.view)
         self.hideMenu()
     }
     
-    @IBAction func makePay(_ sender: Any) {
-        guard let amount = self.state?.amount else {
-            return
-        }
-        
-        guard let symbol = UserPreference.shared.getCurrentCurrency()?.symbol else {
-            return
-        }
-        let message = R.string.localizable.invoiceScreenPaymentMessage(symbol + String(amount))
-        let uiAlert = UIAlertController(title: R.string.localizable.invoiceScreenPleaseConfirmPayment(), message: message, preferredStyle: UIAlertControllerStyle.alert)
-        self.present(uiAlert, animated: true, completion: nil)
-        
-        uiAlert.addAction(UIAlertAction(title: R.string.localizable.commonNavBarCancel(), style: .default, handler: nil))
-        uiAlert.addAction(UIAlertAction(title: R.string.localizable.invoiceScreenPay(), style: .default, handler: makePayment))
-        
+    private func setEnabledPay(isEnabled: Bool) {
+        self.btnPay.isEnabled = isEnabled
+        self.btnPay.alpha = isEnabled ? 1 : 0.2
+        self.sumTextField.alpha = isEnabled ? 1 : 0.2
     }
+    
+    private func getTableAction(_ backgroundColor: UIColor, _ title: String) -> [SwipeAction] {
+        let disputeAction = SwipeAction(style: .destructive, title: title) { action, indexPath in
+            
+        }
+        disputeAction.image = UIView.from(color: backgroundColor)
+        disputeAction.backgroundColor = UIColor.white
+        disputeAction.font = Theme.shared.boldFontOfSize(14)
+        
+        return [disputeAction]
+    }
+    
+    private func sizeToFit() {
+        if (sumTextField.frame.size.width + 15 < 200)  {
+            sumTextField.sizeToFit()
+            if self.sumTextFieldWidth.constant != sumTextField.frame.size.width + 15 {
+                self.sumTextFieldWidth.constant = sumTextField.frame.size.width + 15
+            }
+        }
+    }
+    
+    private func handleError(error : Error) {
+        self.showErrorAlert(error: error)
+        self.animate(isShow: false)
+        self.tabView.reloadData()
+    }
+
     
     private func saveAmount(amount: Int?) {
         if let amountValue = amount {
-            self.state?.amount = amountValue
+            self.state?.amount = Double(amountValue)
             self.sumTextField.text = String(amountValue)
         }
-        self.selectedItemTextField.isHidden = false
-        self.sumTextField.isHidden = false
-        self.loading.isHidden = true
+        self.sumChanged(self.sumTextField)
+        self.loadView(isShowLoading: true, isHiddenSelected: false)
     }
     
-    private func initWidth() {
-        let width = getWidth(text: sumTextField.text!)
-        sumTextFieldWidth.constant = 0.0
-        if width > sumTextFieldWidth.constant {
-            sumTextFieldWidth.constant = width
-        }
-        self.view.layoutIfNeeded()
+    private func loadView(isShowLoading: Bool, isHiddenSelected: Bool) {
+        self.loading.isHidden = isShowLoading
+        self.sumTextField.isHidden = isHiddenSelected
+        self.selectedItemTextField.isHidden = isHiddenSelected
+        isHiddenSelected ? self.loading.startAnimating() : self.loading.stopAnimating()
     }
     
     private func animate(isShow: Bool) {
         UIView.animate(withDuration: 0.3) {
             self.downView.alpha = isShow ? 1 : 0
         }
+        view.endEditing(!isShow)
+        if !isShow {
+            self.state?.clearSelectedItems()
+        }
+
         self.downView.isHidden = isShow ? false : true
         self.downViewHeightConstraint.constant = isShow ? 110 : 0
-        self.loading.isHidden = false
-        self.sumTextField.isHidden = true
-        self.selectedItemTextField.isHidden = true
-        self.loading.startAnimating()
+        self.loadView(isShowLoading: false, isHiddenSelected: true)
     }
     
     override func getTitleView() -> UIView {
-        guard let state = self.state else {
+        guard let state = self.state, let index = self.state?.getIndex() else {
             return Theme.shared.getTitle(title: getTitle(), color: UIColor.white)
         }
-        let menuView = BTNavigationDropdownMenu(title: BTTitle.index(FilterPreference.shared.getIndexOfStatus()), items: state.getMenuItems())
+        self.state?.initSelected()
+        let menuView = BTNavigationDropdownMenu(index: index, items: state.getMenuItems())
         menuView.backgroundColor = Theme.shared.tabBarBackgroundColor
         menuView.cellBackgroundColor = Theme.shared.tabBarBackgroundColor
         menuView.cellTextLabelColor = UIColor.white
@@ -266,10 +298,11 @@ OnChangeStateSelected {
         menuView.menuTitleColor = UIColor.white
         menuView.cellSelectionColor = Theme.shared.tabBarBackgroundColor
         menuView.selectedCellTextLabelColor = Theme.shared.tabBarItemSelectedColor
-        menuView.didSelectItemAtIndexHandler = {[weak self] (indexPath: Int) -> () in
-            FilterPreference.shared.saveIndexOfStatus(indexPath)
-            self?.state?.selectedStatus(index: indexPath)
+        menuView.didSelectItemAtIndexHandler = {[weak self] (menu: Menu) -> () in
+            FilterPreference.shared.saveIndexOfStatus(menu.type)
+            self?.state?.selectedStatus(type: menu.type)
             self?.hideMenu()
+            menuView.title = menu.title
             self?.loadData()
         }
         return menuView
@@ -294,11 +327,13 @@ OnChangeStateSelected {
     private func hideMenu() {
         self.view.endEditing(true)
         self.tabView.reloadData()
-        self.state?.clearSelectedItems()
         self.animate(isShow: false)
         if (self.navigationItem.titleView is BTNavigationDropdownMenu) {
             let menu = self.navigationItem.titleView as! BTNavigationDropdownMenu
             menu.hideMenu()
+            if let items = self.state?.getMenuItems() {
+                menu.updateItems(items)
+            }
         }
     }
     
