@@ -9,4 +9,8 @@ protocol PaymentService {
 
     func getWallets(convertAssetIdParams: String)-> Promise<String>
     func getHistory() -> Promise<String>
+
+    func makeDisputInvoice(model: DisputInvoiceRequest) -> Promise<Void>
+
+    func cancelDisputInvoice(model: CancelDisputInvoiceRequest) -> Promise<Void>
 }

@@ -11,5 +11,9 @@ class PaymentConfig {
     public let wallets = "/merchantWallets"
     
     public let historyIndex = "/history/Index"
+
+    public let makeDisputInvoice = "/invoices/dispute/mark"
+
+    public let cancelDisputInvoice = "/invoices/dispute/cancel"
     
 }

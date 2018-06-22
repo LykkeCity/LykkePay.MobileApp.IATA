@@ -118,13 +118,30 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
         let stateCanBeClosedDispute = state.isCanBeClosedDispute(index: indexPath.row)
         
         if (stateCanBeOpenDispute) {
-            
-            return getTableAction(Theme.shared.pinkDisputeColor, R.string.localizable.invoiceScreenItemsDispute())
+            let disputeAction = SwipeAction(style: .destructive, title: R.string.localizable.invoiceScreenItemsDispute()) { action, indexPath in
+                let disputInvoiceVC = DisputInvoiceViewController()
+                disputInvoiceVC.invoiceId = state.getItems()[indexPath.row].id
+                NavPushingUtil.shared.push(navigationController: self.navigationController, controller: disputInvoiceVC)
+            }
+            return getTableAction(Theme.shared.pinkDisputeColor,  swipeAction: disputeAction)
             
         } else if (stateCanBeClosedDispute) {
-            
-            return getTableAction(Theme.shared.grayDisputeColor, R.string.localizable.invoiceScreenItemsCancelDispute())
-            
+            let disputeAction = SwipeAction(style: .destructive, title: R.string.localizable.invoiceScreenItemsCancelDispute()) { action, indexPath in
+                let model = CancelDisputInvoiceRequest()
+                model?.invoiceId = state.getItems()[indexPath.row].id
+                if let model = model {
+                    self.state?.cancelDisputInvoice(model: model)
+                        .withSpinner(in: self.view)
+                        .then(execute: { [weak self] (result: Void) -> Void in
+                            guard let strongSelf = self else {
+                                return
+                            }
+                            self?.loadData()
+                        })
+                }
+            }
+            return getTableAction(Theme.shared.grayDisputeColor, swipeAction: disputeAction)
+
         }
         return nil
     }
@@ -228,15 +245,12 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
         self.sumTextField.alpha = isEnabled ? 1 : 0.2
     }
     
-    private func getTableAction(_ backgroundColor: UIColor, _ title: String) -> [SwipeAction] {
-        let disputeAction = SwipeAction(style: .destructive, title: title) { action, indexPath in
-            
-        }
-        disputeAction.image = UIView.from(color: backgroundColor)
-        disputeAction.backgroundColor = UIColor.white
-        disputeAction.font = Theme.shared.boldFontOfSize(14)
+    private func getTableAction(_ backgroundColor: UIColor, swipeAction: SwipeAction) -> [SwipeAction] {
+        swipeAction.image = UIView.from(color: backgroundColor)
+        swipeAction.backgroundColor = UIColor.white
+        swipeAction.font = Theme.shared.boldFontOfSize(14)
         
-        return [disputeAction]
+        return [swipeAction]
     }
     
     private func sizeToFit() {
