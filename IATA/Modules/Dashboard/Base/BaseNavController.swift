@@ -12,10 +12,16 @@ class BaseNavController: UIViewController, UITextFieldDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(appMovedToBackground), name: Notification.Name.UIApplicationWillResignActive, object: nil)
         setUp()
         initNavBar()
+        self.setNeedsStatusBarAppearanceUpdate()
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
     
     override func viewWillAppear(_ animated: Bool) {
         initNavBar()
+        UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent
     }
     
     func showErrorAlert(error : Error) {
@@ -32,7 +38,7 @@ class BaseNavController: UIViewController, UITextFieldDelegate {
     }
     
     func initNavBar() {
-        UINavigationBar.appearance().barStyle = .blackOpaque
+        self.setNeedsStatusBarAppearanceUpdate()
         self.navigationController?.navigationBar.barStyle = .blackOpaque
         self.navigationController?.navigationBar.barTintColor = Theme.shared.tabBarBackgroundColor
         self.navigationController?.navigationBar.tintColor = .white
@@ -40,6 +46,9 @@ class BaseNavController: UIViewController, UITextFieldDelegate {
         self.navigationItem.titleView = getTitleView()
         self.navigationItem.leftBarButtonItem  = getLeftButton()
         self.navigationItem.rightBarButtonItem  = getRightButton()
+        UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent
+        self.navigationController?.navigationBar.layoutIfNeeded()
+        self.setNeedsStatusBarAppearanceUpdate()
     }
     
     func setUp() {

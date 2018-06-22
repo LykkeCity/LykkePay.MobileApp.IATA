@@ -132,13 +132,10 @@ class DefaultInvoiceState: DefaultBaseState<InvoiceModel> {
     }
     
     func isCanBeClosedDispute(index: Int) -> Bool {
-        guard let status = self.items[index].status?.rawValue else {
-            return false
-        }
         guard let isDispute = self.items[index].dispute else {
             return false
         }
-        return (status.elementsEqual(InvoiceStatuses.Unpaid.rawValue) && isDispute)
+        return isDispute
     }
     
     private func addNewSelectedModel(model: InvoiceModel) {

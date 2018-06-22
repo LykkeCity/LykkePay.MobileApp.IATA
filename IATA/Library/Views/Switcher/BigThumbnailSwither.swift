@@ -5,26 +5,14 @@ class BigThumbnailSwither : UISlider {
     weak var delegate: OnSwitchStateChanged?
     
     override func trackRect(forBounds bounds: CGRect) -> CGRect {
-        let customBounds = CGRect(origin: bounds.origin, size: CGSize(width: bounds.size.width, height: 10.0))
+        let customBounds = CGRect(origin: bounds.origin, size: CGSize(width: bounds.size.width, height: 5.0))
         super.trackRect(forBounds: customBounds)
         return customBounds
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        if let imageNormal = thumbImage(for: .normal) {
-            self.setThumbImage(self.scaleToSize(newSize:
-                CGSize(width: CGFloat(100), height: CGFloat(100)),
-                image: imageNormal), for: .normal)
-        }
-        
-        if let imageHighlighter = thumbImage(for: .highlighted) {
-            self.setThumbImage(self.scaleToSize(newSize:
-                CGSize(width: CGFloat(100), height: CGFloat(100)),
-                image: imageHighlighter), for: .highlighted)
-        }
-        
-        self.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTap(sender:))))
+         self.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTap(sender:))))
         self.addTarget(self, action: #selector(sliderValueChanged(slider:)),
                        for: UIControlEvents.valueChanged)
 
@@ -32,9 +20,16 @@ class BigThumbnailSwither : UISlider {
     
     fileprivate func initThumbColor() {
         if (self.value == 0) {
-            self.thumbTintColor = nil
+            if let imageUnActive = UIImage(named: "ic_disactive_thumb") {
+                self.setThumbImage(self.scaleToSize(newSize:
+                    CGSize(width: CGFloat(30), height: CGFloat(30)), image: imageUnActive), for: .normal)
+            }
         } else {
-            self.thumbTintColor = Theme.shared.greenColor
+            if let imageActive = UIImage(named: "ic_active_thumb") {
+                self.setThumbImage(self.scaleToSize(newSize:
+                    CGSize(width: CGFloat(30), height: CGFloat(30)),
+                                                    image: imageActive), for: .normal)
+            }
         }
     }
     
@@ -45,6 +40,7 @@ class BigThumbnailSwither : UISlider {
     }
     
     @objc func sliderValueChanged(slider: UISlider!) {
+        self.value = round(self.value)
         initThumbColor()
     }
     

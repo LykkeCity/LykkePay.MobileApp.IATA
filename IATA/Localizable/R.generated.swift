@@ -117,7 +117,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 28 images.
+  /// This `R.image` struct is generated, and contains static references to 30 images.
   struct image {
     /// Image `Logo`.
     static let logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "Logo")
@@ -127,6 +127,8 @@ struct R: Rswift.Validatable {
     static let arrow_down_icon = Rswift.ImageResource(bundle: R.hostingBundle, name: "arrow_down_icon")
     /// Image `checkmark_icon`.
     static let checkmark_icon = Rswift.ImageResource(bundle: R.hostingBundle, name: "checkmark_icon")
+    /// Image `ic_active_thumb`.
+    static let ic_active_thumb = Rswift.ImageResource(bundle: R.hostingBundle, name: "ic_active_thumb")
     /// Image `ic_bodyInvertIcn`.
     static let ic_bodyInvertIcn = Rswift.ImageResource(bundle: R.hostingBundle, name: "ic_bodyInvertIcn")
     /// Image `ic_bodyLogoutIcn`.
@@ -137,6 +139,8 @@ struct R: Rswift.Validatable {
     static let ic_body_dispute = Rswift.ImageResource(bundle: R.hostingBundle, name: "ic_body_dispute")
     /// Image `ic_delete`.
     static let ic_delete = Rswift.ImageResource(bundle: R.hostingBundle, name: "ic_delete")
+    /// Image `ic_disactive_thumb`.
+    static let ic_disactive_thumb = Rswift.ImageResource(bundle: R.hostingBundle, name: "ic_disactive_thumb")
     /// Image `ic_dispute`.
     static let ic_dispute = Rswift.ImageResource(bundle: R.hostingBundle, name: "ic_dispute")
     /// Image `ic_eurFlagMediumIcn`.
@@ -196,6 +200,11 @@ struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.checkmark_icon, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "ic_active_thumb", bundle: ..., traitCollection: ...)`
+    static func ic_active_thumb(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.ic_active_thumb, compatibleWith: traitCollection)
+    }
+    
     /// `UIImage(named: "ic_bodyInvertIcn", bundle: ..., traitCollection: ...)`
     static func ic_bodyInvertIcn(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.ic_bodyInvertIcn, compatibleWith: traitCollection)
@@ -219,6 +228,11 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "ic_delete", bundle: ..., traitCollection: ...)`
     static func ic_delete(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.ic_delete, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "ic_disactive_thumb", bundle: ..., traitCollection: ...)`
+    static func ic_disactive_thumb(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.ic_disactive_thumb, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "ic_dispute", bundle: ..., traitCollection: ...)`
@@ -319,7 +333,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.nib` struct is generated, and contains static references to 25 nibs.
+  /// This `R.nib` struct is generated, and contains static references to 24 nibs.
   struct nib {
     /// Nib `BaseCurrencyCollectionViewCell`.
     static let baseCurrencyCollectionViewCell = _R.nib._BaseCurrencyCollectionViewCell()
@@ -329,8 +343,6 @@ struct R: Rswift.Validatable {
     static let disputeTableViewCell = _R.nib._DisputeTableViewCell()
     /// Nib `DisputeViewController`.
     static let disputeViewController = _R.nib._DisputeViewController()
-    /// Nib `DisputeView`.
-    static let disputeView = _R.nib._DisputeView()
     /// Nib `ExhangeViewController`.
     static let exhangeViewController = _R.nib._ExhangeViewController()
     /// Nib `HistoryTableViewCell`.
@@ -385,11 +397,6 @@ struct R: Rswift.Validatable {
     /// `UINib(name: "DisputeTableViewCell", in: bundle)`
     static func disputeTableViewCell(_: Void = ()) -> UIKit.UINib {
       return UIKit.UINib(resource: R.nib.disputeTableViewCell)
-    }
-    
-    /// `UINib(name: "DisputeView", in: bundle)`
-    static func disputeView(_: Void = ()) -> UIKit.UINib {
-      return UIKit.UINib(resource: R.nib.disputeView)
     }
     
     /// `UINib(name: "DisputeViewController", in: bundle)`
@@ -1297,17 +1304,17 @@ struct _R: Rswift.Validatable {
   
   struct nib: Rswift.Validatable {
     static func validate() throws {
-      try _TabBarView.validate()
-      try _InvoiceSettingsTableViewCell.validate()
-      try _InvoiceView.validate()
-      try _PinViewController.validate()
       try _SettingsViewController.validate()
       try _WalletsViewController.validate()
+      try _InvoiceSettingsTableViewCell.validate()
       try _TransactionTableViewHeader.validate()
+      try _InvoiceView.validate()
       try _BaseCurrencyCollectionViewCell.validate()
+      try _PinViewController.validate()
       try _SignInViewController.validate()
       try _ExhangeViewController.validate()
       try _PasswordContainerView.validate()
+      try _TabBarView.validate()
     }
     
     struct _BaseCurrencyCollectionViewCell: Rswift.NibResourceType, Rswift.ReuseIdentifierType, Rswift.Validatable {
@@ -1345,17 +1352,6 @@ struct _R: Rswift.Validatable {
       
       func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]? = nil) -> DisputeTableViewCell? {
         return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? DisputeTableViewCell
-      }
-      
-      fileprivate init() {}
-    }
-    
-    struct _DisputeView: Rswift.NibResourceType {
-      let bundle = R.hostingBundle
-      let name = "DisputeView"
-      
-      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]? = nil) -> UIKit.UIView? {
-        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
       }
       
       fileprivate init() {}

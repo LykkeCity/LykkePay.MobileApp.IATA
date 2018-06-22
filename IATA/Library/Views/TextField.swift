@@ -41,18 +41,13 @@ class FloatTextField: TextField {
         prepareTextHandlers()
         detailColor = Theme.shared.redErrorStatusColor
     }
-}
 
-
-extension TextField {
     func prepareTextHandlers() {
-        addTarget(self, action: #selector(handleEditingDidBegin), for: .editingDidBegin)
-        addTarget(self, action: #selector(handleEditingChanged), for: .editingChanged)
-        addTarget(self, action: #selector(handleEditingDidEnd), for: .editingDidEnd)
+        addTarget(self, action: #selector(handleEditingStartDidBegin), for: .editingDidBegin)
+        addTarget(self, action: #selector(handleEditingStartChanged), for: .editingChanged)
+        addTarget(self, action: #selector(handleEditingStartDidEnd), for: .editingDidEnd)
     }
-}
 
-extension TextField {
     /// Updates the placeholderLabel text color.
     func updatePlaceholderLabelColor() {
         tintColor = placeholderActiveColor
@@ -78,31 +73,25 @@ extension TextField {
         
         placeholderLabel.text = placeholderLabel.text?.capitalized
     }
-}
 
-
-extension TextField {
     /// Handles the text editing did begin state.
     @objc
-    func handleEditingDidBegin() {
+    func handleEditingStartDidBegin() {
         placeholderEditingDidBeginAnimation()
     }
     
     // Live updates the textField text.
     @objc
-    func handleEditingChanged(textField: UITextField) {
+    func handleEditingStartChanged(textField: UITextField) {
         (delegate as? TextFieldDelegate)?.textField?(textField: self, didChange: textField.text)
     }
     
     /// Handles the text editing did end state.
     @objc
-    func handleEditingDidEnd() {
+    func handleEditingStartDidEnd() {
         placeholderEditingDidEndAnimation()
     }
     
-}
-
-extension TextField {
     /// The animation for the placeholder when editing begins.
     fileprivate func placeholderEditingDidBeginAnimation() {
         guard .default == placeholderAnimation else {
@@ -173,7 +162,8 @@ extension TextField {
         
         if (isEmpty) {
             placeholderLabel.font = Theme.shared.regularFontOfSize(16)
-            placeholderLabel.textColor = Theme.shared.placeholderTextFieldColor
+            dividerColor = isErrorRevealed ? placeholderActiveColor : Theme.shared.placeholderTextFieldColor
+            placeholderLabel.textColor = isErrorRevealed ? placeholderActiveColor : Theme.shared.placeholderTextFieldColor
         } else {
             placeholderLabel.font = Theme.shared.mediumFontOfSize(16)
             placeholderLabel.textColor = Theme.shared.textFieldColor

@@ -147,8 +147,6 @@
 		0ABED71420DBA94300AABCAD /* CurrencyUiTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABED71320DBA94300AABCAD /* CurrencyUiTextField.swift */; };
 		0ABED71620DBC87900AABCAD /* ViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABED71520DBC87900AABCAD /* ViewUtils.swift */; };
 		0ABED71820DBD9BF00AABCAD /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABED71720DBD9BF00AABCAD /* R.generated.swift */; };
-		0ABED71A20DBDA4D00AABCAD /* DisputeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABED71920DBDA4D00AABCAD /* DisputeView.swift */; };
-		0ABED71C20DBDA6300AABCAD /* DisputeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0ABED71B20DBDA6300AABCAD /* DisputeView.xib */; };
 		0ABED71E20DBDEF800AABCAD /* UIImageExtensition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABED71D20DBDEF800AABCAD /* UIImageExtensition.swift */; };
 		0ABED73D20DBFBC600AABCAD /* SwipeActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABED72520DBFBC400AABCAD /* SwipeActionButton.swift */; };
 		0ABED73E20DBFBC600AABCAD /* SwipeAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABED72620DBFBC400AABCAD /* SwipeAnimator.swift */; };
@@ -371,8 +369,6 @@
 		0ABED71320DBA94300AABCAD /* CurrencyUiTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyUiTextField.swift; sourceTree = "<group>"; };
 		0ABED71520DBC87900AABCAD /* ViewUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewUtils.swift; sourceTree = "<group>"; };
 		0ABED71720DBD9BF00AABCAD /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
-		0ABED71920DBDA4D00AABCAD /* DisputeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisputeView.swift; sourceTree = "<group>"; };
-		0ABED71B20DBDA6300AABCAD /* DisputeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DisputeView.xib; sourceTree = "<group>"; };
 		0ABED71D20DBDEF800AABCAD /* UIImageExtensition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtensition.swift; sourceTree = "<group>"; };
 		0ABED72520DBFBC400AABCAD /* SwipeActionButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwipeActionButton.swift; path = "../../../../../../../Downloads/SwipeCellKit-develop/Source/SwipeActionButton.swift"; sourceTree = "<group>"; };
 		0ABED72620DBFBC400AABCAD /* SwipeAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwipeAnimator.swift; path = "../../../../../../../Downloads/SwipeCellKit-develop/Source/SwipeAnimator.swift"; sourceTree = "<group>"; };
@@ -539,8 +535,6 @@
 			children = (
 				0A0B11A020D28BAF00021E2D /* InvoiceView.swift */,
 				0A0B11A220D28BBF00021E2D /* InvoiceView.xib */,
-				0ABED71920DBDA4D00AABCAD /* DisputeView.swift */,
-				0ABED71B20DBDA6300AABCAD /* DisputeView.xib */,
 			);
 			path = Invoice;
 			sourceTree = "<group>";
@@ -1463,7 +1457,6 @@
 				D7894CFD20CFFC290069F68E /* GothamProMed.otf in Resources */,
 				0A0B11A320D28BBF00021E2D /* InvoiceView.xib in Resources */,
 				0A37EFFA20C8044200201907 /* ChangePasswordViewController.xib in Resources */,
-				0ABED71C20DBDA6300AABCAD /* DisputeView.xib in Resources */,
 				D7D177A720CE3AFA00985F05 /* BaseCurrencyCollectionViewCell.xib in Resources */,
 				D7894CFE20CFFC290069F68E /* GothamProReg.otf in Resources */,
 				0A4CD13E20CD840700EF4A17 /* InvoiceHeaderView.xib in Resources */,
@@ -1793,7 +1786,6 @@
 				0A37EFEC20C7EE0200201907 /* PinValidationResponse.swift in Sources */,
 				0A0B119320D279C000021E2D /* LocalStorage.swift in Sources */,
 				0A0B11BF20D2C7EC00021E2D /* BaseInvoiceViewModelItem.swift in Sources */,
-				0ABED71A20DBDA4D00AABCAD /* DisputeView.swift in Sources */,
 				0ABED75220DBFBC600AABCAD /* SwipeOptions.swift in Sources */,
 				0A37EFF120C7FBB300201907 /* BaseViewState.swift in Sources */,
 				D70DE14E20CA9E6B00644281 /* SettingsViewController.swift in Sources */,

@@ -16,6 +16,18 @@ class ChangePasswordViewController: BaseAuthViewController {
         self.oldPasswordField?.delegate = self
         self.newPasswordField?.delegate = self
         self.newPasswordAgainField?.delegate = self
+        self.setNeedsStatusBarAppearanceUpdate()
+        self.initNavBar()
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .default
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.initNavBar()
+        UIApplication.shared.statusBarStyle = UIStatusBarStyle.default
     }
     
     @IBAction func textFieldChanged(_ sender: Any) {
@@ -43,12 +55,17 @@ class ChangePasswordViewController: BaseAuthViewController {
     }
     
     private func initNavBar() {
+        self.setNeedsStatusBarAppearanceUpdate()
+        self.navigationController?.navigationBar.barStyle = .black
+        
         self.navigationController?.isNavigationBarHidden = false
         self.navigationController?.navigationBar.barTintColor = Theme.shared.greyNavBar
         self.navigationController?.navigationBar.tintColor = Theme.shared.navBarTitle
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: Theme.shared.navBarTitle]
         self.navigationController?.navigationBar.isTranslucent = false
-        
+        UIApplication.shared.statusBarStyle = UIStatusBarStyle.default
+        self.navigationController?.navigationBar.layoutIfNeeded()
+        self.setNeedsStatusBarAppearanceUpdate()
         initBackButton()
         initTitle()
         

@@ -35,6 +35,12 @@ class InvoiceSettingsViewController: UIViewController {
             selector: #selector(self.enableDoneButton),
             name: NSNotification.Name(NotificateDoneEnum.enable.rawValue),
             object: nil)
+        self.setNeedsStatusBarAppearanceUpdate()
+        self.initNavBar()
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .default
     }
     
     @IBAction func clickCancel(_ sender: Any) {
@@ -85,17 +91,20 @@ class InvoiceSettingsViewController: UIViewController {
     }
     
     private func initNavBar() {
-        UINavigationBar.appearance().barStyle = .black
+        self.setNeedsStatusBarAppearanceUpdate()
         self.navigationController?.isNavigationBarHidden = false
         self.navigationController?.navigationBar.barTintColor = Theme.shared.greyNavBar
         self.navigationController?.navigationBar.tintColor = Theme.shared.navBarTitle
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: Theme.shared.navBarTitle]
-        self.navigationController?.navigationBar.isTranslucent = false
+        self.navigationController?.navigationBar.isTranslucent = true
         self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
         
         self.initBackButton()
         self.initRightButton(isEnabled: true)
         self.initTitle()
+        UIApplication.shared.statusBarStyle = UIStatusBarStyle.default
+        self.navigationController?.navigationBar.layoutIfNeeded()
+        self.setNeedsStatusBarAppearanceUpdate()
     }
     
     private func initBackButton() {

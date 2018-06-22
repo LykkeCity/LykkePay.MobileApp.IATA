@@ -148,6 +148,7 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
     @objc func clickFilter(sender: Any?) {
         self.hidesBottomBarWhenPushed = true
         let viewController = InvoiceSettingsViewController()
+        viewController.setNeedsStatusBarAppearanceUpdate()
         NavPushingUtil.shared.push(navigationController: self.navigationController, controller: viewController)
         self.hidesBottomBarWhenPushed = false
         self.hideMenu()
@@ -185,7 +186,7 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
             self.state?.recalculateAmount(isSelected: isSelected, model: model)
         }
         self.selectedItemTextField.text = self.state?.getSelectedString()
-        self.loadView(isShowLoading: true, isHiddenSelected: false)
+        self.loadView(isShowLoading: false, isHiddenSelected: true)
         self.state?.getAmount()
             .then(execute: { [weak self] (result: PaymentAmount) -> Void in
                 guard let strongSelf = self else {
@@ -259,8 +260,8 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
             self.state?.amount = Double(amountValue)
             self.sumTextField.text = String(amountValue)
         }
+        self.sumChanged(self.sumTextField)
         self.loadView(isShowLoading: true, isHiddenSelected: false)
-        self.sizeToFit()
     }
     
     private func loadView(isShowLoading: Bool, isHiddenSelected: Bool) {
@@ -278,7 +279,7 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
         if !isShow {
             self.state?.clearSelectedItems()
         }
-        self.setEnabledPay(isEnabled: isShow)
+
         self.downView.isHidden = isShow ? false : true
         self.downViewHeightConstraint.constant = isShow ? 110 : 0
         self.loadView(isShowLoading: false, isHiddenSelected: true)
