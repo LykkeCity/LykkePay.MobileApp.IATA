@@ -13,6 +13,17 @@ class TransactionViewController: BaseViewController<PropertyKeyTransactionModel,
         super.viewDidLoad()
         self.loadData()
     }
+
+    override func getLeftButton() -> UIBarButtonItem? {
+
+        let buttonImage = R.image.backIcon()?.stretchableImage(withLeftCapWidth: 0, topCapHeight: 10)
+
+        return UIBarButtonItem(image: buttonImage, style: .plain, target: self, action: #selector(backButtonAction))
+    }
+
+    @objc func backButtonAction() {
+        self.navigationController?.popViewController(animated: true)
+    }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tabView.dequeueReusableCell(withIdentifier: TransactionTableViewCell.identifier, for: indexPath) as! TransactionTableViewCell
@@ -21,6 +32,10 @@ class TransactionViewController: BaseViewController<PropertyKeyTransactionModel,
             cell.initCell(model: model)
         }
         return cell
+    }
+
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return false
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -32,7 +47,7 @@ class TransactionViewController: BaseViewController<PropertyKeyTransactionModel,
     }
     
     override func getTitle() -> String? {
-        return R.string.localizable.historyScreenScreen()
+        return R.string.localizable.historyTransactionScreenTitle()
     }
     
     override func getTableView() -> UITableView {

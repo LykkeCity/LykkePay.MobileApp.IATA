@@ -1,4 +1,5 @@
 import UIKit
+import Nuke
 
 class TransactionTableViewHeader: UIView {
 
@@ -35,5 +36,15 @@ class TransactionTableViewHeader: UIView {
     private func updateUI(with model: HistoryTransactionModel) {
         transactionTitle.text = model.merchantName
         transactionSubtitle.text = model.title
+        updateLogo(with: model)
+    }
+
+    private func updateLogo(with model: HistoryTransactionModel) {
+        if let logoUrl = model.merchantLogoUrl, let url = URL(string: logoUrl){
+            var request = ImageRequest(url: url)
+            request.memoryCacheOptions.isWriteAllowed = true
+            request.priority = .high
+            Nuke.loadImage(with: request, into: self.logo)
+        }
     }
 }
