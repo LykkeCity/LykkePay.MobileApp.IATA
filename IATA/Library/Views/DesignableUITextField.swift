@@ -12,7 +12,17 @@ class DesignableUITextField: FloatTextField {
             }
             return super.text
         }
-        set { super.text = newValue }
+        set {
+            if var value = newValue, let symbol = UserPreference.shared.getCurrentCurrency()?.symbol {
+                let newValue = value.replace(target: symbol, withString: " ")
+                value =  newValue.removingWhitespaces()
+                if let valueDouble = Double(value) {
+                    super.text = valueDouble.formattedWithSeparator + " " + symbol
+                }
+            } else {
+                super.text = newValue
+            }
+        }
     }
     
     override init(frame: CGRect) {
@@ -50,7 +60,7 @@ class DesignableUITextField: FloatTextField {
         if let text = self.text?.removingWhitespaces(), let value = Double(text) {
             self.text = value.formattedWithSeparator
             currentPosition =  self.offset(from: self.beginningOfDocument, to: (self.selectedTextRange?.start)!)
-            self.text = value.formattedWithSeparator + " $"
+
         }
         
         DispatchQueue.main.async {

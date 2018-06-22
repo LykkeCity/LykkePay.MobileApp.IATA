@@ -29,6 +29,8 @@ class DefaultInvoiceState: DefaultBaseState<InvoiceModel> {
     func initSelected() {
         if let menuItem = FilterPreference.shared.getIndexOfStatus(), let menu = MenuEnum(rawValue: menuItem) {
             selectedStatus(type: menu)
+        }  else {
+            selectedStatus(type: MenuEnum.All)
         }
     }
     

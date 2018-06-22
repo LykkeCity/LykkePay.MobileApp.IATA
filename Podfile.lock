@@ -32,7 +32,6 @@ PODS:
   - R.swift (4.0.0):
     - R.swift.Library (~> 4.0.0)
   - R.swift.Library (4.0.0)
-  - WARangeSlider (1.1.1)
 
 DEPENDENCIES:
   - Alamofire
@@ -47,7 +46,6 @@ DEPENDENCIES:
   - ObjectMapper
   - PromiseKit (~> 4.5.0)
   - R.swift
-  - WARangeSlider
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -65,7 +63,6 @@ SPEC REPOS:
     - PromiseKit
     - R.swift
     - R.swift.Library
-    - WARangeSlider
 
 SPEC CHECKSUMS:
   Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
@@ -82,8 +79,7 @@ SPEC CHECKSUMS:
   PromiseKit: 743e497a5f505a470d3bbbf4ce0663c1268af0a4
   R.swift: d6a5ec2f55a8441dc0ed9f1f8b37d7d11ae85c66
   R.swift.Library: c3af34921024333546e23b70e70d0b4e0cffca75
-  WARangeSlider: 54b3e0853b8d16c444fd539005901aecee86837d
 
-PODFILE CHECKSUM: 9283f3a146cc8d221359a70c35a5d943947630c1
+PODFILE CHECKSUM: 05a63e1330248fc47043c36b93ed9ef62f485391
 
 COCOAPODS: 1.5.3

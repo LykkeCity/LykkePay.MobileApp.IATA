@@ -12,7 +12,6 @@ target 'IATA' do
     pod 'CryptoSwift'
     pod 'Fabric'
     pod 'Crashlytics'
-    pod 'WARangeSlider'
     pod 'Material'
     pod 'R.swift'
 

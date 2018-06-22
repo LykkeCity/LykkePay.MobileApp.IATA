@@ -11,7 +11,7 @@ class TextFieldUtil: NSObject {
         let numberValue = Double(valueString.removingWhitespaces())
         
         if(numberValue == nil) {
-            return false
+            return true
         }
         
         return numberValue! <= maxValue
@@ -19,10 +19,8 @@ class TextFieldUtil: NSObject {
     
     class func validateMaxValue(newString: String?, maxValue: Double, range: NSRange, replacementString string: String) -> Bool {
         if let symbol = UserPreference.shared.getCurrentCurrency()?.symbol {
-            var replaced = newString?.replace(target: symbol, withString: " ")
-            if string.elementsEqual(".") {
-                replaced = replaced?.replace(target: ".", withString: " ")
-            }
+            let replaced = newString?.replace(target: symbol, withString: " ")
+            
             if let valueString = replaced {
                 return validateMaxValueText(valueString, maxValue)
             } else {
@@ -40,7 +38,7 @@ class TextFieldUtil: NSObject {
         let numberValue = Double(valueString.removingWhitespaces())
         
         if(numberValue == nil) {
-            return false
+            return true
         }
         
         return isEqual ? minValue <= numberValue! : minValue < numberValue!

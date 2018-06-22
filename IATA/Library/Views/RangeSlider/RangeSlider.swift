@@ -57,30 +57,30 @@ class RangeSliderThumbLayer: CALayer {
     }
     
     override func draw(in ctx: CGContext) {
-        guard let slider = rangeSlider else {
-            return
+        if !highlighted {
+            let img = UIImage(named: "ic_disactive_thumb")
+            if var image = img, let ctg = img?.cgImage {
+                image = self.scaleToSize(newSize:
+                    CGSize(width: CGFloat(20), height: CGFloat(20)), image: image)
+                ctx.draw(ctg, in: CGRect(x: 0.0,y: 0.0,width: image.size.width,height: image.size.height))
+            }
+        } else {
+            let img = UIImage(named: "ic_active_thumb")
+            if var image = img, let ctg = img?.cgImage {
+                image = self.scaleToSize(newSize:
+                    CGSize(width: CGFloat(20), height: CGFloat(20)), image: image)
+                ctx.draw(ctg, in: CGRect(x: 0.0,y: 0.0,width: image.size.width,height: image.size.height))
+            }
         }
-        
-        let thumbFrame = bounds.insetBy(dx: 2.0, dy: 2.0)
-        let cornerRadius = thumbFrame.height * slider.curvaceousness / 2.0
-        let thumbPath = UIBezierPath(roundedRect: thumbFrame, cornerRadius: cornerRadius)
-        
-        // Fill
-        ctx.setFillColor(slider.thumbTintColor.cgColor)
-        ctx.addPath(thumbPath.cgPath)
-        ctx.fillPath()
-        
-        // Outline
-        ctx.setStrokeColor(strokeColor.cgColor)
-        ctx.setLineWidth(lineWidth)
-        ctx.addPath(thumbPath.cgPath)
-        ctx.strokePath()
-        
-        if highlighted {
-            ctx.setFillColor(UIColor(white: 0.0, alpha: 0.1).cgColor)
-            ctx.addPath(thumbPath.cgPath)
-            ctx.fillPath()
-        }
+    }
+    
+    
+    func scaleToSize(newSize: CGSize, image: UIImage) -> UIImage {
+        UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0)
+        image.draw(in: CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height))
+        let newImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext();
+        return newImage
     }
 }
 
@@ -182,7 +182,7 @@ public class RangeSlider: UIControl {
     fileprivate let upperThumbLayer = RangeSliderThumbLayer()
     
     fileprivate var thumbWidth: CGFloat {
-        return CGFloat(bounds.height)
+        return 20
     }
     
     override public var frame: CGRect {
@@ -226,15 +226,15 @@ public class RangeSlider: UIControl {
         CATransaction.begin()
         CATransaction.setDisableActions(true)
         
-        trackLayer.frame = bounds.insetBy(dx: 0.0, dy: bounds.height/3)
+        trackLayer.frame = bounds.insetBy(dx: 0.0, dy: 5.0)
         trackLayer.setNeedsDisplay()
         
         let lowerThumbCenter = CGFloat(positionForValue(lowerValue))
-        lowerThumbLayer.frame = CGRect(x: lowerThumbCenter - thumbWidth/2.0, y: 0.0, width: thumbWidth, height: thumbWidth)
+        lowerThumbLayer.frame = CGRect(x: lowerThumbCenter - thumbWidth/2.0, y: -3.0, width: thumbWidth, height: thumbWidth)
         lowerThumbLayer.setNeedsDisplay()
         
         let upperThumbCenter = CGFloat(positionForValue(upperValue))
-        upperThumbLayer.frame = CGRect(x: upperThumbCenter - thumbWidth/2.0, y: 0.0, width: thumbWidth, height: thumbWidth)
+        upperThumbLayer.frame = CGRect(x: upperThumbCenter - thumbWidth/2.0, y: -3.0, width: thumbWidth, height: thumbWidth)
         upperThumbLayer.setNeedsDisplay()
         
         CATransaction.commit()

@@ -134,7 +134,8 @@ private extension PinViewController {
     
     func validationSuccess() {
         self.navigationController?.isNavigationBarHidden = true
-        NavPushingUtil.shared.pushDown(navigationController: self.navigationController, controller: TabBarController())
+        present(TabBarController(), animated: true, completion: nil)
+        //NavPushingUtil.shared.pushDown(navigationController: self.navigationController, controller: TabBarController())
         self.navigationController?.navigationBar.barTintColor = Theme.init().navigationBarColor
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
     }

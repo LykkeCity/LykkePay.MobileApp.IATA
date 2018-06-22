@@ -29,8 +29,8 @@ class FloatTextField: TextField {
                 placeholderActiveColor = Theme.shared.greenColor
                 dividerColor = Theme.shared.greenColor
                 dividerActiveColor = Theme.shared.greenColor
-                dividerNormalColor = Theme.shared.greyStatusColor
-                placeholderNormalColor = Theme.shared.greyStatusColor
+                dividerNormalColor = Theme.shared.placeholderTextFieldColor
+                placeholderNormalColor = Theme.shared.placeholderTextFieldColor
             }
             layoutSubviews()
         }

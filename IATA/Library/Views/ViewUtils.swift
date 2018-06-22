@@ -4,21 +4,33 @@ import UIKit
 
 class ViewUtils {
     
-    static func showToast(message : String, view: UIView) {
-        let toastLabel = UILabel(frame: CGRect(x: view.frame.size.width/2 - 150, y: 100, width: 300, height: 35))
-        toastLabel.backgroundColor = UIColor.black.withAlphaComponent(0.6)
-        toastLabel.textColor = UIColor.white
-        toastLabel.textAlignment = .center;
-        toastLabel.font = R.font.gothamProLight(size: 12)
-        toastLabel.text = message
-        toastLabel.alpha = 1.0
-        toastLabel.layer.cornerRadius = 10;
-        toastLabel.clipsToBounds  =  true
-        view.addSubview(toastLabel)
-        UIView.animate(withDuration: 10.0, delay: 0.1, options: .curveEaseOut, animations: {
-            toastLabel.alpha = 0.0
-        }, completion: {(isCompleted) in
-            toastLabel.removeFromSuperview()
-        })
+    var toastLabel: UILabel?
+    
+    required init() {}
+    
+    func showToast(message : String, view: UIView) {
+        if let currentLabel = toastLabel, currentLabel.isDescendant(of: view){
+            currentLabel.removeFromSuperview()
+        }
+        
+        toastLabel = UILabel(frame: CGRect(x: view.frame.size.width/2 - 150, y: 100, width: 300, height: 35))
+        if let currentLabel = toastLabel {
+            currentLabel.backgroundColor = UIColor.black.withAlphaComponent(0.6)
+            currentLabel.textColor = UIColor.white
+            currentLabel.textAlignment = .center;
+            currentLabel.font = R.font.gothamProLight(size: 12)
+            currentLabel.text = message
+            currentLabel.alpha = 1.0
+            currentLabel.layer.cornerRadius = 10;
+            currentLabel.clipsToBounds  =  true
+            view.addSubview(currentLabel)
+            UIView.animate(withDuration: 10.0, delay: 0.1, options: .curveEaseOut, animations: {
+                currentLabel.alpha = 0.0
+            }, completion: {(isCompleted) in
+                currentLabel.removeFromSuperview()
+            })
+        }
     }
+        
+        public static private(set) var shared = ViewUtils()
 }

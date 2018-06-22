@@ -38,13 +38,20 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="s9z-bl-MYa" customClass="BigThumbnailSwither" customModule="IATA" customModuleProvider="target">
-                        <rect key="frame" x="262" y="13.5" width="44" height="17"/>
+                        <rect key="frame" x="282" y="13.5" width="24" height="17"/>
                         <color key="tintColor" red="0.80392156862745101" green="0.80392156862745101" blue="0.82352941176470584" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="16" id="GYO-L0-1UM"/>
-                            <constraint firstAttribute="width" constant="40" id="vU5-bS-sXL"/>
+                            <constraint firstAttribute="width" constant="20" id="vU5-bS-sXL"/>
                         </constraints>
                     </slider>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HtQ-qE-7yF">
+                        <rect key="frame" x="8" y="42.5" width="304" height="1"/>
+                        <color key="backgroundColor" red="0.90196078430000004" green="0.90980392160000001" blue="0.91764705879999997" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="K4t-A0-mWX"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="s9z-bl-MYa" secondAttribute="trailing" constant="16" id="Bom-fb-7B4"/>
@@ -52,7 +59,10 @@
                     <constraint firstItem="s9z-bl-MYa" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="KdA-2e-BL2"/>
                     <constraint firstItem="TSr-LU-5lj" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="P9p-qJ-qF3"/>
                     <constraint firstItem="TSr-LU-5lj" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="ZPf-jm-kGV"/>
+                    <constraint firstAttribute="bottom" secondItem="HtQ-qE-7yF" secondAttribute="bottom" id="aEp-qx-OCh"/>
                     <constraint firstItem="2sz-i0-Zs3" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="dNk-FD-Rra"/>
+                    <constraint firstItem="HtQ-qE-7yF" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="h87-ra-j8i"/>
+                    <constraint firstAttribute="trailing" secondItem="HtQ-qE-7yF" secondAttribute="trailing" constant="8" id="rXk-2J-ZrT"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

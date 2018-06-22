@@ -15,7 +15,7 @@ class InvoiceSettingsViewController: UIViewController {
         
         self.tableView?.rowHeight = UITableViewAutomaticDimension
         self.tableView?.estimatedRowHeight = 55
-        self.tableView?.separatorColor = Theme.shared.dotColor
+        self.tableView?.separatorStyle = .none
         
         initHeaderCells()
         

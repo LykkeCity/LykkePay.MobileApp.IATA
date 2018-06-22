@@ -38,7 +38,7 @@ open class InvoiceView: UIView {
         }
         self.billingCategory.text = model.billingCategory?.uppercased()
         if let number = model.number {
-            self.invoiceNumber.text = " #" + number
+            self.invoiceNumber.text = "#" + number
         }
         if (model.status ==  InvoiceStatuses.Unpaid && !model.dispute!) {
             self.status.isHidden = true

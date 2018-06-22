@@ -5,10 +5,9 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
     
     @IBOutlet weak var btnPay: UIButton!
     @IBOutlet weak var loading: UIActivityIndicatorView!
-    @IBOutlet weak var sumTextFieldWidth: NSLayoutConstraint!
     @IBOutlet weak var tabView: UITableView!
     @IBOutlet weak var downView: UIView!
-    @IBOutlet weak var sumTextField: CurrencyUiTextField!
+    @IBOutlet weak var sumTextField: DesignableUITextField!
     @IBOutlet weak var selectedItemTextField: UILabel!
     @IBOutlet weak var downViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var bottomConstrain: NSLayoutConstraint!
@@ -44,19 +43,9 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
         
     }
     
-    @IBAction func sumEditingEnd(_ sender: Any) {
-        self.sizeToFit()
-    }
-    
-    @IBAction func editingDidBegin(_ sender: Any) {
-        
-    }
-    
     @IBAction func sumChanged(_ sender: Any) {
-        self.sizeToFit()
         if let text = self.sumTextField.text, let isEmpty = self.sumTextField.text?.isEmpty, isEmpty || (Int(text) == 0) {
-            self.sumTextField.text = ""
-            self.sumTextFieldWidth.constant = 47
+            self.sumTextField.text = "0"
             setEnabledPay(isEnabled: false)
         } else {
             setEnabledPay(isEnabled: true)
@@ -163,15 +152,15 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if(textField == self.sumTextField) {
             
-            if let text = self.sumTextField.text, let textNsString = text as? NSString {
+            if let text = self.sumTextField.getOldText(), let textNsString = text as? NSString {
             
                 let newString = textNsString.replacingCharacters(in: range, with: string)
                 
-                if !(TextFieldUtil.validateMinValue(newString: newString, minValue:  0, range: range, replacementString: string, false)) {
+                if !(TextFieldUtil.validateMinValue(newString: newString, minValue:  0, range: range, replacementString: string, true)) {
                     return false
                 }
                 if !(TextFieldUtil.validateMaxValue(newString: newString, maxValue: self.state!.resultAmount(), range: range, replacementString: string)){
-                    ViewUtils.showToast(message: R.string.localizable.invoiceScreenErrorChangingAmount(), view: self.view)
+                    ViewUtils.shared.showToast(message: R.string.localizable.invoiceScreenErrorChangingAmount(), view: self.view)
                     return false
                 
                 }
@@ -202,6 +191,7 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
         if (isSelected && self.downView.isHidden) {
             animate(isShow: true)
         } else if (!isSelected && !self.downView.isHidden && self.state?.getCountSelected() == 0) {
+            self.sumTextField.text = ""
             animate(isShow: false)
         }
     }
@@ -218,7 +208,7 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
     }
     
     func paymentSuccess() {
-        ViewUtils.showToast(message: R.string.localizable.commonSuccessMessage(), view: self.view)
+        ViewUtils.shared.showToast(message: R.string.localizable.commonSuccessMessage(), view: self.view)
         self.hideMenu()
     }
     
@@ -239,15 +229,6 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
         return [disputeAction]
     }
     
-    private func sizeToFit() {
-        if (sumTextField.frame.size.width + 15 < 200)  {
-            sumTextField.sizeToFit()
-            if self.sumTextFieldWidth.constant != sumTextField.frame.size.width + 15 {
-                self.sumTextFieldWidth.constant = sumTextField.frame.size.width + 15
-            }
-        }
-    }
-    
     private func handleError(error : Error) {
         self.showErrorAlert(error: error)
         self.animate(isShow: false)
@@ -256,7 +237,7 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
 
     
     private func saveAmount(amount: Int?) {
-        if let amountValue = amount {
+        if let amountValue = amount, !downView.isHidden {
             self.state?.amount = Double(amountValue)
             self.sumTextField.text = String(amountValue)
         }

@@ -30,10 +30,9 @@ extension InvoiceViewModel: UITableViewDataSource, UITableViewDelegate, OnSwitch
         guard let type = self.state.getItems()[section].getType() else {
             return headerView
         }
-        
+        headerView.downDividerView.isHidden = false
         switch type {
         case .airlines:
-            headerView.upDividerView.isHidden = true
             headerView.title.text = R.string.localizable.invoiceSettingsAirlinesTitle()
             break
         case .currencies:
@@ -54,7 +53,7 @@ extension InvoiceViewModel: UITableViewDataSource, UITableViewDelegate, OnSwitch
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 60
+        return 70
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
