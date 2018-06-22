@@ -18,7 +18,7 @@ class DateUtils {
     
     static internal func formatDateFromFormat(dateString: String) -> String {
         let dateFormatterGet = DateFormatter()
-        dateFormatterGet.dateFormat = "yyyy-MM-ddTHH:mm:ss.SSSZ"
+        dateFormatterGet.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
         
         let dateFormatterPrint = DateFormatter()
         dateFormatterPrint.dateFormat = "dd.MM.yyyy"

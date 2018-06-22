@@ -30,7 +30,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tMf-lq-eab">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ny6-gu-IDR">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="Ny6-gu-IDR">
                                 <rect key="frame" x="16" y="30" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="XiE-9K-k4H"/>
@@ -96,4 +96,7 @@
             </connections>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="Logo" width="216" height="216"/>
+    </resources>
 </document>

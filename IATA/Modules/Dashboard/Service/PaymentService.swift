@@ -8,5 +8,8 @@ protocol PaymentService {
     func makePayment(model: PaymentRequest) -> Promise<Void>
 
     func getWallets(convertAssetIdParams: String)-> Promise<String>
+    
     func getHistory() -> Promise<String>
+    func getHistoryDetails(id: String) -> Promise<HistoryTransactionModel>
+    
 }

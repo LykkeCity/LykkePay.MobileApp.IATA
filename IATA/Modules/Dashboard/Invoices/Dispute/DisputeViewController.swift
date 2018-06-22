@@ -24,15 +24,15 @@ class DisputeViewController: BaseViewController<DisputeModel, DefaultDisputeStat
         return cell
     }
     
-    func getTitle() -> String? {
+    override func getTitle() -> String? {
         return R.string.localizable.invoiceDisputeTitle()
     }
     
-    func getTableView() -> UITableView {
+    override func getTableView() -> UITableView {
         return tabView
     }
     
-    func registerCells() {
+    override func registerCells() {
         self.getTableView().register(DisputeTableViewCell.nib, forCellReuseIdentifier: DisputeTableViewCell.identifier)
     }
 

@@ -11,5 +11,5 @@ class PaymentConfig {
     public let wallets = "/merchantWallets"
     
     public let historyIndex = "/history/Index"
-    
+    public let historyDetails = "/history/Details"
 }
