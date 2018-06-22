@@ -2,8 +2,8 @@ import UIKit
 
 class TransactionViewController: BaseViewController<PropertyKeyTransactionModel, DefaultTransactionState>, Initializer {
     
-    @IBOutlet weak var tabView: UITableView!
-    @IBOutlet weak var transactionHeaderView: TransactionTableViewHeader!
+    @IBOutlet private weak var tabView: UITableView!
+    @IBOutlet private weak var transactionHeaderView: TransactionTableViewHeader!
     
     var id = String()
     
@@ -31,15 +31,15 @@ class TransactionViewController: BaseViewController<PropertyKeyTransactionModel,
         return 1
     }
     
-    func getTitle() -> String? {
-        return R.string.localizable.historyScreenTitle()
+    override func getTitle() -> String? {
+        return R.string.localizable.historyScreenScreen()
     }
     
-    func getTableView() -> UITableView {
+    override func getTableView() -> UITableView {
         return tabView
     }
     
-    func registerCells() {
+    override func registerCells() {
         self.tabView.register(TransactionTableViewCell.nib, forCellReuseIdentifier: TransactionTableViewCell.identifier)
     }
     

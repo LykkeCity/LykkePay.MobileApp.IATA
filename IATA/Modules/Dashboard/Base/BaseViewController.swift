@@ -10,11 +10,12 @@ class BaseViewController<T: Mappable, S: DefaultBaseState<T>>:
     var state: S?
     
     override func setUp() {
-        self.initializer?.registerCells()
-        self.initializer?.getTableView().delegate = self
-        self.initializer?.getTableView().dataSource = self
-        self.initializer?.getTableView().tableFooterView = UIView()
+        self.registerCells()
+        self.getTableView().delegate = self
+        self.getTableView().dataSource = self
+        self.getTableView().tableFooterView = UIView()
     }
+
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let count = self.state?.getItems().count else {

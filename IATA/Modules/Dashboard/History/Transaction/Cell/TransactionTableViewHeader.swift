@@ -33,7 +33,7 @@ class TransactionTableViewHeader: UIView {
     }
 
     private func updateUI(with model: HistoryTransactionModel) {
-        transactionTitle.text = model.billingCategory
+        transactionTitle.text = model.merchantName
         transactionSubtitle.text = model.title
     }
 }

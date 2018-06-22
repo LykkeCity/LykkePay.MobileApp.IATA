@@ -23,7 +23,7 @@ public class PropertyKeyTransactionModel : Mappable {
             return ""
         }
         switch value {
-        case .merchantLogoUrl, .title, .id, .assetId:
+        case .merchantLogoUrl, .title, .id, .assetId, .merchantName:
             return nil
         default:
             return value.rawValue

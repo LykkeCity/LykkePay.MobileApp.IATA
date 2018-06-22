@@ -5,7 +5,6 @@ class HistoryViewController: BaseViewController<HistoryModel, DefaultHistoryStat
     @IBOutlet weak var tabView: UITableView!
     
     override func viewDidLoad() {
-        initializer = self
         state = DefaultHistoryState()
         super.viewDidLoad()
         self.loadData()
@@ -29,15 +28,15 @@ class HistoryViewController: BaseViewController<HistoryModel, DefaultHistoryStat
         self.navigationController?.pushViewController(viewController, animated: true)
     }
     
-    func getTitle() -> String? {
-        return R.string.localizable.historyScreenTitle()
+    override func getTitle() -> String? {
+        return R.string.localizable.historyScreenTitle()//R.string.localizable.historyTra
     }
     
-    func getTableView() -> UITableView {
+    override func getTableView() -> UITableView {
         return tabView
     }
     
-    func registerCells() {
+    override func registerCells() {
         self.getTableView().register(HistoryTableViewCell.nib, forCellReuseIdentifier: HistoryTableViewCell.identifier)
     }
     

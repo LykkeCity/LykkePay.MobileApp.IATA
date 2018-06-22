@@ -55,15 +55,15 @@ class WalletsViewController: BaseViewController<WalletsViewModel, DefaultWallets
         self.tableView.reloadData()
     }
 
-    func getTitle() -> String? {
+    override func getTitle() -> String? {
         return tabBarItem.title?.capitalizingFirstLetter()
     }
 
-    func getTableView() -> UITableView {
+    override func getTableView() -> UITableView {
         return tableView
     }
 
-    func registerCells() {
+    override func registerCells() {
         tableView.register(WalletsTableViewCell.nib, forCellReuseIdentifier: WalletsTableViewCell.identifier)
     }
 }

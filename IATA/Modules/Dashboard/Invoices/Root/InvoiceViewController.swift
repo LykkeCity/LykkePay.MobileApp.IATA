@@ -136,15 +136,15 @@ OnChangeStateSelected {
         return nil
     }
     
-    func getTitle() -> String? {
+    override func getTitle() -> String? {
         return R.string.localizable.tabBarInvoicesItemTitle()
     }
     
-    func getTableView() -> UITableView {
+    override func getTableView() -> UITableView {
         return tabView
     }
     
-    func registerCells() {
+    override func registerCells() {
         self.tabView.register(InvoiceTableViewCell.nib, forCellReuseIdentifier: InvoiceTableViewCell.identifier)
     }
     

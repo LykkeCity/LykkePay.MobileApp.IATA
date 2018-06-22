@@ -30,9 +30,21 @@ class BaseNavController: UIViewController, UITextFieldDelegate {
     func setUp() {
         
     }
+
+    func getTitle() -> String? {
+        return nil
+    }
+
+    func getTableView() -> UITableView {
+        return UITableView()
+    }
+
+    func registerCells() {
+        
+    }
     
     func getTitleView() -> UIView {
-        return Theme.shared.getTitle(title: self.initializer?.getTitle(), color: UIColor.white)
+        return Theme.shared.getTitle(title: self.getTitle(), color: UIColor.white)
     }
     
     func getLeftButton() -> UIBarButtonItem? {
