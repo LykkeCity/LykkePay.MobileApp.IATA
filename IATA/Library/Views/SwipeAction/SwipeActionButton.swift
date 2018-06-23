@@ -20,7 +20,7 @@ import UIKit
         return (currentTitle?.isEmpty == false && imageHeight > 0) ? spacing : 0
     }
     
-    @IBInspectable var cornerRadius: CGFloat = 15 {
+    @IBInspectable var cornerRadius: CGFloat = 5 {
         didSet {
             refreshCorners(value: cornerRadius)
         }

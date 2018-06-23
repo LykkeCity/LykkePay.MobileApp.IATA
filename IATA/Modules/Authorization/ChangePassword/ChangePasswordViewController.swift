@@ -141,7 +141,7 @@ class ChangePasswordViewController: BaseAuthViewController {
     private func openPinController() {
         let viewController =  PinViewController()
         viewController.isValidation = false
-        self.navigationController?.pushViewController(viewController, animated: true)
+        NavPushingUtil.shared.push(navigationController: self.navigationController, controller: viewController)
     }
     
     private func setUpTextFields() {

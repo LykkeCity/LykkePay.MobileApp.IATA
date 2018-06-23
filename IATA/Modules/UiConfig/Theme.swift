@@ -140,6 +140,11 @@ class Theme: NSObject {
         textField?.isPlaceholderUppercasedWhenEditing = false
         textField?.dividerActiveColor = Theme.shared.greenColor
         textField?.placeholderActiveColor = Theme.shared.greenColor
+        textField?.placeholderNormalColor = Theme.shared.placeholderTextFieldColor
+        textField?.dividerColor = Theme.shared.placeholderTextFieldColor
+        textField?.dividerNormalColor = Theme.shared.placeholderTextFieldColor
+        textField?.dividerNormalHeight = CGFloat(0.5)
+        textField?.dividerThickness = CGFloat(0.5)
     }
     
     

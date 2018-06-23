@@ -13,6 +13,9 @@
         <array key="GothamProBold.ttf">
             <string>GothamPro-Bold</string>
         </array>
+        <array key="GothamProMed.otf">
+            <string>GothamPro-Medium</string>
+        </array>
         <array key="GothamProReg.otf">
             <string>GothamPro</string>
         </array>
@@ -52,13 +55,13 @@
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Authorization" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xPn-eG-rW0">
-                                            <rect key="frame" x="48" y="174" width="167.5" height="21.5"/>
+                                            <rect key="frame" x="48" y="180" width="167.5" height="21.5"/>
                                             <fontDescription key="fontDescription" name="GothamPro-Bold" family="Gotham Pro" pointSize="24"/>
                                             <color key="textColor" red="0.074509803921568626" green="0.26666666666666666" blue="0.45882352941176469" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hT8-Kf-Gck">
-                                            <rect key="frame" x="48" y="219.5" width="252" height="36"/>
+                                            <rect key="frame" x="48" y="210.5" width="252" height="36"/>
                                             <string key="text">Welcome back! Sign in to
 continue to IATA</string>
                                             <fontDescription key="fontDescription" name="GothamPro" family="Gotham Pro" pointSize="20"/>
@@ -66,12 +69,12 @@ continue to IATA</string>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mR8-eV-pPH">
-                                            <rect key="frame" x="48" y="419.5" width="279" height="48"/>
+                                            <rect key="frame" x="48" y="431.5" width="279" height="48"/>
                                             <color key="backgroundColor" red="0.17254901960784313" green="0.71764705882352942" blue="0.0039215686274509803" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="48" id="TR5-YQ-a4h"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" name="GothamPro" family="Gotham Pro" pointSize="20"/>
+                                            <fontDescription key="fontDescription" name="GothamPro-Medium" family="Gotham Pro" pointSize="20"/>
                                             <state key="normal" title="LOGIN">
                                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             </state>
@@ -86,7 +89,7 @@ continue to IATA</string>
                                             </connections>
                                         </button>
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jnn-ZT-33H" customClass="FloatTextField" customModule="IATA" customModuleProvider="target">
-                                            <rect key="frame" x="48" y="279.5" width="279" height="40"/>
+                                            <rect key="frame" x="48" y="291.5" width="279" height="40"/>
                                             <color key="tintColor" red="0.17254901960784313" green="0.71764705882352942" blue="0.0039215686274509803" alpha="1" colorSpace="calibratedRGB"/>
                                             <accessibility key="accessibilityConfiguration" hint="Email"/>
                                             <constraints>
@@ -102,14 +105,15 @@ continue to IATA</string>
                                             </userDefinedRuntimeAttributes>
                                         </textField>
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ska-xM-lkl" customClass="FloatTextField" customModule="IATA" customModuleProvider="target">
-                                            <rect key="frame" x="48" y="349.5" width="279" height="40"/>
+                                            <rect key="frame" x="48" y="361.5" width="279" height="40"/>
+                                            <color key="tintColor" red="0.17254901960784313" green="0.71764705882352942" blue="0.0039215686274509803" alpha="1" colorSpace="calibratedRGB"/>
                                             <accessibility key="accessibilityConfiguration" hint="Password"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="40" id="FPh-uG-bpC"/>
                                             </constraints>
                                             <color key="textColor" red="0.031372549019607843" green="0.16470588235294117" blue="0.29803921568627451" alpha="1" colorSpace="calibratedRGB"/>
                                             <fontDescription key="fontDescription" name="GothamPro" family="Gotham Pro" pointSize="16"/>
-                                            <textInputTraits key="textInputTraits" textContentType="password"/>
+                                            <textInputTraits key="textInputTraits" autocorrectionType="no" textContentType="password"/>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="placeholderVerticalOffset">
                                                     <real key="value" value="25"/>
@@ -119,8 +123,8 @@ continue to IATA</string>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
-                                        <constraint firstItem="jnn-ZT-33H" firstAttribute="top" secondItem="hT8-Kf-Gck" secondAttribute="bottom" constant="24" id="0P9-pD-ZXz"/>
-                                        <constraint firstItem="xPn-eG-rW0" firstAttribute="top" secondItem="9qR-xI-Yiu" secondAttribute="bottom" constant="24" id="20O-38-Nre"/>
+                                        <constraint firstItem="jnn-ZT-33H" firstAttribute="top" secondItem="hT8-Kf-Gck" secondAttribute="bottom" constant="45" id="0P9-pD-ZXz"/>
+                                        <constraint firstItem="xPn-eG-rW0" firstAttribute="top" secondItem="9qR-xI-Yiu" secondAttribute="bottom" constant="30" id="20O-38-Nre"/>
                                         <constraint firstItem="xPn-eG-rW0" firstAttribute="leading" secondItem="82L-dI-PCI" secondAttribute="leading" constant="48" id="8bg-Lk-vWg"/>
                                         <constraint firstItem="Ska-xM-lkl" firstAttribute="top" secondItem="jnn-ZT-33H" secondAttribute="bottom" constant="30" id="LI7-hC-qlm"/>
                                         <constraint firstItem="Ska-xM-lkl" firstAttribute="leading" secondItem="82L-dI-PCI" secondAttribute="leading" constant="48" id="NIY-5L-xnx"/>
@@ -129,7 +133,7 @@ continue to IATA</string>
                                         <constraint firstItem="hT8-Kf-Gck" firstAttribute="leading" secondItem="82L-dI-PCI" secondAttribute="leading" constant="48" id="Vac-lR-2Eg"/>
                                         <constraint firstItem="9qR-xI-Yiu" firstAttribute="centerX" secondItem="82L-dI-PCI" secondAttribute="centerX" id="XIC-cV-PAg"/>
                                         <constraint firstItem="jnn-ZT-33H" firstAttribute="leading" secondItem="82L-dI-PCI" secondAttribute="leading" constant="48" id="bAu-xv-pej"/>
-                                        <constraint firstItem="hT8-Kf-Gck" firstAttribute="top" secondItem="xPn-eG-rW0" secondAttribute="bottom" constant="24" id="cNu-GU-Db6"/>
+                                        <constraint firstItem="hT8-Kf-Gck" firstAttribute="top" secondItem="xPn-eG-rW0" secondAttribute="bottom" constant="9" id="cNu-GU-Db6"/>
                                         <constraint firstAttribute="trailing" secondItem="jnn-ZT-33H" secondAttribute="trailing" constant="48" id="eDv-Xp-31z"/>
                                         <constraint firstAttribute="trailing" secondItem="mR8-eV-pPH" secondAttribute="trailing" constant="48" id="f32-Y7-Z8p"/>
                                         <constraint firstAttribute="trailing" secondItem="Ska-xM-lkl" secondAttribute="trailing" constant="48" id="sVW-7C-yxu"/>

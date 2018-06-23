@@ -1,7 +1,7 @@
 import UIKit
 import Material
 
-class SignInViewController: BaseAuthViewController {
+class SignInViewController: BaseAuthViewController, UINavigationControllerDelegate {
     
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var buildVersion: UILabel!
@@ -14,9 +14,14 @@ class SignInViewController: BaseAuthViewController {
     private var isShown: Bool = false
     private var state: SignInViewState = DefaultSignInViewState() as SignInViewState
     
+    /*  func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationControllerOperation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        
+        return CustomPushAnimation()
+    }*/
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.navigationController?.delegate = self
         self.navigationController?.isNavigationBarHidden = true
 
         self.titleWelcome.attributedText = Theme.shared.get2LineString(message: R.string.localizable.signInLabelWelcomeMessage())
@@ -31,6 +36,16 @@ class SignInViewController: BaseAuthViewController {
 
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        
+        self.initNavBar()
+    }
+    
+    
+    private func initNavBar() {
+        self.setNeedsStatusBarAppearanceUpdate()
+        self.navigationController?.navigationBar.barStyle = .black
+        UIApplication.shared.statusBarStyle = UIStatusBarStyle.default
+        self.navigationController?.navigationBar.layoutIfNeeded()
     }
     
     private func version() -> String {

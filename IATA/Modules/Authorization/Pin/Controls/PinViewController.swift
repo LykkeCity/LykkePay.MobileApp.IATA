@@ -25,7 +25,6 @@ class PinViewController: UIViewController {
         
         self.labelTitle.text = self.isValidation ? R.string.localizable.pinValidationTitle() : R.string.localizable.pinSetupTitle()
         
-        self.setNeedsStatusBarAppearanceUpdate()
         self.initNavBar()
     }
     
@@ -33,15 +32,7 @@ class PinViewController: UIViewController {
         return .default
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        self.initNavBar()
-        UIApplication.shared.statusBarStyle = UIStatusBarStyle.default
-    }
-    
-    
     private func initNavBar() {
-        self.setNeedsStatusBarAppearanceUpdate()
         self.navigationController?.navigationBar.barStyle = .black
         self.navigationController?.isNavigationBarHidden = false
         self.navigationItem.leftBarButtonItem = getBackButton()
@@ -134,7 +125,8 @@ private extension PinViewController {
     
     func validationSuccess() {
         self.navigationController?.isNavigationBarHidden = true
-        NavPushingUtil.shared.pushDown(navigationController: self.navigationController, controller: TabBarController())
+        present(TabBarController(), animated: true, completion: nil)
+        //NavPushingUtil.shared.pushDown(navigationController: self.navigationController, controller: TabBarController())
         self.navigationController?.navigationBar.barTintColor = Theme.init().navigationBarColor
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
     }
