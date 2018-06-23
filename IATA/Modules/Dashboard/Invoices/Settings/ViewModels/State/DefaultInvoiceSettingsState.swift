@@ -1,9 +1,14 @@
 import Foundation
 import UIKit
+import PromiseKit
 
 class DefaultInvoiceSettingsState: InvoiceSettingsState {
     
     var items: [InvoiceViewModelItem] = []
+    
+    func getFilters() -> Promise<FiltersInvoiceList> {
+        return Network.shared.get(path: PaymentConfig.shared.getFilters, params: [:])
+    }
     
     func stateChanged(isSelected: Bool, item: Any) {
         self.check(isSelected: isSelected, item: item, index: 0)
@@ -64,31 +69,31 @@ class DefaultInvoiceSettingsState: InvoiceSettingsState {
         return self.items
     }
     
-    func initItems(model: InvoiceScreenModel) {
-        let airlines = model.airlines
-        if !(model.airlines.isEmpty) {
+    func initItems(model: FiltersInvoiceList) {
+        
+        if let airlines = model.groupMerchants, !(airlines.isEmpty) {
             self.initCells(airlines, type: InvoiceViewModelItemType.airlines)
         }
         
-        let billingCategories = model.billingCategories
-        if !(model.billingCategories.isEmpty) {
+        if  let billingCategories = model.billingCategories , !(billingCategories.isEmpty) {
              self.initCells(billingCategories, type: InvoiceViewModelItemType.billingCategories)
         }
         
-        let currencies = model.currencies
-        if !(model.currencies.isEmpty) {
+        if let currencies = model.settlementAssets, !(currencies.isEmpty) {
              self.initCells(currencies, type: InvoiceViewModelItemType.currencies)
         }
         
-        items.append(InvoicePaymentRangeItem(paymentRange: model.paymentRange))
+        var payment = InvoiceSettingPaymentRangeItemModel()
+        payment?.min = FilterPreference.shared.getMinValue()
+        payment?.max = FilterPreference.shared.getMaxValue()
         
-        let settlementPeriod = model.settlementPeriod
-        if !(model.settlementPeriod.isEmpty) {
-             self.initCells(settlementPeriod, type: InvoiceViewModelItemType.settlementPeriod)
+        if let res = payment {
+            items.append(InvoicePaymentRangeItem(paymentRange: res))
         }
+        
     }
     
-    private func initCells(_ items: [InvoiceSettingAirlinesModel], type: InvoiceViewModelItemType) {
+    private func initCells(_ items: [InvoiceFiltersModel], type: InvoiceViewModelItemType) {
         let items = BaseInvoiceViewModelItem(items: items)
         for item in items.items {
             item.checked = FilterPreference.shared.getChecked(id: item.id, type: type)
@@ -99,11 +104,11 @@ class DefaultInvoiceSettingsState: InvoiceSettingsState {
     }
     
     private func check(isSelected: Bool, item: Any, index: Int) {
-        if let item = item as? InvoiceSettingAirlinesModel {
+        if let item = item as? InvoiceFiltersModel {
             let values = items[index]
             if (values is BaseInvoiceViewModelItem) {
                 let items = (values as! BaseInvoiceViewModelItem).items
-                if let index = items.index(where: {$0.name == item.name}) {
+                if let index = items.index(where: {$0.id == item.id}) {
                     items[index].checked = isSelected
                 }
             }

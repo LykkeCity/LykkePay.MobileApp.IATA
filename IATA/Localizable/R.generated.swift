@@ -22,7 +22,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.file` struct is generated, and contains static references to 6 files.
+  /// This `R.file` struct is generated, and contains static references to 5 files.
   struct file {
     /// Resource file `GothamProBold.ttf`.
     static let gothamProBoldTtf = Rswift.FileResource(bundle: R.hostingBundle, name: "GothamProBold", pathExtension: "ttf")
@@ -34,8 +34,6 @@ struct R: Rswift.Validatable {
     static let gothamProRegOtf = Rswift.FileResource(bundle: R.hostingBundle, name: "GothamProReg", pathExtension: "otf")
     /// Resource file `LICENSE`.
     static let licensE = Rswift.FileResource(bundle: R.hostingBundle, name: "LICENSE", pathExtension: "")
-    /// Resource file `ServerData.json`.
-    static let serverDataJson = Rswift.FileResource(bundle: R.hostingBundle, name: "ServerData", pathExtension: "json")
     
     /// `bundle.url(forResource: "GothamProBold", withExtension: "ttf")`
     static func gothamProBoldTtf(_: Void = ()) -> Foundation.URL? {
@@ -64,12 +62,6 @@ struct R: Rswift.Validatable {
     /// `bundle.url(forResource: "LICENSE", withExtension: "")`
     static func licensE(_: Void = ()) -> Foundation.URL? {
       let fileResource = R.file.licensE
-      return fileResource.bundle.url(forResource: fileResource)
-    }
-    
-    /// `bundle.url(forResource: "ServerData", withExtension: "json")`
-    static func serverDataJson(_: Void = ()) -> Foundation.URL? {
-      let fileResource = R.file.serverDataJson
       return fileResource.bundle.url(forResource: fileResource)
     }
     
@@ -1309,7 +1301,6 @@ struct _R: Rswift.Validatable {
       try _InvoiceSettingsTableViewCell.validate()
       try _TransactionTableViewHeader.validate()
       try _InvoiceView.validate()
-      try _BaseCurrencyCollectionViewCell.validate()
       try _PinViewController.validate()
       try _SignInViewController.validate()
       try _ExhangeViewController.validate()
@@ -1317,7 +1308,7 @@ struct _R: Rswift.Validatable {
       try _TabBarView.validate()
     }
     
-    struct _BaseCurrencyCollectionViewCell: Rswift.NibResourceType, Rswift.ReuseIdentifierType, Rswift.Validatable {
+    struct _BaseCurrencyCollectionViewCell: Rswift.NibResourceType, Rswift.ReuseIdentifierType {
       typealias ReusableType = BaseCurrencyCollectionViewCell
       
       let bundle = R.hostingBundle
@@ -1326,10 +1317,6 @@ struct _R: Rswift.Validatable {
       
       func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]? = nil) -> BaseCurrencyCollectionViewCell? {
         return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? BaseCurrencyCollectionViewCell
-      }
-      
-      static func validate() throws {
-        if UIKit.UIImage(named: "ic_usFlagMediumIcn", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'ic_usFlagMediumIcn' is used in nib 'BaseCurrencyCollectionViewCell', but couldn't be loaded.") }
       }
       
       fileprivate init() {}
@@ -1533,7 +1520,6 @@ struct _R: Rswift.Validatable {
       
       static func validate() throws {
         if UIKit.UIImage(named: "ic_group2", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'ic_group2' is used in nib 'SettingsViewController', but couldn't be loaded.") }
-        if UIKit.UIImage(named: "ic_usFlagMediumIcn", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'ic_usFlagMediumIcn' is used in nib 'SettingsViewController', but couldn't be loaded.") }
       }
       
       fileprivate init() {}

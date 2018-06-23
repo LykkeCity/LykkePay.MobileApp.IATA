@@ -114,6 +114,11 @@ class Network {
         }
     }
     
+    public func postWithQueryString(path: String, params: [String: Any]) -> Promise<Void> {
+        return request(path: path, method: .post, params: params, encoding: URLEncoding.queryString)
+    }
+    
+    
     public func post<ResultType: BaseMappable>(path: String,
                                                params: [String: Any],
                                                encodingType: EncodingType = .url) -> Promise<ResultType> {

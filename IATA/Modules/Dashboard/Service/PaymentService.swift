@@ -10,6 +10,11 @@ protocol PaymentService {
     func getWallets(convertAssetIdParams: String)-> Promise<String>
     
     func getHistory() -> Promise<String>
+
     func getHistoryDetails(id: String) -> Promise<HistoryTransactionModel>
     
+    func getSettings() -> Promise<String>
+    func getBaseAssetsList() -> Promise<String>
+    func postBaseAssets(baseAsset: String) -> Promise<Void>
+
 }

@@ -7,9 +7,19 @@ class PaymentConfig {
     public let invoices = "/invoices/inbox"
     public let makePayment = "/invoices/pay"
     public let amount = "/invoices/sum"
+     public let getFilters = "/invoices/filter"
 
     public let wallets = "/merchantWallets"
     
     public let historyIndex = "/history/Index"
+
     public let historyDetails = "/history/Details"
+
+    
+    public let user = "/user"
+    public let baseAssets = "/baseAsset/list"
+    public let baseAsset = "/baseAsset"
+    
+   
+
 }

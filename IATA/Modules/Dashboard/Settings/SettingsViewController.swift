@@ -1,7 +1,7 @@
-
+import Nuke
 import UIKit
 
-class SettingsViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class SettingsViewController: BaseNavController, Initializer, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate, UICollectionViewDataSource {
 
     @IBOutlet weak var profileImage: UIImageView!
     
@@ -14,54 +14,57 @@ class SettingsViewController: UIViewController, UICollectionViewDelegate, UIColl
     @IBOutlet weak var emailLabel: UILabel!
     
     @IBOutlet weak var baseCurrencyCollectionView: UICollectionView!
-    
-    private var state: SettingsState = DefaultSettingsState() as SettingsState
-    
+
+    private var state: DefaultSettingsState? = DefaultSettingsState()
+
     override func viewDidLoad() {
+        baseCurrencyCollectionView.register(BaseCurrencyCollectionViewCell.nib, forCellWithReuseIdentifier: BaseCurrencyCollectionViewCell.identifier)
+        initializer = self
         super.viewDidLoad()
-        self.fillTestData()
-        self.baseCurrencyCollectionView.delegate = self
-        self.baseCurrencyCollectionView.dataSource   = self
-        self.baseCurrencyCollectionView.register(BaseCurrencyCollectionViewCell.nib, forCellWithReuseIdentifier: BaseCurrencyCollectionViewCell.identifier)
-        
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.navigationController?.navigationBar.barTintColor = Theme.shared.tabBarBackgroundColor
-        self.navigationController?.navigationBar.tintColor = .white
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white, NSAttributedStringKey.font: R.font.gothamProMedium(size: 17)]
-        self.navigationController?.navigationBar.isTranslucent = false
-        self.navigationItem.title = tabBarItem.title?.capitalizingFirstLetter()
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: R.image.ic_bodyLogoutIcn(), style: .plain, target: self, action: #selector(logoutButtonTapped))
-
-        self.view.layoutIfNeeded()
-        let defaultIndexPathForTesting = IndexPath(row: 0, section: 0)
-        baseCurrencyCollectionView.selectItem(at: defaultIndexPathForTesting, animated: false, scrollPosition: .top)
-    }
-
-    private func fillTestData() {
-        companyNameLabel.text = "Air france"
-        usernameLabel.text = "Annette Horn"
-        emailLabel.text = "a.horn@iata.com"
+        baseCurrencyCollectionView.delegate = self
+        baseCurrencyCollectionView.dataSource  = self
+        baseCurrencyCollectionView.allowsMultipleSelection = false
+        loadData()
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.state.getCurrencies().count
+        if let count = self.state?.getItems().count {
+            return count
+        } else {
+            return 0
+        }
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = baseCurrencyCollectionView.dequeueReusableCell(withReuseIdentifier: BaseCurrencyCollectionViewCell.identifier, for: indexPath) as? BaseCurrencyCollectionViewCell else {
             return BaseCurrencyCollectionViewCell()
         }
-        let currency = self.state.getCurrencies()[indexPath.row]
-        cell.initView(model: currency)
+        if let currency = self.state?.items[indexPath.row] {
+            cell.initView(model: currency)
+            if currency.isSelected! {
+             baseCurrencyCollectionView.selectItem(at: indexPath, animated: false, scrollPosition: .top)
+            }
+        }
         return cell
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! BaseCurrencyCollectionViewCell
         cell.isSelected = true
+        if let selectedCurrency = state?.getItems()[indexPath.row] {
+            if let id = selectedCurrency.id {
+                self.setSelectedBaseAsset(baseAsset: id, selectedCurrency: selectedCurrency)
+            }
+        }
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath) as! BaseCurrencyCollectionViewCell
+        cell.isSelected = false
+    }
+
+    override func getRightButton() -> UIBarButtonItem? {
+        return UIBarButtonItem(image: R.image.ic_bodyLogoutIcn(), style: .plain, target: self, action: #selector(self.logoutButtonTapped))
     }
     
     func logout(alert: UIAlertAction!) {
@@ -85,11 +88,67 @@ class SettingsViewController: UIViewController, UICollectionViewDelegate, UIColl
         self.navigationController?.pushViewController(SignInViewController(), animated: false)
     }
 
+    private func loadData() {
+        self.state?.getSettingsStringJson()
+            .withSpinner(in: view)
+            .then(execute: { [weak self] (result: String) -> Void in
+                guard let strongSelf = self else {
+                    return
+                }
+                strongSelf.fillUsersInfo(jsonString: result)
+            })
+
+        self.state?.getBaseAssetsStringJson()
+            .withSpinner(in: view)
+            .then(execute: { [weak self] (result: String) -> Void in
+                guard let strongSelf = self else {
+                    return
+                }
+                strongSelf.fillAssetsInfo(from: result)
+            })
+    }
+
+    private func setSelectedBaseAsset(baseAsset: String, selectedCurrency: SettingsMerchantsModel ) {
+        self.state?.setBaseAsset(baseAsset: baseAsset).withSpinner(in: view).then(execute: { [weak self] (result:Void) -> Void in
+            guard let strongSelf = self else {
+                return
+            }
+             UserPreference.shared.saveCurrentCurrency(selectedCurrency)
+        })
+    }
+
+    private func fillUsersInfo(jsonString: String!) {
+        let settingsViewModel = state?.mappingSettings(jsonString: jsonString)
+        Nuke.loadImage(with: URL(string: (settingsViewModel?.merchantLogoUrl)!)!, into: self.airlineImage)
+        self.companyNameLabel.text = settingsViewModel?.merchantName
+        if let firstName = settingsViewModel?.firstName, let lastName = settingsViewModel?.lastName {
+            self.usernameLabel.text = firstName + " " + lastName
+        }
+        self.emailLabel.text = settingsViewModel?.email
+    }
+
+    private func fillAssetsInfo(from jsonString: String!) {
+        self.state?.mappingBaseAssets(jsonString: jsonString)
+        self.baseCurrencyCollectionView.reloadData()
+    }
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: baseCurrencyCollectionView.bounds.width/2 - 5 , height: 56)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return CGFloat(10)
+    }
+
+    func getTitle() -> String? {
+        return tabBarItem.title?.capitalizingFirstLetter()
+    }
+
+    func getTableView() -> UITableView {
+        return UITableView()
+    }
+
+    func registerCells() {
+
     }
 }

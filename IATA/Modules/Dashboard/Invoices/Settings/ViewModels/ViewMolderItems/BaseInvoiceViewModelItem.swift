@@ -2,7 +2,7 @@ import Foundation
 
 
 class BaseInvoiceViewModelItem: InvoiceViewModelItem {
-    var items: [InvoiceSettingAirlinesModel]
+    var items: [InvoiceFiltersModel]
     var type = InvoiceViewModelItemType.airlines
     
     func getType() -> InvoiceViewModelItemType? {
@@ -17,7 +17,7 @@ class BaseInvoiceViewModelItem: InvoiceViewModelItem {
         return nil
     }
     
-    init(items: [InvoiceSettingAirlinesModel]) {
+    init(items: [InvoiceFiltersModel]) {
         self.items = items
     }
     

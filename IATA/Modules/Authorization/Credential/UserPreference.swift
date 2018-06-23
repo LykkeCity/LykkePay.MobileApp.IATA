@@ -46,11 +46,11 @@ class UserPreference {
         return UserPreference.preferences.bool(forKey: PropertyKey.forceUpdatePin.rawValue)
     }
     
-    internal func saveCurrentCurrency(_ currentCurrency: InvoiceSettingAirlinesModel) {
+    internal func saveCurrentCurrency(_ currentCurrency: SettingsMerchantsModel) {
         localStorage.set(value: currentCurrency, for: PropertyKey.currentCurrency.rawValue)
     }
     
-    internal func getCurrentCurrency() -> InvoiceSettingAirlinesModel? {
+    internal func getCurrentCurrency() -> SettingsMerchantsModel? {
         return localStorage.get(for: PropertyKey.currentCurrency.rawValue)
     }
 }

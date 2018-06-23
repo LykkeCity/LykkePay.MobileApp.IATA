@@ -13,6 +13,8 @@ class InvoiceSettingPaymentRangeItemModel: Mappable {
     internal required init?(map: Map) {
     }
     
+    internal required init?() {}
+    
     internal init(min: Int?, max: Int?) {
         self.min = min
         self.max = max

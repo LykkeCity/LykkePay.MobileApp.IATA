@@ -5,7 +5,7 @@ class InvoiceSettingsViewController: UIViewController {
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var tableView: UITableView!
     
-    private let viewModel = InvoiceViewModel()
+    private var viewModel =  InvoiceViewModel()
     private var isShown = false
     
     override func viewDidLoad() {
@@ -37,6 +37,8 @@ class InvoiceSettingsViewController: UIViewController {
             object: nil)
         self.setNeedsStatusBarAppearanceUpdate()
         self.initNavBar()
+        
+        self.loadData()
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -141,5 +143,21 @@ class InvoiceSettingsViewController: UIViewController {
         self.tableView.contentInset = UIEdgeInsetsMake(-dummyViewHeight, 0, 0, 0)
         
         self.tableView.register(InvoiceHeaderView.nib, forHeaderFooterViewReuseIdentifier: InvoiceHeaderView.identifier)
+    }
+    
+    private func loadData() {
+        self.viewModel.state.getFilters()
+            .withSpinner(in: view)
+            .then(execute: { [weak self] (result: FiltersInvoiceList) -> Void in
+                guard let strongSelf = self else {
+                    return
+                }
+                strongSelf.initResult(result: result)
+            })
+    }
+    
+    private func initResult(result: FiltersInvoiceList) {
+        self.viewModel.state.initItems(model: result)
+        self.tableView.reloadData()
     }
 }

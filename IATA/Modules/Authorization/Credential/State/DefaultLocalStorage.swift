@@ -15,7 +15,7 @@ class DefaultLocalStorage: LocalStorage {
         defaults.removeObject(forKey: key)
     }
     
-    internal func set<T: BaseMappable>(value: T, for key: String) {
+    internal func set<T: Mappable>(value: T, for key: String) {
         guard let preparedArchivedData = value.toJSONString()?.data(using: .utf8) else {
             return
         }
@@ -23,7 +23,7 @@ class DefaultLocalStorage: LocalStorage {
         defaults.set(preparedArchivedData, forKey: key)
     }
     
-    internal func get<T: BaseMappable>(for key: String) -> T? {
+    internal func get<T: Mappable>(for key: String) -> T? {
         guard let storedData = defaults.value(forKey: key) as? Data,
             let jsonString = String(data: storedData, encoding: .utf8) else {
                 return nil
