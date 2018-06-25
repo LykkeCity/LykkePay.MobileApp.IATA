@@ -156,5 +156,9 @@ class DefaultInvoiceState: DefaultBaseState<InvoiceModel> {
         }
         return items
     }
+
+    func cancelDisputInvoice(model: CancelDisputInvoiceRequest) -> Promise<Void> {
+        return self.service.cancelDisputInvoice(model: model)
+    }
     
 }

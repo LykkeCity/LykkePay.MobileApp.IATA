@@ -18,8 +18,8 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = false
         Theme.shared.configureTextFieldCurrencyStyle(self.sumTextField)
+        self.downViewHeightConstraint.constant = 0
         self.downView.isHidden = true
-        self.sumTextField.delegate = self
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
@@ -75,6 +75,7 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent
         self.hideMenu()
         self.loadData()
     }
@@ -107,12 +108,30 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
         let stateCanBeClosedDispute = state.isCanBeClosedDispute(index: indexPath.row)
         
         if (stateCanBeOpenDispute) {
-            
-            return getTableAction(Theme.shared.pinkDisputeColor, R.string.localizable.invoiceScreenItemsDispute(), width: 80)
+            let disputeAction = SwipeAction(style: .destructive, title: R.string.localizable.invoiceScreenItemsDispute()) { action, indexPath in
+                let disputInvoiceVC = DisputInvoiceViewController()
+                disputInvoiceVC.invoiceId = state.getItems()[indexPath.row].id
+                self.present(disputInvoiceVC, animated: true, completion: nil)
+            }
+            return getTableAction(Theme.shared.pinkDisputeColor,  disputeAction, 80)
             
         } else if (stateCanBeClosedDispute) {
-            
-            return getTableAction(Theme.shared.grayDisputeColor, R.string.localizable.invoiceScreenItemsCancelDispute(), width: 140)
+            let disputeAction = SwipeAction(style: .destructive, title: R.string.localizable.invoiceScreenItemsCancelDispute()) { action, indexPath in
+                let model = CancelDisputInvoiceRequest()
+                model?.invoiceId = state.getItems()[indexPath.row].id
+                if let model = model {
+                    self.state?.cancelDisputInvoice(model: model)
+                        .withSpinner(in: self.view)
+                        .then(execute: { [weak self] (result: Void) -> Void in
+                            guard let strongSelf = self else {
+                                return
+                            }
+                            strongSelf.loadData()
+                        })
+                }
+            }
+        
+            return getTableAction(Theme.shared.grayDisputeColor, disputeAction, 140)
             
         }
         return nil
@@ -142,7 +161,6 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
     }
     
     @objc func clickDispute(sender: Any?) {
-        self.hidesBottomBarWhenPushed = true
         self.navigationController?.present(DisputeViewController(), animated: true, completion: nil)
         self.hideMenu()
     }
@@ -185,9 +203,9 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
                 }
                 strongSelf.handleError(error: error)
             })
-        if (isSelected && self.downView.isHidden) {
+        if (isSelected && self.downViewHeightConstraint.constant == 0) {
             animate(isShow: true)
-        } else if (!isSelected && !self.downView.isHidden && self.state?.getCountSelected() == 0) {
+        } else if (!isSelected && self.downViewHeightConstraint.constant != 0 && self.state?.getCountSelected() == 0) {
             self.sumTextField.text = ""
             animate(isShow: false)
         }
@@ -227,16 +245,13 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
         self.sumTextField.alpha = isEnabled ? 1 : 0.2
     }
     
-    private func getTableAction(_ backgroundColor: UIColor, _ title: String, width: Int) -> [SwipeAction] {
-        let disputeAction = SwipeAction(style: .destructive, title: title) { action, indexPath in
-            
-        }
-        disputeAction.width = width
-        disputeAction.image = UIView.from(color: backgroundColor)
-        disputeAction.backgroundColor = UIColor.white
-        disputeAction.font = Theme.shared.boldFontOfSize(14)
+    private func getTableAction(_ backgroundColor: UIColor, _ action: SwipeAction,_ width: Int) -> [SwipeAction] {
+        action.width = width
+        action.image = UIView.from(color: backgroundColor)
+        action.backgroundColor = UIColor.white
+        action.font = Theme.shared.boldFontOfSize(14)
         
-        return [disputeAction]
+        return [action]
     }
     
     private func handleError(error : Error) {
@@ -247,7 +262,7 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
 
     
     private func saveAmount(amount: Double?) {
-        if let amountValue = amount, !downView.isHidden {
+        if let amountValue = amount, self.downViewHeightConstraint.constant != 0 {
             self.state?.amount = Double(amountValue)
             self.sumTextField.text = String(amountValue)
         }
@@ -263,16 +278,23 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
     }
     
     private func animate(isShow: Bool) {
-        UIView.animate(withDuration: 0.0) {
+        UIView.animate(withDuration: 0.5 , animations: {
+            if isShow {
+                self.downView.isHidden = !isShow
+            }
             self.downView.alpha = isShow ? 1 : 0
-        }
+            self.downViewHeightConstraint.constant = isShow ? 90 : 0
+            self.downView.layoutIfNeeded()
+        }, completion: {(finished) in
+            if !isShow {
+                self.downView.isHidden = isShow
+            }
+        })
         view.endEditing(!isShow)
         if !isShow {
             self.state?.clearSelectedItems()
         }
 
-        self.downView.isHidden = isShow ? false : true
-        self.downViewHeightConstraint.constant = isShow ? 110 : 0
         self.loadView(isShowLoading: false, isHiddenSelected: true)
     }
     

@@ -12,6 +12,12 @@ protocol PaymentService {
     
     func getHistory() -> Promise<String>
 
+    func makeDisputInvoice(model: DisputInvoiceRequest) -> Promise<Void>
+
+    func cancelDisputInvoice(model: CancelDisputInvoiceRequest) -> Promise<Void>
+
+    func getDisputeList() -> Promise<String>
+
     func getHistoryDetails(id: String) -> Promise<HistoryTransactionModel>
     
     func getSettings() -> Promise<String>

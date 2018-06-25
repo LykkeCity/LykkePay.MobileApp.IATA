@@ -158,6 +158,7 @@
 		0A6DB5D220C5537000BC1127 /* TokenObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6DB5D120C5537000BC1127 /* TokenObject.swift */; };
 		0A6DB5D620C553D000BC1127 /* CredentialManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6DB5D520C553D000BC1127 /* CredentialManager.swift */; };
 		0A6DB5DA20C5572E00BC1127 /* DataRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6DB5D920C5572E00BC1127 /* DataRequest.swift */; };
+		0A7EFCFF20E0F29E000034F3 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7EFCFE20E0F29E000034F3 /* R.generated.swift */; };
 		0A837C2A20DE985700199759 /* InvoiceFiltersModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A837C2720DE985700199759 /* InvoiceFiltersModel.swift */; };
 		0A837C2B20DE985700199759 /* InvoicePaymentRangeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A837C2820DE985700199759 /* InvoicePaymentRangeModel.swift */; };
 		0A837C2C20DE985700199759 /* FiltersInvoiceList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A837C2920DE985700199759 /* FiltersInvoiceList.swift */; };
@@ -175,7 +176,6 @@
 		0AB8E21020C5708300C13361 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB8E20F20C5708300C13361 /* AuthenticationService.swift */; };
 		0ABED71420DBA94300AABCAD /* CurrencyUiTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABED71320DBA94300AABCAD /* CurrencyUiTextField.swift */; };
 		0ABED71620DBC87900AABCAD /* ViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABED71520DBC87900AABCAD /* ViewUtils.swift */; };
-		0ABED71820DBD9BF00AABCAD /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABED71720DBD9BF00AABCAD /* R.generated.swift */; };
 		0ABED71E20DBDEF800AABCAD /* UIImageExtensition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABED71D20DBDEF800AABCAD /* UIImageExtensition.swift */; };
 		0ABED75720DC407000AABCAD /* NotificateDoneEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABED75620DC407000AABCAD /* NotificateDoneEnum.swift */; };
 		0ADA881A20DA530400A332F0 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADA881920DA530400A332F0 /* TextField.swift */; };
@@ -207,6 +207,12 @@
 		D7DEFC9720C97459005FB9EF /* WalletsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7DEFC9320C97458005FB9EF /* WalletsViewController.swift */; };
 		D7DEFC9A20C97B9E005FB9EF /* GothamProBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D7DEFC9820C97B9E005FB9EF /* GothamProBold.ttf */; };
 		D7DEFC9B20C97B9E005FB9EF /* GothamProLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D7DEFC9920C97B9E005FB9EF /* GothamProLight.ttf */; };
+		D7EFD40A20DD2AC500D984AA /* DefaultDisputInvoiceState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7EFD40920DD2AC500D984AA /* DefaultDisputInvoiceState.swift */; };
+		D7EFD40D20DD2B9000D984AA /* DisputInvoiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7EFD40B20DD2B9000D984AA /* DisputInvoiceViewController.swift */; };
+		D7EFD40E20DD2B9000D984AA /* DisputInvoiceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D7EFD40C20DD2B9000D984AA /* DisputInvoiceViewController.xib */; };
+		D7EFD41420DD2C9D00D984AA /* DisputInvoiceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7EFD41320DD2C9D00D984AA /* DisputInvoiceRequest.swift */; };
+		D7EFD41820DD4AEE00D984AA /* CancelDisputInvoiceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7EFD41720DD4AEE00D984AA /* CancelDisputInvoiceRequest.swift */; };
+		D7EFD41A20E0B4F900D984AA /* DisputeListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7EFD41920E0B4F800D984AA /* DisputeListItem.swift */; };
 		EF4B843175B4CC2AF6DB5E2D /* Pods_IATAUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B528F3D3DF6E9ED72F4A529 /* Pods_IATAUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -387,6 +393,7 @@
 		0A6DB5D120C5537000BC1127 /* TokenObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenObject.swift; sourceTree = "<group>"; };
 		0A6DB5D520C553D000BC1127 /* CredentialManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialManager.swift; sourceTree = "<group>"; };
 		0A6DB5D920C5572E00BC1127 /* DataRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataRequest.swift; sourceTree = "<group>"; };
+		0A7EFCFE20E0F29E000034F3 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		0A837C2720DE985700199759 /* InvoiceFiltersModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InvoiceFiltersModel.swift; path = IATA/Modules/Network/Models/Invoice/Response/Filters2/InvoiceFiltersModel.swift; sourceTree = SOURCE_ROOT; };
 		0A837C2820DE985700199759 /* InvoicePaymentRangeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InvoicePaymentRangeModel.swift; path = IATA/Modules/Network/Models/Invoice/Response/Filters2/InvoicePaymentRangeModel.swift; sourceTree = SOURCE_ROOT; };
 		0A837C2920DE985700199759 /* FiltersInvoiceList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FiltersInvoiceList.swift; path = IATA/Modules/Network/Models/Invoice/Response/Filters2/FiltersInvoiceList.swift; sourceTree = SOURCE_ROOT; };
@@ -404,7 +411,6 @@
 		0AB8E20F20C5708300C13361 /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
 		0ABED71320DBA94300AABCAD /* CurrencyUiTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyUiTextField.swift; sourceTree = "<group>"; };
 		0ABED71520DBC87900AABCAD /* ViewUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewUtils.swift; sourceTree = "<group>"; };
-		0ABED71720DBD9BF00AABCAD /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		0ABED71D20DBDEF800AABCAD /* UIImageExtensition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtensition.swift; sourceTree = "<group>"; };
 		0ABED75620DC407000AABCAD /* NotificateDoneEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificateDoneEnum.swift; sourceTree = "<group>"; };
 		0ADA881920DA530400A332F0 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
@@ -441,6 +447,12 @@
 		D7DEFC9320C97458005FB9EF /* WalletsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletsViewController.swift; sourceTree = "<group>"; };
 		D7DEFC9820C97B9E005FB9EF /* GothamProBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GothamProBold.ttf; sourceTree = "<group>"; };
 		D7DEFC9920C97B9E005FB9EF /* GothamProLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GothamProLight.ttf; sourceTree = "<group>"; };
+		D7EFD40920DD2AC500D984AA /* DefaultDisputInvoiceState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultDisputInvoiceState.swift; sourceTree = "<group>"; };
+		D7EFD40B20DD2B9000D984AA /* DisputInvoiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisputInvoiceViewController.swift; sourceTree = "<group>"; };
+		D7EFD40C20DD2B9000D984AA /* DisputInvoiceViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DisputInvoiceViewController.xib; sourceTree = "<group>"; };
+		D7EFD41320DD2C9D00D984AA /* DisputInvoiceRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisputInvoiceRequest.swift; sourceTree = "<group>"; };
+		D7EFD41720DD4AEE00D984AA /* CancelDisputInvoiceRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelDisputInvoiceRequest.swift; sourceTree = "<group>"; };
+		D7EFD41920E0B4F800D984AA /* DisputeListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisputeListItem.swift; sourceTree = "<group>"; };
 		FBCD1B2F0AEEDCE28F8A0492 /* Pods-IATAUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IATAUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-IATAUITests/Pods-IATAUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -521,6 +533,7 @@
 		0A0B119620D2886B00021E2D /* Dispute */ = {
 			isa = PBXGroup;
 			children = (
+				D7EFD41120DD2C8100D984AA /* DisputInvoice */,
 				0A0B119720D2887300021E2D /* Response */,
 			);
 			path = Dispute;
@@ -530,6 +543,7 @@
 			isa = PBXGroup;
 			children = (
 				0A0B119820D2889600021E2D /* DisputeModel.swift */,
+				D7EFD41920E0B4F800D984AA /* DisputeListItem.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -777,6 +791,7 @@
 		0A26FC9120D15AB10097A8F6 /* Dispute */ = {
 			isa = PBXGroup;
 			children = (
+				D7EFD40720DD2A6500D984AA /* CreateDisput */,
 				0A0B119A20D2895A00021E2D /* State */,
 				0A26FC9620D15B650097A8F6 /* Cell */,
 				0A26FC9220D15AC70097A8F6 /* DisputeViewController.swift */,
@@ -922,8 +937,8 @@
 		0A37EF9820C6DA8500201907 /* Localizable */ = {
 			isa = PBXGroup;
 			children = (
-				0ABED71720DBD9BF00AABCAD /* R.generated.swift */,
 				0A37EFA220C6DC5100201907 /* Localizable.strings */,
+				0A7EFCFE20E0F29E000034F3 /* R.generated.swift */,
 			);
 			path = Localizable;
 			sourceTree = "<group>";
@@ -1392,6 +1407,41 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
+		D7EFD40720DD2A6500D984AA /* CreateDisput */ = {
+			isa = PBXGroup;
+			children = (
+				D7EFD40820DD2A9900D984AA /* State */,
+				D7EFD40B20DD2B9000D984AA /* DisputInvoiceViewController.swift */,
+				D7EFD40C20DD2B9000D984AA /* DisputInvoiceViewController.xib */,
+			);
+			path = CreateDisput;
+			sourceTree = "<group>";
+		};
+		D7EFD40820DD2A9900D984AA /* State */ = {
+			isa = PBXGroup;
+			children = (
+				D7EFD40920DD2AC500D984AA /* DefaultDisputInvoiceState.swift */,
+			);
+			path = State;
+			sourceTree = "<group>";
+		};
+		D7EFD41120DD2C8100D984AA /* DisputInvoice */ = {
+			isa = PBXGroup;
+			children = (
+				D7EFD41220DD2C8D00D984AA /* Request */,
+			);
+			path = DisputInvoice;
+			sourceTree = "<group>";
+		};
+		D7EFD41220DD2C8D00D984AA /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				D7EFD41320DD2C9D00D984AA /* DisputInvoiceRequest.swift */,
+				D7EFD41720DD4AEE00D984AA /* CancelDisputInvoiceRequest.swift */,
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1520,6 +1570,7 @@
 				0A26FCB220D1658D0097A8F6 /* TransactionTableViewCell.xib in Resources */,
 				0A0D4B5520C53364009B73E9 /* Assets.xcassets in Resources */,
 				0A37EFA020C6DC5100201907 /* Localizable.strings in Resources */,
+				D7EFD40E20DD2B9000D984AA /* DisputInvoiceViewController.xib in Resources */,
 				0A26FCA020D160F00097A8F6 /* HistoryViewController.xib in Resources */,
 				0AF611A320C9A4D700957348 /* InvoiceTableViewCell.xib in Resources */,
 				D7DEFC9A20C97B9E005FB9EF /* GothamProBold.ttf in Resources */,
@@ -1684,6 +1735,7 @@
 				0A37EF6E20C58C2500201907 /* StringsExtension.swift in Sources */,
 				0A0B11AD20D29A7700021E2D /* DefaultBaseState.swift in Sources */,
 				0A37EFF320C7FC0300201907 /* DefaultBaseViewState.swift in Sources */,
+				D7EFD41420DD2C9D00D984AA /* DisputInvoiceRequest.swift in Sources */,
 				0A1AF41820CADB7B0009595C /* BTTableCellContentView.swift in Sources */,
 				0AF6119F20C9980500957348 /* UiStatusView.swift in Sources */,
 				0A0D4B7F20C542DE009B73E9 /* Network.swift in Sources */,
@@ -1725,6 +1777,7 @@
 				0A11323520DD795800FE6853 /* CustomizeRangeSlider.swift in Sources */,
 				0A37EF6020C5881200201907 /* UIView+SpinnerController.swift in Sources */,
 				0A1AF40920CADB450009595C /* BTNavigationDropdownMenu.swift in Sources */,
+				D7EFD41A20E0B4F900D984AA /* DisputeListItem.swift in Sources */,
 				0A37EF5420C5816B00201907 /* SignInViewController.swift in Sources */,
 				D7D3012920D798D400A1AEB8 /* WalletsModel.swift in Sources */,
 				0A0B119920D2889600021E2D /* DisputeModel.swift in Sources */,
@@ -1750,7 +1803,9 @@
 				0A26FC8D20D117410097A8F6 /* InvoiceSettingsState.swift in Sources */,
 				0ADA881D20DA774A00A332F0 /* NavPushingUtil.swift in Sources */,
 				0A1AF40820CADB450009595C /* BTTitle.swift in Sources */,
+				D7EFD40A20DD2AC500D984AA /* DefaultDisputInvoiceState.swift in Sources */,
 				0A62F56D20C5499400A51D63 /* ArrayEncoding.swift in Sources */,
+				D7EFD41820DD4AEE00D984AA /* CancelDisputInvoiceRequest.swift in Sources */,
 				0A1A1C9220DD1D380037DC77 /* Swipeable.swift in Sources */,
 				0A37EF6C20C58BA000201907 /* Utils.swift in Sources */,
 				0A1A1C8A20DD1D380037DC77 /* SwipeTableViewCell+Display.swift in Sources */,
@@ -1759,6 +1814,7 @@
 				0A349FF420D8F98D00D0A1C2 /* DateUtils.swift in Sources */,
 				0A1A1C8620DD1D380037DC77 /* SwipeActionsView.swift in Sources */,
 				0A1A1C9120DD1D380037DC77 /* SwipeCollectionViewCell+Display.swift in Sources */,
+				D7EFD40D20DD2B9000D984AA /* DisputInvoiceViewController.swift in Sources */,
 				0A1A1C8520DD1D380037DC77 /* SwipeCollectionViewCellDelegate.swift in Sources */,
 				0A837C2B20DE985700199759 /* InvoicePaymentRangeModel.swift in Sources */,
 				0A0B11C220D2E35300021E2D /* InvoiceSettingsTableViewCell.swift in Sources */,
@@ -1826,11 +1882,11 @@
 				0ABED71E20DBDEF800AABCAD /* UIImageExtensition.swift in Sources */,
 				0A4CD15A20CEC96E00EF4A17 /* PaymentService.swift in Sources */,
 				0A37EFFD20C808E400201907 /* ChangePasswordViewState.swift in Sources */,
-				0ABED71820DBD9BF00AABCAD /* R.generated.swift in Sources */,
 				0A1A1C9520DD1D380037DC77 /* SwipeTransitionLayout.swift in Sources */,
 				0A26FC9F20D160F00097A8F6 /* HistoryViewController.swift in Sources */,
 				0A4CD14720CD901600EF4A17 /* OnSwitchStateChanged.swift in Sources */,
 				0A08C0FD20CAA70400342A3E /* InvoiceViewModelExtensition.swift in Sources */,
+				0A7EFCFF20E0F29E000034F3 /* R.generated.swift in Sources */,
 				0A4CD16720CF135300EF4A17 /* TextFieldUtils.swift in Sources */,
 				0A37EF5D20C587C600201907 /* Promise+Spinner.swift in Sources */,
 				0AF1C3AD20C9164E00AFD286 /* UserPreference.swift in Sources */,

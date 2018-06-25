@@ -44,6 +44,18 @@ class DefaultPaymentService: NSObject, PaymentService {
     func getHistory() -> Promise<String> {
         return Network.shared.get(path: PaymentConfig.shared.historyIndex , params: [:])
     }
+
+    func makeDisputInvoice(model: DisputInvoiceRequest) -> Promise<Void> {
+        return Network.shared.post(path: PaymentConfig.shared.makeDisputInvoice, object: model)
+    }
+
+    func cancelDisputInvoice(model: CancelDisputInvoiceRequest) -> Promise<Void> {
+        return Network.shared.post(path: PaymentConfig.shared.cancelDisputInvoice, object: model)
+    }
+
+    func getDisputeList() -> Promise<String> {
+        return Network.shared.get(path: PaymentConfig.shared.disputeList, params: [:])
+    }
     
 
     func getHistoryDetails(id: String) -> Promise<HistoryTransactionModel> {

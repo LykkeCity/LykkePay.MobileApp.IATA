@@ -5,6 +5,7 @@ import UIKit
 class BaseNavController: UIViewController, UITextFieldDelegate {
     
     var backgroundNavBar: UIColor = Theme.shared.navigationBarColor
+    var textTitleColor: UIColor = UIColor.white
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,7 +69,7 @@ class BaseNavController: UIViewController, UITextFieldDelegate {
     }
     
     func getTitleView() -> UIView {
-        return Theme.shared.getTitle(title: self.getTitle(), color: UIColor.white)
+        return Theme.shared.getTitle(title: self.getTitle(), color: textTitleColor)
     }
     
     func getLeftButton() -> UIBarButtonItem? {

@@ -12,6 +12,7 @@ class DisputeViewController: BaseViewController<DisputeModel, DefaultDisputeStat
         super.viewDidLoad()
         self.tabView.rowHeight = UITableViewAutomaticDimension
         self.tabView.estimatedRowHeight = 200
+        loadData()
     }
     
     override func getNavView() -> UIView? {
@@ -38,6 +39,22 @@ class DisputeViewController: BaseViewController<DisputeModel, DefaultDisputeStat
         cell.initCell(model: model)
         return cell
     }
+
+    private func loadData() {
+        self.state?.getDisputeListStringJson()
+            .withSpinner(in: view)
+            .then(execute: { [weak self] (result: String) -> Void in
+                guard let strongSelf = self else {
+                    return
+                }
+                strongSelf.reloadTable(jsonString: result)
+            })
+    }
+
+    private func reloadTable(jsonString: String!) {
+        self.state?.mapping(jsonString: jsonString)
+        self.tabView.reloadData()
+    }
     
     override func getTitle() -> String? {
         return R.string.localizable.invoiceDisputeTitle()
@@ -48,10 +65,10 @@ class DisputeViewController: BaseViewController<DisputeModel, DefaultDisputeStat
     }
     
     override func getLeftButton() -> UIBarButtonItem? {
+        let backButton = Theme.shared.getCancel(title: R.string.localizable.commonNavBarClose(), color: UIColor.white)
+        backButton.addTarget(self, action: #selector(backButtonAction), for: .touchUpInside)
         
-        let buttonImage = R.image.backIcon()?.stretchableImage(withLeftCapWidth: 0, topCapHeight: 10)
-        
-        return UIBarButtonItem(image: buttonImage, style: .plain, target: self, action: #selector(backButtonAction))
+        return UIBarButtonItem(customView: backButton)
     }
     
     @objc func backButtonAction() {

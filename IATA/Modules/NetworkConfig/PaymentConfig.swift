@@ -13,6 +13,13 @@ class PaymentConfig {
     
     public let historyIndex = "/history/Index"
 
+    public let makeDisputInvoice = "/invoices/dispute/mark"
+
+    public let cancelDisputInvoice = "/invoices/dispute/cancel"
+
+    public let disputeList = "/invoices/dispute/list"
+    
+
     public let historyDetails = "/history/Details"
 
     
