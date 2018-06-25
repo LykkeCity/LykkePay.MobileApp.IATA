@@ -1,6 +1,6 @@
 import UIKit
 
-class DisputInvoiceViewController: BaseNavController, Initializer {
+class DisputInvoiceViewController: BaseNavController {
 
     var invoiceId: String?
 
@@ -9,7 +9,6 @@ class DisputInvoiceViewController: BaseNavController, Initializer {
     let state = DefaultDisputInvoiceState()
 
     override func viewDidLoad() {
-        initializer = self
         super.viewDidLoad()
 
     }
@@ -53,26 +52,19 @@ class DisputInvoiceViewController: BaseNavController, Initializer {
                 guard let strongSelf = self else {
                     return
                 }
-                NavPushingUtil.shared.pop(navigationController: self?.navigationController)
+                //NavPushingUtil.shared.pop(navigationController: self?.navigationController)
+                self?.dismiss(animated: true, completion: {
+
+                })
+                
             })
         }
     }
 
     @objc func clickCancel() {
-       NavPushingUtil.shared.pop(navigationController: navigationController)
+       //NavPushingUtil.shared.pop(navigationController: navigationController)
+        self.dismiss(animated: true) {
+         
+        }
     }
-
-
-    func getTitle() -> String? {
-        return ""
-    }
-
-    func getTableView() -> UITableView {
-        return UITableView()
-    }
-
-    func registerCells() {
-
-    }
-
 }
