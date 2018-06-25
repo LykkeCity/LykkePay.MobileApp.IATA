@@ -22,12 +22,12 @@ class BigThumbnailSwither : UISlider {
         if (self.value == 0) {
             if let imageUnActive = UIImage(named: "ic_disactive_thumb") {
                 self.setThumbImage(self.scaleToSize(newSize:
-                    CGSize(width: CGFloat(30), height: CGFloat(30)), image: imageUnActive), for: .normal)
+                    CGSize(width: CGFloat(20), height: CGFloat(20)), image: imageUnActive), for: .normal)
             }
         } else {
             if let imageActive = UIImage(named: "ic_active_thumb") {
                 self.setThumbImage(self.scaleToSize(newSize:
-                    CGSize(width: CGFloat(30), height: CGFloat(30)),
+                    CGSize(width: CGFloat(20), height: CGFloat(20)),
                                                     image: imageActive), for: .normal)
             }
         }

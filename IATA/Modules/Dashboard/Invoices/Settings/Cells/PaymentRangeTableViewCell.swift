@@ -1,5 +1,4 @@
 import UIKit
-import WARangeSlider
 
 class PaymentRangeTableViewCell: UITableViewCell, UITextFieldDelegate {
     
@@ -14,11 +13,11 @@ class PaymentRangeTableViewCell: UITableViewCell, UITextFieldDelegate {
                 return
             }
             if let min = item.min, let symbol =  UserPreference.shared.getCurrentCurrency()?.symbol {
-                self.minValueTextField?.text = Double(min).formattedWithSeparator + " " + symbol
+                self.minValueTextField?.text = Formatter.formattedWithSeparator(value: String(min)) + " " + symbol
             }
             
             if let max = item.max, let symbol =  UserPreference.shared.getCurrentCurrency()?.symbol {
-                self.maxValueTextField?.text = Double(max).formattedWithSeparator + " " + symbol
+                self.maxValueTextField?.text = Formatter.formattedWithSeparator(value: String(max)) + " " + symbol
             }
             
             self.minValueChanged(self.minValueTextField)
@@ -46,8 +45,8 @@ class PaymentRangeTableViewCell: UITableViewCell, UITextFieldDelegate {
         self.minValueTextField?.delegate = self
         self.maxValueTextField?.delegate = self
         
-        self.minValueTextField?.addTarget(self, action: #selector(editingFinishMax), for: .editingDidEnd)
-        self.maxValueTextField?.addTarget(self, action: #selector(editingFinishMin), for: .editingDidEnd)
+        self.minValueTextField?.addTarget(self, action: #selector(editingFinishMin), for: .editingDidEnd)
+        self.maxValueTextField?.addTarget(self, action: #selector(editingFinishMax), for: .editingDidEnd)
         self.rangeSlider?.addTarget(self, action: #selector(rangeSliderValueChanged(sender:)),
                                     for: .valueChanged)
         
@@ -63,22 +62,22 @@ class PaymentRangeTableViewCell: UITableViewCell, UITextFieldDelegate {
             
             if let valueText = self.maxValueTextField?.text,
                 let value = Double(valueText), !TextFieldUtil.validateMaxValueText(text, value) {
-                ViewUtils.showToast(message: R.string.localizable.invoiceSettingsErrorFrom(), view: self.contentView)
+                ViewUtils.shared.showToast(message: R.string.localizable.invoiceSettingsErrorFrom(), view: self.contentView)
                 NotificationCenter.default.post(name: NSNotification.Name(NotificateDoneEnum.disable.rawValue), object: nil)
             } else {
-               NotificationCenter.default.post(name: NSNotification.Name(NotificateDoneEnum.enable.rawValue), object: nil)
+                NotificationCenter.default.post(name: NSNotification.Name(NotificateDoneEnum.enable.rawValue), object: nil)
             }
         }
     }
     
     
-   @objc func editingFinishMax() {
+    @objc func editingFinishMax() {
         if let text = self.maxValueTextField?.text {
             if text.isEmpty, let symbol = UserPreference.shared.getCurrentCurrency()?.symbol {
                 self.minValueTextField?.text = "0 " + symbol
             }
             if  let valueText = self.minValueTextField?.text, let value = Double(valueText), !TextFieldUtil.validateMinValueText(text, value, true) {
-                ViewUtils.showToast(message: R.string.localizable.invoiceSettingsErrorTo(), view: self.contentView)
+                ViewUtils.shared.showToast(message: R.string.localizable.invoiceSettingsErrorTo(), view: self.contentView)
                 NotificationCenter.default.post(name: NSNotification.Name(NotificateDoneEnum.disable.rawValue), object: nil)
             } else {
                 NotificationCenter.default.post(name: NSNotification.Name(NotificateDoneEnum.enable.rawValue), object: nil)
@@ -102,10 +101,8 @@ class PaymentRangeTableViewCell: UITableViewCell, UITextFieldDelegate {
         }
         self.item?.min = Int(round(min))
         self.item?.max = Int(round(max))
-        if let symbol = UserPreference.shared.getCurrentCurrency()?.symbol {
-            self.minValueTextField?.text = round(min).formattedWithSeparator + " " + symbol
-            self.maxValueTextField?.text = round(max).formattedWithSeparator + " " + symbol
-        }
+        self.minValueTextField?.text = Formatter.formattedWithSeparator(value: String(Int(round(min))))
+        self.maxValueTextField?.text = Formatter.formattedWithSeparator(value: String(Int(round(max))))
         self.delegate?.updatePaymentRangeMax(max: self.item?.max)
         self.delegate?.updatePaymentRangeMin(min: self.item?.min)
         self.contentView.endEditing(true)

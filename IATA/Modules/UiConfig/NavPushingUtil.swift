@@ -2,36 +2,68 @@ import Foundation
 import UIKit
 
 class NavPushingUtil {
-    
-     public static private(set) var shared = NavPushingUtil()
-    
-    public func push(navigationController: UINavigationController?, controller: UIViewController) {
-        let transition = CATransition()
-        transition.duration = 0.5
-        transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-        transition.type = kCATransitionPush
-        transition.subtype = kCATransitionFromTop
-        navigationController?.view.layer.add(transition, forKey: nil)
-        navigationController?.pushViewController(controller, animated: false)
-    }
-    
-    public func pop(navigationController: UINavigationController?) {
-        let transition = CATransition()
-        transition.duration = 0.5
-        transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-        transition.type = kCATransitionPush
-        transition.subtype = kCATransitionFromBottom
-        navigationController?.view.layer.add(transition, forKey: kCATransition)
-        navigationController?.popViewController(animated: false)
-    }
-    
-    public func pushDown(navigationController: UINavigationController?, controller: UIViewController) {
-        let transition = CATransition()
-        transition.duration = 0.5
-        transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-        transition.type = kCATransitionPush
-        transition.subtype = kCATransitionFromBottom
-        navigationController?.view.layer.add(transition, forKey: nil)
-        navigationController?.pushViewController(controller, animated: false)
-    }
 }
+
+class PresentAnimation: NSObject, UIViewControllerAnimatedTransitioning {
+    weak var storedContext: UIViewControllerContextTransitioning?
+    var operation: UINavigationControllerOperation = .push
+    
+    func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
+        return 0.5
+    }
+    
+    func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+        
+        let containerVw = transitionContext.containerView
+        let fromViewController = transitionContext.viewController(forKey: .from)
+        let toViewController = transitionContext.viewController(forKey: .to)
+        guard let fromVc = fromViewController, let toVc = toViewController else { return }
+        let finalFrame = transitionContext.finalFrame(for: toVc)
+        toVc.view.frame = finalFrame.offsetBy(dx: 0, dy: finalFrame.size.height)
+        
+        containerVw.addSubview(toVc.view)
+        UIView.animate(withDuration: transitionDuration(using: transitionContext), animations: {
+            toVc.view.frame = finalFrame
+        }, completion: {(finished) in
+            transitionContext.completeTransition(finished)
+        })
+        
+        storedContext = transitionContext
+    }
+    
+    
+}
+
+class PresentDownAnimation: NSObject, UIViewControllerAnimatedTransitioning {
+    weak var storedContext: UIViewControllerContextTransitioning?
+    var operation: UINavigationControllerOperation = .push
+    
+    func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
+        return 0.5
+    }
+    
+   
+    func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+        let containerVw = transitionContext.containerView
+        let fromViewController = transitionContext.viewController(forKey: .from)
+        let toViewController = transitionContext.viewController(forKey: .to)
+        guard let fromVc = fromViewController, let toVc = toViewController else { return }
+        let finalFrame = transitionContext.finalFrame(for: toVc)
+        toVc.view.frame = finalFrame
+        fromVc.view.frame = finalFrame.offsetBy(dx: 0, dy: 0)
+        
+        containerVw.addSubview(toVc.view)
+        containerVw.addSubview(fromVc.view)
+        UIView.animate(withDuration: transitionDuration(using: transitionContext), animations: {
+           fromVc.view.frame = finalFrame.offsetBy(dx: 0, dy: finalFrame.size.height * 2)
+        }, completion: {(finished) in
+            transitionContext.completeTransition(finished)
+        })
+        
+        storedContext = transitionContext
+    }
+    
+    
+}
+
+

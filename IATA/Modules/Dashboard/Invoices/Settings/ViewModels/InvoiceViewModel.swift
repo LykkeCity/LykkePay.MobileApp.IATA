@@ -1,5 +1,6 @@
 import Foundation
 import UIKit
+import PromiseKit
 
 protocol InvoiceViewModelItem {
     func getType() -> InvoiceViewModelItemType?
@@ -11,13 +12,8 @@ protocol InvoiceViewModelItem {
 class InvoiceViewModel: NSObject {
     var state: InvoiceSettingsState = DefaultInvoiceSettingsState() as InvoiceSettingsState
     
-    override init() {
+    internal override init() {
         super.init()
-        guard let data = dataFromFile("ServerData"), let model = InvoiceScreenModel(data: data) else {
-            return
-        }
-        
-        self.state.initItems(model: model)
     }
     
     func scrollToLastPosition(tableView: UITableView) {

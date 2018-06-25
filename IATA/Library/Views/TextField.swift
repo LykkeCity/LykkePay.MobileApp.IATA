@@ -29,13 +29,19 @@ class FloatTextField: TextField {
                 placeholderActiveColor = Theme.shared.greenColor
                 dividerColor = Theme.shared.greenColor
                 dividerActiveColor = Theme.shared.greenColor
-                dividerNormalColor = Theme.shared.greyStatusColor
-                placeholderNormalColor = Theme.shared.greyStatusColor
+                dividerNormalColor = Theme.shared.placeholderTextFieldColor
+                placeholderNormalColor = Theme.shared.placeholderTextFieldColor
             }
+            setDividerHeight()
             layoutSubviews()
         }
     }
     
+    private func setDividerHeight() {
+        dividerNormalHeight = CGFloat(0.5)
+        dividerThickness = CGFloat(0.5)
+        dividerActiveHeight = CGFloat(0.5)
+    }
     open override func prepare() {
         super.prepare()
         prepareTextHandlers()

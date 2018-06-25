@@ -4,10 +4,9 @@ import ObjectMapper
 
 class DefaultPaymentService: NSObject, PaymentService {
    
-    func makePayment(model: PaymentRequest) -> Promise<Void> {
-         return Network.shared.post(path: PaymentConfig.shared.makePayment, object: model)
+    func makePayment(model: PaymentRequest) -> Promise<BaseMappable> {
+        return Network.shared.postMappable(path: PaymentConfig.shared.makePayment, object: model)
     }
-    
 
     func getInVoices(invoceParams: InvoiceRequest)-> Promise<String> {
         var params: [String : Any] = [String : Any]()
@@ -41,6 +40,7 @@ class DefaultPaymentService: NSObject, PaymentService {
         params[InvoiceRequest.InvoiceParamsKey.invoicesIds.rawValue] = invoicesIds
         return Network.shared.getWithBrasket(path: PaymentConfig.shared.amount, params: params)
     }
+    
     func getHistory() -> Promise<String> {
         return Network.shared.get(path: PaymentConfig.shared.historyIndex , params: [:])
     }
@@ -55,5 +55,26 @@ class DefaultPaymentService: NSObject, PaymentService {
 
     func getDisputeList() -> Promise<String> {
         return Network.shared.get(path: PaymentConfig.shared.disputeList, params: [:])
+    }
+    
+
+    func getHistoryDetails(id: String) -> Promise<HistoryTransactionModel> {
+        var params: [String : Any] = [String : Any]()
+        params["id"] = id
+        return Network.shared.getWithBrasket(path: PaymentConfig.shared.historyDetails , params: params)
+    }
+    
+    func getSettings() -> Promise<String> {
+        return Network.shared.get(path: PaymentConfig.shared.user, params: [:])
+    }
+    
+    func getBaseAssetsList() -> Promise<String> {
+        return Network.shared.get(path: PaymentConfig.shared.baseAssets, params: [:])
+    }
+    
+    func postBaseAssets(baseAsset: String) -> Promise<Void> {
+        var params = [String : String]()
+        params["baseAsset"] = baseAsset
+        return Network.shared.postWithQueryString(path: PaymentConfig.shared.baseAsset, params: params)
     }
 }

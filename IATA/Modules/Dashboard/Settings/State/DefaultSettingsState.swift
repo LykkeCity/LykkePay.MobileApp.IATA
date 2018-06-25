@@ -1,41 +1,41 @@
 import Foundation
+import PromiseKit
+import ObjectMapper
 
-class DefaultSettingsState: SettingsState {
-    
-    private var currencies: [InvoiceSettingAirlinesModel] = []
-    
-    internal required init() {
-        let model1 = InvoiceSettingAirlinesModel()
-        model1?.logo = "ic_usFlagSmallIcn"
-        model1?.name = "USD"
-        model1?.id = "USD"
-        model1?.initSymbol()
-        UserPreference.shared.saveCurrentCurrency(model1!)
-        
-        let model2 = InvoiceSettingAirlinesModel()
-        model2?.logo = "ic_eurFlagSmallIcn"
-        model2?.name = "EURO"
-        model2?.id = "EURO"
-        model2?.initSymbol()
-        guard let currencies = [model1, model2] as? [InvoiceSettingAirlinesModel] else {
-            return
-        }
-        
-        self.currencies = currencies
-        self.setUpActiveCurrency()
+class DefaultSettingsState: DefaultBaseState<SettingsMerchantsModel> {
+
+    public lazy var service: PaymentService = DefaultPaymentService()
+
+    func getSettingsStringJson() -> Promise<String> {
+        return self.service.getSettings()
     }
-    
-    func setUpActiveCurrency() {
-        guard let activeCurrency = UserPreference.shared.getCurrentCurrency(),
-            let index = (self.currencies.index(where: {$0 === activeCurrency}))  else {
-                self.currencies.first?.checked = true
-                UserPreference.shared.saveCurrentCurrency(self.currencies[0])
-                return
-        }
-        self.currencies[index].checked = true
+
+    func getBaseAssetsStringJson() -> Promise<String> {
+        return self.service.getBaseAssetsList()
     }
-    
-    func getCurrencies() -> [InvoiceSettingAirlinesModel] {
-        return currencies
+
+    func setBaseAsset(baseAsset: String) -> Promise<Void> {
+        return self.service.postBaseAssets(baseAsset: baseAsset)
     }
+
+    func mappingSettings(jsonString: String!) -> SettingsViewModel {
+        let settingsModel = Mapper<SettingsModel>().map(JSONString: jsonString)
+        let settingsViewModel = prepareSettingsViewModels(from: settingsModel!)
+        return settingsViewModel
+    }
+
+    func mappingBaseAssets(jsonString: String!) {
+        self.items = !jsonString.isEmpty ? Mapper<SettingsMerchantsModel>().mapArray(JSONObject: jsonString.toJSON())! : Array<SettingsMerchantsModel>()
+    }
+
+    func prepareSettingsViewModels(from settingsModel: SettingsModel) -> SettingsViewModel {
+        let settingForPresent = SettingsViewModel()
+        settingForPresent.merchantName = settingsModel.merchantName
+        settingForPresent.merchantLogoUrl = settingsModel.merchantLogoUrl
+        settingForPresent.firstName = settingsModel.firstName
+        settingForPresent.lastName = settingsModel.lastName
+        settingForPresent.email = settingsModel.email
+        return settingForPresent
+    }
+
 }

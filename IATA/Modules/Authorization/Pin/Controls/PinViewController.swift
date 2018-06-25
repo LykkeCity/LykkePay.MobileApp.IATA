@@ -1,7 +1,7 @@
 
 import UIKit
 
-class PinViewController: UIViewController {
+class PinViewController: UIViewController, UINavigationControllerDelegate {
     
     @IBOutlet weak var passwordStackView: UIStackView!
     @IBOutlet weak var labelTitle: UILabel!
@@ -12,12 +12,20 @@ class PinViewController: UIViewController {
     var passwordContainerView: PasswordContainerView!
     let kPasswordDigit = 4
     var isValidation = true
+    var completion: (() -> Void) = {}
+    var isValidationTransaction = false
     var countOfTry = 0
     var pinCode = ""
+    
+    func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationControllerOperation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        
+        return PresentDownAnimation()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.initNavBar()
+        self.navigationController?.delegate = self
         //create PasswordContainerView
         self.passwordContainerView = PasswordContainerView.create(in: passwordStackView, digit: kPasswordDigit)
         self.passwordContainerView.delegate = self as PasswordInputCompleteProtocol
@@ -25,25 +33,20 @@ class PinViewController: UIViewController {
         
         self.labelTitle.text = self.isValidation ? R.string.localizable.pinValidationTitle() : R.string.localizable.pinSetupTitle()
         
-        self.setNeedsStatusBarAppearanceUpdate()
         self.initNavBar()
+    }
+    
+    @IBAction func clickCancel(_ sender: Any) {
+        openSignIn()
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .default
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        self.initNavBar()
-        UIApplication.shared.statusBarStyle = UIStatusBarStyle.default
-    }
-    
-    
     private func initNavBar() {
-        self.setNeedsStatusBarAppearanceUpdate()
         self.navigationController?.navigationBar.barStyle = .black
-        self.navigationController?.isNavigationBarHidden = false
+        self.navigationController?.isNavigationBarHidden = true
         self.navigationItem.leftBarButtonItem = getBackButton()
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
@@ -70,7 +73,7 @@ class PinViewController: UIViewController {
     
     func openSignIn() {
         CredentialManager.shared.clearSavedData()
-        NavPushingUtil.shared.pushDown(navigationController: self.navigationController, controller: SignInViewController())
+        self.navigationController?.pushViewController(SignInViewController(), animated: true)
     }
 }
 
@@ -133,17 +136,26 @@ private extension PinViewController {
     }
     
     func validationSuccess() {
-        self.navigationController?.isNavigationBarHidden = true
-        NavPushingUtil.shared.pushDown(navigationController: self.navigationController, controller: TabBarController())
-        self.navigationController?.navigationBar.barTintColor = Theme.init().navigationBarColor
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
+        if isValidationTransaction {
+            self.dismiss(animated: true, completion: completion)
+        } else {
+            self.navigationController?.isNavigationBarHidden = true
+            self.navigationController?.pushViewController(TabBarController(), animated: true)
+            
+            self.navigationController?.navigationBar.barTintColor = Theme.init().navigationBarColor
+            self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
+        }
     }
     
     func validationFail() {
         self.countOfTry += 1
         self.passwordContainerView.wrongPassword()
         if (countOfTry > 2) {
-            self.openSignIn()
+            if isValidationTransaction {
+                self.dismiss(animated: true, completion: nil)
+            } else {
+                self.openSignIn()
+            }
         }
     }
     

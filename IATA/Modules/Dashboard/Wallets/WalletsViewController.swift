@@ -2,7 +2,7 @@
 import UIKit
 
 
-class WalletsViewController: BaseViewController<WalletsViewModel, DefaultWalletsState> , Initializer {
+class WalletsViewController: BaseViewController<WalletsViewModel, DefaultWalletsState> {
 
     @IBOutlet weak var totalBalanceLabel: UILabel!
     
@@ -10,14 +10,15 @@ class WalletsViewController: BaseViewController<WalletsViewModel, DefaultWallets
 
 
     override func viewDidLoad() {
-        initializer = self
         state = DefaultWalletsState()
         super.viewDidLoad()
+        self.navigationController?.isNavigationBarHidden = false
         loadData()
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.navigationController?.isNavigationBarHidden = false
         loadData()
         totalBalanceLabel.text = state?.getTotalBalance()
     }
@@ -55,15 +56,15 @@ class WalletsViewController: BaseViewController<WalletsViewModel, DefaultWallets
         self.tableView.reloadData()
     }
 
-    func getTitle() -> String? {
+    override func getTitle() -> String? {
         return tabBarItem.title?.capitalizingFirstLetter()
     }
 
-    func getTableView() -> UITableView {
+    override func getTableView() -> UITableView {
         return tableView
     }
 
-    func registerCells() {
+    override func registerCells() {
         tableView.register(WalletsTableViewCell.nib, forCellReuseIdentifier: WalletsTableViewCell.identifier)
     }
 }

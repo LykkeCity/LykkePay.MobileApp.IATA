@@ -22,13 +22,25 @@ class BaseCurrencyCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         applyUnselectedCellTheme()
     }
-    
-    internal func initView(model: InvoiceSettingAirlinesModel) {
-        if let logo = model.logo {
-            self.baseCurrencyFlagImage.image = UIImage(named: logo)
+
+    internal func initView(model: SettingsMerchantsModel) {
+
+        self.baseCurrencyNameLabel.text = model.value
+        if let isSelected = model.isSelected {
+            self.isSelected = isSelected
+            self.layoutIfNeeded()
+            if isSelected {
+              UserPreference.shared.saveCurrentCurrency(model)
+            }
         }
-        self.baseCurrencyNameLabel.text = model.name
-       // self.isSelected = model.checked!
+        if let symbol = model.symbol {
+        if (symbol.contains("$")) {
+            self.baseCurrencyFlagImage.image = R.image.ic_usFlagMediumIcn()
+        } else if (symbol.contains("€"))  {
+            self.baseCurrencyFlagImage.image = R.image.ic_eurFlagMediumIcn()
+            }
+        }
+
     }
 
     private func applySelectedCellTheme() {

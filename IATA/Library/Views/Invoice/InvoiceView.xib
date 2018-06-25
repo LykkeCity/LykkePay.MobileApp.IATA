@@ -61,7 +61,7 @@
                     <viewLayoutGuide key="safeArea" id="JdV-bG-mZh"/>
                 </stackView>
                 <stackView opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="qAL-an-ysR">
-                    <rect key="frame" x="269" y="16" width="89.5" height="33"/>
+                    <rect key="frame" x="277.5" y="16" width="89.5" height="33"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="right" semanticContentAttribute="forceRightToLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2 000 $" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fug-9l-elH">
                             <rect key="frame" x="0.0" y="0.0" width="89.5" height="12.5"/>
@@ -86,29 +86,29 @@
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" semanticContentAttribute="forceRightToLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jw2-S9-r55" customClass="UiStatusView" customModule="IATA" customModuleProvider="target">
-                    <rect key="frame" x="337" y="57" width="22" height="7.5"/>
+                    <rect key="frame" x="345" y="57" width="22" height="7.5"/>
                     <fontDescription key="fontDescription" name="GothamPro" family="Gotham Pro" pointSize="8"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_body_dispute" translatesAutoresizingMaskIntoConstraints="NO" id="b8E-op-mMS">
-                    <rect key="frame" x="323" y="57" width="10" height="10"/>
+                    <rect key="frame" x="325" y="57" width="16" height="16"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="10" id="Y4A-x8-SEg"/>
-                        <constraint firstAttribute="height" constant="10" id="dIP-GF-Uhs"/>
+                        <constraint firstAttribute="width" constant="16" id="Y4A-x8-SEg"/>
+                        <constraint firstAttribute="height" constant="16" id="dIP-GF-Uhs"/>
                     </constraints>
                 </imageView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="qAL-an-ysR" secondAttribute="trailing" constant="16" id="4x2-te-387"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="qAL-an-ysR" secondAttribute="trailing" constant="8" id="4x2-te-387"/>
                 <constraint firstItem="5eL-jn-e0W" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="16" id="9Do-ld-VsD"/>
                 <constraint firstItem="qAL-an-ysR" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="16" id="9GP-em-Cl5"/>
                 <constraint firstItem="b8E-op-mMS" firstAttribute="top" secondItem="qAL-an-ysR" secondAttribute="bottom" constant="8" id="OhR-ur-JXg"/>
                 <constraint firstItem="Jw2-S9-r55" firstAttribute="leading" secondItem="b8E-op-mMS" secondAttribute="trailing" constant="4" id="SAp-tc-1Xj"/>
                 <constraint firstItem="Jw2-S9-r55" firstAttribute="top" secondItem="qAL-an-ysR" secondAttribute="bottom" constant="8" id="Y6l-uv-nFv"/>
                 <constraint firstItem="5eL-jn-e0W" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="8" id="a1f-22-9NY"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Jw2-S9-r55" secondAttribute="trailing" constant="16" id="ku8-eM-xjc"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Jw2-S9-r55" secondAttribute="trailing" constant="8" id="ku8-eM-xjc"/>
                 <constraint firstItem="yXU-yc-qv1" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="16" id="q6i-fX-tTh"/>
                 <constraint firstItem="yXU-yc-qv1" firstAttribute="leading" secondItem="5eL-jn-e0W" secondAttribute="trailing" constant="8" id="vbR-ab-T9x"/>
             </constraints>

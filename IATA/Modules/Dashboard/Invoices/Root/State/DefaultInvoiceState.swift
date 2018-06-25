@@ -29,6 +29,8 @@ class DefaultInvoiceState: DefaultBaseState<InvoiceModel> {
     func initSelected() {
         if let menuItem = FilterPreference.shared.getIndexOfStatus(), let menu = MenuEnum(rawValue: menuItem) {
             selectedStatus(type: menu)
+        }  else {
+            selectedStatus(type: MenuEnum.All)
         }
     }
     
@@ -43,9 +45,9 @@ class DefaultInvoiceState: DefaultBaseState<InvoiceModel> {
         return self.service.getInVoices(invoceParams: self.invoiceParams!)
     }
     
-    func makePayment() -> Promise<Void> {
+    func makePayment(items: [String]?) -> Promise<BaseMappable> {
         let model = PaymentRequest()
-        model?.invoicesIds = getItemsId()
+        model?.invoicesIds = items
         model?.amountInBaseAsset = amount
         return self.service.makePayment(model: model!)
     }
@@ -61,21 +63,6 @@ class DefaultInvoiceState: DefaultBaseState<InvoiceModel> {
     
     func getMenuItems() -> [Menu] {
         return self.menuItems
-    }
-    
-    func recalculateAmount(isSelected: Bool, model: InvoiceModel) {
-        isSelected ? self.addNewSelectedModel(model: model) : self.removeSelectedModel(model: model)
-        self.amount = resultAmount()
-    }
-    
-
-    func resultAmount() -> Double {
-        var resultAmount = 0.0
-        for invoice in self.selectedItems {
-            resultAmount += invoice.amount!
-            resultAmount -= invoice.paidAmount!
-        }
-        return resultAmount
     }
     
     func selectedStatus(type: MenuEnum) {
@@ -148,6 +135,10 @@ class DefaultInvoiceState: DefaultBaseState<InvoiceModel> {
         }
     }
     
+    func newItem(isSelected: Bool, index: Int) {
+        isSelected ? addNewSelectedModel(model: getItems()[index]) : removeSelectedModel(model: getItems()[index])
+    }
+    
     func getSelectedString() -> String {
         if self.getCountSelected() == 1 {
             return R.string.localizable.invoiceScreenItemsOneSelected()
@@ -156,7 +147,7 @@ class DefaultInvoiceState: DefaultBaseState<InvoiceModel> {
         }
     }
     
-    private func getItemsId() -> [String] {
+    func getItemsId() -> [String] {
         var items = [String]()
         for item in selectedItems {
             if let id = item.id {

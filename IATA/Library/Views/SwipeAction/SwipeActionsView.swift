@@ -128,13 +128,13 @@ class SwipeActionsView: UIView {
             actionButton.autoresizingMask = [.flexibleHeight, orientation == .right ? .flexibleRightMargin : .flexibleLeftMargin]
             actionButton.spacing = options.buttonSpacing ?? 8
             actionButton.contentEdgeInsets = buttonEdgeInsets(fromOptions: options)
-            actionButton.layer.cornerRadius = 10
+            actionButton.layer.cornerRadius = 5
             actionButton.clipsToBounds = true
             return actionButton
         })
         
         let maximum = options.maximumButtonWidth ?? (size.width - 30) / CGFloat(actions.count)
-        let minimum = options.minimumButtonWidth ?? min(maximum, 140)
+        let minimum = options.minimumButtonWidth ?? min(maximum, CGFloat(actions[0].width))
         minimumButtonWidth = buttons.reduce(minimum, { initial, next in max(initial, next.preferredWidth(maximum: maximum)) })
         
         

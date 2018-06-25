@@ -1,12 +1,16 @@
 import UIKit
 
-class InvoiceSettingsViewController: UIViewController {
+class InvoiceSettingsViewController: BaseNavController {
     
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var navItem: UINavigationItem!
+    @IBOutlet weak var navBar: UINavigationBar!
+    @IBOutlet weak var navView: UIView!
     
-    private let viewModel = InvoiceViewModel()
+    private var viewModel =  InvoiceViewModel()
     private var isShown = false
+    private var isEnabled = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -15,13 +19,13 @@ class InvoiceSettingsViewController: UIViewController {
         
         self.tableView?.rowHeight = UITableViewAutomaticDimension
         self.tableView?.estimatedRowHeight = 55
-        self.tableView?.separatorColor = Theme.shared.dotColor
+        self.tableView?.separatorStyle = .none
         
         initHeaderCells()
         
         self.tableView?.register(PaymentRangeTableViewCell.nib, forCellReuseIdentifier: PaymentRangeTableViewCell.identifier)
         self.tableView?.register(InvoiceSettingsTableViewCell.nib, forCellReuseIdentifier: InvoiceSettingsTableViewCell.identifier)
-    
+        
         initKeyboardEvents()
         
         NotificationCenter.default.addObserver(
@@ -37,14 +41,20 @@ class InvoiceSettingsViewController: UIViewController {
             object: nil)
         self.setNeedsStatusBarAppearanceUpdate()
         self.initNavBar()
+        
+        self.loadData()
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .default
     }
     
+    override func getTitleView() -> UIView {
+        return Theme.shared.getTitle(title: self.getTitle(), color: Theme.shared.navBarTitle)
+    }
+    
     @IBAction func clickCancel(_ sender: Any) {
-        NavPushingUtil.shared.pop(navigationController: self.navigationController)
+        self.dismiss(animated: true, completion: nil)
     }
     
     @objc func dismissKeyboard() {
@@ -65,24 +75,26 @@ class InvoiceSettingsViewController: UIViewController {
     
     @objc func keyboardWillHide(notification: NSNotification) {
         if (isShown) {
-           self.bottomConstraint.constant = 0
+            self.bottomConstraint.constant = 0
             isShown = false
         }
     }
     
     @objc func clickDone() {
         self.viewModel.state.clickDone()
-        NavPushingUtil.shared.pop(navigationController: self.navigationController)
+        self.dismiss(animated: true, completion: nil)
     }
     
     @objc func disableDoneButton() {
-        self.initRightButton(isEnabled: false)
-        self.navigationItem.rightBarButtonItem?.isEnabled = false
+        self.isEnabled = false
+        self.getNavItem()?.rightBarButtonItem = getRightButton()
+        self.getNavItem()?.rightBarButtonItem?.isEnabled = false
     }
     
     @objc func enableDoneButton() {
-        self.initRightButton(isEnabled: true)
-        self.navigationItem.rightBarButtonItem?.isEnabled = true
+        self.isEnabled = true
+        self.getNavItem()?.rightBarButtonItem = getRightButton()
+        self.getNavItem()?.rightBarButtonItem?.isEnabled = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -90,42 +102,43 @@ class InvoiceSettingsViewController: UIViewController {
         self.initNavBar()
     }
     
-    private func initNavBar() {
-        self.setNeedsStatusBarAppearanceUpdate()
-        self.navigationController?.isNavigationBarHidden = false
-        self.navigationController?.navigationBar.barTintColor = Theme.shared.greyNavBar
-        self.navigationController?.navigationBar.tintColor = Theme.shared.navBarTitle
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: Theme.shared.navBarTitle]
-        self.navigationController?.navigationBar.isTranslucent = true
+    override func getNavBar() -> UINavigationBar? {
+        return self.navBar
+    }
+    
+    override func getNavView() -> UIView? {
+        return self.navView
+    }
+    
+    override func getNavItem() -> UINavigationItem? {
+        return self.navItem
+    }
+    
+    override func initNavBar() {
+        self.backgroundNavBar = Theme.shared.greyNavBar
+        super.initNavBar()
         self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
-        
-        self.initBackButton()
-        self.initRightButton(isEnabled: true)
-        self.initTitle()
         UIApplication.shared.statusBarStyle = UIStatusBarStyle.default
-        self.navigationController?.navigationBar.layoutIfNeeded()
+        self.getNavBar()?.layoutIfNeeded()
         self.setNeedsStatusBarAppearanceUpdate()
     }
     
-    private func initBackButton() {
+    override func getLeftButton() -> UIBarButtonItem? {
         let backButton = Theme.shared.getCancel(title: R.string.localizable.commonNavBarCancel(), color: Theme.shared.navBarTitle)
         backButton.addTarget(self, action: #selector(clickCancel), for: .touchUpInside)
         
-        let backItem = UIBarButtonItem(customView: backButton)
-        self.navigationItem.leftBarButtonItem = backItem
+        return UIBarButtonItem(customView: backButton)
     }
     
-    private func initRightButton(isEnabled: Bool) {
+    override func getRightButton() -> UIBarButtonItem? {
         let rightButton = Theme.shared.getRightButton(title: R.string.localizable.commonNavBarDone(), color: isEnabled ? Theme.shared.textFieldColor : Theme.shared.disbaledRightButton)
         rightButton.addTarget(self, action: #selector(clickDone), for: .touchUpInside)
         
-        let rightItem = UIBarButtonItem(customView: rightButton)
-        self.navigationItem.rightBarButtonItem = rightItem
+        return UIBarButtonItem(customView: rightButton)
     }
     
-    private func initTitle() {
-        let titleLabel = Theme.shared.getTitle(title: R.string.localizable.invoiceSettingsFilterTitle(), color: Theme.shared.navBarTitle)
-        self.navigationItem.titleView = titleLabel
+    override func getTitle() -> String? {
+        return R.string.localizable.invoiceSettingsFilterTitle()
     }
     
     private func initKeyboardEvents() {
@@ -141,5 +154,21 @@ class InvoiceSettingsViewController: UIViewController {
         self.tableView.contentInset = UIEdgeInsetsMake(-dummyViewHeight, 0, 0, 0)
         
         self.tableView.register(InvoiceHeaderView.nib, forHeaderFooterViewReuseIdentifier: InvoiceHeaderView.identifier)
+    }
+    
+    private func loadData() {
+        self.viewModel.state.getFilters()
+            .withSpinner(in: view)
+            .then(execute: { [weak self] (result: FiltersInvoiceList) -> Void in
+                guard let strongSelf = self else {
+                    return
+                }
+                strongSelf.initResult(result: result)
+            })
+    }
+    
+    private func initResult(result: FiltersInvoiceList) {
+        self.viewModel.state.initItems(model: result)
+        self.tableView.reloadData()
     }
 }

@@ -1,9 +1,14 @@
 import UIKit
 import Material
 
-class SignInViewController: BaseAuthViewController {
+class SignInViewController: BaseAuthViewController, UINavigationControllerDelegate {
     
-    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var width: NSLayoutConstraint!
+    @IBOutlet weak var height: NSLayoutConstraint!
+    @IBOutlet weak var topConstraint: NSLayoutConstraint!
+    @IBOutlet weak var stackView: UIStackView!
+    @IBOutlet weak var centerConstraint: NSLayoutConstraint!
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var buildVersion: UILabel!
     @IBOutlet weak var titleWelcome: UILabel!
     @IBOutlet private weak var emailTextField: FloatTextField?
@@ -11,12 +16,20 @@ class SignInViewController: BaseAuthViewController {
     @IBOutlet private weak var btnLogin: UIButton?
     @IBOutlet weak var logoImg: UIImageView?
     
+    
     private var isShown: Bool = false
+    private var formCenterOriginal: CGFloat = 0
     private var state: SignInViewState = DefaultSignInViewState() as SignInViewState
+    
+    func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationControllerOperation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        
+        return PresentAnimation()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.formCenterOriginal = topConstraint.constant
+        self.navigationController?.delegate = self
         self.navigationController?.isNavigationBarHidden = true
 
         self.titleWelcome.attributedText = Theme.shared.get2LineString(message: R.string.localizable.signInLabelWelcomeMessage())
@@ -31,6 +44,16 @@ class SignInViewController: BaseAuthViewController {
 
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        
+        self.initNavBar()
+    }
+    
+    
+    private func initNavBar() {
+        self.setNeedsStatusBarAppearanceUpdate()
+        self.navigationController?.navigationBar.barStyle = .black
+        UIApplication.shared.statusBarStyle = UIStatusBarStyle.default
+        self.navigationController?.navigationBar.layoutIfNeeded()
     }
     
     private func version() -> String {
@@ -95,7 +118,7 @@ class SignInViewController: BaseAuthViewController {
                 (viewController as! PinViewController).isValidation = false
             }
         }
-        NavPushingUtil.shared.push(navigationController: self.navigationController,  controller: viewController)
+        self.navigationController?.pushViewController(viewController, animated: true)
         self.navigationController?.isNavigationBarHidden = false
     }
 
@@ -123,23 +146,31 @@ class SignInViewController: BaseAuthViewController {
     }
 
     @objc func keyboardWillShow(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            if let isHidden = self.logoImg?.isHidden, !isHidden, !isShown {
-                self.view.frame.origin.y -= keyboardSize.height/2
-                self.logoImg?.isHidden = true
-                self.isShown = true
-            }
+        var info = notification.userInfo!
+        if !isShown {
+            let keyboardFrame: CGRect = (info[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+            UIView.animate(withDuration: 0.1, animations: { () -> Void in
+                self.titleWelcome.isHidden = true
+                self.titleLabel.isHidden = true
+                self.topConstraint.constant = 0
+            })
+            isShown = true
+            height.constant = 80
+            width.constant = 80
         }
     }
     
     @objc func keyboardWillHide(notification: NSNotification) {
-        if let isHidden = self.logoImg?.isHidden, isHidden, isShown {
-            scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
-            self.logoImg?.isHidden = false
-            if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-                self.view.frame.origin.y += keyboardSize.height/2
-            }
-            self.isShown = false
+        if isShown {
+            UIView.animate(withDuration: 0.1, animations: { () -> Void in
+                self.titleWelcome.isHidden = false
+                self.titleLabel.isHidden = false
+                self.stackView.layoutIfNeeded()
+                self.topConstraint.constant = self.formCenterOriginal
+                self.isShown = false
+            })
+            height.constant = 110
+            width.constant = 110
         }
     }
     

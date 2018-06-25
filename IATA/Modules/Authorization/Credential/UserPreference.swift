@@ -6,6 +6,7 @@ class UserPreference {
         case forceUpdatePassword
         case forceUpdatePin
         case currentCurrency
+        case date
     }
     
     private let localStorage: LocalStorage = DefaultLocalStorage()
@@ -18,6 +19,18 @@ class UserPreference {
     internal func clearSaveData() {
         let appDomain = Bundle.main.bundleIdentifier!
         UserDefaults.standard.removePersistentDomain(forName: appDomain)
+    }
+    
+    internal func saveLastOpenTime(date: Int64) {
+         UserPreference.preferences.set(date, forKey: PropertyKey.date.rawValue)
+    }
+    
+    internal func getLastOpenTime() -> Int64? {
+        if let value = UserPreference.preferences.object(forKey: PropertyKey.date.rawValue) {
+            return value as! Int64
+        } else {
+            return nil
+        }
     }
     
     internal func saveForceUpdatePassword(_ forceUpdatePassword: Bool?) {
@@ -46,11 +59,11 @@ class UserPreference {
         return UserPreference.preferences.bool(forKey: PropertyKey.forceUpdatePin.rawValue)
     }
     
-    internal func saveCurrentCurrency(_ currentCurrency: InvoiceSettingAirlinesModel) {
+    internal func saveCurrentCurrency(_ currentCurrency: SettingsMerchantsModel) {
         localStorage.set(value: currentCurrency, for: PropertyKey.currentCurrency.rawValue)
     }
     
-    internal func getCurrentCurrency() -> InvoiceSettingAirlinesModel? {
+    internal func getCurrentCurrency() -> SettingsMerchantsModel? {
         return localStorage.get(for: PropertyKey.currentCurrency.rawValue)
     }
 }

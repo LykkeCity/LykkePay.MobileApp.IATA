@@ -1,7 +1,7 @@
 import Foundation
 import ObjectMapper
 
-class PaymentRequest:  BaseMappable {
+class PaymentRequest:  Mappable {
     public enum PropertyKey: String {
         case invoicesIds
         case amountInBaseAsset

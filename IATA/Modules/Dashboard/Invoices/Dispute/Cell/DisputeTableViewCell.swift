@@ -2,6 +2,7 @@ import UIKit
 
 class DisputeTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var headerView: InvoiceView!
     @IBOutlet weak var reasonTextField: UILabel!
     
     @IBOutlet weak var invoiceView: InvoiceView!
@@ -28,6 +29,11 @@ class DisputeTableViewCell: UITableViewCell {
         }
         self.reasonTextField.text = model.reason
         self.reasonTextField.setLineSpacing(lineSpacing: 2.5)
+        self.headerView.initDispute()
+    }
+    
+    internal func initCell() {
+        self.headerView.initDispute()
     }
     
 }

@@ -30,13 +30,6 @@
                             <color key="textColor" red="0.074509803921568626" green="0.26666666666666666" blue="0.45882352941176469" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CDV-ib-tqv">
-                            <rect key="frame" x="16" y="0.0" width="343" height="1"/>
-                            <color key="backgroundColor" red="0.90196078430000004" green="0.90980392160000001" blue="0.91764705879999997" alpha="1" colorSpace="calibratedRGB"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="1" id="lre-Tg-Hd2"/>
-                            </constraints>
-                        </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7ur-ib-LoU">
                             <rect key="frame" x="16" y="99" width="343" height="1"/>
                             <color key="backgroundColor" red="0.90196078431372551" green="0.90980392156862744" blue="0.91764705882352937" alpha="1" colorSpace="calibratedRGB"/>
@@ -48,12 +41,9 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="dXQ-cU-EP8" firstAttribute="leading" secondItem="bmQ-vd-hNT" secondAttribute="leading" constant="16" id="0Ag-a1-kxY"/>
-                        <constraint firstItem="CDV-ib-tqv" firstAttribute="leading" secondItem="bmQ-vd-hNT" secondAttribute="leading" constant="16" id="BTr-Hn-rnF"/>
-                        <constraint firstItem="CDV-ib-tqv" firstAttribute="top" secondItem="bmQ-vd-hNT" secondAttribute="top" id="CSj-oZ-yNX"/>
                         <constraint firstAttribute="trailing" secondItem="7ur-ib-LoU" secondAttribute="trailing" constant="16" id="DPe-nK-xCy"/>
                         <constraint firstItem="7ur-ib-LoU" firstAttribute="leading" secondItem="bmQ-vd-hNT" secondAttribute="leading" constant="16" id="F6k-03-iU3"/>
                         <constraint firstItem="dXQ-cU-EP8" firstAttribute="centerY" secondItem="bmQ-vd-hNT" secondAttribute="centerY" id="fZh-Is-Wpt"/>
-                        <constraint firstAttribute="trailing" secondItem="CDV-ib-tqv" secondAttribute="trailing" constant="16" id="ovS-m7-6p7"/>
                         <constraint firstAttribute="bottom" secondItem="7ur-ib-LoU" secondAttribute="bottom" id="u6n-0c-1Ho"/>
                     </constraints>
                 </view>
@@ -70,7 +60,6 @@
             <connections>
                 <outlet property="downDividerView" destination="7ur-ib-LoU" id="k5g-gy-LwZ"/>
                 <outlet property="title" destination="dXQ-cU-EP8" id="rV3-Fb-cb4"/>
-                <outlet property="upDividerView" destination="CDV-ib-tqv" id="3ma-Qj-7e8"/>
             </connections>
             <point key="canvasLocation" x="33.5" y="148"/>
         </view>

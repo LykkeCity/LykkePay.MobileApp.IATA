@@ -16,9 +16,6 @@
         <array key="GothamProMed.otf">
             <string>GothamPro-Medium</string>
         </array>
-        <array key="GothamProReg.otf">
-            <string>GothamPro</string>
-        </array>
     </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="InvoiceViewController" customModule="IATA" customModuleProvider="target">
@@ -29,8 +26,7 @@
                 <outlet property="downViewHeightConstraint" destination="ozl-4g-oOw" id="8DP-Ii-Yif"/>
                 <outlet property="loading" destination="uiP-4Y-L2f" id="g5E-Me-XMA"/>
                 <outlet property="selectedItemTextField" destination="phI-Vh-W4l" id="j6U-6G-G8k"/>
-                <outlet property="sumTextField" destination="Xi0-s7-cse" id="ucX-4y-afN"/>
-                <outlet property="sumTextFieldWidth" destination="JFo-lG-bYg" id="MsP-xa-wPU"/>
+                <outlet property="sumTextField" destination="hNB-WL-aYC" id="lMM-B4-sVG"/>
                 <outlet property="tabView" destination="aHq-O3-Lfw" id="z1c-aH-8zp"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -41,7 +37,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="aHq-O3-Lfw">
-                    <rect key="frame" x="0.0" y="28" width="367" height="529"/>
+                    <rect key="frame" x="0.0" y="16" width="359" height="541"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </tableView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Boz-OM-wSA">
@@ -69,34 +65,12 @@
                             </connections>
                         </button>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="koP-il-pIp">
-                            <rect key="frame" x="16" y="0.0" width="343" height="1"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="1"/>
                             <color key="backgroundColor" red="0.90196078430000004" green="0.90980392160000001" blue="0.91764705879999997" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="1" id="Usk-5f-DAA"/>
                             </constraints>
                         </view>
-                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="0" textAlignment="natural" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="Xi0-s7-cse" customClass="CurrencyUiTextField" customModule="IATA" customModuleProvider="target">
-                            <rect key="frame" x="16" y="17" width="30" height="30"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="30" id="JFo-lG-bYg"/>
-                            </constraints>
-                            <nil key="textColor"/>
-                            <fontDescription key="fontDescription" name="GothamPro" family="Gotham Pro" pointSize="10"/>
-                            <textInputTraits key="textInputTraits" autocorrectionType="no"/>
-                            <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="color" keyPath="dividerColor">
-                                    <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </userDefinedRuntimeAttribute>
-                                <userDefinedRuntimeAttribute type="number" keyPath="placeholderVerticalOffset">
-                                    <real key="value" value="20"/>
-                                </userDefinedRuntimeAttribute>
-                            </userDefinedRuntimeAttributes>
-                            <connections>
-                                <action selector="editingDidBegin:" destination="-1" eventType="editingDidBegin" id="c1n-fg-hXC"/>
-                                <action selector="sumChanged:" destination="-1" eventType="editingChanged" id="ZHs-l3-YBR"/>
-                                <action selector="sumEditingEnd:" destination="-1" eventType="editingDidEnd" id="dzs-FJ-xfs"/>
-                            </connections>
-                        </textField>
                         <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="uiP-4Y-L2f">
                             <rect key="frame" x="36" y="45" width="20" height="20"/>
                         </activityIndicatorView>
@@ -106,36 +80,48 @@
                             <color key="textColor" red="0.066666666666666666" green="0.066666666666666666" blue="0.066666666666666666" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hNB-WL-aYC" customClass="CurrencyUiTextField" customModule="IATA" customModuleProvider="target">
+                            <rect key="frame" x="16" y="31" width="193" height="28"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="28" id="01e-jp-o5G"/>
+                            </constraints>
+                            <connections>
+                                <action selector="sumChanged:" destination="-1" eventType="editingChanged" id="qNc-e1-dWa"/>
+                            </connections>
+                        </view>
                     </subviews>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstItem="koP-il-pIp" firstAttribute="top" secondItem="Boz-OM-wSA" secondAttribute="top" id="1zW-o3-ufh"/>
+                        <constraint firstItem="9Mi-CE-o9S" firstAttribute="top" secondItem="hNB-WL-aYC" secondAttribute="top" id="21c-X1-sgL"/>
                         <constraint firstItem="uiP-4Y-L2f" firstAttribute="leading" secondItem="Boz-OM-wSA" secondAttribute="leading" constant="36" id="3z3-xl-FvH"/>
+                        <constraint firstItem="hNB-WL-aYC" firstAttribute="leading" secondItem="Boz-OM-wSA" secondAttribute="leading" constant="16" id="ImL-oA-FAS"/>
                         <constraint firstItem="uiP-4Y-L2f" firstAttribute="centerY" secondItem="Boz-OM-wSA" secondAttribute="centerY" id="Lon-f1-j9L"/>
                         <constraint firstItem="phI-Vh-W4l" firstAttribute="leading" secondItem="Boz-OM-wSA" secondAttribute="leading" constant="16" id="NBz-FD-rzB"/>
                         <constraint firstItem="9Mi-CE-o9S" firstAttribute="bottom" secondItem="phI-Vh-W4l" secondAttribute="bottom" id="NQn-wL-0Ek"/>
                         <constraint firstItem="9Mi-CE-o9S" firstAttribute="centerY" secondItem="Boz-OM-wSA" secondAttribute="centerY" id="OMd-5H-EjG"/>
-                        <constraint firstItem="koP-il-pIp" firstAttribute="leading" secondItem="Boz-OM-wSA" secondAttribute="leading" constant="16" id="WWW-hS-w9T"/>
-                        <constraint firstAttribute="trailing" secondItem="koP-il-pIp" secondAttribute="trailing" constant="16" id="XfD-NV-3tG"/>
+                        <constraint firstItem="koP-il-pIp" firstAttribute="leading" secondItem="Boz-OM-wSA" secondAttribute="leading" id="WWW-hS-w9T"/>
+                        <constraint firstAttribute="trailing" secondItem="koP-il-pIp" secondAttribute="trailing" id="XfD-NV-3tG"/>
                         <constraint firstAttribute="trailing" secondItem="9Mi-CE-o9S" secondAttribute="trailing" constant="20" id="evY-jL-Nte"/>
-                        <constraint firstItem="Xi0-s7-cse" firstAttribute="top" secondItem="koP-il-pIp" secondAttribute="bottom" constant="16" id="nXL-DP-37c"/>
                         <constraint firstAttribute="height" constant="110" id="ozl-4g-oOw"/>
-                        <constraint firstItem="Xi0-s7-cse" firstAttribute="leading" secondItem="Boz-OM-wSA" secondAttribute="leading" constant="16" id="x7D-yM-Bd5"/>
+                        <constraint firstItem="9Mi-CE-o9S" firstAttribute="leading" secondItem="hNB-WL-aYC" secondAttribute="trailing" constant="16" id="py4-eM-a1K"/>
                     </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
             <constraints>
                 <constraint firstItem="Boz-OM-wSA" firstAttribute="top" secondItem="aHq-O3-Lfw" secondAttribute="bottom" id="0lT-KT-weX"/>
+                <constraint firstItem="aHq-O3-Lfw" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="16" id="I7k-5j-NgH"/>
                 <constraint firstItem="Boz-OM-wSA" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="bo5-ZY-U0M"/>
                 <constraint firstItem="Boz-OM-wSA" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="fDM-IO-1WY"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Boz-OM-wSA" secondAttribute="trailing" id="mjd-mb-Ztp"/>
-                <constraint firstAttribute="trailing" secondItem="aHq-O3-Lfw" secondAttribute="trailing" constant="8" id="nnn-bl-VDx"/>
+                <constraint firstAttribute="trailing" secondItem="aHq-O3-Lfw" secondAttribute="trailing" constant="16" id="nnn-bl-VDx"/>
                 <constraint firstItem="aHq-O3-Lfw" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="pEO-9d-IL9"/>
-                <constraint firstItem="aHq-O3-Lfw" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="8" id="ukB-0G-uG6"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="33.5" y="82.5"/>
         </view>
+        <navigationItem title="Title" id="zPb-jx-NZH"/>
     </objects>
 </document>

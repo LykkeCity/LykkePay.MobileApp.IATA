@@ -4,6 +4,7 @@ class InvoiceModel: Mappable {
     
     private enum PropertyKey: String {
         case status
+        case merchantName
         case id
         case number
         case clientName
@@ -29,6 +30,7 @@ class InvoiceModel: Mappable {
        
     }
     
+    internal var merchantName: String?
     internal var status: InvoiceStatuses?
     internal var id: String?
     internal var number: String?

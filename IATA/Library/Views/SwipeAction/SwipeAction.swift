@@ -30,6 +30,8 @@ public class SwipeAction: NSObject {
     /// - note: You must specify a title or an image.
     public var title: String?
     
+    public var width: Int = 140
+    
     public var isNeedSpaces: Bool = false
     
     /// The style applied to the action button.

@@ -31,14 +31,20 @@ open class InvoiceView: UIView {
         contentView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
     }
     
+    internal func initDispute() {
+         self.initStatus(color: Theme.shared.greyStatusColor, status: R.string.localizable.invoiceStatusItemsDispute())
+        self.icBodyDispute.isHidden = false
+        self.status.isHidden = false
+    }
+    
     internal func initView(model: InvoiceModel) {
-        self.name.text = model.clientName
+        self.name.text = model.merchantName
         if let amount = model.amount, let symbol = model.symbol {
-            self.price.text = Double(amount).formattedWithSeparator + " " + symbol
+            self.price.text = Formatter.formattedWithSeparator(value: String(amount)) + " " + symbol
         }
         self.billingCategory.text = model.billingCategory?.uppercased()
         if let number = model.number {
-            self.invoiceNumber.text = " #" + number
+            self.invoiceNumber.text = "#" + number
         }
         if (model.status ==  InvoiceStatuses.Unpaid && !model.dispute!) {
             self.status.isHidden = true
