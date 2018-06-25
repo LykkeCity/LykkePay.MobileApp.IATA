@@ -825,7 +825,7 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: Base
       static let tabBarWalletsItemTitle = Rswift.StringResource(key: "TabBar.WalletsItem.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
-      /// Base translation: Welcome back! Sign in to  continue to IATA
+      /// Base translation: Welcome back! Sign in to continue to IATA
       /// 
       /// Locales: Base
       static let signInLabelWelcomeMessage = Rswift.StringResource(key: "SignIn.Label.Welcome.Message", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
@@ -1314,11 +1314,11 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("TabBar.WalletsItem.Title", bundle: R.hostingBundle, value: "WALLETS", comment: "")
       }
       
-      /// Base translation: Welcome back! Sign in to  continue to IATA
+      /// Base translation: Welcome back! Sign in to continue to IATA
       /// 
       /// Locales: Base
       static func signInLabelWelcomeMessage(_: Void = ()) -> String {
-        return NSLocalizedString("SignIn.Label.Welcome.Message", bundle: R.hostingBundle, value: "Welcome back! Sign in to \ncontinue to IATA", comment: "")
+        return NSLocalizedString("SignIn.Label.Welcome.Message", bundle: R.hostingBundle, value: "Welcome back! Sign in to continue to IATA", comment: "")
       }
       
       /// Base translation: You cannot pay more then required
