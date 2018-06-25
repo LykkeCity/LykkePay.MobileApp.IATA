@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -40,24 +40,24 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yyQ-fb-Ofs">
-                    <rect key="frame" x="0.0" y="20" width="375" height="627"/>
+                    <rect key="frame" x="0.0" y="20" width="414" height="696"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="qDn-kj-gzV">
-                    <rect key="frame" x="48" y="68" width="279" height="411.5"/>
+                    <rect key="frame" x="46" y="67.999999999999972" width="322" height="411.33333333333326"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="GLI-Ou-zBG">
-                            <rect key="frame" x="0.0" y="0.0" width="279" height="193.5"/>
+                            <rect key="frame" x="0.0" y="0.0" width="322" height="193.33333333333334"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8N5-uS-7VB">
-                                    <rect key="frame" x="0.0" y="0.0" width="279" height="128"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="322" height="128"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="9qR-xI-Yiu">
-                                            <rect key="frame" x="85" y="9" width="110" height="110"/>
+                                            <rect key="frame" x="106.33333333333334" y="9" width="110" height="110"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="110" id="Xe6-sZ-NlN"/>
                                                 <constraint firstAttribute="width" constant="110" id="kkM-r8-wu5"/>
@@ -72,13 +72,13 @@
                                     </constraints>
                                 </view>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Authorization" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xPn-eG-rW0">
-                                    <rect key="frame" x="0.0" y="132" width="279" height="21.5"/>
+                                    <rect key="frame" x="0.0" y="132" width="322" height="21.666666666666657"/>
                                     <fontDescription key="fontDescription" name="GothamPro-Bold" family="Gotham Pro" pointSize="24"/>
                                     <color key="textColor" red="0.074509803921568626" green="0.26666666666666666" blue="0.45882352941176469" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hT8-Kf-Gck">
-                                    <rect key="frame" x="0.0" y="157.5" width="279" height="36"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="headTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hT8-Kf-Gck">
+                                    <rect key="frame" x="0.0" y="157.66666666666666" width="322" height="35.666666666666657"/>
                                     <string key="text">Welcome back! Sign in to
 continue to IATA</string>
                                     <fontDescription key="fontDescription" name="GothamPro" family="Gotham Pro" pointSize="20"/>
@@ -88,7 +88,7 @@ continue to IATA</string>
                             </subviews>
                         </stackView>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jnn-ZT-33H" customClass="FloatTextField" customModule="IATA" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="223.5" width="279" height="40"/>
+                            <rect key="frame" x="0.0" y="223.33333333333331" width="322" height="40"/>
                             <color key="tintColor" red="0.17254901960784313" green="0.71764705882352942" blue="0.0039215686274509803" alpha="1" colorSpace="calibratedRGB"/>
                             <accessibility key="accessibilityConfiguration" hint="Email"/>
                             <constraints>
@@ -104,7 +104,7 @@ continue to IATA</string>
                             </userDefinedRuntimeAttributes>
                         </textField>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ska-xM-lkl" customClass="FloatTextField" customModule="IATA" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="293.5" width="279" height="40"/>
+                            <rect key="frame" x="0.0" y="293.33333333333331" width="322" height="40"/>
                             <color key="tintColor" red="0.17254901960784313" green="0.71764705882352942" blue="0.0039215686274509803" alpha="1" colorSpace="calibratedRGB"/>
                             <accessibility key="accessibilityConfiguration" hint="Password"/>
                             <constraints>
@@ -120,7 +120,7 @@ continue to IATA</string>
                             </userDefinedRuntimeAttributes>
                         </textField>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mR8-eV-pPH">
-                            <rect key="frame" x="0.0" y="363.5" width="279" height="48"/>
+                            <rect key="frame" x="0.0" y="363.33333333333331" width="322" height="48"/>
                             <color key="backgroundColor" red="0.17254901960784313" green="0.71764705882352942" blue="0.0039215686274509803" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="48" id="TR5-YQ-a4h"/>
@@ -142,7 +142,7 @@ continue to IATA</string>
                     </subviews>
                 </stackView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Kp-bT-wgs">
-                    <rect key="frame" x="171.5" y="632" width="33" height="11"/>
+                    <rect key="frame" x="190.66666666666666" y="701" width="32.666666666666657" height="11"/>
                     <fontDescription key="fontDescription" name="GothamPro" family="Gotham Pro" pointSize="12"/>
                     <color key="textColor" red="0.66274509803921566" green="0.68627450980392157" blue="0.72156862745098038" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
@@ -150,13 +150,12 @@ continue to IATA</string>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="qDn-kj-gzV" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="48" id="5IZ-3E-rOu"/>
+                <constraint firstItem="qDn-kj-gzV" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="46" id="5IZ-3E-rOu"/>
                 <constraint firstItem="yyQ-fb-Ofs" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Eyt-x9-X3F"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="qDn-kj-gzV" secondAttribute="trailing" constant="48" id="KjU-Qr-InD"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="qDn-kj-gzV" secondAttribute="trailing" constant="46" id="KjU-Qr-InD"/>
                 <constraint firstItem="yyQ-fb-Ofs" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="PL8-Oj-6O8"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="yyQ-fb-Ofs" secondAttribute="trailing" id="PPl-cw-IBu"/>
                 <constraint firstItem="qDn-kj-gzV" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="48" id="YRx-rf-CFd"/>
-                <constraint firstItem="qDn-kj-gzV" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="aOS-qZ-kiP"/>
                 <constraint firstItem="0Kp-bT-wgs" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="hlH-Uv-8Te"/>
                 <constraint firstItem="yyQ-fb-Ofs" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="t1c-zL-Yn6"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="0Kp-bT-wgs" secondAttribute="bottom" constant="24" id="yTb-gQ-Yb6"/>
