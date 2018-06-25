@@ -167,17 +167,16 @@ class SignInViewController: BaseAuthViewController, UINavigationControllerDelega
     }
     
     private func animateKeyboard(duration: Double, isActive: Bool, formCenterOriginal: CGFloat, size: CGFloat) {
-        UIView.animate(withDuration: duration, animations: { () -> Void in
-            self.stackView.layoutIfNeeded()
+        UIView.animate(withDuration: duration) {
             self.topConstraint.constant = formCenterOriginal
             self.heightAnchorTitle?.isActive = isActive
             self.heightAnchorWelcome?.isActive = isActive
-            self.titleWelcome.layoutIfNeeded()
-            self.titleLabel.layoutIfNeeded()
-        })
-        self.height.constant = size
-        self.width.constant = size
+            let alphaForTitles = isActive ? CGFloat(0) : CGFloat(1)
+            self.titleWelcome.alpha = alphaForTitles
+            self.titleLabel.alpha = alphaForTitles
+            self.height.constant = size
+            self.width.constant = size
+            self.view.layoutIfNeeded()
+        }
     }
-    
-    
 }

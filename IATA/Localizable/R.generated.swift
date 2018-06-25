@@ -22,7 +22,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.file` struct is generated, and contains static references to 5 files.
+  /// This `R.file` struct is generated, and contains static references to 6 files.
   struct file {
     /// Resource file `GothamProBold.ttf`.
     static let gothamProBoldTtf = Rswift.FileResource(bundle: R.hostingBundle, name: "GothamProBold", pathExtension: "ttf")
@@ -34,6 +34,8 @@ struct R: Rswift.Validatable {
     static let gothamProRegOtf = Rswift.FileResource(bundle: R.hostingBundle, name: "GothamProReg", pathExtension: "otf")
     /// Resource file `LICENSE`.
     static let licensE = Rswift.FileResource(bundle: R.hostingBundle, name: "LICENSE", pathExtension: "")
+    /// Resource file `lykkexnet.crt`.
+    static let lykkexnetCrt = Rswift.FileResource(bundle: R.hostingBundle, name: "lykkexnet", pathExtension: "crt")
     
     /// `bundle.url(forResource: "GothamProBold", withExtension: "ttf")`
     static func gothamProBoldTtf(_: Void = ()) -> Foundation.URL? {
@@ -62,6 +64,12 @@ struct R: Rswift.Validatable {
     /// `bundle.url(forResource: "LICENSE", withExtension: "")`
     static func licensE(_: Void = ()) -> Foundation.URL? {
       let fileResource = R.file.licensE
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+    
+    /// `bundle.url(forResource: "lykkexnet", withExtension: "crt")`
+    static func lykkexnetCrt(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.lykkexnetCrt
       return fileResource.bundle.url(forResource: fileResource)
     }
     
