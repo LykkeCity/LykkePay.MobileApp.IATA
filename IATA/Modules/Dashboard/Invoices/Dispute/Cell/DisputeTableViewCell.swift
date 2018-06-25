@@ -4,6 +4,7 @@ class DisputeTableViewCell: UITableViewCell {
 
     @IBOutlet weak var reasonTextField: UILabel!
     
+    
     @IBOutlet weak var invoiceView: InvoiceView!
     
     static var nib:UINib {

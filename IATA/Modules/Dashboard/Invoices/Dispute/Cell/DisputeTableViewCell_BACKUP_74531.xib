@@ -43,7 +43,7 @@
                                         <color key="textColor" red="0.5490196078431373" green="0.58039215686274503" blue="0.62745098039215685" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="749" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XrA-Qa-Nf8">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XrA-Qa-Nf8">
                                         <rect key="frame" x="0.0" y="17" width="262" height="42.5"/>
                                         <attributedString key="attributedText">
                                             <fragment content="Why we cannot do it for free? dddddddd">
@@ -88,7 +88,11 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="invoiceView" destination="Mt0-25-Ztr" id="6hm-iT-nr9"/>
+<<<<<<< HEAD
+                <outlet property="invoiceView" destination="Mt0-25-Ztr" id="b5y-O8-a2s"/>
+=======
+                <outlet property="headerView" destination="Mt0-25-Ztr" id="cEa-gz-fEm"/>
+>>>>>>> feature/design
                 <outlet property="reasonTextField" destination="XrA-Qa-Nf8" id="hEk-Ks-UTx"/>
             </connections>
         </tableViewCell>
