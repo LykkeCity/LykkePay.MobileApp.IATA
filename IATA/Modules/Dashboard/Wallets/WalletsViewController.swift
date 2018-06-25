@@ -40,14 +40,16 @@ class WalletsViewController: BaseViewController<WalletsViewModel, DefaultWallets
     }
 
     private func loadData() {
-        self.state?.getWalletsStringJson()
-            .withSpinner(in: view)
-            .then(execute: { [weak self] (result: String) -> Void in
-                guard let strongSelf = self else {
-                    return
-                }
-                strongSelf.reloadTable(jsonString: result)
-            })
+        if let id = UserPreference.shared.getCurrentCurrency()?.id {
+            self.state?.getWalletsStringJson(id: id)
+                .withSpinner(in: view)
+                .then(execute: { [weak self] (result: String) -> Void in
+                    guard let strongSelf = self else {
+                        return
+                    }
+                    strongSelf.reloadTable(jsonString: result)
+                })
+        }
     }
 
     private func reloadTable(jsonString: String!) {

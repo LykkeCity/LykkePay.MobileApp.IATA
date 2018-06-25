@@ -16,6 +16,7 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
     override func viewDidLoad() {
         state = DefaultInvoiceState()
         super.viewDidLoad()
+        self.sumTextField.delegate = self
         self.navigationController?.isNavigationBarHidden = false
         Theme.shared.configureTextFieldCurrencyStyle(self.sumTextField)
         self.downViewHeightConstraint.constant = 0

@@ -25,6 +25,7 @@ class Theme: NSObject {
     public let unselectedBaseCurrencyBorderCell = Utils.rgb(205, 205, 210)
     public let navBarTitle = Utils.rgb(17, 17, 17)
     public let logoutTitle = Utils.rgb(239, 23, 63)
+    public let greySumAll = Utils.rgb(243, 244, 245)
     
     
     public let grayDisputeColor = Utils.rgb(101, 113, 128)
@@ -156,13 +157,16 @@ class Theme: NSObject {
     }
     
     public func configureTextFieldCurrencyStyle(_ textField: FloatTextField?){
-        configureTextFieldStyle(textField, title: "")
-        textField?.dividerActiveColor = UIColor.clear
-        textField?.dividerNormalColor = UIColor.clear
-        textField?.dividerColor = UIColor.clear
+        textField?.font = fontTextSizeTextField
+        textField?.dividerActiveColor = UIColor.white
+        textField?.dividerNormalColor = UIColor.white
+        textField?.dividerColor = UIColor.white
         textField?.font = fontCurrencyTextField
         textField?.textColor = navBarTitle
         textField?.keyboardType = UIKeyboardType.decimalPad
+        textField?.dividerNormalHeight = CGFloat(0.0)
+        textField?.dividerThickness = CGFloat(0.0)
+        textField?.dividerActiveHeight = CGFloat(0.0)
     }
     
     public func configureTextFieldPasswordStyle(_ textField: FloatTextField?, title: String){

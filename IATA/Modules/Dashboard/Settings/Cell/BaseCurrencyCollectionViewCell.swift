@@ -34,9 +34,9 @@ class BaseCurrencyCollectionViewCell: UICollectionViewCell {
             }
         }
         if let symbol = model.symbol {
-        if (symbol.contains("$")) {
+        if (symbol.isUsd()) {
             self.baseCurrencyFlagImage.image = R.image.ic_usFlagMediumIcn()
-        } else if (symbol.contains("€"))  {
+        } else if (symbol.isEuro())  {
             self.baseCurrencyFlagImage.image = R.image.ic_eurFlagMediumIcn()
             }
         }

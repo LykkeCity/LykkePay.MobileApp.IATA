@@ -27,7 +27,7 @@ class SettingsMerchantsModel: Mappable {
     }
 
     private func initSymbol() {
-        if let value = value, value.contains("USD") {
+        if let value = value, value.isUsd() {
             self.symbol = "$"
         } else {
             self.symbol = "€"

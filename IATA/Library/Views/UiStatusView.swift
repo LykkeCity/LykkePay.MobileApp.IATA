@@ -1,16 +1,11 @@
-//
-//  StatusView.swift
-//  IATA
-//
-//  Created by Елизавета Казимирова on 07.06.2018.
-//  Copyright © 2018 Елизавета Казимирова. All rights reserved.
-//
 
 import UIKit
 
 @IBDesignable
 class UiStatusView: UILabel {
 
+    var cornerRadius = CGFloat(2)
+    
     @IBInspectable var topInset: CGFloat = 0.0
     @IBInspectable var leftInset: CGFloat = 0.0
     @IBInspectable var bottomInset: CGFloat = 0.0
@@ -28,12 +23,16 @@ class UiStatusView: UILabel {
     // Create a new PaddingLabel instance programamtically with default insets
     override init(frame: CGRect) {
         super.init(frame: frame)
+        self.textColor = UIColor.black
+        self.backgroundColor = UIColor.clear
         self.commonInit()
     }
     
     // Create a new PaddingLabel instance from Storyboard with default insets
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        self.textColor = UIColor.black
+        self.backgroundColor = UIColor.clear
         self.commonInit()
     }
     
@@ -71,11 +70,9 @@ class UiStatusView: UILabel {
     
     func commonInit(){
         self.layer.masksToBounds = true
-        self.layer.cornerRadius = 2
+        self.layer.cornerRadius = cornerRadius
         self.layer.borderColor = color.cgColor
         self.layer.borderWidth = 1
-        self.textColor = UIColor.black
-        self.backgroundColor = UIColor.clear
     }
     
     func setProperties(borderWidth: Float, borderColor: UIColor) {

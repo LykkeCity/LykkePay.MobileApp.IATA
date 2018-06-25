@@ -85,8 +85,9 @@ class InvoiceModel: Mappable {
         settlementPeriod <- map[PropertyKey.settlementPeriod.rawValue]
         settlementMonthPeriod <- map[PropertyKey.settlementMonthPeriod.rawValue]
         iataInvoiceDate <- map[PropertyKey.iataInvoiceDate.rawValue]
+        merchantName <- map[PropertyKey.merchantName.rawValue]
         iataInvoiceDate = DateUtils.formatDate(date: iataInvoiceDate)
-        if let idValue = settlementAssetId, idValue.contains("USD") {
+        if let idValue = settlementAssetId, idValue.isUsd() {
             self.symbol = "$"
         } else {
             self.symbol = "€"

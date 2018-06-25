@@ -7,12 +7,10 @@ class DefaultWalletsState: DefaultBaseState<WalletsViewModel> {
 
     public lazy var service: PaymentService = DefaultPaymentService()
 
-    private var convertAssetIdParams = "convertAssetId"
+    private var convertAssetIdParams = "convertAssetIdParams"
 
-    func getWalletsStringJson() -> Promise<String> {
-        if let id = UserPreference.shared.getCurrentCurrency()?.id {
-            convertAssetIdParams = id
-        }
+    func getWalletsStringJson(id: String) -> Promise<String> {
+        self.convertAssetIdParams = id
         return self.service.getWallets(convertAssetIdParams: convertAssetIdParams)
     }
 
@@ -45,18 +43,19 @@ class DefaultWalletsState: DefaultBaseState<WalletsViewModel> {
         }
         return dictionaryOfWallets
     }
+
     func getTotalBalance() -> String {
-        var totalBalance = 0.0
+        var totaBalance = 0.0
         for wallet in items {
             if let convertedBalance = wallet.totalConvertedBalance {
-                totalBalance += convertedBalance
+                totaBalance += convertedBalance
             }
         }
         
         if let symbol = UserPreference.shared.getCurrentCurrency()?.symbol {
-            return String(totalBalance) + symbol
+            return String(totaBalance) + symbol
         } else {
-            return String(totalBalance)
+            return String(totaBalance)
         }
     }
     

@@ -46,7 +46,7 @@ class HistoryModel: Mappable {
         }
         
         if let asset = assetId {
-            if (asset.contains("USD")) {
+            if (asset.isUsd()) {
                 self.symbol = "$"
             } else {
                 self.symbol = "€"
