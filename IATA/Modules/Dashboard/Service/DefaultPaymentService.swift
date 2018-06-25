@@ -30,7 +30,7 @@ class DefaultPaymentService: NSObject, PaymentService {
 
     func getWallets(convertAssetIdParams: String) -> Promise<String> {
         var params = [String : String]()
-        params["convertAssetIdParams"] = convertAssetIdParams
+        params["convertAssetId"] = convertAssetIdParams
         return Network.shared.get(path: PaymentConfig.shared.wallets, params: params)
     }
     
