@@ -1,4 +1,5 @@
 import UIKit
+import Nuke
 
 class InvoiceSettingsTableViewCell: UITableViewCell, OnSwitchStateChanged {
     
@@ -48,5 +49,11 @@ class InvoiceSettingsTableViewCell: UITableViewCell, OnSwitchStateChanged {
         let size = CGFloat(isHidden ? 0 : 32)
         self.widthImg.constant = size
         self.heightImg.constant = size
+        if let logoUrl = item?.merchantLogoUrl, let url = URL(string: logoUrl){
+            var request = ImageRequest(url: url)
+            request.memoryCacheOptions.isWriteAllowed = true
+            request.priority = .high
+            Nuke.loadImage(with: request, into: self.imgLogo)
+        }
     }
 }

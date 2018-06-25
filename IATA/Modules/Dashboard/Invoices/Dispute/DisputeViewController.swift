@@ -65,10 +65,10 @@ class DisputeViewController: BaseViewController<DisputeModel, DefaultDisputeStat
     }
     
     override func getLeftButton() -> UIBarButtonItem? {
+        let backButton = Theme.shared.getCancel(title: R.string.localizable.commonNavBarClose(), color: UIColor.white)
+        backButton.addTarget(self, action: #selector(backButtonAction), for: .touchUpInside)
         
-        let buttonImage = R.image.backIcon()?.stretchableImage(withLeftCapWidth: 0, topCapHeight: 10)
-        
-        return UIBarButtonItem(image: buttonImage, style: .plain, target: self, action: #selector(backButtonAction))
+        return UIBarButtonItem(customView: backButton)
     }
     
     @objc func backButtonAction() {

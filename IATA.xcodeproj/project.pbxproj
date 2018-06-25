@@ -158,6 +158,7 @@
 		0A6DB5D220C5537000BC1127 /* TokenObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6DB5D120C5537000BC1127 /* TokenObject.swift */; };
 		0A6DB5D620C553D000BC1127 /* CredentialManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6DB5D520C553D000BC1127 /* CredentialManager.swift */; };
 		0A6DB5DA20C5572E00BC1127 /* DataRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6DB5D920C5572E00BC1127 /* DataRequest.swift */; };
+		0A7EFCFF20E0F29E000034F3 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7EFCFE20E0F29E000034F3 /* R.generated.swift */; };
 		0A837C2A20DE985700199759 /* InvoiceFiltersModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A837C2720DE985700199759 /* InvoiceFiltersModel.swift */; };
 		0A837C2B20DE985700199759 /* InvoicePaymentRangeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A837C2820DE985700199759 /* InvoicePaymentRangeModel.swift */; };
 		0A837C2C20DE985700199759 /* FiltersInvoiceList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A837C2920DE985700199759 /* FiltersInvoiceList.swift */; };
@@ -210,7 +211,6 @@
 		D7EFD40D20DD2B9000D984AA /* DisputInvoiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7EFD40B20DD2B9000D984AA /* DisputInvoiceViewController.swift */; };
 		D7EFD40E20DD2B9000D984AA /* DisputInvoiceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D7EFD40C20DD2B9000D984AA /* DisputInvoiceViewController.xib */; };
 		D7EFD41420DD2C9D00D984AA /* DisputInvoiceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7EFD41320DD2C9D00D984AA /* DisputInvoiceRequest.swift */; };
-		D7EFD41620DD2FBD00D984AA /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7EFD41520DD2FBC00D984AA /* R.generated.swift */; };
 		D7EFD41820DD4AEE00D984AA /* CancelDisputInvoiceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7EFD41720DD4AEE00D984AA /* CancelDisputInvoiceRequest.swift */; };
 		D7EFD41A20E0B4F900D984AA /* DisputeListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7EFD41920E0B4F800D984AA /* DisputeListItem.swift */; };
 		EF4B843175B4CC2AF6DB5E2D /* Pods_IATAUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B528F3D3DF6E9ED72F4A529 /* Pods_IATAUITests.framework */; };
@@ -393,6 +393,7 @@
 		0A6DB5D120C5537000BC1127 /* TokenObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenObject.swift; sourceTree = "<group>"; };
 		0A6DB5D520C553D000BC1127 /* CredentialManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialManager.swift; sourceTree = "<group>"; };
 		0A6DB5D920C5572E00BC1127 /* DataRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataRequest.swift; sourceTree = "<group>"; };
+		0A7EFCFE20E0F29E000034F3 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		0A837C2720DE985700199759 /* InvoiceFiltersModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InvoiceFiltersModel.swift; path = IATA/Modules/Network/Models/Invoice/Response/Filters2/InvoiceFiltersModel.swift; sourceTree = SOURCE_ROOT; };
 		0A837C2820DE985700199759 /* InvoicePaymentRangeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InvoicePaymentRangeModel.swift; path = IATA/Modules/Network/Models/Invoice/Response/Filters2/InvoicePaymentRangeModel.swift; sourceTree = SOURCE_ROOT; };
 		0A837C2920DE985700199759 /* FiltersInvoiceList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FiltersInvoiceList.swift; path = IATA/Modules/Network/Models/Invoice/Response/Filters2/FiltersInvoiceList.swift; sourceTree = SOURCE_ROOT; };
@@ -450,7 +451,6 @@
 		D7EFD40B20DD2B9000D984AA /* DisputInvoiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisputInvoiceViewController.swift; sourceTree = "<group>"; };
 		D7EFD40C20DD2B9000D984AA /* DisputInvoiceViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DisputInvoiceViewController.xib; sourceTree = "<group>"; };
 		D7EFD41320DD2C9D00D984AA /* DisputInvoiceRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisputInvoiceRequest.swift; sourceTree = "<group>"; };
-		D7EFD41520DD2FBC00D984AA /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		D7EFD41720DD4AEE00D984AA /* CancelDisputInvoiceRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelDisputInvoiceRequest.swift; sourceTree = "<group>"; };
 		D7EFD41920E0B4F800D984AA /* DisputeListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisputeListItem.swift; sourceTree = "<group>"; };
 		FBCD1B2F0AEEDCE28F8A0492 /* Pods-IATAUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IATAUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-IATAUITests/Pods-IATAUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -937,8 +937,8 @@
 		0A37EF9820C6DA8500201907 /* Localizable */ = {
 			isa = PBXGroup;
 			children = (
-				D7EFD41520DD2FBC00D984AA /* R.generated.swift */,
 				0A37EFA220C6DC5100201907 /* Localizable.strings */,
+				0A7EFCFE20E0F29E000034F3 /* R.generated.swift */,
 			);
 			path = Localizable;
 			sourceTree = "<group>";
@@ -1571,7 +1571,6 @@
 				0A0D4B5520C53364009B73E9 /* Assets.xcassets in Resources */,
 				0A37EFA020C6DC5100201907 /* Localizable.strings in Resources */,
 				D7EFD40E20DD2B9000D984AA /* DisputInvoiceViewController.xib in Resources */,
-				0A286A9320CA88F700D93693 /* ServerData.json in Resources */,
 				0A26FCA020D160F00097A8F6 /* HistoryViewController.xib in Resources */,
 				0AF611A320C9A4D700957348 /* InvoiceTableViewCell.xib in Resources */,
 				D7DEFC9A20C97B9E005FB9EF /* GothamProBold.ttf in Resources */,
@@ -1760,7 +1759,6 @@
 				0A0B11B620D2B4C400021E2D /* LabelExtensitions.swift in Sources */,
 				D7DEFC8C20C97148005FB9EF /* TabBarController.swift in Sources */,
 				0A37EF6220C588F400201907 /* ErrorHandler.swift in Sources */,
-				D7EFD41620DD2FBD00D984AA /* R.generated.swift in Sources */,
 				0A1A1C9620DD1D380037DC77 /* SwipeExpansionStyle.swift in Sources */,
 				0A62F56520C545F700A51D63 /* NetworkUtil.swift in Sources */,
 				0A4CD15C20CECA2100EF4A17 /* PaymentConfig.swift in Sources */,
@@ -1888,6 +1886,7 @@
 				0A26FC9F20D160F00097A8F6 /* HistoryViewController.swift in Sources */,
 				0A4CD14720CD901600EF4A17 /* OnSwitchStateChanged.swift in Sources */,
 				0A08C0FD20CAA70400342A3E /* InvoiceViewModelExtensition.swift in Sources */,
+				0A7EFCFF20E0F29E000034F3 /* R.generated.swift in Sources */,
 				0A4CD16720CF135300EF4A17 /* TextFieldUtils.swift in Sources */,
 				0A37EF5D20C587C600201907 /* Promise+Spinner.swift in Sources */,
 				0AF1C3AD20C9164E00AFD286 /* UserPreference.swift in Sources */,

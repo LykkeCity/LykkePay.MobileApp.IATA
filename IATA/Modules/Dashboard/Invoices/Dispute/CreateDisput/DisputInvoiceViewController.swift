@@ -1,46 +1,72 @@
 import UIKit
 
-class DisputInvoiceViewController: BaseNavController, Initializer {
+class DisputInvoiceViewController: BaseNavController {
 
+    @IBOutlet weak var height: NSLayoutConstraint!
     var invoiceId: String?
-
-    @IBOutlet weak var reasonTextField: UITextField!
+    @IBOutlet weak var navView: UIView!
+    @IBOutlet weak var navBar: UINavigationBar!
+    @IBOutlet weak var navItem: UINavigationItem?
+    @IBOutlet weak var reasonTextField: FloatTextField!
 
     let state = DefaultDisputInvoiceState()
-
+    
     override func viewDidLoad() {
-        initializer = self
         super.viewDidLoad()
-
+        Theme.shared.configureTextFieldStyle(self.reasonTextField, title: R.string.localizable.invoiceDisputInvoicePlaceholderTextField())
+        UIApplication.shared.statusBarStyle = UIStatusBarStyle.default
+        self.setNeedsStatusBarAppearanceUpdate()
     }
 
     override func initNavBar() {
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.black]
-        self.navigationController?.navigationBar.barTintColor = Theme.shared.navBarAdditionalColor
-        self.navigationItem.title = R.string.localizable.invoiceDisputInvoice().capitalizingFirstLetter()
+        backgroundNavBar = Theme.shared.navBarAdditionalColor
+        textTitleColor = Theme.shared.navBarTitle
+        
+        super.initNavBar()
+        self.getNavBar()?.barTintColor = Theme.shared.navBarAdditionalColor
         self.initRightButton()
         self.initLeftButton()
     }
+    
+    override func getNavView() -> UIView? {
+        return self.navView
+    }
+    
+    override func getNavBar() -> UINavigationBar? {
+        return self.navBar
+    }
 
+    override func getNavItem() -> UINavigationItem? {
+        return self.navItem
+    }
+    
     private func initRightButton() {
         let rightButton = Theme.shared.getRightButton(title: R.string.localizable.commonNavBarDone(), color: .black)
         rightButton.addTarget(self, action: #selector(clickDone), for: .touchUpInside)
         let rightItem = UIBarButtonItem(customView: rightButton)
-        self.navigationItem.rightBarButtonItem = rightItem
-        self.navigationItem.rightBarButtonItem?.customView?.alpha = 0.3
-        self.navigationItem.rightBarButtonItem?.isEnabled = false
+        self.getNavItem()?.rightBarButtonItem = rightItem
+        self.getNavItem()?.rightBarButtonItem?.customView?.alpha = 0.3
+        self.getNavItem()?.rightBarButtonItem?.isEnabled = false
     }
 
     private func initLeftButton() {
         let leftButton = Theme.shared.getRightButton(title: R.string.localizable.commonNavBarCancel(), color: .black)
         leftButton.addTarget(self, action: #selector(clickCancel), for: .touchUpInside)
         let leftItem = UIBarButtonItem(customView: leftButton)
-        self.navigationItem.leftBarButtonItem = leftItem
+        self.getNavItem()?.leftBarButtonItem = leftItem
     }
-
+    
+    
+    @IBAction func editingChanged(_ sender: Any) {
+        if let isEmpty = self.reasonTextField.text?.isEmpty {
+            self.setEnabled(isEnabled: !isEmpty)
+        }
+    }
+    
     @IBAction func startEditing(_ sender: UITextField!) {
-        self.navigationItem.rightBarButtonItem?.customView?.alpha = 1
-        self.navigationItem.rightBarButtonItem?.isEnabled = false
+        if let isEmpty = self.reasonTextField.text?.isEmpty {
+            self.setEnabled(isEnabled: !isEmpty)
+        }
     }
 
     @objc func clickDone() {
@@ -53,26 +79,31 @@ class DisputInvoiceViewController: BaseNavController, Initializer {
                 guard let strongSelf = self else {
                     return
                 }
-                NavPushingUtil.shared.pop(navigationController: self?.navigationController)
+               strongSelf.dismiss(animated: true, completion: nil)
             })
         }
     }
 
     @objc func clickCancel() {
-       NavPushingUtil.shared.pop(navigationController: navigationController)
+        self.dismiss(animated: true, completion: nil)
     }
 
 
-    func getTitle() -> String? {
-        return ""
+    override func getTitle() -> String? {
+        return R.string.localizable.invoiceDisputInvoice().capitalizingFirstLetter()
     }
 
-    func getTableView() -> UITableView {
+    override func getTableView() -> UITableView {
         return UITableView()
     }
 
-    func registerCells() {
+    override func registerCells() {
 
+    }
+    
+    private func setEnabled(isEnabled: Bool) {
+        self.getNavItem()?.rightBarButtonItem?.customView?.alpha = isEnabled ? 1 : 0.3
+        self.getNavItem()?.rightBarButtonItem?.isEnabled = isEnabled
     }
 
 }

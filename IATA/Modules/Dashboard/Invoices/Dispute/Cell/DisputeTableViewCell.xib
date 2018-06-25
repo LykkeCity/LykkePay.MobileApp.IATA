@@ -88,7 +88,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="headerView" destination="Mt0-25-Ztr" id="cEa-gz-fEm"/>
+                <outlet property="invoiceView" destination="Mt0-25-Ztr" id="jIk-Mz-g97"/>
                 <outlet property="reasonTextField" destination="XrA-Qa-Nf8" id="hEk-Ks-UTx"/>
             </connections>
         </tableViewCell>

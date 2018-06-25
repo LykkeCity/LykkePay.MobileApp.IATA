@@ -16,7 +16,8 @@ class SignInViewController: BaseAuthViewController, UINavigationControllerDelega
     @IBOutlet private weak var btnLogin: UIButton?
     @IBOutlet weak var logoImg: UIImageView?
     
-    
+    private var heightAnchorTitle: NSLayoutConstraint? = nil
+    private var heightAnchorWelcome: NSLayoutConstraint? = nil
     private var isShown: Bool = false
     private var formCenterOriginal: CGFloat = 0
     private var state: SignInViewState = DefaultSignInViewState() as SignInViewState
@@ -146,32 +147,36 @@ class SignInViewController: BaseAuthViewController, UINavigationControllerDelega
     }
 
     @objc func keyboardWillShow(notification: NSNotification) {
-        var info = notification.userInfo!
+        let duration = notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as! Double
+        
         if !isShown {
-            let keyboardFrame: CGRect = (info[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
-            UIView.animate(withDuration: 0.1, animations: { () -> Void in
-                self.titleWelcome.isHidden = true
-                self.titleLabel.isHidden = true
-                self.topConstraint.constant = 0
-            })
+            self.heightAnchorTitle = self.titleWelcome.heightAnchor.constraint(equalToConstant: 0)
+            self.heightAnchorWelcome = self.titleLabel.heightAnchor.constraint(equalToConstant: 0)
+            
+            animateKeyboard(duration: duration, isActive: true, formCenterOriginal: 0, size: 80)
             isShown = true
-            height.constant = 80
-            width.constant = 80
         }
     }
     
     @objc func keyboardWillHide(notification: NSNotification) {
+        let duration = notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as! Double
         if isShown {
-            UIView.animate(withDuration: 0.1, animations: { () -> Void in
-                self.titleWelcome.isHidden = false
-                self.titleLabel.isHidden = false
-                self.stackView.layoutIfNeeded()
-                self.topConstraint.constant = self.formCenterOriginal
-                self.isShown = false
-            })
-            height.constant = 110
-            width.constant = 110
+            animateKeyboard(duration: duration, isActive: false, formCenterOriginal: self.formCenterOriginal, size: 110)
+            self.isShown = false
         }
+    }
+    
+    private func animateKeyboard(duration: Double, isActive: Bool, formCenterOriginal: CGFloat, size: CGFloat) {
+        UIView.animate(withDuration: duration, animations: { () -> Void in
+            self.stackView.layoutIfNeeded()
+            self.topConstraint.constant = formCenterOriginal
+            self.heightAnchorTitle?.isActive = isActive
+            self.heightAnchorWelcome?.isActive = isActive
+            self.titleWelcome.layoutIfNeeded()
+            self.titleLabel.layoutIfNeeded()
+        })
+        self.height.constant = size
+        self.width.constant = size
     }
     
     
