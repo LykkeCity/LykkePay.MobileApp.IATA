@@ -11,6 +11,7 @@ class DisputInvoiceViewController: BaseNavController, Initializer {
     override func viewDidLoad() {
         initializer = self
         super.viewDidLoad()
+
     }
 
     override func initNavBar() {
@@ -22,19 +23,24 @@ class DisputInvoiceViewController: BaseNavController, Initializer {
     }
 
     private func initRightButton() {
-        let rightButton = Theme.shared.getRightButton(title: R.string.localizable.commonNavBarDone(), color: Theme.shared.textFieldColor)
-
+        let rightButton = Theme.shared.getRightButton(title: R.string.localizable.commonNavBarDone(), color: .black)
         rightButton.addTarget(self, action: #selector(clickDone), for: .touchUpInside)
         let rightItem = UIBarButtonItem(customView: rightButton)
         self.navigationItem.rightBarButtonItem = rightItem
+        self.navigationItem.rightBarButtonItem?.customView?.alpha = 0.3
+        self.navigationItem.rightBarButtonItem?.isEnabled = false
     }
 
     private func initLeftButton() {
-        let rightButton = Theme.shared.getRightButton(title: R.string.localizable.commonNavBarCancel(), color: Theme.shared.textFieldColor)
-        rightButton.addTarget(self, action: #selector(clickCancel), for: .touchUpInside)
+        let leftButton = Theme.shared.getRightButton(title: R.string.localizable.commonNavBarCancel(), color: .black)
+        leftButton.addTarget(self, action: #selector(clickCancel), for: .touchUpInside)
+        let leftItem = UIBarButtonItem(customView: leftButton)
+        self.navigationItem.leftBarButtonItem = leftItem
+    }
 
-        let rightItem = UIBarButtonItem(customView: rightButton)
-        self.navigationItem.leftBarButtonItem = rightItem
+    @IBAction func startEditing(_ sender: UITextField!) {
+        self.navigationItem.rightBarButtonItem?.customView?.alpha = 1
+        self.navigationItem.rightBarButtonItem?.isEnabled = false
     }
 
     @objc func clickDone() {

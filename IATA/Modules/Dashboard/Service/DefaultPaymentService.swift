@@ -50,8 +50,10 @@ class DefaultPaymentService: NSObject, PaymentService {
     }
 
     func cancelDisputInvoice(model: CancelDisputInvoiceRequest) -> Promise<Void> {
-        //var params = [String : String]()
-        //params["invoiceId"] = invoiceId
         return Network.shared.post(path: PaymentConfig.shared.cancelDisputInvoice, object: model)
+    }
+
+    func getDisputeList() -> Promise<String> {
+        return Network.shared.get(path: PaymentConfig.shared.disputeList, params: [:])
     }
 }

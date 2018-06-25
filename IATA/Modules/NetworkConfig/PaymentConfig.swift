@@ -15,5 +15,7 @@ class PaymentConfig {
     public let makeDisputInvoice = "/invoices/dispute/mark"
 
     public let cancelDisputInvoice = "/invoices/dispute/cancel"
+
+    public let disputeList = "/invoices/dispute/list"
     
 }

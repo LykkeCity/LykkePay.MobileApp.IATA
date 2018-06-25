@@ -13,4 +13,6 @@ protocol PaymentService {
     func makeDisputInvoice(model: DisputInvoiceRequest) -> Promise<Void>
 
     func cancelDisputInvoice(model: CancelDisputInvoiceRequest) -> Promise<Void>
+
+    func getDisputeList() -> Promise<String>
 }

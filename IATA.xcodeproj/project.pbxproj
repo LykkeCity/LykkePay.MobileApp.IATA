@@ -206,6 +206,7 @@
 		D7EFD41420DD2C9D00D984AA /* DisputInvoiceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7EFD41320DD2C9D00D984AA /* DisputInvoiceRequest.swift */; };
 		D7EFD41620DD2FBD00D984AA /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7EFD41520DD2FBC00D984AA /* R.generated.swift */; };
 		D7EFD41820DD4AEE00D984AA /* CancelDisputInvoiceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7EFD41720DD4AEE00D984AA /* CancelDisputInvoiceRequest.swift */; };
+		D7EFD41A20E0B4F900D984AA /* DisputeListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7EFD41920E0B4F800D984AA /* DisputeListItem.swift */; };
 		EF4B843175B4CC2AF6DB5E2D /* Pods_IATAUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B528F3D3DF6E9ED72F4A529 /* Pods_IATAUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -439,6 +440,7 @@
 		D7EFD41320DD2C9D00D984AA /* DisputInvoiceRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisputInvoiceRequest.swift; sourceTree = "<group>"; };
 		D7EFD41520DD2FBC00D984AA /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		D7EFD41720DD4AEE00D984AA /* CancelDisputInvoiceRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelDisputInvoiceRequest.swift; sourceTree = "<group>"; };
+		D7EFD41920E0B4F800D984AA /* DisputeListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisputeListItem.swift; sourceTree = "<group>"; };
 		FBCD1B2F0AEEDCE28F8A0492 /* Pods-IATAUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IATAUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-IATAUITests/Pods-IATAUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -529,6 +531,7 @@
 			isa = PBXGroup;
 			children = (
 				0A0B119820D2889600021E2D /* DisputeModel.swift */,
+				D7EFD41920E0B4F800D984AA /* DisputeListItem.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -1727,6 +1730,7 @@
 				0A26FC7F20CFF8140097A8F6 /* InvoiceStatuses.swift in Sources */,
 				0A37EF6020C5881200201907 /* UIView+SpinnerController.swift in Sources */,
 				0A1AF40920CADB450009595C /* BTNavigationDropdownMenu.swift in Sources */,
+				D7EFD41A20E0B4F900D984AA /* DisputeListItem.swift in Sources */,
 				0A37EF5420C5816B00201907 /* SignInViewController.swift in Sources */,
 				D7D3012920D798D400A1AEB8 /* WalletsModel.swift in Sources */,
 				0A0B119920D2889600021E2D /* DisputeModel.swift in Sources */,
