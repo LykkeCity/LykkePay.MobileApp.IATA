@@ -145,6 +145,7 @@ class Theme: NSObject {
         textField?.dividerNormalColor = Theme.shared.placeholderTextFieldColor
         textField?.dividerNormalHeight = CGFloat(0.5)
         textField?.dividerThickness = CGFloat(0.5)
+        textField?.dividerActiveHeight = CGFloat(0.5)
     }
     
     

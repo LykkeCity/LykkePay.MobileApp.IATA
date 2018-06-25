@@ -4,8 +4,8 @@ import ObjectMapper
 
 class DefaultPaymentService: NSObject, PaymentService {
    
-    func makePayment(model: PaymentRequest) -> Promise<Void> {
-         return Network.shared.post(path: PaymentConfig.shared.makePayment, object: model)
+    func makePayment(model: PaymentRequest) -> Promise<BaseMappable> {
+        return Network.shared.postMappable(path: PaymentConfig.shared.makePayment, object: model)
     }
 
     func getInVoices(invoceParams: InvoiceRequest)-> Promise<String> {

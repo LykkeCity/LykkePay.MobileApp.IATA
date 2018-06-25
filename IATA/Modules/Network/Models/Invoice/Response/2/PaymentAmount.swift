@@ -6,7 +6,7 @@ class PaymentAmount: Mappable {
         case amountToPay
     }
     
-    internal var amountToPay: Int?
+    internal var amountToPay: Double?
     
     internal required init?() {
     }

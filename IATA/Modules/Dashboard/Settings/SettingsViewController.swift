@@ -1,7 +1,7 @@
 import Nuke
 import UIKit
 
-class SettingsViewController: BaseNavController, Initializer, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate, UICollectionViewDataSource {
+class SettingsViewController: BaseNavController, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate, UICollectionViewDataSource {
 
     @IBOutlet weak var profileImage: UIImageView!
     
@@ -19,8 +19,8 @@ class SettingsViewController: BaseNavController, Initializer, UICollectionViewDe
 
     override func viewDidLoad() {
         baseCurrencyCollectionView.register(BaseCurrencyCollectionViewCell.nib, forCellWithReuseIdentifier: BaseCurrencyCollectionViewCell.identifier)
-        initializer = self
         super.viewDidLoad()
+        self.navigationController?.isNavigationBarHidden = false
         baseCurrencyCollectionView.delegate = self
         baseCurrencyCollectionView.dataSource  = self
         baseCurrencyCollectionView.allowsMultipleSelection = false
@@ -140,15 +140,15 @@ class SettingsViewController: BaseNavController, Initializer, UICollectionViewDe
         return CGFloat(10)
     }
 
-    func getTitle() -> String? {
+    override func getTitle() -> String? {
         return tabBarItem.title?.capitalizingFirstLetter()
     }
 
-    func getTableView() -> UITableView {
+    override func getTableView() -> UITableView {
         return UITableView()
     }
 
-    func registerCells() {
+    override func registerCells() {
 
     }
 }

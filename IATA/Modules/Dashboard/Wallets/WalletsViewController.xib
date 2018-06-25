@@ -56,27 +56,14 @@
                             <color key="textColor" red="0.074509803921568626" green="0.26666666666666666" blue="0.45882352941176469" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="748" verticalCompressionResistancePriority="748" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q3Z-1f-1pb" userLabel="walletsSettingsButton">
-                            <rect key="frame" x="161" y="21.333333333333329" width="21" height="21"/>
-                            <constraints>
-                                <constraint firstAttribute="width" secondItem="Q3Z-1f-1pb" secondAttribute="height" multiplier="1:1" id="gwO-ro-K0T"/>
-                            </constraints>
-                            <state key="normal" image="ic_bodySettingsIcn"/>
-                            <connections>
-                                <action selector="clickWallets:" destination="-1" eventType="touchDragInside" id="PXK-Wl-vcL"/>
-                            </connections>
-                        </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstItem="Q3Z-1f-1pb" firstAttribute="centerY" secondItem="iQ7-ER-KQ3" secondAttribute="centerY" constant="-1.75" id="0hS-PB-Pih"/>
                         <constraint firstItem="iQ7-ER-KQ3" firstAttribute="top" secondItem="vx6-VC-GCi" secondAttribute="bottom" constant="12" id="C6M-pF-D1m"/>
                         <constraint firstItem="vx6-VC-GCi" firstAttribute="top" secondItem="HEX-KF-biQ" secondAttribute="top" constant="1" id="Khv-hl-Mwc"/>
                         <constraint firstItem="vx6-VC-GCi" firstAttribute="leading" secondItem="HEX-KF-biQ" secondAttribute="leading" id="Ymh-iq-0y3"/>
                         <constraint firstItem="iQ7-ER-KQ3" firstAttribute="leading" secondItem="HEX-KF-biQ" secondAttribute="leading" id="eao-NO-2d5"/>
-                        <constraint firstItem="Q3Z-1f-1pb" firstAttribute="leading" secondItem="iQ7-ER-KQ3" secondAttribute="trailing" constant="2" id="emg-ZK-hhK"/>
                         <constraint firstAttribute="height" constant="40" id="m8x-lc-Eu5"/>
-                        <constraint firstItem="Q3Z-1f-1pb" firstAttribute="height" secondItem="iQ7-ER-KQ3" secondAttribute="height" id="oAZ-g7-10P"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w3R-iF-Yq2">
@@ -118,7 +105,6 @@
         </view>
     </objects>
     <resources>
-        <image name="ic_bodySettingsIcn" width="48" height="48"/>
         <image name="logoSmallIcn" width="128" height="128"/>
     </resources>
 </document>

@@ -13,11 +13,11 @@ class PaymentRangeTableViewCell: UITableViewCell, UITextFieldDelegate {
                 return
             }
             if let min = item.min, let symbol =  UserPreference.shared.getCurrentCurrency()?.symbol {
-                self.minValueTextField?.text = Double(min).formattedWithSeparator + " " + symbol
+                self.minValueTextField?.text = Formatter.formattedWithSeparator(value: String(min)) + " " + symbol
             }
             
             if let max = item.max, let symbol =  UserPreference.shared.getCurrentCurrency()?.symbol {
-                self.maxValueTextField?.text = Double(max).formattedWithSeparator + " " + symbol
+                self.maxValueTextField?.text = Formatter.formattedWithSeparator(value: String(max)) + " " + symbol
             }
             
             self.minValueChanged(self.minValueTextField)
@@ -101,8 +101,8 @@ class PaymentRangeTableViewCell: UITableViewCell, UITextFieldDelegate {
         }
         self.item?.min = Int(round(min))
         self.item?.max = Int(round(max))
-        self.minValueTextField?.text = round(min).formattedWithSeparator
-        self.maxValueTextField?.text = round(max).formattedWithSeparator
+        self.minValueTextField?.text = Formatter.formattedWithSeparator(value: String(Int(round(min))))
+        self.maxValueTextField?.text = Formatter.formattedWithSeparator(value: String(Int(round(max))))
         self.delegate?.updatePaymentRangeMax(max: self.item?.max)
         self.delegate?.updatePaymentRangeMin(min: self.item?.min)
         self.contentView.endEditing(true)

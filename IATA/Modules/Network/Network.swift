@@ -133,6 +133,10 @@ class Network {
         return request(path: path, method: .post, params: object.toJSON(), encoding: JSONEncoding.default)
     }
     
+    public func postMappable<BaseMappable>(path: String, object: Mappable) -> Promise<BaseMappable> {
+         return request(path: path, method: .post, params: object.toJSON(), encoding: JSONEncoding.default)
+    }
+    
     public func post<ResultType: BaseMappable>(path: String, objects: [Mappable]) -> Promise<ResultType> {
         let params = objects.map({ $0.toJSON() })
         return request(path: path, method: .post, params: params.asParameters(), encoding: ArrayEncoding())
@@ -215,6 +219,23 @@ class Network {
             })
     }
     
+    
+    private func request<BaseMappable>(path: String,
+                                                   method: HTTPMethod,
+                                                   params: [String: Any],
+                                                   encoding: ParameterEncoding = URLEncoding.default)
+        -> Promise<BaseMappable> {
+            return request(path: path,
+                           method: method,
+                           params: params,
+                           encoding: encoding,
+                           response: { (request: DataRequest) -> Promise<Any> in
+                            return request.responseJSON()
+            }).then(execute: { (json) -> BaseMappable in
+                return try self.mapJSON(json: json)
+            })
+    }
+    
     private func request(path: String, method: HTTPMethod, params: [String: Any],
                          encoding: ParameterEncoding = URLEncoding.default) -> Promise<Data> {
         return request(path: path,
@@ -262,5 +283,12 @@ class Network {
                 throw IATAOpError.serverError(message: "Cannot create empty response")
             }
         }
+    }
+    
+    private func mapJSON<BaseMappable>(json: Any) throws -> BaseMappable {
+        if let error = self.serverErrorExtractor.extract(from: json) {
+            throw error
+        }
+        return InvoiceModel() as! BaseMappable
     }
 }

@@ -1,11 +1,12 @@
 import Foundation
 import PromiseKit
+import ObjectMapper
 
 protocol PaymentService {
     
     func getInVoices(invoceParams: InvoiceRequest)-> Promise<String>
     func getAmount(invoicesIds: [String]) -> Promise<PaymentAmount> 
-    func makePayment(model: PaymentRequest) -> Promise<Void>
+    func makePayment(model: PaymentRequest) -> Promise<BaseMappable>
 
     func getWallets(convertAssetIdParams: String)-> Promise<String>
     

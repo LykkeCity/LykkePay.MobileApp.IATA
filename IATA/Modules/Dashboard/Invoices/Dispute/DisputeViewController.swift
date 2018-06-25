@@ -1,15 +1,29 @@
 import UIKit
 
-class DisputeViewController: BaseViewController<DisputeModel, DefaultDisputeState>, Initializer {
+class DisputeViewController: BaseViewController<DisputeModel, DefaultDisputeState> {
     
+    @IBOutlet weak var navItem: UINavigationItem!
+    @IBOutlet weak var navBar: UINavigationBar!
+    @IBOutlet weak var navView: UIView!
     @IBOutlet weak var tabView: UITableView!
     
     override func viewDidLoad() {
-        initializer = self
         state = DefaultDisputeState()
         super.viewDidLoad()
         self.tabView.rowHeight = UITableViewAutomaticDimension
         self.tabView.estimatedRowHeight = 200
+    }
+    
+    override func getNavView() -> UIView? {
+        return navView
+    }
+    
+    override func getNavBar() -> UINavigationBar? {
+        return navBar
+    }
+    
+    override func getNavItem() -> UINavigationItem? {
+        return navItem
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -20,6 +34,7 @@ class DisputeViewController: BaseViewController<DisputeModel, DefaultDisputeStat
         guard let model = self.state?.getItems()[indexPath.row] else {
             return UITableViewCell()
         }
+        cell.selectionStyle = .none
         cell.initCell(model: model)
         return cell
     }
@@ -30,6 +45,17 @@ class DisputeViewController: BaseViewController<DisputeModel, DefaultDisputeStat
     
     override func getTableView() -> UITableView {
         return tabView
+    }
+    
+    override func getLeftButton() -> UIBarButtonItem? {
+        
+        let buttonImage = R.image.backIcon()?.stretchableImage(withLeftCapWidth: 0, topCapHeight: 10)
+        
+        return UIBarButtonItem(image: buttonImage, style: .plain, target: self, action: #selector(backButtonAction))
+    }
+    
+    @objc func backButtonAction() {
+        self.dismiss(animated: true, completion: nil)
     }
     
     override func registerCells() {

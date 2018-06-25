@@ -14,6 +14,7 @@ class BaseViewController<T: Mappable, S: DefaultBaseState<T>>:
         self.getTableView().delegate = self
         self.getTableView().dataSource = self
         self.getTableView().tableFooterView = UIView()
+        self.getTableView().showsVerticalScrollIndicator = false
     }
 
     
@@ -45,7 +46,7 @@ class BaseViewController<T: Mappable, S: DefaultBaseState<T>>:
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
+        return false
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {

@@ -1,27 +1,27 @@
 import UIKit
 import ObjectMapper
 
-class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceState>, Initializer, OnChangeStateSelected, SwipeTableViewCellDelegate {
-    
+class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceState>, OnChangeStateSelected, SwipeTableViewCellDelegate {
+   
     @IBOutlet weak var btnPay: UIButton!
     @IBOutlet weak var loading: UIActivityIndicatorView!
     @IBOutlet weak var tabView: UITableView!
     @IBOutlet weak var downView: UIView!
-    @IBOutlet weak var sumTextField: DesignableUITextField!
+    @IBOutlet weak var sumTextField: CurrencyUiTextField!
     @IBOutlet weak var selectedItemTextField: UILabel!
     @IBOutlet weak var downViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var bottomConstrain: NSLayoutConstraint!
     
     
     override func viewDidLoad() {
-        initializer = self
         state = DefaultInvoiceState()
         super.viewDidLoad()
+        self.navigationController?.isNavigationBarHidden = false
         Theme.shared.configureTextFieldCurrencyStyle(self.sumTextField)
         self.downView.isHidden = true
         self.sumTextField.delegate = self
         
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: NSNotification.Name.UIKeyboardDidShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
 
     }
@@ -77,8 +77,6 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
         super.viewWillAppear(animated)
         self.hideMenu()
         self.loadData()
-        //we need it for loading right view (currency)
-        self.sumTextField.initRightView()
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -110,11 +108,11 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
         
         if (stateCanBeOpenDispute) {
             
-            return getTableAction(Theme.shared.pinkDisputeColor, R.string.localizable.invoiceScreenItemsDispute())
+            return getTableAction(Theme.shared.pinkDisputeColor, R.string.localizable.invoiceScreenItemsDispute(), width: 80)
             
         } else if (stateCanBeClosedDispute) {
             
-            return getTableAction(Theme.shared.grayDisputeColor, R.string.localizable.invoiceScreenItemsCancelDispute())
+            return getTableAction(Theme.shared.grayDisputeColor, R.string.localizable.invoiceScreenItemsCancelDispute(), width: 140)
             
         }
         return nil
@@ -124,30 +122,28 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
         return 80
     }
     
-    func getTitle() -> String? {
+    override func getTitle() -> String? {
         return R.string.localizable.tabBarInvoicesItemTitle()
     }
     
-    func getTableView() -> UITableView {
+    override func getTableView() -> UITableView {
         return tabView
     }
     
-    func registerCells() {
+    override func registerCells() {
         self.tabView.register(InvoiceTableViewCell.nib, forCellReuseIdentifier: InvoiceTableViewCell.identifier)
     }
     
     @objc func clickFilter(sender: Any?) {
-        self.hidesBottomBarWhenPushed = true
         let viewController = InvoiceSettingsViewController()
         viewController.setNeedsStatusBarAppearanceUpdate()
-        NavPushingUtil.shared.push(navigationController: self.navigationController, controller: viewController)
-        self.hidesBottomBarWhenPushed = false
+        self.navigationController?.present(viewController, animated: true, completion: nil)
         self.hideMenu()
     }
     
     @objc func clickDispute(sender: Any?) {
         self.hidesBottomBarWhenPushed = true
-        NavPushingUtil.shared.push(navigationController: self.navigationController, controller: DisputeViewController())
+        self.navigationController?.present(DisputeViewController(), animated: true, completion: nil)
         self.hideMenu()
     }
     
@@ -161,7 +157,7 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
                 if !(TextFieldUtil.validateMinValue(newString: newString, minValue:  0, range: range, replacementString: string, true)) {
                     return false
                 }
-                if !(TextFieldUtil.validateMaxValue(newString: newString, maxValue: self.state!.resultAmount(), range: range, replacementString: string)){
+                if !(TextFieldUtil.validateMaxValue(newString: newString, maxValue: self.state!.amount, range: range, replacementString: string)){
                     ViewUtils.shared.showToast(message: R.string.localizable.invoiceScreenErrorChangingAmount(), view: self.view)
                     return false
                 
@@ -173,11 +169,10 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
     }
     
     func onItemSelected(isSelected: Bool, index: Int) {
-        if let model = self.state?.getItems()[index] {
-            self.state?.recalculateAmount(isSelected: isSelected, model: model)
-        }
+        self.state?.newItem(isSelected: isSelected, index: index)
         self.selectedItemTextField.text = self.state?.getSelectedString()
         self.loadView(isShowLoading: false, isHiddenSelected: true)
+        Theme.shared.configureTextFieldCurrencyStyle(self.sumTextField)
         self.state?.getAmount()
             .then(execute: { [weak self] (result: PaymentAmount) -> Void in
                 guard let strongSelf = self else {
@@ -199,18 +194,30 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
     }
     
     func makePayment(alert: UIAlertAction!) {
-        self.state?.makePayment()
-            .withSpinner(in: view)
-            .then(execute: { [weak self] (result:Void) -> Void in
-                guard let strongSelf = self else {
-                    return
-                }
-                strongSelf.paymentSuccess()
-            })
+        let viewController = PinViewController()
+        viewController.isValidationTransaction = true
+        let items = self.state?.getItemsId()
+        viewController.completion = {
+            self.state?.makePayment(items: items)
+                .then(execute: {[weak self] (result: BaseMappable) -> Void in
+                    guard let strongSelf = self else {
+                        return
+                    }
+                    strongSelf.paymentSuccess()
+                }).catch(execute: { [weak self] error -> Void in
+                    guard let strongSelf = self else {
+                        return
+                    }
+                    strongSelf.handleError(error: error)
+                })
+        }
+        self.navigationController?.present(viewController, animated: true, completion: nil)
+
     }
     
     func paymentSuccess() {
         ViewUtils.shared.showToast(message: R.string.localizable.commonSuccessMessage(), view: self.view)
+        self.loadData()
         self.hideMenu()
     }
     
@@ -220,10 +227,11 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
         self.sumTextField.alpha = isEnabled ? 1 : 0.2
     }
     
-    private func getTableAction(_ backgroundColor: UIColor, _ title: String) -> [SwipeAction] {
+    private func getTableAction(_ backgroundColor: UIColor, _ title: String, width: Int) -> [SwipeAction] {
         let disputeAction = SwipeAction(style: .destructive, title: title) { action, indexPath in
             
         }
+        disputeAction.width = width
         disputeAction.image = UIView.from(color: backgroundColor)
         disputeAction.backgroundColor = UIColor.white
         disputeAction.font = Theme.shared.boldFontOfSize(14)
@@ -238,7 +246,7 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
     }
 
     
-    private func saveAmount(amount: Int?) {
+    private func saveAmount(amount: Double?) {
         if let amountValue = amount, !downView.isHidden {
             self.state?.amount = Double(amountValue)
             self.sumTextField.text = String(amountValue)
@@ -255,7 +263,7 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
     }
     
     private func animate(isShow: Bool) {
-        UIView.animate(withDuration: 0.3) {
+        UIView.animate(withDuration: 0.0) {
             self.downView.alpha = isShow ? 1 : 0
         }
         view.endEditing(!isShow)
@@ -266,6 +274,14 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
         self.downView.isHidden = isShow ? false : true
         self.downViewHeightConstraint.constant = isShow ? 110 : 0
         self.loadView(isShowLoading: false, isHiddenSelected: true)
+    }
+    
+    override func getNavBar() -> UINavigationBar? {
+        return self.navigationController?.navigationBar
+    }
+ 
+    override func getNavItem() -> UINavigationItem? {
+        return self.navigationItem
     }
     
     override func getTitleView() -> UIView {
@@ -319,5 +335,6 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
             }
         }
     }
+
     
 }

@@ -1,8 +1,11 @@
 import UIKit
 import Material
 
-class ChangePasswordViewController: BaseAuthViewController {
+class ChangePasswordViewController: BaseAuthViewController, UINavigationControllerDelegate {
     
+    @IBOutlet weak var navView: UIView!
+    @IBOutlet weak var navBar: UINavigationBar!
+    @IBOutlet weak var navItem: UINavigationItem!
     @IBOutlet weak var oldPasswordField: FloatTextField?
     @IBOutlet weak var newPasswordField: FloatTextField?
     @IBOutlet weak var newPasswordAgainField: FloatTextField?
@@ -10,8 +13,14 @@ class ChangePasswordViewController: BaseAuthViewController {
     
     private var state: ChangePasswordViewState = DefaultChangePasswordViewState() as ChangePasswordViewState
     
+    func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationControllerOperation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        
+        return PresentAnimation()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.delegate = self
         self.initView()
         self.oldPasswordField?.delegate = self
         self.newPasswordField?.delegate = self
@@ -37,7 +46,7 @@ class ChangePasswordViewController: BaseAuthViewController {
     @IBAction func clickCancel(_ sender: Any) {
         self.view.endEditing(true)
         CredentialManager.shared.clearSavedData()
-        NavPushingUtil.shared.pushDown(navigationController: self.navigationController, controller: SignInViewController())
+        self.navigationController?.pushViewController(SignInViewController(), animated: true)
     }
     
     private func initView() {
@@ -56,15 +65,16 @@ class ChangePasswordViewController: BaseAuthViewController {
     
     private func initNavBar() {
         self.setNeedsStatusBarAppearanceUpdate()
-        self.navigationController?.navigationBar.barStyle = .black
+        self.navBar.barStyle = .black
         
-        self.navigationController?.isNavigationBarHidden = false
-        self.navigationController?.navigationBar.barTintColor = Theme.shared.greyNavBar
-        self.navigationController?.navigationBar.tintColor = Theme.shared.navBarTitle
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: Theme.shared.navBarTitle]
-        self.navigationController?.navigationBar.isTranslucent = false
+        self.navigationController?.isNavigationBarHidden = true
+        self.navView.backgroundColor = Theme.shared.greyNavBar
+        self.navBar.barTintColor = Theme.shared.greyNavBar
+        self.navBar.tintColor = Theme.shared.navBarTitle
+        self.navBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: Theme.shared.navBarTitle]
+        self.navBar.isTranslucent = false
         UIApplication.shared.statusBarStyle = UIStatusBarStyle.default
-        self.navigationController?.navigationBar.layoutIfNeeded()
+        self.navBar.layoutIfNeeded()
         self.setNeedsStatusBarAppearanceUpdate()
         initBackButton()
         initTitle()
@@ -76,12 +86,12 @@ class ChangePasswordViewController: BaseAuthViewController {
         backButton.addTarget(self, action: #selector(clickCancel), for: .touchUpInside)
         
         let backItem = UIBarButtonItem(customView: backButton)
-        self.navigationItem.leftBarButtonItem = backItem
+        self.navItem.leftBarButtonItem = backItem
     }
     
     private func initTitle() {
         let titleLabel = Theme.shared.getTitle(title: R.string.localizable.changePasswordNavBarTitle(), color: Theme.shared.navBarTitle)
-        self.navigationItem.titleView = titleLabel
+        self.navItem.titleView = titleLabel
     }
     
     @objc private func buttonClicked() {
@@ -109,6 +119,7 @@ class ChangePasswordViewController: BaseAuthViewController {
                     guard let strongSelf = self else {
                         return
                     }
+                    strongSelf.openPinController()
                     if (error is IATAOpError) {
                         if (!(error as! IATAOpError).validationError.isEmpty) {
                             strongSelf.handleSignInValidationError((error as! IATAOpError).validationError)
@@ -141,7 +152,7 @@ class ChangePasswordViewController: BaseAuthViewController {
     private func openPinController() {
         let viewController =  PinViewController()
         viewController.isValidation = false
-        NavPushingUtil.shared.push(navigationController: self.navigationController, controller: viewController)
+        self.navigationController?.pushViewController(viewController, animated: true)
     }
     
     private func setUpTextFields() {

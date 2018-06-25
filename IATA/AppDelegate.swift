@@ -14,12 +14,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         Fabric.with([Crashlytics.self])
         initWindow()
-        _ = switchToNavigationControllerIfNeed()
-        return true
-    }
-    
-    
-    func applicationDidBecomeActive(_ application: UIApplication) {
         let navigationController = switchToNavigationControllerIfNeed()
         let viewController = makeRootViewController()
         let name = String(describing: navigationController.visibleViewController?.classForCoder)
@@ -27,6 +21,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if (!name.contains(newName)) {
             navigationController.pushViewController(makeRootViewController(), animated: true)
         }
+        return true
+    }
+    
+    
+    func applicationDidBecomeActive(_ application: UIApplication) {
+        var lastOpenTime = UserPreference.shared.getLastOpenTime()
+        if lastOpenTime == nil {
+            lastOpenTime = getCurrentTime()
+        }
+        let navigationController = switchToNavigationControllerIfNeed()
+        let viewController = makeRootViewController()
+        let name = String(describing: navigationController.visibleViewController?.classForCoder)
+        let newName = String(describing: viewController.classForCoder)
+        if (!name.contains(newName) && (getCurrentTime() - lastOpenTime!) > 30) {
+            navigationController.pushViewController(makeRootViewController(), animated: true)
+        }
+        UserPreference.shared.saveLastOpenTime(date: getCurrentTime())
+    }
+    
+    private func getCurrentTime() -> Int64 {
+        return Int64(Date().timeIntervalSince1970)
     }
     
     private func initWindow() {

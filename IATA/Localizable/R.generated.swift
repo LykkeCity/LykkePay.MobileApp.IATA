@@ -109,7 +109,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 30 images.
+  /// This `R.image` struct is generated, and contains static references to 31 images.
   struct image {
     /// Image `Logo`.
     static let logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "Logo")
@@ -117,6 +117,8 @@ struct R: Rswift.Validatable {
     static let splash = Rswift.ImageResource(bundle: R.hostingBundle, name: "Splash")
     /// Image `arrow_down_icon`.
     static let arrow_down_icon = Rswift.ImageResource(bundle: R.hostingBundle, name: "arrow_down_icon")
+    /// Image `backIcon`.
+    static let backIcon = Rswift.ImageResource(bundle: R.hostingBundle, name: "backIcon")
     /// Image `checkmark_icon`.
     static let checkmark_icon = Rswift.ImageResource(bundle: R.hostingBundle, name: "checkmark_icon")
     /// Image `ic_active_thumb`.
@@ -185,6 +187,11 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "arrow_down_icon", bundle: ..., traitCollection: ...)`
     static func arrow_down_icon(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.arrow_down_icon, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "backIcon", bundle: ..., traitCollection: ...)`
+    static func backIcon(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.backIcon, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "checkmark_icon", bundle: ..., traitCollection: ...)`
@@ -529,7 +536,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 67 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 68 localization keys.
     struct localizable {
       /// Base translation: %@ invoices selected
       /// 
@@ -779,6 +786,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: Base
       static let invoiceSettingsErrorTo = Rswift.StringResource(key: "Invoice.Settings.Error.To", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
+      /// Base translation: Transaction details
+      /// 
+      /// Locales: Base
+      static let historyTransactionScreenTitle = Rswift.StringResource(key: "History.Transaction.Screen.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
       /// Base translation: TxHash
       /// 
       /// Locales: Base
@@ -1234,6 +1245,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("Invoice.Settings.Error.To", bundle: R.hostingBundle, value: "To Value cannot be less From Value", comment: "")
       }
       
+      /// Base translation: Transaction details
+      /// 
+      /// Locales: Base
+      static func historyTransactionScreenTitle(_: Void = ()) -> String {
+        return NSLocalizedString("History.Transaction.Screen.Title", bundle: R.hostingBundle, value: "Transaction details", comment: "")
+      }
+      
       /// Base translation: TxHash
       /// 
       /// Locales: Base
@@ -1296,6 +1314,7 @@ struct _R: Rswift.Validatable {
   
   struct nib: Rswift.Validatable {
     static func validate() throws {
+      try _HistoryTableViewCell.validate()
       try _SettingsViewController.validate()
       try _WalletsViewController.validate()
       try _InvoiceSettingsTableViewCell.validate()
@@ -1372,12 +1391,16 @@ struct _R: Rswift.Validatable {
       fileprivate init() {}
     }
     
-    struct _HistoryTableViewCell: Rswift.NibResourceType {
+    struct _HistoryTableViewCell: Rswift.NibResourceType, Rswift.Validatable {
       let bundle = R.hostingBundle
       let name = "HistoryTableViewCell"
       
       func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]? = nil) -> HistoryTableViewCell? {
         return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? HistoryTableViewCell
+      }
+      
+      static func validate() throws {
+        if UIKit.UIImage(named: "Logo", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'Logo' is used in nib 'HistoryTableViewCell', but couldn't be loaded.") }
       }
       
       fileprivate init() {}
@@ -1463,6 +1486,10 @@ struct _R: Rswift.Validatable {
       
       func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]? = nil) -> UIKit.UIView? {
         return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
+      }
+      
+      func secondView(owner ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]? = nil) -> UIKit.UIView? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[1] as? UIKit.UIView
       }
       
       fileprivate init() {}
@@ -1593,8 +1620,8 @@ struct _R: Rswift.Validatable {
       let bundle = R.hostingBundle
       let name = "TransactionTableViewHeader"
       
-      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]? = nil) -> TransactionTableViewHeader? {
-        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? TransactionTableViewHeader
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]? = nil) -> UIKit.UIView? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
       }
       
       static func validate() throws {
@@ -1638,7 +1665,6 @@ struct _R: Rswift.Validatable {
       }
       
       static func validate() throws {
-        if UIKit.UIImage(named: "ic_bodySettingsIcn", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'ic_bodySettingsIcn' is used in nib 'WalletsViewController', but couldn't be loaded.") }
         if UIKit.UIImage(named: "logoSmallIcn", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'logoSmallIcn' is used in nib 'WalletsViewController', but couldn't be loaded.") }
       }
       

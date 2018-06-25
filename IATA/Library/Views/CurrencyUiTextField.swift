@@ -2,46 +2,20 @@ import UIKit
 import Material
 
 @IBDesignable
-class CurrencyUiTextField: FloatTextField {
+class CurrencyUiTextField: DesignableUITextField {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.initCommon()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        self.initCommon()
     }
     
-    override func textRect(forBounds bounds: CGRect) -> CGRect {
-        return CGRect(x: bounds.origin.x, y: bounds.origin.y, width: bounds.width - 10, height: bounds.height)
-    }
-    
-    override func editingRect(forBounds bounds: CGRect) -> CGRect {
-        if bounds.width >= 47 {
-            return CGRect(x: bounds.origin.x, y: bounds.origin.y, width: bounds.width - 10, height: bounds.height)
+    override func initDecimal(value: String) -> String? {
+        if let text = self.text, let last = text.characters.last, String(last).elementsEqual(".") {
+            return  Formatter.formattedWithSeparator(value: value) + "."
         }
-         return CGRect(x: bounds.origin.x, y: bounds.origin.y, width: 47, height: bounds.height)
-    }
-    
-    private func initCommon() {
-        self.minimumFontSize = 24
-        self.adjustsFontSizeToFitWidth = false
-    }
-    
-
-    
-    private func initRightView() {
-        let label = BottomAlignedLabel(frame: CGRect(x: 0, y: 0, width: 15, height: 26))
-        label.contentMode = .center
-        label.text = UserPreference.shared.getCurrentCurrency()?.symbol
-        label.backgroundColor = .clear
-        label.font = Theme.shared.regularFontOfSize(26)
-        label.textColor = Theme.shared.navBarTitle
-        label.textAlignment = .center
-        
-        self.rightView = label
-        self.rightViewMode = .always
+        return Formatter.formattedWithSeparator(value: value)
     }
 }

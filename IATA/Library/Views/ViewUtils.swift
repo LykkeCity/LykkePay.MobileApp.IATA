@@ -24,7 +24,7 @@ class ViewUtils {
             currentLabel.layer.cornerRadius = 10;
             currentLabel.clipsToBounds  =  true
             view.addSubview(currentLabel)
-            UIView.animate(withDuration: 10.0, delay: 0.1, options: .curveEaseOut, animations: {
+            UIView.animate(withDuration: 3.0, delay: 0.1, options: .curveEaseOut, animations: {
                 currentLabel.alpha = 0.0
             }, completion: {(isCompleted) in
                 currentLabel.removeFromSuperview()

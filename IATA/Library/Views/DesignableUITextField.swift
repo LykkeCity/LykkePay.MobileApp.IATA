@@ -16,9 +16,10 @@ class DesignableUITextField: FloatTextField {
             if var value = newValue, let symbol = UserPreference.shared.getCurrentCurrency()?.symbol {
                 let newValue = value.replace(target: symbol, withString: " ")
                 value =  newValue.removingWhitespaces()
-                if let valueDouble = Double(value) {
-                    super.text = valueDouble.formattedWithSeparator + " " + symbol
+                if let res = initDecimal(value: value) {
+                    super.text = res  + " " + symbol
                 }
+                editingDidBegin()
             } else {
                 super.text = newValue
             }
@@ -47,8 +48,6 @@ class DesignableUITextField: FloatTextField {
     
     @objc func editingDidBegin() {
         let currentPosition =  self.offset(from: self.beginningOfDocument, to: (self.selectedTextRange?.start)!)
-        
-        
         if let end = self.getOldText()?.count, (currentPosition > end - 2) {
             scrollToPosition(position: end - 2)
         }
@@ -57,8 +56,8 @@ class DesignableUITextField: FloatTextField {
     @objc func editingChanged() {
         var currentPosition =  self.offset(from: self.beginningOfDocument, to: (self.selectedTextRange?.start)!)
 
-        if let text = self.text?.removingWhitespaces(), let value = Double(text) {
-            self.text = value.formattedWithSeparator
+        if let text = self.text?.removingWhitespaces() {
+            self.text = initDecimal(value: text)
             currentPosition =  self.offset(from: self.beginningOfDocument, to: (self.selectedTextRange?.start)!)
 
         }
@@ -93,5 +92,9 @@ class DesignableUITextField: FloatTextField {
         self.addObserver(self, forKeyPath: "selectedTextRange",   options: NSKeyValueObservingOptions.old, context: nil)
         self.minimumFontSize = 24
         self.adjustsFontSizeToFitWidth = false
+    }
+    
+    func initDecimal(value: String) -> String? {
+       return Formatter.formattedWithSeparator(value: value)
     }
 }

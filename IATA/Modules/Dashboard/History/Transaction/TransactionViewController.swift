@@ -1,17 +1,32 @@
 import UIKit
 
-class TransactionViewController: BaseViewController<PropertyKeyTransactionModel, DefaultTransactionState>, Initializer {
+class TransactionViewController: BaseViewController<PropertyKeyTransactionModel, DefaultTransactionState> {
     
+    @IBOutlet weak var navItem: UINavigationItem!
+    @IBOutlet weak var navBar: UINavigationBar!
+    @IBOutlet weak var navView: UIView!
     @IBOutlet private weak var tabView: UITableView!
     @IBOutlet private weak var transactionHeaderView: TransactionTableViewHeader!
     
     var id = String()
     
     override func viewDidLoad() {
-        initializer = self
         state = DefaultTransactionState()
         super.viewDidLoad()
+        self.navigationController?.isNavigationBarHidden = true
         self.loadData()
+    }
+    
+    override func getNavItem() -> UINavigationItem? {
+        return navItem
+    }
+    
+    override func getNavBar() -> UINavigationBar? {
+        return navBar
+    }
+    
+    override func getNavView() -> UIView? {
+        return navView
     }
 
     override func getLeftButton() -> UIBarButtonItem? {
@@ -22,7 +37,7 @@ class TransactionViewController: BaseViewController<PropertyKeyTransactionModel,
     }
 
     @objc func backButtonAction() {
-        self.navigationController?.popViewController(animated: true)
+        self.dismiss(animated: true, completion: nil)
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -34,14 +49,6 @@ class TransactionViewController: BaseViewController<PropertyKeyTransactionModel,
         return cell
     }
 
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return false
-    }
-    
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 50
-    }
-    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }

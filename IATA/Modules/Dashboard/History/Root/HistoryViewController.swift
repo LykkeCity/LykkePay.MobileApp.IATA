@@ -1,18 +1,24 @@
 import UIKit
 
-class HistoryViewController: BaseViewController<HistoryModel, DefaultHistoryState>, Initializer {
+class HistoryViewController: BaseViewController<HistoryModel, DefaultHistoryState> {
     
     @IBOutlet weak var tabView: UITableView!
     
     override func viewDidLoad() {
         state = DefaultHistoryState()
         super.viewDidLoad()
+        self.navigationController?.isNavigationBarHidden = false
         self.loadData()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.navigationController?.isNavigationBarHidden = false
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: HistoryTableViewCell.identifier, for: indexPath) as! HistoryTableViewCell
-        
+        cell.selectionStyle = .none
         guard let model = self.state?.getItems()[indexPath.row] else {
             return UITableViewCell()
         }
@@ -25,11 +31,19 @@ class HistoryViewController: BaseViewController<HistoryModel, DefaultHistoryStat
         if let id = self.state?.getItems()[indexPath.row].id {
             viewController.id = id
         }
-        self.navigationController?.pushViewController(viewController, animated: true)
+        self.navigationController?.present(viewController, animated: true, completion: nil)
+    }
+    
+    override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 75
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 75
     }
     
     override func getTitle() -> String? {
-        return R.string.localizable.historyScreenTitle()//R.string.localizable.historyTra
+        return R.string.localizable.historyScreenTitle()
     }
     
     override func getTableView() -> UITableView {

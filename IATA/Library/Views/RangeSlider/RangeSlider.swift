@@ -104,7 +104,7 @@ public class RangeSlider: UIControl {
         }
     }
     
-    @IBInspectable public var lowerValue: Double = 0.2 {
+    @IBInspectable public var lowerValue: Double = 0.1 {
         didSet {
             if lowerValue < minimumValue {
                 lowerValue = minimumValue

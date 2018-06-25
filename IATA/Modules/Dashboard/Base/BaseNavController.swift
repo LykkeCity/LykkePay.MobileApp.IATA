@@ -4,7 +4,7 @@ import UIKit
 
 class BaseNavController: UIViewController, UITextFieldDelegate {
     
-    var initializer: Initializer?
+    var backgroundNavBar: UIColor = Theme.shared.navigationBarColor
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -12,16 +12,12 @@ class BaseNavController: UIViewController, UITextFieldDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(appMovedToBackground), name: Notification.Name.UIApplicationWillResignActive, object: nil)
         setUp()
         initNavBar()
+        UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent
         self.setNeedsStatusBarAppearanceUpdate()
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        initNavBar()
-        UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent
     }
     
     func showErrorAlert(error : Error) {
@@ -38,16 +34,20 @@ class BaseNavController: UIViewController, UITextFieldDelegate {
     }
     
     func initNavBar() {
+        self.navigationController?.isNavigationBarHidden = true
         self.setNeedsStatusBarAppearanceUpdate()
-        self.navigationController?.navigationBar.barStyle = .blackOpaque
-        self.navigationController?.navigationBar.barTintColor = Theme.shared.tabBarBackgroundColor
-        self.navigationController?.navigationBar.tintColor = .white
-        self.navigationController?.navigationBar.isTranslucent = false
-        self.navigationItem.titleView = getTitleView()
-        self.navigationItem.leftBarButtonItem  = getLeftButton()
-        self.navigationItem.rightBarButtonItem  = getRightButton()
+        self.getNavBar()?.barStyle = .blackOpaque
+        self.navigationController?.navigationBar.barTintColor = backgroundNavBar
+        self.getNavBar()?.barTintColor = backgroundNavBar
+        self.getNavView()?.backgroundColor = backgroundNavBar
+        self.getNavBar()?.tintColor = .white
+        self.getNavBar()?.isTranslucent = false
+        self.getNavItem()?.titleView = getTitleView()
+        self.getNavItem()?.leftBarButtonItem  = getLeftButton()
+        self.getNavItem()?.rightBarButtonItem  = getRightButton()
         UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent
-        self.navigationController?.navigationBar.layoutIfNeeded()
+        self.getNavBar()?.layoutIfNeeded()
+        self.getNavView()?.tintColor = backgroundNavBar
         self.setNeedsStatusBarAppearanceUpdate()
     }
     
@@ -86,6 +86,18 @@ class BaseNavController: UIViewController, UITextFieldDelegate {
      func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
         return false
+    }
+    
+    func getNavBar() -> UINavigationBar? {
+        return self.navigationController?.navigationBar
+    }
+    
+    func getNavView() -> UIView? {
+        return nil
+    }
+    
+    func getNavItem() -> UINavigationItem? {
+        return self.navigationItem
     }
    
 }
