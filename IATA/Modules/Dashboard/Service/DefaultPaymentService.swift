@@ -3,7 +3,7 @@ import PromiseKit
 import ObjectMapper
 
 class DefaultPaymentService: NSObject, PaymentService {
-   
+
     func makePayment(model: PaymentRequest) -> Promise<BaseMappable> {
         return Network.shared.postMappable(path: PaymentConfig.shared.makePayment, object: model)
     }
@@ -30,7 +30,7 @@ class DefaultPaymentService: NSObject, PaymentService {
 
     func getWallets(convertAssetIdParams: String) -> Promise<String> {
         var params = [String : String]()
-        params["convertAssetIdParams"] = convertAssetIdParams
+        params["convertAssetId"] = convertAssetIdParams
         return Network.shared.get(path: PaymentConfig.shared.wallets, params: params)
     }
     
@@ -76,5 +76,9 @@ class DefaultPaymentService: NSObject, PaymentService {
         var params = [String : String]()
         params["baseAsset"] = baseAsset
         return Network.shared.postWithQueryString(path: PaymentConfig.shared.baseAsset, params: params)
+    }
+
+    func makeExchange(model: ExchangeRequest) -> Promise<BaseMappable> {
+        return Network.shared.postMappable(path: PaymentConfig.shared.exchange, object: model)
     }
 }

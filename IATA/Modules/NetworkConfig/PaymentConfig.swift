@@ -26,6 +26,8 @@ class PaymentConfig {
     public let user = "/user"
     public let baseAssets = "/baseAsset/list"
     public let baseAsset = "/baseAsset"
+
+    public let exchange = "/exchange"
     
    
 

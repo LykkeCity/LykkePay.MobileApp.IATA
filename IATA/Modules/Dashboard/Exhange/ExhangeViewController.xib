@@ -46,6 +46,9 @@
                                 <constraint firstAttribute="height" constant="48" id="qYh-G8-hLh"/>
                             </constraints>
                             <state key="normal" title="Button" image="ic_bodyInvertIcn"/>
+                            <connections>
+                                <action selector="makeExchange:" destination="-1" eventType="touchUpInside" id="0s1-LH-1iH"/>
+                            </connections>
                         </button>
                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_usFlagMediumIcn" translatesAutoresizingMaskIntoConstraints="NO" id="tCb-QV-90Q">
                             <rect key="frame" x="20" y="16" width="32" height="32"/>
