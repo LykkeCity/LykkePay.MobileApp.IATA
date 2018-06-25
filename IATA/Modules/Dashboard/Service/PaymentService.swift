@@ -24,4 +24,6 @@ protocol PaymentService {
     func getBaseAssetsList() -> Promise<String>
     func postBaseAssets(baseAsset: String) -> Promise<Void>
 
+    func makeExchange(model: ExchangeRequest) -> Promise<BaseMappable>
+
 }

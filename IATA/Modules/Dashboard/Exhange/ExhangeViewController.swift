@@ -7,8 +7,8 @@ class ExhangeViewController: BaseNavController {
     @IBOutlet weak var notBaseSum: UILabel!
     @IBOutlet weak var notBaseIcon: UIImageView!
     
+    @IBOutlet weak var baseSum: UILabel!
     @IBOutlet weak var baseInfo: UILabel!
-    @IBOutlet weak var baseSum: UIStackView!
     @IBOutlet weak var baseIcon: UIImageView!
     
     @IBOutlet weak var btnConfirm: UIButton!
@@ -19,9 +19,11 @@ class ExhangeViewController: BaseNavController {
     @IBOutlet weak var exchangeSumResult: UILabel!
     @IBOutlet weak var topView: UIView!
     
-    
     @IBOutlet weak var sumTextField: CurrencyUiTextField!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
+    
+    public lazy var state = DefaultExchangeState()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +35,7 @@ class ExhangeViewController: BaseNavController {
         editChanged(self.sumTextField)
         self.initKeyboardEvents()
         self.initAllSum()
+        self.loadData()
     }
     
     
@@ -40,6 +43,8 @@ class ExhangeViewController: BaseNavController {
         return tabBarItem.title?.capitalizingFirstLetter()
     }
     @IBAction func clickChangeBaseAssert(_ sender: Any) {
+        self.state?.changeBaseAsset()
+        self.initAsset()
     }
     
     @IBAction func editChanged(_ sender: Any) {
@@ -94,7 +99,6 @@ class ExhangeViewController: BaseNavController {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.sellAll))
         self.sellAllView.addGestureRecognizer(tap)
         
-        //self.sumAllLabel.text = todo sume
         self.sumAllLabel.color = UIColor.clear
         self.sumAllLabel.sizeToFit()
         self.sumAllLabel.insets = UIEdgeInsetsMake(5, 20, 4, 20)
@@ -119,4 +123,42 @@ class ExhangeViewController: BaseNavController {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
         view.addGestureRecognizer(tap)
     }
+    
+    private func loadData() {
+        self.state?.loadStartData()?
+            .withSpinner(in: view)
+            .then(execute: { [weak self] (result: String) -> Void in
+                guard let strongSelf = self else {
+                    return
+                }
+                strongSelf.reloadTable(jsonString: result)
+            })
+    }
+    
+    private func reloadTable(jsonString: String!) {
+        self.state?.mapping(jsonString: jsonString)
+        self.initAsset()
+    }
+    
+    private func initAsset() {
+        self.sumAllLabel.text = state?.getTotalBalance()
+        if let items = self.state?.getItems() {
+            for item in items {
+                if let isBase = item.isBase, isBase {
+                    initAsset(sum: self.baseSum, info: self.baseInfo, image: self.baseIcon, item: item)
+                } else {
+                    initAsset(sum: self.notBaseSum, info: self.notBaseInfo, image: self.notBaseIcon, item: item)
+                }
+            }
+        }
+    }
+    
+    private func initAsset(sum: UILabel, info: UILabel, image: UIImageView, item: ExchangeViewModel) {
+        if let currency = item.currency, let sumValue = item.sum {
+            sum.text = String(sumValue) + currency
+        }
+        info.text = item.info
+        image.image = item.icon
+    }
+    
 }

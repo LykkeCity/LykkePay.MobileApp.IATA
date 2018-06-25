@@ -37,10 +37,10 @@ class WalletsTableViewCell: UITableViewCell {
 
     //for test - as api isn't ready
     private func prepareBaseAssetBalanceValue(from baseAssetBalance : Double, and assetId: String) -> String {
-        if assetId.contains("USD") {
+        if assetId.isUsd() {
             walletsNationalFlag = R.image.ic_usFlagMediumIcn.name
             return String(baseAssetBalance) + " $"
-        } else if assetId.contains("EUR") {
+        } else if assetId.isEuro() {
              walletsNationalFlag = R.image.ic_eurFlagMediumIcn.name
             return String(baseAssetBalance) + " €"
         }

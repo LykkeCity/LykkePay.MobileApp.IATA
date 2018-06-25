@@ -177,8 +177,10 @@
 		0ABED71620DBC87900AABCAD /* ViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABED71520DBC87900AABCAD /* ViewUtils.swift */; };
 		0ABED71E20DBDEF800AABCAD /* UIImageExtensition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABED71D20DBDEF800AABCAD /* UIImageExtensition.swift */; };
 		0ABED75720DC407000AABCAD /* NotificateDoneEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABED75620DC407000AABCAD /* NotificateDoneEnum.swift */; };
+		0AC0DA9920E1589800923C3F /* ExchangeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC0DA9820E1589800923C3F /* ExchangeViewModel.swift */; };
 		0ADA881A20DA530400A332F0 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADA881920DA530400A332F0 /* TextField.swift */; };
 		0ADA881D20DA774A00A332F0 /* NavPushingUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADA881C20DA774A00A332F0 /* NavPushingUtil.swift */; };
+		0AE070B320E16813006E4570 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE070B220E16813006E4570 /* R.generated.swift */; };
 		0AF1C3AB20C832DB00AFD286 /* SavePinRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF1C3AA20C832DB00AFD286 /* SavePinRequest.swift */; };
 		0AF1C3AD20C9164E00AFD286 /* UserPreference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF1C3AC20C9164E00AFD286 /* UserPreference.swift */; };
 		0AF6119D20C992AC00957348 /* Checkbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF6119C20C992AC00957348 /* Checkbox.swift */; };
@@ -192,11 +194,13 @@
 		94D6B70820E13BA80066960D /* lykkexnet.crt in Resources */ = {isa = PBXBuildFile; fileRef = 94D6B70720E13BA70066960D /* lykkexnet.crt */; };
 		D70DE14E20CA9E6B00644281 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70DE14C20CA9E6B00644281 /* SettingsViewController.swift */; };
 		D70DE14F20CA9E6B00644281 /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D70DE14D20CA9E6B00644281 /* SettingsViewController.xib */; };
-		D718BB8A20E106D6008E9C15 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = D718BB8920E106D6008E9C15 /* R.generated.swift */; };
 		D784931D20D25F650060EAC6 /* DefaultWalletsState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D784931C20D25F650060EAC6 /* DefaultWalletsState.swift */; };
 		D78589A320D3DF1800E3C3FB /* WalletsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D78589A220D3DF1800E3C3FB /* WalletsViewModel.swift */; };
 		D7894CFD20CFFC290069F68E /* GothamProMed.otf in Resources */ = {isa = PBXBuildFile; fileRef = D7894CFB20CFFC290069F68E /* GothamProMed.otf */; };
 		D7894CFE20CFFC290069F68E /* GothamProReg.otf in Resources */ = {isa = PBXBuildFile; fileRef = D7894CFC20CFFC290069F68E /* GothamProReg.otf */; };
+		D7BC8CE720E10DD6000A708B /* DefaultExchangeState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BC8CE620E10DD6000A708B /* DefaultExchangeState.swift */; };
+		D7BC8CEB20E10ECD000A708B /* ExchangeRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BC8CEA20E10ECD000A708B /* ExchangeRequest.swift */; };
+		D7BC8CEE20E111E4000A708B /* ExchangeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BC8CED20E111E4000A708B /* ExchangeModel.swift */; };
 		D7D177A620CE3AFA00985F05 /* BaseCurrencyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D177A420CE3AFA00985F05 /* BaseCurrencyCollectionViewCell.swift */; };
 		D7D177A720CE3AFA00985F05 /* BaseCurrencyCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D7D177A520CE3AFA00985F05 /* BaseCurrencyCollectionViewCell.xib */; };
 		D7D3012920D798D400A1AEB8 /* WalletsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D3012820D798D400A1AEB8 /* WalletsModel.swift */; };
@@ -413,8 +417,10 @@
 		0ABED71520DBC87900AABCAD /* ViewUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewUtils.swift; sourceTree = "<group>"; };
 		0ABED71D20DBDEF800AABCAD /* UIImageExtensition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtensition.swift; sourceTree = "<group>"; };
 		0ABED75620DC407000AABCAD /* NotificateDoneEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificateDoneEnum.swift; sourceTree = "<group>"; };
+		0AC0DA9820E1589800923C3F /* ExchangeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeViewModel.swift; sourceTree = "<group>"; };
 		0ADA881920DA530400A332F0 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		0ADA881C20DA774A00A332F0 /* NavPushingUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavPushingUtil.swift; sourceTree = "<group>"; };
+		0AE070B220E16813006E4570 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		0AF1C3AA20C832DB00AFD286 /* SavePinRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavePinRequest.swift; sourceTree = "<group>"; };
 		0AF1C3AC20C9164E00AFD286 /* UserPreference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPreference.swift; sourceTree = "<group>"; };
 		0AF6119C20C992AC00957348 /* Checkbox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Checkbox.swift; sourceTree = "<group>"; };
@@ -433,11 +439,13 @@
 		D295B81107990C89EA142783 /* Pods-IATATests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IATATests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-IATATests/Pods-IATATests.debug.xcconfig"; sourceTree = "<group>"; };
 		D70DE14C20CA9E6B00644281 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		D70DE14D20CA9E6B00644281 /* SettingsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
-		D718BB8920E106D6008E9C15 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		D784931C20D25F650060EAC6 /* DefaultWalletsState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultWalletsState.swift; sourceTree = "<group>"; };
 		D78589A220D3DF1800E3C3FB /* WalletsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletsViewModel.swift; sourceTree = "<group>"; };
 		D7894CFB20CFFC290069F68E /* GothamProMed.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GothamProMed.otf; sourceTree = "<group>"; };
 		D7894CFC20CFFC290069F68E /* GothamProReg.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GothamProReg.otf; sourceTree = "<group>"; };
+		D7BC8CE620E10DD6000A708B /* DefaultExchangeState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultExchangeState.swift; sourceTree = "<group>"; };
+		D7BC8CEA20E10ECD000A708B /* ExchangeRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRequest.swift; sourceTree = "<group>"; };
+		D7BC8CED20E111E4000A708B /* ExchangeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeModel.swift; sourceTree = "<group>"; };
 		D7D177A420CE3AFA00985F05 /* BaseCurrencyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCurrencyCollectionViewCell.swift; sourceTree = "<group>"; };
 		D7D177A520CE3AFA00985F05 /* BaseCurrencyCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BaseCurrencyCollectionViewCell.xib; sourceTree = "<group>"; };
 		D7D3012820D798D400A1AEB8 /* WalletsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletsModel.swift; sourceTree = "<group>"; };
@@ -606,6 +614,8 @@
 		0A0B11C420D3156200021E2D /* Exhange */ = {
 			isa = PBXGroup;
 			children = (
+				0AC0DA9720E1588500923C3F /* ViewModel */,
+				D7BC8CE520E10DBD000A708B /* State */,
 				0A0B11C520D3158500021E2D /* ExhangeViewController.swift */,
 				0A0B11C620D3158500021E2D /* ExhangeViewController.xib */,
 			);
@@ -940,8 +950,8 @@
 		0A37EF9820C6DA8500201907 /* Localizable */ = {
 			isa = PBXGroup;
 			children = (
-				D718BB8920E106D6008E9C15 /* R.generated.swift */,
 				0A37EFA220C6DC5100201907 /* Localizable.strings */,
+				0AE070B220E16813006E4570 /* R.generated.swift */,
 			);
 			path = Localizable;
 			sourceTree = "<group>";
@@ -1097,6 +1107,7 @@
 		0A6DB5D020C5535F00BC1127 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				D7BC8CE820E10DFC000A708B /* Exchange */,
 				0A837C3420DE9B8A00199759 /* SettingsModels */,
 				0A3F58D520D8377300F78856 /* Errors */,
 				D7D3012620D798B900A1AEB8 /* Wallets */,
@@ -1241,6 +1252,14 @@
 			path = SwipeAction;
 			sourceTree = "<group>";
 		};
+		0AC0DA9720E1588500923C3F /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				0AC0DA9820E1589800923C3F /* ExchangeViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		0AC337D820D852A3006ACC22 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -1344,6 +1363,39 @@
 				D78589A220D3DF1800E3C3FB /* WalletsViewModel.swift */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		D7BC8CE520E10DBD000A708B /* State */ = {
+			isa = PBXGroup;
+			children = (
+				D7BC8CE620E10DD6000A708B /* DefaultExchangeState.swift */,
+			);
+			path = State;
+			sourceTree = "<group>";
+		};
+		D7BC8CE820E10DFC000A708B /* Exchange */ = {
+			isa = PBXGroup;
+			children = (
+				D7BC8CEC20E11188000A708B /* Response */,
+				D7BC8CE920E10E67000A708B /* Request */,
+			);
+			path = Exchange;
+			sourceTree = "<group>";
+		};
+		D7BC8CE920E10E67000A708B /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				D7BC8CEA20E10ECD000A708B /* ExchangeRequest.swift */,
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
+		D7BC8CEC20E11188000A708B /* Response */ = {
+			isa = PBXGroup;
+			children = (
+				D7BC8CED20E111E4000A708B /* ExchangeModel.swift */,
+			);
+			path = Response;
 			sourceTree = "<group>";
 		};
 		D7D3012520D7980700A1AEB8 /* Recovered References */ = {
@@ -1735,6 +1787,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D7BC8CEE20E111E4000A708B /* ExchangeModel.swift in Sources */,
 				0A1AF41720CADB7B0009595C /* BTConfiguration.swift in Sources */,
 				0A37EF6E20C58C2500201907 /* StringsExtension.swift in Sources */,
 				0A0B11AD20D29A7700021E2D /* DefaultBaseState.swift in Sources */,
@@ -1772,6 +1825,7 @@
 				0A37EFDE20C7D65100201907 /* PasswordContainerView.swift in Sources */,
 				0A0B11BC20D2B66300021E2D /* HistoryModel.swift in Sources */,
 				0A0D4B8720C54446009B73E9 /* NetworkConfig.swift in Sources */,
+				0AC0DA9920E1589800923C3F /* ExchangeViewModel.swift in Sources */,
 				0A13F65D20C974EC001BA302 /* InvoiceViewController.swift in Sources */,
 				0A26FCB720D166F00097A8F6 /* TransactionViewController.swift in Sources */,
 				0A6DB5D220C5537000BC1127 /* TokenObject.swift in Sources */,
@@ -1829,9 +1883,11 @@
 				0A62F56720C546E100A51D63 /* ServerErrorExtractor.swift in Sources */,
 				0A9364BC20DA316400634406 /* DefaultTransactionState.swift in Sources */,
 				0A4CD11E20CD57AA00EF4A17 /* DesignableUITextField.swift in Sources */,
+				D7BC8CEB20E10ECD000A708B /* ExchangeRequest.swift in Sources */,
 				0A1A1C9920DD1D380037DC77 /* SwipeActionTransitioning.swift in Sources */,
 				0A37EFE420C7D67F00201907 /* PinViewController.swift in Sources */,
 				0A37EFDD20C7D65100201907 /* PasswordInputView.swift in Sources */,
+				D7BC8CE720E10DD6000A708B /* DefaultExchangeState.swift in Sources */,
 				0A1AF41620CADB7B0009595C /* BTTableView.swift in Sources */,
 				0A37EF7020C59C6F00201907 /* SingInRequest.swift in Sources */,
 				0A37EFF920C8044200201907 /* ChangePasswordViewController.swift in Sources */,
@@ -1890,7 +1946,6 @@
 				0A26FC9F20D160F00097A8F6 /* HistoryViewController.swift in Sources */,
 				0A4CD14720CD901600EF4A17 /* OnSwitchStateChanged.swift in Sources */,
 				0A08C0FD20CAA70400342A3E /* InvoiceViewModelExtensition.swift in Sources */,
-				D718BB8A20E106D6008E9C15 /* R.generated.swift in Sources */,
 				0A4CD16720CF135300EF4A17 /* TextFieldUtils.swift in Sources */,
 				0A37EF5D20C587C600201907 /* Promise+Spinner.swift in Sources */,
 				0AF1C3AD20C9164E00AFD286 /* UserPreference.swift in Sources */,
@@ -1899,6 +1954,7 @@
 				0A37EFEC20C7EE0200201907 /* PinValidationResponse.swift in Sources */,
 				0A9364C220DA371300634406 /* PropertyKeyTransactionTitle.swift in Sources */,
 				0A0B119320D279C000021E2D /* LocalStorage.swift in Sources */,
+				0AE070B320E16813006E4570 /* R.generated.swift in Sources */,
 				0A1A1C9020DD1D380037DC77 /* SwipeAction.swift in Sources */,
 				0A0B11BF20D2C7EC00021E2D /* BaseInvoiceViewModelItem.swift in Sources */,
 				0A37EFF120C7FBB300201907 /* BaseViewState.swift in Sources */,

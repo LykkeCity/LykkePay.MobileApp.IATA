@@ -9,10 +9,8 @@ class DefaultWalletsState: DefaultBaseState<WalletsViewModel> {
 
     private var convertAssetIdParams = "convertAssetIdParams"
 
-    func getWalletsStringJson() -> Promise<String> {
-        if let id = UserPreference.shared.getCurrentCurrency()?.id {
-            convertAssetIdParams = id
-        }
+    func getWalletsStringJson(id: String) -> Promise<String> {
+        self.convertAssetIdParams = id
         return self.service.getWallets(convertAssetIdParams: convertAssetIdParams)
     }
 

@@ -13,6 +13,14 @@ extension String {
         return data.sha1()
     }
     
+    func isUsd() -> Bool {
+        return self.contains("USD")
+    }
+    
+    func isEuro() -> Bool {
+        return self.contains("EUR")
+    }
+    
     func localize() -> String {
         return NSLocalizedString(self, comment: "")
     }

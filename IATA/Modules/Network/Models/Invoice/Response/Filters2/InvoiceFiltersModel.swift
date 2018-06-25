@@ -43,7 +43,7 @@ class InvoiceFiltersModel: Mappable {
     }
     
     internal func initSymbol() {
-        if let idValue = id, idValue.contains("USD") {
+        if let idValue = id, idValue.isUsd() {
             self.symbol = "$"
         } else {
             self.symbol = "€"

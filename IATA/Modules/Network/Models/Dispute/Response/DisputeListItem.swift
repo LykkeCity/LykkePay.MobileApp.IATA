@@ -91,7 +91,7 @@ class DisputeListItem: Mappable {
         billingCategory <- map[PropertyKey.billingCategory.rawValue]
         dispute <- map[PropertyKey.dispute.rawValue]
 
-        if let idValue = settlementAssetId, idValue.contains("USD") {
+        if let idValue = settlementAssetId, idValue.isUsd() {
             self.symbol = "$"
         } else {
             self.symbol = "€"
