@@ -26,6 +26,7 @@ class DisputeTableViewCell: UITableViewCell {
     internal func initCell(model: DisputeModel) {
         if let invoiceModel = model.invoice {
             self.invoiceView.initView(model: invoiceModel)
+            self.invoiceView.initDispute(raisedDate: model.disputeRaisedAt)
         }
         self.reasonTextField.text = model.reason
         self.reasonTextField.setLineSpacing(lineSpacing: 2.5)

@@ -68,6 +68,9 @@ class DisputeListItem: Mappable {
 
     internal func mapping(map: Map) {
         disputeRaisedAt <- map[PropertyKey.disputeRaisedAt.rawValue]
+        if let date = disputeRaisedAt {
+            disputeRaisedAt = DateUtils.formatDateFromFormatWith7Mls(dateString: date)
+        }
         disputeReason <- map[PropertyKey.disputeReason.rawValue]
         merchantName <- map[PropertyKey.merchantName.rawValue]
         status <- map[PropertyKey.status.rawValue]

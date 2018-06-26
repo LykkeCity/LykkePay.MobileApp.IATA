@@ -31,10 +31,13 @@ open class InvoiceView: UIView {
         contentView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
     }
     
-    internal func initDispute() {
+    internal func initDispute(raisedDate: String?) {
          self.initStatus(color: Theme.shared.greyStatusColor, status: R.string.localizable.invoiceStatusItemsDispute())
         self.icBodyDispute.isHidden = false
         self.status.isHidden = false
+        if let date = raisedDate {
+            self.info.text = R.string.localizable.invoiceDisputeRaisedDate(date)
+        }
     }
     
     internal func initView(model: InvoiceModel) {

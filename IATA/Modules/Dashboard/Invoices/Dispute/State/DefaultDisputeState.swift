@@ -36,6 +36,7 @@ class DefaultDisputeState: DefaultBaseState<DisputeModel> {
             invoice?.dispute = dispute.dispute
             invoice?.merchantName = dispute.merchantName
             disputeModel.invoice = invoice
+            disputeModel.disputeRaisedAt = dispute.disputeRaisedAt
             items.append(disputeModel)
         }
 
