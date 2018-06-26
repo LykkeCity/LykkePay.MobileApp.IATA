@@ -31,10 +31,14 @@ open class InvoiceView: UIView {
         contentView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
     }
     
-    internal func initDispute(raisedDate: String?) {
+    internal func initDispute(raisedDate: String?, model: InvoiceModel) {
          self.initStatus(color: Theme.shared.greyStatusColor, status: R.string.localizable.invoiceStatusItemsDispute())
         self.icBodyDispute.isHidden = false
         self.status.isHidden = false
+        self.name.text = model.clientName?.uppercased()
+        if let modelNumber = model.number {
+            self.invoiceNumber.text = R.string.localizable.invoiceStatusItemDisputeNumber(modelNumber)
+        }
         if let date = raisedDate {
             self.info.text = R.string.localizable.invoiceDisputeRaisedDate(date)
         }
@@ -43,7 +47,9 @@ open class InvoiceView: UIView {
     internal func initView(model: InvoiceModel) {
         self.name.text = model.merchantName?.uppercased()
         if let amount = model.amount, let symbol = model.symbol {
-            self.price.text = Formatter.formattedWithSeparator(value: String(amount)) + " " + symbol
+            let formatter = NumberFormatter()
+            formatter.minimumFractionDigits = 0
+            self.price.text = Formatter.formattedWithSeparator(value: formatter.string(for: amount)) + " " + symbol
         }
         self.billingCategory.text = model.billingCategory?.uppercased()
         if let number = model.number {

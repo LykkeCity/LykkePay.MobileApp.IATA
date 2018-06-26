@@ -101,6 +101,10 @@ class PaymentRangeTableViewCell: UITableViewCell, UITextFieldDelegate {
         }
         self.item?.min = Int(round(min))
         self.item?.max = Int(round(max))
+      
+        self.minValueTextField?.addObservers()
+        self.maxValueTextField?.addObservers()
+        
         self.minValueTextField?.text = Formatter.formattedWithSeparator(value: String(Int(round(min))))
         self.maxValueTextField?.text = Formatter.formattedWithSeparator(value: String(Int(round(max))))
         self.delegate?.updatePaymentRangeMax(max: self.item?.max)
