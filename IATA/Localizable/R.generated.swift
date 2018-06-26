@@ -551,7 +551,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 74 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 75 localization keys.
     struct localizable {
       /// Base translation: %@ invoices selected
       /// 
@@ -577,6 +577,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: Base
       static let historyTransactionDetailsAmount = Rswift.StringResource(key: "History.Transaction.Details.Amount", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
+      /// Base translation: Back
+      /// 
+      /// Locales: Base
+      static let commonNavBarBack = Rswift.StringResource(key: "Common.NavBar.Back", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
       /// Base translation: Billing Categories
       /// 
       /// Locales: Base
@@ -890,6 +894,13 @@ struct R: Rswift.Validatable {
       /// Locales: Base
       static func historyTransactionDetailsAmount(_: Void = ()) -> String {
         return NSLocalizedString("History.Transaction.Details.Amount", bundle: R.hostingBundle, value: "Amount", comment: "")
+      }
+      
+      /// Base translation: Back
+      /// 
+      /// Locales: Base
+      static func commonNavBarBack(_: Void = ()) -> String {
+        return NSLocalizedString("Common.NavBar.Back", bundle: R.hostingBundle, value: "Back", comment: "")
       }
       
       /// Base translation: Billing Categories
