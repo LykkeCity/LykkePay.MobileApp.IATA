@@ -99,7 +99,7 @@ class DesignableUITextField: FloatTextField {
     private func initCommon() {
         self.addTarget(self, action: #selector(editingDidEnd), for: .editingDidEnd)
         self.addTarget(self, action: #selector(editingDidBegin), for: .editingDidBegin)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.removeObservers), name: NSNotification.Name(NotificateDoneEnum.destroy.rawValue), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.removeObservers), name: NSNotification.Name(NotificateEnum.destroy.rawValue), object: nil)
         self.minimumFontSize = 24
         self.adjustsFontSizeToFitWidth = false
     }

@@ -19,7 +19,9 @@ class DefaultInvoiceState: DefaultBaseState<InvoiceModel> {
     
     
     func mapping(jsonString: String!)  {
-        self.items = !jsonString.isEmpty ? Mapper<InvoiceModel>().mapArray(JSONObject: jsonString.toJSON())! : Array<InvoiceModel>()
+        if let invoices = Mapper<InvoiceModel>().mapArray(JSONObject: jsonString.toJSON()) {
+            self.items = !jsonString.isEmpty ? invoices : Array<InvoiceModel>()
+        }
     }
     
     func clearSelectedItems() {

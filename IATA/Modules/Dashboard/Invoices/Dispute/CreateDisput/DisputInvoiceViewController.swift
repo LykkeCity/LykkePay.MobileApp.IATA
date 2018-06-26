@@ -10,7 +10,7 @@ class DisputInvoiceViewController: BaseNavController {
     @IBOutlet weak var reasonTextField: FloatTextField!
 
     let state = DefaultDisputInvoiceState()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         Theme.shared.configureTextFieldStyle(self.reasonTextField, title: R.string.localizable.invoiceDisputInvoicePlaceholderTextField())
@@ -50,7 +50,7 @@ class DisputInvoiceViewController: BaseNavController {
     }
 
     private func initLeftButton() {
-        let leftButton = Theme.shared.getRightButton(title: R.string.localizable.commonNavBarCancel(), color: .black)
+        let leftButton = Theme.shared.getCancel(title: R.string.localizable.commonNavBarCancel(), color: .black)
         leftButton.addTarget(self, action: #selector(clickCancel), for: .touchUpInside)
         let leftItem = UIBarButtonItem(customView: leftButton)
         self.getNavItem()?.leftBarButtonItem = leftItem
@@ -79,7 +79,10 @@ class DisputInvoiceViewController: BaseNavController {
                 guard let strongSelf = self else {
                     return
                 }
-               strongSelf.dismiss(animated: true, completion: nil)
+                strongSelf.dismiss(animated: true, completion: {
+                    //better use protocol - will rewrite later
+                    NotificationCenter.default.post(name: NSNotification.Name(NotificateEnum.loadData.rawValue), object: nil)
+                })
             })
         }
     }

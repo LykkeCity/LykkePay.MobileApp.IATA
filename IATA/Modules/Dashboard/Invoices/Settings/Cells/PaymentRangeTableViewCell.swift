@@ -74,9 +74,9 @@ class PaymentRangeTableViewCell: UITableViewCell, UITextFieldDelegate {
             if let valueText = self.maxValueTextField?.text,
                 let value = Double(valueText), !TextFieldUtil.validateMaxValueText(text, value) {
                 ViewUtils.shared.showToast(message: R.string.localizable.invoiceSettingsErrorFrom(), view: self.contentView)
-                NotificationCenter.default.post(name: NSNotification.Name(NotificateDoneEnum.disable.rawValue), object: nil)
+                NotificationCenter.default.post(name: NSNotification.Name(NotificateEnum.disable.rawValue), object: nil)
             } else {
-                NotificationCenter.default.post(name: NSNotification.Name(NotificateDoneEnum.enable.rawValue), object: nil)
+                NotificationCenter.default.post(name: NSNotification.Name(NotificateEnum.enable.rawValue), object: nil)
             }
         }
     }
@@ -89,9 +89,9 @@ class PaymentRangeTableViewCell: UITableViewCell, UITextFieldDelegate {
             }
             if  let valueText = self.minValueTextField?.text, let value = Double(valueText), !TextFieldUtil.validateMinValueText(text, value, true) {
                 ViewUtils.shared.showToast(message: R.string.localizable.invoiceSettingsErrorTo(), view: self.contentView)
-                NotificationCenter.default.post(name: NSNotification.Name(NotificateDoneEnum.disable.rawValue), object: nil)
+                NotificationCenter.default.post(name: NSNotification.Name(NotificateEnum.disable.rawValue), object: nil)
             } else {
-                NotificationCenter.default.post(name: NSNotification.Name(NotificateDoneEnum.enable.rawValue), object: nil)
+                NotificationCenter.default.post(name: NSNotification.Name(NotificateEnum.enable.rawValue), object: nil)
             }
         }
     }

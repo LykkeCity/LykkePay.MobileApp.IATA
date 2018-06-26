@@ -177,7 +177,7 @@
 		0ABED71420DBA94300AABCAD /* CurrencyUiTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABED71320DBA94300AABCAD /* CurrencyUiTextField.swift */; };
 		0ABED71620DBC87900AABCAD /* ViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABED71520DBC87900AABCAD /* ViewUtils.swift */; };
 		0ABED71E20DBDEF800AABCAD /* UIImageExtensition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABED71D20DBDEF800AABCAD /* UIImageExtensition.swift */; };
-		0ABED75720DC407000AABCAD /* NotificateDoneEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABED75620DC407000AABCAD /* NotificateDoneEnum.swift */; };
+		0ABED75720DC407000AABCAD /* NotificateEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABED75620DC407000AABCAD /* NotificateEnum.swift */; };
 		0AC0DA9920E1589800923C3F /* ExchangeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC0DA9820E1589800923C3F /* ExchangeViewModel.swift */; };
 		0ADA881A20DA530400A332F0 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADA881920DA530400A332F0 /* TextField.swift */; };
 		0ADA881D20DA774A00A332F0 /* NavPushingUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADA881C20DA774A00A332F0 /* NavPushingUtil.swift */; };
@@ -416,7 +416,7 @@
 		0ABED71320DBA94300AABCAD /* CurrencyUiTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyUiTextField.swift; sourceTree = "<group>"; };
 		0ABED71520DBC87900AABCAD /* ViewUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewUtils.swift; sourceTree = "<group>"; };
 		0ABED71D20DBDEF800AABCAD /* UIImageExtensition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtensition.swift; sourceTree = "<group>"; };
-		0ABED75620DC407000AABCAD /* NotificateDoneEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificateDoneEnum.swift; sourceTree = "<group>"; };
+		0ABED75620DC407000AABCAD /* NotificateEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificateEnum.swift; sourceTree = "<group>"; };
 		0AC0DA9820E1589800923C3F /* ExchangeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeViewModel.swift; sourceTree = "<group>"; };
 		0ADA881920DA530400A332F0 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		0ADA881C20DA774A00A332F0 /* NavPushingUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavPushingUtil.swift; sourceTree = "<group>"; };
@@ -1328,7 +1328,7 @@
 				0A08C11620CAB5B900342A3E /* PaymentRangeTableViewCell.xib */,
 				0A0B11C020D2E35300021E2D /* InvoiceSettingsTableViewCell.swift */,
 				0A0B11C120D2E35300021E2D /* InvoiceSettingsTableViewCell.xib */,
-				0ABED75620DC407000AABCAD /* NotificateDoneEnum.swift */,
+				0ABED75620DC407000AABCAD /* NotificateEnum.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -1915,7 +1915,7 @@
 				0A08C0FF20CAA75000342A3E /* InvoiceViewModelItemType.swift in Sources */,
 				0A6DB5D620C553D000BC1127 /* CredentialManager.swift in Sources */,
 				0A286A9220CA88F700D93693 /* InvoiceViewModel.swift in Sources */,
-				0ABED75720DC407000AABCAD /* NotificateDoneEnum.swift in Sources */,
+				0ABED75720DC407000AABCAD /* NotificateEnum.swift in Sources */,
 				0A37EFF520C7FD3700201907 /* DefaultPinViewState.swift in Sources */,
 				D7D177A620CE3AFA00985F05 /* BaseCurrencyCollectionViewCell.swift in Sources */,
 				0AAE96C020D7F94500F97768 /* PaymentRequest.swift in Sources */,
