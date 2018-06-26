@@ -112,6 +112,8 @@ private extension PinViewController {
                     }
                     strongSelf.validationFail()
                 })
+        } else {
+            self.passwordContainerView.wrongPassword()
         }
     }
     

@@ -119,7 +119,7 @@ class ChangePasswordViewController: BaseAuthViewController, UINavigationControll
                     guard let strongSelf = self else {
                         return
                     }
-                    strongSelf.openPinController()
+
                     if (error is IATAOpError) {
                         if (!(error as! IATAOpError).validationError.isEmpty) {
                             strongSelf.handleSignInValidationError((error as! IATAOpError).validationError)
