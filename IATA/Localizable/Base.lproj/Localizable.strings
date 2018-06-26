@@ -1,0 +1,94 @@
+"Common.Title.Error" = "Error";
+"Common.PositiveButton.Ok" = "Ok";
+"Common.NavBar.Cancel" = "Cancel";
+"Common.NavBar.Done" = "Done";
+"Common.Error.Internal" = "Something is going wrong, please, try again.";
+"Common.Success.Message" = "Success";
+"Common.NavBar.Close" = "Close";
+"Common.NavBar.Back" = "Back";
+
+"SignIn.Placeholder.Login" = "Login";
+"SignIn.Placeholder.Password" = "Password";
+"SignIn.Label.Welcome.Message" =  "Welcome back! Sign in to continue to IATA";
+
+"ChangePassword.FieldEmpty.Error" = "The CurrentPasssword field is required.";
+"ChangePassword.FieldNotEquals.Error" = "Fields are not equal";
+"ChangePassword.NavBar.Title" = "Change a password";
+
+"ChangePassword.Placeholder.CurrentPassword" = "Current password";
+"ChangePassword.Placeholder.NewPassword" = "New password";
+"ChangePassword.Placeholder.NewPasswordAgain" = "New password again";
+
+"Pin.Validation.Title" = "Please enter your PIN code";
+"Pin.Setup.Title" = "Setup your PIN code";
+"Pin.Resubmit.Title" = "Confirm your PIN code";
+"Pin.Error.Title" = "Submit your PIN code again";
+
+"Invoice.Settings.Airlines.Title" = "Airlines";
+"Invoice.Settings.BillingCategories.Title" = "Billing Categories";
+"Invoice.Settings.Currencies.Title" = "Currencies";
+"Invoice.Settings.PaymentRange.Title" = "Payment Range";
+"Invoice.Settings.SettlementPeriod.Title" = "Settlement Period";
+"Invoice.Settings.Filter.Title" = "Filters";
+"Invoice.Settings.Range.From" = "From";
+"Invoice.Settings.Range.To" = "To";
+"Invoice.Settings.Error.To" = "To Value cannot be less From Value";
+"Invoice.Settings.Error.From" = "From Value cannot exceed To Value";
+"Invoice.Settings.MaxRange" = "%@K";
+
+"Invoice.Screen.PaymentMessage" = "Pay %@ against the selected invoices?";
+"Invoice.Screen.PleaseConfirmPayment" = "Please confirm";
+"Invoice.Screen.Pay" = "Pay";
+
+"Invoice.Navigation.Filtering.Title.AllInvoices" = "All invoices";
+"Invoice.Navigation.Filtering.Title.Paid" = "Paid invoices";
+"Invoice.Navigation.Filtering.Title.UnPaidInvoices" = "Unpaid invoices";
+"Invoice.Navigation.Filtering.Title.Dispute" = "Dispute";
+
+"Invoice.Screen.Items.CountSelected" = "%@ invoices selected";
+"Invoice.Screen.Items.OneSelected" = "1 invoice selected";
+"Invoice.Screen.Items.Dispute" = "Dispute";
+"Invoice.Screen.Items.CancelDispute" = "Cancel Dispute";
+
+"Invoice.Screen.Error.ChangingAmount" = "You cannot pay more then required";
+
+"Invoice.Status.Items.InProgress" = "IN PROGRESS";
+"Invoice.Status.Items.Paid" = "PAID";
+"Invoice.Status.Items.Underpaid" = "PARTIALLY PAID";
+"Invoice.Status.Items.Overpaid" = "ERROR";
+"Invoice.Status.Items.Latepaid" = "LATE PAID";
+"Invoice.Status.Items.InternalError" = "ERROR";
+"Invoice.Status.Items.PastDue" = "PAST DUE";
+"Invoice.Status.Items.Dispute" = "DISPUTE";
+
+
+"Invoice.Disput.Invoice" = "Dispute invoice";
+"Invoice.Disput.Invoice.Placeholder.TextField" = "Your comment";
+"Invoice.Dispute.RaisedDate" = "Raised dispute on %@";
+"Invoice.Status.Item.Dispute.Number" = "Invoice #%@";
+
+"Setting.Logout.Item.Logout" = "Log Out";
+"Invoice.Dispute.Title" = "Open Disputes";
+
+"History.Screen.Title" = "History";
+"History.Transaction.Screen.Title" = "Transaction details";
+"History.Transaction.Details.SoldBy" = "Sold By";
+"History.Transaction.Details.TimeStamp" = "TimeStamp";
+"History.Transaction.Details.BlockHeight" = "Block Height";
+"History.Transaction.Details.TxHash" = "TxHash";
+"History.Transaction.Details.Amount" = "Amount";
+
+"History.Transaction.Details.InvoiceNumber" = "Invoice Number";
+"History.Transaction.Details.BillingCategory" = "Billing Category";
+"History.Transaction.Details.Status" = "Status";
+"History.Transaction.Details.PaidBy" = "Paid By";
+
+
+"Setting.Logout.Item.Logout" = "Log Out";
+"Setting.Logout.Item.Cancel" = "Cancel";
+
+"TabBar.InvoicesItem.Title" = "INVOICES";
+"TabBar.WalletsItem.Title" = "WALLETS";
+"TabBar.ExchangeItem.Title" = "EXCHANGE";
+"TabBar.HistoryItem.Title" = "HISTORY";
+"TabBar.SettingsItem.Title" = "SETTINGS";
