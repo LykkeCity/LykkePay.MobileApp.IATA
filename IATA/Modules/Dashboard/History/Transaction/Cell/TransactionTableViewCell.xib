@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="GothamProReg.otf">
+            <string>GothamPro</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="TransactionTableViewCell" customModule="IATA" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="99.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ALc-v6-Gop">
+                        <rect key="frame" x="16" y="27" width="304" height="46"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="59a-8V-8mD">
+                                <rect key="frame" x="0.0" y="0.0" width="304" height="9"/>
+                                <fontDescription key="fontDescription" name="GothamPro" family="Gotham Pro" pointSize="10"/>
+                                <color key="textColor" red="0.5490196078431373" green="0.58039215686274503" blue="0.62745098039215685" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AuX-NE-d0s">
+                                <rect key="frame" x="0.0" y="17" width="304" height="29"/>
+                                <string key="text">jikejlfkjfljfcirfikjikejlfkjfljfcirfikjikejlfkjfljfcirfikjikejlfkjfljfcirfikjikejlfkjfljfcirfikjikejlfkjfljfcirfikjikejlfkjfljfcirfikjikejlfkjfljfcirfikjikejlfkjfljfcirfikjikejlfkjfljfcirfikjikejlfkjfljfcirfikjikejlfkjfljfcirfik</string>
+                                <fontDescription key="fontDescription" name="GothamPro" family="Gotham Pro" pointSize="14"/>
+                                <color key="textColor" red="0.24705882352941178" green="0.30196078431372547" blue="0.37647058823529411" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="ALc-v6-Gop" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="16" id="EKv-bf-TuI"/>
+                    <constraint firstAttribute="trailing" secondItem="ALc-v6-Gop" secondAttribute="trailing" id="Ga8-Bg-gTc"/>
+                    <constraint firstItem="ALc-v6-Gop" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="eLT-3b-aGV"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="ALc-v6-Gop" secondAttribute="bottom" constant="16" id="wpp-zq-wYb"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="title" destination="59a-8V-8mD" id="ggW-aI-gqd"/>
+                <outlet property="valueLable" destination="AuX-NE-d0s" id="TNM-q0-tG1"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+</document>
