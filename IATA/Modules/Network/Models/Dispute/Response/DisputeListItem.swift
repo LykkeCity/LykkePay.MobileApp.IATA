@@ -32,9 +32,9 @@ class DisputeListItem: Mappable {
         case symbol
     }
 
+    internal var merchantName: String?
     internal var disputeRaisedAt: String?
     internal var disputeReason: String?
-    internal var merchantName: String?
     internal var status: InvoiceStatuses?
     internal var iataInvoiceDate: String?
     internal var settlementMonthPeriod: String?
@@ -90,6 +90,7 @@ class DisputeListItem: Mappable {
         createdDate <- map[PropertyKey.createdDate.rawValue]
         billingCategory <- map[PropertyKey.billingCategory.rawValue]
         dispute <- map[PropertyKey.dispute.rawValue]
+        merchantName <- map[PropertyKey.merchantName.rawValue]
 
         if let idValue = settlementAssetId, idValue.isUsd() {
             self.symbol = "$"

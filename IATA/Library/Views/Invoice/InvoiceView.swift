@@ -38,7 +38,7 @@ open class InvoiceView: UIView {
     }
     
     internal func initView(model: InvoiceModel) {
-        self.name.text = model.merchantName
+        self.name.text = model.merchantName?.uppercased()
         if let amount = model.amount, let symbol = model.symbol {
             self.price.text = Formatter.formattedWithSeparator(value: String(amount)) + " " + symbol
         }
