@@ -11,6 +11,7 @@ class InvoiceSettingsViewController: BaseNavController {
     private var viewModel =  InvoiceViewModel()
     private var isShown = false
     private var isEnabled = true
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,19 +32,20 @@ class InvoiceSettingsViewController: BaseNavController {
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(self.disableDoneButton),
-            name: NSNotification.Name(NotificateDoneEnum.disable.rawValue),
+            name: NSNotification.Name(NotificateEnum.disable.rawValue),
             object: nil)
         
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(self.enableDoneButton),
-            name: NSNotification.Name(NotificateDoneEnum.enable.rawValue),
+            name: NSNotification.Name(NotificateEnum.enable.rawValue),
             object: nil)
         self.setNeedsStatusBarAppearanceUpdate()
         self.initNavBar()
         
         self.loadData()
     }
+    
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .default
@@ -54,6 +56,7 @@ class InvoiceSettingsViewController: BaseNavController {
     }
     
     @IBAction func clickCancel(_ sender: Any) {
+        NotificationCenter.default.post(name: NSNotification.Name(NotificateEnum.destroy.rawValue), object: nil)
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -81,8 +84,11 @@ class InvoiceSettingsViewController: BaseNavController {
     }
     
     @objc func clickDone() {
+         NotificationCenter.default.post(name: NSNotification.Name(NotificateEnum.destroy.rawValue), object: nil)
         self.viewModel.state.clickDone()
-        self.dismiss(animated: true, completion: nil)
+        self.dismiss(animated: true, completion: {
+            NotificationCenter.default.post(name: NSNotification.Name(NotificateEnum.loadData.rawValue), object: nil)
+        })
     }
     
     @objc func disableDoneButton() {

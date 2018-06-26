@@ -1,30 +1,38 @@
 import UIKit
 import ObjectMapper
 
+
 class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceState>, OnChangeStateSelected, SwipeTableViewCellDelegate {
+
    
+    @IBOutlet weak var sumTextField: CurrencyUiTextField!
     @IBOutlet weak var btnPay: UIButton!
     @IBOutlet weak var loading: UIActivityIndicatorView!
     @IBOutlet weak var tabView: UITableView!
     @IBOutlet weak var downView: UIView!
-    @IBOutlet weak var sumTextField: CurrencyUiTextField!
     @IBOutlet weak var selectedItemTextField: UILabel!
     @IBOutlet weak var downViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var bottomConstrain: NSLayoutConstraint!
-    
-    
+
+    private let refreshControl = UIRefreshControl()
+
     override func viewDidLoad() {
         state = DefaultInvoiceState()
         super.viewDidLoad()
+        addRefreshControl()
+        loadData()
         self.sumTextField.delegate = self
+        self.sumTextField.addObservers()
+        
         self.navigationController?.isNavigationBarHidden = false
         Theme.shared.configureTextFieldCurrencyStyle(self.sumTextField)
         self.downViewHeightConstraint.constant = 0
         self.downView.isHidden = true
         
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        self.initKeyboardEvents()
 
+        //better use protocol - will rewrite later
+        NotificationCenter.default.addObserver(self, selector: #selector(refresh), name: NSNotification.Name(rawValue: "loadData"), object: nil)
     }
     
     @IBAction func makePay(_ sender: Any) {
@@ -48,7 +56,13 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
         if let text = self.sumTextField.text, let isEmpty = self.sumTextField.text?.isEmpty, isEmpty || (Int(text) == 0) {
             self.sumTextField.text = "0"
             setEnabledPay(isEnabled: false)
-        } else {
+        } else if let text = self.sumTextField.text {
+            var valueString = text
+            if text.starts(with: "0") && !text.starts(with: "0.") {
+                let fromIndex = text.index(text.startIndex, offsetBy: 1)
+                valueString = text.substring(from: fromIndex)
+                self.sumTextField.text = valueString
+            }
             setEnabledPay(isEnabled: true)
         }
     }
@@ -78,7 +92,6 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
         super.viewWillAppear(animated)
         UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent
         self.hideMenu()
-        self.loadData()
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -166,13 +179,19 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
         self.hideMenu()
     }
     
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
+    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if(textField == self.sumTextField) {
             
             if let text = self.sumTextField.getOldText(), let textNsString = text as? NSString {
             
                 let newString = textNsString.replacingCharacters(in: range, with: string)
-                
+                if let text = self.sumTextField.text, text.contains("."), string.elementsEqual(".") {
+                    return false
+                }
                 if !(TextFieldUtil.validateMinValue(newString: newString, minValue:  0, range: range, replacementString: string, true)) {
                     return false
                 }
@@ -278,6 +297,13 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
         isHiddenSelected ? self.loading.startAnimating() : self.loading.stopAnimating()
     }
     
+    private func initKeyboardEvents() {
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
+        view.addGestureRecognizer(tap)
+    }
+    
     private func animate(isShow: Bool) {
         UIView.animate(withDuration: 0.5 , animations: {
             if isShow {
@@ -330,7 +356,7 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
         return menuView
     }
     
-    private func loadData() {
+     func loadData() {
         self.state?.getInvoiceStringJson()
             .withSpinner(in: view)
             .then(execute: { [weak self] (result: String) -> Void in
@@ -344,6 +370,7 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
     private func reloadTable(jsonString: String!) {
         self.state?.mapping(jsonString: jsonString)
         self.tabView.reloadData()
+        self.refreshControl.endRefreshing()
     }
     
     private func hideMenu() {
@@ -359,5 +386,14 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
         }
     }
 
-    
+    private func addRefreshControl() {
+        refreshControl.attributedTitle = NSAttributedString(string: "loading...")
+        refreshControl.addTarget(self, action: #selector(self.refresh), for: UIControlEvents.valueChanged)
+        tabView.addSubview(refreshControl)
+    }
+
+    @objc func refresh() {
+        loadData()
+    }
+
 }

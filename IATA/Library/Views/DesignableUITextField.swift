@@ -4,6 +4,8 @@ import Material
 @IBDesignable
 class DesignableUITextField: FloatTextField {
     
+    var isObserving: Bool = false
+        
     dynamic override var text: String? {
         get {
             if let stringValue = super.text, let symbol = UserPreference.shared.getCurrentCurrency()?.symbol {
@@ -19,7 +21,7 @@ class DesignableUITextField: FloatTextField {
                 if let res = initDecimal(value: value) {
                     super.text = res  + " " + symbol
                 }
-                editingDidBegin()
+                checkPosition()
             } else {
                 super.text = newValue
             }
@@ -37,7 +39,7 @@ class DesignableUITextField: FloatTextField {
     }
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        editingDidBegin()
+        checkPosition()
     }
     
     
@@ -47,27 +49,29 @@ class DesignableUITextField: FloatTextField {
     
     
     @objc func editingDidBegin() {
-        let currentPosition =  self.offset(from: self.beginningOfDocument, to: (self.selectedTextRange?.start)!)
-        if let end = self.getOldText()?.count, (currentPosition > end - 2) {
-            scrollToPosition(position: end - 2)
+        if let text = self.text {
+            self.text = initDecimal(value: text)
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            self.checkPosition()
         }
     }
     
-    @objc func editingChanged() {
-        var currentPosition =  self.offset(from: self.beginningOfDocument, to: (self.selectedTextRange?.start)!)
-
-        if let text = self.text?.removingWhitespaces() {
-            self.text = initDecimal(value: text)
-            currentPosition =  self.offset(from: self.beginningOfDocument, to: (self.selectedTextRange?.start)!)
-
-        }
-        
-        DispatchQueue.main.async {
-            if let newPosition = self.position(from: self.beginningOfDocument, offset: currentPosition) {
-                self.selectedTextRange = self.textRange(from: newPosition, to: newPosition)
+    func checkPosition() {
+        if let start = self.selectedTextRange?.start {
+            let currentPosition =  self.offset(from: self.beginningOfDocument, to: start)
+            if let end = self.getOldText()?.count, (currentPosition > end - 2) {
+                scrollToPosition(position: end - 2)
             }
         }
     }
+    
+    @objc func editingDidEnd() {
+        if let text = self.text {
+            self.text = initDecimal(value: text)
+        }
+    }
+    
     
     override func textRect(forBounds bounds: CGRect) -> CGRect {
         return CGRect(x: bounds.origin.x, y: bounds.origin.y, width: bounds.width, height: bounds.height)
@@ -85,16 +89,29 @@ class DesignableUITextField: FloatTextField {
         }
     }
     
+    @objc func removeObservers() {
+        if (isObserving) {
+            self.removeObserver(self, forKeyPath: "selectedTextRange", context: nil)
+            isObserving = false
+        }
+    }
+    
     private func initCommon() {
-        self.addTarget(self, action: #selector(editingChanged), for: .editingChanged)
+        self.addTarget(self, action: #selector(editingDidEnd), for: .editingDidEnd)
         self.addTarget(self, action: #selector(editingDidBegin), for: .editingDidBegin)
-        self.addObserver(self, forKeyPath: "selectedTextRange",   options: NSKeyValueObservingOptions.new, context: nil)
-        self.addObserver(self, forKeyPath: "selectedTextRange",   options: NSKeyValueObservingOptions.old, context: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.removeObservers), name: NSNotification.Name(NotificateEnum.destroy.rawValue), object: nil)
         self.minimumFontSize = 24
         self.adjustsFontSizeToFitWidth = false
     }
     
+    func addObservers() {
+        if (!isObserving) {
+            self.isObserving = true
+            self.addObserver(self, forKeyPath: "selectedTextRange", options: [NSKeyValueObservingOptions.new, NSKeyValueObservingOptions.old], context: nil)
+        }
+    }
+    
     func initDecimal(value: String) -> String? {
-       return Formatter.formattedWithSeparator(value: value)
+        return Formatter.formattedWithSeparator(value: value)
     }
 }

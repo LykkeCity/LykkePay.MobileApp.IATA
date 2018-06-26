@@ -33,6 +33,7 @@
 "Invoice.Settings.Range.To" = "To";
 "Invoice.Settings.Error.To" = "To Value cannot be less From Value";
 "Invoice.Settings.Error.From" = "From Value cannot exceed To Value";
+"Invoice.Settings.MaxRange" = "%@K";
 
 "Invoice.Screen.PaymentMessage" = "Pay %@ against the selected invoices?";
 "Invoice.Screen.PleaseConfirmPayment" = "Please confirm";
@@ -59,11 +60,14 @@
 "Invoice.Status.Items.PastDue" = "PAST DUE";
 "Invoice.Status.Items.Dispute" = "DISPUTE";
 
+
 "Invoice.Disput.Invoice" = "Dispute invoice";
 "Invoice.Disput.Invoice.Placeholder.TextField" = "Your comment";
+"Invoice.Dispute.RaisedDate" = "Raised dispute on %@";
+"Invoice.Status.Item.Dispute.Number" = "Invoice #%@";
 
 "Setting.Logout.Item.Logout" = "Log Out";
-"Invoice.Dispute.Title" = "Dispute";
+"Invoice.Dispute.Title" = "Open Disputes";
 
 "History.Screen.Title" = "History";
 "History.Transaction.Screen.Title" = "Transaction details";
@@ -79,7 +83,7 @@
 "History.Transaction.Details.PaidBy" = "Paid By";
 
 
-"Setting.Logout.Item.Logout" = "Log out";
+"Setting.Logout.Item.Logout" = "Log Out";
 "Setting.Logout.Item.Cancel" = "Cancel";
 
 "TabBar.InvoicesItem.Title" = "INVOICES";

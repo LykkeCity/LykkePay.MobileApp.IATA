@@ -230,11 +230,11 @@ public class RangeSlider: UIControl {
         trackLayer.setNeedsDisplay()
         
         let lowerThumbCenter = CGFloat(positionForValue(lowerValue))
-        lowerThumbLayer.frame = CGRect(x: lowerThumbCenter - thumbWidth/2.0, y: -3.0, width: thumbWidth, height: thumbWidth)
+        lowerThumbLayer.frame = CGRect(x: lowerThumbCenter - thumbWidth, y: -3.0, width: thumbWidth*2, height: thumbWidth*2)
         lowerThumbLayer.setNeedsDisplay()
         
         let upperThumbCenter = CGFloat(positionForValue(upperValue))
-        upperThumbLayer.frame = CGRect(x: upperThumbCenter - thumbWidth/2.0, y: -3.0, width: thumbWidth, height: thumbWidth)
+        upperThumbLayer.frame = CGRect(x: upperThumbCenter  - thumbWidth/2, y: -3.0, width: thumbWidth*2, height: thumbWidth*2)
         upperThumbLayer.setNeedsDisplay()
         
         CATransaction.commit()

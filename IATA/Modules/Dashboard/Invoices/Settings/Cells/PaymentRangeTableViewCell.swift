@@ -2,6 +2,7 @@ import UIKit
 
 class PaymentRangeTableViewCell: UITableViewCell, UITextFieldDelegate {
     
+    @IBOutlet weak var maxValueLabel: UILabel!
     @IBOutlet weak var rangeSlider: RangeSlider?
     @IBOutlet weak var minValueTextField: DesignableUITextField?
     @IBOutlet weak var maxValueTextField: DesignableUITextField?
@@ -22,7 +23,17 @@ class PaymentRangeTableViewCell: UITableViewCell, UITextFieldDelegate {
             
             self.minValueChanged(self.minValueTextField)
             self.maxValueChanged(self.maxValueTextField)
+            
+            if let maxValueRange = item.maxRangeInBaseAsset {
+                self.rangeSlider?.maximumValue = maxValueRange
+                self.maxValueLabel.text = getMaxValue(maxValue: maxValueRange)
+            }
         }
+    }
+    
+    private func getMaxValue(maxValue: Double) -> String {
+        let intValue = 100 * Int((maxValue / 100.0).rounded())
+        return R.string.localizable.invoiceSettingsMaxRange(String(Double(intValue)/1000))
     }
     
     static var nib:UINib {
@@ -63,9 +74,9 @@ class PaymentRangeTableViewCell: UITableViewCell, UITextFieldDelegate {
             if let valueText = self.maxValueTextField?.text,
                 let value = Double(valueText), !TextFieldUtil.validateMaxValueText(text, value) {
                 ViewUtils.shared.showToast(message: R.string.localizable.invoiceSettingsErrorFrom(), view: self.contentView)
-                NotificationCenter.default.post(name: NSNotification.Name(NotificateDoneEnum.disable.rawValue), object: nil)
+                NotificationCenter.default.post(name: NSNotification.Name(NotificateEnum.disable.rawValue), object: nil)
             } else {
-                NotificationCenter.default.post(name: NSNotification.Name(NotificateDoneEnum.enable.rawValue), object: nil)
+                NotificationCenter.default.post(name: NSNotification.Name(NotificateEnum.enable.rawValue), object: nil)
             }
         }
     }
@@ -78,9 +89,9 @@ class PaymentRangeTableViewCell: UITableViewCell, UITextFieldDelegate {
             }
             if  let valueText = self.minValueTextField?.text, let value = Double(valueText), !TextFieldUtil.validateMinValueText(text, value, true) {
                 ViewUtils.shared.showToast(message: R.string.localizable.invoiceSettingsErrorTo(), view: self.contentView)
-                NotificationCenter.default.post(name: NSNotification.Name(NotificateDoneEnum.disable.rawValue), object: nil)
+                NotificationCenter.default.post(name: NSNotification.Name(NotificateEnum.disable.rawValue), object: nil)
             } else {
-                NotificationCenter.default.post(name: NSNotification.Name(NotificateDoneEnum.enable.rawValue), object: nil)
+                NotificationCenter.default.post(name: NSNotification.Name(NotificateEnum.enable.rawValue), object: nil)
             }
         }
     }
@@ -101,6 +112,10 @@ class PaymentRangeTableViewCell: UITableViewCell, UITextFieldDelegate {
         }
         self.item?.min = Int(round(min))
         self.item?.max = Int(round(max))
+      
+        self.minValueTextField?.addObservers()
+        self.maxValueTextField?.addObservers()
+        
         self.minValueTextField?.text = Formatter.formattedWithSeparator(value: String(Int(round(min))))
         self.maxValueTextField?.text = Formatter.formattedWithSeparator(value: String(Int(round(max))))
         self.delegate?.updatePaymentRangeMax(max: self.item?.max)

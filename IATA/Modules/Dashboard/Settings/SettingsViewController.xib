@@ -93,13 +93,13 @@
                     </constraints>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Base currency" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BDy-02-veA">
-                    <rect key="frame" x="20" y="155" width="100.5" height="12.5"/>
-                    <fontDescription key="fontDescription" name="GothamPro-Bold" family="Gotham Pro" pointSize="14"/>
+                    <rect key="frame" x="20" y="155" width="172" height="21.5"/>
+                    <fontDescription key="fontDescription" name="GothamPro-Bold" family="Gotham Pro" pointSize="24"/>
                     <color key="textColor" red="0.074509803921568626" green="0.26666666666666666" blue="0.45882352941176469" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalCompressionResistancePriority="250" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="lSg-IS-nf1">
-                    <rect key="frame" x="20" y="188" width="335" height="361"/>
+                    <rect key="frame" x="20" y="197" width="335" height="352"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="4" minimumInteritemSpacing="0.0" id="4a4-1L-1T8">
                         <size key="itemSize" width="140" height="56"/>

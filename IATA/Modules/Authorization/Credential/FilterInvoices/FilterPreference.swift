@@ -10,6 +10,7 @@ class FilterPreference {
         case billingCategories
         case currencies
         case settlementPeriod
+        case maxValueRange
     }
     
     static internal let shared = FilterPreference()
@@ -120,6 +121,20 @@ class FilterPreference {
     
     internal func getMaxValue() -> Int? {
         return UserPreference.preferences.integer(forKey: PropertyKey.maxValue.rawValue)
+    }
+    
+    internal func saveMaxValueRange(_ maxValue: Int?) {
+        UserPreference.preferences.set(maxValue, forKey: PropertyKey.maxValueRange.rawValue)
+        let didSave = UserPreference.preferences.synchronize()
+        
+        if !didSave {
+            
+        }
+    }
+    
+    
+    internal func getMaxValueRange() -> Double? {
+        return UserPreference.preferences.double(forKey: PropertyKey.maxValueRange.rawValue)
     }
     
     internal func getChecked(id: String!, type: InvoiceViewModelItemType) -> Bool {

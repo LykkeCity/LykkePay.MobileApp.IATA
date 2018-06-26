@@ -77,17 +77,17 @@
                                             <userDefinedRuntimeAttribute type="number" keyPath="minimumValue">
                                                 <real key="value" value="0.0"/>
                                             </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="maximumValue">
-                                                <real key="value" value="1000000"/>
-                                            </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="number" keyPath="lowerValue">
                                                 <real key="value" value="0.0"/>
                                             </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="upperValue">
-                                                <real key="value" value="1000000"/>
-                                            </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="number" keyPath="thumbBorderWidth">
                                                 <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="maximumValue">
+                                                <real key="value" value="1000000"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="upperValue">
+                                                <real key="value" value="1000000"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
@@ -146,6 +146,7 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="maxValueLabel" destination="vAX-dD-min" id="8he-04-Crf"/>
                 <outlet property="maxValueTextField" destination="MHf-MG-vOG" id="d9F-kp-wma"/>
                 <outlet property="minValueTextField" destination="Zwo-cK-Zmv" id="Jc0-Ie-PhI"/>
                 <outlet property="rangeSlider" destination="uUB-jY-flZ" id="Uon-pF-pSE"/>

@@ -33,7 +33,7 @@ class BaseCurrencyCollectionViewCell: UICollectionViewCell {
               UserPreference.shared.saveCurrentCurrency(model)
             }
         }
-        if let symbol = model.symbol {
+        if let symbol = model.id {
         if (symbol.isUsd()) {
             self.baseCurrencyFlagImage.image = R.image.ic_usFlagMediumIcn()
         } else if (symbol.isEuro())  {
