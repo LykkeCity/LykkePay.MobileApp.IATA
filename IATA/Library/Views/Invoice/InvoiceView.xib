@@ -37,22 +37,22 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="yXU-yc-qv1">
-                    <rect key="frame" x="48" y="16" width="108.5" height="46.5"/>
+                    <rect key="frame" x="48" y="16" width="214.5" height="46.5"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="AIR CHINA" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SQW-wh-Aoa">
-                            <rect key="frame" x="0.0" y="0.0" width="108.5" height="12.5"/>
+                            <rect key="frame" x="0.0" y="0.0" width="214.5" height="12.5"/>
                             <fontDescription key="fontDescription" name="GothamPro" family="Gotham Pro" pointSize="14"/>
                             <color key="textColor" red="0.2470588235" green="0.30196078430000001" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="08.12.2015 | DEC-16 P1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fyW-az-52G">
-                            <rect key="frame" x="0.0" y="20.5" width="108.5" height="9"/>
+                            <rect key="frame" x="0.0" y="20.5" width="214.5" height="9"/>
                             <fontDescription key="fontDescription" name="GothamPro" family="Gotham Pro" pointSize="10"/>
                             <color key="textColor" red="0.54901960780000003" green="0.58039215690000001" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#0043482188" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pku-8m-12U">
-                            <rect key="frame" x="0.0" y="37.5" width="108.5" height="9"/>
+                            <rect key="frame" x="0.0" y="37.5" width="214.5" height="9"/>
                             <fontDescription key="fontDescription" name="GothamPro" family="Gotham Pro" pointSize="10"/>
                             <color key="textColor" red="0.2470588235" green="0.30196078430000001" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
@@ -60,17 +60,17 @@
                     </subviews>
                     <viewLayoutGuide key="safeArea" id="JdV-bG-mZh"/>
                 </stackView>
-                <stackView opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="qAL-an-ysR">
-                    <rect key="frame" x="166.5" y="16" width="200.5" height="33"/>
+                <stackView opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" horizontalHuggingPriority="255" horizontalCompressionResistancePriority="755" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="qAL-an-ysR">
+                    <rect key="frame" x="277.5" y="16" width="89.5" height="33"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="right" semanticContentAttribute="forceRightToLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2 000 $" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fug-9l-elH">
-                            <rect key="frame" x="0.0" y="0.0" width="200.5" height="12.5"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="right" semanticContentAttribute="forceRightToLeft" horizontalHuggingPriority="255" verticalHuggingPriority="251" horizontalCompressionResistancePriority="755" text="2 000 $" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fug-9l-elH">
+                            <rect key="frame" x="0.0" y="0.0" width="89.5" height="12.5"/>
                             <fontDescription key="fontDescription" name="GothamPro-Bold" family="Gotham Pro" pointSize="14"/>
                             <color key="textColor" red="0.2470588235" green="0.30196078430000001" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" semanticContentAttribute="forceRightToLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MISCELLANEOUS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Ug-9P-uec">
-                            <rect key="frame" x="0.0" y="20.5" width="200.5" height="12.5"/>
+                            <rect key="frame" x="0.0" y="20.5" width="89.5" height="12.5"/>
                             <fontDescription key="fontDescription" name="GothamPro" family="Gotham Pro" pointSize="10"/>
                             <color key="textColor" red="0.54901960780000003" green="0.58039215690000001" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
@@ -108,7 +108,7 @@
                 <constraint firstItem="Jw2-S9-r55" firstAttribute="leading" secondItem="b8E-op-mMS" secondAttribute="trailing" constant="4" id="SAp-tc-1Xj"/>
                 <constraint firstItem="Jw2-S9-r55" firstAttribute="top" secondItem="qAL-an-ysR" secondAttribute="bottom" constant="8" id="Y6l-uv-nFv"/>
                 <constraint firstItem="5eL-jn-e0W" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="8" id="a1f-22-9NY"/>
-                <constraint firstItem="qAL-an-ysR" firstAttribute="leading" secondItem="yXU-yc-qv1" secondAttribute="trailing" constant="10" id="dQG-Yf-PE7"/>
+                <constraint firstItem="qAL-an-ysR" firstAttribute="leading" secondItem="yXU-yc-qv1" secondAttribute="trailing" constant="15" id="dQG-Yf-PE7"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Jw2-S9-r55" secondAttribute="trailing" constant="8" id="ku8-eM-xjc"/>
                 <constraint firstItem="yXU-yc-qv1" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="16" id="q6i-fX-tTh"/>
                 <constraint firstItem="yXU-yc-qv1" firstAttribute="leading" secondItem="5eL-jn-e0W" secondAttribute="trailing" constant="8" id="vbR-ab-T9x"/>
