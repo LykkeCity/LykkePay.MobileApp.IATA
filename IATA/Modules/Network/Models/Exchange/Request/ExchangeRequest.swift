@@ -13,10 +13,10 @@ class ExchangeRequest:  Mappable {
     var sourceAmount: Double?
     var destAssetId: String?
 
-    internal required init?() {
+    internal required init() {
     }
 
-    required init?(map: Map) {
+    required init(map: Map) {
 
     }
 

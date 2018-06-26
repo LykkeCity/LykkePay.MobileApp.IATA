@@ -32,7 +32,12 @@ class ExhangeViewController: BaseNavController {
         
         Theme.shared.configureTextFieldCurrencyStyle(self.sumTextField)
         
-        editChanged(self.sumTextField)
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.sellAll))
+        self.sellAllView.addGestureRecognizer(tap)
+        
+        self.sumTextField.addObservers()
+        self.sumTextField.symbolValue = UserPreference.shared.getCurrentCurrency()?.symbol
+        self.editChanged(self.sumTextField)
         self.initKeyboardEvents()
         self.initAllSum()
         self.loadData()
@@ -42,16 +47,25 @@ class ExhangeViewController: BaseNavController {
     override func getTitle() -> String? {
         return tabBarItem.title?.capitalizingFirstLetter()
     }
+    
     @IBAction func clickChangeBaseAssert(_ sender: Any) {
         self.state?.changeBaseAsset()
-        self.initAsset()
+        self.sumTextField.text = "0"
+        self.sumTextField.symbolValue = self.state?.currentCurrency?.symbol
+        self.loadExchangeInfo()
     }
     
     @IBAction func editChanged(_ sender: Any) {
         if let text = self.sumTextField.text, let isEmpty = self.sumTextField.text?.isEmpty, isEmpty || (Int(text) == 0) {
             self.sumTextField.text = "0"
             setEnabledExchange(isEnabled: false)
-        } else {
+        } else if let text = self.sumTextField.text {
+            var valueString = text
+            if text.starts(with: "0") && !text.starts(with: "0.") {
+                let fromIndex = text.index(text.startIndex, offsetBy: 1)
+                valueString = text.substring(from: fromIndex)
+                self.sumTextField.text = valueString
+            }
             setEnabledExchange(isEnabled: true)
         }
     }
@@ -65,6 +79,10 @@ class ExhangeViewController: BaseNavController {
         self.navigationController?.present(viewController, animated: true, completion: nil)
     }
     
+    
+    @objc func sellAll() {
+        self.sumTextField.text = sumAllLabel.text
+    }
     
     @objc func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
@@ -85,9 +103,6 @@ class ExhangeViewController: BaseNavController {
         view.endEditing(true)
     }
     
-    @objc func sellAll() {
-    
-    }
     
     private func initTheme() {
         self.topView.layer.borderWidth = 0.5
@@ -125,7 +140,7 @@ class ExhangeViewController: BaseNavController {
     }
     
     private func loadData() {
-        self.state?.loadStartData()?
+         self.state?.loadStartData()?
             .withSpinner(in: view)
             .then(execute: { [weak self] (result: String) -> Void in
                 guard let strongSelf = self else {
@@ -137,10 +152,41 @@ class ExhangeViewController: BaseNavController {
     
     private func reloadTable(jsonString: String!) {
         self.state?.mapping(jsonString: jsonString)
+        self.loadExchangeInfo()
+    }
+    
+    private func loadExchangeInfo() {
+        self.state?.makeExchange(sourceAmount: self.sumTextField.text)
+            .withSpinner(in: view)
+            .then(execute: { [weak self] (result: ExchangeModel) -> Void in
+                guard let strongSelf = self else {
+                    return
+                }
+                strongSelf.initAsset()
+            }).catch(execute: { [weak self] error -> Void in
+                guard let strongSelf = self else {
+                    return
+                }
+                strongSelf.handleError()
+            })
+    }
+    
+    //for test
+    private func handleError() {
+        self.state?.exchangeModel.rate = 0.12
+        self.state?.exchangeModel.destAmount = 0
         self.initAsset()
     }
     
     private func initAsset() {
+        if let destAmount = self.state?.exchangeModel.destAmount, let sourceAmount = self.state?.exchangeModel.sourceAmount, let symbolDest = self.state?.exchangeModel.symbolDest, let symbolSource = self.state?.exchangeModel.symbolSource, let rate = self.state?.exchangeModel.rate  {
+            
+            self.exchangeSumResult.text = String(destAmount) + " " + symbolDest
+            self.sumTextField.text = String(sourceAmount)
+            self.editChanged(self.sumTextField)
+            self.rateExchange.text = R.string.localizable.exchangeSourceRate(symbolSource, Formatter.formattedWithSeparator(value: String(rate)), symbolDest)
+        }
+       
         self.sumAllLabel.text = state?.getTotalBalance()
         if let items = self.state?.getItems() {
             for item in items {
@@ -155,7 +201,7 @@ class ExhangeViewController: BaseNavController {
     
     private func initAsset(sum: UILabel, info: UILabel, image: UIImageView, item: ExchangeViewModel) {
         if let currency = item.currency, let sumValue = item.sum {
-            sum.text = String(sumValue) + currency
+            sum.text = String(sumValue) + " " + currency
         }
         info.text = item.info
         image.image = item.icon

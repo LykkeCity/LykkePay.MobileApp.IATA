@@ -543,7 +543,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 74 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 75 localization keys.
     struct localizable {
       /// Base translation: %@ invoices selected
       /// 
@@ -553,6 +553,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: Base
       static let invoiceSettingsMaxRange = Rswift.StringResource(key: "Invoice.Settings.MaxRange", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
+      /// Base translation: 1 %@ = %@ %@
+      /// 
+      /// Locales: Base
+      static let exchangeSourceRate = Rswift.StringResource(key: "Exchange.Source.Rate", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
       /// Base translation: 1 invoice selected
       /// 
       /// Locales: Base
@@ -854,6 +858,13 @@ struct R: Rswift.Validatable {
       /// Locales: Base
       static func invoiceSettingsMaxRange(_ value1: String) -> String {
         return String(format: NSLocalizedString("Invoice.Settings.MaxRange", bundle: R.hostingBundle, value: "%@K", comment: ""), locale: R.applicationLocale, value1)
+      }
+      
+      /// Base translation: 1 %@ = %@ %@
+      /// 
+      /// Locales: Base
+      static func exchangeSourceRate(_ value1: String, _ value2: String, _ value3: String) -> String {
+        return String(format: NSLocalizedString("Exchange.Source.Rate", bundle: R.hostingBundle, value: "1 %@ = %@ %@", comment: ""), locale: R.applicationLocale, value1, value2, value3)
       }
       
       /// Base translation: 1 invoice selected

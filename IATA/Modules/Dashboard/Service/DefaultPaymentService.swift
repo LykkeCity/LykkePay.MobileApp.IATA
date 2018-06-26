@@ -78,7 +78,7 @@ class DefaultPaymentService: NSObject, PaymentService {
         return Network.shared.postWithQueryString(path: PaymentConfig.shared.baseAsset, params: params)
     }
 
-    func makeExchange(model: ExchangeRequest) -> Promise<BaseMappable> {
-        return Network.shared.postMappable(path: PaymentConfig.shared.exchange, object: model)
+    func makeExchange(model: ExchangeRequest) -> Promise<ExchangeModel> {
+        return Network.shared.post(path: PaymentConfig.shared.exchange, object: model)
     }
 }
