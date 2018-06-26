@@ -27,7 +27,7 @@ class UserPreference {
     
     internal func getLastOpenTime() -> Int64? {
         if let value = UserPreference.preferences.object(forKey: PropertyKey.date.rawValue) {
-            return value as! Int64
+            return value as? Int64
         } else {
             return nil
         }

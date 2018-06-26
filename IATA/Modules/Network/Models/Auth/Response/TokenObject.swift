@@ -5,7 +5,7 @@ class TokenObject: Mappable {
     private enum PropertyKey: String {
         case token
         case forcePasswordUpdate
-        case forceUpdatePin
+        case ForcePinUpdate
     }
     
     internal var token: String?
@@ -18,6 +18,6 @@ class TokenObject: Mappable {
     internal func mapping(map: Map) {
         token <- map[PropertyKey.token.rawValue]
         forcePasswordUpdate <- map[PropertyKey.forcePasswordUpdate.rawValue]
-        forceUpdatePin <- map[PropertyKey.forceUpdatePin.rawValue]
+        forceUpdatePin <- map[PropertyKey.ForcePinUpdate.rawValue]
     }
 }
