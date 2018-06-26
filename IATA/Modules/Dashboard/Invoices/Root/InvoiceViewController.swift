@@ -3,11 +3,11 @@ import ObjectMapper
 
 class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceState>, OnChangeStateSelected, SwipeTableViewCellDelegate {
    
+    @IBOutlet weak var sumTextField: CurrencyUiTextField!
     @IBOutlet weak var btnPay: UIButton!
     @IBOutlet weak var loading: UIActivityIndicatorView!
     @IBOutlet weak var tabView: UITableView!
     @IBOutlet weak var downView: UIView!
-    @IBOutlet weak var sumTextField: CurrencyUiTextField!
     @IBOutlet weak var selectedItemTextField: UILabel!
     @IBOutlet weak var downViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var bottomConstrain: NSLayoutConstraint!
@@ -50,7 +50,13 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
         if let text = self.sumTextField.text, let isEmpty = self.sumTextField.text?.isEmpty, isEmpty || (Int(text) == 0) {
             self.sumTextField.text = "0"
             setEnabledPay(isEnabled: false)
-        } else {
+        } else if let text = self.sumTextField.text {
+            var valueString = text
+            if text.starts(with: "0") && !text.starts(with: "0.") {
+                let fromIndex = text.index(text.startIndex, offsetBy: 1)
+                valueString = text.substring(from: fromIndex)
+                self.sumTextField.text = valueString
+            }
             setEnabledPay(isEnabled: true)
         }
     }

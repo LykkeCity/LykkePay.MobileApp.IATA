@@ -57,7 +57,7 @@ class DesignableUITextField: FloatTextField {
         }
     }
     
-    @objc func editingChanged() {
+    /*@objc func editingChanged() {
         var currentPosition =  self.offset(from: self.beginningOfDocument, to: (self.selectedTextRange?.start)!)
 
         if let text = self.text?.removingWhitespaces() {
@@ -71,7 +71,7 @@ class DesignableUITextField: FloatTextField {
                 self.selectedTextRange = self.textRange(from: newPosition, to: newPosition)
             }
         }
-    }
+    }*/
     
     
     override func textRect(forBounds bounds: CGRect) -> CGRect {
@@ -98,7 +98,7 @@ class DesignableUITextField: FloatTextField {
     }
     
     private func initCommon() {
-        self.addTarget(self, action: #selector(editingChanged), for: .editingChanged)
+       // self.addTarget(self, action: #selector(editingChanged), for: .editingChanged)
         self.addTarget(self, action: #selector(editingDidBegin), for: .editingDidBegin)
         NotificationCenter.default.addObserver(self, selector: #selector(self.removeObservers), name: NSNotification.Name(NotificateDoneEnum.destroy.rawValue), object: nil)
         self.minimumFontSize = 24
@@ -106,11 +106,13 @@ class DesignableUITextField: FloatTextField {
     }
     
     func addObservers() {
-        self.isObserving = true
-        self.addObserver(self, forKeyPath: "selectedTextRange", options: [NSKeyValueObservingOptions.new, NSKeyValueObservingOptions.old], context: nil)
+        if (!isObserving) {
+            self.isObserving = true
+            self.addObserver(self, forKeyPath: "selectedTextRange", options: [NSKeyValueObservingOptions.new, NSKeyValueObservingOptions.old], context: nil)
+        }
     }
     
     func initDecimal(value: String) -> String? {
-       return Formatter.formattedWithSeparator(value: value)
+        return Formatter.formattedWithSeparator(value: value)
     }
 }

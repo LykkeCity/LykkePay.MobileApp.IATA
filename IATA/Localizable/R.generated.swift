@@ -543,12 +543,16 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 73 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 74 localization keys.
     struct localizable {
       /// Base translation: %@ invoices selected
       /// 
       /// Locales: Base
       static let invoiceScreenItemsCountSelected = Rswift.StringResource(key: "Invoice.Screen.Items.CountSelected", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
+      /// Base translation: %@K
+      /// 
+      /// Locales: Base
+      static let invoiceSettingsMaxRange = Rswift.StringResource(key: "Invoice.Settings.MaxRange", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
       /// Base translation: 1 invoice selected
       /// 
       /// Locales: Base
@@ -689,7 +693,7 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: Base
       static let invoiceStatusItemsLatepaid = Rswift.StringResource(key: "Invoice.Status.Items.Latepaid", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
-      /// Base translation: Log out
+      /// Base translation: Log Out
       /// 
       /// Locales: Base
       static let settingLogoutItemLogout = Rswift.StringResource(key: "Setting.Logout.Item.Logout", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
@@ -843,6 +847,13 @@ struct R: Rswift.Validatable {
       /// Locales: Base
       static func invoiceScreenItemsCountSelected(_ value1: String) -> String {
         return String(format: NSLocalizedString("Invoice.Screen.Items.CountSelected", bundle: R.hostingBundle, value: "%@ invoices selected", comment: ""), locale: R.applicationLocale, value1)
+      }
+      
+      /// Base translation: %@K
+      /// 
+      /// Locales: Base
+      static func invoiceSettingsMaxRange(_ value1: String) -> String {
+        return String(format: NSLocalizedString("Invoice.Settings.MaxRange", bundle: R.hostingBundle, value: "%@K", comment: ""), locale: R.applicationLocale, value1)
       }
       
       /// Base translation: 1 invoice selected
@@ -1090,11 +1101,11 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("Invoice.Status.Items.Latepaid", bundle: R.hostingBundle, value: "LATE PAID", comment: "")
       }
       
-      /// Base translation: Log out
+      /// Base translation: Log Out
       /// 
       /// Locales: Base
       static func settingLogoutItemLogout(_: Void = ()) -> String {
-        return NSLocalizedString("Setting.Logout.Item.Logout", bundle: R.hostingBundle, value: "Log out", comment: "")
+        return NSLocalizedString("Setting.Logout.Item.Logout", bundle: R.hostingBundle, value: "Log Out", comment: "")
       }
       
       /// Base translation: Login

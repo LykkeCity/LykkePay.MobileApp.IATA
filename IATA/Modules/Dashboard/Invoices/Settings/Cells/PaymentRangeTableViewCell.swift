@@ -2,6 +2,7 @@ import UIKit
 
 class PaymentRangeTableViewCell: UITableViewCell, UITextFieldDelegate {
     
+    @IBOutlet weak var maxValueLabel: UILabel!
     @IBOutlet weak var rangeSlider: RangeSlider?
     @IBOutlet weak var minValueTextField: DesignableUITextField?
     @IBOutlet weak var maxValueTextField: DesignableUITextField?
@@ -22,7 +23,17 @@ class PaymentRangeTableViewCell: UITableViewCell, UITextFieldDelegate {
             
             self.minValueChanged(self.minValueTextField)
             self.maxValueChanged(self.maxValueTextField)
+            
+            if let maxValueRange = item.maxRangeInBaseAsset {
+                self.rangeSlider?.maximumValue = maxValueRange
+                self.maxValueLabel.text = getMaxValue(maxValue: maxValueRange)
+            }
         }
+    }
+    
+    private func getMaxValue(maxValue: Double) -> String {
+        let intValue = 100 * Int((maxValue / 100.0).rounded())
+        return R.string.localizable.invoiceSettingsMaxRange(String(Double(intValue)/1000))
     }
     
     static var nib:UINib {
