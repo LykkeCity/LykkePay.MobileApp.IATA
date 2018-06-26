@@ -158,12 +158,12 @@ open class PasswordContainerView: UIView {
             guard self.inputString.count > 0 && !self.passwordDotView.isFull else {
                 return
             }
-            self.inputString = String(inputString.dropLast())
+            self.clearInput()
         #else
             guard self.inputString.characters.count > 0 && !self.passwordDotView.isFull else {
             return
             }
-            self.inputString = String(inputString.characters.dropLast())
+            self.clearInput()
         #endif
     }
     
