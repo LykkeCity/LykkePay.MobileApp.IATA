@@ -8,10 +8,13 @@ class WalletsViewController: BaseViewController<WalletsViewModel, DefaultWallets
     
     @IBOutlet weak var tableView: UITableView!
 
+    private let refreshControl = UIRefreshControl()
+
 
     override func viewDidLoad() {
         state = DefaultWalletsState()
         super.viewDidLoad()
+        addRefreshControl()
         self.navigationController?.isNavigationBarHidden = false
         loadData()
     }
@@ -19,7 +22,6 @@ class WalletsViewController: BaseViewController<WalletsViewModel, DefaultWallets
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = false
-        loadData()
         totalBalanceLabel.text = state?.getTotalBalance()
     }
     
@@ -55,6 +57,7 @@ class WalletsViewController: BaseViewController<WalletsViewModel, DefaultWallets
     private func reloadTable(jsonString: String!) {
         self.state?.mapping(jsonString: jsonString)
         self.totalBalanceLabel.text = state?.getTotalBalance()
+        self.refreshControl.endRefreshing()
         self.tableView.reloadData()
     }
 
@@ -68,5 +71,15 @@ class WalletsViewController: BaseViewController<WalletsViewModel, DefaultWallets
 
     override func registerCells() {
         tableView.register(WalletsTableViewCell.nib, forCellReuseIdentifier: WalletsTableViewCell.identifier)
+    }
+
+    private func addRefreshControl() {
+        refreshControl.attributedTitle = NSAttributedString(string: "loading...")
+        refreshControl.addTarget(self, action: #selector(self.refresh), for: UIControlEvents.valueChanged)
+        tableView.addSubview(refreshControl)
+    }
+
+    @objc func refresh() {
+        loadData()
     }
 }

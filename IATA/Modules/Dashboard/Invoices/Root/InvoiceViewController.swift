@@ -1,8 +1,9 @@
 import UIKit
 import ObjectMapper
 
+
 class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceState>, OnChangeStateSelected, SwipeTableViewCellDelegate {
-   
+
     @IBOutlet weak var btnPay: UIButton!
     @IBOutlet weak var loading: UIActivityIndicatorView!
     @IBOutlet weak var tabView: UITableView!
@@ -11,11 +12,14 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
     @IBOutlet weak var selectedItemTextField: UILabel!
     @IBOutlet weak var downViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var bottomConstrain: NSLayoutConstraint!
-    
-    
+
+    private let refreshControl = UIRefreshControl()
+
     override func viewDidLoad() {
         state = DefaultInvoiceState()
         super.viewDidLoad()
+        addRefreshControl()
+        loadData()
         self.sumTextField.delegate = self
         self.navigationController?.isNavigationBarHidden = false
         Theme.shared.configureTextFieldCurrencyStyle(self.sumTextField)
@@ -25,6 +29,8 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
 
+        //better use protocol - will rewrite later
+        NotificationCenter.default.addObserver(self, selector: #selector(refresh), name: NSNotification.Name(rawValue: "loadData"), object: nil)
     }
     
     @IBAction func makePay(_ sender: Any) {
@@ -78,7 +84,6 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
         super.viewWillAppear(animated)
         UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent
         self.hideMenu()
-        self.loadData()
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -330,7 +335,7 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
         return menuView
     }
     
-    private func loadData() {
+     func loadData() {
         self.state?.getInvoiceStringJson()
             .withSpinner(in: view)
             .then(execute: { [weak self] (result: String) -> Void in
@@ -344,6 +349,7 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
     private func reloadTable(jsonString: String!) {
         self.state?.mapping(jsonString: jsonString)
         self.tabView.reloadData()
+        self.refreshControl.endRefreshing()
     }
     
     private func hideMenu() {
@@ -359,5 +365,14 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
         }
     }
 
-    
+    private func addRefreshControl() {
+        refreshControl.attributedTitle = NSAttributedString(string: "loading...")
+        refreshControl.addTarget(self, action: #selector(self.refresh), for: UIControlEvents.valueChanged)
+        tabView.addSubview(refreshControl)
+    }
+
+    @objc func refresh() {
+        loadData()
+    }
+
 }
