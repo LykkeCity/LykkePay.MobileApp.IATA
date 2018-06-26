@@ -5,17 +5,22 @@ import Material
 class DesignableUITextField: FloatTextField {
     
     var isObserving: Bool = false
-        
+    var symbolValue: String? = UserPreference.shared.getCurrentCurrency()?.symbol {
+        didSet {
+            self.text = super.text
+        }
+    }
+    
     dynamic override var text: String? {
         get {
-            if let stringValue = super.text, let symbol = UserPreference.shared.getCurrentCurrency()?.symbol {
+            if let stringValue = super.text, let symbol = symbolValue {
                 let replaced = stringValue.replace(target: symbol, withString: " ")
                 return replaced.removingWhitespaces()
             }
             return super.text
         }
         set {
-            if var value = newValue, let symbol = UserPreference.shared.getCurrentCurrency()?.symbol {
+            if var value = newValue, let symbol = symbolValue {
                 let newValue = value.replace(target: symbol, withString: " ")
                 value =  newValue.removingWhitespaces()
                 if let res = initDecimal(value: value) {

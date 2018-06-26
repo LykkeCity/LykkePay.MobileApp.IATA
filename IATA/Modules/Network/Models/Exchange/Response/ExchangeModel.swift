@@ -17,6 +17,8 @@ class ExchangeModel: Mappable {
     var destAssetId: String?
     var destAmount: Double?
     var rate: Double?
+    var symbolDest: String?
+    var symbolSource: String?
 
 
 

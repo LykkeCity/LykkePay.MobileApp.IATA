@@ -90,6 +90,7 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.sumTextField.symbolValue = UserPreference.shared.getCurrentCurrency()?.symbol
         UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent
         self.hideMenu()
     }
