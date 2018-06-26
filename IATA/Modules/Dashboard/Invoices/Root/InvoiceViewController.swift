@@ -24,8 +24,7 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
         self.downViewHeightConstraint.constant = 0
         self.downView.isHidden = true
         
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        self.initKeyboardEvents()
 
     }
     
@@ -174,13 +173,19 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
         self.hideMenu()
     }
     
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
+    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if(textField == self.sumTextField) {
             
             if let text = self.sumTextField.getOldText(), let textNsString = text as? NSString {
             
                 let newString = textNsString.replacingCharacters(in: range, with: string)
-                
+                if let text = self.sumTextField.text, text.contains("."), string.elementsEqual(".") {
+                    return false
+                }
                 if !(TextFieldUtil.validateMinValue(newString: newString, minValue:  0, range: range, replacementString: string, true)) {
                     return false
                 }
@@ -284,6 +289,13 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
         self.sumTextField.isHidden = isHiddenSelected
         self.selectedItemTextField.isHidden = isHiddenSelected
         isHiddenSelected ? self.loading.startAnimating() : self.loading.stopAnimating()
+    }
+    
+    private func initKeyboardEvents() {
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
+        view.addGestureRecognizer(tap)
     }
     
     private func animate(isShow: Bool) {

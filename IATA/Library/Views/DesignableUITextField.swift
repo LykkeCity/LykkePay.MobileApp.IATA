@@ -21,7 +21,7 @@ class DesignableUITextField: FloatTextField {
                 if let res = initDecimal(value: value) {
                     super.text = res  + " " + symbol
                 }
-                editingDidBegin()
+                checkPosition()
             } else {
                 super.text = newValue
             }
@@ -39,7 +39,7 @@ class DesignableUITextField: FloatTextField {
     }
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        editingDidBegin()
+        checkPosition()
     }
     
     
@@ -49,6 +49,15 @@ class DesignableUITextField: FloatTextField {
     
     
     @objc func editingDidBegin() {
+        if let text = self.text {
+            self.text = initDecimal(value: text)
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            self.checkPosition()
+        }
+    }
+    
+    func checkPosition() {
         if let start = self.selectedTextRange?.start {
             let currentPosition =  self.offset(from: self.beginningOfDocument, to: start)
             if let end = self.getOldText()?.count, (currentPosition > end - 2) {
@@ -57,21 +66,11 @@ class DesignableUITextField: FloatTextField {
         }
     }
     
-    /*@objc func editingChanged() {
-        var currentPosition =  self.offset(from: self.beginningOfDocument, to: (self.selectedTextRange?.start)!)
-
-        if let text = self.text?.removingWhitespaces() {
+    @objc func editingDidEnd() {
+        if let text = self.text {
             self.text = initDecimal(value: text)
-            currentPosition =  self.offset(from: self.beginningOfDocument, to: (self.selectedTextRange?.start)!)
-
         }
-        
-        DispatchQueue.main.async {
-            if let newPosition = self.position(from: self.beginningOfDocument, offset: currentPosition) {
-                self.selectedTextRange = self.textRange(from: newPosition, to: newPosition)
-            }
-        }
-    }*/
+    }
     
     
     override func textRect(forBounds bounds: CGRect) -> CGRect {
@@ -98,7 +97,7 @@ class DesignableUITextField: FloatTextField {
     }
     
     private func initCommon() {
-       // self.addTarget(self, action: #selector(editingChanged), for: .editingChanged)
+        self.addTarget(self, action: #selector(editingDidEnd), for: .editingDidEnd)
         self.addTarget(self, action: #selector(editingDidBegin), for: .editingDidBegin)
         NotificationCenter.default.addObserver(self, selector: #selector(self.removeObservers), name: NSNotification.Name(NotificateDoneEnum.destroy.rawValue), object: nil)
         self.minimumFontSize = 24
