@@ -30,10 +30,7 @@ class TransactionViewController: BaseViewController<PropertyKeyTransactionModel,
     }
 
     override func getLeftButton() -> UIBarButtonItem? {
-
-        let buttonImage = R.image.backIcon()?.stretchableImage(withLeftCapWidth: 0, topCapHeight: 10)
-
-        return UIBarButtonItem(image: buttonImage, style: .plain, target: self, action: #selector(backButtonAction))
+        return UIBarButtonItem(title: R.string.localizable.commonNavBarBack(), style: .plain, target: self, action: #selector(backButtonAction))
     }
 
     @objc func backButtonAction() {
