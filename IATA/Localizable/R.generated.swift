@@ -117,7 +117,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 31 images.
+  /// This `R.image` struct is generated, and contains static references to 32 images.
   struct image {
     /// Image `Logo`.
     static let logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "Logo")
@@ -165,6 +165,8 @@ struct R: Rswift.Validatable {
     static let ic_invoicesActive = Rswift.ImageResource(bundle: R.hostingBundle, name: "ic_invoicesActive")
     /// Image `ic_invoicesNormal`.
     static let ic_invoicesNormal = Rswift.ImageResource(bundle: R.hostingBundle, name: "ic_invoicesNormal")
+    /// Image `ic_placeholderIcn`.
+    static let ic_placeholderIcn = Rswift.ImageResource(bundle: R.hostingBundle, name: "ic_placeholderIcn")
     /// Image `ic_settingsActive`.
     static let ic_settingsActive = Rswift.ImageResource(bundle: R.hostingBundle, name: "ic_settingsActive")
     /// Image `ic_settingsNormal`.
@@ -295,6 +297,11 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "ic_invoicesNormal", bundle: ..., traitCollection: ...)`
     static func ic_invoicesNormal(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.ic_invoicesNormal, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "ic_placeholderIcn", bundle: ..., traitCollection: ...)`
+    static func ic_placeholderIcn(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.ic_placeholderIcn, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "ic_settingsActive", bundle: ..., traitCollection: ...)`
@@ -551,7 +558,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 76 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 77 localization keys.
     struct localizable {
       /// Base translation: %@ invoices selected
       /// 
@@ -777,6 +784,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: Base
       static let pinValidationTitle = Rswift.StringResource(key: "Pin.Validation.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
+      /// Base translation: Please scan your fingerprint to confirm the payment
+      /// 
+      /// Locales: Base
+      static let invoiceScreenPayConfirmation = Rswift.StringResource(key: "Invoice.Screen.PayConfirmation", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
       /// Base translation: Raised dispute on %@
       /// 
       /// Locales: Base
@@ -1250,6 +1261,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("Pin.Validation.Title", bundle: R.hostingBundle, value: "Please enter your PIN code", comment: "")
       }
       
+      /// Base translation: Please scan your fingerprint to confirm the payment
+      /// 
+      /// Locales: Base
+      static func invoiceScreenPayConfirmation(_: Void = ()) -> String {
+        return NSLocalizedString("Invoice.Screen.PayConfirmation", bundle: R.hostingBundle, value: "Please scan your fingerprint to confirm the payment", comment: "")
+      }
+      
       /// Base translation: Raised dispute on %@
       /// 
       /// Locales: Base
@@ -1419,7 +1437,9 @@ struct _R: Rswift.Validatable {
     static func validate() throws {
       try _TabBarView.validate()
       try _InvoiceSettingsTableViewCell.validate()
+      try _InvoiceViewController.validate()
       try _InvoiceView.validate()
+      try _HistoryViewController.validate()
       try _PinViewController.validate()
       try _SettingsViewController.validate()
       try _WalletsViewController.validate()
@@ -1520,12 +1540,16 @@ struct _R: Rswift.Validatable {
       fileprivate init() {}
     }
     
-    struct _HistoryViewController: Rswift.NibResourceType {
+    struct _HistoryViewController: Rswift.NibResourceType, Rswift.Validatable {
       let bundle = R.hostingBundle
       let name = "HistoryViewController"
       
       func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]? = nil) -> UIKit.UIView? {
         return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
+      }
+      
+      static func validate() throws {
+        if UIKit.UIImage(named: "ic_placeholderIcn", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'ic_placeholderIcn' is used in nib 'HistoryViewController', but couldn't be loaded.") }
       }
       
       fileprivate init() {}
@@ -1594,7 +1618,7 @@ struct _R: Rswift.Validatable {
       fileprivate init() {}
     }
     
-    struct _InvoiceViewController: Rswift.NibResourceType {
+    struct _InvoiceViewController: Rswift.NibResourceType, Rswift.Validatable {
       let bundle = R.hostingBundle
       let name = "InvoiceViewController"
       
@@ -1604,6 +1628,10 @@ struct _R: Rswift.Validatable {
       
       func secondView(owner ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]? = nil) -> UIKit.UIView? {
         return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[1] as? UIKit.UIView
+      }
+      
+      static func validate() throws {
+        if UIKit.UIImage(named: "ic_placeholderIcn", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'ic_placeholderIcn' is used in nib 'InvoiceViewController', but couldn't be loaded.") }
       }
       
       fileprivate init() {}
@@ -1779,6 +1807,7 @@ struct _R: Rswift.Validatable {
       }
       
       static func validate() throws {
+        if UIKit.UIImage(named: "ic_placeholderIcn", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'ic_placeholderIcn' is used in nib 'WalletsViewController', but couldn't be loaded.") }
         if UIKit.UIImage(named: "logoSmallIcn", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'logoSmallIcn' is used in nib 'WalletsViewController', but couldn't be loaded.") }
       }
       

@@ -14,6 +14,8 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
     @IBOutlet weak var downViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var bottomConstrain: NSLayoutConstraint!
 
+    @IBOutlet weak var placeholderInvoice: UIView!
+
     override func viewDidLoad() {
         state = DefaultInvoiceState()
         super.viewDidLoad()
@@ -304,6 +306,7 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
         self.sumTextField.isHidden = isHiddenSelected
         self.selectedItemTextField.isHidden = isHiddenSelected
         isHiddenSelected ? self.loading.startAnimating() : self.loading.stopAnimating()
+        setEnabledPay(isEnabled: isShowLoading)
     }
     
     private func initKeyboardEvents() {
@@ -378,6 +381,9 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
     
     private func reloadTable(jsonString: String!) {
         self.state?.mapping(jsonString: jsonString)
+        if (state?.getItems().count)! == 0 {
+            placeholderInvoice.isHidden = false
+        }
         self.tabView.reloadData()
         self.refreshControl.endRefreshing()
     }

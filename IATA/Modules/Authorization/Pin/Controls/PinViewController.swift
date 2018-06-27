@@ -14,6 +14,7 @@ class PinViewController: UIViewController, UINavigationControllerDelegate {
     var isValidation = true
     var completion: (() -> Void) = {}
     var isValidationTransaction = false
+    var messageTouch: String? = nil
     var countOfTry = 0
     var pinCode = ""
     
@@ -34,6 +35,11 @@ class PinViewController: UIViewController, UINavigationControllerDelegate {
         self.labelTitle.text = self.isValidation ? R.string.localizable.pinValidationTitle() : R.string.localizable.pinSetupTitle()
         
         self.initNavBar()
+        
+        if self.isValidationTransaction {
+            self.navigationItem.leftBarButtonItem = nil
+            self.passwordContainerView.touchAuthenticationReason = R.string.localizable.invoiceScreenPayConfirmation()
+        }
     }
     
     @IBAction func clickCancel(_ sender: Any) {

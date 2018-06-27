@@ -4,6 +4,8 @@ class HistoryViewController: BaseViewController<HistoryModel, DefaultHistoryStat
     
     @IBOutlet weak var tabView: UITableView!
     
+    @IBOutlet weak var placeholderHistory: UIView!
+    
     override func viewDidLoad() {
         state = DefaultHistoryState()
         super.viewDidLoad()
@@ -68,6 +70,9 @@ class HistoryViewController: BaseViewController<HistoryModel, DefaultHistoryStat
     
     private func reloadTable(jsonString: String) {
         self.state?.mapping(jsonString: jsonString)
+        if (state?.getItems().count)! == 0 {
+            placeholderHistory.isHidden = false
+        }
         self.tabView.reloadData()
         self.refreshControl.endRefreshing()
     }
