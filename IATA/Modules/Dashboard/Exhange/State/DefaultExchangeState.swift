@@ -11,12 +11,14 @@ class DefaultExchangeState: DefaultBaseState<ExchangeViewModel> {
     public var usd: WalletsViewModel?
     public var euro: WalletsViewModel?
     public var exchangeModel: ExchangeModel = ExchangeModel()
+    public var maxValue: Double? = 0.0
     
     func makeExchange(sourceAmount: String?) -> Promise<ExchangeModel> {
         let model = ExchangeRequest()
         model.destAssetId = self.exchangeModel.destAssetId
         if let valueString = sourceAmount {
             model.sourceAmount = Double(valueString)
+            self.exchangeModel.sourceAmount = 0
         }
         model.sourceAssetId = self.exchangeModel.sourceAssetId
         return self.service.makeExchange(model: model)
@@ -41,18 +43,13 @@ class DefaultExchangeState: DefaultBaseState<ExchangeViewModel> {
     }
     
     func changeBaseAsset() {
-        if let items = self.walletsState?.getItems() {
-            for wallet in items {
-                if let id = currentCurrency?.id, let assetId = wallet.assetId,  !assetId.elementsEqual(id) && (assetId.isUsd() || assetId.isEuro()) {
-                    currentCurrency?.id = wallet.assetId
-                    currentCurrency?.symbol = assetId.isUsd() ? "$" : "€"
-                }
-            }
-        }
-        
         for  item in self.getItems() {
             if let isBase = item.isBase {
                 item.isBase = !isBase
+                if !isBase {
+                    currentCurrency?.symbol = item.currency
+                    currentCurrency?.id = item.assetId
+                }
             }
         }
     }
@@ -77,15 +74,17 @@ class DefaultExchangeState: DefaultBaseState<ExchangeViewModel> {
             }
         }
         
-        if let baseId = currentCurrency?.id, let current = self.usd?.assetId {
-            items.append(ExchangeViewModel(isUsd: true, state: self, isBase: current.elementsEqual(baseId)))
-            items.append(ExchangeViewModel(isUsd: false, state: self, isBase: !current.elementsEqual(baseId)))
-            if current.elementsEqual(baseId) {
+        if let baseId = currentCurrency?.id, let usdAssetId = self.usd?.assetId, let euroAssetId = self.euro?.assetId{
+            items.append(ExchangeViewModel(isUsd: true, state: self, isBase: usdAssetId.elementsEqual(baseId), assetId: usdAssetId))
+            items.append(ExchangeViewModel(isUsd: false, state: self, isBase: !usdAssetId.elementsEqual(baseId), assetId: euroAssetId))
+            if usdAssetId.elementsEqual(baseId) {
+                self.maxValue = usd?.totalBalance
                 exchangeModel.destAssetId = euro?.assetId
                 exchangeModel.sourceAssetId = baseId
                 exchangeModel.symbolSource = "$"
                 exchangeModel.symbolDest = "€"
             } else {
+                self.maxValue = usd?.totalBalance
                 exchangeModel.symbolDest = "$"
                 exchangeModel.symbolSource = "€"
                 exchangeModel.destAssetId = baseId

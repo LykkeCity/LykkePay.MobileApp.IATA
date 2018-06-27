@@ -64,7 +64,7 @@ class TransactionViewController: BaseViewController<PropertyKeyTransactionModel,
         self.tabView.register(TransactionTableViewCell.nib, forCellReuseIdentifier: TransactionTableViewCell.identifier)
     }
     
-    private func loadData() {
+    override func loadData() {
         self.state?.getHistoryDetails(id: id)
             .withSpinner(in: view)
             .then(execute: { [weak self] (result: HistoryTransactionModel) -> Void in
@@ -83,5 +83,6 @@ class TransactionViewController: BaseViewController<PropertyKeyTransactionModel,
     private func reloadViews(item: HistoryTransactionModel) {
         reloadTable(item: item)
         transactionHeaderView.model = item
+        self.refreshControl.endRefreshing()
     }
 }

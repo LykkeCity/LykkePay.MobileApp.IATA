@@ -9,7 +9,6 @@ class BaseNavController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         NotificationCenter.default.addObserver(self, selector: #selector(appMovedToBackground), name: Notification.Name.UIApplicationWillResignActive, object: nil)
         setUp()
         initNavBar()
@@ -46,15 +45,15 @@ class BaseNavController: UIViewController, UITextFieldDelegate {
     func setUp() {
         
     }
-
+    
     func getTitle() -> String? {
         return nil
     }
-
+    
     func getTableView() -> UITableView {
         return UITableView()
     }
-
+    
     func registerCells() {
         
     }
@@ -75,7 +74,7 @@ class BaseNavController: UIViewController, UITextFieldDelegate {
         self.view.endEditing(true)
     }
     
-     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
         return false
     }
@@ -91,5 +90,5 @@ class BaseNavController: UIViewController, UITextFieldDelegate {
     func getNavItem() -> UINavigationItem? {
         return self.navigationItem
     }
-   
+    
 }

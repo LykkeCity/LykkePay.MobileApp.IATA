@@ -35,11 +35,11 @@ class HistoryViewController: BaseViewController<HistoryModel, DefaultHistoryStat
     }
     
     override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 75
+        return 60
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 75
+        return 60
     }
     
     override func getTitle() -> String? {
@@ -54,7 +54,7 @@ class HistoryViewController: BaseViewController<HistoryModel, DefaultHistoryStat
         self.getTableView().register(HistoryTableViewCell.nib, forCellReuseIdentifier: HistoryTableViewCell.identifier)
     }
     
-    private func loadData() {
+    override func loadData() {
         self.state?.getHistory()
             .withSpinner(in: view)
             .then(execute: { [weak self] (result: String) -> Void in
@@ -68,5 +68,6 @@ class HistoryViewController: BaseViewController<HistoryModel, DefaultHistoryStat
     private func reloadTable(jsonString: String) {
         self.state?.mapping(jsonString: jsonString)
         self.tabView.reloadData()
+        self.refreshControl.endRefreshing()
     }
 }

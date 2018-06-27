@@ -8,13 +8,10 @@ class WalletsViewController: BaseViewController<WalletsViewModel, DefaultWallets
     
     @IBOutlet weak var tableView: UITableView!
 
-    private let refreshControl = UIRefreshControl()
-
-
+   
     override func viewDidLoad() {
         state = DefaultWalletsState()
         super.viewDidLoad()
-        addRefreshControl()
         self.navigationController?.isNavigationBarHidden = false
         loadData()
     }
@@ -41,7 +38,7 @@ class WalletsViewController: BaseViewController<WalletsViewModel, DefaultWallets
         return cell
     }
 
-    private func loadData() {
+    override func loadData() {
         if let id = UserPreference.shared.getCurrentCurrency()?.id {
             self.state?.getWalletsStringJson(id: id)
                 .withSpinner(in: view)
@@ -71,15 +68,5 @@ class WalletsViewController: BaseViewController<WalletsViewModel, DefaultWallets
 
     override func registerCells() {
         tableView.register(WalletsTableViewCell.nib, forCellReuseIdentifier: WalletsTableViewCell.identifier)
-    }
-
-    private func addRefreshControl() {
-        refreshControl.attributedTitle = NSAttributedString(string: "loading...")
-        refreshControl.addTarget(self, action: #selector(self.refresh), for: UIControlEvents.valueChanged)
-        tableView.addSubview(refreshControl)
-    }
-
-    @objc func refresh() {
-        loadData()
     }
 }

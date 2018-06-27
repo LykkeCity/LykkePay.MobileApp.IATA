@@ -8,8 +8,9 @@ class ExchangeViewModel: Mappable  {
     var info: String?
     var icon: UIImage?
     var isBase: Bool?
+    var assetId: String?
     
-    required init(isUsd: Bool, state: DefaultExchangeState, isBase: Bool) {
+    required init(isUsd: Bool, state: DefaultExchangeState, isBase: Bool, assetId: String?) {
         if isUsd {
             self.sum = state.usd?.totalBalance
             self.currency = "$"
@@ -21,6 +22,7 @@ class ExchangeViewModel: Mappable  {
         }
         self.info = isBase ? "Sell" : "Buy"
         self.isBase = isBase
+        self.assetId = assetId
     }
     
     required init?(map: Map) {

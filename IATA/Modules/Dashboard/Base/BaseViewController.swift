@@ -9,7 +9,10 @@ class BaseViewController<T: Mappable, S: DefaultBaseState<T>>:
     
     var state: S?
     
+    let refreshControl = UIRefreshControl()
+    
     override func setUp() {
+        addRefreshControl()
         self.registerCells()
         self.getTableView().delegate = self
         self.getTableView().dataSource = self
@@ -58,5 +61,19 @@ class BaseViewController<T: Mappable, S: DefaultBaseState<T>>:
     
     internal func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 0
+    }
+    
+    @objc func refresh() {
+        loadData()
+    }
+    
+    func loadData() {
+        
+    }
+    
+    private func addRefreshControl() {
+        refreshControl.attributedTitle = NSAttributedString(string: "loading...")
+        refreshControl.addTarget(self, action: #selector(self.refresh), for: UIControlEvents.valueChanged)
+        getTableView().addSubview(refreshControl)
     }
 }
