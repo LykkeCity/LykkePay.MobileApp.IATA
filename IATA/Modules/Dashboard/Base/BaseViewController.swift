@@ -10,7 +10,7 @@ class BaseViewController<T: Mappable, S: DefaultBaseState<T>>:
     var state: S?
     
     let refreshControl = UIRefreshControl()
-    
+   
     override func setUp() {
         addRefreshControl()
         self.registerCells()
@@ -68,7 +68,11 @@ class BaseViewController<T: Mappable, S: DefaultBaseState<T>>:
     }
     
     func loadData() {
-        
+        var offset = self.getTableView().contentOffset
+        offset.y = -81
+        self.refreshControl.endRefreshing()
+        self.refreshControl.beginRefreshing()
+        self.getTableView().contentOffset = offset
     }
     
     private func addRefreshControl() {

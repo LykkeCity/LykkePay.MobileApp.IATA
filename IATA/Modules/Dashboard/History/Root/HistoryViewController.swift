@@ -55,8 +55,9 @@ class HistoryViewController: BaseViewController<HistoryModel, DefaultHistoryStat
     }
     
     override func loadData() {
+        super.loadData()
         self.state?.getHistory()
-            .withSpinner(in: view)
+            //.withSpinner(in: view)
             .then(execute: { [weak self] (result: String) -> Void in
                 guard let strongSelf = self else {
                     return

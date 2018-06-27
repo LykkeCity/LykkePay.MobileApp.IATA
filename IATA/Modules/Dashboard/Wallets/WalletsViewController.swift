@@ -21,6 +21,7 @@ class WalletsViewController: BaseViewController<WalletsViewModel, DefaultWallets
         self.navigationController?.isNavigationBarHidden = false
         loadData()
         initViewTheme()
+        initTableViewTheme()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -47,9 +48,9 @@ class WalletsViewController: BaseViewController<WalletsViewModel, DefaultWallets
     }
 
     override func loadData() {
+        super.loadData()
         if let id = UserPreference.shared.getCurrentCurrency()?.id {
             self.state?.getWalletsStringJson(id: id)
-                .withSpinner(in: view)
                 .then(execute: { [weak self] (result: String) -> Void in
                     guard let strongSelf = self else {
                         return
@@ -90,5 +91,9 @@ class WalletsViewController: BaseViewController<WalletsViewModel, DefaultWallets
         self.topView.isHidden = false
         self.logoImageView.isHidden = false
         self.topSeparatorView.isHidden = false
+    }
+    
+    private func initTableViewTheme() {
+        self.tableView.separatorColor = Theme.shared.dotColor
     }
 }

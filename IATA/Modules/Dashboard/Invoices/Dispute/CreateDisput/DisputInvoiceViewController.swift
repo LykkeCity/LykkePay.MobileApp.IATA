@@ -10,6 +10,7 @@ class DisputInvoiceViewController: BaseNavController {
     @IBOutlet weak var navItem: UINavigationItem?
     @IBOutlet weak var reasonTextField: FloatTextField!
 
+    var completion: (() -> Void) = {}
     let state = DefaultDisputInvoiceState()
 
     override func viewDidLoad() {
@@ -80,10 +81,7 @@ class DisputInvoiceViewController: BaseNavController {
                 guard let strongSelf = self else {
                     return
                 }
-                strongSelf.dismiss(animated: true, completion: {
-                    //better use protocol - will rewrite later
-                    NotificationCenter.default.post(name: NSNotification.Name(NotificateEnum.loadData.rawValue), object: nil)
-                })
+                strongSelf.dismiss(animated: true, completion: strongSelf.completion)
             })
         }
     }

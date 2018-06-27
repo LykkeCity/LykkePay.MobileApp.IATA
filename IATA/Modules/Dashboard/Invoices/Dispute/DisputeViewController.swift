@@ -41,8 +41,9 @@ class DisputeViewController: BaseViewController<DisputeModel, DefaultDisputeStat
     }
 
     override func loadData() {
+        super.loadData()
         self.state?.getDisputeListStringJson()
-            .withSpinner(in: view)
+            //.withSpinner(in: view)
             .then(execute: { [weak self] (result: String) -> Void in
                 guard let strongSelf = self else {
                     return
@@ -54,6 +55,7 @@ class DisputeViewController: BaseViewController<DisputeModel, DefaultDisputeStat
     private func reloadTable(jsonString: String!) {
         self.state?.mapping(jsonString: jsonString)
         self.tabView.reloadData()
+        self.refreshControl.endRefreshing()
     }
     
     override func getTitle() -> String? {

@@ -118,6 +118,9 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
         if (stateCanBeOpenDispute) {
             let disputeAction = SwipeAction(style: .destructive, title: R.string.localizable.invoiceScreenItemsDispute()) { action, indexPath in
                 let disputInvoiceVC = DisputInvoiceViewController()
+                disputInvoiceVC.completion = {
+                    self.loadData()
+                }
                 disputInvoiceVC.invoiceId = state.getItems()[indexPath.row].id
                 self.present(disputInvoiceVC, animated: true, completion: nil)
             }
@@ -164,6 +167,9 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
     @objc func clickFilter(sender: Any?) {
         let viewController = InvoiceSettingsViewController()
         viewController.setNeedsStatusBarAppearanceUpdate()
+        viewController.completion = {
+            self.loadData()
+        }
         self.navigationController?.present(viewController, animated: true, completion: nil)
         self.hideMenu()
     }
@@ -360,8 +366,8 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
     }
     
      override func loadData() {
+        super.loadData()
         self.state?.getInvoiceStringJson()
-            .withSpinner(in: view)
             .then(execute: { [weak self] (result: String) -> Void in
                 guard let strongSelf = self else {
                     return
