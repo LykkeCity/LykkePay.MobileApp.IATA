@@ -24,6 +24,7 @@ extension Formatter {
         }
     }
     
+    
     static func formattedWithSeparator(value: String?, canBeZero: Bool) -> String {
         if let valueString = value  {
             let doubleValue = Double(valueString)

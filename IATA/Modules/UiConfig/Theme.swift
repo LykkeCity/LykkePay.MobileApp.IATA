@@ -31,6 +31,7 @@ class Theme: NSObject {
     public let grayDisputeColor = Utils.rgb(101, 113, 128)
     public let pinkDisputeColor = Utils.rgb(254, 53, 96)
     public let blueProgressStatusColor = Utils.rgb(53, 153, 254)
+    public let partiallyPaidStatusColor = Utils.rgb(255, 179, 37)
     public let redErrorStatusColor = Utils.rgb(254, 53, 96)
     public let greyStatusColor = Utils.rgb(178, 184, 191)
     public let greyNavBar = Utils.rgb(243, 244, 245)

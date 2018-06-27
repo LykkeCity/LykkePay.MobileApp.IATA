@@ -20,6 +20,7 @@ class DefaultDisputeState: DefaultBaseState<DisputeModel> {
     }
 
     private func prepareDisputeList(from disputeList: [DisputeListItem]) {
+        self.items = [DisputeModel]()
         for dispute in disputeList {
             let disputeModel = DisputeModel()
             let invoice = InvoiceModel()

@@ -28,7 +28,7 @@ struct InvoiceStatusesStruct {
             self.init(type: type, colorStatus: Theme.shared.greenColor, color: Theme.shared.greenColor, title: R.string.localizable.invoiceStatusItemsPaid(), isCanBePaid: false)
             break
         case .Underpaid:
-            self.init(type: type, colorStatus: Theme.shared.greenColor, color: Theme.shared.greenColor, title: R.string.localizable.invoiceStatusItemsUnderpaid(), isCanBePaid: true)
+            self.init(type: type, colorStatus: Theme.shared.partiallyPaidStatusColor, color: Theme.shared.greenColor, title: R.string.localizable.invoiceStatusItemsUnderpaid(), isCanBePaid: true)
             break
         case .Overpaid:
             self.init(type: type, colorStatus: Theme.shared.redErrorStatusColor, color: Theme.shared.redErrorStatusColor, title: R.string.localizable.invoiceStatusItemsOverpaid(), isCanBePaid: false)

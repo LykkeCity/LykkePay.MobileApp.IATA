@@ -14,10 +14,14 @@ class DefaultWalletsState: DefaultBaseState<WalletsViewModel> {
         return self.service.getWallets(convertAssetIdParams: convertAssetIdParams)
     }
 
-    func mapping(jsonString: String!) {
-        let walletsModels = !jsonString.isEmpty ? Mapper<WalletsModel>().mapArray(JSONObject: jsonString.toJSON())! : Array<WalletsModel>()
-        let walletsViewModels = prepareWalletsViewModels(from: walletsModels)
-        self.items = walletsViewModels
+    func mapping(jsonString: String) {
+        let walletsModels = !jsonString.isEmpty ? Mapper<WalletsModel>().mapArray(JSONObject: jsonString.toJSON()) : Array<WalletsModel>()
+        if let walletModelsItems = walletsModels {
+            let walletsViewModels = prepareWalletsViewModels(from: walletModelsItems)
+            self.items = walletsViewModels
+        } else {
+            self.items = [WalletsViewModel]()
+        }
     }
 
     func prepareWalletsViewModels(from walletsModels: [WalletsModel]) -> [WalletsViewModel] {

@@ -31,17 +31,41 @@ class PaymentRangeTableViewCell: UITableViewCell, UITextFieldDelegate {
         }
     }
     
-    private func getMaxValue(maxValue: Double) -> String {
-        let intValue = 100 * Int((maxValue / 100.0).rounded())
-        return R.string.localizable.invoiceSettingsMaxRange(String(Double(intValue)/1000))
-    }
-    
     static var nib:UINib {
         return UINib(nibName: identifier, bundle: nil)
     }
     
     static var identifier: String {
         return String(describing: self)
+    }
+    
+    
+    @IBAction func editingDidEnd(_ sender: Any) {
+        NotificationCenter.default.post(name: NSNotification.Name(NotificateEnum.enable.rawValue), object: nil)
+    }
+    
+    @IBAction func editingDidBegin(_ sender: Any) {
+        NotificationCenter.default.post(name: NSNotification.Name(NotificateEnum.disable.rawValue), object: nil)
+    }
+    
+    @IBAction func maxValueChanged(_ sender: Any) {
+        if let valueString = self.maxValueTextField?.text {
+            if let value = Int(valueString) {
+                self.rangeSlider?.upperValue = Double(value)
+                self.item?.max = value
+            }
+        }
+        self.delegate?.updatePaymentRangeMax(max: self.item?.max)
+    }
+    
+    @IBAction func minValueChanged(_ sender: Any) {
+        if let valueString = self.minValueTextField?.text {
+            if let value = Int(valueString) {
+                self.rangeSlider?.lowerValue = Double(value)
+                self.item?.min = value
+            }
+        }
+        self.delegate?.updatePaymentRangeMin(min: self.item?.min)
     }
     
     override func awakeFromNib() {
@@ -63,6 +87,27 @@ class PaymentRangeTableViewCell: UITableViewCell, UITextFieldDelegate {
         
         NotificationCenter.default.addObserver(self, selector: #selector(appMovedToBackground), name: Notification.Name.UIApplicationWillResignActive, object: nil)
         
+    }
+    
+    //todo rewrite - in future
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if(textField == self.maxValueTextField) {
+            
+            if let text = self.maxValueTextField?.getOldText(), let textNsString = text as? NSString {
+                
+                let newString = textNsString.replacingCharacters(in: range, with: string)
+                if let character = newString.characters.last, String(character).elementsEqual(".") {
+                    return false
+                }
+                
+                if  let maxValueRange = self.item?.maxRangeInBaseAsset,
+                    !(TextFieldUtil.validateMaxValue(newString: newString, maxValue: maxValueRange, range: range, replacementString: string, symbol: self.maxValueTextField?.symbolValue)) {
+                    return false
+                }
+                
+            }
+        }
+        return true
     }
     
     @objc func editingFinishMin() {
@@ -87,9 +132,12 @@ class PaymentRangeTableViewCell: UITableViewCell, UITextFieldDelegate {
             if text.isEmpty, let symbol = UserPreference.shared.getCurrentCurrency()?.symbol {
                 self.minValueTextField?.text = "0 " + symbol
             }
-            if  let valueText = self.minValueTextField?.text, let value = Double(valueText), !TextFieldUtil.validateMinValueText(text, value, true) {
+            if  let valueText = self.minValueTextField?.text, let value = Double(valueText),
+                !TextFieldUtil.validateMinValueText(text, value, true) {
+                //check max value and min value
                 ViewUtils.shared.showToast(message: R.string.localizable.invoiceSettingsErrorTo(), view: self.contentView)
                 NotificationCenter.default.post(name: NSNotification.Name(NotificateEnum.disable.rawValue), object: nil)
+           
             } else {
                 NotificationCenter.default.post(name: NSNotification.Name(NotificateEnum.enable.rawValue), object: nil)
             }
@@ -123,23 +171,14 @@ class PaymentRangeTableViewCell: UITableViewCell, UITextFieldDelegate {
         self.contentView.endEditing(true)
     }
     
-    @IBAction func minValueChanged(_ sender: Any) {
-        if let valueString = self.minValueTextField?.text {
-            if let value = Int(valueString) {
-                self.rangeSlider?.lowerValue = Double(value)
-                self.item?.min = value
-            }
+    private func getMaxValue(maxValue: Double) -> String {
+        let intValue = 1000 * Int((maxValue / 1000.0).rounded())
+        let formatter = NumberFormatter()
+        formatter.maximumFractionDigits = 0
+        if let value = formatter.string(for: Double(intValue)/1000){
+            return R.string.localizable.invoiceSettingsMaxRange(value)
+        } else {
+            return ""
         }
-        self.delegate?.updatePaymentRangeMin(min: self.item?.min)
-    }
-    
-    @IBAction func maxValueChanged(_ sender: Any) {
-        if let valueString = self.maxValueTextField?.text {
-            if let value = Int(valueString) {
-                self.rangeSlider?.upperValue = Double(value)
-                self.item?.max = value
-            }
-        }
-        self.delegate?.updatePaymentRangeMax(max: self.item?.max)
     }
 }

@@ -8,7 +8,7 @@ class PaymentRequest:  Mappable {
     }
     
     var invoicesIds: [String]? = []
-    var amountInBaseAsset: Double?
+    var amountInBaseAsset: NSDecimalNumber?
     
     internal required init?() {
     }

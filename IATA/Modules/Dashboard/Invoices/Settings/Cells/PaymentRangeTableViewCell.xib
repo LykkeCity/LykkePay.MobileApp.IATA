@@ -41,6 +41,8 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
+                                            <action selector="editingDidBegin:" destination="KGk-i7-Jjw" eventType="editingDidBegin" id="6Lx-fH-zS7"/>
+                                            <action selector="editingDidEnd:" destination="KGk-i7-Jjw" eventType="editingDidEnd" id="UjH-vK-C8g"/>
                                             <action selector="minValueChanged:" destination="KGk-i7-Jjw" eventType="editingChanged" id="UnP-Ae-Yji"/>
                                         </connections>
                                     </view>
@@ -53,6 +55,8 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
+                                            <action selector="editingDidBegin:" destination="KGk-i7-Jjw" eventType="editingDidBegin" id="qwY-9Y-xSA"/>
+                                            <action selector="editingDidEnd:" destination="KGk-i7-Jjw" eventType="editingDidEnd" id="K91-9W-o1B"/>
                                             <action selector="maxValueChanged:" destination="KGk-i7-Jjw" eventType="editingChanged" id="BWE-iz-Izb"/>
                                         </connections>
                                     </view>

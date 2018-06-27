@@ -28,6 +28,7 @@
                 <outlet property="downView" destination="Boz-OM-wSA" id="sXc-bd-gRZ"/>
                 <outlet property="downViewHeightConstraint" destination="ozl-4g-oOw" id="8DP-Ii-Yif"/>
                 <outlet property="loading" destination="uiP-4Y-L2f" id="g5E-Me-XMA"/>
+                <outlet property="payHeight" destination="B6a-ES-D7O" id="X5c-eW-2zD"/>
                 <outlet property="placeholderInvoice" destination="O6h-me-bvV" id="k64-HD-CAa"/>
                 <outlet property="selectedItemTextField" destination="phI-Vh-W4l" id="j6U-6G-G8k"/>
                 <outlet property="sumTextField" destination="kSM-AU-uwf" id="48R-EM-prZ"/>
@@ -41,18 +42,18 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="aHq-O3-Lfw">
-                    <rect key="frame" x="0.0" y="8" width="359" height="569"/>
+                    <rect key="frame" x="0.0" y="8" width="359" height="659"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </tableView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Boz-OM-wSA">
-                    <rect key="frame" x="0.0" y="577" width="375" height="90"/>
+                    <rect key="frame" x="0.0" y="667" width="375" height="0.0"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Mi-CE-o9S">
-                            <rect key="frame" x="225" y="21" width="130" height="48"/>
+                            <rect key="frame" x="225" y="0.0" width="130" height="0.0"/>
                             <color key="backgroundColor" red="0.17254901960784313" green="0.71764705882352942" blue="0.0039215686274509803" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="130" id="2CC-Yk-Cqi"/>
-                                <constraint firstAttribute="height" constant="48" id="B6a-ES-D7O"/>
+                                <constraint firstAttribute="height" id="B6a-ES-D7O"/>
                             </constraints>
                             <fontDescription key="fontDescription" name="GothamPro-Medium" family="Gotham Pro" pointSize="16"/>
                             <state key="normal" title="PAY">
@@ -76,16 +77,16 @@
                             </constraints>
                         </view>
                         <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="uiP-4Y-L2f">
-                            <rect key="frame" x="36" y="35" width="20" height="20"/>
+                            <rect key="frame" x="36" y="-10" width="20" height="20"/>
                         </activityIndicatorView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2 invoices selected" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="phI-Vh-W4l">
-                            <rect key="frame" x="16" y="53" width="129.5" height="16"/>
+                            <rect key="frame" x="16" y="-16" width="129.5" height="16"/>
                             <fontDescription key="fontDescription" name="GothamPro-Light" family="Gotham Pro" pointSize="14"/>
                             <color key="textColor" red="0.066666666666666666" green="0.066666666666666666" blue="0.066666666666666666" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="0" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kSM-AU-uwf" customClass="CurrencyUiTextField" customModule="IATA" customModuleProvider="target">
-                            <rect key="frame" x="16" y="21" width="201" height="30"/>
+                            <rect key="frame" x="16" y="0.0" width="201" height="30"/>
                             <nil key="textColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
@@ -107,7 +108,7 @@
                         <constraint firstItem="koP-il-pIp" firstAttribute="leading" secondItem="Boz-OM-wSA" secondAttribute="leading" id="WWW-hS-w9T"/>
                         <constraint firstAttribute="trailing" secondItem="koP-il-pIp" secondAttribute="trailing" id="XfD-NV-3tG"/>
                         <constraint firstAttribute="trailing" secondItem="9Mi-CE-o9S" secondAttribute="trailing" constant="20" id="evY-jL-Nte"/>
-                        <constraint firstAttribute="height" constant="90" id="ozl-4g-oOw"/>
+                        <constraint firstAttribute="height" id="ozl-4g-oOw"/>
                         <constraint firstItem="9Mi-CE-o9S" firstAttribute="leading" secondItem="kSM-AU-uwf" secondAttribute="trailing" constant="8" id="tKx-cv-iXN"/>
                     </constraints>
                 </view>

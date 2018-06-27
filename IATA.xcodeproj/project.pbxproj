@@ -169,7 +169,6 @@
 		0A9364BC20DA316400634406 /* DefaultTransactionState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9364BB20DA316400634406 /* DefaultTransactionState.swift */; };
 		0A9364C020DA334100634406 /* HistoryTransactionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9364BF20DA334100634406 /* HistoryTransactionModel.swift */; };
 		0A9364C220DA371300634406 /* PropertyKeyTransactionTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9364C120DA371300634406 /* PropertyKeyTransactionTitle.swift */; };
-		0A9B85C220E290570075833B /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9B85C120E290560075833B /* R.generated.swift */; };
 		0AAE96C020D7F94500F97768 /* PaymentRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE96BF20D7F94500F97768 /* PaymentRequest.swift */; };
 		0AB1308F20E2752900AEFECF /* NotificateEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB1308E20E2752900AEFECF /* NotificateEnum.swift */; };
 		0AB8E20E20C56FF500C13361 /* DefaultAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB8E20D20C56FF500C13361 /* DefaultAuthenticationService.swift */; };
@@ -178,7 +177,9 @@
 		0ABED71620DBC87900AABCAD /* ViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABED71520DBC87900AABCAD /* ViewUtils.swift */; };
 		0ABED71E20DBDEF800AABCAD /* UIImageExtensition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABED71D20DBDEF800AABCAD /* UIImageExtensition.swift */; };
 		0AC0DA9920E1589800923C3F /* ExchangeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC0DA9820E1589800923C3F /* ExchangeViewModel.swift */; };
-		0AD3971A20E3E77A002C789B /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD3971920E3E77A002C789B /* R.generated.swift */; };
+		0ACDF69020E3FB0400EFF18F /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACDF68F20E3FB0400EFF18F /* R.generated.swift */; };
+		0ACDF69220E400B600EFF18F /* DecimalNumberTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACDF69120E400B600EFF18F /* DecimalNumberTransform.swift */; };
+		0ACDF69420E4179E00EFF18F /* InvoiceViewControllerPaymentExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACDF69320E4179D00EFF18F /* InvoiceViewControllerPaymentExtension.swift */; };
 		0AD3971C20E3E8BD002C789B /* PreExchangeRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD3971B20E3E8BD002C789B /* PreExchangeRequest.swift */; };
 		0ADA881A20DA530400A332F0 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADA881920DA530400A332F0 /* TextField.swift */; };
 		0ADA881D20DA774A00A332F0 /* NavPushingUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADA881C20DA774A00A332F0 /* NavPushingUtil.swift */; };
@@ -411,7 +412,6 @@
 		0A9364BB20DA316400634406 /* DefaultTransactionState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultTransactionState.swift; sourceTree = "<group>"; };
 		0A9364BF20DA334100634406 /* HistoryTransactionModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryTransactionModel.swift; sourceTree = "<group>"; };
 		0A9364C120DA371300634406 /* PropertyKeyTransactionTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyKeyTransactionTitle.swift; sourceTree = "<group>"; };
-		0A9B85C120E290560075833B /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		0AAE96BF20D7F94500F97768 /* PaymentRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentRequest.swift; sourceTree = "<group>"; };
 		0AB1308E20E2752900AEFECF /* NotificateEnum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificateEnum.swift; path = Settings/Cells/NotificateEnum.swift; sourceTree = "<group>"; };
 		0AB8E20D20C56FF500C13361 /* DefaultAuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultAuthenticationService.swift; sourceTree = "<group>"; };
@@ -420,7 +420,9 @@
 		0ABED71520DBC87900AABCAD /* ViewUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewUtils.swift; sourceTree = "<group>"; };
 		0ABED71D20DBDEF800AABCAD /* UIImageExtensition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtensition.swift; sourceTree = "<group>"; };
 		0AC0DA9820E1589800923C3F /* ExchangeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeViewModel.swift; sourceTree = "<group>"; };
-		0AD3971920E3E77A002C789B /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
+		0ACDF68F20E3FB0400EFF18F /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
+		0ACDF69120E400B600EFF18F /* DecimalNumberTransform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecimalNumberTransform.swift; sourceTree = "<group>"; };
+		0ACDF69320E4179D00EFF18F /* InvoiceViewControllerPaymentExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvoiceViewControllerPaymentExtension.swift; sourceTree = "<group>"; };
 		0AD3971B20E3E8BD002C789B /* PreExchangeRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreExchangeRequest.swift; sourceTree = "<group>"; };
 		0ADA881920DA530400A332F0 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		0ADA881C20DA774A00A332F0 /* NavPushingUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavPushingUtil.swift; sourceTree = "<group>"; };
@@ -716,6 +718,7 @@
 				0A0D4B8620C54446009B73E9 /* NetworkConfig.swift */,
 				0A37F00420C80A7500201907 /* AuthNetworkConfig.swift */,
 				0A4CD15B20CECA2100EF4A17 /* PaymentConfig.swift */,
+				0ACDF69120E400B600EFF18F /* DecimalNumberTransform.swift */,
 			);
 			path = NetworkConfig;
 			sourceTree = "<group>";
@@ -792,6 +795,7 @@
 				0A4CD15F20CF072500EF4A17 /* State */,
 				0AF611AB20CA736100957348 /* Cells */,
 				0A13F65B20C974EC001BA302 /* InvoiceViewController.swift */,
+				0ACDF69320E4179D00EFF18F /* InvoiceViewControllerPaymentExtension.swift */,
 				0A13F65C20C974EC001BA302 /* InvoiceViewController.xib */,
 			);
 			path = Root;
@@ -955,7 +959,7 @@
 			isa = PBXGroup;
 			children = (
 				0A37EFA220C6DC5100201907 /* Localizable.strings */,
-                0A9B85C120E290560075833B /* R.generated.swift */,
+				0ACDF68F20E3FB0400EFF18F /* R.generated.swift */,
 			);
 			path = Localizable;
 			sourceTree = "<group>";
@@ -1817,6 +1821,7 @@
 				0AB8E20E20C56FF500C13361 /* DefaultAuthenticationService.swift in Sources */,
 				0A4CD13F20CD840700EF4A17 /* InvoiceHeaderView.swift in Sources */,
 				0A1AF41520CADB7B0009595C /* BTTableViewCell.swift in Sources */,
+				0ACDF69420E4179E00EFF18F /* InvoiceViewControllerPaymentExtension.swift in Sources */,
 				0A837C3220DE986300199759 /* PaymentAmount.swift in Sources */,
 				0A0B11B620D2B4C400021E2D /* LabelExtensitions.swift in Sources */,
 				D7DEFC8C20C97148005FB9EF /* TabBarController.swift in Sources */,
@@ -1844,6 +1849,7 @@
 				0A37EF5420C5816B00201907 /* SignInViewController.swift in Sources */,
 				D7D3012920D798D400A1AEB8 /* WalletsModel.swift in Sources */,
 				0A0B119920D2889600021E2D /* DisputeModel.swift in Sources */,
+				0ACDF69020E3FB0400EFF18F /* R.generated.swift in Sources */,
 				0A37EF6520C589FD00201907 /* UIViewExtension.swift in Sources */,
 				D7DEFC9720C97459005FB9EF /* WalletsViewController.swift in Sources */,
 				0A37EF8E20C6AC8900201907 /* ServerFieldsExtractor.swift in Sources */,
@@ -1894,7 +1900,6 @@
 				0A37EFE420C7D67F00201907 /* PinViewController.swift in Sources */,
 				0A37EFDD20C7D65100201907 /* PasswordInputView.swift in Sources */,
 				D7BC8CE720E10DD6000A708B /* DefaultExchangeState.swift in Sources */,
-				0AD3971A20E3E77A002C789B /* R.generated.swift in Sources */,
 				0A1AF41620CADB7B0009595C /* BTTableView.swift in Sources */,
 				0AB1308F20E2752900AEFECF /* NotificateEnum.swift in Sources */,
 				0A37EF7020C59C6F00201907 /* SingInRequest.swift in Sources */,
@@ -1942,6 +1947,7 @@
 				0AF611A720CA72DA00957348 /* InvoiceSettingsViewController.swift in Sources */,
 				0A37EFFF20C808FB00201907 /* DefaultChangePasswordViewState.swift in Sources */,
 				0A4CD14120CD894900EF4A17 /* FilterPreference.swift in Sources */,
+				0ACDF69220E400B600EFF18F /* DecimalNumberTransform.swift in Sources */,
 				0ADA881A20DA530400A332F0 /* TextField.swift in Sources */,
 				0A0B11A620D2978D00021E2D /* BaseViewController.swift in Sources */,
 				0A1A1C9720DD1D380037DC77 /* SwipeAccessibilityCustomAction.swift in Sources */,
@@ -1961,7 +1967,6 @@
 				0A37EFEC20C7EE0200201907 /* PinValidationResponse.swift in Sources */,
 				0A9364C220DA371300634406 /* PropertyKeyTransactionTitle.swift in Sources */,
 				0A0B119320D279C000021E2D /* LocalStorage.swift in Sources */,
-				0A9B85C220E290570075833B /* R.generated.swift in Sources */,
 				0A1A1C9020DD1D380037DC77 /* SwipeAction.swift in Sources */,
 				0A0B11BF20D2C7EC00021E2D /* BaseInvoiceViewModelItem.swift in Sources */,
 				0A37EFF120C7FBB300201907 /* BaseViewState.swift in Sources */,

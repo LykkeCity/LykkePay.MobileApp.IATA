@@ -32,7 +32,7 @@ open class InvoiceView: UIView {
     }
     
     internal func initDispute(raisedDate: String?, model: InvoiceModel) {
-         self.initStatus(color: Theme.shared.greyStatusColor, status: R.string.localizable.invoiceStatusItemsDispute())
+        self.initStatus(color: Theme.shared.greyStatusColor, status: R.string.localizable.invoiceStatusItemsDispute())
         self.icBodyDispute.isHidden = false
         self.status.isHidden = false
         self.name.text = model.clientName?.uppercased()
@@ -47,9 +47,8 @@ open class InvoiceView: UIView {
     internal func initView(model: InvoiceModel) {
         self.name.text = model.merchantName?.uppercased()
         if let amount = model.amount, let symbol = model.symbol {
-            let formatter = NumberFormatter()
-            formatter.minimumFractionDigits = 0
-            self.price.text = Formatter.formattedWithSeparator(value: formatter.string(for: amount)) + " " + symbol
+            let decimal = NSDecimalNumber(value: amount)
+            self.price.text = Formatter.formattedWithSeparator(value: decimal.rounded(places: 6).stringValue) + " " + symbol
         }
         self.billingCategory.text = model.billingCategory?.uppercased()
         if let number = model.number {
@@ -59,7 +58,7 @@ open class InvoiceView: UIView {
             self.status.isHidden = true
             self.icBodyDispute.isHidden = true
         } else if (model.dispute!){
-            self.initStatus(color: Theme.shared.greyStatusColor, status: R.string.localizable.invoiceStatusItemsDispute()) 
+            self.initStatus(color: Theme.shared.greyStatusColor, status: R.string.localizable.invoiceStatusItemsDispute())
             self.icBodyDispute.isHidden = false
             self.status.isHidden = false
         } else {

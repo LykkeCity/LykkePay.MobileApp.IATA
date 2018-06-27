@@ -16,6 +16,6 @@ class PaymentAmount: Mappable {
     }
     
     internal func mapping(map: Map) {
-        amountToPay <- map[PropertyKey.amountToPay.rawValue]
+        self.amountToPay <- map[PropertyKey.amountToPay.rawValue]
     }
 }
