@@ -551,7 +551,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 76 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 77 localization keys.
     struct localizable {
       /// Base translation: %@ invoices selected
       /// 
@@ -777,6 +777,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: Base
       static let pinValidationTitle = Rswift.StringResource(key: "Pin.Validation.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
+      /// Base translation: Please scan your fingerprint to confirm the payment
+      /// 
+      /// Locales: Base
+      static let invoiceScreenPayConfirmation = Rswift.StringResource(key: "Invoice.Screen.PayConfirmation", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
       /// Base translation: Raised dispute on %@
       /// 
       /// Locales: Base
@@ -1248,6 +1252,13 @@ struct R: Rswift.Validatable {
       /// Locales: Base
       static func pinValidationTitle(_: Void = ()) -> String {
         return NSLocalizedString("Pin.Validation.Title", bundle: R.hostingBundle, value: "Please enter your PIN code", comment: "")
+      }
+      
+      /// Base translation: Please scan your fingerprint to confirm the payment
+      /// 
+      /// Locales: Base
+      static func invoiceScreenPayConfirmation(_: Void = ()) -> String {
+        return NSLocalizedString("Invoice.Screen.PayConfirmation", bundle: R.hostingBundle, value: "Please scan your fingerprint to confirm the payment", comment: "")
       }
       
       /// Base translation: Raised dispute on %@

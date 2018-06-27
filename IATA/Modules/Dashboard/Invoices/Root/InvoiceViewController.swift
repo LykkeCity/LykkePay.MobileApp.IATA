@@ -304,6 +304,7 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
         self.sumTextField.isHidden = isHiddenSelected
         self.selectedItemTextField.isHidden = isHiddenSelected
         isHiddenSelected ? self.loading.startAnimating() : self.loading.stopAnimating()
+        setEnabledPay(isEnabled: isShowLoading)
     }
     
     private func initKeyboardEvents() {
