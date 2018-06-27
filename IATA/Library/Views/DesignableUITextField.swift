@@ -33,48 +33,18 @@ class DesignableUITextField: FloatTextField {
         }
     }
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        self.initCommon()
-    }
-    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.initCommon()
     }
     
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.initCommon()
+    }
+    
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         checkPosition()
-    }
-    
-    
-    func getOldText() -> String? {
-        return super.text
-    }
-    
-    
-    @objc func editingDidBegin() {
-        if let text = self.text {
-            self.text = initDecimal(value: text)
-        }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-            self.checkPosition()
-        }
-    }
-    
-    func checkPosition() {
-        if let start = self.selectedTextRange?.start {
-            let currentPosition =  self.offset(from: self.beginningOfDocument, to: start)
-            if let end = self.getOldText()?.count, (currentPosition > end - 2) {
-                scrollToPosition(position: end - 2)
-            }
-        }
-    }
-    
-    @objc func editingDidEnd() {
-        if let text = self.text {
-            self.text = initDecimal(value: text)
-        }
     }
     
     
@@ -86,13 +56,6 @@ class DesignableUITextField: FloatTextField {
         return CGRect(x: bounds.origin.x, y: bounds.origin.y, width: bounds.width, height: bounds.height)
     }
     
-    internal func scrollToPosition(position: Int) {
-        DispatchQueue.main.async {
-            if let newPosition = self.position(from: self.beginningOfDocument, offset: position) {
-                self.selectedTextRange = self.textRange(from: newPosition, to: newPosition)
-            }
-        }
-    }
     
     @objc func removeObservers() {
         if (isObserving) {
@@ -101,12 +64,40 @@ class DesignableUITextField: FloatTextField {
         }
     }
     
-    private func initCommon() {
-        self.addTarget(self, action: #selector(editingDidEnd), for: .editingDidEnd)
-        self.addTarget(self, action: #selector(editingDidBegin), for: .editingDidBegin)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.removeObservers), name: NSNotification.Name(NotificateEnum.destroy.rawValue), object: nil)
-        self.minimumFontSize = 24
-        self.adjustsFontSizeToFitWidth = false
+    @objc func editChanged(_ sender: Any) {
+        if let text = self.text, let isEmpty = self.text?.isEmpty, isEmpty || (Int(text) == 0) {
+            self.text = "0"
+        } else if let text = self.text {
+            var valueString = text
+            if text.starts(with: "0") && !text.starts(with: "0.") {
+                let fromIndex = text.index(text.startIndex, offsetBy: 1)
+                valueString = text.substring(from: fromIndex)
+                self.text = valueString
+            }
+        }
+    }
+    
+    @objc func editingDidBegin() {
+        if let text = self.text {
+            self.text = initDecimal(value: text)
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            self.checkPosition()
+        }
+    }
+    
+    @objc func editingDidEnd() {
+        if let text = self.text {
+            self.text = initDecimal(value: text)
+        }
+    }
+    
+    func scrollToPosition(position: Int) {
+        DispatchQueue.main.async {
+            if let newPosition = self.position(from: self.beginningOfDocument, offset: position) {
+                self.selectedTextRange = self.textRange(from: newPosition, to: newPosition)
+            }
+        }
     }
     
     func addObservers() {
@@ -118,5 +109,28 @@ class DesignableUITextField: FloatTextField {
     
     func initDecimal(value: String) -> String? {
         return Formatter.formattedWithSeparator(value: value)
+    }
+    
+    func getOldText() -> String? {
+        return super.text
+    }
+    
+    
+    func checkPosition() {
+        if let start = self.selectedTextRange?.start {
+            let currentPosition =  self.offset(from: self.beginningOfDocument, to: start)
+            if let end = self.getOldText()?.count, (currentPosition > end - 2) {
+                scrollToPosition(position: end - 2)
+            }
+        }
+    }
+    
+    private func initCommon() {
+        self.addTarget(self, action: #selector(editingDidEnd), for: .editingDidEnd)
+        self.addTarget(self, action: #selector(editingDidBegin), for: .editingDidBegin)
+        self.addTarget(self, action: #selector(editChanged), for: .editingChanged)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.removeObservers), name: NSNotification.Name(NotificateEnum.destroy.rawValue), object: nil)
+        self.minimumFontSize = 24
+        self.adjustsFontSizeToFitWidth = false
     }
 }

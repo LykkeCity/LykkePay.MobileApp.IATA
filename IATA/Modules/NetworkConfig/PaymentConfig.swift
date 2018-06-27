@@ -27,8 +27,8 @@ class PaymentConfig {
     public let baseAssets = "/baseAsset/list"
     public let baseAsset = "/baseAsset"
 
-    public let exchange = "/exchange"
-    
+    public let exchange = "/exchange/Execute"
+    public let preExchange = "/exchange/PreExchange"
    
 
 }

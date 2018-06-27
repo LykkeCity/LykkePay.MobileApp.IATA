@@ -13,6 +13,14 @@ class DefaultExchangeState: DefaultBaseState<ExchangeViewModel> {
     public var exchangeModel: ExchangeModel = ExchangeModel()
     public var maxValue: Double? = 0.0
     
+    func loadExchangeData(sourceAmount: String?) -> Promise<ExchangeModel> {
+        let model = PreExchangeRequest()
+        model.destAssetId = self.exchangeModel.destAssetId
+        model.sourceAmount = 0
+        model.sourceAssetId = self.exchangeModel.sourceAssetId
+        return self.service.loadExchangeInfo(model: model)
+    }
+    
     func makeExchange(sourceAmount: String?) -> Promise<ExchangeModel> {
         let model = ExchangeRequest()
         model.destAssetId = self.exchangeModel.destAssetId
@@ -20,6 +28,7 @@ class DefaultExchangeState: DefaultBaseState<ExchangeViewModel> {
             model.sourceAmount = Double(valueString)
             self.exchangeModel.sourceAmount = 0
         }
+        model.expectedRate = self.exchangeModel.rate
         model.sourceAssetId = self.exchangeModel.sourceAssetId
         return self.service.makeExchange(model: model)
     }
@@ -47,8 +56,11 @@ class DefaultExchangeState: DefaultBaseState<ExchangeViewModel> {
             if let isBase = item.isBase {
                 item.isBase = !isBase
                 if !isBase {
+                    self.maxValue = item.sum
+                    self.exchangeModel.destAssetId = currentCurrency?.id
                     currentCurrency?.symbol = item.currency
                     currentCurrency?.id = item.assetId
+                    self.exchangeModel.sourceAssetId = item.assetId
                 }
             }
         }
@@ -80,14 +92,10 @@ class DefaultExchangeState: DefaultBaseState<ExchangeViewModel> {
             if usdAssetId.elementsEqual(baseId) {
                 self.maxValue = usd?.totalBalance
                 exchangeModel.destAssetId = euro?.assetId
-                exchangeModel.sourceAssetId = baseId
-                exchangeModel.symbolSource = "$"
-                exchangeModel.symbolDest = "€"
+                exchangeModel.sourceAssetId = usd?.assetId
             } else {
-                self.maxValue = usd?.totalBalance
-                exchangeModel.symbolDest = "$"
-                exchangeModel.symbolSource = "€"
-                exchangeModel.destAssetId = baseId
+                self.maxValue = euro?.totalBalance
+                exchangeModel.destAssetId = usd?.assetId
                 exchangeModel.sourceAssetId = euro?.assetId
             }
         }

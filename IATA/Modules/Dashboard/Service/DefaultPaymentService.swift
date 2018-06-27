@@ -81,4 +81,8 @@ class DefaultPaymentService: NSObject, PaymentService {
     func makeExchange(model: ExchangeRequest) -> Promise<ExchangeModel> {
         return Network.shared.post(path: PaymentConfig.shared.exchange, object: model)
     }
+    
+    func loadExchangeInfo(model: PreExchangeRequest) -> Promise<ExchangeModel> {
+        return Network.shared.post(path: PaymentConfig.shared.preExchange, object: model)
+    }
 }

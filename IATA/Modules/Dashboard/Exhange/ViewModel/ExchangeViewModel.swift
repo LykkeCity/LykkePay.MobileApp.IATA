@@ -5,7 +5,6 @@ import ObjectMapper
 class ExchangeViewModel: Mappable  {
     var sum: Double?
     var currency: String?
-    var info: String?
     var icon: UIImage?
     var isBase: Bool?
     var assetId: String?
@@ -20,7 +19,6 @@ class ExchangeViewModel: Mappable  {
             self.currency = "€"
             self.icon = R.image.ic_eurFlagMediumIcn()
         }
-        self.info = isBase ? "Sell" : "Buy"
         self.isBase = isBase
         self.assetId = assetId
     }
