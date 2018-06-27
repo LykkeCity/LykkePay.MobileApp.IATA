@@ -8,18 +8,26 @@ class WalletsViewController: BaseViewController<WalletsViewModel, DefaultWallets
     
     @IBOutlet weak var tableView: UITableView!
 
-   
+
+    @IBOutlet weak var topView: UIView!
+
+    @IBOutlet weak var logoImageView: UIImageView!
+    
+    @IBOutlet weak var topSeparatorView: UIView!
+
     override func viewDidLoad() {
         state = DefaultWalletsState()
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = false
         loadData()
+        initViewTheme()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = false
         totalBalanceLabel.text = state?.getTotalBalance()
+        loadData()
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -56,6 +64,7 @@ class WalletsViewController: BaseViewController<WalletsViewModel, DefaultWallets
         self.totalBalanceLabel.text = state?.getTotalBalance()
         self.refreshControl.endRefreshing()
         self.tableView.reloadData()
+        setVisibleViewAfterLoadingData()
     }
 
     override func getTitle() -> String? {
@@ -68,5 +77,18 @@ class WalletsViewController: BaseViewController<WalletsViewModel, DefaultWallets
 
     override func registerCells() {
         tableView.register(WalletsTableViewCell.nib, forCellReuseIdentifier: WalletsTableViewCell.identifier)
+    }
+
+    private func initViewTheme() {
+        self.topView.isHidden = true
+        self.logoImageView.isHidden = true
+        self.topSeparatorView.isHidden = true
+        self.tableView.separatorColor = Theme.shared.dotColor
+    }
+
+    private func setVisibleViewAfterLoadingData() {
+        self.topView.isHidden = false
+        self.logoImageView.isHidden = false
+        self.topSeparatorView.isHidden = false
     }
 }
