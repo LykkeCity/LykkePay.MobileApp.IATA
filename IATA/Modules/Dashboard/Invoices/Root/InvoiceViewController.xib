@@ -16,6 +16,9 @@
         <array key="GothamProMed.otf">
             <string>GothamPro-Medium</string>
         </array>
+        <array key="GothamProReg.otf">
+            <string>GothamPro</string>
+        </array>
     </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="InvoiceViewController" customModule="IATA" customModuleProvider="target">
@@ -25,6 +28,7 @@
                 <outlet property="downView" destination="Boz-OM-wSA" id="sXc-bd-gRZ"/>
                 <outlet property="downViewHeightConstraint" destination="ozl-4g-oOw" id="8DP-Ii-Yif"/>
                 <outlet property="loading" destination="uiP-4Y-L2f" id="g5E-Me-XMA"/>
+                <outlet property="placeholderInvoice" destination="O6h-me-bvV" id="k64-HD-CAa"/>
                 <outlet property="selectedItemTextField" destination="phI-Vh-W4l" id="j6U-6G-G8k"/>
                 <outlet property="sumTextField" destination="kSM-AU-uwf" id="48R-EM-prZ"/>
                 <outlet property="tabView" destination="aHq-O3-Lfw" id="z1c-aH-8zp"/>
@@ -107,11 +111,44 @@
                         <constraint firstItem="9Mi-CE-o9S" firstAttribute="leading" secondItem="kSM-AU-uwf" secondAttribute="trailing" constant="8" id="tKx-cv-iXN"/>
                     </constraints>
                 </view>
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O6h-me-bvV">
+                    <rect key="frame" x="87" y="259" width="201" height="169"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="QPq-PE-QiB">
+                            <rect key="frame" x="20.5" y="20" width="160.5" height="129"/>
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_placeholderIcn" translatesAutoresizingMaskIntoConstraints="NO" id="UBa-Zb-jyG">
+                                    <rect key="frame" x="47.5" y="0.0" width="66" height="66"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="66" id="TSH-N7-u4c"/>
+                                        <constraint firstAttribute="height" constant="66" id="VaG-CV-QA9"/>
+                                    </constraints>
+                                </imageView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You haven't invoices  history yet" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f3G-DA-mL9">
+                                    <rect key="frame" x="0.0" y="86" width="160.5" height="43"/>
+                                    <fontDescription key="fontDescription" name="GothamPro" family="Gotham Pro" pointSize="16"/>
+                                    <color key="textColor" red="0.66274509803921566" green="0.68627450980392157" blue="0.72156862745098038" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                    <size key="shadowOffset" width="0.0" height="0.0"/>
+                                </label>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="QPq-PE-QiB" firstAttribute="centerY" secondItem="O6h-me-bvV" secondAttribute="centerY" id="8zN-SD-R4s"/>
+                        <constraint firstAttribute="width" constant="201" id="LcZ-Ab-7oR"/>
+                        <constraint firstItem="QPq-PE-QiB" firstAttribute="centerX" secondItem="O6h-me-bvV" secondAttribute="centerX" id="dcm-Jy-Xej"/>
+                        <constraint firstAttribute="height" constant="169" id="iAh-UK-tZc"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
             <constraints>
                 <constraint firstItem="Boz-OM-wSA" firstAttribute="top" secondItem="aHq-O3-Lfw" secondAttribute="bottom" id="0lT-KT-weX"/>
                 <constraint firstItem="aHq-O3-Lfw" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="8" id="I7k-5j-NgH"/>
+                <constraint firstItem="O6h-me-bvV" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" id="JTZ-JB-hLI"/>
+                <constraint firstItem="O6h-me-bvV" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="VuJ-xh-k2G"/>
                 <constraint firstItem="Boz-OM-wSA" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="bo5-ZY-U0M"/>
                 <constraint firstItem="Boz-OM-wSA" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="fDM-IO-1WY"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Boz-OM-wSA" secondAttribute="trailing" id="mjd-mb-Ztp"/>
@@ -123,4 +160,7 @@
         </view>
         <navigationItem title="Title" id="zPb-jx-NZH"/>
     </objects>
+    <resources>
+        <image name="ic_placeholderIcn" width="112" height="112"/>
+    </resources>
 </document>

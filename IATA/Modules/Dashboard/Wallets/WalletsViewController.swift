@@ -15,6 +15,8 @@ class WalletsViewController: BaseViewController<WalletsViewModel, DefaultWallets
     
     @IBOutlet weak var topSeparatorView: UIView!
 
+    @IBOutlet weak var placeholderWallets: UIView!
+
     override func viewDidLoad() {
         state = DefaultWalletsState()
         super.viewDidLoad()
@@ -64,6 +66,9 @@ class WalletsViewController: BaseViewController<WalletsViewModel, DefaultWallets
         self.state?.mapping(jsonString: jsonString)
         self.totalBalanceLabel.text = state?.getTotalBalance()
         self.refreshControl.endRefreshing()
+        if (state?.getItems().count)! == 0 {
+            placeholderWallets.isHidden = false
+        }
         self.tableView.reloadData()
         setVisibleViewAfterLoadingData()
     }
