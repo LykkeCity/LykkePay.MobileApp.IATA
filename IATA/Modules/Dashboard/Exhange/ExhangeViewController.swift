@@ -35,6 +35,7 @@ class ExhangeViewController: BaseNavController {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.sellAll))
         self.sellAllView.addGestureRecognizer(tap)
         
+        self.sumTextField.delegate = self
         self.sumTextField.addObservers()
         self.sumTextField.symbolValue = UserPreference.shared.getCurrentCurrency()?.symbol
         self.editChanged(self.sumTextField)
@@ -50,6 +51,8 @@ class ExhangeViewController: BaseNavController {
     
     @IBAction func clickChangeBaseAssert(_ sender: Any) {
         self.state?.changeBaseAsset()
+        self.exchangeSumResult.text = "0"
+        self.rateExchange.text = ""
         self.sumTextField.text = "0"
         self.sumTextField.symbolValue = self.state?.currentCurrency?.symbol
         self.loadExchangeInfo()
@@ -66,22 +69,27 @@ class ExhangeViewController: BaseNavController {
                 valueString = text.substring(from: fromIndex)
                 self.sumTextField.text = valueString
             }
+            self.initAmounts()
             setEnabledExchange(isEnabled: true)
         }
     }
     
     @IBAction func clickConfirm(_ sender: Any) {
-        let viewController = PinViewController()
-        viewController.isValidationTransaction = true
-        viewController.completion = {
-            //todo exchange
+        func makePayment(alert: UIAlertAction!) {
+            let viewController = PinViewController()
+            viewController.isValidationTransaction = true
+            viewController.completion = {
+                self.makeExchange()
+            }
+            self.navigationController?.present(viewController, animated: true, completion: nil)
+            
         }
-        self.navigationController?.present(viewController, animated: true, completion: nil)
     }
     
     
     @objc func sellAll() {
         self.sumTextField.text = sumAllLabel.text
+        self.editChanged(self.sumTextField)
     }
     
     @objc func keyboardWillShow(notification: NSNotification) {
@@ -101,6 +109,39 @@ class ExhangeViewController: BaseNavController {
     
     @objc func dismissKeyboard() {
         view.endEditing(true)
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if(textField == self.sumTextField) {
+            
+            if let text = self.sumTextField.getOldText(), let textNsString = text as? NSString {
+                
+                let newString = textNsString.replacingCharacters(in: range, with: string)
+                if let text = self.sumTextField.text, text.contains("."), string.elementsEqual(".") {
+                    return false
+                }
+                
+                if let indexOf = newString.index(of: ".") {
+                    let valueString = newString.substring(from: indexOf)
+                    
+                    if valueString.characters.count > 6 {
+                        return false
+                    }
+                }
+                
+                if !(TextFieldUtil.validateMinValue(newString: newString, minValue:  0, range: range, replacementString: string, true)) {
+                    return false
+                }
+                
+                if let maxValue = self.state?.maxValue, !(TextFieldUtil.validateMaxValue(newString: newString, maxValue: maxValue, range: range, replacementString: string)){
+                    ViewUtils.shared.showToast(message: R.string.localizable.invoiceScreenErrorChangingAmount(), view: self.view)
+                    return false
+                    
+                }
+            }
+            
+        }
+        return true
     }
     
     
@@ -147,6 +188,11 @@ class ExhangeViewController: BaseNavController {
                     return
                 }
                 strongSelf.reloadTable(jsonString: result)
+            }).catch(execute: { [weak self] error -> Void in
+                guard let strongSelf = self else {
+                    return
+                }
+                strongSelf.handleError(error: error)
             })
     }
     
@@ -156,6 +202,28 @@ class ExhangeViewController: BaseNavController {
     }
     
     private func loadExchangeInfo() {
+        //todo get info
+        self.state?.exchangeModel.rate = 0.12
+        if let text = self.sumTextField.text {
+            self.state?.exchangeModel.sourceAmount = Double(text)
+        }
+        self.initAsset()
+       /* self.state?.makeExchange(sourceAmount: self.sumTextField.text)
+            .withSpinner(in: view)
+            .then(execute: { [weak self] (result: ExchangeModel) -> Void in
+                guard let strongSelf = self else {
+                    return
+                }
+                strongSelf.initAsset()
+            }).catch(execute: { [weak self] error -> Void in
+                guard let strongSelf = self else {
+                    return
+                }
+                strongSelf.handleError(error: error)
+            })*/
+    }
+    
+    private func makeExchange() {
         self.state?.makeExchange(sourceAmount: self.sumTextField.text)
             .withSpinner(in: view)
             .then(execute: { [weak self] (result: ExchangeModel) -> Void in
@@ -167,26 +235,18 @@ class ExhangeViewController: BaseNavController {
                 guard let strongSelf = self else {
                     return
                 }
-                strongSelf.handleError()
+                strongSelf.handleError(error: error)
             })
     }
     
-    //for test
-    private func handleError() {
-        self.state?.exchangeModel.rate = 0.12
-        self.state?.exchangeModel.destAmount = 0
-        self.initAsset()
+    private func handleError(error : Error) {
+        self.showErrorAlert(error: error)
     }
     
     private func initAsset() {
-        if let destAmount = self.state?.exchangeModel.destAmount, let sourceAmount = self.state?.exchangeModel.sourceAmount, let symbolDest = self.state?.exchangeModel.symbolDest, let symbolSource = self.state?.exchangeModel.symbolSource, let rate = self.state?.exchangeModel.rate  {
-            
-            self.exchangeSumResult.text = String(destAmount) + " " + symbolDest
-            self.sumTextField.text = String(sourceAmount)
-            self.editChanged(self.sumTextField)
-            self.rateExchange.text = R.string.localizable.exchangeSourceRate(symbolSource, Formatter.formattedWithSeparator(value: String(rate)), symbolDest)
-        }
-       
+        self.initAmounts()
+        self.editChanged(self.sumTextField)
+        
         self.sumAllLabel.text = state?.getTotalBalance()
         if let items = self.state?.getItems() {
             for item in items {
@@ -196,6 +256,14 @@ class ExhangeViewController: BaseNavController {
                     initAsset(sum: self.notBaseSum, info: self.notBaseInfo, image: self.notBaseIcon, item: item)
                 }
             }
+        }
+    }
+    
+    private func initAmounts() {
+        if let sourceAmountString = self.sumTextField.text, let souceAmount = Double(sourceAmountString), let symbolDest = self.state?.exchangeModel.symbolDest, let symbolSource = self.state?.exchangeModel.symbolSource, let rate = self.state?.exchangeModel.rate  {
+            
+            self.exchangeSumResult.text = Formatter.formattedWithSeparator(value: String(souceAmount * rate)) + " " + symbolDest
+            self.rateExchange.text = R.string.localizable.exchangeSourceRate(symbolSource, Formatter.formattedWithSeparator(value: String(rate)), symbolDest)
         }
     }
     

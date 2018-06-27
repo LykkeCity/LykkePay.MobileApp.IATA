@@ -193,10 +193,19 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
                 if let text = self.sumTextField.text, text.contains("."), string.elementsEqual(".") {
                     return false
                 }
+                
+                if let indexOf = newString.index(of: ".") {
+                    let valueString = newString.substring(from: indexOf)
+                    
+                    if valueString.characters.count > 6 {
+                        return false
+                    }
+                }
+                
                 if !(TextFieldUtil.validateMinValue(newString: newString, minValue:  0, range: range, replacementString: string, true)) {
                     return false
                 }
-                if !(TextFieldUtil.validateMaxValue(newString: newString, maxValue: self.state!.amount, range: range, replacementString: string)){
+                if let state = self.state, !(TextFieldUtil.validateMaxValue(newString: newString, maxValue: state.amount, range: range, replacementString: string)){
                     ViewUtils.shared.showToast(message: R.string.localizable.invoiceScreenErrorChangingAmount(), view: self.view)
                     return false
                 

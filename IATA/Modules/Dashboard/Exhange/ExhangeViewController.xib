@@ -214,16 +214,16 @@
                                     </connections>
                                 </textField>
                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="IOQ-DP-BEt">
-                                    <rect key="frame" x="16" y="53" width="92.5" height="16"/>
+                                    <rect key="frame" x="16" y="19" width="200" height="50"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HkV-Dj-3PJ">
-                                            <rect key="frame" x="0.0" y="0.0" width="24" height="16"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="0.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HkV-Dj-3PJ">
+                                            <rect key="frame" x="0.0" y="0.0" width="126" height="50"/>
                                             <fontDescription key="fontDescription" name="GothamPro-Bold" family="Gotham Pro" pointSize="14"/>
                                             <color key="textColor" red="0.066666666666666666" green="0.066666666666666666" blue="0.066666666666666666" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1$ = 1$" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TUE-ss-pv3">
-                                            <rect key="frame" x="48" y="0.0" width="44.5" height="16"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TUE-ss-pv3">
+                                            <rect key="frame" x="150" y="0.0" width="50" height="50"/>
                                             <fontDescription key="fontDescription" name="GothamPro-Light" family="Gotham Pro" pointSize="14"/>
                                             <color key="textColor" red="0.066666666666666666" green="0.066666666666666666" blue="0.066666666666666666" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -243,6 +243,7 @@
                                 <constraint firstItem="K8d-Qj-kBV" firstAttribute="top" secondItem="4fT-as-OGd" secondAttribute="top" id="ZRz-k1-KT7"/>
                                 <constraint firstItem="4fT-as-OGd" firstAttribute="leading" secondItem="unY-8m-5ym" secondAttribute="leading" constant="16" id="ioN-R2-9JT"/>
                                 <constraint firstItem="K8d-Qj-kBV" firstAttribute="bottom" secondItem="IOQ-DP-BEt" secondAttribute="bottom" id="jGp-4O-fdb"/>
+                                <constraint firstItem="K8d-Qj-kBV" firstAttribute="leading" secondItem="IOQ-DP-BEt" secondAttribute="trailing" constant="8" id="lBa-ln-4MK"/>
                                 <constraint firstAttribute="trailing" secondItem="K8d-Qj-kBV" secondAttribute="trailing" constant="16" id="zGl-Cm-uPs"/>
                             </constraints>
                         </view>
