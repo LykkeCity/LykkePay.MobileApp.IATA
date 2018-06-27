@@ -22,7 +22,7 @@ class DefaultWalletsState: DefaultBaseState<WalletsViewModel> {
 
     func prepareWalletsViewModels(from walletsModels: [WalletsModel]) -> [WalletsViewModel] {
         var walletsForPresent: [WalletsViewModel] = []
-        var walletsForTest = walletsModels
+        let walletsForTest = walletsModels
         let walletsDictionary = prepareWalletsDictionary(wallets: walletsForTest)
         
         for (key, _) in walletsDictionary {
@@ -51,11 +51,11 @@ class DefaultWalletsState: DefaultBaseState<WalletsViewModel> {
                 totaBalance += convertedBalance
             }
         }
-        
+        let totalBalanceString = Formatter.formattedWithSeparator(value: String(totaBalance))
         if let symbol = UserPreference.shared.getCurrentCurrency()?.symbol {
-            return String(totaBalance) + symbol
+            return totalBalanceString + " " + symbol
         } else {
-            return String(totaBalance)
+            return totalBalanceString
         }
     }
     

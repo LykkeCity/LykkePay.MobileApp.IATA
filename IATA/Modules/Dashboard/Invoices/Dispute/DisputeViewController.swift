@@ -41,6 +41,7 @@ class DisputeViewController: BaseViewController<DisputeModel, DefaultDisputeStat
     }
 
     override func loadData() {
+        super.loadData()
         self.state?.getDisputeListStringJson()
             .withSpinner(in: view)
             .then(execute: { [weak self] (result: String) -> Void in

@@ -14,12 +14,14 @@ class WalletsViewController: BaseViewController<WalletsViewModel, DefaultWallets
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = false
         loadData()
+        initTableViewTheme()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = false
         totalBalanceLabel.text = state?.getTotalBalance()
+        loadData()
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -39,9 +41,9 @@ class WalletsViewController: BaseViewController<WalletsViewModel, DefaultWallets
     }
 
     override func loadData() {
+        super.loadData()
         if let id = UserPreference.shared.getCurrentCurrency()?.id {
             self.state?.getWalletsStringJson(id: id)
-                .withSpinner(in: view)
                 .then(execute: { [weak self] (result: String) -> Void in
                     guard let strongSelf = self else {
                         return
@@ -68,5 +70,9 @@ class WalletsViewController: BaseViewController<WalletsViewModel, DefaultWallets
 
     override func registerCells() {
         tableView.register(WalletsTableViewCell.nib, forCellReuseIdentifier: WalletsTableViewCell.identifier)
+    }
+    
+    private func initTableViewTheme() {
+        self.tableView.separatorColor = Theme.shared.dotColor
     }
 }

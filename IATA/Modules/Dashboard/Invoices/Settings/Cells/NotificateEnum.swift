@@ -5,5 +5,4 @@ enum NotificateEnum: String {
     case disable
     case enable
     case destroy
-    case loadData
 }

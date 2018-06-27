@@ -14,8 +14,8 @@
         <array key="GothamProBold.ttf">
             <string>GothamPro-Bold</string>
         </array>
-        <array key="GothamProLight.ttf">
-            <string>GothamPro-Light</string>
+        <array key="GothamProReg.otf">
+            <string>GothamPro</string>
         </array>
     </customFonts>
     <objects>
@@ -42,13 +42,13 @@
                     <rect key="frame" x="20" y="94" width="302" height="40"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="TOTAL BALANCE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vx6-VC-GCi">
-                            <rect key="frame" x="0.0" y="1" width="79" height="10.333333333333334"/>
-                            <fontDescription key="fontDescription" name="GothamPro-Light" family="Gotham Pro" pointSize="9"/>
+                            <rect key="frame" x="0.0" y="1" width="79" height="8.3333333333333339"/>
+                            <fontDescription key="fontDescription" name="GothamPro" family="Gotham Pro" pointSize="9"/>
                             <color key="textColor" red="0.66274509803921566" green="0.68627450980392157" blue="0.72156862745098038" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="3611,931.56 $" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iQ7-ER-KQ3">
-                            <rect key="frame" x="0.0" y="23.333333333333329" width="159" height="21"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iQ7-ER-KQ3">
+                            <rect key="frame" x="0.0" y="21.333333333333329" width="0.0" height="21"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="qWS-Zq-yvb"/>
                             </constraints>
@@ -67,14 +67,14 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w3R-iF-Yq2">
-                    <rect key="frame" x="20" y="156" width="374" height="1"/>
+                    <rect key="frame" x="20" y="156" width="374" height="0.0"/>
                     <color key="backgroundColor" red="0.90196078431372551" green="0.90980392156862744" blue="0.91764705882352937" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="1" id="mo2-iv-igQ"/>
+                        <constraint firstAttribute="height" constant="0.29999999999999999" id="mo2-iv-igQ"/>
                     </constraints>
                 </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qt9-eY-MSu">
-                    <rect key="frame" x="20" y="165" width="374" height="571"/>
+                    <rect key="frame" x="20" y="156" width="374" height="580"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                     <connections>
@@ -90,7 +90,7 @@
                 <constraint firstItem="IhM-x8-v1X" firstAttribute="leading" secondItem="HEX-KF-biQ" secondAttribute="trailing" constant="8" id="9NG-wh-i8x"/>
                 <constraint firstItem="HEX-KF-biQ" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="FcJ-rf-XfX"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="IhM-x8-v1X" secondAttribute="trailing" constant="20" id="Num-Py-Pxy"/>
-                <constraint firstItem="qt9-eY-MSu" firstAttribute="top" secondItem="w3R-iF-Yq2" secondAttribute="bottom" constant="8" id="TZl-nz-7fS"/>
+                <constraint firstItem="qt9-eY-MSu" firstAttribute="top" secondItem="w3R-iF-Yq2" secondAttribute="bottom" id="TZl-nz-7fS"/>
                 <constraint firstItem="w3R-iF-Yq2" firstAttribute="top" secondItem="IhM-x8-v1X" secondAttribute="bottom" constant="8" id="UEx-pb-pCJ"/>
                 <constraint firstItem="HEX-KF-biQ" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="30" id="XsC-cP-Sc5"/>
                 <constraint firstItem="IhM-x8-v1X" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="aoQ-r0-yBt"/>

@@ -11,7 +11,8 @@ class InvoiceSettingsViewController: BaseNavController {
     private var viewModel =  InvoiceViewModel()
     private var isShown = false
     private var isEnabled = true
-   
+    var completion: (() -> Void) = {}
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -86,9 +87,7 @@ class InvoiceSettingsViewController: BaseNavController {
     @objc func clickDone() {
          NotificationCenter.default.post(name: NSNotification.Name(NotificateEnum.destroy.rawValue), object: nil)
         self.viewModel.state.clickDone()
-        self.dismiss(animated: true, completion: {
-            NotificationCenter.default.post(name: NSNotification.Name(NotificateEnum.loadData.rawValue), object: nil)
-        })
+        self.dismiss(animated: true, completion: completion)
     }
     
     @objc func disableDoneButton() {
