@@ -17,12 +17,14 @@ class WalletsViewController: BaseViewController<WalletsViewModel, DefaultWallets
         addRefreshControl()
         self.navigationController?.isNavigationBarHidden = false
         loadData()
+        initTableViewTheme()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = false
         totalBalanceLabel.text = state?.getTotalBalance()
+        loadData()
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -81,5 +83,9 @@ class WalletsViewController: BaseViewController<WalletsViewModel, DefaultWallets
 
     @objc func refresh() {
         loadData()
+    }
+
+    private func initTableViewTheme() {
+        self.tableView.separatorColor = Theme.shared.dotColor
     }
 }

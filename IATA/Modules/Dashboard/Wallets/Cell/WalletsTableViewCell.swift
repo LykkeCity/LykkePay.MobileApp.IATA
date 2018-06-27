@@ -39,10 +39,10 @@ class WalletsTableViewCell: UITableViewCell {
     private func prepareBaseAssetBalanceValue(from baseAssetBalance : Double, and assetId: String) -> String {
         if assetId.isUsd() {
             walletsNationalFlag = R.image.ic_usFlagMediumIcn.name
-            return String(baseAssetBalance) + " $"
+            return Formatter.formattedWithSeparator(value: String(baseAssetBalance))  + " $"
         } else if assetId.isEuro() {
-             walletsNationalFlag = R.image.ic_eurFlagMediumIcn.name
-            return String(baseAssetBalance) + " €"
+            walletsNationalFlag = R.image.ic_eurFlagMediumIcn.name
+            return Formatter.formattedWithSeparator(value: String(baseAssetBalance)) + " €"
         }
         return String(baseAssetBalance)
     }
