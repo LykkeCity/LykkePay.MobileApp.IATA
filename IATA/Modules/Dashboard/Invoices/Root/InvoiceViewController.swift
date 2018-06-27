@@ -202,10 +202,10 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
                     }
                 }
                 
-                if !(TextFieldUtil.validateMinValue(newString: newString, minValue:  0, range: range, replacementString: string, true)) {
+                if !(TextFieldUtil.validateMinValue(newString: newString, minValue:  0, range: range, replacementString: string, true, symbol: self.sumTextField.symbolValue)) {
                     return false
                 }
-                if let state = self.state, !(TextFieldUtil.validateMaxValue(newString: newString, maxValue: state.amount, range: range, replacementString: string)){
+                if let state = self.state, !(TextFieldUtil.validateMaxValue(newString: newString, maxValue: state.amount, range: range, replacementString: string, symbol: self.sumTextField.symbolValue)){
                     ViewUtils.shared.showToast(message: R.string.localizable.invoiceScreenErrorChangingAmount(), view: self.view)
                     return false
                 

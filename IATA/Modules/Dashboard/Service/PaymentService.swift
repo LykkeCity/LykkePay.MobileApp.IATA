@@ -25,5 +25,5 @@ protocol PaymentService {
     func postBaseAssets(baseAsset: String) -> Promise<Void>
 
     func makeExchange(model: ExchangeRequest) -> Promise<ExchangeModel>
-
+    func loadExchangeInfo(model: PreExchangeRequest) -> Promise<ExchangeModel>
 }

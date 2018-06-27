@@ -543,7 +543,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 75 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 79 localization keys.
     struct localizable {
       /// Base translation: %@ invoices selected
       /// 
@@ -585,6 +585,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: Base
       static let historyTransactionDetailsBlockHeight = Rswift.StringResource(key: "History.Transaction.Details.BlockHeight", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
+      /// Base translation: Buy %@
+      /// 
+      /// Locales: Base
+      static let exchangeSourceBuy = Rswift.StringResource(key: "Exchange.Source.Buy", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
       /// Base translation: Cancel
       /// 
       /// Locales: Base
@@ -645,6 +649,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: Base
       static let invoiceStatusItemsOverpaid = Rswift.StringResource(key: "Invoice.Status.Items.Overpaid", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
+      /// Base translation: EUR
+      /// 
+      /// Locales: Base
+      static let exchangeSourceEURO = Rswift.StringResource(key: "Exchange.Source.EURO", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
       /// Base translation: EXCHANGE
       /// 
       /// Locales: Base
@@ -773,6 +781,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: Base
       static let tabBarSettingsItemTitle = Rswift.StringResource(key: "TabBar.SettingsItem.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
+      /// Base translation: Sell %@
+      /// 
+      /// Locales: Base
+      static let exchangeSourceSell = Rswift.StringResource(key: "Exchange.Source.Sell", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
       /// Base translation: Settlement Period
       /// 
       /// Locales: Base
@@ -825,6 +837,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: Base
       static let historyTransactionDetailsTxHash = Rswift.StringResource(key: "History.Transaction.Details.TxHash", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
+      /// Base translation: USD
+      /// 
+      /// Locales: Base
+      static let exchangeSourceUSD = Rswift.StringResource(key: "Exchange.Source.USD", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
       /// Base translation: Unpaid invoices
       /// 
       /// Locales: Base
@@ -914,6 +930,13 @@ struct R: Rswift.Validatable {
       /// Locales: Base
       static func historyTransactionDetailsBlockHeight(_: Void = ()) -> String {
         return NSLocalizedString("History.Transaction.Details.BlockHeight", bundle: R.hostingBundle, value: "Block Height", comment: "")
+      }
+      
+      /// Base translation: Buy %@
+      /// 
+      /// Locales: Base
+      static func exchangeSourceBuy(_ value1: String) -> String {
+        return String(format: NSLocalizedString("Exchange.Source.Buy", bundle: R.hostingBundle, value: "Buy %@", comment: ""), locale: R.applicationLocale, value1)
       }
       
       /// Base translation: Cancel
@@ -1019,6 +1042,13 @@ struct R: Rswift.Validatable {
       /// Locales: Base
       static func invoiceStatusItemsOverpaid(_: Void = ()) -> String {
         return NSLocalizedString("Invoice.Status.Items.Overpaid", bundle: R.hostingBundle, value: "ERROR", comment: "")
+      }
+      
+      /// Base translation: EUR
+      /// 
+      /// Locales: Base
+      static func exchangeSourceEURO(_: Void = ()) -> String {
+        return NSLocalizedString("Exchange.Source.EURO", bundle: R.hostingBundle, value: "EUR", comment: "")
       }
       
       /// Base translation: EXCHANGE
@@ -1245,6 +1275,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("TabBar.SettingsItem.Title", bundle: R.hostingBundle, value: "SETTINGS", comment: "")
       }
       
+      /// Base translation: Sell %@
+      /// 
+      /// Locales: Base
+      static func exchangeSourceSell(_ value1: String) -> String {
+        return String(format: NSLocalizedString("Exchange.Source.Sell", bundle: R.hostingBundle, value: "Sell %@", comment: ""), locale: R.applicationLocale, value1)
+      }
+      
       /// Base translation: Settlement Period
       /// 
       /// Locales: Base
@@ -1334,6 +1371,13 @@ struct R: Rswift.Validatable {
       /// Locales: Base
       static func historyTransactionDetailsTxHash(_: Void = ()) -> String {
         return NSLocalizedString("History.Transaction.Details.TxHash", bundle: R.hostingBundle, value: "TxHash", comment: "")
+      }
+      
+      /// Base translation: USD
+      /// 
+      /// Locales: Base
+      static func exchangeSourceUSD(_: Void = ()) -> String {
+        return NSLocalizedString("Exchange.Source.USD", bundle: R.hostingBundle, value: "USD", comment: "")
       }
       
       /// Base translation: Unpaid invoices

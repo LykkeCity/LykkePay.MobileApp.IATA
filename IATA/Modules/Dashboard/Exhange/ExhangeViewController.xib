@@ -213,17 +213,17 @@
                                         <action selector="editChanged:" destination="-1" eventType="editingChanged" id="264-up-ED1"/>
                                     </connections>
                                 </textField>
-                                <stackView opaque="NO" contentMode="scaleToFill" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="IOQ-DP-BEt">
+                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="IOQ-DP-BEt">
                                     <rect key="frame" x="16" y="19" width="200" height="50"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="0.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HkV-Dj-3PJ">
-                                            <rect key="frame" x="0.0" y="0.0" width="126" height="50"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="0.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HkV-Dj-3PJ">
+                                            <rect key="frame" x="0.0" y="19" width="27.5" height="12.5"/>
                                             <fontDescription key="fontDescription" name="GothamPro-Bold" family="Gotham Pro" pointSize="14"/>
                                             <color key="textColor" red="0.066666666666666666" green="0.066666666666666666" blue="0.066666666666666666" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TUE-ss-pv3">
-                                            <rect key="frame" x="150" y="0.0" width="50" height="50"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TUE-ss-pv3">
+                                            <rect key="frame" x="51.5" y="0.0" width="148.5" height="50"/>
                                             <fontDescription key="fontDescription" name="GothamPro-Light" family="Gotham Pro" pointSize="14"/>
                                             <color key="textColor" red="0.066666666666666666" green="0.066666666666666666" blue="0.066666666666666666" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -236,6 +236,7 @@
                                 <constraint firstItem="IOQ-DP-BEt" firstAttribute="leading" secondItem="unY-8m-5ym" secondAttribute="leading" constant="16" id="9ce-d6-LJZ"/>
                                 <constraint firstItem="K8d-Qj-kBV" firstAttribute="leading" secondItem="4fT-as-OGd" secondAttribute="trailing" constant="8" id="CLz-VP-HYh"/>
                                 <constraint firstItem="xYK-ja-T4h" firstAttribute="leading" secondItem="unY-8m-5ym" secondAttribute="leading" id="E3i-8F-wZh"/>
+                                <constraint firstItem="K8d-Qj-kBV" firstAttribute="bottom" secondItem="IOQ-DP-BEt" secondAttribute="bottom" id="HJB-gz-h28"/>
                                 <constraint firstAttribute="height" constant="90" id="Pgc-i9-2sT"/>
                                 <constraint firstItem="xYK-ja-T4h" firstAttribute="top" secondItem="unY-8m-5ym" secondAttribute="top" id="VjB-Ww-Hlh"/>
                                 <constraint firstItem="K8d-Qj-kBV" firstAttribute="centerY" secondItem="unY-8m-5ym" secondAttribute="centerY" id="VkR-J4-Xmu"/>

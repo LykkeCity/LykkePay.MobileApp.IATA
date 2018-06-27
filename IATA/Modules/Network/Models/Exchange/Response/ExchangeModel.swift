@@ -36,6 +36,13 @@ class ExchangeModel: Mappable {
         sourceAmount <- map[PropertyKey.sourceAmount.rawValue]
         destAssetId <- map[PropertyKey.destAssetId.rawValue]
         rate <- map[PropertyKey.rate.rawValue]
+        if let assetId = sourceAssetId, assetId.isUsd() {
+            self.symbolDest = "€"
+            self.symbolSource = "$"
+        } else {
+            self.symbolDest = "$"
+            self.symbolSource = "€"
+        }
     }
 }
 

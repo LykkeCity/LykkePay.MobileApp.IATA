@@ -45,7 +45,6 @@
 		0A11323720DD85A000FE6853 /* NavigationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A11323620DD85A000FE6853 /* NavigationExtension.swift */; };
 		0A13F65D20C974EC001BA302 /* InvoiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A13F65B20C974EC001BA302 /* InvoiceViewController.swift */; };
 		0A13F65E20C974EC001BA302 /* InvoiceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A13F65C20C974EC001BA302 /* InvoiceViewController.xib */; };
-		0A16509720E282A300FC64B5 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A16509620E282A300FC64B5 /* R.generated.swift */; };
 		0A1A1C8520DD1D380037DC77 /* SwipeCollectionViewCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1A1C6D20DD1D2D0037DC77 /* SwipeCollectionViewCellDelegate.swift */; };
 		0A1A1C8620DD1D380037DC77 /* SwipeActionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1A1C6E20DD1D2D0037DC77 /* SwipeActionsView.swift */; };
 		0A1A1C8720DD1D380037DC77 /* SwipeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1A1C6F20DD1D2E0037DC77 /* SwipeCollectionViewCell.swift */; };
@@ -142,7 +141,6 @@
 		0A4CD13F20CD840700EF4A17 /* InvoiceHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4CD13D20CD840600EF4A17 /* InvoiceHeaderView.swift */; };
 		0A4CD14120CD894900EF4A17 /* FilterPreference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4CD14020CD894900EF4A17 /* FilterPreference.swift */; };
 		0A4CD14720CD901600EF4A17 /* OnSwitchStateChanged.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4CD14620CD901600EF4A17 /* OnSwitchStateChanged.swift */; };
-		0A4CD15120CE79F700EF4A17 /* LetterImageGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4CD15020CE79F700EF4A17 /* LetterImageGenerator.swift */; };
 		0A4CD15320CE7E7900EF4A17 /* VerticalAlignedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4CD15220CE7E7900EF4A17 /* VerticalAlignedLabel.swift */; };
 		0A4CD15820CEC96100EF4A17 /* DefaultPaymentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4CD15720CEC96100EF4A17 /* DefaultPaymentService.swift */; };
 		0A4CD15A20CEC96E00EF4A17 /* PaymentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4CD15920CEC96E00EF4A17 /* PaymentService.swift */; };
@@ -179,6 +177,8 @@
 		0ABED71E20DBDEF800AABCAD /* UIImageExtensition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABED71D20DBDEF800AABCAD /* UIImageExtensition.swift */; };
 		0ABED75720DC407000AABCAD /* NotificateEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABED75620DC407000AABCAD /* NotificateEnum.swift */; };
 		0AC0DA9920E1589800923C3F /* ExchangeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC0DA9820E1589800923C3F /* ExchangeViewModel.swift */; };
+		0AD3971A20E3E77A002C789B /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD3971920E3E77A002C789B /* R.generated.swift */; };
+		0AD3971C20E3E8BD002C789B /* PreExchangeRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD3971B20E3E8BD002C789B /* PreExchangeRequest.swift */; };
 		0ADA881A20DA530400A332F0 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADA881920DA530400A332F0 /* TextField.swift */; };
 		0ADA881D20DA774A00A332F0 /* NavPushingUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADA881C20DA774A00A332F0 /* NavPushingUtil.swift */; };
 		0AF1C3AB20C832DB00AFD286 /* SavePinRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF1C3AA20C832DB00AFD286 /* SavePinRequest.swift */; };
@@ -283,7 +283,6 @@
 		0A11323620DD85A000FE6853 /* NavigationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationExtension.swift; sourceTree = "<group>"; };
 		0A13F65B20C974EC001BA302 /* InvoiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvoiceViewController.swift; sourceTree = "<group>"; };
 		0A13F65C20C974EC001BA302 /* InvoiceViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InvoiceViewController.xib; sourceTree = "<group>"; };
-		0A16509620E282A300FC64B5 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		0A1A1C6D20DD1D2D0037DC77 /* SwipeCollectionViewCellDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipeCollectionViewCellDelegate.swift; sourceTree = "<group>"; };
 		0A1A1C6E20DD1D2D0037DC77 /* SwipeActionsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipeActionsView.swift; sourceTree = "<group>"; };
 		0A1A1C6F20DD1D2E0037DC77 /* SwipeCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipeCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -381,7 +380,6 @@
 		0A4CD13D20CD840600EF4A17 /* InvoiceHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InvoiceHeaderView.swift; path = IATA/Modules/Invoices/Settings/Cells/ViewModels/InvoiceHeaderView.swift; sourceTree = SOURCE_ROOT; };
 		0A4CD14020CD894900EF4A17 /* FilterPreference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterPreference.swift; sourceTree = "<group>"; };
 		0A4CD14620CD901600EF4A17 /* OnSwitchStateChanged.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnSwitchStateChanged.swift; sourceTree = "<group>"; };
-		0A4CD15020CE79F700EF4A17 /* LetterImageGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetterImageGenerator.swift; sourceTree = "<group>"; };
 		0A4CD15220CE7E7900EF4A17 /* VerticalAlignedLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalAlignedLabel.swift; sourceTree = "<group>"; };
 		0A4CD15720CEC96100EF4A17 /* DefaultPaymentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultPaymentService.swift; sourceTree = "<group>"; };
 		0A4CD15920CEC96E00EF4A17 /* PaymentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentService.swift; sourceTree = "<group>"; };
@@ -418,6 +416,8 @@
 		0ABED71D20DBDEF800AABCAD /* UIImageExtensition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtensition.swift; sourceTree = "<group>"; };
 		0ABED75620DC407000AABCAD /* NotificateEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificateEnum.swift; sourceTree = "<group>"; };
 		0AC0DA9820E1589800923C3F /* ExchangeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeViewModel.swift; sourceTree = "<group>"; };
+		0AD3971920E3E77A002C789B /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
+		0AD3971B20E3E8BD002C789B /* PreExchangeRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreExchangeRequest.swift; sourceTree = "<group>"; };
 		0ADA881920DA530400A332F0 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		0ADA881C20DA774A00A332F0 /* NavPushingUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavPushingUtil.swift; sourceTree = "<group>"; };
 		0AF1C3AA20C832DB00AFD286 /* SavePinRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavePinRequest.swift; sourceTree = "<group>"; };
@@ -898,7 +898,6 @@
 				0A6DB5D820C5571E00BC1127 /* Extensions */,
 				0A37EF5C20C587C600201907 /* Promise+Spinner.swift */,
 				0A37EF6B20C58BA000201907 /* Utils.swift */,
-				0A4CD15020CE79F700EF4A17 /* LetterImageGenerator.swift */,
 				0A4CD16620CF135300EF4A17 /* TextFieldUtils.swift */,
 				0A349FF320D8F98D00D0A1C2 /* DateUtils.swift */,
 				0A11323620DD85A000FE6853 /* NavigationExtension.swift */,
@@ -948,7 +947,7 @@
 			isa = PBXGroup;
 			children = (
 				0A37EFA220C6DC5100201907 /* Localizable.strings */,
-				0A16509620E282A300FC64B5 /* R.generated.swift */,
+				0AD3971920E3E77A002C789B /* R.generated.swift */,
 			);
 			path = Localizable;
 			sourceTree = "<group>";
@@ -1383,6 +1382,7 @@
 			isa = PBXGroup;
 			children = (
 				D7BC8CEA20E10ECD000A708B /* ExchangeRequest.swift */,
+				0AD3971B20E3E8BD002C789B /* PreExchangeRequest.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -1873,6 +1873,7 @@
 				0A837C2B20DE985700199759 /* InvoicePaymentRangeModel.swift in Sources */,
 				0A0B11C220D2E35300021E2D /* InvoiceSettingsTableViewCell.swift in Sources */,
 				0A0B11B220D2A3C900021E2D /* BaseNavController.swift in Sources */,
+				0AD3971C20E3E8BD002C789B /* PreExchangeRequest.swift in Sources */,
 				0A1A1C8C20DD1D380037DC77 /* SwipeExpanding.swift in Sources */,
 				0A837C3B20DE9C1000199759 /* SettingsMerchantsModel.swift in Sources */,
 				0A37EF6A20C58B6B00201907 /* Theme.swift in Sources */,
@@ -1884,6 +1885,7 @@
 				0A37EFE420C7D67F00201907 /* PinViewController.swift in Sources */,
 				0A37EFDD20C7D65100201907 /* PasswordInputView.swift in Sources */,
 				D7BC8CE720E10DD6000A708B /* DefaultExchangeState.swift in Sources */,
+				0AD3971A20E3E77A002C789B /* R.generated.swift in Sources */,
 				0A1AF41620CADB7B0009595C /* BTTableView.swift in Sources */,
 				0A37EF7020C59C6F00201907 /* SingInRequest.swift in Sources */,
 				0A37EFF920C8044200201907 /* ChangePasswordViewController.swift in Sources */,
@@ -1927,7 +1929,6 @@
 				0A837C2A20DE985700199759 /* InvoiceFiltersModel.swift in Sources */,
 				0A37EFEF20C7FB8A00201907 /* PinViewState.swift in Sources */,
 				0A837C3E20DE9CCD00199759 /* SettingsViewModel.swift in Sources */,
-				0A4CD15120CE79F700EF4A17 /* LetterImageGenerator.swift in Sources */,
 				0AF611A720CA72DA00957348 /* InvoiceSettingsViewController.swift in Sources */,
 				0A37EFFF20C808FB00201907 /* DefaultChangePasswordViewState.swift in Sources */,
 				0A4CD14120CD894900EF4A17 /* FilterPreference.swift in Sources */,
@@ -1950,7 +1951,6 @@
 				0A37EFEC20C7EE0200201907 /* PinValidationResponse.swift in Sources */,
 				0A9364C220DA371300634406 /* PropertyKeyTransactionTitle.swift in Sources */,
 				0A0B119320D279C000021E2D /* LocalStorage.swift in Sources */,
-				0A16509720E282A300FC64B5 /* R.generated.swift in Sources */,
 				0A1A1C9020DD1D380037DC77 /* SwipeAction.swift in Sources */,
 				0A0B11BF20D2C7EC00021E2D /* BaseInvoiceViewModelItem.swift in Sources */,
 				0A37EFF120C7FBB300201907 /* BaseViewState.swift in Sources */,
