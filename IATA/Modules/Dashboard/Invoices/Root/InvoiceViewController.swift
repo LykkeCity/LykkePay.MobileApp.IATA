@@ -44,12 +44,8 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
             return
         }
         let message = R.string.localizable.invoiceScreenPaymentMessage(symbol + String(amount))
-        let uiAlert = UIAlertController(title: R.string.localizable.invoiceScreenPleaseConfirmPayment(), message: message, preferredStyle: UIAlertControllerStyle.alert)
-        self.present(uiAlert, animated: true, completion: nil)
-        
-        uiAlert.addAction(UIAlertAction(title: R.string.localizable.commonNavBarCancel(), style: .default, handler: nil))
-        uiAlert.addAction(UIAlertAction(title: R.string.localizable.invoiceScreenPay(), style: .default, handler: makePayment))
-        
+        generatePaymentAlert(message: message, handler: makePayment)
+
     }
     
     @IBAction func sumChanged(_ sender: Any) {

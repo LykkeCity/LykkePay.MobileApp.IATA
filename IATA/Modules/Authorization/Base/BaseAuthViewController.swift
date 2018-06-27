@@ -9,16 +9,7 @@ class BaseAuthViewController: UIViewController, UITextFieldDelegate {
     }
     
     func showErrorAlert(error : Error) {
-        var message = ""
-        if (error is IATAOpError) {
-            message = (error as! IATAOpError).localizedDescription
-        } else {
-            message = error.localizedDescription
-        }
-        let uiAlert = UIAlertController(title: R.string.localizable.commonTitleError(), message: message, preferredStyle: UIAlertControllerStyle.alert)
-            self.present(uiAlert, animated: true, completion: nil)
-            
-            uiAlert.addAction(UIAlertAction(title: R.string.localizable.commonPositiveButtonOk(), style: .default, handler: nil))
+        generateErrorAlert(error: error)
     }
     
     @objc func appMovedToBackground() {
