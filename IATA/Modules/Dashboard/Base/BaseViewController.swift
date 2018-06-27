@@ -76,7 +76,7 @@ class BaseViewController<T: Mappable, S: DefaultBaseState<T>>:
     }
     
     private func addRefreshControl() {
-        refreshControl.attributedTitle = NSAttributedString(string: "loading...")
+        refreshControl.attributedTitle = NSAttributedString(string: "Loading...")
         refreshControl.addTarget(self, action: #selector(self.refresh), for: UIControlEvents.valueChanged)
         getTableView().addSubview(refreshControl)
     }
