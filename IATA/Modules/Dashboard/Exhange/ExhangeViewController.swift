@@ -221,6 +221,7 @@ class ExhangeViewController: BaseNavController {
     
     private func handleError(error : Error) {
         self.showErrorAlert(error: error)
+        self.loadExchangeInfo()
     }
     
     private func initAsset(model: ExchangeModel?) {

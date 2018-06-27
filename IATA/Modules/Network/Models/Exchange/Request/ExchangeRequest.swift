@@ -11,9 +11,9 @@ class ExchangeRequest:  Mappable {
     }
 
     var sourceAssetId: String?
-    var sourceAmount: Double?
+    var sourceAmount: NSDecimalNumber?
     var destAssetId: String?
-    var expectedRate: Double?
+    var expectedRate: NSDecimalNumber?
 
     internal required init() {
     }

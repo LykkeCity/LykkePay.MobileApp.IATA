@@ -24,11 +24,17 @@ class DefaultExchangeState: DefaultBaseState<ExchangeViewModel> {
     func makeExchange(sourceAmount: String?) -> Promise<ExchangeModel> {
         let model = ExchangeRequest()
         model.destAssetId = self.exchangeModel.destAssetId
-        if let valueString = sourceAmount {
-            model.sourceAmount = Double(valueString)
+        if let valueString = sourceAmount, let amount = Double(valueString) {
+            let decimal = NSDecimalNumber(value: amount)
+            model.sourceAmount = decimal.rounded(places: 6)
             self.exchangeModel.sourceAmount = 0
         }
-        model.expectedRate = self.exchangeModel.rate
+        
+        if let value = self.exchangeModel.rate {
+            let decimal = NSDecimalNumber(value: value)
+            model.expectedRate = decimal.rounded(places: 6)
+        }
+        
         model.sourceAssetId = self.exchangeModel.sourceAssetId
         return self.service.makeExchange(model: model)
     }
