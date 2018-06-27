@@ -1,4 +1,5 @@
 import UIKit
+import Foundation
 
 class DisputInvoiceViewController: BaseNavController {
 
@@ -58,9 +59,9 @@ class DisputInvoiceViewController: BaseNavController {
     
     
     @IBAction func editingChanged(_ sender: Any) {
-        if let isEmpty = self.reasonTextField.text?.isEmpty {
-            self.setEnabled(isEnabled: !isEmpty)
-        }
+        if let text = self.reasonTextField.text {
+            self.setEnabled(isEnabled: !text.removingWhitespaces().isEmpty)
+        } 
     }
     
     @IBAction func startEditing(_ sender: UITextField!) {
