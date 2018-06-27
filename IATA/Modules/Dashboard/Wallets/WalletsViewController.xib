@@ -21,7 +21,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WalletsViewController" customModule="IATA" customModuleProvider="target">
             <connections>
+                <outlet property="logoImageView" destination="IhM-x8-v1X" id="mb5-4m-cJg"/>
                 <outlet property="tableView" destination="qt9-eY-MSu" id="HBa-bf-gVv"/>
+                <outlet property="topSeparatorView" destination="w3R-iF-Yq2" id="TQD-TM-Dwk"/>
+                <outlet property="topView" destination="HEX-KF-biQ" id="qTB-36-iAL"/>
                 <outlet property="totalBalanceLabel" destination="iQ7-ER-KQ3" id="lgk-2v-F51"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="7FD-is-FuJ"/>
             </connections>

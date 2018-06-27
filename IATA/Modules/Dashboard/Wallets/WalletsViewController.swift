@@ -8,8 +8,13 @@ class WalletsViewController: BaseViewController<WalletsViewModel, DefaultWallets
     
     @IBOutlet weak var tableView: UITableView!
 
-    private let refreshControl = UIRefreshControl()
+    @IBOutlet weak var topView: UIView!
 
+    @IBOutlet weak var logoImageView: UIImageView!
+    
+    @IBOutlet weak var topSeparatorView: UIView!
+
+    private let refreshControl = UIRefreshControl()
 
     override func viewDidLoad() {
         state = DefaultWalletsState()
@@ -17,7 +22,7 @@ class WalletsViewController: BaseViewController<WalletsViewModel, DefaultWallets
         addRefreshControl()
         self.navigationController?.isNavigationBarHidden = false
         loadData()
-        initTableViewTheme()
+        initViewTheme()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -61,6 +66,7 @@ class WalletsViewController: BaseViewController<WalletsViewModel, DefaultWallets
         self.totalBalanceLabel.text = state?.getTotalBalance()
         self.refreshControl.endRefreshing()
         self.tableView.reloadData()
+        setVisibleViewAfterLoadingData()
     }
 
     override func getTitle() -> String? {
@@ -76,6 +82,7 @@ class WalletsViewController: BaseViewController<WalletsViewModel, DefaultWallets
     }
 
     private func addRefreshControl() {
+        //move string "loading" to localizable strings file
         refreshControl.attributedTitle = NSAttributedString(string: "loading...")
         refreshControl.addTarget(self, action: #selector(self.refresh), for: UIControlEvents.valueChanged)
         tableView.addSubview(refreshControl)
@@ -85,7 +92,16 @@ class WalletsViewController: BaseViewController<WalletsViewModel, DefaultWallets
         loadData()
     }
 
-    private func initTableViewTheme() {
+    private func initViewTheme() {
+        self.topView.isHidden = true
+        self.logoImageView.isHidden = true
+        self.topSeparatorView.isHidden = true
         self.tableView.separatorColor = Theme.shared.dotColor
+    }
+
+    private func setVisibleViewAfterLoadingData() {
+        self.topView.isHidden = false
+        self.logoImageView.isHidden = false
+        self.topSeparatorView.isHidden = false
     }
 }
