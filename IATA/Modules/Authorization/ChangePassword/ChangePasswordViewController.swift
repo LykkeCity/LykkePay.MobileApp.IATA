@@ -25,6 +25,12 @@ class ChangePasswordViewController: BaseAuthViewController, UINavigationControll
         self.oldPasswordField?.delegate = self
         self.newPasswordField?.delegate = self
         self.newPasswordAgainField?.delegate = self
+        
+        if #available(iOS 10.0, *) {
+            self.oldPasswordField?.textContentType = UITextContentType.addressCity
+            self.newPasswordField?.textContentType = UITextContentType.addressCity
+            self.newPasswordField?.textContentType = UITextContentType.addressCity
+        }
         self.setNeedsStatusBarAppearanceUpdate()
         self.initNavBar()
     }

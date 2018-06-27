@@ -46,6 +46,9 @@ class SignInViewController: BaseAuthViewController, UINavigationControllerDelega
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
+        if #available(iOS 10.0, *) {
+            self.passwordField?.textContentType = UITextContentType.addressCity
+        }
         self.initNavBar()
     }
     
