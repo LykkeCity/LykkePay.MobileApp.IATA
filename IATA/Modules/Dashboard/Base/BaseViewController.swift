@@ -62,6 +62,10 @@ class BaseViewController<T: Mappable, S: DefaultBaseState<T>>:
     internal func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 0
     }
+
+    internal func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return UIView()
+    }
     
     @objc func refresh() {
         loadData()

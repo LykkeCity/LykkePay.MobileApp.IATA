@@ -25,20 +25,30 @@ class WalletsViewController: BaseViewController<WalletsViewModel, DefaultWallets
         initViewTheme()
         initTableViewTheme()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = false
         totalBalanceLabel.text = state?.getTotalBalance()
         loadData()
     }
-    
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let count = self.state?.items.count {
             return count
         } else {
             return 0
         }
+    }
+
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 100
+    }
+
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: CustomHeaderView.identifier) as! CustomHeaderView
+        headerView.balanceLabel.text = "Test"
+        return headerView
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -82,6 +92,8 @@ class WalletsViewController: BaseViewController<WalletsViewModel, DefaultWallets
     }
 
     override func registerCells() {
+        let headerNib = CustomHeaderView.nib
+        tableView.register(headerNib, forHeaderFooterViewReuseIdentifier: CustomHeaderView.identifier)
         tableView.register(WalletsTableViewCell.nib, forCellReuseIdentifier: WalletsTableViewCell.identifier)
     }
 

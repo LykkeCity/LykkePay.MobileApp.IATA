@@ -42,7 +42,7 @@
                         <constraint firstAttribute="height" constant="64" id="mTC-SX-lGw"/>
                     </constraints>
                 </imageView>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HEX-KF-biQ">
+                <view contentMode="scaleToFill" restorationIdentifier="TopView" translatesAutoresizingMaskIntoConstraints="NO" id="HEX-KF-biQ">
                     <rect key="frame" x="20" y="94" width="302" height="40"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="TOTAL BALANCE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vx6-VC-GCi">
@@ -87,7 +87,7 @@
                     </connections>
                 </tableView>
                 <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g47-FS-dNV">
-                    <rect key="frame" x="131" y="335.66666666666669" width="152" height="129"/>
+                    <rect key="frame" x="131.33333333333334" y="336" width="152.00000000000003" height="129"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Hth-rV-8iY">
                             <rect key="frame" x="0.0" y="0.0" width="152" height="129"/>
