@@ -22,15 +22,8 @@ class HistoryTableViewCell: UITableViewCell {
     }
     
     internal func initCell(model: HistoryModel) {
-        if let amount = model.amount, let symbol = model.symbol, let amoutValue = Int(amount) {
-            if amoutValue > 0  {
-                self.transactionSum.text = "+" + amount + symbol
-                self.transactionSum.textColor = Theme.shared.greenColor
-            } else {
-                self.transactionSum.text = "-" + amount + symbol
-                self.transactionSum.textColor = Theme.shared.redErrorStatusColor
-            }
-        }
+
+        setAmount(amount: model.amount, symbol: model.symbol)
         if let name = model.title {
             self.titleLable.text = name
         }
@@ -44,6 +37,19 @@ class HistoryTableViewCell: UITableViewCell {
         
         if let date = model.timeStamp {
             self.infoLabel.text = date
+        }
+    }
+
+    private func setAmount(amount: Int?, symbol: String?) {
+        guard let amount = amount, let symbol = symbol else {
+            return
+        }
+        if amount > 0  {
+            self.transactionSum.text = "+" + String(amount) + symbol
+            self.transactionSum.textColor = Theme.shared.greenColor
+        } else {
+            self.transactionSum.text = "-" + String(amount) + symbol
+            self.transactionSum.textColor = Theme.shared.redErrorStatusColor
         }
     }
     
