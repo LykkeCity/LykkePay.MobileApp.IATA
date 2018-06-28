@@ -12,10 +12,5 @@ class CurrencyUiTextField: DesignableUITextField {
         super.init(coder: aDecoder)
     }
     
-    override func initDecimal(value: String) -> String? {
-        if let text = self.text, let last = text.characters.last, String(last).elementsEqual(".") {
-            return  Formatter.formattedWithSeparator(value: value) + "."
-        }
-        return Formatter.formattedWithSeparator(value: value)
-    }
+    
 }

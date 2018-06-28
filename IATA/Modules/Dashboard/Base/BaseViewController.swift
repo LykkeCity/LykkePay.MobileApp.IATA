@@ -12,7 +12,7 @@ class BaseViewController<T: Mappable, S: DefaultBaseState<T>>:
     let refreshControl = UIRefreshControl()
    
     override func setUp() {
-        addRefreshControl()
+        self.addRefreshControl()
         self.registerCells()
         self.getTableView().delegate = self
         self.getTableView().dataSource = self
@@ -76,7 +76,7 @@ class BaseViewController<T: Mappable, S: DefaultBaseState<T>>:
     }
     
     private func addRefreshControl() {
-        refreshControl.attributedTitle = NSAttributedString(string: "Loading...")
+        refreshControl.attributedTitle = NSAttributedString(string:  R.string.localizable.commonLoadingMessage())
         refreshControl.addTarget(self, action: #selector(self.refresh), for: UIControlEvents.valueChanged)
         getTableView().addSubview(refreshControl)
     }

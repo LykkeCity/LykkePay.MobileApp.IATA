@@ -57,8 +57,7 @@ open class InvoiceView: UIView {
     internal func initView(model: InvoiceModel) {
         self.name.text = model.merchantName?.uppercased()
         if let amount = model.amount, let symbol = model.symbol {
-            let decimal = NSDecimalNumber(value: amount)
-            self.price.text = Formatter.formattedWithSeparator(value: decimal.rounded(places: 6).stringValue) + " " + symbol
+            self.price.text = Formatter.formattedWithSeparator(valueDouble: amount) + " " + symbol
         }
         self.billingCategory.text = model.billingCategory?.uppercased()
         if let number = model.number {

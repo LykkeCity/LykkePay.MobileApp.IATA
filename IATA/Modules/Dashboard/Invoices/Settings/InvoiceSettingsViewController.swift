@@ -16,6 +16,7 @@ class InvoiceSettingsViewController: BaseNavController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.tableView?.dataSource = viewModel
         self.tableView?.delegate = viewModel
         
@@ -55,6 +56,10 @@ class InvoiceSettingsViewController: BaseNavController {
     
     override func getTitleView() -> UIView {
         return Theme.shared.getTitle(title: self.getTitle(), color: Theme.shared.navBarTitle)
+    }
+    
+    override func getTableView() -> UITableView {
+        return self.tableView
     }
     
     @IBAction func clickCancel(_ sender: Any) {
@@ -162,9 +167,9 @@ class InvoiceSettingsViewController: BaseNavController {
         self.tableView.register(InvoiceHeaderView.nib, forHeaderFooterViewReuseIdentifier: InvoiceHeaderView.identifier)
     }
     
-    private func loadData() {
+    @objc func loadData() {
         self.viewModel.state.getFilters()
-            .withSpinner(in: view)
+            .withSpinner(in: self.view)
             .then(execute: { [weak self] (result: FiltersInvoiceList) -> Void in
                 guard let strongSelf = self else {
                     return

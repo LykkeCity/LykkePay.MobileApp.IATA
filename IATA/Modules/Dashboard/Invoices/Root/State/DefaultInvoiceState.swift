@@ -50,7 +50,7 @@ class DefaultInvoiceState: DefaultBaseState<InvoiceModel> {
     func makePayment(items: [String]?, amount: String?) -> Promise<BaseMappable> {
         let model = PaymentRequest()
         model?.invoicesIds = items
-        if let amountValue = amount, let amountDouble = Double(amountValue) {
+        if let amountValue = amount, let amountDouble = Formatter.formattedToDouble(valueString: amountValue) {
             let decimal = NSDecimalNumber(value: amountDouble)
             model?.amountInBaseAsset = decimal.rounded(places: 6)
         }

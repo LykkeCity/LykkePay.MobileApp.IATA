@@ -68,8 +68,8 @@ extension InvoiceViewController {
     
     private func saveAmount(amount: Double?) {
         if let amountValue = amount, self.downViewHeightConstraint.constant != 0 {
-            self.state?.amount = Double(amountValue)
-            self.sumTextField.text = Formatter.formattedWithSeparator(value: String(amountValue), canBeZero: true)
+            self.state?.amount = amountValue
+            self.sumTextField.text = Formatter.formattedWithSeparator(valueDouble: amountValue)
         }
         self.sumChanged(self.sumTextField)
         self.loadView(isShowLoading: true, isHiddenSelected: false)

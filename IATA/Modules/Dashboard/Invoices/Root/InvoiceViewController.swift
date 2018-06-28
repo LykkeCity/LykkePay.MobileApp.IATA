@@ -26,8 +26,9 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
             return
         }
        
-        let amountConverted = Formatter.formattedWithSeparator(value: amount, canBeZero: true)
+        let amountConverted = Formatter.formattedWithSeparator(value: amount)
         let message = R.string.localizable.invoiceScreenPaymentMessage(symbol + amountConverted)
+        self.view.endEditing(true)
         generatePaymentAlert(message: message, handler: makePayment)
         
     }
@@ -195,11 +196,11 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
             if let text = self.sumTextField.getOldText(), let textNsString = text as? NSString {
             
                 let newString = textNsString.replacingCharacters(in: range, with: string)
-                if let text = self.sumTextField.text, text.contains("."), string.elementsEqual(".") {
+                if let text = self.sumTextField.text, let separator = NSLocale.current.decimalSeparator, text.contains(separator), string.elementsEqual(separator) {
                     return false
                 }
                 
-                if let indexOf = newString.index(of: ".") {
+                if let separator = NSLocale.current.decimalSeparator, let indexOf = newString.index(of: Character(separator)) {
                     let valueString = newString.substring(from: indexOf)
                     
                     if valueString.characters.count > 6 {
@@ -275,7 +276,6 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
             if let model = model {
                 self.refreshControl.beginRefreshing()
                 self.state?.cancelDisputInvoice(model: model)
-                    //.withSpinner(in: self.view)
                     .then(execute: { [weak self] (result: Void) -> Void in
                         guard let strongSelf = self else {
                             return

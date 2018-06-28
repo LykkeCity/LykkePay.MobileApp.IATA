@@ -15,6 +15,7 @@ class ExhangeViewController: BaseNavController {
     @IBOutlet weak var sellAllView: UIView!
     @IBOutlet weak var sumAllLabel: UiStatusView!
     
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var rateExchange: UILabel!
     @IBOutlet weak var exchangeSumResult: UILabel!
     @IBOutlet weak var topView: UIView!
@@ -22,6 +23,8 @@ class ExhangeViewController: BaseNavController {
     @IBOutlet weak var sumTextField: CurrencyUiTextField!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
+    
+    var refresh = UIRefreshControl()
     public lazy var state = DefaultExchangeState()
 
     @IBAction func clickChangeBaseAssert(_ sender: Any) {
@@ -33,7 +36,7 @@ class ExhangeViewController: BaseNavController {
         if let text = self.sumTextField.text, let isEmpty = self.sumTextField.text?.isEmpty, isEmpty || (Int(text) == 0) {
             setEnabledExchange(isEnabled: false)
         } else if let text = self.sumTextField.text {
-            if let last = text.characters.last, !String(last).elementsEqual(".") {
+            if let last = text.characters.last, let separator = NSLocale.current.decimalSeparator, !String(last).elementsEqual(separator) {
                 self.initAmounts(model: nil)
             }
             setEnabledExchange(isEnabled: true)
@@ -43,6 +46,7 @@ class ExhangeViewController: BaseNavController {
     @IBAction func clickConfirm(_ sender: Any) {
         let viewController = PinViewController()
         viewController.isValidationTransaction = true
+        viewController.messageTouch = R.string.localizable.exchangeSourcePayConfirmation()
         viewController.completion = {
             self.makeExchange()
         }
@@ -59,17 +63,30 @@ class ExhangeViewController: BaseNavController {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.sellAll))
         self.sellAllView.addGestureRecognizer(tap)
         
-        self.sumTextField.delegate = self
-        self.sumTextField.addObservers()
-        self.sumTextField.symbolValue = UserPreference.shared.getCurrentCurrency()?.symbol
-        self.editChanged(self.sumTextField)
+        self.initSumTextField()
         self.initKeyboardEvents()
         self.initAllSum()
+        
+        self.initScrollView()
+        self.loadData()
+    }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent
+    }
+    
+    override func getTitle() -> String? {
+        return tabBarItem.title?.capitalizingFirstLetter()
+    }
+    
+    @objc func didPullToRefresh() {
         self.loadData()
     }
     
     @objc func sellAll() {
-        self.sumTextField.text = sumAllLabel.text
+        self.sumTextField.text = Formatter.formattedWithSeparator(valueDouble: self.state?.maxValue)
         self.editChanged(self.sumTextField)
     }
     
@@ -91,32 +108,25 @@ class ExhangeViewController: BaseNavController {
     @objc func dismissKeyboard() {
         view.endEditing(true)
     }
+  
     
-    override func getTitle() -> String? {
-        return tabBarItem.title?.capitalizingFirstLetter()
-    }
-    
-    
+    //todo rewrite this method or separate
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if(textField == self.sumTextField) {
             
             if let text = self.sumTextField.getOldText(), let textNsString = text as? NSString {
                 
                 let newString = textNsString.replacingCharacters(in: range, with: string)
-                if let text = self.sumTextField.text, text.contains("."), string.elementsEqual(".") {
+                if let text = self.sumTextField.text, let separator = NSLocale.current.decimalSeparator, text.contains(separator), string.elementsEqual(separator) {
                     return false
                 }
                 
-                if let indexOf = newString.index(of: ".") {
+                if let separator = NSLocale.current.decimalSeparator, let indexOf = newString.index(of: Character(separator)) {
                     let valueString = newString.substring(from: indexOf)
                     
                     if valueString.characters.count > 6 {
                         return false
                     }
-                }
-                
-                if !(TextFieldUtil.validateMinValue(newString: newString, minValue:  0, range: range, replacementString: string, true, symbol: self.sumTextField.symbolValue)) {
-                    return false
                 }
                 
                 if let maxValue = self.state?.maxValue, !(TextFieldUtil.validateMaxValue(newString: newString, maxValue: maxValue, range: range, replacementString: string, symbol: self.sumTextField.symbolValue)){
@@ -130,6 +140,14 @@ class ExhangeViewController: BaseNavController {
         return true
     }
     
+    private func initScrollView() {
+        self.scrollView.showsVerticalScrollIndicator = false
+        self.scrollView.alwaysBounceVertical = true
+        self.scrollView.bounces  = true
+        self.refresh.attributedTitle = NSAttributedString(string: R.string.localizable.commonLoadingMessage())
+        self.refresh.addTarget(self, action: #selector(didPullToRefresh), for: .valueChanged)
+        self.scrollView.addSubview(refresh)
+    }
     
     private func initTheme() {
         self.topView.layer.borderWidth = 0.5
@@ -166,9 +184,9 @@ class ExhangeViewController: BaseNavController {
         view.addGestureRecognizer(tap)
     }
     
-    private func loadData() {
+    @objc private func loadData() {
+         self.beginRefresh()
          self.state?.loadStartData()?
-            .withSpinner(in: view)
             .then(execute: { [weak self] (result: String) -> Void in
                 guard let strongSelf = self else {
                     return
@@ -188,10 +206,9 @@ class ExhangeViewController: BaseNavController {
     }
     
     private func loadExchangeInfo() {
-        self.sumTextField.text = Formatter.formattedWithSeparator(value: "0", canBeZero: true)
+        self.sumTextField.text = Formatter.formattedWithSeparator(valueDouble: 0.0)
         self.setEnabledExchange(isEnabled: false)
         self.state?.loadExchangeData(sourceAmount: self.sumTextField.text)
-            .withSpinner(in: view)
             .then(execute: { [weak self] (result: ExchangeModel) -> Void in
                 guard let strongSelf = self else {
                     return
@@ -201,24 +218,36 @@ class ExhangeViewController: BaseNavController {
                 guard let strongSelf = self else {
                     return
                 }
-                strongSelf.handleError(error: error)
+                strongSelf.handleErrorExchangeInfo(error: error)
             })
     }
     
     private func makeExchange() {
+        self.beginRefresh()
         self.state?.makeExchange(sourceAmount: self.sumTextField.text)
-            .withSpinner(in: view)
             .then(execute: { [weak self] (result: ExchangeModel) -> Void in
                 guard let strongSelf = self else {
                     return
                 }
-                //strongSelf.initAsset()
+                strongSelf.loadData()
             }).catch(execute: { [weak self] error -> Void in
                 guard let strongSelf = self else {
                     return
                 }
                 strongSelf.handleError(error: error)
             })
+    }
+    
+    private func beginRefresh() {
+        var offset = self.scrollView.contentOffset
+        offset.y = -81
+        self.refresh.endRefreshing()
+        self.refresh.beginRefreshing()
+        self.scrollView.contentOffset = offset
+    }
+    
+    private func handleErrorExchangeInfo(error: Error) {
+         self.showErrorAlert(error: error)
     }
     
     private func handleError(error : Error) {
@@ -239,6 +268,7 @@ class ExhangeViewController: BaseNavController {
                 }
             }
         }
+        self.refresh.endRefreshing()
     }
     
     private func initAmounts(model: ExchangeModel?) {
@@ -247,7 +277,7 @@ class ExhangeViewController: BaseNavController {
         }
         var sourceAmount: Double = 0
         if let sourceAmountString = self.sumTextField.text,
-           let souceAmountDouble = Double(sourceAmountString) {
+           let souceAmountDouble = Formatter.formattedToDouble(valueString:sourceAmountString) {
             sourceAmount = souceAmountDouble
         }
         
@@ -255,15 +285,15 @@ class ExhangeViewController: BaseNavController {
             let symbolSource = self.state?.exchangeModel.symbolSource,
             let rate = self.state?.exchangeModel.rate  {
             self.sumTextField.symbolValue = symbolSource
-            self.sumTextField.text = Formatter.formattedWithSeparator(value: String(sourceAmount), canBeZero: true)
-            self.exchangeSumResult.text = Formatter.formattedWithSeparator(value: String(sourceAmount * rate), canBeZero: true) + " " + symbolDest
-            self.rateExchange.text = R.string.localizable.exchangeSourceRate(symbolSource, Formatter.formattedWithSeparator(value: String(rate)), symbolDest)
+            self.sumTextField.text = Formatter.formattedWithSeparator(valueDouble: sourceAmount)
+            self.exchangeSumResult.text = Formatter.formattedWithSeparator(valueDouble: sourceAmount * rate) + " " + symbolDest
+            self.rateExchange.text = R.string.localizable.exchangeSourceRate(symbolSource, Formatter.formattedWithSeparator(valueDouble: rate), symbolDest)
         }
     }
     
     private func initAsset(sum: UILabel, info: UILabel, image: UIImageView, item: ExchangeViewModel) {
         if let currency = item.currency, let sumValue = item.sum {
-            sum.text = Formatter.formattedWithSeparator(value: String(sumValue), canBeZero: true) + " " + currency
+            sum.text = Formatter.formattedWithSeparator(valueDouble: sumValue) + " " + currency
         }
         var currency = ""
         if let isUsd = item.assetId?.isUsd(), isUsd {
@@ -280,4 +310,13 @@ class ExhangeViewController: BaseNavController {
         image.image = item.icon
     }
     
+    private func initSumTextField() {
+        self.sumTextField.delegate = self
+        self.sumTextField.addObservers()
+        self.sumTextField.text = "0"
+        self.sumTextField.symbolValue = UserPreference.shared.getCurrentCurrency()?.symbol
+        self.editChanged(self.sumTextField)
+    }
 }
+
+

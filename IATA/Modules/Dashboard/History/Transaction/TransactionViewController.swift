@@ -65,8 +65,8 @@ class TransactionViewController: BaseViewController<PropertyKeyTransactionModel,
     }
     
     override func loadData() {
+        super.loadData()
         self.state?.getHistoryDetails(id: id)
-            .withSpinner(in: view)
             .then(execute: { [weak self] (result: HistoryTransactionModel) -> Void in
                 guard let strongSelf = self else {
                     return

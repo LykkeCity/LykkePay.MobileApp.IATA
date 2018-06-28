@@ -55,7 +55,7 @@ class DefaultWalletsState: DefaultBaseState<WalletsViewModel> {
                 totaBalance += convertedBalance
             }
         }
-        let totalBalanceString = Formatter.formattedWithSeparator(value: String(totaBalance))
+        let totalBalanceString = Formatter.formattedWithSeparator(valueDouble: totaBalance)
         if let symbol = UserPreference.shared.getCurrentCurrency()?.symbol {
             return totalBalanceString + " " + symbol
         } else {

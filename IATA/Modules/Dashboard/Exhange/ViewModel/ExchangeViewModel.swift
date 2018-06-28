@@ -1,6 +1,20 @@
 import Foundation
 import ObjectMapper
 
+class ExchangeViewModels: Mappable {
+    var items = [ExchangeViewModel]()
+    
+    
+    required init?(map: Map) {
+        
+    }
+    
+    required init() {}
+    
+    func mapping(map: Map) {
+        
+    }
+}
 
 class ExchangeViewModel: Mappable  {
     var sum: Double?

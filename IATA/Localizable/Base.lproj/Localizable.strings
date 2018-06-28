@@ -6,6 +6,7 @@
 "Common.Success.Message" = "Success";
 "Common.NavBar.Close" = "Close";
 "Common.NavBar.Back" = "Back";
+"Common.Loading.Message" = "Loading...";
 
 "SignIn.Placeholder.Login" = "Login";
 "SignIn.Placeholder.Password" = "Password";
@@ -99,3 +100,5 @@
 "Exchange.Source.Buy" = "Buy %@";
 "Exchange.Source.USD" = "USD";
 "Exchange.Source.EURO" = "EUR";
+
+"Exchange.Source.PayConfirmation" = "Please scan your fingerprint to confirm the exchange";

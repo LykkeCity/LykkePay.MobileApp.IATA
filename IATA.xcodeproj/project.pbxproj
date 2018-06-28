@@ -76,6 +76,7 @@
 		0A1AF41620CADB7B0009595C /* BTTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1AF41220CADB7A0009595C /* BTTableView.swift */; };
 		0A1AF41720CADB7B0009595C /* BTConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1AF41320CADB7A0009595C /* BTConfiguration.swift */; };
 		0A1AF41820CADB7B0009595C /* BTTableCellContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1AF41420CADB7B0009595C /* BTTableCellContentView.swift */; };
+		0A25214520E54F7800BADA8F /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A25214420E54F7700BADA8F /* R.generated.swift */; };
 		0A26FC8120D00B320097A8F6 /* InvoiceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A26FC8020D00B320097A8F6 /* InvoiceRequest.swift */; };
 		0A26FC8320D0F0B00097A8F6 /* OnSwitchStateChangedDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A26FC8220D0F0B00097A8F6 /* OnSwitchStateChangedDelegate.swift */; };
 		0A26FC8D20D117410097A8F6 /* InvoiceSettingsState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A26FC8C20D117410097A8F6 /* InvoiceSettingsState.swift */; };
@@ -177,7 +178,6 @@
 		0ABED71620DBC87900AABCAD /* ViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABED71520DBC87900AABCAD /* ViewUtils.swift */; };
 		0ABED71E20DBDEF800AABCAD /* UIImageExtensition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABED71D20DBDEF800AABCAD /* UIImageExtensition.swift */; };
 		0AC0DA9920E1589800923C3F /* ExchangeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC0DA9820E1589800923C3F /* ExchangeViewModel.swift */; };
-		0ACDF69020E3FB0400EFF18F /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACDF68F20E3FB0400EFF18F /* R.generated.swift */; };
 		0ACDF69220E400B600EFF18F /* DecimalNumberTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACDF69120E400B600EFF18F /* DecimalNumberTransform.swift */; };
 		0ACDF69420E4179E00EFF18F /* InvoiceViewControllerPaymentExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACDF69320E4179D00EFF18F /* InvoiceViewControllerPaymentExtension.swift */; };
 		0AD3971C20E3E8BD002C789B /* PreExchangeRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD3971B20E3E8BD002C789B /* PreExchangeRequest.swift */; };
@@ -319,6 +319,7 @@
 		0A1AF41220CADB7A0009595C /* BTTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BTTableView.swift; sourceTree = "<group>"; };
 		0A1AF41320CADB7A0009595C /* BTConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BTConfiguration.swift; sourceTree = "<group>"; };
 		0A1AF41420CADB7B0009595C /* BTTableCellContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BTTableCellContentView.swift; sourceTree = "<group>"; };
+		0A25214420E54F7700BADA8F /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		0A26FC8020D00B320097A8F6 /* InvoiceRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvoiceRequest.swift; sourceTree = "<group>"; };
 		0A26FC8220D0F0B00097A8F6 /* OnSwitchStateChangedDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnSwitchStateChangedDelegate.swift; sourceTree = "<group>"; };
 		0A26FC8C20D117410097A8F6 /* InvoiceSettingsState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvoiceSettingsState.swift; sourceTree = "<group>"; };
@@ -420,7 +421,6 @@
 		0ABED71520DBC87900AABCAD /* ViewUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewUtils.swift; sourceTree = "<group>"; };
 		0ABED71D20DBDEF800AABCAD /* UIImageExtensition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtensition.swift; sourceTree = "<group>"; };
 		0AC0DA9820E1589800923C3F /* ExchangeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeViewModel.swift; sourceTree = "<group>"; };
-		0ACDF68F20E3FB0400EFF18F /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		0ACDF69120E400B600EFF18F /* DecimalNumberTransform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecimalNumberTransform.swift; sourceTree = "<group>"; };
 		0ACDF69320E4179D00EFF18F /* InvoiceViewControllerPaymentExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvoiceViewControllerPaymentExtension.swift; sourceTree = "<group>"; };
 		0AD3971B20E3E8BD002C789B /* PreExchangeRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreExchangeRequest.swift; sourceTree = "<group>"; };
@@ -959,7 +959,7 @@
 			isa = PBXGroup;
 			children = (
 				0A37EFA220C6DC5100201907 /* Localizable.strings */,
-				0ACDF68F20E3FB0400EFF18F /* R.generated.swift */,
+				0A25214420E54F7700BADA8F /* R.generated.swift */,
 			);
 			path = Localizable;
 			sourceTree = "<group>";
@@ -1849,7 +1849,6 @@
 				0A37EF5420C5816B00201907 /* SignInViewController.swift in Sources */,
 				D7D3012920D798D400A1AEB8 /* WalletsModel.swift in Sources */,
 				0A0B119920D2889600021E2D /* DisputeModel.swift in Sources */,
-				0ACDF69020E3FB0400EFF18F /* R.generated.swift in Sources */,
 				0A37EF6520C589FD00201907 /* UIViewExtension.swift in Sources */,
 				D7DEFC9720C97459005FB9EF /* WalletsViewController.swift in Sources */,
 				0A37EF8E20C6AC8900201907 /* ServerFieldsExtractor.swift in Sources */,
@@ -1924,6 +1923,7 @@
 				0A62F56920C5473600A51D63 /* Errors.swift in Sources */,
 				0A4CD11C20CD47A600EF4A17 /* OnChangeStateSelected.swift in Sources */,
 				0A0D4B4B20C53361009B73E9 /* AppDelegate.swift in Sources */,
+				0A25214520E54F7800BADA8F /* R.generated.swift in Sources */,
 				0A0B118D20D270DD00021E2D /* DefaultSettingsState.swift in Sources */,
 				0A37F00120C809DC00201907 /* ChangePasswordRequest.swift in Sources */,
 				0A37EF9520C6D1E500201907 /* SignInViewState.swift in Sources */,

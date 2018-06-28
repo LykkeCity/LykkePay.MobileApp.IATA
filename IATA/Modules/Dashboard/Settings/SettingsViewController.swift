@@ -3,6 +3,8 @@ import UIKit
 
 class SettingsViewController: BaseNavController, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate, UICollectionViewDataSource {
 
+    @IBOutlet weak var scrollView: UIScrollView!
+    
     @IBOutlet weak var profileImage: UIImageView!
     
     @IBOutlet weak var airlineImage: UIImageView!
@@ -14,7 +16,9 @@ class SettingsViewController: BaseNavController, UICollectionViewDelegateFlowLay
     @IBOutlet weak var emailLabel: UILabel!
     
     @IBOutlet weak var baseCurrencyCollectionView: UICollectionView!
-
+    
+    var refresh = UIRefreshControl()
+    
     private var state: DefaultSettingsState? = DefaultSettingsState()
 
     override func viewDidLoad() {
@@ -24,6 +28,7 @@ class SettingsViewController: BaseNavController, UICollectionViewDelegateFlowLay
         baseCurrencyCollectionView.delegate = self
         baseCurrencyCollectionView.dataSource  = self
         baseCurrencyCollectionView.allowsMultipleSelection = false
+        self.initScrollView()
         loadData()
     }
 
@@ -89,32 +94,26 @@ class SettingsViewController: BaseNavController, UICollectionViewDelegateFlowLay
     }
 
     private func loadData() {
+        self.beginRefresh()
         self.state?.getSettingsStringJson()
-            .withSpinner(in: view)
             .then(execute: { [weak self] (result: String) -> Void in
                 guard let strongSelf = self else {
                     return
                 }
                 strongSelf.fillUsersInfo(jsonString: result)
             })
-
-        self.state?.getBaseAssetsStringJson()
-            .withSpinner(in: view)
-            .then(execute: { [weak self] (result: String) -> Void in
-                guard let strongSelf = self else {
-                    return
-                }
-                strongSelf.fillAssetsInfo(from: result)
-            })
     }
 
     private func setSelectedBaseAsset(baseAsset: String, selectedCurrency: SettingsMerchantsModel ) {
-        self.state?.setBaseAsset(baseAsset: baseAsset).withSpinner(in: view).then(execute: { [weak self] (result:Void) -> Void in
-            guard let strongSelf = self else {
-                return
-            }
-             UserPreference.shared.saveCurrentCurrency(selectedCurrency)
-        })
+        self.beginRefresh()
+        self.state?.setBaseAsset(baseAsset: baseAsset)
+            .then(execute: { [weak self] (result:Void) -> Void in
+                guard let strongSelf = self else {
+                    return
+                }
+                strongSelf.refresh.endRefreshing()
+                UserPreference.shared.saveCurrentCurrency(selectedCurrency)
+            })
     }
 
     private func fillUsersInfo(jsonString: String!) {
@@ -125,11 +124,19 @@ class SettingsViewController: BaseNavController, UICollectionViewDelegateFlowLay
             self.usernameLabel.text = firstName + " " + lastName
         }
         self.emailLabel.text = settingsViewModel?.email
+        self.state?.getBaseAssetsStringJson()
+            .then(execute: { [weak self] (result: String) -> Void in
+                guard let strongSelf = self else {
+                    return
+                }
+                strongSelf.fillAssetsInfo(from: result)
+            })
     }
 
     private func fillAssetsInfo(from jsonString: String!) {
         self.state?.mappingBaseAssets(jsonString: jsonString)
         self.baseCurrencyCollectionView.reloadData()
+        self.refresh.endRefreshing()
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -150,5 +157,25 @@ class SettingsViewController: BaseNavController, UICollectionViewDelegateFlowLay
 
     override func registerCells() {
 
+    }
+    @objc func didPullToRefresh() {
+        self.loadData()
+    }
+    
+    private func initScrollView() {
+        self.scrollView.showsVerticalScrollIndicator = false
+        self.scrollView.alwaysBounceVertical = true
+        self.scrollView.bounces  = true
+        self.refresh.attributedTitle = NSAttributedString(string:  R.string.localizable.commonLoadingMessage())
+        self.refresh.addTarget(self, action: #selector(didPullToRefresh), for: .valueChanged)
+        self.scrollView.addSubview(refresh)
+    }
+    
+    private func beginRefresh() {
+        var offset = self.scrollView.contentOffset
+        offset.y = -81
+        self.refresh.endRefreshing()
+        self.refresh.beginRefreshing()
+        self.scrollView.contentOffset = offset
     }
 }

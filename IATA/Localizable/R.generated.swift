@@ -558,7 +558,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 81 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 83 localization keys.
     struct localizable {
       /// Base translation: %@ invoices selected
       /// 
@@ -724,6 +724,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: Base
       static let invoiceStatusItemsLatepaid = Rswift.StringResource(key: "Invoice.Status.Items.Latepaid", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
+      /// Base translation: Loading...
+      /// 
+      /// Locales: Base
+      static let commonLoadingMessage = Rswift.StringResource(key: "Common.Loading.Message", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
       /// Base translation: Log Out
       /// 
       /// Locales: Base
@@ -792,6 +796,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: Base
       static let pinValidationTitle = Rswift.StringResource(key: "Pin.Validation.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
+      /// Base translation: Please scan your fingerprint to confirm the exchange
+      /// 
+      /// Locales: Base
+      static let exchangeSourcePayConfirmation = Rswift.StringResource(key: "Exchange.Source.PayConfirmation", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
       /// Base translation: Please scan your fingerprint to confirm the payment
       /// 
       /// Locales: Base
@@ -1172,6 +1180,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("Invoice.Status.Items.Latepaid", bundle: R.hostingBundle, value: "LATE PAID", comment: "")
       }
       
+      /// Base translation: Loading...
+      /// 
+      /// Locales: Base
+      static func commonLoadingMessage(_: Void = ()) -> String {
+        return NSLocalizedString("Common.Loading.Message", bundle: R.hostingBundle, value: "Loading...", comment: "")
+      }
+      
       /// Base translation: Log Out
       /// 
       /// Locales: Base
@@ -1289,6 +1304,13 @@ struct R: Rswift.Validatable {
       /// Locales: Base
       static func pinValidationTitle(_: Void = ()) -> String {
         return NSLocalizedString("Pin.Validation.Title", bundle: R.hostingBundle, value: "Please enter your PIN code", comment: "")
+      }
+      
+      /// Base translation: Please scan your fingerprint to confirm the exchange
+      /// 
+      /// Locales: Base
+      static func exchangeSourcePayConfirmation(_: Void = ()) -> String {
+        return NSLocalizedString("Exchange.Source.PayConfirmation", bundle: R.hostingBundle, value: "Please scan your fingerprint to confirm the exchange", comment: "")
       }
       
       /// Base translation: Please scan your fingerprint to confirm the payment

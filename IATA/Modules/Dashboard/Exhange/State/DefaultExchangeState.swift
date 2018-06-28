@@ -70,11 +70,12 @@ class DefaultExchangeState: DefaultBaseState<ExchangeViewModel> {
                 }
             }
         }
+        self.reinit()
     }
 
     func getTotalBalance() -> String? {
         if  let item = getBaseAsset(), let sum = item.sum, let currency = item.currency {
-            return String(sum) + " " + currency
+            return Formatter.formattedWithSeparator(valueDouble: sum) + " " + currency
         }
         return nil
     }
@@ -92,6 +93,11 @@ class DefaultExchangeState: DefaultBaseState<ExchangeViewModel> {
             }
         }
         
+        self.reinit()
+    }
+    
+    private func reinit() {
+        items = [ExchangeViewModel]()
         if let baseId = currentCurrency?.id, let usdAssetId = self.usd?.assetId, let euroAssetId = self.euro?.assetId{
             items.append(ExchangeViewModel(isUsd: true, state: self, isBase: usdAssetId.elementsEqual(baseId), assetId: usdAssetId))
             items.append(ExchangeViewModel(isUsd: false, state: self, isBase: !usdAssetId.elementsEqual(baseId), assetId: euroAssetId))

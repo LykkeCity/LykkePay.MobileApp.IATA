@@ -69,7 +69,7 @@ class DesignableUITextField: FloatTextField {
             self.text = "0"
         } else if let text = self.text {
             var valueString = text
-            if text.starts(with: "0") && !text.starts(with: "0.") {
+            if let separator = NSLocale.current.decimalSeparator, text.starts(with: "0") && !text.starts(with: "0"+separator) {
                 let fromIndex = text.index(text.startIndex, offsetBy: 1)
                 valueString = text.substring(from: fromIndex)
                 self.text = valueString
