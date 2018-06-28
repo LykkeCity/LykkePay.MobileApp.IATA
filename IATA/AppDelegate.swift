@@ -18,7 +18,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if (!name.contains(newName)) {
             navigationController.pushViewController(makeRootViewController(), animated: true)
         }
+        turnOffLayoutWarnings()
+
         return true
+    }
+
+    private func turnOffLayoutWarnings() {
+        UserDefaults.standard.setValue(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
     }
     
     

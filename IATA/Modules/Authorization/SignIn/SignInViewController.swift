@@ -15,7 +15,8 @@ class SignInViewController: BaseAuthViewController, UINavigationControllerDelega
     @IBOutlet private weak var passwordField: FloatTextField?
     @IBOutlet private weak var btnLogin: UIButton?
     @IBOutlet weak var logoImg: UIImageView?
-    
+    @IBOutlet private weak var changeServerButton: UIButton!
+
     private var heightAnchorTitle: NSLayoutConstraint? = nil
     private var heightAnchorWelcome: NSLayoutConstraint? = nil
     private var isShown: Bool = false
@@ -54,6 +55,9 @@ class SignInViewController: BaseAuthViewController, UINavigationControllerDelega
         if #available(iOS 10.0, *) {
             self.passwordField?.textContentType = UITextContentType.addressCity
         }
+
+        setupChangeServerButton()
+
         self.initNavBar()
     }
     
@@ -70,6 +74,12 @@ class SignInViewController: BaseAuthViewController, UINavigationControllerDelega
         let version = dictionary["CFBundleShortVersionString"] as! String
         let build = dictionary["CFBundleVersion"] as! String
         return "Build \(version) (version \(build))"
+    }
+
+    private func setupChangeServerButton() {
+        #if DEBUG
+        changeServerButton.isHidden = false
+        #endif
     }
 
     private func buttonClicked() {
@@ -149,6 +159,18 @@ class SignInViewController: BaseAuthViewController, UINavigationControllerDelega
             }
         }
     }
+
+    @IBAction func changeServerButtonClicked(_ sender: UIButton) {
+        var handlers: [(handler: ((UIAlertAction) -> Void), title: String)] = []
+        BaseServerURLs.allCases().forEach { url in
+            handlers.append((handler: { _ in
+                NetworkConfig.shared.baseServerURL = url.getURL()
+            }, title: url.value()))
+        }
+
+        generateChangeServerAllert(handlers: handlers)
+    }
+
 
     @IBAction func login(_ sender: Any) {
         buttonClicked()

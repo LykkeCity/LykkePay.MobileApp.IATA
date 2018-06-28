@@ -26,6 +26,7 @@
                 <outlet property="btnLogin" destination="mR8-eV-pPH" id="BVZ-YQ-NcC"/>
                 <outlet property="buildVersion" destination="0Kp-bT-wgs" id="uZc-gc-iJv"/>
                 <outlet property="centerConstraint" destination="zly-2J-Pc5" id="Szp-lu-Aal"/>
+                <outlet property="changeServerButton" destination="kBL-iY-06a" id="KkD-kD-lPn"/>
                 <outlet property="emailTextField" destination="jnn-ZT-33H" id="qN2-WM-IaJ"/>
                 <outlet property="height" destination="Xe6-sZ-NlN" id="6iP-2C-2zn"/>
                 <outlet property="logoImg" destination="9qR-xI-Yiu" id="Gtu-gX-pGS"/>
@@ -45,7 +46,19 @@
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yyQ-fb-Ofs">
                     <rect key="frame" x="0.0" y="20" width="414" height="696"/>
+                    <subviews>
+                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kBL-iY-06a">
+                            <rect key="frame" x="157" y="478" width="100" height="30"/>
+                            <state key="normal" title="Change server"/>
+                            <connections>
+                                <action selector="changeServerButtonClicked:" destination="-1" eventType="touchUpInside" id="O7l-bV-Uyf"/>
+                            </connections>
+                        </button>
+                    </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="kBL-iY-06a" firstAttribute="centerX" secondItem="yyQ-fb-Ofs" secondAttribute="centerX" id="OHl-wC-882"/>
+                    </constraints>
                 </view>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="qDn-kj-gzV">
                     <rect key="frame" x="46" y="67.999999999999972" width="322" height="411.33333333333326"/>
@@ -152,6 +165,7 @@ continue to IATA</string>
             <constraints>
                 <constraint firstItem="qDn-kj-gzV" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="46" id="5IZ-3E-rOu"/>
                 <constraint firstItem="yyQ-fb-Ofs" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Eyt-x9-X3F"/>
+                <constraint firstItem="kBL-iY-06a" firstAttribute="top" secondItem="mR8-eV-pPH" secondAttribute="bottom" constant="18.666666666666742" id="JPJ-Lv-0yW"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="qDn-kj-gzV" secondAttribute="trailing" constant="46" id="KjU-Qr-InD"/>
                 <constraint firstItem="yyQ-fb-Ofs" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="PL8-Oj-6O8"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="yyQ-fb-Ofs" secondAttribute="trailing" id="PPl-cw-IBu"/>

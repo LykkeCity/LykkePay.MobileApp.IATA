@@ -28,16 +28,7 @@ class Network {
                 validateHost: true
             )
         }
-        
-
-//        let serverTrustPolicies: [String: ServerTrustPolicy] = [
-//            NetworkConfig.shared.certificateFileName: .pinPublicKeys(
-//                publicKeys: ServerTrustPolicy.publicKeys(),
-//                validateCertificateChain: true,
-//                validateHost: true
-//            )
-//        ]
-
+    
         let configuration = URLSessionConfiguration.default
         configuration.httpAdditionalHeaders = SessionManager.defaultHTTPHeaders
         

@@ -4,14 +4,13 @@ class NetworkConfig {
     public static let shared = NetworkConfig()
     
     #if DEBUG
-    public let baseServerURL = BaseServerURLs.dev.getURL()
+    public var baseServerURL = BaseServerURLs.dev.getURL()
 
     #else
-    public let baseServerURL = BaseServerURLs.dev.getURL()
+    public var baseServerURL = BaseServerURLs.dev.getURL()
     #endif
 }
-
-public enum CertificateNames: String, EnumCollection {
+internal enum CertificateNames: String, EnumCollection {
     case lykkexnettest
     case lykkexnet
 
@@ -20,7 +19,7 @@ public enum CertificateNames: String, EnumCollection {
     }
 }
 
-public enum BaseServerURLs {
+internal enum BaseServerURLs: String, EnumCollection {
     case dev
     case test
 
@@ -31,6 +30,10 @@ public enum BaseServerURLs {
         case .test:
             return "https://pay-api-test.lykkex.net/api/v1/mobile"
         }
+    }
+
+    internal func value() -> String {
+        return self.rawValue
     }
 }
 
