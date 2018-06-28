@@ -87,7 +87,7 @@
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#0043482188" textAlignment="natural" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pku-8m-12U">
-                    <rect key="frame" x="48" y="59" width="277" height="9"/>
+                    <rect key="frame" x="48" y="59" width="269" height="9"/>
                     <fontDescription key="fontDescription" name="GothamPro" family="Gotham Pro" pointSize="10"/>
                     <color key="textColor" red="0.2470588235" green="0.30196078430000001" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
@@ -100,7 +100,7 @@
                 <constraint firstItem="2Ug-9P-uec" firstAttribute="leading" secondItem="fyW-az-52G" secondAttribute="trailing" constant="8" id="9ah-JJ-jyy"/>
                 <constraint firstItem="fyW-az-52G" firstAttribute="top" secondItem="SQW-wh-Aoa" secondAttribute="bottom" constant="8" id="CLw-qC-NLD"/>
                 <constraint firstItem="fug-9l-elH" firstAttribute="leading" secondItem="SQW-wh-Aoa" secondAttribute="trailing" constant="8" id="F9J-hX-DOA"/>
-                <constraint firstItem="9dV-yQ-5oU" firstAttribute="leading" secondItem="pku-8m-12U" secondAttribute="trailing" id="Iun-eX-LSw"/>
+                <constraint firstItem="9dV-yQ-5oU" firstAttribute="leading" secondItem="pku-8m-12U" secondAttribute="trailing" constant="8" id="Iun-eX-LSw"/>
                 <constraint firstItem="pku-8m-12U" firstAttribute="top" secondItem="fyW-az-52G" secondAttribute="bottom" constant="8" id="KH2-sj-jvO"/>
                 <constraint firstItem="fug-9l-elH" firstAttribute="top" secondItem="SQW-wh-Aoa" secondAttribute="top" id="OeZ-E0-97A"/>
                 <constraint firstItem="SQW-wh-Aoa" firstAttribute="leading" secondItem="5eL-jn-e0W" secondAttribute="trailing" constant="8" id="V3B-v1-yaP"/>
