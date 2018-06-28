@@ -30,7 +30,12 @@ class HistoryTransactionModel: Mappable, Reflectable {
         case txHash
         case blockConfirmations
     }
-    
+
+
+    /**
+     - Important:
+        Order of this properties is equal to order of cells in Transaction History screen. See Reflectable protocol extension to understand it.
+     */
     internal var id: String?
     internal var merchantLogoUrl: String?
     internal var merchantName: String?
