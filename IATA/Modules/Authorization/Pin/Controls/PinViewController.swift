@@ -5,6 +5,7 @@ class PinViewController: UIViewController, UINavigationControllerDelegate {
     
     @IBOutlet weak var passwordStackView: UIStackView!
     @IBOutlet weak var labelTitle: UILabel!
+    @IBOutlet weak var cancelBtn: UIButton!
     
     private var state: PinViewState = DefaultPinViewState() as PinViewState
     
@@ -37,7 +38,6 @@ class PinViewController: UIViewController, UINavigationControllerDelegate {
         self.initNavBar()
         
         if self.isValidationTransaction {
-            self.navigationItem.leftBarButtonItem = nil
             self.passwordContainerView.touchAuthenticationReason = R.string.localizable.invoiceScreenPayConfirmation()
         }
     }
@@ -53,7 +53,9 @@ class PinViewController: UIViewController, UINavigationControllerDelegate {
     private func initNavBar() {
         self.navigationController?.navigationBar.barStyle = .black
         self.navigationController?.isNavigationBarHidden = true
-        self.navigationItem.leftBarButtonItem = getBackButton()
+        if self.isValidationTransaction {
+            self.cancelBtn.isHidden = true
+        } 
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = false

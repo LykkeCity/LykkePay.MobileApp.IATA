@@ -188,6 +188,8 @@ class ExhangeViewController: BaseNavController {
     }
     
     private func loadExchangeInfo() {
+        self.sumTextField.text = Formatter.formattedWithSeparator(value: "0", canBeZero: true)
+        self.setEnabledExchange(isEnabled: false)
         self.state?.loadExchangeData(sourceAmount: self.sumTextField.text)
             .withSpinner(in: view)
             .then(execute: { [weak self] (result: ExchangeModel) -> Void in
@@ -232,7 +234,7 @@ class ExhangeViewController: BaseNavController {
             for item in items {
                 if let isBase = item.isBase, isBase {
                     initAsset(sum: self.baseSum, info: self.baseInfo, image: self.baseIcon, item: item)
-                } else {
+                 } else {
                     initAsset(sum: self.notBaseSum, info: self.notBaseInfo, image: self.notBaseIcon, item: item)
                 }
             }
@@ -254,7 +256,7 @@ class ExhangeViewController: BaseNavController {
             let rate = self.state?.exchangeModel.rate  {
             self.sumTextField.symbolValue = symbolSource
             self.sumTextField.text = Formatter.formattedWithSeparator(value: String(sourceAmount), canBeZero: true)
-            self.exchangeSumResult.text = Formatter.formattedWithSeparator(value: String(sourceAmount * rate)) + " " + symbolDest
+            self.exchangeSumResult.text = Formatter.formattedWithSeparator(value: String(sourceAmount * rate), canBeZero: true) + " " + symbolDest
             self.rateExchange.text = R.string.localizable.exchangeSourceRate(symbolSource, Formatter.formattedWithSeparator(value: String(rate)), symbolDest)
         }
     }

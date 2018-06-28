@@ -37,6 +37,11 @@ class SignInViewController: BaseAuthViewController, UINavigationControllerDelega
         
         self.emailTextField?.delegate = self
         self.passwordField?.delegate = self
+        
+        if #available(iOS 10.0, *) {
+            self.emailTextField?.textContentType = .emailAddress
+            self.passwordField?.textContentType = UITextContentType("")
+        }
 
         self.buildVersion.text = version()
         Theme.shared.configureTextFieldStyle(self.emailTextField!, title: R.string.localizable.signInPlaceholderLogin())
