@@ -131,7 +131,7 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
     
     override func refresh() {
         super.refresh()
-        self.state?.clearSelectedItems()
+        self.animate(isShow: false)
     }
 
     override func loadData() {
@@ -230,10 +230,10 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
         
         self.getAmount()
         if (isSelected && self.downViewHeightConstraint.constant == 0) {
-            animate(isShow: true)
+            self.animate(isShow: true)
         } else if (!isSelected && self.downViewHeightConstraint.constant != 0 && self.state?.getCountSelected() == 0) {
             self.sumTextField.text = ""
-            animate(isShow: false)
+            self.animate(isShow: false)
         }
     }
     
