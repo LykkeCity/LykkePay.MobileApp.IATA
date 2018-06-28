@@ -39,7 +39,7 @@ class SignInViewController: BaseAuthViewController, UINavigationControllerDelega
         self.passwordField?.delegate = self
         
         if #available(iOS 10.0, *) {
-            self.emailTextField?.textContentType = .emailAddress
+            self.emailTextField?.textContentType = UITextContentType("")
             self.passwordField?.textContentType = UITextContentType("")
         }
 

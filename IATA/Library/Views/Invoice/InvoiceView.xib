@@ -29,90 +29,90 @@
                 <outlet property="name" destination="SQW-wh-Aoa" id="Ugy-C6-yUC"/>
                 <outlet property="price" destination="fug-9l-elH" id="AYW-mP-nTr"/>
                 <outlet property="status" destination="Jw2-S9-r55" id="DOe-wP-VOn"/>
+                <outlet property="topNumberHeight" destination="KH2-sj-jvO" id="pLq-Rv-59s"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="84"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <stackView opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="yXU-yc-qv1">
-                    <rect key="frame" x="56" y="16" width="206.5" height="50"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="AIR CHINA AIR CHINA AIR CHINA AIR CHINAAIR CHINA оосаощацу" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SQW-wh-Aoa">
+                    <rect key="frame" x="48" y="16" width="254" height="18"/>
+                    <fontDescription key="fontDescription" name="GothamPro" family="Gotham Pro" pointSize="14"/>
+                    <color key="textColor" red="0.2470588235" green="0.30196078430000001" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="08.12.2015 | DEC-16 P1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fyW-az-52G">
+                    <rect key="frame" x="48" y="42" width="221.5" height="9"/>
+                    <fontDescription key="fontDescription" name="GothamPro" family="Gotham Pro" pointSize="10"/>
+                    <color key="textColor" red="0.54901960780000003" green="0.58039215690000001" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="right" semanticContentAttribute="forceRightToLeft" horizontalHuggingPriority="255" verticalHuggingPriority="251" horizontalCompressionResistancePriority="755" text="2 000 $" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fug-9l-elH">
+                    <rect key="frame" x="310" y="16" width="57" height="12.5"/>
+                    <fontDescription key="fontDescription" name="GothamPro-Bold" family="Gotham Pro" pointSize="14"/>
+                    <color key="textColor" red="0.2470588235" green="0.30196078430000001" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" semanticContentAttribute="forceRightToLeft" horizontalHuggingPriority="255" verticalHuggingPriority="251" horizontalCompressionResistancePriority="755" text="MISCELLANEOUS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Ug-9P-uec">
+                    <rect key="frame" x="277.5" y="42" width="89.5" height="9"/>
+                    <fontDescription key="fontDescription" name="GothamPro" family="Gotham Pro" pointSize="10"/>
+                    <color key="textColor" red="0.54901960780000003" green="0.58039215690000001" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <stackView opaque="NO" contentMode="right" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="9dV-yQ-5oU">
+                    <rect key="frame" x="325" y="59" width="42" height="16"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="AIR CHINA" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SQW-wh-Aoa">
-                            <rect key="frame" x="0.0" y="0.0" width="206.5" height="12.5"/>
-                            <fontDescription key="fontDescription" name="GothamPro" family="Gotham Pro" pointSize="14"/>
-                            <color key="textColor" red="0.2470588235" green="0.30196078430000001" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="08.12.2015 | DEC-16 P1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fyW-az-52G">
-                            <rect key="frame" x="0.0" y="20.5" width="206.5" height="12.5"/>
-                            <fontDescription key="fontDescription" name="GothamPro" family="Gotham Pro" pointSize="10"/>
-                            <color key="textColor" red="0.54901960780000003" green="0.58039215690000001" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#0043482188" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pku-8m-12U">
-                            <rect key="frame" x="0.0" y="41" width="206.5" height="9"/>
-                            <fontDescription key="fontDescription" name="GothamPro" family="Gotham Pro" pointSize="10"/>
-                            <color key="textColor" red="0.2470588235" green="0.30196078430000001" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_body_dispute" translatesAutoresizingMaskIntoConstraints="NO" id="b8E-op-mMS">
+                            <rect key="frame" x="0.0" y="0.0" width="16" height="16"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="16" id="Y4A-x8-SEg"/>
+                                <constraint firstAttribute="height" constant="16" id="dIP-GF-Uhs"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" semanticContentAttribute="forceRightToLeft" horizontalHuggingPriority="255" verticalHuggingPriority="251" horizontalCompressionResistancePriority="755" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jw2-S9-r55" customClass="UiStatusView" customModule="IATA" customModuleProvider="target">
+                            <rect key="frame" x="20" y="0.0" width="22" height="16"/>
+                            <fontDescription key="fontDescription" name="GothamPro" family="Gotham Pro" pointSize="8"/>
+                            <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
-                    <viewLayoutGuide key="safeArea" id="JdV-bG-mZh"/>
-                </stackView>
-                <stackView opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" horizontalHuggingPriority="255" horizontalCompressionResistancePriority="755" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="qAL-an-ysR">
-                    <rect key="frame" x="277.5" y="16" width="89.5" height="33"/>
-                    <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="right" semanticContentAttribute="forceRightToLeft" horizontalHuggingPriority="255" verticalHuggingPriority="251" horizontalCompressionResistancePriority="755" text="2 000 $" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fug-9l-elH">
-                            <rect key="frame" x="0.0" y="0.0" width="89.5" height="12.5"/>
-                            <fontDescription key="fontDescription" name="GothamPro-Bold" family="Gotham Pro" pointSize="14"/>
-                            <color key="textColor" red="0.2470588235" green="0.30196078430000001" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" semanticContentAttribute="forceRightToLeft" horizontalHuggingPriority="255" verticalHuggingPriority="251" horizontalCompressionResistancePriority="755" text="MISCELLANEOUS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Ug-9P-uec">
-                            <rect key="frame" x="0.0" y="20.5" width="89.5" height="12.5"/>
-                            <fontDescription key="fontDescription" name="GothamPro" family="Gotham Pro" pointSize="10"/>
-                            <color key="textColor" red="0.54901960780000003" green="0.58039215690000001" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                    </subviews>
-                    <viewLayoutGuide key="safeArea" id="BG3-Gf-qxM"/>
                 </stackView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5eL-jn-e0W">
-                    <rect key="frame" x="16" y="16" width="32" height="26"/>
+                    <rect key="frame" x="8" y="16" width="32" height="26"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="32" id="kJf-aw-lqJ"/>
                         <constraint firstAttribute="height" constant="26" id="sxj-7E-hzJ"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" semanticContentAttribute="forceRightToLeft" horizontalHuggingPriority="255" verticalHuggingPriority="251" horizontalCompressionResistancePriority="755" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jw2-S9-r55" customClass="UiStatusView" customModule="IATA" customModuleProvider="target">
-                    <rect key="frame" x="345" y="57" width="22" height="7.5"/>
-                    <fontDescription key="fontDescription" name="GothamPro" family="Gotham Pro" pointSize="8"/>
-                    <nil key="textColor"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#0043482188" textAlignment="natural" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pku-8m-12U">
+                    <rect key="frame" x="48" y="59" width="277" height="9"/>
+                    <fontDescription key="fontDescription" name="GothamPro" family="Gotham Pro" pointSize="10"/>
+                    <color key="textColor" red="0.2470588235" green="0.30196078430000001" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_body_dispute" translatesAutoresizingMaskIntoConstraints="NO" id="b8E-op-mMS">
-                    <rect key="frame" x="325" y="57" width="16" height="16"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="16" id="Y4A-x8-SEg"/>
-                        <constraint firstAttribute="height" constant="16" id="dIP-GF-Uhs"/>
-                    </constraints>
-                </imageView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="qAL-an-ysR" secondAttribute="trailing" constant="8" id="4x2-te-387"/>
+                <constraint firstItem="fyW-az-52G" firstAttribute="leading" secondItem="5eL-jn-e0W" secondAttribute="trailing" constant="8" id="8v3-Nl-7bp"/>
                 <constraint firstItem="5eL-jn-e0W" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="16" id="9Do-ld-VsD"/>
-                <constraint firstItem="qAL-an-ysR" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="16" id="9GP-em-Cl5"/>
-                <constraint firstItem="b8E-op-mMS" firstAttribute="top" secondItem="qAL-an-ysR" secondAttribute="bottom" constant="8" id="OhR-ur-JXg"/>
-                <constraint firstItem="Jw2-S9-r55" firstAttribute="leading" secondItem="b8E-op-mMS" secondAttribute="trailing" constant="4" id="SAp-tc-1Xj"/>
-                <constraint firstItem="Jw2-S9-r55" firstAttribute="top" secondItem="qAL-an-ysR" secondAttribute="bottom" constant="8" id="Y6l-uv-nFv"/>
-                <constraint firstItem="5eL-jn-e0W" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="a1f-22-9NY"/>
-                <constraint firstItem="qAL-an-ysR" firstAttribute="leading" secondItem="yXU-yc-qv1" secondAttribute="trailing" constant="15" id="dQG-Yf-PE7"/>
-                <constraint firstItem="2Ug-9P-uec" firstAttribute="centerY" secondItem="fyW-az-52G" secondAttribute="centerY" id="hAj-z4-dt2"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Jw2-S9-r55" secondAttribute="trailing" constant="8" id="ku8-eM-xjc"/>
-                <constraint firstItem="yXU-yc-qv1" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="16" id="q6i-fX-tTh"/>
-                <constraint firstItem="yXU-yc-qv1" firstAttribute="leading" secondItem="5eL-jn-e0W" secondAttribute="trailing" constant="8" id="vbR-ab-T9x"/>
+                <constraint firstItem="2Ug-9P-uec" firstAttribute="leading" secondItem="fyW-az-52G" secondAttribute="trailing" constant="8" id="9ah-JJ-jyy"/>
+                <constraint firstItem="fyW-az-52G" firstAttribute="top" secondItem="SQW-wh-Aoa" secondAttribute="bottom" constant="8" id="CLw-qC-NLD"/>
+                <constraint firstItem="fug-9l-elH" firstAttribute="leading" secondItem="SQW-wh-Aoa" secondAttribute="trailing" constant="8" id="F9J-hX-DOA"/>
+                <constraint firstItem="9dV-yQ-5oU" firstAttribute="leading" secondItem="pku-8m-12U" secondAttribute="trailing" id="Iun-eX-LSw"/>
+                <constraint firstItem="pku-8m-12U" firstAttribute="top" secondItem="fyW-az-52G" secondAttribute="bottom" constant="8" id="KH2-sj-jvO"/>
+                <constraint firstItem="fug-9l-elH" firstAttribute="top" secondItem="SQW-wh-Aoa" secondAttribute="top" id="OeZ-E0-97A"/>
+                <constraint firstItem="SQW-wh-Aoa" firstAttribute="leading" secondItem="5eL-jn-e0W" secondAttribute="trailing" constant="8" id="V3B-v1-yaP"/>
+                <constraint firstItem="9dV-yQ-5oU" firstAttribute="top" secondItem="pku-8m-12U" secondAttribute="top" id="Vbe-46-exD"/>
+                <constraint firstItem="SQW-wh-Aoa" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="16" id="Ysl-dv-wzI"/>
+                <constraint firstItem="5eL-jn-e0W" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="8" id="a1f-22-9NY"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="fug-9l-elH" secondAttribute="trailing" constant="8" id="guV-Ue-7XL"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="2Ug-9P-uec" secondAttribute="trailing" constant="8" id="jw6-bD-fY6"/>
+                <constraint firstItem="pku-8m-12U" firstAttribute="leading" secondItem="5eL-jn-e0W" secondAttribute="trailing" constant="8" id="l4G-gr-SdY"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="9dV-yQ-5oU" secondAttribute="trailing" constant="8" id="m1c-cK-bvW"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="pku-8m-12U" secondAttribute="bottom" constant="16" id="xqE-PG-O3A"/>
+                <constraint firstItem="2Ug-9P-uec" firstAttribute="top" secondItem="fyW-az-52G" secondAttribute="top" id="zd0-Ef-6tc"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>

@@ -4,6 +4,7 @@ import Nuke
 
 open class InvoiceView: UIView {
     
+    @IBOutlet weak var topNumberHeight: NSLayoutConstraint!
     @IBOutlet weak var icBodyDispute: UIImageView!
     @IBOutlet var contentView: UIView!
     @IBOutlet weak var status: UiStatusView!
@@ -32,15 +33,24 @@ open class InvoiceView: UIView {
     }
     
     internal func initDispute(raisedDate: String?, model: InvoiceModel) {
+        self.initView(model: model)
         self.initStatus(color: Theme.shared.greyStatusColor, status: R.string.localizable.invoiceStatusItemsDispute())
         self.icBodyDispute.isHidden = false
         self.status.isHidden = false
         self.name.text = model.clientName?.uppercased()
         if let modelNumber = model.number {
             self.invoiceNumber.text = R.string.localizable.invoiceStatusItemDisputeNumber(modelNumber)
+        } else {
+            self.topNumberHeight.constant = -8
         }
+        
         if let date = raisedDate {
             self.info.text = R.string.localizable.invoiceDisputeRaisedDate(date)
+            self.info.isHidden = false
+            self.topNumberHeight.constant = 8
+        } else {
+            self.info.isHidden = true
+            self.topNumberHeight.constant = -8
         }
     }
     
@@ -67,8 +77,10 @@ open class InvoiceView: UIView {
         }
         if let date = model.iataInvoiceDate, let settlement = model.settlementMonthPeriod {
             self.info.text = date + " | " + settlement
+            self.topNumberHeight.constant = 8
         } else {
-            self.info.text = ""
+            self.info.isHidden = true
+            self.topNumberHeight.constant = -8
         }
         
         if let logoUrl = model.logoUrl, let url = URL(string: logoUrl){
@@ -77,6 +89,7 @@ open class InvoiceView: UIView {
             request.priority = .high
             Nuke.loadImage(with: request, into: self.logo)
         }
+        self.contentView.layoutIfNeeded()
     }
     
     internal func initStatus(color: UIColor, status: String) {

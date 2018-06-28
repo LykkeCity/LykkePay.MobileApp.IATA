@@ -19,6 +19,7 @@ class InvoiceSettingsViewController: BaseNavController {
         self.tableView?.dataSource = viewModel
         self.tableView?.delegate = viewModel
         
+        self.tableView?.showsVerticalScrollIndicator = false
         self.tableView?.rowHeight = UITableViewAutomaticDimension
         self.tableView?.estimatedRowHeight = 55
         self.tableView?.separatorStyle = .none
