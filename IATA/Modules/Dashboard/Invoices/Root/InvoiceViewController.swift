@@ -25,7 +25,9 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
         guard let symbol = UserPreference.shared.getCurrentCurrency()?.symbol else {
             return
         }
-        let message = R.string.localizable.invoiceScreenPaymentMessage(symbol + String(amount))
+       
+        let amountConverted = Formatter.formattedWithSeparator(value: amount, canBeZero: true)
+        let message = R.string.localizable.invoiceScreenPaymentMessage(symbol + amountConverted)
         generatePaymentAlert(message: message, handler: makePayment)
         
     }
@@ -104,10 +106,6 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
         return cell
     }
     
-    
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80
-    }
     
     override func getTitle() -> String? {
         return R.string.localizable.tabBarInvoicesItemTitle()

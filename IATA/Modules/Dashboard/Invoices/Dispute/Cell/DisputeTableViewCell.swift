@@ -25,7 +25,7 @@ class DisputeTableViewCell: UITableViewCell {
     
     internal func initCell(model: DisputeModel) {
         if let invoiceModel = model.invoice {
-            self.invoiceView.initView(model: invoiceModel)
+            //self.invoiceView.initView(model: invoiceModel)
             self.invoiceView.initDispute(raisedDate: model.disputeRaisedAt, model: invoiceModel)
         }
         self.reasonTextField.text = model.reason
