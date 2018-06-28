@@ -128,6 +128,11 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
         return self.navigationItem
     }
     
+    override func refresh() {
+        super.refresh()
+        self.state?.clearSelectedItems()
+    }
+
     override func loadData() {
         super.loadData()
         self.state?.getInvoiceStringJson()
@@ -233,8 +238,8 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
     
     private func reloadTable(jsonString: String!) {
         self.state?.mapping(jsonString: jsonString)
-        if (state?.getItems().count)! == 0 {
-            placeholderInvoice.isHidden = false
+        if let count = state?.getItems().count {
+            self.placeholderInvoice.isHidden = count != 0
         }
         self.tabView.reloadData()
         self.refreshControl.endRefreshing()

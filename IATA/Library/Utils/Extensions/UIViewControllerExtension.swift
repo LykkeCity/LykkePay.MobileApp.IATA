@@ -15,7 +15,7 @@ extension UIViewController {
 
     func generatePaymentAlert(message: String, handler: ((UIAlertAction) -> Void)?) {
         let uiAlert = prepareAlert(title: R.string.localizable.invoiceScreenPleaseConfirmPayment(), message: message)
-        uiAlert.addAction(UIAlertAction(title: R.string.localizable.commonNavBarCancel(), style: .default, handler: nil))
+        uiAlert.addAction(UIAlertAction(title: R.string.localizable.commonNavBarCancel(), style: .cancel, handler: nil))
         uiAlert.addAction(UIAlertAction(title: R.string.localizable.invoiceScreenPay(), style: .default, handler: handler))
     }
 

@@ -37,8 +37,9 @@ class PinViewController: UIViewController, UINavigationControllerDelegate {
         
         self.initNavBar()
         
-        if self.isValidationTransaction {
-            self.passwordContainerView.touchAuthenticationReason = R.string.localizable.invoiceScreenPayConfirmation()
+        if self.isValidationTransaction, let message = messageTouch {
+            self.passwordContainerView.touchAuthenticationReason = message
+            self.passwordContainerView.touchAuthenticationAction(self.passwordContainerView.touchAuthenticationButton)
         }
     }
     

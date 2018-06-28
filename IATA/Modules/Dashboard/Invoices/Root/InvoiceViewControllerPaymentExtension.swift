@@ -22,6 +22,8 @@ extension InvoiceViewController {
         self.view.endEditing(true)
         let viewController = PinViewController()
         viewController.isValidationTransaction = true
+        viewController.messageTouch = R.string.localizable.invoiceScreenPayConfirmation()
+        
         let items = self.state?.getItemsId()
         viewController.completion = {
             self.tabView.setContentOffset(.zero, animated: true)
@@ -44,7 +46,6 @@ extension InvoiceViewController {
     }
     
     func paymentSuccess() {
-        ViewUtils.shared.showToast(message: R.string.localizable.commonSuccessMessage(), view: self.view)
         self.loadData()
         self.hideMenu()
     }

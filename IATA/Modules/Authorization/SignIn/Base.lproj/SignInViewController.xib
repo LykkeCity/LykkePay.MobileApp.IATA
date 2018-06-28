@@ -96,7 +96,7 @@ continue to IATA</string>
                             </constraints>
                             <color key="textColor" red="0.031372549019607843" green="0.16470588235294117" blue="0.29803921568627451" alpha="1" colorSpace="calibratedRGB"/>
                             <fontDescription key="fontDescription" name="GothamPro" family="Gotham Pro" pointSize="16"/>
-                            <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress" smartDashesType="no" textContentType="email"/>
+                            <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="number" keyPath="placeholderVerticalOffset">
                                     <real key="value" value="25"/>
@@ -112,7 +112,7 @@ continue to IATA</string>
                             </constraints>
                             <color key="textColor" red="0.031372549019607843" green="0.16470588235294117" blue="0.29803921568627451" alpha="1" colorSpace="calibratedRGB"/>
                             <fontDescription key="fontDescription" name="GothamPro" family="Gotham Pro" pointSize="16"/>
-                            <textInputTraits key="textInputTraits" autocorrectionType="no" textContentType="password"/>
+                            <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="number" keyPath="placeholderVerticalOffset">
                                     <real key="value" value="25"/>

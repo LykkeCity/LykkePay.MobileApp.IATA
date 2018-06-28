@@ -7,7 +7,7 @@ class DateUtils {
     
     internal static func formatDate(date: String?) -> String? {
         if let date = date {
-        dateFormatter.dateFormat = "yyyy-MM-DD"
+        dateFormatter.dateFormat = "yyyy-MM-dd"
         let date = dateFormatter.date(from: date)
         dateFormatter.dateFormat = "dd.MM.yyyy"
             return  dateFormatter.string(from: date!)
