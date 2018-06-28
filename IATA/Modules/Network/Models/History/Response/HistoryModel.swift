@@ -6,9 +6,9 @@ class HistoryModel: Mappable {
     
     private enum PropertyKey: String {
         case id
-        case logo
+        case merchantLogoUrl
         case title
-        case timeStamp
+        case createdOn
         case amount
         case assetId
         
@@ -19,7 +19,7 @@ class HistoryModel: Mappable {
     internal var logo: String?
     internal var title: String?
     internal var timeStamp: String?
-    internal var amount: String?
+    internal var amount: Int?
     internal var assetId: String?
     internal var symbol: String?
     
@@ -35,9 +35,9 @@ class HistoryModel: Mappable {
     
     internal func mapping(map: Map) {
         self.id <- map[PropertyKey.id.rawValue]
-        self.logo <- map[PropertyKey.logo.rawValue]
+        self.logo <- map[PropertyKey.merchantLogoUrl.rawValue]
         self.title <- map[PropertyKey.title.rawValue]
-        self.timeStamp <- map[PropertyKey.timeStamp.rawValue]
+        self.timeStamp <- map[PropertyKey.createdOn.rawValue]
         self.amount <- map[PropertyKey.amount.rawValue]
         self.assetId <- map[PropertyKey.assetId.rawValue]
         

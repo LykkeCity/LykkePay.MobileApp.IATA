@@ -18,14 +18,17 @@ class Network {
     private var refreshTokenPromise: Promise<Void>?
     
     private let manager: SessionManager = {
-        let serverTrustPolicies: [String: ServerTrustPolicy] = [
-            NetworkConfig.shared.certificateFileName: .pinPublicKeys(
+
+        var serverTrustPolicies: [String: ServerTrustPolicy] = [:]
+
+        CertificateNames.allCases().forEach {
+            serverTrustPolicies[$0.value()] = .pinPublicKeys(
                 publicKeys: ServerTrustPolicy.publicKeys(),
                 validateCertificateChain: true,
                 validateHost: true
             )
-        ]
-        
+        }
+    
         let configuration = URLSessionConfiguration.default
         configuration.httpAdditionalHeaders = SessionManager.defaultHTTPHeaders
         
