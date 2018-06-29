@@ -18,9 +18,6 @@ class BaseViewController<T: Mappable, S: DefaultBaseState<T>>:
         self.getTableView().dataSource = self
         self.getTableView().tableFooterView = UIView()
         self.getTableView().showsVerticalScrollIndicator = false
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
-        tap.cancelsTouchesInView = false
-        view.addGestureRecognizer(tap)
     }
 
     
@@ -64,6 +61,10 @@ class BaseViewController<T: Mappable, S: DefaultBaseState<T>>:
     
     internal func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 0
+    }
+
+    internal func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return UIView()
     }
     
     @objc func refresh() {

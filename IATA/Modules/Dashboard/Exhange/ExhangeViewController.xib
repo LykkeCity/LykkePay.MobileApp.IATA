@@ -222,7 +222,7 @@
                         <constraint firstAttribute="bottom" secondItem="XSV-Sr-zNR" secondAttribute="bottom" id="OCS-vO-qfd"/>
                         <constraint firstAttribute="width" constant="375" id="RIX-J5-dqi"/>
                         <constraint firstItem="XSV-Sr-zNR" firstAttribute="top" secondItem="k5b-Jo-Gge" secondAttribute="top" id="ZUL-ca-csA"/>
-                        <constraint firstAttribute="height" constant="464" id="gav-kQ-WFs"/>
+                        <constraint firstAttribute="height" relation="lessThanOrEqual" constant="464" id="gav-kQ-WFs"/>
                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="375" id="y3v-YK-hc0"/>
                     </constraints>
                 </view>

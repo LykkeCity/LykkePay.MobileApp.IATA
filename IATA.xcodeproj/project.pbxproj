@@ -204,6 +204,8 @@
 		D78589A320D3DF1800E3C3FB /* WalletsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D78589A220D3DF1800E3C3FB /* WalletsViewModel.swift */; };
 		D7894CFD20CFFC290069F68E /* GothamProMed.otf in Resources */ = {isa = PBXBuildFile; fileRef = D7894CFB20CFFC290069F68E /* GothamProMed.otf */; };
 		D7894CFE20CFFC290069F68E /* GothamProReg.otf in Resources */ = {isa = PBXBuildFile; fileRef = D7894CFC20CFFC290069F68E /* GothamProReg.otf */; };
+		D7A71F2120E51529002D4207 /* CustomHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D7A71F2020E51529002D4207 /* CustomHeaderView.xib */; };
+		D7A71F2520E54135002D4207 /* CustomHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A71F2420E54135002D4207 /* CustomHeaderView.swift */; };
 		D7AF0E2020E3797F00C285D4 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7AF0E1F20E3797F00C285D4 /* UIViewControllerExtension.swift */; };
 		D7BC8CE720E10DD6000A708B /* DefaultExchangeState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BC8CE620E10DD6000A708B /* DefaultExchangeState.swift */; };
 		D7BC8CEB20E10ECD000A708B /* ExchangeRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BC8CEA20E10ECD000A708B /* ExchangeRequest.swift */; };
@@ -456,6 +458,8 @@
 		D78589A220D3DF1800E3C3FB /* WalletsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletsViewModel.swift; sourceTree = "<group>"; };
 		D7894CFB20CFFC290069F68E /* GothamProMed.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GothamProMed.otf; sourceTree = "<group>"; };
 		D7894CFC20CFFC290069F68E /* GothamProReg.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GothamProReg.otf; sourceTree = "<group>"; };
+		D7A71F2020E51529002D4207 /* CustomHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomHeaderView.xib; sourceTree = "<group>"; };
+		D7A71F2420E54135002D4207 /* CustomHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomHeaderView.swift; sourceTree = "<group>"; };
 		D7AF0E1F20E3797F00C285D4 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		D7BC8CE620E10DD6000A708B /* DefaultExchangeState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultExchangeState.swift; sourceTree = "<group>"; };
 		D7BC8CEA20E10ECD000A708B /* ExchangeRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRequest.swift; sourceTree = "<group>"; };
@@ -1304,6 +1308,7 @@
 		0AF611A920CA72E200957348 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D7A71F1F20E514EA002D4207 /* Wallets */,
 				0A11322B20DD787800FE6853 /* RangeSlider */,
 				0ABED72420DBFB8300AABCAD /* SwipeAction */,
 				0A0B119F20D28B9100021E2D /* Invoice */,
@@ -1383,6 +1388,15 @@
 				D78589A220D3DF1800E3C3FB /* WalletsViewModel.swift */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		D7A71F1F20E514EA002D4207 /* Wallets */ = {
+			isa = PBXGroup;
+			children = (
+				D7A71F2020E51529002D4207 /* CustomHeaderView.xib */,
+				D7A71F2420E54135002D4207 /* CustomHeaderView.swift */,
+			);
+			path = Wallets;
 			sourceTree = "<group>";
 		};
 		D7BC8CE520E10DBD000A708B /* State */ = {
@@ -1632,6 +1646,7 @@
 				0A0D4B5820C53364009B73E9 /* LaunchScreen.storyboard in Resources */,
 				D7894CFD20CFFC290069F68E /* GothamProMed.otf in Resources */,
 				0A0B11A320D28BBF00021E2D /* InvoiceView.xib in Resources */,
+				D7A71F2120E51529002D4207 /* CustomHeaderView.xib in Resources */,
 				0A37EFFA20C8044200201907 /* ChangePasswordViewController.xib in Resources */,
 				94D6B70820E13BA80066960D /* lykkexnet.crt in Resources */,
 				D7D177A720CE3AFA00985F05 /* BaseCurrencyCollectionViewCell.xib in Resources */,
@@ -1906,6 +1921,7 @@
 				0A1A1C8C20DD1D380037DC77 /* SwipeExpanding.swift in Sources */,
 				0A837C3B20DE9C1000199759 /* SettingsMerchantsModel.swift in Sources */,
 				0A37EF6A20C58B6B00201907 /* Theme.swift in Sources */,
+				D7A71F2520E54135002D4207 /* CustomHeaderView.swift in Sources */,
 				0A62F56720C546E100A51D63 /* ServerErrorExtractor.swift in Sources */,
 				0A9364BC20DA316400634406 /* DefaultTransactionState.swift in Sources */,
 				0A4CD11E20CD57AA00EF4A17 /* DesignableUITextField.swift in Sources */,

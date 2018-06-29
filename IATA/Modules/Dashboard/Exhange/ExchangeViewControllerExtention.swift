@@ -2,8 +2,7 @@ import Foundation
 
 extension ExhangeViewController {
     
-    func loadExchangeInfo() {
-        self.sumTextField.text = Formatter.formattedWithSeparator(valueDouble: 0.0)
+    func loadExchangeInfo(isNeedMakePayment: Bool) {
         self.setEnabledExchange(isEnabled: false)
         self.state.loadExchangeData(sourceAmount: self.sumTextField.text)
             .then(execute: { [weak self] (result: ExchangeModel) -> Void in
@@ -11,6 +10,10 @@ extension ExhangeViewController {
                     return
                 }
                 strongSelf.initAsset(model: result)
+                strongSelf.initEnabled()
+                if isNeedMakePayment {
+                   strongSelf.processPayment()
+                }
             }).catch(execute: { [weak self] error -> Void in
                 guard let strongSelf = self else {
                     return
@@ -19,13 +22,31 @@ extension ExhangeViewController {
             })
     }
     
-    func makeExchange() {
-        self.state.makeExchange(sourceAmount: self.sumTextField.text)
+    func processPayment() {
+        let value = self.sumTextField.text
+        self.sumTextField.text = "0"
+        self.setEnabledExchange(isEnabled: false)
+        self.initAsset(model: nil)
+        self.view.endEditing(true)
+        let viewController = PinViewController()
+        viewController.navController = self
+        viewController.isValidationTransaction = true
+        viewController.messageTouch = R.string.localizable.exchangeSourcePayConfirmation()
+        viewController.completion = {
+            if let valueString = value {
+                self.makeExchange(value: valueString)
+            }
+        }
+        self.navigationController?.present(viewController, animated: true, completion: nil)
+    }
+    
+    func makeExchange(value: String) {
+        self.state.makeExchange(sourceAmount: value)
             .then(execute: { [weak self] (result: ExchangeModel) -> Void in
                 guard let strongSelf = self else {
                     return
                 }
-                strongSelf.loadDataInfo()
+                strongSelf.exchangeSuccess()
             }).catch(execute: { [weak self] error -> Void in
                 guard let strongSelf = self else {
                     return
@@ -34,9 +55,18 @@ extension ExhangeViewController {
             })
     }
     
-    func loadDataInfo() {
+    func exchangeSuccess() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
+            self.loadDataInfo(isNeedToCleanUp: true)
+        })
+    }
+    
+    func loadDataInfo(isNeedToCleanUp: Bool) {
         self.beginRefresh()
-        self.sumTextField.text = "0"
+        if isNeedToCleanUp {
+            self.sumTextField.text = "0"
+        }
+        
         self.state.loadStartData()?
             .then(execute: { [weak self] (result: String) -> Void in
                 guard let strongSelf = self else {
@@ -53,7 +83,7 @@ extension ExhangeViewController {
     
     private func reloadTable(jsonString: String!) {
         self.state.mapping(jsonString: jsonString)
-        self.loadExchangeInfo()
+        self.loadExchangeInfo(isNeedMakePayment: false)
     }
     
     private func handleErrorExchangeInfo(error: Error) {
@@ -63,6 +93,6 @@ extension ExhangeViewController {
     
     private func handleError(error : Error) {
         self.showErrorAlert(error: error)
-        self.loadExchangeInfo()
+        self.loadExchangeInfo(isNeedMakePayment: false)
     }
 }

@@ -36,6 +36,9 @@ class ExhangeViewController: BaseNavController {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.sellAll))
         self.sellAllView.addGestureRecognizer(tap)
         
+        let tapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
+        view.addGestureRecognizer(tapGesture)
+        
         self.initSumTextField()
         self.initKeyboardEvents()
         self.initAllSum()
@@ -56,7 +59,7 @@ class ExhangeViewController: BaseNavController {
     }
     
     @objc func didPullToRefresh() {
-        self.loadData()
+        self.reloadData()
     }
     
     @objc func sellAll() {
@@ -85,36 +88,25 @@ class ExhangeViewController: BaseNavController {
     
     @IBAction func clickChangeBaseAssert(_ sender: Any) {
         self.state.viewModel.changeBaseAsset()
-        self.loadExchangeInfo()
+        self.loadExchangeInfo(isNeedMakePayment: false)
     }
     
     @IBAction func editChanged(_ sender: Any) {
-        if let text = self.sumTextField.text, let isEmpty = self.sumTextField.text?.isEmpty, isEmpty || (Int(text) == 0) {
-            setEnabledExchange(isEnabled: false)
-        } else if let text = self.sumTextField.text {
-            if let last = text.characters.last, let separator = NSLocale.current.decimalSeparator, !String(last).elementsEqual(separator) {
-                self.initAmounts(model: nil)
-            }
-            setEnabledExchange(isEnabled: true)
-        }
+        initEnabled()
     }
     
     @IBAction func clickConfirm(_ sender: Any) {
-        self.sumTextField.text = "0"
-        self.initAsset(model: nil)
         self.view.endEditing(true)
-        let viewController = PinViewController()
-        viewController.navController = self
-        viewController.isValidationTransaction = true
-        viewController.messageTouch = R.string.localizable.exchangeSourcePayConfirmation()
-        viewController.completion = {
-            self.makeExchange()
-        }
-        self.navigationController?.present(viewController, animated: true, completion: nil)
+        self.beginRefresh()
+        self.loadExchangeInfo(isNeedMakePayment: true)
     }
   
-    @objc private func loadData() {
-        self.loadDataInfo()
+    func loadData() {
+        self.loadDataInfo(isNeedToCleanUp: false)
+    }
+    
+    @objc private func reloadData() {
+        self.loadDataInfo(isNeedToCleanUp: false)
     }
     
     func beginRefresh() {
@@ -154,6 +146,17 @@ class ExhangeViewController: BaseNavController {
             }
         }
         self.refresh.endRefreshing()
+    }
+    
+    func initEnabled() {
+        if let text = self.sumTextField.text, let isEmpty = self.sumTextField.text?.isEmpty, isEmpty || (Int(text) == 0) {
+            setEnabledExchange(isEnabled: false)
+        } else if let text = self.sumTextField.text {
+            if let last = text.characters.last, let separator = NSLocale.current.decimalSeparator, !String(last).elementsEqual(separator) {
+                self.initAmounts(model: nil)
+            }
+            setEnabledExchange(isEnabled: true)
+        }
     }
     
     func setEnabledExchange(isEnabled: Bool) {
@@ -212,7 +215,6 @@ class ExhangeViewController: BaseNavController {
            let souceAmountDouble = Formatter.formattedToDouble(valueString:sourceAmountString) {
             sourceAmount = souceAmountDouble
         }
-        
         if let symbolDest = self.state.viewModel.exchangeModel.symbolDest,
             let symbolSource = self.state.viewModel.exchangeModel.symbolSource,
             let rate = self.state.viewModel.exchangeModel.rate  {

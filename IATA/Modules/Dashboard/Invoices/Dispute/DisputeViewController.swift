@@ -7,6 +7,8 @@ class DisputeViewController: BaseViewController<DisputeModel, DefaultDisputeStat
     @IBOutlet weak var navView: UIView!
     @IBOutlet weak var tabView: UITableView!
     
+    var rootController: InvoiceViewController?
+    
     override func viewDidLoad() {
         state = DefaultDisputeState()
         super.viewDidLoad()
