@@ -1875,7 +1875,6 @@ struct _R: Rswift.Validatable {
       
       static func validate() throws {
         if UIKit.UIImage(named: "ic_placeholderIcn", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'ic_placeholderIcn' is used in nib 'WalletsViewController', but couldn't be loaded.") }
-        if UIKit.UIImage(named: "logoSmallIcn", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'logoSmallIcn' is used in nib 'WalletsViewController', but couldn't be loaded.") }
       }
       
       fileprivate init() {}
