@@ -4,16 +4,7 @@ import UIKit
 
 class WalletsViewController: BaseViewController<WalletsViewModel, DefaultWalletsState> {
 
-    @IBOutlet weak var totalBalanceLabel: UILabel!
-    
     @IBOutlet weak var tableView: UITableView!
-
-
-    @IBOutlet weak var topView: UIView!
-
-    @IBOutlet weak var logoImageView: UIImageView!
-    
-    @IBOutlet weak var topSeparatorView: UIView!
 
     @IBOutlet weak var placeholderWallets: UIView!
 
@@ -21,23 +12,36 @@ class WalletsViewController: BaseViewController<WalletsViewModel, DefaultWallets
         state = DefaultWalletsState()
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = false
-        loadData()
         initViewTheme()
         initTableViewTheme()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = false
-        totalBalanceLabel.text = state?.getTotalBalance()
+        self.beginRefreshing()
         loadData()
     }
-    
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let count = self.state?.items.count {
             return count
         } else {
             return 0
+        }
+    }
+
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 80
+    }
+
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: CustomHeaderView.identifier) as! CustomHeaderView
+        headerView.balanceLabel.text = self.state?.getTotalBalance()
+        if state?.getItems().count == 0 {
+            return UIView()
+        } else {
+            return headerView
         }
     }
 
@@ -50,7 +54,6 @@ class WalletsViewController: BaseViewController<WalletsViewModel, DefaultWallets
     }
 
     override func loadData() {
-        super.loadData()
         if let id = UserPreference.shared.getCurrentCurrency()?.id {
             self.state?.getWalletsStringJson(id: id)
                 .then(execute: { [weak self] (result: String) -> Void in
@@ -64,15 +67,14 @@ class WalletsViewController: BaseViewController<WalletsViewModel, DefaultWallets
 
     private func reloadTable(jsonString: String!) {
         self.state?.mapping(jsonString: jsonString)
-        self.totalBalanceLabel.text = state?.getTotalBalance()
-        self.refreshControl.endRefreshing()
-        if let count = state?.getItems().count, count == 0 {
+        if (state?.getItems().count)! == 0 {
             placeholderWallets.isHidden = false
         } else {
-             placeholderWallets.isHidden = true
+            placeholderWallets.isHidden = true
         }
-        self.tableView.reloadData()
         setVisibleViewAfterLoadingData()
+        self.tableView.reloadData()
+        self.refreshControl.endRefreshing()
     }
 
     override func getTitle() -> String? {
@@ -84,20 +86,16 @@ class WalletsViewController: BaseViewController<WalletsViewModel, DefaultWallets
     }
 
     override func registerCells() {
+        tableView.register(CustomHeaderView.nib, forHeaderFooterViewReuseIdentifier: CustomHeaderView.identifier)
         tableView.register(WalletsTableViewCell.nib, forCellReuseIdentifier: WalletsTableViewCell.identifier)
     }
 
     private func initViewTheme() {
-        self.topView.isHidden = true
-        self.logoImageView.isHidden = true
-        self.topSeparatorView.isHidden = true
         self.tableView.separatorColor = Theme.shared.dotColor
     }
 
     private func setVisibleViewAfterLoadingData() {
-        self.topView.isHidden = false
-        self.logoImageView.isHidden = false
-        self.topSeparatorView.isHidden = false
+        self.tableView.isHidden = false
     }
     
     private func initTableViewTheme() {

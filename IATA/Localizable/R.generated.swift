@@ -355,12 +355,14 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.nib` struct is generated, and contains static references to 25 nibs.
+  /// This `R.nib` struct is generated, and contains static references to 26 nibs.
   struct nib {
     /// Nib `BaseCurrencyCollectionViewCell`.
     static let baseCurrencyCollectionViewCell = _R.nib._BaseCurrencyCollectionViewCell()
     /// Nib `ChangePasswordViewController`.
     static let changePasswordViewController = _R.nib._ChangePasswordViewController()
+    /// Nib `CustomHeaderView`.
+    static let customHeaderView = _R.nib._CustomHeaderView()
     /// Nib `DisputInvoiceViewController`.
     static let disputInvoiceViewController = _R.nib._DisputInvoiceViewController()
     /// Nib `DisputeTableViewCell`.
@@ -416,6 +418,11 @@ struct R: Rswift.Validatable {
     /// `UINib(name: "ChangePasswordViewController", in: bundle)`
     static func changePasswordViewController(_: Void = ()) -> UIKit.UINib {
       return UIKit.UINib(resource: R.nib.changePasswordViewController)
+    }
+    
+    /// `UINib(name: "CustomHeaderView", in: bundle)`
+    static func customHeaderView(_: Void = ()) -> UIKit.UINib {
+      return UIKit.UINib(resource: R.nib.customHeaderView)
     }
     
     /// `UINib(name: "DisputInvoiceViewController", in: bundle)`
@@ -1515,6 +1522,7 @@ struct _R: Rswift.Validatable {
       try _InvoiceView.validate()
       try _HistoryViewController.validate()
       try _PinViewController.validate()
+      try _CustomHeaderView.validate()
       try _SettingsViewController.validate()
       try _WalletsViewController.validate()
       try _TransactionTableViewHeader.validate()
@@ -1544,6 +1552,21 @@ struct _R: Rswift.Validatable {
       
       func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]? = nil) -> UIKit.UIView? {
         return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
+      }
+      
+      fileprivate init() {}
+    }
+    
+    struct _CustomHeaderView: Rswift.NibResourceType, Rswift.Validatable {
+      let bundle = R.hostingBundle
+      let name = "CustomHeaderView"
+      
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]? = nil) -> CustomHeaderView? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? CustomHeaderView
+      }
+      
+      static func validate() throws {
+        if UIKit.UIImage(named: "logoSmallIcn", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'logoSmallIcn' is used in nib 'CustomHeaderView', but couldn't be loaded.") }
       }
       
       fileprivate init() {}
@@ -1882,7 +1905,6 @@ struct _R: Rswift.Validatable {
       
       static func validate() throws {
         if UIKit.UIImage(named: "ic_placeholderIcn", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'ic_placeholderIcn' is used in nib 'WalletsViewController', but couldn't be loaded.") }
-        if UIKit.UIImage(named: "logoSmallIcn", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'logoSmallIcn' is used in nib 'WalletsViewController', but couldn't be loaded.") }
       }
       
       fileprivate init() {}
