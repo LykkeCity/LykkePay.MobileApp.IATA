@@ -47,7 +47,7 @@ class HistoryModel: Mappable {
         self.settlementMonthPeriod <- map[PropertyKey.settlementMonthPeriod.rawValue]
         
         if let timeStamp = self.timeStamp {
-            self.timeStamp = DateUtils.formatDateFromFormat(dateString: timeStamp)
+            self.timeStamp = DateUtils.formatDateFromFormatWith7Mls(dateString: timeStamp)
         }
         
         if let asset = assetId {

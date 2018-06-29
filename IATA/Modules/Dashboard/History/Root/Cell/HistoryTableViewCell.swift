@@ -39,13 +39,14 @@ class HistoryTableViewCell: UITableViewCell {
     }
 
     private func configureInfoLabel(model: HistoryModel) {
-        self.infoLabel.text = ""
-        self.infoLabel.text?.append(model.iataInvoiceDate ?? "")
+        infoLabel.text = ""
+        infoLabel.text?.append(model.iataInvoiceDate ?? "")
         guard let text = self.infoLabel.text, !text.isEmpty else {
-            self.infoLabel.text = model.settlementMonthPeriod ?? ""
+            infoLabel.text = model.timeStamp
             return
         }
         guard let periodText = model.settlementMonthPeriod else {
+            infoLabel.text = model.timeStamp
             return
         }
 
