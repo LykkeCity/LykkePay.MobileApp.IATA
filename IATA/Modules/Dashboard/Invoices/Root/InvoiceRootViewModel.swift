@@ -89,6 +89,7 @@ class InvoiceRootViewModel: SwipeTableViewCellDelegate, OnChangeStateSelected {
     private func openDisputeAction(_ state: DefaultInvoiceState) -> [SwipeAction]? {
         let disputeAction = SwipeAction(style: .destructive, title: R.string.localizable.invoiceScreenItemsDispute()) { action, indexPath in
             let disputInvoiceVC = DisputInvoiceViewController()
+            disputInvoiceVC.rootController = self.viewController
             disputInvoiceVC.completion = {
                 self.viewController?.loadData()
             }

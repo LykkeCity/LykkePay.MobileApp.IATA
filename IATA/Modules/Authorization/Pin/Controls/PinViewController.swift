@@ -173,9 +173,9 @@ private extension PinViewController {
         if (countOfTry > 2) {
             if isValidationTransaction {
                 self.navController?.hidesBottomBarWhenPushed = true
+                 self.navController?.navigationController?.pushViewController(SignInViewController(), animated: true)
                 self.dismiss(animated: true, completion: {
                     CredentialManager.shared.clearSavedData()
-                    self.navController?.navigationController?.pushViewController(SignInViewController(), animated: true)
                 })
                
             } else {

@@ -10,6 +10,7 @@ class DisputInvoiceViewController: BaseNavController {
     @IBOutlet weak var navItem: UINavigationItem?
     @IBOutlet weak var reasonTextField: FloatTextField!
 
+    var rootController: InvoiceViewController?
     var completion: (() -> Void) = {}
     let state = DefaultDisputInvoiceState()
 
@@ -81,6 +82,7 @@ class DisputInvoiceViewController: BaseNavController {
                 guard let strongSelf = self else {
                     return
                 }
+                strongSelf.rootController?.beginRefreshing()
                 strongSelf.dismiss(animated: true, completion: strongSelf.completion)
             })
         }

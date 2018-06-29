@@ -2,7 +2,7 @@ import Foundation
 
 extension ExhangeViewController {
     
-    func loadExchangeInfo() {
+    func loadExchangeInfo(isNeedMakePayment: Bool) {
         self.setEnabledExchange(isEnabled: false)
         self.state.loadExchangeData(sourceAmount: self.sumTextField.text)
             .then(execute: { [weak self] (result: ExchangeModel) -> Void in
@@ -11,12 +11,33 @@ extension ExhangeViewController {
                 }
                 strongSelf.initAsset(model: result)
                 strongSelf.initEnabled()
+                if isNeedMakePayment {
+                   strongSelf.processPayment()
+                }
             }).catch(execute: { [weak self] error -> Void in
                 guard let strongSelf = self else {
                     return
                 }
                 strongSelf.handleErrorExchangeInfo(error: error)
             })
+    }
+    
+    func processPayment() {
+        let value = self.sumTextField.text
+        self.sumTextField.text = "0"
+        self.setEnabledExchange(isEnabled: false)
+        self.initAsset(model: nil)
+        self.view.endEditing(true)
+        let viewController = PinViewController()
+        viewController.navController = self
+        viewController.isValidationTransaction = true
+        viewController.messageTouch = R.string.localizable.exchangeSourcePayConfirmation()
+        viewController.completion = {
+            if let valueString = value {
+                self.makeExchange(value: valueString)
+            }
+        }
+        self.navigationController?.present(viewController, animated: true, completion: nil)
     }
     
     func makeExchange(value: String) {
@@ -62,7 +83,7 @@ extension ExhangeViewController {
     
     private func reloadTable(jsonString: String!) {
         self.state.mapping(jsonString: jsonString)
-        self.loadExchangeInfo()
+        self.loadExchangeInfo(isNeedMakePayment: false)
     }
     
     private func handleErrorExchangeInfo(error: Error) {
@@ -72,6 +93,6 @@ extension ExhangeViewController {
     
     private func handleError(error : Error) {
         self.showErrorAlert(error: error)
-        self.loadExchangeInfo()
+        self.loadExchangeInfo(isNeedMakePayment: false)
     }
 }

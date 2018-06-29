@@ -85,7 +85,7 @@ class ExhangeViewController: BaseNavController {
     
     @IBAction func clickChangeBaseAssert(_ sender: Any) {
         self.state.viewModel.changeBaseAsset()
-        self.loadExchangeInfo()
+        self.loadExchangeInfo(isNeedMakePayment: false)
     }
     
     @IBAction func editChanged(_ sender: Any) {
@@ -93,21 +93,9 @@ class ExhangeViewController: BaseNavController {
     }
     
     @IBAction func clickConfirm(_ sender: Any) {
-        let value = self.sumTextField.text
-        self.sumTextField.text = "0"
-        self.setEnabledExchange(isEnabled: false)
-        self.initAsset(model: nil)
         self.view.endEditing(true)
-        let viewController = PinViewController()
-        viewController.navController = self
-        viewController.isValidationTransaction = true
-        viewController.messageTouch = R.string.localizable.exchangeSourcePayConfirmation()
-        viewController.completion = {
-            if let valueString = value {
-                self.makeExchange(value: valueString)
-            }
-        }
-        self.navigationController?.present(viewController, animated: true, completion: nil)
+        self.beginRefresh()
+        self.loadExchangeInfo(isNeedMakePayment: true)
     }
   
     func loadData() {

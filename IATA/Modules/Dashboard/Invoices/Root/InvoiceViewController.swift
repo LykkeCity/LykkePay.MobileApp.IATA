@@ -69,6 +69,7 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
     
     @objc func clickFilter(sender: Any?) {
         let viewController = InvoiceSettingsViewController()
+        viewController.rootController = self
         viewController.setNeedsStatusBarAppearanceUpdate()
         viewController.completion = {
             self.loadData()
@@ -78,7 +79,8 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
     }
     
     @objc func clickDispute(sender: Any?) {
-        self.navigationController?.present(DisputeViewController(), animated: true, completion: nil)
+        let viewController = DisputeViewController()
+        self.navigationController?.present(viewController, animated: true, completion: nil)
         self.hideMenu()
     }
     
@@ -198,8 +200,9 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
         }
         self.tabView.reloadData()
         self.refreshControl.endRefreshing()
-        self.tabView.setContentOffset(.zero, animated: true)
         
+        let indexPath = IndexPath(row: 0, section: 0)
+        self.tabView.scrollToRow(at: indexPath, at: .top, animated: true)
     }
     
     private func initDownView(isSelected: Bool) {

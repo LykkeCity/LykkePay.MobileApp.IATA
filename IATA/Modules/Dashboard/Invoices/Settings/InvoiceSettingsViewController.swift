@@ -8,10 +8,11 @@ class InvoiceSettingsViewController: BaseNavController {
     @IBOutlet weak var navBar: UINavigationBar!
     @IBOutlet weak var navView: UIView!
     
-    private var viewModel =  InvoiceViewModel()
     private var isShown = false
     private var isEnabled = true
+    var rootController: InvoiceViewController?
     var completion: (() -> Void) = {}
+    var viewModel =  InvoiceViewModel()
     
     
     override func viewDidLoad() {
@@ -93,6 +94,7 @@ class InvoiceSettingsViewController: BaseNavController {
     @objc func clickDone() {
          NotificationCenter.default.post(name: NSNotification.Name(NotificateEnum.destroy.rawValue), object: nil)
         self.viewModel.state.clickDone()
+        self.rootController?.beginRefreshing()
         self.dismiss(animated: true, completion: completion)
     }
     
