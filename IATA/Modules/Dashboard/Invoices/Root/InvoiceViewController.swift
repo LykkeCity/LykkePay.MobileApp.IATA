@@ -39,6 +39,8 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
 
         //better use protocol - will rewrite later
         NotificationCenter.default.addObserver(self, selector: #selector(refresh), name: NSNotification.Name(rawValue: "loadData"), object: nil)
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
+        view.addGestureRecognizer(tap)
     }
     
     
@@ -201,8 +203,10 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
         self.tabView.reloadData()
         self.refreshControl.endRefreshing()
         
-        let indexPath = IndexPath(row: 0, section: 0)
-        self.tabView.scrollToRow(at: indexPath, at: .top, animated: true)
+        if let count = state?.getItems().count, count > 0 {
+            let indexPath = IndexPath(row: 0, section: 0)
+            self.tabView.scrollToRow(at: indexPath, at: .top, animated: true)
+        }
     }
     
     private func initDownView(isSelected: Bool) {

@@ -67,10 +67,8 @@ class WalletsViewController: BaseViewController<WalletsViewModel, DefaultWallets
 
     private func reloadTable(jsonString: String!) {
         self.state?.mapping(jsonString: jsonString)
-        if (state?.getItems().count)! == 0 {
-            placeholderWallets.isHidden = false
-        } else {
-            placeholderWallets.isHidden = true
+        if let count = state?.getItems().count {
+            placeholderWallets.isHidden = count != 0
         }
         setVisibleViewAfterLoadingData()
         self.tableView.reloadData()

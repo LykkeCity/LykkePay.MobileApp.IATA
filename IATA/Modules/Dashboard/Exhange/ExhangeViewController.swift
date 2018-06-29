@@ -36,6 +36,9 @@ class ExhangeViewController: BaseNavController {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.sellAll))
         self.sellAllView.addGestureRecognizer(tap)
         
+        let tapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
+        view.addGestureRecognizer(tapGesture)
+        
         self.initSumTextField()
         self.initKeyboardEvents()
         self.initAllSum()
