@@ -9,11 +9,10 @@ extension InvoiceViewController {
         self.view.endEditing(true)
         let viewController = PinViewController()
         viewController.isValidationTransaction = true
-        viewController.navController = self.navigationController
+        viewController.navController = self
         viewController.messageTouch = R.string.localizable.invoiceScreenPayConfirmation()
         let items = self.state?.getItemsId()
         viewController.completion = {
-            self.tabView.setContentOffset(.zero, animated: true)
             self.state?.makePayment(items: items, amount: self.sumTextField.text)
                 .then(execute: {[weak self] (result: BaseMappable) -> Void in
                     guard let strongSelf = self else {
@@ -32,7 +31,9 @@ extension InvoiceViewController {
     }
     
     func paymentSuccess() {
-        self.loadData()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
+            self.loadData()
+        })
         self.hideMenu()
     }
     

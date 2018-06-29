@@ -2,8 +2,7 @@ import UIKit
 import ObjectMapper
 
 
-class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceState>, UINavigationControllerDelegate {
-
+class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceState> {
    
     @IBOutlet weak var sumTextField: CurrencyUiTextField!
     @IBOutlet weak var btnPay: UIButton!
@@ -19,18 +18,14 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
 
     private var viewModel: InvoiceRootViewModel? = nil
     
-    
-    func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationControllerOperation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        
-        return PresentAnimation()
-    }
+   
     
     override func viewDidLoad() {
         state = DefaultInvoiceState()
         viewModel = InvoiceRootViewModel(state: state, viewController: self)
         super.viewDidLoad()
-        self.navigationController?.delegate = self
-        viewModel?.loadData()
+        self.beginRefreshing()
+        self.loadData()
         
         self.sumTextField.delegate = self
         self.sumTextField.addObservers()
@@ -87,6 +82,9 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
         self.hideMenu()
     }
     
+    override func loadData() {
+        self.viewModel?.loadData()
+    }
     
     override func getLeftButton() -> UIBarButtonItem? {
         return UIBarButtonItem(image: R.image.ic_filter(), style: .plain, target: self, action: #selector(self.clickFilter(sender:)))
@@ -200,6 +198,8 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
         }
         self.tabView.reloadData()
         self.refreshControl.endRefreshing()
+        self.tabView.setContentOffset(.zero, animated: true)
+        
     }
     
     private func initDownView(isSelected: Bool) {

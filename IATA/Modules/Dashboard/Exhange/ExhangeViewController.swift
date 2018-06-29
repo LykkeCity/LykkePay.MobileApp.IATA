@@ -41,6 +41,7 @@ class ExhangeViewController: BaseNavController {
         self.initAllSum()
         
         self.initScrollView()
+        self.beginRefresh()
         self.loadData()
     }
     
@@ -99,7 +100,11 @@ class ExhangeViewController: BaseNavController {
     }
     
     @IBAction func clickConfirm(_ sender: Any) {
+        self.sumTextField.text = "0"
+        self.initAsset(model: nil)
+        self.view.endEditing(true)
         let viewController = PinViewController()
+        viewController.navController = self
         viewController.isValidationTransaction = true
         viewController.messageTouch = R.string.localizable.exchangeSourcePayConfirmation()
         viewController.completion = {
@@ -115,7 +120,6 @@ class ExhangeViewController: BaseNavController {
     func beginRefresh() {
         var offset = self.scrollView.contentOffset
         offset.y = -81
-        self.refresh.endRefreshing()
         self.refresh.beginRefreshing()
         self.scrollView.contentOffset = offset
     }

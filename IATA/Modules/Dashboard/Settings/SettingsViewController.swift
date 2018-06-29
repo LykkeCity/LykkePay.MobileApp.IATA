@@ -87,12 +87,6 @@ class SettingsViewController: BaseNavController, UICollectionViewDelegateFlowLay
         self.present(logoutSheet, animated: true, completion: nil)
     }
 
-    private func logout(action: UIAlertAction) {
-        CredentialManager.shared.clearSavedData()
-        self.hidesBottomBarWhenPushed = true
-        self.navigationController?.pushViewController(SignInViewController(), animated: false)
-    }
-
     private func loadData() {
         self.beginRefresh()
         self.state?.getSettingsStringJson()

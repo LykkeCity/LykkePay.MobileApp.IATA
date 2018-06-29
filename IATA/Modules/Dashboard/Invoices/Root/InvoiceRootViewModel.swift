@@ -12,7 +12,6 @@ class InvoiceRootViewModel: SwipeTableViewCellDelegate, OnChangeStateSelected {
     }
   
     func loadData() {
-        self.viewController?.loadData()
         self.state?.getInvoiceStringJson()
             .then(execute: { [weak self] (result: String) -> Void in
                 guard let strongSelf = self else {

@@ -74,9 +74,12 @@ class BaseViewController<T: Mappable, S: DefaultBaseState<T>>:
     }
     
     func loadData() {
+        self.beginRefreshing()
+    }
+    
+    func beginRefreshing() {
         var offset = self.getTableView().contentOffset
         offset.y = -81
-        self.refreshControl.endRefreshing()
         self.refreshControl.beginRefreshing()
         self.getTableView().contentOffset = offset
     }
