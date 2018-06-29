@@ -39,28 +39,29 @@ class HistoryTableViewCell: UITableViewCell {
     }
 
     private func configureInfoLabel(model: HistoryModel) {
-        self.infoLabel.text = ""
-        self.infoLabel.text?.append(model.iataInvoiceDate ?? "")
+        infoLabel.text = ""
+        infoLabel.text?.append(model.iataInvoiceDate ?? "")
         guard let text = self.infoLabel.text, !text.isEmpty else {
-            self.infoLabel.text = model.settlementMonthPeriod ?? ""
+            infoLabel.text = model.timeStamp
             return
         }
         guard let periodText = model.settlementMonthPeriod else {
+            infoLabel.text = model.timeStamp
             return
         }
 
         self.infoLabel.text?.append(" | " + periodText)
     }
 
-    private func setAmount(amount: Int?, symbol: String?) {
+    private func setAmount(amount: Double?, symbol: String?) {
         guard let amount = amount, let symbol = symbol else {
             return
         }
         if amount > 0  {
-            self.transactionSum.text = "+" + String(amount) + symbol
+            self.transactionSum.text = "+" + Formatter.formattedWithSeparator(valueDouble: amount) + symbol
             self.transactionSum.textColor = Theme.shared.greenColor
         } else {
-            self.transactionSum.text = "-" + String(amount) + symbol
+            self.transactionSum.text = "-" + Formatter.formattedWithSeparator(valueDouble: amount) + symbol
             self.transactionSum.textColor = Theme.shared.redErrorStatusColor
         }
     }
