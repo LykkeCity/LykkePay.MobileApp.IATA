@@ -34,10 +34,22 @@ class HistoryTableViewCell: UITableViewCell {
             request.priority = .high
             Nuke.loadImage(with: request, into: self.logo)
         }
-        
-        if let date = model.timeStamp {
-            self.infoLabel.text = date
+
+        configureInfoLabel(model: model)
+    }
+
+    private func configureInfoLabel(model: HistoryModel) {
+        self.infoLabel.text = ""
+        self.infoLabel.text?.append(model.iataInvoiceDate ?? "")
+        guard let text = self.infoLabel.text, !text.isEmpty else {
+            self.infoLabel.text = model.settlementMonthPeriod ?? ""
+            return
         }
+        guard let periodText = model.settlementMonthPeriod else {
+            return
+        }
+
+        self.infoLabel.text?.append(" | " + periodText)
     }
 
     private func setAmount(amount: Int?, symbol: String?) {
