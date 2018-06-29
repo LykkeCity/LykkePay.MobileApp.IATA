@@ -76,8 +76,8 @@ class HistoryTransactionModel: Mappable, Reflectable {
         self.iataInvoiceDate = DateUtils.formatDateFromFormatWithUTC(dateString: self.iataInvoiceDate ?? "")
         var amountDouble: Double?
         amountDouble <- map[PropertyKey.amount.rawValue]
-        self.amount = Formatter.formattedWithSeparator(valueDouble: amountDouble) + (self.assetName ?? "")
         self.assetId <- map[PropertyKey.assetId.rawValue]
+        self.amount = Formatter.formattedWithSeparator(valueDouble: amountDouble) + (self.assetId ?? "")
         self.soldBy <- map[PropertyKey.soldBy.rawValue]
         self.blockHeight <- map[PropertyKey.blockConfirmations.rawValue]
         self.blockConfirmations = String(self.blockHeight ?? 0)
