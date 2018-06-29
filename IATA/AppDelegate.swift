@@ -27,6 +27,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UserDefaults.standard.setValue(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
     }
     
+    func applicationDidEnterBackground(_ application: UIApplication) {
+        UserPreference.shared.saveLastOpenTime(date: getCurrentTime())
+    }
+    
+    
     
     func applicationDidBecomeActive(_ application: UIApplication) {
         var lastOpenTime = UserPreference.shared.getLastOpenTime()

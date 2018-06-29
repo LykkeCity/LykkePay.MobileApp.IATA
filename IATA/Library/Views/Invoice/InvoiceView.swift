@@ -78,8 +78,12 @@ open class InvoiceView: UIView {
             self.info.text = date + " | " + settlement
             self.topNumberHeight.constant = 8
         } else {
-            self.info.isHidden = true
-            self.topNumberHeight.constant = -8
+            self.info.text = ""
+            if model.billingCategory == nil {
+                self.topNumberHeight.constant = -8
+            } else {
+                self.topNumberHeight.constant = 8
+            }
         }
         
         if let logoUrl = model.logoUrl, let url = URL(string: logoUrl){

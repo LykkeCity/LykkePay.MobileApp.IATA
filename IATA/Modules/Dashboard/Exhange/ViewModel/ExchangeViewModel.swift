@@ -23,13 +23,13 @@ class ExchangeViewModel: Mappable  {
     var isBase: Bool?
     var assetId: String?
     
-    required init(isUsd: Bool, state: DefaultExchangeState, isBase: Bool, assetId: String?) {
+    required init(isUsd: Bool, isBase: Bool, assetId: String?, totalUsd: Double?, totalEuro: Double?) {
         if isUsd {
-            self.sum = state.usd?.totalBalance
+            self.sum = totalUsd
             self.currency = "$"
             self.icon = R.image.ic_usFlagMediumIcn()
         } else {
-            self.sum =  state.euro?.totalBalance
+            self.sum =  totalEuro
             self.currency = "€"
             self.icon = R.image.ic_eurFlagMediumIcn()
         }

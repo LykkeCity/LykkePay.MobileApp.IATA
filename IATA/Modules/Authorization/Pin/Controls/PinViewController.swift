@@ -15,6 +15,7 @@ class PinViewController: UIViewController, UINavigationControllerDelegate {
     var isValidation = true
     var completion: (() -> Void) = {}
     var isValidationTransaction = false
+    var navController: UINavigationController? = nil
     var messageTouch: String? = nil
     var countOfTry = 0
     var pinCode = ""
@@ -163,7 +164,12 @@ private extension PinViewController {
         self.passwordContainerView.wrongPassword()
         if (countOfTry > 2) {
             if isValidationTransaction {
-                self.dismiss(animated: true, completion: nil)
+                self.dismiss(animated: true, completion: {
+                    CredentialManager.shared.clearSavedData()
+                    self.navController?.hidesBottomBarWhenPushed = true
+                    self.navController?.pushViewController(SignInViewController(), animated: true)
+                })
+               
             } else {
                 self.openSignIn()
             }

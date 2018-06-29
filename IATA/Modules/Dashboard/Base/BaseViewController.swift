@@ -18,6 +18,8 @@ class BaseViewController<T: Mappable, S: DefaultBaseState<T>>:
         self.getTableView().dataSource = self
         self.getTableView().tableFooterView = UIView()
         self.getTableView().showsVerticalScrollIndicator = false
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
+        view.addGestureRecognizer(tap)
     }
 
     
@@ -65,6 +67,10 @@ class BaseViewController<T: Mappable, S: DefaultBaseState<T>>:
     
     @objc func refresh() {
         loadData()
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
     
     func loadData() {

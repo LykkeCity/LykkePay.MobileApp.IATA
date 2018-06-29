@@ -100,6 +100,7 @@
                 <constraint firstItem="2Ug-9P-uec" firstAttribute="leading" secondItem="fyW-az-52G" secondAttribute="trailing" constant="8" id="9ah-JJ-jyy"/>
                 <constraint firstItem="fyW-az-52G" firstAttribute="top" secondItem="SQW-wh-Aoa" secondAttribute="bottom" constant="8" id="CLw-qC-NLD"/>
                 <constraint firstItem="fug-9l-elH" firstAttribute="leading" secondItem="SQW-wh-Aoa" secondAttribute="trailing" constant="8" id="F9J-hX-DOA"/>
+                <constraint firstItem="2Ug-9P-uec" firstAttribute="top" relation="greaterThanOrEqual" secondItem="SQW-wh-Aoa" secondAttribute="bottom" constant="8" id="Hp3-TG-WHc"/>
                 <constraint firstItem="9dV-yQ-5oU" firstAttribute="leading" secondItem="pku-8m-12U" secondAttribute="trailing" constant="8" id="Iun-eX-LSw"/>
                 <constraint firstItem="pku-8m-12U" firstAttribute="top" secondItem="fyW-az-52G" secondAttribute="bottom" constant="8" id="KH2-sj-jvO"/>
                 <constraint firstItem="fug-9l-elH" firstAttribute="top" secondItem="SQW-wh-Aoa" secondAttribute="top" id="OeZ-E0-97A"/>
@@ -111,6 +112,7 @@
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="2Ug-9P-uec" secondAttribute="trailing" constant="8" id="jw6-bD-fY6"/>
                 <constraint firstItem="pku-8m-12U" firstAttribute="leading" secondItem="5eL-jn-e0W" secondAttribute="trailing" constant="8" id="l4G-gr-SdY"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="9dV-yQ-5oU" secondAttribute="trailing" constant="8" id="m1c-cK-bvW"/>
+                <constraint firstItem="9dV-yQ-5oU" firstAttribute="top" relation="greaterThanOrEqual" secondItem="2Ug-9P-uec" secondAttribute="bottom" constant="8" id="n3k-2R-s63"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="pku-8m-12U" secondAttribute="bottom" constant="16" id="xqE-PG-O3A"/>
                 <constraint firstItem="2Ug-9P-uec" firstAttribute="top" secondItem="fyW-az-52G" secondAttribute="top" id="zd0-Ef-6tc"/>
             </constraints>

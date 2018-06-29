@@ -2,7 +2,7 @@ import UIKit
 import Material
 
 @IBDesignable
-class DesignableUITextField: FloatTextField {
+class DesignableUITextField: FloatTextField, UITextFieldDelegate {
     
     var isObserving: Bool = false
     var symbolValue: String? = UserPreference.shared.getCurrentCurrency()?.symbol {
@@ -125,7 +125,29 @@ class DesignableUITextField: FloatTextField {
         }
     }
     
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if let text = self.getOldText(), let textNsString = text as? NSString {
+            
+            let newString = textNsString.replacingCharacters(in: range, with: string)
+            if let text = self.text, let separator = NSLocale.current.decimalSeparator, text.contains(separator), string.elementsEqual(separator) {
+                return false
+            }
+            
+            if let separator = NSLocale.current.decimalSeparator, let indexOf = newString.index(of: Character(separator)) {
+                let valueString = newString.substring(from: indexOf)
+                
+                if valueString.characters.count > 6 {
+                    return false
+                }
+            }
+            
+        }
+        return true
+    }
+    
+    
     private func initCommon() {
+        self.delegate = self
         self.addTarget(self, action: #selector(editingDidEnd), for: .editingDidEnd)
         self.addTarget(self, action: #selector(editingDidBegin), for: .editingDidBegin)
         self.addTarget(self, action: #selector(editChanged), for: .editingChanged)

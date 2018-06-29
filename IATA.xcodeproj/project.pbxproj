@@ -158,6 +158,9 @@
 		0A6DB5D220C5537000BC1127 /* TokenObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6DB5D120C5537000BC1127 /* TokenObject.swift */; };
 		0A6DB5D620C553D000BC1127 /* CredentialManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6DB5D520C553D000BC1127 /* CredentialManager.swift */; };
 		0A6DB5DA20C5572E00BC1127 /* DataRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6DB5D920C5572E00BC1127 /* DataRequest.swift */; };
+		0A7576E720E55D6900A45434 /* InvoiceRootViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7576E620E55D6900A45434 /* InvoiceRootViewModel.swift */; };
+		0A7576E920E572D800A45434 /* ExchangeRootViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7576E820E572D800A45434 /* ExchangeRootViewModel.swift */; };
+		0A7576EB20E577A200A45434 /* ExchangeViewControllerExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7576EA20E577A200A45434 /* ExchangeViewControllerExtention.swift */; };
 		0A837C2A20DE985700199759 /* InvoiceFiltersModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A837C2720DE985700199759 /* InvoiceFiltersModel.swift */; };
 		0A837C2B20DE985700199759 /* InvoicePaymentRangeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A837C2820DE985700199759 /* InvoicePaymentRangeModel.swift */; };
 		0A837C2C20DE985700199759 /* FiltersInvoiceList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A837C2920DE985700199759 /* FiltersInvoiceList.swift */; };
@@ -402,6 +405,9 @@
 		0A6DB5D120C5537000BC1127 /* TokenObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenObject.swift; sourceTree = "<group>"; };
 		0A6DB5D520C553D000BC1127 /* CredentialManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialManager.swift; sourceTree = "<group>"; };
 		0A6DB5D920C5572E00BC1127 /* DataRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataRequest.swift; sourceTree = "<group>"; };
+		0A7576E620E55D6900A45434 /* InvoiceRootViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvoiceRootViewModel.swift; sourceTree = "<group>"; };
+		0A7576E820E572D800A45434 /* ExchangeRootViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRootViewModel.swift; sourceTree = "<group>"; };
+		0A7576EA20E577A200A45434 /* ExchangeViewControllerExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeViewControllerExtention.swift; sourceTree = "<group>"; };
 		0A837C2720DE985700199759 /* InvoiceFiltersModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InvoiceFiltersModel.swift; path = IATA/Modules/Network/Models/Invoice/Response/Filters2/InvoiceFiltersModel.swift; sourceTree = SOURCE_ROOT; };
 		0A837C2820DE985700199759 /* InvoicePaymentRangeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InvoicePaymentRangeModel.swift; path = IATA/Modules/Network/Models/Invoice/Response/Filters2/InvoicePaymentRangeModel.swift; sourceTree = SOURCE_ROOT; };
 		0A837C2920DE985700199759 /* FiltersInvoiceList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FiltersInvoiceList.swift; path = IATA/Modules/Network/Models/Invoice/Response/Filters2/FiltersInvoiceList.swift; sourceTree = SOURCE_ROOT; };
@@ -626,6 +632,7 @@
 				D7BC8CE520E10DBD000A708B /* State */,
 				0A0B11C520D3158500021E2D /* ExhangeViewController.swift */,
 				0A0B11C620D3158500021E2D /* ExhangeViewController.xib */,
+				0A7576EA20E577A200A45434 /* ExchangeViewControllerExtention.swift */,
 			);
 			path = Exhange;
 			sourceTree = "<group>";
@@ -800,6 +807,7 @@
 				0A13F65B20C974EC001BA302 /* InvoiceViewController.swift */,
 				0ACDF69320E4179D00EFF18F /* InvoiceViewControllerPaymentExtension.swift */,
 				0A13F65C20C974EC001BA302 /* InvoiceViewController.xib */,
+				0A7576E620E55D6900A45434 /* InvoiceRootViewModel.swift */,
 			);
 			path = Root;
 			sourceTree = "<group>";
@@ -1268,6 +1276,7 @@
 			isa = PBXGroup;
 			children = (
 				0AC0DA9820E1589800923C3F /* ExchangeViewModel.swift */,
+				0A7576E820E572D800A45434 /* ExchangeRootViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1818,6 +1827,7 @@
 				0A4E4A2F20DA8E7000F1CA3A /* MenuEnum.swift in Sources */,
 				0A0B119E20D2897700021E2D /* DefaultDisputeState.swift in Sources */,
 				0A26FCB120D1658D0097A8F6 /* TransactionTableViewCell.swift in Sources */,
+				0A7576E720E55D6900A45434 /* InvoiceRootViewModel.swift in Sources */,
 				0A26FC8F20D117500097A8F6 /* DefaultInvoiceSettingsState.swift in Sources */,
 				0A26FCB420D165AC0097A8F6 /* TransactionTableViewHeader.swift in Sources */,
 				0A37F00520C80A7500201907 /* AuthNetworkConfig.swift in Sources */,
@@ -1829,6 +1839,7 @@
 				0A837C3220DE986300199759 /* PaymentAmount.swift in Sources */,
 				0A0B11B620D2B4C400021E2D /* LabelExtensitions.swift in Sources */,
 				D7DEFC8C20C97148005FB9EF /* TabBarController.swift in Sources */,
+				0A7576EB20E577A200A45434 /* ExchangeViewControllerExtention.swift in Sources */,
 				0A37EF6220C588F400201907 /* ErrorHandler.swift in Sources */,
 				0A1A1C9620DD1D380037DC77 /* SwipeExpansionStyle.swift in Sources */,
 				0A62F56520C545F700A51D63 /* NetworkUtil.swift in Sources */,
@@ -1919,6 +1930,7 @@
 				0A1A1C8820DD1D380037DC77 /* SwipeAnimator.swift in Sources */,
 				0A3F58D720D8378400F78856 /* ModelErrors.swift in Sources */,
 				0A1A1C8D20DD1D380037DC77 /* Extensions.swift in Sources */,
+				0A7576E920E572D800A45434 /* ExchangeRootViewModel.swift in Sources */,
 				0A0B11C720D3158500021E2D /* ExhangeViewController.swift in Sources */,
 				0A37EF6720C58A9100201907 /* SpinnerController.swift in Sources */,
 				D78589A320D3DF1800E3C3FB /* WalletsViewModel.swift in Sources */,

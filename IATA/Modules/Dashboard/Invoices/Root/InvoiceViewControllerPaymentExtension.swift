@@ -4,30 +4,16 @@ import ObjectMapper
 
 extension InvoiceViewController {
     
-    func hideMenu() {
-        self.view.endEditing(true)
-        self.tabView.reloadData()
-        self.animate(isShow: false)
-        if (self.navigationItem.titleView is BTNavigationDropdownMenu) {
-            let menu = self.navigationItem.titleView as! BTNavigationDropdownMenu
-            menu.hideMenu()
-            if let items = self.state?.getMenuItems() {
-                menu.updateItems(items)
-            }
-        }
-    }
-    
     // MARK: payments process
     func makePayment(alert: UIAlertAction!) {
         self.view.endEditing(true)
         let viewController = PinViewController()
         viewController.isValidationTransaction = true
+        viewController.navController = self.navigationController
         viewController.messageTouch = R.string.localizable.invoiceScreenPayConfirmation()
-        
         let items = self.state?.getItemsId()
         viewController.completion = {
             self.tabView.setContentOffset(.zero, animated: true)
-            self.refresh()
             self.state?.makePayment(items: items, amount: self.sumTextField.text)
                 .then(execute: {[weak self] (result: BaseMappable) -> Void in
                     guard let strongSelf = self else {

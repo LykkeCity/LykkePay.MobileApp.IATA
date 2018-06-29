@@ -89,9 +89,9 @@ class PaymentRangeTableViewCell: UITableViewCell, UITextFieldDelegate {
         
     }
     
-    //todo rewrite - in future
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if(textField == self.maxValueTextField) {
+            self.maxValueTextField?.textField(textField, shouldChangeCharactersIn: range, replacementString: string)
             
             if let text = self.maxValueTextField?.getOldText(), let textNsString = text as? NSString {
                 
@@ -106,6 +106,8 @@ class PaymentRangeTableViewCell: UITableViewCell, UITextFieldDelegate {
                 }
             }
         } else if(textField == self.minValueTextField) {
+            self.minValueTextField?.textField(textField, shouldChangeCharactersIn: range, replacementString: string)
+            
             if let separator = NSLocale.current.decimalSeparator, string.elementsEqual(separator) {
                 return false
             }
