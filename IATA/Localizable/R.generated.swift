@@ -573,7 +573,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 83 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 84 localization keys.
     struct localizable {
       /// Base translation: %@ invoices selected
       /// 
@@ -847,6 +847,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: Base
       static let commonErrorInternal = Rswift.StringResource(key: "Common.Error.Internal", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
+      /// Base translation: Status
+      /// 
+      /// Locales: Base
+      static let historyTransactionDetailsInvoiceStatus = Rswift.StringResource(key: "History.Transaction.Details.invoiceStatus", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
       /// Base translation: Status
       /// 
       /// Locales: Base
@@ -1382,6 +1386,13 @@ struct R: Rswift.Validatable {
       /// Locales: Base
       static func commonErrorInternal(_: Void = ()) -> String {
         return NSLocalizedString("Common.Error.Internal", bundle: R.hostingBundle, value: "Something is going wrong, please, try again.", comment: "")
+      }
+      
+      /// Base translation: Status
+      /// 
+      /// Locales: Base
+      static func historyTransactionDetailsInvoiceStatus(_: Void = ()) -> String {
+        return NSLocalizedString("History.Transaction.Details.invoiceStatus", bundle: R.hostingBundle, value: "Status", comment: "")
       }
       
       /// Base translation: Status
