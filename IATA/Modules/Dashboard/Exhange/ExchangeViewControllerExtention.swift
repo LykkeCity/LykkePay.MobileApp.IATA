@@ -3,7 +3,6 @@ import Foundation
 extension ExhangeViewController {
     
     func loadExchangeInfo() {
-        self.sumTextField.text = Formatter.formattedWithSeparator(valueDouble: 0.0)
         self.setEnabledExchange(isEnabled: false)
         self.state.loadExchangeData(sourceAmount: self.sumTextField.text)
             .then(execute: { [weak self] (result: ExchangeModel) -> Void in
@@ -11,6 +10,7 @@ extension ExhangeViewController {
                     return
                 }
                 strongSelf.initAsset(model: result)
+                strongSelf.initEnabled()
             }).catch(execute: { [weak self] error -> Void in
                 guard let strongSelf = self else {
                     return
@@ -19,13 +19,13 @@ extension ExhangeViewController {
             })
     }
     
-    func makeExchange() {
-        self.state.makeExchange(sourceAmount: self.sumTextField.text)
+    func makeExchange(value: String) {
+        self.state.makeExchange(sourceAmount: value)
             .then(execute: { [weak self] (result: ExchangeModel) -> Void in
                 guard let strongSelf = self else {
                     return
                 }
-                strongSelf.loadDataInfo()
+                strongSelf.exchangeSuccess()
             }).catch(execute: { [weak self] error -> Void in
                 guard let strongSelf = self else {
                     return
@@ -34,9 +34,18 @@ extension ExhangeViewController {
             })
     }
     
-    func loadDataInfo() {
+    func exchangeSuccess() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
+            self.loadDataInfo(isNeedToCleanUp: true)
+        })
+    }
+    
+    func loadDataInfo(isNeedToCleanUp: Bool) {
         self.beginRefresh()
-        self.sumTextField.text = "0"
+        if isNeedToCleanUp {
+            self.sumTextField.text = "0"
+        }
+        
         self.state.loadStartData()?
             .then(execute: { [weak self] (result: String) -> Void in
                 guard let strongSelf = self else {
