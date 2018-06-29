@@ -19,6 +19,7 @@ class BaseViewController<T: Mappable, S: DefaultBaseState<T>>:
         self.getTableView().tableFooterView = UIView()
         self.getTableView().showsVerticalScrollIndicator = false
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
+        tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
     }
 
