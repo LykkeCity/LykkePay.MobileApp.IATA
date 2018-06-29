@@ -1526,6 +1526,7 @@ struct _R: Rswift.Validatable {
       try _SettingsViewController.validate()
       try _WalletsViewController.validate()
       try _TransactionTableViewHeader.validate()
+      try _DisputeViewController.validate()
       try _SignInViewController.validate()
       try _PasswordContainerView.validate()
       try _HistoryTableViewCell.validate()
@@ -1594,12 +1595,16 @@ struct _R: Rswift.Validatable {
       fileprivate init() {}
     }
     
-    struct _DisputeViewController: Rswift.NibResourceType {
+    struct _DisputeViewController: Rswift.NibResourceType, Rswift.Validatable {
       let bundle = R.hostingBundle
       let name = "DisputeViewController"
       
       func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]? = nil) -> UIKit.UIView? {
         return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
+      }
+      
+      static func validate() throws {
+        if UIKit.UIImage(named: "ic_placeholderIcn", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'ic_placeholderIcn' is used in nib 'DisputeViewController', but couldn't be loaded.") }
       }
       
       fileprivate init() {}

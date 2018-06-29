@@ -6,6 +6,7 @@ class DisputeViewController: BaseViewController<DisputeModel, DefaultDisputeStat
     @IBOutlet weak var navBar: UINavigationBar!
     @IBOutlet weak var navView: UIView!
     @IBOutlet weak var tabView: UITableView!
+    @IBOutlet weak var placeholderView: UIView!
     
     override func viewDidLoad() {
         state = DefaultDisputeState()
@@ -53,6 +54,9 @@ class DisputeViewController: BaseViewController<DisputeModel, DefaultDisputeStat
 
     private func reloadTable(jsonString: String!) {
         self.state?.mapping(jsonString: jsonString)
+        if let itemsCount = state?.getItems().count, itemsCount == 0 {
+            placeholderView.isHidden = false
+        }
         self.tabView.reloadData()
         self.refreshControl.endRefreshing()
     }
