@@ -19,7 +19,7 @@ class TransactionTableViewCell: UITableViewCell {
     
     func initCell(model: PropertyKeyTransactionModel) {
         if let value = model.value {
-            self.valueLable.text = value
+            self.valueLable.attributedText = Theme.shared.get2LineString(message: value)
         }
         
         if let title = model.title {

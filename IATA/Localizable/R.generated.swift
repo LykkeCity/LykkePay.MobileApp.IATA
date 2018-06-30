@@ -573,7 +573,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 83 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 84 localization keys.
     struct localizable {
       /// Base translation: %@ invoices selected
       /// 
@@ -847,6 +847,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: Base
       static let commonErrorInternal = Rswift.StringResource(key: "Common.Error.Internal", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
+      /// Base translation: Status
+      /// 
+      /// Locales: Base
+      static let historyTransactionDetailsInvoiceStatus = Rswift.StringResource(key: "History.Transaction.Details.invoiceStatus", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
       /// Base translation: Status
       /// 
       /// Locales: Base
@@ -1387,6 +1391,13 @@ struct R: Rswift.Validatable {
       /// Base translation: Status
       /// 
       /// Locales: Base
+      static func historyTransactionDetailsInvoiceStatus(_: Void = ()) -> String {
+        return NSLocalizedString("History.Transaction.Details.invoiceStatus", bundle: R.hostingBundle, value: "Status", comment: "")
+      }
+      
+      /// Base translation: Status
+      /// 
+      /// Locales: Base
       static func historyTransactionDetailsStatus(_: Void = ()) -> String {
         return NSLocalizedString("History.Transaction.Details.Status", bundle: R.hostingBundle, value: "Status", comment: "")
       }
@@ -1525,7 +1536,6 @@ struct _R: Rswift.Validatable {
       try _CustomHeaderView.validate()
       try _SettingsViewController.validate()
       try _WalletsViewController.validate()
-      try _TransactionTableViewHeader.validate()
       try _SignInViewController.validate()
       try _PasswordContainerView.validate()
       try _HistoryTableViewCell.validate()
@@ -1855,16 +1865,12 @@ struct _R: Rswift.Validatable {
       fileprivate init() {}
     }
     
-    struct _TransactionTableViewHeader: Rswift.NibResourceType, Rswift.Validatable {
+    struct _TransactionTableViewHeader: Rswift.NibResourceType {
       let bundle = R.hostingBundle
       let name = "TransactionTableViewHeader"
       
       func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]? = nil) -> UIKit.UIView? {
         return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
-      }
-      
-      static func validate() throws {
-        if UIKit.UIImage(named: "Logo", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'Logo' is used in nib 'TransactionTableViewHeader', but couldn't be loaded.") }
       }
       
       fileprivate init() {}

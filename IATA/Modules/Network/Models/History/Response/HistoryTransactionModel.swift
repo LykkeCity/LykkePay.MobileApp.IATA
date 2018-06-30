@@ -7,12 +7,14 @@ class HistoryTransactionModel: Mappable, Reflectable {
 
     private let localizedTitles = [PropertyKey.timeStamp.rawValue : R.string.localizable.historyTransactionDetailsTimeStamp(),
                                    PropertyKey.amount.rawValue : R.string.localizable.historyTransactionDetailsAmount(),
+                                   PropertyKey.paidBy.rawValue : R.string.localizable.historyTransactionDetailsPaidBy(),
                                    PropertyKey.soldBy.rawValue : R.string.localizable.historyTransactionDetailsSoldBy(),
-                                   PropertyKey.blockHeight.rawValue : R.string.localizable.historyTransactionDetailsBlockHeight(),
+                                   PropertyKey.blockConfirmations.rawValue : R.string.localizable.historyTransactionDetailsBlockHeight(),
                                    PropertyKey.txHash.rawValue : R.string.localizable.historyTransactionDetailsTxHash(),
                                    PropertyKey.invoiceNumber.rawValue : R.string.localizable.historyTransactionDetailsInvoiceNumber(),
                                    PropertyKey.billingCategory.rawValue : R.string.localizable.historyTransactionDetailsBillingCategory(),
-                                   PropertyKey.employeeEmail.rawValue : R.string.localizable.historyTransactionDetailsSoldBy()]
+                                   PropertyKey.employeeEmail.rawValue : R.string.localizable.historyTransactionDetailsPaidBy(),
+                                   PropertyKey.invoiceStatus.rawValue : R.string.localizable.historyTransactionDetailsStatus()]
 
     public enum PropertyKey: String {
         case id
@@ -22,13 +24,18 @@ class HistoryTransactionModel: Mappable, Reflectable {
         case invoiceNumber
         case billingCategory
         case employeeEmail
-        case timeStamp
+        case iataInvoiceDate
         case soldBy
         case blockHeight
         case amount
         case assetId
         case txHash
+        case createdOn
         case blockConfirmations
+        case invoiceStatus
+        case paidBy
+        case timeStamp
+        case assetName
     }
 
 
@@ -42,16 +49,17 @@ class HistoryTransactionModel: Mappable, Reflectable {
     internal var title: String?
     internal var invoiceNumber: String?
     internal var billingCategory: String?
+    internal var invoiceStatus: String?
     internal var employeeEmail: String?
     internal var timeStamp: String?
-    internal var amount: String?
     internal var assetId: String?
     internal var soldBy: String?
-    internal var blockHeight: String?
+    internal var paidBy: String?
+    internal var blockHeight: Int?
     internal var blockConfirmations: String?
     internal var txHash: String?
-
-
+    internal var amount: String?
+    internal var assetName: String?
 
     
     internal required init?(map: Map) {
@@ -65,14 +73,20 @@ class HistoryTransactionModel: Mappable, Reflectable {
     
     internal func mapping(map: Map) {
         self.id <- map[PropertyKey.id.rawValue]
+        self.assetName <- map[PropertyKey.assetName.rawValue]
+        self.invoiceStatus <- map[PropertyKey.invoiceStatus.rawValue]
         self.merchantLogoUrl <- map[PropertyKey.merchantLogoUrl.rawValue]
         self.title <- map[PropertyKey.title.rawValue]
-        self.timeStamp <- map[PropertyKey.timeStamp.rawValue]
-        self.amount <- map[PropertyKey.amount.rawValue]
+        self.createdOn <- map[PropertyKey.createdOn.rawValue]
+        self.createdOn = DateUtils.formatDateFromFormatWithUTC(dateString: self.createdOn ?? "")
+        var amountDouble: Double?
+        amountDouble <- map[PropertyKey.amount.rawValue]
         self.assetId <- map[PropertyKey.assetId.rawValue]
+        self.amount = Formatter.formattedWithSeparator(valueDouble: amountDouble) + (self.assetId ?? "")
         self.soldBy <- map[PropertyKey.soldBy.rawValue]
-        self.blockHeight <- map[PropertyKey.blockHeight.rawValue]
-        self.blockConfirmations <- map[PropertyKey.blockConfirmations.rawValue]
+        self.paidBy <- map[PropertyKey.paidBy.rawValue]
+        self.blockHeight <- map[PropertyKey.blockConfirmations.rawValue]
+        self.blockConfirmations = String(self.blockHeight ?? 0)
         self.txHash <- map[PropertyKey.txHash.rawValue]
         self.invoiceNumber <- map[PropertyKey.invoiceNumber.rawValue]
         self.billingCategory <- map[PropertyKey.billingCategory.rawValue]

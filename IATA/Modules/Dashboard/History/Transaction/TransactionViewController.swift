@@ -13,6 +13,7 @@ class TransactionViewController: BaseViewController<PropertyKeyTransactionModel,
     override func viewDidLoad() {
         state = DefaultTransactionState()
         super.viewDidLoad()
+        self.tabView.separatorStyle = .none
         self.navigationController?.isNavigationBarHidden = true
         self.loadData()
     }

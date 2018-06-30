@@ -16,11 +16,12 @@ class HistoryModel: Mappable {
         case symbol
     }
     
+    internal var createdOn: String?
     internal var id: String?
     internal var logo: String?
     internal var title: String?
     internal var timeStamp: String?
-    internal var amount: Double?
+    internal var amount:  Double?
     internal var assetId: String?
     internal var symbol: String?
     internal var iataInvoiceDate: String?
@@ -45,9 +46,17 @@ class HistoryModel: Mappable {
         self.assetId <- map[PropertyKey.assetId.rawValue]
         self.iataInvoiceDate <- map[PropertyKey.iataInvoiceDate.rawValue]
         self.settlementMonthPeriod <- map[PropertyKey.settlementMonthPeriod.rawValue]
+        self.createdOn <- map[PropertyKey.createdOn.rawValue]
         
+        if let create = self.createdOn {
+            self.createdOn = DateUtils.formatDateFromFormatWith7Mls(dateString: create)
+        }
+        
+        if let iataInvoiceDate = self.iataInvoiceDate {
+            self.iataInvoiceDate = DateUtils.formatDateFromFormat(dateString: iataInvoiceDate)
+        }
         if let timeStamp = self.timeStamp {
-            self.timeStamp = DateUtils.formatDateFromFormat(dateString: timeStamp)
+            self.timeStamp = DateUtils.formatDateFromFormatWith7Mls(dateString: timeStamp)
         }
         
         if let asset = assetId {

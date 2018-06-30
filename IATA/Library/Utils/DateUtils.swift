@@ -7,13 +7,14 @@ class DateUtils {
     
     internal static func formatDate(date: String?) -> String? {
         if let date = date {
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        let date = dateFormatter.date(from: date)
-        dateFormatter.dateFormat = "dd.MM.yyyy"
-            return  dateFormatter.string(from: date!)
-        } else {
-            return date
+            dateFormatter.dateFormat = "yyyy-MM-dd"
+            if let date = dateFormatter.date(from: date) {
+                dateFormatter.dateFormat = "dd.MM.yyyy"
+                return  dateFormatter.string(from: date)
+            }
         }
+        return date
+        
     }
     
     static internal func formatDateFromFormat(dateString: String) -> String {
@@ -36,6 +37,19 @@ class DateUtils {
         let dateFormatterPrint = DateFormatter()
         dateFormatterPrint.dateFormat = "dd.MM.yyyy"
         
+        if let date = dateFormatterGet.date(from: dateString){
+            return dateFormatterPrint.string(from: date)
+        }
+        return dateString
+    }
+
+    static internal func formatDateFromFormatWithUTC(dateString: String) -> String {
+        let dateFormatterGet = DateFormatter()
+        dateFormatterGet.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSSZ"
+
+        let dateFormatterPrint = DateFormatter()
+        dateFormatterPrint.dateFormat = "dd.MM.yyyy HH:mm:ss"
+
         if let date = dateFormatterGet.date(from: dateString){
             return dateFormatterPrint.string(from: date)
         }

@@ -9,6 +9,7 @@ class HistoryViewController: BaseViewController<HistoryModel, DefaultHistoryStat
     override func viewDidLoad() {
         state = DefaultHistoryState()
         super.viewDidLoad()
+        self.tabView.separatorStyle = .none
         self.navigationController?.isNavigationBarHidden = false
         self.loadData()
     }

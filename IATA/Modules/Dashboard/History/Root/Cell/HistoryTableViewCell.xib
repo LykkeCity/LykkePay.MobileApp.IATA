@@ -60,10 +60,19 @@
                                 <color key="textColor" red="0.17254901960784313" green="0.71764705882352942" blue="0.0039215686274509803" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WsM-bN-qD3">
+                                <rect key="frame" x="16" y="68.5" width="304" height="1"/>
+                                <color key="backgroundColor" red="0.90196078430000004" green="0.90980392160000001" blue="0.91764705879999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="Ka2-bY-lQu"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="eqV-xt-y6v" firstAttribute="trailing" secondItem="WsM-bN-qD3" secondAttribute="trailing" id="3sP-u3-1cD"/>
                             <constraint firstItem="fWP-MK-Ulv" firstAttribute="centerY" secondItem="tMf-lq-eab" secondAttribute="centerY" id="B4Z-JB-k1M"/>
+                            <constraint firstItem="WsM-bN-qD3" firstAttribute="leading" secondItem="eqV-xt-y6v" secondAttribute="leading" constant="16" id="FHw-MN-O0w"/>
                             <constraint firstItem="Ny6-gu-IDR" firstAttribute="centerY" secondItem="tMf-lq-eab" secondAttribute="centerY" id="Mga-qA-wbU"/>
                             <constraint firstItem="gpG-M5-3NH" firstAttribute="centerY" secondItem="tMf-lq-eab" secondAttribute="centerY" id="OXP-eF-fuw"/>
                             <constraint firstItem="gpG-M5-3NH" firstAttribute="centerY" secondItem="tMf-lq-eab" secondAttribute="centerY" id="ZjQ-Na-MQY"/>
@@ -71,6 +80,7 @@
                             <constraint firstItem="Ny6-gu-IDR" firstAttribute="leading" secondItem="tMf-lq-eab" secondAttribute="leading" constant="16" id="hyc-fS-Vz7"/>
                             <constraint firstItem="fWP-MK-Ulv" firstAttribute="centerY" secondItem="tMf-lq-eab" secondAttribute="centerY" id="niC-Bb-TCW"/>
                             <constraint firstAttribute="trailing" secondItem="gpG-M5-3NH" secondAttribute="trailing" id="odI-13-NJG"/>
+                            <constraint firstAttribute="bottom" secondItem="WsM-bN-qD3" secondAttribute="bottom" id="qZZ-AL-bvZ"/>
                             <constraint firstItem="gpG-M5-3NH" firstAttribute="leading" secondItem="fWP-MK-Ulv" secondAttribute="trailing" constant="8" id="tGU-08-lQb"/>
                             <constraint firstItem="Ny6-gu-IDR" firstAttribute="centerY" secondItem="tMf-lq-eab" secondAttribute="centerY" id="wuo-dI-JJT"/>
                         </constraints>
