@@ -603,6 +603,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: Base
       static let historyTransactionDetailsAmount = Rswift.StringResource(key: "History.Transaction.Details.Amount", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
+      /// Base translation: BUY %@
+      /// 
+      /// Locales: Base
+      static let exchangeSourceBuy = Rswift.StringResource(key: "Exchange.Source.Buy", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
       /// Base translation: Back
       /// 
       /// Locales: Base
@@ -619,10 +623,6 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: Base
       static let historyTransactionDetailsBlockHeight = Rswift.StringResource(key: "History.Transaction.Details.BlockHeight", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
-      /// Base translation: Buy %@
-      /// 
-      /// Locales: Base
-      static let exchangeSourceBuy = Rswift.StringResource(key: "Exchange.Source.Buy", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
       /// Base translation: Cancel
       /// 
       /// Locales: Base
@@ -823,14 +823,14 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: Base
       static let invoiceDisputeRaisedDate = Rswift.StringResource(key: "Invoice.Dispute.RaisedDate", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
+      /// Base translation: SELL %@
+      /// 
+      /// Locales: Base
+      static let exchangeSourceSell = Rswift.StringResource(key: "Exchange.Source.Sell", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
       /// Base translation: SETTINGS
       /// 
       /// Locales: Base
       static let tabBarSettingsItemTitle = Rswift.StringResource(key: "TabBar.SettingsItem.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
-      /// Base translation: Sell %@
-      /// 
-      /// Locales: Base
-      static let exchangeSourceSell = Rswift.StringResource(key: "Exchange.Source.Sell", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
       /// Base translation: Settlement Period
       /// 
       /// Locales: Base
@@ -957,6 +957,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("History.Transaction.Details.Amount", bundle: R.hostingBundle, value: "Amount", comment: "")
       }
       
+      /// Base translation: BUY %@
+      /// 
+      /// Locales: Base
+      static func exchangeSourceBuy(_ value1: String) -> String {
+        return String(format: NSLocalizedString("Exchange.Source.Buy", bundle: R.hostingBundle, value: "BUY %@", comment: ""), locale: R.applicationLocale, value1)
+      }
+      
       /// Base translation: Back
       /// 
       /// Locales: Base
@@ -983,13 +990,6 @@ struct R: Rswift.Validatable {
       /// Locales: Base
       static func historyTransactionDetailsBlockHeight(_: Void = ()) -> String {
         return NSLocalizedString("History.Transaction.Details.BlockHeight", bundle: R.hostingBundle, value: "Block Height", comment: "")
-      }
-      
-      /// Base translation: Buy %@
-      /// 
-      /// Locales: Base
-      static func exchangeSourceBuy(_ value1: String) -> String {
-        return String(format: NSLocalizedString("Exchange.Source.Buy", bundle: R.hostingBundle, value: "Buy %@", comment: ""), locale: R.applicationLocale, value1)
       }
       
       /// Base translation: Cancel
@@ -1342,18 +1342,18 @@ struct R: Rswift.Validatable {
         return String(format: NSLocalizedString("Invoice.Dispute.RaisedDate", bundle: R.hostingBundle, value: "Raised dispute on %@", comment: ""), locale: R.applicationLocale, value1)
       }
       
+      /// Base translation: SELL %@
+      /// 
+      /// Locales: Base
+      static func exchangeSourceSell(_ value1: String) -> String {
+        return String(format: NSLocalizedString("Exchange.Source.Sell", bundle: R.hostingBundle, value: "SELL %@", comment: ""), locale: R.applicationLocale, value1)
+      }
+      
       /// Base translation: SETTINGS
       /// 
       /// Locales: Base
       static func tabBarSettingsItemTitle(_: Void = ()) -> String {
         return NSLocalizedString("TabBar.SettingsItem.Title", bundle: R.hostingBundle, value: "SETTINGS", comment: "")
-      }
-      
-      /// Base translation: Sell %@
-      /// 
-      /// Locales: Base
-      static func exchangeSourceSell(_ value1: String) -> String {
-        return String(format: NSLocalizedString("Exchange.Source.Sell", bundle: R.hostingBundle, value: "Sell %@", comment: ""), locale: R.applicationLocale, value1)
       }
       
       /// Base translation: Settlement Period

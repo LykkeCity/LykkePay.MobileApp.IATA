@@ -9,12 +9,12 @@ class DefaultExchangeState {
     public lazy var viewModel: ExchangeRootViewModel =  ExchangeRootViewModel()
     
     func loadExchangeData(sourceAmount: String?) -> Promise<ExchangeModel> {
-        let model = viewModel.getPreExchangeRequest()
+        let model = viewModel.getPreExchangeRequest(sourceAmount: Formatter.formattedToDouble(valueString: sourceAmount))
         return self.service.loadExchangeInfo(model: model)
     }
     
-    func makeExchange(sourceAmount: String?) -> Promise<ExchangeModel> {
-        let model = viewModel.getExchangeRequest(sourceAmount: sourceAmount)
+    func makeExchange(sourceAmount: ExchangeModel, valueString: String) -> Promise<ExchangeModel> {
+        let model = viewModel.getExchangeRequest(sourceAmount: sourceAmount, amount: valueString)
         return self.service.makeExchange(model: model)
     }
     

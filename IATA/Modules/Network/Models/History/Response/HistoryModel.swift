@@ -20,7 +20,7 @@ class HistoryModel: Mappable {
     internal var logo: String?
     internal var title: String?
     internal var timeStamp: String?
-    internal var amount: Int?
+    internal var amount: Double?
     internal var assetId: String?
     internal var symbol: String?
     internal var iataInvoiceDate: String?

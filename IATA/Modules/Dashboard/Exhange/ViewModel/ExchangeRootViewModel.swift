@@ -9,18 +9,19 @@ class ExchangeRootViewModel {
     public var exchangeModel: ExchangeModel = ExchangeModel()
     public var maxValue: Double? = 0.0
     
-    func getPreExchangeRequest() -> PreExchangeRequest{
+    func getPreExchangeRequest(sourceAmount: Double?) -> PreExchangeRequest{
         let model = PreExchangeRequest()
         model.destAssetId = self.exchangeModel.destAssetId
-        model.sourceAmount = 0
+        model.sourceAmount = sourceAmount
         model.sourceAssetId = self.exchangeModel.sourceAssetId
         return model
     }
     
-    func getExchangeRequest(sourceAmount: String?) -> ExchangeRequest{
+    func getExchangeRequest(sourceAmount: ExchangeModel, amount: String?) -> ExchangeRequest{
+        self.exchangeModel = sourceAmount
         let model = ExchangeRequest()
         model.destAssetId = self.exchangeModel.destAssetId
-        if let valueString = sourceAmount, let amount = Double(valueString) {
+        if let valueString = amount, let amount = Double(valueString) {
             let decimal = NSDecimalNumber(value: amount)
             model.sourceAmount = decimal.rounded(places: 6)
             self.exchangeModel.sourceAmount = 0

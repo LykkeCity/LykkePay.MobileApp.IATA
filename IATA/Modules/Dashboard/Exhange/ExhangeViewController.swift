@@ -71,7 +71,7 @@ class ExhangeViewController: BaseNavController {
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             UIView.animate(withDuration: 0.1, animations: { () -> Void in
                 self.bottomConstraint.constant = keyboardSize.size.height/2 + 70
-                self.sellAllView.isHidden = true
+                self.sellAllView.isHidden = self.heightIsNotEnough()
             })
         }
     }
@@ -118,18 +118,9 @@ class ExhangeViewController: BaseNavController {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if(textField == self.sumTextField) {
-            self.sumTextField.textField(textField, shouldChangeCharactersIn: range, replacementString: string)
-            if let text = self.sumTextField.getOldText(), let textNsString = text as? NSString {
-                
-                let newString = textNsString.replacingCharacters(in: range, with: string)
-                                
-                if let maxValue = self.state.viewModel.maxValue, !(TextFieldUtil.validateMaxValue(newString: newString, maxValue: maxValue, range: range, replacementString: string, symbol: self.sumTextField.symbolValue)){
-                    ViewUtils.shared.showToast(message: R.string.localizable.invoiceScreenErrorChangingAmount(), view: self.view)
-                    return false
-                    
-                }
+            if !self.sumTextField.textField(textField, shouldChangeCharactersIn: range, replacementString: string) {
+                return false
             }
-            
         }
         return true
     }
@@ -151,6 +142,9 @@ class ExhangeViewController: BaseNavController {
     func initEnabled() {
         if let text = self.sumTextField.text, let isEmpty = self.sumTextField.text?.isEmpty, isEmpty || (Int(text) == 0) {
             setEnabledExchange(isEnabled: false)
+            if let symbolDest = self.state.viewModel.exchangeModel.symbolDest {
+                self.exchangeSumResult.text = "0 " + symbolDest
+            }
         } else if let text = self.sumTextField.text {
             if let last = text.characters.last, let separator = NSLocale.current.decimalSeparator, !String(last).elementsEqual(separator) {
                 self.initAmounts(model: nil)
@@ -250,6 +244,12 @@ class ExhangeViewController: BaseNavController {
         self.sumTextField.text = "0"
         self.sumTextField.symbolValue = UserPreference.shared.getCurrentCurrency()?.symbol
         self.editChanged(self.sumTextField)
+    }
+    
+    private func heightIsNotEnough() -> Bool {
+        let screenSize = UIScreen.main.bounds
+        let screenHeight = screenSize.height
+        return screenHeight <= 600
     }
 }
 

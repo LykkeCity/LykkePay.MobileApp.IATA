@@ -4,7 +4,8 @@ extension ExhangeViewController {
     
     func loadExchangeInfo(isNeedMakePayment: Bool) {
         self.setEnabledExchange(isEnabled: false)
-        self.state.loadExchangeData(sourceAmount: self.sumTextField.text)
+        let valueString = isNeedMakePayment ? self.sumTextField.text : "0.1"
+        self.state.loadExchangeData(sourceAmount: valueString)
             .then(execute: { [weak self] (result: ExchangeModel) -> Void in
                 guard let strongSelf = self else {
                     return
@@ -12,7 +13,7 @@ extension ExhangeViewController {
                 strongSelf.initAsset(model: result)
                 strongSelf.initEnabled()
                 if isNeedMakePayment {
-                   strongSelf.processPayment()
+                    strongSelf.processPayment(value: result)
                 }
             }).catch(execute: { [weak self] error -> Void in
                 guard let strongSelf = self else {
@@ -22,26 +23,26 @@ extension ExhangeViewController {
             })
     }
     
-    func processPayment() {
-        let value = self.sumTextField.text
-        self.sumTextField.text = "0"
+    func processPayment(value: ExchangeModel) {
+        let valueString = self.sumTextField.text
+       self.sumTextField.text = "0"
         self.setEnabledExchange(isEnabled: false)
-        self.initAsset(model: nil)
+       // self.initAsset(model: nil)
         self.view.endEditing(true)
         let viewController = PinViewController()
         viewController.navController = self
         viewController.isValidationTransaction = true
         viewController.messageTouch = R.string.localizable.exchangeSourcePayConfirmation()
         viewController.completion = {
-            if let valueString = value {
-                self.makeExchange(value: valueString)
+            if let valueStr = valueString {
+                self.makeExchange(value: value, valueString: valueStr)
             }
         }
         self.navigationController?.present(viewController, animated: true, completion: nil)
     }
     
-    func makeExchange(value: String) {
-        self.state.makeExchange(sourceAmount: value)
+    func makeExchange(value: ExchangeModel, valueString: String) {
+        self.state.makeExchange(sourceAmount: value, valueString: valueString)
             .then(execute: { [weak self] (result: ExchangeModel) -> Void in
                 guard let strongSelf = self else {
                     return
