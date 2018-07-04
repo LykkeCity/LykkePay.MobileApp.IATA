@@ -35,9 +35,11 @@ class Theme: NSObject {
     public let redErrorStatusColor = Utils.rgb(254, 53, 96)
     public let greyStatusColor = Utils.rgb(178, 184, 191)
     public let greyNavBar = Utils.rgb(243, 244, 245)
-     public let disbaledRightButton = Utils.rgb(205, 205, 210)
+    public let disbaledRightButton = Utils.rgb(205, 205, 210)
 
     public let exchangeTopViewBorderColor = Utils.rgb(205, 205, 210)
+
+    public let transactionDetailsFontColor = Utils.rgb(63, 77, 96)
     
     public private(set) lazy var buttonsFont = boldFontOfSize(16)
     public private(set) lazy var linksFont = boldFontOfSize(15)
@@ -132,6 +134,24 @@ class Theme: NSObject {
         paragraphStyle.paragraphSpacing = 5
         paragraphStyle.lineHeightMultiple = 1.5
         attributedString.addAttribute(kCTParagraphStyleAttributeName as NSAttributedStringKey, value:paragraphStyle, range:NSMakeRange(0, attributedString.length))
+        return attributedString
+    }
+
+    public func getUrlAttributedString(message: String) -> NSMutableAttributedString {
+        let linkAttributes: [NSAttributedStringKey: Any] = [
+            .link: NSURL(string: message)!,
+            .foregroundColor: UIColor.blue, NSAttributedStringKey.font: R.font.gothamPro(size: 14.0)
+        ]
+        let attributedString = NSMutableAttributedString(string: message)
+        attributedString.setAttributes(linkAttributes, range: NSMakeRange(0, message.count))
+        return attributedString
+    }
+
+    public func getTransactionDetailsAttributedString(message: String) -> NSAttributedString {
+        let attribute = [ NSAttributedStringKey.font: R.font.gothamPro(size: 14.0),
+                            NSAttributedStringKey.foregroundColor: Theme.shared.transactionDetailsFontColor,
+                            ]
+        let attributedString = NSAttributedString(string: message, attributes: attribute)
         return attributedString
     }
     
