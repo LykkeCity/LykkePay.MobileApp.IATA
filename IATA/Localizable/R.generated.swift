@@ -573,7 +573,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 84 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 85 localization keys.
     struct localizable {
       /// Base translation: %@ invoices selected
       /// 
@@ -823,6 +823,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: Base
       static let invoiceDisputeRaisedDate = Rswift.StringResource(key: "Invoice.Dispute.RaisedDate", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
+      /// Base translation: Requested By
+      /// 
+      /// Locales: Base
+      static let historyTransactionDetailsRequestedBy = Rswift.StringResource(key: "History.Transaction.Details.RequestedBy", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
       /// Base translation: SELL %@
       /// 
       /// Locales: Base
@@ -1346,6 +1350,13 @@ struct R: Rswift.Validatable {
         return String(format: NSLocalizedString("Invoice.Dispute.RaisedDate", bundle: R.hostingBundle, value: "Raised dispute on %@", comment: ""), locale: R.applicationLocale, value1)
       }
       
+      /// Base translation: Requested By
+      /// 
+      /// Locales: Base
+      static func historyTransactionDetailsRequestedBy(_: Void = ()) -> String {
+        return NSLocalizedString("History.Transaction.Details.RequestedBy", bundle: R.hostingBundle, value: "Requested By", comment: "")
+      }
+      
       /// Base translation: SELL %@
       /// 
       /// Locales: Base
@@ -1536,6 +1547,7 @@ struct _R: Rswift.Validatable {
       try _CustomHeaderView.validate()
       try _SettingsViewController.validate()
       try _WalletsViewController.validate()
+      try _DisputeViewController.validate()
       try _SignInViewController.validate()
       try _PasswordContainerView.validate()
       try _HistoryTableViewCell.validate()
@@ -1604,12 +1616,16 @@ struct _R: Rswift.Validatable {
       fileprivate init() {}
     }
     
-    struct _DisputeViewController: Rswift.NibResourceType {
+    struct _DisputeViewController: Rswift.NibResourceType, Rswift.Validatable {
       let bundle = R.hostingBundle
       let name = "DisputeViewController"
       
       func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]? = nil) -> UIKit.UIView? {
         return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
+      }
+      
+      static func validate() throws {
+        if UIKit.UIImage(named: "ic_placeholderIcn", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'ic_placeholderIcn' is used in nib 'DisputeViewController', but couldn't be loaded.") }
       }
       
       fileprivate init() {}

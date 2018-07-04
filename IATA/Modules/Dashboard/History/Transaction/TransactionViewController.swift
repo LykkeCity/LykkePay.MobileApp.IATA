@@ -31,7 +31,7 @@ class TransactionViewController: BaseViewController<PropertyKeyTransactionModel,
     }
 
     override func getLeftButton() -> UIBarButtonItem? {
-        let backButton = Theme.shared.getCancel(title: R.string.localizable.commonNavBarBack(), color: UIColor.white)
+        let backButton = Theme.shared.getCancel(title: R.string.localizable.commonNavBarClose(), color: UIColor.white)
         backButton.addTarget(self, action: #selector(backButtonAction), for: .touchUpInside)
         return UIBarButtonItem(customView: backButton)
     }

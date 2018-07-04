@@ -14,13 +14,15 @@ class HistoryTransactionModel: Mappable, Reflectable {
                                    PropertyKey.invoiceNumber.rawValue : R.string.localizable.historyTransactionDetailsInvoiceNumber(),
                                    PropertyKey.billingCategory.rawValue : R.string.localizable.historyTransactionDetailsBillingCategory(),
                                    PropertyKey.employeeEmail.rawValue : R.string.localizable.historyTransactionDetailsPaidBy(),
-                                   PropertyKey.invoiceStatus.rawValue : R.string.localizable.historyTransactionDetailsStatus()]
+                                   PropertyKey.invoiceStatus.rawValue : R.string.localizable.historyTransactionDetailsStatus(),
+                                   PropertyKey.requestedBy.rawValue : R.string.localizable.historyTransactionDetailsRequestedBy()]
 
     public enum PropertyKey: String {
         case id
         case merchantLogoUrl
         case merchantName
         case title
+        case requestedBy
         case invoiceNumber
         case billingCategory
         case employeeEmail
@@ -47,6 +49,7 @@ class HistoryTransactionModel: Mappable, Reflectable {
     internal var merchantLogoUrl: String?
     internal var merchantName: String?
     internal var title: String?
+    internal var requestedBy: String?
     internal var invoiceNumber: String?
     internal var billingCategory: String?
     internal var invoiceStatus: String?
@@ -76,13 +79,14 @@ class HistoryTransactionModel: Mappable, Reflectable {
         self.assetName <- map[PropertyKey.assetName.rawValue]
         self.invoiceStatus <- map[PropertyKey.invoiceStatus.rawValue]
         self.merchantLogoUrl <- map[PropertyKey.merchantLogoUrl.rawValue]
+        self.requestedBy <- map[PropertyKey.requestedBy.rawValue]
         self.title <- map[PropertyKey.title.rawValue]
         self.timeStamp <- map[PropertyKey.createdOn.rawValue]
         self.timeStamp = DateUtils.formatDateFromFormatWithUTC(dateString: self.timeStamp ?? "")
         var amountDouble: Double?
         amountDouble <- map[PropertyKey.amount.rawValue]
         self.assetId <- map[PropertyKey.assetId.rawValue]
-        self.amount = Formatter.formattedWithSeparator(valueDouble: amountDouble) + (self.assetId ?? "")
+        self.amount = Formatter.formattedWithSeparator(valueDouble: amountDouble) + " " + (self.assetId ?? "")
         self.soldBy <- map[PropertyKey.soldBy.rawValue]
         self.paidBy <- map[PropertyKey.paidBy.rawValue]
         self.blockHeight <- map[PropertyKey.blockConfirmations.rawValue]
