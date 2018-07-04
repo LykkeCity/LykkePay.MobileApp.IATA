@@ -29,7 +29,7 @@ extension InvoiceViewController {
         }
             self.navigationController?.present(viewController, animated: true, completion: nil)
         } else {
-            self.showErrorAlert(error: IATAOpError.serverError(message: R.string.localizable.commonErrorInternal()))
+            self.showErrorAlert(error: IATAOpError.serverError(message: R.string.localizable.invoiceScreenPayOverpaying()))
         }
     }
     
