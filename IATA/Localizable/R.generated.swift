@@ -573,7 +573,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 85 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 86 localization keys.
     struct localizable {
       /// Base translation: %@ invoices selected
       /// 
@@ -623,6 +623,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: Base
       static let historyTransactionDetailsBlockHeight = Rswift.StringResource(key: "History.Transaction.Details.BlockHeight", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
+      /// Base translation: BlockchainExplorer URL
+      /// 
+      /// Locales: Base
+      static let historyTransactionDetailsExplorerUrl = Rswift.StringResource(key: "History.Transaction.Details.ExplorerUrl", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
       /// Base translation: Cancel
       /// 
       /// Locales: Base
@@ -998,6 +1002,13 @@ struct R: Rswift.Validatable {
       /// Locales: Base
       static func historyTransactionDetailsBlockHeight(_: Void = ()) -> String {
         return NSLocalizedString("History.Transaction.Details.BlockHeight", bundle: R.hostingBundle, value: "Block Height", comment: "")
+      }
+      
+      /// Base translation: BlockchainExplorer URL
+      /// 
+      /// Locales: Base
+      static func historyTransactionDetailsExplorerUrl(_: Void = ()) -> String {
+        return NSLocalizedString("History.Transaction.Details.ExplorerUrl", bundle: R.hostingBundle, value: "BlockchainExplorer URL", comment: "")
       }
       
       /// Base translation: Cancel
