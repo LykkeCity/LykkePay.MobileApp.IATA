@@ -15,7 +15,8 @@ class HistoryTransactionModel: Mappable, Reflectable {
                                    PropertyKey.billingCategory.rawValue : R.string.localizable.historyTransactionDetailsBillingCategory(),
                                    PropertyKey.employeeEmail.rawValue : R.string.localizable.historyTransactionDetailsPaidBy(),
                                    PropertyKey.invoiceStatus.rawValue : R.string.localizable.historyTransactionDetailsStatus(),
-                                   PropertyKey.requestedBy.rawValue : R.string.localizable.historyTransactionDetailsRequestedBy()]
+                                   PropertyKey.requestedBy.rawValue : R.string.localizable.historyTransactionDetailsRequestedBy(),
+                                   PropertyKey.explorerUrl.rawValue : R.string.localizable.historyTransactionDetailsExplorerUrl()]
 
     public enum PropertyKey: String {
         case id
@@ -38,6 +39,7 @@ class HistoryTransactionModel: Mappable, Reflectable {
         case paidBy
         case timeStamp
         case assetName
+        case explorerUrl
     }
 
 
@@ -63,6 +65,7 @@ class HistoryTransactionModel: Mappable, Reflectable {
     internal var txHash: String?
     internal var amount: String?
     internal var assetName: String?
+    internal var explorerUrl: String?
 
     
     internal required init?(map: Map) {
@@ -96,6 +99,7 @@ class HistoryTransactionModel: Mappable, Reflectable {
         self.billingCategory <- map[PropertyKey.billingCategory.rawValue]
         self.employeeEmail <- map[PropertyKey.employeeEmail.rawValue]
         self.merchantName <- map[PropertyKey.merchantName.rawValue]
+        self.explorerUrl <- map[PropertyKey.explorerUrl.rawValue]
     }
     
     func valueFor() -> [PropertyKeyTransactionModel] {
