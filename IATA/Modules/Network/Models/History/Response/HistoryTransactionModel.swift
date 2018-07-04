@@ -77,8 +77,8 @@ class HistoryTransactionModel: Mappable, Reflectable {
         self.invoiceStatus <- map[PropertyKey.invoiceStatus.rawValue]
         self.merchantLogoUrl <- map[PropertyKey.merchantLogoUrl.rawValue]
         self.title <- map[PropertyKey.title.rawValue]
-        self.createdOn <- map[PropertyKey.createdOn.rawValue]
-        self.createdOn = DateUtils.formatDateFromFormatWithUTC(dateString: self.createdOn ?? "")
+        self.timeStamp <- map[PropertyKey.createdOn.rawValue]
+        self.timeStamp = DateUtils.formatDateFromFormatWithUTC(dateString: self.timeStamp ?? "")
         var amountDouble: Double?
         amountDouble <- map[PropertyKey.amount.rawValue]
         self.assetId <- map[PropertyKey.assetId.rawValue]

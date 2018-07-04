@@ -19,6 +19,7 @@ extension ExhangeViewController {
                 guard let strongSelf = self else {
                     return
                 }
+                strongSelf.initAsset(model: nil)
                 strongSelf.handleErrorExchangeInfo(error: error)
             })
     }
