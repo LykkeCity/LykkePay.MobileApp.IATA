@@ -727,6 +727,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: Base
       static let tabBarInvoicesItemTitle = Rswift.StringResource(key: "TabBar.InvoicesItem.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
+      /// Base translation: Insufficient funds
+      /// 
+      /// Locales: Base
+      static let invoiceScreenPayOverpaying = Rswift.StringResource(key: "Invoice.Screen.Pay.Overpaying", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
       /// Base translation: Invoice #%@
       /// 
       /// Locales: Base
@@ -767,10 +771,6 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: Base
       static let invoiceDisputeTitle = Rswift.StringResource(key: "Invoice.Dispute.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
-      /// Base translation: Overpaying
-      /// 
-      /// Locales: Base
-      static let invoiceScreenPayOverpaying = Rswift.StringResource(key: "Invoice.Screen.Pay.Overpaying", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
       /// Base translation: PAID
       /// 
       /// Locales: Base
@@ -1182,6 +1182,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("TabBar.InvoicesItem.Title", bundle: R.hostingBundle, value: "INVOICES", comment: "")
       }
       
+      /// Base translation: Insufficient funds
+      /// 
+      /// Locales: Base
+      static func invoiceScreenPayOverpaying(_: Void = ()) -> String {
+        return NSLocalizedString("Invoice.Screen.Pay.Overpaying", bundle: R.hostingBundle, value: "Insufficient funds", comment: "")
+      }
+      
       /// Base translation: Invoice #%@
       /// 
       /// Locales: Base
@@ -1250,13 +1257,6 @@ struct R: Rswift.Validatable {
       /// Locales: Base
       static func invoiceDisputeTitle(_: Void = ()) -> String {
         return NSLocalizedString("Invoice.Dispute.Title", bundle: R.hostingBundle, value: "Open Disputes", comment: "")
-      }
-      
-      /// Base translation: Overpaying
-      /// 
-      /// Locales: Base
-      static func invoiceScreenPayOverpaying(_: Void = ()) -> String {
-        return NSLocalizedString("Invoice.Screen.Pay.Overpaying", bundle: R.hostingBundle, value: "Overpaying", comment: "")
       }
       
       /// Base translation: PAID
