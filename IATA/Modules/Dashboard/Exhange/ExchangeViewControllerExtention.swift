@@ -26,9 +26,8 @@ extension ExhangeViewController {
     
     func processPayment(value: ExchangeModel) {
         let valueString = self.sumTextField.text
-       self.sumTextField.text = "0"
+        self.sumTextField.text = "0"
         self.setEnabledExchange(isEnabled: false)
-       // self.initAsset(model: nil)
         self.view.endEditing(true)
         let viewController = PinViewController()
         viewController.navController = self

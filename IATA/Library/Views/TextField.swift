@@ -64,7 +64,7 @@ class FloatTextField: TextField {
     /// Update the placeholder text to the active state.
     func updatePlaceholderTextToActiveState() {
         if isEditing {
-            placeholderLabel.font = Theme.shared.regularFontOfSize(14)
+            placeholderLabel.font = Theme.shared.regularFontOfSize(16)
         }
     }
     /// Update the placeholder text to the normal state.

@@ -1629,7 +1629,7 @@ struct _R: Rswift.Validatable {
       }
       
       static func validate() throws {
-        if UIKit.UIImage(named: "imageView:hgZ-ST-qv1:image", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'imageView:hgZ-ST-qv1:image' is used in nib 'CashInViewController', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "ic_arrow_black", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'ic_arrow_black' is used in nib 'CashInViewController', but couldn't be loaded.") }
       }
       
       fileprivate init() {}

@@ -54,6 +54,18 @@ class WalletsViewController: BaseViewController<WalletsViewModel, DefaultWallets
             return headerView
         }
     }
+<<<<<<< HEAD
+=======
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let viewController = CashInViewController()
+        if let item = self.state?.getItems() [indexPath.row] {
+            viewController.totalSum = item.totalConvertedBalance
+            viewController.assertId = item.assetId
+        }
+        self.navigationController?.pushViewController(viewController, animated: true)
+    }
+>>>>>>> 9dc0e5912fa143dbc73beca7e6c82e016e6a271d
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: WalletsTableViewCell.identifier) as?  WalletsTableViewCell else {

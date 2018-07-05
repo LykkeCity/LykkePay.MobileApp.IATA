@@ -19,7 +19,13 @@ class CashInViewController: BaseViewController<CashOutViewModel, DefaultCashOutS
     @IBOutlet weak var shadowView: UIView!
     @IBOutlet weak var tabView: UITableView!
     
+    @IBOutlet weak var heightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var topConstraint: NSLayoutConstraint!
+    var heightAchor: NSLayoutConstraint?
+    var heightAchorMaximum: NSLayoutConstraint?
     var totalSum: Double?
+    var assertId: String?
     
     func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationControllerOperation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         
@@ -33,12 +39,15 @@ class CashInViewController: BaseViewController<CashOutViewModel, DefaultCashOutS
         
         self.loadingView.isHidden = true
         self.navigationController?.delegate = self
+        
+        self.sumTextField.keyboardType = UIKeyboardType.decimalPad
+        
         Theme.shared.configureTextFieldStyle(sumTextField, title: R.string.localizable.cashOutScreenPlaceholder())
         Theme.shared.configureTextFieldStyle(assetPicker, title: R.string.localizable.cashOutScreenInCurrency())
+        self.assetPicker.text = R.string.localizable.exchangeSourceUSD()
         
         
         self.assetPicker.delegate = self
-        self.initScrollView()
         self.loadData()
         self.setEnabledConfirm(isEnabled: false)
     }
@@ -71,6 +80,7 @@ class CashInViewController: BaseViewController<CashOutViewModel, DefaultCashOutS
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.state?.reinitModel(index: indexPath.row)
+        self.assetPicker.text = self.state?.viewModel.desiredAssertId
         self.tabView.reloadData()
         self.hideAlerWithPicker()
     }
@@ -98,10 +108,8 @@ class CashInViewController: BaseViewController<CashOutViewModel, DefaultCashOutS
     }
     
     override func beginRefreshing() {
-        var offset = self.scrollView.contentOffset
-        offset.y = -81
-        self.refreshControl.beginRefreshing()
-        self.scrollView.contentOffset = offset
+        self.loadingView.isHidden = false
+        self.loadingView.startAnimating()
     }
     
     override func loadData() {
@@ -153,14 +161,21 @@ class CashInViewController: BaseViewController<CashOutViewModel, DefaultCashOutS
     
     
     @IBAction func clickConfirm(_ sender: Any) {
-        self.beginRefreshing()
-        self.state?.cashOut(amount: Formatter.formattedToDouble(valueString: self.sumTextField.text))
-            .then(execute: { [weak self] (result: BaseMappable) -> Void in
-                guard let strongSelf = self else {
-                    return
-                }
-                
-            })
+        let viewController = PinViewController()
+        viewController.navController = self
+        viewController.isValidationTransaction = true
+        viewController.messageTouch = R.string.localizable.exchangeSourcePayConfirmation()
+        viewController.completion = {
+            self.state?.cashOut(amount: Formatter.formattedToDouble(valueString: self.sumTextField.text))
+                .then(execute: { [weak self] (result: BaseMappable) -> Void in
+                    guard let strongSelf = self else {
+                        return
+                    }
+                    strongSelf.endRefreshing()
+                    strongSelf.navigationController?.popViewController(animated: true)
+                })
+        }
+        self.navigationController?.present(viewController, animated: true, completion: nil)
     }
     
     @IBAction func editChanged(_ sender: Any) {
@@ -168,13 +183,28 @@ class CashInViewController: BaseViewController<CashOutViewModel, DefaultCashOutS
     }
     
     private func showAlerWithPicker() {
+        self.heightConstraint.constant = 0
         self.shadowView.isHidden = false
         self.shadowBackground.isHidden = false
+        UIView.animate(withDuration: 0.3, animations: {
+            self.animate(height: 140)
+        }, completion: {(finished) in
+        })
     }
     
     private func hideAlerWithPicker() {
-        self.shadowView.isHidden = true
-        self.shadowBackground.isHidden = true
+        UIView.animate(withDuration: 0.3, animations: {
+            self.animate(height: 0)
+        }, completion: {(finished) in
+            self.shadowView.isHidden = true
+            self.shadowBackground.isHidden = true
+        })
+    }
+    
+    private func animate(height: Int) {
+        self.heightConstraint.constant = 140
+        self.shadowBackground.layoutIfNeeded()
+        self.tabView.layoutIfNeeded()
     }
     
     private func setData(jsonString: String) {
@@ -184,6 +214,7 @@ class CashInViewController: BaseViewController<CashOutViewModel, DefaultCashOutS
     
     private func initAllSum() {
         self.state?.viewModel.totalSum = totalSum
+        self.state?.viewModel.assertId = assertId
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.sellAll))
         self.sumAllView.addGestureRecognizer(tap)
         
@@ -212,13 +243,9 @@ class CashInViewController: BaseViewController<CashOutViewModel, DefaultCashOutS
         }
     }
     
-    private func initScrollView() {
-        self.scrollView.showsVerticalScrollIndicator = false
-        self.scrollView.alwaysBounceVertical = true
-        self.scrollView.bounces  = true
-        self.refreshControl.attributedTitle = NSAttributedString(string: R.string.localizable.commonLoadingMessage())
-        self.refreshControl.addTarget(self, action: #selector(didPullToRefresh), for: .valueChanged)
-        self.scrollView.addSubview(refreshControl)
+    private func endRefreshing() {
+        self.loadingView.isHidden = true
+        self.loadingView.stopAnimating()
     }
     
     
