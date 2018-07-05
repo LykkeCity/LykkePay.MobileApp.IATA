@@ -601,7 +601,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 87 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 88 localization keys.
     struct localizable {
       /// Base translation: %@ invoices selected
       /// 
@@ -767,6 +767,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: Base
       static let cashOutScreenInCurrency = Rswift.StringResource(key: "Cash.Out.Screen.InCurrency", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
+      /// Base translation: Insufficient funds
+      /// 
+      /// Locales: Base
+      static let commonOverPayError = Rswift.StringResource(key: "Common.Over.Pay.Error", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
       /// Base translation: Invoice #%@
       /// 
       /// Locales: Base
@@ -1237,6 +1241,13 @@ struct R: Rswift.Validatable {
       /// Locales: Base
       static func cashOutScreenInCurrency(_: Void = ()) -> String {
         return NSLocalizedString("Cash.Out.Screen.InCurrency", bundle: R.hostingBundle, value: "In currency", comment: "")
+      }
+      
+      /// Base translation: Insufficient funds
+      /// 
+      /// Locales: Base
+      static func commonOverPayError(_: Void = ()) -> String {
+        return NSLocalizedString("Common.Over.Pay.Error", bundle: R.hostingBundle, value: "Insufficient funds", comment: "")
       }
       
       /// Base translation: Invoice #%@

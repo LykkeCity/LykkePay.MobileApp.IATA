@@ -55,6 +55,7 @@ class CashInViewController: BaseViewController<CashOutViewModel, DefaultCashOutS
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.navigationController?.isNavigationBarHidden = true
+        UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent
     }
     
     override func registerCells() {
@@ -130,6 +131,11 @@ class CashInViewController: BaseViewController<CashOutViewModel, DefaultCashOutS
         return count
     }
     
+    override func showErrorAlert(error: Error) {
+        super.showErrorAlert(error: error)
+        self.loadingView.isHidden = true
+    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: PickerTableViewCell.identifier) as?  PickerTableViewCell else {
             return PickerTableViewCell()
@@ -151,35 +157,52 @@ class CashInViewController: BaseViewController<CashOutViewModel, DefaultCashOutS
         self.editChanged(self.sumTextField)
     }
     
-    @objc func clickPicker() {
-       
-    }
-    
     @objc func didPullToRefresh() {
         self.loadData()
     }
     
     
     @IBAction func clickConfirm(_ sender: Any) {
-        let viewController = PinViewController()
-        viewController.navController = self
-        viewController.isValidationTransaction = true
-        viewController.messageTouch = R.string.localizable.exchangeSourcePayConfirmation()
-        viewController.completion = {
-            self.state?.cashOut(amount: Formatter.formattedToDouble(valueString: self.sumTextField.text))
-                .then(execute: { [weak self] (result: BaseMappable) -> Void in
-                    guard let strongSelf = self else {
-                        return
-                    }
-                    strongSelf.endRefreshing()
-                    strongSelf.navigationController?.popViewController(animated: true)
-                })
+        var resultTotalSum = 0.0
+        if let totalSum = self.state?.viewModel.totalSum {
+            let totalSumString = Formatter.formattedWithSeparator(valueDouble: totalSum)
+            if let res =  Formatter.formattedToDouble(valueString: totalSumString) {
+                resultTotalSum = res
+            }
         }
-        self.navigationController?.present(viewController, animated: true, completion: nil)
+        if let value = Formatter.formattedToDouble(valueString: self.sumTextField.text), value <= resultTotalSum {
+            let viewController = PinViewController()
+            viewController.navController = self
+            viewController.isValidationTransaction = true
+            viewController.messageTouch = R.string.localizable.exchangeSourcePayConfirmation()
+            viewController.completion = {
+                self.state?.cashOut(amount: Formatter.formattedToDouble(valueString: self.sumTextField.text))
+                    .then(execute: { [weak self] (result: BaseMappable) -> Void in
+                        guard let strongSelf = self else {
+                            return
+                        }
+                        strongSelf.endRefreshing()
+                        strongSelf.navigationController?.popViewController(animated: true)
+                    }).catch(execute: { [weak self] error -> Void in
+                        guard let strongSelf = self else {
+                            return
+                        }
+                        strongSelf.showErrorAlert(error: error)
+                })
+            }
+            self.navigationController?.present(viewController, animated: true, completion: nil)
+        } else {
+            self.showErrorAlert(error: getError(R.string.localizable.commonOverPayError()))
+        }
     }
     
     @IBAction func editChanged(_ sender: Any) {
         self.initEnabled()
+    }
+    
+    private func getError(_ message: String) -> NSError {
+        let userInfo = [NSLocalizedDescriptionKey: message]
+        return NSError(domain: message, code: 123, userInfo: userInfo)
     }
     
     private func showAlerWithPicker() {
@@ -215,6 +238,8 @@ class CashInViewController: BaseViewController<CashOutViewModel, DefaultCashOutS
     private func initAllSum() {
         self.state?.viewModel.totalSum = totalSum
         self.state?.viewModel.assertId = assertId
+        self.sumTextField.symbolValue = self.state?.viewModel.symbol
+        self.sumTextField.text = "0"
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.sellAll))
         self.sumAllView.addGestureRecognizer(tap)
         
@@ -225,7 +250,7 @@ class CashInViewController: BaseViewController<CashOutViewModel, DefaultCashOutS
         self.sumAllLabel.textColor = Theme.shared.textPinColor
         self.sumAllLabel.cornerRadius = 10
         self.sumAllLabel.commonInit()
-        if let amount = self.state?.viewModel.totalSum, let symbol = self.state?.viewModel.symbol {
+        if let amount = self.state?.viewModel.totalSum, let symbol = self.sumTextField.symbolValue {
             self.sumAllLabel.text = Formatter.formattedWithSeparator(valueDouble: amount) + " " + symbol
         }
     }

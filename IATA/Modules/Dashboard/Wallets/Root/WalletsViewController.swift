@@ -54,7 +54,7 @@ class WalletsViewController: BaseViewController<WalletsViewModel, DefaultWallets
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let viewController = CashInViewController()
         if let item = self.state?.getItems() [indexPath.row] {
-            viewController.totalSum = item.totalConvertedBalance
+            viewController.totalSum = item.totalBalance
             viewController.assertId = item.assetId
         }
         self.navigationController?.pushViewController(viewController, animated: true)
