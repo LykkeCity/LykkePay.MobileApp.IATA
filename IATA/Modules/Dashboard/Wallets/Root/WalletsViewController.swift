@@ -55,6 +55,7 @@ class WalletsViewController: BaseViewController<WalletsViewModel, DefaultWallets
         let viewController = CashInViewController()
         if let item = self.state?.getItems() [indexPath.row] {
             viewController.totalSum = item.totalConvertedBalance
+            viewController.assertId = item.assetId
         }
         self.navigationController?.pushViewController(viewController, animated: true)
     }
