@@ -2,11 +2,13 @@ import UIKit
 
 class TransactionTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var valueLable: UILabel!
+
     @IBOutlet weak var title: UILabel!
-    
+    @IBOutlet weak var valueLable: UITextView!
+
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.valueLable.textContainerInset = UIEdgeInsetsMake(0, -self.valueLable.textContainer.lineFragmentPadding, 0, -self.valueLable.textContainer.lineFragmentPadding)
     }
     
     static var nib:UINib {
@@ -19,7 +21,11 @@ class TransactionTableViewCell: UITableViewCell {
     
     func initCell(model: PropertyKeyTransactionModel) {
         if let value = model.value {
-            self.valueLable.attributedText = Theme.shared.get2LineString(message: value)
+            if value.isUrlString() {
+                self.valueLable.attributedText = Theme.shared.getUrlAttributedString(message: value)
+            } else {
+                self.valueLable.attributedText = Theme.shared.getTransactionDetailsAttributedString(message: value)
+            }
         }
         
         if let title = model.title {
