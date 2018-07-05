@@ -76,7 +76,15 @@
 		0A1AF41620CADB7B0009595C /* BTTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1AF41220CADB7A0009595C /* BTTableView.swift */; };
 		0A1AF41720CADB7B0009595C /* BTConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1AF41320CADB7A0009595C /* BTConfiguration.swift */; };
 		0A1AF41820CADB7B0009595C /* BTTableCellContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1AF41420CADB7B0009595C /* BTTableCellContentView.swift */; };
-		0A25214520E54F7800BADA8F /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A25214420E54F7700BADA8F /* R.generated.swift */; };
+		0A1B12D620ECB6AF0069ABDA /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1B12D520ECB6AF0069ABDA /* R.generated.swift */; };
+		0A1B12DB20ECBC830069ABDA /* CashInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1B12D920ECBC830069ABDA /* CashInViewController.swift */; };
+		0A1B12DC20ECBC830069ABDA /* CashInViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A1B12DA20ECBC830069ABDA /* CashInViewController.xib */; };
+		0A1B12DF20ECC0D10069ABDA /* DefaultCashOutState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1B12DE20ECC0D10069ABDA /* DefaultCashOutState.swift */; };
+		0A1B12E520ECC2870069ABDA /* CashOutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1B12E420ECC2870069ABDA /* CashOutViewModel.swift */; };
+		0A1B12E820ECF9F80069ABDA /* DictionaryAssertId.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1B12E720ECF9F80069ABDA /* DictionaryAssertId.swift */; };
+		0A1B12EC20ECFA500069ABDA /* CashOutRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1B12EB20ECFA500069ABDA /* CashOutRequest.swift */; };
+		0A1B12F020ED11670069ABDA /* PickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1B12EE20ED11670069ABDA /* PickerTableViewCell.swift */; };
+		0A1B12F120ED11670069ABDA /* PickerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A1B12EF20ED11670069ABDA /* PickerTableViewCell.xib */; };
 		0A26FC8120D00B320097A8F6 /* InvoiceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A26FC8020D00B320097A8F6 /* InvoiceRequest.swift */; };
 		0A26FC8320D0F0B00097A8F6 /* OnSwitchStateChangedDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A26FC8220D0F0B00097A8F6 /* OnSwitchStateChangedDelegate.swift */; };
 		0A26FC8D20D117410097A8F6 /* InvoiceSettingsState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A26FC8C20D117410097A8F6 /* InvoiceSettingsState.swift */; };
@@ -325,7 +333,15 @@
 		0A1AF41220CADB7A0009595C /* BTTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BTTableView.swift; sourceTree = "<group>"; };
 		0A1AF41320CADB7A0009595C /* BTConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BTConfiguration.swift; sourceTree = "<group>"; };
 		0A1AF41420CADB7B0009595C /* BTTableCellContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BTTableCellContentView.swift; sourceTree = "<group>"; };
-		0A25214420E54F7700BADA8F /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
+		0A1B12D520ECB6AF0069ABDA /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
+		0A1B12D920ECBC830069ABDA /* CashInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashInViewController.swift; sourceTree = "<group>"; };
+		0A1B12DA20ECBC830069ABDA /* CashInViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CashInViewController.xib; sourceTree = "<group>"; };
+		0A1B12DE20ECC0D10069ABDA /* DefaultCashOutState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultCashOutState.swift; sourceTree = "<group>"; };
+		0A1B12E420ECC2870069ABDA /* CashOutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashOutViewModel.swift; sourceTree = "<group>"; };
+		0A1B12E720ECF9F80069ABDA /* DictionaryAssertId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryAssertId.swift; sourceTree = "<group>"; };
+		0A1B12EB20ECFA500069ABDA /* CashOutRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashOutRequest.swift; sourceTree = "<group>"; };
+		0A1B12EE20ED11670069ABDA /* PickerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerTableViewCell.swift; sourceTree = "<group>"; };
+		0A1B12EF20ED11670069ABDA /* PickerTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PickerTableViewCell.xib; sourceTree = "<group>"; };
 		0A26FC8020D00B320097A8F6 /* InvoiceRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvoiceRequest.swift; sourceTree = "<group>"; };
 		0A26FC8220D0F0B00097A8F6 /* OnSwitchStateChangedDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnSwitchStateChangedDelegate.swift; sourceTree = "<group>"; };
 		0A26FC8C20D117410097A8F6 /* InvoiceSettingsState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvoiceSettingsState.swift; sourceTree = "<group>"; };
@@ -803,6 +819,80 @@
 			path = "New Group1";
 			sourceTree = "<group>";
 		};
+		0A1B12D720ECBC070069ABDA /* Root */ = {
+			isa = PBXGroup;
+			children = (
+				0AC337D820D852A3006ACC22 /* Cell */,
+				D78589A120D3DE6D00E3C3FB /* ViewModels */,
+				D784931920D25EA10060EAC6 /* State */,
+				D7DEFC9320C97458005FB9EF /* WalletsViewController.swift */,
+				D7DEFC9020C97458005FB9EF /* WalletsViewController.xib */,
+			);
+			path = Root;
+			sourceTree = "<group>";
+		};
+		0A1B12D820ECBC190069ABDA /* CashIn */ = {
+			isa = PBXGroup;
+			children = (
+				0A1B12ED20ED11450069ABDA /* Cells */,
+				0A1B12E320ECC2780069ABDA /* ViewModel */,
+				0A1B12DD20ECBE360069ABDA /* State */,
+				0A1B12D920ECBC830069ABDA /* CashInViewController.swift */,
+				0A1B12DA20ECBC830069ABDA /* CashInViewController.xib */,
+			);
+			path = CashIn;
+			sourceTree = "<group>";
+		};
+		0A1B12DD20ECBE360069ABDA /* State */ = {
+			isa = PBXGroup;
+			children = (
+				0A1B12DE20ECC0D10069ABDA /* DefaultCashOutState.swift */,
+			);
+			path = State;
+			sourceTree = "<group>";
+		};
+		0A1B12E320ECC2780069ABDA /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				0A1B12E420ECC2870069ABDA /* CashOutViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		0A1B12E620ECF9E00069ABDA /* CashOut */ = {
+			isa = PBXGroup;
+			children = (
+				0A1B12EA20ECFA420069ABDA /* Request */,
+				0A1B12E920ECFA3B0069ABDA /* Response */,
+			);
+			path = CashOut;
+			sourceTree = "<group>";
+		};
+		0A1B12E920ECFA3B0069ABDA /* Response */ = {
+			isa = PBXGroup;
+			children = (
+				0A1B12E720ECF9F80069ABDA /* DictionaryAssertId.swift */,
+			);
+			path = Response;
+			sourceTree = "<group>";
+		};
+		0A1B12EA20ECFA420069ABDA /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				0A1B12EB20ECFA500069ABDA /* CashOutRequest.swift */,
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
+		0A1B12ED20ED11450069ABDA /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				0A1B12EE20ED11670069ABDA /* PickerTableViewCell.swift */,
+				0A1B12EF20ED11670069ABDA /* PickerTableViewCell.xib */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		0A26FC8A20D1162E0097A8F6 /* Root */ = {
 			isa = PBXGroup;
 			children = (
@@ -973,8 +1063,8 @@
 		0A37EF9820C6DA8500201907 /* Localizable */ = {
 			isa = PBXGroup;
 			children = (
+				0A1B12D520ECB6AF0069ABDA /* R.generated.swift */,
 				0A37EFA220C6DC5100201907 /* Localizable.strings */,
-				0A25214420E54F7700BADA8F /* R.generated.swift */,
 			);
 			path = Localizable;
 			sourceTree = "<group>";
@@ -1130,6 +1220,7 @@
 		0A6DB5D020C5535F00BC1127 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				0A1B12E620ECF9E00069ABDA /* CashOut */,
 				D7BC8CE820E10DFC000A708B /* Exchange */,
 				0A837C3420DE9B8A00199759 /* SettingsModels */,
 				0A3F58D520D8377300F78856 /* Errors */,
@@ -1477,11 +1568,8 @@
 		D7DEFC8F20C97430005FB9EF /* Wallets */ = {
 			isa = PBXGroup;
 			children = (
-				0AC337D820D852A3006ACC22 /* Cell */,
-				D78589A120D3DE6D00E3C3FB /* ViewModels */,
-				D784931920D25EA10060EAC6 /* State */,
-				D7DEFC9320C97458005FB9EF /* WalletsViewController.swift */,
-				D7DEFC9020C97458005FB9EF /* WalletsViewController.xib */,
+				0A1B12D820ECBC190069ABDA /* CashIn */,
+				0A1B12D720ECBC070069ABDA /* Root */,
 			);
 			path = Wallets;
 			sourceTree = "<group>";
@@ -1666,9 +1754,11 @@
 				0A26FCA020D160F00097A8F6 /* HistoryViewController.xib in Resources */,
 				0AF611A320C9A4D700957348 /* InvoiceTableViewCell.xib in Resources */,
 				D7DEFC9A20C97B9E005FB9EF /* GothamProBold.ttf in Resources */,
+				0A1B12DC20ECBC830069ABDA /* CashInViewController.xib in Resources */,
 				0A26FC9A20D15B7F0097A8F6 /* DisputeTableViewCell.xib in Resources */,
 				0A13F65E20C974EC001BA302 /* InvoiceViewController.xib in Resources */,
 				0A37EFE520C7D67F00201907 /* PinViewController.xib in Resources */,
+				0A1B12F120ED11670069ABDA /* PickerTableViewCell.xib in Resources */,
 				9406B2F820E4E2330086E880 /* lykkexnettest.crt in Resources */,
 				0A26FCB820D166F00097A8F6 /* TransactionViewController.xib in Resources */,
 				0AF611A820CA72DA00957348 /* InvoiceSettingsViewController.xib in Resources */,
@@ -1870,6 +1960,7 @@
 				0A26FCB720D166F00097A8F6 /* TransactionViewController.swift in Sources */,
 				0A6DB5D220C5537000BC1127 /* TokenObject.swift in Sources */,
 				0A1A1C8E20DD1D380037DC77 /* SwipeCollectionViewCell+Accessibility.swift in Sources */,
+				0A1B12F020ED11670069ABDA /* PickerTableViewCell.swift in Sources */,
 				0A62F56B20C5497200A51D63 /* EncodingType.swift in Sources */,
 				0A1A1C8920DD1D380037DC77 /* SwipeTableViewCell+Accessibility.swift in Sources */,
 				0A11323520DD795800FE6853 /* CustomizeRangeSlider.swift in Sources */,
@@ -1934,6 +2025,7 @@
 				0AB1308F20E2752900AEFECF /* NotificateEnum.swift in Sources */,
 				0A37EF7020C59C6F00201907 /* SingInRequest.swift in Sources */,
 				0A37EFF920C8044200201907 /* ChangePasswordViewController.swift in Sources */,
+				0A1B12E520ECC2870069ABDA /* CashOutViewModel.swift in Sources */,
 				0AF6119D20C992AC00957348 /* Checkbox.swift in Sources */,
 				D7DEFC9620C97459005FB9EF /* WalletsTableViewCell.swift in Sources */,
 				0AF1C3AB20C832DB00AFD286 /* SavePinRequest.swift in Sources */,
@@ -1955,7 +2047,6 @@
 				0A62F56920C5473600A51D63 /* Errors.swift in Sources */,
 				0A4CD11C20CD47A600EF4A17 /* OnChangeStateSelected.swift in Sources */,
 				0A0D4B4B20C53361009B73E9 /* AppDelegate.swift in Sources */,
-				0A25214520E54F7800BADA8F /* R.generated.swift in Sources */,
 				0A0B118D20D270DD00021E2D /* DefaultSettingsState.swift in Sources */,
 				0A37F00120C809DC00201907 /* ChangePasswordRequest.swift in Sources */,
 				0A37EF9520C6D1E500201907 /* SignInViewState.swift in Sources */,
@@ -1968,12 +2059,14 @@
 				D7D177A620CE3AFA00985F05 /* BaseCurrencyCollectionViewCell.swift in Sources */,
 				0AAE96C020D7F94500F97768 /* PaymentRequest.swift in Sources */,
 				0A837C3020DE986300199759 /* InvoiceStatuses.swift in Sources */,
+				0A1B12DF20ECC0D10069ABDA /* DefaultCashOutState.swift in Sources */,
 				0A0B11A120D28BAF00021E2D /* InvoiceView.swift in Sources */,
 				0A37EFDF20C7D65100201907 /* PasswordUIValidation.swift in Sources */,
 				0A1AF40F20CADB670009595C /* UIViewController+Extension.swift in Sources */,
 				D7AF0E2020E3797F00C285D4 /* UIViewControllerExtension.swift in Sources */,
 				0ABED71420DBA94300AABCAD /* CurrencyUiTextField.swift in Sources */,
 				0A837C2A20DE985700199759 /* InvoiceFiltersModel.swift in Sources */,
+				0A1B12EC20ECFA500069ABDA /* CashOutRequest.swift in Sources */,
 				0A37EFEF20C7FB8A00201907 /* PinViewState.swift in Sources */,
 				0A837C3E20DE9CCD00199759 /* SettingsViewModel.swift in Sources */,
 				0AF611A720CA72DA00957348 /* InvoiceSettingsViewController.swift in Sources */,
@@ -1990,6 +2083,7 @@
 				0A1A1C9520DD1D380037DC77 /* SwipeTransitionLayout.swift in Sources */,
 				0A26FC9F20D160F00097A8F6 /* HistoryViewController.swift in Sources */,
 				0A4CD14720CD901600EF4A17 /* OnSwitchStateChanged.swift in Sources */,
+				0A1B12E820ECF9F80069ABDA /* DictionaryAssertId.swift in Sources */,
 				0A08C0FD20CAA70400342A3E /* InvoiceViewModelExtensition.swift in Sources */,
 				0A4CD16720CF135300EF4A17 /* TextFieldUtils.swift in Sources */,
 				0A37EF5D20C587C600201907 /* Promise+Spinner.swift in Sources */,
@@ -1997,7 +2091,9 @@
 				0A0B119520D279E700021E2D /* DefaultLocalStorage.swift in Sources */,
 				0A1A1C9320DD1D380037DC77 /* SwipeController.swift in Sources */,
 				0A37EFEC20C7EE0200201907 /* PinValidationResponse.swift in Sources */,
+				0A1B12D620ECB6AF0069ABDA /* R.generated.swift in Sources */,
 				0A9364C220DA371300634406 /* PropertyKeyTransactionTitle.swift in Sources */,
+				0A1B12DB20ECBC830069ABDA /* CashInViewController.swift in Sources */,
 				0A0B119320D279C000021E2D /* LocalStorage.swift in Sources */,
 				0A1A1C9020DD1D380037DC77 /* SwipeAction.swift in Sources */,
 				0A0B11BF20D2C7EC00021E2D /* BaseInvoiceViewModelItem.swift in Sources */,

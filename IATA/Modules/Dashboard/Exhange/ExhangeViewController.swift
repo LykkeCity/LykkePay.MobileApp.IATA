@@ -157,9 +157,6 @@ class ExhangeViewController: BaseNavController {
         self.btnConfirm.isEnabled = isEnabled
         self.btnConfirm.alpha = isEnabled ? 1 : 0.2
         self.sumTextField.alpha = isEnabled ? 1 : 0.2
-        if (isEnabled) {
-            //todo send request for exchange view
-        }
     }
     
     private func initScrollView() {
