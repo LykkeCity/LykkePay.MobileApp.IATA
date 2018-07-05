@@ -148,8 +148,11 @@ class Theme: NSObject {
     }
 
     public func getTransactionDetailsAttributedString(message: String) -> NSAttributedString {
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = 5
+        paragraphStyle.lineHeightMultiple = 1.5
         let attribute = [ NSAttributedStringKey.font: R.font.gothamPro(size: 14.0),
-                            NSAttributedStringKey.foregroundColor: Theme.shared.transactionDetailsFontColor,
+                          NSAttributedStringKey.foregroundColor: Theme.shared.transactionDetailsFontColor, NSAttributedStringKey.paragraphStyle: paragraphStyle
                             ]
         let attributedString = NSAttributedString(string: message, attributes: attribute)
         return attributedString
