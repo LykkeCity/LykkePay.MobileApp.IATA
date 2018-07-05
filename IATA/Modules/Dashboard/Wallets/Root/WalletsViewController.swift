@@ -2,25 +2,31 @@
 import UIKit
 
 
-class WalletsViewController: BaseViewController<WalletsViewModel, DefaultWalletsState> {
+class WalletsViewController: BaseViewController<WalletsViewModel, DefaultWalletsState>, UINavigationControllerDelegate {
 
     @IBOutlet weak var tableView: UITableView!
 
     @IBOutlet weak var placeholderWallets: UIView!
 
+    func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationControllerOperation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        
+        return PresentAnimation()
+    }
+    
     override func viewDidLoad() {
         state = DefaultWalletsState()
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = false
         initViewTheme()
         initTableViewTheme()
+        self.beginRefreshing()
+        loadData()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = false
-        self.beginRefreshing()
-        loadData()
+        self.navigationController?.delegate = self
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -44,12 +50,23 @@ class WalletsViewController: BaseViewController<WalletsViewModel, DefaultWallets
             return headerView
         }
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let viewController = CashInViewController()
+        if let item = self.state?.getItems() [indexPath.row] {
+            viewController.totalSum = item.totalConvertedBalance
+        }
+        self.navigationController?.pushViewController(viewController, animated: true)
+    }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: WalletsTableViewCell.identifier) as?  WalletsTableViewCell else {
             return WalletsTableViewCell()
         }
-        cell.fillCell(from: (self.state?.getItems() [indexPath.row])!)
+        cell.selectionStyle = .none
+        if let item = self.state?.getItems() [indexPath.row] {
+            cell.fillCell(from: item)
+        }
         return cell
     }
 

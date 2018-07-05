@@ -20,7 +20,6 @@ class BaseViewController<T: Mappable, S: DefaultBaseState<T>>:
         self.getTableView().showsVerticalScrollIndicator = false
     }
 
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let count = self.state?.getItems().count else {
             return 0

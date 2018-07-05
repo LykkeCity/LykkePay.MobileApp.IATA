@@ -26,4 +26,7 @@ protocol PaymentService {
 
     func makeExchange(model: ExchangeRequest) -> Promise<ExchangeModel>
     func loadExchangeInfo(model: PreExchangeRequest) -> Promise<ExchangeModel>
+    
+    func getDictionaryForPayments() -> Promise<String>
+    func cashOut(model: CashOutRequest)  -> Promise<BaseMappable>
 }

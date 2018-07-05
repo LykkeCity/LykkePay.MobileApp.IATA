@@ -21,7 +21,6 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SettingsViewController" customModule="IATA" customModuleProvider="target">
             <connections>
                 <outlet property="airlineImage" destination="BeL-sm-w3i" id="1c0-mh-HRM"/>
-                <outlet property="baseCurrencyCollectionView" destination="lSg-IS-nf1" id="R3A-AH-GvI"/>
                 <outlet property="companyNameLabel" destination="FmC-EE-XGF" id="jRk-ac-OzA"/>
                 <outlet property="emailLabel" destination="x9F-Ed-rHv" id="Lzr-Fk-Gyc"/>
                 <outlet property="profileImage" destination="wzz-fB-Rxz" id="XuD-9O-wNe"/>
@@ -99,34 +98,12 @@
                                         <constraint firstAttribute="height" constant="1" id="4bo-Rf-Kvr"/>
                                     </constraints>
                                 </view>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Base currency" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BDy-02-veA">
-                                    <rect key="frame" x="16" y="149" width="172" height="22"/>
-                                    <fontDescription key="fontDescription" name="GothamPro-Bold" family="Gotham Pro" pointSize="24"/>
-                                    <color key="textColor" red="0.074509803921568626" green="0.26666666666666666" blue="0.45882352941176469" alpha="1" colorSpace="calibratedRGB"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalCompressionResistancePriority="250" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="lSg-IS-nf1">
-                                    <rect key="frame" x="16" y="187" width="343" height="367"/>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="4" minimumInteritemSpacing="0.0" id="4a4-1L-1T8">
-                                        <size key="itemSize" width="140" height="56"/>
-                                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                    </collectionViewFlowLayout>
-                                </collectionView>
                             </subviews>
                             <constraints>
-                                <constraint firstItem="lSg-IS-nf1" firstAttribute="top" secondItem="BDy-02-veA" secondAttribute="bottom" constant="16" id="0nV-yB-0kt"/>
                                 <constraint firstItem="bUV-U0-QaN" firstAttribute="top" secondItem="6dw-S3-NMy" secondAttribute="bottom" id="166-pV-BMB"/>
-                                <constraint firstItem="BDy-02-veA" firstAttribute="leading" secondItem="olb-C0-uOP" secondAttribute="leading" constant="16" id="ECb-IV-brf"/>
                                 <constraint firstAttribute="bottom" secondItem="bUV-U0-QaN" secondAttribute="bottom" constant="429" id="EYv-c0-Q3h"/>
                                 <constraint firstAttribute="trailing" secondItem="bUV-U0-QaN" secondAttribute="trailing" constant="16" id="HYM-fj-bCm"/>
-                                <constraint firstAttribute="trailing" secondItem="lSg-IS-nf1" secondAttribute="trailing" constant="16" id="Hg2-9a-rLo"/>
-                                <constraint firstAttribute="bottom" secondItem="lSg-IS-nf1" secondAttribute="bottom" id="UqA-ow-4Fg"/>
                                 <constraint firstAttribute="trailing" secondItem="6dw-S3-NMy" secondAttribute="trailing" constant="16" id="VCS-Pw-pnM"/>
-                                <constraint firstItem="lSg-IS-nf1" firstAttribute="leading" secondItem="olb-C0-uOP" secondAttribute="leading" constant="16" id="WJL-YN-QUJ"/>
-                                <constraint firstItem="BDy-02-veA" firstAttribute="top" secondItem="bUV-U0-QaN" secondAttribute="bottom" constant="24" id="YXS-JZ-BF9"/>
                                 <constraint firstItem="bUV-U0-QaN" firstAttribute="leading" secondItem="olb-C0-uOP" secondAttribute="leading" constant="16" id="bfn-FZ-fF1"/>
                                 <constraint firstItem="6dw-S3-NMy" firstAttribute="top" secondItem="olb-C0-uOP" secondAttribute="top" id="dsA-fR-zAx"/>
                                 <constraint firstItem="6dw-S3-NMy" firstAttribute="leading" secondItem="olb-C0-uOP" secondAttribute="leading" constant="16" id="iIx-Zc-7gA"/>
