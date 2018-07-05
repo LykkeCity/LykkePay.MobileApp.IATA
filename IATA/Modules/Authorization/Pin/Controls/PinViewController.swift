@@ -156,6 +156,10 @@ private extension PinViewController {
                 if self.navController is ExhangeViewController {
                     (self.navController as! ExhangeViewController).beginRefresh()
                 }
+                
+                if self.navController is CashInViewController {
+                    (self.navController as! CashInViewController).beginRefreshing()
+                }
             })
             self.dismiss(animated: true, completion: completion)
         } else {

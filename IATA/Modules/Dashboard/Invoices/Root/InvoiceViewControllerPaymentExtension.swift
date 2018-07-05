@@ -100,6 +100,7 @@ extension InvoiceViewController {
         self.showErrorAlert(error: error)
         self.animate(isShow: false)
         self.tabView.reloadData()
+        self.refreshControl.endRefreshing()
     }
 
      func checkCurrentBalance() {

@@ -2,7 +2,7 @@
 import UIKit
 
 
-class WalletsViewController: BaseViewController<WalletsViewModel, DefaultWalletsState>, UINavigationControllerDelegate {
+class WalletsViewController: BaseViewController<WalletsViewModel, DefaultWalletsState>, UINavigationControllerDelegate, WalletsCellClick {
 
     @IBOutlet weak var tableView: UITableView!
 
@@ -41,6 +41,10 @@ class WalletsViewController: BaseViewController<WalletsViewModel, DefaultWallets
         return 80
     }
 
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 85
+    }
+
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: CustomHeaderView.identifier) as! CustomHeaderView
         headerView.balanceLabel.text = self.state?.getTotalBalance()
@@ -54,7 +58,8 @@ class WalletsViewController: BaseViewController<WalletsViewModel, DefaultWallets
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let viewController = CashInViewController()
         if let item = self.state?.getItems() [indexPath.row] {
-            viewController.totalSum = item.totalConvertedBalance
+            viewController.totalSum = item.totalBalance
+            viewController.assertId = item.assetId
         }
         self.navigationController?.pushViewController(viewController, animated: true)
     }
@@ -63,6 +68,7 @@ class WalletsViewController: BaseViewController<WalletsViewModel, DefaultWallets
         guard let cell = tableView.dequeueReusableCell(withIdentifier: WalletsTableViewCell.identifier) as?  WalletsTableViewCell else {
             return WalletsTableViewCell()
         }
+        cell.delegate = self
         cell.selectionStyle = .none
         if let item = self.state?.getItems() [indexPath.row] {
             cell.fillCell(from: item)
@@ -114,6 +120,16 @@ class WalletsViewController: BaseViewController<WalletsViewModel, DefaultWallets
     }
     
     private func initTableViewTheme() {
-        self.tableView.separatorColor = Theme.shared.dotColor
+        self.tableView.separatorColor = UIColor.clear
+    }
+
+    func bttnTapped(cell: WalletsTableViewCell) {
+        let indexPath = self.tableView.indexPath(for: cell)
+        let viewController = CashInViewController()
+        if let item = self.state?.getItems() [indexPath!.row] {
+            viewController.totalSum = item.totalConvertedBalance
+        }
+        self.navigationController?.pushViewController(viewController, animated: true)
+
     }
 }

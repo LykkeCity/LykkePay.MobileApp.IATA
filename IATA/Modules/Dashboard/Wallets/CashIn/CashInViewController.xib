@@ -26,6 +26,7 @@
                 <outlet property="assetPicker" destination="qzD-5Z-1Kj" id="eyH-3l-EmB"/>
                 <outlet property="btnConfirm" destination="mUc-ob-58w" id="8NL-o7-a5f"/>
                 <outlet property="desiredAssertView" destination="SGj-mo-SEJ" id="uwv-kf-Lfs"/>
+                <outlet property="heightConstraint" destination="clr-47-d0j" id="n0m-u5-k9r"/>
                 <outlet property="loadingView" destination="thr-If-KmQ" id="Gau-pM-Zuk"/>
                 <outlet property="navBar" destination="1DP-tn-S3C" id="6JI-lN-juq"/>
                 <outlet property="navItem" destination="eaz-Ji-Xdj" id="Lfd-3q-hzU"/>
@@ -104,7 +105,7 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SGj-mo-SEJ">
                                             <rect key="frame" x="243" y="0.0" width="100" height="40"/>
                                             <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="USD" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qzD-5Z-1Kj" customClass="FloatTextField" customModule="IATA" customModuleProvider="target">
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qzD-5Z-1Kj" customClass="FloatTextField" customModule="IATA" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="0.0" width="100" height="40"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -115,8 +116,8 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </textField>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imageView:hgZ-ST-qv1:image" translatesAutoresizingMaskIntoConstraints="NO" id="hgZ-ST-qv1">
-                                                    <rect key="frame" x="88" y="14" width="12" height="12"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_arrow_black" translatesAutoresizingMaskIntoConstraints="NO" id="hgZ-ST-qv1">
+                                                    <rect key="frame" x="80" y="14" width="12" height="12"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="12" id="8TY-jn-wyu"/>
                                                         <constraint firstAttribute="height" constant="12" id="R5q-S8-xMq"/>
@@ -125,13 +126,13 @@
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
-                                                <constraint firstItem="qzD-5Z-1Kj" firstAttribute="top" secondItem="SGj-mo-SEJ" secondAttribute="top" id="UyA-tZ-Jho"/>
-                                                <constraint firstAttribute="bottom" secondItem="qzD-5Z-1Kj" secondAttribute="bottom" id="aN8-sU-x9B"/>
-                                                <constraint firstItem="qzD-5Z-1Kj" firstAttribute="leading" secondItem="SGj-mo-SEJ" secondAttribute="leading" id="h1o-vp-Y7S"/>
-                                                <constraint firstAttribute="trailing" secondItem="qzD-5Z-1Kj" secondAttribute="trailing" id="jxu-Zj-UKh"/>
-                                                <constraint firstAttribute="trailing" secondItem="hgZ-ST-qv1" secondAttribute="trailing" id="nH9-iD-RaA"/>
-                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="90" id="zDr-vq-BIB"/>
-                                                <constraint firstItem="hgZ-ST-qv1" firstAttribute="centerY" secondItem="SGj-mo-SEJ" secondAttribute="centerY" id="zno-pa-KlD"/>
+                                                <constraint firstItem="hgZ-ST-qv1" firstAttribute="centerY" secondItem="SGj-mo-SEJ" secondAttribute="centerY" id="4hm-fP-ip8"/>
+                                                <constraint firstAttribute="trailing" secondItem="hgZ-ST-qv1" secondAttribute="trailing" constant="8" id="BR1-sl-25V"/>
+                                                <constraint firstAttribute="trailing" secondItem="qzD-5Z-1Kj" secondAttribute="trailing" id="QfT-Rb-MAm"/>
+                                                <constraint firstAttribute="bottom" secondItem="qzD-5Z-1Kj" secondAttribute="bottom" id="vbm-yy-F8S"/>
+                                                <constraint firstItem="qzD-5Z-1Kj" firstAttribute="top" secondItem="SGj-mo-SEJ" secondAttribute="top" id="w7r-tE-RVb"/>
+                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="zDr-vq-BIB"/>
+                                                <constraint firstItem="qzD-5Z-1Kj" firstAttribute="leading" secondItem="SGj-mo-SEJ" secondAttribute="leading" id="zbp-xA-v7v"/>
                                             </constraints>
                                         </view>
                                     </subviews>
@@ -222,29 +223,29 @@
                         <constraint firstItem="thr-If-KmQ" firstAttribute="top" secondItem="5IB-Qn-f4q" secondAttribute="top" id="k6U-aU-UOR"/>
                     </constraints>
                 </scrollView>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2e9-Et-Zp9">
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2e9-Et-Zp9">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <subviews>
-                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Cd2-N8-XfB">
-                            <rect key="frame" x="16" y="687" width="343" height="140"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="140" id="clr-47-d0j"/>
-                            </constraints>
-                        </tableView>
                         <view hidden="YES" alpha="0.40000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qb8-WH-Dko">
-                            <rect key="frame" x="0.0" y="350" width="375" height="317"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </view>
+                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Cd2-N8-XfB">
+                            <rect key="frame" x="16" y="651" width="343" height="0.0"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" id="clr-47-d0j"/>
+                            </constraints>
+                        </tableView>
                     </subviews>
                     <constraints>
-                        <constraint firstItem="Qb8-WH-Dko" firstAttribute="top" secondItem="2e9-Et-Zp9" secondAttribute="top" constant="350" id="5Hh-C7-bvb"/>
+                        <constraint firstItem="Qb8-WH-Dko" firstAttribute="top" secondItem="2e9-Et-Zp9" secondAttribute="top" id="5Hh-C7-bvb"/>
                         <constraint firstAttribute="trailing" secondItem="Qb8-WH-Dko" secondAttribute="trailing" id="Aho-QW-6AQ"/>
                         <constraint firstAttribute="bottom" secondItem="Qb8-WH-Dko" secondAttribute="bottom" id="Mxf-Mj-tlD"/>
                         <constraint firstItem="Qb8-WH-Dko" firstAttribute="leading" secondItem="2e9-Et-Zp9" secondAttribute="leading" id="XvS-2c-XkG"/>
                         <constraint firstAttribute="trailing" secondItem="Cd2-N8-XfB" secondAttribute="trailing" constant="16" id="frg-9U-UYc"/>
                         <constraint firstItem="Cd2-N8-XfB" firstAttribute="leading" secondItem="2e9-Et-Zp9" secondAttribute="leading" constant="16" id="haR-cW-FUE"/>
-                        <constraint firstAttribute="bottom" secondItem="Cd2-N8-XfB" secondAttribute="bottom" constant="-160" id="rpO-BP-Bsn"/>
+                        <constraint firstAttribute="bottom" secondItem="Cd2-N8-XfB" secondAttribute="bottom" constant="16" id="rpO-BP-Bsn"/>
                     </constraints>
                 </view>
             </subviews>
@@ -266,148 +267,6 @@
         </view>
     </objects>
     <resources>
-        <image name="imageView:hgZ-ST-qv1:image" width="24" height="24">
-            <mutableData key="keyedArchiveRepresentation">
-YnBsaXN0MDDUAQIDBAUGVVZYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK8QEgcI
-ExQZHh8jJCsuMTtDR0tPUlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdz
-Vk5TUmVwc1dOU0NvbG9ygAKAERIgwAAAgAOAC1h7MjQsIDI0fdIVChYYWk5TLm9iamVjdHOhF4AEgArS
-FQoaHaIbHIAFgAaACRAA0iAKISJfEBROU1RJRkZSZXByZXNlbnRhdGlvboAHgAhPEQwCTU0AKgAACQj/
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-////paWl/2FhYf/t7e3//////////////////////////////////////////////////////+3t7f9h
-YWH/paWl//////////////////////////////////////+5ubn/GRkZ/wYGBv9JSUn/4eHh////////
-////////////////////////////////////4eHh/0lJSf8GBgb/GRkZ/7m5uf//////////////////
-//////////////+cnJz/EBAQ/w0NDf8JCQn/Nzc3/9HR0f/////////////////////////////////R
-0dH/Nzc3/wkJCf8NDQ3/EBAQ/5ycnP//////////////////////////////////////q6ur/x0dHf8M
-DAz/CwsL/ycnJ/+9vb3//////////////////////729vf8nJyf/CwsL/wwMDP8dHR3/q6ur////////
-/////////////////////////////////////////8bGxv8sLCz/CgoK/wwMDP8ZGRn/oqKi////////
-////oqKi/xkZGf8MDAz/CgoK/ywsLP/Gxsb/////////////////////////////////////////////
-///////////////Z2dn/PT09/wgICP8NDQ3/ERER/4uLi/+Li4v/ERER/w0NDf8ICAj/PT09/9nZ2f//
-////////////////////////////////////////////////////////////////////5ubm/1JSUv8I
-CAj/Dw8P/w4ODv8ODg7/Dw8P/wgICP9SUlL/5ubm////////////////////////////////////////
-//////////////////////////////////////////Hx8f9oaGj/CQkJ/w8PD/8PDw//CQkJ/2hoaP/x
-8fH/////////////////////////////////////////////////////////////////////////////
-///////////////6+vr/gICA/wwMDP8MDAz/gICA//r6+v//////////////////////////////////
-/////////////////////////////////////////////////////////////////////////5eXl/+X
-l5f/////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////8AEAEAAAMAAAABABgAAAEBAAMAAAABABgAAAECAAMAAAAEAAAJ
-zgEDAAMAAAABAAEAAAEGAAMAAAABAAIAAAEKAAMAAAABAAEAAAERAAQAAAABAAAACAESAAMAAAABAAEA
-AAEVAAMAAAABAAQAAAEWAAMAAAABABgAAAEXAAQAAAABAAAJAAEcAAMAAAABAAEAAAEoAAMAAAABAAIA
-AAFSAAMAAAABAAEAAAFTAAMAAAAEAAAJ1odzAAcAAAIkAAAJ3gAAAAAACAAIAAgACAABAAEAAQABAAAC
-JGFwcGwEAAAAbW50clJHQiBYWVogB+EABwAHAA0AFgAgYWNzcEFQUEwAAAAAQVBQTAAAAAAAAAAAAAAA
-AAAAAAAAAPbWAAEAAAAA0y1hcHBsyhqVgiV/EE04mRPV0eoVggAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAKZGVzYwAAAPwAAABlY3BydAAAAWQAAAAjd3RwdAAAAYgAAAAUclhZWgAAAZwAAAAUZ1hZ
-WgAAAbAAAAAUYlhZWgAAAcQAAAAUclRSQwAAAdgAAAAgY2hhZAAAAfgAAAAsYlRSQwAAAdgAAAAgZ1RS
-QwAAAdgAAAAgZGVzYwAAAAAAAAALRGlzcGxheSBQMwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB0ZXh0AAAA
-AENvcHlyaWdodCBBcHBsZSBJbmMuLCAyMDE3AABYWVogAAAAAAAA81EAAQAAAAEWzFhZWiAAAAAAAACD
-3wAAPb////+7WFlaIAAAAAAAAEq/AACxNwAACrlYWVogAAAAAAAAKDgAABELAADIuXBhcmEAAAAAAAMA
-AAACZmYAAPKnAAANWQAAE9AAAApbc2YzMgAAAAAAAQxCAAAF3v//8yYAAAeTAAD9kP//+6L///2jAAAD
-3AAAwG7SJSYnKFokY2xhc3NuYW1lWCRjbGFzc2VzXxAQTlNCaXRtYXBJbWFnZVJlcKMnKSpaTlNJbWFn
-ZVJlcFhOU09iamVjdNIlJiwtV05TQXJyYXmiLCrSJSYvMF5OU011dGFibGVBcnJheaMvLCrVMjM0NQo2
-Nzg5OldOU1doaXRlXE5TQ29tcG9uZW50c1xOU0NvbG9yU3BhY2VfEBJOU0N1c3RvbUNvbG9yU3BhY2VE
-MCAwAEMwIDAQA4AMgBDUPD0+Cj9AQUJUTlNJRFVOU0lDQ1dOU01vZGVsEAmADRAAgA/SRApFRldOUy5k
-YXRhTxERaAAAEWhhcHBsAgAAAG1udHJHUkFZWFlaIAfcAAgAFwAPAC4AD2Fjc3BBUFBMAAAAAG5vbmUA
-AAAAAAAAAAAAAAAAAAAAAAD21gABAAAAANMtYXBwbAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAABWRlc2MAAADAAAAAeWRzY20AAAE8AAAH6GNwcnQAAAkkAAAAI3d0cHQA
-AAlIAAAAFGtUUkMAAAlcAAAIDGRlc2MAAAAAAAAAH0dlbmVyaWMgR3JheSBHYW1tYSAyLjIgUHJvZmls
-ZQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAABtbHVjAAAAAAAAAB8AAAAMc2tTSwAAAC4AAAGEZGFESwAAADgA
-AAGyY2FFUwAAADgAAAHqdmlWTgAAAEAAAAIicHRCUgAAAEoAAAJidWtVQQAAACwAAAKsZnJGVQAAAD4A
-AALYaHVIVQAAADQAAAMWemhUVwAAAB4AAANKbmJOTwAAADoAAANoY3NDWgAAACgAAAOiaGVJTAAAACQA
-AAPKaXRJVAAAAE4AAAPucm9STwAAACoAAAQ8ZGVERQAAAE4AAARma29LUgAAACIAAAS0c3ZTRQAAADgA
-AAGyemhDTgAAAB4AAATWamFKUAAAACYAAAT0ZWxHUgAAACoAAAUacHRQTwAAAFIAAAVEbmxOTAAAAEAA
-AAWWZXNFUwAAAEwAAAXWdGhUSAAAADIAAAYidHJUUgAAACQAAAZUZmlGSQAAAEYAAAZ4aHJIUgAAAD4A
-AAa+cGxQTAAAAEoAAAb8cnVSVQAAADoAAAdGZW5VUwAAADwAAAeAYXJFRwAAACwAAAe8AFYBYQBlAG8A
-YgBlAGMAbgDhACAAcwBpAHYA4QAgAGcAYQBtAGEAIAAyACwAMgBHAGUAbgBlAHIAaQBzAGsAIABnAHIA
-5QAgADIALAAyACAAZwBhAG0AbQBhAHAAcgBvAGYAaQBsAEcAYQBtAG0AYQAgAGQAZQAgAGcAcgBpAHMA
-bwBzACAAZwBlAG4A6AByAGkAYwBhACAAMgAuADIAQx6lAHUAIABoAOwAbgBoACAATQDgAHUAIAB4AOEA
-bQAgAEMAaAB1AG4AZwAgAEcAYQBtAG0AYQAgADIALgAyAFAAZQByAGYAaQBsACAARwBlAG4A6QByAGkA
-YwBvACAAZABhACAARwBhAG0AYQAgAGQAZQAgAEMAaQBuAHoAYQBzACAAMgAsADIEFwQwBDMEMAQ7BEwE
-PQQwACAARwByAGEAeQAtBDMEMAQ8BDAAIAAyAC4AMgBQAHIAbwBmAGkAbAAgAGcA6QBuAOkAcgBpAHEA
-dQBlACAAZwByAGkAcwAgAGcAYQBtAG0AYQAgADIALAAyAMEAbAB0AGEAbADhAG4AbwBzACAAcwB6APwA
-cgBrAGUAIABnAGEAbQBtAGEAIAAyAC4AMpAadShwcJaOUUlepgAgADIALgAyACCCcl9pY8+P8ABHAGUA
-bgBlAHIAaQBzAGsAIABnAHIA5QAgAGcAYQBtAG0AYQAgADIALAAyAC0AcAByAG8AZgBpAGwATwBiAGUA
-YwBuAOEAIAFhAGUAZADhACAAZwBhAG0AYQAgADIALgAyBdIF0AXeBdQAIAXQBeQF1QXoACAF2wXcBdwF
-2QAgADIALgAyAFAAcgBvAGYAaQBsAG8AIABnAHIAaQBnAGkAbwAgAGcAZQBuAGUAcgBpAGMAbwAgAGQA
-ZQBsAGwAYQAgAGcAYQBtAG0AYQAgADIALAAyAEcAYQBtAGEAIABnAHIAaQAgAGcAZQBuAGUAcgBpAGMB
-AwAgADIALAAyAEEAbABsAGcAZQBtAGUAaQBuAGUAcwAgAEcAcgBhAHUAcwB0AHUAZgBlAG4ALQBQAHIA
-bwBmAGkAbAAgAEcAYQBtAG0AYQAgADIALAAyx3y8GAAg1ozAyQAgrBC5yAAgADIALgAyACDVBLhc0wzH
-fGZukBpwcF6mfPtlcAAgADIALgAyACBjz4/wZYdO9k4AgiwwsDDsMKQwrDDzMN4AIAAyAC4AMgAgMNcw
-7TDVMKEwpDDrA5MDtQO9A7kDugPMACADkwO6A8EDuQAgA5MDrAO8A7wDsQAgADIALgAyAFAAZQByAGYA
-aQBsACAAZwBlAG4A6QByAGkAYwBvACAAZABlACAAYwBpAG4AegBlAG4AdABvAHMAIABkAGEAIABHAGEA
-bQBtAGEAIAAyACwAMgBBAGwAZwBlAG0AZQBlAG4AIABnAHIAaQBqAHMAIABnAGEAbQBtAGEAIAAyACwA
-MgAtAHAAcgBvAGYAaQBlAGwAUABlAHIAZgBpAGwAIABnAGUAbgDpAHIAaQBjAG8AIABkAGUAIABnAGEA
-bQBtAGEAIABkAGUAIABnAHIAaQBzAGUAcwAgADIALAAyDiMOMQ4HDioONQ5BDgEOIQ4hDjIOQA4BDiMO
-Ig5MDhcOMQ5IDicORA4bACAAMgAuADIARwBlAG4AZQBsACAARwByAGkAIABHAGEAbQBhACAAMgAsADIA
-WQBsAGUAaQBuAGUAbgAgAGgAYQByAG0AYQBhAG4AIABnAGEAbQBtAGEAIAAyACwAMgAgAC0AcAByAG8A
-ZgBpAGkAbABpAEcAZQBuAGUAcgBpAQ0AawBpACAARwByAGEAeQAgAEcAYQBtAG0AYQAgADIALgAyACAA
-cAByAG8AZgBpAGwAVQBuAGkAdwBlAHIAcwBhAGwAbgB5ACAAcAByAG8AZgBpAGwAIABzAHoAYQByAG8B
-WwBjAGkAIABnAGEAbQBtAGEAIAAyACwAMgQeBDEESQQwBE8AIARBBDUEQAQwBE8AIAQzBDAEPAQ8BDAA
-IAAyACwAMgAtBD8EQAQ+BEQEOAQ7BEwARwBlAG4AZQByAGkAYwAgAEcAcgBhAHkAIABHAGEAbQBtAGEA
-IAAyAC4AMgAgAFAAcgBvAGYAaQBsAGUGOgYnBkUGJwAgADIALgAyACAGRAZIBkYAIAYxBkUGJwYvBkoA
-IAY5BicGRXRleHQAAAAAQ29weXJpZ2h0IEFwcGxlIEluYy4sIDIwMTIAAFhZWiAAAAAAAADzUQABAAAA
-ARbMY3VydgAAAAAAAAQAAAAABQAKAA8AFAAZAB4AIwAoAC0AMgA3ADsAQABFAEoATwBUAFkAXgBjAGgA
-bQByAHcAfACBAIYAiwCQAJUAmgCfAKQAqQCuALIAtwC8AMEAxgDLANAA1QDbAOAA5QDrAPAA9gD7AQEB
-BwENARMBGQEfASUBKwEyATgBPgFFAUwBUgFZAWABZwFuAXUBfAGDAYsBkgGaAaEBqQGxAbkBwQHJAdEB
-2QHhAekB8gH6AgMCDAIUAh0CJgIvAjgCQQJLAlQCXQJnAnECegKEAo4CmAKiAqwCtgLBAssC1QLgAusC
-9QMAAwsDFgMhAy0DOANDA08DWgNmA3IDfgOKA5YDogOuA7oDxwPTA+AD7AP5BAYEEwQgBC0EOwRIBFUE
-YwRxBH4EjASaBKgEtgTEBNME4QTwBP4FDQUcBSsFOgVJBVgFZwV3BYYFlgWmBbUFxQXVBeUF9gYGBhYG
-JwY3BkgGWQZqBnsGjAadBq8GwAbRBuMG9QcHBxkHKwc9B08HYQd0B4YHmQesB78H0gflB/gICwgfCDII
-RghaCG4IggiWCKoIvgjSCOcI+wkQCSUJOglPCWQJeQmPCaQJugnPCeUJ+woRCicKPQpUCmoKgQqYCq4K
-xQrcCvMLCwsiCzkLUQtpC4ALmAuwC8gL4Qv5DBIMKgxDDFwMdQyODKcMwAzZDPMNDQ0mDUANWg10DY4N
-qQ3DDd4N+A4TDi4OSQ5kDn8Omw62DtIO7g8JDyUPQQ9eD3oPlg+zD88P7BAJECYQQxBhEH4QmxC5ENcQ
-9RETETERTxFtEYwRqhHJEegSBxImEkUSZBKEEqMSwxLjEwMTIxNDE2MTgxOkE8UT5RQGFCcUSRRqFIsU
-rRTOFPAVEhU0FVYVeBWbFb0V4BYDFiYWSRZsFo8WshbWFvoXHRdBF2UXiReuF9IX9xgbGEAYZRiKGK8Y
-1Rj6GSAZRRlrGZEZtxndGgQaKhpRGncanhrFGuwbFBs7G2MbihuyG9ocAhwqHFIcexyjHMwc9R0eHUcd
-cB2ZHcMd7B4WHkAeah6UHr4e6R8THz4faR+UH78f6iAVIEEgbCCYIMQg8CEcIUghdSGhIc4h+yInIlUi
-giKvIt0jCiM4I2YjlCPCI/AkHyRNJHwkqyTaJQklOCVoJZclxyX3JicmVyaHJrcm6CcYJ0kneierJ9wo
-DSg/KHEooijUKQYpOClrKZ0p0CoCKjUqaCqbKs8rAis2K2krnSvRLAUsOSxuLKIs1y0MLUEtdi2rLeEu
-Fi5MLoIuty7uLyQvWi+RL8cv/jA1MGwwpDDbMRIxSjGCMbox8jIqMmMymzLUMw0zRjN/M7gz8TQrNGU0
-njTYNRM1TTWHNcI1/TY3NnI2rjbpNyQ3YDecN9c4FDhQOIw4yDkFOUI5fzm8Ofk6Njp0OrI67zstO2s7
-qjvoPCc8ZTykPOM9Ij1hPaE94D4gPmA+oD7gPyE/YT+iP+JAI0BkQKZA50EpQWpBrEHuQjBCckK1QvdD
-OkN9Q8BEA0RHRIpEzkUSRVVFmkXeRiJGZ0arRvBHNUd7R8BIBUhLSJFI10kdSWNJqUnwSjdKfUrESwxL
-U0uaS+JMKkxyTLpNAk1KTZNN3E4lTm5Ot08AT0lPk0/dUCdQcVC7UQZRUFGbUeZSMVJ8UsdTE1NfU6pT
-9lRCVI9U21UoVXVVwlYPVlxWqVb3V0RXklfgWC9YfVjLWRpZaVm4WgdaVlqmWvVbRVuVW+VcNVyGXNZd
-J114XcleGl5sXr1fD19hX7NgBWBXYKpg/GFPYaJh9WJJYpxi8GNDY5dj62RAZJRk6WU9ZZJl52Y9ZpJm
-6Gc9Z5Nn6Wg/aJZo7GlDaZpp8WpIap9q92tPa6dr/2xXbK9tCG1gbbluEm5rbsRvHm94b9FwK3CGcOBx
-OnGVcfByS3KmcwFzXXO4dBR0cHTMdSh1hXXhdj52m3b4d1Z3s3gReG54zHkqeYl553pGeqV7BHtje8J8
-IXyBfOF9QX2hfgF+Yn7CfyN/hH/lgEeAqIEKgWuBzYIwgpKC9INXg7qEHYSAhOOFR4Wrhg6GcobXhzuH
-n4gEiGmIzokziZmJ/opkisqLMIuWi/yMY4zKjTGNmI3/jmaOzo82j56QBpBukNaRP5GokhGSepLjk02T
-tpQglIqU9JVflcmWNJaflwqXdZfgmEyYuJkkmZCZ/JpomtWbQpuvnByciZz3nWSd0p5Anq6fHZ+Ln/qg
-aaDYoUehtqImopajBqN2o+akVqTHpTilqaYapoum/adup+CoUqjEqTepqaocqo+rAqt1q+msXKzQrUSt
-uK4trqGvFq+LsACwdbDqsWCx1rJLssKzOLOutCW0nLUTtYq2AbZ5tvC3aLfguFm40blKucK6O7q1uy67
-p7whvJu9Fb2Pvgq+hL7/v3q/9cBwwOzBZ8Hjwl/C28NYw9TEUcTOxUvFyMZGxsPHQce/yD3IvMk6ybnK
-OMq3yzbLtsw1zLXNNc21zjbOts83z7jQOdC60TzRvtI/0sHTRNPG1EnUy9VO1dHWVdbY11zX4Nhk2OjZ
-bNnx2nba+9uA3AXcit0Q3ZbeHN6i3ynfr+A24L3hROHM4lPi2+Nj4+vkc+T85YTmDeaW5x/nqegy6Lzp
-RunQ6lvq5etw6/vshu0R7ZzuKO6070DvzPBY8OXxcvH/8ozzGfOn9DT0wvVQ9d72bfb794r4Gfio+Tj5
-x/pX+uf7d/wH/Jj9Kf26/kv+3P9t//+ADtIlJkhJXU5TTXV0YWJsZURhdGGjSEoqVk5TRGF0YdIlJkxN
-XE5TQ29sb3JTcGFjZaJOKlxOU0NvbG9yU3BhY2XSJSZQUVdOU0NvbG9yolAq0iUmU1RXTlNJbWFnZaJT
-Kl8QD05TS2V5ZWRBcmNoaXZlctFXWFRyb290gAEACAARABoAIwAtADIANwBMAFIAXQBkAGsAeAB/AIcA
-iQCLAJAAkgCUAJ0AogCtAK8AsQCzALgAuwC9AL8AwQDDAMgA3wDhAOMM6QzuDPkNAg0VDRkNJA0tDTIN
-Og09DUINUQ1VDWANaA11DYINlw2cDaANog2kDaYNrw20DboNwg3EDcYNyA3KDc8N1x9DH0UfSh9YH1wf
-Yx9oH3UfeB+FH4ofkh+VH5ofoh+lH7cfuh+/AAAAAAAAAgEAAAAAAAAAWQAAAAAAAAAAAAAAAAAAH8E
-</mutableData>
-        </image>
+        <image name="ic_arrow_black" width="24" height="24"/>
     </resources>
 </document>
