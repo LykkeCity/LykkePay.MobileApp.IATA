@@ -208,6 +208,9 @@
 		94D6B70820E13BA80066960D /* lykkexnet.crt in Resources */ = {isa = PBXBuildFile; fileRef = 94D6B70720E13BA70066960D /* lykkexnet.crt */; };
 		D70DE14E20CA9E6B00644281 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70DE14C20CA9E6B00644281 /* SettingsViewController.swift */; };
 		D70DE14F20CA9E6B00644281 /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D70DE14D20CA9E6B00644281 /* SettingsViewController.xib */; };
+		D770E2D020ECB40600BEED9C /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = D770E2CF20ECB40600BEED9C /* LICENSE */; };
+		D770E2D220ECB43300BEED9C /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = D770E2D120ECB43300BEED9C /* LICENSE */; };
+		D770E2D520ECB5FB00BEED9C /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = D770E2D420ECB5FB00BEED9C /* LICENSE */; };
 		D784931D20D25F650060EAC6 /* DefaultWalletsState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D784931C20D25F650060EAC6 /* DefaultWalletsState.swift */; };
 		D78589A320D3DF1800E3C3FB /* WalletsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D78589A220D3DF1800E3C3FB /* WalletsViewModel.swift */; };
 		D7894CFD20CFFC290069F68E /* GothamProMed.otf in Resources */ = {isa = PBXBuildFile; fileRef = D7894CFB20CFFC290069F68E /* GothamProMed.otf */; };
@@ -470,6 +473,9 @@
 		D295B81107990C89EA142783 /* Pods-IATATests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IATATests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-IATATests/Pods-IATATests.debug.xcconfig"; sourceTree = "<group>"; };
 		D70DE14C20CA9E6B00644281 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		D70DE14D20CA9E6B00644281 /* SettingsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
+		D770E2CF20ECB40600BEED9C /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		D770E2D120ECB43300BEED9C /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		D770E2D420ECB5FB00BEED9C /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		D784931C20D25F650060EAC6 /* DefaultWalletsState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultWalletsState.swift; sourceTree = "<group>"; };
 		D78589A220D3DF1800E3C3FB /* WalletsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletsViewModel.swift; sourceTree = "<group>"; };
 		D7894CFB20CFFC290069F68E /* GothamProMed.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GothamProMed.otf; sourceTree = "<group>"; };
@@ -789,6 +795,7 @@
 		0A1AF40220CADB240009595C /* NavigationDropDown */ = {
 			isa = PBXGroup;
 			children = (
+				D770E2CF20ECB40600BEED9C /* LICENSE */,
 				0A1AF41020CADB6E0009595C /* Internal */,
 				0A1AF40B20CADB5B0009595C /* Extension */,
 				0A1AF40520CADB450009595C /* BTNavigationDropdownMenu.swift */,
@@ -1399,6 +1406,7 @@
 		0AF611A920CA72E200957348 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D770E2D320ECB51200BEED9C /* Checkbox */,
 				D7A71F1F20E514EA002D4207 /* Wallets */,
 				0A11322B20DD787800FE6853 /* RangeSlider */,
 				0ABED72420DBFB8300AABCAD /* SwipeAction */,
@@ -1406,7 +1414,6 @@
 				0A4CD14520CD8FFE00EF4A17 /* Switcher */,
 				0A1AF40220CADB240009595C /* NavigationDropDown */,
 				0AF611AA20CA72FE00957348 /* Pin */,
-				0AF6119C20C992AC00957348 /* Checkbox.swift */,
 				0AF6119E20C9980500957348 /* UiStatusView.swift */,
 				0ABED71D20DBDEF800AABCAD /* UIImageExtensition.swift */,
 				0A4CD11D20CD57AA00EF4A17 /* DesignableUITextField.swift */,
@@ -1421,6 +1428,7 @@
 		0AF611AA20CA72FE00957348 /* Pin */ = {
 			isa = PBXGroup;
 			children = (
+				D770E2D420ECB5FB00BEED9C /* LICENSE */,
 				0A37EFDA20C7D65000201907 /* PasswordContainerView.swift */,
 				0A37EFDC20C7D65100201907 /* PasswordDotView.swift */,
 				0A37EFD920C7D65000201907 /* PasswordInputView.swift */,
@@ -1463,6 +1471,15 @@
 				FBCD1B2F0AEEDCE28F8A0492 /* Pods-IATAUITests.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		D770E2D320ECB51200BEED9C /* Checkbox */ = {
+			isa = PBXGroup;
+			children = (
+				D770E2D120ECB43300BEED9C /* LICENSE */,
+				0AF6119C20C992AC00957348 /* Checkbox.swift */,
+			);
+			path = Checkbox;
 			sourceTree = "<group>";
 		};
 		D784931920D25EA10060EAC6 /* State */ = {
@@ -1745,6 +1762,7 @@
 				0A26FC9520D15AC70097A8F6 /* DisputeViewController.xib in Resources */,
 				0A37EF5620C5835300201907 /* SignInViewController.xib in Resources */,
 				D7DEFC9420C97459005FB9EF /* WalletsViewController.xib in Resources */,
+				D770E2D220ECB43300BEED9C /* LICENSE in Resources */,
 				D7DEFC9B20C97B9E005FB9EF /* GothamProLight.ttf in Resources */,
 				0A0B11C320D2E35300021E2D /* InvoiceSettingsTableViewCell.xib in Resources */,
 				0A26FCB220D1658D0097A8F6 /* TransactionTableViewCell.xib in Resources */,
@@ -1762,8 +1780,10 @@
 				9406B2F820E4E2330086E880 /* lykkexnettest.crt in Resources */,
 				0A26FCB820D166F00097A8F6 /* TransactionViewController.xib in Resources */,
 				0AF611A820CA72DA00957348 /* InvoiceSettingsViewController.xib in Resources */,
+				D770E2D020ECB40600BEED9C /* LICENSE in Resources */,
 				0A26FCBA20D16CF70097A8F6 /* TransactionTableViewHeader.xib in Resources */,
 				0A1A1C8F20DD1D380037DC77 /* LICENSE in Resources */,
+				D770E2D520ECB5FB00BEED9C /* LICENSE in Resources */,
 				0A0B11C820D3158500021E2D /* ExhangeViewController.xib in Resources */,
 				D7DEFC8D20C97148005FB9EF /* TabBarView.xib in Resources */,
 				0A37EFD820C7D63D00201907 /* PasswordContainerView.xib in Resources */,

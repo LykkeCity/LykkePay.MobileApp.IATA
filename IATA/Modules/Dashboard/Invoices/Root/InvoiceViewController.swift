@@ -17,6 +17,9 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
     @IBOutlet weak var placeholderInvoice: UIView!
 
     private var viewModel: InvoiceRootViewModel? = nil
+
+    internal lazy var walletsState = DefaultWalletsState()
+    internal var totalBalance: Double?
     
    
     
@@ -26,6 +29,7 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
         super.viewDidLoad()
         self.beginRefreshing()
         self.loadData()
+        checkCurrentBalance()
         
         self.sumTextField.delegate = self
         self.sumTextField.addObservers()
@@ -58,7 +62,6 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
         let message = R.string.localizable.invoiceScreenPaymentMessage(symbol + " " + amountConverted)
         self.view.endEditing(true)
         generatePaymentAlert(message: message, handler: makePayment)
-        
     }
     
     @IBAction func sumChanged(_ sender: Any) {
