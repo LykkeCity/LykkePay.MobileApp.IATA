@@ -77,6 +77,13 @@ class WalletsViewController: BaseViewController<WalletsViewModel, DefaultWallets
                     }
                     strongSelf.reloadTable(jsonString: result)
                 })
+                .catch(execute: { [weak self] error -> Void in
+                    guard let strongSelf = self else {
+                        return
+                    }
+                    strongSelf.generateErrorAlert(error: error)
+                    strongSelf.refreshControl.endRefreshing()
+                })
         }
     }
 
