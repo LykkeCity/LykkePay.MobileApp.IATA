@@ -10,6 +10,10 @@ class DefaultTransactionState: DefaultBaseState<PropertyKeyTransactionModel> {
     func getHistoryDetails(id: String) -> Promise<HistoryTransactionModel> {
         return self.service.getHistoryDetails(id: id)
     }
+
+    func getPayedHistoryDetails(invoiceId: String) -> Promise<HistoryTransactionModel> {
+        return self.service.getPayedHistoryDetails(invoiceId: invoiceId)
+    }
     
     func initItems(item: HistoryTransactionModel) {
         self.items = item.valueFor()
