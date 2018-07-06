@@ -206,7 +206,7 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
             self.placeholderInvoice.isHidden = count != 0
         }
         self.tabView.reloadData()
-        self.refreshControl.endRefreshing()
+        self.endRefreshAnimation(wasEmpty: false, dataFetched: true)
         
         if let count = state?.getItems().count, count > 0 {
             let indexPath = IndexPath(row: 0, section: 0)

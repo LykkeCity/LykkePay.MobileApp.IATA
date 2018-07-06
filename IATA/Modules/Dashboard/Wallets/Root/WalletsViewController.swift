@@ -82,7 +82,7 @@ class WalletsViewController: BaseViewController<WalletsViewModel, DefaultWallets
                         return
                     }
                     strongSelf.generateErrorAlert(error: error)
-                    strongSelf.refreshControl.endRefreshing()
+                    strongSelf.endRefreshAnimation(wasEmpty: false, dataFetched: true)
                 })
         }
     }
@@ -94,7 +94,7 @@ class WalletsViewController: BaseViewController<WalletsViewModel, DefaultWallets
         }
         setVisibleViewAfterLoadingData()
         self.tableView.reloadData()
-        self.refreshControl.endRefreshing()
+        self.endRefreshAnimation(wasEmpty: false, dataFetched: true)
     }
 
     override func getTitle() -> String? {

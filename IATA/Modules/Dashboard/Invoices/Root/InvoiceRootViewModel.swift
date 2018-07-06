@@ -23,7 +23,7 @@ class InvoiceRootViewModel: SwipeTableViewCellDelegate, OnChangeStateSelected {
                     return
                 }
                 strongSelf.viewController?.handleError(error: error)
-                strongSelf.viewController?.refreshControl.endRefreshing()
+                strongSelf.viewController?.endRefreshAnimation(wasEmpty: false, dataFetched: true)
                 strongSelf.viewController?.tabView.reloadData()
             })
     }

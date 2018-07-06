@@ -70,14 +70,19 @@ class HistoryViewController: BaseViewController<HistoryModel, DefaultHistoryStat
                     return
                 }
                 strongSelf.generateErrorAlert(error: error)
-                strongSelf.refreshControl.endRefreshing()
+                strongSelf.endRefreshAnimation(wasEmpty: false, dataFetched: true)
+                strongSelf.reload()
             })
     }
     
     private func reloadTable(jsonString: String) {
         self.state?.mapping(jsonString: jsonString)
-        placeholderHistory.isHidden = state?.getItems().count == 0
+        self.reload()
+    }
+    
+    private func reload() {
+        placeholderHistory.isHidden = state?.getItems().count != 0
         self.tabView.reloadData()
-        self.refreshControl.endRefreshing()
+        self.endRefreshAnimation(wasEmpty: false, dataFetched: true)
     }
 }

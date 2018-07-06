@@ -78,7 +78,7 @@ class TransactionViewController: BaseViewController<PropertyKeyTransactionModel,
                     return
                 }
                 strongSelf.showErrorAlert(error: error)
-                strongSelf.refreshControl.endRefreshing()
+                strongSelf.endRefreshAnimation(wasEmpty: false, dataFetched: true)
                 strongSelf.tabView.reloadData()
             })
     }
@@ -91,6 +91,6 @@ class TransactionViewController: BaseViewController<PropertyKeyTransactionModel,
     private func reloadViews(item: HistoryTransactionModel) {
         reloadTable(item: item)
         transactionHeaderView.model = item
-        self.refreshControl.endRefreshing()
+        self.endRefreshAnimation(wasEmpty: false, dataFetched: true)
     }
 }
