@@ -57,20 +57,20 @@
                     </connections>
                 </tableView>
                 <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g47-FS-dNV">
-                    <rect key="frame" x="131.33333333333334" y="303.66666666666669" width="152.00000000000003" height="129"/>
+                    <rect key="frame" x="148.33333333333334" y="303.66666666666669" width="118.00000000000003" height="129"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Hth-rV-8iY">
-                            <rect key="frame" x="0.0" y="0.0" width="152" height="129"/>
+                            <rect key="frame" x="0.0" y="0.0" width="118" height="129"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_placeholderIcn" translatesAutoresizingMaskIntoConstraints="NO" id="bM2-cI-klS">
-                                    <rect key="frame" x="43" y="0.0" width="66" height="66"/>
+                                    <rect key="frame" x="26" y="0.0" width="66" height="66"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="66" id="XnO-tH-CM6"/>
                                         <constraint firstAttribute="width" constant="66" id="awl-8b-qgZ"/>
                                     </constraints>
                                 </imageView>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You haven't wallets   yet" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yee-5r-3Rs">
-                                    <rect key="frame" x="0.0" y="86" width="152" height="43"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You don't have  wallets yet" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yee-5r-3Rs">
+                                    <rect key="frame" x="0.0" y="86" width="118" height="43"/>
                                     <fontDescription key="fontDescription" name="GothamPro" family="Gotham Pro" pointSize="16"/>
                                     <color key="textColor" red="0.66274509800000003" green="0.68627450980000004" blue="0.72156862749999995" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
