@@ -43,8 +43,8 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
 
         //better use protocol - will rewrite later
         NotificationCenter.default.addObserver(self, selector: #selector(refresh), name: NSNotification.Name(rawValue: "loadData"), object: nil)
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
-        view.addGestureRecognizer(tap)
+        //let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
+        //view.addGestureRecognizer(tap)
     }
     
     
@@ -114,6 +114,15 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
             return model.tableView(tableView, cellForRowAt: indexPath)
         } else {
             return UITableViewCell()
+        }
+    }
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        dismissKeyboard()
+        if let id = self.state?.getItems()[indexPath.row].id, self.state?.getItems()[indexPath.row].status == InvoiceStatuses.Paid {
+            let viewController = TransactionViewController()
+                viewController.invoiceId = id
+            self.navigationController?.present(viewController, animated: true, completion: nil)
         }
     }
     

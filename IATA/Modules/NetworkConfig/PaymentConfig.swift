@@ -22,6 +22,8 @@ class PaymentConfig {
 
     public let historyDetails = "/history/Details"
 
+    public let payedHistoryDetails = "history/invoicelatestpaymentdetails"
+
     
     public let user = "/user"
     public let baseAssets = "/baseAsset/list"

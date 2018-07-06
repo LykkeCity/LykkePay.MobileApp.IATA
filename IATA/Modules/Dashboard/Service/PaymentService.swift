@@ -29,4 +29,6 @@ protocol PaymentService {
     
     func getDictionaryForPayments() -> Promise<String>
     func cashOut(model: CashOutRequest)  -> Promise<BaseMappable>
+
+    func getPayedHistoryDetails(invoiceId: String) -> Promise<HistoryTransactionModel> 
 }
