@@ -77,9 +77,7 @@ class HistoryViewController: BaseViewController<HistoryModel, DefaultHistoryStat
     
     private func reloadTable(jsonString: String) {
         self.state?.mapping(jsonString: jsonString)
-        if (state?.getItems().count)! == 0 {
-            placeholderHistory.isHidden = false
-        }
+        placeholderHistory.isHidden = state?.getItems().count == 0
         self.tabView.reloadData()
         self.refreshControl.endRefreshing()
     }
