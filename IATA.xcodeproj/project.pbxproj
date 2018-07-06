@@ -198,6 +198,8 @@
 		5BD8D3E6E74FDC2B2AAEBD74 /* Pods_IATA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FC260316A6015639FD5E1F0 /* Pods_IATA.framework */; };
 		9406B2F820E4E2330086E880 /* lykkexnettest.crt in Resources */ = {isa = PBXBuildFile; fileRef = 9406B2F720E4E2330086E880 /* lykkexnettest.crt */; };
 		945CC19C20EE576B008E2073 /* WindowsAzureMessaging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 945CC19B20EE576B008E2073 /* WindowsAzureMessaging.framework */; };
+		947A428820EFADDE006740B7 /* PushNotificationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947A428720EFADDE006740B7 /* PushNotificationHelper.swift */; };
+		947A428A20EFADF5006740B7 /* PushNotificationHubSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947A428920EFADF5006740B7 /* PushNotificationHubSettings.swift */; };
 		94D6B70820E13BA80066960D /* lykkexnet.crt in Resources */ = {isa = PBXBuildFile; fileRef = 94D6B70720E13BA70066960D /* lykkexnet.crt */; };
 		D70DE14E20CA9E6B00644281 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70DE14C20CA9E6B00644281 /* SettingsViewController.swift */; };
 		D70DE14F20CA9E6B00644281 /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D70DE14D20CA9E6B00644281 /* SettingsViewController.xib */; };
@@ -451,6 +453,9 @@
 		9406B2F720E4E2330086E880 /* lykkexnettest.crt */ = {isa = PBXFileReference; lastKnownFileType = file; name = lykkexnettest.crt; path = ../../../../Documents/lykkexnettest.crt; sourceTree = "<group>"; };
 		945CC18420ED09EF008E2073 /* IATA.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = IATA.entitlements; sourceTree = "<group>"; };
 		945CC19B20EE576B008E2073 /* WindowsAzureMessaging.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WindowsAzureMessaging.framework; sourceTree = "<group>"; };
+		945CC19D20EE58CB008E2073 /* BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
+		947A428720EFADDE006740B7 /* PushNotificationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationHelper.swift; sourceTree = "<group>"; };
+		947A428920EFADF5006740B7 /* PushNotificationHubSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationHubSettings.swift; sourceTree = "<group>"; };
 		94D6B70720E13BA70066960D /* lykkexnet.crt */ = {isa = PBXFileReference; lastKnownFileType = file; name = lykkexnet.crt; path = ../../../../Documents/lykkexnet.crt; sourceTree = "<group>"; };
 		C7BD0B79BA7FF0CED5C9BD4E /* Pods-IATA.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IATA.release.xcconfig"; path = "Pods/Target Support Files/Pods-IATA/Pods-IATA.release.xcconfig"; sourceTree = "<group>"; };
 		C8A0C12C7C882A320B399E93 /* Pods-IATAUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IATAUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-IATAUITests/Pods-IATAUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -681,6 +686,7 @@
 				0A0D4B5620C53364009B73E9 /* LaunchScreen.storyboard */,
 				0A0D4B5920C53364009B73E9 /* Info.plist */,
 				0A0D4B5120C53362009B73E9 /* IATA.xcdatamodeld */,
+				945CC19D20EE58CB008E2073 /* BridgingHeader.h */,
 			);
 			path = IATA;
 			sourceTree = "<group>";
@@ -719,6 +725,7 @@
 		0A0D4B8420C5440F009B73E9 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				947A428620EFAD3C006740B7 /* PushNotifications */,
 				945CC19A20EE572F008E2073 /* WindowsAzureMessagingFramework */,
 				D7DEFC8E20C97154005FB9EF /* Dashboard */,
 				0A37EF6820C58B5C00201907 /* UiConfig */,
@@ -1388,6 +1395,15 @@
 			path = WindowsAzureMessagingFramework;
 			sourceTree = "<group>";
 		};
+		947A428620EFAD3C006740B7 /* PushNotifications */ = {
+			isa = PBXGroup;
+			children = (
+				947A428720EFADDE006740B7 /* PushNotificationHelper.swift */,
+				947A428920EFADF5006740B7 /* PushNotificationHubSettings.swift */,
+			);
+			path = PushNotifications;
+			sourceTree = "<group>";
+		};
 		D784931920D25EA10060EAC6 /* State */ = {
 			isa = PBXGroup;
 			children = (
@@ -1869,6 +1885,7 @@
 				0AB8E20E20C56FF500C13361 /* DefaultAuthenticationService.swift in Sources */,
 				0A4CD13F20CD840700EF4A17 /* InvoiceHeaderView.swift in Sources */,
 				0A1AF41520CADB7B0009595C /* BTTableViewCell.swift in Sources */,
+				947A428820EFADDE006740B7 /* PushNotificationHelper.swift in Sources */,
 				0ACDF69420E4179E00EFF18F /* InvoiceViewControllerPaymentExtension.swift in Sources */,
 				0A837C3220DE986300199759 /* PaymentAmount.swift in Sources */,
 				0A0B11B620D2B4C400021E2D /* LabelExtensitions.swift in Sources */,
@@ -1961,6 +1978,7 @@
 				0A26FC8120D00B320097A8F6 /* InvoiceRequest.swift in Sources */,
 				0A1A1C9A20DD1D380037DC77 /* SwipeTableViewCell.swift in Sources */,
 				0A37EFE020C7D65100201907 /* PasswordDotView.swift in Sources */,
+				947A428A20EFADF5006740B7 /* PushNotificationHubSettings.swift in Sources */,
 				0A26FC8320D0F0B00097A8F6 /* OnSwitchStateChangedDelegate.swift in Sources */,
 				0A1A1C8820DD1D380037DC77 /* SwipeAnimator.swift in Sources */,
 				0A3F58D720D8378400F78856 /* ModelErrors.swift in Sources */,
@@ -2140,6 +2158,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OBJC_BRIDGING_HEADER = IATA/BridgingHeader.h;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -2193,6 +2212,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OBJC_BRIDGING_HEADER = IATA/BridgingHeader.h;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
 			};
