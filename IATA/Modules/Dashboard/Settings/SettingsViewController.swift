@@ -74,6 +74,7 @@ class SettingsViewController: BaseNavController, UICollectionViewDelegateFlowLay
     
     func logout(alert: UIAlertAction!) {
         CredentialManager.shared.clearSavedData()
+        PushNotificationHelper.unregisterInAzureHUB()
         self.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(SignInViewController(), animated: true)
     }

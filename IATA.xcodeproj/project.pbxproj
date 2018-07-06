@@ -200,6 +200,7 @@
 		945CC19C20EE576B008E2073 /* WindowsAzureMessaging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 945CC19B20EE576B008E2073 /* WindowsAzureMessaging.framework */; };
 		947A428820EFADDE006740B7 /* PushNotificationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947A428720EFADDE006740B7 /* PushNotificationHelper.swift */; };
 		947A428A20EFADF5006740B7 /* PushNotificationHubSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947A428920EFADF5006740B7 /* PushNotificationHubSettings.swift */; };
+		947A428C20EFBD79006740B7 /* NotificationIds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947A428B20EFBD79006740B7 /* NotificationIds.swift */; };
 		94D6B70820E13BA80066960D /* lykkexnet.crt in Resources */ = {isa = PBXBuildFile; fileRef = 94D6B70720E13BA70066960D /* lykkexnet.crt */; };
 		D70DE14E20CA9E6B00644281 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70DE14C20CA9E6B00644281 /* SettingsViewController.swift */; };
 		D70DE14F20CA9E6B00644281 /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D70DE14D20CA9E6B00644281 /* SettingsViewController.xib */; };
@@ -456,6 +457,7 @@
 		945CC19D20EE58CB008E2073 /* BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
 		947A428720EFADDE006740B7 /* PushNotificationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationHelper.swift; sourceTree = "<group>"; };
 		947A428920EFADF5006740B7 /* PushNotificationHubSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationHubSettings.swift; sourceTree = "<group>"; };
+		947A428B20EFBD79006740B7 /* NotificationIds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationIds.swift; sourceTree = "<group>"; };
 		94D6B70720E13BA70066960D /* lykkexnet.crt */ = {isa = PBXFileReference; lastKnownFileType = file; name = lykkexnet.crt; path = ../../../../Documents/lykkexnet.crt; sourceTree = "<group>"; };
 		C7BD0B79BA7FF0CED5C9BD4E /* Pods-IATA.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IATA.release.xcconfig"; path = "Pods/Target Support Files/Pods-IATA/Pods-IATA.release.xcconfig"; sourceTree = "<group>"; };
 		C8A0C12C7C882A320B399E93 /* Pods-IATAUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IATAUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-IATAUITests/Pods-IATAUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1026,6 +1028,7 @@
 			children = (
 				0A6DB5D120C5537000BC1127 /* TokenObject.swift */,
 				0A37EFEB20C7EE0200201907 /* PinValidationResponse.swift */,
+				947A428B20EFBD79006740B7 /* NotificationIds.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -1870,6 +1873,7 @@
 				0A0D4B7F20C542DE009B73E9 /* Network.swift in Sources */,
 				0A37EF9020C6C01300201907 /* PropertyValidationKey.swift in Sources */,
 				0A26FC9420D15AC70097A8F6 /* DisputeViewController.swift in Sources */,
+				947A428C20EFBD79006740B7 /* NotificationIds.swift in Sources */,
 				0A08C11A20CABC2300342A3E /* InvoicePaymentRangeModelItem.swift in Sources */,
 				0A26FCA620D161640097A8F6 /* HistoryTableViewCell.swift in Sources */,
 				0AF611A220C9A4D700957348 /* InvoiceTableViewCell.swift in Sources */,
