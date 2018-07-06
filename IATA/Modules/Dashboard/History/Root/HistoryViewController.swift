@@ -69,9 +69,8 @@ class HistoryViewController: BaseViewController<HistoryModel, DefaultHistoryStat
                 guard let strongSelf = self else {
                     return
                 }
-                strongSelf.showErrorAlert(error: error)
+                strongSelf.generateErrorAlert(error: error)
                 strongSelf.refreshControl.endRefreshing()
-                strongSelf.tabView.reloadData()
             })
     }
     

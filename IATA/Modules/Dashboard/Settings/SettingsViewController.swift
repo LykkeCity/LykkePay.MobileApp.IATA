@@ -96,6 +96,13 @@ class SettingsViewController: BaseNavController {
                 }
                 strongSelf.fillUsersInfo(settingsModel: result)
             })
+            .catch(execute: { [weak self] error -> Void in
+                guard let strongSelf = self else {
+                    return
+                }
+                strongSelf.generateErrorAlert(error: error)
+                strongSelf.refresh.endRefreshing()
+            })
     }
 
     private func setSelectedBaseAsset(baseAsset: String, selectedCurrency: SettingsMerchantsModel ) {
