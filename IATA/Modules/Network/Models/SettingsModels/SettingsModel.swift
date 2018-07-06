@@ -8,6 +8,7 @@ class SettingsModel: Mappable {
         case firstName
         case lastName
         case email
+        case isInternalSupervisor
     }
 
     internal var merchantName: String?
@@ -15,6 +16,7 @@ class SettingsModel: Mappable {
     internal var firstName: String?
     internal var lastName: String?
     internal var email: String?
+    internal var isInternalSupervisor: Bool?
 
     internal required init?(map: Map) {
     }
@@ -27,5 +29,6 @@ class SettingsModel: Mappable {
         firstName <- map[PropertyKey.firstName.rawValue]
         lastName <- map[PropertyKey.lastName.rawValue]
         email <- map[PropertyKey.email.rawValue]
+        isInternalSupervisor <- map[PropertyKey.isInternalSupervisor.rawValue]
     }
 }

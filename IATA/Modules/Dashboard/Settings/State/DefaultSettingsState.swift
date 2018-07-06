@@ -6,7 +6,7 @@ class DefaultSettingsState: DefaultBaseState<SettingsMerchantsModel> {
 
     public lazy var service: PaymentService = DefaultPaymentService()
 
-    func getSettingsStringJson() -> Promise<String> {
+    func getSettingsStringJson() -> Promise<SettingsModel> {
         return self.service.getSettings()
     }
 
@@ -18,9 +18,8 @@ class DefaultSettingsState: DefaultBaseState<SettingsMerchantsModel> {
         return self.service.postBaseAssets(baseAsset: baseAsset)
     }
 
-    func mappingSettings(jsonString: String!) -> SettingsViewModel {
-        let settingsModel = Mapper<SettingsModel>().map(JSONString: jsonString)
-        let settingsViewModel = prepareSettingsViewModels(from: settingsModel!)
+    func mappingSettings(settingsModel: SettingsModel) -> SettingsViewModel {
+        let settingsViewModel = prepareSettingsViewModels(from: settingsModel)
         return settingsViewModel
     }
 

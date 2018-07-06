@@ -73,6 +73,13 @@ class TransactionViewController: BaseViewController<PropertyKeyTransactionModel,
                     return
                 }
                 strongSelf.reloadViews(item: result)
+            }).catch(execute: { [weak self] error -> Void in
+                guard let strongSelf = self else {
+                    return
+                }
+                strongSelf.showErrorAlert(error: error)
+                strongSelf.refreshControl.endRefreshing()
+                strongSelf.tabView.reloadData()
             })
     }
     

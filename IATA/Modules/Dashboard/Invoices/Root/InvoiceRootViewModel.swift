@@ -18,6 +18,13 @@ class InvoiceRootViewModel: SwipeTableViewCellDelegate, OnChangeStateSelected {
                     return
                 }
                 strongSelf.viewController?.reloadTable(jsonString: result)
+            }).catch(execute: { [weak self] error -> Void in
+                guard let strongSelf = self else {
+                    return
+                }
+                strongSelf.viewController?.handleError(error: error)
+                strongSelf.viewController?.refreshControl.endRefreshing()
+                strongSelf.viewController?.tabView.reloadData()
             })
     }
     
@@ -118,13 +125,17 @@ class InvoiceRootViewModel: SwipeTableViewCellDelegate, OnChangeStateSelected {
         return getTableAction(Theme.shared.grayDisputeColor, disputeAction, 140)
     }
     
-    private func getTableAction(_ backgroundColor: UIColor, _ action: SwipeAction,_ width: Int) -> [SwipeAction] {
-        action.width = width
-        action.image = UIView.from(color: backgroundColor)
-        action.backgroundColor = UIColor.white
-        action.font = Theme.shared.boldFontOfSize(14)
-        
-        return [action]
+    private func getTableAction(_ backgroundColor: UIColor, _ action: SwipeAction,_ width: Int) -> [SwipeAction]? {
+        if !UserPreference.shared.isSuperviser() {
+            action.width = width
+            action.image = UIView.from(color: backgroundColor)
+            action.backgroundColor = UIColor.white
+            action.font = Theme.shared.boldFontOfSize(14)
+            
+            return [action]
+        } else {
+            return nil
+        }
     }
 
 }

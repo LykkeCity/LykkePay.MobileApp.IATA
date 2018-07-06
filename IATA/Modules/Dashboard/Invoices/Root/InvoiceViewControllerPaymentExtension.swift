@@ -96,7 +96,7 @@ extension InvoiceViewController {
         self.sumTextField.alpha = isEnabled ? 1 : 0.2
     }
     
-    private func handleError(error : Error) {
+    func handleError(error : Error) {
         self.showErrorAlert(error: error)
         self.animate(isShow: false)
         self.tabView.reloadData()

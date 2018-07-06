@@ -190,12 +190,14 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
     }
     
     func onItemSelected(isSelected: Bool, index: Int) {
-        self.selectedItemTextField.text = self.state?.getSelectedString()
-        self.loadView(isShowLoading: false, isHiddenSelected: true)
-        Theme.shared.configureTextFieldCurrencyStyle(self.sumTextField)
-        
-        self.getAmount()
-        self.initDownView(isSelected: isSelected)
+        if !UserPreference.shared.isSuperviser() {
+            self.selectedItemTextField.text = self.state?.getSelectedString()
+            self.loadView(isShowLoading: false, isHiddenSelected: true)
+            Theme.shared.configureTextFieldCurrencyStyle(self.sumTextField)
+            
+            self.getAmount()
+            self.initDownView(isSelected: isSelected)
+        }
     }
     
     func reloadTable(jsonString: String!) {

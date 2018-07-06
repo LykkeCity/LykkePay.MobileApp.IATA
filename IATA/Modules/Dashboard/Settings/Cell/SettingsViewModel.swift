@@ -11,6 +11,8 @@ class SettingsViewModel: Mappable {
     internal var lastName: String?
 
     internal var email: String?
+    
+    internal var isInternalSupervisor: Bool?
 
     internal init() {}
 
@@ -20,6 +22,7 @@ class SettingsViewModel: Mappable {
         self.firstName = settings.firstName
         self.lastName = settings.lastName
         self.email = settings.email
+        self.isInternalSupervisor = settings.isInternalSupervisor
     }
 
     required init?(map: Map) { }

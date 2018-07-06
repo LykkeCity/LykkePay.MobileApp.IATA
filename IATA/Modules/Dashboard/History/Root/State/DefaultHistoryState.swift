@@ -12,7 +12,10 @@ class DefaultHistoryState: DefaultBaseState<HistoryModel> {
     }
     
     func mapping(jsonString: String!)  {
-        self.items = !jsonString.isEmpty ? Mapper<HistoryModel>().mapArray(JSONObject: jsonString.toJSON())! : Array<HistoryModel>()
+        let listItems = !jsonString.isEmpty ? Mapper<HistoryModel>().mapArray(JSONObject: jsonString.toJSON()) : Array<HistoryModel>()
+        if let item = listItems {
+            self.items = item
+        }
     }
     
     

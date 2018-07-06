@@ -64,7 +64,7 @@ class DefaultPaymentService: NSObject, PaymentService {
         return Network.shared.getWithBrasket(path: PaymentConfig.shared.historyDetails , params: params)
     }
     
-    func getSettings() -> Promise<String> {
+    func getSettings() -> Promise<SettingsModel> {
         return Network.shared.get(path: PaymentConfig.shared.user, params: [:])
     }
     

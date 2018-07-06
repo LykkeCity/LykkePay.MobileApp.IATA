@@ -99,7 +99,7 @@ class CashInViewController: BaseViewController<CashOutViewModel, DefaultCashOutS
     }
     
     override func getLeftButton() -> UIBarButtonItem? {
-        let backButton = Theme.shared.getCancel(title: R.string.localizable.commonNavBarBack(), color: UIColor.white)
+        let backButton = Theme.shared.getCancel(title: R.string.localizable.commonNavBarClose(), color: UIColor.white)
         backButton.addTarget(self, action: #selector(backButtonAction), for: .touchUpInside)
         return UIBarButtonItem(customView: backButton)
     }
@@ -225,7 +225,7 @@ class CashInViewController: BaseViewController<CashOutViewModel, DefaultCashOutS
     }
     
     private func animate(height: Int) {
-        self.heightConstraint.constant = 140
+        self.heightConstraint.constant = CGFloat(height)
         self.shadowBackground.layoutIfNeeded()
         self.tabView.layoutIfNeeded()
     }

@@ -20,7 +20,7 @@ protocol PaymentService {
 
     func getHistoryDetails(id: String) -> Promise<HistoryTransactionModel>
     
-    func getSettings() -> Promise<String>
+    func getSettings() -> Promise<SettingsModel>
     func getBaseAssetsList() -> Promise<String>
     func postBaseAssets(baseAsset: String) -> Promise<Void>
 

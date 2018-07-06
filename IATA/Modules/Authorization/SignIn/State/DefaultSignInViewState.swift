@@ -20,27 +20,5 @@ class DefaultSignInViewState : DefaultBaseViewState, SignInViewState {
         UserPreference.shared.saveForceUpdatePin(tokenObject.forcePasswordUpdate! ? true : tokenObject.forceUpdatePin)
         FilterPreference.shared.saveMinValue(0)
         FilterPreference.shared.saveMaxValue(1000000)
-        self.getBaseAssetsStringJson()
-            .then(execute: { [weak self] (result: String) -> Void in
-                guard let strongSelf = self else {
-                    return
-                }
-                strongSelf.fillAssetsInfo(res: result)
-            })
     }
-    
-    private func getBaseAssetsStringJson() -> Promise<String> {
-        return self.paymentService.getBaseAssetsList()
-    }
-    
-    private func fillAssetsInfo(res: String) {
-        let items = !res.isEmpty ? Mapper<SettingsMerchantsModel>().mapArray(JSONObject: res.toJSON())! : Array<SettingsMerchantsModel>()
-        
-        for item in items {
-            if let isSelected = (item as SettingsMerchantsModel).isSelected, isSelected {
-                UserPreference.shared.saveCurrentCurrency(item)
-            }
-        }
-    }
-    
 }

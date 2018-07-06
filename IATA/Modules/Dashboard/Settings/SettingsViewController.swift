@@ -90,11 +90,11 @@ class SettingsViewController: BaseNavController {
     private func loadData() {
         self.beginRefresh()
         self.state?.getSettingsStringJson()
-            .then(execute: { [weak self] (result: String) -> Void in
+            .then(execute: { [weak self] (result: SettingsModel) -> Void in
                 guard let strongSelf = self else {
                     return
                 }
-                strongSelf.fillUsersInfo(jsonString: result)
+                strongSelf.fillUsersInfo(settingsModel: result)
             })
     }
 
@@ -110,8 +110,8 @@ class SettingsViewController: BaseNavController {
             })
     }
 
-    private func fillUsersInfo(jsonString: String!) {
-        let settingsViewModel = state?.mappingSettings(jsonString: jsonString)
+    private func fillUsersInfo(settingsModel: SettingsModel) {
+        let settingsViewModel = state?.mappingSettings(settingsModel: settingsModel)
         Nuke.loadImage(with: URL(string: (settingsViewModel?.merchantLogoUrl)!)!, into: self.airlineImage)
         self.companyNameLabel.text = settingsViewModel?.merchantName
         if let firstName = settingsViewModel?.firstName, let lastName = settingsViewModel?.lastName {
