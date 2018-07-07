@@ -12,6 +12,7 @@ class HistoryViewController: BaseViewController<HistoryModel, DefaultHistoryStat
         self.tabView.separatorStyle = .none
         self.navigationController?.isNavigationBarHidden = false
         self.loadData()
+        self.beginRefreshing()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -58,7 +59,6 @@ class HistoryViewController: BaseViewController<HistoryModel, DefaultHistoryStat
     }
     
     override func loadData() {
-        super.loadData()
         self.state?.getHistory()
             .then(execute: { [weak self] (result: String) -> Void in
                 guard let strongSelf = self else {

@@ -65,7 +65,7 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
     }
     
     @IBAction func sumChanged(_ sender: Any) {
-        if let text = self.sumTextField.text, let isEmpty = self.sumTextField.text?.isEmpty, isEmpty || (Int(text) == 0) {
+        if let text = self.sumTextField.text, let isEmpty = self.sumTextField.text?.isEmpty, isEmpty || (Double(text) == 0) {
             setEnabledPay(isEnabled: false)
         } else {
             setEnabledPay(isEnabled: true)

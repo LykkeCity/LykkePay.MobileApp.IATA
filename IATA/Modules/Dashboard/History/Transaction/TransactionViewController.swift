@@ -17,6 +17,7 @@ class TransactionViewController: BaseViewController<PropertyKeyTransactionModel,
         self.tabView.separatorStyle = .none
         self.navigationController?.isNavigationBarHidden = true
         self.loadData()
+        self.beginRefreshing()
     }
     
     override func getNavItem() -> UINavigationItem? {
@@ -67,7 +68,6 @@ class TransactionViewController: BaseViewController<PropertyKeyTransactionModel,
     }
     
     override func loadData() {
-        super.loadData()
         if let invoiceId = self.invoiceId {
             loadPayedHistoryDetails(invoiceId: invoiceId)
         } else {

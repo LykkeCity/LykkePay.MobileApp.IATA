@@ -106,7 +106,7 @@ class WalletsViewController: BaseViewController<WalletsViewModel, DefaultWallets
     }
 
     override func registerCells() {
-        tableView.register(CustomHeaderView.nib, forHeaderFooterViewReuseIdentifier: CustomHeaderView.identifier)
+         tableView.register(CustomHeaderView.nib, forHeaderFooterViewReuseIdentifier: CustomHeaderView.identifier)
         tableView.register(WalletsTableViewCell.nib, forCellReuseIdentifier: WalletsTableViewCell.identifier)
     }
 
@@ -129,7 +129,8 @@ class WalletsViewController: BaseViewController<WalletsViewModel, DefaultWallets
             viewController.totalSum = item.totalBalance
             viewController.assertId = item.assetId
         }
+       
         self.navigationController?.pushViewController(viewController, animated: true)
-
+       
     }
 }
