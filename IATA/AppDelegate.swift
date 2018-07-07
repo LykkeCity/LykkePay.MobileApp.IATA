@@ -2,11 +2,10 @@ import UIKit
 import CoreData
 import Fabric
 import Crashlytics
-import UserNotifications
 
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate {
    
     var window: UIWindow?
     
