@@ -205,6 +205,10 @@
 		123C1779CC315CC3F3D1AD7D /* Pods_IATATests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7527B2B91103E6B38EFEF340 /* Pods_IATATests.framework */; };
 		5BD8D3E6E74FDC2B2AAEBD74 /* Pods_IATA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FC260316A6015639FD5E1F0 /* Pods_IATA.framework */; };
 		9406B2F820E4E2330086E880 /* lykkexnettest.crt in Resources */ = {isa = PBXBuildFile; fileRef = 9406B2F720E4E2330086E880 /* lykkexnettest.crt */; };
+		947A438320F0DA20006740B7 /* PushNotificationHubSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947A438120F0DA1F006740B7 /* PushNotificationHubSettings.swift */; };
+		947A438420F0DA20006740B7 /* PushNotificationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947A438220F0DA1F006740B7 /* PushNotificationHelper.swift */; };
+		947A438720F0DA2C006740B7 /* WindowsAzureMessaging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 947A438620F0DA2C006740B7 /* WindowsAzureMessaging.framework */; };
+		947A438920F0DA80006740B7 /* NotificationIds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947A438820F0DA7F006740B7 /* NotificationIds.swift */; };
 		94D6B70820E13BA80066960D /* lykkexnet.crt in Resources */ = {isa = PBXBuildFile; fileRef = 94D6B70720E13BA70066960D /* lykkexnet.crt */; };
 		D70DE14E20CA9E6B00644281 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70DE14C20CA9E6B00644281 /* SettingsViewController.swift */; };
 		D70DE14F20CA9E6B00644281 /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D70DE14D20CA9E6B00644281 /* SettingsViewController.xib */; };
@@ -467,6 +471,11 @@
 		6FC260316A6015639FD5E1F0 /* Pods_IATA.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IATA.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7527B2B91103E6B38EFEF340 /* Pods_IATATests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IATATests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9406B2F720E4E2330086E880 /* lykkexnettest.crt */ = {isa = PBXFileReference; lastKnownFileType = file; name = lykkexnettest.crt; path = ../../../../Documents/lykkexnettest.crt; sourceTree = "<group>"; };
+		947A438120F0DA1F006740B7 /* PushNotificationHubSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushNotificationHubSettings.swift; sourceTree = "<group>"; };
+		947A438220F0DA1F006740B7 /* PushNotificationHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushNotificationHelper.swift; sourceTree = "<group>"; };
+		947A438620F0DA2C006740B7 /* WindowsAzureMessaging.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WindowsAzureMessaging.framework; sourceTree = "<group>"; };
+		947A438820F0DA7F006740B7 /* NotificationIds.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationIds.swift; sourceTree = "<group>"; };
+		947A438A20F0DB2D006740B7 /* BridgingHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
 		94D6B70720E13BA70066960D /* lykkexnet.crt */ = {isa = PBXFileReference; lastKnownFileType = file; name = lykkexnet.crt; path = ../../../../Documents/lykkexnet.crt; sourceTree = "<group>"; };
 		C7BD0B79BA7FF0CED5C9BD4E /* Pods-IATA.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IATA.release.xcconfig"; path = "Pods/Target Support Files/Pods-IATA/Pods-IATA.release.xcconfig"; sourceTree = "<group>"; };
 		C8A0C12C7C882A320B399E93 /* Pods-IATAUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IATAUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-IATAUITests/Pods-IATAUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -512,6 +521,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5BD8D3E6E74FDC2B2AAEBD74 /* Pods_IATA.framework in Frameworks */,
+				947A438720F0DA2C006740B7 /* WindowsAzureMessaging.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -689,6 +699,7 @@
 		0A0D4B4920C53361009B73E9 /* IATA */ = {
 			isa = PBXGroup;
 			children = (
+				947A438A20F0DB2D006740B7 /* BridgingHeader.h */,
 				0A37EF9820C6DA8500201907 /* Localizable */,
 				0A6DB5D720C5571000BC1127 /* Library */,
 				0A0D4B8420C5440F009B73E9 /* Modules */,
@@ -736,6 +747,8 @@
 		0A0D4B8420C5440F009B73E9 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				947A438520F0DA2C006740B7 /* WindowsAzureMessagingFramework */,
+				947A438020F0DA1F006740B7 /* PushNotifications */,
 				D7DEFC8E20C97154005FB9EF /* Dashboard */,
 				0A37EF6820C58B5C00201907 /* UiConfig */,
 				0A6DB5D320C553BC00BC1127 /* Authorization */,
@@ -1108,6 +1121,7 @@
 		0A37EFE720C7E45800201907 /* Response */ = {
 			isa = PBXGroup;
 			children = (
+				947A438820F0DA7F006740B7 /* NotificationIds.swift */,
 				0A6DB5D120C5537000BC1127 /* TokenObject.swift */,
 				0A37EFEB20C7EE0200201907 /* PinValidationResponse.swift */,
 			);
@@ -1471,6 +1485,23 @@
 				FBCD1B2F0AEEDCE28F8A0492 /* Pods-IATAUITests.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		947A438020F0DA1F006740B7 /* PushNotifications */ = {
+			isa = PBXGroup;
+			children = (
+				947A438120F0DA1F006740B7 /* PushNotificationHubSettings.swift */,
+				947A438220F0DA1F006740B7 /* PushNotificationHelper.swift */,
+			);
+			path = PushNotifications;
+			sourceTree = "<group>";
+		};
+		947A438520F0DA2C006740B7 /* WindowsAzureMessagingFramework */ = {
+			isa = PBXGroup;
+			children = (
+				947A438620F0DA2C006740B7 /* WindowsAzureMessaging.framework */,
+			);
+			path = WindowsAzureMessagingFramework;
 			sourceTree = "<group>";
 		};
 		D770E2D320ECB51200BEED9C /* Checkbox */ = {
@@ -1954,6 +1985,7 @@
 				0A26FCB120D1658D0097A8F6 /* TransactionTableViewCell.swift in Sources */,
 				0A7576E720E55D6900A45434 /* InvoiceRootViewModel.swift in Sources */,
 				0A26FC8F20D117500097A8F6 /* DefaultInvoiceSettingsState.swift in Sources */,
+				947A438420F0DA20006740B7 /* PushNotificationHelper.swift in Sources */,
 				0A26FCB420D165AC0097A8F6 /* TransactionTableViewHeader.swift in Sources */,
 				0A37F00520C80A7500201907 /* AuthNetworkConfig.swift in Sources */,
 				0A1A1C8720DD1D380037DC77 /* SwipeCollectionViewCell.swift in Sources */,
@@ -1995,6 +2027,7 @@
 				0A37EF8E20C6AC8900201907 /* ServerFieldsExtractor.swift in Sources */,
 				0A0B11B920D2B61900021E2D /* DefaultHistoryState.swift in Sources */,
 				0A1A1C9420DD1D380037DC77 /* SwipeTableViewCellDelegate.swift in Sources */,
+				947A438320F0DA20006740B7 /* PushNotificationHubSettings.swift in Sources */,
 				0A4CD15320CE7E7900EF4A17 /* VerticalAlignedLabel.swift in Sources */,
 				0A1A1C8B20DD1D380037DC77 /* SwipeActionButton.swift in Sources */,
 				0AB8E21020C5708300C13361 /* AuthenticationService.swift in Sources */,
@@ -2087,6 +2120,7 @@
 				0ABED71420DBA94300AABCAD /* CurrencyUiTextField.swift in Sources */,
 				0A837C2A20DE985700199759 /* InvoiceFiltersModel.swift in Sources */,
 				0A1B12EC20ECFA500069ABDA /* CashOutRequest.swift in Sources */,
+				947A438920F0DA80006740B7 /* NotificationIds.swift in Sources */,
 				0A37EFEF20C7FB8A00201907 /* PinViewState.swift in Sources */,
 				0A837C3E20DE9CCD00199759 /* SettingsViewModel.swift in Sources */,
 				0AF611A720CA72DA00957348 /* InvoiceSettingsViewController.swift in Sources */,
@@ -2303,6 +2337,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NCJC54GM5Z;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/IATA/Modules/WindowsAzureMessagingFramework",
+				);
 				INFOPLIST_FILE = IATA/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2313,6 +2351,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = IATA/BridgingHeader.h;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -2326,6 +2365,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NCJC54GM5Z;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/IATA/Modules/WindowsAzureMessagingFramework",
+				);
 				INFOPLIST_FILE = IATA/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2336,6 +2379,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = IATA/BridgingHeader.h;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

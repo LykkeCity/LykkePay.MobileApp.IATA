@@ -3,6 +3,7 @@ import CoreData
 import Fabric
 import Crashlytics
 
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
    
@@ -20,19 +21,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         turnOffLayoutWarnings()
 
+        #if !TARGET_IPHONE_SIMULATOR
+        PushNotificationHelper.register(with: application)
+        #endif
+
         return true
     }
 
     private func turnOffLayoutWarnings() {
         UserDefaults.standard.setValue(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
     }
-    
+
+    internal func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        PushNotificationHelper.application(application, didRegisterForRemoteNotificationsWithDeviceToken: deviceToken)
+    }
+
     func applicationDidEnterBackground(_ application: UIApplication) {
         UserPreference.shared.saveLastOpenTime(date: getCurrentTime())
     }
-    
-    
-    
+
     func applicationDidBecomeActive(_ application: UIApplication) {
         var lastOpenTime = UserPreference.shared.getLastOpenTime()
         if lastOpenTime == nil {
@@ -51,12 +58,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private func getCurrentTime() -> Int64 {
         return Int64(Date().timeIntervalSince1970)
     }
-    
     private func initWindow() {
         window = UIWindow()
         window?.makeKeyAndVisible()
     }
-    
     
     private func switchToNavigationControllerIfNeed() -> UINavigationController {
         if let navigationWas = window?.rootViewController as? UINavigationController {
@@ -82,25 +87,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         return viewController
     }
-    
-    
-    // MARK: - Core Data stack
-    @available(iOS 10.0, *)
-    lazy var persistentContainer: NSPersistentContainer = {
-        let container = NSPersistentContainer(name: "IATA")
-        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
-            if let error = error as NSError? {
-                fatalError("Unresolved error \(error), \(error.userInfo)")
+}
+
+extension UIApplication {
+    class func topViewController(controller: UIViewController? = UIApplication.shared.keyWindow?.rootViewController) -> UIViewController? {
+        if let navigationController = controller as? UINavigationController {
+            return topViewController(controller: navigationController.visibleViewController)
+        }
+        if let tabController = controller as? UITabBarController {
+            if let selected = tabController.selectedViewController {
+                return topViewController(controller: selected)
             }
-        })
-        return container
-    }()
-    
-    // MARK: - Core Data Saving support
-    
-    func saveContext () {
-        
+        }
+        if let presented = controller?.presentedViewController {
+            return topViewController(controller: presented)
+        }
+        return controller
     }
-    
 }
 
