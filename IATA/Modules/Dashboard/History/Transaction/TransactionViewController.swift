@@ -9,6 +9,7 @@ class TransactionViewController: BaseViewController<PropertyKeyTransactionModel,
     @IBOutlet private weak var transactionHeaderView: TransactionTableViewHeader!
     
     var id = String()
+    var invoiceId: String?
     
     override func viewDidLoad() {
         state = DefaultTransactionState()
@@ -67,15 +68,49 @@ class TransactionViewController: BaseViewController<PropertyKeyTransactionModel,
     
     override func loadData() {
         super.loadData()
+        if let invoiceId = self.invoiceId {
+            loadPayedHistoryDetails(invoiceId: invoiceId)
+        } else {
+            loadHistoryDetails()
+        }
+    }
+
+    private func loadPayedHistoryDetails(invoiceId: String) {
+        self.state?.getPayedHistoryDetails(invoiceId: invoiceId)
+            .then(execute: { [weak self] (result: HistoryTransactionModel) -> Void in
+                guard let strongSelf = self else {
+                    return
+                }
+                strongSelf.reloadViews(item: result)
+            }).catch(execute: { [weak self] error -> Void in
+                guard let strongSelf = self else {
+                    return
+                }
+                strongSelf.handleError(strongSelf: strongSelf, error: error)
+            })
+    }
+
+    private func loadHistoryDetails() {
         self.state?.getHistoryDetails(id: id)
             .then(execute: { [weak self] (result: HistoryTransactionModel) -> Void in
                 guard let strongSelf = self else {
                     return
                 }
                 strongSelf.reloadViews(item: result)
+            }).catch(execute: { [weak self] error -> Void in
+                guard let strongSelf = self else {
+                    return
+                }
+                strongSelf.handleError(strongSelf: strongSelf, error: error)
             })
     }
-    
+
+    private func handleError(strongSelf: TransactionViewController, error: Error) {
+        strongSelf.showErrorAlert(error: error)
+        strongSelf.refreshControl.endRefreshing()
+        strongSelf.tabView.reloadData()
+    }
+
     private func reloadTable(item: HistoryTransactionModel) {
         self.state?.initItems(item: item)
         self.tabView.reloadData()
@@ -84,6 +119,6 @@ class TransactionViewController: BaseViewController<PropertyKeyTransactionModel,
     private func reloadViews(item: HistoryTransactionModel) {
         reloadTable(item: item)
         transactionHeaderView.model = item
-        self.refreshControl.endRefreshing()
+        self.endRefreshAnimation(wasEmpty: false, dataFetched: true)
     }
 }

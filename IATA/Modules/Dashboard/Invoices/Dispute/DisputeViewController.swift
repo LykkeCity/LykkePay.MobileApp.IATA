@@ -60,7 +60,7 @@ class DisputeViewController: BaseViewController<DisputeModel, DefaultDisputeStat
             placeholderView.isHidden = false
         }
         self.tabView.reloadData()
-        self.refreshControl.endRefreshing()
+        self.endRefreshAnimation(wasEmpty: false, dataFetched: true)
     }
     
     override func getTitle() -> String? {

@@ -17,6 +17,9 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
     @IBOutlet weak var placeholderInvoice: UIView!
 
     private var viewModel: InvoiceRootViewModel? = nil
+
+    internal lazy var walletsState = DefaultWalletsState()
+    internal var totalBalance: Double?
     
    
     
@@ -26,6 +29,7 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
         super.viewDidLoad()
         self.beginRefreshing()
         self.loadData()
+        checkCurrentBalance()
         
         self.sumTextField.delegate = self
         self.sumTextField.addObservers()
@@ -39,8 +43,8 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
 
         //better use protocol - will rewrite later
         NotificationCenter.default.addObserver(self, selector: #selector(refresh), name: NSNotification.Name(rawValue: "loadData"), object: nil)
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
-        view.addGestureRecognizer(tap)
+        //let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
+        //view.addGestureRecognizer(tap)
     }
     
     
@@ -58,7 +62,6 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
         let message = R.string.localizable.invoiceScreenPaymentMessage(symbol + " " + amountConverted)
         self.view.endEditing(true)
         generatePaymentAlert(message: message, handler: makePayment)
-        
     }
     
     @IBAction func sumChanged(_ sender: Any) {
@@ -111,6 +114,15 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
             return model.tableView(tableView, cellForRowAt: indexPath)
         } else {
             return UITableViewCell()
+        }
+    }
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        dismissKeyboard()
+        if let id = self.state?.getItems()[indexPath.row].id, self.state?.getItems()[indexPath.row].status == InvoiceStatuses.Paid {
+            let viewController = TransactionViewController()
+                viewController.invoiceId = id
+            self.navigationController?.present(viewController, animated: true, completion: nil)
         }
     }
     
@@ -187,12 +199,14 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
     }
     
     func onItemSelected(isSelected: Bool, index: Int) {
-        self.selectedItemTextField.text = self.state?.getSelectedString()
-        self.loadView(isShowLoading: false, isHiddenSelected: true)
-        Theme.shared.configureTextFieldCurrencyStyle(self.sumTextField)
-        
-        self.getAmount()
-        self.initDownView(isSelected: isSelected)
+        if !UserPreference.shared.isSuperviser() {
+            self.selectedItemTextField.text = self.state?.getSelectedString()
+            self.loadView(isShowLoading: false, isHiddenSelected: true)
+            Theme.shared.configureTextFieldCurrencyStyle(self.sumTextField)
+            
+            self.getAmount()
+            self.initDownView(isSelected: isSelected)
+        }
     }
     
     func reloadTable(jsonString: String!) {
@@ -201,7 +215,7 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
             self.placeholderInvoice.isHidden = count != 0
         }
         self.tabView.reloadData()
-        self.refreshControl.endRefreshing()
+        self.endRefreshAnimation(wasEmpty: false, dataFetched: true)
         
         if let count = state?.getItems().count, count > 0 {
             let indexPath = IndexPath(row: 0, section: 0)

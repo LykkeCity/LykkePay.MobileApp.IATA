@@ -14,7 +14,7 @@ class HistoryTransactionModel: Mappable, Reflectable {
                                    PropertyKey.invoiceNumber.rawValue : R.string.localizable.historyTransactionDetailsInvoiceNumber(),
                                    PropertyKey.billingCategory.rawValue : R.string.localizable.historyTransactionDetailsBillingCategory(),
                                    PropertyKey.employeeEmail.rawValue : R.string.localizable.historyTransactionDetailsPaidBy(),
-                                   PropertyKey.invoiceStatus.rawValue : R.string.localizable.historyTransactionDetailsStatus(),
+                                   PropertyKey.status.rawValue : R.string.localizable.historyTransactionDetailsStatus(),
                                    PropertyKey.requestedBy.rawValue : R.string.localizable.historyTransactionDetailsRequestedBy(),
                                    PropertyKey.explorerUrl.rawValue : R.string.localizable.historyTransactionDetailsExplorerUrl()]
 
@@ -36,6 +36,7 @@ class HistoryTransactionModel: Mappable, Reflectable {
         case createdOn
         case blockConfirmations
         case invoiceStatus
+        case status
         case paidBy
         case timeStamp
         case assetName
@@ -54,7 +55,8 @@ class HistoryTransactionModel: Mappable, Reflectable {
     internal var requestedBy: String?
     internal var invoiceNumber: String?
     internal var billingCategory: String?
-    internal var invoiceStatus: String?
+    internal var invoiceStatus: InvoiceStatuses?
+    internal var status: String?
     internal var employeeEmail: String?
     internal var timeStamp: String?
     internal var assetId: String?
@@ -81,6 +83,10 @@ class HistoryTransactionModel: Mappable, Reflectable {
         self.id <- map[PropertyKey.id.rawValue]
         self.assetName <- map[PropertyKey.assetName.rawValue]
         self.invoiceStatus <- map[PropertyKey.invoiceStatus.rawValue]
+        if let statusLocal = self.invoiceStatus {
+            let structValue = InvoiceStatusesStruct(type: statusLocal)
+            self.status = structValue.title.capitalizingFirstLetter()
+        }
         self.merchantLogoUrl <- map[PropertyKey.merchantLogoUrl.rawValue]
         self.requestedBy <- map[PropertyKey.requestedBy.rawValue]
         self.title <- map[PropertyKey.title.rawValue]

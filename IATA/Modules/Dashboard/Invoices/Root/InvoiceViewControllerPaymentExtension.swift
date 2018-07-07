@@ -7,6 +7,7 @@ extension InvoiceViewController {
     // MARK: payments process
     func makePayment(alert: UIAlertAction!) {
         self.view.endEditing(true)
+        if isPayingAvailable() {
         let viewController = PinViewController()
         viewController.isValidationTransaction = true
         viewController.navController = self
@@ -26,8 +27,10 @@ extension InvoiceViewController {
                     strongSelf.handleError(error: error)
                 })
         }
-        self.navigationController?.present(viewController, animated: true, completion: nil)
-        
+            self.navigationController?.present(viewController, animated: true, completion: nil)
+        } else {
+            self.showErrorAlert(error: IATAOpError.serverError(message: R.string.localizable.invoiceScreenPayOverpaying()))
+        }
     }
     
     func paymentSuccess() {
@@ -93,10 +96,45 @@ extension InvoiceViewController {
         self.sumTextField.alpha = isEnabled ? 1 : 0.2
     }
     
-    private func handleError(error : Error) {
+    func handleError(error : Error) {
         self.showErrorAlert(error: error)
         self.animate(isShow: false)
         self.tabView.reloadData()
+        self.endRefreshAnimation(wasEmpty: false, dataFetched: true)
+    }
+
+     func checkCurrentBalance() {
+        if let id = UserPreference.shared.getCurrentCurrency()?.id {
+            self.walletsState?.getWalletsStringJson(id: id)
+                .then(execute: { [weak self] (result: String) -> Void in
+                    guard let strongSelf = self else {
+                        return
+                    }
+                        strongSelf.mappingBalance(jsonString: result)
+                })
+        }
+    }
+
+    private func mappingBalance(jsonString: String!) {
+        self.walletsState?.mapping(jsonString: jsonString)
+        var balance = 0.0
+        if let wallets = self.walletsState?.items {
+        for wallet in wallets {
+            if let convertedBalance = wallet.totalConvertedBalance {
+                balance += convertedBalance
+                }
+            }
+        }
+       self.totalBalance = balance
+    }
+
+    private func isPayingAvailable() -> Bool {
+        checkCurrentBalance()
+        if let balance = self.totalBalance, let amount = Formatter.formattedToDouble(valueString: self.sumTextField.text) , balance >= amount    {
+            return true
+        } else {
+            return false
+        }
     }
     
 }

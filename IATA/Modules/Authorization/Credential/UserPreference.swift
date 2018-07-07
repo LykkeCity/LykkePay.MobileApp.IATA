@@ -7,6 +7,7 @@ class UserPreference {
         case forceUpdatePin
         case currentCurrency
         case date
+        case isInternalSuperviser
     }
     
     private let localStorage: LocalStorage = DefaultLocalStorage()
@@ -55,6 +56,19 @@ class UserPreference {
         }
     }
     
+    internal func saveSuperviser(isInternalSuperviser: Bool) {
+        UserPreference.preferences.set(isInternalSuperviser, forKey: PropertyKey.isInternalSuperviser.rawValue)
+        let didSave = UserPreference.preferences.synchronize()
+        
+        if !didSave {
+            
+        }
+    }
+    
+    internal func isSuperviser() -> Bool {
+       return UserPreference.preferences.bool(forKey: PropertyKey.isInternalSuperviser.rawValue)
+    }
+    
     internal func getUpdatePin() -> Bool? {
         return UserPreference.preferences.bool(forKey: PropertyKey.forceUpdatePin.rawValue)
     }
@@ -62,6 +76,7 @@ class UserPreference {
     internal func saveCurrentCurrency(_ currentCurrency: SettingsMerchantsModel) {
         localStorage.set(value: currentCurrency, for: PropertyKey.currentCurrency.rawValue)
     }
+    
     
     internal func getCurrentCurrency() -> SettingsMerchantsModel? {
         return localStorage.get(for: PropertyKey.currentCurrency.rawValue)

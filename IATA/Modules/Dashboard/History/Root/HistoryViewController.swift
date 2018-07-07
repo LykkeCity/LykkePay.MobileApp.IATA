@@ -65,15 +65,24 @@ class HistoryViewController: BaseViewController<HistoryModel, DefaultHistoryStat
                     return
                 }
                 strongSelf.reloadTable(jsonString: result)
+            }).catch(execute: { [weak self] error -> Void in
+                guard let strongSelf = self else {
+                    return
+                }
+                strongSelf.generateErrorAlert(error: error)
+                strongSelf.endRefreshAnimation(wasEmpty: false, dataFetched: true)
+                strongSelf.reload()
             })
     }
     
     private func reloadTable(jsonString: String) {
         self.state?.mapping(jsonString: jsonString)
-        if (state?.getItems().count)! == 0 {
-            placeholderHistory.isHidden = false
-        }
+        self.reload()
+    }
+    
+    private func reload() {
+        placeholderHistory.isHidden = state?.getItems().count != 0
         self.tabView.reloadData()
-        self.refreshControl.endRefreshing()
+        self.endRefreshAnimation(wasEmpty: false, dataFetched: true)
     }
 }

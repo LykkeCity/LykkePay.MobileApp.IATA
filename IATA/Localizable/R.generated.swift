@@ -125,7 +125,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 32 images.
+  /// This `R.image` struct is generated, and contains static references to 34 images.
   struct image {
     /// Image `Logo`.
     static let logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "Logo")
@@ -139,6 +139,8 @@ struct R: Rswift.Validatable {
     static let checkmark_icon = Rswift.ImageResource(bundle: R.hostingBundle, name: "checkmark_icon")
     /// Image `ic_active_thumb`.
     static let ic_active_thumb = Rswift.ImageResource(bundle: R.hostingBundle, name: "ic_active_thumb")
+    /// Image `ic_arrow_black`.
+    static let ic_arrow_black = Rswift.ImageResource(bundle: R.hostingBundle, name: "ic_arrow_black")
     /// Image `ic_bodyInvertIcn`.
     static let ic_bodyInvertIcn = Rswift.ImageResource(bundle: R.hostingBundle, name: "ic_bodyInvertIcn")
     /// Image `ic_bodyLogoutIcn`.
@@ -163,6 +165,8 @@ struct R: Rswift.Validatable {
     static let ic_exchangeNormal = Rswift.ImageResource(bundle: R.hostingBundle, name: "ic_exchangeNormal")
     /// Image `ic_filter`.
     static let ic_filter = Rswift.ImageResource(bundle: R.hostingBundle, name: "ic_filter")
+    /// Image `ic_green_arrow`.
+    static let ic_green_arrow = Rswift.ImageResource(bundle: R.hostingBundle, name: "ic_green_arrow")
     /// Image `ic_group2`.
     static let ic_group2 = Rswift.ImageResource(bundle: R.hostingBundle, name: "ic_group2")
     /// Image `ic_historyActive`.
@@ -220,6 +224,11 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "ic_active_thumb", bundle: ..., traitCollection: ...)`
     static func ic_active_thumb(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.ic_active_thumb, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "ic_arrow_black", bundle: ..., traitCollection: ...)`
+    static func ic_arrow_black(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.ic_arrow_black, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "ic_bodyInvertIcn", bundle: ..., traitCollection: ...)`
@@ -280,6 +289,11 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "ic_filter", bundle: ..., traitCollection: ...)`
     static func ic_filter(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.ic_filter, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "ic_green_arrow", bundle: ..., traitCollection: ...)`
+    static func ic_green_arrow(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.ic_green_arrow, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "ic_group2", bundle: ..., traitCollection: ...)`
@@ -355,10 +369,12 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.nib` struct is generated, and contains static references to 26 nibs.
+  /// This `R.nib` struct is generated, and contains static references to 28 nibs.
   struct nib {
     /// Nib `BaseCurrencyCollectionViewCell`.
     static let baseCurrencyCollectionViewCell = _R.nib._BaseCurrencyCollectionViewCell()
+    /// Nib `CashInViewController`.
+    static let cashInViewController = _R.nib._CashInViewController()
     /// Nib `ChangePasswordViewController`.
     static let changePasswordViewController = _R.nib._ChangePasswordViewController()
     /// Nib `CustomHeaderView`.
@@ -391,6 +407,8 @@ struct R: Rswift.Validatable {
     static let passwordContainerView = _R.nib._PasswordContainerView()
     /// Nib `PaymentRangeTableViewCell`.
     static let paymentRangeTableViewCell = _R.nib._PaymentRangeTableViewCell()
+    /// Nib `PickerTableViewCell`.
+    static let pickerTableViewCell = _R.nib._PickerTableViewCell()
     /// Nib `PinViewController`.
     static let pinViewController = _R.nib._PinViewController()
     /// Nib `SettingsViewController`.
@@ -413,6 +431,11 @@ struct R: Rswift.Validatable {
     /// `UINib(name: "BaseCurrencyCollectionViewCell", in: bundle)`
     static func baseCurrencyCollectionViewCell(_: Void = ()) -> UIKit.UINib {
       return UIKit.UINib(resource: R.nib.baseCurrencyCollectionViewCell)
+    }
+    
+    /// `UINib(name: "CashInViewController", in: bundle)`
+    static func cashInViewController(_: Void = ()) -> UIKit.UINib {
+      return UIKit.UINib(resource: R.nib.cashInViewController)
     }
     
     /// `UINib(name: "ChangePasswordViewController", in: bundle)`
@@ -495,6 +518,11 @@ struct R: Rswift.Validatable {
       return UIKit.UINib(resource: R.nib.paymentRangeTableViewCell)
     }
     
+    /// `UINib(name: "PickerTableViewCell", in: bundle)`
+    static func pickerTableViewCell(_: Void = ()) -> UIKit.UINib {
+      return UIKit.UINib(resource: R.nib.pickerTableViewCell)
+    }
+    
     /// `UINib(name: "PinViewController", in: bundle)`
     static func pinViewController(_: Void = ()) -> UIKit.UINib {
       return UIKit.UINib(resource: R.nib.pinViewController)
@@ -573,7 +601,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 86 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 91 localization keys.
     struct localizable {
       /// Base translation: %@ invoices selected
       /// 
@@ -639,6 +667,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: Base
       static let invoiceScreenItemsCancelDispute = Rswift.StringResource(key: "Invoice.Screen.Items.CancelDispute", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
+      /// Base translation: Cash Out
+      /// 
+      /// Locales: Base
+      static let cashOutScreenTitle = Rswift.StringResource(key: "CashOut.Screen.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
       /// Base translation: Change a password
       /// 
       /// Locales: Base
@@ -695,6 +727,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: Base
       static let tabBarExchangeItemTitle = Rswift.StringResource(key: "TabBar.ExchangeItem.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
+      /// Base translation: Enter amount
+      /// 
+      /// Locales: Base
+      static let cashOutScreenPlaceholder = Rswift.StringResource(key: "CashOut.Screen.Placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
       /// Base translation: Error
       /// 
       /// Locales: Base
@@ -731,6 +767,18 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: Base
       static let tabBarInvoicesItemTitle = Rswift.StringResource(key: "TabBar.InvoicesItem.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
+      /// Base translation: In currency
+      /// 
+      /// Locales: Base
+      static let cashOutScreenInCurrency = Rswift.StringResource(key: "Cash.Out.Screen.InCurrency", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
+      /// Base translation: Insufficient funds
+      /// 
+      /// Locales: Base
+      static let commonOverPayError = Rswift.StringResource(key: "Common.Over.Pay.Error", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
+      /// Base translation: Insufficient funds
+      /// 
+      /// Locales: Base
+      static let invoiceScreenPayOverpaying = Rswift.StringResource(key: "Invoice.Screen.Pay.Overpaying", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
       /// Base translation: Invoice #%@
       /// 
       /// Locales: Base
@@ -1032,6 +1080,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("Invoice.Screen.Items.CancelDispute", bundle: R.hostingBundle, value: "Cancel Dispute", comment: "")
       }
       
+      /// Base translation: Cash Out
+      /// 
+      /// Locales: Base
+      static func cashOutScreenTitle(_: Void = ()) -> String {
+        return NSLocalizedString("CashOut.Screen.Title", bundle: R.hostingBundle, value: "Cash Out", comment: "")
+      }
+      
       /// Base translation: Change a password
       /// 
       /// Locales: Base
@@ -1130,6 +1185,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("TabBar.ExchangeItem.Title", bundle: R.hostingBundle, value: "EXCHANGE", comment: "")
       }
       
+      /// Base translation: Enter amount
+      /// 
+      /// Locales: Base
+      static func cashOutScreenPlaceholder(_: Void = ()) -> String {
+        return NSLocalizedString("CashOut.Screen.Placeholder", bundle: R.hostingBundle, value: "Enter amount", comment: "")
+      }
+      
       /// Base translation: Error
       /// 
       /// Locales: Base
@@ -1191,6 +1253,27 @@ struct R: Rswift.Validatable {
       /// Locales: Base
       static func tabBarInvoicesItemTitle(_: Void = ()) -> String {
         return NSLocalizedString("TabBar.InvoicesItem.Title", bundle: R.hostingBundle, value: "INVOICES", comment: "")
+      }
+      
+      /// Base translation: In currency
+      /// 
+      /// Locales: Base
+      static func cashOutScreenInCurrency(_: Void = ()) -> String {
+        return NSLocalizedString("Cash.Out.Screen.InCurrency", bundle: R.hostingBundle, value: "In currency", comment: "")
+      }
+      
+      /// Base translation: Insufficient funds
+      /// 
+      /// Locales: Base
+      static func commonOverPayError(_: Void = ()) -> String {
+        return NSLocalizedString("Common.Over.Pay.Error", bundle: R.hostingBundle, value: "Insufficient funds", comment: "")
+      }
+      
+      /// Base translation: Insufficient funds
+      /// 
+      /// Locales: Base
+      static func invoiceScreenPayOverpaying(_: Void = ()) -> String {
+        return NSLocalizedString("Invoice.Screen.Pay.Overpaying", bundle: R.hostingBundle, value: "Insufficient funds", comment: "")
       }
       
       /// Base translation: Invoice #%@
@@ -1549,20 +1632,22 @@ struct _R: Rswift.Validatable {
   
   struct nib: Rswift.Validatable {
     static func validate() throws {
-      try _TabBarView.validate()
+      try _PasswordContainerView.validate()
+      try _HistoryTableViewCell.validate()
       try _InvoiceSettingsTableViewCell.validate()
       try _InvoiceViewController.validate()
       try _InvoiceView.validate()
       try _HistoryViewController.validate()
+      try _PickerTableViewCell.validate()
       try _PinViewController.validate()
       try _CustomHeaderView.validate()
       try _SettingsViewController.validate()
       try _WalletsViewController.validate()
       try _DisputeViewController.validate()
       try _SignInViewController.validate()
-      try _PasswordContainerView.validate()
-      try _HistoryTableViewCell.validate()
+      try _CashInViewController.validate()
       try _ExhangeViewController.validate()
+      try _TabBarView.validate()
     }
     
     struct _BaseCurrencyCollectionViewCell: Rswift.NibResourceType, Rswift.ReuseIdentifierType {
@@ -1574,6 +1659,21 @@ struct _R: Rswift.Validatable {
       
       func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]? = nil) -> BaseCurrencyCollectionViewCell? {
         return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? BaseCurrencyCollectionViewCell
+      }
+      
+      fileprivate init() {}
+    }
+    
+    struct _CashInViewController: Rswift.NibResourceType, Rswift.Validatable {
+      let bundle = R.hostingBundle
+      let name = "CashInViewController"
+      
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]? = nil) -> UIKit.UIView? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
+      }
+      
+      static func validate() throws {
+        if UIKit.UIImage(named: "ic_arrow_black", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'ic_arrow_black' is used in nib 'CashInViewController', but couldn't be loaded.") }
       }
       
       fileprivate init() {}
@@ -1793,6 +1893,21 @@ struct _R: Rswift.Validatable {
       
       func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]? = nil) -> PaymentRangeTableViewCell? {
         return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? PaymentRangeTableViewCell
+      }
+      
+      fileprivate init() {}
+    }
+    
+    struct _PickerTableViewCell: Rswift.NibResourceType, Rswift.Validatable {
+      let bundle = R.hostingBundle
+      let name = "PickerTableViewCell"
+      
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]? = nil) -> PickerTableViewCell? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? PickerTableViewCell
+      }
+      
+      static func validate() throws {
+        if UIKit.UIImage(named: "ic_green_arrow", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'ic_green_arrow' is used in nib 'PickerTableViewCell', but couldn't be loaded.") }
       }
       
       fileprivate init() {}

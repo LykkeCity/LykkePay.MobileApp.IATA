@@ -63,8 +63,15 @@ class DefaultPaymentService: NSObject, PaymentService {
         params["id"] = id
         return Network.shared.getWithBrasket(path: PaymentConfig.shared.historyDetails , params: params)
     }
+
+    func getPayedHistoryDetails(invoiceId: String) -> Promise<HistoryTransactionModel> {
+        var params: [String : Any] = [String : Any]()
+        params["invoiceId"] = invoiceId
+        return Network.shared.getWithBrasket(path: PaymentConfig.shared.payedHistoryDetails , params: params)
+    }
+
     
-    func getSettings() -> Promise<String> {
+    func getSettings() -> Promise<SettingsModel> {
         return Network.shared.get(path: PaymentConfig.shared.user, params: [:])
     }
     
@@ -84,5 +91,13 @@ class DefaultPaymentService: NSObject, PaymentService {
     
     func loadExchangeInfo(model: PreExchangeRequest) -> Promise<ExchangeModel> {
         return Network.shared.post(path: PaymentConfig.shared.preExchange, object: model)
+    }
+    
+    func getDictionaryForPayments() -> Promise<String> {
+         return Network.shared.get(path: PaymentConfig.shared.assetsGetCashout, params: [:])
+    }
+    
+    func cashOut(model: CashOutRequest)  -> Promise<BaseMappable> {
+        return Network.shared.postMappable(path: PaymentConfig.shared.cashOut, object: model)
     }
 }

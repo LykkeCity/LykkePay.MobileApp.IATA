@@ -69,4 +69,8 @@ extension String {
             return Data(base64Encoded: self)
         }
     }
+
+    func isUrlString() -> Bool {
+        return self.contains("http")
+    }
 }

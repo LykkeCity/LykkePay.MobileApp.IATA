@@ -1,7 +1,7 @@
 import Nuke
 import UIKit
 
-class SettingsViewController: BaseNavController, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate, UICollectionViewDataSource {
+class SettingsViewController: BaseNavController {
 
     @IBOutlet weak var scrollView: UIScrollView!
     
@@ -15,19 +15,18 @@ class SettingsViewController: BaseNavController, UICollectionViewDelegateFlowLay
     
     @IBOutlet weak var emailLabel: UILabel!
     
-    @IBOutlet weak var baseCurrencyCollectionView: UICollectionView!
-    
     var refresh = UIRefreshControl()
     
     private var state: DefaultSettingsState? = DefaultSettingsState()
 
     override func viewDidLoad() {
-        baseCurrencyCollectionView.register(BaseCurrencyCollectionViewCell.nib, forCellWithReuseIdentifier: BaseCurrencyCollectionViewCell.identifier)
-        super.viewDidLoad()
-        self.navigationController?.isNavigationBarHidden = false
+       /* removed by asking IATA baseCurrencyCollectionView.register(BaseCurrencyCollectionViewCell.nib, forCellWithReuseIdentifier: BaseCurrencyCollectionViewCell.identifier)
         baseCurrencyCollectionView.delegate = self
         baseCurrencyCollectionView.dataSource  = self
-        baseCurrencyCollectionView.allowsMultipleSelection = false
+        baseCurrencyCollectionView.allowsMultipleSelection = false*/
+        super.viewDidLoad()
+        self.navigationController?.isNavigationBarHidden = false
+        
         self.initScrollView()
         loadData()
     }
@@ -41,6 +40,7 @@ class SettingsViewController: BaseNavController, UICollectionViewDelegateFlowLay
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+       /* removed by asking iata
         guard let cell = baseCurrencyCollectionView.dequeueReusableCell(withReuseIdentifier: BaseCurrencyCollectionViewCell.identifier, for: indexPath) as? BaseCurrencyCollectionViewCell else {
             return BaseCurrencyCollectionViewCell()
         }
@@ -49,8 +49,8 @@ class SettingsViewController: BaseNavController, UICollectionViewDelegateFlowLay
             if currency.isSelected! {
              baseCurrencyCollectionView.selectItem(at: indexPath, animated: false, scrollPosition: .top)
             }
-        }
-        return cell
+        }*/
+        return UICollectionViewCell()
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -91,11 +91,18 @@ class SettingsViewController: BaseNavController, UICollectionViewDelegateFlowLay
     private func loadData() {
         self.beginRefresh()
         self.state?.getSettingsStringJson()
-            .then(execute: { [weak self] (result: String) -> Void in
+            .then(execute: { [weak self] (result: SettingsModel) -> Void in
                 guard let strongSelf = self else {
                     return
                 }
-                strongSelf.fillUsersInfo(jsonString: result)
+                strongSelf.fillUsersInfo(settingsModel: result)
+            })
+            .catch(execute: { [weak self] error -> Void in
+                guard let strongSelf = self else {
+                    return
+                }
+                strongSelf.generateErrorAlert(error: error)
+                strongSelf.refresh.endRefreshing()
             })
     }
 
@@ -111,8 +118,8 @@ class SettingsViewController: BaseNavController, UICollectionViewDelegateFlowLay
             })
     }
 
-    private func fillUsersInfo(jsonString: String!) {
-        let settingsViewModel = state?.mappingSettings(jsonString: jsonString)
+    private func fillUsersInfo(settingsModel: SettingsModel) {
+        let settingsViewModel = state?.mappingSettings(settingsModel: settingsModel)
         Nuke.loadImage(with: URL(string: (settingsViewModel?.merchantLogoUrl)!)!, into: self.airlineImage)
         self.companyNameLabel.text = settingsViewModel?.merchantName
         if let firstName = settingsViewModel?.firstName, let lastName = settingsViewModel?.lastName {
@@ -130,18 +137,11 @@ class SettingsViewController: BaseNavController, UICollectionViewDelegateFlowLay
 
     private func fillAssetsInfo(from jsonString: String!) {
         self.state?.mappingBaseAssets(jsonString: jsonString)
-        self.baseCurrencyCollectionView.reloadData()
+       // self.baseCurrencyCollectionView.reloadData()
         self.refresh.endRefreshing()
     }
 
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: baseCurrencyCollectionView.bounds.width/2 - 5 , height: 56)
-    }
-
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return CGFloat(10)
-    }
-
+  
     override func getTitle() -> String? {
         return tabBarItem.title?.capitalizingFirstLetter()
     }

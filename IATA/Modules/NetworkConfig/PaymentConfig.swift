@@ -7,7 +7,7 @@ class PaymentConfig {
     public let invoices = "/invoices/inbox"
     public let makePayment = "/invoices/pay"
     public let amount = "/invoices/sum"
-     public let getFilters = "/invoices/filter"
+    public let getFilters = "/invoices/filter"
 
     public let wallets = "/merchantWallets"
     
@@ -22,6 +22,8 @@ class PaymentConfig {
 
     public let historyDetails = "/history/Details"
 
+    public let payedHistoryDetails = "history/invoicelatestpaymentdetails"
+
     
     public let user = "/user"
     public let baseAssets = "/baseAsset/list"
@@ -30,5 +32,7 @@ class PaymentConfig {
     public let exchange = "/exchange/Execute"
     public let preExchange = "/exchange/PreExchange"
    
+    public let assetsGetCashout = "/assets/cashout"
+    public let cashOut = "/cashout"
 
 }

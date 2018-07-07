@@ -7,6 +7,7 @@
 "Common.NavBar.Close" = "Close";
 "Common.NavBar.Back" = "Back";
 "Common.Loading.Message" = "Loading...";
+"Common.Over.Pay.Error" = "Insufficient funds";
 
 "SignIn.Placeholder.Login" = "Login";
 "SignIn.Placeholder.Password" = "Password";
@@ -41,6 +42,7 @@
 "Invoice.Screen.PleaseConfirmPayment" = "Please confirm";
 "Invoice.Screen.Pay" = "Pay";
 "Invoice.Screen.PayConfirmation" = "Please scan your fingerprint to confirm the payment";
+"Invoice.Screen.Pay.Overpaying" = "Insufficient funds";
 
 "Invoice.Navigation.Filtering.Title.AllInvoices" = "All invoices";
 "Invoice.Navigation.Filtering.Title.Paid" = "Paid invoices";
@@ -106,3 +108,7 @@
 "Exchange.Source.EURO" = "EUR";
 
 "Exchange.Source.PayConfirmation" = "Please scan your fingerprint to confirm the exchange";
+
+"CashOut.Screen.Title" = "Cash Out";
+"CashOut.Screen.Placeholder" = "Enter amount";
+"Cash.Out.Screen.InCurrency" = "In currency";

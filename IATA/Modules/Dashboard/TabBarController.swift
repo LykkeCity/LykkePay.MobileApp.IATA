@@ -21,13 +21,14 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
                                         title: R.string.localizable.tabBarInvoicesItemTitle())
         walletsVC = generateTabBarItem(for: walletsVC, normalImage: R.image.ic_walletsNormal.name, activeImage: R.image.ic_walletsActive.name,
                                        title: R.string.localizable.tabBarWalletsItemTitle())
-        exchangeVC = generateTabBarItem(for: exchangeVC, normalImage: R.image.ic_exchangeNormal.name, activeImage: R.image.ic_exchangeActive.name,
-                                        title: R.string.localizable.tabBarExchangeItemTitle())
+        //removed by asking iata
+        // exchangeVC = generateTabBarItem(for: exchangeVC, normalImage: R.image.ic_exchangeNormal.name, activeImage: R.image.ic_exchangeActive.name,
+                                   //     title: R.string.localizable.tabBarExchangeItemTitle())
         historyVC = generateTabBarItem(for: historyVC, normalImage: R.image.ic_historyNormal.name, activeImage: R.image.ic_historyActive.name,
                                        title: R.string.localizable.tabBarHistoryItemTitle())
         settingsVC = generateTabBarItem(for: settingsVC, normalImage: R.image.ic_settingsNormal.name, activeImage: R.image.ic_settingsActive.name,
                                         title: R.string.localizable.tabBarSettingsItemTitle())
-        let controllers = [invoicesVC, walletsVC, exchangeVC, historyVC, settingsVC]
+        let controllers = [invoicesVC, walletsVC,  historyVC, settingsVC]
         
         self.viewControllers = controllers.map { UINavigationController(rootViewController: $0)}
         

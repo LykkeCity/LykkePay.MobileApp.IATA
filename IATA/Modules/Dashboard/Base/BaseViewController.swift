@@ -9,6 +9,12 @@ class BaseViewController<T: Mappable, S: DefaultBaseState<T>>:
     
     var state: S?
     
+    /// Refresh state
+    var isRefreshing = false
+    
+    /// Refresh controll update funcion. Set to enable pull to refresh
+    var refreshControllUpdateFunction: (() -> ())?
+    
     let refreshControl = UIRefreshControl()
    
     override func setUp() {
@@ -19,7 +25,14 @@ class BaseViewController<T: Mappable, S: DefaultBaseState<T>>:
         self.getTableView().tableFooterView = UIView()
         self.getTableView().showsVerticalScrollIndicator = false
     }
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        superviewWillApper()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        superviewDidDisappear()
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let count = self.state?.getItems().count else {
@@ -79,11 +92,37 @@ class BaseViewController<T: Mappable, S: DefaultBaseState<T>>:
         self.beginRefreshing()
     }
     
-    func beginRefreshing() {
-        var offset = self.getTableView().contentOffset
-        offset.y = -81
-        self.refreshControl.beginRefreshing()
-        self.getTableView().contentOffset = offset
+    /// Call on viewWillApper
+    func superviewWillApper(){
+        if isRefreshing && !refreshControl.isRefreshing{
+            beginRefreshing()
+        }
+    }
+    
+    /// Call on viewDidDisapper
+    func superviewDidDisappear(){
+        endRefreshAnimation(wasEmpty: false, dataFetched: !isRefreshing)
+    }
+    
+    /// Presents animating UIRefreshControll
+    func beginRefreshing(){
+        refreshControl.beginRefreshing()
+        let contentOffset = CGPoint(x: 0, y: -refreshControl.bounds.size.height)
+        getTableView().setContentOffset(contentOffset, animated: true)
+        isRefreshing = true
+    }
+    
+    /// Hides UIRefreshControll and saves state of refresh
+    func endRefreshAnimation(wasEmpty: Bool, dataFetched: Bool){
+        refreshControl.endRefreshing()
+        
+        isRefreshing = !dataFetched
+        
+        if !wasEmpty{
+            getTableView().setContentOffset(.zero, animated: true)
+        }else{
+            getTableView().setContentOffset(.zero, animated: false)
+        }
     }
     
     private func addRefreshControl() {

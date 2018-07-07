@@ -2,25 +2,31 @@
 import UIKit
 
 
-class WalletsViewController: BaseViewController<WalletsViewModel, DefaultWalletsState> {
+class WalletsViewController: BaseViewController<WalletsViewModel, DefaultWalletsState>, UINavigationControllerDelegate, WalletsCellClick {
 
     @IBOutlet weak var tableView: UITableView!
 
     @IBOutlet weak var placeholderWallets: UIView!
 
+    func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationControllerOperation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        
+        return PresentAnimation()
+    }
+    
     override func viewDidLoad() {
         state = DefaultWalletsState()
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = false
         initViewTheme()
         initTableViewTheme()
+        self.beginRefreshing()
+        loadData()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = false
-        self.beginRefreshing()
-        loadData()
+        self.navigationController?.delegate = self
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -35,6 +41,10 @@ class WalletsViewController: BaseViewController<WalletsViewModel, DefaultWallets
         return 80
     }
 
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 85
+    }
+
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: CustomHeaderView.identifier) as! CustomHeaderView
         headerView.balanceLabel.text = self.state?.getTotalBalance()
@@ -44,12 +54,17 @@ class WalletsViewController: BaseViewController<WalletsViewModel, DefaultWallets
             return headerView
         }
     }
-
+    
+   
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: WalletsTableViewCell.identifier) as?  WalletsTableViewCell else {
             return WalletsTableViewCell()
         }
-        cell.fillCell(from: (self.state?.getItems() [indexPath.row])!)
+        cell.delegate = self
+        cell.selectionStyle = .none
+        if let item = self.state?.getItems() [indexPath.row] {
+            cell.fillCell(from: item)
+        }
         return cell
     }
 
@@ -62,6 +77,13 @@ class WalletsViewController: BaseViewController<WalletsViewModel, DefaultWallets
                     }
                     strongSelf.reloadTable(jsonString: result)
                 })
+                .catch(execute: { [weak self] error -> Void in
+                    guard let strongSelf = self else {
+                        return
+                    }
+                    strongSelf.generateErrorAlert(error: error)
+                    strongSelf.endRefreshAnimation(wasEmpty: false, dataFetched: true)
+                })
         }
     }
 
@@ -72,7 +94,7 @@ class WalletsViewController: BaseViewController<WalletsViewModel, DefaultWallets
         }
         setVisibleViewAfterLoadingData()
         self.tableView.reloadData()
-        self.refreshControl.endRefreshing()
+        self.endRefreshAnimation(wasEmpty: false, dataFetched: true)
     }
 
     override func getTitle() -> String? {
@@ -97,6 +119,17 @@ class WalletsViewController: BaseViewController<WalletsViewModel, DefaultWallets
     }
     
     private func initTableViewTheme() {
-        self.tableView.separatorColor = Theme.shared.dotColor
+        self.tableView.separatorColor = UIColor.clear
+    }
+
+    func bttnTapped(cell: WalletsTableViewCell) {
+        let indexPath = self.tableView.indexPath(for: cell)
+        let viewController = CashInViewController()
+        if let item = self.state?.getItems() [indexPath!.row] {
+            viewController.totalSum = item.totalBalance
+            viewController.assertId = item.assetId
+        }
+        self.navigationController?.pushViewController(viewController, animated: true)
+
     }
 }

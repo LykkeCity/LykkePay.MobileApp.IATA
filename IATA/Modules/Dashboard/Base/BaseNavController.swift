@@ -70,6 +70,10 @@ class BaseNavController: UIViewController, UITextFieldDelegate {
         return nil
     }
     
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        return true
+    }
+    
     @objc func appMovedToBackground() {
         self.view.endEditing(true)
     }

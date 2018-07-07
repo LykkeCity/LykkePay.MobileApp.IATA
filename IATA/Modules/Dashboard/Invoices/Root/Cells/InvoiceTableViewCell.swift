@@ -35,6 +35,7 @@ class InvoiceTableViewCell: SwipeTableViewCell {
     internal func initModel(model: InvoiceModel, isChecked: Bool) {
         self.initFullCheckBoxStatus(model, isChecked: isChecked)
         self.invoiceView.initView(model: model)
+        self.viewBox.isHidden = UserPreference.shared.isSuperviser()
     }
     
     private func initCheckBoxAndStatus(structInfo: InvoiceStatusesStruct, isChecked: Bool) {
