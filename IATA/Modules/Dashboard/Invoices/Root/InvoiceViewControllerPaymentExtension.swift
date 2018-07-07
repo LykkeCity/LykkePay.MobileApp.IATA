@@ -93,7 +93,7 @@ extension InvoiceViewController {
     func setEnabledPay(isEnabled: Bool) {
         self.btnPay.isEnabled = isEnabled
         self.btnPay.alpha = isEnabled ? 1 : 0.2
-        self.sumTextField.alpha = isEnabled ? 1 : 0.2
+       // self.sumTextField.alpha = isEnabled ? 1 : 0.2
     }
     
     func handleError(error : Error) {

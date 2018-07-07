@@ -9,7 +9,7 @@ class TransactionViewController: BaseViewController<PropertyKeyTransactionModel,
     @IBOutlet private weak var transactionHeaderView: TransactionTableViewHeader!
     
     var id = String()
-    var invoiceId: String?
+    var invoiceModel: InvoiceModel?
     
     override func viewDidLoad() {
         state = DefaultTransactionState()
@@ -70,7 +70,7 @@ class TransactionViewController: BaseViewController<PropertyKeyTransactionModel,
     }
     
     override func loadData() {
-        if let invoiceId = self.invoiceId {
+        if let invoiceId = self.invoiceModel?.id {
             loadPayedHistoryDetails(invoiceId: invoiceId)
         } else {
             loadHistoryDetails()
@@ -88,7 +88,7 @@ class TransactionViewController: BaseViewController<PropertyKeyTransactionModel,
                 guard let strongSelf = self else {
                     return
                 }
-                strongSelf.handleError(strongSelf: strongSelf, error: error)
+                strongSelf.handle()
             })
     }
 
@@ -106,10 +106,17 @@ class TransactionViewController: BaseViewController<PropertyKeyTransactionModel,
                 strongSelf.handleError(strongSelf: strongSelf, error: error)
             })
     }
+    
+    private func handle() {
+        if let modelInvoice = invoiceModel,
+            let model = self.state?.initModel(invoiceModel: modelInvoice) {
+          self.reloadViews(item: model)
+        }
+    }
 
     private func handleError(strongSelf: TransactionViewController, error: Error) {
         strongSelf.showErrorAlert(error: error)
-        strongSelf.refreshControl.endRefreshing()
+        strongSelf.endRefreshAnimation(wasEmpty: false, dataFetched: true)
         strongSelf.tabView.reloadData()
     }
 

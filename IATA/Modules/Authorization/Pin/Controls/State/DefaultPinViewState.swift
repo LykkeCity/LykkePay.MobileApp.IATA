@@ -8,7 +8,6 @@ class DefaultPinViewState: DefaultBaseViewState, PinViewState {
     
     func validatePin(pin: String) -> Promise<PinValidationResponse> {
         self.initUser()
-        self.initBaseAssert()
         if let userName = CredentialManager.shared.getUserName() {
             let value =  pin + userName
             return self.service.pinValidation(pinCode: getHashPass(value: value))

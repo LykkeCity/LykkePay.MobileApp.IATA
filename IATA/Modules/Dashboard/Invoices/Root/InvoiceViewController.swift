@@ -130,9 +130,9 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         dismissKeyboard()
-        if let id = self.state?.getItems()[indexPath.row].id, self.state?.getItems()[indexPath.row].status == InvoiceStatuses.Paid {
+        if let item = self.state?.getItems()[indexPath.row], self.state?.getItems()[indexPath.row].status == InvoiceStatuses.Paid {
             let viewController = TransactionViewController()
-                viewController.invoiceId = id
+                viewController.invoiceModel = item
             self.navigationController?.present(viewController, animated: true, completion: nil)
         }
     }
