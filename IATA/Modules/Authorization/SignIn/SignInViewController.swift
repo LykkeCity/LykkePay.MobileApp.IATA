@@ -101,8 +101,6 @@ class SignInViewController: BaseAuthViewController, UINavigationControllerDelega
                 guard let strongSelf = self else {
                     return
                 }
-
-                PushNotificationHelper.registerInAzureHUB(with: tokenObject.notificationIds?.IDs)
                 strongSelf.openValidationPinController(tokenObject: tokenObject)
             }).catch(execute: { [weak self] error -> Void in
                 guard let strongSelf = self else {

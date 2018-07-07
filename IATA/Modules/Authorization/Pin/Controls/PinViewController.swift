@@ -136,7 +136,6 @@ private extension PinViewController {
                 }
                 if (result.passed)! {
                     strongSelf.validationSuccess()
-                    PushNotificationHelper.registerInAzureHUB(with: result.notificationIds?.IDs)
                 } else {
                     strongSelf.validationFail()
                 }
