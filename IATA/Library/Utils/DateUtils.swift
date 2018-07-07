@@ -48,6 +48,7 @@ class DateUtils {
         dateFormatterGet.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSSZ"
 
         let dateFormatterPrint = DateFormatter()
+        dateFormatterPrint.timeZone = TimeZone(abbreviation: "UTC")
         dateFormatterPrint.dateFormat = "dd.MM.yyyy h:mm:ss a"
 
         if let date = dateFormatterGet.date(from: dateString){

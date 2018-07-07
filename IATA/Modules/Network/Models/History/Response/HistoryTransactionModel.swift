@@ -95,7 +95,7 @@ class HistoryTransactionModel: Mappable, Reflectable {
         var amountDouble: Double?
         amountDouble <- map[PropertyKey.amount.rawValue]
         self.assetId <- map[PropertyKey.assetId.rawValue]
-        self.amount = Formatter.formattedWithSeparator(valueDouble: amountDouble) + " " + (self.assetId ?? "")
+        self.amount = Formatter.formattedWithSeparator(valueDouble: abs(amountDouble ?? 0)) + " " + (self.assetId ?? "")
         self.soldBy <- map[PropertyKey.soldBy.rawValue]
         self.paidBy <- map[PropertyKey.paidBy.rawValue]
         self.blockHeight <- map[PropertyKey.blockHeight.rawValue]
