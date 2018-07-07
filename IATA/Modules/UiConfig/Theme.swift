@@ -138,10 +138,17 @@ class Theme: NSObject {
     }
 
     public func getUrlAttributedString(message: String) -> NSMutableAttributedString {
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = 5
+        paragraphStyle.lineHeightMultiple = 1.5
+        
         let linkAttributes: [NSAttributedStringKey: Any] = [
             .link: NSURL(string: message)!,
-            .foregroundColor: UIColor.blue, NSAttributedStringKey.font: R.font.gothamPro(size: 14.0)
+            .foregroundColor: UIColor.blue, NSAttributedStringKey.font: R.font.gothamPro(size: 14.0),
+            NSAttributedStringKey.paragraphStyle: paragraphStyle
         ]
+       
+        
         let attributedString = NSMutableAttributedString(string: message)
         attributedString.setAttributes(linkAttributes, range: NSMakeRange(0, message.count))
         return attributedString

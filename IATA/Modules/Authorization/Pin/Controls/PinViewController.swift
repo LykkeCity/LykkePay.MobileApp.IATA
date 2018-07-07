@@ -27,6 +27,7 @@ class PinViewController: UIViewController, UINavigationControllerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.state.initBaseAssert()
         self.initNavBar()
         self.navigationController?.delegate = self
         //create PasswordContainerView

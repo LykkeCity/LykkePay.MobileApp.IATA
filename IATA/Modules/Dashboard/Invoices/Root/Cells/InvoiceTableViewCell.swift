@@ -6,6 +6,8 @@ class InvoiceTableViewCell: SwipeTableViewCell {
     @IBOutlet weak var viewBox: UIView!
     @IBOutlet weak var rootView: UIView!
     @IBOutlet weak var invoiceView: InvoiceView!
+    @IBOutlet weak var widthBox: NSLayoutConstraint!
+    @IBOutlet weak var leftLeading: NSLayoutConstraint!
     
     weak var delegateChanged: OnChangeStateSelected?
     let checkBox = Checkbox(frame: CGRect(x: 5 , y: 5, width: 15, height: 15))
@@ -28,7 +30,11 @@ class InvoiceTableViewCell: SwipeTableViewCell {
     }
     
     @objc func checkboxValueChanged(sender: Checkbox) {
-        delegateChanged?.onItemSelected(isSelected: sender.isChecked, index: sender.tag)
+        if let isDisabled = delegateChanged?.isDisabled(), !isDisabled {
+            delegateChanged?.onItemSelected(isSelected: sender.isChecked, index: sender.tag)
+        } else {
+            self.checkBox.isChecked = !self.checkBox.isChecked
+        }
     }
     
     
@@ -36,6 +42,8 @@ class InvoiceTableViewCell: SwipeTableViewCell {
         self.initFullCheckBoxStatus(model, isChecked: isChecked)
         self.invoiceView.initView(model: model)
         self.viewBox.isHidden = UserPreference.shared.isSuperviser()
+        self.widthBox.constant = UserPreference.shared.isSuperviser() ? 0 : 30
+        self.leftLeading.constant = UserPreference.shared.isSuperviser() ? 8 : 12
     }
     
     private func initCheckBoxAndStatus(structInfo: InvoiceStatusesStruct, isChecked: Bool) {

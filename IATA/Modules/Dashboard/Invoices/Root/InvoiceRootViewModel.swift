@@ -11,6 +11,13 @@ class InvoiceRootViewModel: SwipeTableViewCellDelegate, OnChangeStateSelected {
         self.viewController = viewController
     }
   
+    func isDisabled() -> Bool {
+        if let isDisabled =  self.viewController?.isDisabledValue {
+            return isDisabled
+        }
+        return false
+    }
+    
     func loadData() {
         self.state?.getInvoiceStringJson()
             .then(execute: { [weak self] (result: String) -> Void in
@@ -46,6 +53,7 @@ class InvoiceRootViewModel: SwipeTableViewCellDelegate, OnChangeStateSelected {
             self?.state?.selectedStatus(type: menu.type)
             self?.viewController?.hideMenu()
             menuView.title = menu.title
+            self?.viewController?.beginRefreshing()
             self?.loadData()
         }
         return menuView

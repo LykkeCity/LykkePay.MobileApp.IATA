@@ -20,6 +20,7 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
 
     internal lazy var walletsState = DefaultWalletsState()
     internal var totalBalance: Double?
+    var isDisabledValue: Bool = false
     
    
     
@@ -47,7 +48,17 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
         //view.addGestureRecognizer(tap)
     }
     
+     override func endRefreshAnimation(wasEmpty: Bool, dataFetched: Bool){
+        super.endRefreshAnimation(wasEmpty: wasEmpty, dataFetched: dataFetched)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+            self.isDisabledValue = false
+        })
+    }
     
+    override func beginRefreshing(){
+        super.beginRefreshing()
+        self.isDisabledValue =  true
+    }
     
     @IBAction func makePay(_ sender: Any) {
         guard let amount = self.sumTextField.text else {
@@ -65,7 +76,7 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
     }
     
     @IBAction func sumChanged(_ sender: Any) {
-        if let text = self.sumTextField.text, let isEmpty = self.sumTextField.text?.isEmpty, isEmpty || (Int(text) == 0) {
+        if let text = self.sumTextField.text, let isEmpty = self.sumTextField.text?.isEmpty, isEmpty || Formatter.formattedToDouble(valueString: text) == 0 {
             setEnabledPay(isEnabled: false)
         } else {
             setEnabledPay(isEnabled: true)
@@ -119,9 +130,9 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         dismissKeyboard()
-        if let id = self.state?.getItems()[indexPath.row].id, self.state?.getItems()[indexPath.row].status == InvoiceStatuses.Paid {
+        if let item = self.state?.getItems()[indexPath.row], self.state?.getItems()[indexPath.row].status == InvoiceStatuses.Paid {
             let viewController = TransactionViewController()
-                viewController.invoiceId = id
+                viewController.invoiceModel = item
             self.navigationController?.present(viewController, animated: true, completion: nil)
         }
     }
@@ -199,7 +210,7 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
     }
     
     func onItemSelected(isSelected: Bool, index: Int) {
-        if !UserPreference.shared.isSuperviser() {
+        if !UserPreference.shared.isSuperviser() && !isDisabledValue {
             self.selectedItemTextField.text = self.state?.getSelectedString()
             self.loadView(isShowLoading: false, isHiddenSelected: true)
             Theme.shared.configureTextFieldCurrencyStyle(self.sumTextField)

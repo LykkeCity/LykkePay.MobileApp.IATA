@@ -45,6 +45,7 @@ class WalletsViewController: BaseViewController<WalletsViewModel, DefaultWallets
         return 85
     }
 
+    
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: CustomHeaderView.identifier) as! CustomHeaderView
         headerView.balanceLabel.text = self.state?.getTotalBalance()
@@ -106,9 +107,25 @@ class WalletsViewController: BaseViewController<WalletsViewModel, DefaultWallets
     }
 
     override func registerCells() {
-        tableView.register(CustomHeaderView.nib, forHeaderFooterViewReuseIdentifier: CustomHeaderView.identifier)
+        self.initHeaderCells()
         tableView.register(WalletsTableViewCell.nib, forCellReuseIdentifier: WalletsTableViewCell.identifier)
     }
+    
+    
+    private func initHeaderCells() {
+       /* let dummyViewHeight = CGFloat(80)
+        self.tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: self.tableView.bounds.size.width, height: dummyViewHeight))
+        self.tableView.contentInset = UIEdgeInsetsMake(-dummyViewHeight, 0, 0, 0)*/
+        self.tableView.register(CustomHeaderView.nib, forHeaderFooterViewReuseIdentifier: CustomHeaderView.identifier)
+    }
+    
+    
+ /*   override func beginRefreshing(){
+        refreshControl.beginRefreshing()
+        let contentOffset = CGPoint(x: 0, y: -refreshControl.bounds.size.height+80)
+        getTableView().setContentOffset(contentOffset, animated: true)
+        isRefreshing = true
+    }*/
 
     private func initViewTheme() {
         self.tableView.separatorColor = Theme.shared.dotColor
@@ -129,7 +146,8 @@ class WalletsViewController: BaseViewController<WalletsViewModel, DefaultWallets
             viewController.totalSum = item.totalBalance
             viewController.assertId = item.assetId
         }
+       
         self.navigationController?.pushViewController(viewController, animated: true)
-
+       
     }
 }

@@ -16,6 +16,9 @@ class DisputeViewController: BaseViewController<DisputeModel, DefaultDisputeStat
         self.tabView.rowHeight = UITableViewAutomaticDimension
         self.tabView.estimatedRowHeight = 200
         loadData()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
+            super.beginRefreshing()
+        })
     }
     
     override func getNavView() -> UIView? {
@@ -44,7 +47,6 @@ class DisputeViewController: BaseViewController<DisputeModel, DefaultDisputeStat
     }
 
     override func loadData() {
-        super.loadData()
         self.state?.getDisputeListStringJson()
             .then(execute: { [weak self] (result: String) -> Void in
                 guard let strongSelf = self else {

@@ -48,10 +48,10 @@ class DateUtils {
         dateFormatterGet.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSSZ"
 
         let dateFormatterPrint = DateFormatter()
-        dateFormatterPrint.dateFormat = "dd.MM.yyyy HH:mm:ss"
+        dateFormatterPrint.dateFormat = "dd.MM.yyyy h:mm:ss a"
 
         if let date = dateFormatterGet.date(from: dateString){
-            return dateFormatterPrint.string(from: date)
+            return dateFormatterPrint.string(from: date) + " +UTC"
         }
         return dateString
     }

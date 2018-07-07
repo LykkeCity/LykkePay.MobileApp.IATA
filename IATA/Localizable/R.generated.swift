@@ -601,8 +601,16 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 91 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 93 localization keys.
     struct localizable {
+      /// Base translation: %@ (%@ block confirmations)
+      /// 
+      /// Locales: Base
+      static let historyTransactionDetailsBlockHeightInfo = Rswift.StringResource(key: "History.Transaction.Details.BlockHeightInfo", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
+      /// Base translation: %@ Outgoing invoice payment
+      /// 
+      /// Locales: Base
+      static let historyTitleTransaction = Rswift.StringResource(key: "History.Title.Transaction", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
       /// Base translation: %@ invoices selected
       /// 
       /// Locales: Base
@@ -967,6 +975,20 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: Base
       static let invoiceDisputInvoicePlaceholderTextField = Rswift.StringResource(key: "Invoice.Disput.Invoice.Placeholder.TextField", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
+      
+      /// Base translation: %@ (%@ block confirmations)
+      /// 
+      /// Locales: Base
+      static func historyTransactionDetailsBlockHeightInfo(_ value1: String, _ value2: String) -> String {
+        return String(format: NSLocalizedString("History.Transaction.Details.BlockHeightInfo", bundle: R.hostingBundle, value: "%@ (%@ block confirmations)", comment: ""), locale: R.applicationLocale, value1, value2)
+      }
+      
+      /// Base translation: %@ Outgoing invoice payment
+      /// 
+      /// Locales: Base
+      static func historyTitleTransaction(_ value1: String) -> String {
+        return String(format: NSLocalizedString("History.Title.Transaction", bundle: R.hostingBundle, value: "%@ Outgoing invoice payment", comment: ""), locale: R.applicationLocale, value1)
+      }
       
       /// Base translation: %@ invoices selected
       /// 

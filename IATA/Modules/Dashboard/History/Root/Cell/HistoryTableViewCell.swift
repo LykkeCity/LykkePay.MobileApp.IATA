@@ -61,7 +61,7 @@ class HistoryTableViewCell: UITableViewCell {
             self.transactionSum.text = "+" + Formatter.formattedWithSeparator(valueDouble: amount) + " " + symbol
             self.transactionSum.textColor = Theme.shared.greenColor
         } else {
-            self.transactionSum.text = "-" + Formatter.formattedWithSeparator(valueDouble: amount) + " " + symbol
+            self.transactionSum.text = Formatter.formattedWithSeparator(valueDouble: amount) + " " + symbol
             self.transactionSum.textColor = Theme.shared.redErrorStatusColor
         }
     }

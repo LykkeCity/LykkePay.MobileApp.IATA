@@ -19,4 +19,25 @@ class DefaultTransactionState: DefaultBaseState<PropertyKeyTransactionModel> {
         self.items = item.valueFor()
     }
     
+    func initModel(invoiceModel: InvoiceModel) -> HistoryTransactionModel {
+        let model = HistoryTransactionModel()
+        model.merchantLogoUrl = invoiceModel.logoUrl
+        model.merchantName = invoiceModel.merchantName
+        if let name = invoiceModel.paymentAssetId {
+            model.title = R.string.localizable.historyTitleTransaction(name)
+            if let amount = invoiceModel.amount {
+                model.amount = Formatter.formattedWithSeparator(valueDouble: amount) + " " + name
+            }
+        }
+        
+        if let number = invoiceModel.number {
+            model.invoiceNumber = "#" + number
+        }
+        model.billingCategory = invoiceModel.billingCategory
+        model.invoiceStatus = InvoiceStatuses.Paid
+        model.status = InvoiceStatusesStruct(type: InvoiceStatuses.Paid).title.capitalizingFirstLetter()
+        model.assetId = invoiceModel.settlementAssetId
+        return model
+    }
+    
 }

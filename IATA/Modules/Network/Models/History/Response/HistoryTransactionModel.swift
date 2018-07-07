@@ -58,10 +58,10 @@ class HistoryTransactionModel: Mappable, Reflectable {
     internal var invoiceStatus: InvoiceStatuses?
     internal var status: String?
     internal var employeeEmail: String?
-    internal var timeStamp: String?
     internal var assetId: String?
     internal var soldBy: String?
     internal var paidBy: String?
+    internal var timeStamp: String?
     internal var blockHeight: Int?
     internal var blockConfirmations: String?
     internal var txHash: String?
@@ -98,10 +98,19 @@ class HistoryTransactionModel: Mappable, Reflectable {
         self.amount = Formatter.formattedWithSeparator(valueDouble: amountDouble) + " " + (self.assetId ?? "")
         self.soldBy <- map[PropertyKey.soldBy.rawValue]
         self.paidBy <- map[PropertyKey.paidBy.rawValue]
-        self.blockHeight <- map[PropertyKey.blockConfirmations.rawValue]
-        self.blockConfirmations = String(self.blockHeight ?? 0)
+        self.blockHeight <- map[PropertyKey.blockHeight.rawValue]
+        
+        var blockConfirm: Int?
+        blockConfirm <- map[PropertyKey.blockConfirmations.rawValue]
+        if let height = self.blockHeight, let confirmation = blockConfirm {
+            self.blockConfirmations = R.string.localizable.historyTransactionDetailsBlockHeightInfo(String(height), String(confirmation))
+        }
+        
         self.txHash <- map[PropertyKey.txHash.rawValue]
         self.invoiceNumber <- map[PropertyKey.invoiceNumber.rawValue]
+        if let number = self.invoiceNumber {
+            self.invoiceNumber = "#" + number
+        }
         self.billingCategory <- map[PropertyKey.billingCategory.rawValue]
         self.employeeEmail <- map[PropertyKey.employeeEmail.rawValue]
         self.merchantName <- map[PropertyKey.merchantName.rawValue]

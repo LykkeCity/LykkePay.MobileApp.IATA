@@ -81,7 +81,9 @@ class BaseViewController<T: Mappable, S: DefaultBaseState<T>>:
     }
     
     @objc func refresh() {
-        loadData()
+        if !isRefreshing && !getTableView().isDragging {
+            loadData()
+        }
     }
     
     @objc func dismissKeyboard() {
@@ -89,7 +91,7 @@ class BaseViewController<T: Mappable, S: DefaultBaseState<T>>:
     }
     
     func loadData() {
-        self.beginRefreshing()
+        
     }
     
     /// Call on viewWillApper
@@ -114,20 +116,32 @@ class BaseViewController<T: Mappable, S: DefaultBaseState<T>>:
     
     /// Hides UIRefreshControll and saves state of refresh
     func endRefreshAnimation(wasEmpty: Bool, dataFetched: Bool){
-        refreshControl.endRefreshing()
-        
-        isRefreshing = !dataFetched
+        self.refreshControl.endRefreshing()
+        self.isRefreshing = !dataFetched
         
         if !wasEmpty{
-            getTableView().setContentOffset(.zero, animated: true)
+            self.getTableView().setContentOffset(.zero, animated: true)
         }else{
-            getTableView().setContentOffset(.zero, animated: false)
+            self.getTableView().setContentOffset(.zero, animated: false)
+        }
+        
+        getTableView().layoutIfNeeded()
+        self.refreshControl.layoutIfNeeded()
+        if let count = state?.getItems().count, count > 0 {
+            let indexPath = IndexPath(row: 0, section: 0)
+            self.getTableView().scrollToRow(at: indexPath, at: .top, animated: true)
         }
     }
     
-    private func addRefreshControl() {
+    func addRefreshControl() {
         refreshControl.attributedTitle = NSAttributedString(string:  R.string.localizable.commonLoadingMessage())
         refreshControl.addTarget(self, action: #selector(self.refresh), for: UIControlEvents.valueChanged)
         getTableView().addSubview(refreshControl)
+    }
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if refreshControl.isRefreshing {
+            refresh()
+        }
     }
 }

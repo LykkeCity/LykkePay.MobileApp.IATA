@@ -43,8 +43,10 @@
             <edgeInsets key="layoutMargins" top="16" left="16" bottom="16" right="16"/>
             <connections>
                 <outlet property="invoiceView" destination="7dX-g4-R2c" id="Jbr-V9-kD2"/>
+                <outlet property="leftLeading" destination="xgC-Ys-uaL" id="iS9-gy-Fhy"/>
                 <outlet property="rootView" destination="H2p-sc-9uM" id="PkS-8O-CDt"/>
                 <outlet property="viewBox" destination="978-Sq-1qd" id="aDL-1d-LVi"/>
+                <outlet property="widthBox" destination="J7M-RB-toT" id="eir-nh-CzZ"/>
             </connections>
         </tableViewCell>
     </objects>
