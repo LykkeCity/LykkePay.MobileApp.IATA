@@ -89,7 +89,7 @@ class BaseViewController<T: Mappable, S: DefaultBaseState<T>>:
     }
     
     func loadData() {
-        self.beginRefreshing()
+        
     }
     
     /// Call on viewWillApper
@@ -123,9 +123,14 @@ class BaseViewController<T: Mappable, S: DefaultBaseState<T>>:
         }else{
             getTableView().setContentOffset(.zero, animated: false)
         }
+        
+        if let count = state?.getItems().count, count > 0 {
+            let indexPath = IndexPath(row: 0, section: 0)
+            self.getTableView().scrollToRow(at: indexPath, at: .top, animated: true)
+        }
     }
     
-    private func addRefreshControl() {
+    func addRefreshControl() {
         refreshControl.attributedTitle = NSAttributedString(string:  R.string.localizable.commonLoadingMessage())
         refreshControl.addTarget(self, action: #selector(self.refresh), for: UIControlEvents.valueChanged)
         getTableView().addSubview(refreshControl)

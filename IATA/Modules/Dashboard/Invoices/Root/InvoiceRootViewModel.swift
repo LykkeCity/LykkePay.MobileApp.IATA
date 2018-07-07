@@ -46,6 +46,7 @@ class InvoiceRootViewModel: SwipeTableViewCellDelegate, OnChangeStateSelected {
             self?.state?.selectedStatus(type: menu.type)
             self?.viewController?.hideMenu()
             menuView.title = menu.title
+            self?.viewController?.beginRefreshing()
             self?.loadData()
         }
         return menuView
