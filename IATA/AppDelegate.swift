@@ -35,13 +35,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     internal func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         PushNotificationHelper.application(application, didRegisterForRemoteNotificationsWithDeviceToken: deviceToken)
-        PushNotificationHelper.registerInAzureHUB(with: "")
-    }
-
-    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) {
-//        let uiAlert = UIAlertController(title: "Notif", message: "", preferredStyle: .alert)
-//        UIApplication.topViewController()?.present(uiAlert, animated: true, completion: nil)
-//        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "ReceivedNotification"), object:userInfo)
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {

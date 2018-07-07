@@ -45,16 +45,14 @@ class PushNotificationHelper: NSObject {
         DispatchQueue.main.async {
             let hubSettings = NetworkConfig.shared.notificationHubSettings
             let hub = SBNotificationHub(connectionString: hubSettings.listenAccess, notificationHubPath: hubSettings.name)
-            hub?.registerNative(withDeviceToken: token, tags: Set(notificationTags), completion: { (_) in
-
-            })
+            hub?.registerNative(withDeviceToken: token, tags: Set(notificationTags), completion: {_ in})
         }
     }
 
     @objc class func unregisterInAzureHUB() {
         let hubSettings = NetworkConfig.shared.notificationHubSettings
         let hub = SBNotificationHub(connectionString: hubSettings.listenAccess, notificationHubPath: hubSettings.name)
-        hub?.unregisterNative(completion: {_ in })
+        hub?.unregisterAll(withDeviceToken: token, completion: { _ in })
     }
 
 }
