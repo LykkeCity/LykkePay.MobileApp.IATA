@@ -90,12 +90,12 @@ class HistoryTransactionModel: Mappable, Reflectable {
         self.merchantLogoUrl <- map[PropertyKey.merchantLogoUrl.rawValue]
         self.requestedBy <- map[PropertyKey.requestedBy.rawValue]
         self.title <- map[PropertyKey.title.rawValue]
-        self.timeStamp <- map[PropertyKey.createdOn.rawValue]
+        self.timeStamp <- map[PropertyKey.timeStamp.rawValue]
         self.timeStamp = DateUtils.formatDateFromFormatWithUTC(dateString: self.timeStamp ?? "")
         var amountDouble: Double?
         amountDouble <- map[PropertyKey.amount.rawValue]
         self.assetId <- map[PropertyKey.assetId.rawValue]
-        self.amount = Formatter.formattedWithSeparator(valueDouble: amountDouble) + " " + (self.assetId ?? "")
+        self.amount = Formatter.formattedWithSeparator(valueDouble: abs(amountDouble ?? 0)) + " " + (self.assetId ?? "")
         self.soldBy <- map[PropertyKey.soldBy.rawValue]
         self.paidBy <- map[PropertyKey.paidBy.rawValue]
         self.blockHeight <- map[PropertyKey.blockHeight.rawValue]

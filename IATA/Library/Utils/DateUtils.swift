@@ -45,9 +45,10 @@ class DateUtils {
 
     static internal func formatDateFromFormatWithUTC(dateString: String) -> String {
         let dateFormatterGet = DateFormatter()
-        dateFormatterGet.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSSZ"
+        dateFormatterGet.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
 
         let dateFormatterPrint = DateFormatter()
+        dateFormatterPrint.timeZone = TimeZone(abbreviation: "UTC")
         dateFormatterPrint.dateFormat = "dd.MM.yyyy h:mm:ss a"
 
         if let date = dateFormatterGet.date(from: dateString){
