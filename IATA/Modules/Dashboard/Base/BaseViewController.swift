@@ -81,7 +81,9 @@ class BaseViewController<T: Mappable, S: DefaultBaseState<T>>:
     }
     
     @objc func refresh() {
-        loadData()
+        if !isRefreshing {
+            loadData()
+        }
     }
     
     @objc func dismissKeyboard() {

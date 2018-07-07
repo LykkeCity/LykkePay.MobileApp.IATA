@@ -17,7 +17,9 @@ class TransactionViewController: BaseViewController<PropertyKeyTransactionModel,
         self.tabView.separatorStyle = .none
         self.navigationController?.isNavigationBarHidden = true
         self.loadData()
-        self.beginRefreshing()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
+            super.beginRefreshing()
+        })
     }
     
     override func getNavItem() -> UINavigationItem? {
@@ -118,6 +120,7 @@ class TransactionViewController: BaseViewController<PropertyKeyTransactionModel,
 
     private func reloadViews(item: HistoryTransactionModel) {
         reloadTable(item: item)
+        transactionHeaderView.isHidden = false
         transactionHeaderView.model = item
         self.endRefreshAnimation(wasEmpty: false, dataFetched: true)
     }

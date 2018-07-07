@@ -45,6 +45,7 @@
                 <outlet property="invoiceView" destination="7dX-g4-R2c" id="Jbr-V9-kD2"/>
                 <outlet property="rootView" destination="H2p-sc-9uM" id="PkS-8O-CDt"/>
                 <outlet property="viewBox" destination="978-Sq-1qd" id="aDL-1d-LVi"/>
+                <outlet property="widthBox" destination="J7M-RB-toT" id="eir-nh-CzZ"/>
             </connections>
         </tableViewCell>
     </objects>

@@ -44,7 +44,7 @@
                         <constraint firstItem="tgr-ka-0j3" firstAttribute="leading" secondItem="7OK-Um-FTM" secondAttribute="leading" id="kaG-5U-6jK"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pzr-O0-uA4" customClass="TransactionTableViewHeader" customModule="IATA" customModuleProvider="target">
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pzr-O0-uA4" customClass="TransactionTableViewHeader" customModule="IATA" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="68" width="375" height="100"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
