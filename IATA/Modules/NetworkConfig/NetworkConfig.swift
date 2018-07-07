@@ -5,11 +5,9 @@ class NetworkConfig {
     
     #if DEBUG
     public var baseServerURL = BaseServerURLs.dev.getURL()
-    public var notificationHubSettings = PushNotificationHubSettings.dev
 
     #else
     public var baseServerURL = BaseServerURLs.dev.getURL()
-    public var notificationHubSettings = PushNotificationHubSettings.dev
     #endif
 }
 internal enum CertificateNames: String, EnumCollection {
