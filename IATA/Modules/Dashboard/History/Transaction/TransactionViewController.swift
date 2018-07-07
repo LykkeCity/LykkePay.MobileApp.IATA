@@ -108,8 +108,10 @@ class TransactionViewController: BaseViewController<PropertyKeyTransactionModel,
     }
     
     private func handle() {
-        let model = self.state?.initModel(modelInvoice: invoiceModel)
-        self.reloadViews(item: model)
+        if let modelInvoice = invoiceModel,
+            let model = self.state?.initModel(invoiceModel: modelInvoice) {
+          self.reloadViews(item: model)
+        }
     }
 
     private func handleError(strongSelf: TransactionViewController, error: Error) {
