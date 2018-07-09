@@ -115,6 +115,11 @@ class HistoryTransactionModel: Mappable, Reflectable {
         self.employeeEmail <- map[PropertyKey.employeeEmail.rawValue]
         self.merchantName <- map[PropertyKey.merchantName.rawValue]
         self.explorerUrl <- map[PropertyKey.explorerUrl.rawValue]
+
+        guard let txHash = txHash, let _ = invoiceStatus, !txHash.isEmpty else {
+            self.status = InvoiceStatusesStruct(type: InvoiceStatuses.InProgress).title
+            return
+        }
     }
     
     func valueFor() -> [PropertyKeyTransactionModel] {

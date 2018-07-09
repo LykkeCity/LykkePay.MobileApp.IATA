@@ -19,6 +19,8 @@ class CashInViewController: BaseViewController<CashOutViewModel, DefaultCashOutS
     @IBOutlet weak var shadowView: UIView!
     
     @IBOutlet weak var heightConstraint: NSLayoutConstraint!
+
+    let numberOfRows = 10000//Int.max
   
     var heightAchor: NSLayoutConstraint?
     var heightAchorMaximum: NSLayoutConstraint?
@@ -56,6 +58,7 @@ class CashInViewController: BaseViewController<CashOutViewModel, DefaultCashOutS
         // Connect data:
         self.pickerView.delegate = self
         self.pickerView.dataSource = self
+        self.pickerView.selectRow(numberOfRows / 2 + 1, inComponent: 0, animated: false)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -85,13 +88,6 @@ class CashInViewController: BaseViewController<CashOutViewModel, DefaultCashOutS
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 70
     }
-    
-    /*override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.state?.reinitModel(index: indexPath.row)
-        self.assetPicker.text = self.state?.viewModel.desiredAssertId
-        self.tabView.reloadData()
-        self.hideAlerWithPicker()
-    }*/
     
     override func getNavView() -> UIView? {
         return navView
@@ -199,22 +195,24 @@ class CashInViewController: BaseViewController<CashOutViewModel, DefaultCashOutS
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        guard let count = self.state?.viewModel.items?.count else {
-            return 0
-        }
-        return count
+        return numberOfRows
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return self.state?.viewModel.items?[row].name
+        guard let itemsCount = self.state?.viewModel.items?.count else {
+            return ""
+        }
+        return self.state?.viewModel.items?[row % itemsCount].name
     }
     
  
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        self.state?.reinitModel(index: row)
+        guard let itemCount = self.state?.viewModel.items?.count else {
+            return
+        }
+        self.state?.reinitModel(index: row % itemCount)
         self.assetPicker.text = self.state?.viewModel.desiredAssertId
         self.pickerView.reloadAllComponents()
-       // self.hideAlerWithPicker()
     }
     
     @IBAction func editChanged(_ sender: Any) {
