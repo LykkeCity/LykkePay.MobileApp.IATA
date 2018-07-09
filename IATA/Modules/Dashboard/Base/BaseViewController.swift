@@ -108,9 +108,16 @@ class BaseViewController<T: Mappable, S: DefaultBaseState<T>>:
     
     /// Presents animating UIRefreshControll
     func beginRefreshing(){
+        if let count = state?.getItems().count, count > 0 {
+            let indexPath = IndexPath(row: 0, section: 0)
+            self.getTableView().scrollToRow(at: indexPath, at: .top, animated: true)
+        }
         refreshControl.beginRefreshing()
         let contentOffset = CGPoint(x: 0, y: -refreshControl.bounds.size.height)
-        getTableView().setContentOffset(contentOffset, animated: true)
+        UIView.animate(withDuration: 0.5, animations: { () -> Void in
+            self.getTableView().contentOffset = contentOffset
+        })
+        getTableView().layoutIfNeeded()
         isRefreshing = true
     }
     
@@ -120,7 +127,10 @@ class BaseViewController<T: Mappable, S: DefaultBaseState<T>>:
         self.isRefreshing = !dataFetched
         
         if !wasEmpty{
-            self.getTableView().setContentOffset(.zero, animated: true)
+            UIView.animate(withDuration: 0.5, animations: { () -> Void in
+                self.getTableView().contentOffset = .zero
+            })
+            //self.getTableView().setContentOffset(.zero, animated: true)
         }else{
             self.getTableView().setContentOffset(.zero, animated: false)
         }

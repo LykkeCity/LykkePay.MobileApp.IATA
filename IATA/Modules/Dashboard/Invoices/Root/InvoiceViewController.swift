@@ -50,7 +50,7 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
     
      override func endRefreshAnimation(wasEmpty: Bool, dataFetched: Bool){
         super.endRefreshAnimation(wasEmpty: wasEmpty, dataFetched: dataFetched)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
             self.isDisabledValue = false
         })
     }
@@ -78,6 +78,9 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
     @IBAction func sumChanged(_ sender: Any) {
         if let text = self.sumTextField.text, let isEmpty = self.sumTextField.text?.isEmpty, isEmpty || Formatter.formattedToDouble(valueString: text) == 0 {
             setEnabledPay(isEnabled: false)
+            if let separator = NSLocale.current.decimalSeparator, text.contains(separator) {
+                self.sumTextField.alpha = 1
+            }
         } else {
             setEnabledPay(isEnabled: true)
         }

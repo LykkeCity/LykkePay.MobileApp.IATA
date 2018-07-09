@@ -8,22 +8,22 @@ extension InvoiceViewController {
     func makePayment(alert: UIAlertAction!) {
         self.view.endEditing(true)
         if isPayingAvailable() {
-        let viewController = PinViewController()
-        viewController.isValidationTransaction = true
-        viewController.navController = self
-        viewController.messageTouch = R.string.localizable.invoiceScreenPayConfirmation()
-        let items = self.state?.getItemsId()
-        viewController.completion = {
-            self.state?.makePayment(items: items, amount: self.sumTextField.text)
-                .then(execute: {[weak self] (result: BaseMappable) -> Void in
-                    guard let strongSelf = self else {
-                        return
-                    }
-                    strongSelf.paymentSuccess()
-                }).catch(execute: { [weak self] error -> Void in
-                    guard let strongSelf = self else {
-                        return
-                    }
+            let viewController = PinViewController()
+            viewController.isValidationTransaction = true
+            viewController.navController = self
+            viewController.messageTouch = R.string.localizable.invoiceScreenPayConfirmation()
+            let items = self.state?.getItemsId()
+            viewController.completion = {
+                self.state?.makePayment(items: items, amount: self.sumTextField.text)
+                    .then(execute: {[weak self] (result: BaseMappable) -> Void in
+                        guard let strongSelf = self else {
+                            return
+                        }
+                        strongSelf.paymentSuccess()
+                    }).catch(execute: { [weak self] error -> Void in
+                        guard let strongSelf = self else {
+                            return
+                        }
                     strongSelf.handleError(error: error)
                 })
         }
@@ -93,7 +93,7 @@ extension InvoiceViewController {
     func setEnabledPay(isEnabled: Bool) {
         self.btnPay.isEnabled = isEnabled
         self.btnPay.alpha = isEnabled ? 1 : 0.2
-       // self.sumTextField.alpha = isEnabled ? 1 : 0.2
+        self.sumTextField.alpha = isEnabled ? 1 : 0.2
     }
     
     func handleError(error : Error) {
@@ -120,7 +120,7 @@ extension InvoiceViewController {
         var balance = 0.0
         if let wallets = self.walletsState?.items {
         for wallet in wallets {
-            if let convertedBalance = wallet.totalConvertedBalance {
+            if let convertedBalance = wallet.totalConvertedBalance, let assertId = wallet.assetId, let baseAseertId = UserPreference.shared.getCurrentCurrency()?.id, assertId.elementsEqual(baseAseertId) {
                 balance += convertedBalance
                 }
             }
