@@ -49,12 +49,15 @@ class InvoiceRootViewModel: SwipeTableViewCellDelegate, OnChangeStateSelected {
         menuView.cellSelectionColor = Theme.shared.tabBarBackgroundColor
         menuView.selectedCellTextLabelColor = Theme.shared.tabBarItemSelectedColor
         menuView.didSelectItemAtIndexHandler = {[weak self] (menu: Menu) -> () in
+            guard let strongSelf = self else {
+                return
+            }
+            strongSelf.viewController?.beginRefreshing()
             FilterPreference.shared.saveIndexOfStatus(menu.type)
-            self?.state?.selectedStatus(type: menu.type)
-            self?.viewController?.hideMenu()
+            strongSelf.state?.selectedStatus(type: menu.type)
+            strongSelf.loadData()
+            strongSelf.viewController?.hideMenu()
             menuView.title = menu.title
-            self?.viewController?.beginRefreshing()
-            self?.loadData()
         }
         return menuView
     }
