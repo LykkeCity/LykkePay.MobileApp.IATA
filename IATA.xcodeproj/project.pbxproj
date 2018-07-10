@@ -471,6 +471,7 @@
 		6FC260316A6015639FD5E1F0 /* Pods_IATA.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IATA.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7527B2B91103E6B38EFEF340 /* Pods_IATATests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IATATests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9406B2F720E4E2330086E880 /* lykkexnettest.crt */ = {isa = PBXFileReference; lastKnownFileType = file; name = lykkexnettest.crt; path = ../../../../Documents/lykkexnettest.crt; sourceTree = "<group>"; };
+		942B303120F4DB7600DAFE4C /* IATA.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = IATA.entitlements; sourceTree = "<group>"; };
 		947A438120F0DA1F006740B7 /* PushNotificationHubSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushNotificationHubSettings.swift; sourceTree = "<group>"; };
 		947A438220F0DA1F006740B7 /* PushNotificationHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushNotificationHelper.swift; sourceTree = "<group>"; };
 		947A438620F0DA2C006740B7 /* WindowsAzureMessaging.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WindowsAzureMessaging.framework; sourceTree = "<group>"; };
@@ -699,6 +700,7 @@
 		0A0D4B4920C53361009B73E9 /* IATA */ = {
 			isa = PBXGroup;
 			children = (
+				942B303120F4DB7600DAFE4C /* IATA.entitlements */,
 				947A438A20F0DB2D006740B7 /* BridgingHeader.h */,
 				0A37EF9820C6DA8500201907 /* Localizable */,
 				0A6DB5D720C5571000BC1127 /* Library */,
@@ -1742,6 +1744,11 @@
 				TargetAttributes = {
 					0A0D4B4620C53361009B73E9 = {
 						CreatedOnToolsVersion = 9.4;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					0A0D4B5D20C53364009B73E9 = {
 						CreatedOnToolsVersion = 9.4;
@@ -2334,6 +2341,7 @@
 			baseConfigurationReference = 058CEEE5590F2BCD98BAD1F5 /* Pods-IATA.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = IATA/IATA.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NCJC54GM5Z;
@@ -2363,6 +2371,7 @@
 			baseConfigurationReference = C7BD0B79BA7FF0CED5C9BD4E /* Pods-IATA.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = IATA/IATA.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NCJC54GM5Z;
