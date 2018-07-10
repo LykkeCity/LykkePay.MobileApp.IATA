@@ -117,7 +117,7 @@ class HistoryTransactionModel: Mappable, Reflectable {
         self.explorerUrl <- map[PropertyKey.explorerUrl.rawValue]
 
         guard let txHash = txHash, let _ = invoiceStatus, !txHash.isEmpty else {
-            self.status = InvoiceStatusesStruct(type: InvoiceStatuses.InProgress).title
+            self.status = InvoiceStatusesStruct(type: InvoiceStatuses.InProgress).title.capitalizingFirstLetter()
             return
         }
     }
