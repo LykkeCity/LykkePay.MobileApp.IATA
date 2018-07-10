@@ -47,7 +47,12 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
         //let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
         //view.addGestureRecognizer(tap)
     }
-    
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        hideMenu()
+    }
+
      override func endRefreshAnimation(wasEmpty: Bool, dataFetched: Bool){
         super.endRefreshAnimation(wasEmpty: wasEmpty, dataFetched: dataFetched)
         DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
