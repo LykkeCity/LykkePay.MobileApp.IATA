@@ -109,6 +109,7 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
     }
     
     override func loadData() {
+        self.tabView.setEditing(true, animated: true)
         self.viewModel?.loadData()
     }
     

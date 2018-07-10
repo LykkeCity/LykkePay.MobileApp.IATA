@@ -121,8 +121,10 @@ class InvoiceRootViewModel: SwipeTableViewCellDelegate, OnChangeStateSelected {
         let disputeAction = SwipeAction(style: .destructive, title: R.string.localizable.invoiceScreenItemsCancelDispute()) { action, indexPath in
             let model = CancelDisputInvoiceRequest()
             model?.invoiceId = state.getItems()[indexPath.row].id
-            if let model = model {
-                self.viewController?.refreshControl.beginRefreshing()
+            if let model = model, !self.isDisabled() {
+                NSLog("test cancel")
+                self.viewController?.beginRefreshing()
+                self.viewController?.isDisabledValue = true
                 self.state?.cancelDisputInvoice(model: model)
                     .then(execute: { [weak self] (result: Void) -> Void in
                         guard let strongSelf = self else {
@@ -139,6 +141,7 @@ class InvoiceRootViewModel: SwipeTableViewCellDelegate, OnChangeStateSelected {
     private func getTableAction(_ backgroundColor: UIColor, _ action: SwipeAction,_ width: Int) -> [SwipeAction]? {
         if !UserPreference.shared.isSuperviser() {
             action.width = width
+            action.hidesWhenSelected = true
             action.image = UIView.from(color: backgroundColor)
             action.backgroundColor = UIColor.white
             action.font = Theme.shared.boldFontOfSize(14)
