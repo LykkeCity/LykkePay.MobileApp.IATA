@@ -48,8 +48,8 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
         //view.addGestureRecognizer(tap)
     }
 
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
+    override func appMovedToBackground() {
+        super.appMovedToBackground()
         hideMenu()
     }
 
