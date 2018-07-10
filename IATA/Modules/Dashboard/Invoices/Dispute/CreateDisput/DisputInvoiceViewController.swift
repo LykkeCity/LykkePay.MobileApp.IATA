@@ -19,6 +19,7 @@ class DisputInvoiceViewController: BaseNavController {
         Theme.shared.configureTextFieldStyle(self.reasonTextField, title: R.string.localizable.invoiceDisputInvoicePlaceholderTextField())
         UIApplication.shared.statusBarStyle = UIStatusBarStyle.default
         self.setNeedsStatusBarAppearanceUpdate()
+        self.setEnabled(isEnabled: false)
     }
 
     override func initNavBar() {
