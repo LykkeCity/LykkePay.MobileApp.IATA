@@ -138,7 +138,7 @@ class PaymentRangeTableViewCell: UITableViewCell, UITextFieldDelegate {
                 self.minValueTextField?.text = "0 " + symbol
             }
             if  let valueText = self.minValueTextField?.text, let value = Formatter.formattedToDouble(valueString: valueText),
-                !TextFieldUtil.validateMinValueText(text, value, true) {
+                !TextFieldUtil.validateMinValueText(text, value, false) {
                 //check max value and min value
                 ViewUtils.shared.showToast(message: R.string.localizable.invoiceSettingsErrorTo(), view: self.contentView)
                 NotificationCenter.default.post(name: NSNotification.Name(NotificateEnum.disable.rawValue), object: nil)

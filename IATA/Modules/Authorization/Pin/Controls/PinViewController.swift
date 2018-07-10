@@ -165,6 +165,10 @@ private extension PinViewController {
             })
             self.dismiss(animated: true, completion: completion)
         } else {
+            if  let maxValue = FilterPreference.shared.getMaxValue(), maxValue == 0 {
+                FilterPreference.shared.saveMinValue(0)
+                FilterPreference.shared.saveMaxValue(1000000)
+            }
             self.navigationController?.isNavigationBarHidden = true
             self.navigationController?.pushViewController(TabBarController(), animated: true)
             
