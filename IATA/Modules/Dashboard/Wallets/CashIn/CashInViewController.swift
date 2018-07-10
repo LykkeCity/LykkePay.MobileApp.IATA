@@ -2,7 +2,7 @@
 import UIKit
 import ObjectMapper
 
-class CashInViewController: BaseViewController<CashOutViewModel, DefaultCashOutState>, UINavigationControllerDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UIGestureRecognizerDelegate {
+class CashInViewController: BaseViewController<CashOutViewModel, DefaultCashOutState>, UINavigationControllerDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
     
     @IBOutlet weak var pickerView: UIPickerView!
     @IBOutlet weak var navItem: UINavigationItem!
@@ -311,11 +311,6 @@ class CashInViewController: BaseViewController<CashOutViewModel, DefaultCashOutS
         self.shadowBackground.addGestureRecognizer(tapHideShadow)
         
         pickerView.isUserInteractionEnabled = true
-        
-        let tapPicker: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.pickerTap))
-        tapPicker.cancelsTouchesInView = false
-        tapPicker.delegate = self
-        self.pickerView.addGestureRecognizer(tapPicker)
     }
     
 }
