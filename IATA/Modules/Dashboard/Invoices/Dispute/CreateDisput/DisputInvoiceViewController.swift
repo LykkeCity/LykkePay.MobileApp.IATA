@@ -74,6 +74,7 @@ class DisputInvoiceViewController: BaseNavController {
     }
 
     @objc func clickDone() {
+        self.view.endEditing(true)
         let model = DisputInvoiceRequest()
         model?.invoiceId = invoiceId
         model?.reason = reasonTextField.text
