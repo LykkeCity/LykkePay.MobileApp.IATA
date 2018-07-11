@@ -109,7 +109,6 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
     }
     
     override func loadData() {
-        self.tabView.setEditing(true, animated: true)
         self.viewModel?.loadData()
     }
     
@@ -139,9 +138,10 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         dismissKeyboard()
-        if let item = self.state?.getItems()[indexPath.row], self.state?.getItems()[indexPath.row].status == InvoiceStatuses.Paid {
+        if let item = self.state?.getItems()[indexPath.row] {
             let viewController = TransactionViewController()
-                viewController.invoiceModel = item
+            viewController.isPaid = self.state?.getItems()[indexPath.row].status == InvoiceStatuses.Paid
+            viewController.invoiceModel = item
             self.navigationController?.present(viewController, animated: true, completion: nil)
         }
     }

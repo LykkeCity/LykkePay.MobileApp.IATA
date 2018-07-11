@@ -19,7 +19,7 @@ struct InvoiceStatusesStruct {
     init(type:InvoiceStatuses) {
         switch type {
         case .Unpaid:
-            self.init(type: type, colorStatus: Theme.shared.blueProgressStatusColor, color: Theme.shared.greenColor, title: R.string.localizable.invoiceStatusItemsDispute(), isCanBePaid: true)
+            self.init(type: type, colorStatus: Theme.shared.blueProgressStatusColor, color: Theme.shared.greenColor, title: R.string.localizable.invoiceStatusItemsUnpaid(), isCanBePaid: true)
             break
         case .InProgress:
             self.init(type: type, colorStatus: Theme.shared.blueProgressStatusColor, color: Theme.shared.greenColor, title: R.string.localizable.invoiceStatusItemsInProgress(), isCanBePaid: false)

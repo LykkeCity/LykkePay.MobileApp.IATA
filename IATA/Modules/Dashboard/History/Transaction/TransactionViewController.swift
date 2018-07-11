@@ -9,6 +9,7 @@ class TransactionViewController: BaseViewController<PropertyKeyTransactionModel,
     @IBOutlet private weak var transactionHeaderView: TransactionTableViewHeader!
     
     var id = String()
+    var isPaid = false
     var invoiceModel: InvoiceModel?
     
     override func viewDidLoad() {
@@ -17,7 +18,7 @@ class TransactionViewController: BaseViewController<PropertyKeyTransactionModel,
         self.tabView.separatorStyle = .none
         self.navigationController?.isNavigationBarHidden = true
         self.loadData()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.05, execute: {
             super.beginRefreshing()
         })
     }
@@ -58,7 +59,7 @@ class TransactionViewController: BaseViewController<PropertyKeyTransactionModel,
     }
     
     override func getTitle() -> String? {
-        return R.string.localizable.historyTransactionScreenTitle()
+        return isPaid || invoiceModel == nil ? R.string.localizable.historyTransactionScreenTitle() : R.string.localizable.historyInvoiceDetailsScreenTitle()
     }
     
     override func getTableView() -> UITableView {
@@ -70,10 +71,15 @@ class TransactionViewController: BaseViewController<PropertyKeyTransactionModel,
     }
     
     override func loadData() {
-        if let invoiceId = self.invoiceModel?.id {
-            loadPayedHistoryDetails(invoiceId: invoiceId)
+        if let invoiceId = self.invoiceModel?.id, isPaid{
+            self.loadPayedHistoryDetails(invoiceId: invoiceId)
+        } else if !isPaid, self.invoiceModel != nil {
+            self.handle()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3, execute: {
+                self.endRefreshAnimation(wasEmpty: false, dataFetched: true)
+            })
         } else {
-            loadHistoryDetails()
+            self.loadHistoryDetails()
         }
     }
 
@@ -109,8 +115,8 @@ class TransactionViewController: BaseViewController<PropertyKeyTransactionModel,
     
     private func handle() {
         if let modelInvoice = invoiceModel,
-            let model = self.state?.initModel(invoiceModel: modelInvoice) {
-          self.reloadViews(item: model)
+            let model = self.state?.initModel(invoiceModel: modelInvoice, isPaid: isPaid) {
+            self.reloadViews(item: model)
         }
     }
 
