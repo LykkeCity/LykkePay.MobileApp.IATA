@@ -79,14 +79,15 @@ class DisputInvoiceViewController: BaseNavController {
         model?.invoiceId = invoiceId
         model?.reason = reasonTextField.text
         if let model = model {
-        self.state?.makeDisputInvoice(model: model)
-            .then(execute: { [weak self] (result: Void) -> Void in
-                guard let strongSelf = self else {
-                    return
-                }
-                strongSelf.rootController?.beginRefreshing()
-                strongSelf.dismiss(animated: true, completion: strongSelf.completion)
-            })
+            self.navItem?.rightBarButtonItem?.isEnabled = false
+            self.state?.makeDisputInvoice(model: model)
+                .then(execute: { [weak self] (result: Void) -> Void in
+                    guard let strongSelf = self else {
+                        return
+                    }
+                    strongSelf.rootController?.beginRefreshing()
+                    strongSelf.dismiss(animated: true, completion: strongSelf.completion)
+                })
         }
     }
 
