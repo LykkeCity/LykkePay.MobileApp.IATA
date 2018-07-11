@@ -15,6 +15,8 @@ class HistoryTransactionModel: Mappable, Reflectable {
                                    PropertyKey.billingCategory.rawValue : R.string.localizable.historyTransactionDetailsBillingCategory(),
                                    PropertyKey.employeeEmail.rawValue : R.string.localizable.historyTransactionDetailsPaidBy(),
                                    PropertyKey.status.rawValue : R.string.localizable.historyTransactionDetailsStatus(),
+                                   PropertyKey.dispute.rawValue:
+                                       R.string.localizable.invoiceDisputeTitle(),
                                    PropertyKey.requestedBy.rawValue : R.string.localizable.historyTransactionDetailsRequestedBy(),
                                    PropertyKey.explorerUrl.rawValue : R.string.localizable.historyTransactionDetailsExplorerUrl()]
 
@@ -41,6 +43,7 @@ class HistoryTransactionModel: Mappable, Reflectable {
         case timeStamp
         case assetName
         case explorerUrl
+        case dispute
     }
 
 
@@ -57,6 +60,7 @@ class HistoryTransactionModel: Mappable, Reflectable {
     internal var billingCategory: String?
     internal var invoiceStatus: InvoiceStatuses?
     internal var status: String?
+    internal var dispute: String?
     internal var employeeEmail: String?
     internal var assetId: String?
     internal var soldBy: String?
