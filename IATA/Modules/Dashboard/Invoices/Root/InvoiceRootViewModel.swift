@@ -122,8 +122,13 @@ class InvoiceRootViewModel: SwipeTableViewCellDelegate, OnChangeStateSelected {
             let model = CancelDisputInvoiceRequest()
             model?.invoiceId = state.getItems()[indexPath.row].id
             if let model = model, !self.isDisabled() {
-                NSLog("test cancel")
-                self.viewController?.beginRefreshing()
+                if let count = self.viewController?.state?.getItems().count, count > 0 {
+                    let indexPath = IndexPath(row: 0, section: 0)
+                    self.viewController?.getTableView().scrollToRow(at: indexPath, at: .top, animated: true)
+                }
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+                    self.viewController?.beginRefreshing()
+                })
                 self.viewController?.isDisabledValue = true
                 self.state?.cancelDisputInvoice(model: model)
                     .then(execute: { [weak self] (result: Void) -> Void in

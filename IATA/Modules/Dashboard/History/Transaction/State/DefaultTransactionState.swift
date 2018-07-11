@@ -19,12 +19,12 @@ class DefaultTransactionState: DefaultBaseState<PropertyKeyTransactionModel> {
         self.items = item.valueFor()
     }
     
-    func initModel(invoiceModel: InvoiceModel) -> HistoryTransactionModel {
+    func initModel(invoiceModel: InvoiceModel, isPaid: Bool) -> HistoryTransactionModel {
         let model = HistoryTransactionModel()
         model.merchantLogoUrl = invoiceModel.logoUrl
         model.merchantName = invoiceModel.merchantName
         if let name = invoiceModel.paymentAssetId {
-            model.title = R.string.localizable.historyTitleTransaction(name)
+            model.title = isPaid ? R.string.localizable.historyTitleTransaction(name) : R.string.localizable.historyTitleDetails(name)
             if let amount = invoiceModel.amount {
                 model.amount = Formatter.formattedWithSeparator(valueDouble: amount) + " " + name
             }
@@ -35,7 +35,12 @@ class DefaultTransactionState: DefaultBaseState<PropertyKeyTransactionModel> {
         }
         model.billingCategory = invoiceModel.billingCategory
         model.invoiceStatus = InvoiceStatuses.Paid
-        model.status = InvoiceStatusesStruct(type: InvoiceStatuses.Paid).title.capitalizingFirstLetter()
+        if let status = invoiceModel.status {
+            model.status = InvoiceStatusesStruct(type: status).title.capitalizingFirstLetter()
+        }
+        if let isDispute = invoiceModel.dispute, isDispute {
+            model.dispute = R.string.localizable.invoiceDetailsIsHasDispute()
+        }
         model.assetId = invoiceModel.settlementAssetId
         return model
     }

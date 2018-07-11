@@ -601,7 +601,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 93 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 97 localization keys.
     struct localizable {
       /// Base translation: %@ (%@ block confirmations)
       /// 
@@ -763,6 +763,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: Base
       static let tabBarHistoryItemTitle = Rswift.StringResource(key: "TabBar.HistoryItem.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
+      /// Base translation: Has dispute
+      /// 
+      /// Locales: Base
+      static let invoiceDetailsIsHasDispute = Rswift.StringResource(key: "Invoice.Details.IsHasDispute", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
       /// Base translation: History
       /// 
       /// Locales: Base
@@ -795,6 +799,14 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: Base
       static let historyTransactionDetailsInvoiceNumber = Rswift.StringResource(key: "History.Transaction.Details.InvoiceNumber", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
+      /// Base translation: Invoice details
+      /// 
+      /// Locales: Base
+      static let historyInvoiceDetailsScreenTitle = Rswift.StringResource(key: "History.Invoice.Details.Screen.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
+      /// Base translation: Invoice details %@
+      /// 
+      /// Locales: Base
+      static let historyTitleDetails = Rswift.StringResource(key: "History.Title.Details", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
       /// Base translation: LATE PAID
       /// 
       /// Locales: Base
@@ -955,6 +967,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: Base
       static let exchangeSourceUSD = Rswift.StringResource(key: "Exchange.Source.USD", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
+      /// Base translation: Unpaid
+      /// 
+      /// Locales: Base
+      static let invoiceStatusItemsUnpaid = Rswift.StringResource(key: "Invoice.Status.Items.Unpaid", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
       /// Base translation: Unpaid invoices
       /// 
       /// Locales: Base
@@ -1256,6 +1272,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("TabBar.HistoryItem.Title", bundle: R.hostingBundle, value: "HISTORY", comment: "")
       }
       
+      /// Base translation: Has dispute
+      /// 
+      /// Locales: Base
+      static func invoiceDetailsIsHasDispute(_: Void = ()) -> String {
+        return NSLocalizedString("Invoice.Details.IsHasDispute", bundle: R.hostingBundle, value: "Has dispute", comment: "")
+      }
+      
       /// Base translation: History
       /// 
       /// Locales: Base
@@ -1310,6 +1333,20 @@ struct R: Rswift.Validatable {
       /// Locales: Base
       static func historyTransactionDetailsInvoiceNumber(_: Void = ()) -> String {
         return NSLocalizedString("History.Transaction.Details.InvoiceNumber", bundle: R.hostingBundle, value: "Invoice Number", comment: "")
+      }
+      
+      /// Base translation: Invoice details
+      /// 
+      /// Locales: Base
+      static func historyInvoiceDetailsScreenTitle(_: Void = ()) -> String {
+        return NSLocalizedString("History.Invoice.Details.Screen.Title", bundle: R.hostingBundle, value: "Invoice details", comment: "")
+      }
+      
+      /// Base translation: Invoice details %@
+      /// 
+      /// Locales: Base
+      static func historyTitleDetails(_ value1: String) -> String {
+        return String(format: NSLocalizedString("History.Title.Details", bundle: R.hostingBundle, value: "Invoice details %@", comment: ""), locale: R.applicationLocale, value1)
       }
       
       /// Base translation: LATE PAID
@@ -1590,6 +1627,13 @@ struct R: Rswift.Validatable {
       /// Locales: Base
       static func exchangeSourceUSD(_: Void = ()) -> String {
         return NSLocalizedString("Exchange.Source.USD", bundle: R.hostingBundle, value: "USD", comment: "")
+      }
+      
+      /// Base translation: Unpaid
+      /// 
+      /// Locales: Base
+      static func invoiceStatusItemsUnpaid(_: Void = ()) -> String {
+        return NSLocalizedString("Invoice.Status.Items.Unpaid", bundle: R.hostingBundle, value: "Unpaid", comment: "")
       }
       
       /// Base translation: Unpaid invoices

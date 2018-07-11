@@ -6,8 +6,17 @@ import UserNotifications
 
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDelegate {
    
+    func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationControllerOperation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        let name = String(describing: fromVC.classForCoder)
+        if name.contains("Pin") {
+            return PresentDownAnimation()
+        } else {
+            return PresentAnimation()
+        }
+    }
+    
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -70,11 +79,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     private func switchToNavigationControllerIfNeed() -> UINavigationController {
         if let navigationWas = window?.rootViewController as? UINavigationController {
+            navigationWas.delegate = self
             return navigationWas
         }
         let navigationController = UINavigationController(rootViewController: makeRootViewController())
         navigationController.isNavigationBarHidden = true
         window?.rootViewController = navigationController
+        navigationController.delegate = self
         return navigationController
     }
     

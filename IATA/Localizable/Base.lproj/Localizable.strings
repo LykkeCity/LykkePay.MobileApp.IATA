@@ -64,6 +64,7 @@
 "Invoice.Status.Items.InternalError" = "ERROR";
 "Invoice.Status.Items.PastDue" = "PAST DUE";
 "Invoice.Status.Items.Dispute" = "DISPUTE";
+"Invoice.Status.Items.Unpaid" = "Unpaid";
 
 
 "Invoice.Disput.Invoice" = "Dispute invoice";
@@ -76,6 +77,8 @@
 
 "History.Screen.Title" = "History";
 "History.Transaction.Screen.Title" = "Transaction details";
+"History.Invoice.Details.Screen.Title" = "Invoice details";
+"History.Title.Details" = "Invoice details %@";
 "History.Transaction.Details.SoldBy" = "Sold By";
 "History.Transaction.Details.PaidBy" = "Paid By";
 "History.Transaction.Details.invoiceStatus" = "Status";
@@ -92,6 +95,7 @@
 "History.Transaction.Details.Status" = "Status";
 "History.Transaction.Details.PaidBy" = "Paid By";
 "History.Title.Transaction" = "%@ Outgoing invoice payment";
+"Invoice.Details.IsHasDispute" = "Has dispute";
 
 
 "Setting.Logout.Item.Logout" = "Log Out";
