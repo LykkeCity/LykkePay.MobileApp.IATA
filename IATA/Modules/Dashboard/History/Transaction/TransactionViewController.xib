@@ -12,6 +12,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TransactionViewController" customModule="IATA" customModuleProvider="target">
             <connections>
+                <outlet property="constraintToSafeArea" destination="mZr-CN-QJC" id="QGV-uw-zQz"/>
+                <outlet property="constraintToSuperview" destination="6SS-SS-JMa" id="gFf-5D-GV2"/>
                 <outlet property="navBar" destination="tgr-ka-0j3" id="5yI-RR-E7M"/>
                 <outlet property="navItem" destination="vDB-0r-HkT" id="dmF-yh-r7A"/>
                 <outlet property="navView" destination="7OK-Um-FTM" id="TWj-US-qOz"/>
@@ -26,10 +28,10 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7OK-Um-FTM">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                    <rect key="frame" x="0.0" y="-24" width="375" height="88"/>
                     <subviews>
                         <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tgr-ka-0j3">
-                            <rect key="frame" x="0.0" y="24" width="375" height="36"/>
+                            <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                             <items>
                                 <navigationItem title="Title" id="vDB-0r-HkT"/>
                             </items>
@@ -38,21 +40,20 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="tgr-ka-0j3" secondAttribute="bottom" id="6ly-WB-sJg"/>
-                        <constraint firstItem="tgr-ka-0j3" firstAttribute="top" secondItem="7OK-Um-FTM" secondAttribute="top" constant="24" id="XJ8-mS-csp"/>
                         <constraint firstAttribute="trailing" secondItem="tgr-ka-0j3" secondAttribute="trailing" id="avT-N0-Ivu"/>
-                        <constraint firstAttribute="height" constant="60" id="bIm-7w-nLR"/>
+                        <constraint firstAttribute="height" constant="88" id="bIm-7w-nLR"/>
                         <constraint firstItem="tgr-ka-0j3" firstAttribute="leading" secondItem="7OK-Um-FTM" secondAttribute="leading" id="kaG-5U-6jK"/>
                     </constraints>
                 </view>
                 <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pzr-O0-uA4" customClass="TransactionTableViewHeader" customModule="IATA" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="68" width="375" height="100"/>
+                    <rect key="frame" x="0.0" y="64" width="375" height="100"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="100" id="Tow-2f-5yg"/>
                     </constraints>
                 </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="yf9-nj-Zul">
-                    <rect key="frame" x="0.0" y="168" width="359" height="499"/>
+                    <rect key="frame" x="0.0" y="164" width="359" height="503"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="isMotionEnabled" value="NO"/>
@@ -62,14 +63,15 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="Pzr-O0-uA4" firstAttribute="top" secondItem="7OK-Um-FTM" secondAttribute="bottom" constant="8" id="I4V-xS-XrM"/>
+                <constraint firstAttribute="top" secondItem="7OK-Um-FTM" secondAttribute="bottom" constant="-64" id="6SS-SS-JMa"/>
+                <constraint firstItem="Pzr-O0-uA4" firstAttribute="top" secondItem="7OK-Um-FTM" secondAttribute="bottom" id="I4V-xS-XrM"/>
                 <constraint firstItem="Pzr-O0-uA4" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="P0W-jx-x2K"/>
                 <constraint firstItem="yf9-nj-Zul" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="QoM-dn-oFs"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="7OK-Um-FTM" secondAttribute="trailing" id="R1D-hh-BHN"/>
                 <constraint firstItem="yf9-nj-Zul" firstAttribute="top" secondItem="Pzr-O0-uA4" secondAttribute="bottom" id="RLG-WQ-sbC"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="yf9-nj-Zul" secondAttribute="trailing" constant="16" id="cS4-lR-1AA"/>
                 <constraint firstItem="7OK-Um-FTM" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="m90-Hn-rMj"/>
-                <constraint firstItem="7OK-Um-FTM" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="mZr-CN-QJC"/>
+                <constraint firstItem="7OK-Um-FTM" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="-44" id="mZr-CN-QJC"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="yf9-nj-Zul" secondAttribute="bottom" id="ngS-eI-6EF"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Pzr-O0-uA4" secondAttribute="trailing" id="ysk-Tl-re4"/>
             </constraints>

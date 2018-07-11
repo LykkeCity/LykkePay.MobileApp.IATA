@@ -7,6 +7,8 @@ class TransactionViewController: BaseViewController<PropertyKeyTransactionModel,
     @IBOutlet weak var navView: UIView!
     @IBOutlet private weak var tabView: UITableView!
     @IBOutlet private weak var transactionHeaderView: TransactionTableViewHeader!
+    @IBOutlet weak var constraintToSafeArea: NSLayoutConstraint!
+    @IBOutlet weak var constraintToSuperview: NSLayoutConstraint!
     
     var id = String()
     var isPaid = false
@@ -21,6 +23,16 @@ class TransactionViewController: BaseViewController<PropertyKeyTransactionModel,
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.05, execute: {
             super.beginRefreshing()
         })
+
+        setConstraintToTopOfScreen()
+    }
+
+    private func setConstraintToTopOfScreen() {
+        if #available(iOS 11.0, *) {
+            view.removeConstraint(constraintToSuperview)
+        } else {
+            view.removeConstraint(constraintToSafeArea)
+        }
     }
     
     override func getNavItem() -> UINavigationItem? {
