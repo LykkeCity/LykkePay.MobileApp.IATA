@@ -25,6 +25,8 @@
             <connections>
                 <outlet property="assetPicker" destination="qzD-5Z-1Kj" id="eyH-3l-EmB"/>
                 <outlet property="btnConfirm" destination="mUc-ob-58w" id="8NL-o7-a5f"/>
+                <outlet property="constraintToSafeArea" destination="KhO-bR-KmP" id="tTC-Zg-zkh"/>
+                <outlet property="constraintToSuperview" destination="GqO-8N-ttT" id="vx6-k9-bI2"/>
                 <outlet property="desiredAssertView" destination="SGj-mo-SEJ" id="uwv-kf-Lfs"/>
                 <outlet property="heightConstraint" destination="MWw-s5-9nY" id="Fpt-FG-Sce"/>
                 <outlet property="navBar" destination="1DP-tn-S3C" id="6JI-lN-juq"/>
@@ -46,13 +48,10 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cbq-gG-6vJ">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                    <rect key="frame" x="0.0" y="-32" width="375" height="96"/>
                     <subviews>
                         <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1DP-tn-S3C">
-                            <rect key="frame" x="0.0" y="24" width="375" height="44"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="44" id="cAT-4w-68h"/>
-                            </constraints>
+                            <rect key="frame" x="0.0" y="52" width="375" height="44"/>
                             <items>
                                 <navigationItem title="Title" id="eaz-Ji-Xdj"/>
                             </items>
@@ -60,9 +59,9 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstItem="1DP-tn-S3C" firstAttribute="top" secondItem="Cbq-gG-6vJ" secondAttribute="top" constant="24" id="7gL-C0-hVD"/>
-                        <constraint firstAttribute="height" constant="60" id="YgY-Qn-OBy"/>
+                        <constraint firstAttribute="height" constant="96" id="YgY-Qn-OBy"/>
                         <constraint firstItem="1DP-tn-S3C" firstAttribute="leading" secondItem="Cbq-gG-6vJ" secondAttribute="leading" id="mOf-Og-iKQ"/>
+                        <constraint firstAttribute="bottom" secondItem="1DP-tn-S3C" secondAttribute="bottom" id="uCH-Lc-zWU"/>
                         <constraint firstAttribute="trailing" secondItem="1DP-tn-S3C" secondAttribute="trailing" id="ydT-hM-thI"/>
                     </constraints>
                 </view>
@@ -278,9 +277,10 @@
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="2e9-Et-Zp9" secondAttribute="bottom" id="FsN-sC-5za"/>
+                <constraint firstAttribute="top" secondItem="Cbq-gG-6vJ" secondAttribute="bottom" constant="-64" id="GqO-8N-ttT"/>
                 <constraint firstItem="2e9-Et-Zp9" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="IQB-ZM-L2b"/>
                 <constraint firstItem="5IB-Qn-f4q" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="76" id="Jl4-ch-qPE"/>
-                <constraint firstItem="Cbq-gG-6vJ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="KhO-bR-KmP"/>
+                <constraint firstItem="Cbq-gG-6vJ" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="-52" id="KhO-bR-KmP"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="2e9-Et-Zp9" secondAttribute="trailing" id="Xpi-gb-59Y"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Cbq-gG-6vJ" secondAttribute="trailing" id="cE4-dT-v6s"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="5IB-Qn-f4q" secondAttribute="trailing" constant="16" id="iO4-pu-J65"/>
@@ -288,8 +288,9 @@
                 <constraint firstItem="5IB-Qn-f4q" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="wCl-q7-QdN"/>
                 <constraint firstItem="2e9-Et-Zp9" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="zx3-Ly-slz"/>
             </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <point key="canvasLocation" x="33.5" y="53.5"/>
+            <point key="canvasLocation" x="22" y="-29"/>
         </view>
     </objects>
     <resources>

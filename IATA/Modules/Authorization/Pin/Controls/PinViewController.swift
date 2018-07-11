@@ -6,7 +6,9 @@ class PinViewController: UIViewController, UINavigationControllerDelegate {
     @IBOutlet weak var passwordStackView: UIStackView!
     @IBOutlet weak var labelTitle: UILabel!
     @IBOutlet weak var cancelBtn: UIButton!
-    
+    @IBOutlet weak var constraintToSafeArea: NSLayoutConstraint!
+    @IBOutlet weak var constraintToSuperview: NSLayoutConstraint!
+
     private var state: PinViewState = DefaultPinViewState() as PinViewState
     
     //MARK: Property
@@ -42,6 +44,16 @@ class PinViewController: UIViewController, UINavigationControllerDelegate {
         if self.isValidationTransaction, let message = messageTouch {
             self.passwordContainerView.touchAuthenticationReason = message
             self.passwordContainerView.touchAuthenticationAction(self.passwordContainerView.touchAuthenticationButton)
+        }
+
+        setConstraintToTopOfScreen()
+    }
+
+    private func setConstraintToTopOfScreen() {
+        if #available(iOS 11.0, *) {
+            view.removeConstraint(constraintToSuperview)
+        } else {
+            view.removeConstraint(constraintToSafeArea)
         }
     }
     

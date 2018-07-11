@@ -17,6 +17,9 @@ class CashInViewController: BaseViewController<CashOutViewModel, DefaultCashOutS
     @IBOutlet weak var assetPicker: FloatTextField!
     @IBOutlet weak var shadowBackground: UIView!
     @IBOutlet weak var shadowView: UIView!
+    @IBOutlet weak var constraintToSuperview: NSLayoutConstraint!
+    @IBOutlet weak var constraintToSafeArea: NSLayoutConstraint!
+
     
     @IBOutlet weak var heightConstraint: NSLayoutConstraint!
 
@@ -59,6 +62,7 @@ class CashInViewController: BaseViewController<CashOutViewModel, DefaultCashOutS
         self.pickerView.delegate = self
         self.pickerView.dataSource = self
         self.pickerView.selectRow(numberOfRows / 2 + 1, inComponent: 0, animated: false)
+        setConstraintToTopOfScreen()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -70,6 +74,14 @@ class CashInViewController: BaseViewController<CashOutViewModel, DefaultCashOutS
     override func viewWillDisappear(_ animated: Bool) {
         self.tabBarController?.tabBar.isHidden = false
         self.tabBarController?.tabBar.isTranslucent = false
+    }
+
+    private func setConstraintToTopOfScreen() {
+        if #available(iOS 11.0, *) {
+            view.removeConstraint(constraintToSuperview)
+        } else {
+            view.removeConstraint(constraintToSafeArea)
+        }
     }
     
     override func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {

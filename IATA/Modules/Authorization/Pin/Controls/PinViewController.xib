@@ -18,6 +18,8 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PinViewController" customModule="IATA" customModuleProvider="target">
             <connections>
                 <outlet property="cancelBtn" destination="xe5-U4-Wo3" id="SOu-hE-CLo"/>
+                <outlet property="constraintToSafeArea" destination="ppb-V9-CTj" id="6uw-Sf-e8F"/>
+                <outlet property="constraintToSuperview" destination="5CB-aW-LQe" id="tR0-PS-7WV"/>
                 <outlet property="labelTitle" destination="oY7-VE-eOM" id="NZK-wK-4PJ"/>
                 <outlet property="passwordStackView" destination="MgR-5H-JGF" id="mJp-Bo-yet"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -29,7 +31,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="35" translatesAutoresizingMaskIntoConstraints="NO" id="Ulj-kJ-9d9">
-                    <rect key="frame" x="16" y="68" width="343" height="575"/>
+                    <rect key="frame" x="16" y="56" width="343" height="587"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hub-S0-8XR">
                             <rect key="frame" x="0.0" y="0.0" width="343" height="120"/>
@@ -60,10 +62,10 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="MgR-5H-JGF">
-                            <rect key="frame" x="0.0" y="210" width="343" height="365"/>
+                            <rect key="frame" x="0.0" y="210" width="343" height="377"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Xh-7S-HGl">
-                                    <rect key="frame" x="0.0" y="0.0" width="343" height="365"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="343" height="377"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -73,10 +75,10 @@
                     </subviews>
                 </stackView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nyZ-gg-V6l">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                    <rect key="frame" x="0.0" y="28" width="375" height="20"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xe5-U4-Wo3">
-                            <rect key="frame" x="16" y="24" width="57" height="28"/>
+                            <rect key="frame" x="16" y="0.0" width="57" height="28"/>
                             <fontDescription key="fontDescription" name="GothamPro" family="Gotham Pro" pointSize="17"/>
                             <state key="normal" title="Cancel">
                                 <color key="titleColor" red="0.066666666666666666" green="0.066666666666666666" blue="0.066666666666666666" alpha="1" colorSpace="calibratedRGB"/>
@@ -88,23 +90,24 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="60" id="JZp-Ro-YCt"/>
+                        <constraint firstAttribute="height" constant="20" id="JZp-Ro-YCt"/>
                         <constraint firstItem="xe5-U4-Wo3" firstAttribute="leading" secondItem="nyZ-gg-V6l" secondAttribute="leading" constant="16" id="VJJ-QJ-vKA"/>
-                        <constraint firstItem="xe5-U4-Wo3" firstAttribute="top" secondItem="nyZ-gg-V6l" secondAttribute="top" constant="24" id="uwD-ph-zZI"/>
+                        <constraint firstItem="xe5-U4-Wo3" firstAttribute="top" secondItem="nyZ-gg-V6l" secondAttribute="top" id="t7u-FZ-GIf"/>
                     </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="nyZ-gg-V6l" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="3k1-ar-gTR"/>
+                <constraint firstItem="nyZ-gg-V6l" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="28" id="5CB-aW-LQe"/>
                 <constraint firstItem="Ulj-kJ-9d9" firstAttribute="top" secondItem="nyZ-gg-V6l" secondAttribute="bottom" constant="8" id="PFK-fI-Bo2"/>
-                <constraint firstItem="Ulj-kJ-9d9" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="Te2-v6-7SB"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Ulj-kJ-9d9" secondAttribute="bottom" constant="24" id="Wwb-A0-t3g"/>
-                <constraint firstItem="nyZ-gg-V6l" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="XEB-Af-Z4y"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="nyZ-gg-V6l" secondAttribute="trailing" id="vOf-aO-aGj"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Ulj-kJ-9d9" secondAttribute="trailing" constant="16" id="w55-58-nZM"/>
+                <constraint firstItem="Ulj-kJ-9d9" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="16" id="Te2-v6-7SB"/>
+                <constraint firstAttribute="bottom" secondItem="Ulj-kJ-9d9" secondAttribute="bottom" constant="24" id="Wwb-A0-t3g"/>
+                <constraint firstItem="nyZ-gg-V6l" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="XEB-Af-Z4y"/>
+                <constraint firstItem="nyZ-gg-V6l" firstAttribute="top" secondItem="6ZK-2U-wbo" secondAttribute="top" constant="8" id="ppb-V9-CTj"/>
+                <constraint firstAttribute="trailing" secondItem="nyZ-gg-V6l" secondAttribute="trailing" id="vOf-aO-aGj"/>
+                <constraint firstAttribute="trailing" secondItem="Ulj-kJ-9d9" secondAttribute="trailing" constant="16" id="w55-58-nZM"/>
             </constraints>
-            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <viewLayoutGuide key="safeArea" id="6ZK-2U-wbo"/>
             <point key="canvasLocation" x="33.5" y="148.5"/>
         </view>
     </objects>
