@@ -78,7 +78,7 @@ class SignInViewController: BaseAuthViewController, UINavigationControllerDelega
     }
 
     private func setupChangeServerButton() {
-        #if DEBUG
+        #if DEBUG || TEST
         changeServerButton.isHidden = false
         #endif
     }
