@@ -205,6 +205,238 @@
 		123C1779CC315CC3F3D1AD7D /* Pods_IATATests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7527B2B91103E6B38EFEF340 /* Pods_IATATests.framework */; };
 		5BD8D3E6E74FDC2B2AAEBD74 /* Pods_IATA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FC260316A6015639FD5E1F0 /* Pods_IATA.framework */; };
 		9406B2F820E4E2330086E880 /* lykkexnettest.crt in Resources */ = {isa = PBXBuildFile; fileRef = 9406B2F720E4E2330086E880 /* lykkexnettest.crt */; };
+		946A895520F6004900C6688B /* ExchangeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BC8CED20E111E4000A708B /* ExchangeModel.swift */; };
+		946A895620F6004900C6688B /* BTConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1AF41320CADB7A0009595C /* BTConfiguration.swift */; };
+		946A895720F6004900C6688B /* StringsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A37EF6D20C58C2500201907 /* StringsExtension.swift */; };
+		946A895820F6004900C6688B /* DefaultBaseState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0B11AC20D29A7700021E2D /* DefaultBaseState.swift */; };
+		946A895920F6004900C6688B /* DefaultBaseViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A37EFF220C7FC0300201907 /* DefaultBaseViewState.swift */; };
+		946A895A20F6004900C6688B /* DisputInvoiceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7EFD41320DD2C9D00D984AA /* DisputInvoiceRequest.swift */; };
+		946A895B20F6004900C6688B /* BTTableCellContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1AF41420CADB7B0009595C /* BTTableCellContentView.swift */; };
+		946A895C20F6004900C6688B /* UiStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF6119E20C9980500957348 /* UiStatusView.swift */; };
+		946A895D20F6004900C6688B /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0D4B7E20C542DE009B73E9 /* Network.swift */; };
+		946A895E20F6004900C6688B /* PropertyValidationKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A37EF8F20C6C01300201907 /* PropertyValidationKey.swift */; };
+		946A895F20F6004900C6688B /* DisputeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A26FC9220D15AC70097A8F6 /* DisputeViewController.swift */; };
+		946A896020F6004900C6688B /* InvoicePaymentRangeModelItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A08C11920CABC2300342A3E /* InvoicePaymentRangeModelItem.swift */; };
+		946A896120F6004900C6688B /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A26FCA420D161640097A8F6 /* HistoryTableViewCell.swift */; };
+		946A896220F6004900C6688B /* InvoiceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF611A020C9A4D700957348 /* InvoiceTableViewCell.swift */; };
+		946A896320F6004900C6688B /* NavigationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A11323620DD85A000FE6853 /* NavigationExtension.swift */; };
+		946A896420F6004900C6688B /* MenuEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4E4A2E20DA8E7000F1CA3A /* MenuEnum.swift */; };
+		946A896520F6004900C6688B /* DefaultDisputeState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0B119D20D2897700021E2D /* DefaultDisputeState.swift */; };
+		946A896620F6004900C6688B /* TransactionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A26FCAF20D1658D0097A8F6 /* TransactionTableViewCell.swift */; };
+		946A896720F6004900C6688B /* InvoiceRootViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7576E620E55D6900A45434 /* InvoiceRootViewModel.swift */; };
+		946A896820F6004900C6688B /* DefaultInvoiceSettingsState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A26FC8E20D117500097A8F6 /* DefaultInvoiceSettingsState.swift */; };
+		946A896920F6004900C6688B /* PushNotificationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947A438220F0DA1F006740B7 /* PushNotificationHelper.swift */; };
+		946A896A20F6004900C6688B /* TransactionTableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A26FCB320D165AC0097A8F6 /* TransactionTableViewHeader.swift */; };
+		946A896B20F6004900C6688B /* AuthNetworkConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A37F00420C80A7500201907 /* AuthNetworkConfig.swift */; };
+		946A896C20F6004900C6688B /* SwipeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1A1C6F20DD1D2E0037DC77 /* SwipeCollectionViewCell.swift */; };
+		946A896D20F6004900C6688B /* DefaultAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB8E20D20C56FF500C13361 /* DefaultAuthenticationService.swift */; };
+		946A896E20F6004900C6688B /* InvoiceHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4CD13D20CD840600EF4A17 /* InvoiceHeaderView.swift */; };
+		946A896F20F6004900C6688B /* BTTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1AF41120CADB7A0009595C /* BTTableViewCell.swift */; };
+		946A897020F6004900C6688B /* InvoiceViewControllerPaymentExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACDF69320E4179D00EFF18F /* InvoiceViewControllerPaymentExtension.swift */; };
+		946A897120F6004900C6688B /* PaymentAmount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A837C2F20DE986300199759 /* PaymentAmount.swift */; };
+		946A897220F6004900C6688B /* LabelExtensitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0B11B520D2B4C400021E2D /* LabelExtensitions.swift */; };
+		946A897320F6004900C6688B /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7DEFC8A20C97147005FB9EF /* TabBarController.swift */; };
+		946A897420F6004900C6688B /* ExchangeViewControllerExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7576EA20E577A200A45434 /* ExchangeViewControllerExtention.swift */; };
+		946A897520F6004900C6688B /* ErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A37EF6120C588F400201907 /* ErrorHandler.swift */; };
+		946A897620F6004900C6688B /* SwipeExpansionStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1A1C7F20DD1D350037DC77 /* SwipeExpansionStyle.swift */; };
+		946A897720F6004900C6688B /* NetworkUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A62F56420C545F700A51D63 /* NetworkUtil.swift */; };
+		946A897820F6004900C6688B /* PaymentConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4CD15B20CECA2100EF4A17 /* PaymentConfig.swift */; };
+		946A897920F6004900C6688B /* PaymentRangeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A08C11520CAB5B900342A3E /* PaymentRangeTableViewCell.swift */; };
+		946A897A20F6004900C6688B /* ViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABED71520DBC87900AABCAD /* ViewUtils.swift */; };
+		946A897B20F6004900C6688B /* DefaultPaymentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4CD15720CEC96100EF4A17 /* DefaultPaymentService.swift */; };
+		946A897C20F6004900C6688B /* PasswordContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A37EFDA20C7D65000201907 /* PasswordContainerView.swift */; };
+		946A897D20F6004900C6688B /* HistoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0B11BB20D2B66300021E2D /* HistoryModel.swift */; };
+		946A897E20F6004900C6688B /* NetworkConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0D4B8620C54446009B73E9 /* NetworkConfig.swift */; };
+		946A897F20F6004900C6688B /* ExchangeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC0DA9820E1589800923C3F /* ExchangeViewModel.swift */; };
+		946A898020F6004900C6688B /* InvoiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A13F65B20C974EC001BA302 /* InvoiceViewController.swift */; };
+		946A898120F6004900C6688B /* TransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A26FCB520D166F00097A8F6 /* TransactionViewController.swift */; };
+		946A898220F6004900C6688B /* TokenObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6DB5D120C5537000BC1127 /* TokenObject.swift */; };
+		946A898320F6004900C6688B /* SwipeCollectionViewCell+Accessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1A1C7620DD1D310037DC77 /* SwipeCollectionViewCell+Accessibility.swift */; };
+		946A898420F6004900C6688B /* PickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1B12EE20ED11670069ABDA /* PickerTableViewCell.swift */; };
+		946A898520F6004900C6688B /* EncodingType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A62F56A20C5497200A51D63 /* EncodingType.swift */; };
+		946A898620F6004900C6688B /* SwipeTableViewCell+Accessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1A1C7120DD1D2E0037DC77 /* SwipeTableViewCell+Accessibility.swift */; };
+		946A898720F6004900C6688B /* CustomizeRangeSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A11323420DD795800FE6853 /* CustomizeRangeSlider.swift */; };
+		946A898820F6004900C6688B /* UIView+SpinnerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A37EF5F20C5881200201907 /* UIView+SpinnerController.swift */; };
+		946A898920F6004900C6688B /* BTNavigationDropdownMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1AF40520CADB450009595C /* BTNavigationDropdownMenu.swift */; };
+		946A898A20F6004900C6688B /* DisputeListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7EFD41920E0B4F800D984AA /* DisputeListItem.swift */; };
+		946A898B20F6004900C6688B /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A37EF5220C5816B00201907 /* SignInViewController.swift */; };
+		946A898C20F6004900C6688B /* WalletsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D3012820D798D400A1AEB8 /* WalletsModel.swift */; };
+		946A898D20F6004900C6688B /* DisputeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0B119820D2889600021E2D /* DisputeModel.swift */; };
+		946A898E20F6004900C6688B /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A37EF6420C589FD00201907 /* UIViewExtension.swift */; };
+		946A898F20F6004900C6688B /* WalletsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7DEFC9320C97458005FB9EF /* WalletsViewController.swift */; };
+		946A899020F6004900C6688B /* ServerFieldsExtractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A37EF8D20C6AC8900201907 /* ServerFieldsExtractor.swift */; };
+		946A899120F6004900C6688B /* DefaultHistoryState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0B11B820D2B61900021E2D /* DefaultHistoryState.swift */; };
+		946A899220F6004900C6688B /* SwipeTableViewCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1A1C7C20DD1D340037DC77 /* SwipeTableViewCellDelegate.swift */; };
+		946A899320F6004900C6688B /* PushNotificationHubSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947A438120F0DA1F006740B7 /* PushNotificationHubSettings.swift */; };
+		946A899420F6004900C6688B /* VerticalAlignedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4CD15220CE7E7900EF4A17 /* VerticalAlignedLabel.swift */; };
+		946A899520F6004900C6688B /* SwipeActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1A1C7320DD1D2F0037DC77 /* SwipeActionButton.swift */; };
+		946A899620F6004900C6688B /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB8E20F20C5708300C13361 /* AuthenticationService.swift */; };
+		946A899720F6004900C6688B /* InvoiceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A837C2E20DE986300199759 /* InvoiceModel.swift */; };
+		946A899820F6004900C6688B /* BigThumbnailSwither.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4CD12E20CD6DAF00EF4A17 /* BigThumbnailSwither.swift */; };
+		946A899920F6004900C6688B /* BaseAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A37F00720C81A5600201907 /* BaseAuthViewController.swift */; };
+		946A899A20F6004900C6688B /* SwipeFeedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1A1C8420DD1D370037DC77 /* SwipeFeedback.swift */; };
+		946A899B20F6004900C6688B /* DefaultInvoiceState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4CD16220CF074500EF4A17 /* DefaultInvoiceState.swift */; };
+		946A899C20F6004900C6688B /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1AF40C20CADB670009595C /* UIView+Extension.swift */; };
+		946A899D20F6004900C6688B /* BracketLessGetEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A01898520D6D55600CD5A79 /* BracketLessGetEncoding.swift */; };
+		946A899E20F6004900C6688B /* SettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A837C3A20DE9C1000199759 /* SettingsModel.swift */; };
+		946A899F20F6004900C6688B /* HistoryTransactionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9364BF20DA334100634406 /* HistoryTransactionModel.swift */; };
+		946A89A020F6004900C6688B /* IATA.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0A0D4B5120C53362009B73E9 /* IATA.xcdatamodeld */; };
+		946A89A120F6004900C6688B /* DataRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6DB5D920C5572E00BC1127 /* DataRequest.swift */; };
+		946A89A220F6004900C6688B /* InvoiceSettingsState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A26FC8C20D117410097A8F6 /* InvoiceSettingsState.swift */; };
+		946A89A320F6004900C6688B /* NavPushingUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADA881C20DA774A00A332F0 /* NavPushingUtil.swift */; };
+		946A89A420F6004900C6688B /* BTTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1AF40420CADB450009595C /* BTTitle.swift */; };
+		946A89A520F6004900C6688B /* DefaultDisputInvoiceState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7EFD40920DD2AC500D984AA /* DefaultDisputInvoiceState.swift */; };
+		946A89A620F6004900C6688B /* ArrayEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A62F56C20C5499400A51D63 /* ArrayEncoding.swift */; };
+		946A89A720F6004900C6688B /* CancelDisputInvoiceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7EFD41720DD4AEE00D984AA /* CancelDisputInvoiceRequest.swift */; };
+		946A89A820F6004900C6688B /* Swipeable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1A1C7A20DD1D330037DC77 /* Swipeable.swift */; };
+		946A89A920F6004900C6688B /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A37EF6B20C58BA000201907 /* Utils.swift */; };
+		946A89AA20F6004900C6688B /* SwipeTableViewCell+Display.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1A1C7220DD1D2F0037DC77 /* SwipeTableViewCell+Display.swift */; };
+		946A89AB20F6004900C6688B /* DisputeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A26FC9720D15B7F0097A8F6 /* DisputeTableViewCell.swift */; };
+		946A89AC20F6004900C6688B /* DictionaryExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A37EF9120C6C97000201907 /* DictionaryExtension.swift */; };
+		946A89AD20F6004900C6688B /* DateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A349FF320D8F98D00D0A1C2 /* DateUtils.swift */; };
+		946A89AE20F6004900C6688B /* SwipeActionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1A1C6E20DD1D2D0037DC77 /* SwipeActionsView.swift */; };
+		946A89AF20F6004900C6688B /* SwipeCollectionViewCell+Display.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1A1C7920DD1D320037DC77 /* SwipeCollectionViewCell+Display.swift */; };
+		946A89B020F6004900C6688B /* DisputInvoiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7EFD40B20DD2B9000D984AA /* DisputInvoiceViewController.swift */; };
+		946A89B120F6004900C6688B /* SwipeCollectionViewCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1A1C6D20DD1D2D0037DC77 /* SwipeCollectionViewCellDelegate.swift */; };
+		946A89B220F6004900C6688B /* InvoicePaymentRangeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A837C2820DE985700199759 /* InvoicePaymentRangeModel.swift */; };
+		946A89B320F6004900C6688B /* InvoiceSettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0B11C020D2E35300021E2D /* InvoiceSettingsTableViewCell.swift */; };
+		946A89B420F6004900C6688B /* BaseNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0B11B120D2A3C900021E2D /* BaseNavController.swift */; };
+		946A89B520F6004900C6688B /* PreExchangeRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD3971B20E3E8BD002C789B /* PreExchangeRequest.swift */; };
+		946A89B620F6004900C6688B /* SwipeExpanding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1A1C7420DD1D300037DC77 /* SwipeExpanding.swift */; };
+		946A89B720F6004900C6688B /* SettingsMerchantsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A837C3920DE9C0F00199759 /* SettingsMerchantsModel.swift */; };
+		946A89B820F6004900C6688B /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A37EF6920C58B6B00201907 /* Theme.swift */; };
+		946A89B920F6004900C6688B /* CustomHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A71F2420E54135002D4207 /* CustomHeaderView.swift */; };
+		946A89BA20F6004900C6688B /* ServerErrorExtractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A62F56620C546E100A51D63 /* ServerErrorExtractor.swift */; };
+		946A89BB20F6004900C6688B /* DefaultTransactionState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9364BB20DA316400634406 /* DefaultTransactionState.swift */; };
+		946A89BC20F6004900C6688B /* DesignableUITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4CD11D20CD57AA00EF4A17 /* DesignableUITextField.swift */; };
+		946A89BD20F6004900C6688B /* ExchangeRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BC8CEA20E10ECD000A708B /* ExchangeRequest.swift */; };
+		946A89BE20F6004900C6688B /* SwipeActionTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1A1C8220DD1D360037DC77 /* SwipeActionTransitioning.swift */; };
+		946A89BF20F6004900C6688B /* PinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A37EFE220C7D67F00201907 /* PinViewController.swift */; };
+		946A89C020F6004900C6688B /* PasswordInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A37EFD920C7D65000201907 /* PasswordInputView.swift */; };
+		946A89C120F6004900C6688B /* DefaultExchangeState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BC8CE620E10DD6000A708B /* DefaultExchangeState.swift */; };
+		946A89C220F6004900C6688B /* BTTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1AF41220CADB7A0009595C /* BTTableView.swift */; };
+		946A89C320F6004900C6688B /* NotificateEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB1308E20E2752900AEFECF /* NotificateEnum.swift */; };
+		946A89C420F6004900C6688B /* SingInRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A37EF6F20C59C6F00201907 /* SingInRequest.swift */; };
+		946A89C520F6004900C6688B /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A37EFF720C8044200201907 /* ChangePasswordViewController.swift */; };
+		946A89C620F6004900C6688B /* CashOutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1B12E420ECC2870069ABDA /* CashOutViewModel.swift */; };
+		946A89C720F6004900C6688B /* Checkbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF6119C20C992AC00957348 /* Checkbox.swift */; };
+		946A89C820F6004900C6688B /* WalletsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7DEFC9220C97458005FB9EF /* WalletsTableViewCell.swift */; };
+		946A89C920F6004900C6688B /* SavePinRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF1C3AA20C832DB00AFD286 /* SavePinRequest.swift */; };
+		946A89CA20F6004900C6688B /* SwipeOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1A1C8120DD1D360037DC77 /* SwipeOptions.swift */; };
+		946A89CB20F6004900C6688B /* RangeSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A11323120DD790300FE6853 /* RangeSlider.swift */; };
+		946A89CC20F6004900C6688B /* InvoiceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A26FC8020D00B320097A8F6 /* InvoiceRequest.swift */; };
+		946A89CD20F6004900C6688B /* SwipeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1A1C8320DD1D370037DC77 /* SwipeTableViewCell.swift */; };
+		946A89CE20F6004900C6688B /* PasswordDotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A37EFDC20C7D65100201907 /* PasswordDotView.swift */; };
+		946A89CF20F6004900C6688B /* OnSwitchStateChangedDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A26FC8220D0F0B00097A8F6 /* OnSwitchStateChangedDelegate.swift */; };
+		946A89D020F6004900C6688B /* SwipeAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1A1C7020DD1D2E0037DC77 /* SwipeAnimator.swift */; };
+		946A89D120F6004900C6688B /* ModelErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3F58D620D8378400F78856 /* ModelErrors.swift */; };
+		946A89D220F6004900C6688B /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1A1C7520DD1D300037DC77 /* Extensions.swift */; };
+		946A89D320F6004900C6688B /* ExchangeRootViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7576E820E572D800A45434 /* ExchangeRootViewModel.swift */; };
+		946A89D420F6004900C6688B /* ExhangeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0B11C520D3158500021E2D /* ExhangeViewController.swift */; };
+		946A89D520F6004900C6688B /* SpinnerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A37EF6620C58A9100201907 /* SpinnerController.swift */; };
+		946A89D620F6004900C6688B /* WalletsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D78589A220D3DF1800E3C3FB /* WalletsViewModel.swift */; };
+		946A89D720F6004900C6688B /* PinValidationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A37EFE820C7E4A700201907 /* PinValidationRequest.swift */; };
+		946A89D820F6004900C6688B /* FiltersInvoiceList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A837C2920DE985700199759 /* FiltersInvoiceList.swift */; };
+		946A89D920F6004900C6688B /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A62F56820C5473600A51D63 /* Errors.swift */; };
+		946A89DA20F6004900C6688B /* OnChangeStateSelected.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4CD11B20CD47A600EF4A17 /* OnChangeStateSelected.swift */; };
+		946A89DB20F6004900C6688B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0D4B4A20C53361009B73E9 /* AppDelegate.swift */; };
+		946A89DC20F6004900C6688B /* DefaultSettingsState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0B118C20D270DD00021E2D /* DefaultSettingsState.swift */; };
+		946A89DD20F6004900C6688B /* ChangePasswordRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A37F00020C809DC00201907 /* ChangePasswordRequest.swift */; };
+		946A89DE20F6004900C6688B /* SignInViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A37EF9420C6D1E500201907 /* SignInViewState.swift */; };
+		946A89DF20F6004900C6688B /* FormatterExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4E4A3020DAAC3A00F1CA3A /* FormatterExtension.swift */; };
+		946A89E020F6004900C6688B /* DefaultWalletsState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D784931C20D25F650060EAC6 /* DefaultWalletsState.swift */; };
+		946A89E120F6004900C6688B /* InvoiceViewModelItemType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A08C0FE20CAA75000342A3E /* InvoiceViewModelItemType.swift */; };
+		946A89E220F6004900C6688B /* CredentialManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6DB5D520C553D000BC1127 /* CredentialManager.swift */; };
+		946A89E320F6004900C6688B /* InvoiceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A286A8F20CA88F700D93693 /* InvoiceViewModel.swift */; };
+		946A89E420F6004900C6688B /* DefaultPinViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A37EFF420C7FD3700201907 /* DefaultPinViewState.swift */; };
+		946A89E520F6004900C6688B /* BaseCurrencyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D177A420CE3AFA00985F05 /* BaseCurrencyCollectionViewCell.swift */; };
+		946A89E620F6004900C6688B /* PaymentRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE96BF20D7F94500F97768 /* PaymentRequest.swift */; };
+		946A89E720F6004900C6688B /* InvoiceStatuses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A837C2D20DE986200199759 /* InvoiceStatuses.swift */; };
+		946A89E820F6004900C6688B /* DefaultCashOutState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1B12DE20ECC0D10069ABDA /* DefaultCashOutState.swift */; };
+		946A89E920F6004900C6688B /* InvoiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0B11A020D28BAF00021E2D /* InvoiceView.swift */; };
+		946A89EA20F6004900C6688B /* PasswordUIValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A37EFDB20C7D65100201907 /* PasswordUIValidation.swift */; };
+		946A89EB20F6004900C6688B /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1AF40D20CADB670009595C /* UIViewController+Extension.swift */; };
+		946A89EC20F6004900C6688B /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7AF0E1F20E3797F00C285D4 /* UIViewControllerExtension.swift */; };
+		946A89ED20F6004900C6688B /* CurrencyUiTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABED71320DBA94300AABCAD /* CurrencyUiTextField.swift */; };
+		946A89EE20F6004900C6688B /* InvoiceFiltersModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A837C2720DE985700199759 /* InvoiceFiltersModel.swift */; };
+		946A89EF20F6004900C6688B /* CashOutRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1B12EB20ECFA500069ABDA /* CashOutRequest.swift */; };
+		946A89F020F6004900C6688B /* NotificationIds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947A438820F0DA7F006740B7 /* NotificationIds.swift */; };
+		946A89F120F6004900C6688B /* PinViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A37EFEE20C7FB8A00201907 /* PinViewState.swift */; };
+		946A89F220F6004900C6688B /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A837C3D20DE9CCC00199759 /* SettingsViewModel.swift */; };
+		946A89F320F6004900C6688B /* InvoiceSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF611A520CA72DA00957348 /* InvoiceSettingsViewController.swift */; };
+		946A89F420F6004900C6688B /* DefaultChangePasswordViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A37EFFE20C808FB00201907 /* DefaultChangePasswordViewState.swift */; };
+		946A89F520F6004900C6688B /* FilterPreference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4CD14020CD894900EF4A17 /* FilterPreference.swift */; };
+		946A89F620F6004900C6688B /* DecimalNumberTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACDF69120E400B600EFF18F /* DecimalNumberTransform.swift */; };
+		946A89F720F6004900C6688B /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADA881920DA530400A332F0 /* TextField.swift */; };
+		946A89F820F6004900C6688B /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0B11A520D2978D00021E2D /* BaseViewController.swift */; };
+		946A89F920F6004900C6688B /* SwipeAccessibilityCustomAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1A1C8020DD1D350037DC77 /* SwipeAccessibilityCustomAction.swift */; };
+		946A89FA20F6004900C6688B /* DefaultSignInViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A37EF9620C6D2B200201907 /* DefaultSignInViewState.swift */; };
+		946A89FB20F6004900C6688B /* UIImageExtensition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABED71D20DBDEF800AABCAD /* UIImageExtensition.swift */; };
+		946A89FC20F6004900C6688B /* PaymentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4CD15920CEC96E00EF4A17 /* PaymentService.swift */; };
+		946A89FD20F6004900C6688B /* ChangePasswordViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A37EFFC20C808E400201907 /* ChangePasswordViewState.swift */; };
+		946A89FE20F6004900C6688B /* SwipeTransitionLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1A1C7E20DD1D340037DC77 /* SwipeTransitionLayout.swift */; };
+		946A89FF20F6004900C6688B /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A26FC9D20D160F00097A8F6 /* HistoryViewController.swift */; };
+		946A8A0020F6004900C6688B /* OnSwitchStateChanged.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4CD14620CD901600EF4A17 /* OnSwitchStateChanged.swift */; };
+		946A8A0120F6004900C6688B /* DictionaryAssertId.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1B12E720ECF9F80069ABDA /* DictionaryAssertId.swift */; };
+		946A8A0220F6004900C6688B /* InvoiceViewModelExtensition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A08C0FC20CAA70400342A3E /* InvoiceViewModelExtensition.swift */; };
+		946A8A0320F6004900C6688B /* TextFieldUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4CD16620CF135300EF4A17 /* TextFieldUtils.swift */; };
+		946A8A0420F6004900C6688B /* Promise+Spinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A37EF5C20C587C600201907 /* Promise+Spinner.swift */; };
+		946A8A0520F6004900C6688B /* UserPreference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF1C3AC20C9164E00AFD286 /* UserPreference.swift */; };
+		946A8A0620F6004900C6688B /* DefaultLocalStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0B119420D279E700021E2D /* DefaultLocalStorage.swift */; };
+		946A8A0720F6004900C6688B /* SwipeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1A1C7B20DD1D330037DC77 /* SwipeController.swift */; };
+		946A8A0820F6004900C6688B /* PinValidationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A37EFEB20C7EE0200201907 /* PinValidationResponse.swift */; };
+		946A8A0920F6004900C6688B /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1B12D520ECB6AF0069ABDA /* R.generated.swift */; };
+		946A8A0A20F6004900C6688B /* PropertyKeyTransactionTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9364C120DA371300634406 /* PropertyKeyTransactionTitle.swift */; };
+		946A8A0B20F6004900C6688B /* CashInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1B12D920ECBC830069ABDA /* CashInViewController.swift */; };
+		946A8A0C20F6004900C6688B /* LocalStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0B119220D279C000021E2D /* LocalStorage.swift */; };
+		946A8A0D20F6004900C6688B /* SwipeAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1A1C7820DD1D320037DC77 /* SwipeAction.swift */; };
+		946A8A0E20F6004900C6688B /* BaseInvoiceViewModelItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0B11BE20D2C7EC00021E2D /* BaseInvoiceViewModelItem.swift */; };
+		946A8A0F20F6004900C6688B /* BaseViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A37EFF020C7FBB300201907 /* BaseViewState.swift */; };
+		946A8A1020F6004900C6688B /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70DE14C20CA9E6B00644281 /* SettingsViewController.swift */; };
+		946A8A1220F6004900C6688B /* Pods_IATA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FC260316A6015639FD5E1F0 /* Pods_IATA.framework */; };
+		946A8A1320F6004900C6688B /* WindowsAzureMessaging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 947A438620F0DA2C006740B7 /* WindowsAzureMessaging.framework */; };
+		946A8A1520F6004900C6688B /* WalletsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D7DEFC9120C97458005FB9EF /* WalletsTableViewCell.xib */; };
+		946A8A1620F6004900C6688B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A0D4B5620C53364009B73E9 /* LaunchScreen.storyboard */; };
+		946A8A1720F6004900C6688B /* GothamProMed.otf in Resources */ = {isa = PBXBuildFile; fileRef = D7894CFB20CFFC290069F68E /* GothamProMed.otf */; };
+		946A8A1820F6004900C6688B /* InvoiceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A0B11A220D28BBF00021E2D /* InvoiceView.xib */; };
+		946A8A1920F6004900C6688B /* CustomHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D7A71F2020E51529002D4207 /* CustomHeaderView.xib */; };
+		946A8A1A20F6004900C6688B /* ChangePasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A37EFF820C8044200201907 /* ChangePasswordViewController.xib */; };
+		946A8A1B20F6004900C6688B /* lykkexnet.crt in Resources */ = {isa = PBXBuildFile; fileRef = 94D6B70720E13BA70066960D /* lykkexnet.crt */; };
+		946A8A1C20F6004900C6688B /* BaseCurrencyCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D7D177A520CE3AFA00985F05 /* BaseCurrencyCollectionViewCell.xib */; };
+		946A8A1D20F6004900C6688B /* GothamProReg.otf in Resources */ = {isa = PBXBuildFile; fileRef = D7894CFC20CFFC290069F68E /* GothamProReg.otf */; };
+		946A8A1E20F6004900C6688B /* InvoiceHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A4CD13C20CD840600EF4A17 /* InvoiceHeaderView.xib */; };
+		946A8A1F20F6004900C6688B /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 0A11323020DD790300FE6853 /* LICENSE */; };
+		946A8A2020F6004900C6688B /* PaymentRangeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A08C11620CAB5B900342A3E /* PaymentRangeTableViewCell.xib */; };
+		946A8A2120F6004900C6688B /* DisputeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A26FC9320D15AC70097A8F6 /* DisputeViewController.xib */; };
+		946A8A2220F6004900C6688B /* SignInViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A37EF5820C5835300201907 /* SignInViewController.xib */; };
+		946A8A2320F6004900C6688B /* WalletsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D7DEFC9020C97458005FB9EF /* WalletsViewController.xib */; };
+		946A8A2420F6004900C6688B /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = D770E2D120ECB43300BEED9C /* LICENSE */; };
+		946A8A2520F6004900C6688B /* GothamProLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D7DEFC9920C97B9E005FB9EF /* GothamProLight.ttf */; };
+		946A8A2620F6004900C6688B /* InvoiceSettingsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A0B11C120D2E35300021E2D /* InvoiceSettingsTableViewCell.xib */; };
+		946A8A2720F6004900C6688B /* TransactionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A26FCB020D1658D0097A8F6 /* TransactionTableViewCell.xib */; };
+		946A8A2820F6004900C6688B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A0D4B5420C53364009B73E9 /* Assets.xcassets */; };
+		946A8A2920F6004900C6688B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A37EFA220C6DC5100201907 /* Localizable.strings */; };
+		946A8A2A20F6004900C6688B /* DisputInvoiceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D7EFD40C20DD2B9000D984AA /* DisputInvoiceViewController.xib */; };
+		946A8A2B20F6004900C6688B /* HistoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A26FC9E20D160F00097A8F6 /* HistoryViewController.xib */; };
+		946A8A2C20F6004900C6688B /* InvoiceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0AF611A120C9A4D700957348 /* InvoiceTableViewCell.xib */; };
+		946A8A2D20F6004900C6688B /* GothamProBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D7DEFC9820C97B9E005FB9EF /* GothamProBold.ttf */; };
+		946A8A2E20F6004900C6688B /* CashInViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A1B12DA20ECBC830069ABDA /* CashInViewController.xib */; };
+		946A8A2F20F6004900C6688B /* DisputeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A26FC9820D15B7F0097A8F6 /* DisputeTableViewCell.xib */; };
+		946A8A3020F6004900C6688B /* InvoiceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A13F65C20C974EC001BA302 /* InvoiceViewController.xib */; };
+		946A8A3120F6004900C6688B /* PinViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A37EFE320C7D67F00201907 /* PinViewController.xib */; };
+		946A8A3220F6004900C6688B /* PickerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A1B12EF20ED11670069ABDA /* PickerTableViewCell.xib */; };
+		946A8A3320F6004900C6688B /* lykkexnettest.crt in Resources */ = {isa = PBXBuildFile; fileRef = 9406B2F720E4E2330086E880 /* lykkexnettest.crt */; };
+		946A8A3420F6004900C6688B /* TransactionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A26FCB620D166F00097A8F6 /* TransactionViewController.xib */; };
+		946A8A3520F6004900C6688B /* InvoiceSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0AF611A620CA72DA00957348 /* InvoiceSettingsViewController.xib */; };
+		946A8A3620F6004900C6688B /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = D770E2CF20ECB40600BEED9C /* LICENSE */; };
+		946A8A3720F6004900C6688B /* TransactionTableViewHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A26FCB920D16CF70097A8F6 /* TransactionTableViewHeader.xib */; };
+		946A8A3820F6004900C6688B /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 0A1A1C7720DD1D320037DC77 /* LICENSE */; };
+		946A8A3920F6004900C6688B /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = D770E2D420ECB5FB00BEED9C /* LICENSE */; };
+		946A8A3A20F6004900C6688B /* ExhangeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A0B11C620D3158500021E2D /* ExhangeViewController.xib */; };
+		946A8A3B20F6004900C6688B /* TabBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D7DEFC8B20C97147005FB9EF /* TabBarView.xib */; };
+		946A8A3C20F6004900C6688B /* PasswordContainerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A37EFD720C7D63D00201907 /* PasswordContainerView.xib */; };
+		946A8A3D20F6004900C6688B /* HistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A26FCA520D161640097A8F6 /* HistoryTableViewCell.xib */; };
+		946A8A3E20F6004900C6688B /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D70DE14D20CA9E6B00644281 /* SettingsViewController.xib */; };
 		947A438320F0DA20006740B7 /* PushNotificationHubSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947A438120F0DA1F006740B7 /* PushNotificationHubSettings.swift */; };
 		947A438420F0DA20006740B7 /* PushNotificationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947A438220F0DA1F006740B7 /* PushNotificationHelper.swift */; };
 		947A438720F0DA2C006740B7 /* WindowsAzureMessaging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 947A438620F0DA2C006740B7 /* WindowsAzureMessaging.framework */; };
@@ -472,6 +704,8 @@
 		7527B2B91103E6B38EFEF340 /* Pods_IATATests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IATATests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9406B2F720E4E2330086E880 /* lykkexnettest.crt */ = {isa = PBXFileReference; lastKnownFileType = file; name = lykkexnettest.crt; path = ../../../../Documents/lykkexnettest.crt; sourceTree = "<group>"; };
 		942B303120F4DB7600DAFE4C /* IATA.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = IATA.entitlements; sourceTree = "<group>"; };
+		946A8A4420F6004900C6688B /* IATA TEST.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "IATA TEST.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		946A8A4520F6004900C6688B /* IATA copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "IATA copy-Info.plist"; path = "/Users/aleksei_lazarev/LykkePay.MobileApp.IATA/IATA copy-Info.plist"; sourceTree = "<absolute>"; };
 		947A438120F0DA1F006740B7 /* PushNotificationHubSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushNotificationHubSettings.swift; sourceTree = "<group>"; };
 		947A438220F0DA1F006740B7 /* PushNotificationHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushNotificationHelper.swift; sourceTree = "<group>"; };
 		947A438620F0DA2C006740B7 /* WindowsAzureMessaging.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WindowsAzureMessaging.framework; sourceTree = "<group>"; };
@@ -539,6 +773,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				EF4B843175B4CC2AF6DB5E2D /* Pods_IATAUITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		946A8A1120F6004900C6688B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				946A8A1220F6004900C6688B /* Pods_IATA.framework in Frameworks */,
+				946A8A1320F6004900C6688B /* WindowsAzureMessaging.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -684,6 +927,7 @@
 				8234D0EBF4112692EB8A6981 /* Pods */,
 				0702C78B2003563B008A9F85 /* Frameworks */,
 				D7D3012520D7980700A1AEB8 /* Recovered References */,
+				946A8A4520F6004900C6688B /* IATA copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -693,6 +937,7 @@
 				0A0D4B4720C53361009B73E9 /* IATA.app */,
 				0A0D4B5E20C53364009B73E9 /* IATATests.xctest */,
 				0A0D4B6920C53364009B73E9 /* IATAUITests.xctest */,
+				946A8A4420F6004900C6688B /* IATA TEST.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1732,6 +1977,27 @@
 			productReference = 0A0D4B6920C53364009B73E9 /* IATAUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		946A895120F6004900C6688B /* IATA TEST */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 946A8A4120F6004900C6688B /* Build configuration list for PBXNativeTarget "IATA TEST" */;
+			buildPhases = (
+				946A895220F6004900C6688B /* [CP] Check Pods Manifest.lock */,
+				946A895320F6004900C6688B /* ShellScript */,
+				946A895420F6004900C6688B /* Sources */,
+				946A8A1120F6004900C6688B /* Frameworks */,
+				946A8A1420F6004900C6688B /* Resources */,
+				946A8A3F20F6004900C6688B /* [CP] Embed Pods Frameworks */,
+				946A8A4020F6004900C6688B /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "IATA TEST";
+			productName = IATA;
+			productReference = 946A8A4420F6004900C6688B /* IATA TEST.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -1776,6 +2042,7 @@
 				0A0D4B4620C53361009B73E9 /* IATA */,
 				0A0D4B5D20C53364009B73E9 /* IATATests */,
 				0A0D4B6820C53364009B73E9 /* IATAUITests */,
+				946A895120F6004900C6688B /* IATA TEST */,
 			);
 		};
 /* End PBXProject section */
@@ -1844,6 +2111,55 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		946A8A1420F6004900C6688B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				946A8A1520F6004900C6688B /* WalletsTableViewCell.xib in Resources */,
+				946A8A1620F6004900C6688B /* LaunchScreen.storyboard in Resources */,
+				946A8A1720F6004900C6688B /* GothamProMed.otf in Resources */,
+				946A8A1820F6004900C6688B /* InvoiceView.xib in Resources */,
+				946A8A1920F6004900C6688B /* CustomHeaderView.xib in Resources */,
+				946A8A1A20F6004900C6688B /* ChangePasswordViewController.xib in Resources */,
+				946A8A1B20F6004900C6688B /* lykkexnet.crt in Resources */,
+				946A8A1C20F6004900C6688B /* BaseCurrencyCollectionViewCell.xib in Resources */,
+				946A8A1D20F6004900C6688B /* GothamProReg.otf in Resources */,
+				946A8A1E20F6004900C6688B /* InvoiceHeaderView.xib in Resources */,
+				946A8A1F20F6004900C6688B /* LICENSE in Resources */,
+				946A8A2020F6004900C6688B /* PaymentRangeTableViewCell.xib in Resources */,
+				946A8A2120F6004900C6688B /* DisputeViewController.xib in Resources */,
+				946A8A2220F6004900C6688B /* SignInViewController.xib in Resources */,
+				946A8A2320F6004900C6688B /* WalletsViewController.xib in Resources */,
+				946A8A2420F6004900C6688B /* LICENSE in Resources */,
+				946A8A2520F6004900C6688B /* GothamProLight.ttf in Resources */,
+				946A8A2620F6004900C6688B /* InvoiceSettingsTableViewCell.xib in Resources */,
+				946A8A2720F6004900C6688B /* TransactionTableViewCell.xib in Resources */,
+				946A8A2820F6004900C6688B /* Assets.xcassets in Resources */,
+				946A8A2920F6004900C6688B /* Localizable.strings in Resources */,
+				946A8A2A20F6004900C6688B /* DisputInvoiceViewController.xib in Resources */,
+				946A8A2B20F6004900C6688B /* HistoryViewController.xib in Resources */,
+				946A8A2C20F6004900C6688B /* InvoiceTableViewCell.xib in Resources */,
+				946A8A2D20F6004900C6688B /* GothamProBold.ttf in Resources */,
+				946A8A2E20F6004900C6688B /* CashInViewController.xib in Resources */,
+				946A8A2F20F6004900C6688B /* DisputeTableViewCell.xib in Resources */,
+				946A8A3020F6004900C6688B /* InvoiceViewController.xib in Resources */,
+				946A8A3120F6004900C6688B /* PinViewController.xib in Resources */,
+				946A8A3220F6004900C6688B /* PickerTableViewCell.xib in Resources */,
+				946A8A3320F6004900C6688B /* lykkexnettest.crt in Resources */,
+				946A8A3420F6004900C6688B /* TransactionViewController.xib in Resources */,
+				946A8A3520F6004900C6688B /* InvoiceSettingsViewController.xib in Resources */,
+				946A8A3620F6004900C6688B /* LICENSE in Resources */,
+				946A8A3720F6004900C6688B /* TransactionTableViewHeader.xib in Resources */,
+				946A8A3820F6004900C6688B /* LICENSE in Resources */,
+				946A8A3920F6004900C6688B /* LICENSE in Resources */,
+				946A8A3A20F6004900C6688B /* ExhangeViewController.xib in Resources */,
+				946A8A3B20F6004900C6688B /* TabBarView.xib in Resources */,
+				946A8A3C20F6004900C6688B /* PasswordContainerView.xib in Resources */,
+				946A8A3D20F6004900C6688B /* HistoryTableViewCell.xib in Resources */,
+				946A8A3E20F6004900C6688B /* SettingsViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -1877,6 +2193,88 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
+		};
+		946A895220F6004900C6688B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-IATA-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		946A895320F6004900C6688B /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/IATA/Localizable\"";
+		};
+		946A8A3F20F6004900C6688B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-IATA/Pods-IATA-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/JGProgressHUD/JGProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework",
+				"${BUILT_PRODUCTS_DIR}/Material/Material.framework",
+				"${BUILT_PRODUCTS_DIR}/Motion/Motion.framework",
+				"${BUILT_PRODUCTS_DIR}/Nuke/Nuke.framework",
+				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/PromiseKit/PromiseKit.framework",
+				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CryptoSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JGProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Material.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Motion.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nuke.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PromiseKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rswift.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-IATA/Pods-IATA-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		946A8A4020F6004900C6688B /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" a4a6e4d035e343d2afba9ace9be91d098114448a 62cd5babcb3bc89a32352ff008e9fd818f8b83dddd49ed7a56c516a69a95fca6";
 		};
 		955DD5237E0CC9911AF9C942 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2179,6 +2577,201 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		946A895420F6004900C6688B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				946A895520F6004900C6688B /* ExchangeModel.swift in Sources */,
+				946A895620F6004900C6688B /* BTConfiguration.swift in Sources */,
+				946A895720F6004900C6688B /* StringsExtension.swift in Sources */,
+				946A895820F6004900C6688B /* DefaultBaseState.swift in Sources */,
+				946A895920F6004900C6688B /* DefaultBaseViewState.swift in Sources */,
+				946A895A20F6004900C6688B /* DisputInvoiceRequest.swift in Sources */,
+				946A895B20F6004900C6688B /* BTTableCellContentView.swift in Sources */,
+				946A895C20F6004900C6688B /* UiStatusView.swift in Sources */,
+				946A895D20F6004900C6688B /* Network.swift in Sources */,
+				946A895E20F6004900C6688B /* PropertyValidationKey.swift in Sources */,
+				946A895F20F6004900C6688B /* DisputeViewController.swift in Sources */,
+				946A896020F6004900C6688B /* InvoicePaymentRangeModelItem.swift in Sources */,
+				946A896120F6004900C6688B /* HistoryTableViewCell.swift in Sources */,
+				946A896220F6004900C6688B /* InvoiceTableViewCell.swift in Sources */,
+				946A896320F6004900C6688B /* NavigationExtension.swift in Sources */,
+				946A896420F6004900C6688B /* MenuEnum.swift in Sources */,
+				946A896520F6004900C6688B /* DefaultDisputeState.swift in Sources */,
+				946A896620F6004900C6688B /* TransactionTableViewCell.swift in Sources */,
+				946A896720F6004900C6688B /* InvoiceRootViewModel.swift in Sources */,
+				946A896820F6004900C6688B /* DefaultInvoiceSettingsState.swift in Sources */,
+				946A896920F6004900C6688B /* PushNotificationHelper.swift in Sources */,
+				946A896A20F6004900C6688B /* TransactionTableViewHeader.swift in Sources */,
+				946A896B20F6004900C6688B /* AuthNetworkConfig.swift in Sources */,
+				946A896C20F6004900C6688B /* SwipeCollectionViewCell.swift in Sources */,
+				946A896D20F6004900C6688B /* DefaultAuthenticationService.swift in Sources */,
+				946A896E20F6004900C6688B /* InvoiceHeaderView.swift in Sources */,
+				946A896F20F6004900C6688B /* BTTableViewCell.swift in Sources */,
+				946A897020F6004900C6688B /* InvoiceViewControllerPaymentExtension.swift in Sources */,
+				946A897120F6004900C6688B /* PaymentAmount.swift in Sources */,
+				946A897220F6004900C6688B /* LabelExtensitions.swift in Sources */,
+				946A897320F6004900C6688B /* TabBarController.swift in Sources */,
+				946A897420F6004900C6688B /* ExchangeViewControllerExtention.swift in Sources */,
+				946A897520F6004900C6688B /* ErrorHandler.swift in Sources */,
+				946A897620F6004900C6688B /* SwipeExpansionStyle.swift in Sources */,
+				946A897720F6004900C6688B /* NetworkUtil.swift in Sources */,
+				946A897820F6004900C6688B /* PaymentConfig.swift in Sources */,
+				946A897920F6004900C6688B /* PaymentRangeTableViewCell.swift in Sources */,
+				946A897A20F6004900C6688B /* ViewUtils.swift in Sources */,
+				946A897B20F6004900C6688B /* DefaultPaymentService.swift in Sources */,
+				946A897C20F6004900C6688B /* PasswordContainerView.swift in Sources */,
+				946A897D20F6004900C6688B /* HistoryModel.swift in Sources */,
+				946A897E20F6004900C6688B /* NetworkConfig.swift in Sources */,
+				946A897F20F6004900C6688B /* ExchangeViewModel.swift in Sources */,
+				946A898020F6004900C6688B /* InvoiceViewController.swift in Sources */,
+				946A898120F6004900C6688B /* TransactionViewController.swift in Sources */,
+				946A898220F6004900C6688B /* TokenObject.swift in Sources */,
+				946A898320F6004900C6688B /* SwipeCollectionViewCell+Accessibility.swift in Sources */,
+				946A898420F6004900C6688B /* PickerTableViewCell.swift in Sources */,
+				946A898520F6004900C6688B /* EncodingType.swift in Sources */,
+				946A898620F6004900C6688B /* SwipeTableViewCell+Accessibility.swift in Sources */,
+				946A898720F6004900C6688B /* CustomizeRangeSlider.swift in Sources */,
+				946A898820F6004900C6688B /* UIView+SpinnerController.swift in Sources */,
+				946A898920F6004900C6688B /* BTNavigationDropdownMenu.swift in Sources */,
+				946A898A20F6004900C6688B /* DisputeListItem.swift in Sources */,
+				946A898B20F6004900C6688B /* SignInViewController.swift in Sources */,
+				946A898C20F6004900C6688B /* WalletsModel.swift in Sources */,
+				946A898D20F6004900C6688B /* DisputeModel.swift in Sources */,
+				946A898E20F6004900C6688B /* UIViewExtension.swift in Sources */,
+				946A898F20F6004900C6688B /* WalletsViewController.swift in Sources */,
+				946A899020F6004900C6688B /* ServerFieldsExtractor.swift in Sources */,
+				946A899120F6004900C6688B /* DefaultHistoryState.swift in Sources */,
+				946A899220F6004900C6688B /* SwipeTableViewCellDelegate.swift in Sources */,
+				946A899320F6004900C6688B /* PushNotificationHubSettings.swift in Sources */,
+				946A899420F6004900C6688B /* VerticalAlignedLabel.swift in Sources */,
+				946A899520F6004900C6688B /* SwipeActionButton.swift in Sources */,
+				946A899620F6004900C6688B /* AuthenticationService.swift in Sources */,
+				946A899720F6004900C6688B /* InvoiceModel.swift in Sources */,
+				946A899820F6004900C6688B /* BigThumbnailSwither.swift in Sources */,
+				946A899920F6004900C6688B /* BaseAuthViewController.swift in Sources */,
+				946A899A20F6004900C6688B /* SwipeFeedback.swift in Sources */,
+				946A899B20F6004900C6688B /* DefaultInvoiceState.swift in Sources */,
+				946A899C20F6004900C6688B /* UIView+Extension.swift in Sources */,
+				946A899D20F6004900C6688B /* BracketLessGetEncoding.swift in Sources */,
+				946A899E20F6004900C6688B /* SettingsModel.swift in Sources */,
+				946A899F20F6004900C6688B /* HistoryTransactionModel.swift in Sources */,
+				946A89A020F6004900C6688B /* IATA.xcdatamodeld in Sources */,
+				946A89A120F6004900C6688B /* DataRequest.swift in Sources */,
+				946A89A220F6004900C6688B /* InvoiceSettingsState.swift in Sources */,
+				946A89A320F6004900C6688B /* NavPushingUtil.swift in Sources */,
+				946A89A420F6004900C6688B /* BTTitle.swift in Sources */,
+				946A89A520F6004900C6688B /* DefaultDisputInvoiceState.swift in Sources */,
+				946A89A620F6004900C6688B /* ArrayEncoding.swift in Sources */,
+				946A89A720F6004900C6688B /* CancelDisputInvoiceRequest.swift in Sources */,
+				946A89A820F6004900C6688B /* Swipeable.swift in Sources */,
+				946A89A920F6004900C6688B /* Utils.swift in Sources */,
+				946A89AA20F6004900C6688B /* SwipeTableViewCell+Display.swift in Sources */,
+				946A89AB20F6004900C6688B /* DisputeTableViewCell.swift in Sources */,
+				946A89AC20F6004900C6688B /* DictionaryExtension.swift in Sources */,
+				946A89AD20F6004900C6688B /* DateUtils.swift in Sources */,
+				946A89AE20F6004900C6688B /* SwipeActionsView.swift in Sources */,
+				946A89AF20F6004900C6688B /* SwipeCollectionViewCell+Display.swift in Sources */,
+				946A89B020F6004900C6688B /* DisputInvoiceViewController.swift in Sources */,
+				946A89B120F6004900C6688B /* SwipeCollectionViewCellDelegate.swift in Sources */,
+				946A89B220F6004900C6688B /* InvoicePaymentRangeModel.swift in Sources */,
+				946A89B320F6004900C6688B /* InvoiceSettingsTableViewCell.swift in Sources */,
+				946A89B420F6004900C6688B /* BaseNavController.swift in Sources */,
+				946A89B520F6004900C6688B /* PreExchangeRequest.swift in Sources */,
+				946A89B620F6004900C6688B /* SwipeExpanding.swift in Sources */,
+				946A89B720F6004900C6688B /* SettingsMerchantsModel.swift in Sources */,
+				946A89B820F6004900C6688B /* Theme.swift in Sources */,
+				946A89B920F6004900C6688B /* CustomHeaderView.swift in Sources */,
+				946A89BA20F6004900C6688B /* ServerErrorExtractor.swift in Sources */,
+				946A89BB20F6004900C6688B /* DefaultTransactionState.swift in Sources */,
+				946A89BC20F6004900C6688B /* DesignableUITextField.swift in Sources */,
+				946A89BD20F6004900C6688B /* ExchangeRequest.swift in Sources */,
+				946A89BE20F6004900C6688B /* SwipeActionTransitioning.swift in Sources */,
+				946A89BF20F6004900C6688B /* PinViewController.swift in Sources */,
+				946A89C020F6004900C6688B /* PasswordInputView.swift in Sources */,
+				946A89C120F6004900C6688B /* DefaultExchangeState.swift in Sources */,
+				946A89C220F6004900C6688B /* BTTableView.swift in Sources */,
+				946A89C320F6004900C6688B /* NotificateEnum.swift in Sources */,
+				946A89C420F6004900C6688B /* SingInRequest.swift in Sources */,
+				946A89C520F6004900C6688B /* ChangePasswordViewController.swift in Sources */,
+				946A89C620F6004900C6688B /* CashOutViewModel.swift in Sources */,
+				946A89C720F6004900C6688B /* Checkbox.swift in Sources */,
+				946A89C820F6004900C6688B /* WalletsTableViewCell.swift in Sources */,
+				946A89C920F6004900C6688B /* SavePinRequest.swift in Sources */,
+				946A89CA20F6004900C6688B /* SwipeOptions.swift in Sources */,
+				946A89CB20F6004900C6688B /* RangeSlider.swift in Sources */,
+				946A89CC20F6004900C6688B /* InvoiceRequest.swift in Sources */,
+				946A89CD20F6004900C6688B /* SwipeTableViewCell.swift in Sources */,
+				946A89CE20F6004900C6688B /* PasswordDotView.swift in Sources */,
+				946A89CF20F6004900C6688B /* OnSwitchStateChangedDelegate.swift in Sources */,
+				946A89D020F6004900C6688B /* SwipeAnimator.swift in Sources */,
+				946A89D120F6004900C6688B /* ModelErrors.swift in Sources */,
+				946A89D220F6004900C6688B /* Extensions.swift in Sources */,
+				946A89D320F6004900C6688B /* ExchangeRootViewModel.swift in Sources */,
+				946A89D420F6004900C6688B /* ExhangeViewController.swift in Sources */,
+				946A89D520F6004900C6688B /* SpinnerController.swift in Sources */,
+				946A89D620F6004900C6688B /* WalletsViewModel.swift in Sources */,
+				946A89D720F6004900C6688B /* PinValidationRequest.swift in Sources */,
+				946A89D820F6004900C6688B /* FiltersInvoiceList.swift in Sources */,
+				946A89D920F6004900C6688B /* Errors.swift in Sources */,
+				946A89DA20F6004900C6688B /* OnChangeStateSelected.swift in Sources */,
+				946A89DB20F6004900C6688B /* AppDelegate.swift in Sources */,
+				946A89DC20F6004900C6688B /* DefaultSettingsState.swift in Sources */,
+				946A89DD20F6004900C6688B /* ChangePasswordRequest.swift in Sources */,
+				946A89DE20F6004900C6688B /* SignInViewState.swift in Sources */,
+				946A89DF20F6004900C6688B /* FormatterExtension.swift in Sources */,
+				946A89E020F6004900C6688B /* DefaultWalletsState.swift in Sources */,
+				946A89E120F6004900C6688B /* InvoiceViewModelItemType.swift in Sources */,
+				946A89E220F6004900C6688B /* CredentialManager.swift in Sources */,
+				946A89E320F6004900C6688B /* InvoiceViewModel.swift in Sources */,
+				946A89E420F6004900C6688B /* DefaultPinViewState.swift in Sources */,
+				946A89E520F6004900C6688B /* BaseCurrencyCollectionViewCell.swift in Sources */,
+				946A89E620F6004900C6688B /* PaymentRequest.swift in Sources */,
+				946A89E720F6004900C6688B /* InvoiceStatuses.swift in Sources */,
+				946A89E820F6004900C6688B /* DefaultCashOutState.swift in Sources */,
+				946A89E920F6004900C6688B /* InvoiceView.swift in Sources */,
+				946A89EA20F6004900C6688B /* PasswordUIValidation.swift in Sources */,
+				946A89EB20F6004900C6688B /* UIViewController+Extension.swift in Sources */,
+				946A89EC20F6004900C6688B /* UIViewControllerExtension.swift in Sources */,
+				946A89ED20F6004900C6688B /* CurrencyUiTextField.swift in Sources */,
+				946A89EE20F6004900C6688B /* InvoiceFiltersModel.swift in Sources */,
+				946A89EF20F6004900C6688B /* CashOutRequest.swift in Sources */,
+				946A89F020F6004900C6688B /* NotificationIds.swift in Sources */,
+				946A89F120F6004900C6688B /* PinViewState.swift in Sources */,
+				946A89F220F6004900C6688B /* SettingsViewModel.swift in Sources */,
+				946A89F320F6004900C6688B /* InvoiceSettingsViewController.swift in Sources */,
+				946A89F420F6004900C6688B /* DefaultChangePasswordViewState.swift in Sources */,
+				946A89F520F6004900C6688B /* FilterPreference.swift in Sources */,
+				946A89F620F6004900C6688B /* DecimalNumberTransform.swift in Sources */,
+				946A89F720F6004900C6688B /* TextField.swift in Sources */,
+				946A89F820F6004900C6688B /* BaseViewController.swift in Sources */,
+				946A89F920F6004900C6688B /* SwipeAccessibilityCustomAction.swift in Sources */,
+				946A89FA20F6004900C6688B /* DefaultSignInViewState.swift in Sources */,
+				946A89FB20F6004900C6688B /* UIImageExtensition.swift in Sources */,
+				946A89FC20F6004900C6688B /* PaymentService.swift in Sources */,
+				946A89FD20F6004900C6688B /* ChangePasswordViewState.swift in Sources */,
+				946A89FE20F6004900C6688B /* SwipeTransitionLayout.swift in Sources */,
+				946A89FF20F6004900C6688B /* HistoryViewController.swift in Sources */,
+				946A8A0020F6004900C6688B /* OnSwitchStateChanged.swift in Sources */,
+				946A8A0120F6004900C6688B /* DictionaryAssertId.swift in Sources */,
+				946A8A0220F6004900C6688B /* InvoiceViewModelExtensition.swift in Sources */,
+				946A8A0320F6004900C6688B /* TextFieldUtils.swift in Sources */,
+				946A8A0420F6004900C6688B /* Promise+Spinner.swift in Sources */,
+				946A8A0520F6004900C6688B /* UserPreference.swift in Sources */,
+				946A8A0620F6004900C6688B /* DefaultLocalStorage.swift in Sources */,
+				946A8A0720F6004900C6688B /* SwipeController.swift in Sources */,
+				946A8A0820F6004900C6688B /* PinValidationResponse.swift in Sources */,
+				946A8A0920F6004900C6688B /* R.generated.swift in Sources */,
+				946A8A0A20F6004900C6688B /* PropertyKeyTransactionTitle.swift in Sources */,
+				946A8A0B20F6004900C6688B /* CashInViewController.swift in Sources */,
+				946A8A0C20F6004900C6688B /* LocalStorage.swift in Sources */,
+				946A8A0D20F6004900C6688B /* SwipeAction.swift in Sources */,
+				946A8A0E20F6004900C6688B /* BaseInvoiceViewModelItem.swift in Sources */,
+				946A8A0F20F6004900C6688B /* BaseViewState.swift in Sources */,
+				946A8A1020F6004900C6688B /* SettingsViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -2478,6 +3071,68 @@
 			};
 			name = Release;
 		};
+		946A8A4220F6004900C6688B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 058CEEE5590F2BCD98BAD1F5 /* Pods-IATA.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = IATA/IATA.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NCJC54GM5Z;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/IATA/Modules/WindowsAzureMessagingFramework",
+				);
+				INFOPLIST_FILE = "IATA copy-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" \"-D\" \"TEST\"";
+				PRODUCT_BUNDLE_IDENTIFIER = lykke.IATA.test.delivery;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = IATA/BridgingHeader.h;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		946A8A4320F6004900C6688B /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C7BD0B79BA7FF0CED5C9BD4E /* Pods-IATA.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = IATA/IATA.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NCJC54GM5Z;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/IATA/Modules/WindowsAzureMessagingFramework",
+				);
+				INFOPLIST_FILE = "IATA copy-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" \"-D\" \"TEST\"";
+				PRODUCT_BUNDLE_IDENTIFIER = lykke.IATA.test.delivery;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = IATA/BridgingHeader.h;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -2513,6 +3168,15 @@
 			buildConfigurations = (
 				0A0D4B7920C53364009B73E9 /* Debug */,
 				0A0D4B7A20C53364009B73E9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		946A8A4120F6004900C6688B /* Build configuration list for PBXNativeTarget "IATA TEST" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				946A8A4220F6004900C6688B /* Debug */,
+				946A8A4320F6004900C6688B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
