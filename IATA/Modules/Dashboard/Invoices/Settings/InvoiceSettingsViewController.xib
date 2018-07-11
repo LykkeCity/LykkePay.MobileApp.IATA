@@ -13,6 +13,8 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="InvoiceSettingsViewController" customModule="IATA" customModuleProvider="target">
             <connections>
                 <outlet property="bottomConstraint" destination="dGo-EN-KT9" id="5sU-4y-LG0"/>
+                <outlet property="constraintToSafeArea" destination="Dwe-t0-meE" id="ThC-g1-gIV"/>
+                <outlet property="constraintToSuperview" destination="NCV-Ew-Ioy" id="pOX-kf-UfQ"/>
                 <outlet property="navBar" destination="kBH-3Z-fxL" id="5Dr-4W-eBv"/>
                 <outlet property="navItem" destination="IQy-mw-jh1" id="j2c-BR-07y"/>
                 <outlet property="navView" destination="I6V-Bx-YKx" id="qEf-DV-B8q"/>
@@ -26,14 +28,14 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" contentViewInsetsToSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ObV-w7-Jd4">
-                    <rect key="frame" x="0.0" y="68" width="367" height="599"/>
+                    <rect key="frame" x="0.0" y="64" width="367" height="603"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </tableView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I6V-Bx-YKx">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                    <rect key="frame" x="0.0" y="-24" width="375" height="88"/>
                     <subviews>
                         <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kBH-3Z-fxL">
-                            <rect key="frame" x="0.0" y="24" width="375" height="36"/>
+                            <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                             <items>
                                 <navigationItem title="Title" id="IQy-mw-jh1"/>
                             </items>
@@ -41,9 +43,8 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstItem="kBH-3Z-fxL" firstAttribute="top" secondItem="I6V-Bx-YKx" secondAttribute="top" constant="24" id="57W-UG-dOf"/>
                         <constraint firstAttribute="bottom" secondItem="kBH-3Z-fxL" secondAttribute="bottom" id="74Q-DQ-5TF"/>
-                        <constraint firstAttribute="height" constant="60" id="8iZ-MK-9u4"/>
+                        <constraint firstAttribute="height" constant="88" id="8iZ-MK-9u4"/>
                         <constraint firstItem="kBH-3Z-fxL" firstAttribute="leading" secondItem="I6V-Bx-YKx" secondAttribute="leading" id="MoM-2Y-qor"/>
                         <constraint firstAttribute="trailing" secondItem="kBH-3Z-fxL" secondAttribute="trailing" id="e6f-7v-FUF"/>
                     </constraints>
@@ -54,9 +55,10 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="I6V-Bx-YKx" secondAttribute="trailing" id="1md-Le-ylL"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="ObV-w7-Jd4" secondAttribute="trailing" constant="8" id="5wx-kf-Na2"/>
                 <constraint firstItem="ObV-w7-Jd4" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="8fg-xQ-Lmh"/>
-                <constraint firstItem="ObV-w7-Jd4" firstAttribute="top" secondItem="I6V-Bx-YKx" secondAttribute="bottom" constant="8" id="cgR-oz-Gm2"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="top" secondItem="I6V-Bx-YKx" secondAttribute="top" constant="44" id="Dwe-t0-meE"/>
+                <constraint firstAttribute="top" secondItem="I6V-Bx-YKx" secondAttribute="top" constant="24" id="NCV-Ew-Ioy"/>
+                <constraint firstItem="ObV-w7-Jd4" firstAttribute="top" secondItem="I6V-Bx-YKx" secondAttribute="bottom" id="cgR-oz-Gm2"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="ObV-w7-Jd4" secondAttribute="bottom" id="dGo-EN-KT9"/>
-                <constraint firstItem="I6V-Bx-YKx" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="ii1-ar-TcJ"/>
                 <constraint firstItem="I6V-Bx-YKx" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="kdi-O2-00b"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

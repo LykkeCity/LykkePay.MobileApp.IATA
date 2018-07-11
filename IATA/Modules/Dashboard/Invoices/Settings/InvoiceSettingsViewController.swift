@@ -7,7 +7,9 @@ class InvoiceSettingsViewController: BaseNavController {
     @IBOutlet weak var navItem: UINavigationItem!
     @IBOutlet weak var navBar: UINavigationBar!
     @IBOutlet weak var navView: UIView!
-    
+    @IBOutlet weak var constraintToSuperview: NSLayoutConstraint!
+    @IBOutlet weak var constraintToSafeArea: NSLayoutConstraint!
+
     private var isShown = false
     private var isEnabled = true
     var rootController: InvoiceViewController?
@@ -46,10 +48,18 @@ class InvoiceSettingsViewController: BaseNavController {
             object: nil)
         self.setNeedsStatusBarAppearanceUpdate()
         self.initNavBar()
+        setConstraintToTopOfScreen()
         
         self.loadData()
     }
-    
+
+    private func setConstraintToTopOfScreen() {
+        if #available(iOS 11.0, *) {
+            view.removeConstraint(constraintToSuperview)
+        } else {
+            view.removeConstraint(constraintToSafeArea)
+        }
+    }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .default
