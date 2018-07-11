@@ -2,6 +2,7 @@ import UIKit
 import CoreData
 import Fabric
 import Crashlytics
+import UserNotifications
 
 
 @UIApplicationMain
@@ -24,6 +25,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         #if !TARGET_IPHONE_SIMULATOR
         PushNotificationHelper.register(with: application)
         #endif
+
+        if #available(iOS 10.0, *) {
+            UNUserNotificationCenter.current().delegate = self
+        }
 
         return true
     }
@@ -89,20 +94,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 }
 
-extension UIApplication {
-    class func topViewController(controller: UIViewController? = UIApplication.shared.keyWindow?.rootViewController) -> UIViewController? {
-        if let navigationController = controller as? UINavigationController {
-            return topViewController(controller: navigationController.visibleViewController)
-        }
-        if let tabController = controller as? UITabBarController {
-            if let selected = tabController.selectedViewController {
-                return topViewController(controller: selected)
-            }
-        }
-        if let presented = controller?.presentedViewController {
-            return topViewController(controller: presented)
-        }
-        return controller
+extension AppDelegate:  UNUserNotificationCenterDelegate {
+    @available(iOS 10.0, *)
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                willPresent notification: UNNotification,
+                                withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([.alert, .sound])
     }
 }
-
