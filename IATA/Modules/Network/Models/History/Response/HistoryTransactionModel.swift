@@ -120,9 +120,21 @@ class HistoryTransactionModel: Mappable, Reflectable {
         self.merchantName <- map[PropertyKey.merchantName.rawValue]
         self.explorerUrl <- map[PropertyKey.explorerUrl.rawValue]
 
-        guard let txHash = txHash, let _ = invoiceStatus, !txHash.isEmpty else {
+        //as server at this moment isn't ready to send status for cash operation
+        if let title = title, title.contains("Cash") {
+            if let txHash = txHash, txHash.isEmpty {
+                self.status = InvoiceStatusesStruct(type: InvoiceStatuses.InProgress).title.capitalizingFirstLetter()
+                return
+            } else {
+                if title.contains("Out") {
+                    self.status =  R.string.localizable.invoiceStatusItemsTransfered()
+                } else {
+                    self.status =  R.string.localizable.invoiceStatusItemsReceived()
+                }
+                return
+            }
+        } else if invoiceStatus == nil {
             self.status = InvoiceStatusesStruct(type: InvoiceStatuses.InProgress).title.capitalizingFirstLetter()
-            return
         }
     }
     
