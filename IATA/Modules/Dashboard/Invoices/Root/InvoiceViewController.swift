@@ -239,7 +239,7 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
         
         if let count = state?.getItems().count, count > 0 {
             let indexPath = IndexPath(row: 0, section: 0)
-            self.tabView.scrollToRow(at: indexPath, at: .top, animated: true)
+            self.tabView.scrollToRow(at: indexPath, at: .top, animated: false)
         }
     }
     
