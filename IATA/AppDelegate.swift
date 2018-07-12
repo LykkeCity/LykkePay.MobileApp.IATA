@@ -39,7 +39,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
             UNUserNotificationCenter.current().delegate = self
         }
 
+        setServerURL()
+
         return true
+    }
+
+    private func setServerURL() {
+        NetworkConfig.shared.baseServerURL = UserPreference.shared.getBaseURL()
     }
 
     private func turnOffLayoutWarnings() {
@@ -55,6 +61,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
+        UserPreference.shared.saveLastOpenTime(date: getCurrentTime())
+    }
+    
+    func applicationWillResignActive(_ application: UIApplication) {
         UserPreference.shared.saveLastOpenTime(date: getCurrentTime())
     }
 

@@ -168,6 +168,7 @@ class SignInViewController: BaseAuthViewController, UINavigationControllerDelega
         BaseServerURLs.allCases().forEach { url in
             handlers.append((handler: { _ in
                 NetworkConfig.shared.baseServerURL = url.getURL()
+                UserPreference.shared.setBaseURl(url: NetworkConfig.shared.baseServerURL)
             }, title: url.value()))
         }
 
