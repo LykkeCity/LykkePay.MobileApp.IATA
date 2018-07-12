@@ -8,6 +8,8 @@ class InvoiceTableViewCell: SwipeTableViewCell {
     @IBOutlet weak var invoiceView: InvoiceView!
     @IBOutlet weak var widthBox: NSLayoutConstraint!
     @IBOutlet weak var leftLeading: NSLayoutConstraint!
+    @IBOutlet weak var invoiceClickablePart: UIView!
+    
     
     weak var delegateChanged: OnChangeStateSelected?
     let checkBox = Checkbox(frame: CGRect(x: 5 , y: 5, width: 15, height: 15))
@@ -74,6 +76,7 @@ class InvoiceTableViewCell: SwipeTableViewCell {
         if (isCanBePaid) {
             let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.clicked))
             self.viewBox.addGestureRecognizer(tap)
+            self.invoiceClickablePart.addGestureRecognizer(tap)
             self.checkBox.addTarget(self, action: #selector(checkboxValueChanged(sender:)), for: .valueChanged)
         }
         self.checkBox.isCanBeChanged = isCanBePaid

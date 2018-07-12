@@ -30,18 +30,29 @@
                         <rect key="frame" x="62" y="0.0" width="258" height="69.5"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="puy-85-wkj">
+                        <rect key="frame" x="0.0" y="0.0" width="100" height="69.5"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="100" id="YsE-w0-J6c"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstItem="7dX-g4-R2c" firstAttribute="leading" secondItem="978-Sq-1qd" secondAttribute="trailing" id="LXS-Hc-gT3"/>
+                    <constraint firstAttribute="bottom" secondItem="puy-85-wkj" secondAttribute="bottom" id="Rg6-Jl-rOc"/>
+                    <constraint firstItem="puy-85-wkj" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="hFZ-Du-36O"/>
                     <constraint firstAttribute="bottom" secondItem="7dX-g4-R2c" secondAttribute="bottom" id="j4f-XP-WUk"/>
                     <constraint firstAttribute="trailing" secondItem="7dX-g4-R2c" secondAttribute="trailing" id="qdZ-xl-9ZE"/>
                     <constraint firstItem="978-Sq-1qd" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="tgz-Le-emL"/>
+                    <constraint firstItem="puy-85-wkj" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="uX0-gQ-30p"/>
                     <constraint firstItem="978-Sq-1qd" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="xgC-Ys-uaL"/>
                     <constraint firstItem="7dX-g4-R2c" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="xxN-zJ-Xe8"/>
                 </constraints>
             </tableViewCellContentView>
             <edgeInsets key="layoutMargins" top="16" left="16" bottom="16" right="16"/>
             <connections>
+                <outlet property="invoiceClickablePart" destination="puy-85-wkj" id="POf-Ps-Ao0"/>
                 <outlet property="invoiceView" destination="7dX-g4-R2c" id="Jbr-V9-kD2"/>
                 <outlet property="leftLeading" destination="xgC-Ys-uaL" id="iS9-gy-Fhy"/>
                 <outlet property="rootView" destination="H2p-sc-9uM" id="PkS-8O-CDt"/>
