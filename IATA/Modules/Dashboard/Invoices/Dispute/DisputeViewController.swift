@@ -58,9 +58,7 @@ class DisputeViewController: BaseViewController<DisputeModel, DefaultDisputeStat
 
     private func reloadTable(jsonString: String!) {
         self.state?.mapping(jsonString: jsonString)
-        if let itemsCount = state?.getItems().count, itemsCount == 0 {
-            placeholderView.isHidden = false
-        }
+         placeholderView.isHidden = state?.getItems().count != 0
         self.tabView.reloadData()
         self.endRefreshAnimation(wasEmpty: false, dataFetched: true)
     }
