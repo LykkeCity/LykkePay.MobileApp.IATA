@@ -140,6 +140,14 @@ class DefaultInvoiceState: DefaultBaseState<InvoiceModel> {
         }
     }
     
+    func isSelected(index: Int) -> Bool {
+        let model = getItems()[index]
+        if let index = self.selectedItems.index(where: {$0 === model}) {
+            return true
+        }
+        return false
+    }
+    
     func newItem(isSelected: Bool, index: Int) {
         isSelected ? addNewSelectedModel(model: getItems()[index]) : removeSelectedModel(model: getItems()[index])
     }

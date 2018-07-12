@@ -19,15 +19,15 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="978-Sq-1qd">
-                        <rect key="frame" x="12" y="20" width="30" height="30"/>
+                        <rect key="frame" x="0.0" y="0.0" width="62" height="80"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="30" id="J7M-RB-toT"/>
-                            <constraint firstAttribute="height" constant="30" id="kIv-6h-aXp"/>
+                            <constraint firstAttribute="width" constant="62" id="J7M-RB-toT"/>
+                            <constraint firstAttribute="height" constant="80" id="kIv-6h-aXp"/>
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7dX-g4-R2c" customClass="InvoiceView" customModule="IATA" customModuleProvider="target">
-                        <rect key="frame" x="42" y="0.0" width="278" height="69.5"/>
+                        <rect key="frame" x="62" y="0.0" width="258" height="69.5"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                 </subviews>
@@ -35,8 +35,8 @@
                     <constraint firstItem="7dX-g4-R2c" firstAttribute="leading" secondItem="978-Sq-1qd" secondAttribute="trailing" id="LXS-Hc-gT3"/>
                     <constraint firstAttribute="bottom" secondItem="7dX-g4-R2c" secondAttribute="bottom" id="j4f-XP-WUk"/>
                     <constraint firstAttribute="trailing" secondItem="7dX-g4-R2c" secondAttribute="trailing" id="qdZ-xl-9ZE"/>
-                    <constraint firstItem="978-Sq-1qd" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="tgz-Le-emL"/>
-                    <constraint firstItem="978-Sq-1qd" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="xgC-Ys-uaL"/>
+                    <constraint firstItem="978-Sq-1qd" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="tgz-Le-emL"/>
+                    <constraint firstItem="978-Sq-1qd" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="xgC-Ys-uaL"/>
                     <constraint firstItem="7dX-g4-R2c" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="xxN-zJ-Xe8"/>
                 </constraints>
             </tableViewCellContentView>
