@@ -110,7 +110,7 @@ class BaseViewController<T: Mappable, S: DefaultBaseState<T>>:
     func beginRefreshing(){
         if let count = state?.getItems().count, count > 0 {
             let indexPath = IndexPath(row: 0, section: 0)
-            self.getTableView().scrollToRow(at: indexPath, at: .top, animated: true)
+            self.getTableView().scrollToRow(at: indexPath, at: .top, animated: false)
         }
         refreshControl.beginRefreshing()
         let contentOffset = CGPoint(x: 0, y: -refreshControl.bounds.size.height)
@@ -139,7 +139,7 @@ class BaseViewController<T: Mappable, S: DefaultBaseState<T>>:
         self.refreshControl.layoutIfNeeded()
         if let count = state?.getItems().count, count > 0 {
             let indexPath = IndexPath(row: 0, section: 0)
-            self.getTableView().scrollToRow(at: indexPath, at: .top, animated: true)
+            self.getTableView().scrollToRow(at: indexPath, at: .top, animated: false)
         }
     }
     

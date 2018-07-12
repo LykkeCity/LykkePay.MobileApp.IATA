@@ -53,11 +53,9 @@ class InvoiceRootViewModel: SwipeTableViewCellDelegate, OnChangeStateSelected {
             }
             if  let count = strongSelf.state?.getItems().count, count > 0 {
                 let indexPath = IndexPath(row: 0, section: 0)
-                strongSelf.viewController?.getTableView().scrollToRow(at: indexPath, at: .top, animated: true)
+                strongSelf.viewController?.getTableView().scrollToRow(at: indexPath, at: .top, animated: false)
             }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
-                strongSelf.viewController?.beginRefreshing()
-            })
+            strongSelf.viewController?.beginRefreshing()
             FilterPreference.shared.saveIndexOfStatus(menu.type)
             strongSelf.state?.selectedStatus(type: menu.type)
             strongSelf.loadData()
@@ -122,7 +120,7 @@ class InvoiceRootViewModel: SwipeTableViewCellDelegate, OnChangeStateSelected {
             
             if  let count = self.state?.getItems().count, count > 0 {
                 let indexPath = IndexPath(row: 0, section: 0)
-                self.viewController?.getTableView().scrollToRow(at: indexPath, at: .top, animated: true)
+                self.viewController?.getTableView().scrollToRow(at: indexPath, at: .top, animated: false)
             }
             let disputInvoiceVC = DisputInvoiceViewController()
             disputInvoiceVC.rootController = self.viewController
@@ -139,12 +137,12 @@ class InvoiceRootViewModel: SwipeTableViewCellDelegate, OnChangeStateSelected {
         let disputeAction = SwipeAction(style: .destructive, title: R.string.localizable.invoiceScreenItemsCancelDispute()) { action, indexPath in
             let model = CancelDisputInvoiceRequest()
             model?.invoiceId = state.getItems()[indexPath.row].id
+            if let count = self.viewController?.state?.getItems().count, count > 0 {
+                let indexPath = IndexPath(row: 0, section: 0)
+                self.viewController?.getTableView().scrollToRow(at: indexPath, at: .top, animated: false)
+            }
             if let model = model, !self.isDisabled() {
-                if let count = self.viewController?.state?.getItems().count, count > 0 {
-                    let indexPath = IndexPath(row: 0, section: 0)
-                    self.viewController?.getTableView().scrollToRow(at: indexPath, at: .top, animated: true)
-                }
-               self.viewController?.beginRefreshing()
+                self.viewController?.beginRefreshing()
                 self.viewController?.isDisabledValue = true
                 self.state?.cancelDisputInvoice(model: model)
                     .then(execute: { [weak self] (result: Void) -> Void in

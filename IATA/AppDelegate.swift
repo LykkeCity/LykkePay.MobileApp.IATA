@@ -57,6 +57,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
     func applicationDidEnterBackground(_ application: UIApplication) {
         UserPreference.shared.saveLastOpenTime(date: getCurrentTime())
     }
+    
+    func applicationWillResignActive(_ application: UIApplication) {
+        UserPreference.shared.saveLastOpenTime(date: getCurrentTime())
+    }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         var lastOpenTime = UserPreference.shared.getLastOpenTime()
