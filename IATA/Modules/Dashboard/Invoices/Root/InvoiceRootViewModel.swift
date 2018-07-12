@@ -2,7 +2,6 @@ import Foundation
 import UIKit
 
 class InvoiceRootViewModel: SwipeTableViewCellDelegate, OnChangeStateSelected {
-    
     var viewController: InvoiceViewController?
     var state: DefaultInvoiceState?
     
@@ -65,6 +64,7 @@ class InvoiceRootViewModel: SwipeTableViewCellDelegate, OnChangeStateSelected {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: InvoiceTableViewCell.identifier, for: indexPath) as! InvoiceTableViewCell
         cell.checkBox.tag = indexPath.row
+        cell.invoiceView.tag = indexPath.row
         cell.delegateChanged = self
         cell.delegate = self
         guard let dict = self.state?.getItems()[indexPath.row] else {
@@ -103,6 +103,13 @@ class InvoiceRootViewModel: SwipeTableViewCellDelegate, OnChangeStateSelected {
         self.viewController?.onItemSelected(isSelected: isSelected, index: index)
     }
     
+    
+    func onItemSelected(index: Int) {
+        if let isSelected = self.state?.isSelected(index: index) {
+            self.state?.newItem(isSelected: isSelected, index: index)
+            self.viewController?.onItemSelected(isSelected: isSelected, index: index)
+        }
+    }
     
     private func openDisputeAction(_ state: DefaultInvoiceState) -> [SwipeAction]? {
         let disputeAction = SwipeAction(style: .destructive, title: R.string.localizable.invoiceScreenItemsDispute()) { action, indexPath in

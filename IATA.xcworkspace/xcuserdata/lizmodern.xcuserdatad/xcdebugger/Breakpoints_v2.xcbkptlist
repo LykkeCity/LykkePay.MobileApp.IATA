@@ -3334,11 +3334,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IATA/Modules/Dashboard/Invoices/Root/Cells/InvoiceTableViewCell.swift"
-            timestampString = "551818582.939556"
+            timestampString = "553080780.309652"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "55"
-            endingLineNumber = "55"
+            startingLineNumber = "64"
+            endingLineNumber = "64"
             landmarkName = "initCheckBox(color:isCanBePaid:isChecked:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3350,11 +3350,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IATA/Modules/Dashboard/Invoices/Root/Cells/InvoiceTableViewCell.swift"
-            timestampString = "551818582.939613"
+            timestampString = "553080780.309743"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "57"
-            endingLineNumber = "57"
+            startingLineNumber = "66"
+            endingLineNumber = "66"
             landmarkName = "initCheckBox(color:isCanBePaid:isChecked:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3366,11 +3366,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IATA/Modules/Dashboard/Invoices/Root/Cells/InvoiceTableViewCell.swift"
-            timestampString = "551818582.939656"
+            timestampString = "553080780.309804"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "58"
-            endingLineNumber = "58"
+            startingLineNumber = "67"
+            endingLineNumber = "67"
             landmarkName = "initCheckBox(color:isCanBePaid:isChecked:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3382,12 +3382,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IATA/Modules/Dashboard/Invoices/Root/Cells/InvoiceTableViewCell.swift"
-            timestampString = "551818582.939712"
+            timestampString = "553080780.3098609"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "27"
             endingLineNumber = "27"
-            landmarkName = "clickSelected(sender:)"
+            landmarkName = "InvoiceTableViewCell"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IATA/Modules/Dashboard/Invoices/Root/Cells/InvoiceTableViewCell.swift"
+            timestampString = "553080780.309916"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "initModel(model:isChecked:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -3398,12 +3414,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IATA/Modules/Dashboard/Invoices/Root/Cells/InvoiceTableViewCell.swift"
-            timestampString = "551818582.939751"
+            timestampString = "553080780.30997"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "41"
-            endingLineNumber = "41"
-            landmarkName = "initCheckBoxAndStatus(structInfo:isChecked:)"
+            startingLineNumber = "50"
+            endingLineNumber = "50"
+            landmarkName = "initModel(model:isChecked:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -3414,27 +3430,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IATA/Modules/Dashboard/Invoices/Root/Cells/InvoiceTableViewCell.swift"
-            timestampString = "551818582.9397891"
+            timestampString = "553080780.310023"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "42"
-            endingLineNumber = "42"
-            landmarkName = "initCheckBoxAndStatus(structInfo:isChecked:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "IATA/Modules/Dashboard/Invoices/Root/Cells/InvoiceTableViewCell.swift"
-            timestampString = "551818582.939827"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "54"
-            endingLineNumber = "54"
+            startingLineNumber = "63"
+            endingLineNumber = "63"
             landmarkName = "initCheckBox(color:isCanBePaid:isChecked:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3442,7 +3442,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IATA/Modules/Dashboard/History/Transaction/TransactionViewController.swift"
@@ -3458,7 +3458,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IATA/Modules/Dashboard/History/Transaction/TransactionViewController.swift"
@@ -3828,7 +3828,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IATA/Modules/Dashboard/Invoices/Root/State/DefaultInvoiceState.swift"
-            timestampString = "551899472.24261"
+            timestampString = "553080780.310499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "41"
@@ -3844,7 +3844,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IATA/Modules/Dashboard/Invoices/Root/State/DefaultInvoiceState.swift"
-            timestampString = "551899472.242775"
+            timestampString = "553080780.310559"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "19"
@@ -3860,7 +3860,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IATA/Modules/Dashboard/Invoices/Root/State/DefaultInvoiceState.swift"
-            timestampString = "551899472.242864"
+            timestampString = "553080780.310603"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "20"
@@ -4436,7 +4436,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IATA/Modules/Dashboard/Invoices/Root/State/DefaultInvoiceState.swift"
-            timestampString = "551899472.2441829"
+            timestampString = "553080780.311177"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "109"
@@ -4452,7 +4452,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IATA/Modules/Dashboard/Invoices/Root/State/DefaultInvoiceState.swift"
-            timestampString = "551899472.24428"
+            timestampString = "553080780.311245"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "115"
@@ -4500,7 +4500,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IATA/Modules/Dashboard/Invoices/Root/State/DefaultInvoiceState.swift"
-            timestampString = "551899472.244382"
+            timestampString = "553080780.311311"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "28"
@@ -4532,12 +4532,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IATA/Modules/Dashboard/Invoices/Root/Cells/InvoiceTableViewCell.swift"
-            timestampString = "551818582.941354"
+            timestampString = "553080780.311428"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "36"
             endingLineNumber = "36"
-            landmarkName = "initModel(model:isChecked:)"
+            landmarkName = "checkboxValueChanged(sender:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -4548,12 +4548,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IATA/Modules/Dashboard/Invoices/Root/Cells/InvoiceTableViewCell.swift"
-            timestampString = "551818582.941473"
+            timestampString = "553080780.311493"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "37"
             endingLineNumber = "37"
-            landmarkName = "initModel(model:isChecked:)"
+            landmarkName = "checkboxValueChanged(sender:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -4564,12 +4564,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IATA/Modules/Dashboard/Invoices/Root/Cells/InvoiceTableViewCell.swift"
-            timestampString = "551818582.941574"
+            timestampString = "553080780.3115489"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "64"
-            endingLineNumber = "64"
-            landmarkName = "initFullCheckBoxStatus(_:isChecked:)"
+            startingLineNumber = "74"
+            endingLineNumber = "74"
+            landmarkName = "initCheckBox(color:isCanBePaid:isChecked:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -4580,12 +4580,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IATA/Modules/Dashboard/Invoices/Root/Cells/InvoiceTableViewCell.swift"
-            timestampString = "551818582.941645"
+            timestampString = "553080780.311604"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "65"
-            endingLineNumber = "65"
-            landmarkName = "initFullCheckBoxStatus(_:isChecked:)"
+            startingLineNumber = "77"
+            endingLineNumber = "77"
+            landmarkName = "initCheckBox(color:isCanBePaid:isChecked:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -5332,7 +5332,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IATA/Modules/Dashboard/Invoices/Root/State/DefaultInvoiceState.swift"
-            timestampString = "551899472.2460051"
+            timestampString = "553080780.312374"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "94"
@@ -5348,7 +5348,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IATA/Modules/Dashboard/Invoices/Root/State/DefaultInvoiceState.swift"
-            timestampString = "551899472.246143"
+            timestampString = "553080780.312426"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "95"
@@ -5364,7 +5364,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IATA/Modules/Dashboard/Invoices/Root/State/DefaultInvoiceState.swift"
-            timestampString = "551899472.2462389"
+            timestampString = "553080780.312469"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "96"
@@ -5380,7 +5380,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IATA/Modules/Dashboard/Invoices/Root/State/DefaultInvoiceState.swift"
-            timestampString = "551899472.246325"
+            timestampString = "553080780.312512"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "97"
@@ -5396,7 +5396,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IATA/Modules/Dashboard/Invoices/Root/State/DefaultInvoiceState.swift"
-            timestampString = "551899472.24641"
+            timestampString = "553080780.312553"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "100"
@@ -5412,7 +5412,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IATA/Modules/Dashboard/Invoices/Root/State/DefaultInvoiceState.swift"
-            timestampString = "551899472.246495"
+            timestampString = "553080780.312593"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "102"
@@ -5428,7 +5428,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IATA/Modules/Dashboard/Invoices/Root/State/DefaultInvoiceState.swift"
-            timestampString = "551899472.246587"
+            timestampString = "553080780.312632"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "101"
@@ -6356,13 +6356,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IATA/Modules/Dashboard/Invoices/Root/Cells/InvoiceTableViewCell.swift"
-            timestampString = "551818582.9452471"
+            timestampString = "553080780.313387"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "31"
             endingLineNumber = "31"
-            landmarkName = "checkboxValueChanged(sender:)"
-            landmarkType = "7">
+            landmarkName = "InvoiceTableViewCell"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -6788,7 +6788,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IATA/Modules/Dashboard/Invoices/Root/State/DefaultInvoiceState.swift"
-            timestampString = "551899472.250452"
+            timestampString = "553080780.3138421"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "57"
@@ -6804,7 +6804,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IATA/Modules/Dashboard/Invoices/Root/State/DefaultInvoiceState.swift"
-            timestampString = "551899472.250612"
+            timestampString = "553080780.313904"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "58"
@@ -6964,7 +6964,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IATA/Modules/Dashboard/Invoices/Root/State/DefaultInvoiceState.swift"
-            timestampString = "551899472.250983"
+            timestampString = "553080780.31407"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "123"
@@ -6980,7 +6980,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IATA/Modules/Dashboard/Invoices/Root/State/DefaultInvoiceState.swift"
-            timestampString = "551899472.251074"
+            timestampString = "553080780.314117"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "125"
@@ -7028,7 +7028,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IATA/Modules/Dashboard/Invoices/Root/State/DefaultInvoiceState.swift"
-            timestampString = "551899472.251163"
+            timestampString = "553080780.31416"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "126"
@@ -7140,7 +7140,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IATA/Modules/Dashboard/Invoices/Root/State/DefaultInvoiceState.swift"
-            timestampString = "551899472.251472"
+            timestampString = "553080780.314309"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "43"
@@ -7904,7 +7904,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IATA/Modules/Dashboard/History/Transaction/TransactionViewController.swift"
@@ -8324,7 +8324,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IATA/Modules/Dashboard/Invoices/Root/State/DefaultInvoiceState.swift"
-            timestampString = "551899472.254546"
+            timestampString = "553080780.315374"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "52"
@@ -10100,7 +10100,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IATA/Modules/Dashboard/Invoices/Root/State/DefaultInvoiceState.swift"
-            timestampString = "551899472.2686861"
+            timestampString = "553080780.3171819"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "62"
@@ -10132,7 +10132,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IATA/Modules/Dashboard/Invoices/Root/State/DefaultInvoiceState.swift"
-            timestampString = "551899472.2688971"
+            timestampString = "553080780.317288"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "61"
@@ -10244,11 +10244,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IATA/Library/Views/Invoice/InvoiceView.swift"
-            timestampString = "551964841.464861"
+            timestampString = "553080780.3174779"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "61"
-            endingLineNumber = "61"
+            startingLineNumber = "68"
+            endingLineNumber = "68"
             landmarkName = "initView(model:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -10276,11 +10276,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IATA/Library/Views/Invoice/InvoiceView.swift"
-            timestampString = "551964841.4651181"
+            timestampString = "553080780.317555"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "66"
-            endingLineNumber = "66"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
             landmarkName = "initView(model:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -10292,11 +10292,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IATA/Library/Views/Invoice/InvoiceView.swift"
-            timestampString = "551964841.4651949"
+            timestampString = "553080780.317606"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "99"
-            endingLineNumber = "99"
+            startingLineNumber = "106"
+            endingLineNumber = "106"
             landmarkName = "initStatus(color:status:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -10308,11 +10308,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IATA/Library/Views/Invoice/InvoiceView.swift"
-            timestampString = "551964841.4653"
+            timestampString = "553080780.317651"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "67"
-            endingLineNumber = "67"
+            startingLineNumber = "74"
+            endingLineNumber = "74"
             landmarkName = "initView(model:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -10324,11 +10324,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IATA/Library/Views/Invoice/InvoiceView.swift"
-            timestampString = "551964841.465415"
+            timestampString = "553080780.317695"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "105"
-            endingLineNumber = "105"
+            startingLineNumber = "112"
+            endingLineNumber = "112"
             landmarkName = "initStatus(color:status:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -10580,11 +10580,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IATA/Library/Views/Invoice/InvoiceView.swift"
-            timestampString = "551964841.468257"
+            timestampString = "553080780.317965"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "50"
-            endingLineNumber = "50"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
             landmarkName = "initDispute(raisedDate:model:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -10596,11 +10596,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IATA/Library/Views/Invoice/InvoiceView.swift"
-            timestampString = "551964841.468328"
+            timestampString = "553080780.318018"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "79"
-            endingLineNumber = "79"
+            startingLineNumber = "86"
+            endingLineNumber = "86"
             landmarkName = "initView(model:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -10612,11 +10612,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IATA/Library/Views/Invoice/InvoiceView.swift"
-            timestampString = "551964841.468375"
+            timestampString = "553080780.318066"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "53"
-            endingLineNumber = "53"
+            startingLineNumber = "55"
+            endingLineNumber = "55"
             landmarkName = "initDispute(raisedDate:model:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -10628,11 +10628,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IATA/Library/Views/Invoice/InvoiceView.swift"
-            timestampString = "551964841.468419"
+            timestampString = "553080780.318113"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "58"
-            endingLineNumber = "58"
+            startingLineNumber = "65"
+            endingLineNumber = "65"
             landmarkName = "initView(model:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -10644,11 +10644,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IATA/Library/Views/Invoice/InvoiceView.swift"
-            timestampString = "551964841.468461"
+            timestampString = "553080780.318158"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "41"
-            endingLineNumber = "41"
+            startingLineNumber = "43"
+            endingLineNumber = "43"
             landmarkName = "initDispute(raisedDate:model:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -10916,11 +10916,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IATA/Modules/Dashboard/Invoices/Root/InvoiceViewControllerPaymentExtension.swift"
-            timestampString = "551964841.469396"
+            timestampString = "553080780.3184299"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "43"
-            endingLineNumber = "43"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
             landmarkName = "getAmount()"
             landmarkType = "7">
          </BreakpointContent>
@@ -10932,11 +10932,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IATA/Modules/Dashboard/Invoices/Root/InvoiceViewControllerPaymentExtension.swift"
-            timestampString = "551964841.469456"
+            timestampString = "553080780.318481"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "48"
-            endingLineNumber = "48"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
             landmarkName = "getAmount()"
             landmarkType = "7">
          </BreakpointContent>
@@ -10948,11 +10948,27 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IATA/Modules/Dashboard/Invoices/Root/InvoiceViewControllerPaymentExtension.swift"
-            timestampString = "551964841.469517"
+            timestampString = "553080780.318524"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "41"
-            endingLineNumber = "41"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
+            landmarkName = "paymentSuccess()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IATA/Modules/Dashboard/Invoices/Root/InvoiceViewControllerPaymentExtension.swift"
+            timestampString = "553080780.318565"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
             landmarkName = "getAmount()"
             landmarkType = "7">
          </BreakpointContent>
@@ -10964,27 +10980,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IATA/Modules/Dashboard/Invoices/Root/InvoiceViewControllerPaymentExtension.swift"
-            timestampString = "551964841.46957"
+            timestampString = "553080780.318606"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "46"
-            endingLineNumber = "46"
-            landmarkName = "getAmount()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "IATA/Modules/Dashboard/Invoices/Root/InvoiceViewControllerPaymentExtension.swift"
-            timestampString = "551964841.46962"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "59"
-            endingLineNumber = "59"
+            startingLineNumber = "60"
+            endingLineNumber = "60"
             landmarkName = "saveAmount(amount:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -11220,11 +11220,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IATA/Library/Views/Invoice/InvoiceView.swift"
-            timestampString = "551964841.471272"
+            timestampString = "553080780.318979"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "60"
-            endingLineNumber = "60"
+            startingLineNumber = "67"
+            endingLineNumber = "67"
             landmarkName = "initView(model:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -11321,8 +11321,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "218"
             endingLineNumber = "218"
-            landmarkName = "initAmounts(model:)"
-            landmarkType = "7">
+            landmarkName = "ExhangeViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -11337,7 +11337,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "220"
             endingLineNumber = "220"
-            landmarkName = "initAmounts(model:)"
+            landmarkName = "initAsset(sum:info:image:item:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -11572,7 +11572,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IATA/Modules/Dashboard/Invoices/Root/InvoiceViewControllerPaymentExtension.swift"
-            timestampString = "551964841.477088"
+            timestampString = "553080780.3193409"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "12"
@@ -11588,7 +11588,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IATA/Modules/Dashboard/Invoices/Root/InvoiceViewControllerPaymentExtension.swift"
-            timestampString = "551964841.477176"
+            timestampString = "553080780.3194"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "13"
@@ -11604,11 +11604,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IATA/Library/Views/Invoice/InvoiceView.swift"
-            timestampString = "551964841.477301"
+            timestampString = "553080780.319447"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "83"
-            endingLineNumber = "83"
+            startingLineNumber = "90"
+            endingLineNumber = "90"
             landmarkName = "initView(model:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -11632,11 +11632,11 @@
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "IATA.InvoiceSettingsViewController.loadData() -&gt; ()"
-                  moduleName = "IATA"
+                  symbolName = "IATA_TEST.InvoiceSettingsViewController.loadData() -&gt; ()"
+                  moduleName = "IATA TEST"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/lizmodern/Documents/project/LykkeIata/IATA/Modules/Dashboard/Invoices/Settings/InvoiceSettingsViewController.swift"
-                  timestampString = "553008239.8596359"
+                  timestampString = "553080905.225529"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "174"
@@ -11647,11 +11647,11 @@
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (IATA.FiltersInvoiceList) -&gt; () in IATA.InvoiceSettingsViewController.loadData() -&gt; ()"
-                  moduleName = "IATA"
+                  symbolName = "closure #1 (IATA_TEST.FiltersInvoiceList) -&gt; () in IATA_TEST.InvoiceSettingsViewController.loadData() -&gt; ()"
+                  moduleName = "IATA TEST"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/lizmodern/Documents/project/LykkeIata/IATA/Modules/Dashboard/Invoices/Settings/InvoiceSettingsViewController.swift"
-                  timestampString = "553008239.872507"
+                  timestampString = "553080905.228745"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "174"
@@ -11764,12 +11764,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IATA/Modules/Dashboard/Invoices/Root/InvoiceRootViewModel.swift"
-            timestampString = "552081922.2063479"
+            timestampString = "553080780.319665"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "107"
-            endingLineNumber = "107"
-            landmarkName = "cancelDisputeAction(_:)"
+            startingLineNumber = "114"
+            endingLineNumber = "114"
+            landmarkName = "openDisputeAction(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -11856,11 +11856,11 @@
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "IATA.ExhangeViewController.makeExchange(value: IATA.ExchangeModel, valueString: Swift.String) -&gt; ()"
-                  moduleName = "IATA"
+                  symbolName = "IATA_TEST.ExhangeViewController.makeExchange(value: IATA_TEST.ExchangeModel, valueString: Swift.String) -&gt; ()"
+                  moduleName = "IATA TEST"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/lizmodern/Documents/project/LykkeIata/IATA/Modules/Dashboard/Exhange/ExchangeViewControllerExtention.swift"
-                  timestampString = "553008239.9177819"
+                  timestampString = "553080905.262537"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "46"
@@ -11871,11 +11871,11 @@
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (IATA.ExchangeModel) -&gt; () in IATA.ExhangeViewController.makeExchange(value: IATA.ExchangeModel, valueString: Swift.String) -&gt; ()"
-                  moduleName = "IATA"
+                  symbolName = "closure #1 (IATA_TEST.ExchangeModel) -&gt; () in IATA_TEST.ExhangeViewController.makeExchange(value: IATA_TEST.ExchangeModel, valueString: Swift.String) -&gt; ()"
+                  moduleName = "IATA TEST"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/lizmodern/Documents/project/LykkeIata/IATA/Modules/Dashboard/Exhange/ExchangeViewControllerExtention.swift"
-                  timestampString = "553008239.920234"
+                  timestampString = "553080905.2657109"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "46"
@@ -12105,8 +12105,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "252"
             endingLineNumber = "252"
-            landmarkName = "heightIsNotEnough()"
-            landmarkType = "7">
+            landmarkName = "unknown"
+            landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -12121,8 +12121,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "253"
             endingLineNumber = "253"
-            landmarkName = "heightIsNotEnough()"
-            landmarkType = "7">
+            landmarkName = "unknown"
+            landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -12330,6 +12330,134 @@
             startingLineNumber = "38"
             endingLineNumber = "38"
             landmarkName = "initModel(invoiceModel:isPaid:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IATA/Modules/Dashboard/Invoices/Root/Cells/InvoiceTableViewCell.swift"
+            timestampString = "553080780.320183"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "33"
+            endingLineNumber = "33"
+            landmarkName = "checkboxValueChanged(sender:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IATA/Modules/Dashboard/Invoices/Root/Cells/InvoiceTableViewCell.swift"
+            timestampString = "553080780.3202471"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
+            landmarkName = "checkboxValueChanged(sender:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IATA/AppDelegate.swift"
+            timestampString = "553077846.338861"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "93"
+            endingLineNumber = "93"
+            landmarkName = "makeRootViewController()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IATA/AppDelegate.swift"
+            timestampString = "553077846.907701"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "94"
+            endingLineNumber = "94"
+            landmarkName = "makeRootViewController()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IATA/Library/Views/Invoice/InvoiceView.swift"
+            timestampString = "553080780.320329"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "60"
+            endingLineNumber = "60"
+            landmarkName = "initView(model:cell:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IATA/Modules/Dashboard/Invoices/Root/InvoiceViewControllerPaymentExtension.swift"
+            timestampString = "553080897.079343"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "101"
+            endingLineNumber = "101"
+            landmarkName = "handleError(error:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IATA/Modules/Dashboard/Invoices/Root/InvoiceViewControllerPaymentExtension.swift"
+            timestampString = "553080897.571902"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "102"
+            endingLineNumber = "102"
+            landmarkName = "handleError(error:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IATA/Modules/Dashboard/Invoices/Root/InvoiceRootViewModel.swift"
+            timestampString = "553080926.135249"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "26"
+            endingLineNumber = "26"
+            landmarkName = "loadData()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

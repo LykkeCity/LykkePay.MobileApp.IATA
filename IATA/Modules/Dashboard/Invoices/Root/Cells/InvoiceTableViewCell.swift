@@ -31,16 +31,25 @@ class InvoiceTableViewCell: SwipeTableViewCell {
     
     @objc func checkboxValueChanged(sender: Checkbox) {
         if let isDisabled = delegateChanged?.isDisabled(), !isDisabled {
-            delegateChanged?.onItemSelected(isSelected: sender.isChecked, index: sender.tag)
+            delegateChanged?.onItemSelected(isSelected: self.checkBox.isChecked, index: self.checkBox.tag)
         } else {
             self.checkBox.isChecked = !self.checkBox.isChecked
         }
     }
     
+    @objc func clicked() {
+        if let isDisabled = delegateChanged?.isDisabled(), !isDisabled {
+            self.checkBox.isChecked = !self.checkBox.isChecked
+            delegateChanged?.onItemSelected(isSelected: self.checkBox.isChecked, index: self.checkBox.tag)
+        } else {
+            self.checkBox.isChecked = self.checkBox.isChecked
+        }
+    }
     
     internal func initModel(model: InvoiceModel, isChecked: Bool) {
         self.initFullCheckBoxStatus(model, isChecked: isChecked)
-        self.invoiceView.initView(model: model)
+        
+        self.invoiceView.initView(model: model, cell: self)
         self.viewBox.isHidden = UserPreference.shared.isSuperviser()
         self.widthBox.constant = UserPreference.shared.isSuperviser() ? 0 : 30
         self.leftLeading.constant = UserPreference.shared.isSuperviser() ? 8 : 12
@@ -60,8 +69,11 @@ class InvoiceTableViewCell: SwipeTableViewCell {
         self.checkBox.checkedBorderColor = color
         self.checkBox.checkmarkSize = 0.6
         self.checkBox.checkmarkColor = color
+        self.checkBox.frame = CGRect(x: 4, y: 20, width: 12, height: 12)
         self.checkBox.isChecked = isCanBePaid ? isChecked : true
         if (isCanBePaid) {
+            let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.clicked))
+            self.viewBox.addGestureRecognizer(tap)
             self.checkBox.addTarget(self, action: #selector(checkboxValueChanged(sender:)), for: .valueChanged)
         }
         self.checkBox.isCanBeChanged = isCanBePaid

@@ -19,7 +19,7 @@ extension InvoiceViewController {
                         guard let strongSelf = self else {
                             return
                         }
-                        strongSelf.paymentSuccess()
+                         strongSelf.paymentSuccess()
                     }).catch(execute: { [weak self] error -> Void in
                         guard let strongSelf = self else {
                             return
@@ -29,7 +29,7 @@ extension InvoiceViewController {
         }
             self.navigationController?.present(viewController, animated: true, completion: nil)
         } else {
-            self.showErrorAlert(error: IATAOpError.serverError(message: R.string.localizable.invoiceScreenPayOverpaying()))
+            self.handleError(error: IATAOpError.serverError(message: R.string.localizable.invoiceScreenPayOverpaying()))
         }
     }
     
@@ -99,8 +99,10 @@ extension InvoiceViewController {
     func handleError(error : Error) {
         self.showErrorAlert(error: error)
         self.animate(isShow: false)
-        self.beginRefreshing()
-        self.loadData()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+            self.beginRefreshing()
+            self.loadData()
+        })
     }
 
      func checkCurrentBalance() {

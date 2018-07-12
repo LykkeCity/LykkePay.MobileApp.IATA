@@ -15,6 +15,8 @@ open class InvoiceView: UIView {
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var info: UILabel!
     
+    private var cell: InvoiceTableViewCell?
+    
     public override init(frame: CGRect) {
         super.init(frame: frame)
         setupDefaults()
@@ -52,6 +54,11 @@ open class InvoiceView: UIView {
             self.info.isHidden = true
             self.topNumberHeight.constant = -8
         }
+    }
+    
+    internal func initView(model: InvoiceModel, cell: InvoiceTableViewCell) {
+        self.initView(model: model)
+        self.cell = cell
     }
     
     internal func initView(model: InvoiceModel) {
