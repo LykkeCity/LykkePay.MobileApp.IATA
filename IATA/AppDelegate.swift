@@ -50,6 +50,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
         PushNotificationHelper.application(application, didRegisterForRemoteNotificationsWithDeviceToken: deviceToken)
     }
 
+    internal func application(_ application: UIApplication, didRegister notificationSettings: UIUserNotificationSettings) {
+        PushNotificationHelper.application(application, didRegisterUserNotificationSettings: notificationSettings)
+    }
+
     func applicationDidEnterBackground(_ application: UIApplication) {
         UserPreference.shared.saveLastOpenTime(date: getCurrentTime())
     }
