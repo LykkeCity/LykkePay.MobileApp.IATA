@@ -8,6 +8,7 @@ class UserPreference {
         case currentCurrency
         case date
         case isInternalSuperviser
+        case baseURL
     }
     
     private let localStorage: LocalStorage = DefaultLocalStorage()
@@ -63,6 +64,18 @@ class UserPreference {
         if !didSave {
             
         }
+    }
+
+    internal func setBaseURl(url: String) {
+        UserPreference.preferences.set(url, forKey: PropertyKey.baseURL.rawValue)
+    }
+
+    internal func getBaseURL() -> String {
+        guard let url = UserPreference.preferences.string(forKey: PropertyKey.baseURL.rawValue) else {
+            return NetworkConfig.shared.baseServerURL
+        }
+
+        return url
     }
     
     internal func isSuperviser() -> Bool {
