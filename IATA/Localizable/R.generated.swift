@@ -963,7 +963,7 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: Base
       static let historyTransactionScreenTitle = Rswift.StringResource(key: "History.Transaction.Screen.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
-      /// Base translation: Transfered
+      /// Base translation: Transferred
       /// 
       /// Locales: Base
       static let invoiceStatusItemsTransfered = Rswift.StringResource(key: "Invoice.Status.Items.Transfered", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
@@ -1630,11 +1630,11 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("History.Transaction.Screen.Title", bundle: R.hostingBundle, value: "Transaction details", comment: "")
       }
       
-      /// Base translation: Transfered
+      /// Base translation: Transferred
       /// 
       /// Locales: Base
       static func invoiceStatusItemsTransfered(_: Void = ()) -> String {
-        return NSLocalizedString("Invoice.Status.Items.Transfered", bundle: R.hostingBundle, value: "Transfered", comment: "")
+        return NSLocalizedString("Invoice.Status.Items.Transfered", bundle: R.hostingBundle, value: "Transferred", comment: "")
       }
       
       /// Base translation: TxHash
