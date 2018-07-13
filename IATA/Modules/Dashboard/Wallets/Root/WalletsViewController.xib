@@ -47,6 +47,14 @@
                         <constraint firstItem="1jW-Ep-x2I" firstAttribute="top" secondItem="Wq5-vk-Wv0" secondAttribute="top" constant="36" id="wwy-iy-SzF"/>
                     </constraints>
                 </view>
+                <view opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nVv-99-dcl">
+                    <rect key="frame" x="0.0" y="-130" width="414" height="65"/>
+                    <color key="backgroundColor" red="0.074509803920000006" green="0.2666666667" blue="0.45882352939999999" alpha="1" colorSpace="deviceRGB"/>
+                    <color key="tintColor" red="0.074509803920000006" green="0.2666666667" blue="0.45882352939999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="65" id="Aj7-67-roJ"/>
+                    </constraints>
+                </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" contentInsetAdjustmentBehavior="never" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qt9-eY-MSu">
                     <rect key="frame" x="20" y="8" width="374" height="728"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -94,12 +102,15 @@
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="qt9-eY-MSu" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="8" id="2xj-xs-mvL"/>
+                <constraint firstItem="nVv-99-dcl" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="5yV-t9-zdx"/>
                 <constraint firstAttribute="trailing" secondItem="qt9-eY-MSu" secondAttribute="trailing" constant="20" id="6dE-Xg-e3j"/>
                 <constraint firstItem="Wq5-vk-Wv0" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="-65" id="B19-ul-B57"/>
                 <constraint firstItem="Wq5-vk-Wv0" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="URl-vY-sRx"/>
                 <constraint firstAttribute="trailing" secondItem="Wq5-vk-Wv0" secondAttribute="trailing" id="YTq-yG-fAY"/>
+                <constraint firstItem="Wq5-vk-Wv0" firstAttribute="top" secondItem="nVv-99-dcl" secondAttribute="bottom" id="aS0-Qa-KVs"/>
                 <constraint firstItem="g47-FS-dNV" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="jff-Dr-KNI"/>
                 <constraint firstItem="qt9-eY-MSu" firstAttribute="bottom" secondItem="i5M-Pr-FkT" secondAttribute="bottom" id="mET-Bn-Wcg"/>
+                <constraint firstItem="nVv-99-dcl" firstAttribute="width" secondItem="Wq5-vk-Wv0" secondAttribute="width" id="ooE-df-1Ab"/>
                 <constraint firstItem="qt9-eY-MSu" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="pKq-wO-uhU"/>
                 <constraint firstItem="g47-FS-dNV" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="zcR-AL-QZ0"/>
             </constraints>
