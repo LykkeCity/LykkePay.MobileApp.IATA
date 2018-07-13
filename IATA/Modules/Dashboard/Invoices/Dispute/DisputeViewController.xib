@@ -17,6 +17,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DisputeViewController" customModule="IATA" customModuleProvider="target">
             <connections>
+                <outlet property="constraintToSafearea" destination="HZj-uB-1JW" id="cZR-6g-K2n"/>
+                <outlet property="constraintToSuperview" destination="626-Yr-BzW" id="IRT-TS-mKI"/>
                 <outlet property="navBar" destination="42U-E8-6B8" id="4DQ-Ef-ch4"/>
                 <outlet property="navItem" destination="kxe-MC-xtv" id="4qC-Ie-6nh"/>
                 <outlet property="navView" destination="Rzx-rk-LAj" id="TgX-nz-vlZ"/>
@@ -31,10 +33,10 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rzx-rk-LAj">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                    <rect key="frame" x="0.0" y="-36" width="375" height="100"/>
                     <subviews>
                         <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="42U-E8-6B8">
-                            <rect key="frame" x="0.0" y="24" width="375" height="36"/>
+                            <rect key="frame" x="0.0" y="56" width="375" height="44"/>
                             <items>
                                 <navigationItem title="Title" id="kxe-MC-xtv"/>
                             </items>
@@ -44,13 +46,12 @@
                     <constraints>
                         <constraint firstItem="42U-E8-6B8" firstAttribute="leading" secondItem="Rzx-rk-LAj" secondAttribute="leading" id="iwx-dl-ffT"/>
                         <constraint firstAttribute="bottom" secondItem="42U-E8-6B8" secondAttribute="bottom" id="pyu-xf-oIe"/>
-                        <constraint firstItem="42U-E8-6B8" firstAttribute="top" secondItem="Rzx-rk-LAj" secondAttribute="top" constant="24" id="sSm-gQ-rfG"/>
-                        <constraint firstAttribute="height" constant="60" id="tl2-YZ-1Bg"/>
+                        <constraint firstAttribute="height" constant="100" id="tl2-YZ-1Bg"/>
                         <constraint firstAttribute="trailing" secondItem="42U-E8-6B8" secondAttribute="trailing" id="wQk-A9-bac"/>
                     </constraints>
                 </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="CUR-Z5-chh">
-                    <rect key="frame" x="0.0" y="68" width="359" height="599"/>
+                    <rect key="frame" x="0.0" y="72" width="359" height="595"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </tableView>
                 <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yx4-9Q-kkc">
@@ -86,8 +87,9 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="Rzx-rk-LAj" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="626-Yr-BzW"/>
+                <constraint firstItem="Rzx-rk-LAj" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="-36" id="626-Yr-BzW"/>
                 <constraint firstItem="CUR-Z5-chh" firstAttribute="top" secondItem="Rzx-rk-LAj" secondAttribute="bottom" constant="8" id="HJk-Bd-iy9"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="top" secondItem="Rzx-rk-LAj" secondAttribute="top" constant="56" id="HZj-uB-1JW"/>
                 <constraint firstItem="yx4-9Q-kkc" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" id="HkH-iP-cKw"/>
                 <constraint firstItem="yx4-9Q-kkc" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="LwG-vW-aEj"/>
                 <constraint firstItem="Rzx-rk-LAj" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="aRO-Wo-cfp"/>

@@ -7,7 +7,9 @@ class DisputeViewController: BaseViewController<DisputeModel, DefaultDisputeStat
     @IBOutlet weak var navView: UIView!
     @IBOutlet weak var tabView: UITableView!
     @IBOutlet weak var placeholderView: UIView!
-    
+    @IBOutlet weak var constraintToSuperview: NSLayoutConstraint!
+    @IBOutlet weak var constraintToSafearea: NSLayoutConstraint!
+
     var rootController: InvoiceViewController?
     
     override func viewDidLoad() {
@@ -19,6 +21,15 @@ class DisputeViewController: BaseViewController<DisputeModel, DefaultDisputeStat
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
             super.beginRefreshing()
         })
+        setConstraintToTopOfScreen()
+    }
+
+    private func setConstraintToTopOfScreen() {
+        if #available(iOS 11.0, *) {
+            view.removeConstraint(constraintToSuperview)
+        } else {
+            view.removeConstraint(constraintToSafearea)
+        }
     }
     
     override func getNavView() -> UIView? {
