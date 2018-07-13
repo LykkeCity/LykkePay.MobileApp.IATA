@@ -991,7 +991,7 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: Base
       static let signInLabelWelcomeMessage = Rswift.StringResource(key: "SignIn.Label.Welcome.Message", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
-      /// Base translation: You cannot pay more then required
+      /// Base translation: You cannot pay more than required
       /// 
       /// Locales: Base
       static let invoiceScreenErrorChangingAmount = Rswift.StringResource(key: "Invoice.Screen.Error.ChangingAmount", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
@@ -1679,11 +1679,11 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("SignIn.Label.Welcome.Message", bundle: R.hostingBundle, value: "Welcome back! Sign in to continue to IATA", comment: "")
       }
       
-      /// Base translation: You cannot pay more then required
+      /// Base translation: You cannot pay more than required
       /// 
       /// Locales: Base
       static func invoiceScreenErrorChangingAmount(_: Void = ()) -> String {
-        return NSLocalizedString("Invoice.Screen.Error.ChangingAmount", bundle: R.hostingBundle, value: "You cannot pay more then required", comment: "")
+        return NSLocalizedString("Invoice.Screen.Error.ChangingAmount", bundle: R.hostingBundle, value: "You cannot pay more than required", comment: "")
       }
       
       /// Base translation: Your comment
