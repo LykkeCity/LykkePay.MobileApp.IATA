@@ -66,6 +66,9 @@ class PinViewController: UIViewController, UINavigationControllerDelegate {
     }
     
     private func initNavBar() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3, execute: {
+            UIApplication.shared.statusBarStyle = UIStatusBarStyle.default
+        })
         self.navigationController?.navigationBar.barStyle = .black
         self.navigationController?.isNavigationBarHidden = true
         if self.isValidationTransaction {
@@ -77,7 +80,6 @@ class PinViewController: UIViewController, UINavigationControllerDelegate {
         self.navigationController?.navigationBar.barTintColor = UIColor.white
         self.navigationController?.navigationBar.tintColor = Theme.shared.navBarTitle
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: Theme.shared.navBarTitle]
-        UIApplication.shared.statusBarStyle = UIStatusBarStyle.default
         self.navigationController?.navigationBar.layoutIfNeeded()
         self.setNeedsStatusBarAppearanceUpdate()
     }

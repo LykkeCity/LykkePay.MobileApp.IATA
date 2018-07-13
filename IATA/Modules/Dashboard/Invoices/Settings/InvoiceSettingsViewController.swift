@@ -140,10 +140,12 @@ class InvoiceSettingsViewController: BaseNavController {
     override func initNavBar() {
         self.backgroundNavBar = Theme.shared.greyNavBar
         super.initNavBar()
-        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
-        UIApplication.shared.statusBarStyle = UIStatusBarStyle.default
-        self.getNavBar()?.layoutIfNeeded()
-        self.setNeedsStatusBarAppearanceUpdate()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3, execute: { [weak self] in
+            self?.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+            UIApplication.shared.statusBarStyle = UIStatusBarStyle.default
+            self?.getNavBar()?.layoutIfNeeded()
+            self?.setNeedsStatusBarAppearanceUpdate()
+        })
     }
     
     override func getLeftButton() -> UIBarButtonItem? {
