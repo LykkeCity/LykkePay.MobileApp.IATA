@@ -8,7 +8,7 @@ class TextFieldUtil: NSObject {
             return true
         }
         
-        let numberValue = Double(valueString.removingWhitespaces())
+        let numberValue = Formatter.formattedToDouble(valueString: valueString.removingWhitespaces())
         
         if(numberValue == nil) {
             return true
@@ -35,7 +35,8 @@ class TextFieldUtil: NSObject {
             return true
         }
         
-        let numberValue = Double(valueString.removingWhitespaces())
+        
+        let numberValue = Formatter.formattedToDouble(valueString: valueString.removingWhitespaces())
         
         if(numberValue == nil) {
             return true
