@@ -14,8 +14,8 @@ struct PushNotificationHubSettings {
 }
 
 extension PushNotificationHubSettings {
-//    static let production = PushNotificationHubSettings(name: "lykke-notifications",
-//                                                        listenAccess: "Endpoint=sb://lykkewallet.servicebus.windows.net/;SharedAccessKeyName=DefaultListenSharedAccessSignature;SharedAccessKey=XwEA5pk9uDLkZXgnZF5sdDrZYEx5eoaE7LFlLoy+wh4=")
+    static let prod = PushNotificationHubSettings(name: "lykke-notifications",
+                                                        listenAccess: "Endpoint=sb://pay-notifications.servicebus.windows.net/;SharedAccessKeyName=DefaultListenSharedAccessSignature;SharedAccessKey=s3wAOMhtQp2P54Key83EIOghQAafH3Aw1+QZho76Ias=")
 
     static let dev = PushNotificationHubSettings(name: "lykkepay-notifications-dev",
                                                  listenAccess: "Endpoint=sb://lykkepay-dev.servicebus.windows.net/;SharedAccessKeyName=DefaultListenSharedAccessSignature;SharedAccessKey=LYPQRkb7PTRtw6UgbTn0dRSZSAHELaMdybTVb7dWlz4=")

@@ -441,6 +441,8 @@
 		947A438420F0DA20006740B7 /* PushNotificationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947A438220F0DA1F006740B7 /* PushNotificationHelper.swift */; };
 		947A438720F0DA2C006740B7 /* WindowsAzureMessaging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 947A438620F0DA2C006740B7 /* WindowsAzureMessaging.framework */; };
 		947A438920F0DA80006740B7 /* NotificationIds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947A438820F0DA7F006740B7 /* NotificationIds.swift */; };
+		94D411D920FCA2C3008BDA19 /* lykkecomprod.crt in Resources */ = {isa = PBXBuildFile; fileRef = 94D411D820FCA2C3008BDA19 /* lykkecomprod.crt */; };
+		94D411DA20FCA2C3008BDA19 /* lykkecomprod.crt in Resources */ = {isa = PBXBuildFile; fileRef = 94D411D820FCA2C3008BDA19 /* lykkecomprod.crt */; };
 		94D6B70820E13BA80066960D /* lykkexnet.crt in Resources */ = {isa = PBXBuildFile; fileRef = 94D6B70720E13BA70066960D /* lykkexnet.crt */; };
 		D70DE14E20CA9E6B00644281 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70DE14C20CA9E6B00644281 /* SettingsViewController.swift */; };
 		D70DE14F20CA9E6B00644281 /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D70DE14D20CA9E6B00644281 /* SettingsViewController.xib */; };
@@ -711,6 +713,7 @@
 		947A438620F0DA2C006740B7 /* WindowsAzureMessaging.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WindowsAzureMessaging.framework; sourceTree = "<group>"; };
 		947A438820F0DA7F006740B7 /* NotificationIds.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationIds.swift; sourceTree = "<group>"; };
 		947A438A20F0DB2D006740B7 /* BridgingHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
+		94D411D820FCA2C3008BDA19 /* lykkecomprod.crt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = lykkecomprod.crt; sourceTree = "<group>"; };
 		94D6B70720E13BA70066960D /* lykkexnet.crt */ = {isa = PBXFileReference; lastKnownFileType = file; name = lykkexnet.crt; path = ../../../../Documents/lykkexnet.crt; sourceTree = "<group>"; };
 		C7BD0B79BA7FF0CED5C9BD4E /* Pods-IATA.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IATA.release.xcconfig"; path = "Pods/Target Support Files/Pods-IATA/Pods-IATA.release.xcconfig"; sourceTree = "<group>"; };
 		C8A0C12C7C882A320B399E93 /* Pods-IATAUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IATAUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-IATAUITests/Pods-IATAUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1011,6 +1014,7 @@
 			children = (
 				9406B2F720E4E2330086E880 /* lykkexnettest.crt */,
 				94D6B70720E13BA70066960D /* lykkexnet.crt */,
+				94D411D820FCA2C3008BDA19 /* lykkecomprod.crt */,
 				0A0D4B8620C54446009B73E9 /* NetworkConfig.swift */,
 				0A37F00420C80A7500201907 /* AuthNetworkConfig.swift */,
 				0A4CD15B20CECA2100EF4A17 /* PaymentConfig.swift */,
@@ -2062,6 +2066,7 @@
 				D7D177A720CE3AFA00985F05 /* BaseCurrencyCollectionViewCell.xib in Resources */,
 				D7894CFE20CFFC290069F68E /* GothamProReg.otf in Resources */,
 				0A4CD13E20CD840700EF4A17 /* InvoiceHeaderView.xib in Resources */,
+				94D411D920FCA2C3008BDA19 /* lykkecomprod.crt in Resources */,
 				0A11323220DD790400FE6853 /* LICENSE in Resources */,
 				0A08C11820CAB5B900342A3E /* PaymentRangeTableViewCell.xib in Resources */,
 				0A26FC9520D15AC70097A8F6 /* DisputeViewController.xib in Resources */,
@@ -2125,6 +2130,7 @@
 				946A8A1C20F6004900C6688B /* BaseCurrencyCollectionViewCell.xib in Resources */,
 				946A8A1D20F6004900C6688B /* GothamProReg.otf in Resources */,
 				946A8A1E20F6004900C6688B /* InvoiceHeaderView.xib in Resources */,
+				94D411DA20FCA2C3008BDA19 /* lykkecomprod.crt in Resources */,
 				946A8A1F20F6004900C6688B /* LICENSE in Resources */,
 				946A8A2020F6004900C6688B /* PaymentRangeTableViewCell.xib in Resources */,
 				946A8A2120F6004900C6688B /* DisputeViewController.xib in Resources */,
@@ -2937,7 +2943,7 @@
 				CODE_SIGN_ENTITLEMENTS = IATA/IATA.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = NCJC54GM5Z;
+				DEVELOPMENT_TEAM = KKCKZ4SYVC;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2949,7 +2955,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = lykke.IATA.test.delivery;
+				PRODUCT_BUNDLE_IDENTIFIER = com.IATA.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2967,7 +2973,7 @@
 				CODE_SIGN_ENTITLEMENTS = IATA/IATA.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = NCJC54GM5Z;
+				DEVELOPMENT_TEAM = KKCKZ4SYVC;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2979,7 +2985,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = lykke.IATA.test.delivery;
+				PRODUCT_BUNDLE_IDENTIFIER = com.IATA.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";

@@ -8,13 +8,14 @@ class NetworkConfig {
     public var notificationHubSettings = PushNotificationHubSettings.dev
 
     #else
-    public var baseServerURL = BaseServerURLs.dev.getURL()
-    public var notificationHubSettings = PushNotificationHubSettings.dev
+    public var baseServerURL = BaseServerURLs.prod.getURL()
+    public var notificationHubSettings = PushNotificationHubSettings.prod
     #endif
 }
 internal enum CertificateNames: String, EnumCollection {
     case lykkexnettest
     case lykkexnet
+    case lykkecomprod
 
     internal func value() -> String {
         return self.rawValue
@@ -24,6 +25,7 @@ internal enum CertificateNames: String, EnumCollection {
 internal enum BaseServerURLs: String, EnumCollection {
     case dev
     case test
+    case prod
 
     internal func getURL() -> String {
         switch self {
@@ -31,6 +33,8 @@ internal enum BaseServerURLs: String, EnumCollection {
             return "https://pay-api-test.lykkex.net/api/v1/mobile"
         case .test:
             return "https://pay-api-test.lykkex.net/api/v1/mobile"
+        case .prod:
+            return "https://payment-api.lykke.com/api/v1/mobile"
         }
     }
 
