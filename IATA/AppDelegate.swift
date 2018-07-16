@@ -105,7 +105,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
     
     private func makeRootViewController() -> UIViewController {
         var viewController = UIViewController()
-        if (!CredentialManager.shared.isLogged) {
+        if let isLogged = UserPreference.shared.isLogged(), !isLogged {
             viewController = SignInViewController()
         } else if (UserPreference.shared.getUpdatePassword()!) {
             viewController = ChangePasswordViewController()

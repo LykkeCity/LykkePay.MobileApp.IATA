@@ -18,14 +18,12 @@ class CredentialManager {
     
     private var keychain = Keychain(service: keychainServiceName)
     
-    internal var isLogged: Bool {
-        return getAccessToken() != nil
-    }
     
     
     // MARK: Token
     internal func saveTokenObject(_ tokenObject: TokenObject?, userName: String?) {
         saveAccessToken(tokenObject?.token)
+        UserPreference.shared.saveisLogged(getAccessToken() != nil)
         saveUserName(userName)
     }
     

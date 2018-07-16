@@ -9,6 +9,7 @@ class UserPreference {
         case date
         case isInternalSuperviser
         case baseURL
+        case isLogged
     }
     
     private let localStorage: LocalStorage = DefaultLocalStorage()
@@ -41,6 +42,19 @@ class UserPreference {
         
         if !didSave {
            
+        }
+    }
+    
+    internal func isLogged() -> Bool? {
+        return UserPreference.preferences.bool(forKey: PropertyKey.isLogged.rawValue)
+    }
+    
+    internal func saveisLogged(_ isLogged: Bool?) {
+        UserPreference.preferences.set(isLogged, forKey: PropertyKey.isLogged.rawValue)
+        let didSave = UserPreference.preferences.synchronize()
+        
+        if !didSave {
+            
         }
     }
     
