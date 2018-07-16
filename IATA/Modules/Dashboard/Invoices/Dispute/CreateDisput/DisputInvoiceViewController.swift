@@ -9,7 +9,9 @@ class DisputInvoiceViewController: BaseNavController {
     @IBOutlet weak var navBar: UINavigationBar!
     @IBOutlet weak var navItem: UINavigationItem?
     @IBOutlet weak var reasonTextField: FloatTextField!
-
+    @IBOutlet weak var constraintToSuperview: NSLayoutConstraint!
+    @IBOutlet weak var constraintToSafearea: NSLayoutConstraint!
+    
     var rootController: InvoiceViewController?
     var completion: (() -> Void) = {}
     let state = DefaultDisputInvoiceState()
@@ -20,6 +22,15 @@ class DisputInvoiceViewController: BaseNavController {
         UIApplication.shared.statusBarStyle = UIStatusBarStyle.default
         self.setNeedsStatusBarAppearanceUpdate()
         self.setEnabled(isEnabled: false)
+        setConstraintToTopOfScreen()
+    }
+
+    private func setConstraintToTopOfScreen() {
+        if #available(iOS 11.0, *) {
+            view.removeConstraint(constraintToSuperview)
+        } else {
+            view.removeConstraint(constraintToSafearea)
+        }
     }
 
     override func initNavBar() {

@@ -17,6 +17,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DisputInvoiceViewController" customModule="IATA" customModuleProvider="target">
             <connections>
+                <outlet property="constraintToSafearea" destination="Ypm-mD-ShA" id="KON-zB-vCN"/>
+                <outlet property="constraintToSuperview" destination="BFL-I4-REv" id="UTz-qG-UVL"/>
                 <outlet property="navBar" destination="V4J-EB-iMn" id="bEk-Qc-7BS"/>
                 <outlet property="navItem" destination="nsm-6V-qt7" id="Bca-nw-xON"/>
                 <outlet property="navView" destination="7dC-3h-EEE" id="sPg-9n-zzh"/>
@@ -30,13 +32,13 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reason" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dS1-NH-ixo">
-                    <rect key="frame" x="20" y="87" width="335" height="22"/>
+                    <rect key="frame" x="20" y="133" width="335" height="22"/>
                     <fontDescription key="fontDescription" name="GothamPro-Bold" family="Gotham Pro" pointSize="24"/>
                     <color key="textColor" red="0.074509803921568626" green="0.26666666666666666" blue="0.45882352941176469" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2io-qG-s3C" customClass="FloatTextField" customModule="IATA" customModuleProvider="target">
-                    <rect key="frame" x="20" y="144" width="335" height="40"/>
+                    <rect key="frame" x="20" y="190" width="335" height="40"/>
                     <constraints>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="Omd-xx-9BK"/>
                     </constraints>
@@ -54,10 +56,10 @@
                     </connections>
                 </textField>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7dC-3h-EEE">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                    <rect key="frame" x="0.0" y="6" width="375" height="100"/>
                     <subviews>
                         <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V4J-EB-iMn">
-                            <rect key="frame" x="0.0" y="24" width="375" height="36"/>
+                            <rect key="frame" x="0.0" y="56" width="375" height="44"/>
                             <items>
                                 <navigationItem title="Title" id="nsm-6V-qt7"/>
                             </items>
@@ -66,8 +68,7 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="V4J-EB-iMn" firstAttribute="leading" secondItem="7dC-3h-EEE" secondAttribute="leading" id="5Ow-7u-ciX"/>
-                        <constraint firstAttribute="height" constant="60" id="7BF-m2-hXu"/>
-                        <constraint firstItem="V4J-EB-iMn" firstAttribute="top" secondItem="7dC-3h-EEE" secondAttribute="top" constant="24" id="Esc-xS-TiT"/>
+                        <constraint firstAttribute="height" constant="100" id="7BF-m2-hXu"/>
                         <constraint firstAttribute="trailing" secondItem="V4J-EB-iMn" secondAttribute="trailing" id="Rro-jB-Xne"/>
                         <constraint firstAttribute="bottom" secondItem="V4J-EB-iMn" secondAttribute="bottom" id="nuJ-UF-hvd"/>
                     </constraints>
@@ -75,12 +76,13 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstAttribute="top" secondItem="7dC-3h-EEE" secondAttribute="top" constant="38" id="BFL-I4-REv"/>
                 <constraint firstItem="dS1-NH-ixo" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="CaB-zb-PYb"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="7dC-3h-EEE" secondAttribute="trailing" id="HKf-Ss-2uk"/>
                 <constraint firstItem="2io-qG-s3C" firstAttribute="top" secondItem="dS1-NH-ixo" secondAttribute="bottom" constant="35" id="MXv-Yc-t6q"/>
                 <constraint firstItem="dS1-NH-ixo" firstAttribute="top" secondItem="7dC-3h-EEE" secondAttribute="bottom" constant="27" id="QIW-Y0-P8n"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="top" secondItem="7dC-3h-EEE" secondAttribute="top" constant="58" id="Ypm-mD-ShA"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="2io-qG-s3C" secondAttribute="trailing" constant="20" id="dPR-El-GYT"/>
-                <constraint firstItem="7dC-3h-EEE" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="eAw-93-nnv"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="dS1-NH-ixo" secondAttribute="trailing" constant="20" id="g5e-6S-tby"/>
                 <constraint firstItem="7dC-3h-EEE" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="hcx-vc-Ypa"/>
                 <constraint firstItem="2io-qG-s3C" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="wJX-GH-2sE"/>
