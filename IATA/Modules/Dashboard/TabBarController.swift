@@ -42,7 +42,9 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
         viewController.tabBarItem.image = UIImage(named: normalImage)
         viewController.tabBarItem.selectedImage = UIImage(named: activeImage)
         viewController.tabBarItem.setTitleTextAttributes([NSAttributedStringKey.foregroundColor: UIColor.white], for: .selected)
-        viewController.tabBarItem.titlePositionAdjustment = UIOffsetMake(0, -5)
+        if UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.phone {
+            viewController.tabBarItem.titlePositionAdjustment = UIOffsetMake(0, -5)
+        }
         return viewController
     }
     
