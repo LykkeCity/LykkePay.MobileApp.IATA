@@ -14,7 +14,7 @@ extension String {
     }
     
     func isUsd() -> Bool {
-        return self.contains("USD")
+        return self.elementsEqual("IATACOIN") || self.contains("USD")
     }
     
     func isEuro() -> Bool {
