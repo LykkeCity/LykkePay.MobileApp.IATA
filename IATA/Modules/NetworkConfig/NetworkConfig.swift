@@ -30,7 +30,7 @@ internal enum BaseServerURLs: String, EnumCollection {
     internal func getURL() -> String {
         switch self {
         case .dev:
-            return "https://pay-api-test.lykkex.net/api/v1/mobile"
+            return "https://pay-api-dev.lykkex.net/api/v1/mobile"
         case .test:
             return "https://pay-api-test.lykkex.net/api/v1/mobile"
         case .prod:
