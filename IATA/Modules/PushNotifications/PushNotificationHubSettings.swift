@@ -14,7 +14,7 @@ struct PushNotificationHubSettings {
 }
 
 extension PushNotificationHubSettings {
-    static let prod = PushNotificationHubSettings(name: "lykke-notifications",
+    static let prod = PushNotificationHubSettings(name: "lykke-pay-notifications",
                                                         listenAccess: "Endpoint=sb://pay-notifications.servicebus.windows.net/;SharedAccessKeyName=DefaultListenSharedAccessSignature;SharedAccessKey=s3wAOMhtQp2P54Key83EIOghQAafH3Aw1+QZho76Ias=")
 
     static let dev = PushNotificationHubSettings(name: "lykkepay-notifications-dev",
