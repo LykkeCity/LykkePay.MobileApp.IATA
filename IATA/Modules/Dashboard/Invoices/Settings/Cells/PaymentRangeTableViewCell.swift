@@ -28,7 +28,7 @@ class PaymentRangeTableViewCell: UITableViewCell, UITextFieldDelegate {
                 self.rangeSlider?.maximumValue = maxValueRange
                 self.maxValueLabel.text = getMaxValue(maxValue: maxValueRange)
             } else {
-                NotificationCenter.default.post(name: NSNotification.Name(NotificateEnum.disable.rawValue), object: nil)
+                self.item?.maxRangeInBaseAsset = 1000000
             }
         }
     }
@@ -144,7 +144,7 @@ class PaymentRangeTableViewCell: UITableViewCell, UITextFieldDelegate {
                 self.minValueTextField?.text = "0 " + symbol
             }
             
-            if let valueText = self.minValueTextField?.text, Formatter.formattedToDouble(valueString: valueText) == 0 {
+            if let valueText = self.maxValueTextField?.text, Formatter.formattedToDouble(valueString: valueText) == 0 {
                 ViewUtils.shared.showToast(message: R.string.localizable.invoiceSettingsErrorToZero(), view: self.contentView)
                 NotificationCenter.default.post(name: NSNotification.Name(NotificateEnum.disable.rawValue), object: nil)
             } else if  let valueText = self.minValueTextField?.text, let value = Formatter.formattedToDouble(valueString: valueText),
