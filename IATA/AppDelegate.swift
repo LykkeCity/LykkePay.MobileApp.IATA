@@ -27,6 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
         let name = String(describing: navigationController.visibleViewController?.classForCoder)
         let newName = String(describing: viewController.classForCoder)
         if (!name.contains(newName)) {
+            navigationController.dismiss(animated: false, completion: nil)
             navigationController.pushViewController(makeRootViewController(), animated: true)
         }
         turnOffLayoutWarnings()
@@ -78,6 +79,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
         let name = String(describing: navigationController.visibleViewController?.classForCoder)
         let newName = String(describing: viewController.classForCoder)
         if (!name.contains(newName) && (getCurrentTime() - lastOpenTime!) > 30) {
+            navigationController.dismiss(animated: false, completion: nil)
             navigationController.pushViewController(makeRootViewController(), animated: true)
         }
         UserPreference.shared.saveLastOpenTime(date: getCurrentTime())
