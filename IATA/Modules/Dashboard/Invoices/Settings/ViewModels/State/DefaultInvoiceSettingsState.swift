@@ -95,7 +95,7 @@ class DefaultInvoiceSettingsState: InvoiceSettingsState {
                 payment?.maxRangeInBaseAsset = Double(max)
             }
         }
-        payment?.max = FilterPreference.shared.getMaxValue() == 1000000 && maxValue != nil ?  maxValue :  FilterPreference.shared.getMaxValue()
+        payment?.max = FilterPreference.shared.getMaxValue() == 1000000 && maxValue != nil && maxValue != 0 ?  maxValue :  FilterPreference.shared.getMaxValue()
         
         
         if let res = payment {

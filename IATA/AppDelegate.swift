@@ -10,7 +10,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
    
     func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationControllerOperation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         let name = String(describing: fromVC.classForCoder)
-        if name.contains("Pin") {
+        if name.contains("Pin")  {
             return PresentDownAnimation()
         } else {
             return PresentAnimation()
@@ -27,6 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
         let name = String(describing: navigationController.visibleViewController?.classForCoder)
         let newName = String(describing: viewController.classForCoder)
         if (!name.contains(newName)) {
+            navigationController.dismiss(animated: false, completion: nil)
             navigationController.pushViewController(makeRootViewController(), animated: true)
         }
         turnOffLayoutWarnings()
@@ -78,6 +79,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
         let name = String(describing: navigationController.visibleViewController?.classForCoder)
         let newName = String(describing: viewController.classForCoder)
         if (!name.contains(newName) && (getCurrentTime() - lastOpenTime!) > 30) {
+            navigationController.dismiss(animated: false, completion: nil)
             navigationController.pushViewController(makeRootViewController(), animated: true)
         }
         UserPreference.shared.saveLastOpenTime(date: getCurrentTime())

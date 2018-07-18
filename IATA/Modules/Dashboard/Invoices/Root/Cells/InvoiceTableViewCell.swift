@@ -40,7 +40,7 @@ class InvoiceTableViewCell: SwipeTableViewCell {
     }
     
     @objc func clicked() {
-        if let isDisabled = delegateChanged?.isDisabled(), !isDisabled {
+        if let isDisabled = delegateChanged?.isDisabled(), !isDisabled, isCanBePaid {
             self.checkBox.isChecked = !self.checkBox.isChecked
             delegateChanged?.onItemSelected(isSelected: self.checkBox.isChecked, index: self.checkBox.tag)
         } else {
