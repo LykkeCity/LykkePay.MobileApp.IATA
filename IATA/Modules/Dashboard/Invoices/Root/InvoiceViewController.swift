@@ -1,7 +1,6 @@
 import UIKit
 import ObjectMapper
 
-
 class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceState> {
    
     @IBOutlet weak var sumTextField: CurrencyUiTextField!
@@ -195,6 +194,9 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if !textField.filterNumbers(with: string) {
+            return false
+        }
         if(textField == self.sumTextField) {
             if !self.sumTextField.textField(textField, shouldChangeCharactersIn: range, replacementString: string) {
                 return false

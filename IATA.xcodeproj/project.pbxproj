@@ -205,6 +205,8 @@
 		123C1779CC315CC3F3D1AD7D /* Pods_IATATests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7527B2B91103E6B38EFEF340 /* Pods_IATATests.framework */; };
 		5BD8D3E6E74FDC2B2AAEBD74 /* Pods_IATA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FC260316A6015639FD5E1F0 /* Pods_IATA.framework */; };
 		9406B2F820E4E2330086E880 /* lykkexnettest.crt in Resources */ = {isa = PBXBuildFile; fileRef = 9406B2F720E4E2330086E880 /* lykkexnettest.crt */; };
+		9454BB6D20FF71B1003B66C3 /* UITextFiledExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9454BB6C20FF71B1003B66C3 /* UITextFiledExtension.swift */; };
+		9454BB6E20FF71B1003B66C3 /* UITextFiledExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9454BB6C20FF71B1003B66C3 /* UITextFiledExtension.swift */; };
 		946A895520F6004900C6688B /* ExchangeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BC8CED20E111E4000A708B /* ExchangeModel.swift */; };
 		946A895620F6004900C6688B /* BTConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1AF41320CADB7A0009595C /* BTConfiguration.swift */; };
 		946A895720F6004900C6688B /* StringsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A37EF6D20C58C2500201907 /* StringsExtension.swift */; };
@@ -706,6 +708,7 @@
 		7527B2B91103E6B38EFEF340 /* Pods_IATATests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IATATests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9406B2F720E4E2330086E880 /* lykkexnettest.crt */ = {isa = PBXFileReference; lastKnownFileType = file; name = lykkexnettest.crt; path = ../../../../Documents/lykkexnettest.crt; sourceTree = "<group>"; };
 		942B303120F4DB7600DAFE4C /* IATA.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = IATA.entitlements; sourceTree = "<group>"; };
+		9454BB6C20FF71B1003B66C3 /* UITextFiledExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFiledExtension.swift; sourceTree = "<group>"; };
 		946A8A4420F6004900C6688B /* IATA TEST.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "IATA TEST.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		946A8A4520F6004900C6688B /* IATA copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "IATA copy-Info.plist"; path = "/Users/aleksei_lazarev/LykkePay.MobileApp.IATA/IATA copy-Info.plist"; sourceTree = "<absolute>"; };
 		947A438120F0DA1F006740B7 /* PushNotificationHubSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushNotificationHubSettings.swift; sourceTree = "<group>"; };
@@ -1548,6 +1551,7 @@
 				0A0B11B520D2B4C400021E2D /* LabelExtensitions.swift */,
 				0A4E4A3020DAAC3A00F1CA3A /* FormatterExtension.swift */,
 				D7AF0E1F20E3797F00C285D4 /* UIViewControllerExtension.swift */,
+				9454BB6C20FF71B1003B66C3 /* UITextFiledExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -2406,6 +2410,7 @@
 				0ACDF69420E4179E00EFF18F /* InvoiceViewControllerPaymentExtension.swift in Sources */,
 				0A837C3220DE986300199759 /* PaymentAmount.swift in Sources */,
 				0A0B11B620D2B4C400021E2D /* LabelExtensitions.swift in Sources */,
+				9454BB6D20FF71B1003B66C3 /* UITextFiledExtension.swift in Sources */,
 				D7DEFC8C20C97148005FB9EF /* TabBarController.swift in Sources */,
 				0A7576EB20E577A200A45434 /* ExchangeViewControllerExtention.swift in Sources */,
 				0A37EF6220C588F400201907 /* ErrorHandler.swift in Sources */,
@@ -2617,6 +2622,7 @@
 				946A897020F6004900C6688B /* InvoiceViewControllerPaymentExtension.swift in Sources */,
 				946A897120F6004900C6688B /* PaymentAmount.swift in Sources */,
 				946A897220F6004900C6688B /* LabelExtensitions.swift in Sources */,
+				9454BB6E20FF71B1003B66C3 /* UITextFiledExtension.swift in Sources */,
 				946A897320F6004900C6688B /* TabBarController.swift in Sources */,
 				946A897420F6004900C6688B /* ExchangeViewControllerExtention.swift in Sources */,
 				946A897520F6004900C6688B /* ErrorHandler.swift in Sources */,

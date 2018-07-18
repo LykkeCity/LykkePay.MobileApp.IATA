@@ -126,6 +126,10 @@ class DesignableUITextField: FloatTextField, UITextFieldDelegate {
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if !textField.filterNumbers(with: string) {
+            return false
+        }
+        
         if let text = self.getOldText(), let textNsString = text as? NSString {
             
             let newString = textNsString.replacingCharacters(in: range, with: string)
