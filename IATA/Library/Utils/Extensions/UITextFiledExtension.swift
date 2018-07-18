@@ -1,10 +1,3 @@
-//
-//  UITexyFiledExtension.swift
-//  IATA
-//
-//  Created by Alexei Lazarev on 7/18/18.
-//  Copyright © 2018 Елизавета Казимирова. All rights reserved.
-//
 
 import UIKit
 
