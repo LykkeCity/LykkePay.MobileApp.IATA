@@ -85,6 +85,8 @@ class SettingsViewController: BaseNavController {
         logoutAction.setValue(Theme.shared.logoutTitle, forKey: "titleTextColor")
         logoutSheet.addAction(logoutAction)
         logoutSheet.addAction(UIAlertAction(title: R.string.localizable.settingLogoutItemCancel(), style: .cancel, handler: nil))
+        logoutSheet.popoverPresentationController?.barButtonItem = self.navigationItem.rightBarButtonItem
+        logoutSheet.popoverPresentationController?.sourceView = self.view
         self.present(logoutSheet, animated: true, completion: nil)
     }
 
