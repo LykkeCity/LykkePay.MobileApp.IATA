@@ -27,7 +27,9 @@ class PaymentRangeTableViewCell: UITableViewCell, UITextFieldDelegate {
             if let maxValueRange = item.maxRangeInBaseAsset, let minValueRange = item.maxRangeInBaseAsset, maxValueRange != 0, minValueRange != 0 {
                 self.rangeSlider?.maximumValue = maxValueRange
                 self.maxValueLabel.text = getMaxValue(maxValue: maxValueRange)
-            } 
+            } else {
+                NotificationCenter.default.post(name: NSNotification.Name(NotificateEnum.disable.rawValue), object: nil)
+            }
         }
     }
     
@@ -102,6 +104,10 @@ class PaymentRangeTableViewCell: UITableViewCell, UITextFieldDelegate {
                 
                 if  let maxValueRange = self.item?.maxRangeInBaseAsset,
                     !(TextFieldUtil.validateMaxValue(newString: newString, maxValue: maxValueRange, range: range, replacementString: string, symbol: self.maxValueTextField?.symbolValue)) {
+                    return false
+                }
+                
+                if  !TextFieldUtil.validateMinValueText(newString, 0, false) {
                     return false
                 }
             }
