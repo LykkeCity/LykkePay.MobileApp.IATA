@@ -17,8 +17,12 @@ class ChangePasswordViewController: BaseAuthViewController, UINavigationControll
     private var state: ChangePasswordViewState = DefaultChangePasswordViewState() as ChangePasswordViewState
     
     func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationControllerOperation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        
-        return PresentAnimation()
+        let name = String(describing: toVC.classForCoder)
+        if name.contains("SignInViewController")  {
+            return PresentDownAnimation()
+        } else {
+            return PresentAnimation()
+        }
     }
     
     override func viewDidLoad() {

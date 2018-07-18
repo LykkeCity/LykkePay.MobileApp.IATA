@@ -10,7 +10,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
    
     func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationControllerOperation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         let name = String(describing: fromVC.classForCoder)
-        if name.contains("Pin") {
+        if name.contains("Pin")  {
             return PresentDownAnimation()
         } else {
             return PresentAnimation()
