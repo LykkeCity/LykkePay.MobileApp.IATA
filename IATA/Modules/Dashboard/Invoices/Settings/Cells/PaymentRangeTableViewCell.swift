@@ -27,7 +27,7 @@ class PaymentRangeTableViewCell: UITableViewCell, UITextFieldDelegate {
             if let maxValueRange = item.maxRangeInBaseAsset, let minValueRange = item.maxRangeInBaseAsset, maxValueRange != 0, minValueRange != 0 {
                 self.rangeSlider?.maximumValue = maxValueRange
                 self.maxValueLabel.text = getMaxValue(maxValue: maxValueRange)
-            }
+            } 
         }
     }
     
