@@ -263,11 +263,18 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
     @objc func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             UIView.animate(withDuration: 0.1, animations: { () -> Void in
-                self.bottomConstrain.constant = -keyboardSize.size.height/2 - 70
+                self.bottomConstrain.constant = -keyboardSize.size.height/2 - 70 - self.spaceForPayViewForCurrentDevice()
             })
         }
     }
-    
+
+    private func spaceForPayViewForCurrentDevice() -> CGFloat {
+        if UIDevice().userInterfaceIdiom == .pad {
+            return 60
+        }
+        return 0
+    }
+
     @objc func keyboardWillHide(notification: NSNotification) {
         self.bottomConstrain.constant = 0
     }
