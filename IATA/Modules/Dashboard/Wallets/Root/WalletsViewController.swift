@@ -25,6 +25,10 @@ class WalletsViewController: BaseViewController<WalletsViewModel, DefaultWallets
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3, execute: {
+            self.tabBarController?.tabBar.isHidden = false
+            self.tabBarController?.tabBar.isTranslucent = false
+        })
         self.navigationController?.isNavigationBarHidden = false
         self.navigationController?.delegate = self
     }

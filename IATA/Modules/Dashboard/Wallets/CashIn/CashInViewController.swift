@@ -72,8 +72,7 @@ class CashInViewController: BaseViewController<CashOutViewModel, DefaultCashOutS
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        self.tabBarController?.tabBar.isHidden = false
-        self.tabBarController?.tabBar.isTranslucent = false
+        
     }
 
     private func setConstraintToTopOfScreen() {
