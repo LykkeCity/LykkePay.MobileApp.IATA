@@ -70,7 +70,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x9F-Ed-rHv">
-                                            <rect key="frame" x="100" y="63" width="0.0" height="0.0"/>
+                                            <rect key="frame" x="100" y="63" width="239" height="0.0"/>
                                             <fontDescription key="fontDescription" name="GothamPro-Light" family="Gotham Pro" pointSize="14"/>
                                             <color key="textColor" red="0.17254901960784313" green="0.71764705882352942" blue="0.0039215686274509803" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -85,6 +85,7 @@
                                         <constraint firstItem="x9F-Ed-rHv" firstAttribute="top" secondItem="lSu-Xm-QmQ" secondAttribute="bottom" constant="14" id="E1p-tN-e72"/>
                                         <constraint firstItem="FmC-EE-XGF" firstAttribute="top" secondItem="6dw-S3-NMy" secondAttribute="top" constant="26" id="FUg-QM-ifa"/>
                                         <constraint firstItem="BeL-sm-w3i" firstAttribute="top" secondItem="6dw-S3-NMy" secondAttribute="top" constant="22" id="KM5-Gr-snO"/>
+                                        <constraint firstAttribute="trailing" secondItem="x9F-Ed-rHv" secondAttribute="trailing" constant="4" id="LhD-hp-Vge"/>
                                         <constraint firstItem="BeL-sm-w3i" firstAttribute="leading" secondItem="wzz-fB-Rxz" secondAttribute="trailing" constant="20" id="Mc9-af-Vul"/>
                                         <constraint firstItem="wzz-fB-Rxz" firstAttribute="top" secondItem="6dw-S3-NMy" secondAttribute="top" constant="20" id="RpX-cL-7iv"/>
                                         <constraint firstAttribute="trailing" secondItem="lSu-Xm-QmQ" secondAttribute="trailing" constant="8" id="Vr2-81-Rbk"/>
