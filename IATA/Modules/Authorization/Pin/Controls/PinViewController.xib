@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -31,13 +32,13 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="35" translatesAutoresizingMaskIntoConstraints="NO" id="Ulj-kJ-9d9">
-                    <rect key="frame" x="16" y="56" width="343" height="587"/>
+                    <rect key="frame" x="16" y="50" width="343" height="587"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hub-S0-8XR">
                             <rect key="frame" x="0.0" y="0.0" width="343" height="120"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="iHK-bQ-e2Q">
-                                    <rect key="frame" x="111.5" y="0.0" width="120" height="120"/>
+                                    <rect key="frame" x="112" y="0.0" width="120" height="120"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="120" id="1rd-HW-KPQ"/>
                                         <constraint firstAttribute="width" constant="120" id="iva-wc-u3W"/>
@@ -73,6 +74,10 @@
                             </subviews>
                         </stackView>
                     </subviews>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="587" id="syP-LN-I81"/>
+                        <constraint firstAttribute="width" constant="343" id="yPc-kN-3nd"/>
+                    </constraints>
                 </stackView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nyZ-gg-V6l">
                     <rect key="frame" x="0.0" y="28" width="375" height="20"/>
@@ -99,13 +104,16 @@
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="nyZ-gg-V6l" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="28" id="5CB-aW-LQe"/>
-                <constraint firstItem="Ulj-kJ-9d9" firstAttribute="top" secondItem="nyZ-gg-V6l" secondAttribute="bottom" constant="8" id="PFK-fI-Bo2"/>
-                <constraint firstItem="Ulj-kJ-9d9" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="16" id="Te2-v6-7SB"/>
-                <constraint firstAttribute="bottom" secondItem="Ulj-kJ-9d9" secondAttribute="bottom" constant="24" id="Wwb-A0-t3g"/>
+                <constraint firstItem="Ulj-kJ-9d9" firstAttribute="centerX" secondItem="nyZ-gg-V6l" secondAttribute="centerX" id="9tN-96-9rZ"/>
+                <constraint firstItem="Ulj-kJ-9d9" firstAttribute="centerY" secondItem="6ZK-2U-wbo" secondAttribute="centerY" id="PAy-o1-bji"/>
+                <constraint firstItem="Ulj-kJ-9d9" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="16" id="Te2-v6-7SB"/>
+                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Ulj-kJ-9d9" secondAttribute="bottom" constant="24" id="Wwb-A0-t3g"/>
                 <constraint firstItem="nyZ-gg-V6l" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="XEB-Af-Z4y"/>
+                <constraint firstItem="Ulj-kJ-9d9" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leadingMargin" id="nff-v7-ljW"/>
                 <constraint firstItem="nyZ-gg-V6l" firstAttribute="top" secondItem="6ZK-2U-wbo" secondAttribute="top" constant="8" id="ppb-V9-CTj"/>
+                <constraint firstItem="Ulj-kJ-9d9" firstAttribute="top" relation="greaterThanOrEqual" secondItem="nyZ-gg-V6l" secondAttribute="bottom" constant="2" id="uBC-PO-7aM"/>
                 <constraint firstAttribute="trailing" secondItem="nyZ-gg-V6l" secondAttribute="trailing" id="vOf-aO-aGj"/>
-                <constraint firstAttribute="trailing" secondItem="Ulj-kJ-9d9" secondAttribute="trailing" constant="16" id="w55-58-nZM"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Ulj-kJ-9d9" secondAttribute="trailing" constant="16" id="w55-58-nZM"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="6ZK-2U-wbo"/>
             <point key="canvasLocation" x="33.5" y="148.5"/>
