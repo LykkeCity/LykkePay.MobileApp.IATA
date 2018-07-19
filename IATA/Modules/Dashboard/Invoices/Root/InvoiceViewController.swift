@@ -271,6 +271,14 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
         if UIDevice().userInterfaceIdiom == .pad {
             return 60
         }
+        if UIDevice().userInterfaceIdiom == .phone {
+            switch UIScreen.main.nativeBounds.height {
+            case 2436:
+                 return 10
+            default:
+                break
+            }
+        }
         return 0
     }
 
