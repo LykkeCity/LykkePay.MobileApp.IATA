@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
+    <device id="ipad10_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -28,17 +28,17 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <rect key="frame" x="0.0" y="0.0" width="574" height="988"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="35" translatesAutoresizingMaskIntoConstraints="NO" id="Ulj-kJ-9d9">
-                    <rect key="frame" x="16" y="50" width="343" height="587"/>
+                    <rect key="frame" x="20" y="64" width="514" height="880"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hub-S0-8XR">
-                            <rect key="frame" x="0.0" y="0.0" width="343" height="120"/>
+                            <rect key="frame" x="0.0" y="0.0" width="514" height="120"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="iHK-bQ-e2Q">
-                                    <rect key="frame" x="112" y="0.0" width="120" height="120"/>
+                                    <rect key="frame" x="197.5" y="0.0" width="120" height="120"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="120" id="1rd-HW-KPQ"/>
                                         <constraint firstAttribute="width" constant="120" id="iva-wc-u3W"/>
@@ -54,7 +54,7 @@
                             </constraints>
                         </view>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please enter your PIN code" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oY7-VE-eOM">
-                            <rect key="frame" x="0.0" y="155" width="343" height="20"/>
+                            <rect key="frame" x="0.0" y="155" width="514" height="20"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="20" id="QHT-Wr-Rqt"/>
                             </constraints>
@@ -63,10 +63,10 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="MgR-5H-JGF">
-                            <rect key="frame" x="0.0" y="210" width="343" height="377"/>
+                            <rect key="frame" x="0.0" y="210" width="514" height="670"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Xh-7S-HGl">
-                                    <rect key="frame" x="0.0" y="0.0" width="343" height="377"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="514" height="670"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -75,12 +75,12 @@
                         </stackView>
                     </subviews>
                     <constraints>
-                        <constraint firstAttribute="height" constant="587" id="syP-LN-I81"/>
-                        <constraint firstAttribute="width" constant="343" id="yPc-kN-3nd"/>
+                        <constraint firstAttribute="height" constant="880" id="syP-LN-I81"/>
+                        <constraint firstAttribute="width" constant="514" id="yPc-kN-3nd"/>
                     </constraints>
                 </stackView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nyZ-gg-V6l">
-                    <rect key="frame" x="0.0" y="28" width="375" height="20"/>
+                    <rect key="frame" x="0.0" y="28" width="554" height="20"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xe5-U4-Wo3">
                             <rect key="frame" x="16" y="0.0" width="57" height="28"/>
@@ -115,8 +115,9 @@
                 <constraint firstAttribute="trailing" secondItem="nyZ-gg-V6l" secondAttribute="trailing" id="vOf-aO-aGj"/>
                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Ulj-kJ-9d9" secondAttribute="trailing" constant="16" id="w55-58-nZM"/>
             </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="6ZK-2U-wbo"/>
-            <point key="canvasLocation" x="33.5" y="148.5"/>
+            <point key="canvasLocation" x="113" y="308"/>
         </view>
     </objects>
     <resources>
