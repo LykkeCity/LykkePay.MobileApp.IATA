@@ -246,9 +246,9 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
     }
     
     private func initDownView(isSelected: Bool) {
-        if isSelected { //&& self.downViewHeightConstraint.constant == 0) {
+        if isSelected  {
             self.animate(isShow: true)
-        } else if !isSelected  /* && self.downViewHeightConstraint.constant != 0*/ && self.state?.getCountSelected() == 0 {
+        } else if !isSelected && self.state?.getCountSelected() == 0 {
             self.animate(isShow: false)
         }
     }

@@ -57,7 +57,7 @@ extension InvoiceViewController {
     
     
     private func saveAmount(amount: Double?) {
-        if let amountValue = amount { //, self.downViewHeightConstraint.constant != 0 {
+        if let amountValue = amount, self.payHeight.constant != 0 {
             self.state?.amount = amountValue
             self.sumTextField.text = Formatter.formattedWithSeparator(valueDouble: amountValue)
         }
@@ -67,7 +67,7 @@ extension InvoiceViewController {
     
     func animate(isShow: Bool) {
         if (payHeight.constant == 0 && isShow) || (payHeight.constant != 0 && !isShow) {
-            UIView.animate(withDuration: 0.5 , animations: {
+            UIView.animate(withDuration: 0.3 , animations: {
                 self.downView.isHidden = false
                 self.downView.alpha = isShow ? 1 : 0
                 self.selectedItemTextField.alpha = isShow ? 1 : 0
@@ -76,7 +76,7 @@ extension InvoiceViewController {
                 self.btnPay.layoutIfNeeded()
                 self.downView.layoutIfNeeded()
             }, completion: {(finished) in
-                if !isShow {
+                if !isShow && self.state?.getCountSelected() == 0 {
                     self.downViewHeightConstraint.constant = 0
                     self.downView.isHidden = true
                     self.sumTextField.text = ""
@@ -86,7 +86,7 @@ extension InvoiceViewController {
             if !isShow {
                 self.state?.clearSelectedItems()
             }
-        }
+       }
         
         self.loadView(isShowLoading: false, isHiddenSelected: true)
     }
