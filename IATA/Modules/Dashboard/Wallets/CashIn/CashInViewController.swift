@@ -90,6 +90,11 @@ class CashInViewController: BaseViewController<CashOutViewModel, DefaultCashOutS
         if !textField.filterNumbers(with: string) {
             return false
         }
+        if(textField == self.sumTextField) {
+            if !self.sumTextField.textField(textField, shouldChangeCharactersIn: range, replacementString: string) {
+                return false
+            }
+        }
         return true
     }
     

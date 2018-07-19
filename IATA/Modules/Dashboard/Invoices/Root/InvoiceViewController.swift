@@ -246,10 +246,9 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
     }
     
     private func initDownView(isSelected: Bool) {
-        if (isSelected && self.downViewHeightConstraint.constant == 0) {
+        if isSelected { //&& self.downViewHeightConstraint.constant == 0) {
             self.animate(isShow: true)
-        } else if (!isSelected && self.downViewHeightConstraint.constant != 0 && self.state?.getCountSelected() == 0) {
-            self.sumTextField.text = ""
+        } else if !isSelected  /* && self.downViewHeightConstraint.constant != 0*/ && self.state?.getCountSelected() == 0 {
             self.animate(isShow: false)
         }
     }

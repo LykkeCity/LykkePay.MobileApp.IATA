@@ -192,9 +192,12 @@ class PaymentRangeTableViewCell: UITableViewCell, UITextFieldDelegate {
     }
     
     private func getMaxValue(maxValue: Double) -> String {
-        let intValue = 1000 * Int((maxValue / 1000.0).rounded())
+        var intValue = 1000 * Int((maxValue / 1000.0).rounded())
         let formatter = NumberFormatter()
         formatter.maximumFractionDigits = 0
+        if intValue == 0 {
+            return R.string.localizable.invoiceSettingsMaxRange("1")
+        }
         if let value = formatter.string(for: Double(intValue)/1000){
             return R.string.localizable.invoiceSettingsMaxRange(value)
         } else {
