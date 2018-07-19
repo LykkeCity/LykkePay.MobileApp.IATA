@@ -66,24 +66,26 @@ extension InvoiceViewController {
     }
     
     func animate(isShow: Bool) {
-        UIView.animate(withDuration: 0.5 , animations: {
-            self.downView.isHidden = false
-            self.downView.alpha = isShow ? 1 : 0
-            self.selectedItemTextField.alpha = isShow ? 1 : 0
-            self.payHeight.constant = isShow ? 48 : 0
-            self.downViewHeightConstraint.constant = 90
-            self.btnPay.layoutIfNeeded()
-            self.downView.layoutIfNeeded()
-        }, completion: {(finished) in
+        if (payHeight.constant == 0 && isShow) || (payHeight.constant != 0 && !isShow) {
+            UIView.animate(withDuration: 0.5 , animations: {
+                self.downView.isHidden = false
+                self.downView.alpha = isShow ? 1 : 0
+                self.selectedItemTextField.alpha = isShow ? 1 : 0
+                self.payHeight.constant = isShow ? 48 : 0
+                self.downViewHeightConstraint.constant = 90
+                self.btnPay.layoutIfNeeded()
+                self.downView.layoutIfNeeded()
+            }, completion: {(finished) in
+                if !isShow {
+                    self.downViewHeightConstraint.constant = 0
+                    self.downView.isHidden = true
+                    self.sumTextField.text = ""
+                }
+            })
+            view.endEditing(!isShow)
             if !isShow {
-                self.downViewHeightConstraint.constant = 0
-                self.downView.isHidden = true
-                self.sumTextField.text = ""
+                self.state?.clearSelectedItems()
             }
-        })
-        view.endEditing(!isShow)
-        if !isShow {
-            self.state?.clearSelectedItems()
         }
         
         self.loadView(isShowLoading: false, isHiddenSelected: true)
