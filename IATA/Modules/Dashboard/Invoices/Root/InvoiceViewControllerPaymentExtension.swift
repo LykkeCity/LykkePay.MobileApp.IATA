@@ -7,6 +7,7 @@ extension InvoiceViewController {
     // MARK: payments process
     func makePayment(alert: UIAlertAction!) {
         self.view.endEditing(true)
+        let sum = self.sumTextField.text
         if isPayingAvailable() {
             let viewController = PinViewController()
             viewController.isValidationTransaction = true
@@ -14,7 +15,7 @@ extension InvoiceViewController {
             viewController.messageTouch = R.string.localizable.invoiceScreenPayConfirmation()
             let items = self.state?.getItemsId()
             viewController.completion = {
-                self.state?.makePayment(items: items, amount: self.sumTextField.text)
+                self.state?.makePayment(items: items, amount: sum)
                     .then(execute: {[weak self] (result: BaseMappable) -> Void in
                         guard let strongSelf = self else {
                             return
