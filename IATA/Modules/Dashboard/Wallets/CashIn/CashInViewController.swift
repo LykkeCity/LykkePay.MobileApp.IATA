@@ -24,6 +24,7 @@ class CashInViewController: BaseViewController<CashOutViewModel, DefaultCashOutS
     @IBOutlet weak var heightConstraint: NSLayoutConstraint!
 
     let numberOfRows = 10000//Int.max
+    let sumTextFieldTag = 1
   
     var heightAchor: NSLayoutConstraint?
     var heightAchorMaximum: NSLayoutConstraint?
@@ -47,6 +48,8 @@ class CashInViewController: BaseViewController<CashOutViewModel, DefaultCashOutS
         self.navigationController?.delegate = self
         
         self.sumTextField.keyboardType = UIKeyboardType.decimalPad
+        self.sumTextField.tag = sumTextFieldTag
+        self.sumTextField.delegate = self
         
         Theme.shared.configureTextFieldStyle(sumTextField, title: R.string.localizable.cashOutScreenPlaceholder())
         Theme.shared.configureTextFieldStyle(assetPicker, title: R.string.localizable.cashOutScreenInCurrency())
@@ -72,8 +75,7 @@ class CashInViewController: BaseViewController<CashOutViewModel, DefaultCashOutS
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        self.tabBarController?.tabBar.isHidden = false
-        self.tabBarController?.tabBar.isTranslucent = false
+        
     }
 
     private func setConstraintToTopOfScreen() {
@@ -83,11 +85,26 @@ class CashInViewController: BaseViewController<CashOutViewModel, DefaultCashOutS
             view.removeConstraint(constraintToSafeArea)
         }
     }
+
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if !textField.filterNumbers(with: string) {
+            return false
+        }
+        if(textField == self.sumTextField) {
+            if !self.sumTextField.textField(textField, shouldChangeCharactersIn: range, replacementString: string) {
+                return false
+            }
+        }
+        return true
+    }
     
     override func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        self.view.endEditing(true)
-        self.showAlerWithPicker()
-        return false
+        if textField.tag != sumTextFieldTag {
+            self.view.endEditing(true)
+            self.showAlerWithPicker()
+            return false
+        }
+        return true
     }
     
     override func beginRefreshing(){

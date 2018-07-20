@@ -7,6 +7,7 @@ extension InvoiceViewController {
     // MARK: payments process
     func makePayment(alert: UIAlertAction!) {
         self.view.endEditing(true)
+        let sum = self.sumTextField.text
         if isPayingAvailable() {
             let viewController = PinViewController()
             viewController.isValidationTransaction = true
@@ -14,7 +15,7 @@ extension InvoiceViewController {
             viewController.messageTouch = R.string.localizable.invoiceScreenPayConfirmation()
             let items = self.state?.getItemsId()
             viewController.completion = {
-                self.state?.makePayment(items: items, amount: self.sumTextField.text)
+                self.state?.makePayment(items: items, amount: sum)
                     .then(execute: {[weak self] (result: BaseMappable) -> Void in
                         guard let strongSelf = self else {
                             return
@@ -57,7 +58,7 @@ extension InvoiceViewController {
     
     
     private func saveAmount(amount: Double?) {
-        if let amountValue = amount, self.downViewHeightConstraint.constant != 0 {
+        if let amountValue = amount, self.payHeight.constant != 0 {
             self.state?.amount = amountValue
             self.sumTextField.text = Formatter.formattedWithSeparator(valueDouble: amountValue)
         }
@@ -66,24 +67,33 @@ extension InvoiceViewController {
     }
     
     func animate(isShow: Bool) {
-        UIView.animate(withDuration: 0.5 , animations: {
-            self.downView.alpha = isShow ? 1 : 0
-            self.payHeight.constant = isShow ? 48 : 0
-            self.downViewHeightConstraint.constant = isShow ? 90 : 0
-            self.btnPay.layoutIfNeeded()
-            self.downView.layoutIfNeeded()
-        }, completion: {(finished) in
-        })
-        view.endEditing(!isShow)
-        if !isShow {
-            self.state?.clearSelectedItems()
-        }
+        if (payHeight.constant == 0 && isShow) || (payHeight.constant != 0 && !isShow) {
+            UIView.animate(withDuration: 0.3 , animations: {
+                self.downView.isHidden = false
+                self.downView.alpha = isShow ? 1 : 0
+                self.selectedItemTextField.alpha = isShow ? 1 : 0
+                self.payHeight.constant = isShow ? 48 : 0
+                self.downViewHeightConstraint.constant = 90
+                self.btnPay.layoutIfNeeded()
+                self.downView.layoutIfNeeded()
+            }, completion: {(finished) in
+                if !isShow && self.state?.getCountSelected() == 0 {
+                    self.downViewHeightConstraint.constant = 0
+                    self.downView.isHidden = true
+                    self.sumTextField.text = ""
+                }
+            })
+            view.endEditing(!isShow)
+            if !isShow {
+                self.state?.clearSelectedItems()
+            }
+       }
         
         self.loadView(isShowLoading: false, isHiddenSelected: true)
     }
     
     func loadView(isShowLoading: Bool, isHiddenSelected: Bool) {
-        self.loading.isHidden = isShowLoading
+        self.loading.isHidden = isShowLoading || self.state?.getCountSelected() == 0
         self.sumTextField.isHidden = isHiddenSelected
         self.selectedItemTextField.isHidden = isHiddenSelected
         isHiddenSelected ? self.loading.startAnimating() : self.loading.stopAnimating()

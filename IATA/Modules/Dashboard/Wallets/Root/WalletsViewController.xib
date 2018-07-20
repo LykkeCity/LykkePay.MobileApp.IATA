@@ -30,10 +30,10 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wq5-vk-Wv0">
-                    <rect key="frame" x="0.0" y="-65" width="414" height="65"/>
+                    <rect key="frame" x="0.0" y="-69" width="414" height="69"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wallets" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1jW-Ep-x2I">
-                            <rect key="frame" x="175.66666666666666" y="36" width="63.333333333333343" height="15.333333333333336"/>
+                            <rect key="frame" x="175.66666666666666" y="39.333333333333329" width="63.333333333333343" height="15.333333333333336"/>
                             <fontDescription key="fontDescription" name="GothamPro-Medium" family="Gotham Pro" pointSize="17"/>
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
@@ -42,13 +42,13 @@
                     <color key="backgroundColor" red="0.074509803921568626" green="0.26666666666666666" blue="0.45882352941176469" alpha="1" colorSpace="deviceRGB"/>
                     <color key="tintColor" red="0.074509803921568626" green="0.26666666666666666" blue="0.45882352941176469" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="65" id="1Ux-VC-aSI"/>
+                        <constraint firstAttribute="height" constant="69" id="1Ux-VC-aSI"/>
                         <constraint firstItem="1jW-Ep-x2I" firstAttribute="centerX" secondItem="Wq5-vk-Wv0" secondAttribute="centerX" id="bdp-aF-nRT"/>
-                        <constraint firstItem="1jW-Ep-x2I" firstAttribute="top" secondItem="Wq5-vk-Wv0" secondAttribute="top" constant="36" id="wwy-iy-SzF"/>
+                        <constraint firstItem="1jW-Ep-x2I" firstAttribute="top" secondItem="Wq5-vk-Wv0" secondAttribute="top" constant="39.5" id="wwy-iy-SzF"/>
                     </constraints>
                 </view>
                 <view opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nVv-99-dcl">
-                    <rect key="frame" x="0.0" y="-130" width="414" height="65"/>
+                    <rect key="frame" x="0.0" y="-134" width="414" height="65"/>
                     <color key="backgroundColor" red="0.074509803920000006" green="0.2666666667" blue="0.45882352939999999" alpha="1" colorSpace="deviceRGB"/>
                     <color key="tintColor" red="0.074509803920000006" green="0.2666666667" blue="0.45882352939999999" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
@@ -104,7 +104,7 @@
                 <constraint firstItem="qt9-eY-MSu" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="8" id="2xj-xs-mvL"/>
                 <constraint firstItem="nVv-99-dcl" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="5yV-t9-zdx"/>
                 <constraint firstAttribute="trailing" secondItem="qt9-eY-MSu" secondAttribute="trailing" constant="20" id="6dE-Xg-e3j"/>
-                <constraint firstItem="Wq5-vk-Wv0" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="-65" id="B19-ul-B57"/>
+                <constraint firstItem="Wq5-vk-Wv0" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="-69" id="B19-ul-B57"/>
                 <constraint firstItem="Wq5-vk-Wv0" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="URl-vY-sRx"/>
                 <constraint firstAttribute="trailing" secondItem="Wq5-vk-Wv0" secondAttribute="trailing" id="YTq-yG-fAY"/>
                 <constraint firstItem="Wq5-vk-Wv0" firstAttribute="top" secondItem="nVv-99-dcl" secondAttribute="bottom" id="aS0-Qa-KVs"/>

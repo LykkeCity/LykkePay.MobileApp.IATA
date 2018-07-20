@@ -10,12 +10,19 @@ class ChangePasswordViewController: BaseAuthViewController, UINavigationControll
     @IBOutlet weak var newPasswordField: FloatTextField?
     @IBOutlet weak var newPasswordAgainField: FloatTextField?
     @IBOutlet weak var changeButton: UIButton?
-    
+    @IBOutlet weak var constraintToSuperview: NSLayoutConstraint!
+
+    @IBOutlet weak var constraintToSafeArea: NSLayoutConstraint!
+
     private var state: ChangePasswordViewState = DefaultChangePasswordViewState() as ChangePasswordViewState
     
     func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationControllerOperation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        
-        return PresentAnimation()
+        let name = String(describing: toVC.classForCoder)
+        if name.contains("SignInViewController")  {
+            return PresentDownAnimation()
+        } else {
+            return PresentAnimation()
+        }
     }
     
     override func viewDidLoad() {
@@ -34,8 +41,17 @@ class ChangePasswordViewController: BaseAuthViewController, UINavigationControll
         }
         self.setNeedsStatusBarAppearanceUpdate()
         self.initNavBar()
+        setConstraintToTopOfScreen()
     }
-    
+
+    private func setConstraintToTopOfScreen() {
+        if #available(iOS 11.0, *) {
+            view.removeConstraint(constraintToSuperview)
+        } else {
+            view.removeConstraint(constraintToSafeArea)
+        }
+    }
+
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .default
     }

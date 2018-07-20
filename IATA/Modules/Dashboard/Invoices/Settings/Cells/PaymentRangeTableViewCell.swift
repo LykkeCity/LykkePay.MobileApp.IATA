@@ -24,9 +24,11 @@ class PaymentRangeTableViewCell: UITableViewCell, UITextFieldDelegate {
             self.minValueChanged(self.minValueTextField)
             self.maxValueChanged(self.maxValueTextField)
             
-            if let maxValueRange = item.maxRangeInBaseAsset {
+            if let maxValueRange = item.maxRangeInBaseAsset, let minValueRange = item.maxRangeInBaseAsset, maxValueRange != 0 {
                 self.rangeSlider?.maximumValue = maxValueRange
                 self.maxValueLabel.text = getMaxValue(maxValue: maxValueRange)
+            } else {
+                self.item?.maxRangeInBaseAsset = 1000000
             }
         }
     }
@@ -90,6 +92,11 @@ class PaymentRangeTableViewCell: UITableViewCell, UITextFieldDelegate {
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+
+        if !textField.filterNumbers(with: string) {
+            return false
+        }
+        
         if(textField == self.maxValueTextField) {
             self.maxValueTextField?.textField(textField, shouldChangeCharactersIn: range, replacementString: string)
             
@@ -102,6 +109,10 @@ class PaymentRangeTableViewCell: UITableViewCell, UITextFieldDelegate {
                 
                 if  let maxValueRange = self.item?.maxRangeInBaseAsset,
                     !(TextFieldUtil.validateMaxValue(newString: newString, maxValue: maxValueRange, range: range, replacementString: string, symbol: self.maxValueTextField?.symbolValue)) {
+                    return false
+                }
+                
+                if  !TextFieldUtil.validateMinValueText(newString, 0, false) {
                     return false
                 }
             }
@@ -137,7 +148,11 @@ class PaymentRangeTableViewCell: UITableViewCell, UITextFieldDelegate {
             if text.isEmpty, let symbol = UserPreference.shared.getCurrentCurrency()?.symbol {
                 self.minValueTextField?.text = "0 " + symbol
             }
-            if  let valueText = self.minValueTextField?.text, let value = Formatter.formattedToDouble(valueString: valueText),
+            
+            if let valueText = self.maxValueTextField?.text, Formatter.formattedToDouble(valueString: valueText) == 0 {
+                ViewUtils.shared.showToast(message: R.string.localizable.invoiceSettingsErrorToZero(), view: self.contentView)
+                NotificationCenter.default.post(name: NSNotification.Name(NotificateEnum.disable.rawValue), object: nil)
+            } else if  let valueText = self.minValueTextField?.text, let value = Formatter.formattedToDouble(valueString: valueText),
                 !TextFieldUtil.validateMinValueText(text, value, false) {
                 //check max value and min value
                 ViewUtils.shared.showToast(message: R.string.localizable.invoiceSettingsErrorTo(), view: self.contentView)
@@ -177,9 +192,12 @@ class PaymentRangeTableViewCell: UITableViewCell, UITextFieldDelegate {
     }
     
     private func getMaxValue(maxValue: Double) -> String {
-        let intValue = 1000 * Int((maxValue / 1000.0).rounded())
+        var intValue = 1000 * Int((maxValue / 1000.0).rounded())
         let formatter = NumberFormatter()
         formatter.maximumFractionDigits = 0
+        if intValue == 0 {
+            return R.string.localizable.invoiceSettingsMaxRange("1")
+        }
         if let value = formatter.string(for: Double(intValue)/1000){
             return R.string.localizable.invoiceSettingsMaxRange(value)
         } else {

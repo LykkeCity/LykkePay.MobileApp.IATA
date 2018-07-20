@@ -35,6 +35,7 @@
 "Invoice.Settings.Range.From" = "From";
 "Invoice.Settings.Range.To" = "To";
 "Invoice.Settings.Error.To" = "To Value cannot be less From Value";
+"Invoice.Settings.Error.To.Zero" = "To Value cannot be 0";
 "Invoice.Settings.Error.From" = "From Value cannot exceed To Value";
 "Invoice.Settings.MaxRange" = "%@K";
 

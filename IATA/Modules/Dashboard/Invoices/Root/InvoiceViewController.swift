@@ -1,7 +1,6 @@
 import UIKit
 import ObjectMapper
 
-
 class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceState> {
    
     @IBOutlet weak var sumTextField: CurrencyUiTextField!
@@ -195,6 +194,9 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if !textField.filterNumbers(with: string) {
+            return false
+        }
         if(textField == self.sumTextField) {
             if !self.sumTextField.textField(textField, shouldChangeCharactersIn: range, replacementString: string) {
                 return false
@@ -244,10 +246,9 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
     }
     
     private func initDownView(isSelected: Bool) {
-        if (isSelected && self.downViewHeightConstraint.constant == 0) {
+        if isSelected  {
             self.animate(isShow: true)
-        } else if (!isSelected && self.downViewHeightConstraint.constant != 0 && self.state?.getCountSelected() == 0) {
-            self.sumTextField.text = ""
+        } else if !isSelected && self.state?.getCountSelected() == 0 {
             self.animate(isShow: false)
         }
     }
@@ -261,11 +262,26 @@ class InvoiceViewController: BaseViewController<InvoiceModel, DefaultInvoiceStat
     @objc func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             UIView.animate(withDuration: 0.1, animations: { () -> Void in
-                self.bottomConstrain.constant = -keyboardSize.size.height/2 - 70
+                self.bottomConstrain.constant = -keyboardSize.size.height/2 - 70 - self.spaceForPayViewForCurrentDevice()
             })
         }
     }
-    
+
+    private func spaceForPayViewForCurrentDevice() -> CGFloat {
+        if UIDevice().userInterfaceIdiom == .pad {
+            return 60
+        }
+        if UIDevice().userInterfaceIdiom == .phone {
+            switch UIScreen.main.nativeBounds.height {
+            case 2436:
+                 return 10
+            default:
+                break
+            }
+        }
+        return 0
+    }
+
     @objc func keyboardWillHide(notification: NSNotification) {
         self.bottomConstrain.constant = 0
     }

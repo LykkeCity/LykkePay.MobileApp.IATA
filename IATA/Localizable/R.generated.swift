@@ -609,7 +609,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 99 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 100 localization keys.
     struct localizable {
       /// Base translation: %@ (%@ block confirmations)
       /// 
@@ -963,6 +963,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: Base
       static let invoiceSettingsRangeTo = Rswift.StringResource(key: "Invoice.Settings.Range.To", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
+      /// Base translation: To Value cannot be 0
+      /// 
+      /// Locales: Base
+      static let invoiceSettingsErrorToZero = Rswift.StringResource(key: "Invoice.Settings.Error.To.Zero", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base"], comment: nil)
       /// Base translation: To Value cannot be less From Value
       /// 
       /// Locales: Base
@@ -1622,6 +1626,13 @@ struct R: Rswift.Validatable {
       /// Locales: Base
       static func invoiceSettingsRangeTo(_: Void = ()) -> String {
         return NSLocalizedString("Invoice.Settings.Range.To", bundle: R.hostingBundle, value: "To", comment: "")
+      }
+      
+      /// Base translation: To Value cannot be 0
+      /// 
+      /// Locales: Base
+      static func invoiceSettingsErrorToZero(_: Void = ()) -> String {
+        return NSLocalizedString("Invoice.Settings.Error.To.Zero", bundle: R.hostingBundle, value: "To Value cannot be 0", comment: "")
       }
       
       /// Base translation: To Value cannot be less From Value
