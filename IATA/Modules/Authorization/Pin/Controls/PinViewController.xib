@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="GothamProReg.otf">
+            <string>GothamPro</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PinViewController" customModule="IATA" customModuleProvider="target">
+            <connections>
+                <outlet property="cancelBtn" destination="xe5-U4-Wo3" id="SOu-hE-CLo"/>
+                <outlet property="constraintToSafeArea" destination="ppb-V9-CTj" id="6uw-Sf-e8F"/>
+                <outlet property="constraintToSuperview" destination="5CB-aW-LQe" id="tR0-PS-7WV"/>
+                <outlet property="labelTitle" destination="oY7-VE-eOM" id="NZK-wK-4PJ"/>
+                <outlet property="passwordStackView" destination="MgR-5H-JGF" id="mJp-Bo-yet"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="35" translatesAutoresizingMaskIntoConstraints="NO" id="Ulj-kJ-9d9">
+                    <rect key="frame" x="16" y="56" width="343" height="587"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hub-S0-8XR">
+                            <rect key="frame" x="0.0" y="0.0" width="343" height="120"/>
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="iHK-bQ-e2Q">
+                                    <rect key="frame" x="111.5" y="0.0" width="120" height="120"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="120" id="1rd-HW-KPQ"/>
+                                        <constraint firstAttribute="width" constant="120" id="iva-wc-u3W"/>
+                                    </constraints>
+                                </imageView>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstItem="iHK-bQ-e2Q" firstAttribute="centerX" secondItem="hub-S0-8XR" secondAttribute="centerX" id="29T-2N-Tdm"/>
+                                <constraint firstAttribute="height" constant="120" id="Opo-12-ja3"/>
+                                <constraint firstItem="iHK-bQ-e2Q" firstAttribute="top" secondItem="hub-S0-8XR" secondAttribute="top" id="dYe-Q0-YXu"/>
+                                <constraint firstAttribute="bottom" secondItem="iHK-bQ-e2Q" secondAttribute="bottom" id="tHA-2B-6jx"/>
+                            </constraints>
+                        </view>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please enter your PIN code" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oY7-VE-eOM">
+                            <rect key="frame" x="0.0" y="155" width="343" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="QHT-Wr-Rqt"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="GothamPro" family="Gotham Pro" pointSize="16"/>
+                            <color key="textColor" red="0.66274509803921566" green="0.68627450980392157" blue="0.72156862745098038" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="MgR-5H-JGF">
+                            <rect key="frame" x="0.0" y="210" width="343" height="377"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Xh-7S-HGl">
+                                    <rect key="frame" x="0.0" y="0.0" width="343" height="377"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                </stackView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nyZ-gg-V6l">
+                    <rect key="frame" x="0.0" y="28" width="375" height="20"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xe5-U4-Wo3">
+                            <rect key="frame" x="16" y="0.0" width="57" height="28"/>
+                            <fontDescription key="fontDescription" name="GothamPro" family="Gotham Pro" pointSize="17"/>
+                            <state key="normal" title="Cancel">
+                                <color key="titleColor" red="0.066666666666666666" green="0.066666666666666666" blue="0.066666666666666666" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="clickCancel:" destination="-1" eventType="touchUpInside" id="3RD-4a-fGE"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="JZp-Ro-YCt"/>
+                        <constraint firstItem="xe5-U4-Wo3" firstAttribute="leading" secondItem="nyZ-gg-V6l" secondAttribute="leading" constant="16" id="VJJ-QJ-vKA"/>
+                        <constraint firstItem="xe5-U4-Wo3" firstAttribute="top" secondItem="nyZ-gg-V6l" secondAttribute="top" id="t7u-FZ-GIf"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="nyZ-gg-V6l" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="28" id="5CB-aW-LQe"/>
+                <constraint firstItem="Ulj-kJ-9d9" firstAttribute="top" secondItem="nyZ-gg-V6l" secondAttribute="bottom" constant="8" id="PFK-fI-Bo2"/>
+                <constraint firstItem="Ulj-kJ-9d9" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="16" id="Te2-v6-7SB"/>
+                <constraint firstAttribute="bottom" secondItem="Ulj-kJ-9d9" secondAttribute="bottom" constant="24" id="Wwb-A0-t3g"/>
+                <constraint firstItem="nyZ-gg-V6l" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="XEB-Af-Z4y"/>
+                <constraint firstItem="nyZ-gg-V6l" firstAttribute="top" secondItem="6ZK-2U-wbo" secondAttribute="top" constant="8" id="ppb-V9-CTj"/>
+                <constraint firstAttribute="trailing" secondItem="nyZ-gg-V6l" secondAttribute="trailing" id="vOf-aO-aGj"/>
+                <constraint firstAttribute="trailing" secondItem="Ulj-kJ-9d9" secondAttribute="trailing" constant="16" id="w55-58-nZM"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="6ZK-2U-wbo"/>
+            <point key="canvasLocation" x="33.5" y="148.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="Logo" width="216" height="216"/>
+    </resources>
+</document>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="GothamProBold.ttf">
+            <string>GothamPro-Bold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DisputInvoiceViewController" customModule="IATA" customModuleProvider="target">
+            <connections>
+                <outlet property="constraintToSafearea" destination="Ypm-mD-ShA" id="KON-zB-vCN"/>
+                <outlet property="constraintToSuperview" destination="BFL-I4-REv" id="UTz-qG-UVL"/>
+                <outlet property="navBar" destination="V4J-EB-iMn" id="bEk-Qc-7BS"/>
+                <outlet property="navItem" destination="nsm-6V-qt7" id="Bca-nw-xON"/>
+                <outlet property="navView" destination="7dC-3h-EEE" id="sPg-9n-zzh"/>
+                <outlet property="reasonTextField" destination="2io-qG-s3C" id="A7I-Wf-rlm"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reason" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dS1-NH-ixo">
+                    <rect key="frame" x="20" y="133" width="335" height="22"/>
+                    <fontDescription key="fontDescription" name="GothamPro-Bold" family="Gotham Pro" pointSize="24"/>
+                    <color key="textColor" red="0.074509803921568626" green="0.26666666666666666" blue="0.45882352941176469" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2io-qG-s3C" customClass="FloatTextField" customModule="IATA" customModuleProvider="target">
+                    <rect key="frame" x="20" y="190" width="335" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="Omd-xx-9BK"/>
+                    </constraints>
+                    <nil key="textColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <textInputTraits key="textInputTraits" autocorrectionType="no"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="placeholderVerticalOffset">
+                            <real key="value" value="25"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="editingChanged:" destination="-1" eventType="editingChanged" id="bhz-xF-981"/>
+                        <action selector="startEditing:" destination="-1" eventType="editingDidBegin" id="lbR-hr-WJT"/>
+                    </connections>
+                </textField>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7dC-3h-EEE">
+                    <rect key="frame" x="0.0" y="6" width="375" height="100"/>
+                    <subviews>
+                        <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V4J-EB-iMn">
+                            <rect key="frame" x="0.0" y="56" width="375" height="44"/>
+                            <items>
+                                <navigationItem title="Title" id="nsm-6V-qt7"/>
+                            </items>
+                        </navigationBar>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="V4J-EB-iMn" firstAttribute="leading" secondItem="7dC-3h-EEE" secondAttribute="leading" id="5Ow-7u-ciX"/>
+                        <constraint firstAttribute="height" constant="100" id="7BF-m2-hXu"/>
+                        <constraint firstAttribute="trailing" secondItem="V4J-EB-iMn" secondAttribute="trailing" id="Rro-jB-Xne"/>
+                        <constraint firstAttribute="bottom" secondItem="V4J-EB-iMn" secondAttribute="bottom" id="nuJ-UF-hvd"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="top" secondItem="7dC-3h-EEE" secondAttribute="top" constant="38" id="BFL-I4-REv"/>
+                <constraint firstItem="dS1-NH-ixo" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="CaB-zb-PYb"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="7dC-3h-EEE" secondAttribute="trailing" id="HKf-Ss-2uk"/>
+                <constraint firstItem="2io-qG-s3C" firstAttribute="top" secondItem="dS1-NH-ixo" secondAttribute="bottom" constant="35" id="MXv-Yc-t6q"/>
+                <constraint firstItem="dS1-NH-ixo" firstAttribute="top" secondItem="7dC-3h-EEE" secondAttribute="bottom" constant="27" id="QIW-Y0-P8n"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="top" secondItem="7dC-3h-EEE" secondAttribute="top" constant="58" id="Ypm-mD-ShA"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="2io-qG-s3C" secondAttribute="trailing" constant="20" id="dPR-El-GYT"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="dS1-NH-ixo" secondAttribute="trailing" constant="20" id="g5e-6S-tby"/>
+                <constraint firstItem="7dC-3h-EEE" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="hcx-vc-Ypa"/>
+                <constraint firstItem="2io-qG-s3C" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="wJX-GH-2sE"/>
+                <constraint firstItem="2io-qG-s3C" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="z4c-Ch-itK"/>
+            </constraints>
+            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+            <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+        </view>
+    </objects>
+</document>
